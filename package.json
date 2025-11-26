@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "mongoose": "^9.0.0",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7"
+  }
+}
