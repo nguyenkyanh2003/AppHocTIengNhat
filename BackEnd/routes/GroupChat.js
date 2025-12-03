@@ -43,7 +43,7 @@ const upload = multer({
 // Kiểm tra user có phải thành viên của nhóm không
 const isMember = async (req, res, next) => {
     try {
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { groupID } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(groupID)) {
@@ -73,7 +73,7 @@ const isMember = async (req, res, next) => {
 router.post("/:groupID", authenticateUser, isMember, async (req, res) => {
     try {
         const { groupID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { content, reply_to } = req.body;
 
         if (!content || content.trim() === '') {
@@ -126,7 +126,7 @@ router.post("/:groupID", authenticateUser, isMember, async (req, res) => {
 router.post("/:groupID/upload", authenticateUser, isMember, upload.single('file'), async (req, res) => {
     try {
         const { groupID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { content } = req.body;
 
         if (!req.file) {
@@ -255,7 +255,7 @@ router.get("/:groupID/latest", authenticateUser, isMember, async (req, res) => {
 router.put("/:groupID/:messageID", authenticateUser, isMember, async (req, res) => {
     try {
         const { groupID, messageID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { content } = req.body;
 
         if (!content || content.trim() === '') {
@@ -316,7 +316,7 @@ router.put("/:groupID/:messageID", authenticateUser, isMember, async (req, res) 
 router.delete("/:groupID/:messageID", authenticateUser, isMember, async (req, res) => {
     try {
         const { groupID, messageID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(messageID)) {
             return res.status(400).json({ message: "ID tin nhắn không hợp lệ." });

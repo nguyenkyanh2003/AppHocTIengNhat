@@ -4,6 +4,7 @@ import multer from "multer";
 import xlsx from "xlsx";
 import Kanji from "../model/Kanji.js";
 import Lesson from "../model/Lesson.js";
+import UserStreak from "../model/UserStreak.js";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -67,10 +68,6 @@ router.get("/search", authenticateUser, async (req, res) => {
         }
 
         const result = await Kanji.find(filter)
-            .populate({
-                path: 'lessonId',
-                select: 'title level'
-            })
             .sort({ createdAt: 1 })
             .limit(50)
             .lean();
@@ -81,6 +78,76 @@ router.get("/search", authenticateUser, async (req, res) => {
         res.json(result);
     } catch (error) {
         console.error("Lỗi khi tìm Kanji:", error);
+        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
+    }
+});
+
+// Lấy kanji theo cấp độ (N5, N4, N3, N2, N1)
+router.get("/level/:level", authenticateUser, async (req, res) => {
+    try {
+        const { level } = req.params;
+        
+        if (!['N5', 'N4', 'N3', 'N2', 'N1'].includes(level)) {
+            return res.status(400).json({ message: "Cấp độ không hợp lệ." });
+        }
+
+        const data = await Kanji.find({ level })
+            .sort({ createdAt: 1 })
+            .lean();
+
+        res.json({ data, total: data.length });
+    } catch (error) {
+        console.error("Lỗi khi lấy Kanji theo level:", error);
+        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
+    }
+});
+
+// Lấy chi tiết 1 kanji theo ID
+router.get("/:id", authenticateUser, async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const kanji = await Kanji.findById(id).lean();
+
+        if (!kanji) {
+            return res.status(404).json({ message: "Không tìm thấy Kanji." });
+        }
+
+        res.json({ data: kanji });
+    } catch (error) {
+        console.error("Lỗi khi lấy chi tiết Kanji:", error);
+        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
+    }
+});
+
+// Đánh dấu đã học kanji (CHỈ DÙNG TRONG LESSON - KHÔNG CỘNG XP Ở ĐÂY)
+// XP chỉ được cộng qua LessonProgress khi học trong bài học
+router.post("/learn/:id", authenticateUser, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { lessonId } = req.body; // Bắt buộc phải có lessonId
+        const userId = req.user._id;
+        
+        if (!lessonId) {
+            return res.status(400).json({ 
+                message: "Vui lòng học kanji trong bài học để được cộng điểm." 
+            });
+        }
+        
+        // Kiểm tra kanji có tồn tại không
+        const kanji = await Kanji.findById(id);
+        if (!kanji) {
+            return res.status(404).json({ message: "Không tìm thấy kanji." });
+        }
+        
+        // Chuyển hướng về LessonProgress API
+        return res.json({ 
+            message: "Vui lòng sử dụng API /lesson-progress/lesson/:lessonId/update để cập nhật tiến độ học",
+            redirect: `/lesson-progress/lesson/${lessonId}/update`
+        });
+        
+    } catch (error) {
+        console.error("Lỗi đánh dấu học kanji:", error);
         res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
     }
 });

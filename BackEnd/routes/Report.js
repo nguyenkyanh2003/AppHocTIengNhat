@@ -7,9 +7,9 @@ const router = express.Router();
 // USER ROUTES
 
 // Tạo báo cáo mới
-router.post("/", authenticateUser, async (req, res) => {
+router.delete("/:id", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { type, related_id, related_type, title, description, priority } = req.body;
         
         if (!type || !title || !description) {
@@ -44,7 +44,7 @@ router.post("/", authenticateUser, async (req, res) => {
 // Lấy danh sách báo cáo của user
 router.get("/my-reports", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { page = 1, limit = 10, status } = req.query;
 
         const query = { user_id: userId };
@@ -77,7 +77,7 @@ router.get("/my-reports", authenticateUser, async (req, res) => {
 router.get("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const isAdmin = req.user?.role === 'admin';
 
         const query = isAdmin ? { _id: id } : { _id: id, user_id: userId };
@@ -101,7 +101,7 @@ router.get("/:id", authenticateUser, async (req, res) => {
 router.delete("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const report = await Report.findOne({ _id: id, user_id: userId });
 
@@ -346,3 +346,4 @@ router.get("/admin/stats", authenticateAdmin, async (req, res) => {
 });
 
 export default router;
+

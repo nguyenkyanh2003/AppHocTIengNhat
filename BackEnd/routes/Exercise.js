@@ -5,12 +5,63 @@ import xlsx from 'xlsx';
 import Exercise from '../model/Exercise.js';
 import ExerciseResult from '../model/ExerciseResult.js';
 import Lesson from '../model/Lesson.js';
+import UserStreak from '../model/UserStreak.js';
 import mongoose from 'mongoose';
 
 const router = express.Router();
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 } });
 
 // USER ROUTES
+
+// Lấy danh sách bài tập theo cấp độ
+router.get("/level/:level", authenticateUser, async (req, res) => {
+    try {
+        const { level } = req.params;
+
+        const exercises = await Exercise.find({ 
+            level: level,
+            is_active: true 
+        })
+        .select('title type level description time_limit total_attempts createdAt questions')
+        .lean();
+
+        // Thêm số câu hỏi cho mỗi bài tập
+        const exercisesWithCount = exercises.map(ex => ({
+            ...ex,
+            question_count: ex.questions && Array.isArray(ex.questions) ? ex.questions.length : 0
+        }));
+
+        res.json(exercisesWithCount);
+    } catch (error) {
+        console.error("Lỗi lấy danh sách bài tập theo cấp độ:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Lấy danh sách bài tập theo loại
+router.get("/type/:type", authenticateUser, async (req, res) => {
+    try {
+        const { type } = req.params;
+
+        const exercises = await Exercise.find({ 
+            type: type,
+            is_active: true 
+        })
+        .select('title type level description time_limit total_attempts createdAt questions')
+        .lean();
+
+        // Thêm số câu hỏi cho mỗi bài tập
+        const exercisesWithCount = exercises.map(ex => ({
+            ...ex,
+            question_count: ex.questions && Array.isArray(ex.questions) ? ex.questions.length : 0
+        }));
+
+        res.json(exercisesWithCount);
+    } catch (error) {
+        console.error("Lỗi lấy danh sách bài tập theo loại:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 // Lấy danh sách bài tập của 1 bài học
 router.get("/lesson/:lessonID", authenticateUser, async (req, res) => {
@@ -25,13 +76,13 @@ router.get("/lesson/:lessonID", authenticateUser, async (req, res) => {
             lesson_id: lessonID,
             is_active: true 
         })
-        .select('title type level description time_limit total_attempts createdAt')
+        .select('title type level description time_limit total_attempts createdAt questions')
         .lean();
 
         // Thêm số câu hỏi cho mỗi bài tập
         const exercisesWithCount = exercises.map(ex => ({
             ...ex,
-            question_count: ex.questions?.length || 0
+            question_count: ex.questions && Array.isArray(ex.questions) ? ex.questions.length : 0
         }));
 
         res.json(exercisesWithCount);
@@ -41,48 +92,11 @@ router.get("/lesson/:lessonID", authenticateUser, async (req, res) => {
     }
 });
 
-// Lấy chi tiết bài tập (không có đáp án đúng)
-router.get("/:id", authenticateUser, async (req, res) => {
-    try {
-        const { id } = req.params;
-        
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ error: "ID bài tập không hợp lệ." });
-        }
-
-        const exercise = await Exercise.findOne({ 
-            _id: id,
-            is_active: true 
-        })
-        .populate('lesson_id', 'title level')
-        .lean();
-
-        if (!exercise) {
-            return res.status(404).json({ error: "Không tìm thấy bài tập." });
-        }
-
-        // Loại bỏ is_correct khỏi answers
-        exercise.questions = exercise.questions.map(q => ({
-            ...q,
-            answers: q.answers.map(a => ({
-                _id: a._id,
-                content: a.content
-            })),
-            explanation: undefined // Không trả về giải thích lúc làm bài
-        }));
-
-        res.json(exercise);
-    } catch (error) {
-        console.error("Lỗi lấy chi tiết bài tập:", error);
-        res.status(500).json({ error: error.message });
-    }
-});
-
 // Nộp bài và chấm điểm
 router.post("/submit/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { answers, timeSpent } = req.body; // answers: [{ question_id, answer_id }]
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -103,29 +117,43 @@ router.post("/submit/:id", authenticateUser, async (req, res) => {
             return res.status(404).json({ error: "Bài tập này không có câu hỏi." });
         }
 
+        // Chuẩn hoá answers: chỉ lấy câu trả lời đầu cho mỗi question_id
+        const answerMap = new Map();
+        for (const ua of answers) {
+            if (!ua || !ua.question_id || !ua.answer_id) continue;
+            const qid = String(ua.question_id);
+            if (!answerMap.has(qid)) answerMap.set(qid, String(ua.answer_id));
+        }
+
         // Chấm điểm
         let correctCount = 0;
         const userAnswers = [];
 
-        for (const userAns of answers) {
-            const question = exercise.questions.id(userAns.question_id);
-            if (!question) continue;
+        for (const q of exercise.questions) {
+            const qid = String(q._id);
+            if (!answerMap.has(qid)) continue;
+            const selectedId = answerMap.get(qid);
 
-            const selectedAnswer = question.answers.id(userAns.answer_id);
+            const selectedAnswer = q.answers.id(selectedId);
             if (!selectedAnswer) continue;
 
-            const isCorrect = selectedAnswer.is_correct;
+            const isCorrect = !!selectedAnswer.is_correct;
             if (isCorrect) correctCount++;
 
+            // snapshot correct_answer_id to prevent future admin edits affecting history
+            const correctAnswerObj = q.answers.find(a => a.is_correct);
+            const correctAnswerId = correctAnswerObj ? String(correctAnswerObj._id) : null;
+
             userAnswers.push({
-                question_id: userAns.question_id,
-                answer_id: userAns.answer_id,
-                is_correct: isCorrect
+                question_id: q._id,
+                answer_id: selectedAnswer._id,
+                is_correct: isCorrect,
+                correct_answer_id: correctAnswerId
             });
         }
 
         const score = parseFloat(((correctCount / totalQuestions) * 100).toFixed(2));
-        const isPassed = score >= exercise.pass_score;
+        const isPassed = score >= (exercise.pass_score ?? 60);
 
         // Lưu kết quả
         const result = await ExerciseResult.create({
@@ -134,21 +162,45 @@ router.post("/submit/:id", authenticateUser, async (req, res) => {
             score,
             correct_count: correctCount,
             total_questions: totalQuestions,
-            time_spent: timeSpent || 0,
+            time_spent: Number(timeSpent || 0),
             user_answers: userAnswers,
-            is_passed: isPassed
+            is_passed: isPassed,
+            completed_at: new Date()
         });
 
         // Tăng số lượt làm bài
         await Exercise.findByIdAndUpdate(id, { $inc: { total_attempts: 1 } });
 
+        // Cập nhật streak khi hoàn thành bài tập
+        try {
+            const streak = await UserStreak.findOne({ user: userId });
+            if (streak) {
+                const updated = streak.updateStreakOnActivity();
+                if (updated.is_new_day) {
+                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
+                }
+                
+                // Thêm XP cho bài tập (10 XP nếu pass, 5 XP nếu fail)
+                const xpEarned = isPassed ? 10 : 5;
+                streak.addXP(xpEarned, 'Hoàn thành bài tập');
+                await streak.save();
+            }
+        } catch (streakError) {
+            console.error('⚠️ Lỗi cập nhật streak:', streakError);
+            // Không throw error để không ảnh hưởng đến việc submit bài
+        }
+
         res.status(201).json({
-            message: "Nộp bài thành công!",
-            Diem: result.score,
-            KetQuaID: result._id,
-            is_passed: isPassed,
-            correct_count: correctCount,
-            total_questions: totalQuestions
+            _id: result._id,
+            user_id: result.user_id,
+            exercise_id: result.exercise_id,
+            score: result.score,
+            correct_answers: correctCount,
+            total_questions: totalQuestions,
+            time_spent: result.time_spent,
+            passed: isPassed,
+            answers: userAnswers,
+            createdAt: result.createdAt || result.completed_at
         });
 
     } catch (error) {
@@ -161,7 +213,7 @@ router.post("/submit/:id", authenticateUser, async (req, res) => {
 router.get("/check-answers/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ error: "ID bài tập không hợp lệ." });
@@ -193,11 +245,63 @@ router.get("/check-answers/:id", authenticateUser, async (req, res) => {
     }
 });
 
-// Xem lịch sử làm bài
+// Xem lịch sử làm bài của user
+router.get("/history", authenticateUser, async (req, res) => {
+    try {
+        const userId = req.user._id;
+
+        const results = await ExerciseResult.find({ 
+            user_id: userId
+        })
+        .populate('exercise_id', 'title type level')
+        .sort({ completed_at: -1, createdAt: -1 })
+        .lean();
+
+        res.json(results);
+
+    } catch (error) {
+        console.error("Lỗi xem lịch sử:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Xem chi tiết kết quả 1 lần làm bài
+router.get("/result/:resultId", authenticateUser, async (req, res) => {
+    try {
+        const { resultId } = req.params;
+        const userId = req.user._id;
+
+        if (!mongoose.Types.ObjectId.isValid(resultId)) {
+            return res.status(400).json({ error: "ID kết quả không hợp lệ." });
+        }
+
+        const result = await ExerciseResult.findOne({ 
+            _id: resultId,
+            user_id: userId 
+        })
+        .populate({
+            path: 'exercise_id',
+            select: 'title type level questions'
+        })
+        .lean();
+
+        if (!result) {
+            return res.status(404).json({ error: "Không tìm thấy kết quả." });
+        }
+
+        res.json(result);
+
+    } catch (error) {
+        console.error("Lỗi xem chi tiết kết quả:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Xem lịch sử làm bài của 1 bài tập cụ thể
 router.get("/my-results/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ error: "ID bài tập không hợp lệ." });
@@ -208,13 +312,50 @@ router.get("/my-results/:id", authenticateUser, async (req, res) => {
             exercise_id: id 
         })
         .select('-user_answers')
-        .sort({ completed_at: -1 })
+        .sort({ completed_at: -1, createdAt: -1 })
         .lean();
 
         res.json(results);
 
     } catch (error) {
         console.error("Lỗi xem lịch sử:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Lấy chi tiết bài tập (không có đáp án đúng)
+router.get("/:id", authenticateUser, async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: "ID bài tập không hợp lệ." });
+        }
+
+        const exercise = await Exercise.findOne({ 
+            _id: id,
+            is_active: true 
+        })
+        .populate('lesson_id', 'title level')
+        .lean();
+
+        if (!exercise) {
+            return res.status(404).json({ error: "Không tìm thấy bài tập." });
+        }
+
+        // Loại bỏ is_correct khỏi answers
+        exercise.questions = (exercise.questions || []).map(q => ({
+            ...q,
+            answers: (q.answers || []).map(a => ({
+                _id: a._id,
+                content: a.content
+            })),
+            explanation: undefined // Không trả về giải thích lúc làm bài
+        }));
+
+        res.json(exercise);
+    } catch (error) {
+        console.error("Lỗi lấy chi tiết bài tập:", error);
         res.status(500).json({ error: error.message });
     }
 });
@@ -418,7 +559,8 @@ router.delete("/questions/:id", authenticateAdmin, async (req, res) => {
             return res.status(404).json({ error: "Không tìm thấy câu hỏi." });
         }
 
-        question.remove();
+        // sử dụng pull thay cho deprecated remove()
+        exercise.questions.pull(id);
         await exercise.save();
 
         res.status(204).send();

@@ -3,13 +3,14 @@ import { authenticateUser, authenticateAdmin } from './auth.js';
 import StudyGroup from '../model/StudyGroup.js';
 import User from '../model/User.js';
 import mongoose from 'mongoose';
+import { uploadGroupAvatar } from '../middleware/upload.js';
 
 const router = express.Router();
 
 // Kiểm tra user có phải admin của nhóm không
 const isGroupAdmin = async (req, res, next) => {
     try {
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { groupID } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(groupID)) {
@@ -41,7 +42,7 @@ const isGroupAdmin = async (req, res, next) => {
 router.post("/", authenticateUser, async (req, res) => {
     try {
         const { name, description, level, avatar, is_private, max_members } = req.body;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!name) {
             return res.status(400).json({ message: "Tên nhóm không được để trống." });
@@ -129,7 +130,7 @@ router.get("/", authenticateUser, async (req, res) => {
 // API Lấy danh sách nhóm mà user đã tham gia
 router.get("/me", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         const groups = await StudyGroup.find({
             'members.user_id': userId,
@@ -155,7 +156,7 @@ router.get("/me", authenticateUser, async (req, res) => {
 router.get("/:groupID", authenticateUser, async (req, res) => {
     try {
         const { groupID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(groupID)) {
             return res.status(400).json({ message: "ID nhóm không hợp lệ." });
@@ -250,7 +251,7 @@ router.put("/:groupID", authenticateUser, isGroupAdmin, async (req, res) => {
 router.delete("/:groupID", authenticateUser, async (req, res) => {
     try {
         const { groupID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(groupID)) {
             return res.status(400).json({ message: "ID nhóm không hợp lệ." });
@@ -285,7 +286,7 @@ router.delete("/:groupID", authenticateUser, async (req, res) => {
 router.post("/join/:groupID", authenticateUser, async (req, res) => {
     try {
         const { groupID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(groupID)) {
             return res.status(400).json({ message: "ID nhóm không hợp lệ." });
@@ -338,7 +339,7 @@ router.post("/join/:groupID", authenticateUser, async (req, res) => {
 router.post("/leave/:groupID", authenticateUser, async (req, res) => {
     try {
         const { groupID } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(groupID)) {
             return res.status(400).json({ message: "ID nhóm không hợp lệ." });
@@ -378,7 +379,7 @@ router.post("/leave/:groupID", authenticateUser, async (req, res) => {
 router.delete("/kick/:groupID/:userID", authenticateUser, isGroupAdmin, async (req, res) => {
     try {
         const { groupID, userID } = req.params;
-        const currentUserId = req.user._id || req.user.id;
+        const currentUserId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(userID)) {
             return res.status(400).json({ message: "ID người dùng không hợp lệ." });
@@ -465,7 +466,7 @@ router.put("/promote/:groupID/:userID", authenticateUser, isGroupAdmin, async (r
 router.put("/demote/:groupID/:userID", authenticateUser, async (req, res) => {
     try {
         const { groupID, userID } = req.params;
-        const currentUserId = req.user._id || req.user.id;
+        const currentUserId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(groupID) || !mongoose.Types.ObjectId.isValid(userID)) {
             return res.status(400).json({ message: "ID không hợp lệ." });
@@ -678,5 +679,37 @@ router.get("/admin/statistics", authenticateAdmin, async (req, res) => {
     }
 });
 
+// API Upload group avatar
+router.put("/:groupID/avatar", authenticateUser, isGroupAdmin, uploadGroupAvatar, async (req, res) => {
+    try {
+        const { groupID } = req.params;
+
+        if (!req.file) {
+            return res.status(400).json({ message: "Vui lòng chọn file ảnh" });
+        }
+
+        // Lấy URL của avatar (sử dụng relative path)
+        const avatarUrl = `/uploads/group-avatars/${req.file.filename}`;
+
+        // Cập nhật avatar trong database
+        const group = await StudyGroup.findByIdAndUpdate(
+            groupID,
+            { avatar: avatarUrl },
+            { new: true }
+        );
+
+        if (!group) {
+            return res.status(404).json({ message: "Không tìm thấy nhóm" });
+        }
+
+        res.json({
+            message: "Cập nhật avatar nhóm thành công",
+            data: group
+        });
+    } catch (error) {
+        console.error("Lỗi upload avatar nhóm:", error);
+        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
+    }
+});
 
 export default router;

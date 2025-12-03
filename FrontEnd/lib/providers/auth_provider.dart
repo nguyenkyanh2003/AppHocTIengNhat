@@ -25,21 +25,37 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
     
     try {
-      if (ApiClient().getToken() != null) {
+      final token = ApiClient().getToken();
+      if (token != null) {
+        // Load user từ local storage
         _user = await _authService.getUserFromLocal();
-        notifyListeners();
-        try {
-          _user = await _authService.getCurrentUser(_user!.id);
-          await _authService.saveUserToLocal(_user!);
-        } catch (e) {
-          // ✅ Đã sửa: Dùng debugPrint thay vì print
-          debugPrint('Failed to refresh user from API: $e');
+        
+        // Nếu không có user trong local hoặc token không khớp, clear và logout
+        if (_user == null) {
+          debugPrint('No user found in local storage, clearing token');
+          await ApiClient().removeToken();
+          await ApiClient().clearAllData();
+        } else {
+          notifyListeners();
+          
+          // Refresh user từ API để đảm bảo dữ liệu mới nhất
+          try {
+            final freshUser = await _authService.getCurrentUser(_user!.id);
+            _user = freshUser;
+            await _authService.saveUserToLocal(_user!);
+            debugPrint('✅ User loaded: ${_user!.username} (${_user!.id})');
+          } catch (e) {
+            debugPrint('⚠️ Failed to refresh user from API: $e');
+            // Giữ user từ local nếu API fail
+          }
         }
       }
     } catch (e) {
       _error = e.toString();
-      // ✅ Đã sửa
       debugPrint('Init error: $e');
+      // Clear nếu có lỗi nghiêm trọng
+      await ApiClient().removeToken();
+      await ApiClient().clearAllData();
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -72,13 +88,26 @@ class AuthProvider extends ChangeNotifier {
   }
   
   /// Đăng ký
-  Future<bool> register(String username, String email, String password, String phoneNumber) async {
+  Future<bool> register(
+    String username, 
+    String fullName, 
+    String email, 
+    String password,
+    {String? phoneNumber, String? trinhDo}
+  ) async {
     _isLoading = true;
     _error = null;
     notifyListeners();
     
     try {
-      await _authService.register(username, email, password, phoneNumber);
+      await _authService.register(
+        username, 
+        fullName, 
+        email, 
+        password,
+        phoneNumber,
+        trinhDo,
+      );
       _isLoading = false;
       notifyListeners();
       return true;
@@ -98,7 +127,6 @@ class AuthProvider extends ChangeNotifier {
     try {
       await _authService.logout();
     } catch (e) {
-      // ✅ Đã sửa
       debugPrint('Logout error: $e');
     } finally {
       _user = null;
@@ -106,6 +134,14 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
+  }
+  
+  /// Reset toàn bộ state (dùng khi cần reset app)
+  void resetState() {
+    _user = null;
+    _error = null;
+    _isLoading = false;
+    notifyListeners();
   }
   
   /// Cập nhật profile
@@ -116,6 +152,8 @@ class AuthProvider extends ChangeNotifier {
     int? currentLevel, 
     String? phoneNumber,
     String? address,
+    String? gender,
+    DateTime? dateOfBirth,
   }) async {
     _isLoading = true;
     _error = null;
@@ -135,8 +173,35 @@ class AuthProvider extends ChangeNotifier {
        currentLevel: currentLevel?.toString(),
         phoneNumber: phoneNumber,
         address: address,
+        gender: gender,
+        dateOfBirth: dateOfBirth,
       );
       
+      await _authService.saveUserToLocal(_user!);
+      
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _error = _getErrorMessage(e);
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
+  /// Upload avatar
+  Future<bool> uploadAvatar(List<int> imageBytes, String fileName) async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+    
+    try {
+      if (_user == null) {
+        throw Exception('Chưa đăng nhập');
+      }
+      
+      _user = await _authService.uploadAvatar(_user!.id, imageBytes, fileName);
       await _authService.saveUserToLocal(_user!);
       
       _isLoading = false;
@@ -220,7 +285,6 @@ class AuthProvider extends ChangeNotifier {
       await _authService.saveUserToLocal(_user!);
       notifyListeners();
     } catch (e) {
-      // ✅ Đã sửa
       debugPrint('Refresh user error: $e');
     }
   }
@@ -235,8 +299,13 @@ class AuthProvider extends ChangeNotifier {
   String _getErrorMessage(dynamic error) {
     final errorString = error.toString();
     
-    if (errorString.contains('401')) {
-      return 'Tên đăng nhập hoặc mật khẩu không đúng';
+    // Lấy message từ backend (loại bỏ prefix "Exception: ")
+    if (errorString.contains('Tên đăng nhập không tồn tại')) {
+      return 'Mật khẩu của bạn không chính xác';
+    } else if (errorString.contains('Mật khẩu không chính xác')) {
+      return 'Mật khẩu của bạn không chính xác';
+    } else if (errorString.contains('401')) {
+      return 'Mật khẩu của bạn không chính xác';
     } else if (errorString.contains('400')) {
       return 'Thông tin không hợp lệ';
     } else if (errorString.contains('409')) {
@@ -245,10 +314,11 @@ class AuthProvider extends ChangeNotifier {
       return 'Không tìm thấy thông tin';
     } else if (errorString.contains('500')) {
       return 'Lỗi server, vui lòng thử lại sau';
-    } else if (errorString.contains('network') || errorString.contains('connection')) {
-      return 'Lỗi kết nối mạng';
     } else {
-      return 'Đã có lỗi xảy ra: $errorString';
+      // Loại bỏ "Exception: " và "Lỗi kết nối: " để message ngắn gọn
+      return errorString
+          .replaceFirst('Exception: ', '')
+          .replaceFirst('Lỗi kết nối: ', '');
     }
   }
 }

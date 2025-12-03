@@ -2,7 +2,9 @@ import express from "express";
 import LearningHistory from "../model/LearningHistory.js";
 import Lesson from "../model/Lesson.js";
 import User from "../model/User.js";
+import UserStreak from "../model/UserStreak.js";
 import { authenticateAdmin, authenticateUser } from "./auth.js";
+import { getVietnamTime, convertDatesToVietnam } from "../utils/timezone.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,7 +13,7 @@ const router = express.Router();
 // Lấy tiến độ cá nhân
 router.get("/", authenticateUser, async (req, res) => {
     try {
-        const nguoiHocID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+        const nguoiHocID = req.user._id;
         
         if (!nguoiHocID) {
             return res.status(401).json({ message: "Không tìm thấy ID người dùng." });
@@ -24,7 +26,7 @@ router.get("/", authenticateUser, async (req, res) => {
 
         res.json({ 
             total: progressList.length,
-            data: progressList 
+            data: convertDatesToVietnam(progressList) 
         });
     } catch (error) {
         console.error("Lỗi khi lấy tiến độ cá nhân:", error);
@@ -33,10 +35,10 @@ router.get("/", authenticateUser, async (req, res) => {
 });
 
 // Lấy tiến độ của một bài học cụ thể
-router.get("/lesson/:lessonID", authenticateUser, async (req, res) => {
+router.post("/lesson/:lessonID", authenticateUser, async (req, res) => {
     try {
         const { lessonID } = req.params;
-        const nguoiHocID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+        const nguoiHocID = req.user._id;
 
         const progress = await LearningHistory.findOne({
             NguoiHocID: nguoiHocID,
@@ -63,7 +65,7 @@ router.get("/lesson/:lessonID", authenticateUser, async (req, res) => {
 router.post("/lesson/:lessonID/update", authenticateUser, async (req, res) => {
     try {
         const { lessonID } = req.params;
-        const nguoiHocID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+        const nguoiHocID = req.user._id;
         const { TienDo, ThoiGianHoc, GhiChu } = req.body;
         
         let newProgress = parseInt(TienDo, 10);
@@ -85,7 +87,7 @@ router.post("/lesson/:lessonID/update", authenticateUser, async (req, res) => {
         if (progress) {
             if (newProgress > progress.TienDo) {
                 progress.TienDo = newProgress;
-                progress.NgayHoc = new Date();
+                progress.NgayHoc = getVietnamTime();
                 
                 if (ThoiGianHoc) {
                     progress.ThoiGianHoc = (progress.ThoiGianHoc || 0) + parseInt(ThoiGianHoc, 10);
@@ -103,7 +105,7 @@ router.post("/lesson/:lessonID/update", authenticateUser, async (req, res) => {
                 TienDo: newProgress,
                 ThoiGianHoc: ThoiGianHoc || 0,
                 GhiChu: GhiChu || null,
-                NgayHoc: new Date()
+                NgayHoc: getVietnamTime()
             });
         }
 
@@ -111,9 +113,29 @@ router.post("/lesson/:lessonID/update", authenticateUser, async (req, res) => {
             .populate('BaiHocID', 'TenBaiHoc CapDo LoaiBaiHoc')
             .lean();
 
+        // Cập nhật streak khi học bài
+        try {
+            const streak = await UserStreak.findOne({ user: nguoiHocID });
+            if (streak) {
+                const updated = streak.updateStreakOnActivity();
+                if (updated.is_new_day) {
+                    console.log(`✅ Streak updated for user ${nguoiHocID}: ${streak.current_streak} days`);
+                }
+                
+                // Thêm XP cho việc học bài (5 XP cho mỗi tiến độ cập nhật)
+                if (newProgress > (progress.TienDo || 0)) {
+                    const xpEarned = newProgress === 100 ? 15 : 5; // 15 XP nếu hoàn thành, 5 XP nếu đang học
+                    streak.addXP(xpEarned, 'Học bài');
+                    await streak.save();
+                }
+            }
+        } catch (streakError) {
+            console.error('⚠️ Lỗi cập nhật streak:', streakError);
+        }
+
         res.status(200).json({ 
             message: "Cập nhật tiến độ thành công.", 
-            data: populatedProgress 
+            data: convertDatesToVietnam(populatedProgress) 
         });
     } catch (error) {
         console.error("Lỗi khi cập nhật tiến độ:", error);
@@ -122,9 +144,9 @@ router.post("/lesson/:lessonID/update", authenticateUser, async (req, res) => {
 });
 
 // Lấy thống kê tiến độ cá nhân
-router.get("/stats", authenticateUser, async (req, res) => {
+router.get("/study-time", authenticateUser, async (req, res) => {
     try {
-        const nguoiHocID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+        const nguoiHocID = req.user._id;
 
         const [totalLessons, completedLessons, inProgressLessons, avgProgress, byLevel] = await Promise.all([
             LearningHistory.countDocuments({ NguoiHocID: nguoiHocID }),
@@ -169,9 +191,9 @@ router.get("/stats", authenticateUser, async (req, res) => {
 });
 
 // Lấy lịch sử học tập gần đây
-router.get("/recent", authenticateUser, async (req, res) => {
+router.get("/achievements", authenticateUser, async (req, res) => {
     try {
-        const nguoiHocID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+        const nguoiHocID = req.user._id;
         const limit = parseInt(req.query.limit, 10) || 10;
 
         const recentProgress = await LearningHistory.find({ NguoiHocID: nguoiHocID })
@@ -194,7 +216,7 @@ router.get("/recent", authenticateUser, async (req, res) => {
 router.delete("/lesson/:lessonID", authenticateUser, async (req, res) => {
     try {
         const { lessonID } = req.params;
-        const nguoiHocID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+        const nguoiHocID = req.user._id;
 
         const deletedProgress = await LearningHistory.findOneAndDelete({
             NguoiHocID: nguoiHocID,
@@ -457,4 +479,257 @@ router.delete("/admin/user/:userID/clear", authenticateAdmin, async (req, res) =
     }
 });
 
+// ===== DASHBOARD STATISTICS =====
+import ExerciseResult from '../model/ExerciseResult.js';
+import SRSProgress from '../model/SRSProgress.js';
+import LessonProgress from '../model/LessonProgress.js';
+
+// Lấy thống kê tổng quan cho dashboard
+router.get('/dashboard/stats', authenticateUser, async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Đếm từ vựng đã học
+    const vocabularyCount = await SRSProgress.countDocuments({
+      user: userId,
+      item_type: 'vocabulary',
+      status: { $in: ['reviewed', 'mastered'] }
+    });
+
+    // Đếm kanji đã học
+    const kanjiCount = await SRSProgress.countDocuments({
+      user: userId,
+      item_type: 'kanji',
+      status: { $in: ['reviewed', 'mastered'] }
+    });
+
+    // Đếm bài tập đã làm
+    const exerciseCount = await ExerciseResult.countDocuments({
+      user_id: userId
+    });
+
+    // Đếm bài học đã hoàn thành
+    const completedLessons = await LessonProgress.countDocuments({
+      user: userId,
+      is_completed: true
+    });
+
+    // Lấy streak info
+    const streak = await UserStreak.findOne({ user: userId });
+
+    // Tính tổng thời gian học
+    const exercises = await ExerciseResult.find({ user_id: userId });
+    const totalStudyTime = exercises.reduce((sum, ex) => sum + (ex.time_spent || 0), 0);
+
+    res.json({
+      vocabulary_learned: vocabularyCount,
+      kanji_learned: kanjiCount,
+      exercises_completed: exerciseCount,
+      lessons_completed: completedLessons,
+      total_study_time: totalStudyTime,
+      current_streak: streak?.current_streak || 0,
+      total_xp: streak?.total_xp || 0,
+      level: streak?.level || 1
+    });
+  } catch (error) {
+    console.error('Lỗi khi lấy thống kê dashboard:', error);
+    res.status(500).json({ message: 'Lỗi server', error: error.message });
+  }
+});
+
+// Lấy dữ liệu timeline cho biểu đồ
+router.get('/dashboard/timeline', authenticateUser, async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { period = 'week' } = req.query;
+
+    let startDate = new Date();
+    switch (period) {
+      case 'week':
+        startDate.setDate(startDate.getDate() - 7);
+        break;
+      case 'month':
+        startDate.setMonth(startDate.getMonth() - 1);
+        break;
+      case 'year':
+        startDate.setFullYear(startDate.getFullYear() - 1);
+        break;
+    }
+
+    const exercises = await ExerciseResult.find({
+      user_id: userId,
+      createdAt: { $gte: startDate }
+    }).sort({ createdAt: 1 });
+
+    const lessons = await LessonProgress.find({
+      user: userId,
+      last_studied_at: { $gte: startDate }
+    }).sort({ last_studied_at: 1 });
+
+    const dailyData = {};
+    
+    exercises.forEach(ex => {
+      const date = ex.createdAt.toISOString().split('T')[0];
+      if (!dailyData[date]) {
+        dailyData[date] = { exercises: 0, lessons: 0, time: 0, xp: 0 };
+      }
+      dailyData[date].exercises += 1;
+      dailyData[date].time += ex.time_spent || 0;
+    });
+
+    lessons.forEach(lesson => {
+      const date = lesson.last_studied_at.toISOString().split('T')[0];
+      if (!dailyData[date]) {
+        dailyData[date] = { exercises: 0, lessons: 0, time: 0, xp: 0 };
+      }
+      dailyData[date].lessons += 1;
+    });
+
+    const streak = await UserStreak.findOne({ user: userId });
+    if (streak && streak.xp_history) {
+      streak.xp_history.forEach(xp => {
+        const date = xp.earned_at.toISOString().split('T')[0];
+        if (dailyData[date]) {
+          dailyData[date].xp += xp.amount;
+        }
+      });
+    }
+
+    const timeline = Object.keys(dailyData).map(date => ({
+      date,
+      ...dailyData[date]
+    }));
+
+    res.json(timeline);
+  } catch (error) {
+    console.error('Lỗi khi lấy timeline:', error);
+    res.status(500).json({ message: 'Lỗi server', error: error.message });
+  }
+});
+
+// Lấy dữ liệu heatmap calendar
+router.get('/dashboard/heatmap', authenticateUser, async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { year = new Date().getFullYear() } = req.query;
+
+    const startDate = new Date(year, 0, 1);
+    const endDate = new Date(year, 11, 31, 23, 59, 59);
+
+    const streak = await UserStreak.findOne({ user: userId });
+    const activityDates = streak?.activity_dates || [];
+
+    const exercises = await ExerciseResult.find({
+      user_id: userId,
+      createdAt: { $gte: startDate, $lte: endDate }
+    });
+
+    const lessons = await LessonProgress.find({
+      user: userId,
+      last_studied_at: { $gte: startDate, $lte: endDate }
+    });
+
+    const heatmapData = {};
+
+    activityDates.forEach(date => {
+      const dateStr = new Date(date).toISOString().split('T')[0];
+      if (dateStr >= startDate.toISOString().split('T')[0] && 
+          dateStr <= endDate.toISOString().split('T')[0]) {
+        if (!heatmapData[dateStr]) {
+          heatmapData[dateStr] = { count: 0, time: 0 };
+        }
+        heatmapData[dateStr].count += 1;
+      }
+    });
+
+    exercises.forEach(ex => {
+      const dateStr = ex.createdAt.toISOString().split('T')[0];
+      if (!heatmapData[dateStr]) {
+        heatmapData[dateStr] = { count: 0, time: 0 };
+      }
+      heatmapData[dateStr].count += 1;
+      heatmapData[dateStr].time += ex.time_spent || 0;
+    });
+
+    lessons.forEach(lesson => {
+      const dateStr = lesson.last_studied_at.toISOString().split('T')[0];
+      if (!heatmapData[dateStr]) {
+        heatmapData[dateStr] = { count: 0, time: 0 };
+      }
+      heatmapData[dateStr].count += 1;
+    });
+
+    const heatmap = Object.keys(heatmapData).map(date => ({
+      date,
+      count: heatmapData[date].count,
+      time: heatmapData[date].time
+    }));
+
+    res.json(heatmap);
+  } catch (error) {
+    console.error('Lỗi khi lấy heatmap:', error);
+    res.status(500).json({ message: 'Lỗi server', error: error.message });
+  }
+});
+
+// Lấy phân tích chi tiết
+router.get('/dashboard/breakdown', authenticateUser, async (req, res) => {
+  try {
+    const userId = req.user._id;
+    console.log('📊 Fetching breakdown for user:', userId);
+
+    const lessonsByLevel = await LessonProgress.aggregate([
+      { $match: { user: userId } },
+      {
+        $lookup: {
+          from: 'lessons',
+          localField: 'lesson',
+          foreignField: '_id',
+          as: 'lessonInfo'
+        }
+      },
+      { $unwind: '$lessonInfo' },
+      {
+        $group: {
+          _id: '$lessonInfo.level',
+          completed: { $sum: { $cond: ['$is_completed', 1, 0] } },
+          in_progress: { $sum: { $cond: ['$is_completed', 0, 1] } }
+        }
+      }
+    ]);
+
+    const exercisesByType = await ExerciseResult.aggregate([
+      { $match: { user_id: userId } },
+      {
+        $lookup: {
+          from: 'exercises',
+          localField: 'exercise_id',
+          foreignField: '_id',
+          as: 'exerciseInfo'
+        }
+      },
+      { $unwind: '$exerciseInfo' },
+      {
+        $group: {
+          _id: '$exerciseInfo.type',
+          count: { $sum: 1 },
+          average_score: { $avg: '$score' },
+          passed: { $sum: { $cond: ['$passed', 1, 0] } }
+        }
+      }
+    ]);
+
+    console.log(`📊 Found ${lessonsByLevel.length} lesson levels, ${exercisesByType.length} exercise types`);
+
+    res.json({
+      lessons_by_level: lessonsByLevel,
+      exercises_by_type: exercisesByType
+    });
+  } catch (error) {
+    console.error('❌ Lỗi khi lấy breakdown:', error);
+    res.status(500).json({ message: 'Lỗi server', error: error.message });
+  }
+});
+
 export default router;
+

@@ -3,6 +3,7 @@ import Grammar from '../model/Grammar.js';
 import Lesson from '../model/Lesson.js';
 import { authenticateUser, authenticateAdmin } from './auth.js';
 import mongoose from 'mongoose';
+import UserStreak from '../model/UserStreak.js';
 
 const router = express.Router();
 
@@ -95,6 +96,38 @@ router.get('/popular/:level', authenticateUser, async (req, res) => {
     } catch (error) {
         console.error("Lỗi khi lấy ngữ pháp phổ biến:", error);
         res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
+    }
+});
+
+// Đánh dấu đã học ngữ pháp (CHỈ DÙNG TRONG LESSON - KHÔNG CỘNG XP Ở ĐÂY)
+// XP chỉ được cộng qua LessonProgress khi học trong bài học
+router.post('/learn/:id', authenticateUser, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { lessonId } = req.body; // Bắt buộc phải có lessonId
+        const userId = req.user._id;
+        
+        if (!lessonId) {
+            return res.status(400).json({ 
+                message: "Vui lòng học ngữ pháp trong bài học để được cộng điểm." 
+            });
+        }
+        
+        // Kiểm tra ngữ pháp có tồn tại không
+        const grammar = await Grammar.findById(id);
+        if (!grammar) {
+            return res.status(404).json({ message: "Không tìm thấy ngữ pháp." });
+        }
+        
+        // Chuyển hướng về LessonProgress API
+        return res.json({ 
+            message: "Vui lòng sử dụng API /lesson-progress/lesson/:lessonId/update để cập nhật tiến độ học",
+            redirect: `/lesson-progress/lesson/${lessonId}/update`
+        });
+        
+    } catch (error) {
+        console.error("Lỗi đánh dấu học ngữ pháp:", error);
+        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
     }
 });
 

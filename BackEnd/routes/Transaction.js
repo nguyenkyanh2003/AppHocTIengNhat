@@ -10,7 +10,7 @@ const router = express.Router();
 // Lấy lịch sử giao dịch của người dùng hiện tại
 router.get("/my-transactions", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const page = parseInt(req.query.page, 10) || 1;
         const limit = parseInt(req.query.limit, 10) || 10;
         const { status, type } = req.query;
@@ -47,7 +47,7 @@ router.get("/my-transactions", authenticateUser, async (req, res) => {
 router.get("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const transaction = await Transaction.findOne({
             _id: id,
@@ -68,7 +68,7 @@ router.get("/:id", authenticateUser, async (req, res) => {
 // Tạo giao dịch mới (thanh toán)
 router.post("/create", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { 
             LoaiGiaoDich, 
             SoTien, 
@@ -112,7 +112,7 @@ router.post("/create", authenticateUser, async (req, res) => {
 router.put("/:id/cancel", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const transaction = await Transaction.findOne({
             _id: id,
@@ -145,7 +145,7 @@ router.put("/:id/cancel", authenticateUser, async (req, res) => {
 // Thống kê giao dịch cá nhân
 router.get("/stats/me", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const [totalTransactions, totalAmount, byStatus, byType, recentTransactions] = await Promise.all([
             Transaction.countDocuments({ NguoiDungID: userId }),

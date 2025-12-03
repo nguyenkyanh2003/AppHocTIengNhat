@@ -1,30 +1,31 @@
 import express from "express";
 import Vocabulary from "../model/Vocabulary.js";
 import Lesson from "../model/Lesson.js";
+import UserStreak from "../model/UserStreak.js";
 import multer from "multer";
 import Excel from "exceljs";
+import { createRequire } from "module"; // Dùng cho pdf-parse nếu cần
 import { authenticateUser, authenticateAdmin } from "./auth.js";
 
 const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Lấy danh sách toàn bộ từ vựng (có phân trang, filter)
+// 1. Lấy danh sách toàn bộ từ vựng (phân trang, filter)
 router.get("/", authenticateUser, async (req, res) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 10;
-    const { CapDo, BaiHocID } = req.query;
+    const { level } = req.query; // Sửa level
 
     const query = {};
-    if (CapDo) query.CapDo = CapDo;
-    if (BaiHocID) query.BaiHocID = BaiHocID;
+    if (level) query.level = level;
 
     const skip = (page - 1) * limit;
 
     const [vocabularies, total] = await Promise.all([
       Vocabulary.find(query)
-        .populate('BaiHocID', 'TenBaiHoc CapDo')
+        .populate('lesson', 'title level') // Sửa populate
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
@@ -44,30 +45,10 @@ router.get("/", authenticateUser, async (req, res) => {
   }
 });
 
-// Lấy chi tiết từ vựng
-router.get("/:id", authenticateUser, async (req, res) => {
-  try {
-    const { id } = req.params;
-    
-    const vocabulary = await Vocabulary.findById(id)
-      .populate('BaiHocID', 'TenBaiHoc CapDo LoaiBaiHoc')
-      .lean();
-
-    if (!vocabulary) {
-      return res.status(404).json({ message: "Không tìm thấy từ vựng." });
-    }
-
-    res.json({ data: vocabulary });
-  } catch (error) {
-    console.error("Lỗi lấy chi tiết từ vựng:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-});
-
-// Tìm từ vựng theo từ khóa
+// 2. Tìm từ vựng theo từ khóa
 router.get("/search", authenticateUser, async (req, res) => {
   try {
-    const { keyword, CapDo } = req.query;
+    const { keyword, level } = req.query;
     if (!keyword || keyword.trim() === "") {
       return res.status(400).json({ message: "Vui lòng nhập từ khóa tìm kiếm." });
     }
@@ -75,17 +56,16 @@ router.get("/search", authenticateUser, async (req, res) => {
     const searchRegex = new RegExp(keyword.trim(), 'i');
     const query = {
       $or: [
-        { TuVung: searchRegex },
-        { Hiragana: searchRegex },
-        { NghiaTV: searchRegex },
-        { KanjiLienQuan: searchRegex }
+        { word: searchRegex },
+        { hiragana: searchRegex },
+        { meaning: searchRegex }
       ]
     };
     
-    if (CapDo) query.CapDo = CapDo;
+    if (level) query.level = level;
 
     const results = await Vocabulary.find(query)
-      .populate('BaiHocID', 'TenBaiHoc CapDo')
+      .populate('lesson', 'title')
       .sort({ createdAt: -1 })
       .lean();
 
@@ -103,14 +83,35 @@ router.get("/search", authenticateUser, async (req, res) => {
   }
 });
 
-// Lấy danh sách từ vựng theo bài học
-router.get("/lesson/:baiHocID", authenticateUser, async (req, res) => {
+// 3. Lấy chi tiết một từ vựng theo ID
+router.get("/:id", authenticateUser, async (req, res) => {
   try {
-    const { baiHocID } = req.params;
-    
-    const vocabByLesson = await Vocabulary.find({ BaiHocID: baiHocID })
-      .populate('BaiHocID', 'TenBaiHoc CapDo')
-      .sort({ createdAt: -1 })
+    const { id } = req.params;
+
+    const vocabulary = await Vocabulary.findById(id)
+      .populate('lesson', 'title level')
+      .populate('related_kanjis')
+      .lean();
+
+    if (!vocabulary) {
+      return res.status(404).json({ message: "Không tìm thấy từ vựng." });
+    }
+
+    res.json(vocabulary);
+  } catch (error) {
+    console.error("Lỗi lấy chi tiết từ vựng:", error);
+    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
+  }
+});
+
+// 4. Lấy danh sách từ vựng theo bài học
+router.get("/lesson/:lessonId", authenticateUser, async (req, res) => {
+  try {
+    const { lessonId } = req.params; 
+    // Sửa 'lesson'
+    const vocabByLesson = await Vocabulary.find({ lesson: lessonId })
+      .populate('lesson', 'title level') 
+      .sort({ createdAt: -1 }) 
       .lean();
 
     res.json({
@@ -123,17 +124,21 @@ router.get("/lesson/:baiHocID", authenticateUser, async (req, res) => {
   }
 });
 
-// Lấy danh sách từ vựng theo cấp độ
-router.get("/level/:capDo", authenticateUser, async (req, res) => {
+// 5. Lấy danh sách từ vựng theo cấp độ
+router.get("/level/:levelEnum", authenticateUser, async (req, res) => {
   try {
-    const { capDo } = req.params;
-    
-    const vocabularies = await Vocabulary.find({ CapDo: capDo })
-      .populate('BaiHocID', 'TenBaiHoc')
+    const { levelEnum } = req.params; 
+    const vocabularies = await Vocabulary.find({ level: levelEnum })
+      .populate('lesson', 'title level') 
       .sort({ createdAt: -1 })
       .lean();
 
+    if (!vocabularies.length) {
+        return res.status(404).json({ message: "Không tìm thấy từ vựng nào." });
+    }
+
     res.json({
+      message: `Tìm thấy ${vocabularies.length} từ vựng cấp độ ${levelEnum}`,
       total: vocabularies.length,
       data: vocabularies
     });
@@ -143,14 +148,15 @@ router.get("/level/:capDo", authenticateUser, async (req, res) => {
   }
 });
 
-// Lấy danh sách tình huống học
+// 6. Lấy danh sách tình huống học
 router.get("/situations", authenticateUser, async (req, res) => {
   try {
-    const situations = await Vocabulary.distinct('TinhHuong', {
-      TinhHuong: { $ne: null, $ne: "" }
+    const situations = await Vocabulary.distinct('usage_context', {
+      usage_context: { $ne: null, $ne: "" } 
     });
 
     res.json({
+      message: "Lấy danh sách tình huống thành công",
       total: situations.length,
       data: situations.sort()
     });
@@ -160,25 +166,28 @@ router.get("/situations", authenticateUser, async (req, res) => {
   }
 });
 
-// Tìm từ vựng theo tình huống
+// 7. Tìm từ vựng theo tình huống
 router.get("/situation/search", authenticateUser, async (req, res) => {
   try {
-    const { q } = req.query;
+    const { q } = req.query;  
+    
     if (!q || q.trim() === "") {
-      return res.status(400).json({ message: "Vui lòng chọn tình huống muốn học." });
+      return res.status(400).json({ message: "Vui lòng nhập tên tình huống muốn tìm." });
     }
 
-    const searchRegex = new RegExp(q.trim(), 'i');
-    const results = await Vocabulary.find({ TinhHuong: searchRegex })
-      .populate('BaiHocID', 'TenBaiHoc CapDo')
+    const searchRegex = new RegExp(q.trim(), 'i'); 
+
+    const results = await Vocabulary.find({ usage_context: searchRegex }) 
+      .populate('lesson', 'title level') 
       .sort({ createdAt: -1 })
       .lean();
 
     if (results.length === 0) {
-      return res.status(404).json({ message: "Không tìm thấy từ vựng cho tình huống." });
+      return res.status(404).json({ message: `Không tìm thấy từ vựng nào thuộc tình huống '${q}'.` });
     }
 
     res.json({
+      message: `Tìm thấy ${results.length} từ vựng thuộc tình huống chứa từ '${q}'`,
       total: results.length,
       data: results
     });
@@ -188,13 +197,13 @@ router.get("/situation/search", authenticateUser, async (req, res) => {
   }
 });
 
-// Lấy từ vựng ngẫu nhiên để luyện tập
+// 8. Lấy từ vựng ngẫu nhiên để luyện tập
 router.get("/random/practice", authenticateUser, async (req, res) => {
   try {
-    const { limit = 10, CapDo } = req.query;
+    const { limit = 10, level } = req.query;
     const query = {};
     
-    if (CapDo) query.CapDo = CapDo;
+    if (level) query.level = level; // Sửa CapDo -> level
 
     const vocabularies = await Vocabulary.aggregate([
       { $match: query },
@@ -211,82 +220,110 @@ router.get("/random/practice", authenticateUser, async (req, res) => {
   }
 });
 
-// ADMIN ROUTES
+// Đánh dấu đã học từ vựng (CHỈ DÙNG TRONG LESSON - KHÔNG CỘNG XP Ở ĐÂY)
+// XP chỉ được cộng qua LessonProgress khi học trong bài học
+router.post("/learn/:id", authenticateUser, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { lessonId } = req.body; // Bắt buộc phải có lessonId
+        const userId = req.user._id;
+        
+        if (!lessonId) {
+            return res.status(400).json({ 
+                message: "Vui lòng học từ vựng trong bài học để được cộng điểm." 
+            });
+        }
+        
+        // Kiểm tra từ vựng có tồn tại không
+        const vocabulary = await Vocabulary.findById(id);
+        if (!vocabulary) {
+            return res.status(404).json({ message: "Không tìm thấy từ vựng." });
+        }
+        
+        // Chuyển hướng về LessonProgress API
+        return res.json({ 
+            message: "Vui lòng sử dụng API /lesson-progress/lesson/:lessonId/update để cập nhật tiến độ học",
+            redirect: `/lesson-progress/lesson/${lessonId}/update`
+        });
+        
+    } catch (error) {
+        console.error("Lỗi đánh dấu học từ vựng:", error);
+        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
+    }
+});
 
-// Thêm từ vựng mới
+// --- ADMIN ROUTES ---
+
+// 8. Thêm từ vựng mới
 router.post("/", authenticateAdmin, async (req, res) => {
   try {
-    const { BaiHocID, TuVung, Hiragana, NghiaTV, CapDo, ViDu, KanjiLienQuan, TachNghia, TinhHuong } = req.body;
+    const { lesson, word, hiragana, meaning, level, usage_context, examples, related_kanjis } = req.body;
     
-    // Validation cơ bản
-    if (!BaiHocID || !TuVung || !Hiragana || !NghiaTV || !CapDo) {
+    if (!lesson || !word || !hiragana || !meaning || !level) {
       return res.status(400).json({ 
-        message: "Vui lòng nhập đầy đủ thông tin bắt buộc (BaiHocID, TuVung, Hiragana, NghiaTV, CapDo)." 
+        message: "Vui lòng nhập đầy đủ thông tin bắt buộc (lesson, word, hiragana, meaning, level)." 
       });
     }
     
-    // Kiểm tra bài học tồn tại
-    const baiHoc = await Lesson.findById(BaiHocID);
-    if (!baiHoc) {
-      return res.status(404).json({ message: `Không tìm thấy bài học ${BaiHocID}.` });
+    const existingLesson = await Lesson.findById(lesson);
+    if (!existingLesson) {
+      return res.status(404).json({ message: `Không tìm thấy bài học có ID: ${lesson}` });
     }
 
     const newVocab = await Vocabulary.create({
-      BaiHocID,
-      TuVung,
-      Hiragana,
-      NghiaTV,
-      CapDo,
-      ViDu,
-      KanjiLienQuan, 
-      TachNghia, 
-      TinhHuong
+      lesson,
+      word,
+      hiragana,
+      meaning,
+      level,
+      usage_context,
+      examples: examples || [],
+      related_kanjis: related_kanjis || []
     });
 
     const populatedVocab = await Vocabulary.findById(newVocab._id)
-      .populate('BaiHocID', 'TenBaiHoc CapDo')
+      .populate('lesson', 'title level')
       .lean();
 
     res.status(201).json({
       message: "Thêm từ vựng thành công",
       data: populatedVocab
     });
+
   } catch (error) {
     console.error("Lỗi thêm từ vựng:", error);
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
   }
 });
 
-// Cập nhật từ vựng
+// 9. Cập nhật từ vựng 
 router.put("/:id", authenticateAdmin, async (req, res) => {
   try {
     const { id } = req.params;
-    const { BaiHocID, TuVung, Hiragana, NghiaTV, CapDo, ViDu, KanjiLienQuan, TachNghia, TinhHuong } = req.body;
+    const { lesson, word, hiragana, meaning, level, examples, related_kanjis, usage_context } = req.body;
     
-    // Kiểm tra bài học tồn tại nếu có thay đổi
-    if (BaiHocID) {
-      const baiHoc = await Lesson.findById(BaiHocID);
+    if (lesson) {
+      const baiHoc = await Lesson.findById(lesson);
       if (!baiHoc) {
-        return res.status(404).json({ message: `Không tìm thấy bài học ${BaiHocID}.` });
+        return res.status(404).json({ message: `Không tìm thấy bài học ${lesson}.` });
       }
     }
 
     const updateData = {};
-    if (BaiHocID) updateData.BaiHocID = BaiHocID;
-    if (TuVung) updateData.TuVung = TuVung;
-    if (Hiragana) updateData.Hiragana = Hiragana;
-    if (NghiaTV) updateData.NghiaTV = NghiaTV;
-    if (CapDo) updateData.CapDo = CapDo;
-    if (ViDu !== undefined) updateData.ViDu = ViDu;
-    if (KanjiLienQuan !== undefined) updateData.KanjiLienQuan = KanjiLienQuan;
-    if (TachNghia !== undefined) updateData.TachNghia = TachNghia;
-    if (TinhHuong !== undefined) updateData.TinhHuong = TinhHuong;
+    if (lesson) updateData.lesson = lesson;
+    if (word) updateData.word = word;
+    if (hiragana) updateData.hiragana = hiragana;
+    if (meaning) updateData.meaning = meaning;
+    if (level) updateData.level = level;
+    if (examples) updateData.examples = examples;
+    if (related_kanjis) updateData.related_kanjis = related_kanjis;
+    if (usage_context) updateData.usage_context = usage_context;
 
     const updatedVocab = await Vocabulary.findByIdAndUpdate(
       id,
       updateData,
       { new: true, runValidators: true }
-    ).populate('BaiHocID', 'TenBaiHoc CapDo');
+    ).populate('lesson', 'title level');
 
     if (!updatedVocab) {
       return res.status(404).json({ message: "Không tìm thấy từ vựng để cập nhật." });
@@ -302,11 +339,10 @@ router.put("/:id", authenticateAdmin, async (req, res) => {
   }
 });
 
-// Xóa từ vựng
+// 10. Xóa từ vựng
 router.delete("/:id", authenticateAdmin, async (req, res) => {
   try {
     const { id } = req.params;
-    
     const deletedVocab = await Vocabulary.findByIdAndDelete(id);
 
     if (!deletedVocab) {
@@ -323,7 +359,7 @@ router.delete("/:id", authenticateAdmin, async (req, res) => {
   }
 });
 
-// Xóa nhiều từ vựng
+// 11. Xóa nhiều từ vựng 
 router.delete("/", authenticateAdmin, async (req, res) => {
   try {
     const { ids } = req.body;
@@ -344,22 +380,21 @@ router.delete("/", authenticateAdmin, async (req, res) => {
   }
 });
 
-// Upload file Excel để import từ vựng
+// 12. Upload file Excel (Đã mapping Header Việt -> DB Anh)
 router.post("/upload", authenticateAdmin, upload.single("fileExcel"), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: "Vui lòng upload file Excel." });
     }
 
-    const { BaiHocID, CapDo } = req.body;
-    if (!BaiHocID || !CapDo) {
-      return res.status(400).json({ message: "Vui lòng cung cấp Bài học và cấp độ." });
+    const { lesson, level } = req.body; 
+    if (!lesson || !level) {
+      return res.status(400).json({ message: "Vui lòng cung cấp Bài học (lesson) và cấp độ (level)." });
     }
 
-    // Kiểm tra bài học tồn tại
-    const baiHoc = await Lesson.findById(BaiHocID);
+    const baiHoc = await Lesson.findById(lesson);
     if (!baiHoc) {
-      return res.status(404).json({ message: `Không tìm thấy bài học ${BaiHocID}.` });
+      return res.status(404).json({ message: `Không tìm thấy bài học ${lesson}.` });
     }
 
     const vocabArray = [];
@@ -387,15 +422,13 @@ router.post("/upload", authenticateAdmin, upload.single("fileExcel"), async (req
 
       if (rowData["TuVung"] && rowData["Hiragana"] && rowData["NghiaTV"]) {
         vocabArray.push({
-          BaiHocID,
-          CapDo,
-          TuVung: rowData["TuVung"],
-          Hiragana: rowData["Hiragana"],
-          NghiaTV: rowData["NghiaTV"],
-          ViDu: rowData["ViDu"] || null,
-          KanjiLienQuan: rowData["KanjiLienQuan"] || null,
-          TachNghia: rowData["TachNghia"] || null,
-          TinhHuong: rowData["TinhHuong"] || null
+          lesson,
+          level,
+          word: rowData["TuVung"],
+          hiragana: rowData["Hiragana"],
+          meaning: rowData["NghiaTV"],
+          examples: [], 
+          usage_context: rowData["TinhHuong"] || null
         });
       }
     });
@@ -419,52 +452,7 @@ router.post("/upload", authenticateAdmin, upload.single("fileExcel"), async (req
   }
 });
 
-// Lấy tất cả từ vựng (admin - có phân trang)
-router.get("/admin/all", authenticateAdmin, async (req, res) => {
-  try {
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 10;
-    const { search, CapDo, BaiHocID } = req.query;
-
-    const query = {};
-    
-    if (search) {
-      const searchRegex = new RegExp(search, 'i');
-      query.$or = [
-        { TuVung: searchRegex },
-        { Hiragana: searchRegex },
-        { NghiaTV: searchRegex }
-      ];
-    }
-    
-    if (CapDo) query.CapDo = CapDo;
-    if (BaiHocID) query.BaiHocID = BaiHocID;
-
-    const skip = (page - 1) * limit;
-
-    const [vocabularies, total] = await Promise.all([
-      Vocabulary.find(query)
-        .populate('BaiHocID', 'TenBaiHoc CapDo')
-        .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(limit)
-        .lean(),
-      Vocabulary.countDocuments(query)
-    ]);
-
-    res.json({
-      totalItems: total,
-      totalPages: Math.ceil(total / limit),
-      currentPage: page,
-      data: vocabularies
-    });
-  } catch (error) {
-    console.error("Lỗi lấy danh sách từ vựng (admin):", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-});
-
-// Thống kê từ vựng (admin)
+// 13. Thống kê từ vựng 
 router.get("/admin/stats", authenticateAdmin, async (req, res) => {
   try {
     const [
@@ -476,31 +464,31 @@ router.get("/admin/stats", authenticateAdmin, async (req, res) => {
     ] = await Promise.all([
       Vocabulary.countDocuments(),
       Vocabulary.aggregate([
-        { $group: { _id: "$CapDo", count: { $sum: 1 } } },
+        { $group: { _id: "$level", count: { $sum: 1 } } }, 
         { $sort: { _id: 1 } }
       ]),
       Vocabulary.aggregate([
-        { $match: { TinhHuong: { $ne: null, $ne: "" } } },
-        { $group: { _id: "$TinhHuong", count: { $sum: 1 } } },
+        { $match: { usage_context: { $ne: null, $ne: "" } } }, 
+        { $group: { _id: "$usage_context", count: { $sum: 1 } } },
         { $sort: { count: -1 } },
         { $limit: 10 }
       ]),
       Vocabulary.aggregate([
-        { $group: { _id: "$BaiHocID", count: { $sum: 1 } } },
+        { $group: { _id: "$lesson", count: { $sum: 1 } } }, 
         { $sort: { count: -1 } },
         { $limit: 10 },
         {
           $lookup: {
-            from: 'lessons',
+            from: 'lessons', 
             localField: '_id',
             foreignField: '_id',
-            as: 'lesson'
+            as: 'lessonInfo'
           }
         },
-        { $unwind: '$lesson' }
+        { $unwind: '$lessonInfo' }
       ]),
       Vocabulary.find()
-        .populate('BaiHocID', 'TenBaiHoc CapDo')
+        .populate('lesson', 'title level')
         .sort({ createdAt: -1 })
         .limit(10)
         .lean()
@@ -519,65 +507,54 @@ router.get("/admin/stats", authenticateAdmin, async (req, res) => {
   }
 });
 
-// Export từ vựng ra Excel (admin)
+// 14. Export Excel (Mapping DB Anh -> Header Việt cho User dễ đọc)
 router.get("/admin/export", authenticateAdmin, async (req, res) => {
   try {
-    const { CapDo, BaiHocID } = req.query;
+    const { level, lesson } = req.query;
     const query = {};
     
-    if (CapDo) query.CapDo = CapDo;
-    if (BaiHocID) query.BaiHocID = BaiHocID;
+    if (level) query.level = level;
+    if (lesson) query.lesson = lesson;
 
     const vocabularies = await Vocabulary.find(query)
-      .populate('BaiHocID', 'TenBaiHoc')
+      .populate('lesson', 'title')
       .lean();
 
     const workbook = new Excel.Workbook();
     const worksheet = workbook.addWorksheet('Tu Vung');
 
-    // Thêm header
+    // Header Excel (Tiếng Việt cho dễ hiểu)
     worksheet.columns = [
-      { header: 'TuVung', key: 'TuVung', width: 20 },
-      { header: 'Hiragana', key: 'Hiragana', width: 20 },
-      { header: 'NghiaTV', key: 'NghiaTV', width: 30 },
-      { header: 'CapDo', key: 'CapDo', width: 10 },
-      { header: 'ViDu', key: 'ViDu', width: 40 },
-      { header: 'KanjiLienQuan', key: 'KanjiLienQuan', width: 20 },
-      { header: 'TachNghia', key: 'TachNghia', width: 30 },
-      { header: 'TinhHuong', key: 'TinhHuong', width: 20 },
-      { header: 'BaiHoc', key: 'BaiHoc', width: 30 }
+      { header: 'TuVung', key: 'word', width: 20 },
+      { header: 'Hiragana', key: 'hiragana', width: 20 },
+      { header: 'NghiaTV', key: 'meaning', width: 30 },
+      { header: 'CapDo', key: 'level', width: 10 },
+      { header: 'TinhHuong', key: 'usage_context', width: 20 },
+      { header: 'BaiHoc', key: 'lessonName', width: 30 }
     ];
 
-    // Thêm dữ liệu
+    // Map dữ liệu
     vocabularies.forEach(vocab => {
       worksheet.addRow({
-        TuVung: vocab.TuVung,
-        Hiragana: vocab.Hiragana,
-        NghiaTV: vocab.NghiaTV,
-        CapDo: vocab.CapDo,
-        ViDu: vocab.ViDu || '',
-        KanjiLienQuan: vocab.KanjiLienQuan || '',
-        TachNghia: vocab.TachNghia || '',
-        TinhHuong: vocab.TinhHuong || '',
-        BaiHoc: vocab.BaiHocID?.TenBaiHoc || ''
+        word: vocab.word,
+        hiragana: vocab.hiragana,
+        meaning: vocab.meaning,
+        level: vocab.level,
+        usage_context: vocab.usage_context || '',
+        lessonName: vocab.lesson?.title || ''
       });
     });
 
-    // Style header
+    // Style
     worksheet.getRow(1).font = { bold: true };
-    worksheet.getRow(1).fill = {
-      type: 'pattern',
-      pattern: 'solid',
-      fgColor: { argb: 'FFD3D3D3' }
-    };
-
+    
     res.setHeader(
       'Content-Type',
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     );
     res.setHeader(
       'Content-Disposition',
-      `attachment; filename=vocabulary_${Date.now()}.xlsx`
+      `attachment; filename=vocabulary_export_${Date.now()}.xlsx`
     );
 
     await workbook.xlsx.write(res);

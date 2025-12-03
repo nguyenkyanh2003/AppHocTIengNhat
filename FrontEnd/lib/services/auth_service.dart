@@ -9,17 +9,20 @@ class AuthService {
   /// Đăng nhập
   Future<Map<String, dynamic>> login(String username, String password) async {
     try {
-      final response = await _client.post('/users/login', {
+      final dynamic response = await _client.post('/users/login', {
         'username': username,
         'password': password,
       });
 
-      // Lưu token
-      if (response['token'] != null) {
-        await _client.setToken(response['token']);
+      if (response is Map<String, dynamic>) {
+        // Lưu token
+        if (response['token'] != null) {
+          await _client.setToken(response['token']);
+        }
+        return response;
       }
-
-      return response;
+      
+      throw Exception('Phản hồi đăng nhập không hợp lệ');
     } catch (e) {
       rethrow;
     }
@@ -28,18 +31,26 @@ class AuthService {
   /// Đăng ký
   Future<Map<String, dynamic>> register(
     String username,
+    String fullName,
     String email,
     String password,
-    String phoneNumber,
+    String? phoneNumber,
+    String? trinhDo,
   ) async {
     try {
-      final response = await _client.post('/users/register', {
+      final dynamic response = await _client.post('/users/register', {
         'username': username,
+        'hoTen': fullName,  // Backend yêu cầu field 'hoTen'
         'email': email,
         'password': password,
+        if (trinhDo != null) 'trinhDo': trinhDo,
       });
 
-      return response;
+      if (response is Map<String, dynamic>) {
+        return response;
+      }
+      
+      throw Exception('Phản hồi đăng ký không hợp lệ');
     } catch (e) {
       rethrow;
     }
@@ -48,8 +59,15 @@ class AuthService {
   /// Lấy thông tin user hiện tại
   Future<User> getCurrentUser(String userId) async {
     try {
-      final response = await _client.get('/users/profile/$userId');
-      return User.fromJson(response['user']);
+      final dynamic response = await _client.get('/users/profile/$userId');
+      if (response is Map<String, dynamic>) {
+        // API returns 'profile' not 'user'
+        final userData = response['profile'] ?? response['user'];
+        if (userData != null) {
+          return User.fromJson(userData);
+        }
+      }
+      throw Exception('Dữ liệu người dùng không hợp lệ');
     } catch (e) {
       rethrow;
     }
@@ -62,11 +80,11 @@ class AuthService {
     } catch (e) {
       // Ignore error khi logout
     } finally {
+      // Clear token
       await _client.removeToken();
       
-      // Xóa user data
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('user_data');
+      // Clear ALL user data for complete logout
+      await _client.clearAllData();
     }
   }
 
@@ -80,6 +98,8 @@ class AuthService {
       String? currentLevel,
       String? phoneNumber,
       String? address,
+      String? gender,
+      DateTime? dateOfBirth,
     }
   ) async {
     try {
@@ -87,12 +107,40 @@ class AuthService {
       if (fullName != null) data['hoTen'] = fullName;
       if (email != null) data['email'] = email;
       if (avatar != null) data['anhDaiDien'] = avatar;
-      if (currentLevel != null) data['trinhDo'] = currentLevel;
+      if (currentLevel != null) {
+        // Backend expects "N5", "N4", etc., not just "5"
+        data['trinhDo'] = currentLevel.startsWith('N') ? currentLevel : 'N$currentLevel';
+      }
       if (phoneNumber != null) data['soDienThoai'] = phoneNumber;
       if (address != null) data['diaChi'] = address;
+      if (gender != null) data['gioiTinh'] = gender;
+      if (dateOfBirth != null) data['ngaySinh'] = dateOfBirth.toIso8601String();
 
-      final response = await _client.put('/auth/profile/$userId', data);
-      return User.fromJson(response['profile']);
+      final dynamic response = await _client.put('/users/profile/$userId', data);
+      if (response is Map<String, dynamic> && response['profile'] != null) {
+        return User.fromJson(response['profile']);
+      }
+      throw Exception('Cập nhật profile không thành công');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Upload avatar
+  Future<User> uploadAvatar(String userId, List<int> imageBytes, String fileName) async {
+    try {
+      final dynamic response = await _client.putMultipart(
+        '/users/profile/$userId/avatar',
+        {},
+        'avatar',
+        imageBytes,
+        fileName,
+      );
+      
+      if (response is Map<String, dynamic> && response['profile'] != null) {
+        return User.fromJson(response['profile']);
+      }
+      throw Exception('Cập nhật avatar không thành công');
     } catch (e) {
       rethrow;
     }
@@ -140,14 +188,22 @@ class AuthService {
   /// Lưu user vào local storage
   Future<void> saveUserToLocal(User user) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('user_data', json.encode(user.toJson()));
+    // Lưu user data theo userId để tránh ghi đè khi có nhiều tài khoản
+    await prefs.setString('user_data_${user.id}', json.encode(user.toJson()));
+    // Lưu userId hiện tại để biết user nào đang đăng nhập
+    await prefs.setString('current_user_id', user.id);
   }
 
   /// Lấy user từ local storage
   Future<User?> getUserFromLocal() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final userData = prefs.getString('user_data');
+      // Lấy userId của user hiện tại
+      final currentUserId = prefs.getString('current_user_id');
+      if (currentUserId == null) return null;
+      
+      // Lấy dữ liệu user theo userId
+      final userData = prefs.getString('user_data_$currentUserId');
       if (userData != null) {
         return User.fromJson(json.decode(userData));
       }

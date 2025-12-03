@@ -4,7 +4,10 @@ import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 import User from "../model/User.js";
+import UserStreak from "../model/UserStreak.js";
 import { authenticateUser, authenticateAdmin } from "./auth.js";
+import { uploadUserAvatar } from "../middleware/upload.js";
+import { getVietnamTime, convertUserDatesToVietnam } from "../utils/timezone.js";
 
 const router = express.Router();
 dotenv.config();
@@ -21,33 +24,22 @@ const withoutPassword = (user) => {
   if (!user) return null;
   
   const userObject = user.toJSON ? user.toJSON() : user;
-  delete userObject.MatKhau;
   
   const convertToVN = (date) => {
     if (!date) return null;
     const vnTime = new Date(date.getTime() + 7 * 60 * 60 * 1000);
     return vnTime.toISOString().replace('T', ' ').substring(0, 19);
   };
+
+  const dateFields = ['NgayTao', 'LanDangNhapCuoi', 'createdAt', 'updatedAt', 'NgaySinh', 'NgayHocGanNhat'];
+
+  dateFields.forEach(field => {
+    if (userObject[field]) {
+      userObject[field] = convertToVN(new Date(userObject[field]));
+    }
+  });
   
-  if (userObject.NgayTao) {
-    userObject.NgayTao = convertToVN(new Date(userObject.NgayTao));
-  }
-  if (userObject.LanDangNhapCuoi) {
-    userObject.LanDangNhapCuoi = convertToVN(new Date(userObject.LanDangNhapCuoi));
-  }
-  if (userObject.createdAt) {
-    userObject.createdAt = convertToVN(new Date(userObject.createdAt));
-  }
-  if (userObject.updatedAt) {
-    userObject.updatedAt = convertToVN(new Date(userObject.updatedAt));
-  }
-  if (userObject.NgaySinh) {
-    userObject.NgaySinh = convertToVN(new Date(userObject.NgaySinh));
-  }
-  if (userObject.NgayHocGanNhat) {
-    userObject.NgayHocGanNhat = convertToVN(new Date(userObject.NgayHocGanNhat));
-  }
-  
+  delete userObject.MatKhau;
   delete userObject.__v;
   delete userObject.id; 
   
@@ -72,8 +64,32 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Mật khẩu không đúng." });
     }
 
-    user.LanDangNhapCuoi = new Date();
+    // Lưu thời gian đăng nhập theo giờ Việt Nam
+    user.LanDangNhapCuoi = getVietnamTime();
     await user.save();
+
+    // Cập nhật streak khi đăng nhập (Duolingo style)
+    let streak = await UserStreak.findOne({ user: user._id });
+    if (!streak) {
+      // Tạo streak mới nếu chưa có
+      streak = await UserStreak.create({ 
+        user: user._id,
+        current_streak: 0,
+        longest_streak: 0,
+        total_xp: 0,
+        level: 1
+      });
+    }
+
+    // Cập nhật streak và thêm 10 XP cho daily login
+    const streakResult = streak.updateStreakOnActivity();
+    if (streakResult.is_new_day) {
+      streak.addXP(10, 'Daily login');
+      await streak.save();
+      console.log(`✅ Daily login streak updated for user ${user._id}: ${streak.current_streak} days (+10 XP)`);
+    } else {
+      console.log(`ℹ️ User ${user._id} already logged in today. Streak: ${streak.current_streak} days`);
+    }
 
     const token = jwt.sign(
       { id: user._id, username: user.TenDangNhap, role: user.VaiTro },
@@ -83,8 +99,15 @@ router.post("/login", async (req, res) => {
 
     res.json({
       message: "Đăng nhập thành công",
-      user: withoutPassword(user),
-      token: token
+      user: convertUserDatesToVietnam(withoutPassword(user)),
+      token: token,
+      streak: {
+        current: streak.current_streak,
+        longest: streak.longest_streak,
+        total_xp: streak.total_xp,
+        is_new_day: streakResult.is_new_day,
+        streak_broken: streakResult.streak_broken || false
+      }
     });
   } catch (error) {
     console.error("Lỗi đăng nhập:", error);
@@ -116,6 +139,7 @@ router.post("/register", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const vietnamTime = getVietnamTime();
     const newUser = await User.create({
       TenDangNhap: username,
       HoTen: hoTen,
@@ -123,12 +147,14 @@ router.post("/register", async (req, res) => {
       Email: email,
       TrinhDo: trinhDo || 'N5',
       VaiTro: 'user',
-      NgayTao: new Date()
+      role: 'user',
+      NgayTao: vietnamTime,
+      LanDangNhapCuoi: vietnamTime
     });
 
     res.status(201).json({
       message: "Đăng ký thành công",
-      user: withoutPassword(newUser),
+      user: convertUserDatesToVietnam(withoutPassword(newUser)),
     });
   } catch (error) {
     console.error("Lỗi đăng ký:", error);
@@ -211,19 +237,29 @@ router.post("/reset-password", async (req, res) => {
 // xem profile
 router.get("/profile/:id", authenticateUser, async (req, res) => {
   try {
-    const requestUserId = req.user?.id || req.user?._id?.toString();
+    const requestUserId = req.user._id.toString();
     const targetUserId = req.params.id;
+    const userRole = req.user?.role || req.user?.VaiTro;
 
-    if (req.user.role !== 'admin' && requestUserId !== targetUserId) {
+    console.log(`📋 Profile request - Requester: ${requestUserId} (${req.user.TenDangNhap}), Target: ${targetUserId}, Role: ${userRole}`);
+
+    if (userRole !== 'admin' && requestUserId !== targetUserId) {
+      console.log(`⛔ Access denied: User ${requestUserId} trying to access ${targetUserId}'s profile`);
       return res.status(403).json({ message: "Bạn không có quyền xem profile này." });
     }
 
     const user = await User.findById(targetUserId).select('-MatKhau');
 
     if (!user) {
+      console.log(`❌ User not found: ${targetUserId}`);
       return res.status(404).json({ message: "Người dùng không tồn tại." });
     }
-    res.json({ message: "Lấy thông tin người dùng thành công", profile: withoutPassword(user) });
+    
+    console.log(`✅ Profile loaded: ${user.TenDangNhap} (${user._id})`);
+    res.json({ 
+      message: "Lấy thông tin người dùng thành công", 
+      profile: convertUserDatesToVietnam(withoutPassword(user)) 
+    });
   } catch (error) {
     console.error("Lỗi lấy thông tin người dùng:", error);
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
@@ -233,9 +269,16 @@ router.get("/profile/:id", authenticateUser, async (req, res) => {
 // xem profile hiện tại
 router.get("/me", authenticateUser, async (req, res) => {
   try {
-    const userId = req.user?.id || req.user?._id;
+    console.log("1. Req.user từ middleware:", req.user);
     
+    const userId = req.user._id;
+    console.log("2. ID lấy được để tìm kiếm:", userId);
+    if (!userId) {
+       return res.status(400).json({ message: "Lỗi: Không tìm thấy ID trong Token" });
+    }
+
     const user = await User.findById(userId).select('-MatKhau');
+    console.log("3. Kết quả tìm trong DB:", user);
 
     if (!user) {
       return res.status(404).json({ message: "Người dùng không tồn tại." });
@@ -254,14 +297,14 @@ router.get("/me", authenticateUser, async (req, res) => {
 // sửa profile
 router.put("/profile/:id", authenticateUser, async (req, res) => {
   try {
-    const requestUserId = req.user?.id || req.user?._id?.toString();
+    const requestUserId = req.user._id.toString();
     const targetUserId = req.params.id;
 
     if (req.user.role !== 'admin' && requestUserId !== targetUserId) {
       return res.status(403).json({ message: "Bạn không có quyền sửa profile này." });
     }
 
-    const { hoTen, email, trinhDo, anhDaiDien, soDienThoai, diaChi } = req.body;
+    const { hoTen, email, trinhDo, anhDaiDien, soDienThoai, diaChi, gioiTinh, ngaySinh } = req.body;
 
     if (email) {
       const existingEmail = await User.findOne({ 
@@ -280,6 +323,8 @@ router.put("/profile/:id", authenticateUser, async (req, res) => {
     if (anhDaiDien !== undefined) updateData.AnhDaiDien = anhDaiDien;
     if (soDienThoai !== undefined) updateData.SoDienThoai = soDienThoai;
     if (diaChi !== undefined) updateData.DiaChi = diaChi;
+    if (gioiTinh !== undefined) updateData.GioiTinh = gioiTinh;
+    if (ngaySinh !== undefined) updateData.NgaySinh = ngaySinh;
 
     const updatedUser = await User.findByIdAndUpdate(
       targetUserId,
@@ -304,7 +349,7 @@ router.put("/profile/:id", authenticateUser, async (req, res) => {
 // API đổi mật khẩu
 router.put("/change-password/:id", authenticateUser, async (req, res) => {
   try {
-    const requestUserId = req.user?.id || req.user?._id?.toString();
+    const requestUserId = req.user._id.toString();
     const targetUserId = req.params.id;
 
     if (req.user.role !== 'admin' && requestUserId !== targetUserId) {
@@ -437,6 +482,7 @@ router.post("/admin/users", authenticateAdmin, async (req, res) => {
       Email: email,
       TrinhDo: trinhDo || 'N5',
       VaiTro: vaiTro || 'user',
+      role: vaiTro || 'user',
       NgayTao: new Date()
     });
 
@@ -469,7 +515,10 @@ router.put("/admin/users/:id", authenticateAdmin, async (req, res) => {
     if (hoTen) updateData.HoTen = hoTen;
     if (email) updateData.Email = email;
     if (trinhDo) updateData.TrinhDo = trinhDo;
-    if (vaiTro) updateData.VaiTro = vaiTro;
+    if (vaiTro) {
+      updateData.VaiTro = vaiTro;
+      updateData.role = vaiTro;
+    }
     if (anhDaiDien !== undefined) updateData.AnhDaiDien = anhDaiDien;
     if (soDienThoai !== undefined) updateData.SoDienThoai = soDienThoai;
     if (diaChi !== undefined) updateData.DiaChi = diaChi;
@@ -594,6 +643,44 @@ router.put("/admin/users/:id/toggle-status", authenticateAdmin, async (req, res)
     });
   } catch (error) {
     console.error("Lỗi thay đổi trạng thái tài khoản:", error);
+    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
+  }
+});
+
+// API Upload avatar
+router.put("/profile/:userID/avatar", authenticateUser, uploadUserAvatar, async (req, res) => {
+  try {
+    const { userID } = req.params;
+
+    // Kiểm tra quyền: chỉ được upload avatar của chính mình
+    if (req.user._id.toString() !== userID) {
+      return res.status(403).json({ message: "Không có quyền cập nhật avatar của người dùng khác" });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Vui lòng chọn file ảnh" });
+    }
+
+    // Lấy URL của avatar (sử dụng relative path)
+    const avatarUrl = `/uploads/avatars/${req.file.filename}`;
+
+    // Cập nhật avatar trong database
+    const user = await User.findByIdAndUpdate(
+      userID,
+      { AnhDaiDien: avatarUrl },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "Không tìm thấy người dùng" });
+    }
+
+    res.json({
+      message: "Cập nhật avatar thành công",
+      profile: withoutPassword(user)
+    });
+  } catch (error) {
+    console.error("Lỗi upload avatar:", error);
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
   }
 });

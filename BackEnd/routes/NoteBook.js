@@ -9,7 +9,7 @@ const router = express.Router();
 // Lấy danh sách ghi chú của user
 router.get("/", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { type, page = 1, limit = 20, search } = req.query;
 
         const query = { user_id: userId };
@@ -52,7 +52,7 @@ router.get("/", authenticateUser, async (req, res) => {
 router.get("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const note = await NoteBook.findOne({
             _id: id,
@@ -73,7 +73,7 @@ router.get("/:id", authenticateUser, async (req, res) => {
 // Tạo ghi chú mới
 router.post("/", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { title, content, type, related_item_id, related_item_type, tags } = req.body;
         
         if (!title || !content) {
@@ -106,7 +106,7 @@ router.post("/", authenticateUser, async (req, res) => {
 router.put("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const updateData = req.body;
 
         const updatedNote = await NoteBook.findOneAndUpdate(
@@ -133,7 +133,7 @@ router.put("/:id", authenticateUser, async (req, res) => {
 router.delete("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const deletedNote = await NoteBook.findOneAndDelete({
             _id: id,
@@ -158,7 +158,7 @@ router.delete("/:id", authenticateUser, async (req, res) => {
 router.delete("/", authenticateUser, async (req, res) => {
     try {
         const { ids } = req.body;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         
         if (!Array.isArray(ids) || ids.length === 0) {
             return res.status(400).json({ message: "Danh sách ID không hợp lệ." });
@@ -183,7 +183,7 @@ router.delete("/", authenticateUser, async (req, res) => {
 router.get("/related/:item_type/:item_id", authenticateUser, async (req, res) => {
     try {
         const { item_type, item_id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const notes = await NoteBook.find({
             user_id: userId,
@@ -206,7 +206,7 @@ router.get("/related/:item_type/:item_id", authenticateUser, async (req, res) =>
 // Lấy danh sách tags
 router.get("/tags/all", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const tags = await NoteBook.distinct('tags', { user_id: userId });
 
@@ -223,7 +223,7 @@ router.get("/tags/all", authenticateUser, async (req, res) => {
 // Thống kê ghi chú cá nhân
 router.get("/stats/me", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const [total, byType, recentNotes] = await Promise.all([
             NoteBook.countDocuments({ user_id: userId }),
@@ -347,3 +347,4 @@ router.delete("/admin/:id", authenticateAdmin, async (req, res) => {
 });
 
 export default router;
+

@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import JLPT from '../model/JLPT.js';
 import LearningHistory from '../model/LearningHistory.js';
 import Grammar from '../model/Grammar.js';
+import UserStreak from '../model/UserStreak.js';
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -13,7 +14,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 // API Lấy danh sách bộ đề
 router.get('/', authenticateUser, async (req, res) => {
     try {
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { level, year, month, page = 1, limit = 10 } = req.query;
         
         const skip = (parseInt(page) - 1) * parseInt(limit);
@@ -194,7 +195,7 @@ router.get("/:id", authenticateUser, async (req, res) => {
 router.post("/submit/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { userAnswers, thoiGianLamBai, started_at } = req.body;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -323,6 +324,24 @@ router.post("/submit/:id", authenticateUser, async (req, res) => {
         // Tăng lượt thi
         await JLPT.findByIdAndUpdate(id, { $inc: { total_attempts: 1 } });
 
+        // Cập nhật streak khi làm đề thi JLPT
+        try {
+            const streak = await UserStreak.findOne({ user: userId });
+            if (streak) {
+                const updated = streak.updateStreakOnActivity();
+                if (updated.is_new_day) {
+                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
+                }
+                
+                // Thêm XP dựa trên kết quả (20 XP nếu đỗ, 10 XP nếu trượt)
+                const xpEarned = isPassed ? 20 : 10;
+                streak.addXP(xpEarned, 'Làm đề thi JLPT');
+                await streak.save();
+            }
+        } catch (streakError) {
+            console.error('⚠️ Lỗi cập nhật streak:', streakError);
+        }
+
         res.json({
             message: "Nộp bài thành công",
             ketQua: {
@@ -367,7 +386,7 @@ router.post('/', authenticateAdmin, async (req, res) => {
             time_limit: time_limit || req.body.ThoiGian || 105,
             pass_score: pass_score || req.body.DiemChuan || 90,
             total_score: total_score || req.body.TongDiem || 180,
-            creator_id: req.user._id || req.user.id,
+            creator_id: req.user._id,
             sections: {
                 moji_goi: [],
                 bunpou: [],
@@ -836,7 +855,7 @@ router.post('/importExcel/:id', authenticateAdmin, upload.single('file'), async 
 router.get("/answers/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: "ID không hợp lệ." });
@@ -877,7 +896,7 @@ router.get("/answers/:id", authenticateUser, async (req, res) => {
 // API: Lịch sử làm bài của user
 router.get("/history/me", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
         const { page = 1, limit = 10, exam_id, level } = req.query;
         
         const skip = (parseInt(page) - 1) * parseInt(limit);
@@ -922,7 +941,7 @@ router.get("/history/me", authenticateUser, async (req, res) => {
 router.get("/history/:historyId", authenticateUser, async (req, res) => {
     try {
         const { historyId } = req.params;
-        const userId = req.user._id || req.user.id;
+        const userId = req.user._id;
 
         if (!mongoose.Types.ObjectId.isValid(historyId)) {
             return res.status(400).json({ message: "ID không hợp lệ." });

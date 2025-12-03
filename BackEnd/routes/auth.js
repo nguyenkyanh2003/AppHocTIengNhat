@@ -14,14 +14,15 @@ export const authenticateUser = async (req, res, next) => {
     //  Tắt auth tạm thời khi test
     if (BYPASS_AUTH) {
         req.user = {
-            _id: '000000000000000000000001',
+            _id: '6925c1bc5b05cf681d547032',
             email: 'dev@test.com',
-            full_name: 'Dev User',
-            username: 'devuser',
-            role: 'user',
+            full_name: 'Dev Admin',
+            username: 'devadmin',
+            role: 'admin',
+            VaiTro: 'admin',
             is_banned: false
         };
-        console.log('⚠️  AUTH BYPASS MODE - Development only!');
+        console.log('⚠️  AUTH BYPASS MODE (ADMIN) - Development only!');
         return next();
     }
 
@@ -73,6 +74,10 @@ export const authenticateUser = async (req, res, next) => {
 
         // Gắn user vào request
         req.user = user;
+        
+        // Log để debug
+        console.log(`🔐 Auth: ${user.TenDangNhap} (${user._id}) - ${req.method} ${req.path}`);
+        
         next();
 
     } catch (error) {
@@ -89,11 +94,12 @@ export const authenticateAdmin = async (req, res, next) => {
     // 🔥 Tắt auth tạm thời khi dev
     if (BYPASS_AUTH) {
         req.user = {
-            _id: '000000000000000000000002',
+            _id: '6925c1bc5b05cf681d547032',
             email: 'admin@test.com',
             full_name: 'Dev Admin',
             username: 'devadmin',
             role: 'admin',
+            VaiTro: 'admin',
             is_banned: false
         };
         console.log('⚠️  ADMIN AUTH BYPASS MODE - Development only!');
@@ -111,7 +117,7 @@ export const authenticateAdmin = async (req, res, next) => {
         });
 
         // Kiểm tra role admin
-        if (req.user && req.user.role === 'admin') {
+        if (req.user && (req.user.VaiTro === 'admin' || req.user.role === 'admin')) {
             return next();
         } else {
             return res.status(403).json({ 

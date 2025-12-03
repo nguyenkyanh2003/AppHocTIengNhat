@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../config/theme.dart';
+import '../../services/provider_reset_service.dart';
 import 'register_screen.dart';
 import 'forgot_password_screen.dart';
 import '../home_screen.dart';
@@ -36,6 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
+    // Reset tất cả providers trước khi login (clear dữ liệu user cũ)
+    ProviderResetService.resetAllProviders(context);
+
     // Gọi API login
     final authProvider = context.read<AuthProvider>();
     final success = await authProvider.login(
@@ -55,11 +60,22 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
 
-      // Chuyển sang màn hình Home
-      Navigator.of(context).pushReplacement(
+      // Finish autofill context để browser lưu thông tin
+      TextInput.finishAutofillContext();
+
+      // Clear controllers for security
+      _usernameController.clear();
+      _passwordController.clear();
+
+      // Chuyển sang màn hình Home và clear navigation stack
+      Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => const HomeScreen()),
+        (route) => false,
       );
     } else {
+      // Chỉ clear password khi login thất bại (giữ nguyên username)
+      _passwordController.clear();
+      
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(authProvider.error ?? 'Đăng nhập thất bại'),
@@ -78,16 +94,65 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(24.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
+            child: AutofillGroup(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
                   // Logo và tiêu đề
                   _buildHeader(),
                   
                   const SizedBox(height: 48),
+                  
+                  // Hiển thị lỗi đẹp hơn
+                  Consumer<AuthProvider>(
+                    builder: (context, authProvider, _) {
+                      if (authProvider.error != null) {
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.red[50],
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.red.withOpacity(0.3),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.red[100],
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.info_outline,
+                                  color: Colors.red,
+                                  size: 20,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  authProvider.error!,
+                                  style: TextStyle(
+                                    color: Colors.red[700],
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
                   
                   // Form đăng nhập
                   _buildLoginForm(),
@@ -114,6 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
+            ),
           ),
         ),
       ),
@@ -124,28 +190,33 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildHeader() {
     return Column(
       children: [
+        // Logo với gradient và shadow đẹp hơn
         Container(
-          width: 100,
-          height: 100,
+          width: 180,
+          height: 180,
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: AppTheme.primaryColor.withOpacity(0.1),
+            color: Colors.white,
             shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppTheme.primaryColor.withOpacity(0.3),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
           ),
-          child: const Icon(
-            Icons.translate,
-            size: 50,
-            color: AppTheme.primaryColor,
-          ),
+          child: _buildLogoContent(),
         ),
         
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         
-        // Tiêu đề
+        // Tiêu đề thân thiện hơn
         Text(
-          'Đăng Nhập',
-          style: Theme.of(context).textTheme.displaySmall?.copyWith(
+          'Chào mừng trở lại!',
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: AppTheme.primaryColor,
+            color: AppTheme.textPrimaryColor,
           ),
         ),
         
@@ -153,10 +224,11 @@ class _LoginScreenState extends State<LoginScreen> {
         
         // Mô tả
         Text(
-          'Học tiếng Nhật mỗi ngày',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          'Đăng nhập để tiếp tục học tiếng Nhật',
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             color: AppTheme.textSecondaryColor,
           ),
+          textAlign: TextAlign.center,
         ),
       ],
     );
@@ -171,6 +243,8 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: _usernameController,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
+          autofillHints: const [AutofillHints.username],
+          enableInteractiveSelection: true,
           decoration: const InputDecoration(
             labelText: 'Tên đăng nhập',
             hintText: 'Nhập tên đăng nhập',
@@ -194,6 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: _passwordController,
           obscureText: _obscurePassword,
           textInputAction: TextInputAction.done,
+          autofillHints: const [AutofillHints.password],
           onFieldSubmitted: (_) => _handleLogin(),
           decoration: InputDecoration(
             labelText: 'Mật khẩu',
@@ -263,28 +338,56 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  /// Nút đăng nhập
+  /// Nút đăng nhập với gradient đẹp
   Widget _buildLoginButton() {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
-        return SizedBox(
-          height: 50,
+        return Container(
+          height: 56,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: authProvider.isLoading
+                ? null
+                : const LinearGradient(
+                    colors: [AppTheme.primaryColor, Color(0xFF1565C0)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+            boxShadow: authProvider.isLoading
+                ? []
+                : [
+                    BoxShadow(
+                      color: AppTheme.primaryColor.withOpacity(0.4),
+                      blurRadius: 12,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+          ),
           child: ElevatedButton(
             onPressed: authProvider.isLoading ? null : _handleLogin,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
             child: authProvider.isLoading
                 ? const SizedBox(
-                    height: 20,
-                    width: 20,
+                    height: 24,
+                    width: 24,
                     child: CircularProgressIndicator(
-                      strokeWidth: 2,
+                      strokeWidth: 2.5,
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
                   )
                 : const Text(
                     'Đăng Nhập',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
                     ),
                   ),
           ),
@@ -312,24 +415,87 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  /// Nút đăng ký
+  /// Nút đăng ký với border đẹp
   Widget _buildRegisterButton() {
-    return OutlinedButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const RegisterScreen(),
+    return Container(
+      height: 56,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppTheme.primaryColor,
+          width: 2,
+        ),
+      ),
+      child: OutlinedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const RegisterScreen(),
+            ),
+          );
+        },
+        style: OutlinedButton.styleFrom(
+          side: BorderSide.none,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-        );
-      },
-      child: const Text(
-        'Tạo tài khoản mới',
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
+        ),
+        child: const Text(
+          'Tạo tài khoản mới',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppTheme.primaryColor,
+            letterSpacing: 0.5,
+          ),
         ),
       ),
     );
+  }
+
+  /// Xây dựng nội dung logo (ảnh hoặc icon)
+  Widget _buildLogoContent() {
+    // Thử load ảnh từ assets, nếu không có thì dùng icon
+    return FutureBuilder<bool>(
+      future: _checkImageExists('assets/images/logo.png'),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data == true) {
+          // Có ảnh logo -> hiển thị ảnh
+          return ClipOval(
+            child: Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                // Nếu load ảnh lỗi, fallback về icon
+                return _buildDefaultIcon();
+              },
+            ),
+          );
+        } else {
+          // Không có ảnh hoặc đang load -> dùng icon mặc định
+          return _buildDefaultIcon();
+        }
+      },
+    );
+  }
+
+  /// Icon mặc định khi không có ảnh
+  Widget _buildDefaultIcon() {
+    return const Icon(
+      Icons.translate,  // Icon dịch thuật - liên quan đến học ngôn ngữ
+      size: 80,
+      color: AppTheme.primaryColor,
+    );
+  }
+
+  /// Kiểm tra xem file ảnh có tồn tại không
+  Future<bool> _checkImageExists(String path) async {
+    try {
+      await rootBundle.load(path);
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 }

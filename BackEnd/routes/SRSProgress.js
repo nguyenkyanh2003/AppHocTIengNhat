@@ -3,14 +3,15 @@ import SRSProgress from "../model/SRSProgress.js";
 import Vocabulary from "../model/Vocabulary.js";
 import Kanji from "../model/Kanji.js";
 import Grammar from "../model/Grammar.js";
+import UserStreak from "../model/UserStreak.js";
 import { authenticateUser, authenticateAdmin } from "./auth.js";
 
 const router = express.Router();
 
 // Lấy danh sách thẻ cần ôn hôm nay
-router.get("/due", authenticateUser, async (req, res) => {
+router.get('/due', authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { item_type, limit = 20 } = req.query;
         
         const query = {
@@ -51,7 +52,7 @@ router.get("/due", authenticateUser, async (req, res) => {
 // Lấy số lượng thẻ cần ôn
 router.get("/due/count", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         
         const [total, byType, byStatus] = await Promise.all([
             SRSProgress.countDocuments({
@@ -103,7 +104,7 @@ router.get("/due/count", authenticateUser, async (req, res) => {
 router.post("/answer/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { quality } = req.body; 
         
         if (quality === undefined || quality < 0 || quality > 5) {
@@ -160,6 +161,24 @@ router.post("/answer/:id", authenticateUser, async (req, res) => {
         
         await card.save();
 
+        // Cập nhật streak khi ôn tập SRS
+        try {
+            const streak = await UserStreak.findOne({ user: userId });
+            if (streak) {
+                const updated = streak.updateStreakOnActivity();
+                if (updated.is_new_day) {
+                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
+                }
+                
+                // Thêm XP dựa trên quality (0-5 points -> 1-6 XP)
+                const xpEarned = quality >= 3 ? quality + 1 : 1;
+                streak.addXP(xpEarned, 'Ôn tập SRS');
+                await streak.save();
+            }
+        } catch (streakError) {
+            console.error('⚠️ Lỗi cập nhật streak:', streakError);
+        }
+
         res.json({
             message: "Cập nhật thành công",
             data: card
@@ -171,9 +190,9 @@ router.post("/answer/:id", authenticateUser, async (req, res) => {
 });
 
 // Thêm item vào SRS
-router.post("/add", authenticateUser, async (req, res) => {
+router.post('/review', authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { item_id, item_type } = req.body;
         
         if (!item_id || !item_type) {
@@ -222,6 +241,21 @@ router.post("/add", authenticateUser, async (req, res) => {
             incorrect_count: 0
         });
 
+        // Cập nhật streak khi thêm từ/kanji/grammar vào ôn tập
+        try {
+            const streak = await UserStreak.findOne({ user: userId });
+            if (streak) {
+                const updated = streak.updateStreakOnActivity();
+                if (updated.is_new_day) {
+                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
+                }
+                streak.addXP(3, 'Thêm vào SRS');
+                await streak.save();
+            }
+        } catch (streakError) {
+            console.error('⚠️ Lỗi cập nhật streak:', streakError);
+        }
+
         res.status(201).json({
             message: "Thêm vào SRS thành công",
             data: newCard
@@ -234,7 +268,7 @@ router.post("/add", authenticateUser, async (req, res) => {
 
 router.get("/my-cards", authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         const { item_type, status, page = 1, limit = 20 } = req.query;
         
         const query = { user_id: userId };
@@ -264,9 +298,9 @@ router.get("/my-cards", authenticateUser, async (req, res) => {
     }
 });
 
-router.get("/stats", authenticateUser, async (req, res) => {
+router.get('/stats', authenticateUser, async (req, res) => {
     try {
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
 
         const [
             totalCards,
@@ -325,7 +359,7 @@ router.get("/stats", authenticateUser, async (req, res) => {
 router.delete("/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         
         const deletedCard = await SRSProgress.findOneAndDelete({
             _id: id,
@@ -350,7 +384,7 @@ router.delete("/:id", authenticateUser, async (req, res) => {
 router.put("/reset/:id", authenticateUser, async (req, res) => {
     try {
         const { id } = req.params;
-        const userId = req.user?.id || req.user?._id;
+        const userId = req.user._id;
         
         const card = await SRSProgress.findOneAndUpdate(
             { _id: id, user_id: userId },

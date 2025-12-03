@@ -7,7 +7,7 @@ const router = express.Router();
 // Lấy danh sách thông báo của người dùng
 router.get('/', authenticateUser, async (req, res) => {
   try {
-    const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+    const userID = req.user._id;
     if (!userID) {
         return res.status(401).json({ message: "Không tìm thấy ID người dùng." });
     }
@@ -51,7 +51,7 @@ router.get('/', authenticateUser, async (req, res) => {
 router.get('/:id', authenticateUser, async (req, res) => {
   try {
     const { id } = req.params;
-    const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+    const userID = req.user._id;
 
     const notification = await Notification.findOne({
       _id: id,
@@ -72,7 +72,7 @@ router.get('/:id', authenticateUser, async (req, res) => {
 // Lấy số lượng thông báo chưa đọc
 router.get('/count/unread', authenticateUser, async (req, res) => {
   try {
-    const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+    const userID = req.user._id;
 
     const unreadCount = await Notification.countDocuments({
       NguoiHocID: userID,
@@ -90,7 +90,7 @@ router.get('/count/unread', authenticateUser, async (req, res) => {
 router.put('/read/:id', authenticateUser, async (req, res) => {
   try {
     const { id } = req.params;
-    const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+    const userID = req.user._id;
 
     const updatedNotification = await Notification.findOneAndUpdate(
         { _id: id, NguoiHocID: userID },
@@ -115,7 +115,7 @@ router.put('/read/:id', authenticateUser, async (req, res) => {
 // Đánh dấu tất cả thông báo là đã đọc
 router.put('/read-all', authenticateUser, async (req, res) => {
     try {
-      const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+      const userID = req.user._id;
       
       const result = await Notification.updateMany(
         { NguoiHocID: userID, TrangThai: 'ChuaDoc' },
@@ -140,7 +140,7 @@ router.put('/read-all', authenticateUser, async (req, res) => {
 router.delete('/:id', authenticateUser, async (req, res) => {
     try {
       const { id } = req.params;
-      const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+      const userID = req.user._id;
 
       const deletedNotification = await Notification.findOneAndDelete({
         _id: id,
@@ -164,7 +164,7 @@ router.delete('/:id', authenticateUser, async (req, res) => {
 // Xóa tất cả thông báo đã đọc
 router.delete('/clear/read', authenticateUser, async (req, res) => {
     try {
-      const userID = req.user?.NguoiHocID || req.user?.id || req.user?._id;
+      const userID = req.user._id;
 
       const result = await Notification.deleteMany({
         NguoiHocID: userID,

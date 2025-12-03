@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const UserAnswerSchema = new mongoose.Schema({
     question_id: { type: mongoose.Schema.Types.ObjectId, required: true },
     answer_id: { type: mongoose.Schema.Types.ObjectId, required: true },
-    is_correct: { type: Boolean, required: true }
+    is_correct: { type: Boolean, required: true },
+    correct_answer_id: { type: mongoose.Schema.Types.ObjectId }
 }, { _id: false });
 
 const ExerciseResultSchema = new mongoose.Schema({

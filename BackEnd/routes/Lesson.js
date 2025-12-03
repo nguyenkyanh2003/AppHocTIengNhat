@@ -28,12 +28,23 @@ router.get("/", authenticateUser, async (req, res) => {
 
         const skip = (page - 1) * limit;
         
+        // Sắp xếp theo level (N5->N4->N3->N2->N1) và order tăng dần
+        const levelOrder = { 'N5': 1, 'N4': 2, 'N3': 3, 'N2': 4, 'N1': 5 };
+        
         const [lessons, total] = await Promise.all([
             Lesson.find(query)
-                .sort({ createdAt: -1 })
+                .sort({ order: 1 })  // Sắp xếp theo thứ tự bài học
                 .skip(skip)
                 .limit(limit)
-                .lean(),
+                .lean()
+                .then(docs => {
+                    // Sắp xếp thêm theo level nếu cần
+                    return docs.sort((a, b) => {
+                        const levelDiff = (levelOrder[a.level] || 99) - (levelOrder[b.level] || 99);
+                        if (levelDiff !== 0) return levelDiff;
+                        return (a.order || 0) - (b.order || 0);
+                    });
+                }),
             Lesson.countDocuments(query)
         ]);
 
