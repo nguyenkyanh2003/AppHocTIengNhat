@@ -1,8 +1,9 @@
 # Quy ước code (khuôn mẫu)
 
-Trạng thái: **đề xuất của Giai đoạn 0**. Các mẫu dưới đây được chốt bằng code thật khi
-Giai đoạn 1 (lát cắt `vocabulary` + `srs`) hoàn thành; khi đó tài liệu này được cập nhật
-bằng ví dụ trích thẳng từ repo và trở thành chuẩn bắt buộc cho các module còn lại.
+Trạng thái: phần **BackEnd đã được áp dụng thật** trong module `vocabulary` ở Giai đoạn 1.
+Dùng `src/shared/http/`, `src/modules/vocabulary/` và `src/modules/srs/srs-scheduling.js` làm
+bản mẫu để sao chép cho các module còn lại. Phần **FrontEnd vẫn là đề xuất**, sẽ được chốt
+bằng code khi lát cắt Flutter của Giai đoạn 1 hoàn thành.
 
 Tài liệu liên quan: [redesign-roadmap.md](redesign-roadmap.md),
 [project-structure.md](project-structure.md).

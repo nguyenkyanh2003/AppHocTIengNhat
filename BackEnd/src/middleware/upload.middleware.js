@@ -74,3 +74,23 @@ export const uploadGroupAvatar = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: imageFilter
 }).single('avatar');
+
+// File filter - chỉ cho phép Excel
+const excelFilter = (req, file, cb) => {
+  const validExtension = /\.(xlsx?|xls)$/i.test(file.originalname);
+  const validMime = [
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/octet-stream',
+  ].includes(file.mimetype);
+
+  if (validExtension && validMime) return cb(null, true);
+  cb(new Error('Chỉ chấp nhận tệp Excel .xls hoặc .xlsx.'));
+};
+
+// Upload file Excel để import nội dung (giữ trong bộ nhớ, không ghi ra đĩa)
+export const uploadContentExcel = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter: excelFilter,
+}).single('fileExcel');

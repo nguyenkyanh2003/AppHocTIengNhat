@@ -1,26 +1,132 @@
 import express from 'express';
-import { authenticateUser, authenticateAdmin } from '../../middleware/auth.middleware.js';
-import * as controller from './vocabulary.controller.js';
 
-const router = express.Router();
+import {
+  authenticateAdmin,
+  authenticateUser,
+} from '../../middleware/auth.middleware.js';
+import { uploadContentExcel } from '../../middleware/upload.middleware.js';
+import { asyncHandler } from '../../shared/http/async-handler.js';
+import { validate } from '../../shared/http/validate.js';
+import { createVocabularyController } from './vocabulary.controller.js';
+import * as schema from './vocabulary.schema.js';
+import { vocabularyService } from './vocabulary.service.js';
 
-router.get("/", authenticateUser, controller.getRoot);
-router.get("/search", authenticateUser, controller.getSearch);
-router.get("/situations", authenticateUser, controller.getSituations);
-router.get("/lesson/:lessonId", authenticateUser, controller.getLessonByLessonId);
-router.get("/level/:levelEnum", authenticateUser, controller.getLevelByLevelEnum);
-router.get("/situation/search", authenticateUser, controller.getSituationSearch);
-router.get("/random/practice", authenticateUser, controller.getRandomPractice);
-router.get("/admin/stats", authenticateAdmin, controller.getAdminStats);
-router.get("/admin/export", authenticateAdmin, controller.getAdminExport);
-router.get("/:id", authenticateUser, controller.getById);
-router.post("/learn/:id", authenticateUser, controller.postLearnById);
-router.post("/", authenticateAdmin, controller.postRoot);
-router.put("/:id", authenticateAdmin, controller.putById);
-router.delete("/:id", authenticateAdmin, controller.deleteById);
-router.delete("/", authenticateAdmin, controller.deleteRoot);
-router.post("/upload", authenticateAdmin, controller.upload.single("fileExcel"), controller.postUpload);
-router.post("/:id/mark-learned", authenticateUser, controller.postByIdMarkLearned);
-router.delete("/:id/mark-learned", authenticateUser, controller.deleteByIdMarkLearned);
+/**
+ * Route chỉ khai báo path, middleware và controller binding.
+ *
+ * Nhận dependency qua tham số để test có thể dựng router với service giả và
+ * middleware auth giả, không cần MongoDB hay JWT.
+ */
+export const createVocabularyRoutes = ({
+  service = vocabularyService,
+  authenticate = authenticateUser,
+  authorizeAdmin = authenticateAdmin,
+  uploadExcel = uploadContentExcel,
+} = {}) => {
+  const controller = createVocabularyController(service);
+  const router = express.Router();
 
-export default router;
+  router.get(
+    '/',
+    authenticate,
+    validate({ query: schema.listQuery }),
+    asyncHandler(controller.listVocabularies),
+  );
+  router.get(
+    '/search',
+    authenticate,
+    validate({ query: schema.searchQuery }),
+    asyncHandler(controller.search),
+  );
+  router.get('/situations', authenticate, asyncHandler(controller.listSituations));
+  router.get(
+    '/lesson/:lessonId',
+    authenticate,
+    validate({ params: schema.lessonIdParams }),
+    asyncHandler(controller.listByLesson),
+  );
+  router.get(
+    '/level/:levelEnum',
+    authenticate,
+    validate({ params: schema.levelParams }),
+    asyncHandler(controller.listByLevel),
+  );
+  router.get(
+    '/situation/search',
+    authenticate,
+    validate({ query: schema.situationSearchQuery }),
+    asyncHandler(controller.searchBySituation),
+  );
+  router.get(
+    '/random/practice',
+    authenticate,
+    validate({ query: schema.randomPracticeQuery }),
+    asyncHandler(controller.randomPractice),
+  );
+  router.get('/admin/stats', authorizeAdmin, asyncHandler(controller.adminStats));
+  router.get(
+    '/admin/export',
+    authorizeAdmin,
+    validate({ query: schema.exportQuery }),
+    asyncHandler(controller.adminExport),
+  );
+  router.get(
+    '/:id',
+    authenticate,
+    validate({ params: schema.idParams }),
+    asyncHandler(controller.detail),
+  );
+  router.post(
+    '/learn/:id',
+    authenticate,
+    validate({ params: schema.idParams, body: schema.learnBody }),
+    asyncHandler(controller.learnInLesson),
+  );
+  router.post(
+    '/',
+    authorizeAdmin,
+    validate({ body: schema.createBody }),
+    asyncHandler(controller.create),
+  );
+  router.put(
+    '/:id',
+    authorizeAdmin,
+    validate({ params: schema.idParams, body: schema.updateBody }),
+    asyncHandler(controller.update),
+  );
+  router.delete(
+    '/:id',
+    authorizeAdmin,
+    validate({ params: schema.idParams }),
+    asyncHandler(controller.remove),
+  );
+  router.delete(
+    '/',
+    authorizeAdmin,
+    validate({ body: schema.deleteManyBody }),
+    asyncHandler(controller.removeMany),
+  );
+  router.post(
+    '/upload',
+    authorizeAdmin,
+    uploadExcel,
+    validate({ body: schema.uploadBody }),
+    asyncHandler(controller.importExcel),
+  );
+  router.post(
+    '/:id/mark-learned',
+    authenticate,
+    validate({ params: schema.idParams }),
+    asyncHandler(controller.markLearned),
+  );
+  router.delete(
+    '/:id/mark-learned',
+    authenticate,
+    validate({ params: schema.idParams }),
+    asyncHandler(controller.unmarkLearned),
+  );
+
+  return router;
+};
+
+export default createVocabularyRoutes();

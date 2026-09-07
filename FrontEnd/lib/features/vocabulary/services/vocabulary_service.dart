@@ -33,9 +33,9 @@ class VocabularyService {
     final response = await _apiClient.get('/vocabulary?$queryString');
 
     return {
-      'totalItems': response['totalItems'] ?? 0,
+      'totalItems': response['total'] ?? 0,
       'totalPages': response['totalPages'] ?? 0,
-      'currentPage': response['currentPage'] ?? page,
+      'currentPage': response['page'] ?? page,
       'data': (response['data'] as List?)
               ?.map((item) => Vocabulary.fromJson(item))
               .toList() ??
@@ -88,7 +88,7 @@ class VocabularyService {
   /// Lấy chi tiết một từ vựng
   Future<Vocabulary> getVocabularyById(String id) async {
     final response = await _apiClient.get('/vocabulary/$id');
-    return Vocabulary.fromJson(response);
+    return Vocabulary.fromJson(response['data']);
   }
 
   /// Tạo từ vựng mới (Admin)
