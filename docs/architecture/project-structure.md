@@ -133,7 +133,7 @@ Feature chỉ có các thư mục thực sự cần. Ví dụ feature UI-only kh
 - `features/<feature>/`: toàn bộ screen, widget, provider, service và model chỉ phục vụ feature đó.
 - `shared/`: model/widget dùng thật ở nhiều feature hoặc generic theo bản chất. `shared` không phải nơi tạm chứa file chưa biết đặt đâu.
 
-`shared/models/user.dart` là shared vì cả auth và profile dùng. Audio recorder nằm trong `study_groups` vì hiện chỉ chat/group dùng. News carousel nằm trong `news` dù được home render, vì nó sở hữu state/model/navigation của news.
+`shared/models/user.dart` là shared vì cả auth và profile dùng. News carousel nằm trong `news` dù được home render, vì nó sở hữu state/model/navigation của news.
 
 ### Dependency direction
 

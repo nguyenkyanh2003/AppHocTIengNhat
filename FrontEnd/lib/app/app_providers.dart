@@ -7,7 +7,6 @@ import '../features/auth/providers/auth_provider.dart';
 import '../features/exercise/providers/exercise_provider.dart';
 import '../features/flashcards/providers/flashcard_provider.dart';
 import '../features/grammar/providers/grammar_provider.dart';
-import '../features/study_groups/providers/group_chat_provider.dart';
 import '../features/jlpt/providers/jlpt_exam_provider.dart';
 import '../features/jlpt/providers/jlpt_practice_provider.dart';
 import '../features/jlpt/providers/jlpt_provider.dart';
@@ -38,7 +37,6 @@ List<SingleChildWidget> createAppProviders() => [
       ChangeNotifierProvider(create: (_) => AchievementProvider()),
       ChangeNotifierProvider(create: (_) => ProgressProvider()),
       ChangeNotifierProvider(create: (_) => StudyGroupProvider()),
-      ChangeNotifierProvider(create: (_) => GroupChatProvider()),
       ChangeNotifierProvider(create: (_) => NotebookProvider()),
       ChangeNotifierProvider(create: (_) => NewsProvider()),
       ChangeNotifierProvider(create: (_) => JLPTProvider()),

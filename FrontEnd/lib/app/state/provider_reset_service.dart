@@ -9,7 +9,6 @@ import '../../features/streaks/providers/streak_provider.dart';
 import '../../features/achievements/providers/achievement_provider.dart';
 import '../../features/progress/providers/progress_provider.dart';
 import '../../features/study_groups/providers/study_group_provider.dart';
-import '../../features/study_groups/providers/group_chat_provider.dart';
 import '../../features/notebook/providers/notebook_provider.dart';
 
 /// Service để reset tất cả providers khi logout
@@ -68,12 +67,6 @@ class ProviderResetService {
       context.read<StudyGroupProvider>().clear();
     } catch (e) {
       debugPrint('Error resetting StudyGroupProvider: $e');
-    }
-
-    try {
-      context.read<GroupChatProvider>().clear();
-    } catch (e) {
-      debugPrint('Error resetting GroupChatProvider: $e');
     }
 
     try {
