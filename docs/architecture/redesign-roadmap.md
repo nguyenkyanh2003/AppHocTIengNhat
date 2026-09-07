@@ -2,7 +2,9 @@
 
 Tài liệu này ghi lại lý do, phạm vi và thứ tự công việc của đợt thiết kế lại dự án.
 Quy ước kỹ thuật cụ thể nằm ở [conventions.md](conventions.md); cấu trúc thư mục hiện
-hành nằm ở [project-structure.md](project-structure.md).
+hành nằm ở [project-structure.md](project-structure.md); các quyết định tạm hoãn được ghi ở
+[out-of-scope.md](out-of-scope.md). Roadmap là tài liệu sống: khi bằng chứng từ code hoặc giới
+hạn nguồn lực thay đổi, sửa phạm vi ở đây thay vì cố triển khai một spec không còn phù hợp.
 
 ## Vấn đề
 
@@ -25,9 +27,16 @@ chính codebase tại thời điểm bắt đầu (2026-09-07):
 ## Ràng buộc
 
 - Giữ nguyên stack: Flutter + Provider, Express 5 + Mongoose 8. Refactor tại chỗ, không viết lại.
-- Giữ toàn bộ tính năng hiện có. Vì quỹ thời gian ~1 học kỳ không đủ đầu tư sâu cho cả 21 domain, chia hai mức:
+- Không xóa tính năng hoặc route đã có consumer nếu chưa inventory và có kế hoạch migration.
+  Việc giữ code không đồng nghĩa mọi feature đều là tiêu chí nghiệm thu của giai đoạn hiện tại.
+  Vì quỹ thời gian ~1 học kỳ không đủ đầu tư sâu cho cả 21 domain, chia phạm vi như sau:
   - **Tier A — đầu tư sâu**: lesson, vocabulary, kanji, grammar, exercise, SRS/flashcard/streak/achievement, JLPT.
-  - **Tier B — chuẩn hoá cơ học, không thêm tính năng**: study group/chat, news, notebook, report, settings, transaction, admin.
+  - **Tier B — backlog chuẩn hoá cơ học, chưa xếp vào Giai đoạn 2**: news, notebook, report,
+    settings, transaction, admin. Chỉ đưa một module trở lại khi cập nhật đồng thời plan và
+    [out-of-scope.md](out-of-scope.md), không mở rộng ngầm vì “còn thời gian”.
+  - **Đóng băng trong Giai đoạn 2**: study group/chat. Giữ implementation hiện có nhưng không
+    refactor, không thêm matching/realtime và không dùng làm tiêu chí nghiệm thu; điều kiện mở
+    lại nằm trong [out-of-scope.md](out-of-scope.md).
 - App phải chạy được sau mỗi bước. Không đổi API/schema ngoài chủ đích.
 - API contract bị khoá bằng sha256 trong `BackEnd/tests/route-contract.test.js`. Mọi thay đổi route phải cập nhật digest có chủ đích trong cùng commit.
 
@@ -56,8 +65,8 @@ Cuối mỗi giai đoạn, đo lại các chỉ số này để so sánh trong b
 | --- | --- | --- | --- |
 | 0 | Tuần 1 | Nền móng: CI, quality gate, baseline, khung tài liệu | Mọi thay đổi sau đó được máy kiểm tra |
 | 1 | Tuần 2–4 | Lát cắt dọc mẫu **Vocabulary + SRS** (BackEnd → FrontEnd) | Khuôn mẫu để mọi feature khác bắt chước |
-| 2 | Tuần 5–9 | Nhân bản khuôn mẫu: Tier A trước, Tier B sau | 21 domain cùng một hình dạng |
-| 3 | Tuần 10–12 | Redesign UI/UX toàn app trên design system | App trông như một sản phẩm thống nhất |
+| 2 | Tuần 5–9 | Khôi phục vòng lặp học, chuẩn hóa các module trong phạm vi và thêm speaking AI | Luồng học cốt lõi chạy được với một user; module đóng băng không bị kéo vào refactor |
+| 3 | Tuần 10–12 | Redesign UI/UX trên design system; xử lý screen lớn khi feature được giữ lại | App trông thống nhất, không refactor cùng một màn hình hai lần |
 | 4 | Tuần 13–14 | Bảo mật, hiệu năng, test coverage, deploy, tài liệu | Sẵn sàng bảo vệ và demo online |
 
 ### Giai đoạn 0 — Nền móng (tuần 1)
@@ -102,19 +111,32 @@ bày tách sang `widgets/`.
 thủ công; không file Dart nào trong `features/vocabulary/` > 300 dòng; 3 lỗi contract đã
 sửa; CI xanh; `conventions.md` đủ để người khác làm module tiếp theo mà không cần hỏi.
 
-### Giai đoạn 2 — Nhân bản khuôn mẫu (tuần 5–9)
+### Giai đoạn 2 — Khôi phục vòng lặp học và speaking AI (tuần 5–9)
 
-Thứ tự: `lessons` + `lesson-progress` → `kanji` → `grammar` → `exercise` → `jlpt` (nặng
-nhất, làm sau khi khuôn mẫu đã ổn định) → Tier B. Mỗi module là một thay đổi độc lập, kèm
-đủ bộ test theo `conventions.md`. Tách `group_detail_screen.dart` trong đợt Tier B.
+Phạm vi thi công chi tiết và thứ tự phụ thuộc nằm ở [phase-2-plan.md](phase-2-plan.md): ưu
+tiên SRS, LessonProgress, JLPT history, search và speaking AI. Tier B không tự động được kéo
+vào giai đoạn này; nếu đổi ưu tiên, phải sửa plan và quyết định out-of-scope trước khi code.
+Mỗi module là một thay đổi độc lập, kèm đủ bộ test theo `conventions.md`.
+
+Study group/chat được đóng băng trong giai đoạn này. `group_detail_screen.dart` vẫn là screen
+lớn nhất của baseline và được **dời sang Giai đoạn 3**, không được coi là đã xử lý hoặc biến
+mất khỏi báo cáo.
 
 ### Giai đoạn 3 — Redesign UI/UX (tuần 10–12)
 
 Vẽ lại information architecture (home và điều hướng chính hiện gánh 21 lối vào), áp design
 system lên toàn bộ màn hình, thống nhất trạng thái rỗng/lỗi, dark mode, responsive.
 
+Nếu màn danh sách/chi tiết nhóm tiếp tục nằm trong navigation cuối kỳ, tách
+`group_detail_screen.dart` trong lúc redesign phần giao diện đó theo design system. Không tách
+file ở một giai đoạn rồi vẽ lại cùng màn hình ở giai đoạn kế tiếp. Group chat vẫn đóng băng và
+không nằm trong luồng demo; nếu toàn bộ feature nhóm bị bỏ khỏi navigation, giữ nguyên baseline
+và ghi rõ chưa xử lý trong báo cáo cuối kỳ.
+
 ### Giai đoạn 4 — Chất lượng và vận hành (tuần 13–14)
 
-Bỏ `BYPASS_AUTH` khỏi đường chạy production, rate limit cho auth, siết giới hạn upload,
-refresh token, index MongoDB cho truy vấn nóng, nâng test coverage, deploy backend và
-Flutter Web, hoàn thiện tài liệu và kịch bản demo.
+Bỏ `BYPASS_AUTH` khỏi đường chạy production, dựng rate-limit dùng chung (ít nhất cho auth),
+siết MIME/kích thước/nơi lưu cho các luồng upload **nằm trong phạm vi phát hành**, refresh
+token, index MongoDB cho truy vấn nóng, nâng test coverage, deploy backend và Flutter Web,
+hoàn thiện tài liệu và kịch bản demo. Group chat không nằm trong luồng demo nên không phát sinh
+task hardening ở giai đoạn này; muốn kích hoạt lại phải mở phạm vi và security plan riêng.

@@ -22,7 +22,8 @@ Backend test bao phủ smoke/404 Express, contract route, contract model transac
 4. Bật offline, tải nội dung, ngắt backend/mạng và mở lại nội dung đã cache.
 5. Tạo report và xử lý report bằng admin.
 6. Tạo yêu cầu giao dịch và cập nhật trạng thái bằng admin.
-7. Nhóm học: tạo/join/chat/upload audio hoặc ảnh trên hai tài khoản.
+7. Nhóm học: mở danh sách và chi tiết một nhóm đã seed, xác nhận luồng xem không lỗi. Chat và
+   upload media không thuộc acceptance checklist của bản demo hiện tại.
 8. Chạy responsive trên web và một thiết bị Android thật.
 
 ## Giới hạn chưa thể xác nhận tự động tại workspace
@@ -31,3 +32,5 @@ Backend test bao phủ smoke/404 Express, contract route, contract model transac
 - Android APK/AAB chưa build được trên máy không có Android SDK và release keystore.
 - Cổng thanh toán tự động nằm ngoài phạm vi hiện tại; module transaction quản lý yêu cầu giao dịch và trạng thái.
 - Email reset phụ thuộc credential/provider bên ngoài; không dùng credential production để demo.
+- Group chat và media upload đang đóng băng, không được kiểm chứng hoặc trình bày như một phần
+  đã hoàn thiện của bản demo.

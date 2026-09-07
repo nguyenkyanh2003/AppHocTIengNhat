@@ -6,7 +6,9 @@ Documentation is grouped by purpose so implementation folders stay focused on ru
   [`project-structure.md`](architecture/project-structure.md).
   The current redesign effort is tracked in
   [`redesign-roadmap.md`](architecture/redesign-roadmap.md), with the code conventions it
-  establishes in [`conventions.md`](architecture/conventions.md).
+  establishes in [`conventions.md`](architecture/conventions.md) and the work in flight in
+  [`phase-2-plan.md`](architecture/phase-2-plan.md). Decisions intentionally deferred from
+  that phase are listed in [`out-of-scope.md`](architecture/out-of-scope.md).
 - `api/`: REST API groups, authentication and response conventions.
 - `development/`: local setup and developer workflows.
 - `presentation/`: defense/demo script and scope notes.

@@ -11,7 +11,8 @@ AppHocTiengNhat là hệ thống học tiếng Nhật đa nền tảng. Flutter 
 3. **Bài tập theo bài học**: bấm “Làm bài tập”; chỉ ra danh sách được lọc bằng `lessonId`; làm và nộp một bài.
 4. **Theo dõi kết quả**: mở dashboard/progress, streak, XP và thành tích.
 5. **Ôn tập**: trình bày flashcard/SRS hoặc JLPT.
-6. **Tính cộng đồng**: mở nhóm học và chat.
+6. **Tính cộng đồng ở mức phạm vi**: mở danh sách và chi tiết một nhóm học đã seed; không mở
+   chat hoặc upload media vì module này đang đóng băng.
 7. **Quản trị**: tạo hoặc sửa một nội dung thật, export CSV, xử lý report/transaction.
 8. **Offline**: tải nội dung, bật chế độ ngoại tuyến và giải thích fallback cache.
 9. **Chất lượng**: mở `TEST_REPORT.md`, nêu analyzer sạch và số test passed.
@@ -30,6 +31,8 @@ AppHocTiengNhat là hệ thống học tiếng Nhật đa nền tảng. Flutter 
 - Transaction hiện là quy trình tạo và duyệt **yêu cầu giao dịch**, không phải tích hợp ví/ngân hàng tự động.
 - Offline là cache nội dung đã tải; các thao tác ghi vẫn cần kết nối máy chủ.
 - Build Android release cần SDK và keystore của môi trường phát hành.
+- Group chat vẫn tồn tại trong code legacy nhưng không thuộc luồng demo hoặc tiêu chí nghiệm
+  thu hiện tại; không tuyên bố đã hoàn thiện moderation, rate limit hay upload an toàn.
 - Không trình bày coverage hoặc MongoDB E2E là đã hoàn thành khi chưa có bằng chứng chạy.
 
 ## Checklist trước giờ demo
