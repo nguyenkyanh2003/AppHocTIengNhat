@@ -138,6 +138,8 @@ Build Android cần Android SDK và release keystore trên máy build. Mẫu c�
 ## Tài liệu
 
 - [Chỉ dẫn cấu trúc project](docs/architecture/project-structure.md)
+- [Lộ trình thiết kế lại](docs/architecture/redesign-roadmap.md)
+- [Quy ước code](docs/architecture/conventions.md)
 - [Sơ đồ kiến trúc hệ thống](docs/architecture/system-overview.md)
 - [Sơ đồ dữ liệu](docs/architecture/data-model.md)
 - [Tổng quan REST API](docs/api/API_OVERVIEW.md)
