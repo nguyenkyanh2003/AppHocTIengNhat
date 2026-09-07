@@ -1,0 +1,25 @@
+# Dependencies
+**/node_modules/
+
+# Local environment and secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs and runtime output
+**/logs/
+*.log
+npm-debug.log*
+**/coverage/
+
+# Flutter/Dart generated state
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/build/
+
+# Local IDE and OS state
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
