@@ -19,7 +19,7 @@ class KanjiService {
       }
 
       String queryString = params.join('&');
-      final dynamic response = await _apiClient.get('/kanji?$queryString');
+      final dynamic response = await _apiClient.get('/kanji?$queryString', cache: true);
 
       if (response is Map<String, dynamic>) {
         return {
@@ -47,7 +47,7 @@ class KanjiService {
   Future<List<Kanji>> searchKanjis(String query) async {
     try {
       final dynamic response =
-          await _apiClient.get('/kanji/search?keyword=$query');
+          await _apiClient.get('/kanji/search?keyword=$query', cache: true);
       // Backend trả về array trực tiếp, không có 'data' wrapper
       if (response is List) {
         return response
@@ -63,7 +63,7 @@ class KanjiService {
   // Lấy kanji theo level
   Future<List<Kanji>> getKanjisByLevel(String level) async {
     try {
-      final dynamic response = await _apiClient.get('/kanji/level/$level');
+      final dynamic response = await _apiClient.get('/kanji/level/$level', cache: true);
       if (response is Map<String, dynamic> && response['data'] != null) {
         return (response['data'] as List)
             .map((json) => Kanji.fromJson(json))
@@ -78,7 +78,7 @@ class KanjiService {
   // Lấy chi tiết kanji
   Future<Kanji> getKanjiById(String id) async {
     try {
-      final dynamic response = await _apiClient.get('/kanji/$id');
+      final dynamic response = await _apiClient.get('/kanji/$id', cache: true);
       if (response is Map<String, dynamic> && response['data'] != null) {
         return Kanji.fromJson(response['data']);
       }
@@ -91,7 +91,7 @@ class KanjiService {
   // Lấy kanji theo bài học
   Future<List<Kanji>> getKanjisByLesson(String lessonId) async {
     try {
-      final dynamic response = await _apiClient.get('/kanji/lesson/$lessonId');
+      final dynamic response = await _apiClient.get('/kanji/lesson/$lessonId', cache: true);
       if (response is Map<String, dynamic> && response['data'] != null) {
         return (response['data'] as List)
             .map((json) => Kanji.fromJson(json))

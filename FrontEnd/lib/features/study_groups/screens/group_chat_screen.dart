@@ -11,7 +11,7 @@ import '../../auth/providers/auth_provider.dart';
 import '../models/group_message.dart';
 import '../widgets/audio_recorder_widget.dart';
 import '../../../core/network/api_client.dart';
-import '../services/audio_service.dart';
+import '../../../core/audio/audio_service.dart';
 
 class GroupChatScreen extends StatefulWidget {
   final String groupId;

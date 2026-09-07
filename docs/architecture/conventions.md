@@ -1,9 +1,9 @@
 # Quy ước code (khuôn mẫu)
 
-Trạng thái: phần **BackEnd đã được áp dụng thật** trong module `vocabulary` ở Giai đoạn 1.
-Dùng `src/shared/http/`, `src/modules/vocabulary/` và `src/modules/srs/srs-scheduling.js` làm
-bản mẫu để sao chép cho các module còn lại. Phần **FrontEnd vẫn là đề xuất**, sẽ được chốt
-bằng code khi lát cắt Flutter của Giai đoạn 1 hoàn thành.
+Trạng thái: **đã được áp dụng thật** ở cả hai đầu trong lát cắt `vocabulary` (Giai đoạn 1).
+Bản mẫu để sao chép: `BackEnd/src/shared/http/`, `BackEnd/src/modules/vocabulary/`,
+`BackEnd/src/modules/srs/srs-scheduling.js`, `FrontEnd/lib/core/state/view_state.dart`,
+`FrontEnd/lib/shared/widgets/` và `FrontEnd/lib/features/vocabulary/`.
 
 Tài liệu liên quan: [redesign-roadmap.md](redesign-roadmap.md),
 [project-structure.md](project-structure.md).
@@ -96,25 +96,22 @@ dòng, tách phần trình bày sang `widgets/` trước khi thêm tính năng m
 ### State
 
 Provider dùng `ViewState<T>` (`idle | loading | data | failure`) trong
-`core/state/view_state.dart` thay cho bộ ba `_isLoading` / `_error` / `_data`:
+`core/state/view_state.dart` thay cho bộ ba `_isLoading` / `_error` / `_data`. Việc bắt lỗi
+nằm trong `ViewState.guard`, nên provider không tự `try/catch` và màn hình không bao giờ
+nhận chuỗi `Exception: ...` thô:
 
 ```dart
-ViewState<List<Vocabulary>> get state => _state;
-
 Future<void> load() async {
-  _state = const ViewState.loading();
+  _list = const ViewState.loading();
   notifyListeners();
-  try {
-    _state = ViewState.data(await _service.getVocabularies(...));
-  } on ApiException catch (error) {
-    _state = ViewState.failure(error.message);
-  }
+  _list = await ViewState.guard(() => _service.getVocabularies(page: 1));
   notifyListeners();
 }
 ```
 
-Global provider đăng ký `lazy: true` trong `app/app_providers.dart`, trừ provider thực sự
-cần ngay lúc mở app (`AuthProvider`, `LocaleProvider`).
+Provider nhận service qua constructor (`VocabularyProvider({VocabularyService? service})`)
+để test truyền service giả. `ChangeNotifierProvider` của package `provider` vốn đã lazy —
+chỉ truyền `lazy: false` khi thật sự cần khởi tạo sớm.
 
 ### Trạng thái màn hình
 
@@ -135,9 +132,14 @@ rời rạc trong screen. Spacing chỉ dùng các bậc 4/8/12/16/24/32.
 hardcode danh sách endpoint trong client. Service của feature dựng query bằng
 `Uri.queryParameters`, không nối chuỗi tay.
 
+Service của feature trả về **kiểu dữ liệu**, không trả `Map<String, dynamic>` cho provider
+tự đoán khoá — xem `VocabularyPage` trong
+`features/vocabulary/services/vocabulary_service.dart`.
+
 ### Test bắt buộc cho mỗi feature
 
-1. `test/<feature>_provider_test.dart` — chuyển trạng thái với service giả.
+1. `test/<feature>_provider_test.dart` — chuyển trạng thái với service giả: tải thành công,
+   tải thêm trang, lỗi API, lỗi lạ, danh sách rỗng.
 2. Cập nhật `test/navigation_contract_test.dart` khi route công khai thay đổi.
 
 ## Quality gate

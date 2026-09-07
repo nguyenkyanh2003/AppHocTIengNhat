@@ -1,141 +1,104 @@
 import '../../../core/network/api_client.dart';
 import '../models/vocabulary.dart';
 
+/// Một trang từ vựng trả về từ API.
+///
+/// Trước đây service trả `Map<String, dynamic>` nên provider phải tự đoán tên
+/// khoá và ép kiểu ở từng chỗ dùng.
+class VocabularyPage {
+  const VocabularyPage({
+    required this.items,
+    required this.page,
+    required this.limit,
+    required this.total,
+    required this.totalPages,
+  });
+
+  factory VocabularyPage.fromJson(
+    Map<String, dynamic> json, {
+    int fallbackPage = 1,
+  }) {
+    return VocabularyPage(
+      items: _parseList(json['data']),
+      page: json['page'] as int? ?? fallbackPage,
+      limit: json['limit'] as int? ?? 0,
+      total: json['total'] as int? ?? 0,
+      totalPages: json['totalPages'] as int? ?? 0,
+    );
+  }
+
+  final List<Vocabulary> items;
+  final int page;
+  final int limit;
+  final int total;
+  final int totalPages;
+}
+
+List<Vocabulary> _parseList(dynamic data) =>
+    (data as List?)?.map((item) => Vocabulary.fromJson(item)).toList() ??
+    const [];
+
 class VocabularyService {
   final ApiClient _apiClient = ApiClient();
 
-  /// Lấy danh sách từ vựng với phân trang và filter
-  Future<Map<String, dynamic>> getVocabularies({
+  /// Danh sách từ vựng có phân trang và bộ lọc.
+  Future<VocabularyPage> getVocabularies({
     int page = 1,
     int limit = 20,
     String? level,
     String? studyStatus,
     String? sortBy,
   }) async {
-    // Build query string
-    final params = <String>[];
-    params.add('page=$page');
-    params.add('limit=$limit');
+    final endpoint = _endpoint('/vocabulary', {
+      'page': '$page',
+      'limit': '$limit',
+      if (level != null && level.isNotEmpty) 'level': level,
+      if (studyStatus != null && studyStatus.isNotEmpty)
+        'studyStatus': studyStatus,
+      if (sortBy != null && sortBy.isNotEmpty) 'sortBy': sortBy,
+    });
 
-    if (level != null && level.isNotEmpty) {
-      params.add('level=$level');
-    }
-
-    if (studyStatus != null && studyStatus.isNotEmpty) {
-      params.add('studyStatus=$studyStatus');
-    }
-
-    if (sortBy != null && sortBy.isNotEmpty) {
-      params.add('sortBy=$sortBy');
-    }
-
-    final queryString = params.join('&');
-    final response = await _apiClient.get('/vocabulary?$queryString');
-
-    return {
-      'totalItems': response['total'] ?? 0,
-      'totalPages': response['totalPages'] ?? 0,
-      'currentPage': response['page'] ?? page,
-      'data': (response['data'] as List?)
-              ?.map((item) => Vocabulary.fromJson(item))
-              .toList() ??
-          [],
-    };
+    final response = await _apiClient.get(endpoint, cache: true);
+    return VocabularyPage.fromJson(
+      Map<String, dynamic>.from(response as Map),
+      fallbackPage: page,
+    );
   }
 
-  /// Tìm kiếm từ vựng
+  /// Tìm từ vựng theo từ khoá. Không có kết quả là danh sách rỗng, không phải lỗi.
   Future<List<Vocabulary>> searchVocabularies({
     required String keyword,
     String? level,
   }) async {
-    // Build query string
-    final params = <String>[];
-    params.add('keyword=$keyword');
+    final endpoint = _endpoint('/vocabulary/search', {
+      'keyword': keyword,
+      if (level != null && level.isNotEmpty) 'level': level,
+    });
 
-    if (level != null && level.isNotEmpty) {
-      params.add('level=$level');
-    }
-
-    final queryString = params.join('&');
-    final response = await _apiClient.get('/vocabulary/search?$queryString');
-
-    return (response['data'] as List?)
-            ?.map((item) => Vocabulary.fromJson(item))
-            .toList() ??
-        [];
+    final response = await _apiClient.get(endpoint, cache: true);
+    return _parseList(response['data']);
   }
 
-  /// Lấy từ vựng theo bài học
   Future<List<Vocabulary>> getVocabulariesByLesson(String lessonId) async {
-    final response = await _apiClient.get('/vocabulary/lesson/$lessonId');
-
-    return (response['data'] as List?)
-            ?.map((item) => Vocabulary.fromJson(item))
-            .toList() ??
-        [];
-  }
-
-  /// Lấy từ vựng theo level
-  Future<List<Vocabulary>> getVocabulariesByLevel(String level) async {
-    final response = await _apiClient.get('/vocabulary/level/$level');
-
-    return (response['data'] as List?)
-            ?.map((item) => Vocabulary.fromJson(item))
-            .toList() ??
-        [];
-  }
-
-  /// Lấy chi tiết một từ vựng
-  Future<Vocabulary> getVocabularyById(String id) async {
-    final response = await _apiClient.get('/vocabulary/$id');
-    return Vocabulary.fromJson(response['data']);
-  }
-
-  /// Tạo từ vựng mới (Admin)
-  Future<Vocabulary> createVocabulary(Map<String, dynamic> data) async {
-    final response = await _apiClient.post('/vocabulary', data);
-    return Vocabulary.fromJson(response['data']);
-  }
-
-  /// Cập nhật từ vựng (Admin)
-  Future<Vocabulary> updateVocabulary(
-    String id,
-    Map<String, dynamic> data,
-  ) async {
-    final response = await _apiClient.put('/vocabulary/$id', data);
-    return Vocabulary.fromJson(response['data']);
-  }
-
-  /// Xóa từ vựng (Admin)
-  Future<void> deleteVocabulary(String id) async {
-    await _apiClient.delete('/vocabulary/$id');
-  }
-
-  /// Lấy thống kê từ vựng
-  Future<Map<String, dynamic>> getVocabularyStats() async {
-    final response = await _apiClient.get('/vocabulary/stats/overview');
-    return response;
-  }
-
-  /// Đánh dấu đã học từ vựng (thêm vào SRS)
-  Future<Map<String, dynamic>> markAsLearned(String vocabularyId) async {
     final response =
-        await _apiClient.post('/vocabulary/$vocabularyId/mark-learned', {});
-    return response;
+        await _apiClient.get('/vocabulary/lesson/$lessonId', cache: true);
+    return _parseList(response['data']);
   }
 
-  /// Bỏ đánh dấu đã học (xóa khỏi SRS)
+  Future<Vocabulary> getVocabularyById(String id) async {
+    final response = await _apiClient.get('/vocabulary/$id', cache: true);
+    return Vocabulary.fromJson(response['data']);
+  }
+
+  /// Đánh dấu đã học: backend tạo tiến độ ôn tập ở box 1.
+  Future<void> markAsLearned(String vocabularyId) async {
+    await _apiClient.post('/vocabulary/$vocabularyId/mark-learned', {});
+  }
+
   Future<void> unmarkAsLearned(String vocabularyId) async {
     await _apiClient.delete('/vocabulary/$vocabularyId/mark-learned');
   }
 
-  /// Check if vocabulary is learned
-  Future<bool> isLearned(String vocabularyId) async {
-    try {
-      // This will be checked via SRSProgress in the list
-      return false;
-    } catch (e) {
-      return false;
-    }
-  }
+  String _endpoint(String path, Map<String, String> params) =>
+      '$path?${Uri(queryParameters: params).query}';
 }

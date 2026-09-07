@@ -16,7 +16,7 @@ class ExerciseService {
       for (final level in levels) {
         try {
           final dynamic response =
-              await _apiClient.get('/exercise/level/$level');
+              await _apiClient.get('/exercise/level/$level', cache: true);
           if (response is List) {
             allExercises.addAll(
                 response.map((json) => Exercise.fromJson(json)).toList());
@@ -37,7 +37,7 @@ class ExerciseService {
   Future<List<Exercise>> getExercisesByLesson(String lessonId) async {
     try {
       final dynamic response =
-          await _apiClient.get('/exercise/lesson/$lessonId');
+          await _apiClient.get('/exercise/lesson/$lessonId', cache: true);
       if (response is List) {
         return response.map((json) => Exercise.fromJson(json)).toList();
       }
@@ -50,7 +50,7 @@ class ExerciseService {
   // Lấy chi tiết bài tập
   Future<Exercise> getExerciseById(String id) async {
     try {
-      final dynamic response = await _apiClient.get('/exercise/$id');
+      final dynamic response = await _apiClient.get('/exercise/$id', cache: true);
       if (response is Map<String, dynamic>) {
         return Exercise.fromJson(response);
       }
@@ -63,7 +63,7 @@ class ExerciseService {
   // Lấy danh sách bài tập theo level
   Future<List<Exercise>> getExercisesByLevel(String level) async {
     try {
-      final dynamic response = await _apiClient.get('/exercise/level/$level');
+      final dynamic response = await _apiClient.get('/exercise/level/$level', cache: true);
       if (response is List) {
         return response.map((json) => Exercise.fromJson(json)).toList();
       }
@@ -76,7 +76,7 @@ class ExerciseService {
   // Lấy danh sách bài tập theo type
   Future<List<Exercise>> getExercisesByType(String type) async {
     try {
-      final dynamic response = await _apiClient.get('/exercise/type/$type');
+      final dynamic response = await _apiClient.get('/exercise/type/$type', cache: true);
       if (response is List) {
         return response.map((json) => Exercise.fromJson(json)).toList();
       }

@@ -27,6 +27,7 @@ class GrammarService {
 
       final response = await _apiClient.get(
         '/grammar?${_buildQueryString(params)}',
+        cache: true,
       );
       return response;
     } catch (e) {
@@ -38,7 +39,7 @@ class GrammarService {
   /// Lấy chi tiết một ngữ pháp
   Future<Grammar?> getGrammarDetail(String grammarId) async {
     try {
-      final response = await _apiClient.get('/grammar/$grammarId');
+      final response = await _apiClient.get('/grammar/$grammarId', cache: true);
       return Grammar.fromJson(response);
     } catch (e) {
       debugPrint('Error fetching grammar detail: $e');
@@ -51,6 +52,7 @@ class GrammarService {
     try {
       final response = await _apiClient.get(
         '/grammar?level=$level',
+        cache: true,
       );
       return response;
     } catch (e) {
@@ -64,6 +66,7 @@ class GrammarService {
     try {
       final response = await _apiClient.get(
         '/grammar?lessonID=$lessonId',
+        cache: true,
       );
 
       if (response != null && response is Map) {

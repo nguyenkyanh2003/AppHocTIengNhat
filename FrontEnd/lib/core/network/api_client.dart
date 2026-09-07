@@ -7,14 +7,16 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'offline_cache.dart';
+
 class ApiClient {
   static const _configuredBaseUrl = String.fromEnvironment('API_BASE_URL');
   static const _requestTimeout = Duration(seconds: 20);
   static const _uploadTimeout = Duration(seconds: 60);
   static const _tokenKey = 'auth_token';
-  static const _offlineModeKey = 'offline_mode_enabled';
-  static const _contentCacheKey = 'offline_content_cache_v1';
   static const _secureStorage = FlutterSecureStorage();
+
+  final OfflineCache _cache = OfflineCache();
 
   static String get baseUrl {
     if (_configuredBaseUrl.isNotEmpty) {
@@ -80,7 +82,7 @@ class ApiClient {
         key.startsWith('user_data_') ||
         key.startsWith('cached_') ||
         key == 'current_user_id' ||
-        key == _contentCacheKey);
+        key == OfflineCache.storageKey);
     await Future.wait(keys.map(prefs.remove));
   }
 
@@ -90,68 +92,30 @@ class ApiClient {
         if (_token != null) 'Authorization': 'Bearer $_token',
       };
 
-  Future<dynamic> get(String endpoint) async {
+  /// Gọi GET. Đặt [cache] khi endpoint trả về nội dung học tĩnh: kết quả được
+  /// lưu lại và dùng làm dự phòng nếu người dùng bật chế độ ngoại tuyến và
+  /// request thất bại.
+  Future<dynamic> get(String endpoint, {bool cache = false}) async {
     try {
       final response = await _jsonRequest('GET', endpoint);
-      if (_isCacheable(endpoint)) await _cacheResponse(endpoint, response);
+      if (cache) await _cache.write(endpoint, response);
       return response;
     } catch (_) {
-      if (!await isOfflineModeEnabled() || !_isCacheable(endpoint)) rethrow;
-      final cached = await _cachedResponse(endpoint);
+      if (!cache || !await _cache.isEnabled()) rethrow;
+      final cached = await _cache.read(endpoint);
       if (cached == null) rethrow;
       return cached;
     }
   }
 
-  bool _isCacheable(String endpoint) {
-    const roots = [
-      '/lesson',
-      '/vocabulary',
-      '/kanji',
-      '/grammar',
-      '/exercise',
-      '/news',
-    ];
-    return roots.any(
-      (root) =>
-          endpoint == root ||
-          endpoint.startsWith('$root?') ||
-          endpoint.startsWith('$root/'),
-    );
-  }
+  Future<void> setOfflineModeEnabled(bool enabled) =>
+      _cache.setEnabled(enabled);
 
-  Future<void> setOfflineModeEnabled(bool enabled) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_offlineModeKey, enabled);
-  }
+  Future<bool> isOfflineModeEnabled() => _cache.isEnabled();
 
-  Future<bool> isOfflineModeEnabled() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_offlineModeKey) ?? false;
-  }
+  Future<Map<String, dynamic>> offlineCacheInfo() => _cache.info();
 
-  Future<Map<String, dynamic>> offlineCacheInfo() async {
-    final cache = await _readCache();
-    final encoded = jsonEncode(cache);
-    DateTime? latest;
-    for (final entry in cache.values) {
-      if (entry is! Map || entry['cachedAt'] is! String) continue;
-      final date = DateTime.tryParse(entry['cachedAt'] as String);
-      if (date != null && (latest == null || date.isAfter(latest))) {
-        latest = date;
-      }
-    }
-    return {
-      'items': cache.length,
-      'bytes': utf8.encode(encoded).length,
-      'lastSync': latest,
-    };
-  }
-
-  Future<void> clearOfflineCache() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_contentCacheKey);
-  }
+  Future<void> clearOfflineCache() => _cache.clear();
 
   Future<int> preloadOfflineContent({
     bool lessons = true,
@@ -167,55 +131,23 @@ class ApiClient {
     ];
     var loaded = 0;
     for (final endpoint in endpoints) {
-      await get(endpoint);
+      await get(endpoint, cache: true);
       loaded++;
     }
     return loaded;
   }
 
   Future<int> syncOfflineCache() async {
-    final cache = await _readCache();
     var synced = 0;
-    for (final endpoint in cache.keys.toList()) {
+    for (final endpoint in await _cache.keys()) {
       try {
-        final response = await _jsonRequest('GET', endpoint);
-        await _cacheResponse(endpoint, response);
+        await _cache.write(endpoint, await _jsonRequest('GET', endpoint));
         synced++;
       } catch (_) {
-        // Keep the previous cached value if one endpoint cannot be refreshed.
+        // Giữ giá trị cũ nếu một endpoint không làm mới được.
       }
     }
     return synced;
-  }
-
-  Future<Map<String, dynamic>> _readCache() async {
-    final prefs = await SharedPreferences.getInstance();
-    final encoded = prefs.getString(_contentCacheKey);
-    if (encoded == null || encoded.isEmpty) return {};
-    try {
-      final decoded = jsonDecode(encoded);
-      return decoded is Map ? Map<String, dynamic>.from(decoded) : {};
-    } catch (_) {
-      await prefs.remove(_contentCacheKey);
-      return {};
-    }
-  }
-
-  Future<void> _cacheResponse(String endpoint, dynamic response) async {
-    final cache = await _readCache();
-    cache[endpoint] = {
-      'cachedAt': DateTime.now().toIso8601String(),
-      'data': response,
-    };
-    if (cache.length > 50) cache.remove(cache.keys.first);
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_contentCacheKey, jsonEncode(cache));
-  }
-
-  Future<dynamic> _cachedResponse(String endpoint) async {
-    final cache = await _readCache();
-    final entry = cache[endpoint];
-    return entry is Map ? entry['data'] : null;
   }
 
   Future<Map<String, dynamic>> post(

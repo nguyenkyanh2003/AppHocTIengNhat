@@ -1,6 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
-import '../../../core/network/api_client.dart';
+import '../network/api_client.dart';
 
 class AudioService {
   static final AudioService _instance = AudioService._internal();

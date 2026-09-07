@@ -23,7 +23,7 @@ class NewsService {
         endpoint += '&search=$search';
       }
 
-      final response = await _apiClient.get(endpoint);
+      final response = await _apiClient.get(endpoint, cache: true);
 
       return {
         'total': response['totalItems'] ?? 0,
@@ -43,7 +43,7 @@ class NewsService {
   // Lấy chi tiết tin tức
   Future<News> getNewsDetail(String newsId) async {
     try {
-      final response = await _apiClient.get('/news/$newsId');
+      final response = await _apiClient.get('/news/$newsId', cache: true);
 
       if (response['data'] != null) {
         return News.fromJson(response['data'] as Map<String, dynamic>);
@@ -59,7 +59,7 @@ class NewsService {
   Future<List<News>> getRelatedNews(String newsId, {int limit = 5}) async {
     try {
       final response =
-          await _apiClient.get('/news/$newsId/related?limit=$limit');
+          await _apiClient.get('/news/$newsId/related?limit=$limit', cache: true);
 
       return (response['data'] as List<dynamic>?)
               ?.map((json) => News.fromJson(json as Map<String, dynamic>))

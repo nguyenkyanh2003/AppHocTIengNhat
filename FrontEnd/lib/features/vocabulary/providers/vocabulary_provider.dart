@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/state/view_state.dart';
 import '../models/vocabulary.dart';
 import '../services/vocabulary_service.dart';
 
+/// State của màn từ vựng.
+///
+/// Provider chỉ giữ trạng thái và gọi service: mọi việc bắt lỗi và dịch lỗi
+/// sang thông báo đã nằm trong [ViewState.guard], nên không còn bộ ba cờ
+/// `_isLoading` / `_error` / `_data` tự quản như trước.
 class VocabularyProvider extends ChangeNotifier {
-  final VocabularyService _vocabularyService = VocabularyService();
+  VocabularyProvider({VocabularyService? service})
+      : _service = service ?? VocabularyService();
 
-  List<Vocabulary> _vocabularies = [];
-  Vocabulary? _selectedVocabulary;
-  bool _isLoading = false;
-  String? _error;
+  final VocabularyService _service;
 
-  // Pagination
+  static const int _pageSize = 20;
+
+  ViewState<List<Vocabulary>> _list = const ViewState.idle();
+  ViewState<Vocabulary> _detail = const ViewState.idle();
+
   int _currentPage = 1;
   int _totalPages = 1;
   int _totalItems = 0;
-  final int _itemsPerPage = 20;
 
-  // Filter
   String? _selectedLevel;
   String _searchQuery = '';
-  String? _studyStatus; // 'learned', 'unlearned', or null for all
-  String? _sortBy; // 'alphabet', 'difficulty', or null for newest
+  String? _studyStatus;
+  String? _sortBy;
 
-  // Getters
-  List<Vocabulary> get vocabularies => _vocabularies;
-  Vocabulary? get selectedVocabulary => _selectedVocabulary;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
+  ViewState<List<Vocabulary>> get listState => _list;
+  ViewState<Vocabulary> get detailState => _detail;
+
+  List<Vocabulary> get vocabularies => _list.valueOrNull ?? const [];
+  Vocabulary? get selectedVocabulary => _detail.valueOrNull;
+  bool get isLoading => _list.isLoading;
+  String? get error => _list.errorOrNull;
+
   int get currentPage => _currentPage;
   int get totalPages => _totalPages;
   int get totalItems => _totalItems;
@@ -37,39 +47,49 @@ class VocabularyProvider extends ChangeNotifier {
   bool get hasNextPage => _currentPage < _totalPages;
   bool get hasPrevPage => _currentPage > 1;
 
-  /// Load danh sách từ vựng
+  /// Tải trang đầu tiên theo bộ lọc hiện tại.
   Future<void> loadVocabularies({bool refresh = false}) async {
-    if (refresh) {
-      _currentPage = 1;
-      _vocabularies = [];
-    }
+    if (refresh) _currentPage = 1;
+    _searchQuery = '';
+    await _loadPage(_currentPage, append: false);
+  }
 
-    _isLoading = true;
-    _error = null;
+  /// Tải thêm trang kế tiếp và **nối** vào danh sách đang hiển thị.
+  ///
+  /// Trước đây thao tác cuộn tới cuối gọi `loadVocabularies()` và thay nguyên
+  /// danh sách bằng trang mới, nên danh sách nhảy về đầu và người dùng mất các
+  /// mục đã xem.
+  Future<void> loadMore() async {
+    if (!hasNextPage || _list.isLoading) return;
+    await _loadPage(_currentPage + 1, append: true);
+  }
+
+  Future<void> _loadPage(int page, {required bool append}) async {
+    final previous = append ? vocabularies : const <Vocabulary>[];
+
+    _list = const ViewState.loading();
     notifyListeners();
 
-    try {
-      final result = await _vocabularyService.getVocabularies(
-        page: _currentPage,
-        limit: _itemsPerPage,
+    final state = await ViewState.guard(() async {
+      final result = await _service.getVocabularies(
+        page: page,
+        limit: _pageSize,
         level: _selectedLevel,
         studyStatus: _studyStatus,
         sortBy: _sortBy,
       );
 
-      _vocabularies = result['data'];
-      _totalPages = result['totalPages'];
-      _totalItems = result['totalItems'];
-      _currentPage = result['currentPage'];
-    } catch (e) {
-      _error = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+      _totalItems = result.total;
+      _totalPages = result.totalPages;
+      _currentPage = result.page;
+
+      return [...previous, ...result.items];
+    });
+
+    _list = state;
+    notifyListeners();
   }
 
-  /// Tìm kiếm từ vựng
   Future<void> searchVocabularies(String keyword) async {
     _searchQuery = keyword;
 
@@ -78,148 +98,91 @@ class VocabularyProvider extends ChangeNotifier {
       return;
     }
 
-    _isLoading = true;
-    _error = null;
+    _list = const ViewState.loading();
     notifyListeners();
 
-    try {
-      _vocabularies = await _vocabularyService.searchVocabularies(
+    _list = await ViewState.guard(
+      () => _service.searchVocabularies(
         keyword: keyword,
         level: _selectedLevel,
-      );
-      _totalItems = _vocabularies.length;
-      _totalPages = 1;
-      _currentPage = 1;
-    } catch (e) {
-      _error = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+      ),
+    );
+
+    final found = _list.valueOrNull?.length ?? 0;
+    _totalItems = found;
+    _totalPages = 1;
+    _currentPage = 1;
+    notifyListeners();
   }
 
-  /// Lọc theo level
+  Future<void> loadVocabulariesByLesson(String lessonId) async {
+    _list = const ViewState.loading();
+    notifyListeners();
+
+    _list = await ViewState.guard(
+      () => _service.getVocabulariesByLesson(lessonId),
+    );
+
+    _totalItems = _list.valueOrNull?.length ?? 0;
+    _totalPages = 1;
+    _currentPage = 1;
+    notifyListeners();
+  }
+
+  Future<void> loadVocabularyDetail(String id) async {
+    _detail = const ViewState.loading();
+    notifyListeners();
+
+    _detail = await ViewState.guard(() => _service.getVocabularyById(id));
+    notifyListeners();
+  }
+
   Future<void> filterByLevel(String? level) async {
     _selectedLevel = level;
     await loadVocabularies(refresh: true);
   }
 
-  /// Load từ vựng theo bài học
-  Future<void> loadVocabulariesByLesson(String lessonId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _vocabularies =
-          await _vocabularyService.getVocabulariesByLesson(lessonId);
-      _totalItems = _vocabularies.length;
-      _totalPages = 1;
-      _currentPage = 1;
-    } catch (e) {
-      _error = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  /// Load chi tiết từ vựng
-  Future<void> loadVocabularyDetail(String id) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _selectedVocabulary = await _vocabularyService.getVocabularyById(id);
-    } catch (e) {
-      _error = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  /// Chuyển trang tiếp theo
-  Future<void> nextPage() async {
-    if (hasNextPage) {
-      _currentPage++;
-      await loadVocabularies();
-    }
-  }
-
-  /// Chuyển trang trước
-  Future<void> previousPage() async {
-    if (hasPrevPage) {
-      _currentPage--;
-      await loadVocabularies();
-    }
-  }
-
-  /// Chuyển đến trang cụ thể
-  Future<void> goToPage(int page) async {
-    if (page >= 1 && page <= _totalPages) {
-      _currentPage = page;
-      await loadVocabularies();
-    }
-  }
-
-  /// Clear error
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
-
-  /// Filter by study status
   Future<void> filterByStudyStatus(String? status) async {
     _studyStatus = status;
     await loadVocabularies(refresh: true);
   }
 
-  /// Sort vocabularies
   Future<void> sortVocabularies(String? sortOption) async {
     _sortBy = sortOption;
     await loadVocabularies(refresh: true);
   }
 
-  /// Reset filter
   Future<void> resetFilter() async {
     _selectedLevel = null;
-    _searchQuery = '';
     _studyStatus = null;
     _sortBy = null;
     await loadVocabularies(refresh: true);
   }
 
-  /// Clear filter (alias for resetFilter)
-  Future<void> clearFilter() async {
-    await resetFilter();
+  /// Giữ lại tên cũ cho các màn hình đang gọi.
+  Future<void> clearFilter() => resetFilter();
+
+  Future<void> nextPage() => loadMore();
+
+  Future<void> previousPage() async {
+    if (!hasPrevPage) return;
+    await _loadPage(_currentPage - 1, append: false);
   }
 
-  /// Đánh dấu đã học từ vựng
-  Future<void> markAsLearned(String vocabularyId) async {
-    try {
-      await _vocabularyService.markAsLearned(vocabularyId);
-    } catch (e) {
-      rethrow;
-    }
+  Future<void> goToPage(int page) async {
+    if (page < 1 || page > _totalPages) return;
+    await _loadPage(page, append: false);
   }
 
-  /// Bỏ đánh dấu đã học từ vựng
-  Future<void> unmarkAsLearned(String vocabularyId) async {
-    try {
-      await _vocabularyService.unmarkAsLearned(vocabularyId);
-    } catch (e) {
-      rethrow;
-    }
-  }
+  Future<void> markAsLearned(String vocabularyId) =>
+      _service.markAsLearned(vocabularyId);
 
-  /// Clear all state
+  Future<void> unmarkAsLearned(String vocabularyId) =>
+      _service.unmarkAsLearned(vocabularyId);
+
   void clear() {
-    _vocabularies = [];
-    _selectedVocabulary = null;
-    _isLoading = false;
-    _error = null;
+    _list = const ViewState.idle();
+    _detail = const ViewState.idle();
     _currentPage = 1;
     _totalPages = 1;
     _totalItems = 0;
@@ -228,5 +191,12 @@ class VocabularyProvider extends ChangeNotifier {
     _studyStatus = null;
     _sortBy = null;
     notifyListeners();
+  }
+
+  void clearError() {
+    if (_list is ViewFailure) {
+      _list = const ViewState.idle();
+      notifyListeners();
+    }
   }
 }

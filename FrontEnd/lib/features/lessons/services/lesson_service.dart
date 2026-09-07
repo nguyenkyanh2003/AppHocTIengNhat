@@ -26,7 +26,7 @@ class LessonService {
       }
 
       final endpoint = '/lesson?${Uri(queryParameters: queryParams).query}';
-      final data = await _apiClient.get(endpoint);
+      final data = await _apiClient.get(endpoint, cache: true);
 
       return {
         'totalItems': data['totalItems'] ?? 0,
@@ -44,7 +44,7 @@ class LessonService {
   // Lấy chi tiết bài học theo ID
   Future<LessonDetail> getLessonDetail(String id) async {
     try {
-      final data = await _apiClient.get('/lesson/$id');
+      final data = await _apiClient.get('/lesson/$id', cache: true);
       return LessonDetail.fromJson(data);
     } catch (e) {
       throw Exception('Lỗi khi tải chi tiết bài học: $e');
@@ -54,7 +54,7 @@ class LessonService {
   // Lấy bài học theo level
   Future<List<Lesson>> getLessonsByLevel(String level) async {
     try {
-      final data = await _apiClient.get('/lesson/level/$level');
+      final data = await _apiClient.get('/lesson/level/$level', cache: true);
       return (data['data'] as List)
           .map((json) => Lesson.fromJson(json))
           .toList();
