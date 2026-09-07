@@ -1,38 +1,34 @@
 import mongoose from 'mongoose';
+
 const TransactionSchema = new mongoose.Schema({
-    user: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true, 
-        index: true 
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+    type: {
+        type: String,
+        enum: ['SUBSCRIPTION', 'DEPOSIT', 'SPEND', 'REWARD'],
+        required: true
     },
-
-    type: { 
-        type: String, 
-        enum: ['DEPOSIT', 'SPEND', 'REWARD'], 
-        required: true 
+    amount: { type: Number, required: true, min: 0 },
+    currency: { type: String, enum: ['VND', 'GOLD', 'GEM'], default: 'VND' },
+    description: { type: String, trim: true, maxlength: 500 },
+    status: {
+        type: String,
+        enum: ['pending', 'processing', 'completed', 'failed', 'cancelled', 'refunded'],
+        default: 'pending',
+        index: true
     },
-
-    amount: { type: Number, required: true },
-    currency: { type: String, enum: ['GOLD', 'GEM'], default: 'GOLD' },
-
-    description: String,
-
-    status: { 
-        type: String, 
-        enum: ['PENDING', 'SUCCESS', 'FAILED'], 
-        default: 'SUCCESS' 
-    },
-
-    // Hình thức thanh toán: Bank/MoMo
     payment_method: {
         type: String,
-        enum: ['BANK', 'MOMO'],
+        enum: ['BANK', 'MOMO', 'VNPAY', 'CARD', 'NONE'],
+        default: 'NONE'
     },
-
-    // Mã giao dịch từ cổng thanh toán
-    payment_ref_id: String 
-
+    payment_ref_id: { type: String, trim: true },
+    package_id: { type: String, trim: true },
+    notes: { type: String, trim: true, maxlength: 1000 },
+    metadata: { type: mongoose.Schema.Types.Mixed }
 }, { timestamps: true });
+
+TransactionSchema.index({ user: 1, createdAt: -1 });
+TransactionSchema.index({ status: 1, createdAt: -1 });
+TransactionSchema.index({ payment_ref_id: 1 }, { unique: true, sparse: true });
 
 export default mongoose.model('Transaction', TransactionSchema);

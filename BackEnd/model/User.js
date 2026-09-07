@@ -32,11 +32,6 @@ const UserSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user'
     },
-    role: {
-        type: String,
-        enum: ['user', 'admin'],
-        default: 'user'
-    },
     SoDienThoai: String,
     AnhDaiDien: String,
     NgaySinh: Date,
@@ -71,7 +66,36 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    LanDangNhapCuoi: Date
+    LanDangNhapCuoi: Date,
+    tokenVersion: {
+        type: Number,
+        default: 0,
+        select: false
+    },
+    settings: {
+        notificationsEnabled: {
+            type: Boolean,
+            default: true
+        },
+        soundEnabled: {
+            type: Boolean,
+            default: true
+        },
+        vibrateEnabled: {
+            type: Boolean,
+            default: true
+        },
+        language: {
+            type: String,
+            enum: ['vi', 'en', 'ja'],
+            default: 'vi'
+        },
+        theme: {
+            type: String,
+            enum: ['light', 'dark', 'auto'],
+            default: 'light'
+        }
+    }
 }, {
     timestamps: true,  
     collection: 'users'

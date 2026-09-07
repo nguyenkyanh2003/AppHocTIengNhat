@@ -26,7 +26,7 @@ const GroupChatSchema = new mongoose.Schema({
     // Loại tin nhắn 
     type: { 
         type: String, 
-        enum: ['TEXT', 'IMAGE', 'FILE', 'SYSTEM'], 
+        enum: ['TEXT', 'IMAGE', 'FILE', 'AUDIO', 'SYSTEM'], 
         default: 'TEXT' 
     },
     

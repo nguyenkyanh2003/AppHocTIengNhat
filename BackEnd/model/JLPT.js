@@ -76,7 +76,8 @@ const JLPTSchema = new mongoose.Schema({
 
     // Thống kê
     total_views: { type: Number, default: 0 },
-    is_published: { type: Boolean, default: false }
+    is_published: { type: Boolean, default: false },
+    is_active: { type: Boolean, default: true }
 
 }, 
 { timestamps: true });

@@ -102,6 +102,38 @@ UserStreakSchema.methods.updateStreakOnActivity = function() {
   }
 };
 
+// Phương thức kiểm tra và cập nhật streak (không cần có activity mới)
+// Dùng khi load streak lúc đăng nhập để kiểm tra streak có bị đứt không
+UserStreakSchema.methods.checkAndUpdateStreak = function() {
+  const now = new Date();
+  const vietnamTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
+  const today = new Date(vietnamTime.getFullYear(), vietnamTime.getMonth(), vietnamTime.getDate());
+  
+  if (!this.last_activity_date) {
+    // Chưa có hoạt động nào, không cần update
+    return { need_save: false };
+  }
+  
+  const lastActivity = new Date(this.last_activity_date);
+  const lastActivityVN = new Date(lastActivity.getFullYear(), lastActivity.getMonth(), lastActivity.getDate());
+  const daysDiff = Math.floor((today - lastActivityVN) / (1000 * 60 * 60 * 24));
+  
+  if (daysDiff === 0) {
+    // Hôm nay đã có hoạt động, không cần update
+    return { need_save: false };
+  } else if (daysDiff === 1) {
+    // Ngày hôm qua có hoạt động, streak vẫn còn (chưa làm gì hôm nay)
+    return { need_save: false };
+  } else if (daysDiff > 1) {
+    // Streak bị đứt (không hoạt động quá 1 ngày)
+    console.log(`⚠️ Streak broken - Days since last activity: ${daysDiff}`);
+    this.current_streak = 0; // Reset về 0, sẽ thành 1 khi có activity tiếp theo
+    return { need_save: true, streak_broken: true };
+  }
+  
+  return { need_save: false };
+};
+
 // Phương thức thêm XP
 UserStreakSchema.methods.addXP = function(amount, reason) {
   this.total_xp += amount;

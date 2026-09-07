@@ -7,6 +7,7 @@ const ExampleSchema = new mongoose.Schema({
 }, { _id: false }); // tránh tạo _id thừa cho mỗi ví dụ
 
 const KanjiSchema = new mongoose.Schema({
+    lessonId: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson', index: true },
     character: { type: String, required: true, unique: true, trim: true },
     hanviet: { type: String, trim: true },
     onyomi: { type: [String], default: [] },
@@ -20,6 +21,7 @@ const KanjiSchema = new mongoose.Schema({
     },
 
     stroke_order_svg: String,
+    strokeOrderImage: String,
     
     examples: {
         type: [ExampleSchema],

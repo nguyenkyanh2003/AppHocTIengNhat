@@ -6,10 +6,11 @@ const LessonSchema = new mongoose.Schema({
     order: { type: Number, default: 1, min: 1 }, 
     description: { type: String, trim: true },
     content_html: String, 
+    type: { type: String, trim: true, index: true },
     
     // Các tham chiếu đến từ vựng, ngữ pháp, kanji trong bài học
-    vocabularies: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Từ Vựng' }], default: [] },
-    grammars: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ngữ Pháp' }], default: [] },
+    vocabularies: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vocabulary' }], default: [] },
+    grammars: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Grammar' }], default: [] },
     kanjis: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Kanji' }], default: [] }
 
 }, { timestamps: true });
