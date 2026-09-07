@@ -1,4 +1,4 @@
-package com.example.frontend
+package com.apphoctiengnhat.app
 
 import io.flutter.embedding.android.FlutterActivity
 import android.view.WindowManager

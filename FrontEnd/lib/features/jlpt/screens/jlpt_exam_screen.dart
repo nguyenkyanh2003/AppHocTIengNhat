@@ -1,0 +1,663 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import '../providers/jlpt_exam_provider.dart';
+import '../models/jlpt_models.dart';
+import '../../../core/network/api_client.dart';
+
+class JLPTExamScreen extends StatefulWidget {
+  final String examId;
+  final String title;
+  const JLPTExamScreen({super.key, required this.examId, required this.title});
+
+  @override
+  State<JLPTExamScreen> createState() => _JLPTExamScreenState();
+}
+
+class _JLPTExamScreenState extends State<JLPTExamScreen> {
+  late AudioPlayer _audioPlayer;
+  bool _isPlaying = false;
+  bool _isLoading = false;
+  Duration _duration = Duration.zero;
+  Duration _position = Duration.zero;
+  String? _cachedAudioPath;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _audioPlayer.onPlayerStateChanged.listen((state) {
+      if (mounted) {
+        setState(() {
+          _isPlaying = state == PlayerState.playing;
+        });
+      }
+    });
+    _audioPlayer.onDurationChanged.listen((d) {
+      if (mounted) setState(() => _duration = d);
+    });
+    _audioPlayer.onPositionChanged.listen((p) {
+      if (mounted) setState(() => _position = p);
+    });
+    _audioPlayer.onPlayerComplete.listen((_) {
+      if (mounted) {
+        setState(() {
+          _isPlaying = false;
+          _position = Duration.zero;
+        });
+      }
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<JLPTExamProvider>().loadExam(widget.examId);
+    });
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  String _getFullAudioUrl(String audioPath) {
+    final host = ApiClient.baseUrl.replaceFirst('/api', '');
+    if (audioPath.startsWith('http')) return audioPath;
+    return '$host$audioPath';
+  }
+
+  Future<String?> _downloadAndCacheAudio(
+      String audioUrl, String fileName) async {
+    try {
+      final dir = await getTemporaryDirectory();
+      final filePath = '${dir.path}/$fileName';
+      final file = File(filePath);
+
+      // Nếu đã cache thì dùng luôn
+      if (await file.exists()) {
+        debugPrint('Using cached audio: $filePath');
+        return filePath;
+      }
+
+      debugPrint('Downloading audio from: $audioUrl');
+      final response = await http.get(Uri.parse(audioUrl)).timeout(
+            const Duration(seconds: 60),
+            onTimeout: () => throw Exception('Download timeout'),
+          );
+
+      if (response.statusCode == 200) {
+        await file.writeAsBytes(response.bodyBytes);
+        debugPrint('Audio cached at: $filePath');
+        return filePath;
+      } else {
+        throw Exception('HTTP ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint('Download error: $e');
+      return null;
+    }
+  }
+
+  Future<void> _playAudio(String audioPath, String fileName) async {
+    try {
+      if (_isPlaying) {
+        await _audioPlayer.pause();
+        return;
+      }
+
+      setState(() => _isLoading = true);
+
+      final fullUrl = _getFullAudioUrl(audioPath);
+      debugPrint('Audio URL: $fullUrl');
+
+      // Download và cache file
+      String? localPath = _cachedAudioPath;
+      if (localPath == null || !await File(localPath).exists()) {
+        localPath = await _downloadAndCacheAudio(fullUrl, fileName);
+        _cachedAudioPath = localPath;
+      }
+
+      if (localPath != null) {
+        await _audioPlayer.stop();
+        await _audioPlayer.setSourceDeviceFile(localPath);
+        await _audioPlayer.resume();
+      } else {
+        throw Exception('Không thể tải file audio');
+      }
+    } catch (e) {
+      debugPrint('Audio error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  String _formatDuration(Duration d) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    return '${twoDigits(d.inMinutes)}:${twoDigits(d.inSeconds.remainder(60))}';
+  }
+
+  Widget _buildAudioPlayer(String audioPath, String audioName) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.blue.shade200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.audiotrack, color: Colors.blue),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  audioName,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 14),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Progress bar
+          SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              trackHeight: 4,
+              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+            ),
+            child: Slider(
+              value: _position.inSeconds.toDouble(),
+              max: _duration.inSeconds.toDouble().clamp(1, double.infinity),
+              onChanged: (value) async {
+                await _audioPlayer.seek(Duration(seconds: value.toInt()));
+              },
+              activeColor: Colors.blue,
+              inactiveColor: Colors.blue.shade100,
+            ),
+          ),
+          // Time display
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(_formatDuration(_position),
+                    style: const TextStyle(fontSize: 12)),
+                Text(_formatDuration(_duration),
+                    style: const TextStyle(fontSize: 12)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          // Play/Pause button
+          Center(
+            child: GestureDetector(
+              onTap: _isLoading ? null : () => _playAudio(audioPath, audioName),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+                decoration: BoxDecoration(
+                  color: _isLoading
+                      ? Colors.grey
+                      : (_isPlaying ? Colors.orange : Colors.blue),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (_isLoading)
+                      const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                            color: Colors.white, strokeWidth: 2),
+                      )
+                    else
+                      Icon(
+                        _isPlaying ? Icons.pause : Icons.play_arrow,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                    const SizedBox(width: 8),
+                    Text(
+                      _isLoading
+                          ? 'Đang tải...'
+                          : (_isPlaying ? 'Tạm dừng' : 'Phát audio'),
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          Consumer<JLPTExamProvider>(
+            builder: (context, p, _) => Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(_formatTime(p.secondsLeft)),
+              ),
+            ),
+          )
+        ],
+      ),
+      body: Consumer<JLPTExamProvider>(
+        builder: (context, provider, _) {
+          if (provider.isLoading || provider.exam == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final exam = provider.exam!;
+          return Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    ..._buildSection(
+                        'Từ vựng (文字・語彙)', exam.mojiGoi, 'moji', provider,
+                        startIndex: 0),
+                    ..._buildSection(
+                        'Ngữ pháp (文法)', exam.bunpou, 'bunpou', provider,
+                        startIndex: exam.mojiGoi.length),
+                    ..._buildGroupSection(
+                        'Đọc hiểu (読解)', exam.dokkai, 'dokkai', provider,
+                        startIndex: exam.mojiGoi.length + exam.bunpou.length),
+                    ..._buildGroupSection(
+                        'Nghe hiểu (聴解)', exam.choukai, 'choukai', provider,
+                        startIndex: exam.mojiGoi.length +
+                            exam.bunpou.length +
+                            _countGroupQuestions(exam.dokkai)),
+                  ],
+                ),
+              ),
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: ElevatedButton(
+                    onPressed: provider.isSubmitting || provider.hasSubmitted
+                        ? null
+                        : () async {
+                            await provider.submit(widget.examId);
+                            if (!context.mounted) return;
+                            if (provider.result != null) {
+                              _showResultSheet(context, provider);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        'Nộp bài thất bại, vui lòng thử lại.')),
+                              );
+                            }
+                          },
+                    child: provider.isSubmitting
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2))
+                        : Text(provider.hasSubmitted ? 'Đã nộp' : 'Nộp bài'),
+                  ),
+                ),
+              )
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  int _countGroupQuestions(List<JLPTGroupQuestion> groups) {
+    return groups.fold(0, (sum, g) => sum + g.questions.length);
+  }
+
+  List<Widget> _buildSection(String title, List<JLPTQuestion> questions,
+      String keyPrefix, JLPTExamProvider provider,
+      {required int startIndex}) {
+    if (questions.isEmpty) return [];
+    return [
+      Padding(
+        padding: const EdgeInsets.all(12),
+        child: Text(title,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      ),
+      ...questions.asMap().entries.map((entry) {
+        final idx = entry.key;
+        final q = entry.value;
+        final key = '$keyPrefix-$idx';
+        final selected = provider.answers[key];
+        final solutionIdx = startIndex + idx;
+        final hasResult =
+            provider.result != null && provider.solutions.length > solutionIdx;
+        final solution = hasResult ? provider.solutions[solutionIdx] : null;
+        final correctIdx = solution?.correctAnswer;
+        return Card(
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('${idx + 1}. ${q.questionText}'),
+                const SizedBox(height: 8),
+                ...q.choices.asMap().entries.map((c) {
+                  final cid = c.key;
+                  final isUserChoice = selected == cid;
+                  final isCorrectChoice = hasResult && correctIdx == cid;
+                  Color? fill;
+                  if (hasResult) {
+                    if (isCorrectChoice) {
+                      fill = Colors.green.withValues(alpha: 0.12);
+                    } else if (isUserChoice) {
+                      fill = Colors.red.withValues(alpha: 0.12);
+                    }
+                  }
+                  return RadioListTile<int>(
+                    value: cid,
+                    groupValue: selected,
+                    onChanged: provider.hasSubmitted
+                        ? null
+                        : (v) => provider.setAnswer(key, v ?? 0),
+                    title: Text(c.value),
+                    activeColor:
+                        hasResult && isCorrectChoice ? Colors.green : null,
+                    tileColor: fill,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    secondary: hasResult
+                        ? Icon(
+                            isCorrectChoice
+                                ? Icons.check_circle_outline
+                                : (isUserChoice
+                                    ? Icons.cancel_outlined
+                                    : Icons.radio_button_unchecked),
+                            color: isCorrectChoice
+                                ? Colors.green
+                                : (isUserChoice ? Colors.red : Colors.grey),
+                          )
+                        : null,
+                  );
+                }).toList(),
+                if (hasResult && solution?.explanation != null) ...[
+                  const Divider(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(Icons.lightbulb_outline,
+                          size: 20, color: Colors.orange),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          solution!.explanation!,
+                          style: const TextStyle(
+                              fontSize: 13, color: Colors.black87),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+        );
+      }).toList(),
+    ];
+  }
+
+  List<Widget> _buildGroupSection(String title, List<JLPTGroupQuestion> groups,
+      String keyPrefix, JLPTExamProvider provider,
+      {required int startIndex}) {
+    if (groups.isEmpty) return [];
+
+    final widgets = <Widget>[];
+
+    // Tìm file audio chung cho section (chỉ lấy từ group đầu tiên có audio)
+    String? sectionAudio;
+    String? sectionAudioName;
+    for (var g in groups) {
+      if (g.groupAudio != null && g.groupAudio!.isNotEmpty) {
+        sectionAudio = g.groupAudio;
+        sectionAudioName = g.groupAudio!.split('/').last;
+        break;
+      }
+    }
+
+    // Header với audio player widget (nếu có)
+    widgets.add(
+      Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            if (sectionAudio != null)
+              _buildAudioPlayer(sectionAudio, sectionAudioName!),
+          ],
+        ),
+      ),
+    );
+
+    int questionCounter = startIndex;
+
+    for (var groupIdx = 0; groupIdx < groups.length; groupIdx++) {
+      final group = groups[groupIdx];
+
+      // Hiển thị nội dung nhóm (bài đọc) - KHÔNG hiện audio ở đây
+      widgets.add(
+        Card(
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          color: Colors.blue.shade50,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Mondai ${group.mondai}',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                if (group.groupContent != null &&
+                    group.groupContent!.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    group.groupContent!,
+                    style: const TextStyle(fontSize: 14, height: 1.6),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Hiển thị các câu hỏi trong nhóm
+      for (var qIdx = 0; qIdx < group.questions.length; qIdx++) {
+        final q = group.questions[qIdx];
+        final key = '$keyPrefix-$groupIdx-$qIdx';
+        final selected = provider.answers[key];
+        final solutionIdx = questionCounter;
+        final hasResult =
+            provider.result != null && provider.solutions.length > solutionIdx;
+        final solution = hasResult ? provider.solutions[solutionIdx] : null;
+        final correctIdx = solution?.correctAnswer;
+
+        widgets.add(
+          Card(
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(q.questionText.isNotEmpty
+                      ? q.questionText
+                      : 'Câu ${qIdx + 1}'),
+                  const SizedBox(height: 8),
+                  ...q.choices.asMap().entries.map((c) {
+                    final cid = c.key;
+                    final isUserChoice = selected == cid;
+                    final isCorrectChoice = hasResult && correctIdx == cid;
+                    Color? fill;
+                    if (hasResult) {
+                      if (isCorrectChoice) {
+                        fill = Colors.green.withValues(alpha: 0.12);
+                      } else if (isUserChoice) {
+                        fill = Colors.red.withValues(alpha: 0.12);
+                      }
+                    }
+                    return RadioListTile<int>(
+                      value: cid,
+                      groupValue: selected,
+                      onChanged: provider.hasSubmitted
+                          ? null
+                          : (v) => provider.setAnswer(key, v ?? 0),
+                      title: Text(c.value),
+                      activeColor:
+                          hasResult && isCorrectChoice ? Colors.green : null,
+                      tileColor: fill,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      secondary: hasResult
+                          ? Icon(
+                              isCorrectChoice
+                                  ? Icons.check_circle_outline
+                                  : (isUserChoice
+                                      ? Icons.cancel_outlined
+                                      : Icons.radio_button_unchecked),
+                              color: isCorrectChoice
+                                  ? Colors.green
+                                  : (isUserChoice ? Colors.red : Colors.grey),
+                            )
+                          : null,
+                    );
+                  }).toList(),
+                  if (hasResult && solution?.explanation != null) ...[
+                    const Divider(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(Icons.lightbulb_outline,
+                            size: 20, color: Colors.orange),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            solution!.explanation!,
+                            style: const TextStyle(
+                                fontSize: 13, color: Colors.black87),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        );
+
+        questionCounter++;
+      }
+    }
+
+    return widgets;
+  }
+
+  String _formatTime(int seconds) {
+    final mins = seconds ~/ 60;
+    final secs = seconds % 60;
+    return '$mins:${secs.toString().padLeft(2, '0')}';
+  }
+
+  void _showResultSheet(BuildContext context, JLPTExamProvider provider) {
+    final result = provider.result!;
+    final isPassed = result.passed;
+    final color = isPassed ? Colors.green : Colors.red;
+    final icon = isPassed ? Icons.check_circle : Icons.cancel;
+
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => SizedBox(
+        height: 600,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Column(
+                    children: [
+                      Icon(icon, size: 64, color: color),
+                      const SizedBox(height: 8),
+                      Text(
+                        isPassed ? 'Chúc mừng!' : 'Cố gắng lên',
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: color),
+                      ),
+                      Text(
+                        'Điểm: ${result.totalScore} / 100',
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+                _buildScoreItem('Từ vựng', result.vocabScore),
+                _buildScoreItem('Ngữ pháp', result.grammarScore),
+                _buildScoreItem('Đọc hiểu', result.readingScore),
+                _buildScoreItem('Nghe hiểu', result.listeningScore),
+                const SizedBox(height: 24),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pop(ctx),
+                    child: const Text('Đóng'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildScoreItem(String title, int score) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title, style: const TextStyle(fontSize: 16)),
+          Text('$score',
+              style:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
+}
