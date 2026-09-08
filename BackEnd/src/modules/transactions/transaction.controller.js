@@ -108,23 +108,34 @@ export const getStatsMe = async (req, res) => {
     }
 };
 
+/** Dựng filter lịch sử giao dịch từ các giá trị đã tách sẵn, không đọc `req`. */
+const buildTransactionFilter = ({ status, type, userId, startDate, endDate }) => {
+    const filter = {};
+    if (status) filter.status = status;
+    if (type) filter.type = type;
+    if (userId) filter.user = userId;
+    if (startDate || endDate) {
+        filter.createdAt = {};
+        if (startDate) filter.createdAt.$gte = new Date(startDate);
+        if (endDate) filter.createdAt.$lte = new Date(endDate);
+    }
+    return filter;
+};
+
+/** Một chỗ duy nhất trả danh sách: `find` và `countDocuments` dùng chung filter. */
+const respondWithTransactionPage = async (res, { filter, page, limit, skip }) => {
+    const [transactions, total] = await Promise.all([
+        Transaction.find(filter).populate('user', 'HoTen Email TenDangNhap').sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
+        Transaction.countDocuments(filter)
+    ]);
+    return res.json({ totalItems: total, totalPages: Math.ceil(total / limit), currentPage: page, data: transactions });
+};
+
 export const getAdminAll = async (req, res) => {
     try {
         const { page, limit, skip } = pagination(req.query);
-        const query = {};
-        if (req.query.status) query.status = req.query.status;
-        if (req.query.type) query.type = req.query.type;
-        if (req.query.userId) query.user = req.query.userId;
-        if (req.query.startDate || req.query.endDate) {
-            query.createdAt = {};
-            if (req.query.startDate) query.createdAt.$gte = new Date(req.query.startDate);
-            if (req.query.endDate) query.createdAt.$lte = new Date(req.query.endDate);
-        }
-        const [transactions, total] = await Promise.all([
-            Transaction.find(query).populate('user', 'HoTen Email TenDangNhap').sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
-            Transaction.countDocuments(query)
-        ]);
-        return res.json({ totalItems: total, totalPages: Math.ceil(total / limit), currentPage: page, data: transactions });
+        const filter = buildTransactionFilter(req.query);
+        return await respondWithTransactionPage(res, { filter, page, limit, skip });
     } catch (error) {
         return sendError(res, error, 'Lỗi lấy danh sách giao dịch:');
     }
@@ -218,9 +229,26 @@ export const getAdminStatsOverview = async (req, res) => {
     }
 };
 
+/**
+ * Lịch sử giao dịch của một người dùng.
+ *
+ * Bản cũ gán `req.query.userId = req.params.userId` rồi gọi lại `getAdminAll`.
+ * Express 5 định nghĩa `req.query` là getter parse lại mỗi lần đọc, nên phép
+ * gán đó mất trắng và endpoint trả về giao dịch của **mọi** người. Filter vì
+ * vậy phải được truyền tường minh; `userId` lấy từ path và đặt sau cùng để
+ * `?userId=` trên query không ghi đè được.
+ */
 export const getAdminUserByUserId = async (req, res) => {
-    req.query.userId = req.params.userId;
-    return getAdminAll(req, res);
+    try {
+        const { page, limit, skip } = pagination(req.query);
+        const filter = buildTransactionFilter({
+            ...req.query,
+            userId: req.params.userId,
+        });
+        return await respondWithTransactionPage(res, { filter, page, limit, skip });
+    } catch (error) {
+        return sendError(res, error, 'Lỗi lấy lịch sử giao dịch của người dùng:');
+    }
 };
 
 export const postAdminByIdRefund = async (req, res) => {
