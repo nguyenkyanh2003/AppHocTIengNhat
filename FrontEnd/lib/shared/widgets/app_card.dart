@@ -36,23 +36,29 @@ class AppCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: AppRadius.mdAll,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (accent != null)
-                Container(
-                  width: AppSpacing.xs,
-                  decoration: BoxDecoration(
-                    color: accent,
-                    borderRadius: const BorderRadius.horizontal(
-                      left: Radius.circular(AppRadius.md),
+          // `CrossAxisAlignment.stretch` cần chiều cao hữu hạn. Trong danh sách
+          // cuộn, item nhận maxHeight vô hạn nên dải màu bên trái sẽ được ép
+          // chiều cao vô hạn và layout ném lỗi. `IntrinsicHeight` đo chiều cao
+          // thật của nội dung trước, để dải màu cao đúng bằng thẻ.
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (accent != null)
+                  Container(
+                    width: AppSpacing.xs,
+                    decoration: BoxDecoration(
+                      color: accent,
+                      borderRadius: const BorderRadius.horizontal(
+                        left: Radius.circular(AppRadius.md),
+                      ),
                     ),
                   ),
+                Expanded(
+                  child: Padding(padding: padding, child: child),
                 ),
-              Expanded(
-                child: Padding(padding: padding, child: child),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

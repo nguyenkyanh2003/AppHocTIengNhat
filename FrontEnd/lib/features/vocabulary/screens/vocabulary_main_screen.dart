@@ -174,6 +174,8 @@ class _VocabularyListTab extends StatelessWidget {
               child: VocabularyListView(
                 state: provider.listState,
                 hasNextPage: provider.hasNextPage,
+                isLoadingMore: provider.isLoadingMore,
+                loadMoreError: provider.loadMoreError,
                 onRefresh: () => provider.loadVocabularies(refresh: true),
                 onLoadMore: provider.loadMore,
                 onOpen: onOpen,
