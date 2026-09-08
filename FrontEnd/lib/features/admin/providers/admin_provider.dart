@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../services/admin_service.dart';
 
 class AdminProvider extends ChangeNotifier {
-  final AdminService _adminService = AdminService();
+  /// Nhận service qua constructor để test truyền bản giả.
+  AdminProvider({AdminService? adminService})
+      : _adminService = adminService ?? AdminService();
+
+  final AdminService _adminService;
 
   // Dashboard Stats
   Map<String, dynamic>? _dashboardStats;
@@ -433,18 +437,33 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
+  /// Import nội dung từ tệp Excel.
+  ///
+  /// `lesson` và `level` chỉ dùng cho từ vựng: backend áp hai giá trị này cho
+  /// mọi dòng của tệp. Kanji đọc bài học và cấp độ theo từng dòng nên không
+  /// nhận metadata dùng chung.
   Future<bool> importExcel(
     String contentType,
     List<int> bytes,
-    String fileName,
-  ) async {
+    String fileName, {
+    String? lesson,
+    String? level,
+  }) async {
     _isLoadingContent = true;
     _error = null;
     notifyListeners();
     try {
       switch (contentType) {
         case 'vocabulary':
-          await _adminService.importVocabularyExcel(bytes, fileName);
+          if (lesson == null || lesson.isEmpty || level == null || level.isEmpty) {
+            throw ArgumentError('Cần chọn bài học và cấp độ trước khi import.');
+          }
+          await _adminService.importVocabularyExcel(
+            bytes,
+            fileName,
+            lesson: lesson,
+            level: level,
+          );
           break;
         case 'kanji':
           await _adminService.importKanjiExcel(bytes, fileName);

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../core/files/file_saver.dart';
 import '../providers/admin_provider.dart';
 import '../utils/admin_content_csv.dart';
+import '../widgets/excel_import_options_dialog.dart';
 
 class AdminContentManagementScreen extends StatefulWidget {
   const AdminContentManagementScreen({super.key});
@@ -727,7 +728,30 @@ class _AdminContentManagementScreenState
     }
   }
 
+  /// Import Excel.
+  ///
+  /// Với từ vựng, backend bắt buộc `lesson` và `level` cho cả tệp nên phải hỏi
+  /// trước khi mở file picker. Huỷ hộp thoại là dừng hẳn: không chọn tệp và
+  /// không gửi request nào.
   Future<void> _importExcel() async {
+    ExcelImportOptions? options;
+
+    if (_selectedContentType == 'vocabulary') {
+      final provider = context.read<AdminProvider>();
+      if (provider.lessons.isEmpty) {
+        await provider.loadLessons();
+      }
+      if (!mounted) return;
+
+      options = await showDialog<ExcelImportOptions>(
+        context: context,
+        builder: (_) => ExcelImportOptionsDialog(
+          lessons: context.read<AdminProvider>().lessons,
+        ),
+      );
+      if (options == null || !mounted) return;
+    }
+
     final picked = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: const ['xls', 'xlsx'],
@@ -740,6 +764,8 @@ class _AdminContentManagementScreenState
       _selectedContentType,
       file!.bytes!,
       file.name,
+      lesson: options?.lessonId,
+      level: options?.level,
     );
     if (!mounted) return;
     _message(

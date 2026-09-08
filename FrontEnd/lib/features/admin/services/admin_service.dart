@@ -1,7 +1,10 @@
 import '../../../core/network/api_client.dart';
 
 class AdminService {
-  final ApiClient _client = ApiClient();
+  /// Nhận client qua constructor để test truyền transport giả.
+  AdminService({ApiClient? client}) : _client = client ?? ApiClient();
+
+  final ApiClient _client;
 
   String _query(Map<String, Object?> values) {
     final parameters = <String, String>{};
@@ -128,13 +131,19 @@ class AdminService {
     await _client.delete('/vocabulary/$id');
   }
 
+  /// Import từ vựng từ Excel.
+  ///
+  /// Backend bắt buộc `lesson` và `level` trong multipart và áp cho **mọi** dòng
+  /// của tệp; thiếu một trong hai thì toàn bộ request bị từ chối với lỗi 400.
   Future<Map<String, dynamic>> importVocabularyExcel(
     List<int> bytes,
-    String fileName,
-  ) =>
+    String fileName, {
+    required String lesson,
+    required String level,
+  }) =>
       _client.postMultipart(
         '/vocabulary/upload',
-        const {},
+        {'lesson': lesson, 'level': level},
         'fileExcel',
         bytes,
         fileName,
@@ -164,6 +173,10 @@ class AdminService {
     await _client.delete('/kanji/$id');
   }
 
+  /// Import Kanji từ Excel.
+  ///
+  /// Khác với từ vựng: importer của Kanji đọc `BaiHocID` và `CapDo` từ **từng
+  /// dòng** Excel, nên không gửi kèm metadata dùng chung cho cả tệp.
   Future<Map<String, dynamic>> importKanjiExcel(
     List<int> bytes,
     String fileName,
