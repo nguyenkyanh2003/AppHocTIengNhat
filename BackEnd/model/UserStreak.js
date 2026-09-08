@@ -37,7 +37,17 @@ const UserStreakSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     }
-  }]
+  }],
+  // Khóa của các khoản thưởng đã ghi nhận, ví dụ `lesson-complete:<lessonId>`.
+  //
+  // Khóa nằm cùng document với `total_xp` để một lệnh ghi có điều kiện vừa
+  // kiểm tra "đã thưởng chưa" vừa cộng XP. Nhờ vậy request lặp hoặc chạy đồng
+  // thời không thể cộng hai lần, và request thử lại sau lỗi giữa chừng vẫn
+  // hoàn tất được. Số khóa bị chặn trên bởi số item trong nội dung bài học.
+  reward_keys: {
+    type: [String],
+    default: []
+  }
 }, {
   timestamps: true
 });

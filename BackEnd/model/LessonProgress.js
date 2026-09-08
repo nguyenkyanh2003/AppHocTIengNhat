@@ -25,16 +25,29 @@ const LessonProgressSchema = new mongoose.Schema({
     completed_kanjis: { type: Number, default: 0, min: 0 },
     total_kanjis: { type: Number, default: 0, min: 0 },
     
-    // Danh sách các item đã học
-    learned_vocabulary_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Từ Vựng' }],
-    learned_grammar_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ngữ Pháp' }],
+    // Danh sách các item đã học.
+    // `ref` phải trùng tên model đã đăng ký ('Vocabulary'/'Grammar'/'Kanji');
+    // hai tên tiếng Việt trước đây không tồn tại nên mọi `populate` sẽ ném
+    // MissingSchemaError.
+    learned_vocabulary_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vocabulary' }],
+    learned_grammar_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Grammar' }],
     learned_kanji_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Kanji' }],
-    
+
     // Trạng thái
     is_completed: { type: Boolean, default: false },
     completed_at: { type: Date },
     last_studied_at: { type: Date, default: Date.now },
-    
+
+    // Trạng thái phần thưởng hoàn thành bài.
+    //   'pending' - bài vừa được đánh dấu hoàn thành, XP chưa ghi nhận xong
+    //   'granted' - XP đã ghi nhận
+    // Bản ghi cũ không có trường này: chúng đã được thưởng theo cơ chế trước
+    // đây, nên khi xử lý lại sẽ được đánh dấu 'granted' mà không phát thêm XP.
+    completion_reward_state: {
+        type: String,
+        enum: ['pending', 'granted'],
+    },
+
 }, { timestamps: true });
 
 // Compound index để query nhanh progress của user cho lesson cụ thể
