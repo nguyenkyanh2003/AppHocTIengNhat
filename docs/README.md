@@ -9,6 +9,8 @@ Documentation is grouped by purpose so implementation folders stay focused on ru
   establishes in [`conventions.md`](architecture/conventions.md) and the work in flight in
   [`phase-2-plan.md`](architecture/phase-2-plan.md). Decisions intentionally deferred from
   that phase are listed in [`out-of-scope.md`](architecture/out-of-scope.md).
+  The ten findings from the code review are covered together in
+  [`unified-bugfix-plan.md`](architecture/unified-bugfix-plan.md).
 - `api/`: REST API groups, authentication and response conventions.
 - `development/`: local setup and developer workflows.
 - `presentation/`: defense/demo script and scope notes.
