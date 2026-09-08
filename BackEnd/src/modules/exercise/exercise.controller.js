@@ -23,10 +23,13 @@ export const listByLevel = async (req, res) => {
         .select('title type level description time_limit total_attempts createdAt questions')
         .lean();
 
-        // Thêm số câu hỏi cho mỗi bài tập
-        const exercisesWithCount = exercises.map(ex => ({
-            ...ex,
-            question_count: ex.questions && Array.isArray(ex.questions) ? ex.questions.length : 0
+        // Đếm câu hỏi rồi bỏ hẳn `questions` khỏi DTO. Mảng đó chứa
+        // `answers[].is_correct` và `explanation`, tức là đáp án của bài: chi
+        // tiết bài tập (`getExercise`) đã cố tình lược hai trường này trước khi
+        // người dùng nộp, danh sách phải theo cùng quy tắc.
+        const exercisesWithCount = exercises.map(({ questions, ...rest }) => ({
+            ...rest,
+            question_count: Array.isArray(questions) ? questions.length : 0
         }));
 
         res.json(exercisesWithCount);
@@ -48,10 +51,13 @@ export const listByType = async (req, res) => {
         .select('title type level description time_limit total_attempts createdAt questions')
         .lean();
 
-        // Thêm số câu hỏi cho mỗi bài tập
-        const exercisesWithCount = exercises.map(ex => ({
-            ...ex,
-            question_count: ex.questions && Array.isArray(ex.questions) ? ex.questions.length : 0
+        // Đếm câu hỏi rồi bỏ hẳn `questions` khỏi DTO. Mảng đó chứa
+        // `answers[].is_correct` và `explanation`, tức là đáp án của bài: chi
+        // tiết bài tập (`getExercise`) đã cố tình lược hai trường này trước khi
+        // người dùng nộp, danh sách phải theo cùng quy tắc.
+        const exercisesWithCount = exercises.map(({ questions, ...rest }) => ({
+            ...rest,
+            question_count: Array.isArray(questions) ? questions.length : 0
         }));
 
         res.json(exercisesWithCount);
@@ -77,10 +83,13 @@ export const listByLesson = async (req, res) => {
         .select('title type level description time_limit total_attempts createdAt questions')
         .lean();
 
-        // Thêm số câu hỏi cho mỗi bài tập
-        const exercisesWithCount = exercises.map(ex => ({
-            ...ex,
-            question_count: ex.questions && Array.isArray(ex.questions) ? ex.questions.length : 0
+        // Đếm câu hỏi rồi bỏ hẳn `questions` khỏi DTO. Mảng đó chứa
+        // `answers[].is_correct` và `explanation`, tức là đáp án của bài: chi
+        // tiết bài tập (`getExercise`) đã cố tình lược hai trường này trước khi
+        // người dùng nộp, danh sách phải theo cùng quy tắc.
+        const exercisesWithCount = exercises.map(({ questions, ...rest }) => ({
+            ...rest,
+            question_count: Array.isArray(questions) ? questions.length : 0
         }));
 
         res.json(exercisesWithCount);
