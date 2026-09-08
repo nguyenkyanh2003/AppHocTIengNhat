@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import Kanji from '../model/Kanji.js';
 import Lesson from '../model/Lesson.js';
 
-const MONGODB_URI = 'mongodb://localhost:27017/AppHocTiengNhat';
+dotenv.config();
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Dữ liệu mẫu 20 Kanji cơ bản
 const kanjiData = [
@@ -273,7 +276,11 @@ const kanjiData = [
 
 async function seedKanji() {
   try {
-    await mongoose.connect(MONGODB_URI);
+    if (!MONGODB_URI) {
+      throw new Error('MONGODB_URI không được định nghĩa trong file .env');
+    }
+
+    await mongoose.connect(MONGODB_URI, { dbName: process.env.DB_NAME || 'AppHocTiengNhat' });
     console.log('✅ Đã kết nối MongoDB');
 
     // Xóa dữ liệu cũ
