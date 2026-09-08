@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:http/http.dart' as http;
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+
+import '../../../core/audio/audio_source_resolver.dart';
 import '../providers/jlpt_exam_provider.dart';
 import '../models/jlpt_models.dart';
 import '../../../core/network/api_client.dart';
@@ -23,7 +22,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
   bool _isLoading = false;
   Duration _duration = Duration.zero;
   Duration _position = Duration.zero;
-  String? _cachedAudioPath;
+  Source? _cachedAudioSource;
 
   @override
   void initState() {
@@ -67,38 +66,11 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
     return '$host$audioPath';
   }
 
-  Future<String?> _downloadAndCacheAudio(
-      String audioUrl, String fileName) async {
-    try {
-      final dir = await getTemporaryDirectory();
-      final filePath = '${dir.path}/$fileName';
-      final file = File(filePath);
-
-      // Nếu đã cache thì dùng luôn
-      if (await file.exists()) {
-        debugPrint('Using cached audio: $filePath');
-        return filePath;
-      }
-
-      debugPrint('Downloading audio from: $audioUrl');
-      final response = await http.get(Uri.parse(audioUrl)).timeout(
-            const Duration(seconds: 60),
-            onTimeout: () => throw Exception('Download timeout'),
-          );
-
-      if (response.statusCode == 200) {
-        await file.writeAsBytes(response.bodyBytes);
-        debugPrint('Audio cached at: $filePath');
-        return filePath;
-      } else {
-        throw Exception('HTTP ${response.statusCode}');
-      }
-    } catch (e) {
-      debugPrint('Download error: $e');
-      return null;
-    }
-  }
-
+  /// Phát audio của câu hỏi.
+  ///
+  /// Nguồn phát do adapter theo nền tảng quyết định: trình duyệt phát thẳng từ
+  /// URL, nền tảng có hệ thống tệp thì tải về thư mục tạm rồi phát từ tệp. Màn
+  /// hình này không được biết `File` hay `DeviceFileSource` là gì.
   Future<void> _playAudio(String audioPath, String fileName) async {
     try {
       if (_isPlaying) {
@@ -111,20 +83,14 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       final fullUrl = _getFullAudioUrl(audioPath);
       debugPrint('Audio URL: $fullUrl');
 
-      // Download và cache file
-      String? localPath = _cachedAudioPath;
-      if (localPath == null || !await File(localPath).exists()) {
-        localPath = await _downloadAndCacheAudio(fullUrl, fileName);
-        _cachedAudioPath = localPath;
-      }
+      _cachedAudioSource ??= await resolveAudioSource(
+        url: fullUrl,
+        fileName: fileName,
+      );
 
-      if (localPath != null) {
-        await _audioPlayer.stop();
-        await _audioPlayer.setSourceDeviceFile(localPath);
-        await _audioPlayer.resume();
-      } else {
-        throw Exception('Không thể tải file audio');
-      }
+      await _audioPlayer.stop();
+      await _audioPlayer.setSource(_cachedAudioSource!);
+      await _audioPlayer.resume();
     } catch (e) {
       debugPrint('Audio error: $e');
       if (mounted) {
