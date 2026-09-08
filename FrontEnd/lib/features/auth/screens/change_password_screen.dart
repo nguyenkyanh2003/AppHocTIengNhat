@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
-import '../services/auth_service.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
@@ -15,8 +14,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
-  final AuthService _authService = AuthService();
 
   bool _isLoading = false;
   bool _obscureOldPassword = true;
@@ -32,6 +29,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     super.dispose();
   }
 
+  /// Đổi mật khẩu qua [AuthProvider].
+  ///
+  /// Đổi mật khẩu thành công cũng thu hồi chính phiên đang dùng, nên không thể
+  /// `pop` về màn trước như trước đây: token trong tay app đã chết và mọi màn
+  /// hình phía sau sẽ lần lượt báo lỗi. Provider dọn phiên, màn hình đưa người
+  /// dùng về đăng nhập và xoá lịch sử điều hướng.
   Future<void> _changePassword() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -40,38 +43,30 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       _errorMessage = null;
     });
 
-    try {
-      final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      final userId = authProvider.user?.id;
+    final authProvider = context.read<AuthProvider>();
+    final success = await authProvider.changePassword(
+      _oldPasswordController.text,
+      _newPasswordController.text,
+    );
 
-      if (userId == null) {
-        throw Exception('Không tìm thấy thông tin người dùng');
-      }
+    if (!mounted) return;
 
-      await _authService.changePassword(
-        userId,
-        _oldPasswordController.text,
-        _newPasswordController.text,
-      );
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Đổi mật khẩu thành công!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-        Navigator.pop(context);
-      }
-    } catch (e) {
+    if (!success) {
       setState(() {
-        _errorMessage = e.toString().replaceAll('Exception: ', '');
+        _isLoading = false;
+        _errorMessage = authProvider.error ?? 'Không thể đổi mật khẩu.';
       });
-    } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
+      return;
     }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Đổi mật khẩu thành công! Vui lòng đăng nhập lại.'),
+        backgroundColor: Colors.green,
+      ),
+    );
+
+    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
   }
 
   @override
@@ -205,7 +200,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       obscureText: _obscureNewPassword,
                       decoration: InputDecoration(
                         labelText: 'Mật khẩu mới',
-                        hintText: 'Nhập mật khẩu mới (tối thiểu 6 ký tự)',
+                        hintText: 'Nhập mật khẩu mới (tối thiểu 8 ký tự)',
                         prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -227,8 +222,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Vui lòng nhập mật khẩu mới';
                         }
-                        if (value.length < 6) {
-                          return 'Mật khẩu phải có ít nhất 6 ký tự';
+                        if (value.length < 8) {
+                          return 'Mật khẩu phải có ít nhất 8 ký tự';
                         }
                         if (value == _oldPasswordController.text) {
                           return 'Mật khẩu mới phải khác mật khẩu hiện tại';
@@ -294,7 +289,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           ),
                           const SizedBox(height: 8),
                           _buildPasswordRequirement(
-                            'Tối thiểu 6 ký tự',
+                            'Tối thiểu 8 ký tự',
                             _newPasswordController.text.length >= 6,
                           ),
                           _buildPasswordRequirement(

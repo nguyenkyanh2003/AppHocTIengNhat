@@ -1,19 +1,13 @@
 import bcrypt from "bcrypt";
-import nodemailer from "nodemailer";
-import jwt from "jsonwebtoken";
 import User from "../../../model/User.js";
-import UserStreak from "../../../model/UserStreak.js";
 import { getVietnamTime, convertUserDatesToVietnam } from "../../shared/utils/timezone.js";
-import env from '../../config/env.js';
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: env.emailUser,
-    pass: env.emailPassword,
-  },
-});
-
+/**
+ * Bốn luồng xác thực (đăng nhập, quên mật khẩu, đặt lại mật khẩu, đổi mật khẩu)
+ * đã chuyển sang `user-auth.controller.js` + `user-auth.service.js` +
+ * `user.repository.js` theo khuôn mẫu bốn tầng. Phần còn lại của module vẫn
+ * giữ nguyên kiểu cũ và sẽ được chuyển trong đợt riêng.
+ */
 const withoutPassword = (user) => {
   if (!user) return null;
   const userObject = user.toJSON ? user.toJSON() : { ...user };
@@ -23,76 +17,6 @@ const withoutPassword = (user) => {
   delete userObject.id; 
   
   return userObject;
-};
-
-// API Đăng nhập
-export const postLogin = async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    if (!username || !password) {
-      return res.status(400).json({ message: "Vui lòng nhập đầy đủ thông tin." });
-    }
-
-    const user = await User.findOne({ TenDangNhap: username });
-    if (!user) {
-      return res.status(401).json({ message: "Tên đăng nhập không tồn tại." });
-    }
-
-    if (user.TrangThai !== 'active') {
-      return res.status(403).json({ message: 'Tài khoản hiện không hoạt động.' });
-    }
-
-    const match = await bcrypt.compare(password, user.MatKhau);
-    if (!match) {
-      return res.status(401).json({ message: "Mật khẩu không đúng." });
-    }
-
-    // Lưu thời gian đăng nhập theo giờ Việt Nam
-    user.LanDangNhapCuoi = getVietnamTime();
-    await user.save();
-
-    // Cập nhật streak khi đăng nhập (Duolingo style)
-    let streak = await UserStreak.findOne({ user: user._id });
-    if (!streak) {
-      // Tạo streak mới nếu chưa có
-      streak = await UserStreak.create({ 
-        user: user._id,
-        current_streak: 0,
-        longest_streak: 0,
-        total_xp: 0,
-        level: 1
-      });
-    }
-
-    // Cập nhật streak và thêm 10 XP cho daily login
-    const streakResult = streak.updateStreakOnActivity();
-    if (streakResult.is_new_day) {
-      streak.addXP(10, 'Daily login');
-      await streak.save();
-    }
-
-    const token = jwt.sign(
-      { id: user._id, username: user.TenDangNhap, role: user.VaiTro, type: 'access' },
-      env.jwtSecret,
-      { expiresIn: '24h', subject: user._id.toString() }
-    );
-
-    res.json({
-      message: "Đăng nhập thành công",
-      user: convertUserDatesToVietnam(withoutPassword(user)),
-      token: token,
-      streak: {
-        current: streak.current_streak,
-        longest: streak.longest_streak,
-        total_xp: streak.total_xp,
-        is_new_day: streakResult.is_new_day,
-        streak_broken: streakResult.streak_broken || false
-      }
-    });
-  } catch (error) {
-    console.error("Lỗi đăng nhập:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
 };
 
 // API Đăng xuất
@@ -141,86 +65,6 @@ export const postRegister = async (req, res) => {
     });
   } catch (error) {
     console.error("Lỗi đăng ký:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
-// API Quên mật khẩu
-export const postForgotPassword = async (req, res) => {
-  try {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ message: "Vui lòng nhập email." });
-
-    const user = await User.findOne({ Email: email }).select('+tokenVersion');
-    const acceptedMessage = 'Nếu email tồn tại, hướng dẫn đặt lại mật khẩu sẽ được gửi.';
-    if (!user) return res.json({ message: acceptedMessage });
-
-    if (!env.emailUser || !env.emailPassword) {
-      return res.status(503).json({ message: 'Dịch vụ email chưa được cấu hình.' });
-    }
-
-    const token = jwt.sign(
-      { id: user._id, type: 'password-reset', tokenVersion: user.tokenVersion || 0 },
-      env.jwtSecret,
-      { expiresIn: "1h" }
-    );
-
-    const resetLink = `${env.frontendUrl}/reset-password?token=${encodeURIComponent(token)}`;
-
-    const mailOptions = {
-      from: env.emailUser,
-      to: email,
-      subject: "Yêu cầu đặt lại mật khẩu",
-      html: `
-        <h2>Yêu cầu khôi phục mật khẩu</h2>
-        <p>Xin chào ${user.HoTen},</p>
-        <p>Để đặt lại mật khẩu, vui lòng click vào link bên dưới:</p>
-        <a href="${resetLink}" style="padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Đặt lại mật khẩu</a>
-        <p>Link này sẽ hết hạn sau 1 giờ.</p>
-        <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
-    res.json({ message: acceptedMessage });
-  } catch (error) {
-    console.error("Lỗi quên mật khẩu:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
-// API Đặt lại mật khẩu
-export const postResetPassword = async (req, res) => {
-  try {
-    const { token, newPassword } = req.body;
-    if (!token || !newPassword || newPassword.length < 8)
-      return res.status(400).json({ message: "Vui lòng cung cấp token và mật khẩu mới (ít nhất 8 ký tự)." });
-
-    let decoded;
-    try {
-      decoded = jwt.verify(token, env.jwtSecret);
-      if (decoded.type !== 'password-reset') throw new Error('Sai loại token');
-    } catch (err) {
-      return res.status(401).json({ message: "Token không hợp lệ hoặc đã hết hạn." });
-    }
-
-    const user = await User.findById(decoded.id).select('+tokenVersion');
-
-    if (!user) {
-      return res.status(404).json({ message: "Người dùng không tồn tại." });
-    }
-
-    if ((user.tokenVersion || 0) !== decoded.tokenVersion) {
-      return res.status(401).json({ message: 'Token đã được sử dụng hoặc không còn hợp lệ.' });
-    }
-
-    user.MatKhau = await bcrypt.hash(newPassword, 10);
-    user.tokenVersion = (user.tokenVersion || 0) + 1;
-    await user.save();
-
-    res.json({ message: "Đặt lại mật khẩu thành công." });
-  } catch (error) {
-    console.error("Lỗi đặt lại mật khẩu:", error);
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
   }
 };
@@ -324,52 +168,6 @@ export const putProfileById = async (req, res) => {
     });
   } catch (error) {
     console.error("Lỗi cập nhật thông tin:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
-// API đổi mật khẩu
-export const putChangePasswordById = async (req, res) => {
-  try {
-    const requestUserId = req.user._id.toString();
-    const targetUserId = req.params.id;
-
-    if (req.user.VaiTro !== 'admin' && requestUserId !== targetUserId) {
-      return res.status(403).json({ message: "Bạn không có quyền đổi mật khẩu." });
-    }
-
-    const { oldPassword, newPassword } = req.body;
-
-    const user = await User.findById(targetUserId).select('+tokenVersion');
-    if (!user) {
-      return res.status(404).json({ message: "Người dùng không tồn tại." });
-    }
-
-    if (req.user.VaiTro !== 'admin') {
-      if (!oldPassword || !newPassword || newPassword.length < 8) {
-        return res.status(400).json({ 
-          message: "Vui lòng cung cấp mật khẩu cũ và mật khẩu mới (mật khẩu tối thiểu 8 ký tự.)" 
-        });
-      }
-      const isValidPassword = await bcrypt.compare(oldPassword, user.MatKhau);
-      if (!isValidPassword) {
-        return res.status(401).json({ message: "Mật khẩu cũ không chính xác." });
-      }
-    } else {
-      if (!newPassword || newPassword.length < 8) {
-        return res.status(400).json({ 
-          message: "Vui lòng cung cấp mật khẩu mới (mật khẩu tối thiểu 8 ký tự)." 
-        });
-      }
-    }
-
-    user.MatKhau = await bcrypt.hash(newPassword, 10);
-    user.tokenVersion = (user.tokenVersion || 0) + 1;
-    await user.save();
-
-    res.json({ message: "Đổi mật khẩu thành công." });
-  } catch (error) {
-    console.error("Lỗi đổi mật khẩu:", error);
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
   }
 };

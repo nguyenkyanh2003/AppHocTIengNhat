@@ -163,7 +163,12 @@ Lỗi thường gặp: quên đổi dropdown sang `JSON` khiến Express không 
 
 **Gọi endpoint cần đăng nhập:** `POST /api/users/login` với `{"username": "...", "password": "..."}` trả về `token`. Trong Postman mở tab **Authorization** → Type **Bearer Token** → dán token vào. Middleware đọc header `Authorization` theo dạng `Bearer <token>`, nên nếu tự gõ tay ở tab Headers mà thiếu tiền tố `Bearer` phía trước sẽ bị `401`. Kiểm tra bằng `GET /api/users/me`.
 
-`login`, `forgot-password` và `reset-password` bị giới hạn **20 request trong 15 phút**.
+`login`, `forgot-password` và `reset-password` mỗi endpoint có hạn mức **riêng**
+20 request trong 15 phút, tính theo IP. Hạn mức gắn với nghiệp vụ chứ không gắn với
+đường dẫn, nên đổi hoa/thường (`/Login`) hay thêm dấu `/` cuối không mở thêm lượt thử.
+
+Đổi mật khẩu và đặt lại mật khẩu đều thu hồi mọi access token đã phát cho tài khoản đó:
+token cũ trả `401` ngay lần gọi tiếp theo, kể cả khi chưa hết hạn.
 
 ### 6. Test chức năng admin
 
@@ -234,7 +239,13 @@ Nguồn đầy đủ: `BackEnd/.env.example`.
 | --- | --- |
 | App | `DB_NAME` · `NODE_ENV` · `CORS_ORIGINS` |
 | Email khôi phục mật khẩu | `EMAIL_USER` · `EMAIL_PASSWORD` (Gmail app password) |
-| Frontend | `FRONTEND_URL` — dùng trong link của email reset |
+| Frontend | `FRONTEND_URL` — gốc của link trong email đặt lại mật khẩu |
+
+Link khôi phục mật khẩu được dựng thành `<FRONTEND_URL>/#/reset-password?token=...`.
+Dấu `#` là bắt buộc: Flutter Web đang dùng hash routing, nên URL thiếu `#` sẽ được
+trình duyệt hỏi thẳng web server và không tới được màn đặt lại mật khẩu. `FRONTEND_URL`
+phải trỏ tới nơi bản web thật sự chạy (`flutter build web` rồi phục vụ `build/web`), và
+`CORS_ORIGINS` phải chứa đúng origin đó thì trang web mới gọi được API.
 
 Không commit `.env`. Nếu secret từng bị lộ (commit nhầm, ảnh chụp màn hình), **xoay khoá chứ đừng chỉ xoá file** — `JWT_SECRET` bị lộ nghĩa là bất kỳ ai cũng tự ký được token admin.
 

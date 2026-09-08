@@ -33,6 +33,7 @@ import '../../features/settings/screens/offline_mode_screen.dart';
 import '../../features/billing/screens/payment_screen.dart';
 import '../../features/profile/screens/profile_screen.dart';
 import '../../features/reports/screens/report_screen.dart';
+import '../../features/auth/screens/reset_password_screen.dart';
 import '../../features/search/screens/search_screen.dart';
 import '../../features/settings/screens/settings_screen.dart';
 import '../../features/progress/screens/user_statistics_screen.dart';
@@ -79,6 +80,23 @@ abstract final class AppRouter {
   };
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    // Link khôi phục mật khẩu trong email có dạng
+    // `<FRONTEND_URL>/#/reset-password?token=...`, nên tên route mang theo cả
+    // query string và không khớp được với map `routes` ở trên.
+    //
+    // So khớp `uri.path` **chính xác** thay vì `startsWith`: `startsWith` sẽ
+    // nhận nhầm những route có tên gần giống như `/reset-password-help`.
+    final uri = Uri.tryParse(settings.name ?? '');
+    if (uri != null && uri.path == '/reset-password') {
+      return MaterialPageRoute(
+        settings: settings,
+        builder: (context) => ResetPasswordScreen(
+          // `queryParameters` đã giải mã percent-encoding sẵn.
+          token: uri.queryParameters['token'],
+        ),
+      );
+    }
+
     if (settings.name != null &&
         settings.name!.startsWith('/vocabulary-detail')) {
       final id = settings.arguments as String;

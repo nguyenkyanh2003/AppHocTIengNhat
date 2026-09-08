@@ -4,7 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class AuthService {
-  final ApiClient _client = ApiClient();
+  /// Nhận client qua constructor để test truyền transport giả.
+  AuthService({ApiClient? client}) : _client = client ?? ApiClient();
+
+  final ApiClient _client;
 
   /// Đăng nhập
   Future<Map<String, dynamic>> login(String username, String password) async {

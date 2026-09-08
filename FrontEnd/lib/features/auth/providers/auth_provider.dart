@@ -5,8 +5,14 @@ import '../../../shared/models/user.dart';
 
 /// Provider quản lý trạng thái đăng nhập và user
 class AuthProvider extends ChangeNotifier {
+  /// Nhận service và client qua constructor để test truyền bản giả.
+  AuthProvider({AuthService? authService, ApiClient? apiClient})
+      : _authService = authService ?? AuthService(),
+        _apiClient = apiClient ?? ApiClient();
+
   // Lưu ý: Đảm bảo tên class bên file service khớp với chỗ này (AuthService)
-  final AuthService _authService = AuthService();
+  final AuthService _authService;
+  final ApiClient _apiClient;
 
   User? _user;
   bool _isLoading = false;
@@ -15,7 +21,7 @@ class AuthProvider extends ChangeNotifier {
   User? get user => _user;
   bool get isLoading => _isLoading;
   String? get error => _error;
-  bool get isAuthenticated => _user != null && ApiClient().getToken() != null;
+  bool get isAuthenticated => _user != null && _apiClient.getToken() != null;
   bool get isAdmin => _user?.role == 'admin';
   bool get isTeacher => _user?.role == 'teacher' || _user?.role == 'admin';
 
@@ -25,7 +31,7 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final token = ApiClient().getToken();
+      final token = _apiClient.getToken();
       if (token != null) {
         // Load user từ local storage
         _user = await _authService.getUserFromLocal();
@@ -33,8 +39,8 @@ class AuthProvider extends ChangeNotifier {
         // Nếu không có user trong local hoặc token không khớp, clear và logout
         if (_user == null) {
           debugPrint('No user found in local storage, clearing token');
-          await ApiClient().removeToken();
-          await ApiClient().clearAllData();
+          await _apiClient.removeToken();
+          await _apiClient.clearAllData();
         } else {
           notifyListeners();
 
@@ -54,8 +60,8 @@ class AuthProvider extends ChangeNotifier {
       _error = e.toString();
       debugPrint('Init error: $e');
       // Clear nếu có lỗi nghiêm trọng
-      await ApiClient().removeToken();
-      await ApiClient().clearAllData();
+      await _apiClient.removeToken();
+      await _apiClient.clearAllData();
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -229,7 +235,14 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  /// Đổi mật khẩu
+  /// Đổi mật khẩu của chính người dùng đang đăng nhập.
+  ///
+  /// Backend tăng `tokenVersion` của tài khoản đích khi đổi mật khẩu, nên access
+  /// token đang giữ bị thu hồi ngay lúc đó. Nếu không dọn phiên cục bộ, app sẽ
+  /// tiếp tục gửi một token đã chết và mọi màn hình lần lượt báo lỗi 401.
+  ///
+  /// Trả về `true` khi đổi thành công; khi đó phiên đã bị xoá và màn hình gọi
+  /// phải đưa người dùng về đăng nhập.
   Future<bool> changePassword(String oldPassword, String newPassword) async {
     _isLoading = true;
     _error = null;
@@ -241,6 +254,10 @@ class AuthProvider extends ChangeNotifier {
       }
 
       await _authService.changePassword(_user!.id, oldPassword, newPassword);
+
+      // Chỉ dọn phiên khi đổi mật khẩu đã thành công.
+      await _clearLocalSession();
+
       _isLoading = false;
       notifyListeners();
       return true;
@@ -250,6 +267,21 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
+  }
+
+  /// Xoá token và dữ liệu phiên trên máy.
+  ///
+  /// Không gọi API logout: token hiện tại đã bị thu hồi nên request đó chắc
+  /// chắn thất bại, và lỗi của nó không được phép ngăn việc dọn phiên.
+  Future<void> _clearLocalSession() async {
+    try {
+      await _apiClient.removeToken();
+      await _apiClient.clearAllData();
+    } catch (e) {
+      debugPrint('Clear session error: $e');
+    }
+
+    _user = null;
   }
 
   /// Quên mật khẩu - Gửi email reset
