@@ -433,6 +433,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
+                autofocus: true,
                 controller: titleController,
                 decoration: const InputDecoration(
                   labelText: 'Tiêu đề',

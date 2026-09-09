@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/adaptive_table.dart';
 
 class AdminTransactionScreen extends StatefulWidget {
   const AdminTransactionScreen({super.key});
@@ -41,31 +43,104 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
             if (provider.isLoadingTransactions && transactions.isEmpty) {
               return const Center(child: CircularProgressIndicator());
             }
-            return RefreshIndicator(
-              onRefresh: () => _loadForStatus(_selectedStatus),
-              child: ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
-                  _buildSummary(transactions),
-                  const SizedBox(height: 16),
-                  _buildFilters(),
-                  const SizedBox(height: 12),
-                  if (provider.error != null && transactions.isEmpty)
-                    _buildError(provider.error!)
-                  else if (transactions.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.only(top: 80),
-                      child: Center(child: Text('Chưa có giao dịch nào.')),
-                    )
-                  else
-                    ...transactions.map(_buildTransactionCard),
-                ],
-              ),
+            // Phần tổng quan và bộ lọc không cuộn cùng danh sách nữa: khi
+            // danh sách chuyển sang dạng bảng, header cột phải dính lại chứ
+            // không trôi mất theo nội dung.
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(AppSpacing.lg),
+                  child: Column(
+                    children: [
+                      _buildSummary(transactions),
+                      const SizedBox(height: AppSpacing.lg),
+                      _buildFilters(),
+                    ],
+                  ),
+                ),
+                if (provider.error != null && transactions.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(AppSpacing.lg),
+                    child: _buildError(provider.error!),
+                  )
+                else if (transactions.isEmpty)
+                  const Expanded(
+                    child: Center(child: Text('Chưa có giao dịch nào.')),
+                  )
+                else
+                  Expanded(
+                    child: AdaptiveTable<Map<String, dynamic>>(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.lg,
+                      ),
+                      items: transactions,
+                      onRefresh: () => _loadForStatus(_selectedStatus),
+                      rowKey: (tx) => ValueKey(tx['_id'] ?? tx['id']),
+                      columns: _transactionColumns(),
+                      cardBuilder: (context, tx) => _buildTransactionCard(tx),
+                    ),
+                  ),
+              ],
             );
           },
         ),
       ),
     );
+  }
+
+  /// Cot bang giao dich tren vung rong; cung du lieu voi the o man hep.
+  List<AdaptiveColumn<Map<String, dynamic>>> _transactionColumns() {
+    return [
+      AdaptiveColumn(
+        label: 'Người dùng',
+        minWidth: 200,
+        cell: (context, tx) {
+          final user = tx['user'];
+          final name = user is Map ? (user['name'] ?? user['email']) : user;
+          return Text(
+            (name ?? '—').toString(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          );
+        },
+      ),
+      AdaptiveColumn(
+        label: 'Gói',
+        minWidth: 160,
+        cell: (context, tx) => Text(
+          (tx['package_id'] ?? tx['type'] ?? '—').toString(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Số tiền',
+        width: 130,
+        alignEnd: true,
+        cell: (context, tx) => Text((tx['amount'] ?? 0).toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Trạng thái',
+        width: 130,
+        cell: (context, tx) => Text((tx['status'] ?? '').toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Thao tác',
+        width: 96,
+        alignEnd: true,
+        cell: (context, tx) {
+          final id = (tx['_id'] ?? tx['id'])?.toString();
+          if (id == null) return const SizedBox.shrink();
+          return PopupMenuButton<String>(
+            onSelected: (status) => _updateStatus(id, status),
+            itemBuilder: (context) => const [
+              PopupMenuItem(value: 'completed', child: Text('Đánh dấu xong')),
+              PopupMenuItem(value: 'failed', child: Text('Đánh dấu thất bại')),
+            ],
+          );
+        },
+      ),
+    ];
   }
 
   Widget _buildSummary(List<Map<String, dynamic>> transactions) {

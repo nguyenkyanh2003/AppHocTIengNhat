@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/adaptive_table.dart';
 
 class AdminAchievementManagementScreen extends StatefulWidget {
   const AdminAchievementManagementScreen({Key? key}) : super(key: key);
@@ -95,13 +97,13 @@ class _AdminAchievementManagementScreenState
                       : filteredAchievements.isEmpty
                           ? const Center(
                               child: Text('Không có achievements nào'))
-                          : ListView.builder(
-                              padding: const EdgeInsets.all(16),
-                              itemCount: filteredAchievements.length,
-                              itemBuilder: (context, index) {
-                                final achievement = filteredAchievements[index];
-                                return _buildAchievementCard(achievement);
-                              },
+                          : AdaptiveTable<Map<String, dynamic>>(
+                              padding: const EdgeInsets.all(AppSpacing.lg),
+                              items: filteredAchievements,
+                              rowKey: (a) => ValueKey(a['_id'] ?? a['id']),
+                              columns: _achievementColumns(),
+                              cardBuilder: (context, achievement) =>
+                                  _buildAchievementCard(achievement),
                             ),
                 ),
               ],
@@ -394,6 +396,54 @@ class _AdminAchievementManagementScreenState
     );
   }
 
+  /// Cot bang thanh tich tren vung rong; cung du lieu voi the o man hep.
+  List<AdaptiveColumn<Map<String, dynamic>>> _achievementColumns() {
+    return [
+      AdaptiveColumn(
+        label: 'Huy hiệu',
+        minWidth: 220,
+        cell: (context, a) => Text(
+          (a['name'] ?? '').toString(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Nhóm',
+        width: 140,
+        cell: (context, a) => Text((a['category'] ?? '').toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Độ hiếm',
+        width: 120,
+        cell: (context, a) => Text((a['rarity'] ?? '').toString()),
+      ),
+      AdaptiveColumn(
+        label: 'XP',
+        width: 80,
+        alignEnd: true,
+        cell: (context, a) => Text((a['xp'] ?? 0).toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Thao tác',
+        width: 96,
+        alignEnd: true,
+        cell: (context, a) => PopupMenuButton<String>(
+          onSelected: (action) {
+            if (action == 'edit') _showEditDialog(a);
+            if (action == 'duplicate') _duplicateAchievement(a);
+            if (action == 'delete') _deleteAchievement(a);
+          },
+          itemBuilder: (context) => const [
+            PopupMenuItem(value: 'edit', child: Text('Sửa')),
+            PopupMenuItem(value: 'duplicate', child: Text('Nhân bản')),
+            PopupMenuItem(value: 'delete', child: Text('Xoá')),
+          ],
+        ),
+      ),
+    ];
+  }
+
   void _showAddDialog() {
     final nameController = TextEditingController();
     final descController = TextEditingController();
@@ -411,6 +461,7 @@ class _AdminAchievementManagementScreenState
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
+                autofocus: true,
                 controller: nameController,
                 decoration: const InputDecoration(
                   labelText: 'Tên achievement',
@@ -527,6 +578,7 @@ class _AdminAchievementManagementScreenState
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
+                autofocus: true,
                 controller: nameController,
                 decoration: const InputDecoration(
                   labelText: 'Tên achievement',

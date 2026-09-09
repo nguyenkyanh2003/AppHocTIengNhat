@@ -121,7 +121,7 @@ abstract final class AppRouter {
     '/grammar',
     '/grammar/:id',
     '/exercise',
-    '/exercise/result',
+    '/exercise/result/:resultId',
     '/exercise/:id',
     '/exercise-history',
     '/jlpt',
@@ -396,8 +396,10 @@ abstract final class AppRouter {
               routes: [
                 // Đặt trước `:id` để "result" không bị bắt làm mã bài tập.
                 GoRoute(
-                  path: 'result',
-                  builder: (context, state) => const ExerciseResultScreen(),
+                  path: 'result/:resultId',
+                  builder: (context, state) => ExerciseResultScreen(
+                    resultId: state.pathParameters['resultId']!,
+                  ),
                 ),
                 GoRoute(
                   path: ':id',

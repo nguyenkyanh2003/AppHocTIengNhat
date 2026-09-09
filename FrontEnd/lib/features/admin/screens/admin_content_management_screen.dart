@@ -8,6 +8,9 @@ import '../utils/admin_content_csv.dart';
 import '../widgets/excel_import_options_dialog.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/adaptive_table.dart';
+import '../../../shared/widgets/app_dialog.dart';
 
 class AdminContentManagementScreen extends StatefulWidget {
   const AdminContentManagementScreen({super.key});
@@ -141,14 +144,15 @@ class _AdminContentManagementScreenState
                                 'Không có ${_typeLabel(_selectedContentType).toLowerCase()}',
                               ),
                             )
-                          : RefreshIndicator(
+                          : AdaptiveTable<Map<String, dynamic>>(
+                              padding: const EdgeInsets.all(AppSpacing.lg),
+                              items: filtered,
                               onRefresh: _loadContent,
-                              child: ListView.builder(
-                                padding: const EdgeInsets.all(16),
-                                itemCount: filtered.length,
-                                itemBuilder: (context, index) =>
-                                    _buildContentCard(filtered[index]),
-                              ),
+                              rowKey: (item) =>
+                                  ValueKey(item['_id'] ?? item['id']),
+                              columns: _contentColumns(),
+                              cardBuilder: (context, item) =>
+                                  _buildContentCard(item),
                             ),
                 ),
               ],
@@ -321,6 +325,48 @@ class _AdminContentManagementScreenState
     }
   }
 
+  /// Cot bang noi dung tren vung rong; cung du lieu voi the o man hep.
+  List<AdaptiveColumn<Map<String, dynamic>>> _contentColumns() {
+    return [
+      AdaptiveColumn(
+        label: 'Nội dung',
+        minWidth: 220,
+        cell: (context, item) => Text(
+          (item['title'] ?? item['character'] ?? item['structure'] ?? '')
+              .toString(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Nghĩa',
+        minWidth: 200,
+        cell: (context, item) => Text(
+          (item['meaning'] ?? '').toString(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Cấp độ',
+        width: 96,
+        cell: (context, item) => Text((item['level'] ?? '').toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Thao tác',
+        width: 72,
+        alignEnd: true,
+        cell: (context, item) => PopupMenuButton<String>(
+          onSelected: (action) => _handleAction(action, item),
+          itemBuilder: (context) => const [
+            PopupMenuItem(value: 'edit', child: Text('Sửa')),
+            PopupMenuItem(value: 'delete', child: Text('Xoá')),
+          ],
+        ),
+      ),
+    ];
+  }
+
   Future<void> _showEditor({
     Map<String, dynamic>? item,
     bool duplicate = false,
@@ -332,9 +378,11 @@ class _AdminContentManagementScreenState
     var level =
         _levels.contains(item?['level']) ? item!['level'] as String : 'N5';
 
-    final payload = await showDialog<Map<String, dynamic>>(
+    // Biểu mẫu này chặn bấm ra ngoài để khỏi mất dữ liệu đang nhập, nhưng Esc
+    // vẫn phải đóng được — `showDialog` gộp hai thứ đó vào một cờ.
+    final payload = await showAppDialog<Map<String, dynamic>>(
       context: context,
-      barrierDismissible: false,
+      dismissOnBarrierTap: false,
       builder: (dialogContext) => StatefulBuilder(
         builder: (context, setDialogState) => AlertDialog(
           title: Text(

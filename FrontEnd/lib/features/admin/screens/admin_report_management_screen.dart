@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/adaptive_table.dart';
 
 class AdminReportManagementScreen extends StatefulWidget {
   const AdminReportManagementScreen({Key? key}) : super(key: key);
@@ -100,13 +102,14 @@ class _AdminReportManagementScreenState
                       ? const Center(child: CircularProgressIndicator())
                       : filteredReports.isEmpty
                           ? const Center(child: Text('Không có reports nào'))
-                          : ListView.builder(
-                              padding: const EdgeInsets.all(16),
-                              itemCount: filteredReports.length,
-                              itemBuilder: (context, index) {
-                                final report = filteredReports[index];
-                                return _buildReportCard(report);
-                              },
+                          : AdaptiveTable<Map<String, dynamic>>(
+                              padding: const EdgeInsets.all(AppSpacing.lg),
+                              items: filteredReports,
+                              rowKey: (report) =>
+                                  ValueKey(report['_id'] ?? report['id']),
+                              columns: _reportColumns(),
+                              cardBuilder: (context, report) =>
+                                  _buildReportCard(report),
                             ),
                 ),
               ],
@@ -390,6 +393,41 @@ class _AdminReportManagementScreenState
     }
   }
 
+  /// Cot bang bao cao tren vung rong; cung du lieu voi the o man hep.
+  List<AdaptiveColumn<Map<String, dynamic>>> _reportColumns() {
+    return [
+      AdaptiveColumn(
+        label: 'Tiêu đề',
+        minWidth: 240,
+        cell: (context, report) => Text(
+          (report['title'] ?? '').toString(),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Loại',
+        width: 130,
+        cell: (context, report) => Text((report['type'] ?? '').toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Trạng thái',
+        width: 130,
+        cell: (context, report) => Text((report['status'] ?? '').toString()),
+      ),
+      AdaptiveColumn(
+        label: 'Thao tác',
+        width: 72,
+        alignEnd: true,
+        cell: (context, report) => IconButton(
+          tooltip: 'Phản hồi',
+          icon: const Icon(Icons.reply),
+          onPressed: () => _showResponseDialog(report),
+        ),
+      ),
+    ];
+  }
+
   void _showResponseDialog(Map<String, dynamic> report) {
     final controller = TextEditingController();
     showDialog(
@@ -397,6 +435,7 @@ class _AdminReportManagementScreenState
       builder: (context) => AlertDialog(
         title: const Text('Phản hồi Report'),
         content: TextField(
+          autofocus: true,
           controller: controller,
           maxLines: 5,
           decoration: const InputDecoration(

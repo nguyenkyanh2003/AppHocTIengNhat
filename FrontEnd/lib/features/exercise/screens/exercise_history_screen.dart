@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/exercise_provider.dart';
@@ -144,11 +145,9 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () {
-            // Navigate to result detail
-            context.read<ExerciseProvider>().loadResultDetail(result.id);
-            // Note: You would need to create a detailed result screen
-          },
+          // Trước đây chỗ này chỉ nạp kết quả vào provider rồi dừng, vì chưa
+          // có màn kết quả mở được bằng mã. Nay đã có đường dẫn thật.
+          onTap: () => context.push('/exercise/result/${result.id}'),
           borderRadius: BorderRadius.circular(16),
           child: Padding(
             padding: const EdgeInsets.all(16),

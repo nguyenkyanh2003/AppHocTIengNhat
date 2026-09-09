@@ -2,12 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/exercise_provider.dart';
+import '../../../app/theme/app_tokens.dart';
 import '../models/exercise.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 
-class ExerciseResultScreen extends StatelessWidget {
-  const ExerciseResultScreen({super.key});
+/// Kết quả một lần làm bài.
+///
+/// Trang này mở lại được bằng URL: [resultId] nằm trên đường dẫn, và khi
+/// provider chưa có sẵn dữ liệu (mở link trực tiếp, F5, tab mới) thì màn hình
+/// tự tải kết quả theo mã, rồi tải đề bài theo `exerciseId` của kết quả để
+/// dựng phần xem lại đáp án.
+class ExerciseResultScreen extends StatefulWidget {
+  const ExerciseResultScreen({super.key, required this.resultId});
+
+  final String resultId;
+
+  @override
+  State<ExerciseResultScreen> createState() => _ExerciseResultScreenState();
+}
+
+class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _ensureLoaded());
+  }
+
+  Future<void> _ensureLoaded() async {
+    if (!mounted) return;
+    final provider = context.read<ExerciseProvider>();
+
+    if (provider.currentResult?.id != widget.resultId) {
+      await provider.loadResultDetail(widget.resultId);
+    }
+    if (!mounted) return;
+
+    final result = provider.currentResult;
+    if (result == null) return;
+    if (provider.currentExercise?.id != result.exerciseId) {
+      await provider.loadExerciseDetail(result.exerciseId);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +52,18 @@ class ExerciseResultScreen extends StatelessWidget {
         final result = provider.currentResult;
         final exercise = provider.currentExercise;
 
-        if (result == null || exercise == null) {
+        if (provider.isLoading && (result == null || exercise == null)) {
           return const AppScaffold(
             title: 'Kết quả',
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (result == null || exercise == null) {
+          return AppScaffold(
+            title: 'Kết quả',
             body: ContentWidthLimit(
-              child: Center(child: Text('Không có dữ liệu')),
+              child: _ResultUnavailable(onRetry: _ensureLoaded),
             ),
           );
         }
@@ -508,6 +551,61 @@ class ExerciseResultScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Trạng thái khi không lấy được kết quả — thay cho một dòng chữ cụt.
+class _ResultUnavailable extends StatelessWidget {
+  const _ResultUnavailable({required this.onRetry});
+
+  final Future<void> Function() onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ContentPane(
+        maxWidth: AppContentWidth.form,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.assignment_late_outlined,
+              size: 64,
+              color: AppColors.textSecondary,
+            ),
+            AppGap.lg,
+            Text(
+              'Không mở được kết quả này',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            AppGap.sm,
+            const Text(
+              'Kết quả có thể đã bị xoá, hoặc không thuộc về tài khoản này.',
+              textAlign: TextAlign.center,
+            ),
+            AppGap.xl,
+            Wrap(
+              spacing: AppSpacing.md,
+              runSpacing: AppSpacing.sm,
+              alignment: WrapAlignment.center,
+              children: [
+                OutlinedButton.icon(
+                  onPressed: onRetry,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Thử lại'),
+                ),
+                FilledButton.icon(
+                  onPressed: () => context.go('/exercise-history'),
+                  icon: const Icon(Icons.history),
+                  label: const Text('Lịch sử làm bài'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

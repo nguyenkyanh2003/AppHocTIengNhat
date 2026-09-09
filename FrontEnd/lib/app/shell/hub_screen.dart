@@ -42,9 +42,9 @@ class HubScreen extends StatelessWidget {
                 crossAxisCount: columns,
                 mainAxisSpacing: AppSpacing.md,
                 crossAxisSpacing: AppSpacing.md,
-                // Chiều cao cố định thay cho tỉ lệ: tỉ lệ làm thẻ cao vống lên
-                // khi cột rộng ra, còn nội dung thẻ thì không đổi.
-                mainAxisExtent: 92,
+                // Chiều cao cố định thay cho tỉ lệ: tỉ lệ làm ô cao vống lên
+                // khi cột rộng ra, còn nội dung ô thì không đổi.
+                mainAxisExtent: _tileExtent(context),
               ),
               itemBuilder: (context, i) =>
                   _HubTile(entry: destination.entries[i]),
@@ -54,6 +54,20 @@ class HubScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Chiều cao một ô hub.
+///
+/// Ô gồm hai phần: khung (biểu tượng 44px + lề) **không** giãn, và phần chữ
+/// (một dòng tiêu đề + tối đa hai dòng mô tả) **có** giãn theo cỡ chữ hệ
+/// thống. Cố định cả ô ở 92px làm nội dung tràn ngay khi người dùng phóng cỡ
+/// chữ lên, nên chỉ phần chữ được nhân theo `textScaler`.
+double _tileExtent(BuildContext context) {
+  const iconBox = 44.0;
+  const textBlock = 54.0; // 1 dòng titleMedium + 2 dòng bodySmall
+  final scaled = MediaQuery.textScalerOf(context).scale(textBlock);
+  final content = scaled > iconBox ? scaled : iconBox;
+  return content + AppSpacing.card.vertical + AppSpacing.sm;
 }
 
 class _HubTile extends StatelessWidget {

@@ -452,6 +452,7 @@ class _HelpScreenState extends State<HelpScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
+              autofocus: true,
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: 'Mô tả chi tiết lỗi bạn gặp phải...',
@@ -500,6 +501,7 @@ class _HelpScreenState extends State<HelpScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
+              autofocus: true,
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: 'Chia sẻ ý tưởng hoặc đề xuất tính năng mới...',

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/adaptive_table.dart';
 
 class AdminUserManagementScreen extends StatefulWidget {
   const AdminUserManagementScreen({Key? key}) : super(key: key);
@@ -126,12 +128,15 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                       ? const Center(child: CircularProgressIndicator())
                       : filteredUsers.isEmpty
                           ? const Center(child: Text('Không có users nào'))
-                          : ListView.builder(
-                              padding: const EdgeInsets.all(16),
-                              itemCount: filteredUsers.length,
-                              itemBuilder: (context, index) {
-                                return _buildUserCard(filteredUsers[index]);
-                              },
+                          : AdaptiveTable<Map<String, dynamic>>(
+                              padding: const EdgeInsets.all(AppSpacing.lg),
+                              items: filteredUsers,
+                              rowKey: (user) =>
+                                  ValueKey(user['_id'] ?? user['id']),
+                              columns: _userColumns(),
+                              cardBuilder: (context, user) =>
+                                  _buildUserCard(user),
+                              onRowTap: _showUserDetails,
                             ),
                 ),
               ],
@@ -140,6 +145,121 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
         ),
       ),
     );
+  }
+
+  /// Menu thao tác của một người dùng.
+  ///
+  /// Dùng chung cho thẻ ở màn hẹp và ô "Thao tác" của bảng ở màn rộng, để hai
+  /// bố cục không bao giờ lệch nhau về những việc admin làm được.
+  Widget _buildUserActionsMenu(Map<String, dynamic> user) {
+    return PopupMenuButton(
+      itemBuilder: (context) => [
+        const PopupMenuItem(
+          value: 'view',
+          child: Row(
+            children: [
+              Icon(Icons.visibility, size: 20),
+              SizedBox(width: 8),
+              Text('Xem chi tiết'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 'promote',
+          child: Row(
+            children: [
+              const Icon(Icons.admin_panel_settings, size: 20),
+              const SizedBox(width: 8),
+              Text(
+                user['role'] == 'admin' ? 'Hạ quyền User' : 'Nâng quyền Admin',
+              ),
+            ],
+          ),
+        ),
+        const PopupMenuItem(
+          value: 'ban',
+          child: Row(
+            children: [
+              Icon(Icons.block, size: 20, color: Colors.red),
+              SizedBox(width: 8),
+              Text('Khóa/Mở khóa', style: TextStyle(color: Colors.red)),
+            ],
+          ),
+        ),
+        const PopupMenuItem(
+          value: 'delete',
+          child: Row(
+            children: [
+              Icon(Icons.delete, size: 20, color: Colors.red),
+              SizedBox(width: 8),
+              Text('Xóa User', style: TextStyle(color: Colors.red)),
+            ],
+          ),
+        ),
+      ],
+      onSelected: (value) => _handleUserAction(value.toString(), user),
+    );
+  }
+
+  /// Cột của bảng quản trị trên vùng rộng.
+  ///
+  /// Cùng dữ liệu với thẻ ở màn hẹp, chỉ khác cách bày: tên, email, vai trò,
+  /// trạng thái và cùng một menu thao tác.
+  List<AdaptiveColumn<Map<String, dynamic>>> _userColumns() {
+    return [
+      AdaptiveColumn(
+        label: 'Người dùng',
+        minWidth: 200,
+        cell: (context, user) {
+          final name = user['name']?.toString().trim() ?? '';
+          return Row(
+            children: [
+              CircleAvatar(
+                radius: 14,
+                backgroundColor: _getRoleColor(user['role']),
+                child: Text(
+                  name.isEmpty ? '?' : name.characters.first.toUpperCase(),
+                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: Text(
+                  name.isEmpty ? 'Chưa đặt tên' : name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+      AdaptiveColumn(
+        label: 'Email',
+        minWidth: 220,
+        cell: (context, user) => Text(
+          user['email']?.toString() ?? '',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Vai trò',
+        width: 110,
+        cell: (context, user) => Text(user['role']?.toString() ?? 'user'),
+      ),
+      AdaptiveColumn(
+        label: 'Trạng thái',
+        width: 120,
+        cell: (context, user) => _buildStatusBadge(user['status']),
+      ),
+      AdaptiveColumn(
+        label: 'Thao tác',
+        width: 72,
+        alignEnd: true,
+        cell: (context, user) => _buildUserActionsMenu(user),
+      ),
+    ];
   }
 
   Widget _buildFilterChip(String label, String value) {
@@ -229,53 +349,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
           ],
         ),
         subtitle: Text(user['email']),
-        trailing: PopupMenuButton(
-          itemBuilder: (context) => [
-            const PopupMenuItem(
-              value: 'view',
-              child: Row(
-                children: [
-                  Icon(Icons.visibility, size: 20),
-                  SizedBox(width: 8),
-                  Text('Xem chi tiết'),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              value: 'promote',
-              child: Row(
-                children: [
-                  const Icon(Icons.admin_panel_settings, size: 20),
-                  const SizedBox(width: 8),
-                  Text(user['role'] == 'admin'
-                      ? 'Hạ quyền User'
-                      : 'Nâng quyền Admin'),
-                ],
-              ),
-            ),
-            const PopupMenuItem(
-              value: 'ban',
-              child: Row(
-                children: [
-                  Icon(Icons.block, size: 20, color: Colors.red),
-                  SizedBox(width: 8),
-                  Text('Khóa/Mở khóa', style: TextStyle(color: Colors.red)),
-                ],
-              ),
-            ),
-            const PopupMenuItem(
-              value: 'delete',
-              child: Row(
-                children: [
-                  Icon(Icons.delete, size: 20, color: Colors.red),
-                  SizedBox(width: 8),
-                  Text('Xóa User', style: TextStyle(color: Colors.red)),
-                ],
-              ),
-            ),
-          ],
-          onSelected: (value) => _handleUserAction(value.toString(), user),
-        ),
+        trailing: _buildUserActionsMenu(user),
         children: [
           Padding(
             padding: const EdgeInsets.all(16),

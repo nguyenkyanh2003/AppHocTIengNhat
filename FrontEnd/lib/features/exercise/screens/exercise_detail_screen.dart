@@ -133,7 +133,10 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     });
 
     if (success && mounted) {
-      context.pushReplacement('/exercise/result');
+      final resultId = provider.currentResult?.id;
+      if (resultId != null) {
+        context.pushReplacement('/exercise/result/$resultId');
+      }
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

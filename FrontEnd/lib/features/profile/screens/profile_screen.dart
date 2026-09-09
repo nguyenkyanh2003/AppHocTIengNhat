@@ -357,6 +357,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
+                  autofocus: true,
                   controller: fullNameController,
                   decoration: InputDecoration(
                     labelText: 'Họ tên',

@@ -60,3 +60,17 @@ jobs:
       # lúc chuẩn bị demo.
       - name: Build web
         run: flutter build web --release
+
+      # Điều hướng bằng URL chỉ tồn tại trên trình duyệt: link trực tiếp, nút
+      # Back, và link đặt lại mật khẩu trong email. Test widget không chạm tới
+      # được, nên phải chạy trong Chrome thật.
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@v2
+
+      - name: Start ChromeDriver
+        run: chromedriver --port=4444 &
+
+      # Bộ này cố ý chỉ kiểm luồng **chưa đăng nhập** nên không cần backend:
+      # không có token thì `AuthProvider.init()` không gọi mạng lần nào.
+      - name: Web integration tests
+        run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/web_navigation_test.dart -d web-server --browser-name=chrome --headless

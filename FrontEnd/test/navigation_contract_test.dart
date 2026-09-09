@@ -46,7 +46,7 @@ void main() {
         '/grammar',
         '/grammar/:id',
         '/exercise',
-        '/exercise/result',
+        '/exercise/result/:resultId',
         '/exercise/:id',
         '/exercise-history',
         '/jlpt',

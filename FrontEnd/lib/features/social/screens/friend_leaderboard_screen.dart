@@ -411,6 +411,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
       builder: (context) => AlertDialog(
         title: const Text('Thêm Bạn'),
         content: TextField(
+          autofocus: true,
           controller: controller,
           decoration: const InputDecoration(
             hintText: 'Nhập tên hoặc ID người dùng',

@@ -985,6 +985,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
                 ),
                 const SizedBox(height: 20),
                 TextField(
+                  autofocus: true,
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Tên nhóm *',
