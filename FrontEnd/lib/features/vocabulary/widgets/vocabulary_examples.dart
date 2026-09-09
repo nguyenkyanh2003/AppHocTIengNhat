@@ -37,8 +37,7 @@ class VocabularyExamples extends StatelessWidget {
               onPlayAudio:
                   onPlayAudio == null ? null : () => onPlayAudio!(example),
             ),
-            if (example != examples.last)
-              const Divider(height: AppSpacing.xl),
+            if (example != examples.last) const Divider(height: AppSpacing.xl),
           ],
         ],
       ),

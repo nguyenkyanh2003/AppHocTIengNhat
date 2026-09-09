@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../providers/auth_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -73,23 +76,24 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
-      appBar: AppBar(
-        title: const Text('Quên mật khẩu'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
+    return AppScaffold(
+      title: 'Quên mật khẩu',
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () => Navigator.pop(context),
       ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24.0),
-            child: _emailSent ? _buildSuccessView() : _buildFormView(),
+            child: ContentPane(
+              maxWidth: AppContentWidth.form,
+              padding: const EdgeInsets.all(AppSpacing.xl),
+              child: _emailSent ? _buildSuccessView() : _buildFormView(),
+            ),
           ),
         ),
       ),
+      backgroundColor: AppTheme.backgroundColor,
     );
   }
 

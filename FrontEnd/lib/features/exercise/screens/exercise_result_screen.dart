@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/exercise_provider.dart';
 import '../models/exercise.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class ExerciseResultScreen extends StatelessWidget {
   const ExerciseResultScreen({super.key});
@@ -14,9 +17,11 @@ class ExerciseResultScreen extends StatelessWidget {
         final exercise = provider.currentExercise;
 
         if (result == null || exercise == null) {
-          return Scaffold(
-            appBar: AppBar(title: const Text('Kết quả')),
-            body: const Center(child: Text('Không có dữ liệu')),
+          return const AppScaffold(
+            title: 'Kết quả',
+            body: ContentWidthLimit(
+              child: Center(child: Text('Không có dữ liệu')),
+            ),
           );
         }
 
@@ -26,42 +31,44 @@ class ExerciseResultScreen extends StatelessWidget {
         final totalQuestions = result.totalQuestions;
 
         return Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  isPassed ? Colors.green.shade50 : Colors.red.shade50,
-                  Colors.white,
-                ],
+          body: ContentWidthLimit(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    isPassed ? Colors.green.shade50 : Colors.red.shade50,
+                    Colors.white,
+                  ],
+                ),
               ),
-            ),
-            child: SafeArea(
-              child: Column(
-                children: [
-                  _buildAppBar(context),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          _buildResultCard(
-                            isPassed,
-                            score,
-                            correctCount,
-                            totalQuestions,
-                            result.timeSpent,
-                          ),
-                          const SizedBox(height: 24),
-                          _buildAnswerReview(exercise, result),
-                          const SizedBox(height: 24),
-                          _buildActionButtons(context),
-                        ],
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    _buildAppBar(context),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          children: [
+                            _buildResultCard(
+                              isPassed,
+                              score,
+                              correctCount,
+                              totalQuestions,
+                              result.timeSpent,
+                            ),
+                            const SizedBox(height: 24),
+                            _buildAnswerReview(exercise, result),
+                            const SizedBox(height: 24),
+                            _buildActionButtons(context),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -78,7 +85,7 @@ class ExerciseResultScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.close, color: Colors.black87),
             onPressed: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
+              context.go('/home');
             },
           ),
           const Text(
@@ -465,7 +472,7 @@ class ExerciseResultScreen extends StatelessWidget {
           height: 50,
           child: ElevatedButton.icon(
             onPressed: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
+              context.go('/home');
             },
             icon: const Icon(Icons.home),
             label: const Text('Về trang chủ'),

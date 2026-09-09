@@ -109,7 +109,8 @@ void main() {
 
     test('đổi thất bại thì giữ nguyên phiên và có thông báo lỗi', () async {
       final service = _FakeAuthService()
-        ..changePasswordError = UnauthorizedException('Mật khẩu cũ không chính xác.');
+        ..changePasswordError =
+            UnauthorizedException('Mật khẩu cũ không chính xác.');
       final provider = await _signedInProvider(service);
 
       final ok = await provider.changePassword('sai', 'mat-khau-moi');
@@ -154,8 +155,8 @@ void main() {
 
     test('token hết hạn hoặc đã dùng trả về lỗi đọc được', () async {
       final service = _FakeAuthService()
-        ..resetPasswordError =
-            UnauthorizedException('Token đã được sử dụng hoặc không còn hợp lệ.');
+        ..resetPasswordError = UnauthorizedException(
+            'Token đã được sử dụng hoặc không còn hợp lệ.');
       final provider = AuthProvider(authService: service);
 
       final ok = await provider.resetPassword('token-cu', 'mat-khau-moi');

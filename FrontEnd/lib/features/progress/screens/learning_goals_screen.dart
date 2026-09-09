@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class LearningGoal {
   final String id;
@@ -89,91 +92,91 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mục Tiêu Học Tập'),
-        elevation: 0,
-      ),
+    return AppScaffold(
+      title: 'Mục Tiêu Học Tập',
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Overall progress
-            Container(
-              margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blue.withValues(alpha: 0.8),
-                    Colors.purple.withValues(alpha: 0.8)
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  const Text(
-                    'Tiến Độ Chung',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    '${(goals.where((g) => g.isCompleted).length)}/${goals.length}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'mục tiêu đạt được',
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                ],
-              ),
-            ),
-
-            // Goals list
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Các Mục Tiêu',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: _showAddGoalDialog,
-                        icon: const Icon(Icons.add, size: 18),
-                        label: const Text('Thêm'),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
-                          ),
-                        ),
-                      ),
+        child: ContentPane(
+          maxWidth: AppContentWidth.dashboard,
+          child: Column(
+            children: [
+              // Overall progress
+              Container(
+                margin: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.blue.withValues(alpha: 0.8),
+                      Colors.purple.withValues(alpha: 0.8)
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  ...goals.map((goal) => _buildGoalCard(goal)).toList(),
-                ],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Tiến Độ Chung',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      '${(goals.where((g) => g.isCompleted).length)}/${goals.length}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'mục tiêu đạt được',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 24),
-          ],
+
+              // Goals list
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Các Mục Tiêu',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        ElevatedButton.icon(
+                          onPressed: _showAddGoalDialog,
+                          icon: const Icon(Icons.add, size: 18),
+                          label: const Text('Thêm'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    ...goals.map((goal) => _buildGoalCard(goal)).toList(),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 
 import '../../../core/files/file_saver.dart';
 import '../../../core/network/api_client.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class ExportScreen extends StatefulWidget {
   const ExportScreen({super.key});
@@ -54,103 +57,107 @@ class _ExportScreenState extends State<ExportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Xuất dữ liệu')),
-      body: ListView(
+    return AppScaffold(
+      title: 'Xuất dữ liệu',
+      body: ContentPaneList(
+        maxWidth: AppContentWidth.dashboard,
         padding: const EdgeInsets.all(16),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.blue.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(16),
+        builder: (context, padding) => ListView(
+          padding: padding,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blue.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Column(
+                children: [
+                  Icon(Icons.download, size: 52, color: Colors.blue),
+                  SizedBox(height: 12),
+                  Text(
+                    'Sao lưu dữ liệu học tập',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 6),
+                  Text(
+                    'Dữ liệu được lấy trực tiếp từ tài khoản tại thời điểm xuất.',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-            child: const Column(
-              children: [
-                Icon(Icons.download, size: 52, color: Colors.blue),
-                SizedBox(height: 12),
-                Text(
-                  'Sao lưu dữ liệu học tập',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            const SizedBox(height: 24),
+            const Text(
+              'Chọn loại dữ liệu',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            ..._types.entries.map((entry) {
+              final info = entry.value;
+              return Card(
+                child: RadioListTile<String>(
+                  value: entry.key,
+                  groupValue: _selectedType,
+                  onChanged: _isExporting
+                      ? null
+                      : (value) => setState(() => _selectedType = value!),
+                  secondary: Icon(info.$3),
+                  title: Text(info.$1),
+                  subtitle: Text(info.$2),
                 ),
-                SizedBox(height: 6),
-                Text(
-                  'Dữ liệu được lấy trực tiếp từ tài khoản tại thời điểm xuất.',
-                  textAlign: TextAlign.center,
+              );
+            }),
+            const SizedBox(height: 20),
+            const Text(
+              'Định dạng tệp',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            SegmentedButton<String>(
+              segments: const [
+                ButtonSegment(
+                  value: 'json',
+                  icon: Icon(Icons.data_object),
+                  label: Text('JSON'),
+                ),
+                ButtonSegment(
+                  value: 'csv',
+                  icon: Icon(Icons.table_view),
+                  label: Text('CSV'),
                 ),
               ],
+              selected: {_selectedFormat},
+              onSelectionChanged: _isExporting
+                  ? null
+                  : (values) => setState(() => _selectedFormat = values.single),
             ),
-          ),
-          const SizedBox(height: 24),
-          const Text(
-            'Chọn loại dữ liệu',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          ..._types.entries.map((entry) {
-            final info = entry.value;
-            return Card(
-              child: RadioListTile<String>(
-                value: entry.key,
-                groupValue: _selectedType,
-                onChanged: _isExporting
-                    ? null
-                    : (value) => setState(() => _selectedType = value!),
-                secondary: Icon(info.$3),
-                title: Text(info.$1),
-                subtitle: Text(info.$2),
-              ),
-            );
-          }),
-          const SizedBox(height: 20),
-          const Text(
-            'Định dạng tệp',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          SegmentedButton<String>(
-            segments: const [
-              ButtonSegment(
-                value: 'json',
-                icon: Icon(Icons.data_object),
-                label: Text('JSON'),
-              ),
-              ButtonSegment(
-                value: 'csv',
-                icon: Icon(Icons.table_view),
-                label: Text('CSV'),
-              ),
-            ],
-            selected: {_selectedFormat},
-            onSelectionChanged: _isExporting
-                ? null
-                : (values) => setState(() => _selectedFormat = values.single),
-          ),
-          const SizedBox(height: 24),
-          FilledButton.icon(
-            onPressed: _isExporting ? null : _exportToFile,
-            icon: _isExporting
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.download),
-            label: Text(_isExporting ? 'Đang xuất...' : 'Xuất tệp'),
-          ),
-          const SizedBox(height: 10),
-          OutlinedButton.icon(
-            onPressed: _isExporting ? null : _copyJson,
-            icon: const Icon(Icons.content_copy),
-            label: const Text('Sao chép JSON'),
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'CSV dùng hai cột “section” và “data”; dữ liệu lồng nhau được giữ dưới dạng JSON để không bị mất trường.',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey),
-          ),
-        ],
+            const SizedBox(height: 24),
+            FilledButton.icon(
+              onPressed: _isExporting ? null : _exportToFile,
+              icon: _isExporting
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.download),
+              label: Text(_isExporting ? 'Đang xuất...' : 'Xuất tệp'),
+            ),
+            const SizedBox(height: 10),
+            OutlinedButton.icon(
+              onPressed: _isExporting ? null : _copyJson,
+              icon: const Icon(Icons.content_copy),
+              label: const Text('Sao chép JSON'),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'CSV dùng hai cột “section” và “data”; dữ liệu lồng nhau được giữ dưới dạng JSON để không bị mất trường.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+          ],
+        ),
       ),
     );
   }

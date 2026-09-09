@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AdminReportManagementScreen extends StatefulWidget {
   const AdminReportManagementScreen({Key? key}) : super(key: key);
@@ -24,93 +26,93 @@ class _AdminReportManagementScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quản Lý Reports'),
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => context.read<AdminProvider>().loadReports(),
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: _showFilterDialog,
-          ),
-        ],
-      ),
-      body: Consumer<AdminProvider>(
-        builder: (context, adminProvider, child) {
-          final allReports = adminProvider.reports;
+    return AppScaffold(
+      title: 'Quản Lý Reports',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: () => context.read<AdminProvider>().loadReports(),
+        ),
+        IconButton(
+          icon: const Icon(Icons.filter_list),
+          onPressed: _showFilterDialog,
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<AdminProvider>(
+          builder: (context, adminProvider, child) {
+            final allReports = adminProvider.reports;
 
-          final filteredReports = _selectedStatus == 'all'
-              ? allReports
-              : allReports
-                  .where((r) => r['status'] == _selectedStatus)
-                  .toList();
+            final filteredReports = _selectedStatus == 'all'
+                ? allReports
+                : allReports
+                    .where((r) => r['status'] == _selectedStatus)
+                    .toList();
 
-          return Column(
-            children: [
-              // Stats Bar
-              Container(
-                padding: const EdgeInsets.all(16),
-                color: Colors.grey[100],
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildStatCard('${allReports.length}', 'Tổng', Colors.blue),
-                    _buildStatCard(
-                        '${allReports.where((r) => r['status'] == 'pending').length}',
-                        'Chờ xử lý',
-                        Colors.orange),
-                    _buildStatCard(
-                        '${allReports.where((r) => r['status'] == 'in_progress').length}',
-                        'Đang xử lý',
-                        Colors.purple),
-                    _buildStatCard(
-                        '${allReports.where((r) => r['status'] == 'resolved').length}',
-                        'Đã xong',
-                        Colors.green),
-                  ],
-                ),
-              ),
-
-              // Status Filter
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+            return Column(
+              children: [
+                // Stats Bar
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  color: Colors.grey[100],
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildStatusChip('Tất cả', 'all', Colors.grey),
-                      _buildStatusChip('Chờ xử lý', 'pending', Colors.orange),
-                      _buildStatusChip(
-                          'Đang xử lý', 'in_progress', Colors.purple),
-                      _buildStatusChip('Đã xong', 'resolved', Colors.green),
+                      _buildStatCard(
+                          '${allReports.length}', 'Tổng', Colors.blue),
+                      _buildStatCard(
+                          '${allReports.where((r) => r['status'] == 'pending').length}',
+                          'Chờ xử lý',
+                          Colors.orange),
+                      _buildStatCard(
+                          '${allReports.where((r) => r['status'] == 'in_progress').length}',
+                          'Đang xử lý',
+                          Colors.purple),
+                      _buildStatCard(
+                          '${allReports.where((r) => r['status'] == 'resolved').length}',
+                          'Đã xong',
+                          Colors.green),
                     ],
                   ),
                 ),
-              ),
 
-              // Reports List
-              Expanded(
-                child: adminProvider.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : filteredReports.isEmpty
-                        ? const Center(child: Text('Không có reports nào'))
-                        : ListView.builder(
-                            padding: const EdgeInsets.all(16),
-                            itemCount: filteredReports.length,
-                            itemBuilder: (context, index) {
-                              final report = filteredReports[index];
-                              return _buildReportCard(report);
-                            },
-                          ),
-              ),
-            ],
-          );
-        },
+                // Status Filter
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _buildStatusChip('Tất cả', 'all', Colors.grey),
+                        _buildStatusChip('Chờ xử lý', 'pending', Colors.orange),
+                        _buildStatusChip(
+                            'Đang xử lý', 'in_progress', Colors.purple),
+                        _buildStatusChip('Đã xong', 'resolved', Colors.green),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Reports List
+                Expanded(
+                  child: adminProvider.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : filteredReports.isEmpty
+                          ? const Center(child: Text('Không có reports nào'))
+                          : ListView.builder(
+                              padding: const EdgeInsets.all(16),
+                              itemCount: filteredReports.length,
+                              itemBuilder: (context, index) {
+                                final report = filteredReports[index];
+                                return _buildReportCard(report);
+                              },
+                            ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

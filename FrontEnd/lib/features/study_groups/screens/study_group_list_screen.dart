@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/study_group_provider.dart';
 import '../../auth/providers/auth_provider.dart';
-import './group_detail_screen.dart';
-import './create_group_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class StudyGroupListScreen extends StatefulWidget {
   const StudyGroupListScreen({Key? key}) : super(key: key);
@@ -54,98 +55,93 @@ class _StudyGroupListScreenState extends State<StudyGroupListScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Nhóm học'),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.05),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+    return AppScaffold(
+      title: 'Nhóm học',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: _showSearchDialog,
+        ),
+        IconButton(
+          icon: const Icon(Icons.filter_list),
+          onPressed: _showFilterDialog,
+        ),
+      ],
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.05),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: TabBar(
+            controller: _tabController,
+            labelColor: Colors.blue[700],
+            unselectedLabelColor: Colors.grey[600],
+            indicatorColor: Colors.blue[700],
+            indicatorWeight: 3,
+            labelStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
             ),
-            child: TabBar(
-              controller: _tabController,
-              labelColor: Colors.blue[700],
-              unselectedLabelColor: Colors.grey[600],
-              indicatorColor: Colors.blue[700],
-              indicatorWeight: 3,
-              labelStyle: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              ),
-              unselectedLabelStyle: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
-              indicator: BoxDecoration(
-                color: Colors.blue[50],
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.blue[700]!,
-                    width: 3,
-                  ),
-                ),
-              ),
-              tabs: const [
-                Tab(
-                  height: 60,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.group, size: 22),
-                      SizedBox(height: 4),
-                      Text('Nhóm của tôi'),
-                    ],
-                  ),
-                ),
-                Tab(
-                  height: 60,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.explore, size: 22),
-                      SizedBox(height: 4),
-                      Text('Khám phá'),
-                    ],
-                  ),
-                ),
-              ],
+            unselectedLabelStyle: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
             ),
+            indicator: BoxDecoration(
+              color: Colors.blue[50],
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.blue[700]!,
+                  width: 3,
+                ),
+              ),
+            ),
+            tabs: const [
+              Tab(
+                height: 60,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.group, size: 22),
+                    SizedBox(height: 4),
+                    Text('Nhóm của tôi'),
+                  ],
+                ),
+              ),
+              Tab(
+                height: 60,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.explore, size: 22),
+                    SizedBox(height: 4),
+                    Text('Khám phá'),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: _showSearchDialog,
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: _showFilterDialog,
-          ),
-        ],
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          _buildMyGroupsTab(),
-          _buildAllGroupsTab(),
-        ],
+      body: ContentWidthLimit(
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            _buildMyGroupsTab(),
+            _buildAllGroupsTab(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const CreateGroupScreen(),
-            ),
-          ).then((created) {
+          context.push('/study-groups/new').then((created) {
             if (!mounted) return;
             if (created == true) {
               final provider = this.context.read<StudyGroupProvider>();
@@ -262,12 +258,7 @@ class _StudyGroupListScreenState extends State<StudyGroupListScreen>
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => GroupDetailScreen(groupId: group.id),
-            ),
-          );
+          context.push('/study-groups/${group.id}');
         },
         child: Container(
           padding: const EdgeInsets.all(16),

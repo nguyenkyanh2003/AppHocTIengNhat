@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/streak_provider.dart';
 import '../models/leaderboard.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({Key? key}) : super(key: key);
@@ -32,73 +34,73 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bảng xếp hạng'),
-        actions: [
-          PopupMenuButton<String>(
-            initialValue: _selectedPeriod,
-            onSelected: (value) {
-              setState(() {
-                _selectedPeriod = value;
-              });
-              _loadLeaderboard();
-            },
-            itemBuilder: (context) {
-              return _periods.entries.map((entry) {
-                return PopupMenuItem<String>(
-                  value: entry.key,
-                  child: Text(entry.value),
-                );
-              }).toList();
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  Text(
-                    _periods[_selectedPeriod]!,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  const Icon(Icons.arrow_drop_down),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Consumer<StreakProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading && provider.leaderboard.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (provider.leaderboard.isEmpty) {
-            return const Center(
-              child: Text('Chưa có dữ liệu bảng xếp hạng'),
-            );
-          }
-
-          return RefreshIndicator(
-            onRefresh: _loadLeaderboard,
-            child: Column(
+    return AppScaffold(
+      title: 'Bảng xếp hạng',
+      actions: [
+        PopupMenuButton<String>(
+          initialValue: _selectedPeriod,
+          onSelected: (value) {
+            setState(() {
+              _selectedPeriod = value;
+            });
+            _loadLeaderboard();
+          },
+          itemBuilder: (context) {
+            return _periods.entries.map((entry) {
+              return PopupMenuItem<String>(
+                value: entry.key,
+                child: Text(entry.value),
+              );
+            }).toList();
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
               children: [
-                if (provider.userRank != null) _buildUserRankCard(provider),
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: provider.leaderboard.length,
-                    itemBuilder: (context, index) {
-                      return _buildLeaderboardItem(
-                        provider.leaderboard[index],
-                      );
-                    },
-                  ),
+                Text(
+                  _periods[_selectedPeriod]!,
+                  style: const TextStyle(fontSize: 14),
                 ),
+                const Icon(Icons.arrow_drop_down),
               ],
             ),
-          );
-        },
+          ),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<StreakProvider>(
+          builder: (context, provider, child) {
+            if (provider.isLoading && provider.leaderboard.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (provider.leaderboard.isEmpty) {
+              return const Center(
+                child: Text('Chưa có dữ liệu bảng xếp hạng'),
+              );
+            }
+
+            return RefreshIndicator(
+              onRefresh: _loadLeaderboard,
+              child: Column(
+                children: [
+                  if (provider.userRank != null) _buildUserRankCard(provider),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: provider.leaderboard.length,
+                      itemBuilder: (context, index) {
+                        return _buildLeaderboardItem(
+                          provider.leaderboard[index],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

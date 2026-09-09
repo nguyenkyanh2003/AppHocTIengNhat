@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/achievement_provider.dart';
 import '../models/achievement.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AchievementScreen extends StatefulWidget {
   const AchievementScreen({Key? key}) : super(key: key);
@@ -59,37 +61,37 @@ class _AchievementScreenState extends State<AchievementScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Thành tích'),
-        bottom: TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          tabs: _categories.map((cat) {
-            return Tab(text: _categoryNames[cat]);
-          }).toList(),
-        ),
+    return AppScaffold(
+      title: 'Thành tích',
+      bottom: TabBar(
+        controller: _tabController,
+        isScrollable: true,
+        tabs: _categories.map((cat) {
+          return Tab(text: _categoryNames[cat]);
+        }).toList(),
       ),
-      body: Consumer<AchievementProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading && provider.earnedAchievements.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: ContentWidthLimit(
+        child: Consumer<AchievementProvider>(
+          builder: (context, provider, child) {
+            if (provider.isLoading && provider.earnedAchievements.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          return Column(
-            children: [
-              _buildStatsHeader(provider),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: _categories.map((category) {
-                    return _buildAchievementList(provider, category);
-                  }).toList(),
+            return Column(
+              children: [
+                _buildStatsHeader(provider),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: _categories.map((category) {
+                      return _buildAchievementList(provider, category);
+                    }).toList(),
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }

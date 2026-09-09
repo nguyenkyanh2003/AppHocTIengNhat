@@ -6,6 +6,8 @@ import '../../../core/files/file_saver.dart';
 import '../providers/admin_provider.dart';
 import '../utils/admin_content_csv.dart';
 import '../widgets/excel_import_options_dialog.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AdminContentManagementScreen extends StatefulWidget {
   const AdminContentManagementScreen({super.key});
@@ -58,101 +60,101 @@ class _AdminContentManagementScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quản lý nội dung'),
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _loadContent,
-            tooltip: 'Làm mới',
-          ),
-          IconButton(
-            icon: const Icon(Icons.upload_file),
-            onPressed: _showImportDialog,
-            tooltip: 'Import dữ liệu',
-          ),
-          IconButton(
-            icon: const Icon(Icons.download),
-            onPressed: _exportContent,
-            tooltip: 'Xuất CSV',
-          ),
-        ],
-      ),
-      body: Consumer<AdminProvider>(
-        builder: (context, provider, child) {
-          final content = _contentOf(provider);
-          final search = _searchController.text.trim().toLowerCase();
-          final filtered = search.isEmpty
-              ? content
-              : content.where((item) {
-                  return item.values.any(
-                    (value) => value.toString().toLowerCase().contains(search),
-                  );
-                }).toList();
+    return AppScaffold(
+      title: 'Quản lý nội dung',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: _loadContent,
+          tooltip: 'Làm mới',
+        ),
+        IconButton(
+          icon: const Icon(Icons.upload_file),
+          onPressed: _showImportDialog,
+          tooltip: 'Import dữ liệu',
+        ),
+        IconButton(
+          icon: const Icon(Icons.download),
+          onPressed: _exportContent,
+          tooltip: 'Xuất CSV',
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<AdminProvider>(
+          builder: (context, provider, child) {
+            final content = _contentOf(provider);
+            final search = _searchController.text.trim().toLowerCase();
+            final filtered = search.isEmpty
+                ? content
+                : content.where((item) {
+                    return item.values.any(
+                      (value) =>
+                          value.toString().toLowerCase().contains(search),
+                    );
+                  }).toList();
 
-          return Column(
-            children: [
-              _buildTypeSelector(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                child: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText:
-                        'Tìm kiếm ${_typeLabel(_selectedContentType).toLowerCase()}...',
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: search.isEmpty
-                        ? null
-                        : IconButton(
-                            onPressed: () {
-                              _searchController.clear();
-                              setState(() {});
-                            },
-                            icon: const Icon(Icons.clear),
-                          ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+            return Column(
+              children: [
+                _buildTypeSelector(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText:
+                          'Tìm kiếm ${_typeLabel(_selectedContentType).toLowerCase()}...',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: search.isEmpty
+                          ? null
+                          : IconButton(
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.clear),
+                            ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
+                    onChanged: (_) => setState(() {}),
                   ),
-                  onChanged: (_) => setState(() {}),
                 ),
-              ),
-              _buildStats(filtered),
-              if (provider.error != null)
-                MaterialBanner(
-                  content: Text(provider.error!),
-                  leading: const Icon(Icons.error_outline, color: Colors.red),
-                  actions: [
-                    TextButton(
-                      onPressed: provider.clearError,
-                      child: const Text('Đóng'),
-                    ),
-                  ],
+                _buildStats(filtered),
+                if (provider.error != null)
+                  MaterialBanner(
+                    content: Text(provider.error!),
+                    leading: const Icon(Icons.error_outline, color: Colors.red),
+                    actions: [
+                      TextButton(
+                        onPressed: provider.clearError,
+                        child: const Text('Đóng'),
+                      ),
+                    ],
+                  ),
+                Expanded(
+                  child: provider.isLoadingContent
+                      ? const Center(child: CircularProgressIndicator())
+                      : filtered.isEmpty
+                          ? Center(
+                              child: Text(
+                                'Không có ${_typeLabel(_selectedContentType).toLowerCase()}',
+                              ),
+                            )
+                          : RefreshIndicator(
+                              onRefresh: _loadContent,
+                              child: ListView.builder(
+                                padding: const EdgeInsets.all(16),
+                                itemCount: filtered.length,
+                                itemBuilder: (context, index) =>
+                                    _buildContentCard(filtered[index]),
+                              ),
+                            ),
                 ),
-              Expanded(
-                child: provider.isLoadingContent
-                    ? const Center(child: CircularProgressIndicator())
-                    : filtered.isEmpty
-                        ? Center(
-                            child: Text(
-                              'Không có ${_typeLabel(_selectedContentType).toLowerCase()}',
-                            ),
-                          )
-                        : RefreshIndicator(
-                            onRefresh: _loadContent,
-                            child: ListView.builder(
-                              padding: const EdgeInsets.all(16),
-                              itemCount: filtered.length,
-                              itemBuilder: (context, index) =>
-                                  _buildContentCard(filtered[index]),
-                            ),
-                          ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showEditor(),

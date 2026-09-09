@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/search_provider.dart';
-import '../../vocabulary/screens/vocabulary_detail_screen.dart';
-import '../../kanji/screens/kanji_detail_screen.dart';
-import '../../grammar/screens/grammar_detail_screen.dart';
 import '../services/search_service.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -31,29 +31,13 @@ class _SearchScreenState extends State<SearchScreen> {
   void _navigateToDetail(BuildContext context, SearchResult result) {
     switch (result.type) {
       case 'vocabulary':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                VocabularyDetailScreen(vocabularyId: result.id),
-          ),
-        );
+        context.push('/vocabulary/${result.id}');
         break;
       case 'kanji':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => KanjiDetailScreen(kanjiId: result.id),
-          ),
-        );
+        context.push('/kanji/${result.id}');
         break;
       case 'grammar':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => GrammarDetailScreen(grammarId: result.id),
-          ),
-        );
+        context.push('/grammar/${result.id}');
         break;
       // Add other types as needed
     }
@@ -61,90 +45,90 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tìm Kiếm'),
-        elevation: 0,
-      ),
-      body: Consumer<SearchProvider>(
-        builder: (context, provider, _) {
-          return Column(
-            children: [
-              // Search bar
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Tìm từ vựng, kanji, bài học...',
-                    prefixIcon: const Icon(Icons.search),
-                    suffixIcon: _searchController.text.isNotEmpty
-                        ? IconButton(
-                            icon: const Icon(Icons.clear),
-                            onPressed: () {
-                              _searchController.clear();
-                              provider.clearSearch();
-                            },
-                          )
-                        : null,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+    return AppScaffold(
+      title: 'Tìm Kiếm',
+      body: ContentWidthLimit(
+        child: Consumer<SearchProvider>(
+          builder: (context, provider, _) {
+            return Column(
+              children: [
+                // Search bar
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: 'Tìm từ vựng, kanji, bài học...',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _searchController.clear();
+                                provider.clearSearch();
+                              },
+                            )
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
+                    onChanged: (value) {
+                      setState(() {});
+                      provider.search(value);
+                    },
                   ),
-                  onChanged: (value) {
-                    setState(() {});
-                    provider.search(value);
-                  },
                 ),
-              ),
 
-              // Results
-              Expanded(
-                child: provider.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : provider.error != null
-                        ? Center(
-                            child: Text(provider.error ?? ''),
-                          )
-                        : provider.searchResults.isEmpty
-                            ? Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.search_off,
-                                      size: 64,
-                                      color: Colors.grey[400],
-                                    ),
-                                    const SizedBox(height: 16),
-                                    Text(
-                                      _searchController.text.isEmpty
-                                          ? 'Nhập từ khóa để tìm kiếm'
-                                          : 'Không tìm thấy kết quả',
-                                      style: TextStyle(
-                                        color: Colors.grey[600],
-                                        fontSize: 16,
+                // Results
+                Expanded(
+                  child: provider.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : provider.error != null
+                          ? Center(
+                              child: Text(provider.error ?? ''),
+                            )
+                          : provider.searchResults.isEmpty
+                              ? Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.search_off,
+                                        size: 64,
+                                        color: Colors.grey[400],
                                       ),
-                                    ),
-                                  ],
+                                      const SizedBox(height: 16),
+                                      Text(
+                                        _searchController.text.isEmpty
+                                            ? 'Nhập từ khóa để tìm kiếm'
+                                            : 'Không tìm thấy kết quả',
+                                        style: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : ListView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  itemCount: provider.searchResults.length,
+                                  itemBuilder: (context, index) {
+                                    final result =
+                                        provider.searchResults[index];
+                                    return _buildSearchResultCard(
+                                      context,
+                                      result,
+                                    );
+                                  },
                                 ),
-                              )
-                            : ListView.builder(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                itemCount: provider.searchResults.length,
-                                itemBuilder: (context, index) {
-                                  final result = provider.searchResults[index];
-                                  return _buildSearchResultCard(
-                                    context,
-                                    result,
-                                  );
-                                },
-                              ),
-              ),
-            ],
-          );
-        },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

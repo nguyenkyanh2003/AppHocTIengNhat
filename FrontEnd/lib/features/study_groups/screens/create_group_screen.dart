@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/study_group_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class CreateGroupScreen extends StatefulWidget {
   const CreateGroupScreen({Key? key}) : super(key: key);
@@ -28,114 +30,114 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tạo nhóm mới'),
-      ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            TextFormField(
-              controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Tên nhóm *',
-                hintText: 'Nhập tên nhóm học',
-                prefixIcon: Icon(Icons.group),
-                border: OutlineInputBorder(),
+    return AppScaffold(
+      title: 'Tạo nhóm mới',
+      body: ContentWidthLimit(
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Tên nhóm *',
+                  hintText: 'Nhập tên nhóm học',
+                  prefixIcon: Icon(Icons.group),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Vui lòng nhập tên nhóm';
+                  }
+                  return null;
+                },
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Vui lòng nhập tên nhóm';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 16),
-            TextFormField(
-              controller: _descriptionController,
-              decoration: const InputDecoration(
-                labelText: 'Mô tả',
-                hintText: 'Mô tả về nhóm học',
-                prefixIcon: Icon(Icons.description),
-                border: OutlineInputBorder(),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _descriptionController,
+                decoration: const InputDecoration(
+                  labelText: 'Mô tả',
+                  hintText: 'Mô tả về nhóm học',
+                  prefixIcon: Icon(Icons.description),
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: 3,
               ),
-              maxLines: 3,
-            ),
-            const SizedBox(height: 16),
-            DropdownButtonFormField<String>(
-              value: _selectedLevel,
-              decoration: const InputDecoration(
-                labelText: 'Cấp độ',
-                prefixIcon: Icon(Icons.school),
-                border: OutlineInputBorder(),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                value: _selectedLevel,
+                decoration: const InputDecoration(
+                  labelText: 'Cấp độ',
+                  prefixIcon: Icon(Icons.school),
+                  border: OutlineInputBorder(),
+                ),
+                items: const [
+                  DropdownMenuItem(value: 'ALL', child: Text('Tất cả cấp độ')),
+                  DropdownMenuItem(value: 'N5', child: Text('JLPT N5')),
+                  DropdownMenuItem(value: 'N4', child: Text('JLPT N4')),
+                  DropdownMenuItem(value: 'N3', child: Text('JLPT N3')),
+                  DropdownMenuItem(value: 'N2', child: Text('JLPT N2')),
+                  DropdownMenuItem(value: 'N1', child: Text('JLPT N1')),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    setState(() => _selectedLevel = value);
+                  }
+                },
               ),
-              items: const [
-                DropdownMenuItem(value: 'ALL', child: Text('Tất cả cấp độ')),
-                DropdownMenuItem(value: 'N5', child: Text('JLPT N5')),
-                DropdownMenuItem(value: 'N4', child: Text('JLPT N4')),
-                DropdownMenuItem(value: 'N3', child: Text('JLPT N3')),
-                DropdownMenuItem(value: 'N2', child: Text('JLPT N2')),
-                DropdownMenuItem(value: 'N1', child: Text('JLPT N1')),
-              ],
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() => _selectedLevel = value);
-                }
-              },
-            ),
-            const SizedBox(height: 16),
-            TextFormField(
-              initialValue: _maxMembers.toString(),
-              decoration: const InputDecoration(
-                labelText: 'Số thành viên tối đa',
-                prefixIcon: Icon(Icons.people),
-                border: OutlineInputBorder(),
+              const SizedBox(height: 16),
+              TextFormField(
+                initialValue: _maxMembers.toString(),
+                decoration: const InputDecoration(
+                  labelText: 'Số thành viên tối đa',
+                  prefixIcon: Icon(Icons.people),
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Vui lòng nhập số thành viên';
+                  }
+                  final number = int.tryParse(value);
+                  if (number == null || number < 2 || number > 500) {
+                    return 'Số thành viên phải từ 2-500';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  final number = int.tryParse(value);
+                  if (number != null) {
+                    _maxMembers = number;
+                  }
+                },
               ),
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Vui lòng nhập số thành viên';
-                }
-                final number = int.tryParse(value);
-                if (number == null || number < 2 || number > 500) {
-                  return 'Số thành viên phải từ 2-500';
-                }
-                return null;
-              },
-              onChanged: (value) {
-                final number = int.tryParse(value);
-                if (number != null) {
-                  _maxMembers = number;
-                }
-              },
-            ),
-            const SizedBox(height: 16),
-            SwitchListTile(
-              title: const Text('Nhóm riêng tư'),
-              subtitle: const Text('Yêu cầu phê duyệt để tham gia'),
-              value: _isPrivate,
-              onChanged: (value) {
-                setState(() => _isPrivate = value);
-              },
-              secondary: const Icon(Icons.lock),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: _isCreating ? null : _createGroup,
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+              const SizedBox(height: 16),
+              SwitchListTile(
+                title: const Text('Nhóm riêng tư'),
+                subtitle: const Text('Yêu cầu phê duyệt để tham gia'),
+                value: _isPrivate,
+                onChanged: (value) {
+                  setState(() => _isPrivate = value);
+                },
+                secondary: const Icon(Icons.lock),
               ),
-              child: _isCreating
-                  ? const SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Text('Tạo nhóm', style: TextStyle(fontSize: 16)),
-            ),
-          ],
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: _isCreating ? null : _createGroup,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+                child: _isCreating
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Text('Tạo nhóm', style: TextStyle(fontSize: 16)),
+              ),
+            ],
+          ),
         ),
       ),
     );

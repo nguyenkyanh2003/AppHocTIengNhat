@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/news_provider.dart';
 import '../models/news.dart';
-import './news_detail_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class NewsListScreen extends StatefulWidget {
   const NewsListScreen({Key? key}) : super(key: key);
@@ -70,90 +72,89 @@ class _NewsListScreenState extends State<NewsListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tin Tức'),
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.bookmark),
-            onPressed: () {
-              setState(() => _showBookmarks = !_showBookmarks);
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          // Search & Filter
-          _buildSearchBar(),
+    return AppScaffold(
+      title: 'Tin Tức',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.bookmark),
+          onPressed: () {
+            setState(() => _showBookmarks = !_showBookmarks);
+          },
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Column(
+          children: [
+            // Search & Filter
+            _buildSearchBar(),
 
-          // Level Filter
-          _buildLevelFilter(),
+            // Level Filter
+            _buildLevelFilter(),
 
-          // News List
-          Expanded(
-            child: Consumer<NewsProvider>(
-              builder: (context, provider, _) {
-                final newsList = _showBookmarks
-                    ? provider.bookmarkedNews
-                    : provider.newsList;
+            // News List
+            Expanded(
+              child: Consumer<NewsProvider>(
+                builder: (context, provider, _) {
+                  final newsList = _showBookmarks
+                      ? provider.bookmarkedNews
+                      : provider.newsList;
 
-                if (provider.isLoading && newsList.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+                  if (provider.isLoading && newsList.isEmpty) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
 
-                if (newsList.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.newspaper,
-                            size: 64, color: Colors.grey[400]),
-                        const SizedBox(height: 16),
-                        Text(
-                          _showBookmarks
-                              ? 'Chưa có tin tức yêu thích'
-                              : 'Không có tin tức nào',
-                          style:
-                              const TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ],
+                  if (newsList.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.newspaper,
+                              size: 64, color: Colors.grey[400]),
+                          const SizedBox(height: 16),
+                          Text(
+                            _showBookmarks
+                                ? 'Chưa có tin tức yêu thích'
+                                : 'Không có tin tức nào',
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                  return RefreshIndicator(
+                    onRefresh: () => provider.loadNews(
+                      refresh: true,
+                      level: _selectedLevel,
+                      search: _searchController.text.isNotEmpty
+                          ? _searchController.text
+                          : null,
+                    ),
+                    child: ListView.builder(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.all(8),
+                      itemCount: newsList.length + (provider.isLoading ? 1 : 0),
+                      itemBuilder: (context, index) {
+                        if (index == newsList.length) {
+                          return const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(16),
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+
+                        final news = newsList[index];
+                        return _buildNewsCard(context, news, provider);
+                      },
                     ),
                   );
-                }
-
-                return RefreshIndicator(
-                  onRefresh: () => provider.loadNews(
-                    refresh: true,
-                    level: _selectedLevel,
-                    search: _searchController.text.isNotEmpty
-                        ? _searchController.text
-                        : null,
-                  ),
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    padding: const EdgeInsets.all(8),
-                    itemCount: newsList.length + (provider.isLoading ? 1 : 0),
-                    itemBuilder: (context, index) {
-                      if (index == newsList.length) {
-                        return const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-
-                      final news = newsList[index];
-                      return _buildNewsCard(context, news, provider);
-                    },
-                  ),
-                );
-              },
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -223,12 +224,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
       BuildContext context, News news, NewsProvider provider) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => NewsDetailScreen(newsId: news.id),
-          ),
-        );
+        context.push('/news/${news.id}');
       },
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),

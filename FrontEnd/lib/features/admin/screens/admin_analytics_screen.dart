@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/admin_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AdminAnalyticsScreen extends StatefulWidget {
   const AdminAnalyticsScreen({super.key});
@@ -24,69 +26,69 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Phân tích học tập'),
-        actions: [
-          IconButton(
-            onPressed: _loadAnalytics,
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Tải lại',
-          ),
-        ],
-      ),
-      body: Consumer<AdminProvider>(
-        builder: (context, provider, _) {
-          final analytics = provider.analytics ?? const <String, dynamic>{};
-          if (provider.isLoadingAnalytics && analytics.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (provider.error != null && analytics.isEmpty) {
-            return _errorState(provider.error!);
-          }
-          final labels = _strings(analytics['labels']);
-          return RefreshIndicator(
-            onRefresh: _loadAnalytics,
-            child: ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-                _periodSelector(),
-                const SizedBox(height: 20),
-                _metrics(analytics['metrics']),
-                const SizedBox(height: 20),
-                _chart(
-                  'Người dùng hoạt động',
-                  Icons.people,
-                  Colors.blue,
-                  labels,
-                  _numbers(analytics['daily_active_users']),
-                ),
-                _chart(
-                  'Đăng ký mới',
-                  Icons.person_add,
-                  Colors.green,
-                  labels,
-                  _numbers(analytics['new_registrations']),
-                ),
-                _chart(
-                  'Bài học hoàn thành',
-                  Icons.school,
-                  Colors.orange,
-                  labels,
-                  _numbers(analytics['lessons_completed']),
-                ),
-                _chart(
-                  'Thời gian học (phút)',
-                  Icons.timer,
-                  Colors.purple,
-                  labels,
-                  _numbers(analytics['total_study_time']),
-                ),
-                _levelDistribution(analytics['level_distribution']),
-              ],
-            ),
-          );
-        },
+    return AppScaffold(
+      title: 'Phân tích học tập',
+      actions: [
+        IconButton(
+          onPressed: _loadAnalytics,
+          icon: const Icon(Icons.refresh),
+          tooltip: 'Tải lại',
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<AdminProvider>(
+          builder: (context, provider, _) {
+            final analytics = provider.analytics ?? const <String, dynamic>{};
+            if (provider.isLoadingAnalytics && analytics.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (provider.error != null && analytics.isEmpty) {
+              return _errorState(provider.error!);
+            }
+            final labels = _strings(analytics['labels']);
+            return RefreshIndicator(
+              onRefresh: _loadAnalytics,
+              child: ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  _periodSelector(),
+                  const SizedBox(height: 20),
+                  _metrics(analytics['metrics']),
+                  const SizedBox(height: 20),
+                  _chart(
+                    'Người dùng hoạt động',
+                    Icons.people,
+                    Colors.blue,
+                    labels,
+                    _numbers(analytics['daily_active_users']),
+                  ),
+                  _chart(
+                    'Đăng ký mới',
+                    Icons.person_add,
+                    Colors.green,
+                    labels,
+                    _numbers(analytics['new_registrations']),
+                  ),
+                  _chart(
+                    'Bài học hoàn thành',
+                    Icons.school,
+                    Colors.orange,
+                    labels,
+                    _numbers(analytics['lessons_completed']),
+                  ),
+                  _chart(
+                    'Thời gian học (phút)',
+                    Icons.timer,
+                    Colors.purple,
+                    labels,
+                    _numbers(analytics['total_study_time']),
+                  ),
+                  _levelDistribution(analytics['level_distribution']),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

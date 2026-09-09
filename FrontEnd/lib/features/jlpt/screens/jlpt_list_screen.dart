@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/jlpt_provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../models/jlpt_models.dart';
-import './jlpt_exam_screen.dart';
-import './jlpt_practice_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class JLPTListScreen extends StatefulWidget {
   const JLPTListScreen({super.key});
@@ -27,46 +28,43 @@ class _JLPTListScreenState extends State<JLPTListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Luyện thi JLPT'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.play_circle_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const JLPTPracticeScreen()),
-              );
-            },
-          )
-        ],
-      ),
-      body: Consumer<JLPTProvider>(
-        builder: (context, provider, _) {
-          if (provider.isLoading && provider.exams.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Luyện thi JLPT',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.play_circle_outline),
+          onPressed: () {
+            context.push('/jlpt-practice');
+          },
+        )
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<JLPTProvider>(
+          builder: (context, provider, _) {
+            if (provider.isLoading && provider.exams.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          return Column(
-            children: [
-              _buildLevelChips(),
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: () =>
-                      provider.loadExams(refresh: true, level: _level),
-                  child: ListView.builder(
-                    itemCount: provider.exams.length,
-                    itemBuilder: (context, index) {
-                      final exam = provider.exams[index];
-                      return _ExamCard(exam: exam);
-                    },
+            return Column(
+              children: [
+                _buildLevelChips(),
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () =>
+                        provider.loadExams(refresh: true, level: _level),
+                    child: ListView.builder(
+                      itemCount: provider.exams.length,
+                      itemBuilder: (context, index) {
+                        final exam = provider.exams[index];
+                        return _ExamCard(exam: exam);
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -134,11 +132,11 @@ class _ExamCard extends StatelessWidget {
           ],
         ),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) =>
-                    JLPTExamScreen(examId: exam.id, title: exam.title)),
+          context.push(
+            Uri(
+              path: '/jlpt/${exam.id}/exam',
+              queryParameters: {'title': exam.title},
+            ).toString(),
           );
         },
       ),

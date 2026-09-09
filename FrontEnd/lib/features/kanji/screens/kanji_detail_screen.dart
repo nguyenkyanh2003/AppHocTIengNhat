@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/kanji_provider.dart';
 import '../models/kanji.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class KanjiDetailScreen extends StatefulWidget {
   final String kanjiId;
@@ -71,7 +73,9 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
           return CustomScrollView(
             slivers: [
               _buildAppBar(kanji),
-              SliverToBoxAdapter(
+              // `SliverAppBar` giữ nguyên bề rộng cửa sổ; chỉ nội dung đọc
+              // bên dưới mới bị bó lại cho khỏi dài quá tầm mắt.
+              _readingWidthSliver(
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -95,6 +99,20 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  /// Bọc một sliver nội dung trong lề tính theo bề rộng còn lại.
+  Widget _readingWidthSliver({required Widget child}) {
+    return SliverLayoutBuilder(
+      builder: (context, constraints) => SliverPadding(
+        padding: ContentPane.paddingFor(
+          constraints.crossAxisExtent,
+          maxWidth: AppContentWidth.reading,
+          base: EdgeInsets.zero,
+        ),
+        sliver: SliverToBoxAdapter(child: child),
       ),
     );
   }

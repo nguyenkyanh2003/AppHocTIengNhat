@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 import '../../../core/audio/audio_service.dart';
 import '../../flashcards/providers/flashcard_provider.dart';
-import '../../flashcards/screens/create_flashcard_deck_screen.dart';
-import '../../flashcards/screens/flashcard_study_screen.dart';
 import '../../flashcards/widgets/add_to_flashcard_dialog.dart';
 import '../../flashcards/widgets/flashcard_decks_tab.dart';
 import '../models/vocabulary.dart';
 import '../providers/vocabulary_provider.dart';
 import '../widgets/vocabulary_filter_bar.dart';
 import '../widgets/vocabulary_list_view.dart';
-import 'vocabulary_detail_screen.dart';
 
 /// Màn từ vựng: tab danh sách và tab bộ thẻ của người dùng.
 class VocabularyMainScreen extends StatefulWidget {
@@ -24,8 +24,8 @@ class VocabularyMainScreen extends StatefulWidget {
 
 class _VocabularyMainScreenState extends State<VocabularyMainScreen>
     with SingleTickerProviderStateMixin {
-  late final TabController _tabController = TabController(length: 2, vsync: this)
-    ..addListener(() => setState(() {}));
+  late final TabController _tabController =
+      TabController(length: 2, vsync: this)..addListener(() => setState(() {}));
 
   @override
   void initState() {
@@ -43,23 +43,23 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
     super.dispose();
   }
 
+  /// Làm mới đúng tab đang mở, không nạp lại cả hai.
+  Future<void> _refreshCurrentTab() {
+    if (_tabController.index == 0) {
+      return context.read<VocabularyProvider>().loadVocabularies(refresh: true);
+    }
+    return context.read<FlashcardProvider>().loadDecks(refresh: true);
+  }
+
   Future<void> _createDeck() async {
     final provider = context.read<FlashcardProvider>();
-    final created = await Navigator.push<bool>(
-      context,
-      MaterialPageRoute(builder: (_) => const CreateFlashcardDeckScreen()),
-    );
+    final created = await context.push<bool>('/flashcards/new');
 
     if (created == true) await provider.loadDecks(refresh: true);
   }
 
   void _openDetail(Vocabulary vocabulary) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => VocabularyDetailScreen(vocabularyId: vocabulary.id),
-      ),
-    );
+    context.push('/vocabulary/${vocabulary.id}');
   }
 
   void _addToFlashcard(Vocabulary vocabulary) {
@@ -84,20 +84,18 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Từ vựng'),
-        bottom: TabBar(
-          controller: _tabController,
-          indicatorColor: Colors.white,
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.white70,
-          tabs: const [
-            Tab(text: 'Danh sách'),
-            Tab(text: 'Bộ thẻ của tôi'),
-          ],
-        ),
+    return AppScaffold(
+      title: 'Từ vựng',
+      // Tab thuộc khung trang nên do `AppScaffold` dựng; vùng cuộn của mỗi
+      // tab vẫn thuộc về chính tab đó.
+      bottom: TabBar(
+        controller: _tabController,
+        tabs: const [
+          Tab(text: 'Danh sách'),
+          Tab(text: 'Bộ thẻ của tôi'),
+        ],
       ),
+      onRefresh: _refreshCurrentTab,
       body: TabBarView(
         controller: _tabController,
         children: [
@@ -139,14 +137,19 @@ class _VocabularyListTab extends StatelessWidget {
 
         return Column(
           children: [
-            VocabularyFilterBar(
-              selectedLevel: provider.selectedLevel,
-              onSearch: provider.searchVocabularies,
-              onLevelChanged: provider.filterByLevel,
-              onClear: provider.resetFilter,
+            // Bộ lọc và nút học dùng chung bề rộng với danh sách bên dưới,
+            // nếu không thì trên màn rộng chúng chạy dài hơn hẳn các thẻ.
+            ContentPane(
+              padding: EdgeInsets.zero,
+              child: VocabularyFilterBar(
+                selectedLevel: provider.selectedLevel,
+                onSearch: provider.searchVocabularies,
+                onLevelChanged: provider.filterByLevel,
+                onClear: provider.resetFilter,
+              ),
             ),
             if (items.isNotEmpty)
-              Padding(
+              ContentPane(
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.lg,
                   AppSpacing.md,
@@ -156,14 +159,14 @@ class _VocabularyListTab extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: FilledButton.icon(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => FlashcardStudyScreen(
-                          level: provider.selectedLevel,
-                          vocabularies: items,
-                        ),
-                      ),
+                    onPressed: () => context.push(
+                      Uri(
+                        path: '/vocabulary/study',
+                        queryParameters: provider.selectedLevel == null
+                            ? null
+                            : {'level': provider.selectedLevel},
+                      ).toString(),
+                      extra: items,
                     ),
                     icon: const Icon(Icons.play_arrow_rounded),
                     label: Text('Học Flashcard (${items.length} từ)'),

@@ -43,6 +43,8 @@ class AppLocalizations {
       'latest_news': 'Tin Tức Mới',
       'view_all': 'Xem tất cả',
       'lessons': 'Học tập',
+      'review': 'Ôn tập',
+      'account': 'Tài khoản',
       'home': 'Trang chủ',
       'progress': 'Tiến độ',
       'profile': 'Cá nhân',
@@ -247,6 +249,8 @@ class AppLocalizations {
       'latest_news': 'Latest News',
       'view_all': 'View all',
       'lessons': 'Lessons',
+      'review': 'Review',
+      'account': 'Account',
       'home': 'Home',
       'progress': 'Progress',
       'profile': 'Profile',
@@ -451,6 +455,8 @@ class AppLocalizations {
       'latest_news': '最新ニュース',
       'view_all': 'すべて表示',
       'lessons': 'レッスン',
+      'review': '復習',
+      'account': 'アカウント',
       'home': 'ホーム',
       'progress': '進捗',
       'profile': 'プロフィール',
@@ -662,6 +668,8 @@ class AppLocalizations {
   String get lessons => translate('lessons');
   String get home => translate('home');
   String get progress => translate('progress');
+  String get review => translate('review');
+  String get account => translate('account');
   String get profile => translate('profile');
   String get learningStats => translate('learning_stats');
   String get details => translate('details');

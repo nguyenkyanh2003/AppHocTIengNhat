@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_client.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class OfflineModeScreen extends StatefulWidget {
   const OfflineModeScreen({super.key});
@@ -43,106 +45,108 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Chế độ ngoại tuyến')),
-      body: _busy
-          ? const Center(child: CircularProgressIndicator())
-          : ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-                Card(
-                  color: _enabled
-                      ? Colors.orange.withValues(alpha: 0.1)
-                      : Colors.green.withValues(alpha: 0.1),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        Icon(
-                          _enabled ? Icons.wifi_off : Icons.wifi,
-                          size: 42,
-                          color: _enabled ? Colors.orange : Colors.green,
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _enabled
-                                    ? 'Dự phòng ngoại tuyến đang bật'
-                                    : 'Đang ưu tiên dữ liệu trực tuyến',
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                _enabled
-                                    ? 'Khi mất mạng, ứng dụng dùng nội dung đã tải về.'
-                                    : 'Bật để dùng cache nếu máy chủ không truy cập được.',
-                              ),
-                            ],
+    return AppScaffold(
+      title: 'Chế độ ngoại tuyến',
+      body: ContentWidthLimit(
+        child: _busy
+            ? const Center(child: CircularProgressIndicator())
+            : ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  Card(
+                    color: _enabled
+                        ? Colors.orange.withValues(alpha: 0.1)
+                        : Colors.green.withValues(alpha: 0.1),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        children: [
+                          Icon(
+                            _enabled ? Icons.wifi_off : Icons.wifi,
+                            size: 42,
+                            color: _enabled ? Colors.orange : Colors.green,
                           ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _enabled
+                                      ? 'Dự phòng ngoại tuyến đang bật'
+                                      : 'Đang ưu tiên dữ liệu trực tuyến',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  _enabled
+                                      ? 'Khi mất mạng, ứng dụng dùng nội dung đã tải về.'
+                                      : 'Bật để dùng cache nếu máy chủ không truy cập được.',
+                                ),
+                              ],
+                            ),
+                          ),
+                          Switch(value: _enabled, onChanged: _setEnabled),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Dữ liệu đã tải',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Card(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.inventory_2_outlined),
+                          title: Text('$_cachedItems gói nội dung'),
+                          subtitle: Text(_formatBytes(_cachedBytes)),
                         ),
-                        Switch(value: _enabled, onChanged: _setEnabled),
+                        const Divider(height: 1),
+                        ListTile(
+                          leading: const Icon(Icons.schedule),
+                          title: const Text('Đồng bộ gần nhất'),
+                          subtitle: Text(_formatDate(_lastSync)),
+                        ),
                       ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Dữ liệu đã tải',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Card(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.inventory_2_outlined),
-                        title: Text('$_cachedItems gói nội dung'),
-                        subtitle: Text(_formatBytes(_cachedBytes)),
-                      ),
-                      const Divider(height: 1),
-                      ListTile(
-                        leading: const Icon(Icons.schedule),
-                        title: const Text('Đồng bộ gần nhất'),
-                        subtitle: Text(_formatDate(_lastSync)),
-                      ),
-                    ],
+                  const SizedBox(height: 16),
+                  FilledButton.icon(
+                    onPressed: _busy ? null : _showDownloadDialog,
+                    icon: const Icon(Icons.download),
+                    label: const Text('Tải nội dung để học ngoại tuyến'),
                   ),
-                ),
-                const SizedBox(height: 16),
-                FilledButton.icon(
-                  onPressed: _busy ? null : _showDownloadDialog,
-                  icon: const Icon(Icons.download),
-                  label: const Text('Tải nội dung để học ngoại tuyến'),
-                ),
-                const SizedBox(height: 10),
-                OutlinedButton.icon(
-                  onPressed: _busy || _cachedItems == 0 ? null : _syncNow,
-                  icon: const Icon(Icons.sync),
-                  label: const Text('Đồng bộ cache ngay'),
-                ),
-                const SizedBox(height: 10),
-                TextButton.icon(
-                  onPressed: _busy || _cachedItems == 0 ? null : _clearCache,
-                  icon: const Icon(Icons.delete_outline, color: Colors.red),
-                  label: const Text(
-                    'Xóa dữ liệu đã tải',
-                    style: TextStyle(color: Colors.red),
+                  const SizedBox(height: 10),
+                  OutlinedButton.icon(
+                    onPressed: _busy || _cachedItems == 0 ? null : _syncNow,
+                    icon: const Icon(Icons.sync),
+                    label: const Text('Đồng bộ cache ngay'),
                   ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Cache chỉ lưu nội dung học tập như bài học, từ vựng, Kanji và ngữ pháp. Dữ liệu đăng nhập không được lưu trong cache này.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
+                  const SizedBox(height: 10),
+                  TextButton.icon(
+                    onPressed: _busy || _cachedItems == 0 ? null : _clearCache,
+                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                    label: const Text(
+                      'Xóa dữ liệu đã tải',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Cache chỉ lưu nội dung học tập như bài học, từ vựng, Kanji và ngữ pháp. Dữ liệu đăng nhập không được lưu trong cache này.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+      ),
     );
   }
 

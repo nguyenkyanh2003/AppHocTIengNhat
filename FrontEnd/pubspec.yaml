@@ -40,6 +40,7 @@ dependencies:
   path: ^1.9.1
   url_launcher: ^6.2.1
   web: ^1.1.1
+  go_router: ^17.0.0
 
 dependency_overrides:
   # Keep record platform pieces aligned to avoid missing startStream implementation

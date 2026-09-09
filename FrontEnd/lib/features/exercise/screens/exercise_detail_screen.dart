@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
 import '../providers/exercise_provider.dart';
 import '../models/exercise.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class ExerciseDetailScreen extends StatefulWidget {
   final String exerciseId;
@@ -131,11 +133,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     });
 
     if (success && mounted) {
-      Navigator.pushReplacementNamed(
-        context,
-        '/exercise-result',
-        arguments: provider.currentResult,
-      );
+      context.pushReplacement('/exercise/result');
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -149,23 +147,25 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<ExerciseProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: ContentWidthLimit(
+        child: Consumer<ExerciseProvider>(
+          builder: (context, provider, child) {
+            if (provider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          final exercise = provider.currentExercise;
-          if (exercise == null) {
-            return const Center(child: Text('Không tìm thấy bài tập'));
-          }
+            final exercise = provider.currentExercise;
+            if (exercise == null) {
+              return const Center(child: Text('Không tìm thấy bài tập'));
+            }
 
-          if (!_isStarted) {
-            return _buildStartScreen(exercise);
-          }
+            if (!_isStarted) {
+              return _buildStartScreen(exercise);
+            }
 
-          return _buildExerciseScreen(exercise);
-        },
+            return _buildExerciseScreen(exercise);
+          },
+        ),
       ),
     );
   }

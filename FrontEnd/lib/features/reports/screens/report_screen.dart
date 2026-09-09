@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/report_provider.dart';
 import '../services/report_service.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({Key? key}) : super(key: key);
@@ -10,38 +12,38 @@ class ReportScreen extends StatefulWidget {
   State<ReportScreen> createState() => _ReportScreenState();
 }
 
-class _ReportScreenState extends State<ReportScreen> {
-  int _selectedTabIndex = 0; // 0: Report, 1: My Reports
+class _ReportScreenState extends State<ReportScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 2, vsync: this);
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Báo Cáo & Góp Ý'),
-        elevation: 0,
-      ),
-      body: IndexedStack(
-        index: _selectedTabIndex,
-        children: const [
-          CreateReportScreen(),
-          MyReportsScreen(),
+    return AppScaffold(
+      title: 'Báo Cáo & Góp Ý',
+      // Trước đây hai mục này nằm trên `BottomNavigationBar` — nay `AppShell`
+      // đã giữ chỗ đó cho điều hướng chính, nên chúng thành tab của trang.
+      bottom: TabBar(
+        controller: _tabController,
+        tabs: const [
+          Tab(icon: Icon(Icons.feedback), text: 'Gửi Báo Cáo'),
+          Tab(icon: Icon(Icons.history), text: 'Báo Cáo Của Tôi'),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedTabIndex,
-        onTap: (index) {
-          setState(() => _selectedTabIndex = index);
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.feedback),
-            label: 'Gửi Báo Cáo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Báo Cáo Của Tôi',
-          ),
-        ],
+      body: ContentWidthLimit(
+        child: TabBarView(
+          controller: _tabController,
+          children: const [
+            CreateReportScreen(),
+            MyReportsScreen(),
+          ],
+        ),
       ),
     );
   }

@@ -6,6 +6,8 @@ import '../../../core/audio/audio_source_resolver.dart';
 import '../providers/jlpt_exam_provider.dart';
 import '../models/jlpt_models.dart';
 import '../../../core/network/api_client.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class JLPTExamScreen extends StatefulWidget {
   final String examId;
@@ -214,79 +216,79 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: [
-          Consumer<JLPTExamProvider>(
-            builder: (context, p, _) => Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(_formatTime(p.secondsLeft)),
-              ),
+    return AppScaffold(
+      title: widget.title,
+      actions: [
+        Consumer<JLPTExamProvider>(
+          builder: (context, p, _) => Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(_formatTime(p.secondsLeft)),
             ),
-          )
-        ],
-      ),
-      body: Consumer<JLPTExamProvider>(
-        builder: (context, provider, _) {
-          if (provider.isLoading || provider.exam == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          final exam = provider.exam!;
-          return Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    ..._buildSection(
-                        'Từ vựng (文字・語彙)', exam.mojiGoi, 'moji', provider,
-                        startIndex: 0),
-                    ..._buildSection(
-                        'Ngữ pháp (文法)', exam.bunpou, 'bunpou', provider,
-                        startIndex: exam.mojiGoi.length),
-                    ..._buildGroupSection(
-                        'Đọc hiểu (読解)', exam.dokkai, 'dokkai', provider,
-                        startIndex: exam.mojiGoi.length + exam.bunpou.length),
-                    ..._buildGroupSection(
-                        'Nghe hiểu (聴解)', exam.choukai, 'choukai', provider,
-                        startIndex: exam.mojiGoi.length +
-                            exam.bunpou.length +
-                            _countGroupQuestions(exam.dokkai)),
-                  ],
-                ),
-              ),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: ElevatedButton(
-                    onPressed: provider.isSubmitting || provider.hasSubmitted
-                        ? null
-                        : () async {
-                            await provider.submit(widget.examId);
-                            if (!context.mounted) return;
-                            if (provider.result != null) {
-                              _showResultSheet(context, provider);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Nộp bài thất bại, vui lòng thử lại.')),
-                              );
-                            }
-                          },
-                    child: provider.isSubmitting
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2))
-                        : Text(provider.hasSubmitted ? 'Đã nộp' : 'Nộp bài'),
+          ),
+        )
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<JLPTExamProvider>(
+          builder: (context, provider, _) {
+            if (provider.isLoading || provider.exam == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final exam = provider.exam!;
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      ..._buildSection(
+                          'Từ vựng (文字・語彙)', exam.mojiGoi, 'moji', provider,
+                          startIndex: 0),
+                      ..._buildSection(
+                          'Ngữ pháp (文法)', exam.bunpou, 'bunpou', provider,
+                          startIndex: exam.mojiGoi.length),
+                      ..._buildGroupSection(
+                          'Đọc hiểu (読解)', exam.dokkai, 'dokkai', provider,
+                          startIndex: exam.mojiGoi.length + exam.bunpou.length),
+                      ..._buildGroupSection(
+                          'Nghe hiểu (聴解)', exam.choukai, 'choukai', provider,
+                          startIndex: exam.mojiGoi.length +
+                              exam.bunpou.length +
+                              _countGroupQuestions(exam.dokkai)),
+                    ],
                   ),
                 ),
-              )
-            ],
-          );
-        },
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: ElevatedButton(
+                      onPressed: provider.isSubmitting || provider.hasSubmitted
+                          ? null
+                          : () async {
+                              await provider.submit(widget.examId);
+                              if (!context.mounted) return;
+                              if (provider.result != null) {
+                                _showResultSheet(context, provider);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Nộp bài thất bại, vui lòng thử lại.')),
+                                );
+                              }
+                            },
+                      child: provider.isSubmitting
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(strokeWidth: 2))
+                          : Text(provider.hasSubmitted ? 'Đã nộp' : 'Nộp bài'),
+                    ),
+                  ),
+                )
+              ],
+            );
+          },
+        ),
       ),
     );
   }

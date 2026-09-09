@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 import '../../vocabulary/providers/vocabulary_provider.dart';
@@ -6,6 +7,9 @@ import '../../vocabulary/models/vocabulary.dart';
 import '../models/flashcard_deck.dart';
 import '../widgets/flashcard_widget.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class FlashcardStudyScreen extends StatefulWidget {
   final String? level;
@@ -42,6 +46,44 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  bool get _canGoBack => _currentIndex > 0;
+  bool get _canGoForward => _currentIndex < _studyList.length;
+
+  void _goToPrevious() {
+    if (!_canGoBack) return;
+    _pageController.previousPage(
+      duration: AppDurations.normal,
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _goToNext() {
+    if (!_canGoForward) return;
+    _pageController.nextPage(
+      duration: AppDurations.normal,
+      curve: Curves.easeOut,
+    );
+  }
+
+  /// Mũi tên trái/phải chuyển thẻ.
+  ///
+  /// Trên desktop, vuốt không phải cử chỉ có thật; bàn phím và hai nút ở dưới
+  /// là đường điều hướng chính, kéo chuột chỉ là lối phụ.
+  KeyEventResult _handleKey(FocusNode node, KeyEvent event) {
+    if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
+      return KeyEventResult.ignored;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+      _goToPrevious();
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
+      _goToNext();
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
   }
 
   Future<void> _loadVocabularies() async {
@@ -92,31 +134,35 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('Học Flashcard')),
-        body: const Center(child: CircularProgressIndicator()),
+      return const AppScaffold(
+        title: 'Học Flashcard',
+        body: ContentWidthLimit(
+          child: Center(child: CircularProgressIndicator()),
+        ),
       );
     }
 
     if (_studyList.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('Học Flashcard')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.inbox_rounded, size: 64, color: Colors.grey[400]),
-              const SizedBox(height: 16),
-              Text(
-                'Không có từ vựng để học',
-                style: TextStyle(fontSize: 18, color: Colors.grey[600]),
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Quay lại'),
-              ),
-            ],
+      return AppScaffold(
+        title: 'Học Flashcard',
+        body: ContentWidthLimit(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.inbox_rounded, size: 64, color: Colors.grey[400]),
+                const SizedBox(height: 16),
+                Text(
+                  'Không có từ vựng để học',
+                  style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Quay lại'),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -144,60 +190,66 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildProgressBar(),
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _studyList.length + 1,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  if (index == _studyList.length) {
-                    return _buildCompletionCard();
-                  }
+      body: ContentWidthLimit(
+        child: SafeArea(
+          child: Focus(
+            autofocus: true,
+            onKeyEvent: _handleKey,
+            child: Column(
+              children: [
+                _buildProgressBar(),
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: _studyList.length + 1,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      if (index == _studyList.length) {
+                        return _buildCompletionCard();
+                      }
 
-                  final item = _studyList[index];
+                      final item = _studyList[index];
 
-                  // Nếu là bộ thẻ tùy chỉnh
-                  if (_isCustomDeck && item is FlashcardCard) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: FlashcardWidget(
-                        frontText: item.front,
-                        frontSubtext: item.frontSubtext,
-                        backText: item.back,
-                        backSubtext: item.backSubtext,
-                      ),
-                    );
-                  }
-                  // Nếu là vocabulary
-                  else if (item is Vocabulary) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: FlashcardWidget(
-                        frontText: item.word,
-                        frontSubtext: item.hiragana,
-                        backText: item.meaning,
-                        backSubtext: item.examples.isNotEmpty
-                            ? item.examples.first.sentence
-                            : null,
-                      ),
-                    );
-                  }
+                      // Nếu là bộ thẻ tùy chỉnh
+                      if (_isCustomDeck && item is FlashcardCard) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: FlashcardWidget(
+                            frontText: item.front,
+                            frontSubtext: item.frontSubtext,
+                            backText: item.back,
+                            backSubtext: item.backSubtext,
+                          ),
+                        );
+                      }
+                      // Nếu là vocabulary
+                      else if (item is Vocabulary) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: FlashcardWidget(
+                            frontText: item.word,
+                            frontSubtext: item.hiragana,
+                            backText: item.meaning,
+                            backSubtext: item.examples.isNotEmpty
+                                ? item.examples.first.sentence
+                                : null,
+                          ),
+                        );
+                      }
 
-                  return const SizedBox.shrink();
-                },
-              ),
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                ),
+                _buildNavigationControls(),
+                const SizedBox(height: AppSpacing.xxl),
+              ],
             ),
-            _buildNavigationHint(),
-            const SizedBox(height: 32),
-          ],
+          ),
         ),
       ),
     );
@@ -223,30 +275,37 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
     );
   }
 
-  Widget _buildNavigationHint() {
+  /// Điều khiển chuyển thẻ: bấm được bằng chuột, tới được bằng Tab.
+  Widget _buildNavigationControls() {
+    final total = _studyList.length;
+    final position = _currentIndex >= total ? total : _currentIndex + 1;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.blueGrey[50],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.touch_app_outlined,
-                color: AppTheme.primaryColor, size: 20),
-            SizedBox(width: 12),
-            Text(
-              'Chạm để lật, vuốt để chuyển thẻ',
-              style: TextStyle(
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.sm,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          OutlinedButton.icon(
+            onPressed: _canGoBack ? _goToPrevious : null,
+            icon: const Icon(Icons.chevron_left),
+            label: const Text('Thẻ trước'),
+          ),
+          Flexible(
+            child: Text(
+              _currentIndex >= total ? 'Đã hết thẻ' : '$position / $total',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelLarge,
             ),
-          ],
-        ),
+          ),
+          FilledButton.icon(
+            onPressed: _canGoForward ? _goToNext : null,
+            icon: const Icon(Icons.chevron_right),
+            label: const Text('Thẻ sau'),
+          ),
+        ],
       ),
     );
   }

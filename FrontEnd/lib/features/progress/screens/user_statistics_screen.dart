@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/progress_provider.dart';
 import '../../streaks/providers/streak_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class UserStatisticsScreen extends StatefulWidget {
   const UserStatisticsScreen({Key? key}) : super(key: key);
@@ -34,289 +36,288 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Thống Kê Chi Tiết'),
-        elevation: 0,
-      ),
-      body: Consumer2<ProgressProvider, StreakProvider>(
-        builder: (context, progressProvider, streakProvider, _) {
-          if (progressProvider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Thống Kê Chi Tiết',
+      body: ContentWidthLimit(
+        child: Consumer2<ProgressProvider, StreakProvider>(
+          builder: (context, progressProvider, streakProvider, _) {
+            if (progressProvider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Period selector
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: _buildPeriodButton('week', '1 Tuần'),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: _buildPeriodButton('month', '1 Tháng'),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: _buildPeriodButton('year', '1 Năm'),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Key statistics
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Thống Kê Chính',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Period selector
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: _buildPeriodButton('week', '1 Tuần'),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        children: [
-                          _buildStatCard(
-                            'Tổng Thời Gian Học',
-                            '240h',
-                            Icons.timer,
-                            Colors.blue,
-                          ),
-                          _buildStatCard(
-                            'Bài Học Hoàn Thành',
-                            '45',
-                            Icons.menu_book,
-                            Colors.green,
-                          ),
-                          _buildStatCard(
-                            'Từ Vựng Học',
-                            '1,250',
-                            Icons.spellcheck,
-                            Colors.orange,
-                          ),
-                          _buildStatCard(
-                            'Kanji Học',
-                            '340',
-                            Icons.draw_outlined,
-                            Colors.red,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-
-                // Streak info
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Chuỗi Học',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: _buildPeriodButton('month', '1 Tháng'),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    children: [
-                                      const Icon(
-                                        Icons.local_fire_department,
-                                        size: 32,
-                                        color: Colors.red,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      const Text(
-                                        'Streak Hiện Tại',
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                      Text(
-                                        '${streakProvider.currentStreak?.currentStreak ?? 0}',
-                                        style: const TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: _buildPeriodButton('year', '1 Năm'),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Key statistics
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Thống Kê Chính',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        GridView.count(
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                          children: [
+                            _buildStatCard(
+                              'Tổng Thời Gian Học',
+                              '240h',
+                              Icons.timer,
+                              Colors.blue,
+                            ),
+                            _buildStatCard(
+                              'Bài Học Hoàn Thành',
+                              '45',
+                              Icons.menu_book,
+                              Colors.green,
+                            ),
+                            _buildStatCard(
+                              'Từ Vựng Học',
+                              '1,250',
+                              Icons.spellcheck,
+                              Colors.orange,
+                            ),
+                            _buildStatCard(
+                              'Kanji Học',
+                              '340',
+                              Icons.draw_outlined,
+                              Colors.red,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Streak info
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Chuỗi Học',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        const Icon(
+                                          Icons.local_fire_department,
+                                          size: 32,
+                                          color: Colors.red,
                                         ),
-                                      ),
-                                      const Text('ngày'),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Icon(
-                                        Icons.trending_up,
-                                        size: 32,
-                                        color: Colors.blue,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      const Text(
-                                        'Streak Dài Nhất',
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                      Text(
-                                        '${streakProvider.currentStreak?.longestStreak ?? 0}',
-                                        style: const TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
+                                        const SizedBox(height: 8),
+                                        const Text(
+                                          'Streak Hiện Tại',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.grey),
                                         ),
-                                      ),
-                                      const Text('ngày'),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        size: 32,
-                                        color: Colors.amber,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      const Text(
-                                        'Tổng XP',
-                                        style: TextStyle(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                      Text(
-                                        '${streakProvider.currentStreak?.totalXP ?? 0}',
-                                        style: const TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
+                                        Text(
+                                          '${streakProvider.currentStreak?.currentStreak ?? 0}',
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                      const Text('điểm'),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                                        const Text('ngày'),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        const Icon(
+                                          Icons.trending_up,
+                                          size: 32,
+                                          color: Colors.blue,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        const Text(
+                                          'Streak Dài Nhất',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.grey),
+                                        ),
+                                        Text(
+                                          '${streakProvider.currentStreak?.longestStreak ?? 0}',
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const Text('ngày'),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
+                                          size: 32,
+                                          color: Colors.amber,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        const Text(
+                                          'Tổng XP',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.grey),
+                                        ),
+                                        Text(
+                                          '${streakProvider.currentStreak?.totalXP ?? 0}',
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const Text('điểm'),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
-                // Learning breakdown
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Phân Tích Chi Tiết',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              _buildProgressItem(
-                                'N5 Hoàn Thành',
-                                75,
-                                Colors.green,
-                              ),
-                              const SizedBox(height: 12),
-                              _buildProgressItem(
-                                'N4 Hoàn Thành',
-                                45,
-                                Colors.blue,
-                              ),
-                              const SizedBox(height: 12),
-                              _buildProgressItem(
-                                'N3 Hoàn Thành',
-                                20,
-                                Colors.orange,
-                              ),
-                              const SizedBox(height: 12),
-                              _buildProgressItem(
-                                'Bài Tập Đúng',
-                                68,
-                                Colors.purple,
-                              ),
-                            ],
+                  // Learning breakdown
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Phân Tích Chi Tiết',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-
-                // Export & Share
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Tính năng sắp có...')),
-                            );
-                          },
-                          icon: const Icon(Icons.download),
-                          label: const Text('Xuất PDF'),
+                        const SizedBox(height: 12),
+                        Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              children: [
+                                _buildProgressItem(
+                                  'N5 Hoàn Thành',
+                                  75,
+                                  Colors.green,
+                                ),
+                                const SizedBox(height: 12),
+                                _buildProgressItem(
+                                  'N4 Hoàn Thành',
+                                  45,
+                                  Colors.blue,
+                                ),
+                                const SizedBox(height: 12),
+                                _buildProgressItem(
+                                  'N3 Hoàn Thành',
+                                  20,
+                                  Colors.orange,
+                                ),
+                                const SizedBox(height: 12),
+                                _buildProgressItem(
+                                  'Bài Tập Đúng',
+                                  68,
+                                  Colors.purple,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text('Tính năng sắp có...')),
-                            );
-                          },
-                          icon: const Icon(Icons.share),
-                          label: const Text('Chia Sẻ'),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 24),
-              ],
-            ),
-          );
-        },
+                  const SizedBox(height: 24),
+
+                  // Export & Share
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Tính năng sắp có...')),
+                              );
+                            },
+                            icon: const Icon(Icons.download),
+                            label: const Text('Xuất PDF'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Tính năng sắp có...')),
+                              );
+                            },
+                            icon: const Icon(Icons.share),
+                            label: const Text('Chia Sẻ'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

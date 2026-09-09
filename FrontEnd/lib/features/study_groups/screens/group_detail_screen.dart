@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../auth/providers/auth_provider.dart';
 import '../providers/study_group_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class GroupDetailScreen extends StatefulWidget {
   final String groupId;
@@ -47,16 +49,20 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
         final currentUserId = authProvider.user?.id;
 
         if (groupProvider.isLoading && group == null) {
-          return Scaffold(
-            appBar: AppBar(title: const Text('Chi tiết nhóm')),
-            body: const Center(child: CircularProgressIndicator()),
+          return const AppScaffold(
+            title: 'Chi tiết nhóm',
+            body: ContentWidthLimit(
+              child: Center(child: CircularProgressIndicator()),
+            ),
           );
         }
 
         if (group == null) {
-          return Scaffold(
-            appBar: AppBar(title: const Text('Chi tiết nhóm')),
-            body: const Center(child: Text('Không tìm thấy nhóm')),
+          return const AppScaffold(
+            title: 'Chi tiết nhóm',
+            body: ContentWidthLimit(
+              child: Center(child: Text('Không tìm thấy nhóm')),
+            ),
           );
         }
 
@@ -77,85 +83,94 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
                 ),
             ],
           ),
-          body: Column(
-            children: [
-              _buildGroupHeader(group, isMember, isAdmin, isCreator),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
+          body: ContentWidthLimit(
+            child: Column(
+              children: [
+                _buildGroupHeader(group, isMember, isAdmin, isCreator),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: TabBar(
+                    controller: _tabController,
+                    labelColor: Colors.blue[700],
+                    unselectedLabelColor: Colors.grey[600],
+                    indicatorColor: Colors.blue[700],
+                    indicatorWeight: 3,
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
-                  ],
-                ),
-                child: TabBar(
-                  controller: _tabController,
-                  labelColor: Colors.blue[700],
-                  unselectedLabelColor: Colors.grey[600],
-                  indicatorColor: Colors.blue[700],
-                  indicatorWeight: 3,
-                  labelStyle: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  unselectedLabelStyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  indicator: BoxDecoration(
-                    color: Colors.blue[50],
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.blue[700]!,
-                        width: 3,
+                    unselectedLabelStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    indicator: BoxDecoration(
+                      color: Colors.blue[50],
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.blue[700]!,
+                          width: 3,
+                        ),
                       ),
                     ),
+                    tabs: const [
+                      Tab(
+                        height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.info_outline, size: 22),
+                            SizedBox(height: 4),
+                            Text('Thông tin'),
+                          ],
+                        ),
+                      ),
+                      Tab(
+                        height: 60,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.people_outline, size: 22),
+                            SizedBox(height: 4),
+                            Text('Thành viên'),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  tabs: const [
-                    Tab(
-                      height: 60,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.info_outline, size: 22),
-                          SizedBox(height: 4),
-                          Text('Thông tin'),
-                        ],
-                      ),
-                    ),
-                    Tab(
-                      height: 60,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.people_outline, size: 22),
-                          SizedBox(height: 4),
-                          Text('Thành viên'),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
-              ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    _buildInfoTab(group, groupProvider),
-                    _buildMembersTab(group, currentUserId, isAdmin, isCreator),
-                  ],
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      _buildInfoTab(group, groupProvider),
+                      _buildMembersTab(
+                          group, currentUserId, isAdmin, isCreator),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          bottomNavigationBar: _buildBottomBar(
-            group,
-            isMember,
-            isCreator,
-            currentUserId ?? '',
+                // Thanh hành động của nhóm nằm trong thân trang, không phải
+                // `bottomNavigationBar` — chỗ đó là của `AppShell`.
+                // `_buildBottomBar` trả `null` khi không có hành động nào
+                // hợp lệ với vai trò hiện tại.
+                ...[
+                  _buildBottomBar(
+                    group,
+                    isMember,
+                    isCreator,
+                    currentUserId ?? '',
+                  ),
+                ].whereType<Widget>(),
+              ],
+            ),
           ),
         );
       },

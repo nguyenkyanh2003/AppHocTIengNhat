@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/grammar_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class GrammarDetailScreen extends StatefulWidget {
   final String grammarId;
@@ -24,202 +26,202 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ngữ Pháp'),
-        elevation: 0,
-      ),
-      body: Consumer<GrammarProvider>(
-        builder: (context, provider, _) {
-          if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Ngữ Pháp',
+      body: ContentWidthLimit(
+        child: Consumer<GrammarProvider>(
+          builder: (context, provider, _) {
+            if (provider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (provider.error != null) {
-            return Center(
+            if (provider.error != null) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline,
+                        size: 64, color: Colors.red),
+                    const SizedBox(height: 16),
+                    Text(provider.error ?? ''),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                      onPressed: () {
+                        provider.loadGrammarDetail(widget.grammarId);
+                      },
+                      child: const Text('Thử lại'),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            final grammar = provider.selectedGrammar;
+            if (grammar == null) {
+              return const Center(child: Text('Không tìm thấy dữ liệu'));
+            }
+
+            return SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text(provider.error ?? ''),
-                  const SizedBox(height: 24),
-                  ElevatedButton(
-                    onPressed: () {
-                      provider.loadGrammarDetail(widget.grammarId);
-                    },
-                    child: const Text('Thử lại'),
+                  // Header
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          _getLevelColor(grammar.level),
+                          _getLevelColor(grammar.level).withValues(alpha: 0.7),
+                        ],
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.3),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            grammar.level,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          grammar.title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Pattern: ${grammar.pattern}',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Content
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Meaning section
+                        _buildSection(
+                          'Ý Nghĩa',
+                          grammar.meaning,
+                          Icons.description,
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Explanation section
+                        if (grammar.explanation != null &&
+                            grammar.explanation!.isNotEmpty)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildSection(
+                                'Giải Thích',
+                                grammar.explanation!,
+                                Icons.info,
+                              ),
+                              const SizedBox(height: 24),
+                            ],
+                          ),
+
+                        // Examples section
+                        if (grammar.examples.isNotEmpty)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildSectionTitle('Ví Dụ', Icons.lightbulb),
+                              const SizedBox(height: 12),
+                              ...grammar.examples.asMap().entries.map((entry) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[100],
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border(
+                                        left: BorderSide(
+                                          color: _getLevelColor(grammar.level),
+                                          width: 4,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Ví dụ ${entry.key + 1}:',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 6),
+                                        Text(
+                                          entry.value,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            height: 1.5,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ],
+                          ),
+
+                        const SizedBox(height: 24),
+
+                        // Stats
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildStatCard(
+                              'Lượt Xem',
+                              '${grammar.viewCount}',
+                              Icons.visibility,
+                            ),
+                            _buildStatCard(
+                              'Cấp Độ',
+                              grammar.level,
+                              Icons.trending_up,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             );
-          }
-
-          final grammar = provider.selectedGrammar;
-          if (grammar == null) {
-            return const Center(child: Text('Không tìm thấy dữ liệu'));
-          }
-
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        _getLevelColor(grammar.level),
-                        _getLevelColor(grammar.level).withValues(alpha: 0.7),
-                      ],
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          grammar.level,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        grammar.title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Pattern: ${grammar.pattern}',
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Content
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Meaning section
-                      _buildSection(
-                        'Ý Nghĩa',
-                        grammar.meaning,
-                        Icons.description,
-                      ),
-                      const SizedBox(height: 24),
-
-                      // Explanation section
-                      if (grammar.explanation != null &&
-                          grammar.explanation!.isNotEmpty)
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildSection(
-                              'Giải Thích',
-                              grammar.explanation!,
-                              Icons.info,
-                            ),
-                            const SizedBox(height: 24),
-                          ],
-                        ),
-
-                      // Examples section
-                      if (grammar.examples.isNotEmpty)
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildSectionTitle('Ví Dụ', Icons.lightbulb),
-                            const SizedBox(height: 12),
-                            ...grammar.examples.asMap().entries.map((entry) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 12),
-                                child: Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[100],
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border(
-                                      left: BorderSide(
-                                        color: _getLevelColor(grammar.level),
-                                        width: 4,
-                                      ),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Ví dụ ${entry.key + 1}:',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        entry.value,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          height: 1.5,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ],
-                        ),
-
-                      const SizedBox(height: 24),
-
-                      // Stats
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          _buildStatCard(
-                            'Lượt Xem',
-                            '${grammar.viewCount}',
-                            Icons.visibility,
-                          ),
-                          _buildStatCard(
-                            'Cấp Độ',
-                            grammar.level,
-                            Icons.trending_up,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+          },
+        ),
       ),
     );
   }

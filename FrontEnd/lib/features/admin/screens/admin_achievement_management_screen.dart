@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AdminAchievementManagementScreen extends StatefulWidget {
   const AdminAchievementManagementScreen({Key? key}) : super(key: key);
@@ -24,87 +26,88 @@ class _AdminAchievementManagementScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quản Lý Achievements'),
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => context.read<AdminProvider>().loadAchievements(),
-          ),
-        ],
-      ),
-      body: Consumer<AdminProvider>(
-        builder: (context, adminProvider, child) {
-          final allAchievements = adminProvider.achievements;
+    return AppScaffold(
+      title: 'Quản Lý Achievements',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: () => context.read<AdminProvider>().loadAchievements(),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<AdminProvider>(
+          builder: (context, adminProvider, child) {
+            final allAchievements = adminProvider.achievements;
 
-          final filteredAchievements = _selectedRarity == 'all'
-              ? allAchievements
-              : allAchievements
-                  .where((a) => a['rarity'] == _selectedRarity)
-                  .toList();
+            final filteredAchievements = _selectedRarity == 'all'
+                ? allAchievements
+                : allAchievements
+                    .where((a) => a['rarity'] == _selectedRarity)
+                    .toList();
 
-          return Column(
-            children: [
-              // Stats Bar
-              Container(
-                padding: const EdgeInsets.all(16),
-                color: Colors.grey[100],
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildStatCard(
-                        '${allAchievements.length}', 'Tổng', Colors.blue),
-                    _buildStatCard(
-                      _getTotalUnlocked(allAchievements).toString(),
-                      'Đã mở khóa',
-                      Colors.green,
-                    ),
-                    _buildStatCard(
-                      _getTotalXP(allAchievements).toString(),
-                      'XP thưởng',
-                      Colors.purple,
-                    ),
-                  ],
-                ),
-              ),
-
-              // Rarity Filter
-              Container(
-                padding: const EdgeInsets.all(16),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+            return Column(
+              children: [
+                // Stats Bar
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  color: Colors.grey[100],
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildRarityChip('Tất cả', 'all', Colors.grey),
-                      _buildRarityChip('Common', 'common', Colors.grey),
-                      _buildRarityChip('Rare', 'rare', Colors.blue),
-                      _buildRarityChip('Epic', 'epic', Colors.purple),
-                      _buildRarityChip('Legendary', 'legendary', Colors.orange),
+                      _buildStatCard(
+                          '${allAchievements.length}', 'Tổng', Colors.blue),
+                      _buildStatCard(
+                        _getTotalUnlocked(allAchievements).toString(),
+                        'Đã mở khóa',
+                        Colors.green,
+                      ),
+                      _buildStatCard(
+                        _getTotalXP(allAchievements).toString(),
+                        'XP thưởng',
+                        Colors.purple,
+                      ),
                     ],
                   ),
                 ),
-              ),
 
-              // Achievements List
-              Expanded(
-                child: adminProvider.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : filteredAchievements.isEmpty
-                        ? const Center(child: Text('Không có achievements nào'))
-                        : ListView.builder(
-                            padding: const EdgeInsets.all(16),
-                            itemCount: filteredAchievements.length,
-                            itemBuilder: (context, index) {
-                              final achievement = filteredAchievements[index];
-                              return _buildAchievementCard(achievement);
-                            },
-                          ),
-              ),
-            ],
-          );
-        },
+                // Rarity Filter
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _buildRarityChip('Tất cả', 'all', Colors.grey),
+                        _buildRarityChip('Common', 'common', Colors.grey),
+                        _buildRarityChip('Rare', 'rare', Colors.blue),
+                        _buildRarityChip('Epic', 'epic', Colors.purple),
+                        _buildRarityChip(
+                            'Legendary', 'legendary', Colors.orange),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Achievements List
+                Expanded(
+                  child: adminProvider.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : filteredAchievements.isEmpty
+                          ? const Center(
+                              child: Text('Không có achievements nào'))
+                          : ListView.builder(
+                              padding: const EdgeInsets.all(16),
+                              itemCount: filteredAchievements.length,
+                              itemBuilder: (context, index) {
+                                final achievement = filteredAchievements[index];
+                                return _buildAchievementCard(achievement);
+                              },
+                            ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _showAddDialog,

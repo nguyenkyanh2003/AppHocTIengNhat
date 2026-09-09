@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 import '../providers/progress_provider.dart';
-import '../../../core/layout/responsive_helper.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class ProgressDashboardScreen extends StatefulWidget {
   const ProgressDashboardScreen({Key? key}) : super(key: key);
@@ -24,11 +26,10 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tiến độ học tập'),
-        elevation: 0,
-      ),
+    return AppScaffold(
+      title: 'Tiến độ học tập',
+      // `ContentPane` nằm **trong** vùng cuộn nên thanh cuộn ở mép ngoài;
+      // không bọc thêm `ContentWidthLimit` vì như vậy là hẹp hai lần.
       body: Consumer<ProgressProvider>(
         builder: (context, provider, child) {
           if (provider.isLoading && provider.stats == null) {
@@ -39,25 +40,20 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
             onRefresh: provider.loadDashboardData,
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
-              child: ResponsiveCenter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: ResponsiveHelper.getHorizontalPadding(context),
-                    vertical: ResponsiveHelper.getVerticalPadding(context),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildStatsOverview(provider),
-                      const SizedBox(height: 24),
-                      _buildTimelineChart(provider),
-                      const SizedBox(height: 24),
-                      _buildBreakdownCharts(provider),
-                      const SizedBox(height: 24),
-                      _buildHeatmapCalendar(provider),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
+              child: ContentPane(
+                maxWidth: AppContentWidth.dashboard,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildStatsOverview(provider),
+                    const SizedBox(height: AppSpacing.xl),
+                    _buildTimelineChart(provider),
+                    const SizedBox(height: AppSpacing.xl),
+                    _buildBreakdownCharts(provider),
+                    const SizedBox(height: AppSpacing.xl),
+                    _buildHeatmapCalendar(provider),
+                    const SizedBox(height: AppSpacing.lg),
+                  ],
                 ),
               ),
             ),
@@ -76,57 +72,59 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
       children: [
         Text(
           'Thống kê tổng quan',
-          style: TextStyle(
-            fontSize: ResponsiveHelper.getHeadingFontSize(context),
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: 12),
-        GridView.count(
-          crossAxisCount: ResponsiveHelper.getGridColumns(context),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          childAspectRatio: ResponsiveHelper.getCardAspectRatio(context),
-          children: [
-            _buildStatCard(
-              '📚',
-              'Từ vựng',
-              '${stats.vocabularyLearned}',
-              Colors.blue,
-            ),
-            _buildStatCard(
-              '🔤',
-              'Kanji',
-              '${stats.kanjiLearned}',
-              Colors.purple,
-            ),
-            _buildStatCard(
-              '✏️',
-              'Bài tập',
-              '${stats.exercisesCompleted}',
-              Colors.green,
-            ),
-            _buildStatCard(
-              '📖',
-              'Bài học',
-              '${stats.lessonsCompleted}',
-              Colors.orange,
-            ),
-            _buildStatCard(
-              '⏱️',
-              'Thời gian',
-              stats.formattedStudyTime,
-              Colors.red,
-            ),
-            _buildStatCard(
-              '🔥',
-              'Streak',
-              '${stats.currentStreak} ngày',
-              Colors.deepOrange,
-            ),
-          ],
+        LayoutBuilder(
+          builder: (context, constraints) => GridView.count(
+            // Số cột tính từ chỗ trống thật của vùng nội dung; bề rộng cửa sổ
+            // không trừ rail nên dùng nó sẽ ra thừa một cột trên desktop.
+            crossAxisCount: (constraints.maxWidth ~/ 220).clamp(2, 4),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            mainAxisSpacing: AppSpacing.md,
+            crossAxisSpacing: AppSpacing.md,
+            // Chiều cao cố định: tỉ lệ làm thẻ cao vống lên khi cột rộng ra.
+            childAspectRatio: 1.6,
+            children: [
+              _buildStatCard(
+                '📚',
+                'Từ vựng',
+                '${stats.vocabularyLearned}',
+                Colors.blue,
+              ),
+              _buildStatCard(
+                '🔤',
+                'Kanji',
+                '${stats.kanjiLearned}',
+                Colors.purple,
+              ),
+              _buildStatCard(
+                '✏️',
+                'Bài tập',
+                '${stats.exercisesCompleted}',
+                Colors.green,
+              ),
+              _buildStatCard(
+                '📖',
+                'Bài học',
+                '${stats.lessonsCompleted}',
+                Colors.orange,
+              ),
+              _buildStatCard(
+                '⏱️',
+                'Thời gian',
+                stats.formattedStudyTime,
+                Colors.red,
+              ),
+              _buildStatCard(
+                '🔥',
+                'Streak',
+                '${stats.currentStreak} ngày',
+                Colors.deepOrange,
+              ),
+            ],
+          ),
         ),
       ],
     );

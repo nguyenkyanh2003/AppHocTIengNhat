@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../providers/lesson_provider.dart';
 import '../models/lesson.dart';
-import './lesson_detail_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class LessonListScreen extends StatefulWidget {
   const LessonListScreen({Key? key}) : super(key: key);
@@ -33,143 +35,144 @@ class _LessonListScreenState extends State<LessonListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bài học'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: _showFilterDialog,
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          // Search bar
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Tìm kiếm bài học...',
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: _searchController.text.isNotEmpty
-                    ? IconButton(
-                        icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          _searchController.clear();
-                          Provider.of<LessonProvider>(context, listen: false)
-                              .searchLessons('');
-                        },
-                      )
-                    : null,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                filled: true,
-                fillColor: Colors.grey[100],
-              ),
-              onSubmitted: (value) {
-                Provider.of<LessonProvider>(context, listen: false)
-                    .searchLessons(value);
-              },
-            ),
-          ),
-
-          // Level filter chips
-          if (_selectedLevel != null)
+    return AppScaffold(
+      title: 'Bài học',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.filter_list),
+          onPressed: _showFilterDialog,
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Column(
+          children: [
+            // Search bar
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Chip(
-                    label: Text(_selectedLevel!),
-                    deleteIcon: const Icon(Icons.close, size: 18),
-                    onDeleted: () {
-                      setState(() {
-                        _selectedLevel = null;
-                      });
-                      Provider.of<LessonProvider>(context, listen: false)
-                          .filterByLevel(null);
-                    },
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: 'Tìm kiếm bài học...',
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _searchController.text.isNotEmpty
+                      ? IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            Provider.of<LessonProvider>(context, listen: false)
+                                .searchLessons('');
+                          },
+                        )
+                      : null,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                ],
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                ),
+                onSubmitted: (value) {
+                  Provider.of<LessonProvider>(context, listen: false)
+                      .searchLessons(value);
+                },
               ),
             ),
 
-          // Lesson list
-          Expanded(
-            child: Consumer<LessonProvider>(
-              builder: (context, provider, child) {
-                if (provider.isLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (provider.error != null) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.error_outline,
-                            size: 64, color: Colors.red),
-                        const SizedBox(height: 16),
-                        Text(
-                          provider.error!,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () => provider.loadLessons(refresh: true),
-                          child: const Text('Thử lại'),
-                        ),
-                      ],
+            // Level filter chips
+            if (_selectedLevel != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  children: [
+                    Chip(
+                      label: Text(_selectedLevel!),
+                      deleteIcon: const Icon(Icons.close, size: 18),
+                      onDeleted: () {
+                        setState(() {
+                          _selectedLevel = null;
+                        });
+                        Provider.of<LessonProvider>(context, listen: false)
+                            .filterByLevel(null);
+                      },
                     ),
-                  );
-                }
+                  ],
+                ),
+              ),
 
-                if (provider.lessons.isEmpty) {
-                  return Center(
+            // Lesson list
+            Expanded(
+              child: Consumer<LessonProvider>(
+                builder: (context, provider, child) {
+                  if (provider.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (provider.error != null) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.error_outline,
+                              size: 64, color: Colors.red),
+                          const SizedBox(height: 16),
+                          Text(
+                            provider.error!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () =>
+                                provider.loadLessons(refresh: true),
+                            child: const Text('Thử lại'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                  if (provider.lessons.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.book_outlined,
+                              size: 64, color: Colors.grey[400]),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Không có bài học nào',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                  return RefreshIndicator(
+                    onRefresh: () => provider.loadLessons(refresh: true),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.book_outlined,
-                            size: 64, color: Colors.grey[400]),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Không có bài học nào',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey[600],
+                        Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: provider.lessons.length,
+                            itemBuilder: (context, index) {
+                              final lesson = provider.lessons[index];
+                              return _buildLessonCard(lesson);
+                            },
                           ),
                         ),
+                        _buildPagination(provider),
                       ],
                     ),
                   );
-                }
-
-                return RefreshIndicator(
-                  onRefresh: () => provider.loadLessons(refresh: true),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          padding: const EdgeInsets.all(16),
-                          itemCount: provider.lessons.length,
-                          itemBuilder: (context, index) {
-                            final lesson = provider.lessons[index];
-                            return _buildLessonCard(lesson);
-                          },
-                        ),
-                      ),
-                      _buildPagination(provider),
-                    ],
-                  ),
-                );
-              },
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -183,12 +186,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LessonDetailScreen(lessonId: lesson.id),
-            ),
-          );
+          context.push('/lessons/${lesson.id}');
         },
         borderRadius: BorderRadius.circular(12),
         child: Padding(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/streak_provider.dart';
 import '../../achievements/providers/achievement_provider.dart';
-import '../../achievements/screens/achievement_screen.dart';
-import './leaderboard_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class StreakScreen extends StatefulWidget {
   const StreakScreen({Key? key}) : super(key: key);
@@ -33,66 +34,56 @@ class _StreakScreenState extends State<StreakScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Streak & XP'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.emoji_events),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AchievementScreen(),
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.leaderboard),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LeaderboardScreen(),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: _loadData,
-        child: Consumer<StreakProvider>(
-          builder: (context, provider, child) {
-            if (provider.isLoading && provider.currentStreak == null) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            final streak = provider.currentStreak;
-            if (streak == null) {
-              return const Center(
-                child: Text('Không thể tải dữ liệu streak'),
-              );
-            }
-
-            return SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildStreakCard(streak, provider),
-                  const SizedBox(height: 16),
-                  _buildXPCard(streak),
-                  const SizedBox(height: 16),
-                  _buildStatsCards(streak),
-                  const SizedBox(height: 16),
-                  _buildXPHistory(provider),
-                ],
-              ),
-            );
+    return AppScaffold(
+      title: 'Streak & XP',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.emoji_events),
+          onPressed: () {
+            context.push('/achievements');
           },
+        ),
+        IconButton(
+          icon: const Icon(Icons.leaderboard),
+          onPressed: () {
+            context.push('/leaderboard');
+          },
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: RefreshIndicator(
+          onRefresh: _loadData,
+          child: Consumer<StreakProvider>(
+            builder: (context, provider, child) {
+              if (provider.isLoading && provider.currentStreak == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              final streak = provider.currentStreak;
+              if (streak == null) {
+                return const Center(
+                  child: Text('Không thể tải dữ liệu streak'),
+                );
+              }
+
+              return SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildStreakCard(streak, provider),
+                    const SizedBox(height: 16),
+                    _buildXPCard(streak),
+                    const SizedBox(height: 16),
+                    _buildStatsCards(streak),
+                    const SizedBox(height: 16),
+                    _buildXPHistory(provider),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

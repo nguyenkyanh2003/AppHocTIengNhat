@@ -133,10 +133,13 @@ void main() {
     expect(provider.isLoading, isFalse);
   });
 
-  test('tải danh sách thành công thì có dữ liệu và thông tin phân trang', () async {
+  test('tải danh sách thành công thì có dữ liệu và thông tin phân trang',
+      () async {
     final provider = VocabularyProvider(
       service: _FakeVocabularyService(
-        pages: {1: _page([_word('1'), _word('2')], 1, 3)},
+        pages: {
+          1: _page([_word('1'), _word('2')], 1, 3)
+        },
       ),
     );
 
@@ -171,7 +174,9 @@ void main() {
   test('loadMore không làm gì khi đã ở trang cuối', () async {
     final provider = VocabularyProvider(
       service: _FakeVocabularyService(
-        pages: {1: _page([_word('1')], 1, 1)},
+        pages: {
+          1: _page([_word('1')], 1, 1)
+        },
       ),
     );
 
@@ -218,7 +223,9 @@ void main() {
   test('tìm kiếm rỗng thì quay lại danh sách đầy đủ', () async {
     final provider = VocabularyProvider(
       service: _FakeVocabularyService(
-        pages: {1: _page([_word('1')], 1, 1)},
+        pages: {
+          1: _page([_word('1')], 1, 1)
+        },
       ),
     );
 
@@ -230,7 +237,9 @@ void main() {
 
   test('lọc theo trạng thái học được truyền xuống service', () async {
     final service = _FakeVocabularyService(
-      pages: {1: _page([_word('1')], 1, 1)},
+      pages: {
+        1: _page([_word('1')], 1, 1)
+      },
     );
     final provider = VocabularyProvider(service: service);
 
@@ -254,7 +263,9 @@ void main() {
   test('clear đưa provider về trạng thái ban đầu', () async {
     final provider = VocabularyProvider(
       service: _FakeVocabularyService(
-        pages: {1: _page([_word('1')], 1, 2)},
+        pages: {
+          1: _page([_word('1')], 1, 2)
+        },
       ),
     );
 
@@ -268,7 +279,8 @@ void main() {
   });
 
   group('phản hồi lỗi thời', () {
-    test('kết quả N5 về sau không ghi đè danh sách lẫn phân trang của N4', () async {
+    test('kết quả N5 về sau không ghi đè danh sách lẫn phân trang của N4',
+        () async {
       final service = _DeferredVocabularyService();
       final provider = VocabularyProvider(service: service);
 
@@ -290,7 +302,8 @@ void main() {
       expect(provider.hasNextPage, isFalse);
     });
 
-    test('trang 2 cũ về sau khi đã tìm kiếm mới thì không nối vào kết quả', () async {
+    test('trang 2 cũ về sau khi đã tìm kiếm mới thì không nối vào kết quả',
+        () async {
       final service = _DeferredVocabularyService();
       final provider = VocabularyProvider(service: service);
 
@@ -350,7 +363,8 @@ void main() {
       expect(provider.vocabularies, hasLength(1));
     });
 
-    test('clear khi còn request đang chạy thì phản hồi về sau bị bỏ qua', () async {
+    test('clear khi còn request đang chạy thì phản hồi về sau bị bỏ qua',
+        () async {
       final service = _DeferredVocabularyService();
       final provider = VocabularyProvider(service: service);
 
@@ -409,7 +423,8 @@ void main() {
       await more;
     });
 
-    test('tải thêm lỗi giữ nguyên danh sách và trang, retry đúng trang lỗi', () async {
+    test('tải thêm lỗi giữ nguyên danh sách và trang, retry đúng trang lỗi',
+        () async {
       final service = _DeferredVocabularyService();
       final provider = VocabularyProvider(service: service);
 

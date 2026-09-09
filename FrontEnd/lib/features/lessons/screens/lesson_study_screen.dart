@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_html/flutter_html.dart';
 import '../../../app/theme/app_theme.dart';
@@ -6,7 +7,8 @@ import '../providers/lesson_provider.dart';
 import '../providers/lesson_progress_provider.dart';
 import '../models/lesson.dart';
 import '../services/lesson_progress_service.dart';
-import '../../exercise/screens/exercise_list_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class LessonStudyScreen extends StatefulWidget {
   final String lessonId;
@@ -97,57 +99,57 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Học bài'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => _showExitConfirmation(),
-          ),
-        ],
-      ),
-      body: Consumer<LessonProvider>(
-        builder: (context, provider, child) {
-          if (provider.currentLessonDetail == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Học bài',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () => _showExitConfirmation(),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<LessonProvider>(
+          builder: (context, provider, child) {
+            if (provider.currentLessonDetail == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          final lessonDetail = provider.currentLessonDetail!;
-          final lesson = lessonDetail.lesson;
+            final lessonDetail = provider.currentLessonDetail!;
+            final lesson = lessonDetail.lesson;
 
-          return Column(
-            children: [
-              // Progress indicator
-              _buildProgressBar(lessonDetail),
+            return Column(
+              children: [
+                // Progress indicator
+                _buildProgressBar(lessonDetail),
 
-              // Content
-              Expanded(
-                child: PageView(
-                  controller: _pageController,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _currentStep = index;
-                    });
-                  },
-                  children: [
-                    _buildIntroductionStep(lesson),
-                    if (lessonDetail.vocabularies.isNotEmpty)
-                      _buildVocabularyStep(lessonDetail.vocabularies),
-                    if (lessonDetail.kanjis.isNotEmpty)
-                      _buildKanjiStep(lessonDetail.kanjis),
-                    if (lessonDetail.grammars.isNotEmpty)
-                      _buildGrammarStep(lessonDetail.grammars),
-                    _buildSummaryStep(lesson, lessonDetail),
-                  ],
+                // Content
+                Expanded(
+                  child: PageView(
+                    controller: _pageController,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentStep = index;
+                      });
+                    },
+                    children: [
+                      _buildIntroductionStep(lesson),
+                      if (lessonDetail.vocabularies.isNotEmpty)
+                        _buildVocabularyStep(lessonDetail.vocabularies),
+                      if (lessonDetail.kanjis.isNotEmpty)
+                        _buildKanjiStep(lessonDetail.kanjis),
+                      if (lessonDetail.grammars.isNotEmpty)
+                        _buildGrammarStep(lessonDetail.grammars),
+                      _buildSummaryStep(lesson, lessonDetail),
+                    ],
+                  ),
                 ),
-              ),
 
-              // Navigation buttons
-              _buildNavigationButtons(lessonDetail),
-            ],
-          );
-        },
+                // Navigation buttons
+                _buildNavigationButtons(lessonDetail),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -599,14 +601,14 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ExerciseListScreen(
-                      lessonId: widget.lessonId,
-                      lessonTitle: detail.lesson.title,
-                    ),
-                  ),
+                context.push(
+                  Uri(
+                    path: '/exercise',
+                    queryParameters: {
+                      'lessonId': widget.lessonId,
+                      'lessonTitle': detail.lesson.title,
+                    },
+                  ).toString(),
                 );
               },
               icon: const Icon(Icons.quiz),

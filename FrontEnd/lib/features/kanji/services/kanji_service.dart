@@ -19,7 +19,8 @@ class KanjiService {
       }
 
       String queryString = params.join('&');
-      final dynamic response = await _apiClient.get('/kanji?$queryString', cache: true);
+      final dynamic response =
+          await _apiClient.get('/kanji?$queryString', cache: true);
 
       if (response is Map<String, dynamic>) {
         return {
@@ -63,7 +64,8 @@ class KanjiService {
   // Lấy kanji theo level
   Future<List<Kanji>> getKanjisByLevel(String level) async {
     try {
-      final dynamic response = await _apiClient.get('/kanji/level/$level', cache: true);
+      final dynamic response =
+          await _apiClient.get('/kanji/level/$level', cache: true);
       if (response is Map<String, dynamic> && response['data'] != null) {
         return (response['data'] as List)
             .map((json) => Kanji.fromJson(json))
@@ -91,7 +93,8 @@ class KanjiService {
   // Lấy kanji theo bài học
   Future<List<Kanji>> getKanjisByLesson(String lessonId) async {
     try {
-      final dynamic response = await _apiClient.get('/kanji/lesson/$lessonId', cache: true);
+      final dynamic response =
+          await _apiClient.get('/kanji/lesson/$lessonId', cache: true);
       if (response is Map<String, dynamic> && response['data'] != null) {
         return (response['data'] as List)
             .map((json) => Kanji.fromJson(json))

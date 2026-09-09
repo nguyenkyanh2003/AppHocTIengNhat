@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/admin_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AdminTransactionScreen extends StatefulWidget {
   const AdminTransactionScreen({super.key});
@@ -23,45 +25,45 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quản lý giao dịch'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Tải lại',
-            onPressed: () => _loadForStatus(_selectedStatus),
-          ),
-        ],
-      ),
-      body: Consumer<AdminProvider>(
-        builder: (context, provider, _) {
-          final transactions = provider.transactions;
-          if (provider.isLoadingTransactions && transactions.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return RefreshIndicator(
-            onRefresh: () => _loadForStatus(_selectedStatus),
-            child: ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-                _buildSummary(transactions),
-                const SizedBox(height: 16),
-                _buildFilters(),
-                const SizedBox(height: 12),
-                if (provider.error != null && transactions.isEmpty)
-                  _buildError(provider.error!)
-                else if (transactions.isEmpty)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 80),
-                    child: Center(child: Text('Chưa có giao dịch nào.')),
-                  )
-                else
-                  ...transactions.map(_buildTransactionCard),
-              ],
-            ),
-          );
-        },
+    return AppScaffold(
+      title: 'Quản lý giao dịch',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          tooltip: 'Tải lại',
+          onPressed: () => _loadForStatus(_selectedStatus),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<AdminProvider>(
+          builder: (context, provider, _) {
+            final transactions = provider.transactions;
+            if (provider.isLoadingTransactions && transactions.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return RefreshIndicator(
+              onRefresh: () => _loadForStatus(_selectedStatus),
+              child: ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  _buildSummary(transactions),
+                  const SizedBox(height: 16),
+                  _buildFilters(),
+                  const SizedBox(height: 12),
+                  if (provider.error != null && transactions.isEmpty)
+                    _buildError(provider.error!)
+                  else if (transactions.isEmpty)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 80),
+                      child: Center(child: Text('Chưa có giao dịch nào.')),
+                    )
+                  else
+                    ...transactions.map(_buildTransactionCard),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

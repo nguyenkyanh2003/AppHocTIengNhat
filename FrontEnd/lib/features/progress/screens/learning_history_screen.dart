@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import '../providers/progress_provider.dart';
 import '../../streaks/providers/streak_provider.dart';
 import '../../streaks/models/user_streak.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class LearningHistoryScreen extends StatefulWidget {
   const LearningHistoryScreen({Key? key}) : super(key: key);
@@ -46,29 +48,27 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lịch sử học tập'),
-        backgroundColor: Colors.blue,
-        elevation: 0,
-        bottom: TabBar(
+    return AppScaffold(
+      title: 'Lịch sử học tập',
+      bottom: TabBar(
+        controller: _tabController,
+        indicatorColor: Colors.white,
+        indicatorWeight: 3,
+        tabs: const [
+          Tab(text: 'Tổng quan'),
+          Tab(text: 'Hoạt động'),
+          Tab(text: 'Thống kê'),
+        ],
+      ),
+      body: ContentWidthLimit(
+        child: TabBarView(
           controller: _tabController,
-          indicatorColor: Colors.white,
-          indicatorWeight: 3,
-          tabs: const [
-            Tab(text: 'Tổng quan'),
-            Tab(text: 'Hoạt động'),
-            Tab(text: 'Thống kê'),
+          children: [
+            _buildOverviewTab(),
+            _buildActivityTab(),
+            _buildStatisticsTab(),
           ],
         ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          _buildOverviewTab(),
-          _buildActivityTab(),
-          _buildStatisticsTab(),
-        ],
       ),
     );
   }

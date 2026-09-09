@@ -17,9 +17,21 @@ class AuthProvider extends ChangeNotifier {
   User? _user;
   bool _isLoading = false;
   String? _error;
+  bool _sessionRestored = false;
 
   User? get user => _user;
+
+  /// `true` cho **mọi** thao tác đang chạy: đăng nhập, đổi mật khẩu, cập nhật
+  /// hồ sơ... Đừng dùng cờ này để quyết định điều hướng — xem
+  /// [sessionRestored].
   bool get isLoading => _isLoading;
+
+  /// `true` sau khi [init] chạy xong, bất kể có phiên hay không.
+  ///
+  /// Router phải chờ đúng cờ này rồi mới quyết định chuyển trang. Dùng
+  /// [isLoading] thay cho nó sẽ khiến mỗi lần cập nhật hồ sơ hay đổi mật khẩu
+  /// bị hiểu nhầm là "ứng dụng đang khởi động" và nảy điều hướng.
+  bool get sessionRestored => _sessionRestored;
   String? get error => _error;
   bool get isAuthenticated => _user != null && _apiClient.getToken() != null;
   bool get isAdmin => _user?.role == 'admin';
@@ -64,6 +76,7 @@ class AuthProvider extends ChangeNotifier {
       await _apiClient.clearAllData();
     } finally {
       _isLoading = false;
+      _sessionRestored = true;
       notifyListeners();
     }
   }
@@ -161,6 +174,8 @@ class AuthProvider extends ChangeNotifier {
     _user = null;
     _error = null;
     _isLoading = false;
+    // `_sessionRestored` giữ nguyên: phiên đã được khôi phục xong rồi, việc
+    // xoá state không đưa ứng dụng về lại trạng thái đang khởi động.
     notifyListeners();
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/notification_service.dart';
 import '../models/notification.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({Key? key}) : super(key: key);
@@ -75,98 +77,95 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text('Thông báo'),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          // Filter buttons
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _buildFilterButton('Tất cả', 'all'),
-                  const SizedBox(width: 8),
-                  _buildFilterButton('Chưa đọc', 'unread'),
-                  const SizedBox(width: 8),
-                  _buildFilterButton('Đã đọc', 'read'),
-                ],
-              ),
-            ),
-          ),
-          // Notifications list
-          Expanded(
-            child: _isLoading
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : _notifications.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.notifications_none,
-                              size: 64,
-                              color: Colors.grey[400],
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Không có thông báo',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : ListView.builder(
-                        itemCount: _notifications.length,
-                        itemBuilder: (context, index) {
-                          final notification = _notifications[index];
-                          return _buildNotificationItem(notification);
-                        },
-                      ),
-          ),
-          // Pagination
-          if (_totalPages > 1)
+    return AppScaffold(
+      title: 'Thông báo',
+      body: ContentWidthLimit(
+        child: Column(
+          children: [
+            // Filter buttons
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: _currentPage > 1
-                        ? () {
-                            setState(() => _currentPage--);
-                            _loadNotifications();
-                          }
-                        : null,
-                    child: const Text('Trước'),
-                  ),
-                  const SizedBox(width: 16),
-                  Text('Trang $_currentPage / $_totalPages'),
-                  const SizedBox(width: 16),
-                  ElevatedButton(
-                    onPressed: _currentPage < _totalPages
-                        ? () {
-                            setState(() => _currentPage++);
-                            _loadNotifications();
-                          }
-                        : null,
-                    child: const Text('Tiếp'),
-                  ),
-                ],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _buildFilterButton('Tất cả', 'all'),
+                    const SizedBox(width: 8),
+                    _buildFilterButton('Chưa đọc', 'unread'),
+                    const SizedBox(width: 8),
+                    _buildFilterButton('Đã đọc', 'read'),
+                  ],
+                ),
               ),
             ),
-        ],
+            // Notifications list
+            Expanded(
+              child: _isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : _notifications.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.notifications_none,
+                                size: 64,
+                                color: Colors.grey[400],
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Không có thông báo',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: _notifications.length,
+                          itemBuilder: (context, index) {
+                            final notification = _notifications[index];
+                            return _buildNotificationItem(notification);
+                          },
+                        ),
+            ),
+            // Pagination
+            if (_totalPages > 1)
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _currentPage > 1
+                          ? () {
+                              setState(() => _currentPage--);
+                              _loadNotifications();
+                            }
+                          : null,
+                      child: const Text('Trước'),
+                    ),
+                    const SizedBox(width: 16),
+                    Text('Trang $_currentPage / $_totalPages'),
+                    const SizedBox(width: 16),
+                    ElevatedButton(
+                      onPressed: _currentPage < _totalPages
+                          ? () {
+                              setState(() => _currentPage++);
+                              _loadNotifications();
+                            }
+                          : null,
+                      child: const Text('Tiếp'),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
 import '../models/vocabulary.dart';
 import 'vocabulary_card.dart';
 
@@ -80,29 +81,37 @@ class VocabularyListView extends StatelessWidget {
             }
             return false;
           },
-          child: ListView.builder(
+          // Lề tính theo bề rộng còn lại, bơm thẳng vào `ListView.builder`:
+          // giữ được ảo hoá và giữ thanh cuộn ở mép ngoài.
+          child: ContentPaneList(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.lg,
               vertical: AppSpacing.md,
             ),
-            itemCount: items.length +
-                (hasNextPage || isLoadingMore || loadMoreError != null ? 1 : 0),
-            itemBuilder: (context, index) {
-              if (index >= items.length) {
-                return _buildFooter(context);
-              }
+            builder: (context, padding) => ListView.builder(
+              padding: padding,
+              itemCount: items.length +
+                  (hasNextPage || isLoadingMore || loadMoreError != null
+                      ? 1
+                      : 0),
+              itemBuilder: (context, index) {
+                if (index >= items.length) {
+                  return _buildFooter(context);
+                }
 
-              final vocabulary = items[index];
-              return VocabularyCard(
-                vocabulary: vocabulary,
-                onTap: () => onOpen(vocabulary),
-                onAddToFlashcard: onAddToFlashcard == null
-                    ? null
-                    : () => onAddToFlashcard!(vocabulary),
-                onPlayAudio:
-                    onPlayAudio == null ? null : () => onPlayAudio!(vocabulary),
-              );
-            },
+                final vocabulary = items[index];
+                return VocabularyCard(
+                  vocabulary: vocabulary,
+                  onTap: () => onOpen(vocabulary),
+                  onAddToFlashcard: onAddToFlashcard == null
+                      ? null
+                      : () => onAddToFlashcard!(vocabulary),
+                  onPlayAudio: onPlayAudio == null
+                      ? null
+                      : () => onPlayAudio!(vocabulary),
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/exercise_provider.dart';
 import '../models/exercise.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/app_scaffold.dart';
 
 class ExerciseHistoryScreen extends StatefulWidget {
   const ExerciseHistoryScreen({super.key});
@@ -26,54 +28,14 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple.shade50,
-              Colors.white,
-            ],
-          ),
+    return AppScaffold(
+      title: 'Lịch sử làm bài',
+      onRefresh: _loadHistory,
+      body: ContentWidthLimit(
+        child: RefreshIndicator(
+          onRefresh: _loadHistory,
+          child: _buildHistoryList(),
         ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildAppBar(),
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: _loadHistory,
-                  child: _buildHistoryList(),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAppBar() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black87),
-            onPressed: () => Navigator.pop(context),
-          ),
-          const SizedBox(width: 8),
-          const Text(
-            'Lịch sử làm bài',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
-        ],
       ),
     );
   }

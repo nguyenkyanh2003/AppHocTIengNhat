@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../app/state/provider_reset_service.dart';
-import './register_screen.dart';
-import './forgot_password_screen.dart';
-import '../../home/screens/home_screen.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -67,11 +67,10 @@ class _LoginScreenState extends State<LoginScreen> {
       _usernameController.clear();
       _passwordController.clear();
 
-      // Chuyển sang màn hình Home và clear navigation stack
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
-        (route) => false,
-      );
+      // Về đúng trang người dùng định mở trước khi bị chặn đăng nhập;
+      // `go` thay stack nên nút Back không quay lại được màn đăng nhập.
+      final target = GoRouterState.of(context).uri.queryParameters['from'];
+      context.go(target == null || target.isEmpty ? '/home' : target);
     } else {
       // Chỉ clear password khi login thất bại (giữ nguyên username)
       _passwordController.clear();
@@ -93,90 +92,93 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24.0),
-            child: AutofillGroup(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Logo và tiêu đề
-                    _buildHeader(),
+            child: ContentPane(
+              maxWidth: AppContentWidth.form,
+              padding: const EdgeInsets.all(AppSpacing.xl),
+              child: AutofillGroup(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Logo và tiêu đề
+                      _buildHeader(),
 
-                    const SizedBox(height: 48),
+                      const SizedBox(height: 48),
 
-                    // Hiển thị lỗi đẹp hơn
-                    Consumer<AuthProvider>(
-                      builder: (context, authProvider, _) {
-                        if (authProvider.error != null) {
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 20),
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.red[50],
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.red.withValues(alpha: 0.3),
-                                width: 1,
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.red[100],
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    Icons.info_outline,
-                                    color: Colors.red,
-                                    size: 20,
-                                  ),
+                      // Hiển thị lỗi đẹp hơn
+                      Consumer<AuthProvider>(
+                        builder: (context, authProvider, _) {
+                          if (authProvider.error != null) {
+                            return Container(
+                              margin: const EdgeInsets.only(bottom: 20),
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.red[50],
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: Colors.red.withValues(alpha: 0.3),
+                                  width: 1,
                                 ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Text(
-                                    authProvider.error!,
-                                    style: TextStyle(
-                                      color: Colors.red[700],
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red[100],
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.info_outline,
+                                      color: Colors.red,
+                                      size: 20,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    ),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Text(
+                                      authProvider.error!,
+                                      style: TextStyle(
+                                        color: Colors.red[700],
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
 
-                    // Form đăng nhập
-                    _buildLoginForm(),
+                      // Form đăng nhập
+                      _buildLoginForm(),
 
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                    // Ghi nhớ & Quên mật khẩu
-                    _buildRememberAndForgot(),
+                      // Ghi nhớ & Quên mật khẩu
+                      _buildRememberAndForgot(),
 
-                    const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                    // Nút đăng nhập
-                    _buildLoginButton(),
+                      // Nút đăng nhập
+                      _buildLoginButton(),
 
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                    // Hoặc
-                    _buildDivider(),
+                      // Hoặc
+                      _buildDivider(),
 
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
-                    // Nút đăng ký
-                    _buildRegisterButton(),
-                  ],
+                      // Nút đăng ký
+                      _buildRegisterButton(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -325,12 +327,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Quên mật khẩu
         TextButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const ForgotPasswordScreen(),
-              ),
-            );
+            context.push('/forgot-password');
           },
           child: const Text('Quên mật khẩu?'),
         ),
@@ -428,12 +425,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: OutlinedButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => const RegisterScreen(),
-            ),
-          );
+          context.push('/register');
         },
         style: OutlinedButton.styleFrom(
           side: BorderSide.none,

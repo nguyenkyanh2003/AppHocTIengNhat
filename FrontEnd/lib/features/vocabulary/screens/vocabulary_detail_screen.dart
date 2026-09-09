@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../core/audio/audio_service.dart';
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../flashcards/widgets/add_to_flashcard_dialog.dart';
 import '../models/vocabulary.dart';
@@ -85,7 +86,6 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
 
     return AppScaffold(
       title: vocabulary?.word ?? 'Từ vựng',
-      padded: false,
       actions: [
         if (vocabulary != null)
           IconButton(
@@ -102,22 +102,28 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
       body: AsyncView<Vocabulary>(
         state: provider.detailState,
         onRetry: _load,
-        builder: (context, item) => ListView(
-          padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
-          children: [
-            VocabularyHeadline(
-              vocabulary: item,
-              onPlayAudio: () => _play(item.audioUrl),
-            ),
-            if (item.usageContext != null)
-              VocabularyUsageContext(usageContext: item.usageContext!),
-            if (item.examples.isNotEmpty)
-              VocabularyExamples(
-                examples: item.examples,
-                onPlayAudio: (example) => _play(example.audioUrl),
+        builder: (context, item) => ContentPaneList(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.lg,
+          ),
+          builder: (context, padding) => ListView(
+            padding: padding,
+            children: [
+              VocabularyHeadline(
+                vocabulary: item,
+                onPlayAudio: () => _play(item.audioUrl),
               ),
-            const SizedBox(height: AppSpacing.xxl),
-          ],
+              if (item.usageContext != null)
+                VocabularyUsageContext(usageContext: item.usageContext!),
+              if (item.examples.isNotEmpty)
+                VocabularyExamples(
+                  examples: item.examples,
+                  onPlayAudio: (example) => _play(example.audioUrl),
+                ),
+              const SizedBox(height: AppSpacing.xxl),
+            ],
+          ),
         ),
       ),
       floatingActionButton: vocabulary == null

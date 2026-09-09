@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../providers/auth_provider.dart';
 import '../widgets/reset_password_form.dart';
-import 'forgot_password_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 /// Màn đặt lại mật khẩu mở từ link trong email.
 ///
@@ -55,24 +57,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   void _goToLogin() {
-    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+    context.go('/login');
   }
 
   void _requestNewLink() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const ForgotPasswordScreen()),
-    );
+    context.pushReplacement('/forgot-password');
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Đặt lại mật khẩu')),
+    return AppScaffold(
+      title: 'Đặt lại mật khẩu',
       body: Center(
         child: SingleChildScrollView(
-          padding: AppSpacing.page,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
+          child: ContentPane(
+            maxWidth: AppContentWidth.form,
+            padding: const EdgeInsets.all(AppSpacing.xl),
             child: _buildBody(context),
           ),
         ),

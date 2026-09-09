@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../providers/flashcard_provider.dart';
 import '../models/flashcard_deck.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class EditFlashcardCardScreen extends StatefulWidget {
   final String deckId;
@@ -111,227 +113,228 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
   Widget build(BuildContext context) {
     final isEditing = widget.card != null;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(isEditing ? 'Sửa Thẻ' : 'Thêm Thẻ Mới'),
-        elevation: 0,
-      ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            // Info card
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue[200]!),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.info_outline, color: Colors.blue[700]),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      'Tạo thẻ flashcard giống Quizlet: Mặt trước thường là từ/câu hỏi, mặt sau là nghĩa/đáp án.',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.blue[900],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Front (Mặt trước)
-            const Text(
-              'Mặt trước',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              controller: _frontController,
-              decoration: InputDecoration(
-                labelText: 'Nội dung chính *',
-                hintText: 'Ví dụ: 学生 hoặc "Con mèo ăn cá"',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.credit_card),
-              ),
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Vui lòng nhập nội dung mặt trước';
-                }
-                return null;
-              },
-              maxLength: 200,
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              controller: _frontSubtextController,
-              decoration: InputDecoration(
-                labelText: 'Phụ đề (tùy chọn)',
-                hintText: 'Ví dụ: がくせい, phiên âm, v.v.',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.subtitles),
-              ),
-              maxLength: 200,
-            ),
-            const SizedBox(height: 24),
-
-            // Divider
-            const Divider(thickness: 2),
-            const SizedBox(height: 24),
-
-            // Back (Mặt sau)
-            const Text(
-              'Mặt sau',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              controller: _backController,
-              decoration: InputDecoration(
-                labelText: 'Nội dung chính *',
-                hintText: 'Ví dụ: Học sinh',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.credit_card_outlined),
-              ),
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Vui lòng nhập nội dung mặt sau';
-                }
-                return null;
-              },
-              maxLength: 200,
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              controller: _backSubtextController,
-              decoration: InputDecoration(
-                labelText: 'Phụ đề (tùy chọn)',
-                hintText: 'Ví dụ: Người đang học tập',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.subtitles_outlined),
-              ),
-              maxLines: 2,
-              maxLength: 300,
-            ),
-            const SizedBox(height: 24),
-
-            // Preview card
-            Card(
-              elevation: 4,
-              child: Padding(
+    return AppScaffold(
+      title: isEditing ? 'Sửa Thẻ' : 'Thêm Thẻ Mới',
+      body: ContentWidthLimit(
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              // Info card
+              Container(
                 padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.blue[200]!),
+                ),
+                child: Row(
                   children: [
-                    const Text(
-                      'Xem trước:',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
+                    Icon(Icons.info_outline, color: Colors.blue[700]),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        'Tạo thẻ flashcard giống Quizlet: Mặt trước thường là từ/câu hỏi, mặt sau là nghĩa/đáp án.',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.blue[900],
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      'Mặt trước:',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                    Text(
-                      _frontController.text.isEmpty
-                          ? '(Trống)'
-                          : _frontController.text,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    if (_frontSubtextController.text.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        _frontSubtextController.text,
-                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                      ),
-                    ],
-                    const Divider(height: 24),
-                    const Text(
-                      'Mặt sau:',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                    Text(
-                      _backController.text.isEmpty
-                          ? '(Trống)'
-                          : _backController.text,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    if (_backSubtextController.text.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        _backSubtextController.text,
-                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                      ),
-                    ],
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-            // Save button
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: _isLoading ? null : _saveCard,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
+              // Front (Mặt trước)
+              const Text(
+                'Mặt trước',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _frontController,
+                decoration: InputDecoration(
+                  labelText: 'Nội dung chính *',
+                  hintText: 'Ví dụ: 学生 hoặc "Con mèo ăn cá"',
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  prefixIcon: const Icon(Icons.credit_card),
                 ),
-                child: _isLoading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Vui lòng nhập nội dung mặt trước';
+                  }
+                  return null;
+                },
+                maxLength: 200,
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _frontSubtextController,
+                decoration: InputDecoration(
+                  labelText: 'Phụ đề (tùy chọn)',
+                  hintText: 'Ví dụ: がくせい, phiên âm, v.v.',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.subtitles),
+                ),
+                maxLength: 200,
+              ),
+              const SizedBox(height: 24),
+
+              // Divider
+              const Divider(thickness: 2),
+              const SizedBox(height: 24),
+
+              // Back (Mặt sau)
+              const Text(
+                'Mặt sau',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _backController,
+                decoration: InputDecoration(
+                  labelText: 'Nội dung chính *',
+                  hintText: 'Ví dụ: Học sinh',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.credit_card_outlined),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Vui lòng nhập nội dung mặt sau';
+                  }
+                  return null;
+                },
+                maxLength: 200,
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _backSubtextController,
+                decoration: InputDecoration(
+                  labelText: 'Phụ đề (tùy chọn)',
+                  hintText: 'Ví dụ: Người đang học tập',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.subtitles_outlined),
+                ),
+                maxLines: 2,
+                maxLength: 300,
+              ),
+              const SizedBox(height: 24),
+
+              // Preview card
+              Card(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Xem trước:',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
                         ),
-                      )
-                    : Text(
-                        isEditing ? 'Lưu Thay Đổi' : 'Thêm Thẻ',
+                      ),
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Mặt trước:',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      Text(
+                        _frontController.text.isEmpty
+                            ? '(Trống)'
+                            : _frontController.text,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      if (_frontSubtextController.text.isNotEmpty) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          _frontSubtextController.text,
+                          style:
+                              TextStyle(fontSize: 14, color: Colors.grey[600]),
+                        ),
+                      ],
+                      const Divider(height: 24),
+                      const Text(
+                        'Mặt sau:',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      Text(
+                        _backController.text.isEmpty
+                            ? '(Trống)'
+                            : _backController.text,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      if (_backSubtextController.text.isNotEmpty) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          _backSubtextController.text,
+                          style:
+                              TextStyle(fontSize: 14, color: Colors.grey[600]),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 24),
+
+              // Save button
+              SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: _isLoading ? null : _saveCard,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.primaryColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: _isLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        )
+                      : Text(
+                          isEditing ? 'Lưu Thay Đổi' : 'Thêm Thẻ',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -54,3 +54,9 @@ jobs:
 
       - name: Run tests
         run: flutter test
+
+      # Web là mục tiêu phát hành ngang hàng với mobile, nên bản dựng web phải
+      # được máy kiểm mỗi lần đẩy code — không để nó vỡ âm thầm rồi phát hiện
+      # lúc chuẩn bị demo.
+      - name: Build web
+        run: flutter build web --release

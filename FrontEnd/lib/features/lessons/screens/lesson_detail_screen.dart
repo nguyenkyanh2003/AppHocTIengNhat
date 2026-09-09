@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_html/flutter_html.dart';
 import '../providers/lesson_provider.dart';
 import '../providers/lesson_progress_provider.dart';
 import '../models/lesson.dart';
-import './lesson_study_screen.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class LessonDetailScreen extends StatefulWidget {
   final String lessonId;
@@ -43,68 +44,81 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<LessonProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: ContentWidthLimit(
+        child: Consumer<LessonProvider>(
+          builder: (context, provider, child) {
+            if (provider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (provider.error != null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text(
-                    provider.error!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.red),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => provider.loadLessonDetail(widget.lessonId),
-                    child: const Text('Thử lại'),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          if (provider.currentLessonDetail == null) {
-            return const Center(child: Text('Không tìm thấy bài học'));
-          }
-
-          final lessonDetail = provider.currentLessonDetail!;
-          final lesson = lessonDetail.lesson;
-
-          return CustomScrollView(
-            slivers: [
-              _buildAppBar(lesson),
-              SliverToBoxAdapter(
+            if (provider.error != null) {
+              return Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildHeader(lesson, lessonDetail),
-                    _buildTabBar(),
+                    const Icon(Icons.error_outline,
+                        size: 64, color: Colors.red),
+                    const SizedBox(height: 16),
+                    Text(
+                      provider.error!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () =>
+                          provider.loadLessonDetail(widget.lessonId),
+                      child: const Text('Thử lại'),
+                    ),
                   ],
                 ),
-              ),
-              SliverFillRemaining(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    _buildOverviewTab(lesson, lessonDetail),
-                    _buildVocabularyTab(lessonDetail.vocabularies),
-                    _buildKanjiTab(lessonDetail.kanjis),
-                    _buildGrammarTab(lessonDetail.grammars),
-                  ],
+              );
+            }
+
+            if (provider.currentLessonDetail == null) {
+              return const Center(child: Text('Không tìm thấy bài học'));
+            }
+
+            final lessonDetail = provider.currentLessonDetail!;
+            final lesson = lessonDetail.lesson;
+
+            // Thanh hành động nằm **trong** thân trang chứ không phải
+            // `bottomNavigationBar`: chỗ đó đã thuộc về thanh điều hướng chính
+            // của `AppShell`, đặt hai thanh sẽ chồng lên nhau trên màn hẹp.
+            return Column(
+              children: [
+                Expanded(
+                  child: CustomScrollView(
+                    slivers: [
+                      _buildAppBar(lesson),
+                      SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            _buildHeader(lesson, lessonDetail),
+                            _buildTabBar(),
+                          ],
+                        ),
+                      ),
+                      SliverFillRemaining(
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: [
+                            _buildOverviewTab(lesson, lessonDetail),
+                            _buildVocabularyTab(lessonDetail.vocabularies),
+                            _buildKanjiTab(lessonDetail.kanjis),
+                            _buildGrammarTab(lessonDetail.grammars),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
+                _buildBottomBar(),
+              ],
+            );
+          },
+        ),
       ),
-      bottomNavigationBar: _buildBottomBar(),
     );
   }
 
@@ -731,12 +745,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
 
     // Navigate to study screen
     if (mounted) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LessonStudyScreen(lessonId: widget.lessonId),
-        ),
-      );
+      context.push('/lessons/${widget.lessonId}/study');
     }
   }
 

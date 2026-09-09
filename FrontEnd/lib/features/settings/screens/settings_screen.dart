@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../profile/providers/user_provider.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../../app/localization/locale_provider.dart';
 import '../services/settings_service.dart';
 import '../../../app/localization/app_localizations.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -85,140 +89,141 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final userProvider = Provider.of<UserProvider>(context);
     final l10n = AppLocalizations.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(l10n.settings),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: ListView(
-        children: [
-          // Phần thông tin tài khoản
-          _buildSectionHeader(l10n.accountInfo),
-          _buildUserInfoTile(userProvider),
+    return AppScaffold(
+      title: l10n.settings,
+      body: ContentPaneList(
+        maxWidth: AppContentWidth.dashboard,
+        builder: (context, padding) => ListView(
+          padding: padding,
+          children: [
+            // Phần thông tin tài khoản
+            _buildSectionHeader(l10n.accountInfo),
+            _buildUserInfoTile(userProvider),
 
-          // Phần thông báo
-          _buildSectionHeader(l10n.notifications),
-          _buildSwitchTile(
-            title: l10n.enableNotifications,
-            subtitle: l10n.receiveNotifications,
-            value: _notificationsEnabled,
-            onChanged: (value) {
-              setState(() => _notificationsEnabled = value);
-            },
-          ),
-          _buildSwitchTile(
-            title: l10n.sound,
-            subtitle: l10n.playSoundNotification,
-            value: _soundEnabled,
-            onChanged: (value) {
-              setState(() => _soundEnabled = value);
-            },
-          ),
-          _buildSwitchTile(
-            title: l10n.vibrate,
-            subtitle: l10n.vibrateNotification,
-            value: _vibrateEnabled,
-            onChanged: (value) {
-              setState(() => _vibrateEnabled = value);
-            },
-          ),
-
-          // Phần ngôn ngữ & giao diện
-          _buildSectionHeader(l10n.languageInterface),
-          _buildDropdownTile(
-            title: l10n.language,
-            value: _selectedLanguage,
-            items: [
-              DropdownMenuItem(value: 'vi', child: Text(l10n.vietnamese)),
-              DropdownMenuItem(value: 'en', child: Text(l10n.english)),
-              DropdownMenuItem(value: 'ja', child: Text(l10n.japanese)),
-            ],
-            onChanged: (value) async {
-              if (value != null) {
-                setState(() => _selectedLanguage = value);
-                // Áp dụng ngôn ngữ ngay lập tức
-                final localeProvider =
-                    Provider.of<LocaleProvider>(context, listen: false);
-                await localeProvider.setLanguage(value);
-                // Tự động lưu cài đặt
-                await _saveSettings();
-              }
-            },
-          ),
-          _buildDropdownTile(
-            title: l10n.interface,
-            value: _selectedTheme,
-            items: [
-              DropdownMenuItem(value: 'light', child: Text(l10n.light)),
-              DropdownMenuItem(value: 'dark', child: Text(l10n.dark)),
-              DropdownMenuItem(value: 'auto', child: Text(l10n.auto)),
-            ],
-            onChanged: (value) {
-              if (value != null) setState(() => _selectedTheme = value);
-            },
-          ),
-
-          // Phần khác
-          _buildSectionHeader(l10n.other),
-          _buildMenuTile(
-            icon: Icons.help_outline,
-            title: l10n.helpFeedback,
-            onTap: () {
-              _showHelpDialog();
-            },
-          ),
-          _buildMenuTile(
-            icon: Icons.privacy_tip_outlined,
-            title: l10n.privacyPolicy,
-            onTap: () {
-              _showPrivacyDialog();
-            },
-          ),
-          _buildMenuTile(
-            icon: Icons.info_outline,
-            title: l10n.aboutApp,
-            onTap: () {
-              _showAboutDialog();
-            },
-          ),
-          _buildMenuTile(
-            icon: Icons.logout,
-            title: l10n.logout,
-            onTap: () {
-              _showLogoutDialog(context, authProvider);
-            },
-          ),
-
-          // Nút lưu
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: _isLoading ? null : _saveSettings,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: _isLoading
-                  ? const SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                    )
-                  : Text(
-                      l10n.saveSettings,
-                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                    ),
+            // Phần thông báo
+            _buildSectionHeader(l10n.notifications),
+            _buildSwitchTile(
+              title: l10n.enableNotifications,
+              subtitle: l10n.receiveNotifications,
+              value: _notificationsEnabled,
+              onChanged: (value) {
+                setState(() => _notificationsEnabled = value);
+              },
             ),
-          ),
-        ],
+            _buildSwitchTile(
+              title: l10n.sound,
+              subtitle: l10n.playSoundNotification,
+              value: _soundEnabled,
+              onChanged: (value) {
+                setState(() => _soundEnabled = value);
+              },
+            ),
+            _buildSwitchTile(
+              title: l10n.vibrate,
+              subtitle: l10n.vibrateNotification,
+              value: _vibrateEnabled,
+              onChanged: (value) {
+                setState(() => _vibrateEnabled = value);
+              },
+            ),
+
+            // Phần ngôn ngữ & giao diện
+            _buildSectionHeader(l10n.languageInterface),
+            _buildDropdownTile(
+              title: l10n.language,
+              value: _selectedLanguage,
+              items: [
+                DropdownMenuItem(value: 'vi', child: Text(l10n.vietnamese)),
+                DropdownMenuItem(value: 'en', child: Text(l10n.english)),
+                DropdownMenuItem(value: 'ja', child: Text(l10n.japanese)),
+              ],
+              onChanged: (value) async {
+                if (value != null) {
+                  setState(() => _selectedLanguage = value);
+                  // Áp dụng ngôn ngữ ngay lập tức
+                  final localeProvider =
+                      Provider.of<LocaleProvider>(context, listen: false);
+                  await localeProvider.setLanguage(value);
+                  // Tự động lưu cài đặt
+                  await _saveSettings();
+                }
+              },
+            ),
+            _buildDropdownTile(
+              title: l10n.interface,
+              value: _selectedTheme,
+              items: [
+                DropdownMenuItem(value: 'light', child: Text(l10n.light)),
+                DropdownMenuItem(value: 'dark', child: Text(l10n.dark)),
+                DropdownMenuItem(value: 'auto', child: Text(l10n.auto)),
+              ],
+              onChanged: (value) {
+                if (value != null) setState(() => _selectedTheme = value);
+              },
+            ),
+
+            // Phần khác
+            _buildSectionHeader(l10n.other),
+            _buildMenuTile(
+              icon: Icons.help_outline,
+              title: l10n.helpFeedback,
+              onTap: () {
+                _showHelpDialog();
+              },
+            ),
+            _buildMenuTile(
+              icon: Icons.privacy_tip_outlined,
+              title: l10n.privacyPolicy,
+              onTap: () {
+                _showPrivacyDialog();
+              },
+            ),
+            _buildMenuTile(
+              icon: Icons.info_outline,
+              title: l10n.aboutApp,
+              onTap: () {
+                _showAboutDialog();
+              },
+            ),
+            _buildMenuTile(
+              icon: Icons.logout,
+              title: l10n.logout,
+              onTap: () {
+                _showLogoutDialog(context, authProvider);
+              },
+            ),
+
+            // Nút lưu
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: _isLoading ? null : _saveSettings,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: _isLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      )
+                    : Text(
+                        l10n.saveSettings,
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -376,11 +381,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: () {
               authProvider.logout();
               Navigator.pop(context);
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/login',
-                (route) => false,
-              );
+              context.go('/login');
             },
             child: const Text('Đăng xuất', style: TextStyle(color: Colors.red)),
           ),

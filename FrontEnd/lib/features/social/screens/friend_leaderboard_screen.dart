@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class FriendLeaderboardScreen extends StatefulWidget {
   const FriendLeaderboardScreen({Key? key}) : super(key: key);
@@ -61,182 +64,185 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bảng Xếp Hạng Bạn Bè'),
-        elevation: 0,
-      ),
+    return AppScaffold(
+      title: 'Bảng Xếp Hạng Bạn Bè',
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Period selector
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _buildPeriodButton('week', '🗓️ Tuần'),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildPeriodButton('month', '📅 Tháng'),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: _buildPeriodButton('all', '👑 Mọi Thời'),
-                  ),
-                ],
-              ),
-            ),
-
-            // Top 3
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Container(
+        child: ContentPane(
+          maxWidth: AppContentWidth.dashboard,
+          child: Column(
+            children: [
+              // Period selector
+              Padding(
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.amber.withValues(alpha: 0.2),
-                      Colors.amber.withValues(alpha: 0.05)
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildPeriodButton('week', '🗓️ Tuần'),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildPeriodButton('month', '📅 Tháng'),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _buildPeriodButton('all', '👑 Mọi Thời'),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Top 3
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.amber.withValues(alpha: 0.2),
+                        Colors.amber.withValues(alpha: 0.05)
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Top 3 Xuất Sắc Nhất',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          _buildMedalCard(
+                            _friendsRanking[1],
+                            '🥈',
+                            2,
+                          ),
+                          _buildMedalCard(
+                            _friendsRanking[0],
+                            '🥇',
+                            1,
+                          ),
+                          _buildMedalCard(
+                            _friendsRanking[2],
+                            '🥉',
+                            3,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(12),
                 ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Your rank
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border:
+                        Border.all(color: Colors.blue.withValues(alpha: 0.3)),
+                  ),
+                  child: const Row(
+                    children: [
+                      Text(
+                        '📍',
+                        style: TextStyle(fontSize: 32),
+                      ),
+                      SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Vị Trí Của Bạn',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey),
+                            ),
+                            SizedBox(height: 4),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Hạng #3',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  '3,890 XP',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Ranking list
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Top 3 Xuất Sắc Nhất',
+                      'Bảng Xếp Hạng',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _buildMedalCard(
-                          _friendsRanking[1],
-                          '🥈',
-                          2,
-                        ),
-                        _buildMedalCard(
-                          _friendsRanking[0],
-                          '🥇',
-                          1,
-                        ),
-                        _buildMedalCard(
-                          _friendsRanking[2],
-                          '🥉',
-                          3,
-                        ),
-                      ],
-                    ),
+                    const SizedBox(height: 12),
+                    ..._friendsRanking.map((user) {
+                      return _buildLeaderboardTile(user);
+                    }).toList(),
                   ],
                 ),
               ),
-            ),
 
-            const SizedBox(height: 16),
+              const SizedBox(height: 24),
 
-            // Your rank
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.blue.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
-                ),
-                child: const Row(
-                  children: [
-                    Text(
-                      '📍',
-                      style: TextStyle(fontSize: 32),
-                    ),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Vị Trí Của Bạn',
-                            style: TextStyle(fontSize: 12, color: Colors.grey),
-                          ),
-                          SizedBox(height: 4),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Hạng #3',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                '3,890 XP',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Ranking list
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Bảng Xếp Hạng',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+              // Add friend button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      _showAddFriendDialog();
+                    },
+                    icon: const Icon(Icons.person_add),
+                    label: const Text('Thêm Bạn Bè'),
                   ),
-                  const SizedBox(height: 12),
-                  ..._friendsRanking.map((user) {
-                    return _buildLeaderboardTile(user);
-                  }).toList(),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Add friend button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    _showAddFriendDialog();
-                  },
-                  icon: const Icon(Icons.person_add),
-                  label: const Text('Thêm Bạn Bè'),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 24),
-          ],
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );

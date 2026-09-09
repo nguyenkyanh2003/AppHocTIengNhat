@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/exercise_provider.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/app_scaffold.dart';
 
 class ExerciseListScreen extends StatefulWidget {
   final String? lessonId;
@@ -74,82 +77,30 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.blue.shade50,
-              Colors.white,
-            ],
-          ),
+    return AppScaffold(
+      title: widget.lessonTitle == null
+          ? 'Luyện tập'
+          : 'Bài tập: ${widget.lessonTitle}',
+      onRefresh: _loadExercises,
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.history),
+          tooltip: 'Lịch sử làm bài',
+          onPressed: () => context.push('/exercise-history'),
         ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildAppBar(),
-              _buildFilters(),
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: _loadExercises,
-                  child: _buildExerciseList(),
-                ),
+      ],
+      body: ContentWidthLimit(
+        child: Column(
+          children: [
+            _buildFilters(),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: _loadExercises,
+                child: _buildExerciseList(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildAppBar() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black87),
-            onPressed: () => Navigator.pop(context),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              widget.lessonTitle == null
-                  ? 'Luyện tập'
-                  : 'Bài tập: ${widget.lessonTitle}',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.purple.shade400, Colors.purple.shade600],
-              ),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.purple.withValues(alpha: 0.3),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.history, color: Colors.white),
-              onPressed: () {
-                Navigator.pushNamed(context, '/exercise-history');
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -353,11 +304,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              '/exercise-detail',
-              arguments: exercise.id,
-            );
+            context.push('/exercise/${exercise.id}');
           },
           borderRadius: BorderRadius.circular(16),
           child: Padding(

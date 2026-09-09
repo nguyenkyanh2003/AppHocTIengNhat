@@ -1,12 +1,12 @@
 {
-    "name": "frontend",
-    "short_name": "frontend",
+    "name": "Học Tiếng Nhật",
+    "short_name": "Học Tiếng Nhật",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#F5F5F5",
+    "theme_color": "#2196F3",
+    "description": "Ứng dụng học tiếng Nhật: bài học, từ vựng, kanji, ngữ pháp, luyện đề JLPT và ôn tập bằng flashcard.",
+    "lang": "vi",
     "prefer_related_applications": false,
     "icons": [
         {

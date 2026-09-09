@@ -1,38 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
+  <meta charset="UTF-8">
   <base href="$FLUTTER_BASE_HREF">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ứng dụng học tiếng Nhật: bài học, từ vựng, kanji, ngữ pháp, luyện đề JLPT và ôn tập bằng flashcard.">
 
-  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="frontend">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Học Tiếng Nhật">
+  <meta name="theme-color" content="#2196F3">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>frontend</title>
+  <title>Học Tiếng Nhật</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Màn chờ khởi động: bundle Flutter web mất vài giây mới vẽ khung hình
+       đầu tiên. Không có gì ở đây thì người dùng nhìn trang trắng và tưởng
+       hỏng. Khối này tự biến mất khi Flutter gắn vào DOM. */
+    :root { color-scheme: light dark; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #F5F5F5;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html, body { background-color: #121212; }
+    }
+
+    #boot {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: #757575;
+    }
+
+    #boot img { width: 88px; height: 88px; border-radius: 20px; }
+
+    #boot .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(33, 150, 243, 0.25);
+      border-top-color: #2196F3;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      #boot .spinner { animation-duration: 3s; }
+    }
+
+    flutter-view:not(:empty) ~ #boot { display: none; }
+  </style>
 </head>
 <body>
+  <div id="boot">
+    <img src="icons/Icon-192.png" alt="">
+    <div class="spinner"></div>
+    <p>Đang tải ứng dụng…</p>
+  </div>
+
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var boot = document.getElementById('boot');
+      if (boot) boot.remove();
+    });
+  </script>
 </body>
 </html>

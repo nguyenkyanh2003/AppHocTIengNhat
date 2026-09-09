@@ -58,8 +58,8 @@ class NewsService {
   // Lấy tin tức liên quan
   Future<List<News>> getRelatedNews(String newsId, {int limit = 5}) async {
     try {
-      final response =
-          await _apiClient.get('/news/$newsId/related?limit=$limit', cache: true);
+      final response = await _apiClient
+          .get('/news/$newsId/related?limit=$limit', cache: true);
 
       return (response['data'] as List<dynamic>?)
               ?.map((json) => News.fromJson(json as Map<String, dynamic>))

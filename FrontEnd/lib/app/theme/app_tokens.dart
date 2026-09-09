@@ -78,11 +78,16 @@ abstract final class AppSpacing {
 
 /// Khoảng trống dựng sẵn, thay cho `SizedBox(height: 17)` rải rác.
 abstract final class AppGap {
-  static const Widget xs = SizedBox(height: AppSpacing.xs, width: AppSpacing.xs);
-  static const Widget sm = SizedBox(height: AppSpacing.sm, width: AppSpacing.sm);
-  static const Widget md = SizedBox(height: AppSpacing.md, width: AppSpacing.md);
-  static const Widget lg = SizedBox(height: AppSpacing.lg, width: AppSpacing.lg);
-  static const Widget xl = SizedBox(height: AppSpacing.xl, width: AppSpacing.xl);
+  static const Widget xs =
+      SizedBox(height: AppSpacing.xs, width: AppSpacing.xs);
+  static const Widget sm =
+      SizedBox(height: AppSpacing.sm, width: AppSpacing.sm);
+  static const Widget md =
+      SizedBox(height: AppSpacing.md, width: AppSpacing.md);
+  static const Widget lg =
+      SizedBox(height: AppSpacing.lg, width: AppSpacing.lg);
+  static const Widget xl =
+      SizedBox(height: AppSpacing.xl, width: AppSpacing.xl);
 }
 
 abstract final class AppRadius {
@@ -108,4 +113,49 @@ abstract final class AppDurations {
   static const Duration fast = Duration(milliseconds: 150);
   static const Duration normal = Duration(milliseconds: 250);
   static const Duration slow = Duration(milliseconds: 400);
+}
+
+/// Bề rộng tối đa của vùng nội dung, theo loại nội dung.
+///
+/// Ba mức tách biệt vì biểu mẫu, nội dung đọc và dashboard có nhu cầu khác
+/// nhau: kéo một biểu mẫu ra 1200px làm mắt phải quét ngang vô ích, còn ép
+/// dashboard xuống 720px thì mất chỗ cho biểu đồ.
+abstract final class AppContentWidth {
+  /// Biểu mẫu, đăng nhập, hộp thoại nhập liệu.
+  static const double form = 480;
+
+  /// Nội dung đọc: chi tiết từ vựng, ngữ pháp, bài học, tin tức.
+  static const double reading = 720;
+
+  /// Dashboard, bảng quản trị, lưới thẻ.
+  static const double dashboard = 1200;
+}
+
+/// Mốc chuyển bố cục, tính theo bề rộng **cửa sổ**.
+///
+/// Các mốc dưới đây được suy ra từ diện tích còn lại sau khi trừ thanh điều
+/// hướng và lề trang, không lấy theo một bảng có sẵn:
+///
+/// | Mốc | Phép tính | Kết quả |
+/// | --- | --- | --- |
+/// | [rail] 600 | 600 − 80 (rail thu gọn) − 2×16 (lề) | 488 ≥ [AppContentWidth.form] |
+/// | [railExtended] 1024 | 1024 − 256 (rail mở rộng) − 2×24 (lề) | 720 = [AppContentWidth.reading] |
+/// | [twoColumn] 1440 | 1440 − 256 − 2×24 | 1136 → hai cột 556 + khe 24 |
+///
+/// Đổi [railWidth] hay [railExtendedWidth] thì phải tính lại các mốc này.
+abstract final class AppBreakpoints {
+  /// Dưới mốc này dùng thanh điều hướng dưới; từ mốc này dùng rail thu gọn.
+  static const double rail = 600;
+
+  /// Từ mốc này rail hiện cả nhãn.
+  static const double railExtended = 1024;
+
+  /// Từ mốc này vùng nội dung đủ rộng để chia hai cột.
+  static const double twoColumn = 1440;
+
+  /// Bề rộng rail thu gọn (Material 3: 80).
+  static const double railWidth = 80;
+
+  /// Bề rộng rail mở rộng.
+  static const double railExtendedWidth = 256;
 }

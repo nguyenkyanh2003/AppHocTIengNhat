@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class AdminUserManagementScreen extends StatefulWidget {
   const AdminUserManagementScreen({Key? key}) : super(key: key);
@@ -24,119 +26,118 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quản Lý Users'),
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => context.read<AdminProvider>().loadUsers(),
-          ),
-        ],
-      ),
-      body: Consumer<AdminProvider>(
-        builder: (context, adminProvider, child) {
-          final allUsers = adminProvider.users;
+    return AppScaffold(
+      title: 'Quản Lý Users',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: () => context.read<AdminProvider>().loadUsers(),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<AdminProvider>(
+          builder: (context, adminProvider, child) {
+            final allUsers = adminProvider.users;
 
-          // Filter users based on search and selected filter
-          final filteredUsers = allUsers.where((user) {
-            final matchesSearch = _searchController.text.isEmpty ||
-                (user['name']
-                        ?.toString()
-                        .toLowerCase()
-                        .contains(_searchController.text.toLowerCase()) ??
-                    false) ||
-                (user['email']
-                        ?.toString()
-                        .toLowerCase()
-                        .contains(_searchController.text.toLowerCase()) ??
-                    false);
+            // Filter users based on search and selected filter
+            final filteredUsers = allUsers.where((user) {
+              final matchesSearch = _searchController.text.isEmpty ||
+                  (user['name']
+                          ?.toString()
+                          .toLowerCase()
+                          .contains(_searchController.text.toLowerCase()) ??
+                      false) ||
+                  (user['email']
+                          ?.toString()
+                          .toLowerCase()
+                          .contains(_searchController.text.toLowerCase()) ??
+                      false);
 
-            final matchesFilter = _selectedFilter == 'all' ||
-                user['status'] == _selectedFilter ||
-                user['role'] == _selectedFilter;
+              final matchesFilter = _selectedFilter == 'all' ||
+                  user['status'] == _selectedFilter ||
+                  user['role'] == _selectedFilter;
 
-            return matchesSearch && matchesFilter;
-          }).toList();
+              return matchesSearch && matchesFilter;
+            }).toList();
 
-          return Column(
-            children: [
-              // Search & Filter
-              Container(
-                padding: const EdgeInsets.all(16),
-                color: Colors.grey[100],
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: _searchController,
-                      decoration: InputDecoration(
-                        hintText: 'Tìm kiếm user...',
-                        prefixIcon: const Icon(Icons.search),
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
+            return Column(
+              children: [
+                // Search & Filter
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  color: Colors.grey[100],
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: _searchController,
+                        decoration: InputDecoration(
+                          hintText: 'Tìm kiếm user...',
+                          prefixIcon: const Icon(Icons.search),
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        onChanged: (value) => setState(() {}),
+                      ),
+                      const SizedBox(height: 12),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            _buildFilterChip('Tất cả', 'all'),
+                            _buildFilterChip('Active', 'active'),
+                            _buildFilterChip('Admin', 'admin'),
+                            _buildFilterChip('Banned', 'banned'),
+                          ],
                         ),
                       ),
-                      onChanged: (value) => setState(() {}),
-                    ),
-                    const SizedBox(height: 12),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          _buildFilterChip('Tất cả', 'all'),
-                          _buildFilterChip('Active', 'active'),
-                          _buildFilterChip('Admin', 'admin'),
-                          _buildFilterChip('Banned', 'banned'),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-              // Stats Bar
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                color: Colors.blue.shade50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildStatItem('${allUsers.length}', 'Tổng Users'),
-                    _buildStatItem(
-                        '${allUsers.where((u) => u['status'] == 'active').length}',
-                        'Active'),
-                    _buildStatItem(
-                        '${allUsers.where((u) => u['role'] == 'admin').length}',
-                        'Admin'),
-                    _buildStatItem(
-                        '${allUsers.where((u) => u['status'] == 'banned').length}',
-                        'Banned'),
-                  ],
+                // Stats Bar
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  color: Colors.blue.shade50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildStatItem('${allUsers.length}', 'Tổng Users'),
+                      _buildStatItem(
+                          '${allUsers.where((u) => u['status'] == 'active').length}',
+                          'Active'),
+                      _buildStatItem(
+                          '${allUsers.where((u) => u['role'] == 'admin').length}',
+                          'Admin'),
+                      _buildStatItem(
+                          '${allUsers.where((u) => u['status'] == 'banned').length}',
+                          'Banned'),
+                    ],
+                  ),
                 ),
-              ),
 
-              // Users List
-              Expanded(
-                child: adminProvider.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : filteredUsers.isEmpty
-                        ? const Center(child: Text('Không có users nào'))
-                        : ListView.builder(
-                            padding: const EdgeInsets.all(16),
-                            itemCount: filteredUsers.length,
-                            itemBuilder: (context, index) {
-                              return _buildUserCard(filteredUsers[index]);
-                            },
-                          ),
-              ),
-            ],
-          );
-        },
+                // Users List
+                Expanded(
+                  child: adminProvider.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : filteredUsers.isEmpty
+                          ? const Center(child: Text('Không có users nào'))
+                          : ListView.builder(
+                              padding: const EdgeInsets.all(16),
+                              itemCount: filteredUsers.length,
+                              itemBuilder: (context, index) {
+                                return _buildUserCard(filteredUsers[index]);
+                              },
+                            ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

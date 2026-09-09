@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/notebook_provider.dart';
 import '../../../app/theme/app_theme.dart';
-import './notebook_form_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class NotebookDetailScreen extends StatefulWidget {
   final String noteId;
@@ -25,147 +27,144 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chi tiết ghi chú'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () => _navigateToEdit(),
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => _confirmDelete(),
-          ),
-        ],
-      ),
-      body: Consumer<NotebookProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Chi tiết ghi chú',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () => _navigateToEdit(),
+        ),
+        IconButton(
+          icon: const Icon(Icons.delete),
+          onPressed: () => _confirmDelete(),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<NotebookProvider>(
+          builder: (context, provider, child) {
+            if (provider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (provider.error != null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text(provider.error!),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => provider.loadNoteDetail(widget.noteId),
-                    child: const Text('Thử lại'),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          final note = provider.selectedNote;
-          if (note == null) {
-            return const Center(child: Text('Không tìm thấy ghi chú'));
-          }
-
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Type badge
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: _getTypeColor(note.type).withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    _getTypeLabel(note.type),
-                    style: TextStyle(
-                      color: _getTypeColor(note.type),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // Title
-                Text(
-                  note.title,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-
-                // Date
-                Row(
+            if (provider.error != null) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.access_time, size: 16, color: Colors.grey[600]),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Cập nhật: ${_formatDateTime(note.updatedAt)}',
-                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                    const Icon(Icons.error_outline,
+                        size: 64, color: Colors.red),
+                    const SizedBox(height: 16),
+                    Text(provider.error!),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => provider.loadNoteDetail(widget.noteId),
+                      child: const Text('Thử lại'),
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+              );
+            }
 
-                // Content
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    note.content,
-                    style: const TextStyle(fontSize: 16, height: 1.5),
-                  ),
-                ),
-                const SizedBox(height: 24),
+            final note = provider.selectedNote;
+            if (note == null) {
+              return const Center(child: Text('Không tìm thấy ghi chú'));
+            }
 
-                // Tags
-                if (note.tags.isNotEmpty) ...[
-                  const Text(
-                    'Thẻ',
-                    style: TextStyle(
-                      fontSize: 18,
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Type badge
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: _getTypeColor(note.type).withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      _getTypeLabel(note.type),
+                      style: TextStyle(
+                        color: _getTypeColor(note.type),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Title
+                  Text(
+                    note.title,
+                    style: const TextStyle(
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: note.tags.map((tag) {
-                      return Chip(
-                        label: Text(tag),
-                        backgroundColor:
-                            AppTheme.primaryColor.withValues(alpha: 0.1),
-                      );
-                    }).toList(),
+                  const SizedBox(height: 8),
+
+                  // Date
+                  Row(
+                    children: [
+                      Icon(Icons.access_time,
+                          size: 16, color: Colors.grey[600]),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Cập nhật: ${_formatDateTime(note.updatedAt)}',
+                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 24),
+
+                  // Content
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      note.content,
+                      style: const TextStyle(fontSize: 16, height: 1.5),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Tags
+                  if (note.tags.isNotEmpty) ...[
+                    const Text(
+                      'Thẻ',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: note.tags.map((tag) {
+                        return Chip(
+                          label: Text(tag),
+                          backgroundColor:
+                              AppTheme.primaryColor.withValues(alpha: 0.1),
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ],
-              ],
-            ),
-          );
-        },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 
   void _navigateToEdit() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NotebookFormScreen(noteId: widget.noteId),
-      ),
-    ).then((_) {
+    context.push('/notebook/${widget.noteId}/edit').then((_) {
       if (!mounted) return;
       context.read<NotebookProvider>().loadNoteDetail(widget.noteId);
     });

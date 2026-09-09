@@ -455,7 +455,10 @@ class AdminProvider extends ChangeNotifier {
     try {
       switch (contentType) {
         case 'vocabulary':
-          if (lesson == null || lesson.isEmpty || level == null || level.isEmpty) {
+          if (lesson == null ||
+              lesson.isEmpty ||
+              level == null ||
+              level.isEmpty) {
             throw ArgumentError('Cần chọn bài học và cấp độ trước khi import.');
           }
           await _adminService.importVocabularyExcel(

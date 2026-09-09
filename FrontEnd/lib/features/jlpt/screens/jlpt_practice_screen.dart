@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/jlpt_practice_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class JLPTPracticeScreen extends StatefulWidget {
   const JLPTPracticeScreen({super.key});
@@ -25,35 +27,38 @@ class _JLPTPracticeScreenState extends State<JLPTPracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Luyện nhanh')),
-      body: Column(
-        children: [
-          _buildFilters(),
-          Expanded(
-            child: Consumer<JLPTPracticeProvider>(
-              builder: (context, provider, _) {
-                if (provider.isLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (provider.items.isEmpty) {
-                  return const Center(child: Text('Chưa có câu hỏi'));
-                }
-                return ListView.builder(
-                  itemCount: provider.items.length,
-                  itemBuilder: (context, index) {
-                    final item = provider.items[index] as Map<String, dynamic>;
-                    return ListTile(
-                      title: Text(item['question_text'] ?? ''),
-                      subtitle: Text((item['choices'] as List<dynamic>? ?? [])
-                          .join(' | ')),
-                    );
-                  },
-                );
-              },
-            ),
-          )
-        ],
+    return AppScaffold(
+      title: 'Luyện nhanh',
+      body: ContentWidthLimit(
+        child: Column(
+          children: [
+            _buildFilters(),
+            Expanded(
+              child: Consumer<JLPTPracticeProvider>(
+                builder: (context, provider, _) {
+                  if (provider.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (provider.items.isEmpty) {
+                    return const Center(child: Text('Chưa có câu hỏi'));
+                  }
+                  return ListView.builder(
+                    itemCount: provider.items.length,
+                    itemBuilder: (context, index) {
+                      final item =
+                          provider.items[index] as Map<String, dynamic>;
+                      return ListTile(
+                        title: Text(item['question_text'] ?? ''),
+                        subtitle: Text((item['choices'] as List<dynamic>? ?? [])
+                            .join(' | ')),
+                      );
+                    },
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

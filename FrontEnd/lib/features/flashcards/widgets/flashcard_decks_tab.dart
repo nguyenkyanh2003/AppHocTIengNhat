@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
@@ -6,8 +7,6 @@ import '../../../shared/widgets/app_card.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../models/flashcard_deck.dart';
 import '../providers/flashcard_provider.dart';
-import '../screens/flashcard_deck_detail_screen.dart';
-import '../screens/flashcard_study_screen.dart';
 
 /// Danh sách bộ thẻ của người dùng.
 ///
@@ -68,16 +67,12 @@ class _DeckCard extends StatelessWidget {
 
   final FlashcardDeck deck;
 
-  int get _cardCount => deck.cards.isNotEmpty ? deck.cards.length : deck.totalCards;
+  int get _cardCount =>
+      deck.cards.isNotEmpty ? deck.cards.length : deck.totalCards;
 
   Future<void> _openDetail(BuildContext context) async {
     final provider = context.read<FlashcardProvider>();
-    final changed = await Navigator.push<bool>(
-      context,
-      MaterialPageRoute(
-        builder: (_) => FlashcardDeckDetailScreen(deckId: deck.id),
-      ),
-    );
+    final changed = await context.push<bool>('/flashcards/${deck.id}');
 
     if (changed == true) await provider.loadDecks(refresh: true);
   }
@@ -112,11 +107,9 @@ class _DeckCard extends StatelessWidget {
               ),
               if (_cardCount > 0)
                 FilledButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => FlashcardStudyScreen(flashcardDeck: deck),
-                    ),
+                  onPressed: () => context.push(
+                    '/flashcards/${deck.id}/study',
+                    extra: deck,
                   ),
                   child: const Text('Học'),
                 ),
@@ -140,7 +133,8 @@ class _DeckCard extends StatelessWidget {
                 color: AppColors.textSecondary,
               ),
               const SizedBox(width: AppSpacing.xs),
-              Text('Đã học ${deck.studyCount} lần', style: textTheme.labelMedium),
+              Text('Đã học ${deck.studyCount} lần',
+                  style: textTheme.labelMedium),
             ],
           ),
         ],

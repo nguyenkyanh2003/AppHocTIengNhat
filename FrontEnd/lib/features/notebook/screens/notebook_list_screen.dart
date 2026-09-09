@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/notebook_provider.dart';
 import '../models/notebook.dart';
 import '../../../app/theme/app_theme.dart';
-import './notebook_form_screen.dart';
-import './notebook_detail_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class NotebookListScreen extends StatefulWidget {
   const NotebookListScreen({Key? key}) : super(key: key);
@@ -33,87 +34,88 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sổ tay'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () => _showSearchDialog(),
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () => _showFilterDialog(),
-          ),
-        ],
-      ),
-      body: Consumer<NotebookProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading && provider.notes.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Sổ tay',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () => _showSearchDialog(),
+        ),
+        IconButton(
+          icon: const Icon(Icons.filter_list),
+          onPressed: () => _showFilterDialog(),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<NotebookProvider>(
+          builder: (context, provider, child) {
+            if (provider.isLoading && provider.notes.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (provider.error != null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text(provider.error!),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => provider.loadNotes(refresh: true),
-                    child: const Text('Thử lại'),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          if (provider.notes.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.note_add, size: 80, color: Colors.grey[400]),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Chưa có ghi chú nào',
-                    style: TextStyle(fontSize: 18, color: Colors.grey[600]),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Nhấn + để tạo ghi chú mới',
-                    style: TextStyle(color: Colors.grey[500]),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return RefreshIndicator(
-            onRefresh: () => provider.loadNotes(refresh: true),
-            child: Column(
-              children: [
-                if (provider.selectedType != null ||
-                    provider.searchQuery.isNotEmpty)
-                  _buildFilterChips(provider),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: provider.notes.length,
-                    padding: const EdgeInsets.all(16),
-                    itemBuilder: (context, index) {
-                      final note = provider.notes[index];
-                      return _buildNoteCard(note);
-                    },
-                  ),
+            if (provider.error != null) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline,
+                        size: 64, color: Colors.red),
+                    const SizedBox(height: 16),
+                    Text(provider.error!),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => provider.loadNotes(refresh: true),
+                      child: const Text('Thử lại'),
+                    ),
+                  ],
                 ),
-                if (provider.totalPages > 1) _buildPagination(provider),
-              ],
-            ),
-          );
-        },
+              );
+            }
+
+            if (provider.notes.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.note_add, size: 80, color: Colors.grey[400]),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Chưa có ghi chú nào',
+                      style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Nhấn + để tạo ghi chú mới',
+                      style: TextStyle(color: Colors.grey[500]),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            return RefreshIndicator(
+              onRefresh: () => provider.loadNotes(refresh: true),
+              child: Column(
+                children: [
+                  if (provider.selectedType != null ||
+                      provider.searchQuery.isNotEmpty)
+                    _buildFilterChips(provider),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: provider.notes.length,
+                      padding: const EdgeInsets.all(16),
+                      itemBuilder: (context, index) {
+                        final note = provider.notes[index];
+                        return _buildNoteCard(note);
+                      },
+                    ),
+                  ),
+                  if (provider.totalPages > 1) _buildPagination(provider),
+                ],
+              ),
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _navigateToForm(),
@@ -329,24 +331,15 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
   }
 
   void _navigateToForm({String? noteId}) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NotebookFormScreen(noteId: noteId),
-      ),
-    ).then((_) {
+    final path = noteId == null ? '/notebook/new' : '/notebook/$noteId/edit';
+    context.push(path).then((_) {
       if (!mounted) return;
       context.read<NotebookProvider>().loadNotes(refresh: true);
     });
   }
 
   void _navigateToDetail(String noteId) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NotebookDetailScreen(noteId: noteId),
-      ),
-    );
+    context.push('/notebook/$noteId');
   }
 
   String _getTypeLabel(String type) {

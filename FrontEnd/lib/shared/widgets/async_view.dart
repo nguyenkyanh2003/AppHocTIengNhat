@@ -38,7 +38,8 @@ class AsyncView<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (state) {
-      ViewIdle<T>() || ViewLoading<T>() =>
+      ViewIdle<T>() ||
+      ViewLoading<T>() =>
         loading ?? const Center(child: CircularProgressIndicator()),
       ViewFailure<T>(:final message) =>
         ErrorStateView(message: message, onRetry: onRetry),

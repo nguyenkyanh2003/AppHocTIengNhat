@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/flashcard_provider.dart';
 import '../models/flashcard_deck.dart';
 import '../../../app/theme/app_theme.dart';
-import './flashcard_study_screen.dart';
-import './edit_flashcard_card_screen.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class FlashcardDeckDetailScreen extends StatefulWidget {
   final String deckId;
@@ -30,61 +31,60 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: const Text('Chi Tiết Bộ Thẻ'),
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit),
-            onPressed: () => _showEditDeckDialog(),
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => _showDeleteDeckDialog(),
-          ),
-        ],
-      ),
-      body: Consumer<FlashcardProvider>(
-        builder: (context, provider, _) {
-          if (provider.isLoading && provider.selectedDeck == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return AppScaffold(
+      title: 'Chi Tiết Bộ Thẻ',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () => _showEditDeckDialog(),
+        ),
+        IconButton(
+          icon: const Icon(Icons.delete),
+          onPressed: () => _showDeleteDeckDialog(),
+        ),
+      ],
+      body: ContentWidthLimit(
+        child: Consumer<FlashcardProvider>(
+          builder: (context, provider, _) {
+            if (provider.isLoading && provider.selectedDeck == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (provider.error != null && provider.selectedDeck == null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Lỗi tải dữ liệu',
-                    style: TextStyle(fontSize: 18, color: Colors.grey[600]),
-                  ),
-                  const SizedBox(height: 24),
-                  ElevatedButton(
-                    onPressed: () => provider.loadDeckById(widget.deckId),
-                    child: const Text('Thử lại'),
-                  ),
-                ],
-              ),
+            if (provider.error != null && provider.selectedDeck == null) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.error_outline,
+                        size: 64, color: Colors.grey[400]),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Lỗi tải dữ liệu',
+                      style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                    ),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                      onPressed: () => provider.loadDeckById(widget.deckId),
+                      child: const Text('Thử lại'),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            final deck = provider.selectedDeck;
+            if (deck == null) {
+              return const Center(child: Text('Không tìm thấy bộ thẻ'));
+            }
+
+            return Column(
+              children: [
+                _buildDeckHeader(deck),
+                Expanded(child: _buildCardsList(deck)),
+              ],
             );
-          }
-
-          final deck = provider.selectedDeck;
-          if (deck == null) {
-            return const Center(child: Text('Không tìm thấy bộ thẻ'));
-          }
-
-          return Column(
-            children: [
-              _buildDeckHeader(deck),
-              Expanded(child: _buildCardsList(deck)),
-            ],
-          );
-        },
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _showAddCardDialog,
@@ -92,6 +92,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
         label: const Text('Thêm Thẻ'),
         backgroundColor: AppTheme.primaryColor,
       ),
+      backgroundColor: Colors.grey[50],
     );
   }
 
@@ -354,40 +355,26 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
     // Ghi nhận lượt học
     context.read<FlashcardProvider>().recordStudy(deck.id);
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => FlashcardStudyScreen(
-          flashcardDeck: deck,
-        ),
-      ),
-    );
+    // `extra` mang theo bộ thẻ; mở thẳng URL này thì route tự đưa về
+    // trang bộ thẻ vì không có gì để khôi phục.
+    context.push('/flashcards/${deck.id}/study', extra: deck);
   }
 
   void _showAddCardDialog() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => EditFlashcardCardScreen(
-          deckId: widget.deckId,
-        ),
-      ),
-    ).then((_) {
+    context
+        .push(
+      '/flashcards/${widget.deckId}/cards/new',
+    )
+        .then((_) {
       if (!mounted) return;
       context.read<FlashcardProvider>().loadDeckById(widget.deckId);
     });
   }
 
-  void _showEditCardDialog(card) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => EditFlashcardCardScreen(
-          deckId: widget.deckId,
-          card: card,
-        ),
-      ),
-    ).then((_) {
+  void _showEditCardDialog(FlashcardCard card) {
+    context
+        .push('/flashcards/${widget.deckId}/cards/${card.id}/edit', extra: card)
+        .then((_) {
       if (!mounted) return;
       context.read<FlashcardProvider>().loadDeckById(widget.deckId);
     });

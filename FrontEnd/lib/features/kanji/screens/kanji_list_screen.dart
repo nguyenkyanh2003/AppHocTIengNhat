@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/kanji_provider.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class KanjiListScreen extends StatefulWidget {
   const KanjiListScreen({Key? key}) : super(key: key);
@@ -30,79 +33,16 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFFF8F9FA), Color(0xFFE9ECEF)],
-          ),
+    return AppScaffold(
+      title: 'Kanji',
+      body: ContentWidthLimit(
+        child: Column(
+          children: [
+            _buildSearchBar(),
+            _buildLevelFilter(),
+            Expanded(child: _buildKanjiList()),
+          ],
         ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildHeader(),
-              _buildSearchBar(),
-              _buildLevelFilter(),
-              Expanded(child: _buildKanjiList()),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
-              ),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFFF6B6B).withValues(alpha: 0.3),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-          const SizedBox(width: 15),
-          const Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Kanji',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2C3E50),
-                  ),
-                ),
-                Text(
-                  'Chữ Hán cơ bản',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF6C757D),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -302,11 +242,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
         child: InkWell(
           borderRadius: BorderRadius.circular(15),
           onTap: () {
-            Navigator.pushNamed(
-              context,
-              '/kanji-detail',
-              arguments: kanji.id,
-            );
+            context.push('/kanji/${kanji.id}');
           },
           child: Padding(
             padding: const EdgeInsets.all(16),

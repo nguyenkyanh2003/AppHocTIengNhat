@@ -50,7 +50,8 @@ class ExerciseService {
   // Lấy chi tiết bài tập
   Future<Exercise> getExerciseById(String id) async {
     try {
-      final dynamic response = await _apiClient.get('/exercise/$id', cache: true);
+      final dynamic response =
+          await _apiClient.get('/exercise/$id', cache: true);
       if (response is Map<String, dynamic>) {
         return Exercise.fromJson(response);
       }
@@ -63,7 +64,8 @@ class ExerciseService {
   // Lấy danh sách bài tập theo level
   Future<List<Exercise>> getExercisesByLevel(String level) async {
     try {
-      final dynamic response = await _apiClient.get('/exercise/level/$level', cache: true);
+      final dynamic response =
+          await _apiClient.get('/exercise/level/$level', cache: true);
       if (response is List) {
         return response.map((json) => Exercise.fromJson(json)).toList();
       }
@@ -76,7 +78,8 @@ class ExerciseService {
   // Lấy danh sách bài tập theo type
   Future<List<Exercise>> getExercisesByType(String type) async {
     try {
-      final dynamic response = await _apiClient.get('/exercise/type/$type', cache: true);
+      final dynamic response =
+          await _apiClient.get('/exercise/type/$type', cache: true);
       if (response is List) {
         return response.map((json) => Exercise.fromJson(json)).toList();
       }

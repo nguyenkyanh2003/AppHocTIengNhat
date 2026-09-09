@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/flashcard_provider.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
 
 class CreateFlashcardDeckScreen extends StatefulWidget {
   const CreateFlashcardDeckScreen({Key? key}) : super(key: key);
@@ -85,176 +87,176 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tạo Bộ Thẻ Mới'),
-        elevation: 0,
-      ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            // Title
-            TextFormField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                labelText: 'Tiêu đề *',
-                hintText: 'Ví dụ: Từ vựng N5 Chủ đề Gia đình',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.title),
-              ),
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Vui lòng nhập tiêu đề';
-                }
-                return null;
-              },
-              maxLength: 100,
-            ),
-            const SizedBox(height: 16),
-
-            // Description
-            TextFormField(
-              controller: _descriptionController,
-              decoration: InputDecoration(
-                labelText: 'Mô tả (tùy chọn)',
-                hintText: 'Mô tả ngắn về bộ thẻ này',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.description),
-              ),
-              maxLines: 3,
-              maxLength: 300,
-            ),
-            const SizedBox(height: 16),
-
-            // Category
-            DropdownButtonFormField<String>(
-              value: _selectedCategory,
-              decoration: InputDecoration(
-                labelText: 'Danh mục',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.category),
-              ),
-              items: _categories.map((category) {
-                return DropdownMenuItem(
-                  value: category,
-                  child: Text(_getCategoryName(category)),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() => _selectedCategory = value!);
-              },
-            ),
-            const SizedBox(height: 16),
-
-            // Level
-            DropdownButtonFormField<String>(
-              value: _selectedLevel,
-              decoration: InputDecoration(
-                labelText: 'Cấp độ (tùy chọn)',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                prefixIcon: const Icon(Icons.bar_chart),
-              ),
-              items: [
-                const DropdownMenuItem(value: null, child: Text('Không chọn')),
-                ..._levels.map((level) {
-                  return DropdownMenuItem(
-                    value: level,
-                    child: Text(level),
-                  );
-                }),
-              ],
-              onChanged: (value) {
-                setState(() => _selectedLevel = value);
-              },
-            ),
-            const SizedBox(height: 16),
-
-            // Public switch
-            Card(
-              child: SwitchListTile(
-                title: const Text('Công khai'),
-                subtitle:
-                    const Text('Cho phép người khác xem và học bộ thẻ này'),
-                value: _isPublic,
-                onChanged: (value) {
-                  setState(() => _isPublic = value);
-                },
-                secondary: Icon(
-                  _isPublic ? Icons.public : Icons.lock,
-                  color: _isPublic ? Colors.green : Colors.grey,
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Info card
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue[200]!),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.info_outline, color: Colors.blue[700]),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      'Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.blue[900],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Create button
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: _isLoading ? null : _createDeck,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
+    return AppScaffold(
+      title: 'Tạo Bộ Thẻ Mới',
+      body: ContentWidthLimit(
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              // Title
+              TextFormField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  labelText: 'Tiêu đề *',
+                  hintText: 'Ví dụ: Từ vựng N5 Chủ đề Gia đình',
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  prefixIcon: const Icon(Icons.title),
                 ),
-                child: _isLoading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      )
-                    : const Text(
-                        'Tạo Bộ Thẻ',
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Vui lòng nhập tiêu đề';
+                  }
+                  return null;
+                },
+                maxLength: 100,
+              ),
+              const SizedBox(height: 16),
+
+              // Description
+              TextFormField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Mô tả (tùy chọn)',
+                  hintText: 'Mô tả ngắn về bộ thẻ này',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.description),
+                ),
+                maxLines: 3,
+                maxLength: 300,
+              ),
+              const SizedBox(height: 16),
+
+              // Category
+              DropdownButtonFormField<String>(
+                value: _selectedCategory,
+                decoration: InputDecoration(
+                  labelText: 'Danh mục',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.category),
+                ),
+                items: _categories.map((category) {
+                  return DropdownMenuItem(
+                    value: category,
+                    child: Text(_getCategoryName(category)),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() => _selectedCategory = value!);
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Level
+              DropdownButtonFormField<String>(
+                value: _selectedLevel,
+                decoration: InputDecoration(
+                  labelText: 'Cấp độ (tùy chọn)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  prefixIcon: const Icon(Icons.bar_chart),
+                ),
+                items: [
+                  const DropdownMenuItem(
+                      value: null, child: Text('Không chọn')),
+                  ..._levels.map((level) {
+                    return DropdownMenuItem(
+                      value: level,
+                      child: Text(level),
+                    );
+                  }),
+                ],
+                onChanged: (value) {
+                  setState(() => _selectedLevel = value);
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Public switch
+              Card(
+                child: SwitchListTile(
+                  title: const Text('Công khai'),
+                  subtitle:
+                      const Text('Cho phép người khác xem và học bộ thẻ này'),
+                  value: _isPublic,
+                  onChanged: (value) {
+                    setState(() => _isPublic = value);
+                  },
+                  secondary: Icon(
+                    _isPublic ? Icons.public : Icons.lock,
+                    color: _isPublic ? Colors.green : Colors.grey,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              // Info card
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.blue[200]!),
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline, color: Colors.blue[700]),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        'Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.',
                         style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                          color: Colors.blue[900],
                         ),
                       ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 24),
+
+              // Create button
+              SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: _isLoading ? null : _createDeck,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.primaryColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: _isLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        )
+                      : const Text(
+                          'Tạo Bộ Thẻ',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

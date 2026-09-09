@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/news_provider.dart';
 import '../models/news.dart';
-import '../screens/news_list_screen.dart';
-import '../screens/news_detail_screen.dart';
 
 class NewsCarouselWidget extends StatefulWidget {
   const NewsCarouselWidget({Key? key}) : super(key: key);
@@ -50,12 +49,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const NewsListScreen(),
-                        ),
-                      );
+                      context.push('/news');
                     },
                     child: const Text('Xem tất cả'),
                   ),
@@ -82,12 +76,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   Widget _buildNewsCard(BuildContext context, News news) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => NewsDetailScreen(newsId: news.id),
-          ),
-        );
+        context.push('/news/${news.id}');
       },
       child: Container(
         width: 280,

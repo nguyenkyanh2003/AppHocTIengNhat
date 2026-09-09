@@ -35,8 +35,10 @@ Widget _host({
   );
 }
 
-double _scrollOffset(WidgetTester tester) =>
-    tester.state<ScrollableState>(find.byType(Scrollable).first).position.pixels;
+double _scrollOffset(WidgetTester tester) => tester
+    .state<ScrollableState>(find.byType(Scrollable).first)
+    .position
+    .pixels;
 
 void main() {
   testWidgets('bắt đầu tải thêm không tháo danh sách và giữ vị trí cuộn',
