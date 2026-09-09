@@ -2,13 +2,14 @@
 
 Ngày: 2026-09-09 · Trạng thái: đã sửa sau review, chưa triển khai theo bản sửa này
 
-Tài liệu này chia phần việc "hoàn thiện app học tiếng Nhật có luyện nói AI" thành bảy mốc,
-ghi thứ tự, phụ thuộc và tiêu chí đo. Nó bổ sung cho
+Tài liệu này chia phần việc "hoàn thiện app học tiếng Nhật có luyện nói AI" thành bảy mốc chính
+và mốc phụ 1B có thể hoãn. Tài liệu ghi thứ tự, phụ thuộc và tiêu chí đo, bổ sung cho
 [redesign-roadmap.md](../../architecture/redesign-roadmap.md); mỗi mốc vẫn có spec và
 implementation plan riêng trước khi code.
 
 Với mốc 1–3, tài liệu này cùng
-[spec SRS](2026-09-09-srs-revival-design.md) thay thế các quyết định API, phạm vi Kanji và
+[spec SRS](2026-09-09-srs-revival-design.md) và
+[spec streak](2026-09-09-streak-integrity-design.md) thay thế các quyết định API, phạm vi Kanji và
 ranh giới nói → SRS khác với [phase-2-plan.md](../../architecture/phase-2-plan.md).
 Các phần khác của Phase 2 vẫn cần được rà khi lập plan; không mặc nhiên coi chúng đã triển khai.
 
@@ -41,7 +42,8 @@ sử dụng hoặc trạng thái dữ liệu Atlas. Đường dẫn backend bên
 
 Các số seed là **số mục khai báo trong script**, không phải số bản ghi DB hoặc độ phủ N5.
 Chưa truy vấn Atlas để xác định số tiến độ lỗi, lượng nội dung thực tế hay tỷ lệ từ hội thoại
-ánh xạ được sang `Vocabulary._id`. Spec SRS quy định bước kiểm dữ liệu trước khi code mốc 1.
+ánh xạ được sang `Vocabulary._id`. Audit phải xong trước migration/cutover dữ liệu thật;
+không chặn việc viết hàm và test mốc 1 trên fixture trong DB kiểm thử.
 
 Tầng lịch có thể giữ. Việc cần làm ở mốc 1 là nối đúng API, dữ liệu và giao diện để hoàn thành
 vòng ôn Vocabulary. Không dùng kết quả tìm tham chiếu để khẳng định người học "chưa từng" ôn
@@ -63,7 +65,8 @@ tập hoặc các route admin "chưa bao giờ" được gọi.
 
 | # | Mốc | Lý do thứ tự | Phụ thuộc |
 | --- | --- | --- | --- |
-| 1 | **SRS sống lại** | Hoàn thành ôn Vocabulary và làm nền cho mốc 3 | Kiểm dữ liệu theo spec SRS |
+| 1 | **SRS + streak tin cậy** | Hoàn thành ôn Vocabulary và một đường ghi hoạt động | Fixture nhỏ để phát triển; audit trước cutover |
+| 1B | **Streak — lịch, mục tiêu ngày, băng** | Cơ chế giữ chân, tách khỏi mốc 1 vì đổi trải nghiệm chứ không sửa lỗi | 1 |
 | 2 | **Luyện nói AI** | Tạo hội thoại và phản hồi bằng tiếng Việt | Bộ nội dung demo ở §4.2 |
 | 3 | **Nối nói vào SRS** | Trọng tâm câu chuyện vòng học của đồ án | 1, 2 và kiểm độ phủ nội dung |
 | 4 | **Cầu nối Hán-Việt** | Phát triển bài học từ khả năng hiển thị đã có | Nguồn dữ liệu và spec riêng |
@@ -71,10 +74,59 @@ tập hoặc các route admin "chưa bao giờ" được gọi.
 | 6 | **Kỹ năng nghe** | Dùng dạng bài nhập tự do; cần nguồn audio | 5 |
 | 7 | **Nội dung quy mô thật** | Mở rộng N5 sau khi luồng học và nhập liệu ổn định | 1–6 |
 
-Thực hiện theo thứ tự bảng. Bộ nội dung nhỏ trước mốc 2 là điều kiện chuyển mốc, không phải
-mốc thứ tám; nội dung đầy đủ vẫn thuộc mốc 7.
+Thứ tự ưu tiên là 1 → bộ nội dung demo → 2 → 3 → 4–7. Mốc 1B có thể làm sau 1 hoặc hoãn
+sau 3; không bắt buộc hoàn thiện freeze/lịch trước khi luyện nói. Bộ nội dung nhỏ là
+điều kiện chuyển mốc, còn nội dung N5 đầy đủ vẫn thuộc mốc 7.
+
+Mốc 1B đánh số phụ để không phải đổi số các mốc 2–7. Nó **không** chặn mốc 2: có thể làm xen
+kẽ hoặc hoãn, vì nó không tạo dữ liệu mà mốc 2–3 cần. Chi tiết ở
+[spec streak](2026-09-09-streak-integrity-design.md).
+
+### 4.0 Thứ tự bắt đầu và dữ liệu từ vựng
+
+**Có thể triển khai chức năng trước, bổ sung nội dung lớn sau.** Không cần đủ 60 từ hoặc
+đủ N5 để viết và kiểm SRS/streak. Cần dữ liệu nhỏ hợp lệ để kiểm vòng học thực tế.
+
+| Bước | Làm gì | Dữ liệu cần |
+| --- | --- | --- |
+| 0 | Chốt contract chung SRS/streak, kiểm baseline; chuẩn bị fixture và audit chỉ đọc | 2 tài khoản kiểm thử, 1–2 bài học, khoảng 10–15 từ hợp lệ; bộ 40 thẻ sinh tự động cho test nhiều đợt |
+| 1 | Viết dayKey/rules/policy, ActivityEvent/StreakDay, repository, transaction và test chống trùng | Fixture, không cần kho từ vựng lớn |
+| 2 | Chuyển nguồn ghi login/bài học/bài tập/JLPT/achievement sang cổng chung; đóng API tự cấp XP; sửa đọc/export | Attempt/achievement và dữ liệu legacy giả để test migration; không refactor phần ngoài nguồn ghi liên quan |
+| 3 | Nối API SRS, Vocabulary detail và Flutter vào recordActivity chung; đủ luồng ôn/reset/xóa/lỗi | Bộ từ nhỏ; clock giả để kiểm đến hạn, không chờ ngày thật |
+| 4 | Smoke DB kiểm thử, dry-run migration, đối chiếu và cutover mốc 1 | Audit/backup dữ liệu thật phải đạt trước thao tác ghi hoặc triển khai bản mới lên DB đó |
+| 5 | Hoàn thiện nhập nội dung an toàn và nạp bộ demo 60 từ/3 chủ đề | Dữ liệu đã rà và có nguồn theo §4.2 |
+| 6 | Mốc 2 hội thoại → mốc 3 chọn từ và ôn lại; làm 1B khi muốn đầu tư thêm trải nghiệm | Bộ demo đã nhập, kiểm được ID thật và khả năng ánh xạ |
+| 7 | Mở rộng các kỹ năng/nội dung ở mốc 4–7 | Từng bộ dữ liệu và tiêu chí chất lượng riêng |
+
+Các bước 1–3 có thể thành các commit nhỏ; không deploy nửa số writer cũ/nửa số writer mới.
+Viết implementation plan mốc 1 theo thứ tự trên, ghi test chặn cho từng bước.
+
+**Thêm dữ liệu mà không mất tiến độ:**
+
+- Có thể soạn/rà Excel/CSV/JSON ngay trong lúc viết code; tách công việc biên soạn khỏi nhập DB.
+- Vocabulary hiện bắt buộc `word`, `hiragana`, `meaning` và `lesson`; `level=N5` cần
+  cho bộ demo. Phải có Lesson hợp lệ trước khi nhập, không chỉ một danh sách từ và nghĩa.
+- `BackEnd/scripts/seed-vocabulary.js` hiện gọi `Vocabulary.deleteMany({})` trước insert.
+  Chỉ dùng seed này cho DB dùng một lần; **không chạy lại trên DB đang có nội dung/tiến độ**.
+- Import Excel hiện dùng `insertMany`, chưa tự chống trùng khi nạp lại. Trước nạp lớn, thêm
+  dry-run, báo lỗi từng dòng và cơ chế nhập lặp không tạo bản sao. Dùng manifest ánh xạ mã
+  nội dung ổn định → `_id`; cập nhật đúng ID cũ, không xóa/tạo lại và không chỉ khớp theo
+  mặt chữ vì từ đồng hình/khác nghĩa có thể là các mục khác nhau.
+- Nạp thêm từ không được thay `SRSProgress.item_id` hoặc đặt lại box/lịch. Kiểm lại tham
+  chiếu trước–sau import. Khi thêm vào bài đã có người hoàn thành, chốt ảnh hưởng tổng mục
+  học; ưu tiên bài demo mới, không tự thu hồi XP hay lịch sử hoàn thành cũ.
+- Bộ 10–15 từ và 40 thẻ test là fixture, không phải cam kết số bản ghi Atlas. Ngưỡng 60 từ
+  là điều kiện demo nói/SRS, không phải điều kiện bắt đầu triển khai mốc 1.
 
 ### 4.1 Mốc 1 — SRS sống lại
+
+Bao gồm **Phần A của [spec streak](2026-09-09-streak-integrity-design.md)**: gom một đường
+`recordActivity`, bảng XP phía server, ActivityEvent/StreakDay, migration và một unit of work
+chung. Bỏ ba route ghi không hợp lệ trong streak cùng `/achievement/update-progress`,
+sửa định danh lần nộp và ghi ngày cho JLPT/bài tập, gộp kiểm mốc qua cổng chung.
+Giữ các endpoint đọc, sửa contract/consumer có chủ đích để xuất dữ liệu không mất lịch sử.
+Mỗi lượt SRS đến hạn được commit nhận **2 XP**; đây là chính sách mới đã đồng bộ ở cả hai spec.
+Phạm vi nguồn ghi phải xong trước khi tích hợp và triển khai vòng SRS lên dữ liệu thật.
 
 Dựng lại module trên scheduler Leitner và repository hiện có; mở rộng repository cho truy vấn
 đến hạn và cập nhật có điều kiện. Nghiệm thu **Vocabulary**: tạo tiến độ khi đánh dấu đã học,
@@ -89,8 +141,9 @@ Kanji SRS cần spec riêng để chốt quan hệ với `lesson-progress` và �
 nó vào nghiệm thu mốc 1 hoặc mặc nhiên giao cho mốc 4. Model vẫn giữ enum `Vocabulary`/`Kanji`;
 việc giữ enum không có nghĩa luồng Kanji đã hoàn chỉnh. Xử lý dữ liệu Kanji có sẵn theo spec SRS.
 
-Ra khỏi mốc: từ được đánh dấu đã học xuất hiện đúng hạn, mỗi lượt chỉ đổi lịch một lần,
-thẻ bỏ qua không chặn thẻ khác và badge đếm đúng tổng Vocabulary đến hạn.
+Ra khỏi mốc: từ được đánh dấu đã học xuất hiện đúng hạn, mỗi lượt chỉ đổi lịch/XP một lần,
+thẻ bỏ qua không chặn thẻ khác, badge đúng và login/GET không tự tạo ngày học.
+Migration bảo toàn số dư/lịch sử; export vẫn xuất đủ các trang XP và ngày.
 
 ### 4.2 Điều kiện nội dung trước mốc 2
 
@@ -187,6 +240,8 @@ Các cổng kỹ thuật dưới đây là **mức tối thiểu**, không thay 
 | Mốc/luồng | Bằng chứng nghiệm thu sản phẩm |
 | --- | --- |
 | 1 | Tạo → chờ đủ 24h bằng đồng hồ giả → ôn đúng/sai; không xử lý trùng; lấy nhiều đợt không bỏ sót; reset khác xóa |
+| Phần A streak trong 1 | Event/kết quả/XP/ngày cùng commit; retry nộp bài không nhân đôi; migration và xuất đủ lịch sử được kiểm bằng fixture |
+| 1B — có thể hoãn | Goal tách khỏi streak; freeze có ledger ngày và không sửa SRS; lịch phân biệt legacy; nhắc trong app đúng phạm vi đã chốt |
 | Trước 2 | Kiểm kê đạt 60 từ, 3 chủ đề, ≥5 candidate map được/chủ đề và hồ sơ nguồn/quyền dùng |
 | 2 | Hoàn thành 3 kịch bản; ghi số lượt thành công, lỗi/quota và candidate map được; đường nhập chữ hoạt động |
 | 3 | ≥3 từ mới/chủ đề được chọn → lưu đúng ID/lịch → xuất hiện đúng hạn → cập nhật sau ôn; từ có sẵn giữ lịch |

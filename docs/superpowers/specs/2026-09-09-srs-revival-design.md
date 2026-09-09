@@ -8,6 +8,10 @@ cho các quyết định khác về route/phạm vi SRS trong
 [phase-2-plan §A4](../../architecture/phase-2-plan.md). Giữ quy ước kiến trúc và kiểm thử chung.
 Sửa spec không đồng nghĩa chức năng đã hoạt động hoặc dữ liệu Atlas đã được kiểm.
 
+Phần ghi hoạt động, XP và ngày dùng chung
+[spec streak Phần A](2026-09-09-streak-integrity-design.md). Bản đồng bộ này chốt 2 XP/lượt
+SRS hợp lệ, thay quyết định 0 XP trước đó; không triển khai một writer streak riêng cho SRS.
+
 ## 1. Hiện trạng và mức độ kiểm chứng
 
 Đã đọc mã hiện tại và chạy `node --test tests/srs-scheduling.test.js` trong `BackEnd`:
@@ -49,7 +53,8 @@ giá trị sai chữ hoa bị từ chối ở schema API. Model vẫn giữ enum
 không xóa dữ liệu Kanji hợp lệ nếu có.
 
 Kanji SRS cần spec riêng xác định đường học → tạo tiến độ và quan hệ với lesson-progress.
-Ngoài mốc này còn có nối luyện nói, Grammar SRS, SM-2, lịch sử từng lượt ôn và ôn offline.
+Ngoài mốc này còn có nối luyện nói, Grammar SRS, SM-2, màn xem lịch sử từng lượt ôn và ôn
+offline. Event ôn vẫn được lưu ở Phần A để chống trùng, cấp XP và tính số liệu đã chốt.
 
 ## 3. Các quyết định thiết kế
 
@@ -85,10 +90,12 @@ BackEnd/src/modules/srs/
 ├── srs.controller.js            # map HTTP, không query DB
 ├── srs.service.js               # inject repository, clock, activity, unit of work
 ├── srs.repository.js            # giữ hàm cũ; thêm đọc đợt, CAS, reset, thống kê
-├── srs-activity.repository.js   # ghi hoạt động ngày vào UserStreak, cùng DB session
-├── srs-unit-of-work.js          # transaction; test thay bằng adapter giả
 └── srs-scheduling.js            # giữ thuật toán và test hiện có
 ```
+
+Inject `streaks/streak.service.recordActivity` và unit of work trong `shared/db/`.
+Repository SRS chỉ truy cập SRS/nội dung cần hydrate; việc ghi UserStreak, ActivityEvent,
+StreakDay thuộc repository module streaks. Không mở transaction lồng nhau.
 
 Xóa `srs-progress.controller.js` và `srs-progress.routes.js` khi thay thế xong.
 Đổi import ở `src/app.js` cùng commit đổi router. Repository được **mở rộng**, không
@@ -223,8 +230,9 @@ conflict, tránh request cũ liên tục đẩy ngày ôn ra sau.
 Schema hiện tại không chứng minh dữ liệu lịch sử sạch. Import trực tiếp, update cũ hoặc
 phiên bản model trước có thể tạo document khác. Audit Atlas: **chưa chạy**.
 
-Trước khi code mốc 1, plan phải có audit chỉ đọc bằng native collection để xem dữ liệu thô,
-ghi database/collection đã kiểm, thời điểm và số lượng theo nhóm:
+Trước migration/cutover mốc 1 trên dữ liệu thật, plan phải có audit chỉ đọc bằng native
+collection để xem dữ liệu thô, ghi database/collection, thời điểm và số lượng theo nhóm.
+Có thể viết code và test trên fixture/DB kiểm thử trước khi audit Atlas hoàn tất:
 
 - Thiếu/sai kiểu `user`, `item_id`; tham chiếu User/Vocabulary/Kanji không tồn tại.
 - Thiếu, null hoặc sai kiểu Date của `next_review`.
@@ -267,7 +275,7 @@ màn chi tiết từ vựng: mở rộng response `GET /api/vocabulary/:id` bằ
 Lấy chi tiết mới từ server trước thao tác, không lấy lịch cá nhân từ cache cũ; không
 gọi mark-learned chỉ để đọc vì nó có thể tạo thẻ. Không cần route SRS thứ bảy.
 
-Sau mutation làm mới badge/stats và dấu đã học; không đổi hoàn thành bài học.
+Sau mutation làm mới badge/stats, tóm tắt streak/XP và dấu đã học; không đổi hoàn thành bài học.
 Các điểm tích hợp: `app/router/app_router.dart`, `app/shell/app_navigation.dart`,
 `app/shell/hub_screen.dart`, provider, detail Vocabulary cả hai đầu và lớp lỗi HTTP.
 Screen mục tiêu dưới 250 dòng; tách widget theo trách nhiệm.
@@ -277,38 +285,33 @@ Cập nhật navigation contract cùng commit; kiểm tra web deep-link/reload/b
 
 `SRSProgress.streak` là chuỗi đúng của thẻ; `UserStreak.current_streak` là chuỗi ngày học.
 Đúng/sai thành công đều ghi hoạt động theo `Asia/Ho_Chi_Minh`, không tăng ngày thêm lần nữa
-nếu đã học hôm đó. **Mốc 1 không thêm thưởng XP theo thẻ.**
-Reset, xóa, bỏ qua, 404/409 không ghi hoạt động.
+nếu đã học hôm đó. **Mỗi lượt đến hạn được commit nhận 2 XP**, đúng/sai như nhau.
+Reset, xóa, bỏ qua, 404/409 không ghi event học và không XP.
 
-Ghi lịch SRS và hoạt động ngày trong cùng transaction qua adapter inject. Ghi hoạt động
-thất bại thì rollback lượt ôn và trả lỗi có thể thử lại, không trả 500 sau khi commit lịch.
-Adapter phải xử lý hai thẻ khác nhau cùng ghi hoạt động ngày; không sao chép cách
-đọc/sửa/save thiếu bảo vệ cạnh tranh. Transaction không gọi dịch vụ ngoài.
+Ghi lịch, ActivityEvent, StreakDay và tóm tắt XP/ngày trong cùng transaction. Gọi
+`recordActivity` sau khi thắng CAS nhưng trước commit, truyền cùng session và now.
+Khóa event ghép `SRSProgress._id` + lịch `expected_next_review` cũ; không dùng ID thẻ một
+mình và không thêm một khóa vào mảng reward_keys cho mỗi lượt ôn.
 
-User chưa có `UserStreak` phải được tạo an toàn theo unique index `user`; cạnh tranh tạo
-không được bỏ mất hoạt động hoặc commit riêng lịch SRS. Plan phải rà các writer hoạt động
-trong users, lesson-progress, exercise và streaks, đưa các lệnh ghi ngày có thể ghi đè nhau
-qua cùng cơ chế cập nhật có điều kiện. Phạm vi là các lệnh ghi hoạt động liên quan, không
-refactor toàn bộ các module đó hoặc thay đổi chính sách thưởng XP của chúng.
+Lỗi ghi event/XP/ngày rollback cả lịch SRS; không trả lỗi sau khi đã commit một nửa.
+Hai event khác nhau cùng ngày đều nhận 2 XP, ngày chỉ tăng một lần. Cạnh tranh/khởi tạo
+summary dùng revision và unique index theo spec streak, không chỉ kiểm last_activity_day.
 
-Chốt một cách biểu diễn ngày tương thích dữ liệu hiện có trước khi viết adapter:
-`updateStreakOnActivity()` hiện chuyển giờ Việt Nam rồi dựng ngày theo timezone máy chủ.
-Không tự chuyển sang mốc UTC khác chỉ ở SRS, khiến writer cũ hiểu lệch ngày. Cần test qua
-ranh giới ngày Việt Nam trên máy chủ UTC và UTC+7, cùng trường hợp hoạt động SRS xen kẽ
-hoạt động bài học. Transaction riêng SRS không đủ chứng minh tính đúng của mọi writer.
+Nguồn ghi từ login/bài học/bài tập/JLPT/achievement, cách chuyển ngày legacy và bảo toàn số
+dư nằm trong spec streak Phần A. SRS phụ thuộc phần này; không giữ writer cũ sau cutover và
+không tự viết thêm một chính sách XP/timezone. Hoàn thành phần nền trước khi nối UI SRS.
 
 ```text
 Đã học Vocabulary → tạo initialProgress, hoặc trả tiến độ đã có
 Mở/lấy đợt → lọc user + Vocabulary + đến hạn + loại trừ → hydrate nội dung
-Trả lời → transaction: đọc → kiểm → applyAnswer → CAS → hoạt động ngày → commit
-        → trả tiến độ → chuyển thẻ, refresh badge/stats
+Trả lời → transaction: đọc → kiểm → applyAnswer → CAS → recordActivity (2 XP/lượt, ngày học) → commit
+        → trả tiến độ → chuyển thẻ, refresh badge/stats/streak
 Reset → đọc → initialProgress → CAS không yêu cầu đến hạn, không hoạt động
 Xóa → deleteProgress theo user/item/type → cập nhật dấu đã học, badge
 ```
 
 Giữ API các hàm repository mà vocabulary đang dùng; thêm đọc đợt/count/CAS/reset/stats.
-Unit of work và activity adapter phải được triển khai, không giả định phương thức
-`UserStreak` hiện có đã bảo đảm transaction/chống ghi lặp.
+Unit of work và activity service dùng lại từ Phần A; không tạo adapter ghi UserStreak thứ hai.
 
 ## 6. Validation và lỗi
 
@@ -336,7 +339,7 @@ tra truy vấn thật được dựng, không chỉ fake repository.
 | Tạo tiến độ | Mark-learned lặp/đồng thời không trùng và không đổi lịch đã có |
 | Reset/delete | Reset hẹn +24h, giữ dấu đã học, không activity/XP; retry không dời lịch; delete lặp |
 | Batch | 40 thẻ/đợt 20; bỏ qua hết đợt đầu vẫn tới thẻ sau; tất cả bỏ qua thì dừng dù badge còn; giới hạn phiên; nội dung mất |
-| Activity/unit of work | Sai vẫn tính ngày; hai thẻ cùng ngày và SRS xen bài học không ghi đè ngày; tạo UserStreak khi thiếu; ngày Việt Nam trên host UTC/UTC+7; conflict/reset/delete không activity; lỗi activity rollback |
+| Activity/unit of work | Sai vẫn tính ngày và 2 XP; hai thẻ cùng ngày nhận đủ 4 XP nhưng một ngày; cùng lượt retry không thêm XP; dùng chung activity với bài học; lỗi event/XP/ngày rollback lịch |
 | HTTP | Router thật với middleware/controller và service stub: status/shape batch, stats, conflict; owner từ auth; route bỏ trả 404; Vocabulary detail thêm progress đúng user |
 | Route contract | Đổi count/hash cho 12 → 6 route SRS cùng commit; hash không thay test HTTP |
 | Flutter model/service | Ngày/type/nội dung thiếu; sáu endpoint; progress trong detail; giữ code/details lỗi |
@@ -345,6 +348,8 @@ tra truy vấn thật được dựng, không chỉ fake repository.
 
 Dùng clock giả ở `next_review-1ms`, bằng/sau hạn và chuỗi 1/3/7/14/30 ngày.
 Số đúng/sai/bỏ qua của phiên nằm ở client, không trình bày thành lịch sử nhiều ngày.
+Số liệu nhiều ngày nếu dùng phải đọc từ event/StreakDay đã commit theo spec streak;
+không dùng bộ đếm phiên để suy ra tổng lịch sử.
 
 Trước nghiệm thu thêm smoke test trên DB kiểm thử riêng hỗ trợ transaction: tạo fixture,
 review đồng thời, đọc lại lịch/hoạt động, xác minh rollback. Stub không chứng minh hành vi
@@ -355,8 +360,8 @@ MongoDB thật. Không dùng Atlas dữ liệu người dùng làm fixture hoặ
 - Vocabulary đã học tạo một tiến độ hộp 1; trước 24 giờ chưa đến hạn, bằng hạn thì có.
 - Ba lượt đúng ở ba lần đến hạn liên tiếp cho khoảng tiếp theo 3, 7, 14 ngày; sai về hộp 1
   và +24h. Kiểm bằng clock giả.
-- Bấm đôi, retry, hai tab không tăng hộp/hoạt động lặp cho cùng lượt đến hạn.
-- Lịch và hoạt động cùng commit hoặc rollback trong smoke test DB kiểm thử.
+- Bấm đôi, retry, hai tab không tăng hộp/hoạt động/XP lặp cho cùng lượt đến hạn.
+- Lịch, event, ngày và 2 XP cùng commit hoặc rollback trong smoke test DB kiểm thử.
 - Nhiều đợt không bỏ sót do offset, không mắc vòng lặp do bỏ qua.
 - Badge bằng tổng Vocabulary đến hạn, độc lập batch và tập loại trừ.
 - Reset/xóa có hành vi/thông báo riêng; dấu đã học cập nhật đúng, reset được khi chưa đến hạn.
@@ -369,9 +374,9 @@ MongoDB thật. Không dùng Atlas dữ liệu người dùng làm fixture hoặ
 
 | Điểm | Cách xử lý |
 | --- | --- |
-| Audit Atlas chưa chạy | Bước đầu implementation plan; chưa kết luận migration |
+| Audit Atlas chưa chạy | Viết code/test với fixture được; audit phải đạt trước migration/cutover thật |
 | Kanji chưa có đường vào SRS | Spec riêng trước khi mở API/UX Kanji; giữ dữ liệu hợp lệ |
-| Transaction SRS chưa có | Adapter/test riêng và smoke trên DB kiểm thử hỗ trợ transaction |
-| Nhiều nơi ghi UserStreak | Rà cách lưu ngày và dùng chung cơ chế ghi có điều kiện cho các call site liên quan trước khi bảo đảm streak |
+| Transaction SRS chưa có | Dùng unit of work chung và smoke trên DB kiểm thử hỗ trợ transaction |
+| Nhiều nơi ghi UserStreak | Phần A streak chuyển mọi writer, ngày legacy và contract đọc trước cutover |
 | Bỏ route admin | Quyết định phạm vi; mở lại cần quyền và query đúng schema |
 | Nội dung nói→SRS | Cổng nội dung trước mốc 2 trong spec chương trình; không tự tạo từ bằng AI ở mốc 1 |
