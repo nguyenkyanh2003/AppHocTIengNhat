@@ -1,3 +1,15 @@
+> ## ⛔ PLAN NÀY ĐÃ BỊ THAY THẾ — KHÔNG THỰC THI
+>
+> Viết ngày 2026-09-09, **trước** khi ba spec trong `docs/superpowers/specs/` được viết lại
+> và commit ở `07d7f10`. Đối chiếu ngày 2026-09-10 tìm ra **79 sai lệch giữa plan này và spec
+> hiện hành, 45 ở mức blocking**; 36/37 khẳng định được đưa qua phản biện hai lăng kính đều
+> đứng vững.
+>
+> Task 0–4 đã được triển khai theo plan này và commit ở `1081b65`. Phần hạ tầng ngày và
+> transaction giữ được; phần model nhật ký, chống trùng và bảng XP phải làm lại.
+>
+> **Plan thay thế:** [2026-09-10-milestone-1-realigned.md](2026-09-10-milestone-1-realigned.md)
+
 # Mốc 1 — SRS sống lại + nền streak Phần A
 
 > **Cho người thực thi:** dùng skill `superpowers:subagent-driven-development` (khuyến nghị)
