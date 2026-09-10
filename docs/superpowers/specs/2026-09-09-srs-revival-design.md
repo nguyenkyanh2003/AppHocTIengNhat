@@ -225,10 +225,20 @@ Reset nhận `expected_next_review`, đọc và ghi có điều kiện theo docu
 `SRS_PROGRESS_CHANGED` kèm tiến độ hiện tại. Không tự gửi lại reset với lịch mới sau
 conflict, tránh request cũ liên tục đẩy ngày ôn ra sau.
 
-### 3.7 Chưa xác định có cần migrate dữ liệu
+### 3.7 Migrate dữ liệu — đã audit, không cần
 
 Schema hiện tại không chứng minh dữ liệu lịch sử sạch. Import trực tiếp, update cũ hoặc
-phiên bản model trước có thể tạo document khác. Audit Atlas: **chưa chạy**.
+phiên bản model trước có thể tạo document khác.
+
+**Audit Atlas: đã chạy ngày 2026-09-09** bằng `scripts/audit-srs-progress.js` (chỉ đọc, qua
+native collection). Kết quả trên database `AppHocTiengNhat`, collection `srsprogresses`:
+**8 bản ghi, 0 bất thường** ở tất cả các nhóm liệt kê bên dưới. Tám bản ghi đó do
+`scripts/seed-demo.js` tạo cùng ngày; trước đó collection rỗng, nên **không có dữ liệu lịch
+sử để migrate**.
+
+Kết luận: mốc 1 **không cần script migration**. Nếu triển khai lên một database khác (bản
+production riêng, bản sao của bạn học), phải chạy lại audit trên chính database đó trước khi
+cutover — kết quả này chỉ nói về database đang dùng để phát triển.
 
 Trước migration/cutover mốc 1 trên dữ liệu thật, plan phải có audit chỉ đọc bằng native
 collection để xem dữ liệu thô, ghi database/collection, thời điểm và số lượng theo nhóm.

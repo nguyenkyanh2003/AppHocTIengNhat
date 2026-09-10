@@ -19,6 +19,24 @@ const UserStreakSchema = new mongoose.Schema({
     type: Date,
     default: null
   },
+  // Khoá ngày `YYYY-MM-DD` (múi giờ Việt Nam, xem streak-rules.js) dùng bởi
+  // đường ghi streak mới (`streak.repository.createStreakRepository`).
+  // Khác với `last_activity_date` (kiểu Date, do method cũ trong file này
+  // ghi) — hai trường này song song tồn tại cho tới khi Task 5 gỡ hết các
+  // method cũ và caller của chúng.
+  last_activity_day: {
+    type: String,
+    default: null
+  },
+  // Số băng (freeze) đang có, mỗi băng che một ngày nghỉ khỏi làm đứt chuỗi.
+  // Chặn trên bằng MAX_FREEZES trong streak-rules.js — validator ở đây chỉ
+  // là lưới an toàn thứ hai phòng khi có chỗ ghi thẳng vào DB.
+  freezes_available: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 2
+  },
   total_xp: {
     type: Number,
     default: 0

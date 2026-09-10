@@ -32,6 +32,7 @@ void main() {
         '/home',
         '/study',
         '/review',
+        '/srs',
         '/progress',
         '/account',
         '/admin',
