@@ -41,10 +41,56 @@ const UserStreakSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  // Số lần tóm tắt này được ghi. Đường ghi mới CAS trên chính nó, không phải
+  // trên `last_activity_day`.
+  //
+  // Lý do phải là `revision`: hai hoạt động khác nhau trong **cùng một ngày**
+  // (hoàn thành một mục bài học và nộp một bài tập) không làm đổi
+  // `last_activity_day`, nên một filter chỉ so ngày sẽ khớp cho cả hai request
+  // đồng thời — cả hai cùng "thắng" và bản ghi sau đè mất XP của bản ghi
+  // trước. `revision` đổi ở **mọi** lần ghi, nên chỉ đúng một request thắng và
+  // request thua biết mình phải đọc lại (spec §3.5).
+  revision: {
+    type: Number,
+    default: 0
+  },
+  // Số ngày `studied` theo luật mới. Không lấy số bản ghi `StreakDay` thay
+  // cho nó: bản ghi `legacy` và `frozen` cũng nằm trong đó nhưng không phải
+  // ngày học đã xác minh (spec §3.2).
+  total_active_days: {
+    type: Number,
+    default: 0
+  },
+  // Số ngày dựng lại từ dữ liệu cũ mà không chứng minh được là có học. Giảm
+  // đúng một lần khi một ngày legacy được nâng lên `studied`.
+  legacy_day_count: {
+    type: Number,
+    default: 0
+  },
+  // Ngày bắt đầu áp dụng luật mới: với user cũ là ngày cutover, với user mới
+  // là ngày học đầu tiên. Khoảng trống **trước** mốc này không được diễn giải
+  // là nghỉ học — trước đó đơn giản là chưa có ai ghi lại (spec §3.2).
+  tracking_started_day: {
+    type: String,
+    default: null
+  },
+  // Phiên bản chính sách XP đang áp cho tóm tắt này, đóng dấu cùng lúc với
+  // event để hai bên đọc lại được cùng ngữ cảnh.
+  policy_version: {
+    type: String,
+    default: null
+  },
   level: {
     type: Number,
     default: 1
   },
+  // --- Dữ liệu legacy, chờ migration ở Bước 4 ---
+  //
+  // Ba mảng dưới đây đã được thay thế: `activity_dates` bởi collection
+  // `StreakDay`, `xp_history` và `reward_keys` bởi `ActivityEvent`. Đường ghi
+  // mới **không đụng vào chúng**. Chúng vẫn ở đây vì là nguồn duy nhất để
+  // dựng lại chuỗi và chặn phát thưởng lại cho người dùng cũ; chỉ được gỡ sau
+  // khi migration (spec §4.1 bước 8) kiểm đạt.
   activity_dates: [{ // Đổi từ login_dates thành activity_dates
     type: Date
   }],

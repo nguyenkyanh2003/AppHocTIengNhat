@@ -1,194 +1,316 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { streakRepository } from './streak.repository.js';
 import { applyActivity, dayKey, projectStreak } from './streak-rules.js';
+import * as defaultPolicy from './streak-policy.js';
 
 /**
- * XP của từng loại hoạt động, quyết định ở server.
+ * Cổng ghi hoạt động học — **đường duy nhất** được phép cộng XP, nối chuỗi và
+ * đánh dấu ngày học.
  *
- * Trước đây mỗi module tự chọn số XP và endpoint `/streak/add-xp` còn nhận
- * `amount` thẳng từ client mà không có trần. Bảng này là nguồn duy nhất —
- * `recordActivity` không bao giờ đọc `amount` từ tham số gọi vào.
- */
-export const XP_BY_ACTIVITY = Object.freeze({
-  'srs.review': 2,
-  'lesson.progress': 5,
-  'exercise.submit': 10,
-  'lesson.complete': 15,
-  'jlpt.submit': 20,
-});
-
-/**
- * Hoạt động chỉ được thưởng một lần cho mỗi `sourceId` — chống trùng dựa vào
- * `reward_keys` sẵn có trên `UserStreak`.
+ * Thay cho bốn cách ghi cũ chạy song song: `UserStreak.addXP`,
+ * `updateStreakOnActivity`, `findOneAndUpdate` viết tay trong JLPT, và
+ * `POST /streak/add-xp` nhận thẳng `amount` từ client. Bốn đường đó không
+ * cùng luật ngày, không cùng bảng XP, và không đường nào chống được trùng.
  *
- * `srs.review` cố ý **không** nằm trong tập này: một thẻ được ôn lại nhiều
- * lần trong đời nó (đến hạn lại, ôn sai rồi ôn đúng...), nên khoá theo
- * `sourceId` sẽ chỉ cho thưởng đúng một lần đầu tiên rồi khoá cứng luôn thẻ
- * đó — sai với nghiệp vụ SRS. Tính duy nhất trong-một-ngày của SRS do tầng
- * SRS tự lo bằng cập nhật có điều kiện (`casApplyAnswer`), không phải ở đây;
- * nếu thêm khoá cho `srs.review` thì `reward_keys` phình vô hạn theo số lượt
- * ôn — đúng cái bệnh mà đường ghi nhận này được tạo ra để sửa.
+ * Caller là service nghiệp vụ **đã xác thực xong** user, nội dung và kết quả.
+ * Không có endpoint nào cho client gửi trực tiếp một hoạt động, một số XP,
+ * một ngày học hay một trạng thái huy hiệu (spec §3.1).
  */
-const ONE_SHOT = new Set(['lesson.complete', 'lesson.progress', 'exercise.submit', 'jlpt.submit']);
 
 /**
- * Một thang mốc duy nhất, dùng cho cả thưởng XP lẫn huy hiệu — tránh lặp lại
- * lỗi cũ ở `streak.controller.js` (dùng `% 7` / `% 30`, không khớp danh sách
- * mốc thật của bảng `Achievement`, và không dừng lại khi vượt mốc cuối).
+ * Số lần thử lại CAS trước khi chịu thua.
+ *
+ * Phải có chặn trên: `revision` đổi ở mọi lần ghi, nên một user đang học trên
+ * nhiều thiết bị về lý thuyết có thể làm request này thua mãi. Thà trả 409 để
+ * client thử lại còn hơn giữ một transaction mở vô hạn.
  */
-export const STREAK_MILESTONES = Object.freeze([7, 14, 30, 50, 100, 365]);
+const MAX_CAS_ATTEMPTS = 5;
 
 export const createStreakService = ({
   repository = streakRepository,
   rules = { applyActivity, dayKey, projectStreak },
-} = {}) => ({
+  policy = defaultPolicy,
+} = {}) => {
   /**
-   * Ghi nhận một hoạt động học đã hoàn thành — đường duy nhất được phép
-   * cộng XP và tăng streak, thay cho ba cách ghi cũ (`UserStreak.addXP`,
-   * `updateStreakOnActivity`, và `findOneAndUpdate` tay của JLPT không bao
-   * giờ tăng chuỗi).
+   * Chạy CAS tới khi thắng, đọc lại trạng thái sau mỗi lần thua.
    *
-   * Chỉ gọi **sau khi** nghiệp vụ của hoạt động đã ghi thành công (đã lưu
-   * bài nộp, đã lưu lượt ôn...). Hàm nhận `session` và truyền xuống mọi lệnh
-   * repository để chạy trong cùng transaction với lệnh ghi đó — lỗi ở đây
-   * rollback luôn cả phần nghiệp vụ, không để XP "mồ côi" khi phần kia lỗi.
+   * Đọc lại là bắt buộc chứ không phải tối ưu: thua CAS nghĩa là có người vừa
+   * ghi, nên `revision` **và** các trường streak trong tay đều đã cũ. Thử lại
+   * với đúng bản đọc cũ thì hoặc thua tiếp mãi, hoặc thắng rồi ghi đè mất thứ
+   * người kia vừa viết.
    *
-   * `correct`/`score`... (nếu người gọi truyền vào) không ảnh hưởng gì: trả
-   * lời sai vẫn là một hoạt động học, chuỗi và XP không phân biệt đúng/sai —
-   * quyết định gọi hay không gọi hàm này thuộc về tầng nghiệp vụ đang xử lý
-   * đáp án, không phải ở đây.
+   * `buildWrite` được gọi lại mỗi vòng với bản đọc mới nhất, nên luật ngày
+   * cũng được tính lại trên trạng thái mới.
    */
-  async recordActivity({ userId, type, sourceId, now = new Date(), session }) {
-    const xp = XP_BY_ACTIVITY[type];
-    if (xp === undefined) {
-      throw ApiError.badRequest('Loại hoạt động không hợp lệ.', {
-        code: 'UNKNOWN_ACTIVITY_TYPE',
+  const casWithRetry = async ({ userId, session, buildWrite }) => {
+    let summary = await repository.ensureSummary({ userId, session });
+
+    for (let attempt = 1; attempt <= MAX_CAS_ATTEMPTS; attempt += 1) {
+      const write = buildWrite(summary);
+      const saved = await repository.casSummary({
+        userId,
+        expectedRevision: summary.revision ?? 0,
+        patch: write.patch,
+        inc: write.inc,
+        session,
       });
+      if (saved) return { summary: saved, write };
+
+      summary = (await repository.findByUser({ userId, session })) ?? summary;
     }
 
-    const current = await repository.ensureFor({ userId, session });
-    // Chỉ hoạt động một-lần mới có rewardKey — xem giải thích ở khai báo
-    // ONE_SHOT. `srs.review` để `undefined`: không lọc, không ghi mảng.
-    //
-    // Vòng sửa 1: không còn đọc `current.reward_keys` để tự quyết "đã thưởng
-    // chưa" ở đây — đọc rồi set tuyệt đối ở repository chính là nguyên nhân
-    // mất cập nhật khi hai hoạt động one-shot khác nhau về cùng lúc trong
-    // ngày (xem comment ở `casUpdate`). Điều kiện chống trùng chuyển hẳn vào
-    // filter CAS; service chỉ còn việc tính patch rồi để repository quyết
-    // nguyên tử trong một lệnh ghi duy nhất.
-    const isOneShot = ONE_SHOT.has(type);
-    const rewardKey = isOneShot ? `${type}:${sourceId}` : undefined;
-
-    const todayKey = rules.dayKey(now);
-    const next = rules.applyActivity(
-      {
-        currentStreak: current.current_streak,
-        longestStreak: current.longest_streak,
-        lastActivityDay: current.last_activity_day,
-        freezesAvailable: current.freezes_available,
-      },
-      todayKey,
-    );
-
-    // Chỉ còn các trường streak tính lại mỗi lần — total_xp cộng qua $inc,
-    // reward_keys ghi qua $addToSet, cả hai làm ở casUpdate, không phải patch
-    // tuyệt đối ở đây (patch tuyệt đối là đúng thứ gây ra lỗi Vòng sửa 1).
-    const patch = {
-      current_streak: next.currentStreak,
-      longest_streak: next.longestStreak,
-      last_activity_day: next.lastActivityDay,
-      freezes_available: current.freezes_available - next.freezesUsed,
-    };
-
-    const saved = await repository.casUpdate({
-      userId,
-      expectedDay: current.last_activity_day,
-      patch,
-      xpDelta: xp,
-      rewardKey,
-      session,
+    // Event đã nằm trong nhật ký rồi. Ném ở đây để cả transaction rollback —
+    // nuốt lỗi sẽ để lại một event có XP mà tóm tắt không bao giờ cộng, và
+    // lần gửi lại sau sẽ bị chính khoá đó chặn.
+    throw ApiError.conflict('Không ghi được streak do có quá nhiều ghi đồng thời.', {
+      code: 'STREAK_WRITE_CONFLICT',
     });
-
-    // Thua CAS giờ có hai nguyên nhân khác nhau, cả hai đều nằm trong cùng
-    // một filter nguyên tử ở casUpdate nên không phân biệt được ở đây bằng
-    // gì khác ngoài đọc lại — nhưng đáng phân biệt vì ý nghĩa nghiệp vụ khác
-    // nhau (dù kết quả trả về hiện tại giống nhau: không cộng XP, không ghi
-    // ngày, không tiêu băng lần nữa):
-    // - đã thưởng rồi (gửi lại cùng sourceId của hoạt động one-shot — double
-    //   submit, retry sau timeout): không phải do đua với ai.
-    // - một request khác (thiết bị khác, retry trùng lúc) đã đẩy
-    //   last_activity_day trước — hoạt động này thật sự bị "thua" vào tay
-    //   một request khác đang cùng học.
-    if (!saved) {
-      const latest = await repository.findByUser({ userId, session });
-      const alreadyRewarded = isOneShot && (latest?.reward_keys ?? []).includes(rewardKey);
-      const currentStreak = latest?.current_streak ?? current.current_streak;
-
-      if (alreadyRewarded) {
-        return { currentStreak, isNewDay: false, xpAwarded: 0, milestonesReached: [] };
-      }
-      return { currentStreak, isNewDay: false, xpAwarded: 0, milestonesReached: [] };
-    }
-
-    // Chỉ ghi appendXpEvent/markDay SAU KHI CAS thắng — hai lệnh này không có
-    // điều kiện, nếu gọi trước khi biết CAS thắng hay thua thì bên thua vẫn
-    // để lại một bản ghi XP mồ côi không tương ứng streak nào được cập nhật.
-    await repository.appendXpEvent({
-      userId,
-      amount: xp,
-      reason: type,
-      type,
-      sourceId,
-      earnedAt: now,
-      session,
-    });
-    await repository.markDay({ userId, dayKey: todayKey, status: 'studied', session });
-    // Những ngày băng đã bảo vệ (nghỉ nhưng có băng che) chỉ được đánh dấu
-    // lịch, không cộng XP — không ai "học" vào ngày đó cả, băng chỉ giữ chuỗi.
-    for (const frozenDay of next.frozenDays) {
-      await repository.markDay({ userId, dayKey: frozenDay, status: 'frozen', session });
-    }
-
-    // Mốc chỉ được coi là "chạm" ở đúng ngày chuỗi tăng lên đúng giá trị đó —
-    // dùng so sánh bằng (không phải >=) để một mốc chỉ trả về đúng một lần,
-    // không lặp lại ở mọi ngày sau đó chuỗi vẫn còn lớn hơn mốc.
-    const milestonesReached = next.isNewDay
-      ? STREAK_MILESTONES.filter((milestone) => milestone === next.currentStreak)
-      : [];
-
-    return {
-      currentStreak: next.currentStreak,
-      isNewDay: next.isNewDay,
-      xpAwarded: xp,
-      milestonesReached,
-    };
-  },
+  };
 
   /**
-   * Tóm tắt streak để hiển thị (màn hồ sơ, trang chủ...).
+   * Phát thưởng cho những mốc vừa vượt qua, trong cùng transaction.
    *
-   * Dùng `projectStreak`, không phải `applyActivity`: đường đọc không được
-   * phép tiêu băng hay ghi ngày — chỉ mở app xem streak không phải là một
-   * hoạt động học.
+   * Khoá theo `user + loại thưởng + mốc` nên mỗi mốc chỉ được cấp đúng một
+   * lần trong đời tài khoản — kể cả khi chuỗi đứt rồi leo lại qua đúng mốc đó
+   * (spec §3.3).
+   *
+   * **Không** gọi lại `recordActivity`: event thưởng không phải hoạt động
+   * học, không đánh dấu ngày, và nếu nó tự quay lại cổng ghi thì XP vừa cộng
+   * có thể đẩy chuỗi qua một mốc khác và sinh vòng lặp phát thưởng (§3.4).
    */
-  async readSummary({ userId, now = new Date() }) {
-    const streak = await repository.findByUser({ userId });
-    if (!streak) {
-      return { current_streak: 0, longest_streak: 0, total_xp: 0, freezes_available: 0 };
+  const awardMilestones = async ({ userId, milestones, occurredAt, todayKey, session, rewards }) => {
+    const awarded = [];
+
+    for (const milestone of milestones) {
+      const xp = policy.xpFor(policy.MILESTONE_REWARD_TYPE, rewards?.[milestone]);
+      const event = await repository.insertEvent({
+        userId,
+        eventKey: `streak-milestone:${userId}:${milestone}`,
+        type: policy.MILESTONE_REWARD_TYPE,
+        sourceId: String(milestone),
+        occurredAt,
+        dayKey: todayKey,
+        xpDelta: xp,
+        reason: policy.MILESTONE_REWARD_TYPE,
+        countsAsStudy: false,
+        policyVersion: policy.POLICY_VERSION,
+        session,
+      });
+      // `null` nghĩa là mốc này đã được cấp trước đó — không phải lỗi.
+      if (!event) continue;
+
+      awarded.push(milestone);
+      if (xp > 0) {
+        await casWithRetry({ userId, session, buildWrite: () => ({ inc: { total_xp: xp } }) });
+      }
     }
 
-    const view = rules.projectStreak(
-      {
-        currentStreak: streak.current_streak,
-        lastActivityDay: streak.last_activity_day,
-        freezesAvailable: streak.freezes_available,
-      },
-      rules.dayKey(now),
-    );
+    return awarded;
+  };
 
-    return { ...streak, current_streak: view.currentStreak };
-  },
-});
+  return {
+    /**
+     * Ghi nhận một hoạt động đã hoàn thành.
+     *
+     * Gọi **sau khi** nghiệp vụ đã ghi thành công trong cùng transaction (đã
+     * lưu bài nộp, đã thắng CAS của SRS), và truyền `session` xuống để lỗi ở
+     * đây rollback luôn cả phần nghiệp vụ — không để XP "mồ côi".
+     *
+     * `occurrenceKey` là **bắt buộc với mọi loại**. Service này không tự bịa
+     * khoá từ `type:sourceId` nữa: một thẻ SRS được ôn lại nhiều lần trong đời
+     * nó, nên ID thẻ một mình không định danh được lượt ôn — đó chính là lý do
+     * thiết kế cũ phải chia hoạt động thành "một lần" (có chống trùng) và
+     * "lặp lại" (không chống trùng gì cả). Caller đã xác thực nghiệp vụ, nó
+     * biết định danh thật của lần xảy ra.
+     *
+     * Trình tự đúng spec §3.1: **ghi event trước**, rồi mới cập nhật tóm tắt
+     * và ngày. Chính lần insert event là câu trả lời cho "đã ghi chưa".
+     */
+    async recordActivity(
+      { userId, type, sourceId, occurrenceKey, context },
+      { session, now = new Date() } = {},
+    ) {
+      if (!occurrenceKey) {
+        throw ApiError.badRequest('Hoạt động phải có định danh lần xảy ra.', {
+          code: 'MISSING_OCCURRENCE_KEY',
+          details: { type },
+        });
+      }
+
+      // Ném trước khi ghi bất cứ thứ gì: loại lạ là lỗi lập trình ở caller,
+      // và một event mang loại không có trong bảng chính sách sẽ không bao giờ
+      // đọc lại được cho đúng.
+      const xp = policy.xpFor(type, context?.outcome);
+      const countsAsStudy = policy.countsAsStudy(type);
+      const todayKey = rules.dayKey(now);
+
+      const event = await repository.insertEvent({
+        userId,
+        eventKey: occurrenceKey,
+        type,
+        sourceId,
+        occurredAt: now,
+        dayKey: todayKey,
+        xpDelta: xp,
+        reason: type,
+        countsAsStudy,
+        policyVersion: policy.POLICY_VERSION,
+        receipt: context?.receipt,
+        session,
+      });
+
+      if (!event) {
+        // Đã ghi rồi: gửi lại sau timeout, double submit, hai thiết bị. Trả
+        // đúng trạng thái hiện tại và không đụng vào gì cả.
+        const latest = await repository.findByUser({ userId, session });
+        return {
+          currentStreak: latest?.current_streak ?? 0,
+          isNewDay: false,
+          xpAwarded: 0,
+          duplicate: true,
+          milestonesReached: [],
+        };
+      }
+
+      // Hoạt động không phải học và không có XP (đăng nhập, mở bài, bỏ qua):
+      // đã vào nhật ký để không phát lại, và dừng ở đó. Đây là chỗ sửa lỗi
+      // "đăng nhập cũng nối chuỗi" — nó không còn đi qua nhánh nào chạm tới
+      // `current_streak` nữa.
+      if (!countsAsStudy && xp === 0) {
+        const summary = await repository.ensureSummary({ userId, session });
+        return {
+          currentStreak: summary?.current_streak ?? 0,
+          isNewDay: false,
+          xpAwarded: 0,
+          duplicate: false,
+          milestonesReached: [],
+        };
+      }
+
+      // Event có XP nhưng không phải hoạt động học: chỉ cộng XP, không đụng
+      // tới chuỗi ngày.
+      if (!countsAsStudy) {
+        const { summary } = await casWithRetry({
+          userId,
+          session,
+          buildWrite: () => ({ inc: { total_xp: xp } }),
+        });
+        return {
+          currentStreak: summary.current_streak ?? 0,
+          isNewDay: false,
+          xpAwarded: xp,
+          duplicate: false,
+          milestonesReached: [],
+        };
+      }
+
+      let previousStreak = 0;
+      const { summary, write } = await casWithRetry({
+        userId,
+        session,
+        buildWrite: (current) => {
+          previousStreak = current.current_streak ?? 0;
+          const next = rules.applyActivity(
+            {
+              currentStreak: previousStreak,
+              longestStreak: current.longest_streak ?? 0,
+              lastActivityDay: current.last_activity_day ?? null,
+              freezesAvailable: current.freezes_available ?? 0,
+            },
+            todayKey,
+          );
+
+          const patch = {
+            current_streak: next.currentStreak,
+            longest_streak: next.longestStreak,
+            last_activity_day: next.lastActivityDay,
+            policy_version: policy.POLICY_VERSION,
+          };
+          // Chỉ đặt mốc bắt đầu theo dõi đúng một lần. Đẩy nó lên ngày hôm nay
+          // ở mỗi lần học sẽ xoá mất ranh giới giữa "chưa từng theo dõi" và
+          // "đã nghỉ", và khoảng trống trước mốc không được coi là nghỉ học
+          // (spec §3.2).
+          if (!current.tracking_started_day) patch.tracking_started_day = todayKey;
+          // Băng chỉ bị tiêu ở đây — tức chỉ khi người học thật sự học, không
+          // phải lúc mở app. Phần B mới phát băng nên nhánh này hiện không bao
+          // giờ chạy; viết sẵn vì bỏ trống nó nghĩa là `frozenDays` được ghi
+          // vào lịch mà kho băng không bao giờ vơi — băng vô hạn.
+          if (next.freezesUsed > 0) {
+            patch.freezes_available = (current.freezes_available ?? 0) - next.freezesUsed;
+          }
+
+          const inc = { total_xp: xp };
+          // Ngày học chỉ được đếm ở đúng lần ghi làm ngày đó thành ngày mới.
+          // Hoạt động thứ hai trong ngày có `isNewDay === false`.
+          if (next.isNewDay) inc.total_active_days = 1;
+
+          return { patch, inc, next };
+        },
+      });
+
+      const next = write.next;
+
+      await repository.upsertDay({
+        userId,
+        dayKey: todayKey,
+        status: 'studied',
+        incDirectXp: xp,
+        incReviewCount: type === 'srs.review' ? 1 : 0,
+        incCorrect: type === 'srs.review' && context?.outcome?.remembered === true ? 1 : 0,
+        incWrong: type === 'srs.review' && context?.outcome?.remembered === false ? 1 : 0,
+        session,
+      });
+
+      // Ngày được băng che: chỉ đánh dấu lịch, không XP, không phải ngày học.
+      // Băng thuộc Phần B nên hiện `frozenDays` luôn rỗng.
+      for (const frozenDay of next.frozenDays) {
+        await repository.upsertDay({ userId, dayKey: frozenDay, status: 'frozen', session });
+      }
+
+      const milestonesReached = await awardMilestones({
+        userId,
+        milestones: policy.milestonesCrossed(previousStreak, next.currentStreak),
+        occurredAt: now,
+        todayKey,
+        session,
+        rewards: context?.rewards,
+      });
+
+      return {
+        currentStreak: summary.current_streak ?? next.currentStreak,
+        isNewDay: next.isNewDay,
+        xpAwarded: xp,
+        duplicate: false,
+        milestonesReached,
+      };
+    },
+
+    /**
+     * Tóm tắt streak để **hiển thị** (trang chủ, hồ sơ, sau khi đăng nhập).
+     *
+     * Dùng `projectStreak` chứ không `applyActivity`: đường đọc không được ghi
+     * gì, không tiêu băng và không phát thưởng. Mở app xem streak không phải
+     * là một hoạt động học — đó chính là lỗi cũ mà spec §3.5 đóng lại.
+     */
+    async readSummary({ userId, now = new Date() }) {
+      const streak = await repository.findByUser({ userId });
+      if (!streak) {
+        return { current_streak: 0, longest_streak: 0, total_xp: 0, total_active_days: 0 };
+      }
+
+      const view = rules.projectStreak(
+        {
+          currentStreak: streak.current_streak,
+          lastActivityDay: streak.last_activity_day,
+          freezesAvailable: streak.freezes_available,
+        },
+        rules.dayKey(now),
+      );
+
+      return { ...streak, current_streak: view.currentStreak };
+    },
+  };
+};
 
 /** Bản dựng sẵn dùng repository thật, cho controller không cần tự lắp tham số. */
 export const streakService = createStreakService();

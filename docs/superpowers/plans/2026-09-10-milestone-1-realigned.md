@@ -131,7 +131,7 @@ document, chỉ in tên DB/collection/thời điểm/số lượng theo nhóm.
 
 # Bước 1 — Luật, chính sách, model, repository, transaction
 
-## Task 1.1: Sửa `dayKey` sang `formatToParts`
+## Task 1.1: Sửa `dayKey` sang `formatToParts` — ĐÃ XONG
 
 **Files:** Modify `BackEnd/src/modules/streaks/streak-rules.js`,
 `BackEnd/tests/streak-rules.test.js`
@@ -142,16 +142,16 @@ document, chỉ in tên DB/collection/thời điểm/số lượng theo nhóm.
 tiết cài đặt, không phải hợp đồng — bản ICU khác có thể đổi dấu phân cách hoặc thứ tự và
 `dayKey` sẽ trả chuỗi sai mà không lỗi.
 
-- [ ] **B1** Test mới (thêm, không sửa test cũ): với một `Intl.DateTimeFormat` giả trả
+- [x] **B1** Test mới (thêm, không sửa test cũ): với một `Intl.DateTimeFormat` giả trả
       `parts` theo thứ tự đảo (`day, month, year`) và dấu phân cách `/`, `dayKey` vẫn phải
       trả `YYYY-MM-DD`. Cách làm: cho `dayKey` nhận formatter qua tham số tuỳ chọn.
-- [ ] **B2** Chạy, thấy fail.
-- [ ] **B3** Viết lại bằng `formatToParts()` + `{ calendar: 'gregory', numberingSystem: 'latn' }`,
+- [x] **B2** Chạy, thấy fail.
+- [x] **B3** Viết lại bằng `formatToParts()` + `{ calendar: 'gregory', numberingSystem: 'latn' }`,
       lấy `part.type === 'year'|'month'|'day'`, `padStart(2,'0')`, ghép bằng `-`.
-- [ ] **B4** `node --test tests/streak-rules.test.js` — 6 test cũ vẫn xanh, test mới xanh.
-- [ ] **B5** `npm test` xanh.
+- [x] **B4** `node --test tests/streak-rules.test.js` — 6 test cũ vẫn xanh, test mới xanh.
+- [x] **B5** `npm test` xanh.
 
-## Task 1.2: Sửa retry của unit of work
+## Task 1.2: Sửa retry của unit of work — ĐÃ XONG
 
 **Files:** Modify `BackEnd/src/shared/db/unit-of-work.js`,
 `BackEnd/tests/unit-of-work.test.js`
@@ -163,16 +163,16 @@ tiết cài đặt, không phải hợp đồng — bản ICU khác có thể đ
 chính `commitTransaction()` thoát thẳng ra ngoài. Khuôn retry chuẩn của MongoDB đòi lỗi
 transient — kể cả phát sinh ở commit — phải chạy lại **cả** transaction.
 
-- [ ] **B1** Test mới: `commitTransaction` ném lỗi nhãn `TransientTransactionError` ở lần
+- [x] **B1** Test mới: `commitTransaction` ném lỗi nhãn `TransientTransactionError` ở lần
       1, thành công ở lần 2 → hàm nghiệp vụ được gọi **2 lần** (chạy lại cả transaction),
       không phải 1.
-- [ ] **B2** Chạy, thấy fail.
-- [ ] **B3** Đưa `commitWithRetry` vào trong khối `try` chung, hoặc bắt lỗi của nó và phân
+- [x] **B2** Chạy, thấy fail.
+- [x] **B3** Đưa `commitWithRetry` vào trong khối `try` chung, hoặc bắt lỗi của nó và phân
       loại: nhãn `UnknownTransactionCommitResult` → chỉ lặp commit; nhãn
       `TransientTransactionError` → `continue` vòng ngoài; không nhãn → ném.
-- [ ] **B4** 4 test cũ + test mới đều xanh; `npm test` xanh.
+- [x] **B4** 4 test cũ + test mới đều xanh; `npm test` xanh.
 
-## Task 1.3: `streak-policy.js`
+## Task 1.3: `streak-policy.js` — ĐÃ XONG
 
 **Files:** Create `BackEnd/src/modules/streaks/streak-policy.js`,
 `BackEnd/tests/streak-policy.test.js`
@@ -191,12 +191,12 @@ phẳng `10` phải là `10` đạt / `5` chưa đạt).
 - `countsAsStudy(type) -> boolean` — `false` cho event thưởng
 - `STREAK_MILESTONES = [7,14,30,50,100,365]`
 
-- [ ] **B1** Test: từng dòng bảng §3.4 ra đúng số; `exercise.submit` với `{passed:true}` →
+- [x] **B1** Test: từng dòng bảng §3.4 ra đúng số; `exercise.submit` với `{passed:true}` →
       10, `{passed:false}` → 5; `login`/`lesson.open` → 0 và `countsAsStudy` false; type lạ
       → ném 400; không có đường nào để tham số ngoài ảnh hưởng con số.
-- [ ] **B2** Chạy, thấy fail. **B3** Viết module. **B4** `npm test` xanh.
+- [x] **B2** Chạy, thấy fail. **B3** Viết module. **B4** `npm test` xanh.
 
-## Task 1.4: `ActivityEvent` thay `XpEvent`
+## Task 1.4: `ActivityEvent` thay `XpEvent` — ĐÃ XONG
 
 **Files:** Create `BackEnd/model/ActivityEvent.js`; Delete `BackEnd/model/XpEvent.js`;
 Test `BackEnd/tests/activity-event.model.test.js`
@@ -219,12 +219,12 @@ Index thứ hai phải có `_id` vì cursor của `xp-history?mode=page` sort
 
 **Không đặt TTL** — khoá sự kiện đang bảo vệ việc không phát thưởng lại (§3.2).
 
-- [ ] **B1** Test khai báo: đủ 10 trường; hai index đúng tên trường và đúng cờ `unique`;
+- [x] **B1** Test khai báo: đủ 10 trường; hai index đúng tên trường và đúng cờ `unique`;
       không có TTL. Đọc `schema.indexes()` và `schema.paths`, không cần DB.
-- [ ] **B2** Chạy, thấy fail. **B3** Viết model, xoá `XpEvent.js`.
-- [ ] **B4** `grep -rn "XpEvent" BackEnd/` chỉ còn ở chỗ sẽ sửa ở Task 1.6.
+- [x] **B2** Chạy, thấy fail. **B3** Viết model, xoá `XpEvent.js`.
+- [x] **B4** `grep -rn "XpEvent" BackEnd/` chỉ còn ở chỗ sẽ sửa ở Task 1.6.
 
-## Task 1.5: Mở rộng `StreakDay` và `UserStreak`
+## Task 1.5: Mở rộng `StreakDay` và `UserStreak` — ĐÃ XONG
 
 **Files:** Modify `BackEnd/model/StreakDay.js`, `BackEnd/model/UserStreak.js`;
 Test `BackEnd/tests/streak-models.test.js`
@@ -240,9 +240,9 @@ Test `BackEnd/tests/streak-models.test.js`
 là dữ liệu legacy chờ migration, chỉ bỏ ở Bước 4 sau khi §4.1 bước 8 kiểm đạt.
 **Không** thêm `freezes_available` (Phần B).
 
-- [ ] **B1** Test khai báo trường + enum. **B2** fail. **B3** Sửa model. **B4** `npm test` xanh.
+- [x] **B1** Test khai báo trường + enum. **B2** fail. **B3** Sửa model. **B4** `npm test` xanh.
 
-## Task 1.6: Viết lại repository — event trước, revision CAS
+## Task 1.6: Viết lại repository — event trước, revision CAS — ĐÃ XONG
 
 **Files:** Modify `BackEnd/src/modules/streaks/streak.repository.js`,
 `BackEnd/tests/streak.repository.test.js`
@@ -268,14 +268,14 @@ là bước quyết định trùng hay không.
 - `listDays({ userId, from, to, cursor, limit })`
 - `sumXpBetween({ userId, fromDay, toDay })` — cho leaderboard kỳ
 
-- [ ] **B1** Test (model giả): insert trùng `event_key` trả `null` chứ không ném;
+- [x] **B1** Test (model giả): insert trùng `event_key` trả `null` chứ không ném;
       `casSummary` filter chứa `revision` đã đọc và update có `$inc: {revision: 1}`;
       `upsertDay` với `studied` nâng được bản ghi `legacy` lên `studied` và `$inc` đúng
       counter; `listEvents` dựng filter cursor hai khoá chứ không `skip`; `listEvents` với
       `withXpOnly` lọc `xp_delta != 0`.
-- [ ] **B2** fail. **B3** Viết lại. **B4** `npm test` xanh.
+- [x] **B2** fail. **B3** Viết lại. **B4** `npm test` xanh.
 
-## Task 1.7: Viết lại `recordActivity`
+## Task 1.7: Viết lại `recordActivity` — ĐÃ XONG
 
 **Files:** Modify `BackEnd/src/modules/streaks/streak.service.js`,
 `BackEnd/tests/streak.service.test.js`
@@ -308,12 +308,12 @@ nghiệp vụ đã xác thực, nó biết định danh lần xảy ra; service 
    `session` bằng một event riêng khoá theo user+loại thưởng+mốc, `counts_as_study=false`,
    **không** gọi lại `recordActivity`.
 
-- [ ] **B1** Test: gửi lại cùng `occurrenceKey` → `xpAwarded: 0`, `insertEvent` trả null,
+- [x] **B1** Test: gửi lại cùng `occurrenceKey` → `xpAwarded: 0`, `insertEvent` trả null,
       không `casSummary`, không `upsertDay`; hai `occurrenceKey` khác nhau cùng ngày → cả hai
       cộng XP, ngày chỉ tăng một lần; thua CAS `revision` → thử lại và cuối cùng vẫn ghi đủ
       (không mất event); `session` truyền xuống **mọi** lệnh repository; mốc 7 nổ đúng một
       lần và event thưởng có `counts_as_study=false`; type lạ → 400.
-- [ ] **B2** fail. **B3** Viết lại. **B4** `npm test` xanh.
+- [x] **B2** fail. **B3** Viết lại. **B4** `npm test` xanh.
 
 ---
 

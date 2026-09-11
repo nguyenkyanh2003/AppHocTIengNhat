@@ -38,3 +38,27 @@ test('read projection never mutates or spends freezes', () => {
   assert.deepEqual(projectStreak(current, '2026-09-12'), { currentStreak: 0, broken: true });
   assert.equal(current.freezesAvailable, 1);
 });
+
+test('day key is built from parts, not from a locale-specific string shape', () => {
+  // `format('en-CA')` chỉ tình cờ trả ISO; thứ tự trường và dấu phân cách là
+  // chi tiết của bản ICU đang chạy, không phải hợp đồng. Formatter giả dưới
+  // đây trả đúng các phần mà một ICU khác có thể trả — đảo thứ tự, dấu `/`,
+  // thiếu số 0 đứng đầu — và `dayKey` vẫn phải ra `YYYY-MM-DD`.
+  const reversed = {
+    formatToParts: () => [
+      { type: 'day', value: '9' },
+      { type: 'literal', value: '/' },
+      { type: 'month', value: '3' },
+      { type: 'literal', value: '/' },
+      { type: 'year', value: '2026' },
+    ],
+  };
+  // Ngày thật (21/7) cố ý khác ngày mà formatter giả trả về (9/3): nếu
+  // `dayKey` vẫn tự định dạng thay vì đọc `parts`, khác biệt này lộ ra ngay.
+  assert.equal(dayKey(new Date('2026-07-21T05:00:00Z'), 'UTC', reversed), '2026-03-09');
+});
+
+test('day key refuses a formatter that cannot supply a full calendar date', () => {
+  const partial = { formatToParts: () => [{ type: 'year', value: '2026' }] };
+  assert.throws(() => dayKey(new Date(), 'UTC', partial), RangeError);
+});

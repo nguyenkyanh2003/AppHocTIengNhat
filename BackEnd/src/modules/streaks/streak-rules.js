@@ -12,16 +12,70 @@ export const STREAK_TIMEZONE = 'Asia/Ho_Chi_Minh';
 export const MAX_FREEZES = 2;
 
 /**
+ * Một `Intl.DateTimeFormat` cho mỗi múi giờ, dựng một lần rồi dùng lại.
+ *
+ * Dựng formatter là phần đắt nhất của `dayKey` (phải nạp dữ liệu ICU của múi
+ * giờ), mà `dayKey` được gọi ở mọi lần ghi hoạt động. Số múi giờ dùng thật
+ * trong app là hằng số (giờ Việt Nam, cộng `UTC` cho phép cộng ngày nội bộ),
+ * nên cache không phình.
+ *
+ * `calendar: 'gregory'` và `numberingSystem: 'latn'` là bắt buộc chứ không
+ * phải cho chắc: locale mặc định của máy chạy có thể là lịch phi-Gregory
+ * (`ja-JP-u-ca-japanese` cho ra năm Lệnh Hoà 8) hoặc hệ số phi-Latin
+ * (`ar-EG-u-nu-arab` cho ra `٢٠٢٦`), và khoá ngày lưu vào DB thì không được
+ * đổi theo máy nào đang chạy.
+ */
+const dayFormatters = new Map();
+
+const formatterFor = (timeZone) => {
+  const cached = dayFormatters.get(timeZone);
+  if (cached) return cached;
+
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    calendar: 'gregory',
+    numberingSystem: 'latn',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  dayFormatters.set(timeZone, formatter);
+  return formatter;
+};
+
+/**
  * Khoá ngày dạng `YYYY-MM-DD` theo múi giờ chỉ định.
  *
- * Dùng locale `en-CA` vì đây là locale hiếm hoi Intl trả thẳng định dạng ISO,
- * nên khỏi phải parse lại chuỗi như cách cũ
- * (`new Date(d.toLocaleString('en-US', { timeZone })`) — cách đó tạo ra một
- * chuỗi giờ Mỹ rồi nhờ `Date` parse lại theo múi giờ của server, sai ngay khi
- * server không chạy giờ Việt Nam.
+ * Đọc `formatToParts()` rồi tự ghép, thay vì tin vào hình dạng chuỗi mà
+ * `format()` trả về. Cách cũ (`format('en-CA')`) chạy đúng chỉ vì bản ICU
+ * hiện tại tình cờ trả `YYYY-MM-DD` cho locale đó — thứ tự trường và dấu
+ * phân cách là dữ liệu CLDR, có thể đổi giữa các bản Node mà không báo lỗi,
+ * và khi đổi thì `dayKey` trả khoá sai **im lặng**. `parts` thì có hợp đồng
+ * thật: mỗi phần tự khai `type` của nó.
+ *
+ * `formatter` mở ra ở tham số thứ ba để test bơm được một ICU giả; mã chạy
+ * thật không bao giờ truyền tham số này.
  */
-export const dayKey = (date, timeZone = STREAK_TIMEZONE) =>
-  new Intl.DateTimeFormat('en-CA', { timeZone }).format(date);
+export const dayKey = (date, timeZone = STREAK_TIMEZONE, formatter = formatterFor(timeZone)) => {
+  let year;
+  let month;
+  let day;
+
+  for (const part of formatter.formatToParts(date)) {
+    if (part.type === 'year') year = part.value;
+    else if (part.type === 'month') month = part.value;
+    else if (part.type === 'day') day = part.value;
+  }
+
+  // Thiếu phần nào nghĩa là formatter không được cấu hình để trả ngày đầy đủ.
+  // Ném thay vì ghép ra `undefined-09-10`: khoá ngày hỏng mà vẫn ghi được vào
+  // DB sẽ làm hỏng mọi phép so ngày về sau, và lỗi sẽ hiện ra ở chỗ khác.
+  if (year === undefined || month === undefined || day === undefined) {
+    throw new RangeError('Formatter không trả đủ year/month/day để dựng khoá ngày.');
+  }
+
+  return `${year.padStart(4, '0')}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+};
 
 /**
  * Quy đổi khoá `YYYY-MM-DD` sang mốc UTC (ms), đồng thời xác thực đây là một

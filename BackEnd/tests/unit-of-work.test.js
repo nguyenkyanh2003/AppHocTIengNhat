@@ -49,3 +49,48 @@ test('unknown commit outcome retries commit only, never the business callback', 
   assert.equal(calls, 1);
   assert.equal(commits, 3);
 });
+test('transient failure at commit replays the whole transaction, not just the commit', async () => {
+  // Nhãn transient ném ra từ chính `commitTransaction` vẫn là lỗi transient:
+  // khuôn retry của MongoDB đòi chạy lại **cả** transaction, vì phía server
+  // transaction đó chưa hề xảy ra. Bản trước gọi commit ngoài khối catch của
+  // `fn`, nên lỗi này thoát thẳng ra ngoài và request hỏng oan.
+  const connection = fake();
+  let commits = 0;
+  let calls = 0;
+  connection.session.commitTransaction = async () => {
+    commits += 1;
+    if (commits < 2) throw labeled('TransientTransactionError');
+  };
+  await createUnitOfWork({ connection }).run(async () => { calls += 1; });
+  assert.equal(calls, 2);
+  assert.equal(commits, 2);
+});
+test('a transaction replayed after a transient commit failure is aborted first', async () => {
+  // Không abort trước khi startTransaction lần hai thì driver ném
+  // "transaction already in progress" — lỗi thật sẽ bị che bởi lỗi này.
+  const connection = fake();
+  let commits = 0;
+  connection.session.commitTransaction = async () => {
+    connection.events.push('commit');
+    commits += 1;
+    if (commits < 2) throw labeled('TransientTransactionError');
+  };
+  await createUnitOfWork({ connection }).run(async () => {});
+  assert.deepEqual(connection.events, ['begin', 'commit', 'abort', 'begin', 'commit', 'end']);
+});
+test('transient commit retries are bounded like callback retries', async () => {
+  const connection = fake();
+  let calls = 0;
+  connection.session.commitTransaction = async () => { throw labeled('TransientTransactionError'); };
+  await assert.rejects(createUnitOfWork({ connection, maxRetries: 3 }).run(async () => { calls += 1; }));
+  assert.equal(calls, 3);
+  assert.equal(connection.events.at(-1), 'end');
+});
+test('a failing abort does not replace the error that caused it', async () => {
+  const connection = fake();
+  connection.session.abortTransaction = async () => { throw new Error('connection lost'); };
+  await assert.rejects(
+    createUnitOfWork({ connection }).run(async () => { throw new Error('business'); }),
+    /business/,
+  );
+});
