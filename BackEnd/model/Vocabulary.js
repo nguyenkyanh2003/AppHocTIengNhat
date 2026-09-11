@@ -5,6 +5,21 @@ const VocabularySchema = new mongoose.Schema({
     hiragana: { type: String, required: true },          // Kana: がくせい
     meaning: { type: String, required: true },           // Nghĩa: Học sinh
     level: { type: String, enum: ['N5', 'N4', 'N3', 'N2', 'N1'], index: true },
+    // Âm Hán-Việt của từ, vd 学生 → "HỌC SINH".
+    //
+    // `Kanji` đã có trường này cho từng chữ, nhưng âm của một *từ* không phải
+    // lúc nào cũng ghép được từ âm của từng chữ, và nguồn dữ liệu thường cho
+    // sẵn ở mức từ. Đây là lợi thế riêng của app cho người Việt (mục "Bài học
+    // Hán-Việt" trong lộ trình), nên vứt đi lúc nhập là mất thứ khó lấy lại.
+    hanviet: { type: String, trim: true },
+    // Nhóm động từ theo cách đánh số của Minna no Nihongo: 1 = godan,
+    // 2 = ichidan, 3 = bất quy tắc.
+    //
+    // Tách khỏi `hiragana` chứ không để nguyên chuỗi "おしえます (II)": cột đó
+    // là **cách đọc**, thứ sẽ hiển thị trên thẻ ôn và sau này đưa cho giọng
+    // đọc. Để nguyên thì máy đọc thành "hai", còn người học thì học thuộc cả
+    // dấu ngoặc.
+    verb_group: { type: Number, enum: [1, 2, 3] },
     // tinh huống sử dụng từ
     usage_context: { type: String }, 
     // Media

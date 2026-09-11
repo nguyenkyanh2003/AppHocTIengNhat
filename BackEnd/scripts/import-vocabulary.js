@@ -94,9 +94,14 @@ const upsertWord = async (row, { lessonId }) => {
 
   const fields = {
     meaning: row.meaning,
-    level: row.level,
     usage_context: row.usage_context,
   };
+  // Chỉ ghi những trường file **thật sự có**. Ghi `null` đè lên giá trị đã
+  // có nghĩa là một file thiếu cột sẽ xoá sạch dữ liệu của lần nhập trước —
+  // vd nhập bổ sung cấp độ xong rồi nhập lại file gốc là mất hết Hán-Việt.
+  if (row.level) fields.level = row.level;
+  if (row.hanviet) fields.hanviet = row.hanviet;
+  if (row.verb_group) fields.verb_group = row.verb_group;
   if (row.examples.length > 0) fields.examples = row.examples;
 
   const update = { $set: fields };
@@ -174,7 +179,10 @@ const main = async () => {
     if (accepted.length > 0) {
       console.log('   Ví dụ ba dòng đầu sẽ được ghi:');
       for (const row of accepted.slice(0, 3)) {
-        console.log(`   · ${row.word} (${row.hiragana}) — ${row.meaning} [${row.level ?? 'chưa rõ cấp độ'}]`);
+        const marks = [row.level, row.hanviet, row.verb_group && `nhóm ${row.verb_group}`]
+          .filter(Boolean)
+          .join(' · ');
+        console.log(`   · ${row.word} (${row.hiragana}) — ${row.meaning}${marks ? `  [${marks}]` : ''}`);
       }
     }
     return;

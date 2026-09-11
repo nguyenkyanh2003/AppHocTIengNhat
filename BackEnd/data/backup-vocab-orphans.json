@@ -1,0 +1,61 @@
+[
+  {
+    "_id": "6a9f7c9182e0ead74d831f2c",
+    "word": "学生",
+    "hiragana": "がくせい",
+    "meaning": "Học sinh, sinh viên",
+    "level": "N5",
+    "usage_context": "Dùng để chỉ người đang học tập ở trường",
+    "lesson": "6a9f7c63df825075df9bd6b7",
+    "examples": [
+      {
+        "sentence": "私は学生です。",
+        "meaning": "Tôi là học sinh.",
+        "_id": "6a9f7c9182e0ead74d831f2d"
+      },
+      {
+        "sentence": "彼は大学の学生です。",
+        "meaning": "Anh ấy là sinh viên đại học.",
+        "_id": "6a9f7c9182e0ead74d831f2e"
+      }
+    ],
+    "related_kanjis": [],
+    "__v": 0
+  },
+  {
+    "_id": "6a9f7c9182e0ead74d831f2f",
+    "word": "先生",
+    "hiragana": "せんせい",
+    "meaning": "Giáo viên, thầy cô",
+    "level": "N5",
+    "usage_context": "Dùng để gọi hoặc nói về giáo viên, bác sĩ",
+    "lesson": "6a9f7c63df825075df9bd6b7",
+    "examples": [
+      {
+        "sentence": "田中先生は日本語の先生です。",
+        "meaning": "Thầy Tanaka là giáo viên tiếng Nhật.",
+        "_id": "6a9f7c9182e0ead74d831f30"
+      }
+    ],
+    "related_kanjis": [],
+    "__v": 0
+  },
+  {
+    "_id": "6a9f7c9182e0ead74d831f31",
+    "word": "友達",
+    "hiragana": "ともだち",
+    "meaning": "Bạn bè",
+    "level": "N5",
+    "usage_context": "Dùng để nói về bạn bè thân thiết",
+    "lesson": "6a9f7c63df825075df9bd6b7",
+    "examples": [
+      {
+        "sentence": "友達と映画を見ます。",
+        "meaning": "Tôi xem phim với bạn.",
+        "_id": "6a9f7c9182e0ead74d831f32"
+      }
+    ],
+    "related_kanjis": [],
+    "__v": 0
+  }
+]

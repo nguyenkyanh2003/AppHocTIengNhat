@@ -74,6 +74,8 @@ test('a clean row becomes a document ready to write', () => {
       hiragana: 'がくせい',
       meaning: 'học sinh',
       level: 'N5',
+      hanviet: null,
+      verb_group: null,
       usage_context: null,
       lessonTitle: null,
       examples: [],
@@ -191,4 +193,121 @@ test('nothing in the input can make review throw', () => {
   const nasty = [null, undefined, { TuVung: 123, Hiragana: true, NghiaTV: [] }];
   const { errors } = reviewRows(nasty, { level: 'N5' });
   assert.ok(Array.isArray(errors));
+});
+
+// --- chú thích trong dữ liệu thật ------------------------------------------
+
+test('a column named "Kanji (Chữ Hán)" is still the word column', () => {
+  // File thật hay đặt tên cột kèm chú thích trong ngoặc. So khớp cả phần
+  // trước dấu ngoặc thì không phải liệt kê vô hạn biến thể.
+  const mapped = mapHeaders(['STT', 'Kanji (Chữ Hán)', 'Hiragana', 'Hán Việt', 'Nghĩa Tiếng Việt']);
+  assert.equal(mapped.word, 1);
+  assert.equal(mapped.hanviet, 3);
+  assert.equal(mapped.meaning, 4);
+  assert.deepEqual(mapped.missing, []);
+});
+
+test('the verb group is lifted out of the reading, not left inside it', () => {
+  // "おしえます (II)" không phải một cách đọc. Để nguyên thì thẻ ôn hiện cả
+  // dấu ngoặc và giọng đọc sau này đọc thành "hai".
+  const { accepted } = reviewRows([row({ TuVung: '教えます', Hiragana: 'おしえます (II)' })], {});
+  assert.equal(accepted[0].hiragana, 'おしえます');
+  assert.equal(accepted[0].verb_group, 2);
+});
+
+test('all three verb groups are understood', () => {
+  const readings = ['かきます (I)', 'たべます (II)', 'きます (III)'];
+  const { accepted } = reviewRows(
+    readings.map((r, i) => ({ TuVung: `語${i}`, Hiragana: r, NghiaTV: 'x' })),
+    {},
+  );
+  assert.deepEqual(accepted.map((a) => a.verb_group), [1, 2, 3]);
+});
+
+test('a word with no verb group gets none rather than a guess', () => {
+  const { accepted } = reviewRows([row()], {});
+  assert.equal(accepted[0].verb_group, null);
+});
+
+test('textbook annotations in a reading are kept, not rejected', () => {
+  // `[な]` đánh dấu tính từ đuôi na, `~` đánh dấu tiếp đầu/tiếp vĩ ngữ,
+  // `(電話を~)` là gợi ý kết hợp. Tất cả đều là dữ liệu người soạn cố ý ghi.
+  const samples = [
+    ['きれい[な]', 'đẹp'],
+    ['~じん', 'người nước ~'],
+    ['こちらは~です。', 'đây là ~'],
+    ['おなまえは?', 'tên bạn là gì?'],
+    ['かけます(電話を~)', 'gọi điện'],
+    ['[お]しごと', 'công việc'],
+  ];
+  const { accepted, errors } = reviewRows(
+    samples.map(([reading, meaning], index) => ({
+      TuVung: `語${index}`,
+      Hiragana: reading,
+      NghiaTV: meaning,
+    })),
+    {},
+  );
+  assert.deepEqual(errors, [], JSON.stringify(errors));
+  assert.equal(accepted.length, samples.length);
+});
+
+test('romaji is still rejected even though annotations are allowed', () => {
+  // Nới luật cho chú thích không được biến thành nới cho mọi thứ: cột cách
+  // đọc ghi bằng chữ Latin vẫn là lỗi nhập liệu thật.
+  const { errors } = reviewRows([row({ Hiragana: 'gakusei' })], {});
+  assert.equal(errors[0].field, 'hiragana');
+});
+
+test('kanji leaking into the reading is rejected, except inside a bracketed hint', () => {
+  const bad = reviewRows([row({ Hiragana: 'がく生' })], {});
+  assert.equal(bad.errors.length, 1);
+  const good = reviewRows([row({ TuVung: 'かけます', Hiragana: 'かけます(電話を~)' })], {});
+  assert.deepEqual(good.errors, []);
+});
+
+test('the Hán-Việt reading is carried through when the file has it', () => {
+  const { accepted } = reviewRows([row({ HanViet: 'HỌC SINH' })], {});
+  assert.equal(accepted[0].hanviet, 'HỌC SINH');
+});
+
+test('a missing Hán-Việt column is not an error', () => {
+  const { accepted, errors } = reviewRows([row()], {});
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].hanviet, null);
+});
+
+test('a word with no level stays without one instead of being guessed', () => {
+  // File 1021 từ của người dùng không có cột cấp độ và trộn cả N5 lẫn N4.
+  // Gán bừa N5 cho tất cả là bịa dữ liệu.
+  const { accepted, errors } = reviewRows([row()], {});
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].level, null);
+});
+
+test('quote marks around a whole reading are stripped, not treated as a container', () => {
+  // 「ともだちに~」 là trích dẫn bọc quanh cả cụm. Xoá cả cụm thì không còn gì
+  // để kiểm và một cách đọc hợp lệ bị báo là rỗng.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: '「友達に~」', Hiragana: '「ともだちに~」', NghiaTV: 'với bạn' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(accepted.length, 1);
+});
+
+test('an ellipsis in a set phrase is punctuation, not a broken reading', () => {
+  const { errors } = reviewRows(
+    [{ TuVung: '[~は]ちょっと….', Hiragana: '[~は]ちょっと….', NghiaTV: '… thì hơi…' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+});
+
+test('kanji left behind in a reading is still caught', () => {
+  // Đây là lỗi thật trong file nguồn: cột cách đọc của 一回 ghi "一かい" thay
+  // vì "いっかい". Nới luật cho chú thích không được che mất lỗi này.
+  const { errors } = reviewRows([{ TuVung: '一回', Hiragana: '一かい', NghiaTV: 'một lần' }], {});
+  assert.equal(errors.length, 1);
+  assert.equal(errors[0].field, 'hiragana');
 });

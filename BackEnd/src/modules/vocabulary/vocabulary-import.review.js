@@ -29,6 +29,7 @@ const HEADER_ALIASES = Object.freeze({
   word: ['tuvung', 'tu', 'word', 'kanji', 'tuvungtiengnhat', 'matchu'],
   hiragana: ['hiragana', 'kana', 'cachdoc', 'doc', 'reading', 'phienam', 'yomikata'],
   meaning: ['nghiatv', 'nghia', 'nghiatiengviet', 'meaning', 'ynghia', 'dichnghia'],
+  hanviet: ['hanviet', 'amhanviet', 'amhan', 'sinoviet'],
   level: ['capdo', 'level', 'trinhdo', 'jlpt'],
   usage_context: ['tinhhuong', 'usagecontext', 'ngucanh', 'context', 'chude'],
   lesson: ['baihoc', 'lesson', 'bai', 'unit'],
@@ -61,10 +62,17 @@ const headerKey = (text) =>
  */
 export const mapHeaders = (headers) => {
   const mapped = { missing: [] };
-  const keys = (headers ?? []).map(headerKey);
+  // Mỗi header cho ra nhiều khoá ứng viên: nguyên chuỗi, và phần trước dấu
+  // ngoặc. File thật hay ghi "Kanji (Chữ Hán)" hay "Nghĩa (Tiếng Việt)" —
+  // khớp cả phần trước ngoặc thì khỏi phải liệt kê vô hạn biến thể.
+  const candidates = (headers ?? []).map((header) => {
+    const text = String(header ?? '');
+    const beforeBracket = text.split(/[([（]/)[0];
+    return new Set([headerKey(text), headerKey(beforeBracket)].filter(Boolean));
+  });
 
   for (const [field, aliases] of Object.entries(HEADER_ALIASES)) {
-    const index = keys.findIndex((key) => key && aliases.includes(key));
+    const index = candidates.findIndex((keys) => aliases.some((alias) => keys.has(alias)));
     if (index >= 0) mapped[field] = index;
   }
 
@@ -107,6 +115,33 @@ export const normalizeVietnamese = (text) =>
  */
 const KANA_ONLY = /^[ぁ-ゟ゠-ヿー々〻]+$/u;
 
+/** `(I)`, `(II)`, `(III)` — cách Minna no Nihongo đánh số nhóm động từ. */
+const VERB_GROUP = /[(（]\s*(I{1,3})\s*[)）]/;
+
+/**
+ * Bỏ phần chú thích khỏi cách đọc để còn lại đúng phần **đọc được**.
+ *
+ * Dữ liệu giáo trình thật mang theo nhiều ký hiệu có nghĩa: `[な]` đánh dấu
+ * tính từ đuôi na, `[お]` đánh dấu tiếp đầu ngữ lịch sự tuỳ chọn, `~` đánh dấu
+ * chỗ ghép thêm, `(電話を~)` gợi ý cách kết hợp, và dấu câu cho các mẫu câu
+ * chào hỏi. Chúng **không phải lỗi nhập liệu** — nhưng cũng không phải cách
+ * đọc, nên phải gỡ ra trước khi kiểm "có phải kana không".
+ *
+ * Nội dung trong ngoặc tròn và ngoặc vuông bị bỏ **cả cụm**: đó là chỗ chứa
+ * gợi ý kết hợp, và nó có thể chứa chữ Hán một cách hợp lệ
+ * (`かけます(電話を~)`), trong khi phần ngoài ngoặc thì tuyệt đối không.
+ *
+ * `「」` thì ngược lại — chỉ bỏ chính cặp dấu, giữ nội dung. Trong dữ liệu
+ * giáo trình nó là dấu trích dẫn bọc quanh cả cụm (`「ともだちに~」`), nên bỏ
+ * cả cụm sẽ không còn gì để kiểm và một cách đọc hợp lệ bị báo là rỗng.
+ */
+const readingCore = (text) =>
+  text
+    .replace(/[(（][^)）]*[)）]/gu, '')
+    .replace(/\[[^\]]*\]/gu, '')
+    .replace(/[「」『』]/gu, '')
+    .replace(/[~～。、，,？?！!・….]/gu, '');
+
 const readCell = (row, index) => {
   if (index === undefined || row === null || typeof row !== 'object') return '';
   const value = Array.isArray(row) ? row[index] : row[index];
@@ -125,6 +160,7 @@ const DEFAULT_KEYS = Object.freeze({
   word: 'TuVung',
   hiragana: 'Hiragana',
   meaning: 'NghiaTV',
+  hanviet: 'HanViet',
   level: 'CapDo',
   usage_context: 'TinhHuong',
   lesson: 'BaiHoc',
@@ -181,7 +217,14 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     if (!hiragana) (fail('hiragana', 'Cột cách đọc là bắt buộc.'), (valid = false));
     if (!meaning) (fail('meaning', 'Cột nghĩa tiếng Việt là bắt buộc.'), (valid = false));
 
-    if (hiragana && !KANA_ONLY.test(hiragana)) {
+    // Nhóm động từ nằm lẫn trong cột cách đọc ở giáo trình; tách ra thành dữ
+    // liệu riêng rồi mới kiểm phần còn lại.
+    const verbGroupMatch = VERB_GROUP.exec(hiragana);
+    const verbGroup = verbGroupMatch ? verbGroupMatch[1].length : null;
+    const reading = verbGroupMatch ? hiragana.replace(VERB_GROUP, '') : hiragana;
+
+    const core = readingCore(reading);
+    if (reading && (!core || !KANA_ONLY.test(core))) {
       fail('hiragana', 'Cách đọc phải viết bằng kana (hiragana hoặc katakana).');
       valid = false;
     }
@@ -197,7 +240,7 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
 
     // Rà trùng **sau** chuẩn hoá: `　学生` và `学生` là cùng một từ, bắt được
     // ở đây thì unique index dưới DB không phải làm trọng tài.
-    const key = `${word}|${hiragana}`;
+    const key = `${word}|${reading}`;
     const firstLine = seen.get(key);
     if (firstLine !== undefined) {
       fail('word', `Trùng với dòng ${firstLine} (cùng từ và cùng cách đọc).`);
@@ -214,9 +257,11 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     accepted.push({
       line,
       word,
-      hiragana,
+      hiragana: reading,
       meaning,
       level: rowLevel,
+      hanviet: normalizeVietnamese(valueOf(rawRow, 'hanviet', columns)) || null,
+      verb_group: verbGroup,
       usage_context: normalizeVietnamese(valueOf(rawRow, 'usage_context', columns)) || null,
       lessonTitle: normalizeVietnamese(valueOf(rawRow, 'lesson', columns)) || null,
       examples,
