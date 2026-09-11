@@ -12,6 +12,13 @@ const VocabularySchema = new mongoose.Schema({
     // sẵn ở mức từ. Đây là lợi thế riêng của app cho người Việt (mục "Bài học
     // Hán-Việt" trong lộ trình), nên vứt đi lúc nhập là mất thứ khó lấy lại.
     hanviet: { type: String, trim: true },
+    // Nhãn bài trong **giáo trình nguồn**, vd "Bài 26".
+    //
+    // Khác hẳn `lesson` ở dưới: `lesson` trỏ tới một document `Lesson` của
+    // app, còn đây chỉ là chuỗi ghi lại từ này nằm ở bài nào trong sách. Giữ
+    // nó vì đó là thông tin **thứ tự học** duy nhất có trong dữ liệu nguồn —
+    // vứt đi lúc nhập thì sau này muốn chia bài phải tra lại từng từ một.
+    source_lesson: { type: String, trim: true },
     // Nhóm động từ theo cách đánh số của Minna no Nihongo: 1 = godan,
     // 2 = ichidan, 3 = bất quy tắc.
     //

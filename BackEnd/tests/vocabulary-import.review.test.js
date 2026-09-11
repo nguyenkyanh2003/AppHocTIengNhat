@@ -311,3 +311,107 @@ test('kanji left behind in a reading is still caught', () => {
   assert.equal(errors.length, 1);
   assert.equal(errors[0].field, 'hiragana');
 });
+
+// --- từ không có dạng chữ Hán ---------------------------------------------
+
+test('a word with no kanji form uses its reading as the headword', () => {
+  // 297/1136 dòng của file N4 để trống cột Kanji: やります, ずいぶん, いつでも
+  // vốn không có dạng chữ Hán. Bắt buộc phải có Kanji thì mất một phần tư file.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: '', Hiragana: 'やります', NghiaTV: 'làm' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].word, 'やります');
+  assert.equal(accepted[0].hiragana, 'やります');
+});
+
+test('a row with neither a word nor a reading is still an error', () => {
+  const { errors } = reviewRows([{ TuVung: '', Hiragana: '', NghiaTV: 'gì đó' }], {});
+  assert.ok(errors.some((error) => error.field === 'hiragana'));
+});
+
+test('the fallback keeps the annotation out of the headword', () => {
+  // Cột cách đọc mang chú thích `[じかんに~]`; dùng nó làm từ thì từ khoá có
+  // cả dấu ngoặc vuông.
+  const { accepted } = reviewRows(
+    [{ TuVung: '', Hiragana: 'おくれます[じかんに~]', NghiaTV: 'muộn' }],
+    {},
+  );
+  assert.equal(accepted[0].word, 'おくれます');
+  assert.equal(accepted[0].hiragana, 'おくれます[じかんに~]');
+});
+
+// --- một ô chứa nhiều dạng viết -------------------------------------------
+
+test('a cell holding two spellings is reported instead of becoming one headword', () => {
+  // 見ます、診ます là hai từ khác nghĩa dùng chung cách đọc. Ghi nguyên cả cụm
+  // thành một từ khoá là dữ liệu sai; tách hộ thì gán nhầm nghĩa cho cả hai.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: '見ます、診ます', Hiragana: 'みます', NghiaTV: 'xem, khám bệnh' }],
+    {},
+  );
+  assert.equal(accepted.length, 0);
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng/i);
+});
+
+test('a slash inside a bracket is part of the word, not a separator', () => {
+  // 4分の1（1/4） là một từ duy nhất.
+  const { errors } = reviewRows(
+    [{ TuVung: '4分の1（1/4）', Hiragana: 'よんぶんのいち', NghiaTV: 'một phần tư' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+});
+
+// --- nhãn bài trong giáo trình --------------------------------------------
+
+test('the textbook lesson label is carried through', () => {
+  const { accepted } = reviewRows([row({ BaiHoc: 'Bài 26' })], {});
+  assert.equal(accepted[0].lessonTitle, 'Bài 26');
+});
+
+test('the N4 file layout is understood as it is, without editing the file', () => {
+  // Cột xếp khác thứ tự (Hiragana trước Kanji) và tên khác ("Nghĩa từ vựng").
+  const mapped = mapHeaders(['#', 'Hiragana', 'Kanji', 'Hán Việt', 'Nghĩa từ vựng', 'Bài']);
+  assert.deepEqual(mapped.missing, []);
+  assert.equal(mapped.hiragana, 1);
+  assert.equal(mapped.word, 2);
+  assert.equal(mapped.hanviet, 3);
+  assert.equal(mapped.meaning, 4);
+  assert.equal(mapped.lesson, 5);
+});
+
+test('a column called "Nghĩa ví dụ" is not mistaken for the meaning column', () => {
+  // So khớp theo tiền tố sẽ khiến cột này chiếm chỗ cột nghĩa khi file không
+  // có cột "Nghĩa" trần — nên danh sách alias phải khớp chính xác.
+  const mapped = mapHeaders(['Từ vựng', 'Hiragana', 'Nghĩa ví dụ']);
+  assert.deepEqual(mapped.missing, ['meaning']);
+  assert.equal(mapped.example_meaning, 2);
+});
+
+test('annotations in the kanji column stay out of the headword', () => {
+  const { accepted } = reviewRows(
+    [{ TuVung: '遅れます[時間に~]', Hiragana: 'おくれます[じかんに~]', NghiaTV: 'muộn' }],
+    {},
+  );
+  assert.equal(accepted[0].word, '遅れます');
+  // Chú thích không bị mất — nó vẫn ở cột cách đọc.
+  assert.equal(accepted[0].hiragana, 'おくれます[じかんに~]');
+});
+
+test('a kanji cell that is only an annotation falls back to the reading', () => {
+  // `[子供が~]` không phải một từ; từ thật là います, nằm ở cột cách đọc.
+  const { accepted } = reviewRows(
+    [{ TuVung: '[子供が~]', Hiragana: 'います[こどもが~]', NghiaTV: 'có (con)' }],
+    {},
+  );
+  assert.equal(accepted[0].word, 'います');
+});
+
+test('a verb group left in the kanji column does not become part of the key', () => {
+  const { accepted } = reviewRows([{ TuVung: 'あげます(II)', Hiragana: 'あげます', NghiaTV: 'cho' }], {});
+  assert.equal(accepted[0].word, 'あげます');
+  assert.equal(accepted[0].verb_group, null, 'nhóm động từ chỉ đọc từ cột cách đọc');
+});

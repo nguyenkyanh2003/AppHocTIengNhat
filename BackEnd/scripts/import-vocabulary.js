@@ -36,7 +36,11 @@ dotenv.config();
  *   --file <path>    Bắt buộc. `.csv`, `.tsv` hoặc `.xlsx`.
  *   --dry-run        Kiểm và báo cáo, không ghi.
  *   --level <N5..N1> Cấp độ mặc định cho dòng không có cột cấp độ.
- *   --lesson <title> Gán mọi dòng vào một bài học có sẵn (theo `title`).
+ *   --lesson <title> Gán mọi dòng vào một document `Lesson` có sẵn (theo
+ *                    `title`). Khác với cột "Bài" trong file — cột đó chỉ là
+ *                    nhãn của giáo trình, lưu vào `source_lesson`.
+ *   --overwrite      Cho phép file ghi đè giá trị đã khác trong DB. Mặc định
+ *                    tắt: giá trị khác nhau được báo là xung đột, không ghi.
  *   --max-errors <n> Số lỗi in ra trước khi rút gọn (mặc định 50).
  */
 
@@ -54,6 +58,7 @@ const parseArgs = (argv) => {
     else if (flag === '--level') args.level = next();
     else if (flag === '--lesson') args.lesson = next();
     else if (flag === '--max-errors') args.maxErrors = Number(next());
+    else if (flag === '--overwrite') args.overwrite = true;
     else if (flag.startsWith('--')) throw new Error(`Cờ không nhận ra: ${flag}`);
   }
 
@@ -88,36 +93,61 @@ const connect = async () => {
  * `$setOnInsert` cho `lesson`: đã gán bài rồi thì lần nhập sau không được
  * lặng lẽ gỡ ra chỉ vì file lần này không có cột bài học.
  */
-const upsertWord = async (row, { lessonId }) => {
+const upsertWord = async (row, { lessonId, overwrite }) => {
   const key = { word: row.word, hiragana: row.hiragana };
   const existing = await Vocabulary.findOne(key).lean();
 
-  const fields = {
-    meaning: row.meaning,
-    usage_context: row.usage_context,
-  };
-  // Chỉ ghi những trường file **thật sự có**. Ghi `null` đè lên giá trị đã
-  // có nghĩa là một file thiếu cột sẽ xoá sạch dữ liệu của lần nhập trước —
-  // vd nhập bổ sung cấp độ xong rồi nhập lại file gốc là mất hết Hán-Việt.
-  if (row.level) fields.level = row.level;
-  if (row.hanviet) fields.hanviet = row.hanviet;
-  if (row.verb_group) fields.verb_group = row.verb_group;
-  if (row.examples.length > 0) fields.examples = row.examples;
+  // Chỉ ghi những trường file **thật sự có**. Ghi `null` đè lên giá trị đã có
+  // nghĩa là một file thiếu cột sẽ xoá sạch dữ liệu của lần nhập trước — vd
+  // nhập bổ sung cấp độ xong rồi nhập lại file gốc là mất hết Hán-Việt.
+  const incoming = { meaning: row.meaning };
+  if (row.usage_context) incoming.usage_context = row.usage_context;
+  if (row.level) incoming.level = row.level;
+  if (row.hanviet) incoming.hanviet = row.hanviet;
+  if (row.verb_group) incoming.verb_group = row.verb_group;
+  if (row.lessonTitle) incoming.source_lesson = row.lessonTitle;
+  if (row.examples.length > 0) incoming.examples = row.examples;
+  if (lessonId) incoming.lesson = lessonId;
 
-  const update = { $set: fields };
-  if (lessonId) update.$set.lesson = lessonId;
+  if (!existing) {
+    await Vocabulary.updateOne(key, { $set: incoming }, { upsert: true, runValidators: true });
+    return { outcome: 'created', conflicts: [] };
+  }
 
-  await Vocabulary.updateOne(key, update, { upsert: true, runValidators: true });
+  // Từ đã có: ba tình huống khác hẳn nhau.
+  //
+  // - Ô trong DB đang trống → điền vào. Đây là **bổ sung**, luôn an toàn.
+  // - Giá trị giống hệt → không làm gì.
+  // - Giá trị khác → **xung đột**, mặc định không ghi.
+  //
+  // Nhánh thứ ba là lý do cả khối này tồn tại. File N4 chứa 19 từ vốn là N5
+  // được dạy lại với nghĩa mới (もう: "Đã, rồi" → "Không ~ nữa"). Ghi đè lặng
+  // lẽ vừa hạ cấp độ xuống sai, vừa xoá mất nghĩa cũ — và không ai biết.
+  const fields = {};
+  const conflicts = [];
+  for (const [field, value] of Object.entries(incoming)) {
+    const current = existing[field];
+    if (current === undefined || current === null || current === '') {
+      fields[field] = value;
+      continue;
+    }
 
-  if (!existing) return 'created';
+    const same =
+      field === 'examples' || field === 'lesson'
+        ? JSON.stringify(current) === JSON.stringify(value)
+        : String(current) === String(value);
+    if (same) continue;
 
-  const changed = Object.entries(fields).some(([field, value]) => {
-    if (field === 'examples') return JSON.stringify(existing[field] ?? []) !== JSON.stringify(value);
-    return (existing[field] ?? null) !== (value ?? null);
-  });
-  return changed || (lessonId && String(existing.lesson ?? '') !== String(lessonId))
-    ? 'updated'
-    : 'unchanged';
+    if (overwrite) fields[field] = value;
+    else conflicts.push({ line: row.line, word: row.word, field, current, incoming: value });
+  }
+
+  if (Object.keys(fields).length === 0) {
+    return { outcome: conflicts.length > 0 ? 'conflict' : 'unchanged', conflicts };
+  }
+
+  await Vocabulary.updateOne(key, { $set: fields }, { runValidators: true });
+  return { outcome: conflicts.length > 0 ? 'conflict' : 'updated', conflicts };
 };
 
 /**
@@ -216,14 +246,31 @@ const main = async () => {
       lessonId = lesson._id;
     }
 
-    const tally = { created: 0, updated: 0, unchanged: 0 };
+    const tally = { created: 0, updated: 0, unchanged: 0, conflict: 0 };
+    const conflicts = [];
     for (const row of accepted) {
-      tally[await upsertWord(row, { lessonId })] += 1;
+      const result = await upsertWord(row, { lessonId, overwrite: args.overwrite });
+      tally[result.outcome] += 1;
+      conflicts.push(...result.conflicts);
     }
 
     console.log(
-      `\n✅ Ghi xong: ${tally.created} thêm mới · ${tally.updated} cập nhật · ${tally.unchanged} không đổi`,
+      `
+✅ Ghi xong: ${tally.created} thêm mới · ${tally.updated} cập nhật · ${tally.unchanged} không đổi`,
     );
+    if (conflicts.length > 0) {
+      console.log(`
+⚠️  ${conflicts.length} giá trị khác với DB, KHÔNG ghi đè:`);
+      for (const conflict of conflicts.slice(0, args.maxErrors)) {
+        console.log(`   dòng ${String(conflict.line).padStart(4)} · ${conflict.word} · ${conflict.field}`);
+        console.log(`        DB đang có : ${conflict.current}`);
+        console.log(`        file muốn  : ${conflict.incoming}`);
+      }
+      if (conflicts.length > args.maxErrors) {
+        console.log(`   … và ${conflicts.length - args.maxErrors} xung đột nữa.`);
+      }
+      console.log('   Thêm --overwrite nếu muốn file thắng.');
+    }
     console.log(`   Tổng số từ trong DB: ${await Vocabulary.countDocuments()}`);
   } finally {
     await mongoose.disconnect();

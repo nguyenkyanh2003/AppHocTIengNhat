@@ -28,7 +28,7 @@ const LEVELS = new Set(['N5', 'N4', 'N3', 'N2', 'N1']);
 const HEADER_ALIASES = Object.freeze({
   word: ['tuvung', 'tu', 'word', 'kanji', 'tuvungtiengnhat', 'matchu'],
   hiragana: ['hiragana', 'kana', 'cachdoc', 'doc', 'reading', 'phienam', 'yomikata'],
-  meaning: ['nghiatv', 'nghia', 'nghiatiengviet', 'meaning', 'ynghia', 'dichnghia'],
+  meaning: ['nghiatv', 'nghia', 'nghiatiengviet', 'nghiatuvung', 'nghiatu', 'nghiacuatu', 'meaning', 'ynghia', 'dichnghia'],
   hanviet: ['hanviet', 'amhanviet', 'amhan', 'sinoviet'],
   level: ['capdo', 'level', 'trinhdo', 'jlpt'],
   usage_context: ['tinhhuong', 'usagecontext', 'ngucanh', 'context', 'chude'],
@@ -115,6 +115,18 @@ export const normalizeVietnamese = (text) =>
  */
 const KANA_ONLY = /^[ぁ-ゟ゠-ヿー々〻]+$/u;
 
+/**
+ * Dấu ngăn giữa nhiều cách viết trong cùng một ô: `見ます、診ます`.
+ *
+ * Chỉ nhận dấu phẩy (Nhật và ASCII), **không** nhận `/`: `4分の1（1/4）` là
+ * một từ duy nhất có gạch chéo bên trong.
+ */
+const MULTI_FORM = /[、,]/u;
+
+/** Bỏ phần trong ngoặc để dấu phẩy nằm bên trong không bị coi là dấu ngăn. */
+const stripBrackets = (text) =>
+  text.replace(/[(（][^)）]*[)）]/gu, '').replace(/\[[^\]]*\]/gu, '');
+
 /** `(I)`, `(II)`, `(III)` — cách Minna no Nihongo đánh số nhóm động từ. */
 const VERB_GROUP = /[(（]\s*(I{1,3})\s*[)）]/;
 
@@ -200,22 +212,29 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     const line = startLine + index;
     const fail = (field, message) => errors.push({ line, field, message });
 
-    const word = normalizeJapanese(valueOf(rawRow, 'word', columns));
+    const rawWord = normalizeJapanese(valueOf(rawRow, 'word', columns));
     const hiragana = normalizeJapanese(valueOf(rawRow, 'hiragana', columns));
     const meaning = normalizeVietnamese(valueOf(rawRow, 'meaning', columns));
 
     // Dòng trắng hoàn toàn: Excel gần như luôn kéo theo vài dòng như vậy ở
     // cuối sheet. Đó không phải lỗi của người soạn nên không báo lỗi, nhưng
     // vẫn đếm để tổng số dòng khớp với file.
-    if (!word && !hiragana && !meaning) {
+    if (!rawWord && !hiragana && !meaning) {
       skipped += 1;
       return;
     }
 
     let valid = true;
-    if (!word) (fail('word', 'Cột từ vựng là bắt buộc.'), (valid = false));
     if (!hiragana) (fail('hiragana', 'Cột cách đọc là bắt buộc.'), (valid = false));
     if (!meaning) (fail('meaning', 'Cột nghĩa tiếng Việt là bắt buộc.'), (valid = false));
+
+    // Một ô chứa hai cách viết (`見ます、診ます`) không phải một từ. Ghi nguyên
+    // cụm thành từ khoá là dữ liệu sai; tự tách hộ thì gán nhầm nghĩa chung
+    // cho cả hai từ vốn khác nghĩa. Báo để người soạn tự quyết.
+    if (MULTI_FORM.test(stripBrackets(rawWord))) {
+      fail('word', 'Ô chứa nhiều dạng viết — tách thành từng dòng riêng.');
+      valid = false;
+    }
 
     // Nhóm động từ nằm lẫn trong cột cách đọc ở giáo trình; tách ra thành dữ
     // liệu riêng rồi mới kiểm phần còn lại.
@@ -228,6 +247,19 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
       fail('hiragana', 'Cách đọc phải viết bằng kana (hiragana hoặc katakana).');
       valid = false;
     }
+
+    // Từ khoá phải là **chính cái từ**, không kèm chú thích.
+    //
+    // Cột chữ Hán của giáo trình mang theo cùng loại ký hiệu như cột cách đọc:
+    // `遅れます[時間に~]` (gợi ý tân ngữ), `あげます(II)` (nhóm động từ),
+    // `いい(よい)` (cách đọc khác). Giữ nguyên thì khoá tự nhiên hoá ra phụ
+    // thuộc vào cách người soạn chú thích, và cùng một từ ở hai file sẽ thành
+    // hai bản ghi. Chú thích không mất: nó vẫn nằm nguyên ở cột cách đọc.
+    //
+    // Gỡ xong mà rỗng thì **cách đọc chính là từ** — hoặc vì từ vốn không có
+    // dạng chữ Hán (やります, ずいぶん: 297/1136 dòng của file N4), hoặc vì cả
+    // ô chữ Hán chỉ chứa chú thích (`[子供が~]`, từ thật là います).
+    const word = stripBrackets(rawWord) || core;
 
     const rawLevel = normalizeJapanese(valueOf(rawRow, 'level', columns)).toUpperCase();
     const rowLevel = rawLevel || defaultLevel;
