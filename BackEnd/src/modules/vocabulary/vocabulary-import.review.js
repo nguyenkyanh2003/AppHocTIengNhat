@@ -29,7 +29,7 @@ const HEADER_ALIASES = Object.freeze({
   word: ['tuvung', 'tu', 'word', 'kanji', 'tuvungtiengnhat', 'matchu'],
   hiragana: ['hiragana', 'kana', 'cachdoc', 'doc', 'reading', 'phienam', 'yomikata'],
   meaning: ['nghiatv', 'nghia', 'nghiatiengviet', 'nghiatuvung', 'nghiatu', 'nghiacuatu', 'meaning', 'ynghia', 'dichnghia'],
-  hanviet: ['hanviet', 'amhanviet', 'amhan', 'sinoviet'],
+  hanviet: ['hanviet', 'amhanviet', 'amhan', 'sinoviet', 'hantu', 'hanty'],
   level: ['capdo', 'level', 'trinhdo', 'jlpt'],
   usage_context: ['tinhhuong', 'usagecontext', 'ngucanh', 'context', 'chude'],
   lesson: ['baihoc', 'lesson', 'bai', 'unit'],
@@ -116,12 +116,17 @@ export const normalizeVietnamese = (text) =>
 const KANA_ONLY = /^[ぁ-ゟ゠-ヿー々〻]+$/u;
 
 /**
- * Dấu ngăn giữa nhiều cách viết trong cùng một ô: `見ます、診ます`.
+ * Dấu ngăn giữa nhiều cách viết trong cùng một ô: `見ます、診ます`,
+ * `周り/回り`, `済ませる／済ます` (cùng nghĩa "gạch chéo", một file dùng ASCII
+ * một file dùng toàn độ rộng — chấp nhận cả hai chứ không đoán file nào
+ * "đúng").
  *
- * Chỉ nhận dấu phẩy (Nhật và ASCII), **không** nhận `/`: `4分の1（1/4）` là
- * một từ duy nhất có gạch chéo bên trong.
+ * Nhận cả dấu gạch chéo tưởng như mâu thuẫn với `4分の1（1/4）` (phân số, một
+ * từ duy nhất) — nhưng không mâu thuẫn trong thực tế, vì kiểm tra này luôn
+ * chạy **sau** `stripBrackets`: gạch chéo của phân số nằm trong ngoặc nên đã
+ * bị cắt trước khi biểu thức này kịp nhìn thấy.
  */
-const MULTI_FORM = /[、,]/u;
+const MULTI_FORM = /[、,／/]/u;
 
 /** Bỏ phần trong ngoặc để dấu phẩy nằm bên trong không bị coi là dấu ngăn. */
 const stripBrackets = (text) =>
@@ -213,7 +218,7 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     const fail = (field, message) => errors.push({ line, field, message });
 
     const rawWord = normalizeJapanese(valueOf(rawRow, 'word', columns));
-    const hiragana = normalizeJapanese(valueOf(rawRow, 'hiragana', columns));
+    let hiragana = normalizeJapanese(valueOf(rawRow, 'hiragana', columns));
     const meaning = normalizeVietnamese(valueOf(rawRow, 'meaning', columns));
 
     // Dòng trắng hoàn toàn: Excel gần như luôn kéo theo vài dòng như vậy ở
@@ -224,14 +229,25 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
       return;
     }
 
+    // Nhiều từ tiếng Nhật vốn không có dạng chữ Hán. Khi đó một số giáo trình
+    // (file N3) để cột cách đọc trống và ghi thẳng kana vào cột từ — 185/882
+    // dòng của file đó rơi vào trường hợp này. Cách đọc lúc này chính là từ,
+    // nên chỉ coi là thiếu khi **cả hai** cột đều không cho ra được kana.
+    if (!hiragana) {
+      const wordAsKana = stripBrackets(rawWord);
+      if (wordAsKana && KANA_ONLY.test(readingCore(wordAsKana))) hiragana = wordAsKana;
+    }
+
     let valid = true;
     if (!hiragana) (fail('hiragana', 'Cột cách đọc là bắt buộc.'), (valid = false));
     if (!meaning) (fail('meaning', 'Cột nghĩa tiếng Việt là bắt buộc.'), (valid = false));
 
-    // Một ô chứa hai cách viết (`見ます、診ます`) không phải một từ. Ghi nguyên
-    // cụm thành từ khoá là dữ liệu sai; tự tách hộ thì gán nhầm nghĩa chung
-    // cho cả hai từ vốn khác nghĩa. Báo để người soạn tự quyết.
-    if (MULTI_FORM.test(stripBrackets(rawWord))) {
+    // Một ô chứa hai cách viết (`見ます、診ます`, `周り/回り`) không phải một
+    // từ. Ghi nguyên cụm thành từ khoá là dữ liệu sai; tự tách hộ thì gán
+    // nhầm nghĩa chung cho cả hai từ vốn khác nghĩa. Báo để người soạn tự
+    // quyết — kiểm cả hai cột vì có dòng mang nhiều dạng ở cả từ lẫn cách đọc
+    // cùng lúc (済ませる／済ます ↔ すませる／すます).
+    if (MULTI_FORM.test(stripBrackets(rawWord)) || MULTI_FORM.test(stripBrackets(hiragana))) {
       fail('word', 'Ô chứa nhiều dạng viết — tách thành từng dòng riêng.');
       valid = false;
     }
@@ -243,7 +259,11 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     const reading = verbGroupMatch ? hiragana.replace(VERB_GROUP, '') : hiragana;
 
     const core = readingCore(reading);
-    if (reading && (!core || !KANA_ONLY.test(core))) {
+    // `valid &&`: nếu ô đã bị báo "nhiều dạng viết" ở trên thì nội dung của nó
+    // (vd `すませる／すます`) vốn không phải một cách đọc đơn — kiểm kana ở
+    // đây chỉ tạo thêm một lỗi thứ hai nói cùng một sự thật bằng lời khác,
+    // khiến người sửa file không rõ phải sửa theo lỗi nào.
+    if (valid && reading && (!core || !KANA_ONLY.test(core))) {
       fail('hiragana', 'Cách đọc phải viết bằng kana (hiragana hoặc katakana).');
       valid = false;
     }

@@ -415,3 +415,60 @@ test('a verb group left in the kanji column does not become part of the key', ()
   assert.equal(accepted[0].word, 'あげます');
   assert.equal(accepted[0].verb_group, null, 'nhóm động từ chỉ đọc từ cột cách đọc');
 });
+
+// --- từ vốn không có dạng chữ Hán, cột kanji ghi thẳng kana ----------------
+
+test('an empty reading column falls back to a kana-only word column', () => {
+  // File N3: 185/882 dòng để cột "cách đọc" trống vì từ vốn không có dạng
+  // chữ Hán — cột "Kanji" ghi thẳng けが, おしゃべり... Bắt buộc phải có cột
+  // cách đọc riêng sẽ loại hơn 1/5 file dù dữ liệu hoàn toàn hợp lệ.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: 'けが', Hiragana: '', NghiaTV: 'vết thương' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].word, 'けが');
+  assert.equal(accepted[0].hiragana, 'けが');
+});
+
+test('an empty reading column with real kanji in the word column is still an error', () => {
+  // Không được suy diễn cách đọc từ chữ Hán — chỉ dùng fallback khi cột từ
+  // đã là kana thuần, tức tự nó đã là cách đọc.
+  const { errors } = reviewRows([{ TuVung: '学生', Hiragana: '', NghiaTV: 'học sinh' }], {});
+  assert.equal(errors[0].field, 'hiragana');
+});
+
+// --- nhiều dạng viết ngăn bằng dấu gạch chéo -------------------------------
+
+test('a slash separating two spellings is a multi-form cell, not a fraction', () => {
+  // 周り/回り là hai cách viết của cùng một từ, không phải một phân số.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: '周り/回り', Hiragana: 'まわり', NghiaTV: 'xung quanh' }],
+    {},
+  );
+  assert.equal(accepted.length, 0);
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng/i);
+});
+
+test('a full-width slash in both the word and the reading is one error, not silently kept', () => {
+  // 済ませる／済ます: cả từ lẫn cách đọc đều mang hai dạng, dùng dấu gạch chéo
+  // toàn độ rộng. Trước đây điều này lọt qua kiểm từ khoá rồi mới bị bắt bởi
+  // luật kana — đúng nhưng vì lý do sai (báo "không phải kana" thay vì "nhiều
+  // dạng viết"), nên người sửa file không hiểu vì sao.
+  const { errors } = reviewRows(
+    [{ TuVung: '済ませる／済ます', Hiragana: 'すませる／すます', NghiaTV: 'kết thúc' }],
+    {},
+  );
+  assert.equal(errors.length, 1);
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng/i);
+});
+
+test('a fraction in parentheses is still not mistaken for multi-form after the slash widens', () => {
+  const { errors } = reviewRows(
+    [{ TuVung: '4分の1（1/4）', Hiragana: 'よんぶんのいち', NghiaTV: 'một phần tư' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+});
