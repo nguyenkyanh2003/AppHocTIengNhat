@@ -472,3 +472,47 @@ test('a fraction in parentheses is still not mistaken for multi-form after the s
   );
   assert.deepEqual(errors, []);
 });
+
+// --- một từ, nhiều cách đọc đều hợp lệ -------------------------------------
+
+test('one word with two equally valid readings is not the same as two different words', () => {
+  // 行き違い đọc được cả いきちがい lẫn ゆきちがい, cùng một từ, cùng một nghĩa —
+  // khác hẳn `断つ/絶つ` (hai chữ Hán khác nhau). Ghi chú lỗi phải nói đúng
+  // bản chất để người sửa không tưởng nhầm đây là hai từ cần tra nghĩa riêng.
+  const { errors } = reviewRows(
+    [{ TuVung: '行き違い', Hiragana: 'いきちがい／ゆきちがい', NghiaTV: 'hiểu lầm' }],
+    {},
+  );
+  assert.equal(errors.length, 1);
+  assert.equal(errors[0].field, 'hiragana');
+  assert.match(errors[0].message, /nhiều cách đọc/i);
+});
+
+test('two different kanji sharing one reading still reports as a word-identity conflict', () => {
+  const { errors } = reviewRows(
+    [{ TuVung: '断つ/絶つ', Hiragana: 'たつ', NghiaTV: 'cắt, chấm dứt' }],
+    {},
+  );
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng viết/i);
+});
+
+// --- từ mượn viết bằng chữ Latin xen kana -----------------------------------
+
+test('a loanword spelled with a leading Latin letter is accepted, not mistaken for romaji', () => {
+  // Uターン (U-turn), Tシャツ (áo phông)... là loại từ mượn có thật, không phải
+  // lỗi gõ romaji thay vì kana.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: 'Uターン', Hiragana: 'Uターン', NghiaTV: 'quay đầu' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].hiragana, 'Uターン');
+});
+
+test('plain romaji is still rejected even though a leading letter is now allowed', () => {
+  // Nới luật cho "Uターン" không được biến thành nới cho mọi chữ Latin —
+  // "gakusei" không có ký tự kana nào thì vẫn là lỗi gõ romaji thật.
+  const { errors } = reviewRows([row({ Hiragana: 'gakusei' })], {});
+  assert.equal(errors[0].field, 'hiragana');
+});

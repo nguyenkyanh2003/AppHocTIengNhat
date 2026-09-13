@@ -116,6 +116,16 @@ export const normalizeVietnamese = (text) =>
 const KANA_ONLY = /^[ぁ-ゟ゠-ヿー々〻]+$/u;
 
 /**
+ * Kana có thể xen chữ Latin viết hoa ở đầu — từ mượn kiểu `Uターン` (U-turn),
+ * `Tシャツ` (áo phông): chữ cái đóng vai trò hình dạng, không phải romaji.
+ *
+ * Giới hạn 1–2 chữ **viết hoa** ở đầu, phần còn lại vẫn phải là kana thuần —
+ * để không nới luật đủ rộng cho romaji thật lọt qua (`gakusei` không có ký
+ * tự kana nào nên vẫn bị chặn đúng).
+ */
+const LATIN_LOANWORD = /^[A-Z]{1,2}[ぁ-ゟ゠-ヿー々〻]+$/;
+
+/**
  * Dấu ngăn giữa nhiều cách viết trong cùng một ô: `見ます、診ます`,
  * `周り/回り`, `済ませる／済ます` (cùng nghĩa "gạch chéo", một file dùng ASCII
  * một file dùng toàn độ rộng — chấp nhận cả hai chứ không đoán file nào
@@ -242,13 +252,28 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     if (!hiragana) (fail('hiragana', 'Cột cách đọc là bắt buộc.'), (valid = false));
     if (!meaning) (fail('meaning', 'Cột nghĩa tiếng Việt là bắt buộc.'), (valid = false));
 
-    // Một ô chứa hai cách viết (`見ます、診ます`, `周り/回り`) không phải một
-    // từ. Ghi nguyên cụm thành từ khoá là dữ liệu sai; tự tách hộ thì gán
-    // nhầm nghĩa chung cho cả hai từ vốn khác nghĩa. Báo để người soạn tự
-    // quyết — kiểm cả hai cột vì có dòng mang nhiều dạng ở cả từ lẫn cách đọc
-    // cùng lúc (済ませる／済ます ↔ すませる／すます).
-    if (MULTI_FORM.test(stripBrackets(rawWord)) || MULTI_FORM.test(stripBrackets(hiragana))) {
+    // Cột từ mang nhiều dạng viết (`見ます、診ます`, `周り/回り`) nghĩa là
+    // **nhiều từ khác nhau** dùng chung ô — ghi nguyên cụm thành một từ khoá
+    // là dữ liệu sai, tự tách hộ thì gán nhầm nghĩa chung cho những từ vốn có
+    // thể khác nghĩa. Báo để người soạn tự quyết, không đoán.
+    const wordHasMultiForm = MULTI_FORM.test(stripBrackets(rawWord));
+    if (wordHasMultiForm) {
       fail('word', 'Ô chứa nhiều dạng viết — tách thành từng dòng riêng.');
+      valid = false;
+    }
+
+    // Cột cách đọc mang nhiều dạng trong khi cột từ chỉ có **một** dạng
+    // (`行き違い` đọc được cả いきちがい lẫn ゆきちがい) là chuyện khác hẳn: đây
+    // vẫn là một từ duy nhất, một nghĩa duy nhất, chỉ nhiều cách đọc — không
+    // mơ hồ như trường hợp trên, nhưng vẫn cần tách thành nhiều dòng vì khoá
+    // tự nhiên là `(word, hiragana)`. Thông báo phải nói đúng bản chất, kẻo
+    // người sửa tưởng nhầm phải đi tra nghĩa riêng cho từng "từ" như ở trên.
+    const hiraganaHasMultiForm = !wordHasMultiForm && MULTI_FORM.test(stripBrackets(hiragana));
+    if (hiraganaHasMultiForm) {
+      fail(
+        'hiragana',
+        'Từ có nhiều cách đọc — tách mỗi cách đọc thành một dòng riêng (cùng nghĩa).',
+      );
       valid = false;
     }
 
@@ -259,11 +284,11 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     const reading = verbGroupMatch ? hiragana.replace(VERB_GROUP, '') : hiragana;
 
     const core = readingCore(reading);
-    // `valid &&`: nếu ô đã bị báo "nhiều dạng viết" ở trên thì nội dung của nó
-    // (vd `すませる／すます`) vốn không phải một cách đọc đơn — kiểm kana ở
-    // đây chỉ tạo thêm một lỗi thứ hai nói cùng một sự thật bằng lời khác,
-    // khiến người sửa file không rõ phải sửa theo lỗi nào.
-    if (valid && reading && (!core || !KANA_ONLY.test(core))) {
+    // `valid &&`: nếu ô đã bị báo "nhiều dạng viết"/"nhiều cách đọc" ở trên
+    // thì nội dung của nó (vd `すませる／すます`) vốn không phải một cách đọc
+    // đơn — kiểm kana ở đây chỉ tạo thêm một lỗi thứ hai nói cùng một sự thật
+    // bằng lời khác, khiến người sửa file không rõ phải sửa theo lỗi nào.
+    if (valid && reading && (!core || !(KANA_ONLY.test(core) || LATIN_LOANWORD.test(core)))) {
       fail('hiragana', 'Cách đọc phải viết bằng kana (hiragana hoặc katakana).');
       valid = false;
     }
