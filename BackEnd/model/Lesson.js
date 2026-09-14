@@ -1,13 +1,16 @@
 import mongoose from 'mongoose';
 
+import { SITUATIONS } from '../src/modules/lessons/situation-catalog.js';
+
 const LessonSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true, unique: true },
     level: { type: String, required: true, enum: ['N5', 'N4', 'N3', 'N2', 'N1'], index: true },
-    order: { type: Number, default: 1, min: 1 }, 
+    order: { type: Number, default: 1, min: 1 },
     description: { type: String, trim: true },
-    content_html: String, 
+    content_html: String,
     type: { type: String, trim: true, index: true },
-    
+    situation: { type: String, enum: SITUATIONS, default: null, index: true },
+
     // Các tham chiếu đến từ vựng, ngữ pháp, kanji trong bài học
     vocabularies: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vocabulary' }], default: [] },
     grammars: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Grammar' }], default: [] },
