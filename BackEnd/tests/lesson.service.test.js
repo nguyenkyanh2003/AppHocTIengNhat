@@ -11,6 +11,7 @@ const fakeRepository = (overrides = {}) => ({
   findActiveGrammarsByLesson: async () => [],
   findKanjisByLesson: async () => [],
   findByLevel: async () => [],
+  distinctSituations: async () => [],
   findByTypePattern: async () => [],
   aggregateStats: async () => ({ totalLessons: 0, byLevel: [], byType: [] }),
   create: async (input) => ({ _id: 'new', ...input }),
@@ -65,6 +66,23 @@ test('list không lọc situation khi không truyền — không loại bài ch�
 
   assert.ok(!('situation' in captured.filter));
   assert.ok(!('level' in captured.filter));
+});
+
+test('listSituations chỉ trả tình huống có bài, đã sort', async () => {
+  const repository = fakeRepository({
+    distinctSituations: async () => ['train', 'restaurant', 'supermarket'],
+  });
+  const service = createLessonService({ lessonRepository: repository });
+
+  const situations = await service.listSituations();
+
+  assert.deepEqual(situations, ['restaurant', 'supermarket', 'train']);
+});
+
+test('listSituations trả mảng rỗng khi chưa bài nào gắn tình huống', async () => {
+  const service = createLessonService({ lessonRepository: fakeRepository() });
+
+  assert.deepEqual(await service.listSituations(), []);
 });
 
 test('getDetail báo 404 khi không tìm thấy bài học', async () => {

@@ -68,6 +68,17 @@ export const createLessonService = ({ lessonRepository: repository }) => ({
     return repository.findByLevel(level);
   },
 
+  /**
+   * Danh sách tình huống có bài học, để client dựng bộ lọc.
+   *
+   * Chỉ trả tình huống thật sự có nội dung: hiện 15 giá trị trong catalog
+   * nhưng chỉ vài giá trị có bài, hiện hết sẽ có chip bấm vào trả rỗng.
+   */
+  async listSituations() {
+    const situations = await repository.distinctSituations();
+    return [...situations].sort();
+  },
+
   getByType(typePattern) {
     return repository.findByTypePattern({
       $regex: escapeRegExp(typePattern),

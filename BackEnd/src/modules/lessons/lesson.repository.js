@@ -50,6 +50,11 @@ export const createLessonRepository = ({
     return lessonModel.find({ level }).sort({ order: 1 }).lean();
   },
 
+  /** Tình huống đang thực sự có bài học — bỏ bài chưa gắn tình huống. */
+  distinctSituations() {
+    return lessonModel.distinct('situation', { situation: { $ne: null } });
+  },
+
   findByTypePattern(regexFilter) {
     return lessonModel
       .find({ type: regexFilter })

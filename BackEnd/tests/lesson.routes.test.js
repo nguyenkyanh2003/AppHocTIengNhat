@@ -104,6 +104,38 @@ test('GET /:id với id không phải ObjectId bị chặn 400', async () => {
   assert.equal(response.status, 400);
 });
 
+test('GET /situations trả danh sách tình huống theo vỏ { data, total }', async () => {
+  const app = buildApp({ listSituations: async () => ['restaurant', 'supermarket'] });
+
+  const response = await request(app).get('/api/lesson/situations');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, {
+    data: ['restaurant', 'supermarket'],
+    total: 2,
+  });
+});
+
+test('GET /situations khi chưa có bài tình huống nào vẫn là 200 + mảng rỗng', async () => {
+  const app = buildApp({ listSituations: async () => [] });
+
+  const response = await request(app).get('/api/lesson/situations');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, { data: [], total: 0 });
+});
+
+test('GET /situations không bị nuốt thành /:id', async () => {
+  const app = buildApp({
+    listSituations: async () => ['train'],
+    getDetail: async () => assert.fail('phải khớp /situations chứ không phải /:id'),
+  });
+
+  const response = await request(app).get('/api/lesson/situations');
+
+  assert.equal(response.status, 200);
+});
+
 test('GET /level/:capDo với cấp độ lạ bị chặn 400', async () => {
   const app = buildApp({ getByLevel: async () => assert.fail('không được gọi service') });
 

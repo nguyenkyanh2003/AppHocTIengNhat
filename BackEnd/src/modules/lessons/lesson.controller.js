@@ -22,6 +22,11 @@ export const createLessonController = (service) => ({
     return res.json(lesson);
   },
 
+  async getSituations(req, res) {
+    const situations = await service.listSituations();
+    return list(res, situations);
+  },
+
   async getLevelByCapDo(req, res) {
     const lessons = await service.getByLevel(req.valid.params.capDo);
     return list(res, lessons);

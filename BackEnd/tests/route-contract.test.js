@@ -28,9 +28,10 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 261;
+const expectedCount = 262;
 // Update this digest only after intentionally reviewing a public route change.
-const expectedSignatureHash = '75d5d6968c84885bee137582512f0de999bcf7b1cd521e245e3ee7c4517e4e66';
+// 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
+const expectedSignatureHash = '475fab1e4035d13d6a667352156e2581a0af93b8134b8098a45a28b65ff1bddc';
 
 const collectSignatures = async () => {
   const signatures = [];

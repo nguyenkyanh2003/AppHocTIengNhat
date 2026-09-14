@@ -91,12 +91,17 @@ export const convertUserDatesToVietnam = (user) => {
  */
 export const convertDatesToVietnam = (data) => {
     if (!data) return null;
-    
+
+    // Giá trị nguyên thuỷ không có field date nào để convert. Phải chặn ở đây:
+    // `{ ...'abc' }` bên dưới sẽ tách chuỗi thành object ký tự `{0:'a',1:'b'}`,
+    // làm hỏng mọi endpoint trả mảng chuỗi thuần.
+    if (typeof data !== 'object') return data;
+
     // Nếu là array, convert từng phần tử
     if (Array.isArray(data)) {
         return data.map(item => convertDatesToVietnam(item));
     }
-    
+
     // Convert object
     const obj = data.toObject ? data.toObject() : { ...data };
     
