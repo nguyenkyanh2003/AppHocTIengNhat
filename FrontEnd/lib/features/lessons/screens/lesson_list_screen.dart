@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../app/theme/app_tokens.dart';
 import '../providers/lesson_provider.dart';
 import '../models/lesson.dart';
 import '../models/situation_labels.dart';
@@ -71,7 +72,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor: Colors.grey[100],
+                  fillColor: AppColors.surfaceVariant,
                 ),
                 onSubmitted: (value) {
                   Provider.of<LessonProvider>(context, listen: false)
@@ -141,15 +142,14 @@ class _LessonListScreenState extends State<LessonListScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.book_outlined,
-                              size: 64, color: Colors.grey[400]),
-                          const SizedBox(height: 16),
+                          const Icon(Icons.book_outlined,
+                              size: 56, color: AppColors.textDisabled),
+                          const SizedBox(height: AppSpacing.lg),
                           Text(
-                            'Không có bài học nào',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.grey[600],
-                            ),
+                            _selectedSituation != null
+                                ? 'Chưa có bài học cho tình huống này'
+                                : 'Chưa có bài học nào',
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ],
                       ),
@@ -240,34 +240,30 @@ class _LessonListScreenState extends State<LessonListScreen> {
         onTap: () {
           context.push('/lessons/${lesson.id}');
         },
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppSpacing.lg),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Level badge
               Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.xs,
                 ),
                 decoration: BoxDecoration(
                   color: AppTheme.getJlptLevelColor(lesson.level),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
                 ),
                 child: Text(
                   lesson.level,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium
+                      ?.copyWith(color: Colors.white),
                 ),
               ),
-              const SizedBox(width: 16),
-
-              // Lesson info
+              const SizedBox(width: AppSpacing.lg),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,104 +272,75 @@ class _LessonListScreenState extends State<LessonListScreen> {
                       Row(
                         children: [
                           Icon(situationIcon(lesson.situation!),
-                              size: 14, color: Colors.deepPurple),
-                          const SizedBox(width: 4),
+                              size: 14, color: AppColors.primary),
+                          const SizedBox(width: AppSpacing.xs),
                           Text(
                             situationLabel(lesson.situation!),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.deepPurple,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(color: AppColors.primary),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: AppSpacing.xs),
                     ],
                     Text(
                       lesson.title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     if (lesson.description != null) ...[
-                      const SizedBox(height: 4),
+                      const SizedBox(height: AppSpacing.xs),
                       Text(
                         lesson.description!,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
-                    const SizedBox(height: 8),
-                    Row(
+                    const SizedBox(height: AppSpacing.sm),
+                    Wrap(
+                      spacing: AppSpacing.md,
+                      runSpacing: AppSpacing.xs,
                       children: [
-                        if (lesson.isSituational) ...[
-                          Icon(Icons.forum_outlined,
-                              size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${lesson.dialogue.length} lượt thoại',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                        ],
-                        if (lesson.vocabularies.isNotEmpty) ...[
-                          Icon(Icons.spellcheck,
-                              size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${lesson.vocabularies.length} từ',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                        ],
-                        if (lesson.kanjis.isNotEmpty) ...[
-                          Icon(Icons.draw_outlined,
-                              size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${lesson.kanjis.length} kanji',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                        ],
-                        if (lesson.grammars.isNotEmpty) ...[
-                          Icon(Icons.segment,
-                              size: 16, color: Colors.grey[600]),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${lesson.grammars.length} ngữ pháp',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                        ],
+                        if (lesson.isSituational)
+                          _buildMeta(Icons.forum_outlined,
+                              '${lesson.dialogue.length} lượt thoại'),
+                        if (lesson.vocabularies.isNotEmpty)
+                          _buildMeta(Icons.spellcheck,
+                              '${lesson.vocabularies.length} từ'),
+                        if (lesson.kanjis.isNotEmpty)
+                          _buildMeta(Icons.draw_outlined,
+                              '${lesson.kanjis.length} kanji'),
+                        if (lesson.grammars.isNotEmpty)
+                          _buildMeta(Icons.segment,
+                              '${lesson.grammars.length} ngữ pháp'),
                       ],
                     ),
                   ],
                 ),
               ),
-
-              // Arrow icon
-              Icon(Icons.chevron_right, color: Colors.grey[400]),
+              const Icon(Icons.chevron_right, color: AppColors.textDisabled),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  /// Một mẩu thông tin phụ của bài học. Dùng `Wrap` ở chỗ gọi nên khi thẻ hẹp
+  /// các mẩu này xuống dòng thay vì tràn ngang.
+  Widget _buildMeta(IconData icon, String label) {
+    return Builder(
+      builder: (context) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 16, color: AppColors.textSecondary),
+          const SizedBox(width: AppSpacing.xs),
+          Text(label, style: Theme.of(context).textTheme.bodySmall),
+        ],
       ),
     );
   }
@@ -382,16 +349,10 @@ class _LessonListScreenState extends State<LessonListScreen> {
     if (provider.totalPages <= 1) return const SizedBox.shrink();
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 4,
-            offset: const Offset(0, -2),
-          ),
-        ],
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+      decoration: const BoxDecoration(
+        color: AppColors.surface,
+        border: Border(top: BorderSide(color: AppColors.border)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -401,10 +362,10 @@ class _LessonListScreenState extends State<LessonListScreen> {
                 provider.currentPage > 1 ? () => provider.previousPage() : null,
             icon: const Icon(Icons.chevron_left),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: AppSpacing.sm),
           Text(
             'Trang ${provider.currentPage} / ${provider.totalPages}',
-            style: const TextStyle(fontSize: 14),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(width: 8),
           IconButton(

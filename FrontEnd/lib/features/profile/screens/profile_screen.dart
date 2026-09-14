@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 import '../../auth/providers/auth_provider.dart';
 import '../../../app/state/provider_reset_service.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 
@@ -162,14 +164,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ? MemoryImage(_selectedImageBytes!)
                   : (user.avatar != null ? NetworkImage(user.avatar!) : null)
                       as ImageProvider?,
-              backgroundColor: Colors.blue[100],
+              backgroundColor: AppColors.primaryLight,
               child: (_selectedImageBytes == null && user.avatar == null)
                   ? Text(
                       user.username.substring(0, 1).toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue[700],
+                      style: const TextStyle(
+                        fontSize: AppTypography.display,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary,
                       ),
                     )
                   : null,
@@ -183,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.blue[700],
+                  color: AppColors.primary,
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 3),
                   boxShadow: [
@@ -226,10 +228,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Text(
               title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue[700],
+              style: const TextStyle(
+                fontSize: AppTypography.subtitle,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primary,
               ),
             ),
             const SizedBox(height: 16),
@@ -248,10 +250,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.blue[50],
+              color: AppColors.primaryLight,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, size: 20, color: Colors.blue[700]),
+            child: Icon(icon, size: 20, color: AppColors.primary),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -260,16 +262,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
+                  style: const TextStyle(
+                    fontSize: AppTypography.caption,
+                    color: AppColors.textSecondary,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   value,
                   style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: AppTypography.body,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -345,11 +347,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (dialogContext) => StatefulBuilder(
         builder: (dialogContext, setDialogState) => AlertDialog(
-          title: Row(
+          title: const Row(
             children: [
-              Icon(Icons.edit, color: Colors.blue[700]),
-              const SizedBox(width: 8),
-              const Text('Chỉnh sửa thông tin'),
+              Icon(Icons.edit, color: AppColors.primary),
+              SizedBox(width: AppSpacing.sm),
+              Text('Chỉnh sửa thông tin'),
             ],
           ),
           content: SingleChildScrollView(
@@ -501,7 +503,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue[700],
+                backgroundColor: AppColors.primary,
               ),
               child: const Text('Lưu'),
             ),

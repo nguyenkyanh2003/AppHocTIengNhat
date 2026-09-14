@@ -101,19 +101,26 @@ class _HubTile extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      entry.label,
-                      style: theme.textTheme.titleMedium,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    // `Flexible` để khi người dùng phóng to cỡ chữ hệ thống,
+                    // khối chữ bớt dòng thay vì đội cao hơn ô thẻ và tràn.
+                    Flexible(
+                      child: Text(
+                        entry.label,
+                        style: theme.textTheme.titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     if (entry.subtitle != null)
-                      Text(
-                        entry.subtitle!,
-                        style: theme.textTheme.bodySmall,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                      Flexible(
+                        child: Text(
+                          entry.subtitle!,
+                          style: theme.textTheme.bodySmall,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                   ],
                 ),

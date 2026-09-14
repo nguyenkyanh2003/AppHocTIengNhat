@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_html/flutter_html.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 import '../providers/lesson_provider.dart';
 import '../providers/lesson_progress_provider.dart';
 import '../models/lesson.dart';
@@ -218,8 +220,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                             'Đã hoàn thành',
                             style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              fontSize: AppTypography.caption,
                             ),
                           ),
                         ],
@@ -240,15 +242,15 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                         const Text(
                           'Tiến độ học tập',
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                            fontSize: AppTypography.bodySmall,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
                           '${(progress.overallProgress * 100).toInt()}%',
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                            fontSize: AppTypography.bodySmall,
+                            fontWeight: FontWeight.w600,
                             color: _getLevelColor(lesson.level),
                           ),
                         ),
@@ -260,7 +262,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                       child: LinearProgressIndicator(
                         value: progress.overallProgress,
                         minHeight: 8,
-                        backgroundColor: Colors.grey[200],
+                        backgroundColor: AppColors.surfaceVariant,
                         valueColor: AlwaysStoppedAnimation<Color>(
                           _getLevelColor(lesson.level),
                         ),
@@ -273,9 +275,10 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                 const SizedBox(height: 12),
                 Text(
                   lesson.description!,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[700],
+                  style: const TextStyle(
+                    fontSize: AppTypography.body,
+                    color: AppColors.textSecondary,
+                    height: 1.5,
                   ),
                 ),
               ],
@@ -333,7 +336,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                 child: CircularProgressIndicator(
                   value: progress,
                   strokeWidth: 3,
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: AppColors.surfaceVariant,
                   valueColor: AlwaysStoppedAnimation<Color>(color),
                 ),
               ),
@@ -344,15 +347,15 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
         Text(
           value,
           style: TextStyle(
-            fontSize: progress != null ? 16 : 20,
-            fontWeight: FontWeight.bold,
+            fontSize: progress != null ? AppTypography.body : AppTypography.title,
+            fontWeight: FontWeight.w700,
           ),
         ),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ],
@@ -393,8 +396,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
             const Text(
               'Nội dung bài học',
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontSize: AppTypography.subtitle,
+                fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: 12),
@@ -407,16 +410,16 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
               ),
             ),
           ] else ...[
-            Center(
+            const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.description_outlined,
-                      size: 64, color: Colors.grey[400]),
-                  const SizedBox(height: 16),
+                      size: 56, color: AppColors.textDisabled),
+                  SizedBox(height: AppSpacing.lg),
                   Text(
                     'Chưa có nội dung bài học',
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(color: AppColors.textSecondary),
                   ),
                 ],
               ),
@@ -447,10 +450,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
             ),
             title: Text(
               vocab['word'] ?? '',
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppTypography.japaneseBody(),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -458,7 +458,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                 if (vocab['hiragana'] != null)
                   Text(
                     vocab['hiragana'],
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: const TextStyle(color: AppColors.textSecondary),
                   ),
                 Text(vocab['meaning'] ?? ''),
               ],
@@ -502,35 +502,32 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                 children: [
                   Text(
                     kanji['character'] ?? '',
-                    style: const TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppTypography.japaneseDisplay(),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     _listToString(kanji['onyomi']),
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.red[700],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.error,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     _listToString(kanji['kunyomi']),
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.blue[700],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.primary,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     kanji['meaning'] ?? '',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Colors.grey[700],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.textSecondary,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -573,8 +570,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                 if (grammar['structure'] != null)
                   Text(
                     grammar['structure'],
-                    style: TextStyle(
-                      color: Colors.blue[700],
+                    style: const TextStyle(
+                      color: AppColors.primary,
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -611,13 +608,14 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                               children: [
                                 Text(
                                   '• ${ex['sentence'] ?? ''}',
-                                  style: const TextStyle(fontSize: 15),
+                                  style: AppTypography.japaneseReading(
+                                      color: AppColors.textPrimary),
                                 ),
                                 Text(
                                   '  → ${ex['meaning'] ?? ''}',
-                                  style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 14,
+                                  style: const TextStyle(
+                                    color: AppColors.textSecondary,
+                                    fontSize: AppTypography.bodySmall,
                                   ),
                                 ),
                               ],
@@ -649,11 +647,11 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 64, color: Colors.grey[400]),
+          Icon(icon, size: 56, color: AppColors.textDisabled),
           const SizedBox(height: 16),
           Text(
             message,
-            style: TextStyle(color: Colors.grey[600]),
+            style: const TextStyle(color: AppColors.textSecondary),
           ),
         ],
       ),
@@ -719,8 +717,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                           ? 'Học lại'
                           : (progress != null ? 'Tiếp tục học' : 'Bắt đầu học'),
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        fontSize: AppTypography.subtitle,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

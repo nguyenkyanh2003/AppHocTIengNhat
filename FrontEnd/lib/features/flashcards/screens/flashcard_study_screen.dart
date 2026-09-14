@@ -150,11 +150,11 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.inbox_rounded, size: 64, color: Colors.grey[400]),
+                const Icon(Icons.inbox_rounded, size: 56, color: AppColors.textDisabled),
                 const SizedBox(height: 16),
                 Text(
                   'Không có từ vựng để học',
-                  style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
@@ -169,11 +169,11 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: AppColors.surfaceVariant,
       appBar: AppBar(
         title: const Text('Học Flashcard'),
         elevation: 0,
-        backgroundColor: Colors.grey[100],
+        backgroundColor: AppColors.surfaceVariant,
         foregroundColor: Colors.black,
         actions: [
           Center(
@@ -181,10 +181,7 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
               padding: const EdgeInsets.only(right: 16),
               child: Text(
                 '${_currentIndex + 1}/${_studyList.length}',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
           ),
@@ -266,7 +263,7 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
         child: LinearProgressIndicator(
           value: progress,
           minHeight: 10,
-          backgroundColor: Colors.grey[300],
+          backgroundColor: AppColors.border,
           valueColor: const AlwaysStoppedAnimation<Color>(
             AppTheme.primaryColor,
           ),
@@ -323,14 +320,16 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
               const Icon(Icons.check_circle_outline_rounded,
                   color: Colors.green, size: 80),
               const SizedBox(height: 24),
-              const Text(
+              Text(
                 'Hoàn thành!',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.displayMedium,
               ),
               const SizedBox(height: 12),
               Text(
                 'Bạn đã học hết bộ từ này.',
-                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
