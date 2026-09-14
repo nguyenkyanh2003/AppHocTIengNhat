@@ -30,7 +30,7 @@ class VocabularyHeadline extends StatelessWidget {
             child: Text(
               vocabulary.word,
               textAlign: TextAlign.center,
-              style: AppTypography.japaneseDisplay.copyWith(
+              style: AppTypography.japaneseDisplay(
                 color: AppColors.vocabulary,
               ),
             ),
@@ -39,7 +39,7 @@ class VocabularyHeadline extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(vocabulary.hiragana, style: AppTypography.japaneseReading),
+              Text(vocabulary.hiragana, style: AppTypography.japaneseReading()),
               if (vocabulary.audioUrl != null && onPlayAudio != null)
                 IconButton(
                   icon: const Icon(Icons.volume_up),

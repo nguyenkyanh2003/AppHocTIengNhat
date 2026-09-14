@@ -6,58 +6,64 @@ import 'package:flutter/material.dart';
 /// và widget không tự đặt `Color(0x...)`, `EdgeInsets.all(17)` hay `Duration`
 /// rời rạc — nếu thiếu giá trị nào thì bổ sung token mới ở file này.
 abstract final class AppColors {
-  // Thương hiệu
-  static const Color primary = Color(0xFF2196F3);
-  static const Color secondary = Color(0xFFFF9800);
-  static const Color accent = Color(0xFF4CAF50);
+  // Thương hiệu. `primary` là màu của giao diện; `accent` chỉ dành cho những gì
+  // đo sự tiến bộ của người học (streak, XP, thanh tiến độ) — tách hai vai này
+  // ra để "app đang nói" và "bạn đang tiến bộ" không dùng chung một màu.
+  static const Color primary = Color(0xFF4F46E5);
+  static const Color primaryDark = Color(0xFF4338CA);
+  static const Color primaryLight = Color(0xFFEEF2FF);
+  static const Color secondary = Color(0xFF0EA5E9);
+  static const Color accent = Color(0xFFF59E0B);
 
   // Ngữ nghĩa
-  static const Color error = Color(0xFFF44336);
-  static const Color warning = Color(0xFFFFC107);
-  static const Color success = Color(0xFF4CAF50);
-  static const Color info = Color(0xFF00BCD4);
+  static const Color error = Color(0xFFEF4444);
+  static const Color warning = Color(0xFFF59E0B);
+  static const Color success = Color(0xFF10B981);
+  static const Color info = Color(0xFF0EA5E9);
 
-  // Bề mặt - chế độ sáng
-  static const Color background = Color(0xFFF5F5F5);
+  // Bề mặt - chế độ sáng. Thang trung tính ngả xanh để hoà với primary, thay vì
+  // xám trung tính chọi với mọi màu thương hiệu.
+  static const Color background = Color(0xFFF8FAFC);
   static const Color surface = Colors.white;
-  static const Color surfaceVariant = Color(0xFFEEEEEE);
-  static const Color border = Color(0xFFE0E0E0);
+  static const Color surfaceVariant = Color(0xFFF1F5F9);
+  static const Color border = Color(0xFFE2E8F0);
 
   // Chữ - chế độ sáng
-  static const Color textPrimary = Color(0xFF212121);
-  static const Color textSecondary = Color(0xFF757575);
-  static const Color textDisabled = Color(0xFFBDBDBD);
+  static const Color textPrimary = Color(0xFF0F172A);
+  static const Color textSecondary = Color(0xFF475569);
+  static const Color textDisabled = Color(0xFF94A3B8);
 
   // Bề mặt - chế độ tối
-  static const Color darkBackground = Color(0xFF121212);
-  static const Color darkSurface = Color(0xFF1E1E1E);
-  static const Color darkSurfaceVariant = Color(0xFF2C2C2C);
-  static const Color darkBorder = Color(0xFF3A3A3A);
+  static const Color darkBackground = Color(0xFF0F172A);
+  static const Color darkSurface = Color(0xFF1E293B);
+  static const Color darkSurfaceVariant = Color(0xFF334155);
+  static const Color darkBorder = Color(0xFF334155);
 
   // Chữ - chế độ tối
-  static const Color darkTextPrimary = Colors.white;
-  static const Color darkTextSecondary = Color(0xFFB0B0B0);
-  static const Color darkTextDisabled = Color(0xFF6E6E6E);
+  static const Color darkTextPrimary = Color(0xFFF1F5F9);
+  static const Color darkTextSecondary = Color(0xFF94A3B8);
+  static const Color darkTextDisabled = Color(0xFF64748B);
 
-  // Màu nhận diện từng mảng nội dung
-  static const Color vocabulary = Color(0xFF2196F3);
-  static const Color grammar = Color(0xFF4CAF50);
-  static const Color kanji = Color(0xFFFF9800);
-  static const Color lesson = Color(0xFFE91E63);
-  static const Color exercise = Color(0xFF9C27B0);
-  static const Color jlpt = Color(0xFF673AB7);
-  static const Color notebook = Color(0xFFFFC107);
-  static const Color news = Color(0xFF00BCD4);
-  static const Color group = Color(0xFF009688);
-  static const Color progress = Color(0xFF8BC34A);
+  // Màu nhận diện từng mảng nội dung. Cùng một mức bão hoà nên các thẻ đứng
+  // cạnh nhau không chọi, khác hẳn bảng Material gốc mỗi màu một cường độ.
+  static const Color vocabulary = Color(0xFF4F46E5);
+  static const Color grammar = Color(0xFF10B981);
+  static const Color kanji = Color(0xFFF59E0B);
+  static const Color lesson = Color(0xFFEC4899);
+  static const Color exercise = Color(0xFF8B5CF6);
+  static const Color jlpt = Color(0xFF6366F1);
+  static const Color notebook = Color(0xFFEAB308);
+  static const Color news = Color(0xFF0EA5E9);
+  static const Color group = Color(0xFF14B8A6);
+  static const Color progress = Color(0xFF22C55E);
 
   /// Màu cấp độ JLPT, từ dễ (N5) đến khó (N1).
   static const Map<String, Color> jlptLevels = {
-    'N5': Color(0xFF4CAF50),
-    'N4': Color(0xFF8BC34A),
-    'N3': Color(0xFFFFC107),
-    'N2': Color(0xFFFF9800),
-    'N1': Color(0xFFF44336),
+    'N5': Color(0xFF10B981),
+    'N4': Color(0xFF22C55E),
+    'N3': Color(0xFFEAB308),
+    'N2': Color(0xFFF59E0B),
+    'N1': Color(0xFFEF4444),
   };
 }
 

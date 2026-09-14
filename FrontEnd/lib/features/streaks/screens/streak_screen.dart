@@ -342,7 +342,7 @@ class _StreakScreenState extends State<StreakScreen> {
             '🎯',
             'Trung bình/tuần',
             '${(streak.activityDates.length / 4).toStringAsFixed(1)}',
-            const Color(0xFF2196F3),
+            const Color(0xFF4F46E5),
           ),
         ),
       ],

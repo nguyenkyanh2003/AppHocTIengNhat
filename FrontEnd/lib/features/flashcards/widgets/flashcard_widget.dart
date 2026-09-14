@@ -20,8 +20,8 @@ class FlashcardWidget extends StatefulWidget {
     this.backSubtext,
     this.onFlip,
     this.showBack = false,
-    this.frontColor = const Color(0xFF2196F3),
-    this.backColor = const Color(0xFF4CAF50),
+    this.frontColor = const Color(0xFF4F46E5),
+    this.backColor = const Color(0xFF10B981),
   }) : super(key: key);
 
   @override

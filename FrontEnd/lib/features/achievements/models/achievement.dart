@@ -68,7 +68,7 @@ class Achievement {
       case 'epic':
         return '#9C27B0'; // Purple
       case 'rare':
-        return '#2196F3'; // Blue
+        return '#4F46E5'; // Indigo
       default:
         return '#757575'; // Gray
     }

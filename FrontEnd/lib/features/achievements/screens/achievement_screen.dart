@@ -346,26 +346,26 @@ class _AchievementScreenState extends State<AchievementScreen>
   List<Color> _getRarityGradient(String rarity) {
     switch (rarity) {
       case 'legendary':
-        return [const Color(0xFFFFD700), const Color(0xFFFFAA00)];
+        return [const Color(0xFFF59E0B), const Color(0xFFD97706)];
       case 'epic':
-        return [const Color(0xFF9C27B0), const Color(0xFF673AB7)];
+        return [const Color(0xFF8B5CF6), const Color(0xFF6D28D9)];
       case 'rare':
-        return [const Color(0xFF2196F3), const Color(0xFF1976D2)];
+        return [const Color(0xFF4F46E5), const Color(0xFF4338CA)];
       default:
-        return [const Color(0xFF757575), const Color(0xFF616161)];
+        return [const Color(0xFF64748B), const Color(0xFF475569)];
     }
   }
 
   Color _getRarityColor(String rarity) {
     switch (rarity) {
       case 'legendary':
-        return const Color(0xFFFFD700);
+        return const Color(0xFFF59E0B);
       case 'epic':
-        return const Color(0xFF9C27B0);
+        return const Color(0xFF8B5CF6);
       case 'rare':
-        return const Color(0xFF2196F3);
+        return const Color(0xFF4F46E5);
       default:
-        return const Color(0xFF757575);
+        return const Color(0xFF64748B);
     }
   }
 
