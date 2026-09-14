@@ -7,6 +7,7 @@ import '../providers/lesson_provider.dart';
 import '../providers/lesson_progress_provider.dart';
 import '../models/lesson.dart';
 import '../services/lesson_progress_service.dart';
+import '../widgets/dialogue_view.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 
@@ -231,7 +232,13 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
               ),
             ),
           const SizedBox(height: 32),
-          if (lesson.contentHtml != null && lesson.contentHtml!.isNotEmpty) ...[
+          if (lesson.isSituational) ...[
+            DialogueView(
+              dialogue: lesson.dialogue,
+              canDoGoals: lesson.canDoGoals,
+            ),
+          ] else if (lesson.contentHtml != null &&
+              lesson.contentHtml!.isNotEmpty) ...[
             const Text(
               'Giới thiệu',
               style: TextStyle(

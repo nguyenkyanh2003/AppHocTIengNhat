@@ -5,6 +5,7 @@ import 'package:flutter_html/flutter_html.dart';
 import '../providers/lesson_provider.dart';
 import '../providers/lesson_progress_provider.dart';
 import '../models/lesson.dart';
+import '../widgets/dialogue_view.dart';
 import '../../../shared/widgets/content_pane.dart';
 
 class LessonDetailScreen extends StatefulWidget {
@@ -382,7 +383,13 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (lesson.contentHtml != null && lesson.contentHtml!.isNotEmpty) ...[
+          if (lesson.isSituational) ...[
+            DialogueView(
+              dialogue: lesson.dialogue,
+              canDoGoals: lesson.canDoGoals,
+            ),
+          ] else if (lesson.contentHtml != null &&
+              lesson.contentHtml!.isNotEmpty) ...[
             const Text(
               'Nội dung bài học',
               style: TextStyle(

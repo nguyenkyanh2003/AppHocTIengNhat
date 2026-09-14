@@ -1,3 +1,5 @@
+import 'dialogue_turn.dart';
+
 class Lesson {
   final String id;
   final String title;
@@ -5,6 +7,17 @@ class Lesson {
   final int order;
   final String? description;
   final String? contentHtml;
+
+  /// Tình huống thực tế của bài (`supermarket`, `train`...); `null` với bài
+  /// ngữ pháp thuần.
+  final String? situation;
+
+  /// Hội thoại của bài tình huống; rỗng với bài chỉ có `contentHtml`.
+  final List<DialogueTurn> dialogue;
+
+  /// Mục tiêu "sau bài này làm được gì".
+  final List<String> canDoGoals;
+
   final List<String> vocabularies;
   final List<String> grammars;
   final List<String> kanjis;
@@ -18,12 +31,18 @@ class Lesson {
     this.order = 1,
     this.description,
     this.contentHtml,
+    this.situation,
+    this.dialogue = const [],
+    this.canDoGoals = const [],
     this.vocabularies = const [],
     this.grammars = const [],
     this.kanjis = const [],
     required this.createdAt,
     required this.updatedAt,
   });
+
+  /// Bài có nội dung dạng hội thoại tình huống hay không.
+  bool get isSituational => dialogue.isNotEmpty;
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
     // Helper function để extract ID từ item (có thể là String hoặc Map)
@@ -49,6 +68,14 @@ class Lesson {
       order: json['order'] ?? 1,
       description: json['description'],
       contentHtml: json['content_html'],
+      situation: json['situation']?.toString(),
+      dialogue: DialogueTurn.listFromJson(json['dialogue']),
+      canDoGoals: (json['can_do_goals'] is List)
+          ? (json['can_do_goals'] as List)
+              .map((goal) => goal.toString())
+              .where((goal) => goal.isNotEmpty)
+              .toList()
+          : const [],
       vocabularies: extractIds(json['vocabularies']),
       grammars: extractIds(json['grammars']),
       kanjis: extractIds(json['kanjis']),
@@ -69,6 +96,9 @@ class Lesson {
       'order': order,
       'description': description,
       'content_html': contentHtml,
+      'situation': situation,
+      'dialogue': dialogue.map((turn) => turn.toJson()).toList(),
+      'can_do_goals': canDoGoals,
       'vocabularies': vocabularies,
       'grammars': grammars,
       'kanjis': kanjis,
@@ -118,6 +148,9 @@ class Lesson {
     int? order,
     String? description,
     String? contentHtml,
+    String? situation,
+    List<DialogueTurn>? dialogue,
+    List<String>? canDoGoals,
     List<String>? vocabularies,
     List<String>? grammars,
     List<String>? kanjis,
@@ -131,6 +164,9 @@ class Lesson {
       order: order ?? this.order,
       description: description ?? this.description,
       contentHtml: contentHtml ?? this.contentHtml,
+      situation: situation ?? this.situation,
+      dialogue: dialogue ?? this.dialogue,
+      canDoGoals: canDoGoals ?? this.canDoGoals,
       vocabularies: vocabularies ?? this.vocabularies,
       grammars: grammars ?? this.grammars,
       kanjis: kanjis ?? this.kanjis,

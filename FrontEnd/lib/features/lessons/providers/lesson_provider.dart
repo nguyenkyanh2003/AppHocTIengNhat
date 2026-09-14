@@ -20,7 +20,9 @@ class LessonProvider with ChangeNotifier {
 
   // Filters
   String? _selectedLevel;
+  String? _selectedSituation;
   String? _searchQuery;
+  List<String> _situations = [];
 
   // Getters
   List<Lesson> get lessons => _lessons;
@@ -32,12 +34,15 @@ class LessonProvider with ChangeNotifier {
   int get totalPages => _totalPages;
   int get totalItems => _totalItems;
   String? get selectedLevel => _selectedLevel;
+  String? get selectedSituation => _selectedSituation;
+  List<String> get situations => _situations;
   String? get searchQuery => _searchQuery;
 
   // Load danh sách bài học
   Future<void> loadLessons({
     int? page,
     String? level,
+    String? situation,
     String? search,
     bool refresh = false,
   }) async {
@@ -53,12 +58,14 @@ class LessonProvider with ChangeNotifier {
 
       final targetPage = page ?? _currentPage;
       _selectedLevel = level ?? _selectedLevel;
+      _selectedSituation = situation ?? _selectedSituation;
       _searchQuery = search ?? _searchQuery;
 
       final result = await _lessonService.getLessons(
         page: targetPage,
         limit: _itemsPerPage,
         level: _selectedLevel,
+        situation: _selectedSituation,
         search: _searchQuery,
       );
 
@@ -139,9 +146,30 @@ class LessonProvider with ChangeNotifier {
     await loadLessons(level: level, refresh: true);
   }
 
+  // Lọc theo tình huống thực tế
+  Future<void> filterBySituation(String? situation) async {
+    _selectedSituation = situation;
+    _currentPage = 1;
+    await loadLessons(situation: situation, refresh: true);
+  }
+
+  /// Nạp danh sách tình huống có bài học để dựng bộ lọc.
+  ///
+  /// Lỗi ở đây không được làm hỏng màn danh sách: không có tình huống thì chỉ
+  /// là bộ lọc trống, bài học vẫn xem được bình thường.
+  Future<void> loadSituations() async {
+    try {
+      _situations = await _lessonService.getSituations();
+      notifyListeners();
+    } catch (_) {
+      _situations = [];
+    }
+  }
+
   // Clear filters
   Future<void> clearFilters() async {
     _selectedLevel = null;
+    _selectedSituation = null;
     _searchQuery = null;
     _currentPage = 1;
     await loadLessons(refresh: true);

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../providers/lesson_provider.dart';
 import '../models/lesson.dart';
+import '../models/situation_labels.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 
@@ -17,13 +18,15 @@ class LessonListScreen extends StatefulWidget {
 class _LessonListScreenState extends State<LessonListScreen> {
   final TextEditingController _searchController = TextEditingController();
   String? _selectedLevel;
+  String? _selectedSituation;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<LessonProvider>(context, listen: false)
-          .loadLessons(refresh: true);
+      final provider = Provider.of<LessonProvider>(context, listen: false);
+      provider.loadLessons(refresh: true);
+      provider.loadSituations();
     });
   }
 
@@ -76,6 +79,9 @@ class _LessonListScreenState extends State<LessonListScreen> {
                 },
               ),
             ),
+
+            // Lọc nhanh theo tình huống thực tế (đi siêu thị, đi tàu...)
+            _buildSituationBar(),
 
             // Level filter chips
             if (_selectedLevel != null)
@@ -177,6 +183,52 @@ class _LessonListScreenState extends State<LessonListScreen> {
     );
   }
 
+  /// Hàng chip chọn tình huống. Ẩn hẳn khi chưa có bài tình huống nào để không
+  /// chiếm chỗ bằng một thanh trống.
+  Widget _buildSituationBar() {
+    return Consumer<LessonProvider>(
+      builder: (context, provider, child) {
+        if (provider.situations.isEmpty) return const SizedBox.shrink();
+
+        return SizedBox(
+          height: 48,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            children: [
+              _buildSituationChip(null, 'Tất cả', Icons.apps),
+              ...provider.situations.map(
+                (code) => _buildSituationChip(
+                  code,
+                  situationLabel(code),
+                  situationIcon(code),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildSituationChip(String? code, String label, IconData icon) {
+    final selected = _selectedSituation == code;
+
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: FilterChip(
+        avatar: Icon(icon, size: 18),
+        label: Text(label),
+        selected: selected,
+        onSelected: (_) {
+          setState(() => _selectedSituation = code);
+          Provider.of<LessonProvider>(context, listen: false)
+              .filterBySituation(code);
+        },
+      ),
+    );
+  }
+
   Widget _buildLessonCard(Lesson lesson) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -220,6 +272,24 @@ class _LessonListScreenState extends State<LessonListScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    if (lesson.situation != null) ...[
+                      Row(
+                        children: [
+                          Icon(situationIcon(lesson.situation!),
+                              size: 14, color: Colors.deepPurple),
+                          const SizedBox(width: 4),
+                          Text(
+                            situationLabel(lesson.situation!),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                    ],
                     Text(
                       lesson.title,
                       style: const TextStyle(
@@ -242,6 +312,19 @@ class _LessonListScreenState extends State<LessonListScreen> {
                     const SizedBox(height: 8),
                     Row(
                       children: [
+                        if (lesson.isSituational) ...[
+                          Icon(Icons.forum_outlined,
+                              size: 16, color: Colors.grey[600]),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${lesson.dialogue.length} lượt thoại',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                        ],
                         if (lesson.vocabularies.isNotEmpty) ...[
                           Icon(Icons.spellcheck,
                               size: 16, color: Colors.grey[600]),

@@ -9,6 +9,7 @@ class LessonService {
     int page = 1,
     int limit = 10,
     String? level,
+    String? situation,
     String? search,
   }) async {
     try {
@@ -19,6 +20,10 @@ class LessonService {
 
       if (level != null && level.isNotEmpty) {
         queryParams['level'] = level;
+      }
+
+      if (situation != null && situation.isNotEmpty) {
+        queryParams['situation'] = situation;
       }
 
       if (search != null && search.isNotEmpty) {
@@ -38,6 +43,18 @@ class LessonService {
       };
     } catch (e) {
       throw Exception('Lỗi khi tải bài học: $e');
+    }
+  }
+
+  /// Danh sách tình huống đang có bài học, dùng để dựng bộ lọc.
+  ///
+  /// Chỉ trả tình huống thật sự có nội dung nên không hiện chip bấm vào rỗng.
+  Future<List<String>> getSituations() async {
+    try {
+      final data = await _apiClient.get('/lesson/situations', cache: true);
+      return (data['data'] as List).map((item) => item.toString()).toList();
+    } catch (e) {
+      throw Exception('Lỗi khi tải danh sách tình huống: $e');
     }
   }
 
