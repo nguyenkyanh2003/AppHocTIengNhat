@@ -25,4 +25,19 @@ void main() {
       expect(defaultLessonLevel('N9'), 'N5');
     });
   });
+
+  group('normalizeJlptLevel', () {
+    test('chuẩn hoá trình độ trong hồ sơ về N5–N1, giữ nguyên N1', () {
+      expect(normalizeJlptLevel('N4'), 'N4');
+      expect(normalizeJlptLevel(' n1 '), 'N1');
+      expect(normalizeJlptLevel('3'), 'N3');
+    });
+
+    test('giá trị thiếu hoặc lạ trả null', () {
+      expect(normalizeJlptLevel(null), isNull);
+      expect(normalizeJlptLevel(''), isNull);
+      expect(normalizeJlptLevel('N9'), isNull);
+      expect(normalizeJlptLevel('beginner'), isNull);
+    });
+  });
 }

@@ -9,8 +9,20 @@ class LessonProvider with ChangeNotifier {
   LessonDetail? _currentLessonDetail;
   Map<String, dynamic>? _stats;
 
+  // Trạng thái của màn chi tiết và thống kê.
   bool _isLoading = false;
   String? _error;
+
+  // Trạng thái riêng của danh sách: mở một bài bị lỗi rồi quay lại không được
+  // biến cả danh sách thành màn lỗi. Chưa nạp lần nào cũng tính là đang tải, để
+  // màn không chớp trạng thái rỗng trước request đầu tiên.
+  bool _isListLoading = true;
+  String? _listError;
+  bool _listOpened = false;
+
+  // Mỗi lần nạp mang một số thế hệ; response về muộn của lần nạp cũ bị bỏ qua.
+  int _listGeneration = 0;
+  int _situationsGeneration = 0;
 
   // Pagination
   int _currentPage = 1;
@@ -30,6 +42,8 @@ class LessonProvider with ChangeNotifier {
   Map<String, dynamic>? get stats => _stats;
   bool get isLoading => _isLoading;
   String? get error => _error;
+  bool get isListLoading => _isListLoading;
+  String? get listError => _listError;
   int get currentPage => _currentPage;
   int get totalPages => _totalPages;
   int get totalItems => _totalItems;
@@ -38,7 +52,25 @@ class LessonProvider with ChangeNotifier {
   List<String> get situations => _situations;
   String? get searchQuery => _searchQuery;
 
-  // Load danh sách bài học
+  /// Nạp danh sách khi mở màn Bài học.
+  ///
+  /// Lần mở đầu tiên trong phiên lọc sẵn theo [defaultLevel] — trình độ của
+  /// người học. Những lần mở sau giữ nguyên bộ lọc họ đã chọn và chỉ nạp lại
+  /// khi lần trước bị lỗi.
+  Future<void> openLessonList({required String defaultLevel}) async {
+    if (!_listOpened) {
+      _listOpened = true;
+      await filterByLevel(defaultLevel);
+    } else if (_listError != null) {
+      await loadLessons(refresh: true);
+    }
+  }
+
+  /// Nạp danh sách bài học theo bộ lọc hiện tại.
+  ///
+  /// Danh sách cũ được giữ trong lúc chờ để đổi bộ lọc không làm màn nháy trắng.
+  /// Người học đổi bộ lọc liên tiếp thì response về sau cùng chưa chắc là của
+  /// bộ lọc mới nhất, nên chỉ response của lần gọi mới nhất được ghi vào state.
   Future<void> loadLessons({
     int? page,
     String? level,
@@ -46,41 +78,38 @@ class LessonProvider with ChangeNotifier {
     String? search,
     bool refresh = false,
   }) async {
+    final generation = ++_listGeneration;
+    if (refresh) _currentPage = 1;
+    _selectedLevel = level ?? _selectedLevel;
+    _selectedSituation = situation ?? _selectedSituation;
+    _searchQuery = search ?? _searchQuery;
+    _isListLoading = true;
+    _listError = null;
+    notifyListeners();
+
     try {
-      if (refresh) {
-        _currentPage = 1;
-        _lessons.clear();
-      }
-
-      _isLoading = true;
-      _error = null;
-      notifyListeners();
-
-      final targetPage = page ?? _currentPage;
-      _selectedLevel = level ?? _selectedLevel;
-      _selectedSituation = situation ?? _selectedSituation;
-      _searchQuery = search ?? _searchQuery;
-
       final result = await _lessonService.getLessons(
-        page: targetPage,
+        page: page ?? _currentPage,
         limit: _itemsPerPage,
         level: _selectedLevel,
         situation: _selectedSituation,
         search: _searchQuery,
       );
+      if (generation != _listGeneration) return;
 
       _lessons = result['lessons'] as List<Lesson>;
       _currentPage = result['currentPage'] ?? 1;
       _totalPages = result['totalPages'] ?? 1;
       _totalItems = result['totalItems'] ?? 0;
-
-      _isLoading = false;
-      notifyListeners();
     } catch (e) {
-      _error = e.toString();
-      _isLoading = false;
-      notifyListeners();
+      if (generation != _listGeneration) return;
+
+      _lessons = [];
+      _listError = e.toString();
     }
+
+    _isListLoading = false;
+    notifyListeners();
   }
 
   // Load chi tiết bài học
@@ -139,7 +168,7 @@ class LessonProvider with ChangeNotifier {
     await loadLessons(search: query, refresh: true);
   }
 
-  /// Lọc theo cấp độ, kéo theo dải chủ đề của cấp đó.
+  /// Lọc theo cấp độ, kéo theo dải chủ đề của cấp đó. `null` là mọi cấp độ.
   ///
   /// Chủ đề đang chọn bị bỏ: một chủ đề có bài ở N5 chưa chắc có bài ở N3, giữ
   /// lại thì danh sách rỗng mà người học không hiểu vì sao.
@@ -148,29 +177,34 @@ class LessonProvider with ChangeNotifier {
     _selectedSituation = null;
     _currentPage = 1;
     await Future.wait([
-      loadLessons(level: level, refresh: true),
+      loadLessons(refresh: true),
       loadSituations(),
     ]);
   }
 
-  // Lọc theo tình huống thực tế
+  /// Lọc theo tình huống thực tế. `null` là mọi chủ đề của cấp đang chọn.
   Future<void> filterBySituation(String? situation) async {
     _selectedSituation = situation;
     _currentPage = 1;
-    await loadLessons(situation: situation, refresh: true);
+    await loadLessons(refresh: true);
   }
 
-  /// Nạp danh sách tình huống có bài học để dựng bộ lọc.
+  /// Nạp danh sách tình huống có bài học ở cấp đang lọc để dựng bộ lọc.
   ///
   /// Lỗi ở đây không được làm hỏng màn danh sách: không có tình huống thì chỉ
   /// là bộ lọc trống, bài học vẫn xem được bình thường.
   Future<void> loadSituations() async {
+    final generation = ++_situationsGeneration;
+    List<String> situations;
     try {
-      _situations = await _lessonService.getSituations(level: _selectedLevel);
-      notifyListeners();
+      situations = await _lessonService.getSituations(level: _selectedLevel);
     } catch (_) {
-      _situations = [];
+      situations = [];
     }
+    if (generation != _situationsGeneration) return;
+
+    _situations = situations;
+    notifyListeners();
   }
 
   // Clear filters
@@ -205,21 +239,7 @@ class LessonProvider with ChangeNotifier {
   }
 
   // Reset
-  void reset() {
-    _lessons = [];
-    _currentLessonDetail = null;
-    _stats = null;
-    _isLoading = false;
-    _error = null;
-    _currentPage = 1;
-    _totalPages = 1;
-    _totalItems = 0;
-    _selectedLevel = null;
-    _selectedSituation = null;
-    _situations = [];
-    _searchQuery = null;
-    notifyListeners();
-  }
+  void reset() => clear();
 
   // Lấy bài học theo ID từ danh sách đã tải
   Lesson? getLessonById(String id) {
@@ -230,13 +250,21 @@ class LessonProvider with ChangeNotifier {
     }
   }
 
-  // Clear all state
+  /// Xoá toàn bộ state, dùng khi đăng xuất.
+  ///
+  /// Tăng số thế hệ để response của phiên trước còn đang bay không ghi lại dữ
+  /// liệu của người vừa đăng xuất.
   void clear() {
+    _listGeneration++;
+    _situationsGeneration++;
     _lessons = [];
     _currentLessonDetail = null;
     _stats = null;
     _isLoading = false;
     _error = null;
+    _isListLoading = true;
+    _listError = null;
+    _listOpened = false;
     _currentPage = 1;
     _totalPages = 1;
     _totalItems = 0;
