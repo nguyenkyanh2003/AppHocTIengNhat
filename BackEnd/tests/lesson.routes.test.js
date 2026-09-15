@@ -125,6 +125,26 @@ test('GET /situations khi chưa có bài tình huống nào vẫn là 200 + mả
   assert.deepEqual(response.body, { data: [], total: 0 });
 });
 
+test('GET /situations?level=N4 chuyển cấp độ xuống service', async () => {
+  let received = null;
+  const app = buildApp({
+    listSituations: async (args) => { received = args; return ['bus']; },
+  });
+
+  const response = await request(app).get('/api/lesson/situations?level=N4');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(received, { level: 'N4' });
+});
+
+test('GET /situations với cấp độ lạ bị chặn 400', async () => {
+  const app = buildApp({ listSituations: async () => assert.fail('không được gọi service') });
+
+  const response = await request(app).get('/api/lesson/situations?level=N9');
+
+  assert.equal(response.status, 400);
+});
+
 test('GET /situations không bị nuốt thành /:id', async () => {
   const app = buildApp({
     listSituations: async () => ['train'],

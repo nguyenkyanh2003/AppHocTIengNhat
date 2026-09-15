@@ -1,38 +1,36 @@
 /**
  * Nạp bộ dữ liệu demo để kiểm thử thủ công mốc 1 (SRS + streak).
  *
- * Khác với các script `seed-*.js` khác trong thư mục này, script này **không**
- * gọi `deleteMany({})` trên cả collection. Nó chỉ đụng vào đúng những bản ghi
- * của bộ demo, tra theo khoá tự nhiên (`TenDangNhap`, `title`, `word`). Lý do:
- * script được chạy trên cùng database mà bạn đang dùng để phát triển, xoá
- * sạch collection sẽ cuốn theo cả dữ liệu không liên quan.
+ * Script **không** gọi `deleteMany({})` trên cả collection. Nó chỉ đụng vào
+ * đúng những bản ghi của bộ demo, tra theo khoá tự nhiên (`TenDangNhap`,
+ * `word + hiragana`). Lý do: script được chạy trên cùng database đang dùng để
+ * phát triển, xoá sạch collection sẽ cuốn theo cả dữ liệu không liên quan.
+ *
+ * Bài học không thuộc bộ demo: chạy `seed-situational-lessons.js` trước để có
+ * bộ bài theo chủ đề — 15 từ demo nằm sẵn trong hai bài của bộ đó.
  *
  * Chạy lại nhiều lần cho ra cùng một kết quả.
  *
- *   node scripts/seed-demo.js               # nạp dữ liệu + tiến độ SRS mẫu
+ *   node scripts/seed-demo.js               # nạp tài khoản, từ vựng, tiến độ SRS mẫu
  *   node scripts/seed-demo.js --no-progress # bỏ phần tiến độ SRS
- *   node scripts/seed-demo.js --reset       # xoá sạch dữ liệu demo
+ *   node scripts/seed-demo.js --reset       # xoá tài khoản demo và tiến độ của họ
  */
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
-import Exercise from '../model/Exercise.js';
-import Lesson from '../model/Lesson.js';
 import SRSProgress from '../model/SRSProgress.js';
 import User from '../model/User.js';
 import UserStreak from '../model/UserStreak.js';
 import Vocabulary from '../model/Vocabulary.js';
 import {
   DEMO_DUE_COUNT,
-  DEMO_EXERCISES,
-  DEMO_LESSONS,
   DEMO_SRS_PROGRESS,
   DEMO_USERS,
   DEMO_VOCABULARIES,
 } from './demo-dataset.js';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
@@ -74,53 +72,27 @@ const upsertUsers = async () => {
   return ids;
 };
 
-const upsertLessons = async () => {
+/**
+ * Upsert theo (`word`, `hiragana`) — đúng unique index của `Vocabulary`.
+ *
+ * Nội dung chỉ ghi khi từ chưa tồn tại (`$setOnInsert`): từ đã có từ đợt
+ * import hoặc từ bộ bài chủ đề giữ nguyên nghĩa và ví dụ của nó. Không đụng
+ * `lesson` — liên kết từ–bài thuộc về `seed-situational-lessons.js`.
+ */
+const upsertVocabularies = async () => {
   const ids = new Map();
 
-  for (const lesson of DEMO_LESSONS) {
-    const doc = await Lesson.findOneAndUpdate(
-      { title: lesson.title },
-      { $set: lesson },
-      { upsert: true, new: true, setDefaultsOnInsert: true },
-    );
-    ids.set(lesson.title, doc._id);
-  }
-
-  console.log(`📘 ${DEMO_LESSONS.length} bài học`);
-  return ids;
-};
-
-const upsertVocabularies = async (lessonIds) => {
-  const ids = new Map();
-
-  for (const { lessonTitle, ...vocabulary } of DEMO_VOCABULARIES) {
-    const lesson = lessonIds.get(lessonTitle);
+  for (const { word, hiragana, ...content } of DEMO_VOCABULARIES) {
     const doc = await Vocabulary.findOneAndUpdate(
-      { word: vocabulary.word, lesson },
-      { $set: { ...vocabulary, lesson } },
+      { word, hiragana },
+      { $setOnInsert: content },
       { upsert: true, new: true, setDefaultsOnInsert: true },
     );
-    ids.set(vocabulary.word, doc._id);
+    ids.set(word, doc._id);
   }
 
   console.log(`📝 ${DEMO_VOCABULARIES.length} từ vựng`);
   return ids;
-};
-
-const upsertExercises = async (lessonIds) => {
-  for (const { lessonTitle, ...exercise } of DEMO_EXERCISES) {
-    await Exercise.findOneAndUpdate(
-      { title: exercise.title },
-      { $set: { ...exercise, lesson_id: lessonIds.get(lessonTitle) } },
-      { upsert: true, new: true, setDefaultsOnInsert: true },
-    );
-  }
-
-  const questionCount = DEMO_EXERCISES.reduce(
-    (sum, exercise) => sum + exercise.questions.length,
-    0,
-  );
-  console.log(`🧩 ${DEMO_EXERCISES.length} bài tập (${questionCount} câu hỏi)`);
 };
 
 /**
@@ -156,9 +128,7 @@ const upsertProgress = async (learnerId, vocabularyIds) => {
 
 const seed = async ({ withProgress }) => {
   const userIds = await upsertUsers();
-  const lessonIds = await upsertLessons();
-  const vocabularyIds = await upsertVocabularies(lessonIds);
-  await upsertExercises(lessonIds);
+  const vocabularyIds = await upsertVocabularies();
 
   if (withProgress) {
     await upsertProgress(userIds.get('demo_hocvien'), vocabularyIds);
@@ -172,6 +142,12 @@ const seed = async ({ withProgress }) => {
   }
 };
 
+/**
+ * Xoá tài khoản demo và mọi tiến độ của họ.
+ *
+ * Từ vựng giữ lại: chúng nằm trong bộ bài chủ đề và có thể là từ của đợt
+ * import, xoá theo danh sách demo sẽ làm thủng bài học của người dùng thật.
+ */
 const reset = async () => {
   const usernames = DEMO_USERS.map((user) => user.username);
   const users = await User.find({ TenDangNhap: { $in: usernames } })
@@ -179,30 +155,15 @@ const reset = async () => {
     .lean();
   const userIds = users.map((user) => user._id);
 
-  const lessonTitles = DEMO_LESSONS.map((lesson) => lesson.title);
-  const lessons = await Lesson.find({ title: { $in: lessonTitles } })
-    .select('_id')
-    .lean();
-  const lessonIds = lessons.map((lesson) => lesson._id);
-
   const removed = {
     srs: (await SRSProgress.deleteMany({ user: { $in: userIds } })).deletedCount,
-    streak: (await UserStreak.deleteMany({ user: { $in: userIds } }))
-      .deletedCount,
-    exercises: (
-      await Exercise.deleteMany({
-        title: { $in: DEMO_EXERCISES.map((exercise) => exercise.title) },
-      })
-    ).deletedCount,
-    vocabularies: (await Vocabulary.deleteMany({ lesson: { $in: lessonIds } }))
-      .deletedCount,
-    lessons: (await Lesson.deleteMany({ _id: { $in: lessonIds } })).deletedCount,
+    streak: (await UserStreak.deleteMany({ user: { $in: userIds } })).deletedCount,
     users: (await User.deleteMany({ _id: { $in: userIds } })).deletedCount,
   };
 
   console.log('🗑️  Đã xoá dữ liệu demo:');
   for (const [name, count] of Object.entries(removed)) {
-    console.log(`   ${name.padEnd(13)} ${count}`);
+    console.log(`   ${name.padEnd(8)} ${count}`);
   }
 };
 

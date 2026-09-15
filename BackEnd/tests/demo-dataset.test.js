@@ -3,12 +3,11 @@ import test from 'node:test';
 
 import {
   DEMO_DUE_COUNT,
-  DEMO_EXERCISES,
-  DEMO_LESSONS,
   DEMO_SRS_PROGRESS,
   DEMO_USERS,
   DEMO_VOCABULARIES,
 } from '../scripts/demo-dataset.js';
+import { SITUATIONAL_LESSONS } from '../scripts/situational-lessons.js';
 
 /**
  * Bộ dữ liệu demo được nạp bằng tay vào database thật, nên sai sót chỉ lộ ra
@@ -17,7 +16,6 @@ import {
  */
 
 const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
-const EXERCISE_TYPES = ['Từ vựng', 'Ngữ pháp', 'Kanji', 'Tổng hợp'];
 
 test('có đúng hai tài khoản, một học viên và một quản trị', () => {
   assert.equal(DEMO_USERS.length, 2);
@@ -43,26 +41,11 @@ test('username và email không trùng nhau', () => {
   assert.equal(emails.size, DEMO_USERS.length);
 });
 
-test('tiêu đề bài học là duy nhất — đây là khoá upsert', () => {
-  const titles = new Set(DEMO_LESSONS.map((lesson) => lesson.title));
-  assert.equal(titles.size, DEMO_LESSONS.length);
-});
-
 test('số từ vựng nằm trong khoảng 10–15 theo yêu cầu bộ demo', () => {
   assert.ok(
     DEMO_VOCABULARIES.length >= 10 && DEMO_VOCABULARIES.length <= 15,
     `đang có ${DEMO_VOCABULARIES.length} từ`,
   );
-});
-
-test('mọi từ vựng trỏ tới một bài học có thật', () => {
-  const titles = new Set(DEMO_LESSONS.map((lesson) => lesson.title));
-  for (const vocabulary of DEMO_VOCABULARIES) {
-    assert.ok(
-      titles.has(vocabulary.lessonTitle),
-      `${vocabulary.word} trỏ tới bài học không tồn tại`,
-    );
-  }
 });
 
 test('từ vựng có đủ trường bắt buộc và cấp độ hợp lệ', () => {
@@ -74,61 +57,30 @@ test('từ vựng có đủ trường bắt buộc và cấp độ hợp lệ', 
   }
 });
 
-test('cặp (từ, bài học) là duy nhất — đây là khoá upsert', () => {
-  const keys = DEMO_VOCABULARIES.map((v) => `${v.word}@${v.lessonTitle}`);
+test('cặp (từ, cách đọc) là duy nhất — đây là khoá upsert và unique index', () => {
+  const keys = DEMO_VOCABULARIES.map((v) => `${v.word}|${v.hiragana}`);
   assert.equal(new Set(keys).size, keys.length);
 });
 
-test('mỗi bài học đều có ít nhất một từ vựng', () => {
-  for (const lesson of DEMO_LESSONS) {
-    const count = DEMO_VOCABULARIES.filter(
-      (vocabulary) => vocabulary.lessonTitle === lesson.title,
-    ).length;
-    assert.ok(count > 0, `${lesson.title} chưa có từ nào`);
-  }
-});
-
-test('bài tập trỏ tới bài học có thật và dùng type hợp lệ', () => {
-  const titles = new Set(DEMO_LESSONS.map((lesson) => lesson.title));
-  for (const exercise of DEMO_EXERCISES) {
-    assert.ok(titles.has(exercise.lessonTitle), exercise.title);
-    assert.ok(EXERCISE_TYPES.includes(exercise.type), exercise.type);
-    assert.ok(LEVELS.includes(exercise.level));
-  }
-});
-
-test('mỗi câu hỏi có 2–4 đáp án theo validator của model Exercise', () => {
-  for (const exercise of DEMO_EXERCISES) {
-    assert.ok(exercise.questions.length > 0, exercise.title);
-    for (const question of exercise.questions) {
-      const count = question.answers.length;
-      assert.ok(
-        count >= 2 && count <= 4,
-        `"${question.content}" có ${count} đáp án`,
-      );
-    }
-  }
-});
-
-test('mỗi câu hỏi có đúng một đáp án đúng', () => {
-  for (const exercise of DEMO_EXERCISES) {
-    for (const question of exercise.questions) {
-      const correct = question.answers.filter(
-        (answer) => answer.is_correct,
-      ).length;
-      assert.equal(correct, 1, `"${question.content}" có ${correct} đáp án đúng`);
-    }
-  }
-});
-
-test('bộ demo chạm được biên dưới 2 đáp án của validator', () => {
-  const counts = DEMO_EXERCISES.flatMap((exercise) =>
-    exercise.questions.map((question) => question.answers.length),
+test('mọi từ demo đều nằm trong một bài của bộ chủ đề', () => {
+  const lessonWords = new Set(
+    SITUATIONAL_LESSONS.flatMap((lesson) =>
+      lesson.vocabularies.map((v) => `${v.word}|${v.hiragana}`),
+    ),
   );
-  assert.ok(
-    counts.includes(2),
-    'cần ít nhất một câu 2 đáp án để chạm biên dưới',
-  );
+
+  for (const vocabulary of DEMO_VOCABULARIES) {
+    assert.ok(
+      lessonWords.has(`${vocabulary.word}|${vocabulary.hiragana}`),
+      `${vocabulary.word} không thuộc bài nào — thẻ SRS demo sẽ không mở được bài chứa từ`,
+    );
+  }
+});
+
+test('bộ demo không mang theo bài học hay bài tập riêng', async () => {
+  const dataset = await import('../scripts/demo-dataset.js');
+  assert.equal(dataset.DEMO_LESSONS, undefined);
+  assert.equal(dataset.DEMO_EXERCISES, undefined);
 });
 
 test('tiến độ SRS chỉ trỏ tới từ có trong bộ demo', () => {

@@ -20,3 +20,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Bản sao lưu dữ liệu trước khi xoá (có thể chứa dữ liệu người dùng)
+backups/

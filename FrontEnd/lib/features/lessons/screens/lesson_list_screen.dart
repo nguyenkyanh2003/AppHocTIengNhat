@@ -3,8 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../auth/providers/auth_provider.dart';
 import '../providers/lesson_provider.dart';
 import '../models/lesson.dart';
+import '../models/lesson_level.dart';
 import '../models/situation_labels.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -24,10 +26,10 @@ class _LessonListScreenState extends State<LessonListScreen> {
   @override
   void initState() {
     super.initState();
+    // Mở màn là thấy ngay bài đúng trình độ của người học, không phải cả kho.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final provider = Provider.of<LessonProvider>(context, listen: false);
-      provider.loadLessons(refresh: true);
-      provider.loadSituations();
+      final user = Provider.of<AuthProvider>(context, listen: false).user;
+      _applyLevel(defaultLessonLevel(user?.currentLevel));
     });
   }
 
@@ -81,29 +83,25 @@ class _LessonListScreenState extends State<LessonListScreen> {
               ),
             ),
 
-            // Lọc nhanh theo tình huống thực tế (đi siêu thị, đi tàu...)
-            _buildSituationBar(),
-
-            // Level filter chips
+            // Cấp độ đang lọc — mặc định là trình độ của người học. Đứng trên
+            // dải chủ đề vì chủ đề hiện ra phụ thuộc vào cấp độ này.
             if (_selectedLevel != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
                 child: Row(
                   children: [
-                    Chip(
-                      label: Text(_selectedLevel!),
+                    InputChip(
+                      avatar: const Icon(Icons.school_outlined, size: 18),
+                      label: Text('Trình độ $_selectedLevel'),
                       deleteIcon: const Icon(Icons.close, size: 18),
-                      onDeleted: () {
-                        setState(() {
-                          _selectedLevel = null;
-                        });
-                        Provider.of<LessonProvider>(context, listen: false)
-                            .filterByLevel(null);
-                      },
+                      onDeleted: () => _applyLevel(null),
                     ),
                   ],
                 ),
               ),
+
+            // Lọc nhanh theo chủ đề (đi siêu thị, đi tàu...)
+            _buildSituationBar(),
 
             // Lesson list
             Expanded(
@@ -146,11 +144,17 @@ class _LessonListScreenState extends State<LessonListScreen> {
                               size: 56, color: AppColors.textDisabled),
                           const SizedBox(height: AppSpacing.lg),
                           Text(
-                            _selectedSituation != null
-                                ? 'Chưa có bài học cho tình huống này'
-                                : 'Chưa có bài học nào',
+                            _emptyMessage(),
+                            textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
+                          if (_selectedLevel != null) ...[
+                            const SizedBox(height: AppSpacing.md),
+                            TextButton(
+                              onPressed: () => _applyLevel(null),
+                              child: const Text('Xem tất cả cấp độ'),
+                            ),
+                          ],
                         ],
                       ),
                     );
@@ -181,6 +185,26 @@ class _LessonListScreenState extends State<LessonListScreen> {
         ),
       ),
     );
+  }
+
+  /// Đổi cấp độ đang lọc. Chủ đề đang chọn bị bỏ theo, vì dải chủ đề nạp lại
+  /// theo cấp độ mới.
+  void _applyLevel(String? level) {
+    setState(() {
+      _selectedLevel = level;
+      _selectedSituation = null;
+    });
+    Provider.of<LessonProvider>(context, listen: false).filterByLevel(level);
+  }
+
+  String _emptyMessage() {
+    if (_selectedSituation != null) {
+      return 'Chưa có bài học cho chủ đề này ở trình độ đang chọn';
+    }
+    if (_selectedLevel != null) {
+      return 'Chưa có bài học ở trình độ $_selectedLevel';
+    }
+    return 'Chưa có bài học nào';
   }
 
   /// Hàng chip chọn tình huống. Ẩn hẳn khi chưa có bài tình huống nào để không
@@ -398,12 +422,8 @@ class _LessonListScreenState extends State<LessonListScreen> {
               leading: Radio<String?>(
                 value: null,
                 groupValue: _selectedLevel,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedLevel = value;
-                  });
-                  Provider.of<LessonProvider>(context, listen: false)
-                      .filterByLevel(null);
+                onChanged: (_) {
+                  _applyLevel(null);
                   Navigator.pop(context);
                 },
               ),
@@ -427,11 +447,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
         value: level,
         groupValue: _selectedLevel,
         onChanged: (value) {
-          setState(() {
-            _selectedLevel = value;
-          });
-          Provider.of<LessonProvider>(context, listen: false)
-              .filterByLevel(value);
+          _applyLevel(value);
           Navigator.pop(context);
         },
       ),

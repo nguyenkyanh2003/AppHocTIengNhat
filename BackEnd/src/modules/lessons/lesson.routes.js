@@ -29,7 +29,12 @@ export const createLessonRoutes = ({
     validate({ query: schema.listQuery }),
     asyncHandler(controller.listRoot),
   );
-  router.get('/situations', authenticate, asyncHandler(controller.getSituations));
+  router.get(
+    '/situations',
+    authenticate,
+    validate({ query: schema.situationsQuery }),
+    asyncHandler(controller.getSituations),
+  );
   router.get(
     '/level/:capDo',
     authenticate,

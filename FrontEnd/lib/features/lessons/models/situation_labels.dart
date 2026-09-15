@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 /// phần hiển thị nằm ở client. Mã lạ (tình huống mới thêm ở backend mà client
 /// chưa cập nhật) vẫn hiện được nhờ [labelFor] trả lại chính mã đó.
 const Map<String, ({String label, IconData icon})> kSituationLabels = {
+  'self_introduction': (label: 'Tự giới thiệu', icon: Icons.waving_hand_outlined),
+  'daily_life': (label: 'Sinh hoạt hằng ngày', icon: Icons.wb_sunny_outlined),
   'supermarket': (label: 'Đi siêu thị', icon: Icons.shopping_cart_outlined),
   'convenience_store': (label: 'Cửa hàng tiện lợi', icon: Icons.store_outlined),
   'train': (label: 'Đi tàu', icon: Icons.train_outlined),

@@ -49,9 +49,16 @@ class LessonService {
   /// Danh sách tình huống đang có bài học, dùng để dựng bộ lọc.
   ///
   /// Chỉ trả tình huống thật sự có nội dung nên không hiện chip bấm vào rỗng.
-  Future<List<String>> getSituations() async {
+  ///
+  /// Có [level] thì chỉ trả chủ đề có bài ở cấp đó, để dải chip đổi theo cấp
+  /// độ đang lọc.
+  Future<List<String>> getSituations({String? level}) async {
     try {
-      final data = await _apiClient.get('/lesson/situations', cache: true);
+      final query = level == null
+          ? ''
+          : '?${Uri(queryParameters: {'level': level}).query}';
+      final data =
+          await _apiClient.get('/lesson/situations$query', cache: true);
       return (data['data'] as List).map((item) => item.toString()).toList();
     } catch (e) {
       throw Exception('Lỗi khi tải danh sách tình huống: $e');

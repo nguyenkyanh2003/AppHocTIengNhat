@@ -79,6 +79,19 @@ test('listSituations chỉ trả tình huống có bài, đã sort', async () =>
   assert.deepEqual(situations, ['restaurant', 'supermarket', 'train']);
 });
 
+test('listSituations chuyển cấp độ xuống repository để chỉ trả chủ đề có bài ở cấp đó', async () => {
+  let received = null;
+  const repository = fakeRepository({
+    distinctSituations: async (args) => { received = args; return ['bus']; },
+  });
+  const service = createLessonService({ lessonRepository: repository });
+
+  const situations = await service.listSituations({ level: 'N4' });
+
+  assert.deepEqual(received, { level: 'N4' });
+  assert.deepEqual(situations, ['bus']);
+});
+
 test('listSituations trả mảng rỗng khi chưa bài nào gắn tình huống', async () => {
   const service = createLessonService({ lessonRepository: fakeRepository() });
 

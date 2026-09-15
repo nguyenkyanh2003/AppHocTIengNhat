@@ -101,6 +101,20 @@ test('findByLevel sort theo order tăng dần, không phân trang', async () => 
   assert.deepEqual(items, [{ _id: 'l1' }]);
 });
 
+test('distinctSituations bỏ bài chưa gắn tình huống, lọc theo cấp độ khi có', async () => {
+  const calls = [];
+  const Lesson = {
+    distinct: async (field, filter) => { calls.push([field, filter]); return []; },
+  };
+  const repository = createLessonRepository({ Lesson, Vocabulary: {}, Grammar: {}, Kanji: {} });
+
+  await repository.distinctSituations();
+  await repository.distinctSituations({ level: 'N3' });
+
+  assert.deepEqual(calls[0], ['situation', { situation: { $ne: null } }]);
+  assert.deepEqual(calls[1], ['situation', { situation: { $ne: null }, level: 'N3' }]);
+});
+
 test('countRelated đếm đúng cả ba model với đúng tên field tham chiếu', async () => {
   const Vocabulary = {
     countDocuments: async (filter) => {

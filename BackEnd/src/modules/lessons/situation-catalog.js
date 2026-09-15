@@ -5,6 +5,8 @@
  * không cần migration vì field trên Lesson là optional.
  */
 export const SITUATIONS = Object.freeze([
+  'self_introduction', // tự giới thiệu, gặp người mới
+  'daily_life', // sinh hoạt hằng ngày
   'supermarket', // đi siêu thị
   'convenience_store', // cửa hàng tiện lợi
   'train', // đi tàu/ga tàu

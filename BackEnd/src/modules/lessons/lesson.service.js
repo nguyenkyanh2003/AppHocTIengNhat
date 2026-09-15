@@ -71,11 +71,11 @@ export const createLessonService = ({ lessonRepository: repository }) => ({
   /**
    * Danh sách tình huống có bài học, để client dựng bộ lọc.
    *
-   * Chỉ trả tình huống thật sự có nội dung: hiện 15 giá trị trong catalog
-   * nhưng chỉ vài giá trị có bài, hiện hết sẽ có chip bấm vào trả rỗng.
+   * Chỉ trả tình huống thật sự có nội dung, và khi có `level` thì chỉ trả chủ
+   * đề có bài ở cấp đó: hiện chủ đề không có bài thì chip bấm vào trả rỗng.
    */
-  async listSituations() {
-    const situations = await repository.distinctSituations();
+  async listSituations({ level } = {}) {
+    const situations = await repository.distinctSituations({ level });
     return [...situations].sort();
   },
 

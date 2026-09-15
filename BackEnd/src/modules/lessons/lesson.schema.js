@@ -44,6 +44,10 @@ export const listQuery = paginationQuery.extend({
   search: optional(z.string().trim().min(1)),
 });
 
+export const situationsQuery = z.object({
+  level: optional(level),
+});
+
 export const idParams = z.object({ id: objectId });
 
 export const capDoParams = z.object({ capDo: level });

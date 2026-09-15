@@ -139,11 +139,18 @@ class LessonProvider with ChangeNotifier {
     await loadLessons(search: query, refresh: true);
   }
 
-  // Lọc theo level
+  /// Lọc theo cấp độ, kéo theo dải chủ đề của cấp đó.
+  ///
+  /// Chủ đề đang chọn bị bỏ: một chủ đề có bài ở N5 chưa chắc có bài ở N3, giữ
+  /// lại thì danh sách rỗng mà người học không hiểu vì sao.
   Future<void> filterByLevel(String? level) async {
     _selectedLevel = level;
+    _selectedSituation = null;
     _currentPage = 1;
-    await loadLessons(level: level, refresh: true);
+    await Future.wait([
+      loadLessons(level: level, refresh: true),
+      loadSituations(),
+    ]);
   }
 
   // Lọc theo tình huống thực tế
@@ -159,7 +166,7 @@ class LessonProvider with ChangeNotifier {
   /// là bộ lọc trống, bài học vẫn xem được bình thường.
   Future<void> loadSituations() async {
     try {
-      _situations = await _lessonService.getSituations();
+      _situations = await _lessonService.getSituations(level: _selectedLevel);
       notifyListeners();
     } catch (_) {
       _situations = [];
@@ -172,7 +179,7 @@ class LessonProvider with ChangeNotifier {
     _selectedSituation = null;
     _searchQuery = null;
     _currentPage = 1;
-    await loadLessons(refresh: true);
+    await Future.wait([loadLessons(refresh: true), loadSituations()]);
   }
 
   // Chuyển trang
@@ -208,6 +215,8 @@ class LessonProvider with ChangeNotifier {
     _totalPages = 1;
     _totalItems = 0;
     _selectedLevel = null;
+    _selectedSituation = null;
+    _situations = [];
     _searchQuery = null;
     notifyListeners();
   }
@@ -232,6 +241,8 @@ class LessonProvider with ChangeNotifier {
     _totalPages = 1;
     _totalItems = 0;
     _selectedLevel = null;
+    _selectedSituation = null;
+    _situations = [];
     _searchQuery = null;
     notifyListeners();
   }

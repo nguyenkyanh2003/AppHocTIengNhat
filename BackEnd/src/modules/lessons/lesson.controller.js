@@ -23,7 +23,7 @@ export const createLessonController = (service) => ({
   },
 
   async getSituations(req, res) {
-    const situations = await service.listSituations();
+    const situations = await service.listSituations(req.valid.query);
     return list(res, situations);
   },
 
