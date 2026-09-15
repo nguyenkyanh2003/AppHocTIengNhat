@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class AdminAnalyticsScreen extends StatefulWidget {
   const AdminAnalyticsScreen({super.key});
@@ -58,21 +60,21 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
                   _chart(
                     'Người dùng hoạt động',
                     Icons.people,
-                    Colors.blue,
+                    AppColors.primary,
                     labels,
                     _numbers(analytics['daily_active_users']),
                   ),
                   _chart(
                     'Đăng ký mới',
                     Icons.person_add,
-                    Colors.green,
+                    AppColors.success,
                     labels,
                     _numbers(analytics['new_registrations']),
                   ),
                   _chart(
                     'Bài học hoàn thành',
                     Icons.school,
-                    Colors.orange,
+                    AppColors.warning,
                     labels,
                     _numbers(analytics['lessons_completed']),
                   ),
@@ -124,18 +126,18 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
       childAspectRatio: 1.55,
       children: [
         _metric('Tổng người dùng', values['total_users'], Icons.people,
-            Colors.blue),
+            AppColors.primary),
         _metric(
           'Hoạt động hôm nay',
           values['active_today'],
           Icons.trending_up,
-          Colors.green,
+          AppColors.success,
         ),
         _metric(
           'Bài học hoàn thành',
           values['lessons_completed'],
           Icons.school,
-          Colors.orange,
+          AppColors.warning,
         ),
         _metric(
           'Tổng phút học',
@@ -159,9 +161,9 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
               Text(
                 '${value ?? 0}',
                 style:
-                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: AppTypography.headline, fontWeight: FontWeight.bold),
               ),
-              Text(label, style: const TextStyle(fontSize: 12)),
+              Text(label, style: const TextStyle(fontSize: AppTypography.caption)),
             ],
           ),
         ),
@@ -220,7 +222,7 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text('${values[index].round()}',
-                                style: const TextStyle(fontSize: 10)),
+                                style: const TextStyle(fontSize: AppTypography.caption)),
                             const SizedBox(height: 4),
                             Container(
                               width: 24,
@@ -235,7 +237,7 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
                             const SizedBox(height: 4),
                             Text(
                               _shortDate(labels[index]),
-                              style: const TextStyle(fontSize: 9),
+                              style: const TextStyle(fontSize: AppTypography.caption),
                             ),
                           ],
                         ),
@@ -299,7 +301,7 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.cloud_off, size: 48, color: Colors.red),
+              const Icon(Icons.cloud_off, size: 48, color: AppColors.error),
               const SizedBox(height: 12),
               Text(message, textAlign: TextAlign.center),
               TextButton(

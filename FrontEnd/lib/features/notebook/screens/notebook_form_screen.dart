@@ -4,6 +4,8 @@ import '../providers/notebook_provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NotebookFormScreen extends StatefulWidget {
   final String? noteId;
@@ -66,7 +68,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
           onPressed: _isLoading ? null : _saveNote,
           child: const Text(
             'Lưu',
-            style: TextStyle(color: Colors.white, fontSize: 16),
+            style: TextStyle(color: Colors.white, fontSize: AppTypography.body),
           ),
         ),
       ],
@@ -84,7 +86,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
                       const Text(
                         'Loại ghi chú',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -139,7 +141,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
                       const Text(
                         'Thẻ',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -234,7 +236,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
         const SnackBar(
           content: Text('Thẻ này đã tồn tại'),
           duration: Duration(seconds: 1),
-          backgroundColor: Colors.orange,
+          backgroundColor: AppColors.warning,
         ),
       );
       return;
@@ -292,7 +294,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
           content: Text(widget.noteId == null
               ? 'Tạo ghi chú thành công'
               : 'Cập nhật ghi chú thành công'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
       Navigator.pop(context, true); // Trả về true để refresh list
@@ -300,7 +302,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }

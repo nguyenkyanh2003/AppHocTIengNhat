@@ -11,7 +11,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   /// Ngưỡng chỉ được phép giảm. Khi dọn xong thêm màn nào thì hạ số này xuống
   /// đúng con số mới, đừng để nguyên.
-  const maxHardcodedFontSize = 421;
+  const maxHardcodedFontSize = 43;
+
+  /// Module đang đóng băng theo redesign-roadmap.md — chưa dọn, không chặn.
+  const frozenDirs = ['lib/features/study_groups', 'lib/features/chat'];
 
   /// Sáu màn của luồng demo đã dọn sạch — không được để lọt `fontSize` mới vào.
   const cleanScreens = [
@@ -70,6 +73,24 @@ void main() {
             'Material trực tiếp.',
       );
     }
+  });
+
+  test('ngoài module đóng băng, không file nào dùng bảng màu Material trực tiếp', () {
+    final hardcodedColor = RegExp(r'Colors\.(grey|blue|red|green|orange)\b');
+    final offenders = <String>[];
+
+    for (final file in dartFilesIn('lib')) {
+      final path = file.path.replaceAll(r'\', '/');
+      if (frozenDirs.any(path.startsWith)) continue;
+      if (hardcodedColor.hasMatch(file.readAsStringSync())) offenders.add(path);
+    }
+
+    expect(
+      offenders,
+      isEmpty,
+      reason: 'Lấy màu từ AppColors (primary, textSecondary, error, success...) '
+          'thay vì Colors.grey/blue/red/green/orange.',
+    );
   });
 
   test('không còn dấu vết màu chủ đạo cũ #2196F3', () {

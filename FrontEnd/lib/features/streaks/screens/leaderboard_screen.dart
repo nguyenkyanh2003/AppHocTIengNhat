@@ -4,6 +4,8 @@ import '../providers/streak_provider.dart';
 import '../models/leaderboard.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({Key? key}) : super(key: key);
@@ -59,7 +61,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               children: [
                 Text(
                   _periods[_selectedPeriod]!,
-                  style: const TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: AppTypography.bodySmall),
                 ),
                 const Icon(Icons.arrow_drop_down),
               ],
@@ -134,7 +136,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             'Hạng của bạn',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: AppTypography.body,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -148,7 +150,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               '#${provider.userRank}',
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
-                fontSize: 20,
+                fontSize: AppTypography.title,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -187,7 +189,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 decoration: BoxDecoration(
                   color: isTopThree
                       ? Colors.white.withValues(alpha: 0.3)
-                      : Colors.grey[200],
+                      : AppColors.surfaceVariant,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
@@ -208,7 +210,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 radius: 25,
                 backgroundColor: isTopThree
                     ? Colors.white.withValues(alpha: 0.3)
-                    : Colors.grey[300],
+                    : AppColors.border,
                 child: entry.avatar != null
                     ? ClipOval(
                         child: Image.network(
@@ -220,7 +222,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                             return Text(
                               entry.avatarInitial,
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: AppTypography.title,
                                 fontWeight: FontWeight.bold,
                                 color:
                                     isTopThree ? Colors.white : Colors.black54,
@@ -232,7 +234,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     : Text(
                         entry.avatarInitial,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: AppTypography.title,
                           fontWeight: FontWeight.bold,
                           color: isTopThree ? Colors.white : Colors.black54,
                         ),
@@ -248,7 +250,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     Text(
                       entry.displayName,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: AppTypography.body,
                         fontWeight: FontWeight.bold,
                         color: isTopThree ? Colors.white : Colors.black87,
                       ),
@@ -280,7 +282,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                   Text(
                     '${entry.totalXP}',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: AppTypography.title,
                       fontWeight: FontWeight.bold,
                       color: isTopThree
                           ? Colors.white
@@ -290,8 +292,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                   Text(
                     'XP',
                     style: TextStyle(
-                      fontSize: 12,
-                      color: isTopThree ? Colors.white70 : Colors.grey[600],
+                      fontSize: AppTypography.caption,
+                      color: isTopThree ? Colors.white70 : AppColors.textSecondary,
                     ),
                   ),
                 ],
@@ -308,13 +310,13 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color:
-            isTopThree ? Colors.white.withValues(alpha: 0.2) : Colors.grey[200],
+            isTopThree ? Colors.white.withValues(alpha: 0.2) : AppColors.surfaceVariant,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 11,
+          fontSize: AppTypography.caption,
           color: isTopThree ? Colors.white : Colors.black87,
           fontWeight: FontWeight.w500,
         ),
@@ -344,7 +346,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       case 3:
         return [const Color(0xFFCD7F32), const Color(0xFF8B4513)];
       default:
-        return [Colors.grey, Colors.grey];
+        return [AppColors.textSecondary, AppColors.textSecondary];
     }
   }
 }

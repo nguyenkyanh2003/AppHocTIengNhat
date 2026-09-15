@@ -4,6 +4,8 @@ import '../providers/flashcard_provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class CreateFlashcardDeckScreen extends StatefulWidget {
   const CreateFlashcardDeckScreen({Key? key}) : super(key: key);
@@ -71,7 +73,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Tạo bộ thẻ thành công!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
       Navigator.pop(context, result);
@@ -79,7 +81,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }
@@ -192,7 +194,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
                   },
                   secondary: Icon(
                     _isPublic ? Icons.public : Icons.lock,
-                    color: _isPublic ? Colors.green : Colors.grey,
+                    color: _isPublic ? AppColors.success : AppColors.textSecondary,
                   ),
                 ),
               ),
@@ -202,20 +204,20 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.blue[50],
+                  color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.blue[200]!),
+                  border: Border.all(color: AppColors.primaryLight),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
-                    Icon(Icons.info_outline, color: Colors.blue[700]),
-                    const SizedBox(width: 12),
+                    Icon(Icons.info_outline, color: AppColors.primaryDark),
+                    SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         'Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.',
                         style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.blue[900],
+                          fontSize: AppTypography.caption,
+                          color: AppColors.primaryDark,
                         ),
                       ),
                     ),
@@ -249,7 +251,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
                       : const Text(
                           'Tạo Bộ Thẻ',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: AppTypography.body,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

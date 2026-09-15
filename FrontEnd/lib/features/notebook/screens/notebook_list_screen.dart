@@ -6,6 +6,8 @@ import '../models/notebook.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NotebookListScreen extends StatefulWidget {
   const NotebookListScreen({Key? key}) : super(key: key);
@@ -59,7 +61,7 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.error_outline,
-                        size: 64, color: Colors.red),
+                        size: 64, color: AppColors.error),
                     const SizedBox(height: 16),
                     Text(provider.error!),
                     const SizedBox(height: 16),
@@ -73,20 +75,20 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
             }
 
             if (provider.notes.isEmpty) {
-              return Center(
+              return const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.note_add, size: 80, color: Colors.grey[400]),
-                    const SizedBox(height: 16),
+                    Icon(Icons.note_add, size: 80, color: AppColors.textDisabled),
+                    SizedBox(height: 16),
                     Text(
                       'Chưa có ghi chú nào',
-                      style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: AppTypography.subtitle, color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Text(
                       'Nhấn + để tạo ghi chú mới',
-                      style: TextStyle(color: Colors.grey[500]),
+                      style: TextStyle(color: AppColors.textDisabled),
                     ),
                   ],
                 ),
@@ -174,7 +176,7 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
                     child: Text(
                       _getTypeLabel(note.type),
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                         color: _getTypeColor(note.type),
                         fontWeight: FontWeight.w500,
                       ),
@@ -183,7 +185,7 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
                   const Spacer(),
                   Text(
                     _formatDate(note.updatedAt),
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                    style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
                   ),
                 ],
               ),
@@ -191,7 +193,7 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
               Text(
                 note.title,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                 ),
                 maxLines: 2,
@@ -200,7 +202,7 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
               const SizedBox(height: 8),
               Text(
                 note.content,
-                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                style: const TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textSecondary),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -212,7 +214,7 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
                     return Chip(
                       label: Text(tag.toString()),
                       visualDensity: VisualDensity.compact,
-                      labelStyle: const TextStyle(fontSize: 11),
+                      labelStyle: const TextStyle(fontSize: AppTypography.caption),
                     );
                   }).toList(),
                 ),

@@ -10,6 +10,8 @@ import '../services/lesson_progress_service.dart';
 import '../widgets/dialogue_view.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class LessonStudyScreen extends StatefulWidget {
   final String lessonId;
@@ -72,7 +74,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Chúc mừng! Bạn đã hoàn thành bài học'),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.success,
             duration: Duration(seconds: 2),
           ),
         );
@@ -85,7 +87,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Lỗi khi lưu tiến độ: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -172,14 +174,14 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                 'Bước ${_currentStep + 1}/$totalSteps',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                 ),
               ),
               Text(
                 '${((_currentStep + 1) / totalSteps * 100).toInt()}%',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 14,
+                style: const TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: AppTypography.bodySmall,
                 ),
               ),
             ],
@@ -187,8 +189,8 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
           const SizedBox(height: 8),
           LinearProgressIndicator(
             value: (_currentStep + 1) / totalSteps,
-            backgroundColor: Colors.grey[200],
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+            backgroundColor: AppColors.surfaceVariant,
+            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
           ),
         ],
       ),
@@ -213,7 +215,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
             child: Text(
               lesson.title,
               style: const TextStyle(
-                fontSize: 28,
+                fontSize: AppTypography.headline,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
@@ -224,9 +226,9 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
             Center(
               child: Text(
                 lesson.description!,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[700],
+                style: const TextStyle(
+                  fontSize: AppTypography.body,
+                  color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -242,7 +244,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
             const Text(
               'Giới thiệu',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppTypography.title,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -265,7 +267,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
 
   Widget _buildLearningObjectives(Lesson lesson) {
     return Card(
-      color: Colors.blue[50],
+      color: AppColors.primaryLight,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -273,14 +275,14 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
           children: [
             const Row(
               children: [
-                Icon(Icons.flag, color: Colors.blue),
+                Icon(Icons.flag, color: AppColors.primary),
                 SizedBox(width: 8),
                 Text(
                   'Mục tiêu bài học',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: AppTypography.subtitle,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    color: AppColors.primary,
                   ),
                 ),
               ],
@@ -307,7 +309,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          const Icon(Icons.check_circle_outline, color: Colors.green, size: 20),
+          const Icon(Icons.check_circle_outline, color: AppColors.success, size: 20),
           const SizedBox(width: 8),
           Expanded(child: Text(text)),
         ],
@@ -331,7 +333,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                 Row(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.primary,
                       child: Text(
                         '${index + 1}',
                         style: const TextStyle(color: Colors.white),
@@ -345,16 +347,16 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                           Text(
                             vocab['word'] ?? vocab.toString(),
                             style: const TextStyle(
-                              fontSize: 24,
+                              fontSize: AppTypography.headline,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           if (vocab['reading'] != null)
                             Text(
                               vocab['reading'],
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
+                              style: const TextStyle(
+                                fontSize: AppTypography.body,
+                                color: AppColors.textSecondary,
                               ),
                             ),
                         ],
@@ -371,14 +373,14 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                 const Divider(height: 24),
                 Text(
                   vocab['meaning'] ?? 'Không có nghĩa',
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: AppTypography.body),
                 ),
                 if (vocab['example'] != null) ...[
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.grey[100],
+                      color: AppColors.surfaceVariant,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -388,7 +390,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                           'Ví dụ:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: AppTypography.bodySmall,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -425,17 +427,14 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
               children: [
                 Text(
                   kanji['character'] ?? kanji.toString(),
-                  style: const TextStyle(
-                    fontSize: 64,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTypography.japaneseDisplay(size: 64),
                 ),
                 const SizedBox(height: 12),
                 if (kanji['meaning'] != null)
                   Text(
                     kanji['meaning'],
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -444,9 +443,9 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                   const SizedBox(height: 8),
                   Text(
                     '${kanji['kunyomi'] ?? ''} / ${kanji['onyomi'] ?? ''}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.textSecondary,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -475,7 +474,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                 Row(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.green,
+                      backgroundColor: AppColors.success,
                       child: Text(
                         '${index + 1}',
                         style: const TextStyle(color: Colors.white),
@@ -486,7 +485,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                       child: Text(
                         grammar['pattern'] ?? grammar.toString(),
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: AppTypography.title,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -496,14 +495,14 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                 const Divider(height: 24),
                 Text(
                   grammar['meaning'] ?? 'Không có nghĩa',
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: AppTypography.body),
                 ),
                 if (grammar['usage'] != null) ...[
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.blue[50],
+                      color: AppColors.primaryLight,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(grammar['usage']),
@@ -514,7 +513,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.grey[100],
+                      color: AppColors.surfaceVariant,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -524,7 +523,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                           'Ví dụ:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: AppTypography.bodySmall,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -555,16 +554,16 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
           const Text(
             'Chúc mừng!',
             style: TextStyle(
-              fontSize: 28,
+              fontSize: AppTypography.headline,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Bạn đã hoàn thành bài học',
             style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
+              fontSize: AppTypography.body,
+              color: AppColors.textSecondary,
             ),
           ),
           const SizedBox(height: 32),
@@ -576,7 +575,7 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                   const Text(
                     'Tổng kết',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: AppTypography.title,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -585,19 +584,19 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
                     Icons.book,
                     'Từ vựng',
                     '${detail.vocabularies.length}',
-                    Colors.blue,
+                    AppColors.primary,
                   ),
                   _buildSummaryItem(
                     Icons.style,
                     'Kanji',
                     '${detail.kanjis.length}',
-                    Colors.orange,
+                    AppColors.warning,
                   ),
                   _buildSummaryItem(
                     Icons.text_fields,
                     'Ngữ pháp',
                     '${detail.grammars.length}',
-                    Colors.green,
+                    AppColors.success,
                   ),
                 ],
               ),
@@ -660,13 +659,13 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
           Expanded(
             child: Text(
               label,
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: AppTypography.body),
             ),
           ),
           Text(
             value,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: AppTypography.title,
               fontWeight: FontWeight.bold,
             ),
           ),

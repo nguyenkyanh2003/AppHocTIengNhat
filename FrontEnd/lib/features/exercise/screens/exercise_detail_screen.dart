@@ -6,6 +6,8 @@ import 'dart:async';
 import '../providers/exercise_provider.dart';
 import '../models/exercise.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class ExerciseDetailScreen extends StatefulWidget {
   final String exerciseId;
@@ -141,7 +143,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Có lỗi xảy ra khi nộp bài'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }
@@ -175,13 +177,13 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
 
   Widget _buildStartScreen(Exercise exercise) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.blue.shade400,
-            Colors.blue.shade700,
+            AppColors.primary,
+            AppColors.primaryDark,
           ],
         ),
       ),
@@ -220,10 +222,10 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [
-                                Colors.orange.shade400,
-                                Colors.orange.shade600,
+                                AppColors.warning,
+                                AppColors.warning,
                               ],
                             ),
                             borderRadius: BorderRadius.circular(12),
@@ -243,13 +245,13 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.blue.shade100,
+                            color: AppColors.primaryLight,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
                             exercise.type,
-                            style: TextStyle(
-                              color: Colors.blue.shade700,
+                            style: const TextStyle(
+                              color: AppColors.primaryDark,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -260,7 +262,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                     Text(
                       exercise.title,
                       style: const TextStyle(
-                        fontSize: 24,
+                        fontSize: AppTypography.headline,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -270,9 +272,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                         padding: const EdgeInsets.only(top: 12),
                         child: Text(
                           exercise.description!,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey.shade600,
+                          style: const TextStyle(
+                            fontSize: AppTypography.body,
+                            color: AppColors.textSecondary,
                           ),
                         ),
                       ),
@@ -281,7 +283,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       Icons.quiz,
                       'Số câu hỏi',
                       '${exercise.questions.length} câu',
-                      Colors.blue,
+                      AppColors.primary,
                     ),
                     const SizedBox(height: 12),
                     if (exercise.timeLimit > 0)
@@ -289,14 +291,14 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                         Icons.timer,
                         'Thời gian',
                         '${exercise.timeLimit} phút',
-                        Colors.orange,
+                        AppColors.warning,
                       ),
                     const SizedBox(height: 12),
                     _buildInfoRow(
                       Icons.check_circle,
                       'Điểm đạt',
                       '${exercise.passScore}%',
-                      Colors.green,
+                      AppColors.success,
                     ),
                     const SizedBox(height: 24),
                     SizedBox(
@@ -305,7 +307,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       child: ElevatedButton(
                         onPressed: _startExercise,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue.shade600,
+                          backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -314,7 +316,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                         child: const Text(
                           'Bắt đầu làm bài',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -347,16 +349,16 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey.shade600,
+            style: const TextStyle(
+              fontSize: AppTypography.bodySmall,
+              color: AppColors.textSecondary,
             ),
           ),
         ),
         Text(
           value,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: AppTypography.body,
             fontWeight: FontWeight.bold,
             color: Colors.black87,
           ),
@@ -372,12 +374,12 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.blue.shade50,
+            AppColors.primaryLight,
             Colors.white,
           ],
         ),
@@ -420,7 +422,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
+            color: AppColors.textSecondary.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -434,17 +436,17 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
               Text(
                 '$answered/$total câu',
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
                 ),
               ),
               Text(
                 '${(progress * 100).toInt()}%',
-                style: TextStyle(
-                  fontSize: 14,
+                style: const TextStyle(
+                  fontSize: AppTypography.bodySmall,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue.shade700,
+                  color: AppColors.primaryDark,
                 ),
               ),
             ],
@@ -454,8 +456,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: progress,
-              backgroundColor: Colors.grey.shade200,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue.shade600),
+              backgroundColor: AppColors.surfaceVariant,
+              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
               minHeight: 8,
             ),
           ),
@@ -477,7 +479,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withValues(alpha: 0.1),
+                  color: AppColors.textSecondary.withValues(alpha: 0.1),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -492,10 +494,10 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       width: 36,
                       height: 36,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
-                            Colors.blue.shade400,
-                            Colors.blue.shade600,
+                            AppColors.primary,
+                            AppColors.primary,
                           ],
                         ),
                         borderRadius: BorderRadius.circular(10),
@@ -506,7 +508,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: AppTypography.body,
                           ),
                         ),
                       ),
@@ -516,7 +518,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       child: Text(
                         'Câu hỏi',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           fontWeight: FontWeight.bold,
                           color: Colors.black54,
                         ),
@@ -528,7 +530,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                 Text(
                   question.content,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: AppTypography.subtitle,
                     fontWeight: FontWeight.w500,
                     color: Colors.black87,
                     height: 1.5,
@@ -553,18 +555,18 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: isSelected ? Colors.blue.shade50 : Colors.white,
+                  color: isSelected ? AppColors.primaryLight : Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: isSelected
-                        ? Colors.blue.shade600
-                        : Colors.grey.shade300,
+                        ? AppColors.primary
+                        : AppColors.border,
                     width: isSelected ? 2 : 1,
                   ),
                   boxShadow: isSelected
                       ? [
                           BoxShadow(
-                            color: Colors.blue.withValues(alpha: 0.2),
+                            color: AppColors.primary.withValues(alpha: 0.2),
                             blurRadius: 8,
                             offset: const Offset(0, 4),
                           ),
@@ -578,11 +580,11 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       height: 28,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: isSelected ? Colors.blue.shade600 : Colors.white,
+                        color: isSelected ? AppColors.primary : Colors.white,
                         border: Border.all(
                           color: isSelected
-                              ? Colors.blue.shade600
-                              : Colors.grey.shade400,
+                              ? AppColors.primary
+                              : AppColors.textDisabled,
                           width: 2,
                         ),
                       ),
@@ -592,9 +594,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                           style: TextStyle(
                             color: isSelected
                                 ? Colors.white
-                                : Colors.grey.shade700,
+                                : AppColors.textSecondary,
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: AppTypography.bodySmall,
                           ),
                         ),
                       ),
@@ -604,9 +606,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       child: Text(
                         answer.content,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           color: isSelected
-                              ? Colors.blue.shade900
+                              ? AppColors.primaryDark
                               : Colors.black87,
                           fontWeight:
                               isSelected ? FontWeight.w600 : FontWeight.normal,
@@ -614,9 +616,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                       ),
                     ),
                     if (isSelected)
-                      Icon(
+                      const Icon(
                         Icons.check_circle,
-                        color: Colors.blue.shade600,
+                        color: AppColors.primary,
                         size: 24,
                       ),
                   ],
@@ -640,7 +642,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.2),
+            color: AppColors.textSecondary.withValues(alpha: 0.2),
             blurRadius: 8,
             offset: const Offset(0, -2),
           ),
@@ -653,21 +655,21 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.blue.shade50,
+              color: AppColors.primaryLight,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.blue.shade200),
+              border: Border.all(color: AppColors.primaryLight),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.timer, color: Colors.blue.shade700, size: 20),
+                const Icon(Icons.timer, color: AppColors.primaryDark, size: 20),
                 const SizedBox(width: 8),
                 Text(
                   timeString,
-                  style: TextStyle(
-                    fontSize: 16,
+                  style: const TextStyle(
+                    fontSize: AppTypography.body,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue.shade700,
+                    color: AppColors.primaryDark,
                   ),
                 ),
               ],
@@ -690,8 +692,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                     icon: const Icon(Icons.arrow_back),
                     label: const Text('Câu trước'),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.blue.shade700,
-                      side: BorderSide(color: Colors.blue.shade300),
+                      foregroundColor: AppColors.primaryDark,
+                      side: const BorderSide(color: AppColors.primary),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -730,8 +732,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                   label: Text(isLastQuestion ? 'Nộp bài' : 'Câu tiếp'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isLastQuestion
-                        ? Colors.green.shade600
-                        : Colors.blue.shade600,
+                        ? AppColors.success
+                        : AppColors.primary,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(

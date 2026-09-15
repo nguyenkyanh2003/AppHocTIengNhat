@@ -4,6 +4,8 @@ import '../providers/progress_provider.dart';
 import '../../streaks/providers/streak_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class UserStatisticsScreen extends StatefulWidget {
   const UserStatisticsScreen({Key? key}) : super(key: key);
@@ -78,7 +80,7 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                         const Text(
                           'Thống Kê Chính',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -94,25 +96,25 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                               'Tổng Thời Gian Học',
                               '240h',
                               Icons.timer,
-                              Colors.blue,
+                              AppColors.primary,
                             ),
                             _buildStatCard(
                               'Bài Học Hoàn Thành',
                               '45',
                               Icons.menu_book,
-                              Colors.green,
+                              AppColors.success,
                             ),
                             _buildStatCard(
                               'Từ Vựng Học',
                               '1,250',
                               Icons.spellcheck,
-                              Colors.orange,
+                              AppColors.warning,
                             ),
                             _buildStatCard(
                               'Kanji Học',
                               '340',
                               Icons.draw_outlined,
-                              Colors.red,
+                              AppColors.error,
                             ),
                           ],
                         ),
@@ -131,7 +133,7 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                         const Text(
                           'Chuỗi Học',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -150,18 +152,18 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                                         const Icon(
                                           Icons.local_fire_department,
                                           size: 32,
-                                          color: Colors.red,
+                                          color: AppColors.error,
                                         ),
                                         const SizedBox(height: 8),
                                         const Text(
                                           'Streak Hiện Tại',
                                           style: TextStyle(
-                                              fontSize: 12, color: Colors.grey),
+                                              fontSize: AppTypography.caption, color: AppColors.textSecondary),
                                         ),
                                         Text(
                                           '${streakProvider.currentStreak?.currentStreak ?? 0}',
                                           style: const TextStyle(
-                                            fontSize: 24,
+                                            fontSize: AppTypography.headline,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -173,18 +175,18 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                                         const Icon(
                                           Icons.trending_up,
                                           size: 32,
-                                          color: Colors.blue,
+                                          color: AppColors.primary,
                                         ),
                                         const SizedBox(height: 8),
                                         const Text(
                                           'Streak Dài Nhất',
                                           style: TextStyle(
-                                              fontSize: 12, color: Colors.grey),
+                                              fontSize: AppTypography.caption, color: AppColors.textSecondary),
                                         ),
                                         Text(
                                           '${streakProvider.currentStreak?.longestStreak ?? 0}',
                                           style: const TextStyle(
-                                            fontSize: 24,
+                                            fontSize: AppTypography.headline,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -202,12 +204,12 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                                         const Text(
                                           'Tổng XP',
                                           style: TextStyle(
-                                              fontSize: 12, color: Colors.grey),
+                                              fontSize: AppTypography.caption, color: AppColors.textSecondary),
                                         ),
                                         Text(
                                           '${streakProvider.currentStreak?.totalXP ?? 0}',
                                           style: const TextStyle(
-                                            fontSize: 24,
+                                            fontSize: AppTypography.headline,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -235,7 +237,7 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                         const Text(
                           'Phân Tích Chi Tiết',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -248,19 +250,19 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
                                 _buildProgressItem(
                                   'N5 Hoàn Thành',
                                   75,
-                                  Colors.green,
+                                  AppColors.success,
                                 ),
                                 const SizedBox(height: 12),
                                 _buildProgressItem(
                                   'N4 Hoàn Thành',
                                   45,
-                                  Colors.blue,
+                                  AppColors.primary,
                                 ),
                                 const SizedBox(height: 12),
                                 _buildProgressItem(
                                   'N3 Hoàn Thành',
                                   20,
-                                  Colors.orange,
+                                  AppColors.warning,
                                 ),
                                 const SizedBox(height: 12),
                                 _buildProgressItem(
@@ -329,7 +331,7 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
         setState(() => _selectedPeriod = period);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
+        backgroundColor: isSelected ? AppColors.primary : AppColors.border,
         foregroundColor: isSelected ? Colors.white : Colors.black,
       ),
       child: Text(label),
@@ -355,7 +357,7 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
             Text(
               value,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppTypography.title,
                 fontWeight: FontWeight.bold,
                 color: color,
               ),
@@ -365,8 +367,8 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
               label,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
+                fontSize: AppTypography.caption,
+                color: AppColors.textSecondary,
               ),
             ),
           ],
@@ -401,7 +403,7 @@ class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
           child: LinearProgressIndicator(
             value: percentage / 100,
             minHeight: 8,
-            backgroundColor: Colors.grey[200],
+            backgroundColor: AppColors.surfaceVariant,
             valueColor: AlwaysStoppedAnimation<Color>(color),
           ),
         ),

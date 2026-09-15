@@ -7,6 +7,7 @@ import '../../../app/theme/app_theme.dart';
 import '../../../app/state/provider_reset_service.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đăng nhập thành công!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
           duration: Duration(seconds: 2),
         ),
       );
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(authProvider.error ?? 'Đăng nhập thất bại'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
           duration: const Duration(seconds: 3),
         ),
       );
@@ -115,10 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               margin: const EdgeInsets.only(bottom: 20),
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                color: Colors.red[50],
+                                color: AppColors.error,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: Colors.red.withValues(alpha: 0.3),
+                                  color: AppColors.error.withValues(alpha: 0.3),
                                   width: 1,
                                 ),
                               ),
@@ -126,13 +127,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 children: [
                                   Container(
                                     padding: const EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red[100],
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.error,
                                       shape: BoxShape.circle,
                                     ),
                                     child: const Icon(
                                       Icons.info_outline,
-                                      color: Colors.red,
+                                      color: AppColors.error,
                                       size: 20,
                                     ),
                                   ),
@@ -140,10 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Expanded(
                                     child: Text(
                                       authProvider.error!,
-                                      style: TextStyle(
-                                        color: Colors.red[700],
+                                      style: const TextStyle(
+                                        color: AppColors.error,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 14,
+                                        fontSize: AppTypography.bodySmall,
                                       ),
                                     ),
                                   ),
@@ -381,7 +382,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 : const Text(
                     'Đăng Nhập',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTypography.subtitle,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       letterSpacing: 0.5,
@@ -436,7 +437,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: const Text(
           'Tạo tài khoản mới',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: AppTypography.subtitle,
             fontWeight: FontWeight.bold,
             color: AppTheme.primaryColor,
             letterSpacing: 0.5,

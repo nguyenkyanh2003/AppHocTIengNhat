@@ -8,6 +8,7 @@ import '../../../core/network/api_client.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class ExportScreen extends StatefulWidget {
   const ExportScreen({super.key});
@@ -68,16 +69,16 @@ class _ExportScreenState extends State<ExportScreen> {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.blue.withValues(alpha: 0.08),
+                color: AppColors.primary.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Column(
                 children: [
-                  Icon(Icons.download, size: 52, color: Colors.blue),
+                  Icon(Icons.download, size: 52, color: AppColors.primary),
                   SizedBox(height: 12),
                   Text(
                     'Sao lưu dữ liệu học tập',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: AppTypography.title, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 6),
                   Text(
@@ -90,7 +91,7 @@ class _ExportScreenState extends State<ExportScreen> {
             const SizedBox(height: 24),
             const Text(
               'Chọn loại dữ liệu',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             ..._types.entries.map((entry) {
@@ -111,7 +112,7 @@ class _ExportScreenState extends State<ExportScreen> {
             const SizedBox(height: 20),
             const Text(
               'Định dạng tệp',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             SegmentedButton<String>(
@@ -154,7 +155,7 @@ class _ExportScreenState extends State<ExportScreen> {
             const Text(
               'CSV dùng hai cột “section” và “data”; dữ liệu lồng nhau được giữ dưới dạng JSON để không bị mất trường.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: AppColors.textSecondary),
             ),
           ],
         ),
@@ -282,7 +283,7 @@ class _ExportScreenState extends State<ExportScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: success ? Colors.green : Colors.red,
+        backgroundColor: success ? AppColors.success : AppColors.error,
       ),
     );
   }

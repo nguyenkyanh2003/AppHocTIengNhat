@@ -5,6 +5,8 @@ import '../providers/notebook_provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NotebookDetailScreen extends StatefulWidget {
   final String noteId;
@@ -52,7 +54,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.error_outline,
-                        size: 64, color: Colors.red),
+                        size: 64, color: AppColors.error),
                     const SizedBox(height: 16),
                     Text(provider.error!),
                     const SizedBox(height: 16),
@@ -97,7 +99,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                   Text(
                     note.title,
                     style: const TextStyle(
-                      fontSize: 24,
+                      fontSize: AppTypography.headline,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -106,12 +108,12 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                   // Date
                   Row(
                     children: [
-                      Icon(Icons.access_time,
-                          size: 16, color: Colors.grey[600]),
+                      const Icon(Icons.access_time,
+                          size: 16, color: AppColors.textSecondary),
                       const SizedBox(width: 4),
                       Text(
                         'Cập nhật: ${_formatDateTime(note.updatedAt)}',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                        style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
                       ),
                     ],
                   ),
@@ -122,12 +124,12 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.grey[100],
+                      color: AppColors.surfaceVariant,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       note.content,
-                      style: const TextStyle(fontSize: 16, height: 1.5),
+                      style: const TextStyle(fontSize: AppTypography.body, height: 1.5),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -137,7 +139,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                     const Text(
                       'Thẻ',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: AppTypography.subtitle,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -186,7 +188,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
               Navigator.pop(context);
               await _deleteNote();
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Xóa'),
           ),
         ],
@@ -204,7 +206,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đã xóa ghi chú'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
       Navigator.pop(context);
@@ -212,7 +214,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }

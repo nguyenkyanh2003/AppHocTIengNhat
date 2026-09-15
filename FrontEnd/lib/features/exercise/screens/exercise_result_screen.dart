@@ -6,6 +6,7 @@ import '../../../app/theme/app_tokens.dart';
 import '../models/exercise.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
 
 /// Kết quả một lần làm bài.
 ///
@@ -81,7 +82,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    isPassed ? Colors.green.shade50 : Colors.red.shade50,
+                    isPassed ? AppColors.success : AppColors.error,
                     Colors.white,
                   ],
                 ),
@@ -134,7 +135,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
           const Text(
             'Kết quả làm bài',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: AppTypography.title,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
@@ -156,14 +157,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: isPassed
-              ? [Colors.green.shade400, Colors.green.shade600]
-              : [Colors.red.shade400, Colors.red.shade600],
+              ? [AppColors.success, AppColors.success]
+              : [AppColors.error, AppColors.error],
         ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color:
-                (isPassed ? Colors.green : Colors.red).withValues(alpha: 0.3),
+                (isPassed ? AppColors.success : AppColors.error).withValues(alpha: 0.3),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -181,7 +182,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
             isPassed ? 'Chúc mừng! Bạn đã đạt' : 'Chưa đạt',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 24,
+              fontSize: AppTypography.headline,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -238,7 +239,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
           value,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 18,
+            fontSize: AppTypography.subtitle,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -246,7 +247,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
           label,
           style: const TextStyle(
             color: Colors.white70,
-            fontSize: 12,
+            fontSize: AppTypography.caption,
           ),
         ),
       ],
@@ -267,7 +268,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
+            color: AppColors.textSecondary.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -278,12 +279,12 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
         children: [
           const Row(
             children: [
-              Icon(Icons.article, color: Colors.blue),
+              Icon(Icons.article, color: AppColors.primary),
               SizedBox(width: 8),
               Text(
                 'Chi tiết đáp án',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: AppTypography.subtitle,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -322,12 +323,12 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: userAnswer.isCorrect ? Colors.green.shade50 : Colors.red.shade50,
+        color: userAnswer.isCorrect ? AppColors.success : AppColors.error,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: userAnswer.isCorrect
-              ? Colors.green.shade200
-              : Colors.red.shade200,
+              ? AppColors.success
+              : AppColors.error,
         ),
       ),
       child: Column(
@@ -339,7 +340,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                 width: 32,
                 height: 32,
                 decoration: BoxDecoration(
-                  color: userAnswer.isCorrect ? Colors.green : Colors.red,
+                  color: userAnswer.isCorrect ? AppColors.success : AppColors.error,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -357,14 +358,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                 child: Text(
                   question.content,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: AppTypography.body,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
               Icon(
                 userAnswer.isCorrect ? Icons.check_circle : Icons.cancel,
-                color: userAnswer.isCorrect ? Colors.green : Colors.red,
+                color: userAnswer.isCorrect ? AppColors.success : AppColors.error,
                 size: 28,
               ),
             ],
@@ -380,17 +381,17 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: isCorrectAnswer
-                    ? Colors.green.shade100
+                    ? AppColors.success
                     : (isUserAnswer && !isCorrectAnswer)
-                        ? Colors.red.shade100
+                        ? AppColors.error
                         : Colors.white,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: isCorrectAnswer
-                      ? Colors.green
+                      ? AppColors.success
                       : (isUserAnswer && !isCorrectAnswer)
-                          ? Colors.red
-                          : Colors.grey.shade300,
+                          ? AppColors.error
+                          : AppColors.border,
                   width: isCorrectAnswer || isUserAnswer ? 2 : 1,
                 ),
               ),
@@ -402,7 +403,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                       width: 24,
                       height: 24,
                       decoration: const BoxDecoration(
-                        color: Colors.green,
+                        color: AppColors.success,
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(Icons.check,
@@ -413,7 +414,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                       width: 24,
                       height: 24,
                       decoration: const BoxDecoration(
-                        color: Colors.red,
+                        color: AppColors.error,
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(Icons.close,
@@ -426,14 +427,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                     child: Text(
                       answer.content,
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: AppTypography.bodySmall,
                         fontWeight: isCorrectAnswer || isUserAnswer
                             ? FontWeight.bold
                             : FontWeight.normal,
                         color: isCorrectAnswer
-                            ? Colors.green.shade900
+                            ? AppColors.success
                             : (isUserAnswer && !isCorrectAnswer)
-                                ? Colors.red.shade900
+                                ? AppColors.error
                                 : Colors.black87,
                       ),
                     ),
@@ -444,14 +445,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: AppColors.success,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Text(
                         'Đúng',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 11,
+                          fontSize: AppTypography.caption,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -461,14 +462,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: AppColors.error,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Text(
                         'Sai',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 11,
+                          fontSize: AppTypography.caption,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -482,20 +483,20 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
               margin: const EdgeInsets.only(top: 8),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.blue.shade50,
+                color: AppColors.primaryLight,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.lightbulb, color: Colors.blue.shade700, size: 20),
+                  const Icon(Icons.lightbulb, color: AppColors.primaryDark, size: 20),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       question.explanation!,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.blue.shade900,
+                      style: const TextStyle(
+                        fontSize: AppTypography.caption,
+                        color: AppColors.primaryDark,
                       ),
                     ),
                   ),
@@ -520,7 +521,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
             icon: const Icon(Icons.home),
             label: const Text('Về trang chủ'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -542,8 +543,8 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
             icon: const Icon(Icons.list),
             label: const Text('Danh sách bài tập'),
             style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.blue,
-              side: const BorderSide(color: Colors.blue, width: 2),
+              foregroundColor: AppColors.primary,
+              side: const BorderSide(color: AppColors.primary, width: 2),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

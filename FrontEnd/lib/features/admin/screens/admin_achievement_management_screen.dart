@@ -5,6 +5,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
+import '../../../app/theme/app_typography.dart';
 
 class AdminAchievementManagementScreen extends StatefulWidget {
   const AdminAchievementManagementScreen({Key? key}) : super(key: key);
@@ -52,16 +53,16 @@ class _AdminAchievementManagementScreenState
                 // Stats Bar
                 Container(
                   padding: const EdgeInsets.all(16),
-                  color: Colors.grey[100],
+                  color: AppColors.surfaceVariant,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildStatCard(
-                          '${allAchievements.length}', 'Tổng', Colors.blue),
+                          '${allAchievements.length}', 'Tổng', AppColors.primary),
                       _buildStatCard(
                         _getTotalUnlocked(allAchievements).toString(),
                         'Đã mở khóa',
-                        Colors.green,
+                        AppColors.success,
                       ),
                       _buildStatCard(
                         _getTotalXP(allAchievements).toString(),
@@ -79,12 +80,12 @@ class _AdminAchievementManagementScreenState
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        _buildRarityChip('Tất cả', 'all', Colors.grey),
-                        _buildRarityChip('Common', 'common', Colors.grey),
-                        _buildRarityChip('Rare', 'rare', Colors.blue),
+                        _buildRarityChip('Tất cả', 'all', AppColors.textSecondary),
+                        _buildRarityChip('Common', 'common', AppColors.textSecondary),
+                        _buildRarityChip('Rare', 'rare', AppColors.primary),
                         _buildRarityChip('Epic', 'epic', Colors.purple),
                         _buildRarityChip(
-                            'Legendary', 'legendary', Colors.orange),
+                            'Legendary', 'legendary', AppColors.warning),
                       ],
                     ),
                   ),
@@ -125,7 +126,7 @@ class _AdminAchievementManagementScreenState
         Text(
           value,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: AppTypography.headline,
             fontWeight: FontWeight.bold,
             color: color,
           ),
@@ -133,9 +134,9 @@ class _AdminAchievementManagementScreenState
         const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ],
@@ -192,7 +193,7 @@ class _AdminAchievementManagementScreenState
             child: Center(
               child: Text(
                 achievement['icon'],
-                style: const TextStyle(fontSize: 32),
+                style: const TextStyle(fontSize: AppTypography.display),
               ),
             ),
           ),
@@ -203,7 +204,7 @@ class _AdminAchievementManagementScreenState
                   achievement['name'],
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: AppTypography.body,
                   ),
                 ),
               ),
@@ -230,7 +231,7 @@ class _AdminAchievementManagementScreenState
                     child: Text(
                       '⭐ ${achievement['xp']} XP',
                       style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                         fontWeight: FontWeight.bold,
                         color: Colors.purple,
                       ),
@@ -239,9 +240,9 @@ class _AdminAchievementManagementScreenState
                   const SizedBox(width: 8),
                   Text(
                     '${achievement['unlocked']} người đã mở',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.textSecondary,
                     ),
                   ),
                 ],
@@ -258,21 +259,21 @@ class _AdminAchievementManagementScreenState
                     'Điều kiện mở khóa:',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.blue.shade50,
+                      color: AppColors.primaryLight,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.blue.shade200),
+                      border: Border.all(color: AppColors.primaryLight),
                     ),
                     child: Row(
                       children: [
                         const Icon(Icons.check_circle,
-                            color: Colors.blue, size: 20),
+                            color: AppColors.primary, size: 20),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(achievement['condition']),
@@ -291,7 +292,7 @@ class _AdminAchievementManagementScreenState
                           icon: const Icon(Icons.edit, size: 18),
                           label: const Text('Chỉnh sửa'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColors.primary,
                             foregroundColor: Colors.white,
                           ),
                         ),
@@ -303,7 +304,7 @@ class _AdminAchievementManagementScreenState
                           icon: const Icon(Icons.copy, size: 18),
                           label: const Text('Nhân bản'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
+                            backgroundColor: AppColors.success,
                             foregroundColor: Colors.white,
                           ),
                         ),
@@ -311,7 +312,7 @@ class _AdminAchievementManagementScreenState
                       const SizedBox(width: 8),
                       IconButton(
                         onPressed: () => _deleteAchievement(achievement),
-                        icon: const Icon(Icons.delete, color: Colors.red),
+                        icon: const Icon(Icons.delete, color: AppColors.error),
                       ),
                     ],
                   ),
@@ -344,7 +345,7 @@ class _AdminAchievementManagementScreenState
       child: Text(
         label,
         style: const TextStyle(
-          fontSize: 10,
+          fontSize: AppTypography.caption,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -355,15 +356,15 @@ class _AdminAchievementManagementScreenState
   Color _getRarityColor(String rarity) {
     switch (rarity) {
       case 'common':
-        return Colors.grey;
+        return AppColors.textSecondary;
       case 'rare':
-        return Colors.blue;
+        return AppColors.primary;
       case 'epic':
         return Colors.purple;
       case 'legendary':
-        return Colors.orange;
+        return AppColors.warning;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 
@@ -547,7 +548,7 @@ class _AdminAchievementManagementScreenState
                   SnackBar(
                     content: Text(
                         success ? 'Đã thêm achievement mới!' : 'Lỗi khi thêm!'),
-                    backgroundColor: success ? Colors.green : Colors.red,
+                    backgroundColor: success ? AppColors.success : AppColors.error,
                   ),
                 );
               }
@@ -649,7 +650,7 @@ class _AdminAchievementManagementScreenState
                   SnackBar(
                     content:
                         Text(success ? 'Đã cập nhật!' : 'Lỗi khi cập nhật!'),
-                    backgroundColor: success ? Colors.green : Colors.red,
+                    backgroundColor: success ? AppColors.success : AppColors.error,
                   ),
                 );
               }
@@ -693,12 +694,12 @@ class _AdminAchievementManagementScreenState
                   SnackBar(
                     content:
                         Text(success ? 'Đã xóa achievement!' : 'Lỗi khi xóa!'),
-                    backgroundColor: success ? Colors.green : Colors.red,
+                    backgroundColor: success ? AppColors.success : AppColors.error,
                   ),
                 );
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Xóa'),
           ),
         ],

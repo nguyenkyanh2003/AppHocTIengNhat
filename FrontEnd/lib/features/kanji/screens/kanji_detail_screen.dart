@@ -4,6 +4,7 @@ import '../providers/kanji_provider.dart';
 import '../models/kanji.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
 
 class KanjiDetailScreen extends StatefulWidget {
   final String kanjiId;
@@ -41,10 +42,10 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.error_outline,
                     size: 64,
-                    color: Colors.red[300],
+                    color: AppColors.error,
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -150,10 +151,9 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                   const SizedBox(height: 20),
                   Text(
                     kanji.character,
-                    style: const TextStyle(
-                      fontSize: 100,
-                      fontWeight: FontWeight.bold,
+                    style: AppTypography.japaneseDisplay(
                       color: Colors.white,
+                      size: 100,
                     ),
                   ),
                   if (kanji.level != null)
@@ -170,7 +170,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                       child: Text(
                         kanji.level!,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -211,7 +211,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                 Text(
                   'Hán Việt',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: AppTypography.bodySmall,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF6C757D),
                   ),
@@ -222,7 +222,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
             Text(
               kanji.hanviet!,
               style: const TextStyle(
-                fontSize: 24,
+                fontSize: AppTypography.headline,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF2C3E50),
               ),
@@ -237,7 +237,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                 Text(
                   'Nghĩa',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: AppTypography.bodySmall,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF6C757D),
                   ),
@@ -248,7 +248,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
             Text(
               kanji.meaning!,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: AppTypography.subtitle,
                 color: Color(0xFF2C3E50),
               ),
             ),
@@ -284,7 +284,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
               Text(
                 'Cách đọc',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF2C3E50),
                 ),
@@ -302,15 +302,15 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withValues(alpha: 0.1),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Text(
                     'Âm Hán',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: AppColors.primary,
                     ),
                   ),
                 ),
@@ -319,7 +319,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                   child: Text(
                     kanji.onyomi.join('、'),
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTypography.subtitle,
                       color: Color(0xFF2C3E50),
                     ),
                   ),
@@ -338,15 +338,15 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.green.withValues(alpha: 0.1),
+                    color: AppColors.success.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Text(
                     'Âm Kun',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
+                      color: AppColors.success,
                     ),
                   ),
                 ),
@@ -355,7 +355,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                   child: Text(
                     kanji.kunyomi.join('、'),
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTypography.subtitle,
                       color: Color(0xFF2C3E50),
                     ),
                   ),
@@ -393,7 +393,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
               Text(
                 'Ví dụ',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF2C3E50),
                 ),
@@ -439,7 +439,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                           child: Text(
                             '${index + 1}',
                             style: const TextStyle(
-                              fontSize: 14,
+                              fontSize: AppTypography.bodySmall,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -451,7 +451,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                         child: Text(
                           example.word,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF2C3E50),
                           ),
@@ -462,16 +462,16 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                   const SizedBox(height: 8),
                   Text(
                     example.hiragana,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[600],
+                    style: const TextStyle(
+                      fontSize: AppTypography.bodySmall,
+                      color: AppColors.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     example.meaning,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                       color: Color(0xFF6C757D),
                     ),
                   ),

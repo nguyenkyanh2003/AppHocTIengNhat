@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../services/settings_service.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({super.key});
@@ -74,7 +76,7 @@ class _NotificationSettingsScreenState
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.blue.withValues(alpha: 0.08),
+                      color: AppColors.primary.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Column(
@@ -85,7 +87,7 @@ class _NotificationSettingsScreenState
                               : Icons.notifications_off_outlined,
                           size: 52,
                           color:
-                              _notificationsEnabled ? Colors.blue : Colors.grey,
+                              _notificationsEnabled ? AppColors.primary : AppColors.textSecondary,
                         ),
                         const SizedBox(height: 12),
                         Text(
@@ -93,7 +95,7 @@ class _NotificationSettingsScreenState
                               ? 'Thông báo đang bật'
                               : 'Thông báo đang tắt',
                           style: const TextStyle(
-                            fontSize: 20,
+                            fontSize: AppTypography.title,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -156,7 +158,7 @@ class _NotificationSettingsScreenState
                   const Text(
                     'Ứng dụng chỉ hiển thị các tùy chọn đã được backend lưu và hỗ trợ. Lịch yên tĩnh, SMS và email định kỳ không nằm trong phạm vi phiên bản này.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: AppColors.textSecondary),
                   ),
                 ],
               ),
@@ -168,7 +170,7 @@ class _NotificationSettingsScreenState
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(text),
-        backgroundColor: success ? Colors.green : Colors.red,
+        backgroundColor: success ? AppColors.success : AppColors.error,
       ),
     );
   }

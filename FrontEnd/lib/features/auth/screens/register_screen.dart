@@ -6,6 +6,7 @@ import '../providers/auth_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -60,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đăng ký thành công!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
 
@@ -71,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Đăng ký thất bại: ${e.toString()}'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     } finally {
@@ -102,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const Icon(
                     Icons.person_add,
                     size: 80,
-                    color: Colors.blue,
+                    color: AppColors.primary,
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -279,7 +280,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           )
                         : const Text(
                             'Đăng ký',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: AppTypography.body),
                           ),
                   ),
                   const SizedBox(height: 16),

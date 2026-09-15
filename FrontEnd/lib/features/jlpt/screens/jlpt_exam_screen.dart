@@ -8,6 +8,8 @@ import '../models/jlpt_models.dart';
 import '../../../core/network/api_client.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class JLPTExamScreen extends StatefulWidget {
   final String examId;
@@ -97,7 +99,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       debugPrint('Audio error: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text('Lỗi: $e'), backgroundColor: AppColors.error),
         );
       }
     } finally {
@@ -115,22 +117,22 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.blue.shade50,
+        color: AppColors.primaryLight,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.blue.shade200),
+        border: Border.all(color: AppColors.primaryLight),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Icon(Icons.audiotrack, color: Colors.blue),
+              const Icon(Icons.audiotrack, color: AppColors.primary),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   audioName,
                   style: const TextStyle(
-                      fontWeight: FontWeight.w600, fontSize: 14),
+                      fontWeight: FontWeight.w600, fontSize: AppTypography.bodySmall),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -149,8 +151,8 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
               onChanged: (value) async {
                 await _audioPlayer.seek(Duration(seconds: value.toInt()));
               },
-              activeColor: Colors.blue,
-              inactiveColor: Colors.blue.shade100,
+              activeColor: AppColors.primary,
+              inactiveColor: AppColors.primaryLight,
             ),
           ),
           // Time display
@@ -160,9 +162,9 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(_formatDuration(_position),
-                    style: const TextStyle(fontSize: 12)),
+                    style: const TextStyle(fontSize: AppTypography.caption)),
                 Text(_formatDuration(_duration),
-                    style: const TextStyle(fontSize: 12)),
+                    style: const TextStyle(fontSize: AppTypography.caption)),
               ],
             ),
           ),
@@ -176,8 +178,8 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
                 decoration: BoxDecoration(
                   color: _isLoading
-                      ? Colors.grey
-                      : (_isPlaying ? Colors.orange : Colors.blue),
+                      ? AppColors.textSecondary
+                      : (_isPlaying ? AppColors.warning : AppColors.primary),
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Row(
@@ -305,7 +307,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       Padding(
         padding: const EdgeInsets.all(12),
         child: Text(title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            style: const TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold)),
       ),
       ...questions.asMap().entries.map((entry) {
         final idx = entry.key;
@@ -333,9 +335,9 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                   Color? fill;
                   if (hasResult) {
                     if (isCorrectChoice) {
-                      fill = Colors.green.withValues(alpha: 0.12);
+                      fill = AppColors.success.withValues(alpha: 0.12);
                     } else if (isUserChoice) {
-                      fill = Colors.red.withValues(alpha: 0.12);
+                      fill = AppColors.error.withValues(alpha: 0.12);
                     }
                   }
                   return RadioListTile<int>(
@@ -346,7 +348,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                         : (v) => provider.setAnswer(key, v ?? 0),
                     title: Text(c.value),
                     activeColor:
-                        hasResult && isCorrectChoice ? Colors.green : null,
+                        hasResult && isCorrectChoice ? AppColors.success : null,
                     tileColor: fill,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -359,8 +361,8 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                                     ? Icons.cancel_outlined
                                     : Icons.radio_button_unchecked),
                             color: isCorrectChoice
-                                ? Colors.green
-                                : (isUserChoice ? Colors.red : Colors.grey),
+                                ? AppColors.success
+                                : (isUserChoice ? AppColors.error : AppColors.textSecondary),
                           )
                         : null,
                   );
@@ -371,13 +373,13 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Icon(Icons.lightbulb_outline,
-                          size: 20, color: Colors.orange),
+                          size: 20, color: AppColors.warning),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           solution!.explanation!,
                           style: const TextStyle(
-                              fontSize: 13, color: Colors.black87),
+                              fontSize: AppTypography.caption, color: Colors.black87),
                         ),
                       ),
                     ],
@@ -418,7 +420,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
           children: [
             Text(title,
                 style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold)),
             if (sectionAudio != null)
               _buildAudioPlayer(sectionAudio, sectionAudioName!),
           ],
@@ -435,7 +437,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       widgets.add(
         Card(
           margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          color: Colors.blue.shade50,
+          color: AppColors.primaryLight,
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Column(
@@ -444,14 +446,14 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                 Text(
                   'Mondai ${group.mondai}',
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                      fontSize: AppTypography.body, fontWeight: FontWeight.bold),
                 ),
                 if (group.groupContent != null &&
                     group.groupContent!.isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Text(
                     group.groupContent!,
-                    style: const TextStyle(fontSize: 14, height: 1.6),
+                    style: const TextStyle(fontSize: AppTypography.bodySmall, height: 1.6),
                   ),
                 ],
               ],
@@ -490,9 +492,9 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                     Color? fill;
                     if (hasResult) {
                       if (isCorrectChoice) {
-                        fill = Colors.green.withValues(alpha: 0.12);
+                        fill = AppColors.success.withValues(alpha: 0.12);
                       } else if (isUserChoice) {
-                        fill = Colors.red.withValues(alpha: 0.12);
+                        fill = AppColors.error.withValues(alpha: 0.12);
                       }
                     }
                     return RadioListTile<int>(
@@ -503,7 +505,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                           : (v) => provider.setAnswer(key, v ?? 0),
                       title: Text(c.value),
                       activeColor:
-                          hasResult && isCorrectChoice ? Colors.green : null,
+                          hasResult && isCorrectChoice ? AppColors.success : null,
                       tileColor: fill,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -516,8 +518,8 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                                       ? Icons.cancel_outlined
                                       : Icons.radio_button_unchecked),
                               color: isCorrectChoice
-                                  ? Colors.green
-                                  : (isUserChoice ? Colors.red : Colors.grey),
+                                  ? AppColors.success
+                                  : (isUserChoice ? AppColors.error : AppColors.textSecondary),
                             )
                           : null,
                     );
@@ -528,13 +530,13 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Icon(Icons.lightbulb_outline,
-                            size: 20, color: Colors.orange),
+                            size: 20, color: AppColors.warning),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             solution!.explanation!,
                             style: const TextStyle(
-                                fontSize: 13, color: Colors.black87),
+                                fontSize: AppTypography.caption, color: Colors.black87),
                           ),
                         ),
                       ],
@@ -562,7 +564,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
   void _showResultSheet(BuildContext context, JLPTExamProvider provider) {
     final result = provider.result!;
     final isPassed = result.passed;
-    final color = isPassed ? Colors.green : Colors.red;
+    final color = isPassed ? AppColors.success : AppColors.error;
     final icon = isPassed ? Icons.check_circle : Icons.cancel;
 
     showModalBottomSheet(
@@ -583,13 +585,13 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                       Text(
                         isPassed ? 'Chúc mừng!' : 'Cố gắng lên',
                         style: TextStyle(
-                            fontSize: 24,
+                            fontSize: AppTypography.headline,
                             fontWeight: FontWeight.bold,
                             color: color),
                       ),
                       Text(
                         'Điểm: ${result.totalScore} / 100',
-                        style: const TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: AppTypography.subtitle),
                       ),
                     ],
                   ),
@@ -620,10 +622,10 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: const TextStyle(fontSize: 16)),
+          Text(title, style: const TextStyle(fontSize: AppTypography.body)),
           Text('$score',
               style:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  const TextStyle(fontSize: AppTypography.body, fontWeight: FontWeight.bold)),
         ],
       ),
     );

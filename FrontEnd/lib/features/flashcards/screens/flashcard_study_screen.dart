@@ -318,7 +318,7 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.check_circle_outline_rounded,
-                  color: Colors.green, size: 80),
+                  color: AppColors.success, size: 80),
               const SizedBox(height: 24),
               Text(
                 'Hoàn thành!',

@@ -3,6 +3,8 @@ import '../services/notification_service.dart';
 import '../models/notification.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({Key? key}) : super(key: key);
@@ -105,21 +107,21 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       child: CircularProgressIndicator(),
                     )
                   : _notifications.isEmpty
-                      ? Center(
+                      ? const Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.notifications_none,
                                 size: 64,
-                                color: Colors.grey[400],
+                                color: AppColors.textDisabled,
                               ),
-                              const SizedBox(height: 16),
+                              SizedBox(height: 16),
                               Text(
                                 'Không có thông báo',
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey[600],
+                                  fontSize: AppTypography.body,
+                                  color: AppColors.textSecondary,
                                 ),
                               ),
                             ],
@@ -182,8 +184,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         });
         _loadNotifications();
       },
-      backgroundColor: Colors.grey[200],
-      selectedColor: Colors.blue,
+      backgroundColor: AppColors.surfaceVariant,
+      selectedColor: AppColors.primary,
       labelStyle: TextStyle(
         color: isSelected ? Colors.white : Colors.black,
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
@@ -196,7 +198,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      color: isUnread ? Colors.blue[50] : Colors.white,
+      color: isUnread ? AppColors.primaryLight : Colors.white,
       child: ListTile(
         onTap: () {
           if (isUnread) {
@@ -226,12 +228,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               notification.noiDung,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: AppTypography.caption),
             ),
             const SizedBox(height: 4),
             Text(
               _formatDate(notification.ngayTao),
-              style: TextStyle(fontSize: 11, color: Colors.grey[600]),
+              style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
             ),
           ],
         ),
@@ -269,17 +271,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       case 'achievement':
         return Colors.amber;
       case 'lesson':
-        return Colors.blue;
+        return AppColors.primary;
       case 'exercise':
-        return Colors.green;
+        return AppColors.success;
       case 'group':
         return Colors.purple;
       case 'streak':
-        return Colors.orange;
+        return AppColors.warning;
       case 'message':
         return Colors.pink;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 

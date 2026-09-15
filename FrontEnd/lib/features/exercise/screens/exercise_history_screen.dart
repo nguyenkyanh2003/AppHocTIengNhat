@@ -6,6 +6,8 @@ import '../providers/exercise_provider.dart';
 import '../models/exercise.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class ExerciseHistoryScreen extends StatefulWidget {
   const ExerciseHistoryScreen({super.key});
@@ -53,14 +55,14 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                const Icon(Icons.error_outline, size: 64, color: AppColors.error),
                 const SizedBox(height: 16),
-                Text(
+                const Text(
                   'Đã xảy ra lỗi',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: AppTypography.subtitle,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade700,
+                    color: AppColors.textSecondary,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -74,25 +76,25 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
         }
 
         if (provider.history.isEmpty) {
-          return Center(
+          return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.history, size: 80, color: Colors.grey.shade400),
-                const SizedBox(height: 16),
+                Icon(Icons.history, size: 80, color: AppColors.textDisabled),
+                SizedBox(height: 16),
                 Text(
                   'Chưa có lịch sử làm bài',
                   style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey.shade600,
+                    fontSize: AppTypography.subtitle,
+                    color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 Text(
                   'Hãy thử làm một bài tập nhé!',
                   style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey.shade500,
+                    fontSize: AppTypography.bodySmall,
+                    color: AppColors.textDisabled,
                   ),
                 ),
               ],
@@ -131,12 +133,12 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isPassed ? Colors.green.shade200 : Colors.red.shade200,
+          color: isPassed ? AppColors.success : AppColors.error,
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
+            color: AppColors.textSecondary.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -162,8 +164,8 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: isPassed
-                              ? [Colors.green.shade400, Colors.green.shade600]
-                              : [Colors.red.shade400, Colors.red.shade600],
+                              ? [AppColors.success, AppColors.success]
+                              : [AppColors.error, AppColors.error],
                         ),
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -172,7 +174,7 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                           '${score.toInt()}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: AppTypography.headline,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -186,7 +188,7 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                           Text(
                             exerciseTitle,
                             style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: AppTypography.body,
                               fontWeight: FontWeight.bold,
                             ),
                             maxLines: 2,
@@ -202,14 +204,14 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                                     vertical: 2,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.orange.shade100,
+                                    color: AppColors.warning,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Text(
                                     exerciseLevel,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.orange.shade700,
+                                    style: const TextStyle(
+                                      fontSize: AppTypography.caption,
+                                      color: AppColors.warning,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -219,9 +221,9 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                               if (exerciseType.isNotEmpty)
                                 Text(
                                   exerciseType,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
+                                  style: const TextStyle(
+                                    fontSize: AppTypography.caption,
+                                    color: AppColors.textSecondary,
                                   ),
                                 ),
                             ],
@@ -236,18 +238,18 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                       ),
                       decoration: BoxDecoration(
                         color: isPassed
-                            ? Colors.green.shade100
-                            : Colors.red.shade100,
+                            ? AppColors.success
+                            : AppColors.error,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         isPassed ? 'Đạt' : 'Chưa đạt',
                         style: TextStyle(
                           color: isPassed
-                              ? Colors.green.shade700
-                              : Colors.red.shade700,
+                              ? AppColors.success
+                              : AppColors.error,
                           fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                          fontSize: AppTypography.caption,
                         ),
                       ),
                     ),
@@ -257,7 +259,7 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade50,
+                    color: AppColors.surfaceVariant,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
@@ -266,14 +268,14 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                         Icons.check_circle,
                         'Đúng',
                         '${result.correctAnswers}',
-                        Colors.green,
+                        AppColors.success,
                       ),
                       const SizedBox(width: 12),
                       _buildStatChip(
                         Icons.quiz,
                         'Tổng',
                         '${result.totalQuestions}',
-                        Colors.blue,
+                        AppColors.primary,
                       ),
                       const SizedBox(width: 12),
                       _buildStatChip(
@@ -288,14 +290,14 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    Icon(Icons.calendar_today,
-                        size: 14, color: Colors.grey.shade500),
+                    const Icon(Icons.calendar_today,
+                        size: 14, color: AppColors.textDisabled),
                     const SizedBox(width: 4),
                     Text(
                       formattedDate,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade500,
+                      style: const TextStyle(
+                        fontSize: AppTypography.caption,
+                        color: AppColors.textDisabled,
                       ),
                     ),
                   ],
@@ -327,16 +329,16 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: AppTypography.bodySmall,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
                 ),
                 Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.grey.shade600,
+                  style: const TextStyle(
+                    fontSize: AppTypography.caption,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],

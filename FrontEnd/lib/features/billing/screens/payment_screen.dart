@@ -5,6 +5,7 @@ import '../services/transaction_service.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -77,15 +78,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
               // Header
               Container(
                 padding: const EdgeInsets.all(24),
-                color: Colors.blue.withValues(alpha: 0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 child: const Column(
                   children: [
-                    Icon(Icons.workspace_premium, size: 64, color: Colors.blue),
+                    Icon(Icons.workspace_premium, size: 64, color: AppColors.primary),
                     SizedBox(height: 16),
                     Text(
                       'Chọn Gói Phù Hợp',
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: AppTypography.headline,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -93,8 +94,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     Text(
                       'Mở khóa tất cả tính năng học tập',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
+                        fontSize: AppTypography.body,
+                        color: AppColors.textSecondary,
                       ),
                     ),
                   ],
@@ -118,7 +119,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           borderRadius: BorderRadius.circular(16),
                           side: BorderSide(
                             color:
-                                isSelected ? Colors.blue : Colors.transparent,
+                                isSelected ? AppColors.primary : Colors.transparent,
                             width: 2,
                           ),
                         ),
@@ -128,7 +129,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             gradient: isSelected
                                 ? LinearGradient(
                                     colors: [
-                                      Colors.blue.withValues(alpha: 0.1),
+                                      AppColors.primary.withValues(alpha: 0.1),
                                       Colors.transparent
                                     ],
                                   )
@@ -142,7 +143,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 children: [
                                   Text(
                                     plan.icon,
-                                    style: const TextStyle(fontSize: 32),
+                                    style: const TextStyle(fontSize: AppTypography.display),
                                   ),
                                   const SizedBox(width: 12),
                                   Expanded(
@@ -153,16 +154,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         Text(
                                           plan.name,
                                           style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: AppTypography.title,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         Text(
                                           plan.price,
                                           style: const TextStyle(
-                                            fontSize: 18,
+                                            fontSize: AppTypography.subtitle,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.blue,
+                                            color: AppColors.primary,
                                           ),
                                         ),
                                       ],
@@ -175,15 +176,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         vertical: 6,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Colors.orange
+                                        color: AppColors.warning
                                             .withValues(alpha: 0.2),
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: const Text(
                                         'Được Khuyến Nghị',
                                         style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.orange,
+                                          fontSize: AppTypography.caption,
+                                          color: AppColors.warning,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -199,13 +200,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       const Icon(
                                         Icons.check_circle,
                                         size: 20,
-                                        color: Colors.green,
+                                        color: AppColors.success,
                                       ),
                                       const SizedBox(width: 12),
                                       Expanded(
                                         child: Text(
                                           feature,
-                                          style: const TextStyle(fontSize: 14),
+                                          style: const TextStyle(fontSize: AppTypography.bodySmall),
                                         ),
                                       ),
                                     ],
@@ -227,28 +228,28 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   margin: const EdgeInsets.all(16),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withValues(alpha: 0.1),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
-                      const Icon(Icons.info, color: Colors.blue),
-                      const SizedBox(width: 12),
+                      Icon(Icons.info, color: AppColors.primary),
+                      SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               'Gói Hiện Tại',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue,
+                                color: AppColors.primary,
                               ),
                             ),
                             Text(
                               'Bạn đang sử dụng: Gói Cơ Bản (Miễn phí)',
                               style: TextStyle(
-                                  fontSize: 12, color: Colors.grey[700]),
+                                  fontSize: AppTypography.caption, color: AppColors.textSecondary),
                             ),
                           ],
                         ),
@@ -272,7 +273,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       _selectedPlan == 'basic'
                           ? 'Bạn đang dùng Gói Cơ Bản'
                           : 'Đăng Ký ${_getPlanName(_selectedPlan)}',
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: AppTypography.body),
                     ),
                   ),
                 ),
@@ -289,7 +290,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     const Text(
                       'Câu Hỏi Thường Gặp',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: AppTypography.subtitle,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -385,7 +386,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           content: Text(
             'Đã tạo yêu cầu đăng ký. Quản trị viên sẽ xác nhận sau khi nhận thanh toán.',
           ),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
     } catch (error) {
@@ -393,7 +394,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Không thể tạo yêu cầu: $error'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     } finally {

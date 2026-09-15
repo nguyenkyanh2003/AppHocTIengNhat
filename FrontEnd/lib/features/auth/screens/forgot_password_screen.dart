@@ -5,6 +5,7 @@ import '../providers/auth_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Email đặt lại mật khẩu đã được gửi!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
     } catch (e) {
@@ -68,7 +69,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Lỗi: ${e.toString()}'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }
@@ -186,7 +187,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   : const Text(
                       'Gửi email',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: AppTypography.body,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -221,13 +222,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            color: Colors.green.withValues(alpha: 0.1),
+            color: AppColors.success.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: const Icon(
             Icons.check_circle_outline,
             size: 60,
-            color: Colors.green,
+            color: AppColors.success,
           ),
         ),
 
@@ -238,7 +239,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           'Email đã được gửi!',
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.green,
+                color: AppColors.success,
               ),
           textAlign: TextAlign.center,
         ),
@@ -272,7 +273,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           child: const Text(
             'Quay lại đăng nhập',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: AppTypography.body,
               fontWeight: FontWeight.bold,
             ),
           ),

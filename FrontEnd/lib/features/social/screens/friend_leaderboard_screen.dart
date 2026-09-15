@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class FriendLeaderboardScreen extends StatefulWidget {
   const FriendLeaderboardScreen({Key? key}) : super(key: key);
@@ -111,7 +112,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                       const Text(
                         'Top 3 Xuất Sắc Nhất',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: AppTypography.subtitle,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -149,16 +150,16 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withValues(alpha: 0.1),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                     border:
-                        Border.all(color: Colors.blue.withValues(alpha: 0.3)),
+                        Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
                   ),
                   child: const Row(
                     children: [
                       Text(
                         '📍',
-                        style: TextStyle(fontSize: 32),
+                        style: TextStyle(fontSize: AppTypography.display),
                       ),
                       SizedBox(width: 12),
                       Expanded(
@@ -168,7 +169,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                             Text(
                               'Vị Trí Của Bạn',
                               style:
-                                  TextStyle(fontSize: 12, color: Colors.grey),
+                                  TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
                             ),
                             SizedBox(height: 4),
                             Row(
@@ -177,16 +178,16 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                                 Text(
                                   'Hạng #3',
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: AppTypography.subtitle,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
                                   '3,890 XP',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: AppTypography.body,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue,
+                                    color: AppColors.primary,
                                   ),
                                 ),
                               ],
@@ -210,7 +211,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                     const Text(
                       'Bảng Xếp Hạng',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: AppTypography.subtitle,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -255,7 +256,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
         setState(() => _selectedPeriod = period);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
+        backgroundColor: isSelected ? AppColors.primary : AppColors.border,
         foregroundColor: isSelected ? Colors.white : Colors.black,
       ),
       child: Text(label),
@@ -272,7 +273,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 12,
+            fontSize: AppTypography.caption,
           ),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
@@ -281,8 +282,8 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
         Text(
           '${user.xp} XP',
           style: const TextStyle(
-            fontSize: 12,
-            color: Colors.orange,
+            fontSize: AppTypography.caption,
+            color: AppColors.warning,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -295,10 +296,10 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       decoration: BoxDecoration(
-        color: user.isYou ? Colors.blue.withValues(alpha: 0.1) : Colors.white,
+        color: user.isYou ? AppColors.primary.withValues(alpha: 0.1) : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: user.isYou ? Colors.blue : Colors.grey.withValues(alpha: 0.3),
+          color: user.isYou ? AppColors.primary : AppColors.textSecondary.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
@@ -309,7 +310,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
             child: Text(
               '#${user.rank}',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppTypography.body,
                 fontWeight: FontWeight.bold,
                 color: _getRankColor(user.rank),
               ),
@@ -319,7 +320,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
           // Avatar & Name
           Text(
             user.avatar,
-            style: const TextStyle(fontSize: 24),
+            style: const TextStyle(fontSize: AppTypography.headline),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -330,14 +331,14 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                   user.name,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: user.isYou ? Colors.blue : Colors.black,
+                    color: user.isYou ? AppColors.primary : Colors.black,
                   ),
                 ),
                 Text(
                   'Cấp ${user.level}',
                   style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
+                    fontSize: AppTypography.caption,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -352,15 +353,15 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
                 '${user.xp}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  color: Colors.orange,
+                  fontSize: AppTypography.bodySmall,
+                  color: AppColors.warning,
                 ),
               ),
               const Text(
                 'XP',
                 style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey,
+                  fontSize: AppTypography.caption,
+                  color: AppColors.textSecondary,
                 ),
               ),
             ],
@@ -382,7 +383,7 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
               ),
               child: const Text(
                 '→',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: AppTypography.body),
               ),
             ),
           ),
@@ -396,11 +397,11 @@ class _FriendLeaderboardScreenState extends State<FriendLeaderboardScreen> {
       case 1:
         return Colors.amber;
       case 2:
-        return Colors.grey;
+        return AppColors.textSecondary;
       case 3:
-        return Colors.orange;
+        return AppColors.warning;
       default:
-        return Colors.blue;
+        return AppColors.primary;
     }
   }
 

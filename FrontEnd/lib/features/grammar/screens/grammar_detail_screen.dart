@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../providers/grammar_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class GrammarDetailScreen extends StatefulWidget {
   final String grammarId;
@@ -41,7 +43,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.error_outline,
-                        size: 64, color: Colors.red),
+                        size: 64, color: AppColors.error),
                     const SizedBox(height: 16),
                     Text(provider.error ?? ''),
                     const SizedBox(height: 24),
@@ -101,7 +103,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                           grammar.title,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 28,
+                            fontSize: AppTypography.headline,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -110,7 +112,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                           'Pattern: ${grammar.pattern}',
                           style: const TextStyle(
                             color: Colors.white70,
-                            fontSize: 14,
+                            fontSize: AppTypography.bodySmall,
                           ),
                         ),
                       ],
@@ -159,7 +161,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                                   child: Container(
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: Colors.grey[100],
+                                      color: AppColors.surfaceVariant,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border(
                                         left: BorderSide(
@@ -176,15 +178,15 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                                           'Ví dụ ${entry.key + 1}:',
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 12,
-                                            color: Colors.grey,
+                                            fontSize: AppTypography.caption,
+                                            color: AppColors.textSecondary,
                                           ),
                                         ),
                                         const SizedBox(height: 6),
                                         Text(
                                           entry.value,
                                           style: const TextStyle(
-                                            fontSize: 14,
+                                            fontSize: AppTypography.bodySmall,
                                             height: 1.5,
                                           ),
                                         ),
@@ -229,12 +231,12 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
   Widget _buildSectionTitle(String title, IconData icon) {
     return Row(
       children: [
-        Icon(icon, color: Colors.blue, size: 20),
+        Icon(icon, color: AppColors.primary, size: 20),
         const SizedBox(width: 8),
         Text(
           title,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: AppTypography.subtitle,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -251,16 +253,16 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Colors.blue.withValues(alpha: 0.05),
+            color: AppColors.primary.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: Colors.blue.withValues(alpha: 0.2),
+              color: AppColors.primary.withValues(alpha: 0.2),
             ),
           ),
           child: Text(
             content,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: AppTypography.bodySmall,
               height: 1.6,
             ),
           ),
@@ -272,7 +274,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
   Widget _buildStatCard(String label, String value, IconData icon) {
     return Card(
       elevation: 0,
-      color: Colors.grey[100],
+      color: AppColors.surfaceVariant,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -280,12 +282,12 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
         ),
         child: Column(
           children: [
-            Icon(icon, color: Colors.blue, size: 24),
+            Icon(icon, color: AppColors.primary, size: 24),
             const SizedBox(height: 8),
             Text(
               value,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: AppTypography.body,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -293,8 +295,8 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
             Text(
               label,
               style: const TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
+                fontSize: AppTypography.caption,
+                color: AppColors.textSecondary,
               ),
             ),
           ],
@@ -306,17 +308,17 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
   Color _getLevelColor(String level) {
     switch (level) {
       case 'N5':
-        return Colors.green;
+        return AppColors.success;
       case 'N4':
-        return Colors.blue;
+        return AppColors.primary;
       case 'N3':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N2':
-        return Colors.red;
+        return AppColors.error;
       case 'N1':
         return Colors.purple;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

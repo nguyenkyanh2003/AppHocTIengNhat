@@ -6,6 +6,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
+import '../../../app/theme/app_typography.dart';
 
 class AdminTransactionScreen extends StatefulWidget {
   const AdminTransactionScreen({super.key});
@@ -153,7 +154,7 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
     final pending =
         transactions.where((item) => item['status'] == 'pending').length;
     return Card(
-      color: Colors.green.shade50,
+      color: AppColors.success,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -172,10 +173,10 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
           Text(
             value,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: AppTypography.body, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
-          Text(label, style: const TextStyle(fontSize: 12)),
+          Text(label, style: const TextStyle(fontSize: AppTypography.caption)),
         ],
       );
 
@@ -213,7 +214,7 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
         padding: const EdgeInsets.only(top: 60),
         child: Column(
           children: [
-            const Icon(Icons.cloud_off, size: 48, color: Colors.red),
+            const Icon(Icons.cloud_off, size: 48, color: AppColors.error),
             const SizedBox(height: 12),
             Text(message, textAlign: TextAlign.center),
             TextButton(
@@ -317,12 +318,12 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
 
   Widget _statusBadge(String status) {
     final color = switch (status) {
-      'completed' => Colors.green,
-      'pending' => Colors.orange,
-      'processing' => Colors.blue,
-      'failed' => Colors.red,
+      'completed' => AppColors.success,
+      'pending' => AppColors.warning,
+      'processing' => AppColors.primary,
+      'failed' => AppColors.error,
       'refunded' => Colors.purple,
-      _ => Colors.grey,
+      _ => AppColors.textSecondary,
     };
     const labels = {
       'completed': 'Hoàn thành',
@@ -341,7 +342,7 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
       child: Text(
         labels[status] ?? status,
         style:
-            TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.bold),
+            TextStyle(color: color, fontSize: AppTypography.caption, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -386,7 +387,7 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
       SnackBar(
         content:
             Text(success ? 'Đã cập nhật giao dịch.' : 'Cập nhật thất bại.'),
-        backgroundColor: success ? Colors.green : Colors.red,
+        backgroundColor: success ? AppColors.success : AppColors.error,
       ),
     );
   }

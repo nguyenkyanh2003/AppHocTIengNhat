@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../core/network/api_client.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class OfflineModeScreen extends StatefulWidget {
   const OfflineModeScreen({super.key});
@@ -55,8 +57,8 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                 children: [
                   Card(
                     color: _enabled
-                        ? Colors.orange.withValues(alpha: 0.1)
-                        : Colors.green.withValues(alpha: 0.1),
+                        ? AppColors.warning.withValues(alpha: 0.1)
+                        : AppColors.success.withValues(alpha: 0.1),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Row(
@@ -64,7 +66,7 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                           Icon(
                             _enabled ? Icons.wifi_off : Icons.wifi,
                             size: 42,
-                            color: _enabled ? Colors.orange : Colors.green,
+                            color: _enabled ? AppColors.warning : AppColors.success,
                           ),
                           const SizedBox(width: 16),
                           Expanded(
@@ -76,7 +78,7 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                                       ? 'Dự phòng ngoại tuyến đang bật'
                                       : 'Đang ưu tiên dữ liệu trực tuyến',
                                   style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: AppTypography.subtitle,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -97,7 +99,7 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                   const SizedBox(height: 20),
                   const Text(
                     'Dữ liệu đã tải',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Card(
@@ -132,17 +134,17 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                   const SizedBox(height: 10),
                   TextButton.icon(
                     onPressed: _busy || _cachedItems == 0 ? null : _clearCache,
-                    icon: const Icon(Icons.delete_outline, color: Colors.red),
+                    icon: const Icon(Icons.delete_outline, color: AppColors.error),
                     label: const Text(
                       'Xóa dữ liệu đã tải',
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: AppColors.error),
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text(
                     'Cache chỉ lưu nội dung học tập như bài học, từ vựng, Kanji và ngữ pháp. Dữ liệu đăng nhập không được lưu trong cache này.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: AppColors.textSecondary),
                   ),
                 ],
               ),
@@ -280,7 +282,7 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: success ? Colors.green : Colors.red,
+        backgroundColor: success ? AppColors.success : AppColors.error,
       ),
     );
   }

@@ -4,6 +4,8 @@ import '../providers/report_provider.dart';
 import '../services/report_service.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({Key? key}) : super(key: key);
@@ -93,7 +95,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Gửi báo cáo thành công!'),
-              backgroundColor: Colors.green,
+              backgroundColor: AppColors.success,
             ),
           );
           _formKey.currentState!.reset();
@@ -107,7 +109,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(provider.error ?? 'Gửi báo cáo thất bại'),
-              backgroundColor: Colors.red,
+              backgroundColor: AppColors.error,
             ),
           );
         }
@@ -129,7 +131,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                 // Type selection
                 const Text(
                   'Loại báo cáo',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppTypography.body),
                 ),
                 const SizedBox(height: 12),
                 DropdownButton<String>(
@@ -162,7 +164,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                 // Priority selection
                 const Text(
                   'Mức độ ưu tiên',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppTypography.body),
                 ),
                 const SizedBox(height: 12),
                 Row(
@@ -185,7 +187,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                 // Title
                 const Text(
                   'Tiêu đề',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppTypography.body),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
@@ -208,7 +210,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                 // Description
                 const Text(
                   'Chi tiết mô tả',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: AppTypography.body),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
@@ -249,7 +251,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                         : const Icon(Icons.send),
                     label: Text(
                       provider.isLoading ? 'Đang gửi...' : 'Gửi báo cáo',
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: AppTypography.body),
                     ),
                   ),
                 ),
@@ -258,13 +260,13 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.red.withValues(alpha: 0.1),
-                      border: Border.all(color: Colors.red),
+                      color: AppColors.error.withValues(alpha: 0.1),
+                      border: Border.all(color: AppColors.error),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       provider.error ?? '',
-                      style: const TextStyle(color: Colors.red),
+                      style: const TextStyle(color: AppColors.error),
                     ),
                   ),
               ],
@@ -282,7 +284,7 @@ class _CreateReportScreenState extends State<CreateReportScreen> {
         setState(() => _selectedPriority = value);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
+        backgroundColor: isSelected ? AppColors.primary : AppColors.border,
         foregroundColor: isSelected ? Colors.white : Colors.black,
       ),
       child: Text(label),
@@ -319,7 +321,7 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                const Icon(Icons.error_outline, size: 64, color: AppColors.error),
                 const SizedBox(height: 16),
                 Text(provider.error ?? ''),
                 const SizedBox(height: 24),
@@ -339,7 +341,7 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.inbox, size: 64, color: Colors.grey),
+                Icon(Icons.inbox, size: 64, color: AppColors.textSecondary),
                 SizedBox(height: 16),
                 Text('Bạn chưa gửi báo cáo nào'),
               ],
@@ -374,7 +376,7 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
         subtitle: Text(
           _getTypeLabel(report.type),
           style: TextStyle(
-            fontSize: 12,
+            fontSize: AppTypography.caption,
             color: _getTypeColor(report.type),
           ),
         ),
@@ -387,7 +389,7 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
           child: Text(
             _getStatusLabel(report.status),
             style: TextStyle(
-              fontSize: 12,
+              fontSize: AppTypography.caption,
               fontWeight: FontWeight.bold,
               color: _getStatusColor(report.status),
             ),
@@ -412,7 +414,7 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.green.withValues(alpha: 0.1),
+                      color: AppColors.success.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -422,7 +424,7 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
                           'Phản hồi từ Admin:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.green,
+                            color: AppColors.success,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -471,13 +473,13 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
   Color _getTypeColor(String type) {
     switch (type) {
       case 'bug':
-        return Colors.red;
+        return AppColors.error;
       case 'suggestion':
-        return Colors.blue;
+        return AppColors.primary;
       case 'content':
-        return Colors.orange;
+        return AppColors.warning;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 
@@ -510,13 +512,13 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'pending':
-        return Colors.orange;
+        return AppColors.warning;
       case 'approved':
-        return Colors.green;
+        return AppColors.success;
       case 'rejected':
-        return Colors.red;
+        return AppColors.error;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

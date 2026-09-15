@@ -126,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           icon: const Icon(Icons.logout),
                           label: const Text('Đăng xuất'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
+                            backgroundColor: AppColors.error,
                             foregroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             shape: RoundedRectangleBorder(
@@ -311,7 +311,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Đã cập nhật ảnh đại diện thành công!'),
-                backgroundColor: Colors.green,
+                backgroundColor: AppColors.success,
               ),
             );
           } else {
@@ -319,7 +319,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SnackBar(
                 content: Text(
                     'Lỗi: ${authProvider.error ?? "Không thể cập nhật ảnh"}'),
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.error,
               ),
             );
           }
@@ -409,7 +409,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           : 'Chọn ngày sinh',
                       style: TextStyle(
                         color:
-                            selectedDate != null ? Colors.black : Colors.grey,
+                            selectedDate != null ? Colors.black : AppColors.textSecondary,
                       ),
                     ),
                   ),
@@ -489,7 +489,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Đã cập nhật thông tin thành công!'),
-                      backgroundColor: Colors.green,
+                      backgroundColor: AppColors.success,
                     ),
                   );
                 } else {
@@ -497,7 +497,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SnackBar(
                       content: Text(
                           'Lỗi: ${authProvider.error ?? "Không thể cập nhật"}'),
-                      backgroundColor: Colors.red,
+                      backgroundColor: AppColors.error,
                     ),
                   );
                 }
@@ -526,7 +526,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(dialogContext, true),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Đăng xuất'),
           ),
         ],

@@ -109,8 +109,12 @@ abstract final class AppTypography {
   /// Chữ Nhật là nội dung chính của app, không phải trang trí: kanji cần cỡ lớn
   /// và dòng thoáng thì mới đọc được nét. Noto Sans JP phủ đủ kanji/kana mà
   /// Inter không có.
-  static TextStyle japaneseDisplay({Color? color}) => GoogleFonts.notoSansJp(
-        fontSize: 40,
+  ///
+  /// `size` chỉ dành cho kanji đứng một mình làm tiêu điểm (thẻ ôn, màn chi
+  /// tiết kanji) — chữ Hán cần to hơn hẳn chữ Latin cùng vai trò mới thấy nét.
+  static TextStyle japaneseDisplay({Color? color, double size = 40}) =>
+      GoogleFonts.notoSansJp(
+        fontSize: size,
         fontWeight: FontWeight.w600,
         height: 1.4,
         color: color,

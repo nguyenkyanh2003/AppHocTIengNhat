@@ -11,6 +11,7 @@ import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
 import '../../../shared/widgets/app_dialog.dart';
+import '../../../app/theme/app_typography.dart';
 
 class AdminContentManagementScreen extends StatefulWidget {
   const AdminContentManagementScreen({super.key});
@@ -127,7 +128,7 @@ class _AdminContentManagementScreenState
                 if (provider.error != null)
                   MaterialBanner(
                     content: Text(provider.error!),
-                    leading: const Icon(Icons.error_outline, color: Colors.red),
+                    leading: const Icon(Icons.error_outline, color: AppColors.error),
                     actions: [
                       TextButton(
                         onPressed: provider.clearError,
@@ -172,15 +173,15 @@ class _AdminContentManagementScreenState
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
-      color: Colors.grey[100],
+      color: AppColors.surfaceVariant,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            _typeChip('Từ vựng', 'vocabulary', Icons.book, Colors.blue),
+            _typeChip('Từ vựng', 'vocabulary', Icons.book, AppColors.primary),
             _typeChip('Kanji', 'kanji', Icons.text_fields, Colors.purple),
-            _typeChip('Ngữ pháp', 'grammar', Icons.list, Colors.orange),
-            _typeChip('Bài học', 'lessons', Icons.school, Colors.green),
+            _typeChip('Ngữ pháp', 'grammar', Icons.list, AppColors.warning),
+            _typeChip('Bài học', 'lessons', Icons.school, AppColors.success),
           ],
         ),
       ),
@@ -197,7 +198,7 @@ class _AdminContentManagementScreenState
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: ChoiceChip(
-        avatar: Icon(icon, size: 16, color: selected ? color : Colors.grey),
+        avatar: Icon(icon, size: 16, color: selected ? color : AppColors.textSecondary),
         label: Text(label),
         selected: selected,
         selectedColor: color.withValues(alpha: 0.18),
@@ -221,12 +222,12 @@ class _AdminContentManagementScreenState
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _stat(content.length.toString(), 'Tổng', Colors.blue),
-          _stat(countLevel('N5').toString(), 'N5', Colors.green),
+          _stat(content.length.toString(), 'Tổng', AppColors.primary),
+          _stat(countLevel('N5').toString(), 'N5', AppColors.success),
           _stat(
             (content.length - countLevel('N5')).toString(),
             'N4–N1',
-            Colors.orange,
+            AppColors.warning,
           ),
         ],
       ),
@@ -239,12 +240,12 @@ class _AdminContentManagementScreenState
         Text(
           value,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: AppTypography.title,
             fontWeight: FontWeight.bold,
             color: color,
           ),
         ),
-        Text(label, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+        Text(label, style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary)),
       ],
     );
   }
@@ -301,8 +302,8 @@ class _AdminContentManagementScreenState
               child: ListTile(
                 dense: true,
                 contentPadding: EdgeInsets.zero,
-                leading: Icon(Icons.delete, color: Colors.red),
-                title: Text('Xóa', style: TextStyle(color: Colors.red)),
+                leading: Icon(Icons.delete, color: AppColors.error),
+                title: Text('Xóa', style: TextStyle(color: AppColors.error)),
               ),
             ),
           ],
@@ -679,7 +680,7 @@ class _AdminContentManagementScreenState
             child: const Text('Hủy'),
           ),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: Colors.red),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
             onPressed: () => Navigator.pop(context, true),
             child: const Text('Xóa'),
           ),
@@ -894,11 +895,11 @@ class _AdminContentManagementScreenState
       };
 
   Color _levelColor(String? level) => switch (level) {
-        'N1' => Colors.red,
+        'N1' => AppColors.error,
         'N2' => Colors.deepOrange,
         'N3' => Colors.amber.shade700,
-        'N4' => Colors.green,
-        _ => Colors.blue,
+        'N4' => AppColors.success,
+        _ => AppColors.primary,
       };
 
   String? _itemId(Map<String, dynamic>? item) =>
@@ -916,7 +917,7 @@ class _AdminContentManagementScreenState
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: success ? Colors.green : Colors.red,
+        backgroundColor: success ? AppColors.success : AppColors.error,
       ),
     );
   }

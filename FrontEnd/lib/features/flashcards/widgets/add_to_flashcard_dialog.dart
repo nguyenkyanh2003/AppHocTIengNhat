@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/flashcard_provider.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 /// Widget dialog để thêm từ vựng vào bộ flashcard
 class AddToFlashcardDialog extends StatefulWidget {
@@ -82,14 +84,14 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đã thêm vào bộ flashcard!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }
@@ -101,7 +103,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Vui lòng nhập tên bộ thẻ'),
-          backgroundColor: Colors.orange,
+          backgroundColor: AppColors.warning,
         ),
       );
       return;
@@ -134,7 +136,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Đã tạo bộ "$title" và thêm thẻ!'),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.success,
           ),
         );
       }
@@ -144,7 +146,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(provider.error ?? 'Có lỗi xảy ra'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
       }
@@ -170,7 +172,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: AppColors.border,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -185,7 +187,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
                 Text(
                   'Thêm vào Flashcard',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: AppTypography.title,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -200,9 +202,9 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: AppColors.surfaceVariant,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey[300]!),
+              border: Border.all(color: AppColors.border),
             ),
             child: Row(
               children: [
@@ -213,27 +215,27 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
                       Text(
                         widget.front,
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: AppTypography.subtitle,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       if (widget.frontSubtext != null)
                         Text(
                           widget.frontSubtext!,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[600],
+                          style: const TextStyle(
+                            fontSize: AppTypography.bodySmall,
+                            color: AppColors.textSecondary,
                           ),
                         ),
                     ],
                   ),
                 ),
-                Icon(Icons.arrow_forward, color: Colors.grey[400]),
+                const Icon(Icons.arrow_forward, color: AppColors.textDisabled),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                     widget.back,
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: AppTypography.body),
                     textAlign: TextAlign.end,
                   ),
                 ),
@@ -302,11 +304,11 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.folder_open, size: 48, color: Colors.grey[400]),
+                const Icon(Icons.folder_open, size: 48, color: AppColors.textDisabled),
                 const SizedBox(height: 12),
-                Text(
+                const Text(
                   'Chưa có bộ flashcard nào',
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: TextStyle(color: AppColors.textSecondary),
                 ),
                 const SizedBox(height: 8),
                 TextButton(
@@ -377,7 +379,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
           const Text(
             'Tạo bộ flashcard mới',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: AppTypography.body,
               fontWeight: FontWeight.bold,
             ),
           ),

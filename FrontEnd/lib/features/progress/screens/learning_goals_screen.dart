@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class LearningGoal {
   final String id;
@@ -106,7 +107,7 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.blue.withValues(alpha: 0.8),
+                      AppColors.primary.withValues(alpha: 0.8),
                       Colors.purple.withValues(alpha: 0.8)
                     ],
                   ),
@@ -118,7 +119,7 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                       'Tiến Độ Chung',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: AppTypography.body,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -127,7 +128,7 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                       '${(goals.where((g) => g.isCompleted).length)}/${goals.length}',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 32,
+                        fontSize: AppTypography.display,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -152,7 +153,7 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                         const Text(
                           'Các Mục Tiêu',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -203,7 +204,7 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                       Text(
                         goal.title,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -211,8 +212,8 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                       Text(
                         goal.description,
                         style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
+                          fontSize: AppTypography.caption,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                     ],
@@ -225,14 +226,14 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.green.withValues(alpha: 0.2),
+                      color: AppColors.success.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text(
                       '✓ Hoàn thành',
                       style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.green,
+                        fontSize: AppTypography.caption,
+                        color: AppColors.success,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -245,9 +246,9 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
               child: LinearProgressIndicator(
                 value: goal.progress,
                 minHeight: 8,
-                backgroundColor: Colors.grey[200],
+                backgroundColor: AppColors.surfaceVariant,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  goal.progress == 1.0 ? Colors.green : Colors.blue,
+                  goal.progress == 1.0 ? AppColors.success : AppColors.primary,
                 ),
               ),
             ),
@@ -259,7 +260,7 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                   '${goal.currentValue}/${goal.targetValue}',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: AppTypography.caption,
                   ),
                 ),
                 if (goal.deadline != null)
@@ -268,8 +269,8 @@ class _LearningGoalsScreenState extends State<LearningGoalsScreen> {
                         ? 'Hết hạn'
                         : 'Hạn: ${_formatDeadline(goal.deadline!)}',
                     style: TextStyle(
-                      fontSize: 12,
-                      color: isExpired ? Colors.red : Colors.grey,
+                      fontSize: AppTypography.caption,
+                      color: isExpired ? AppColors.error : AppColors.textSecondary,
                     ),
                   ),
               ],

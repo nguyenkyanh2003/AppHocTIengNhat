@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/grammar_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class GrammarListScreen extends StatefulWidget {
   final String? level;
@@ -148,7 +150,7 @@ class _GrammarListScreenState extends State<GrammarListScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Icon(Icons.error_outline,
-                                      size: 64, color: Colors.red),
+                                      size: 64, color: AppColors.error),
                                   const SizedBox(height: 16),
                                   Text(provider.error ?? ''),
                                   const SizedBox(height: 24),
@@ -165,7 +167,7 @@ class _GrammarListScreenState extends State<GrammarListScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.inbox,
-                                          size: 64, color: Colors.grey),
+                                          size: 64, color: AppColors.textSecondary),
                                       SizedBox(height: 16),
                                       Text('Không tìm thấy ngữ pháp'),
                                     ],
@@ -224,7 +226,7 @@ class GrammarCard extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                fontSize: AppTypography.bodySmall,
               ),
             ),
           ),
@@ -241,10 +243,10 @@ class GrammarCard extends StatelessWidget {
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.visibility_outlined, size: 18, color: Colors.grey),
+            const Icon(Icons.visibility_outlined, size: 18, color: AppColors.textSecondary),
             Text(
               '${grammar.viewCount ?? 0}',
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
+              style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
             ),
           ],
         ),
@@ -255,17 +257,17 @@ class GrammarCard extends StatelessWidget {
   Color _getLevelColor(String level) {
     switch (level) {
       case 'N5':
-        return Colors.green;
+        return AppColors.success;
       case 'N4':
-        return Colors.blue;
+        return AppColors.primary;
       case 'N3':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N2':
-        return Colors.red;
+        return AppColors.error;
       case 'N1':
         return Colors.purple;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

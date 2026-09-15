@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/news_provider.dart';
 import '../models/news.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NewsCarouselWidget extends StatefulWidget {
   const NewsCarouselWidget({Key? key}) : super(key: key);
@@ -110,7 +112,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
                       height: 120,
-                      color: Colors.grey[300],
+                      color: AppColors.border,
                       child: const Icon(Icons.image, size: 48),
                     );
                   },
@@ -119,9 +121,9 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
             else
               Container(
                 height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade100,
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  color: AppColors.primaryLight,
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
                   ),
@@ -150,7 +152,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                         news.level!,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 10,
+                          fontSize: AppTypography.caption,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -163,7 +165,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -175,21 +177,21 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                     children: [
                       Text(
                         news.timeAgo,
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey[600],
+                        style: const TextStyle(
+                          fontSize: AppTypography.caption,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                       Row(
                         children: [
                           const Icon(Icons.visibility,
-                              size: 12, color: Colors.grey),
+                              size: 12, color: AppColors.textSecondary),
                           const SizedBox(width: 2),
                           Text(
                             '${news.views}',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Colors.grey[600],
+                            style: const TextStyle(
+                              fontSize: AppTypography.caption,
+                              color: AppColors.textSecondary,
                             ),
                           ),
                         ],
@@ -208,17 +210,17 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   Color _getLevelColor(String? level) {
     switch (level) {
       case 'N5':
-        return Colors.green;
+        return AppColors.success;
       case 'N4':
         return Colors.lightGreen;
       case 'N3':
         return Colors.amber;
       case 'N2':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N1':
-        return Colors.red;
+        return AppColors.error;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

@@ -5,6 +5,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
+import '../../../app/theme/app_typography.dart';
 
 class AdminReportManagementScreen extends StatefulWidget {
   const AdminReportManagementScreen({Key? key}) : super(key: key);
@@ -56,16 +57,16 @@ class _AdminReportManagementScreenState
                 // Stats Bar
                 Container(
                   padding: const EdgeInsets.all(16),
-                  color: Colors.grey[100],
+                  color: AppColors.surfaceVariant,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildStatCard(
-                          '${allReports.length}', 'Tổng', Colors.blue),
+                          '${allReports.length}', 'Tổng', AppColors.primary),
                       _buildStatCard(
                           '${allReports.where((r) => r['status'] == 'pending').length}',
                           'Chờ xử lý',
-                          Colors.orange),
+                          AppColors.warning),
                       _buildStatCard(
                           '${allReports.where((r) => r['status'] == 'in_progress').length}',
                           'Đang xử lý',
@@ -73,7 +74,7 @@ class _AdminReportManagementScreenState
                       _buildStatCard(
                           '${allReports.where((r) => r['status'] == 'resolved').length}',
                           'Đã xong',
-                          Colors.green),
+                          AppColors.success),
                     ],
                   ),
                 ),
@@ -86,11 +87,11 @@ class _AdminReportManagementScreenState
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        _buildStatusChip('Tất cả', 'all', Colors.grey),
-                        _buildStatusChip('Chờ xử lý', 'pending', Colors.orange),
+                        _buildStatusChip('Tất cả', 'all', AppColors.textSecondary),
+                        _buildStatusChip('Chờ xử lý', 'pending', AppColors.warning),
                         _buildStatusChip(
                             'Đang xử lý', 'in_progress', Colors.purple),
-                        _buildStatusChip('Đã xong', 'resolved', Colors.green),
+                        _buildStatusChip('Đã xong', 'resolved', AppColors.success),
                       ],
                     ),
                   ),
@@ -126,7 +127,7 @@ class _AdminReportManagementScreenState
         Text(
           value,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: AppTypography.headline,
             fontWeight: FontWeight.bold,
             color: color,
           ),
@@ -134,9 +135,9 @@ class _AdminReportManagementScreenState
         const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ],
@@ -154,7 +155,7 @@ class _AdminReportManagementScreenState
           setState(() => _selectedStatus = value);
         },
         selectedColor: color.withValues(alpha: 0.3),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: AppColors.surfaceVariant,
         labelStyle: TextStyle(
           color: isSelected ? color : Colors.black,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
@@ -204,13 +205,13 @@ class _AdminReportManagementScreenState
                   'Mô tả:',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: AppTypography.bodySmall,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   report['description'],
-                  style: const TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: AppTypography.bodySmall),
                 ),
                 const SizedBox(height: 16),
 
@@ -219,9 +220,9 @@ class _AdminReportManagementScreenState
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.green.shade50,
+                      color: AppColors.success,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green.shade200),
+                      border: Border.all(color: AppColors.success),
                     ),
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,7 +231,7 @@ class _AdminReportManagementScreenState
                           '✅ Phản hồi từ Admin:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.green,
+                            color: AppColors.success,
                           ),
                         ),
                         SizedBox(height: 8),
@@ -251,7 +252,7 @@ class _AdminReportManagementScreenState
                           icon: const Icon(Icons.reply, size: 18),
                           label: const Text('Phản hồi'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColors.primary,
                             foregroundColor: Colors.white,
                           ),
                         ),
@@ -277,7 +278,7 @@ class _AdminReportManagementScreenState
                           icon: const Icon(Icons.check, size: 18),
                           label: const Text('Đánh dấu xong'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
+                            backgroundColor: AppColors.success,
                             foregroundColor: Colors.white,
                           ),
                         ),
@@ -285,7 +286,7 @@ class _AdminReportManagementScreenState
                     const SizedBox(width: 8),
                     IconButton(
                       onPressed: () => _deleteReport(report),
-                      icon: const Icon(Icons.delete, color: Colors.red),
+                      icon: const Icon(Icons.delete, color: AppColors.error),
                     ),
                   ],
                 ),
@@ -302,15 +303,15 @@ class _AdminReportManagementScreenState
     String text;
     switch (priority) {
       case 'high':
-        color = Colors.red;
+        color = AppColors.error;
         text = 'Cao';
         break;
       case 'medium':
-        color = Colors.orange;
+        color = AppColors.warning;
         text = 'Trung bình';
         break;
       default:
-        color = Colors.grey;
+        color = AppColors.textSecondary;
         text = 'Thấp';
     }
     return Container(
@@ -322,7 +323,7 @@ class _AdminReportManagementScreenState
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 10,
+          fontSize: AppTypography.caption,
           fontWeight: FontWeight.bold,
           color: color,
         ),
@@ -335,7 +336,7 @@ class _AdminReportManagementScreenState
     String text;
     switch (status) {
       case 'pending':
-        color = Colors.orange;
+        color = AppColors.warning;
         text = 'Chờ';
         break;
       case 'in_progress':
@@ -343,11 +344,11 @@ class _AdminReportManagementScreenState
         text = 'Xử lý';
         break;
       case 'resolved':
-        color = Colors.green;
+        color = AppColors.success;
         text = 'Xong';
         break;
       default:
-        color = Colors.grey;
+        color = AppColors.textSecondary;
         text = status;
     }
     return Container(
@@ -359,7 +360,7 @@ class _AdminReportManagementScreenState
       child: Text(
         text,
         style: const TextStyle(
-          fontSize: 12,
+          fontSize: AppTypography.caption,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -370,13 +371,13 @@ class _AdminReportManagementScreenState
   Color _getTypeColor(String type) {
     switch (type) {
       case 'bug':
-        return Colors.red;
+        return AppColors.error;
       case 'suggestion':
-        return Colors.blue;
+        return AppColors.primary;
       case 'content':
-        return Colors.orange;
+        return AppColors.warning;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 
@@ -493,12 +494,12 @@ class _AdminReportManagementScreenState
                 ScaffoldMessenger.of(this.context).showSnackBar(
                   SnackBar(
                     content: Text(success ? 'Đã xóa report!' : 'Lỗi khi xóa!'),
-                    backgroundColor: success ? Colors.green : Colors.red,
+                    backgroundColor: success ? AppColors.success : AppColors.error,
                   ),
                 );
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Xóa'),
           ),
         ],

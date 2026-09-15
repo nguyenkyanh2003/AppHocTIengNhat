@@ -6,6 +6,8 @@ import '../models/flashcard_deck.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class FlashcardDeckDetailScreen extends StatefulWidget {
   final String deckId;
@@ -55,12 +57,12 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.error_outline,
-                        size: 64, color: Colors.grey[400]),
+                    const Icon(Icons.error_outline,
+                        size: 64, color: AppColors.textDisabled),
                     const SizedBox(height: 16),
-                    Text(
+                    const Text(
                       'Lỗi tải dữ liệu',
-                      style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: AppTypography.subtitle, color: AppColors.textSecondary),
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
@@ -92,7 +94,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
         label: const Text('Thêm Thẻ'),
         backgroundColor: AppTheme.primaryColor,
       ),
-      backgroundColor: Colors.grey[50],
+      backgroundColor: AppColors.surfaceVariant,
     );
   }
 
@@ -104,7 +106,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
+            color: AppColors.textSecondary.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -116,7 +118,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
           Text(
             deck.title,
             style: const TextStyle(
-              fontSize: 24,
+              fontSize: AppTypography.headline,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -124,9 +126,9 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
             const SizedBox(height: 8),
             Text(
               deck.description!,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
+              style: const TextStyle(
+                fontSize: AppTypography.bodySmall,
+                color: AppColors.textSecondary,
               ),
             ),
           ],
@@ -134,10 +136,10 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
           Row(
             children: [
               _buildStatChip(
-                  Icons.style, '${deck.totalCards} thẻ', Colors.blue),
+                  Icons.style, '${deck.totalCards} thẻ', AppColors.primary),
               const SizedBox(width: 8),
               _buildStatChip(Icons.play_circle_outline,
-                  '${deck.studyCount} lượt', Colors.orange),
+                  '${deck.studyCount} lượt', AppColors.warning),
               if (deck.level != null) ...[
                 const SizedBox(width: 8),
                 _buildStatChip(Icons.bar_chart, deck.level!, Colors.purple),
@@ -170,24 +172,24 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
 
   Widget _buildCardsList(FlashcardDeck deck) {
     if (deck.cards.isEmpty) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.style_outlined, size: 80, color: Colors.grey[300]),
-            const SizedBox(height: 16),
+            Icon(Icons.style_outlined, size: 80, color: AppColors.border),
+            SizedBox(height: 16),
             Text(
               'Chưa có thẻ nào',
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[600],
+                fontSize: AppTypography.subtitle,
+                color: AppColors.textSecondary,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               'Thêm thẻ đầu tiên của bạn!',
-              style: TextStyle(fontSize: 14, color: Colors.grey[500]),
+              style: TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textDisabled),
             ),
           ],
         ),
@@ -212,7 +214,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
+            color: AppColors.textSecondary.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -254,7 +256,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                       Text(
                         card.front,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: AppTypography.body,
                           fontWeight: FontWeight.bold,
                         ),
                         maxLines: 1,
@@ -264,9 +266,9 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                         const SizedBox(height: 4),
                         Text(
                           card.frontSubtext!,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
+                          style: const TextStyle(
+                            fontSize: AppTypography.caption,
+                            color: AppColors.textSecondary,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -275,9 +277,9 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                       const SizedBox(height: 8),
                       Text(
                         card.back,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[700],
+                        style: const TextStyle(
+                          fontSize: AppTypography.bodySmall,
+                          color: AppColors.textSecondary,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -303,9 +305,9 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                       value: 'delete',
                       child: Row(
                         children: [
-                          Icon(Icons.delete, color: Colors.red),
+                          Icon(Icons.delete, color: AppColors.error),
                           SizedBox(width: 8),
-                          Text('Xóa', style: TextStyle(color: Colors.red)),
+                          Text('Xóa', style: TextStyle(color: AppColors.error)),
                         ],
                       ),
                     ),
@@ -341,7 +343,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
           Text(
             text,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: AppTypography.caption,
               color: color,
               fontWeight: FontWeight.w500,
             ),
@@ -404,12 +406,12 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                 ScaffoldMessenger.of(this.context).showSnackBar(
                   const SnackBar(
                     content: Text('Xóa thẻ thành công'),
-                    backgroundColor: Colors.green,
+                    backgroundColor: AppColors.success,
                   ),
                 );
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Xóa'),
           ),
         ],
@@ -473,7 +475,7 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                 ScaffoldMessenger.of(this.context).showSnackBar(
                   const SnackBar(
                     content: Text('Cập nhật thành công'),
-                    backgroundColor: Colors.green,
+                    backgroundColor: AppColors.success,
                   ),
                 );
               }
@@ -509,13 +511,13 @@ class _FlashcardDeckDetailScreenState extends State<FlashcardDeckDetailScreen> {
                 messenger.showSnackBar(
                   const SnackBar(
                     content: Text('Xóa bộ thẻ thành công'),
-                    backgroundColor: Colors.green,
+                    backgroundColor: AppColors.success,
                   ),
                 );
                 navigator.pop(); // Pop back to list
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
             child: const Text('Xóa'),
           ),
         ],

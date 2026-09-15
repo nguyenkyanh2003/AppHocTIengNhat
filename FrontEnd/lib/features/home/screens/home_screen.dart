@@ -235,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           l10n.streak,
                           '${streak?.currentStreak ?? 0} ${l10n.days}',
                           Icons.local_fire_department,
-                          Colors.orange,
+                          AppColors.warning,
                         ),
                       ),
                     ),

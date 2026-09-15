@@ -4,6 +4,8 @@ import '../providers/achievement_provider.dart';
 import '../models/achievement.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class AchievementScreen extends StatefulWidget {
   const AchievementScreen({Key? key}) : super(key: key);
@@ -101,8 +103,8 @@ class _AchievementScreenState extends State<AchievementScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
-        border: Border(
-          bottom: BorderSide(color: Colors.grey[300]!),
+        border: const Border(
+          bottom: BorderSide(color: AppColors.border),
         ),
       ),
       child: Row(
@@ -131,20 +133,20 @@ class _AchievementScreenState extends State<AchievementScreen>
   Widget _buildStatItem(String icon, String value, String label) {
     return Column(
       children: [
-        Text(icon, style: const TextStyle(fontSize: 28)),
+        Text(icon, style: const TextStyle(fontSize: AppTypography.headline)),
         const SizedBox(height: 4),
         Text(
           value,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: AppTypography.title,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ],
@@ -164,20 +166,20 @@ class _AchievementScreenState extends State<AchievementScreen>
     }
 
     if (achievements.isEmpty) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               '🏆',
               style: TextStyle(fontSize: 64),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Text(
               'Chưa có thành tích nào',
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
+                fontSize: AppTypography.body,
+                color: AppColors.textSecondary,
               ),
             ),
           ],
@@ -234,13 +236,13 @@ class _AchievementScreenState extends State<AchievementScreen>
                 decoration: BoxDecoration(
                   color: userAchievement.isCompleted
                       ? Colors.white.withValues(alpha: 0.2)
-                      : Colors.grey[200],
+                      : AppColors.surfaceVariant,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Text(
                     isLocked ? '🔒' : achievement.icon,
-                    style: const TextStyle(fontSize: 32),
+                    style: const TextStyle(fontSize: AppTypography.display),
                   ),
                 ),
               ),
@@ -252,7 +254,7 @@ class _AchievementScreenState extends State<AchievementScreen>
                     Text(
                       achievement.nameVi,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: AppTypography.body,
                         fontWeight: FontWeight.bold,
                         color: userAchievement.isCompleted
                             ? Colors.white
@@ -263,10 +265,10 @@ class _AchievementScreenState extends State<AchievementScreen>
                     Text(
                       achievement.descriptionVi,
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: AppTypography.caption,
                         color: userAchievement.isCompleted
                             ? Colors.white70
-                            : Colors.grey[600],
+                            : AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -275,7 +277,7 @@ class _AchievementScreenState extends State<AchievementScreen>
                         borderRadius: BorderRadius.circular(4),
                         child: LinearProgressIndicator(
                           value: userAchievement.progressPercentage,
-                          backgroundColor: Colors.grey[300],
+                          backgroundColor: AppColors.border,
                           valueColor: AlwaysStoppedAnimation<Color>(
                             Theme.of(context).primaryColor,
                           ),
@@ -285,9 +287,9 @@ class _AchievementScreenState extends State<AchievementScreen>
                       const SizedBox(height: 4),
                       Text(
                         '${userAchievement.progress}/${achievement.requirementValue}',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey[600],
+                        style: const TextStyle(
+                          fontSize: AppTypography.caption,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                     ] else ...[
@@ -302,7 +304,7 @@ class _AchievementScreenState extends State<AchievementScreen>
                           Text(
                             'Hoàn thành • +${achievement.xpReward} XP',
                             style: const TextStyle(
-                              fontSize: 12,
+                              fontSize: AppTypography.caption,
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
                             ),
@@ -328,7 +330,7 @@ class _AchievementScreenState extends State<AchievementScreen>
                   child: Text(
                     _getRarityText(achievement.rarity),
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: AppTypography.caption,
                       fontWeight: FontWeight.bold,
                       color: userAchievement.isCompleted
                           ? Colors.white

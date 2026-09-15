@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import '../../../app/theme/app_typography.dart';
 
 /// Flashcard widget với flip animation
 class FlashcardWidget extends StatefulWidget {
@@ -142,7 +143,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
             Text(
               widget.frontSubtext!,
               style: const TextStyle(
-                fontSize: 24,
+                fontSize: AppTypography.headline,
                 color: Colors.white70,
               ),
               textAlign: TextAlign.center,
@@ -164,7 +165,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
                   'Chạm để lật',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: AppTypography.bodySmall,
                   ),
                 ),
               ],
@@ -211,7 +212,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
             child: Text(
               widget.backText,
               style: const TextStyle(
-                fontSize: 32,
+                fontSize: AppTypography.display,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -225,7 +226,7 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
               child: Text(
                 widget.backSubtext!,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: AppTypography.subtitle,
                   color: Colors.white70,
                 ),
                 textAlign: TextAlign.center,

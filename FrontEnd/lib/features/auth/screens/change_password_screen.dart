@@ -5,6 +5,7 @@ import '../providers/auth_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Đổi mật khẩu thành công! Vui lòng đăng nhập lại.'),
-        backgroundColor: Colors.green,
+        backgroundColor: AppColors.success,
       ),
     );
 
@@ -87,7 +88,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(32),
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: AppColors.primary,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(32),
                     bottomRight: Radius.circular(32),
@@ -111,7 +112,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     const Text(
                       'Bảo mật tài khoản',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: AppTypography.title,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -120,7 +121,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     Text(
                       'Đổi mật khẩu thường xuyên để bảo vệ tài khoản của bạn',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: AppTypography.bodySmall,
                         color: Colors.white.withValues(alpha: 0.9),
                       ),
                       textAlign: TextAlign.center,
@@ -142,20 +143,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.red.withValues(alpha: 0.1),
+                            color: AppColors.error.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                                color: Colors.red.withValues(alpha: 0.3)),
+                                color: AppColors.error.withValues(alpha: 0.3)),
                           ),
                           child: Row(
                             children: [
                               const Icon(Icons.error_outline,
-                                  color: Colors.red),
+                                  color: AppColors.error),
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Text(
                                   _errorMessage!,
-                                  style: const TextStyle(color: Colors.red),
+                                  style: const TextStyle(color: AppColors.error),
                                 ),
                               ),
                             ],
@@ -277,7 +278,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.blue.withValues(alpha: 0.05),
+                          color: AppColors.primary.withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
@@ -287,7 +288,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               'Yêu cầu mật khẩu:',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 13,
+                                fontSize: AppTypography.caption,
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -318,14 +319,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : _changePassword,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColors.primary,
                             foregroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                             disabledBackgroundColor:
-                                Colors.blue.withValues(alpha: 0.5),
+                                AppColors.primary.withValues(alpha: 0.5),
                           ),
                           child: _isLoading
                               ? const SizedBox(
@@ -340,7 +341,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               : const Text(
                                   'Đổi mật khẩu',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: AppTypography.body,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -365,14 +366,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           Icon(
             isMet ? Icons.check_circle : Icons.circle_outlined,
             size: 16,
-            color: isMet ? Colors.green : Colors.grey,
+            color: isMet ? AppColors.success : AppColors.textSecondary,
           ),
           const SizedBox(width: 8),
           Text(
             text,
             style: TextStyle(
-              fontSize: 12,
-              color: isMet ? Colors.green : Colors.grey[600],
+              fontSize: AppTypography.caption,
+              color: isMet ? AppColors.success : AppColors.textSecondary,
             ),
           ),
         ],

@@ -5,6 +5,8 @@ import '../providers/streak_provider.dart';
 import '../../achievements/providers/achievement_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class StreakScreen extends StatefulWidget {
   const StreakScreen({Key? key}) : super(key: key);
@@ -115,7 +117,7 @@ class _StreakScreenState extends State<StreakScreen> {
                       'Streak hiện tại',
                       style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 14,
+                        fontSize: AppTypography.bodySmall,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -123,7 +125,7 @@ class _StreakScreenState extends State<StreakScreen> {
                       children: [
                         const Text(
                           '🔥',
-                          style: TextStyle(fontSize: 32),
+                          style: TextStyle(fontSize: AppTypography.display),
                         ),
                         const SizedBox(width: 8),
                         Text(
@@ -139,7 +141,7 @@ class _StreakScreenState extends State<StreakScreen> {
                           'ngày',
                           style: TextStyle(
                             color: Colors.white70,
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                           ),
                         ),
                       ],
@@ -158,7 +160,7 @@ class _StreakScreenState extends State<StreakScreen> {
                         'Kỷ lục',
                         style: TextStyle(
                           color: Colors.white70,
-                          fontSize: 12,
+                          fontSize: AppTypography.caption,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -166,7 +168,7 @@ class _StreakScreenState extends State<StreakScreen> {
                         '${streak.longestStreak}',
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: AppTypography.headline,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -196,7 +198,7 @@ class _StreakScreenState extends State<StreakScreen> {
                       'Hoạt động gần nhất: ${_formatDate(streak.lastActivityDate!)}',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                       ),
                     ),
                   ],
@@ -236,7 +238,7 @@ class _StreakScreenState extends State<StreakScreen> {
                       'Level',
                       style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 14,
+                        fontSize: AppTypography.bodySmall,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -257,7 +259,7 @@ class _StreakScreenState extends State<StreakScreen> {
                       'Tổng XP',
                       style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 14,
+                        fontSize: AppTypography.bodySmall,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -265,14 +267,14 @@ class _StreakScreenState extends State<StreakScreen> {
                       children: [
                         const Text(
                           '⭐',
-                          style: TextStyle(fontSize: 24),
+                          style: TextStyle(fontSize: AppTypography.headline),
                         ),
                         const SizedBox(width: 4),
                         Text(
                           '${streak.totalXP}',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: AppTypography.headline,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -293,14 +295,14 @@ class _StreakScreenState extends State<StreakScreen> {
                       'Level tiếp theo: ${streak.xpToNextLevel} XP',
                       style: const TextStyle(
                         color: Colors.white70,
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                       ),
                     ),
                     Text(
                       '${(streak.xpProgress * 100).toStringAsFixed(0)}%',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -361,22 +363,22 @@ class _StreakScreenState extends State<StreakScreen> {
         ),
         child: Column(
           children: [
-            Text(icon, style: const TextStyle(fontSize: 32)),
+            Text(icon, style: const TextStyle(fontSize: AppTypography.display)),
             const SizedBox(height: 8),
             Text(
               value,
               style: TextStyle(
                 color: color,
-                fontSize: 24,
+                fontSize: AppTypography.headline,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               label,
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 12,
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: AppTypography.caption,
               ),
               textAlign: TextAlign.center,
             ),
@@ -402,7 +404,7 @@ class _StreakScreenState extends State<StreakScreen> {
             const Text(
               'Lịch sử XP',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: AppTypography.subtitle,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -420,7 +422,7 @@ class _StreakScreenState extends State<StreakScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Text('⭐', style: TextStyle(fontSize: 20)),
+                        child: Text('⭐', style: TextStyle(fontSize: AppTypography.title)),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -436,9 +438,9 @@ class _StreakScreenState extends State<StreakScreen> {
                           ),
                           Text(
                             _formatDate(history.earnedAt),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
+                            style: const TextStyle(
+                              fontSize: AppTypography.caption,
+                              color: AppColors.textSecondary,
                             ),
                           ),
                         ],
@@ -447,9 +449,9 @@ class _StreakScreenState extends State<StreakScreen> {
                     Text(
                       '+${history.amount}',
                       style: const TextStyle(
-                        color: Colors.green,
+                        color: AppColors.success,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: AppTypography.body,
                       ),
                     ),
                   ],

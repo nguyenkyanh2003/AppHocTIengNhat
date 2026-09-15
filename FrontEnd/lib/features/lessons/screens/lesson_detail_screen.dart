@@ -60,12 +60,12 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(Icons.error_outline,
-                        size: 64, color: Colors.red),
+                        size: 64, color: AppColors.error),
                     const SizedBox(height: 16),
                     Text(
                       provider.error!,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.red),
+                      style: const TextStyle(color: AppColors.error),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
@@ -208,7 +208,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: AppColors.success,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Row(
@@ -292,7 +292,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                         ? '${progress.completedVocabularies}/$vocabCount'
                         : vocabCount.toString(),
                     'Từ vựng',
-                    Colors.blue,
+                    AppColors.primary,
                     progress?.vocabularyProgress,
                   ),
                   _buildStatItem(
@@ -301,7 +301,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                         ? '${progress.completedKanjis}/$kanjiCount'
                         : kanjiCount.toString(),
                     'Kanji',
-                    Colors.orange,
+                    AppColors.warning,
                     progress?.kanjiProgress,
                   ),
                   _buildStatItem(
@@ -310,7 +310,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                         ? '${progress.completedGrammars}/$grammarCount'
                         : grammarCount.toString(),
                     'Ngữ pháp',
-                    Colors.green,
+                    AppColors.success,
                     progress?.grammarProgress,
                   ),
                 ],
@@ -367,9 +367,9 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
       color: Colors.white,
       child: TabBar(
         controller: _tabController,
-        labelColor: Colors.blue,
-        unselectedLabelColor: Colors.grey,
-        indicatorColor: Colors.blue,
+        labelColor: AppColors.primary,
+        unselectedLabelColor: AppColors.textSecondary,
+        indicatorColor: AppColors.primary,
         tabs: const [
           Tab(text: 'Tổng quan'),
           Tab(icon: Icon(Icons.spellcheck), text: 'Từ vựng'),
@@ -444,7 +444,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
           margin: const EdgeInsets.only(bottom: 12),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: AppColors.primary,
               child: Text('${index + 1}',
                   style: const TextStyle(color: Colors.white)),
             ),
@@ -556,7 +556,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
           margin: const EdgeInsets.only(bottom: 12),
           child: ExpansionTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.green,
+              backgroundColor: AppColors.success,
               child: Text('${index + 1}',
                   style: const TextStyle(color: Colors.white)),
             ),
@@ -700,7 +700,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
                     onPressed: () => _startLesson(progressProvider),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: isCompleted ? Colors.green : null,
+                      backgroundColor: isCompleted ? AppColors.success : null,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -741,7 +741,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Không thể bắt đầu bài học'),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.error,
           ),
         );
         return;
@@ -770,7 +770,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
             child: const Text('Đặt lại'),
           ),
         ],
@@ -785,7 +785,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
             content: Text(
               success ? 'Đã đặt lại tiến độ' : 'Không thể đặt lại tiến độ',
             ),
-            backgroundColor: success ? Colors.green : Colors.red,
+            backgroundColor: success ? AppColors.success : AppColors.error,
           ),
         );
       }
@@ -795,17 +795,17 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
   Color _getLevelColor(String level) {
     switch (level) {
       case 'N1':
-        return Colors.red;
+        return AppColors.error;
       case 'N2':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N3':
         return Colors.amber;
       case 'N4':
-        return Colors.green;
+        return AppColors.success;
       case 'N5':
-        return Colors.blue;
+        return AppColors.primary;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

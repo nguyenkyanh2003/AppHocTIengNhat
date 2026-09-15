@@ -5,6 +5,8 @@ import '../providers/news_provider.dart';
 import '../models/news.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class NewsListScreen extends StatefulWidget {
   const NewsListScreen({Key? key}) : super(key: key);
@@ -108,15 +110,15 @@ class _NewsListScreenState extends State<NewsListScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.newspaper,
-                              size: 64, color: Colors.grey[400]),
+                          const Icon(Icons.newspaper,
+                              size: 64, color: AppColors.textDisabled),
                           const SizedBox(height: 16),
                           Text(
                             _showBookmarks
                                 ? 'Chưa có tin tức yêu thích'
                                 : 'Không có tin tức nào',
                             style: const TextStyle(
-                                fontSize: 16, color: Colors.grey),
+                                fontSize: AppTypography.body, color: AppColors.textSecondary),
                           ),
                         ],
                       ),
@@ -182,7 +184,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
             borderSide: BorderSide.none,
           ),
           filled: true,
-          fillColor: Colors.grey[200],
+          fillColor: AppColors.surfaceVariant,
         ),
       ),
     );
@@ -210,8 +212,8 @@ class _NewsListScreenState extends State<NewsListScreen> {
         label: Text(label),
         selected: isSelected,
         onSelected: (_) => _onLevelChanged(level),
-        backgroundColor: Colors.grey[200],
-        selectedColor: Colors.blue,
+        backgroundColor: AppColors.surfaceVariant,
+        selectedColor: AppColors.primary,
         labelStyle: TextStyle(
           color: isSelected ? Colors.white : Colors.black,
           fontWeight: FontWeight.w500,
@@ -249,7 +251,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        color: Colors.grey[300],
+                        color: AppColors.border,
                         child: const Icon(Icons.image, size: 48),
                       );
                     },
@@ -270,7 +272,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: AppTypography.body,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -281,9 +283,9 @@ class _NewsListScreenState extends State<NewsListScreen> {
                     news.description,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey[700],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.textSecondary,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -302,21 +304,21 @@ class _NewsListScreenState extends State<NewsListScreen> {
                               ),
                               decoration: BoxDecoration(
                                 color: news.level == 'N5'
-                                    ? Colors.green
+                                    ? AppColors.success
                                     : news.level == 'N4'
                                         ? Colors.lightGreen
                                         : news.level == 'N3'
                                             ? Colors.amber
                                             : news.level == 'N2'
-                                                ? Colors.orange
-                                                : Colors.red,
+                                                ? AppColors.warning
+                                                : AppColors.error,
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
                                 news.level!,
                                 style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 11,
+                                  fontSize: AppTypography.caption,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -324,21 +326,21 @@ class _NewsListScreenState extends State<NewsListScreen> {
                             const SizedBox(width: 8),
                           ],
                           const Icon(Icons.visibility,
-                              size: 14, color: Colors.grey),
+                              size: 14, color: AppColors.textSecondary),
                           const SizedBox(width: 4),
                           Text(
                             '${news.views}',
                             style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
+                              fontSize: AppTypography.caption,
+                              color: AppColors.textSecondary,
                             ),
                           ),
                           const SizedBox(width: 12),
                           Text(
                             news.timeAgo,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
+                            style: const TextStyle(
+                              fontSize: AppTypography.caption,
+                              color: AppColors.textSecondary,
                             ),
                           ),
                         ],
@@ -349,8 +351,8 @@ class _NewsListScreenState extends State<NewsListScreen> {
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: provider.isBookmarked(news.id)
-                              ? Colors.red
-                              : Colors.grey,
+                              ? AppColors.error
+                              : AppColors.textSecondary,
                           size: 20,
                         ),
                         onPressed: () {

@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
   const AdminDashboardScreen({Key? key}) : super(key: key);
@@ -51,9 +53,9 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                   // Stats Overview
                   Container(
                     padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Colors.blue.shade700, Colors.blue.shade500],
+                        colors: [AppColors.primaryDark, AppColors.primary],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -64,7 +66,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         const Text(
                           'Tổng Quan Hệ Thống',
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: AppTypography.headline,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -73,7 +75,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         Text(
                           'Cập nhật: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: AppTypography.bodySmall,
                             color: Colors.white70,
                           ),
                         ),
@@ -136,7 +138,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         const Text(
                           'Quản Lý Nhanh',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: AppTypography.title,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -153,7 +155,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                               context,
                               '👥 Users',
                               'Quản lý người dùng',
-                              Colors.blue,
+                              AppColors.primary,
                               Icons.people,
                               () => context.push('/admin/users'),
                             ),
@@ -161,7 +163,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                               context,
                               '📚 Content',
                               'Quản lý nội dung',
-                              Colors.green,
+                              AppColors.success,
                               Icons.book,
                               () => context.push('/admin/content'),
                             ),
@@ -169,7 +171,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                               context,
                               '📝 Reports',
                               'Xử lý báo cáo',
-                              Colors.orange,
+                              AppColors.warning,
                               Icons.report,
                               () => context.push('/admin/reports'),
                             ),
@@ -193,7 +195,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                               context,
                               '📊 Analytics',
                               'Thống kê hệ thống',
-                              Colors.red,
+                              AppColors.error,
                               Icons.analytics,
                               () => context.push('/admin/analytics'),
                             ),
@@ -206,7 +208,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         const Text(
                           'Hoạt Động Gần Đây',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: AppTypography.title,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -215,19 +217,19 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                           '👤 User mới đăng ký',
                           'nguyenvana@example.com',
                           '2 phút trước',
-                          Colors.blue,
+                          AppColors.primary,
                         ),
                         _buildActivityItem(
                           '📝 Report mới',
                           'Bug trong bài học N5',
                           '15 phút trước',
-                          Colors.orange,
+                          AppColors.warning,
                         ),
                         _buildActivityItem(
                           '💳 Thanh toán thành công',
                           'Premium - 199,000đ',
                           '1 giờ trước',
-                          Colors.green,
+                          AppColors.success,
                         ),
                         _buildActivityItem(
                           '🏆 Achievement mới được tạo',
@@ -239,7 +241,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                           '⚠️ Content được báo cáo',
                           'Từ vựng N4 - ID: 12345',
                           '5 giờ trước',
-                          Colors.red,
+                          AppColors.error,
                         ),
 
                         const SizedBox(height: 32),
@@ -248,7 +250,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         const Text(
                           'Trạng Thái Hệ Thống',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: AppTypography.title,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -287,13 +289,13 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         children: [
           Text(
             icon,
-            style: const TextStyle(fontSize: 28),
+            style: const TextStyle(fontSize: AppTypography.headline),
           ),
           const SizedBox(height: 8),
           Text(
             value,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: AppTypography.headline,
               fontWeight: FontWeight.bold,
               color: color.withValues(alpha: 0.9),
             ),
@@ -301,7 +303,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: AppTypography.caption,
               color: color.withValues(alpha: 0.7),
             ),
           ),
@@ -346,16 +348,16 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 subtitle,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[600],
+                style: const TextStyle(
+                  fontSize: AppTypography.caption,
+                  color: AppColors.textSecondary,
                 ),
               ),
             ],
@@ -385,9 +387,9 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         subtitle: Text(subtitle),
         trailing: Text(
           time,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ),
@@ -400,7 +402,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       child: ListTile(
         leading: Icon(
           isHealthy ? Icons.check_circle : Icons.error,
-          color: isHealthy ? Colors.green : Colors.red,
+          color: isHealthy ? AppColors.success : AppColors.error,
         ),
         title: Text(name),
         subtitle: Text(status),
@@ -408,7 +410,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
           width: 8,
           height: 8,
           decoration: BoxDecoration(
-            color: isHealthy ? Colors.green : Colors.red,
+            color: isHealthy ? AppColors.success : AppColors.error,
             shape: BoxShape.circle,
           ),
         ),

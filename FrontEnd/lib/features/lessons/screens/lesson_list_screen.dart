@@ -119,12 +119,12 @@ class _LessonListScreenState extends State<LessonListScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(Icons.error_outline,
-                              size: 64, color: Colors.red),
+                              size: 64, color: AppColors.error),
                           const SizedBox(height: 16),
                           Text(
                             provider.error!,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(color: Colors.red),
+                            style: const TextStyle(color: AppColors.error),
                           ),
                           const SizedBox(height: 16),
                           ElevatedButton(

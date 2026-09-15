@@ -6,6 +6,7 @@ import '../providers/progress_provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
 
 class ProgressDashboardScreen extends StatefulWidget {
   const ProgressDashboardScreen({Key? key}) : super(key: key);
@@ -91,7 +92,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                 '📚',
                 'Từ vựng',
                 '${stats.vocabularyLearned}',
-                Colors.blue,
+                AppColors.primary,
               ),
               _buildStatCard(
                 '🔤',
@@ -103,19 +104,19 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                 '✏️',
                 'Bài tập',
                 '${stats.exercisesCompleted}',
-                Colors.green,
+                AppColors.success,
               ),
               _buildStatCard(
                 '📖',
                 'Bài học',
                 '${stats.lessonsCompleted}',
-                Colors.orange,
+                AppColors.warning,
               ),
               _buildStatCard(
                 '⏱️',
                 'Thời gian',
                 stats.formattedStudyTime,
-                Colors.red,
+                AppColors.error,
               ),
               _buildStatCard(
                 '🔥',
@@ -150,7 +151,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(emoji, style: const TextStyle(fontSize: 22)),
+            Text(emoji, style: const TextStyle(fontSize: AppTypography.title)),
             const SizedBox(height: 3),
             Flexible(
               child: FittedBox(
@@ -158,7 +159,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                 child: Text(
                   value,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: AppTypography.body,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
@@ -173,9 +174,9 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.grey[600],
+                  style: const TextStyle(
+                    fontSize: AppTypography.caption,
+                    color: AppColors.textSecondary,
                   ),
                   textAlign: TextAlign.center,
                   maxLines: 1,
@@ -203,7 +204,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
             const Text(
               'Biểu đồ học tập',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppTypography.title,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -228,7 +229,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                         getTitlesWidget: (value, meta) {
                           return Text(
                             value.toInt().toString(),
-                            style: const TextStyle(fontSize: 10),
+                            style: const TextStyle(fontSize: AppTypography.caption),
                           );
                         },
                       ),
@@ -244,7 +245,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                           final date = timeline[value.toInt()].dateTime;
                           return Text(
                             DateFormat('dd/MM').format(date),
-                            style: const TextStyle(fontSize: 10),
+                            style: const TextStyle(fontSize: AppTypography.caption),
                           );
                         },
                       ),
@@ -268,12 +269,12 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                               ))
                           .toList(),
                       isCurved: true,
-                      color: Colors.blue,
+                      color: AppColors.primary,
                       barWidth: 3,
                       dotData: const FlDotData(show: true),
                       belowBarData: BarAreaData(
                         show: true,
-                        color: Colors.blue.withValues(alpha: 0.1),
+                        color: AppColors.primary.withValues(alpha: 0.1),
                       ),
                     ),
                     LineChartBarData(
@@ -286,12 +287,12 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                               ))
                           .toList(),
                       isCurved: true,
-                      color: Colors.orange,
+                      color: AppColors.warning,
                       barWidth: 3,
                       dotData: const FlDotData(show: true),
                       belowBarData: BarAreaData(
                         show: true,
-                        color: Colors.orange.withValues(alpha: 0.1),
+                        color: AppColors.warning.withValues(alpha: 0.1),
                       ),
                     ),
                   ],
@@ -304,9 +305,9 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildLegendItem(Colors.blue, 'Bài tập'),
+            _buildLegendItem(AppColors.primary, 'Bài tập'),
             const SizedBox(width: 24),
-            _buildLegendItem(Colors.orange, 'Bài học'),
+            _buildLegendItem(AppColors.warning, 'Bài học'),
           ],
         ),
       ],
@@ -317,7 +318,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: AppColors.surfaceVariant,
         borderRadius: BorderRadius.circular(20),
       ),
       child: DropdownButton<String>(
@@ -351,7 +352,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
         const SizedBox(width: 8),
         Text(
           label,
-          style: const TextStyle(fontSize: 12),
+          style: const TextStyle(fontSize: AppTypography.caption),
         ),
       ],
     );
@@ -367,7 +368,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
         const Text(
           'Phân tích chi tiết',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: AppTypography.title,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -388,28 +389,28 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
         else if (breakdown == null ||
             (breakdown.lessonsByLevel.isEmpty &&
                 breakdown.exercisesByType.isEmpty)) ...[
-          Card(
+          const Card(
             elevation: 2,
             child: Padding(
-              padding: const EdgeInsets.all(32),
+              padding: EdgeInsets.all(32),
               child: Column(
                 children: [
                   Icon(Icons.analytics_outlined,
-                      size: 64, color: Colors.grey[400]),
-                  const SizedBox(height: 16),
+                      size: 64, color: AppColors.textDisabled),
+                  SizedBox(height: 16),
                   Text(
                     'Chưa có dữ liệu phân tích',
                     style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
+                      fontSize: AppTypography.body,
+                      color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Text(
                     'Bắt đầu học bài và làm bài tập để xem phân tích chi tiết',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey[500]),
+                    style: TextStyle(color: AppColors.textDisabled),
                   ),
                 ],
               ),
@@ -453,7 +454,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                             const SizedBox(height: 4),
                             LinearProgressIndicator(
                               value: level.completionRate / 100,
-                              backgroundColor: Colors.grey[200],
+                              backgroundColor: AppColors.surfaceVariant,
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 _getLevelColor(level.level),
                               ),
@@ -499,8 +500,8 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
                           '${type.passRate.toStringAsFixed(0)}%',
                           style: TextStyle(
                             color: type.passRate >= 70
-                                ? Colors.green
-                                : Colors.orange,
+                                ? AppColors.success
+                                : AppColors.warning,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -525,7 +526,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
         const Text(
           'Lịch học tập',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: AppTypography.title,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -544,28 +545,28 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
 
         // Show empty state
         else if (heatmap.isEmpty) ...[
-          Card(
+          const Card(
             elevation: 2,
             child: Padding(
-              padding: const EdgeInsets.all(32),
+              padding: EdgeInsets.all(32),
               child: Column(
                 children: [
                   Icon(Icons.calendar_month_outlined,
-                      size: 64, color: Colors.grey[400]),
-                  const SizedBox(height: 16),
+                      size: 64, color: AppColors.textDisabled),
+                  SizedBox(height: 16),
                   Text(
                     'Chưa có lịch sử học tập',
                     style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
+                      fontSize: AppTypography.body,
+                      color: AppColors.textSecondary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Text(
                     'Học tập đều đặn để xây dựng lịch sử của bạn',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey[500]),
+                    style: TextStyle(color: AppColors.textDisabled),
                   ),
                 ],
               ),
@@ -648,7 +649,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Ít', style: TextStyle(fontSize: 12)),
+        const Text('Ít', style: TextStyle(fontSize: AppTypography.caption)),
         const SizedBox(width: 8),
         ...List.generate(5, (index) {
           return Padding(
@@ -664,7 +665,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
           );
         }),
         const SizedBox(width: 8),
-        const Text('Nhiều', style: TextStyle(fontSize: 12)),
+        const Text('Nhiều', style: TextStyle(fontSize: AppTypography.caption)),
       ],
     );
   }
@@ -672,49 +673,49 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
   Color _getHeatmapColor(int intensity) {
     switch (intensity) {
       case 0:
-        return Colors.grey[200]!;
+        return AppColors.surfaceVariant;
       case 1:
-        return Colors.green[200]!;
+        return AppColors.success;
       case 2:
-        return Colors.green[400]!;
+        return AppColors.success;
       case 3:
-        return Colors.green[600]!;
+        return AppColors.success;
       case 4:
-        return Colors.green[800]!;
+        return AppColors.success;
       default:
-        return Colors.grey[200]!;
+        return AppColors.surfaceVariant;
     }
   }
 
   Color _getLevelColor(String level) {
     switch (level) {
       case 'N1':
-        return Colors.red;
+        return AppColors.error;
       case 'N2':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N3':
         return Colors.yellow[700]!;
       case 'N4':
-        return Colors.green;
+        return AppColors.success;
       case 'N5':
-        return Colors.blue;
+        return AppColors.primary;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 
   Color _getTypeColor(String type) {
     switch (type) {
       case 'Từ vựng':
-        return Colors.blue;
+        return AppColors.primary;
       case 'Ngữ pháp':
         return Colors.purple;
       case 'Kanji':
-        return Colors.orange;
+        return AppColors.warning;
       case 'Tổng hợp':
-        return Colors.green;
+        return AppColors.success;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

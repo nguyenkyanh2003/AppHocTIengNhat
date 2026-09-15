@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import '../providers/news_provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
 
 class NewsDetailScreen extends StatefulWidget {
   final String newsId;
@@ -56,7 +57,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: provider.isBookmarked(news.id)
-                          ? Colors.red
+                          ? AppColors.error
                           : Colors.white,
                     ),
                     onPressed: () {
@@ -81,13 +82,13 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Container(
-                              color: Colors.grey[300],
+                              color: AppColors.border,
                               child: const Icon(Icons.image, size: 64),
                             );
                           },
                         )
                       : Container(
-                          color: Colors.grey[300],
+                          color: AppColors.border,
                           child: const Icon(Icons.image, size: 64),
                         ),
                 ),
@@ -119,7 +120,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                                 Text(
                                   news.title,
                                   style: const TextStyle(
-                                    fontSize: 20,
+                                    fontSize: AppTypography.title,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -143,7 +144,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                                           news.level!,
                                           style: const TextStyle(
                                             color: Colors.white,
-                                            fontSize: 12,
+                                            fontSize: AppTypography.caption,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -151,21 +152,21 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                                       const SizedBox(width: 12),
                                     ],
                                     const Icon(Icons.visibility_outlined,
-                                        size: 16, color: Colors.grey),
+                                        size: 16, color: AppColors.textSecondary),
                                     const SizedBox(width: 4),
                                     Text(
                                       '${news.views} lượt xem',
                                       style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.grey,
+                                        fontSize: AppTypography.caption,
+                                        color: AppColors.textSecondary,
                                       ),
                                     ),
                                     const Spacer(),
                                     Text(
                                       news.timeAgo,
                                       style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.grey,
+                                        fontSize: AppTypography.caption,
+                                        color: AppColors.textSecondary,
                                       ),
                                     ),
                                   ],
@@ -176,9 +177,9 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                                 if (news.source != null)
                                   Text(
                                     'Nguồn: ${news.source}',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey[600],
+                                    style: const TextStyle(
+                                      fontSize: AppTypography.caption,
+                                      color: AppColors.textSecondary,
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
@@ -260,7 +261,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
               margin: const EdgeInsets.only(right: 12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Colors.grey[200],
+                color: AppColors.surfaceVariant,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,16 +289,16 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: AppTypography.caption,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           news.timeAgo,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.grey[600],
+                          style: const TextStyle(
+                            fontSize: AppTypography.caption,
+                            color: AppColors.textSecondary,
                           ),
                         ),
                       ],
@@ -315,17 +316,17 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
   Color _getLevelColor(String? level) {
     switch (level) {
       case 'N5':
-        return Colors.green;
+        return AppColors.success;
       case 'N4':
         return Colors.lightGreen;
       case 'N3':
         return Colors.amber;
       case 'N2':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N1':
-        return Colors.red;
+        return AppColors.error;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

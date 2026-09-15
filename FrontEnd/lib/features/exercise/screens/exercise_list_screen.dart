@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/exercise_provider.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class ExerciseListScreen extends StatefulWidget {
   final String? lessonId;
@@ -140,13 +142,13 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                 });
               },
               backgroundColor: Colors.white,
-              selectedColor: Colors.blue.shade100,
+              selectedColor: AppColors.primaryLight,
               labelStyle: TextStyle(
-                color: isSelected ? Colors.blue.shade700 : Colors.grey.shade700,
+                color: isSelected ? AppColors.primaryDark : AppColors.textSecondary,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
               side: BorderSide(
-                color: isSelected ? Colors.blue.shade300 : Colors.grey.shade300,
+                color: isSelected ? AppColors.primary : AppColors.border,
               ),
             ),
           );
@@ -180,15 +182,15 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                 });
               },
               backgroundColor: Colors.white,
-              selectedColor: Colors.green.shade100,
+              selectedColor: AppColors.success,
               labelStyle: TextStyle(
                 color:
-                    isSelected ? Colors.green.shade700 : Colors.grey.shade700,
+                    isSelected ? AppColors.success : AppColors.textSecondary,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
               side: BorderSide(
                 color:
-                    isSelected ? Colors.green.shade300 : Colors.grey.shade300,
+                    isSelected ? AppColors.success : AppColors.border,
               ),
             ),
           );
@@ -209,14 +211,14 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                const Icon(Icons.error_outline, size: 64, color: AppColors.error),
                 const SizedBox(height: 16),
-                Text(
+                const Text(
                   'Đã xảy ra lỗi',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: AppTypography.subtitle,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade700,
+                    color: AppColors.textSecondary,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -234,16 +236,16 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.quiz_outlined,
-                    size: 64, color: Colors.grey.shade400),
+                const Icon(Icons.quiz_outlined,
+                    size: 64, color: AppColors.textDisabled),
                 const SizedBox(height: 16),
                 Text(
                   _allExercises.isEmpty
                       ? 'Chưa có bài tập nào'
                       : 'Không tìm thấy bài tập phù hợp',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey.shade600,
+                  style: const TextStyle(
+                    fontSize: AppTypography.subtitle,
+                    color: AppColors.textSecondary,
                   ),
                 ),
                 if (_allExercises.isEmpty) ...[
@@ -253,7 +255,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                     icon: const Icon(Icons.refresh),
                     label: const Text('Tải lại'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
                     ),
                   ),
@@ -294,7 +296,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.15),
+            color: AppColors.textSecondary.withValues(alpha: 0.15),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -344,7 +346,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                             child: Text(
                               exercise.title,
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: AppTypography.subtitle,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                               ),
@@ -356,10 +358,10 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 colors: [
-                                  Colors.orange.shade400,
-                                  Colors.orange.shade600,
+                                  AppColors.warning,
+                                  AppColors.warning,
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(12),
@@ -368,7 +370,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                               exercise.level,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: AppTypography.caption,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -380,9 +382,9 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                           exercise.description!.isNotEmpty)
                         Text(
                           exercise.description!,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
+                          style: const TextStyle(
+                            fontSize: AppTypography.bodySmall,
+                            color: AppColors.textSecondary,
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -393,7 +395,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                           _buildInfoChip(
                             Icons.quiz,
                             '${exercise.questionCount} câu',
-                            Colors.blue,
+                            AppColors.primary,
                           ),
                           const SizedBox(width: 8),
                           if (exercise.timeLimit > 0)
@@ -406,7 +408,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                           _buildInfoChip(
                             Icons.people,
                             '${exercise.totalAttempts} lượt',
-                            Colors.green,
+                            AppColors.success,
                           ),
                         ],
                       ),
@@ -437,7 +439,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: AppTypography.caption,
               color: color,
               fontWeight: FontWeight.w500,
             ),
@@ -450,15 +452,15 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
   Color _getTypeColor(String type) {
     switch (type) {
       case 'Từ vựng':
-        return Colors.blue;
+        return AppColors.primary;
       case 'Ngữ pháp':
-        return Colors.green;
+        return AppColors.success;
       case 'Kanji':
-        return Colors.orange;
+        return AppColors.warning;
       case 'Tổng hợp':
         return Colors.purple;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 

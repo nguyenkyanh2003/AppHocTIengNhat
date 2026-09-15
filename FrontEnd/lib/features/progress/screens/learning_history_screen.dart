@@ -6,6 +6,8 @@ import '../../streaks/providers/streak_provider.dart';
 import '../../streaks/models/user_streak.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class LearningHistoryScreen extends StatefulWidget {
   const LearningHistoryScreen({Key? key}) : super(key: key);
@@ -131,7 +133,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                   icon: Icons.local_fire_department,
                   value: '${streak?.currentStreak ?? 0}',
                   label: 'Ngày liên tiếp',
-                  iconColor: Colors.orange,
+                  iconColor: AppColors.warning,
                 ),
                 Container(
                   width: 1,
@@ -175,7 +177,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                       '${streak?.xpToNextLevel ?? 100} XP đến level tiếp theo',
                       style: const TextStyle(
                         color: Colors.white70,
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                       ),
                     ),
                   ],
@@ -213,7 +215,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
           value,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 22,
+            fontSize: AppTypography.title,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -222,7 +224,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
           label,
           style: const TextStyle(
             color: Colors.white70,
-            fontSize: 11,
+            fontSize: AppTypography.caption,
           ),
         ),
       ],
@@ -240,7 +242,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             title: 'Từ vựng',
             value: '${stats?.vocabularyLearned ?? 0}',
             subtitle: 'đã học',
-            color: Colors.blue,
+            color: AppColors.primary,
           ),
         ),
         const SizedBox(width: 12),
@@ -250,7 +252,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             title: 'Kanji',
             value: '${stats?.kanjiLearned ?? 0}',
             subtitle: 'đã học',
-            color: Colors.red,
+            color: AppColors.error,
           ),
         ),
         const SizedBox(width: 12),
@@ -260,7 +262,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             title: 'Bài tập',
             value: '${stats?.exercisesCompleted ?? 0}',
             subtitle: 'hoàn thành',
-            color: Colors.green,
+            color: AppColors.success,
           ),
         ),
       ],
@@ -286,7 +288,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             Text(
               value,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppTypography.title,
                 fontWeight: FontWeight.bold,
                 color: color,
               ),
@@ -294,15 +296,15 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             Text(
               title,
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: AppTypography.caption,
                 fontWeight: FontWeight.w500,
               ),
             ),
             Text(
               subtitle,
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.grey[600],
+              style: const TextStyle(
+                fontSize: AppTypography.caption,
+                color: AppColors.textSecondary,
               ),
             ),
           ],
@@ -330,15 +332,15 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                 const Text(
                   'Lịch học tuần này',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: AppTypography.body,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   _getWeekRange(),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
+                  style: const TextStyle(
+                    fontSize: AppTypography.caption,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -361,9 +363,9 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                   children: [
                     Text(
                       weekDays[index],
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[600],
+                      style: const TextStyle(
+                        fontSize: AppTypography.caption,
+                        color: AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -372,13 +374,13 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                       height: 36,
                       decoration: BoxDecoration(
                         color: hasActivity
-                            ? Colors.green
+                            ? AppColors.success
                             : (isToday
-                                ? Colors.blue.withValues(alpha: 0.2)
-                                : Colors.grey[200]),
+                                ? AppColors.primary.withValues(alpha: 0.2)
+                                : AppColors.surfaceVariant),
                         borderRadius: BorderRadius.circular(8),
                         border: isToday
-                            ? Border.all(color: Colors.blue, width: 2)
+                            ? Border.all(color: AppColors.primary, width: 2)
                             : null,
                       ),
                       child: Center(
@@ -388,12 +390,12 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                             : Text(
                                 '${date.day}',
                                 style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: AppTypography.caption,
                                   fontWeight: isToday
                                       ? FontWeight.bold
                                       : FontWeight.normal,
                                   color:
-                                      isToday ? Colors.blue : Colors.grey[700],
+                                      isToday ? AppColors.primary : AppColors.textSecondary,
                                 ),
                               ),
                       ),
@@ -430,7 +432,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                 const Text(
                   'Thành tích gần đây',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: AppTypography.body,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -448,7 +450,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
               title: 'Chuỗi 7 ngày',
               description: 'Duy trì streak 7 ngày liên tiếp',
               xp: 100,
-              color: Colors.orange,
+              color: AppColors.warning,
             ),
             const SizedBox(height: 8),
             _buildAchievementItem(
@@ -456,7 +458,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
               title: 'Học sinh chăm chỉ',
               description: 'Hoàn thành 10 bài học',
               xp: 200,
-              color: Colors.blue,
+              color: AppColors.primary,
             ),
             const SizedBox(height: 8),
             _buildAchievementItem(
@@ -504,14 +506,14 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                   title,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: AppTypography.bodySmall,
                   ),
                 ),
                 Text(
                   description,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
+                  style: const TextStyle(
+                    fontSize: AppTypography.caption,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -531,7 +533,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                 Text(
                   '+$xp XP',
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: AppTypography.caption,
                     fontWeight: FontWeight.bold,
                     color: Colors.amber,
                   ),
@@ -577,29 +579,29 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
               // Activity List
               Expanded(
                 child: xpHistory.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
                               Icons.history,
                               size: 64,
-                              color: Colors.grey[400],
+                              color: AppColors.textDisabled,
                             ),
-                            const SizedBox(height: 16),
+                            SizedBox(height: 16),
                             Text(
                               'Chưa có hoạt động nào',
                               style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
+                                fontSize: AppTypography.body,
+                                color: AppColors.textSecondary,
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8),
                             Text(
                               'Bắt đầu học để ghi lại hoạt động!',
                               style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey[500],
+                                fontSize: AppTypography.bodySmall,
+                                color: AppColors.textDisabled,
                               ),
                             ),
                           ],
@@ -631,10 +633,10 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
           _selectedFilter = value;
         });
       },
-      selectedColor: Colors.blue.withValues(alpha: 0.2),
-      checkmarkColor: Colors.blue,
+      selectedColor: AppColors.primary.withValues(alpha: 0.2),
+      checkmarkColor: AppColors.primary,
       labelStyle: TextStyle(
-        color: isSelected ? Colors.blue : Colors.grey[700],
+        color: isSelected ? AppColors.primary : AppColors.textSecondary,
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
       ),
     );
@@ -648,21 +650,21 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
       case 'lesson':
       case 'bài học':
         icon = Icons.menu_book;
-        color = Colors.blue;
+        color = AppColors.primary;
         break;
       case 'exercise':
       case 'bài tập':
         icon = Icons.quiz;
-        color = Colors.green;
+        color = AppColors.success;
         break;
       case 'vocabulary':
       case 'từ vựng':
         icon = Icons.spellcheck;
-        color = Colors.orange;
+        color = AppColors.warning;
         break;
       case 'kanji':
         icon = Icons.draw_outlined;
-        color = Colors.red;
+        color = AppColors.error;
         break;
       case 'streak':
         icon = Icons.local_fire_department;
@@ -698,15 +700,15 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                     item.reason,
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 14,
+                      fontSize: AppTypography.bodySmall,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     '${_dateFormat.format(item.earnedAt)} lúc ${_timeFormat.format(item.earnedAt)}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[600],
+                    style: const TextStyle(
+                      fontSize: AppTypography.caption,
+                      color: AppColors.textSecondary,
                     ),
                   ),
                 ],
@@ -728,7 +730,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.amber,
-                      fontSize: 13,
+                      fontSize: AppTypography.caption,
                     ),
                   ),
                 ],
@@ -797,7 +799,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
         progressProvider.changePeriod(period);
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.blue : Colors.grey[300],
+        backgroundColor: isSelected ? AppColors.primary : AppColors.border,
         foregroundColor: isSelected ? Colors.white : Colors.black87,
         elevation: isSelected ? 2 : 0,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -821,7 +823,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             const Text(
               'Thời gian học tập',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppTypography.body,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -833,13 +835,13 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                   label: 'Hôm nay',
                   value: '45 phút',
                   icon: Icons.today,
-                  color: Colors.blue,
+                  color: AppColors.primary,
                 ),
                 _buildTimeStatItem(
                   label: 'Tuần này',
                   value: '5.2 giờ',
                   icon: Icons.calendar_view_week,
-                  color: Colors.green,
+                  color: AppColors.success,
                 ),
                 _buildTimeStatItem(
                   label: 'Tổng cộng',
@@ -875,15 +877,15 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
         Text(
           value,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: AppTypography.body,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 11,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ],
@@ -902,7 +904,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             const Text(
               'Hoạt động theo ngày',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppTypography.body,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -910,10 +912,10 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             SizedBox(
               height: 150,
               child: timeline.isEmpty
-                  ? Center(
+                  ? const Center(
                       child: Text(
                         'Chưa có dữ liệu',
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: TextStyle(color: AppColors.textSecondary),
                       ),
                     )
                   : Row(
@@ -928,16 +930,16 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                               width: 30,
                               height: height,
                               decoration: BoxDecoration(
-                                color: Colors.blue.withValues(alpha: 0.7),
+                                color: AppColors.primary.withValues(alpha: 0.7),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'][index],
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey[600],
+                              style: const TextStyle(
+                                fontSize: AppTypography.caption,
+                                color: AppColors.textSecondary,
                               ),
                             ),
                           ],
@@ -963,18 +965,18 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
             const Text(
               'Phân bố học tập',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppTypography.body,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 16),
-            _buildBreakdownItem('Từ vựng', 40, Colors.blue),
+            _buildBreakdownItem('Từ vựng', 40, AppColors.primary),
             const SizedBox(height: 12),
-            _buildBreakdownItem('Kanji', 25, Colors.red),
+            _buildBreakdownItem('Kanji', 25, AppColors.error),
             const SizedBox(height: 12),
-            _buildBreakdownItem('Ngữ pháp', 20, Colors.green),
+            _buildBreakdownItem('Ngữ pháp', 20, AppColors.success),
             const SizedBox(height: 12),
-            _buildBreakdownItem('Bài tập', 15, Colors.orange),
+            _buildBreakdownItem('Bài tập', 15, AppColors.warning),
           ],
         ),
       ),
@@ -1001,14 +1003,14 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
                 const SizedBox(width: 8),
                 Text(
                   label,
-                  style: const TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: AppTypography.bodySmall),
                 ),
               ],
             ),
             Text(
               '$percentage%',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: AppTypography.bodySmall,
                 fontWeight: FontWeight.bold,
                 color: color,
               ),
@@ -1021,7 +1023,7 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
           child: LinearProgressIndicator(
             value: percentage / 100,
             minHeight: 6,
-            backgroundColor: Colors.grey[200],
+            backgroundColor: AppColors.surfaceVariant,
             valueColor: AlwaysStoppedAnimation<Color>(color),
           ),
         ),

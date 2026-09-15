@@ -5,6 +5,8 @@ import '../providers/search_provider.dart';
 import '../services/search_service.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -93,19 +95,19 @@ class _SearchScreenState extends State<SearchScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.search_off,
                                         size: 64,
-                                        color: Colors.grey[400],
+                                        color: AppColors.textDisabled,
                                       ),
                                       const SizedBox(height: 16),
                                       Text(
                                         _searchController.text.isEmpty
                                             ? 'Nhập từ khóa để tìm kiếm'
                                             : 'Không tìm thấy kết quả',
-                                        style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 16,
+                                        style: const TextStyle(
+                                          color: AppColors.textSecondary,
+                                          fontSize: AppTypography.body,
                                         ),
                                       ),
                                     ],
@@ -164,7 +166,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Text(
             _getTypeLabel(result.type),
             style: TextStyle(
-              fontSize: 12,
+              fontSize: AppTypography.caption,
               color: _getTypeColor(result.type),
               fontWeight: FontWeight.bold,
             ),
@@ -211,17 +213,17 @@ class _SearchScreenState extends State<SearchScreen> {
   Color _getTypeColor(String type) {
     switch (type) {
       case 'vocabulary':
-        return Colors.blue;
+        return AppColors.primary;
       case 'kanji':
-        return Colors.red;
+        return AppColors.error;
       case 'lesson':
         return Colors.purple;
       case 'grammar':
-        return Colors.orange;
+        return AppColors.warning;
       case 'news':
         return Colors.teal;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

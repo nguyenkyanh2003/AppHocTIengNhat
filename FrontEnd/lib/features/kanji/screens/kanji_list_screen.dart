@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/kanji_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class KanjiListScreen extends StatefulWidget {
   const KanjiListScreen({Key? key}) : super(key: key);
@@ -66,7 +68,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
           controller: _searchController,
           decoration: InputDecoration(
             hintText: 'Tìm kiếm Kanji...',
-            hintStyle: TextStyle(color: Colors.grey[400]),
+            hintStyle: const TextStyle(color: AppColors.textDisabled),
             prefixIcon: const Icon(Icons.search, color: Color(0xFF6C757D)),
             suffixIcon: _searchController.text.isNotEmpty
                 ? IconButton(
@@ -129,7 +131,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
               side: BorderSide(
-                color: isSelected ? const Color(0xFFFF6B6B) : Colors.grey[300]!,
+                color: isSelected ? const Color(0xFFFF6B6B) : AppColors.border,
                 width: isSelected ? 2 : 1,
               ),
               shape: RoundedRectangleBorder(
@@ -158,10 +160,10 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: Colors.red[300],
+                  color: AppColors.error,
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -183,21 +185,21 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
         }
 
         if (provider.kanjis.isEmpty) {
-          return Center(
+          return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   Icons.search_off,
                   size: 64,
-                  color: Colors.grey[300],
+                  color: AppColors.border,
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 Text(
                   'Không tìm thấy Kanji nào',
                   style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[600],
+                    fontSize: AppTypography.body,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -269,7 +271,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                     child: Text(
                       kanji.character,
                       style: const TextStyle(
-                        fontSize: 32,
+                        fontSize: AppTypography.display,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -286,7 +288,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                         Text(
                           kanji.hanviet!,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: AppTypography.subtitle,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF2C3E50),
                           ),
@@ -296,7 +298,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                         Text(
                           kanji.meaning!,
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: AppTypography.bodySmall,
                             color: Color(0xFF6C757D),
                           ),
                         ),
@@ -311,14 +313,14 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                                   vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.blue.withValues(alpha: 0.1),
+                                  color: AppColors.primary.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
                                   'Âm Hán: ${kanji.onyomi.join(", ")}',
                                   style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.blue,
+                                    fontSize: AppTypography.caption,
+                                    color: AppColors.primary,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -336,14 +338,14 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                                   vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green.withValues(alpha: 0.1),
+                                  color: AppColors.success.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
                                   'Âm Kun: ${kanji.kunyomi.join(", ")}',
                                   style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.green,
+                                    fontSize: AppTypography.caption,
+                                    color: AppColors.success,
                                   ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -369,7 +371,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                     child: Text(
                       kanji.level!,
                       style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: AppTypography.caption,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -409,7 +411,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFFF6B6B),
               foregroundColor: Colors.white,
-              disabledBackgroundColor: Colors.grey[300],
+              disabledBackgroundColor: AppColors.border,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -418,7 +420,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
           Text(
             'Trang ${provider.currentPage}/${provider.totalPages}',
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: AppTypography.bodySmall,
               fontWeight: FontWeight.bold,
               color: Color(0xFF2C3E50),
             ),
@@ -430,7 +432,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFFF6B6B),
               foregroundColor: Colors.white,
-              disabledBackgroundColor: Colors.grey[300],
+              disabledBackgroundColor: AppColors.border,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -444,17 +446,17 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
   Color _getLevelColor(String level) {
     switch (level) {
       case 'N5':
-        return Colors.green;
+        return AppColors.success;
       case 'N4':
-        return Colors.blue;
+        return AppColors.primary;
       case 'N3':
-        return Colors.orange;
+        return AppColors.warning;
       case 'N2':
         return Colors.deepOrange;
       case 'N1':
-        return Colors.red;
+        return AppColors.error;
       default:
-        return Colors.grey;
+        return AppColors.textSecondary;
     }
   }
 }

@@ -5,6 +5,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
+import '../../../app/theme/app_typography.dart';
 
 class AdminUserManagementScreen extends StatefulWidget {
   const AdminUserManagementScreen({Key? key}) : super(key: key);
@@ -67,7 +68,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                 // Search & Filter
                 Container(
                   padding: const EdgeInsets.all(16),
-                  color: Colors.grey[100],
+                  color: AppColors.surfaceVariant,
                   child: Column(
                     children: [
                       TextField(
@@ -104,7 +105,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  color: Colors.blue.shade50,
+                  color: AppColors.primaryLight,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -180,9 +181,9 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
           value: 'ban',
           child: Row(
             children: [
-              Icon(Icons.block, size: 20, color: Colors.red),
+              Icon(Icons.block, size: 20, color: AppColors.error),
               SizedBox(width: 8),
-              Text('Khóa/Mở khóa', style: TextStyle(color: Colors.red)),
+              Text('Khóa/Mở khóa', style: TextStyle(color: AppColors.error)),
             ],
           ),
         ),
@@ -190,9 +191,9 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
           value: 'delete',
           child: Row(
             children: [
-              Icon(Icons.delete, size: 20, color: Colors.red),
+              Icon(Icons.delete, size: 20, color: AppColors.error),
               SizedBox(width: 8),
-              Text('Xóa User', style: TextStyle(color: Colors.red)),
+              Text('Xóa User', style: TextStyle(color: AppColors.error)),
             ],
           ),
         ),
@@ -219,7 +220,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                 backgroundColor: _getRoleColor(user['role']),
                 child: Text(
                   name.isEmpty ? '?' : name.characters.first.toUpperCase(),
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                  style: const TextStyle(color: Colors.white, fontSize: AppTypography.caption),
                 ),
               ),
               const SizedBox(width: AppSpacing.sm),
@@ -272,7 +273,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
         onSelected: (selected) {
           setState(() => _selectedFilter = value);
         },
-        selectedColor: Colors.blue,
+        selectedColor: AppColors.primary,
         labelStyle: TextStyle(
           color: isSelected ? Colors.white : Colors.black,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
@@ -287,16 +288,16 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
         Text(
           value,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: AppTypography.subtitle,
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: AppColors.primary,
           ),
         ),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
       ],
@@ -339,7 +340,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                 child: const Text(
                   'ADMIN',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: AppTypography.caption,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -401,15 +402,15 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
     String text;
     switch (status) {
       case 'active':
-        color = Colors.green;
+        color = AppColors.success;
         text = 'Active';
         break;
       case 'banned':
-        color = Colors.red;
+        color = AppColors.error;
         text = 'Banned';
         break;
       default:
-        color = Colors.grey;
+        color = AppColors.textSecondary;
         text = status;
     }
     return Container(
@@ -422,7 +423,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 10,
+          fontSize: AppTypography.caption,
           fontWeight: FontWeight.bold,
           color: color,
         ),
@@ -436,16 +437,16 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
       children: [
         Text(
           label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
+          style: const TextStyle(
+            fontSize: AppTypography.caption,
+            color: AppColors.textSecondary,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           value,
           style: const TextStyle(
-            fontSize: 14,
+            fontSize: AppTypography.bodySmall,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -456,9 +457,9 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
   Color _getRoleColor(String role) {
     switch (role) {
       case 'admin':
-        return Colors.red;
+        return AppColors.error;
       default:
-        return Colors.blue;
+        return AppColors.primary;
     }
   }
 

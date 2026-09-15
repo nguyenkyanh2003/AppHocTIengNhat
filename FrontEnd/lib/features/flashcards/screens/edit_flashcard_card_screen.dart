@@ -5,6 +5,8 @@ import '../models/flashcard_deck.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class EditFlashcardCardScreen extends StatefulWidget {
   final String deckId;
@@ -95,7 +97,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
           content: Text(widget.card == null
               ? 'Thêm thẻ thành công!'
               : 'Cập nhật thẻ thành công!'),
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.success,
         ),
       );
       Navigator.pop(context);
@@ -103,7 +105,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.error,
         ),
       );
     }
@@ -125,20 +127,20 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.blue[50],
+                  color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.blue[200]!),
+                  border: Border.all(color: AppColors.primaryLight),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
-                    Icon(Icons.info_outline, color: Colors.blue[700]),
-                    const SizedBox(width: 12),
+                    Icon(Icons.info_outline, color: AppColors.primaryDark),
+                    SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         'Tạo thẻ flashcard giống Quizlet: Mặt trước thường là từ/câu hỏi, mặt sau là nghĩa/đáp án.',
                         style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.blue[900],
+                          fontSize: AppTypography.caption,
+                          color: AppColors.primaryDark,
                         ),
                       ),
                     ),
@@ -151,7 +153,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
               const Text(
                 'Mặt trước',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -197,7 +199,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
               const Text(
                 'Mặt sau',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -247,22 +249,22 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
                       const Text(
                         'Xem trước:',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: AppTypography.bodySmall,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                       const SizedBox(height: 12),
                       const Text(
                         'Mặt trước:',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                        style: TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
                       ),
                       Text(
                         _frontController.text.isEmpty
                             ? '(Trống)'
                             : _frontController.text,
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: AppTypography.title,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -271,20 +273,20 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
                         Text(
                           _frontSubtextController.text,
                           style:
-                              TextStyle(fontSize: 14, color: Colors.grey[600]),
+                              const TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textSecondary),
                         ),
                       ],
                       const Divider(height: 24),
                       const Text(
                         'Mặt sau:',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                        style: TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
                       ),
                       Text(
                         _backController.text.isEmpty
                             ? '(Trống)'
                             : _backController.text,
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: AppTypography.subtitle,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -293,7 +295,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
                         Text(
                           _backSubtextController.text,
                           style:
-                              TextStyle(fontSize: 14, color: Colors.grey[600]),
+                              const TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textSecondary),
                         ),
                       ],
                     ],
@@ -327,7 +329,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
                       : Text(
                           isEditing ? 'Lưu Thay Đổi' : 'Thêm Thẻ',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: AppTypography.body,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

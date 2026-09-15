@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 
 class HelpScreen extends StatefulWidget {
   const HelpScreen({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: AppColors.primary,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
                     bottomRight: Radius.circular(24),
@@ -87,7 +88,7 @@ class _HelpScreenState extends State<HelpScreen> {
                     const Text(
                       'Chúng tôi có thể giúp gì cho bạn?',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: AppTypography.title,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -97,7 +98,7 @@ class _HelpScreenState extends State<HelpScreen> {
                     Text(
                       'Tìm câu trả lời nhanh hoặc liên hệ với chúng tôi',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: AppTypography.bodySmall,
                         color: Colors.white.withValues(alpha: 0.9),
                       ),
                       textAlign: TextAlign.center,
@@ -118,7 +119,7 @@ class _HelpScreenState extends State<HelpScreen> {
                         icon: Icons.email_outlined,
                         title: 'Gửi Email',
                         subtitle: 'Liên hệ trực tiếp',
-                        color: Colors.blue,
+                        color: AppColors.primary,
                         onTap: () => _sendEmail(),
                       ),
                     ),
@@ -128,7 +129,7 @@ class _HelpScreenState extends State<HelpScreen> {
                         icon: Icons.bug_report_outlined,
                         title: 'Báo lỗi',
                         subtitle: 'Gửi báo cáo lỗi',
-                        color: Colors.orange,
+                        color: AppColors.warning,
                         onTap: () => _reportBug(),
                       ),
                     ),
@@ -147,7 +148,7 @@ class _HelpScreenState extends State<HelpScreen> {
                         icon: Icons.lightbulb_outline,
                         title: 'Góp ý',
                         subtitle: 'Đề xuất tính năng',
-                        color: Colors.green,
+                        color: AppColors.success,
                         onTap: () => _sendFeedback(),
                       ),
                     ),
@@ -172,12 +173,12 @@ class _HelpScreenState extends State<HelpScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
-                    Icon(Icons.quiz_outlined, color: Colors.blue),
+                    Icon(Icons.quiz_outlined, color: AppColors.primary),
                     SizedBox(width: 8),
                     Text(
                       'Câu hỏi thường gặp',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: AppTypography.subtitle,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -217,12 +218,12 @@ class _HelpScreenState extends State<HelpScreen> {
                             Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                color: Colors.blue.withValues(alpha: 0.1),
+                                color: AppColors.primary.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: const Icon(
                                 Icons.support_agent,
-                                color: Colors.blue,
+                                color: AppColors.primary,
                                 size: 28,
                               ),
                             ),
@@ -234,7 +235,7 @@ class _HelpScreenState extends State<HelpScreen> {
                                   Text(
                                     'Vẫn cần trợ giúp?',
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: AppTypography.body,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -242,8 +243,8 @@ class _HelpScreenState extends State<HelpScreen> {
                                   Text(
                                     'Đội ngũ hỗ trợ sẵn sàng giúp đỡ bạn 24/7',
                                     style: TextStyle(
-                                      fontSize: 13,
-                                      color: Colors.grey,
+                                      fontSize: AppTypography.caption,
+                                      color: AppColors.textSecondary,
                                     ),
                                   ),
                                 ],
@@ -275,23 +276,23 @@ class _HelpScreenState extends State<HelpScreen> {
               const SizedBox(height: 32),
 
               // App Info
-              Center(
+              const Center(
                 child: Column(
                   children: [
                     Text(
                       'App Học Tiếng Nhật',
                       style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
+                        fontSize: AppTypography.bodySmall,
+                        color: AppColors.textSecondary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
                       'Phiên bản 1.0.0',
                       style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
+                        fontSize: AppTypography.caption,
+                        color: AppColors.textDisabled,
                       ),
                     ),
                   ],
@@ -338,15 +339,15 @@ class _HelpScreenState extends State<HelpScreen> {
                 title,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
+                  fontSize: AppTypography.bodySmall,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 subtitle,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: Colors.grey[600],
+                style: const TextStyle(
+                  fontSize: AppTypography.caption,
+                  color: AppColors.textSecondary,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -371,28 +372,28 @@ class _HelpScreenState extends State<HelpScreen> {
           leading: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.blue.withValues(alpha: 0.1),
+              color: AppColors.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(
               Icons.help_outline,
-              color: Colors.blue,
+              color: AppColors.primary,
               size: 20,
             ),
           ),
           title: Text(
             item.question,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: AppTypography.bodySmall,
               fontWeight: FontWeight.w600,
             ),
           ),
           children: [
             Text(
               item.answer,
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.grey[700],
+              style: const TextStyle(
+                fontSize: AppTypography.caption,
+                color: AppColors.textSecondary,
                 height: 1.5,
               ),
             ),
@@ -443,7 +444,7 @@ class _HelpScreenState extends State<HelpScreen> {
       builder: (context) => AlertDialog(
         title: const Row(
           children: [
-            Icon(Icons.bug_report, color: Colors.orange),
+            Icon(Icons.bug_report, color: AppColors.warning),
             SizedBox(width: 8),
             Text('Báo lỗi'),
           ],
@@ -475,7 +476,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 const SnackBar(
                   content: Text(
                       'Cảm ơn bạn đã báo lỗi! Chúng tôi sẽ xem xét và khắc phục sớm.'),
-                  backgroundColor: Colors.green,
+                  backgroundColor: AppColors.success,
                 ),
               );
             },
@@ -492,7 +493,7 @@ class _HelpScreenState extends State<HelpScreen> {
       builder: (context) => AlertDialog(
         title: const Row(
           children: [
-            Icon(Icons.lightbulb, color: Colors.green),
+            Icon(Icons.lightbulb, color: AppColors.success),
             SizedBox(width: 8),
             Text('Góp ý & Đề xuất'),
           ],
@@ -524,7 +525,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 const SnackBar(
                   content:
                       Text('Cảm ơn góp ý của bạn! Chúng tôi rất trân trọng.'),
-                  backgroundColor: Colors.green,
+                  backgroundColor: AppColors.success,
                 ),
               );
             },
@@ -548,20 +549,20 @@ class _HelpScreenState extends State<HelpScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.withValues(alpha: 0.1),
+                color: AppColors.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Icon(
                 Icons.school,
                 size: 48,
-                color: Colors.blue,
+                color: AppColors.primary,
               ),
             ),
             const SizedBox(height: 16),
             const Text(
               'App Học Tiếng Nhật',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppTypography.title,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -569,8 +570,8 @@ class _HelpScreenState extends State<HelpScreen> {
             const Text(
               'Phiên bản 1.0.0',
               style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
+                fontSize: AppTypography.bodySmall,
+                color: AppColors.textSecondary,
               ),
             ),
             const SizedBox(height: 16),
@@ -578,7 +579,7 @@ class _HelpScreenState extends State<HelpScreen> {
               'Ứng dụng học tiếng Nhật toàn diện với các tính năng học từ vựng, kanji, ngữ pháp, luyện thi JLPT và nhiều hơn nữa.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 13,
+                fontSize: AppTypography.caption,
                 height: 1.5,
               ),
             ),
@@ -586,8 +587,8 @@ class _HelpScreenState extends State<HelpScreen> {
             const Text(
               '© 2024 App Học Tiếng Nhật',
               style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
+                fontSize: AppTypography.caption,
+                color: AppColors.textSecondary,
               ),
             ),
           ],
