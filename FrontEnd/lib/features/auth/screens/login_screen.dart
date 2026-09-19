@@ -73,16 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
       final target = GoRouterState.of(context).uri.queryParameters['from'];
       context.go(target == null || target.isEmpty ? '/home' : target);
     } else {
-      // Chỉ clear password khi login thất bại (giữ nguyên username)
+      // Chỉ clear password khi login thất bại (giữ nguyên username).
+      // Lỗi hiện ở khối ngay trong form, không bắn thêm SnackBar: hai chỗ báo
+      // cùng một lỗi làm người dùng tưởng có hai vấn đề khác nhau.
       _passwordController.clear();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(authProvider.error ?? 'Đăng nhập thất bại'),
-          backgroundColor: AppColors.error,
-          duration: const Duration(seconds: 3),
-        ),
-      );
     }
   }
 
@@ -108,51 +102,46 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       const SizedBox(height: 48),
 
-                      // Hiển thị lỗi đẹp hơn
+                      // Lỗi đăng nhập: nền đỏ nhạt để chữ đọc được. Trước đây
+                      // nền, viền, icon và chữ cùng dùng `AppColors.error` nên
+                      // khối trông như một mảng đỏ rỗng.
                       Consumer<AuthProvider>(
                         builder: (context, authProvider, _) {
-                          if (authProvider.error != null) {
-                            return Container(
-                              margin: const EdgeInsets.only(bottom: 20),
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                color: AppColors.error,
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: AppColors.error.withValues(alpha: 0.3),
-                                  width: 1,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(8),
-                                    decoration: const BoxDecoration(
-                                      color: AppColors.error,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Icon(
-                                      Icons.info_outline,
-                                      color: AppColors.error,
-                                      size: 20,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Text(
-                                      authProvider.error!,
-                                      style: const TextStyle(
-                                        color: AppColors.error,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: AppTypography.bodySmall,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
+                          final error = authProvider.error;
+                          if (error == null || error.isEmpty) {
+                            return const SizedBox.shrink();
                           }
-                          return const SizedBox.shrink();
+                          return Container(
+                            margin:
+                                const EdgeInsets.only(bottom: AppSpacing.lg),
+                            padding: const EdgeInsets.all(AppSpacing.md),
+                            decoration: BoxDecoration(
+                              color: AppColors.error.withValues(alpha: 0.12),
+                              borderRadius: AppRadius.mdAll,
+                              border: Border.all(color: AppColors.error),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Icon(
+                                  Icons.error_outline,
+                                  color: AppColors.error,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: AppSpacing.sm),
+                                Expanded(
+                                  child: Text(
+                                    error,
+                                    style: const TextStyle(
+                                      color: AppTheme.textPrimaryColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: AppTypography.bodySmall,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
                         },
                       ),
 

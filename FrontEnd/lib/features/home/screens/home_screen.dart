@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../../app/localization/app_localizations.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/chunky_card.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../news/widgets/news_carousel_widget.dart';
@@ -17,66 +19,90 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+class _ExploreItem {
+  const _ExploreItem({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.route,
+    required this.color,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final String route;
+  final Color color;
+}
+
 class _HomeScreenState extends State<HomeScreen> {
+  /// Bề rộng tối đa một ô trong lưới khám phá. Lưới chia cột theo con số này,
+  /// nên ô giữ kích thước dễ bấm ở mọi bề rộng cửa sổ thay vì phình ra.
+  static const double _exploreTileMaxWidth = 220;
+  static const double _statIconSize = 28;
+  static const double _heroLogoSize = 72;
+
   String? _lastLoadedUserId;
 
-  List<Map<String, dynamic>> _getMenuItems(BuildContext context) {
+  List<_ExploreItem> _getExploreItems(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return [
-      {
-        'icon': Icons.menu_book,
-        'title': l10n.menuLesson,
-        'subtitle': l10n.menuLessonSubtitle,
-        'route': '/lessons',
-      },
-      {
-        'icon': Icons.spellcheck,
-        'title': l10n.menuVocabulary,
-        'subtitle': l10n.menuVocabularySubtitle,
-        'route': '/vocabulary',
-      },
-      {
-        'icon': Icons.draw_outlined,
-        'title': l10n.menuKanji,
-        'subtitle': l10n.menuKanjiSubtitle,
-        'route': '/kanji',
-      },
-      {
-        'icon': Icons.quiz_outlined,
-        'title': l10n.menuExercise,
-        'subtitle': l10n.menuExerciseSubtitle,
-        'route': '/exercise',
-      },
-      {
-        'icon': Icons.workspace_premium_outlined,
-        'title': l10n.menuJlpt,
-        'subtitle': l10n.menuJlptSubtitle,
-        'route': '/jlpt',
-      },
-      {
-        'icon': Icons.newspaper,
-        'title': l10n.menuNews,
-        'subtitle': l10n.menuNewsSubtitle,
-        'route': '/news',
-      },
-      {
-        'icon': Icons.group,
-        'title': l10n.menuStudyGroup,
-        'subtitle': l10n.menuStudyGroupSubtitle,
-        'route': '/study-groups',
-      },
-      {
-        'icon': Icons.edit_note,
-        'title': l10n.menuNotebook,
-        'subtitle': l10n.menuNotebookSubtitle,
-        'route': '/notebook',
-      },
-      {
-        'icon': Icons.emoji_events,
-        'title': l10n.menuStreak,
-        'subtitle': l10n.menuStreakSubtitle,
-        'route': '/streak',
-      },
+      _ExploreItem(
+        icon: Icons.menu_book,
+        title: l10n.menuLesson,
+        subtitle: l10n.menuLessonSubtitle,
+        route: '/lessons',
+        color: AppColors.lesson,
+      ),
+      _ExploreItem(
+        icon: Icons.spellcheck,
+        title: l10n.menuVocabulary,
+        subtitle: l10n.menuVocabularySubtitle,
+        route: '/vocabulary',
+        color: AppColors.vocabulary,
+      ),
+      _ExploreItem(
+        icon: Icons.draw_outlined,
+        title: l10n.menuKanji,
+        subtitle: l10n.menuKanjiSubtitle,
+        route: '/kanji',
+        color: AppColors.kanji,
+      ),
+      _ExploreItem(
+        icon: Icons.quiz_outlined,
+        title: l10n.menuExercise,
+        subtitle: l10n.menuExerciseSubtitle,
+        route: '/exercise',
+        color: AppColors.exercise,
+      ),
+      _ExploreItem(
+        icon: Icons.workspace_premium_outlined,
+        title: l10n.menuJlpt,
+        subtitle: l10n.menuJlptSubtitle,
+        route: '/jlpt',
+        color: AppColors.jlpt,
+      ),
+      _ExploreItem(
+        icon: Icons.newspaper,
+        title: l10n.menuNews,
+        subtitle: l10n.menuNewsSubtitle,
+        route: '/news',
+        color: AppColors.news,
+      ),
+      _ExploreItem(
+        icon: Icons.group,
+        title: l10n.menuStudyGroup,
+        subtitle: l10n.menuStudyGroupSubtitle,
+        route: '/study-groups',
+        color: AppColors.group,
+      ),
+      _ExploreItem(
+        icon: Icons.edit_note,
+        title: l10n.menuNotebook,
+        subtitle: l10n.menuNotebookSubtitle,
+        route: '/notebook',
+        color: AppColors.notebook,
+      ),
     ];
   }
 
@@ -127,6 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _showPronunciationComingSoon() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Tính năng phát âm sắp ra mắt')),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -148,240 +180,293 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => context.push('/settings'),
         ),
       ],
-      body: _buildHomeContent(),
+      body: _buildHomeContent(context),
     );
   }
 
-  Widget _buildHomeContent() {
+  Widget _buildHomeContent(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final user = context.watch<AuthProvider>().user;
+    final name = user?.fullName ?? user?.username;
 
+    // Trên web, nội dung bó lại đúng một cột đọc được rồi căn giữa. Trải hết bề
+    // ngang cửa sổ thì mỗi thẻ thành một dải trống, chữ nằm lọt thỏm bên trái.
     return SingleChildScrollView(
       child: ContentPane(
-        maxWidth: AppContentWidth.dashboard,
+        maxWidth: AppContentWidth.reading,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Lời chào: một khối phẳng màu thương hiệu, không đổ bóng màu —
-            // bóng xanh mờ dưới mọi thẻ là dấu hiệu rõ nhất của giao diện
-            // dựng vội.
-            Container(
-              padding: const EdgeInsets.all(AppSpacing.xl),
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${l10n.welcomeBack} 👋',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge
-                              ?.copyWith(color: Colors.white),
-                        ),
-                        const SizedBox(height: AppSpacing.sm),
-                        Text(
-                          l10n.continueLearning,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.85)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 96,
-                    height: 96,
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Icon(
-                            Icons.translate,
-                            size: 40,
-                            color: AppColors.primary,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: AppSpacing.xl),
-
-            // Quick stats
-            Consumer<StreakProvider>(
-              builder: (context, streakProvider, child) {
-                final streak = streakProvider.currentStreak;
-                return Row(
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                        onTap: () => context.push('/streak'),
-                        child: _buildStatCard(
-                          l10n.streak,
-                          '${streak?.currentStreak ?? 0} ${l10n.days}',
-                          Icons.local_fire_department,
-                          AppColors.warning,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: InkWell(
-                        onTap: () => context.push('/streak'),
-                        child: _buildStatCard(
-                          l10n.points,
-                          '${streak?.totalXP ?? 0} ${l10n.xp}',
-                          Icons.star,
-                          Colors.amber,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // News Carousel
-            const NewsCarouselWidget(),
-            const SizedBox(height: 24),
-
-            // Main menu
             Text(
-              l10n.lessons,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            const SizedBox(height: 16),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                // --- SỬA TỶ LỆ ĐỂ KHÔNG BỊ TRÀN CHỮ ---
-                childAspectRatio: 0.9,
-                // --------------------------------------
+              name == null
+                  ? '${l10n.homeGreeting}! \u{1F44B}'
+                  : '${l10n.homeGreeting}, $name! \u{1F44B}',
+              style: AppTypography.heroDisplay(
+                size: AppTypography.headline,
+                color: theme.textTheme.headlineLarge?.color,
               ),
-              itemCount: _getMenuItems(context).length,
-              itemBuilder: (context, index) {
-                final item = _getMenuItems(context)[index];
-                return _buildMenuCard(
-                  icon: item['icon'],
-                  title: item['title'],
-                  subtitle: item['subtitle'],
-                  // `/streak`, `/study-groups` và `/news` trước đây phải mở
-                  // bằng `MaterialPageRoute` vì thiếu route; nay đã có đường dẫn
-                  // thật nên mở như mọi mục khác.
-                  onTap: () => context.push(item['route'] as String),
-                );
-              },
             ),
+            AppGap.lg,
+            _buildStatRow(context, l10n),
+            AppGap.xl,
+            _buildHeroCard(context, l10n, theme),
+            AppGap.xl,
+            _buildWordOfDayCard(context, theme),
+            AppGap.xl,
+            // Lưới khám phá đứng trước tin tức: đây là đường đi tới mọi mảng
+            // học, còn tin tức chỉ là thứ đọc thêm.
+            _buildExploreSection(context, theme, l10n),
+            AppGap.xl,
+            const NewsCarouselWidget(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildStatCard(
-      String label, String value, IconData icon, Color color) {
-    // Con số là thứ người học tìm ở đây, nên nó được cỡ chữ lớn nhất khối;
-    // viền mảnh thay bóng đổ để các thẻ không trôi nổi trên nền.
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.border),
-      ),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.12),
-              shape: BoxShape.circle,
+  /// Hai thẻ chỉ số. Hai màu khác nhau để không nhìn thành một khối cam dài.
+  Widget _buildStatRow(BuildContext context, AppLocalizations l10n) {
+    return Consumer<StreakProvider>(
+      builder: (context, streakProvider, child) {
+        final streak = streakProvider.currentStreak;
+        return Row(
+          children: [
+            Expanded(
+              child: ChunkyCard(
+                color: AppColors.streak,
+                onTap: () => context.push('/streak'),
+                child: _buildStatChip(
+                  context,
+                  l10n.streak,
+                  '${streak?.currentStreak ?? 0} ${l10n.days}',
+                  Icons.local_fire_department,
+                ),
+              ),
             ),
-            child: Icon(icon, size: 24, color: color),
+            const SizedBox(width: AppSpacing.md),
+            Expanded(
+              child: ChunkyCard(
+                color: AppColors.xp,
+                onTap: () => context.push('/streak'),
+                child: _buildStatChip(
+                  context,
+                  l10n.points,
+                  '${streak?.totalXP ?? 0} ${l10n.xp}',
+                  Icons.star,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  /// Hành động chính trong ngày. Xanh lá để tách khỏi tím của thương hiệu.
+  Widget _buildHeroCard(
+    BuildContext context,
+    AppLocalizations l10n,
+    ThemeData theme,
+  ) {
+    return ChunkyCard(
+      color: AppColors.heroAction,
+      padding: const EdgeInsets.all(AppSpacing.xl),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.continueLearning,
+                  style: AppTypography.heroDisplay(
+                    size: AppTypography.title,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.md),
+                ClipRRect(
+                  borderRadius: AppRadius.pillAll,
+                  child: LinearProgressIndicator(
+                    // Chưa có nguồn dữ liệu "bài đang học dở" nên hiển thị một
+                    // mốc minh hoạ, không phải tiến độ thật.
+                    value: 0.4,
+                    minHeight: AppSpacing.sm,
+                    backgroundColor: Colors.white.withValues(alpha: 0.3),
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.lg),
+                ChunkyCard(
+                  color: AppColors.surface,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                    vertical: AppSpacing.sm,
+                  ),
+                  onTap: () => context.push('/lessons'),
+                  child: Text(
+                    l10n.menuLesson,
+                    style: theme.textTheme.labelLarge
+                        ?.copyWith(color: AppColors.heroAction),
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: AppSpacing.md),
-          Text(value, style: Theme.of(context).textTheme.displaySmall),
-          const SizedBox(height: AppSpacing.xs),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall,
+          const SizedBox(width: AppSpacing.md),
+          ClipOval(
+            child: Image.asset(
+              'assets/images/logo.png',
+              width: _heroLogoSize,
+              height: _heroLogoSize,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => const Icon(
+                Icons.translate,
+                size: _heroLogoSize,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMenuCard({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required VoidCallback onTap,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.border),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.lg),
+  Widget _buildWordOfDayCard(BuildContext context, ThemeData theme) {
+    return ChunkyCard(
+      child: Row(
+        children: [
+          Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(AppSpacing.md),
-                  decoration: const BoxDecoration(
-                    color: AppColors.primaryLight,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(icon, size: 28, color: AppColors.primary),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleSmall,
-                  textAlign: TextAlign.center,
-                ),
+                Text('Từ mới hôm nay', style: theme.textTheme.titleSmall),
+                const SizedBox(height: AppSpacing.sm),
+                Text('猫', style: AppTypography.japaneseDisplay()),
+                Text('ねこ', style: AppTypography.japaneseReading()),
                 const SizedBox(height: AppSpacing.xs),
-                Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.bodySmall,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                Text('con mèo', style: theme.textTheme.bodyMedium),
               ],
             ),
           ),
+          IconButton(
+            onPressed: _showPronunciationComingSoon,
+            tooltip: 'Phát âm',
+            icon: Icon(Icons.volume_up, color: theme.colorScheme.primary),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExploreSection(
+    BuildContext context,
+    ThemeData theme,
+    AppLocalizations l10n,
+  ) {
+    final items = _getExploreItems(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l10n.explore, style: theme.textTheme.titleLarge),
+        AppGap.lg,
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          // Ô co theo bề rộng thật: ba cột trên web, hai cột trên điện thoại,
+          // thay vì hai ô khổng lồ khi cửa sổ rộng.
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: _exploreTileMaxWidth,
+            crossAxisSpacing: AppSpacing.md,
+            mainAxisSpacing: AppSpacing.md,
+            childAspectRatio: 1.05,
+          ),
+          itemCount: items.length,
+          itemBuilder: (context, index) =>
+              _buildExploreCard(context, items[index]),
         ),
+      ],
+    );
+  }
+
+  /// Chữ trên thẻ chỉ số dùng mực đậm: chữ trắng trên cam và hổ phách quá nhạt
+  /// để đọc.
+  Widget _buildStatChip(
+    BuildContext context,
+    String label,
+    String value,
+    IconData icon,
+  ) {
+    final theme = Theme.of(context);
+    return Row(
+      children: [
+        Icon(icon, size: _statIconSize, color: AppColors.textPrimary),
+        const SizedBox(width: AppSpacing.sm),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                value,
+                style: theme.textTheme.titleMedium
+                    ?.copyWith(color: AppColors.textPrimary),
+              ),
+              Text(
+                label,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: AppColors.textPrimary.withValues(alpha: 0.75),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildExploreCard(BuildContext context, _ExploreItem item) {
+    final theme = Theme.of(context);
+    return ChunkyCard(
+      onTap: () => context.push(item.route),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            decoration: BoxDecoration(
+              color: item.color.withValues(alpha: 0.15),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(item.icon, size: _statIconSize, color: item.color),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          // `Flexible` để khi người dùng phóng to cỡ chữ hệ thống, chữ rút bớt
+          // dòng chứ không đẩy ô tràn khung thành sọc vàng.
+          Flexible(
+            child: Text(
+              item.title,
+              style: theme.textTheme.titleSmall,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Flexible(
+            child: Text(
+              item.subtitle,
+              style: theme.textTheme.bodySmall,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }

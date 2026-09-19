@@ -31,6 +31,8 @@ class AppLocalizations {
       'close': 'Đóng',
 
       // Home Screen
+      'home_greeting': 'Xin chào',
+      'explore': 'Khám phá',
       'welcome_back': 'Chào mừng trở lại!',
       'continue_learning': 'Hãy tiếp tục hành trình học tiếng Nhật',
       'days': 'ngày',
@@ -237,6 +239,8 @@ class AppLocalizations {
       'close': 'Close',
 
       // Home Screen
+      'home_greeting': 'Hello',
+      'explore': 'Explore',
       'welcome_back': 'Welcome back!',
       'continue_learning': 'Continue your Japanese learning journey',
       'days': 'days',
@@ -443,6 +447,8 @@ class AppLocalizations {
       'close': '閉じる',
 
       // Home Screen
+      'home_greeting': 'こんにちは',
+      'explore': 'さがす',
       'welcome_back': 'おかえりなさい！',
       'continue_learning': '日本語学習を続けましょう',
       'days': '日',
@@ -654,6 +660,8 @@ class AppLocalizations {
   String get close => translate('close');
 
   // Home Screen
+  String get homeGreeting => translate('home_greeting');
+  String get explore => translate('explore');
   String get welcomeBack => translate('welcome_back');
   String get continueLearning => translate('continue_learning');
   String get days => translate('days');

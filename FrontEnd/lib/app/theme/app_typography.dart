@@ -21,7 +21,8 @@ abstract final class AppTypography {
   static const double bodySmall = 14;
   static const double caption = 12;
 
-  /// Inter cho chữ Latin: dấu tiếng Việt đầy đủ và rõ ở cỡ nhỏ.
+  /// Nunito cho chữ Latin: dấu tiếng Việt đầy đủ, nét bo tròn thân thiện hợp
+  /// phong cách "Duolingo" của app.
   static TextStyle _latin({
     required double size,
     required FontWeight weight,
@@ -29,12 +30,28 @@ abstract final class AppTypography {
     double? height,
     double? letterSpacing,
   }) =>
-      GoogleFonts.inter(
+      GoogleFonts.nunito(
         fontSize: size,
         fontWeight: weight,
         color: color,
         height: height,
         letterSpacing: letterSpacing,
+      );
+
+  /// Baloo 2 — chữ mập, bo tròn, dành riêng cho tiêu đề lớn/hero (màn chào,
+  /// thẻ "Tiếp tục học"). Không dùng cho `textTheme` chung vì quá đậm nét cho
+  /// văn bản thường.
+  static TextStyle heroDisplay({
+    double size = display,
+    FontWeight weight = FontWeight.w800,
+    Color? color,
+    double? height,
+  }) =>
+      GoogleFonts.baloo2(
+        fontSize: size,
+        fontWeight: weight,
+        color: color,
+        height: height,
       );
 
   static TextTheme textTheme({
@@ -113,7 +130,7 @@ abstract final class AppTypography {
   /// `size` chỉ dành cho kanji đứng một mình làm tiêu điểm (thẻ ôn, màn chi
   /// tiết kanji) — chữ Hán cần to hơn hẳn chữ Latin cùng vai trò mới thấy nét.
   static TextStyle japaneseDisplay({Color? color, double size = 40}) =>
-      GoogleFonts.notoSansJp(
+      GoogleFonts.zenMaruGothic(
         fontSize: size,
         fontWeight: FontWeight.w600,
         height: 1.4,
@@ -129,7 +146,8 @@ abstract final class AppTypography {
       );
 
   /// Cách đọc (hiragana) đi kèm chữ Nhật — nhỏ và nhạt hơn câu chính.
-  static TextStyle japaneseReading({Color? color}) => GoogleFonts.notoSansJp(
+  static TextStyle japaneseReading({Color? color}) =>
+      GoogleFonts.zenMaruGothic(
         fontSize: bodySmall,
         fontWeight: FontWeight.w400,
         height: 1.5,

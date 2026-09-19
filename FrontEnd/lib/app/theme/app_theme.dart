@@ -49,7 +49,8 @@ class AppTheme {
         border: AppColors.border,
         textPrimary: AppColors.textPrimary,
         textSecondary: AppColors.textSecondary,
-        appBarBackground: AppColors.primary,
+        appBarBackground: AppColors.surface,
+        appBarForeground: AppColors.textPrimary,
       );
 
   static ThemeData get darkTheme => _build(
@@ -61,6 +62,7 @@ class AppTheme {
         textPrimary: AppColors.darkTextPrimary,
         textSecondary: AppColors.darkTextSecondary,
         appBarBackground: AppColors.darkSurface,
+        appBarForeground: AppColors.darkTextPrimary,
       );
 
   /// Một định nghĩa duy nhất cho cả hai chế độ: chỉ bảng màu đổi, còn cỡ chữ,
@@ -74,6 +76,7 @@ class AppTheme {
     required Color textPrimary,
     required Color textSecondary,
     required Color appBarBackground,
+    required Color appBarForeground,
   }) {
     return ThemeData(
       useMaterial3: true,
@@ -93,17 +96,22 @@ class AppTheme {
         primary: textPrimary,
         secondary: textSecondary,
       ),
+      // Thanh trên cùng màu bề mặt, chữ mực đậm: đầu trang nhẹ và sạch, màu
+      // thương hiệu để dành cho thứ bấm được. Một đường kẻ mảnh thay cho bóng
+      // đổ, vì nền trang cũng gần trắng.
       appBarTheme: AppBarTheme(
         backgroundColor: appBarBackground,
-        foregroundColor: Colors.white,
+        foregroundColor: appBarForeground,
+        surfaceTintColor: Colors.transparent,
         elevation: AppElevation.none,
         centerTitle: true,
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
           fontSize: AppTypography.title,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: appBarForeground,
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: appBarForeground),
+        shape: Border(bottom: BorderSide(color: border)),
       ),
       cardTheme: CardTheme(
         color: surface,

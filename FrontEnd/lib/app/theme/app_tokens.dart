@@ -57,6 +57,16 @@ abstract final class AppColors {
   static const Color group = Color(0xFF14B8A6);
   static const Color progress = Color(0xFF22C55E);
 
+  /// Hai chỉ số học tập ở Trang chủ. Hai sắc khác nhau để hai thẻ đứng cạnh
+  /// nhau không dính thành một khối màu: chuỗi ngày là cam lửa, XP là hổ phách.
+  /// Cả hai đều đủ tối để chữ mực đậm đọc rõ trên nền thẻ.
+  static const Color streak = Color(0xFFF97316);
+  static const Color xp = accent;
+
+  /// Hành động chính của Trang chủ ("Tiếp tục học"). Xanh lá đứng tách khỏi tím
+  /// thương hiệu, nên mắt tìm ra ngay việc cần làm tiếp thay vì phải đọc hết.
+  static const Color heroAction = Color(0xFF16A34A);
+
   /// Màu cấp độ JLPT, từ dễ (N5) đến khó (N1).
   static const Map<String, Color> jlptLevels = {
     'N5': Color(0xFF10B981),
@@ -100,11 +110,16 @@ abstract final class AppRadius {
   static const double sm = 8;
   static const double md = 12;
   static const double lg = 16;
+
+  /// Bo góc thẻ nổi khối kiểu Duolingo (`ChunkyCard`) — lớn hơn hẳn thẻ phẳng
+  /// thường ([lg]) để tạo cảm giác đồ chơi, thân thiện.
+  static const double xl = 20;
   static const double pill = 999;
 
   static const BorderRadius smAll = BorderRadius.all(Radius.circular(sm));
   static const BorderRadius mdAll = BorderRadius.all(Radius.circular(md));
   static const BorderRadius lgAll = BorderRadius.all(Radius.circular(lg));
+  static const BorderRadius xlAll = BorderRadius.all(Radius.circular(xl));
   static const BorderRadius pillAll = BorderRadius.all(Radius.circular(pill));
 }
 
