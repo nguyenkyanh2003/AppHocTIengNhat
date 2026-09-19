@@ -32,6 +32,11 @@ class AppLocalizations {
 
       // Home Screen
       'home_greeting': 'Xin chào',
+      'home_subtitle': 'Hôm nay học gì nào?',
+      'continue_eyebrow': 'TIẾP TỤC BÀI HỌC',
+      'continue_title': 'Bài học theo chủ đề',
+      'continue_cta': 'Học tiếp',
+      'word_of_day': 'Từ mới hôm nay',
       'explore': 'Khám phá',
       'welcome_back': 'Chào mừng trở lại!',
       'continue_learning': 'Hãy tiếp tục hành trình học tiếng Nhật',
@@ -240,6 +245,11 @@ class AppLocalizations {
 
       // Home Screen
       'home_greeting': 'Hello',
+      'home_subtitle': 'What shall we learn today?',
+      'continue_eyebrow': 'CONTINUE LEARNING',
+      'continue_title': 'Topic lessons',
+      'continue_cta': 'Continue',
+      'word_of_day': 'Word of the day',
       'explore': 'Explore',
       'welcome_back': 'Welcome back!',
       'continue_learning': 'Continue your Japanese learning journey',
@@ -448,6 +458,11 @@ class AppLocalizations {
 
       // Home Screen
       'home_greeting': 'こんにちは',
+      'home_subtitle': '今日は何を学ぶ？',
+      'continue_eyebrow': '学習を続ける',
+      'continue_title': 'テーマ別レッスン',
+      'continue_cta': '続ける',
+      'word_of_day': '今日の単語',
       'explore': 'さがす',
       'welcome_back': 'おかえりなさい！',
       'continue_learning': '日本語学習を続けましょう',
@@ -661,6 +676,11 @@ class AppLocalizations {
 
   // Home Screen
   String get homeGreeting => translate('home_greeting');
+  String get homeSubtitle => translate('home_subtitle');
+  String get continueEyebrow => translate('continue_eyebrow');
+  String get continueTitle => translate('continue_title');
+  String get continueCta => translate('continue_cta');
+  String get wordOfDay => translate('word_of_day');
   String get explore => translate('explore');
   String get welcomeBack => translate('welcome_back');
   String get continueLearning => translate('continue_learning');

@@ -90,11 +90,34 @@ void main() {
         of: find.byType(ContentPane),
         matching: find.byType(Column),
       ).first);
-      expect(pane.width, lessThanOrEqualTo(AppContentWidth.reading + AppSpacing.page.horizontal),
+      expect(pane.width, lessThanOrEqualTo(AppContentWidth.feed + AppSpacing.page.horizontal),
           reason: 'nội dung bị kéo giãn hết bề ngang cửa sổ');
       // Căn giữa: lề trái và lề phải bằng nhau (sai số 1px cho số lẻ).
       expect((pane.left - (windowWidth - pane.right)).abs(), lessThan(1),
           reason: 'cột nội dung lệch sang một bên');
+    }, _backend);
+  });
+
+  testWidgets('lưới khám phá có đúng hai cột như mockup', (tester) async {
+    await http.runWithClient(() async {
+      final error = await _pumpAt(
+        tester,
+        const Size(1920, 1400),
+        AppTheme.lightTheme,
+      );
+      expect(error, isNull, reason: '$error');
+
+      // Ba ô đầu: hai ô cùng hàng, ô thứ ba xuống hàng mới.
+      final tiles = find.descendant(
+        of: find.byType(GridView),
+        matching: find.byType(ChunkyCard),
+      );
+      final first = tester.getTopLeft(tiles.at(0));
+      final second = tester.getTopLeft(tiles.at(1));
+      final third = tester.getTopLeft(tiles.at(2));
+      expect(second.dy, first.dy, reason: 'ô 2 phải cùng hàng ô 1');
+      expect(third.dy, greaterThan(first.dy), reason: 'ô 3 phải xuống hàng');
+      expect(third.dx, first.dx, reason: 'ô 3 phải về đầu hàng');
     }, _backend);
   });
 
@@ -137,9 +160,17 @@ void main() {
       expect(colors, contains(AppColors.streak));
       expect(colors, contains(AppColors.xp));
       expect(AppColors.streak, isNot(AppColors.xp));
-      // Hero là hành động chính: xanh lá, không dùng lại tím thương hiệu.
-      expect(colors, contains(AppColors.heroAction));
-      expect(colors, isNot(contains(AppColors.primary)));
+      // Hero là hành động chính: xanh lá, không dùng lại tím thương hiệu. Tìm
+      // đúng thẻ bọc dòng "TIẾP TỤC BÀI HỌC" — màu mảng từ vựng trùng mã với
+      // tím thương hiệu, nên không thể chỉ kiểm tra "không thẻ nào màu tím".
+      final hero = tester.widget<ChunkyCard>(find
+          .ancestor(
+            of: find.text('TIẾP TỤC BÀI HỌC'),
+            matching: find.byType(ChunkyCard),
+          )
+          .first);
+      expect(hero.color, AppColors.heroAction);
+      expect(hero.color, isNot(AppColors.primary));
     }, _backend);
   });
 }

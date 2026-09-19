@@ -36,11 +36,22 @@ class _ExploreItem {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  /// Bề rộng tối đa một ô trong lưới khám phá. Lưới chia cột theo con số này,
-  /// nên ô giữ kích thước dễ bấm ở mọi bề rộng cửa sổ thay vì phình ra.
-  static const double _exploreTileMaxWidth = 220;
-  static const double _statIconSize = 28;
-  static const double _heroLogoSize = 72;
+  /// Bề rộng tối đa một ô trong lưới khám phá. Lưới chia cột theo con số này:
+  /// hai cột như mockup ở cả web lẫn điện thoại, một cột khi màn quá hẹp.
+  /// Số cột = trần(bề rộng cột ÷ (con số này + khe)), nên với cột 640px con số
+  /// này phải từ 308 trở lên, không thì lưới nhảy sang ba cột.
+  static const double _exploreTileMaxWidth = 320;
+
+  /// Chiều cao cố định của ô, để mọi ô bằng nhau dù phụ đề dài ngắn khác nhau.
+  static const double _exploreTileHeight = 168;
+
+  /// Ô icon tô đặc màu mảng và icon trắng bên trong, theo mockup.
+  static const double _exploreIconBox = 52;
+  static const double _exploreIconSize = 28;
+
+  /// Linh vật ở góc hero và phần thanh tiến độ chiếm trong hero, theo mockup.
+  static const double _heroLogoSize = 96;
+  static const double _heroBarWidthFactor = 0.64;
 
   String? _lastLoadedUserId;
 
@@ -186,37 +197,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHomeContent(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final theme = Theme.of(context);
     final user = context.watch<AuthProvider>().user;
     final name = user?.fullName ?? user?.username;
 
-    // Trên web, nội dung bó lại đúng một cột đọc được rồi căn giữa. Trải hết bề
-    // ngang cửa sổ thì mỗi thẻ thành một dải trống, chữ nằm lọt thỏm bên trái.
+    // Trên web, nội dung bó lại đúng một cột như trên điện thoại rồi căn giữa.
+    // Trải hết bề ngang cửa sổ thì mỗi thẻ thành một dải trống.
     return SingleChildScrollView(
       child: ContentPane(
-        maxWidth: AppContentWidth.reading,
+        maxWidth: AppContentWidth.feed,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              name == null
-                  ? '${l10n.homeGreeting}! \u{1F44B}'
-                  : '${l10n.homeGreeting}, $name! \u{1F44B}',
-              style: AppTypography.heroDisplay(
-                size: AppTypography.headline,
-                color: theme.textTheme.headlineLarge?.color,
-              ),
-            ),
+            _buildGreeting(context, l10n, name),
             AppGap.lg,
             _buildStatRow(context, l10n),
-            AppGap.xl,
-            _buildHeroCard(context, l10n, theme),
-            AppGap.xl,
-            _buildWordOfDayCard(context, theme),
-            AppGap.xl,
+            AppGap.lg,
+            _buildHeroCard(context, l10n),
+            AppGap.lg,
+            _buildSectionLabel(context, l10n.wordOfDay),
+            _buildWordOfDayCard(context),
+            AppGap.lg,
             // Lưới khám phá đứng trước tin tức: đây là đường đi tới mọi mảng
             // học, còn tin tức chỉ là thứ đọc thêm.
-            _buildExploreSection(context, theme, l10n),
+            _buildSectionLabel(context, l10n.explore),
+            _buildExploreSection(context),
             AppGap.xl,
             const NewsCarouselWidget(),
           ],
@@ -225,7 +229,62 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Hai thẻ chỉ số. Hai màu khác nhau để không nhìn thành một khối cam dài.
+  /// Màu chữ phụ theo chế độ sáng/tối.
+  Color _mutedText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkTextSecondary
+          : AppColors.textSecondary;
+
+  /// Màu chữ chính theo chế độ sáng/tối.
+  Color _strongText(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkTextPrimary
+          : AppColors.textPrimary;
+
+  Widget _buildGreeting(
+    BuildContext context,
+    AppLocalizations l10n,
+    String? name,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          name == null
+              ? '${l10n.homeGreeting}! \u{1F44B}'
+              : '${l10n.homeGreeting}, $name! \u{1F44B}',
+          style: AppTypography.heroDisplay(
+            size: AppTypography.headline,
+            color: _strongText(context),
+            height: 1.15,
+          ),
+        ),
+        AppGap.xs,
+        Text(
+          l10n.homeSubtitle,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: _mutedText(context),
+                fontWeight: FontWeight.w600,
+              ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionLabel(BuildContext context, String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+      child: Text(
+        text,
+        style: AppTypography.heroDisplay(
+          size: AppTypography.subtitle,
+          color: _strongText(context),
+        ),
+      ),
+    );
+  }
+
+  /// Hai chip chỉ số. Hai màu khác nhau để không nhìn thành một khối liền.
   Widget _buildStatRow(BuildContext context, AppLocalizations l10n) {
     return Consumer<StreakProvider>(
       builder: (context, streakProvider, child) {
@@ -238,9 +297,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () => context.push('/streak'),
                 child: _buildStatChip(
                   context,
-                  l10n.streak,
-                  '${streak?.currentStreak ?? 0} ${l10n.days}',
-                  Icons.local_fire_department,
+                  emoji: '\u{1F525}',
+                  value: '${streak?.currentStreak ?? 0} ${l10n.days}',
+                  label: l10n.streak,
                 ),
               ),
             ),
@@ -251,9 +310,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () => context.push('/streak'),
                 child: _buildStatChip(
                   context,
-                  l10n.points,
-                  '${streak?.totalXP ?? 0} ${l10n.xp}',
-                  Icons.star,
+                  emoji: '\u{26A1}',
+                  value: '${streak?.totalXP ?? 0}',
+                  label: '${l10n.points} ${l10n.xp}',
                 ),
               ),
             ),
@@ -263,149 +322,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Hành động chính trong ngày. Xanh lá để tách khỏi tím của thương hiệu.
-  Widget _buildHeroCard(
-    BuildContext context,
-    AppLocalizations l10n,
-    ThemeData theme,
-  ) {
-    return ChunkyCard(
-      color: AppColors.heroAction,
-      padding: const EdgeInsets.all(AppSpacing.xl),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.continueLearning,
-                  style: AppTypography.heroDisplay(
-                    size: AppTypography.title,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                ClipRRect(
-                  borderRadius: AppRadius.pillAll,
-                  child: LinearProgressIndicator(
-                    // Chưa có nguồn dữ liệu "bài đang học dở" nên hiển thị một
-                    // mốc minh hoạ, không phải tiến độ thật.
-                    value: 0.4,
-                    minHeight: AppSpacing.sm,
-                    backgroundColor: Colors.white.withValues(alpha: 0.3),
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      Colors.white,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                ChunkyCard(
-                  color: AppColors.surface,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg,
-                    vertical: AppSpacing.sm,
-                  ),
-                  onTap: () => context.push('/lessons'),
-                  child: Text(
-                    l10n.menuLesson,
-                    style: theme.textTheme.labelLarge
-                        ?.copyWith(color: AppColors.heroAction),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: AppSpacing.md),
-          ClipOval(
-            child: Image.asset(
-              'assets/images/logo.png',
-              width: _heroLogoSize,
-              height: _heroLogoSize,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) => const Icon(
-                Icons.translate,
-                size: _heroLogoSize,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildWordOfDayCard(BuildContext context, ThemeData theme) {
-    return ChunkyCard(
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Từ mới hôm nay', style: theme.textTheme.titleSmall),
-                const SizedBox(height: AppSpacing.sm),
-                Text('猫', style: AppTypography.japaneseDisplay()),
-                Text('ねこ', style: AppTypography.japaneseReading()),
-                const SizedBox(height: AppSpacing.xs),
-                Text('con mèo', style: theme.textTheme.bodyMedium),
-              ],
-            ),
-          ),
-          IconButton(
-            onPressed: _showPronunciationComingSoon,
-            tooltip: 'Phát âm',
-            icon: Icon(Icons.volume_up, color: theme.colorScheme.primary),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildExploreSection(
-    BuildContext context,
-    ThemeData theme,
-    AppLocalizations l10n,
-  ) {
-    final items = _getExploreItems(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(l10n.explore, style: theme.textTheme.titleLarge),
-        AppGap.lg,
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          // Ô co theo bề rộng thật: ba cột trên web, hai cột trên điện thoại,
-          // thay vì hai ô khổng lồ khi cửa sổ rộng.
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: _exploreTileMaxWidth,
-            crossAxisSpacing: AppSpacing.md,
-            mainAxisSpacing: AppSpacing.md,
-            childAspectRatio: 1.05,
-          ),
-          itemCount: items.length,
-          itemBuilder: (context, index) =>
-              _buildExploreCard(context, items[index]),
-        ),
-      ],
-    );
-  }
-
-  /// Chữ trên thẻ chỉ số dùng mực đậm: chữ trắng trên cam và hổ phách quá nhạt
-  /// để đọc.
+  /// Chữ trên chip dùng mực đậm ở cả hai chế độ: nền chip luôn là cam/hổ phách
+  /// sáng, chữ trắng trên đó quá nhạt để đọc.
   Widget _buildStatChip(
-    BuildContext context,
-    String label,
-    String value,
-    IconData icon,
-  ) {
-    final theme = Theme.of(context);
+    BuildContext context, {
+    required String emoji,
+    required String value,
+    required String label,
+  }) {
     return Row(
       children: [
-        Icon(icon, size: _statIconSize, color: AppColors.textPrimary),
-        const SizedBox(width: AppSpacing.sm),
+        Text(emoji, style: const TextStyle(fontSize: AppTypography.title)),
+        AppGap.sm,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -413,14 +341,19 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 value,
-                style: theme.textTheme.titleMedium
-                    ?.copyWith(color: AppColors.textPrimary),
+                style: AppTypography.heroDisplay(
+                  size: AppTypography.subtitle,
+                  color: AppColors.textPrimary,
+                  height: 1.1,
+                ),
               ),
               Text(
                 label,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: AppColors.textPrimary.withValues(alpha: 0.75),
-                ),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontSize: AppTypography.caption,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textPrimary.withValues(alpha: 0.75),
+                    ),
               ),
             ],
           ),
@@ -429,39 +362,244 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildExploreCard(BuildContext context, _ExploreItem item) {
-    final theme = Theme.of(context);
+  /// Hành động chính trong ngày: xanh lá, tách hẳn khỏi tím của thương hiệu.
+  ///
+  /// Chưa có nguồn dữ liệu "bài đang học dở", nên tiêu đề là nhóm bài chứ không
+  /// phải tên một bài cụ thể, và thanh tiến độ là mốc minh hoạ.
+  Widget _buildHeroCard(BuildContext context, AppLocalizations l10n) {
+    final textTheme = Theme.of(context).textTheme;
+    const onHero = Colors.white;
+
     return ChunkyCard(
+      color: AppColors.heroAction,
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.continueEyebrow,
+                  style: textTheme.labelMedium?.copyWith(
+                    color: onHero.withValues(alpha: 0.85),
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+                AppGap.xs,
+                Text(
+                  l10n.continueTitle,
+                  style: AppTypography.heroDisplay(
+                    size: AppTypography.title,
+                    color: onHero,
+                    height: 1.15,
+                  ),
+                ),
+                AppGap.xs,
+                Text(
+                  l10n.continueLearning,
+                  style: textTheme.bodySmall?.copyWith(
+                    color: onHero.withValues(alpha: 0.9),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                AppGap.md,
+                FractionallySizedBox(
+                  widthFactor: _heroBarWidthFactor,
+                  child: ClipRRect(
+                    borderRadius: AppRadius.pillAll,
+                    child: LinearProgressIndicator(
+                      value: 0.6,
+                      minHeight: AppSpacing.md,
+                      backgroundColor: Colors.black.withValues(alpha: 0.16),
+                      valueColor: const AlwaysStoppedAnimation<Color>(onHero),
+                    ),
+                  ),
+                ),
+                AppGap.md,
+                ChunkyCard(
+                  color: AppColors.surface,
+                  borderRadius: AppRadius.lgAll,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xl,
+                    vertical: AppSpacing.md,
+                  ),
+                  onTap: () => context.push('/lessons'),
+                  child: Text(
+                    '${l10n.continueCta} \u{2192}',
+                    style: AppTypography.heroDisplay(
+                      size: AppTypography.body,
+                      color: ChunkyCard.edgeOf(AppColors.heroAction),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AppGap.md,
+          Image.asset(
+            'assets/images/logo.png',
+            width: _heroLogoSize,
+            height: _heroLogoSize,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) => const Icon(
+              Icons.translate,
+              size: _heroLogoSize,
+              color: onHero,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Thẻ khoe chữ Nhật: kanji lớn tô màu mảng kanji, cách đọc, nghĩa, nhãn loại
+  /// từ và nút phát âm tô màu.
+  Widget _buildWordOfDayCard(BuildContext context) {
+    final muted = _mutedText(context);
+    final tagColor = ChunkyCard.edgeOf(AppColors.kanji);
+
+    return ChunkyCard(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      child: Row(
+        children: [
+          Text(
+            '猫',
+            style: AppTypography.japaneseDisplay(
+              color: AppColors.kanji,
+              weight: FontWeight.w900,
+            ),
+          ),
+          AppGap.lg,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'ねこ',
+                  style: AppTypography.japaneseDisplay(
+                    size: AppTypography.subtitle,
+                    weight: FontWeight.w700,
+                    color: muted,
+                  ),
+                ),
+                Text(
+                  'con mèo',
+                  style: AppTypography.heroDisplay(
+                    size: AppTypography.subtitle,
+                    weight: FontWeight.w700,
+                    color: _strongText(context),
+                  ),
+                ),
+                AppGap.xs,
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.xs,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.kanji.withValues(alpha: 0.14),
+                    borderRadius: AppRadius.pillAll,
+                  ),
+                  child: Text(
+                    'Danh từ · N5',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: tagColor,
+                          fontWeight: FontWeight.w800,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Tooltip(
+            message: 'Phát âm',
+            child: ChunkyCard(
+              color: AppColors.vocabulary,
+              borderRadius: AppRadius.lgAll,
+              padding: const EdgeInsets.all(AppSpacing.md),
+              onTap: _showPronunciationComingSoon,
+              child: const Icon(Icons.volume_up, color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExploreSection(BuildContext context) {
+    final items = _getExploreItems(context);
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: _exploreTileMaxWidth,
+        mainAxisExtent: _exploreTileHeight,
+        crossAxisSpacing: AppSpacing.md,
+        mainAxisSpacing: AppSpacing.md,
+      ),
+      itemCount: items.length,
+      itemBuilder: (context, index) => _buildExploreCard(context, items[index]),
+    );
+  }
+
+  /// Một ô khám phá: ô icon tô đặc màu mảng có mép riêng, tên mảng và phụ đề.
+  Widget _buildExploreCard(BuildContext context, _ExploreItem item) {
+    final muted = _mutedText(context);
+
+    return ChunkyCard(
+      padding: const EdgeInsets.all(AppSpacing.lg),
       onTap: () => context.push(item.route),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(AppSpacing.md),
+            width: _exploreIconBox,
+            height: _exploreIconBox,
             decoration: BoxDecoration(
-              color: item.color.withValues(alpha: 0.15),
-              shape: BoxShape.circle,
+              color: item.color,
+              borderRadius: AppRadius.lgAll,
+              boxShadow: [
+                BoxShadow(
+                  color: ChunkyCard.edgeOf(item.color),
+                  offset: const Offset(0, ChunkyCard.edgeDepth),
+                  blurRadius: 0,
+                ),
+              ],
             ),
-            child: Icon(item.icon, size: _statIconSize, color: item.color),
+            child: Icon(
+              item.icon,
+              size: _exploreIconSize,
+              color: Colors.white,
+            ),
           ),
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: AppSpacing.md + ChunkyCard.edgeDepth),
           // `Flexible` để khi người dùng phóng to cỡ chữ hệ thống, chữ rút bớt
           // dòng chứ không đẩy ô tràn khung thành sọc vàng.
           Flexible(
             child: Text(
               item.title,
-              style: theme.textTheme.titleSmall,
-              textAlign: TextAlign.center,
-              maxLines: 2,
+              style: AppTypography.heroDisplay(
+                size: AppTypography.body,
+                color: _strongText(context),
+                height: 1.1,
+              ),
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const SizedBox(height: AppSpacing.xs),
+          AppGap.xs,
           Flexible(
             child: Text(
               item.subtitle,
-              style: theme.textTheme.bodySmall,
-              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontSize: AppTypography.caption,
+                    fontWeight: FontWeight.w600,
+                    color: muted,
+                  ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

@@ -60,12 +60,12 @@ abstract final class AppColors {
   /// Hai chỉ số học tập ở Trang chủ. Hai sắc khác nhau để hai thẻ đứng cạnh
   /// nhau không dính thành một khối màu: chuỗi ngày là cam lửa, XP là hổ phách.
   /// Cả hai đều đủ tối để chữ mực đậm đọc rõ trên nền thẻ.
-  static const Color streak = Color(0xFFF97316);
-  static const Color xp = accent;
+  static const Color streak = Color(0xFFFF9600);
+  static const Color xp = Color(0xFFFFC800);
 
   /// Hành động chính của Trang chủ ("Tiếp tục học"). Xanh lá đứng tách khỏi tím
   /// thương hiệu, nên mắt tìm ra ngay việc cần làm tiếp thay vì phải đọc hết.
-  static const Color heroAction = Color(0xFF16A34A);
+  static const Color heroAction = Color(0xFF58CC02);
 
   /// Màu cấp độ JLPT, từ dễ (N5) đến khó (N1).
   static const Map<String, Color> jlptLevels = {
@@ -147,6 +147,10 @@ abstract final class AppContentWidth {
 
   /// Nội dung đọc: chi tiết từ vựng, ngữ pháp, bài học, tin tức.
   static const double reading = 720;
+
+  /// Bảng tin một cột (Trang chủ). Hẹp hơn [reading] để thẻ và lưới hai cột
+  /// giữ đúng tỉ lệ như trên điện thoại thay vì bè ra trên màn hình rộng.
+  static const double feed = 640;
 
   /// Dashboard, bảng quản trị, lưới thẻ.
   static const double dashboard = 1200;

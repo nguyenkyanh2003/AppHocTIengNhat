@@ -115,8 +115,8 @@ abstract final class AppTypography {
             height: 1.45),
 
         // Nhãn, nút, metadata
-        labelLarge: _latin(
-            size: bodySmall, weight: FontWeight.w600, color: primary),
+        labelLarge:
+            _latin(size: bodySmall, weight: FontWeight.w600, color: primary),
         labelMedium:
             _latin(size: caption, weight: FontWeight.w500, color: secondary),
         labelSmall:
@@ -124,21 +124,26 @@ abstract final class AppTypography {
       );
 
   /// Chữ Nhật là nội dung chính của app, không phải trang trí: kanji cần cỡ lớn
-  /// và dòng thoáng thì mới đọc được nét. Noto Sans JP phủ đủ kanji/kana mà
-  /// Inter không có.
+  /// và dòng thoáng thì mới đọc được nét. Zen Maru Gothic phủ đủ kanji/kana
+  /// mà Nunito không có, và nét bo tròn hợp với phần chữ Latin.
   ///
   /// `size` chỉ dành cho kanji đứng một mình làm tiêu điểm (thẻ ôn, màn chi
-  /// tiết kanji) — chữ Hán cần to hơn hẳn chữ Latin cùng vai trò mới thấy nét.
-  static TextStyle japaneseDisplay({Color? color, double size = 40}) =>
+  /// tiết kanji, từ mới hôm nay) — chữ Hán cần to hơn hẳn chữ Latin cùng vai
+  /// trò mới thấy nét.
+  static TextStyle japaneseDisplay({
+    Color? color,
+    double size = 40,
+    FontWeight weight = FontWeight.w600,
+  }) =>
       GoogleFonts.zenMaruGothic(
         fontSize: size,
-        fontWeight: FontWeight.w600,
+        fontWeight: weight,
         height: 1.4,
         color: color,
       );
 
   /// Câu tiếng Nhật trong hội thoại, ví dụ, đề bài.
-  static TextStyle japaneseBody({Color? color}) => GoogleFonts.notoSansJp(
+  static TextStyle japaneseBody({Color? color}) => GoogleFonts.zenMaruGothic(
         fontSize: subtitle,
         fontWeight: FontWeight.w500,
         height: 1.7,
@@ -146,8 +151,7 @@ abstract final class AppTypography {
       );
 
   /// Cách đọc (hiragana) đi kèm chữ Nhật — nhỏ và nhạt hơn câu chính.
-  static TextStyle japaneseReading({Color? color}) =>
-      GoogleFonts.zenMaruGothic(
+  static TextStyle japaneseReading({Color? color}) => GoogleFonts.zenMaruGothic(
         fontSize: bodySmall,
         fontWeight: FontWeight.w400,
         height: 1.5,

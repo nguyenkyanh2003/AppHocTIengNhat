@@ -23,7 +23,7 @@ export const DEMO_TAG = '[demo]';
 export const DEMO_USERS = [
   {
     username: 'demo_hocvien',
-    password: 'DemoHocVien123!',
+    password: '123456',
     fullName: 'Học viên Demo',
     email: 'demo.hocvien@example.test',
     level: 'N5',
