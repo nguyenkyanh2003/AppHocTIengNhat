@@ -2,10 +2,7 @@ import Grammar from '../../../model/Grammar.js';
 import Kanji from '../../../model/Kanji.js';
 import Lesson from '../../../model/Lesson.js';
 import LessonProgress from '../../../model/LessonProgress.js';
-import UserStreak from '../../../model/UserStreak.js';
 import Vocabulary from '../../../model/Vocabulary.js';
-
-const XP_PER_LEVEL = 100;
 
 const toIdStrings = (ids) => (ids ?? []).map((id) => String(id));
 
@@ -37,7 +34,6 @@ const applyTotals = (progress, totals) => {
 export const createLessonProgressRepository = ({
   LessonProgress: progressModel = LessonProgress,
   Lesson: lessonModel = Lesson,
-  UserStreak: streakModel = UserStreak,
   Vocabulary: vocabularyModel = Vocabulary,
   Grammar: grammarModel = Grammar,
   Kanji: kanjiModel = Kanji,
@@ -105,9 +101,9 @@ export const createLessonProgressRepository = ({
     return { progress: created.toObject(), created: true };
   },
 
-  async applyItemLearned({ userId, lessonId, totals, itemType, itemId, learned, at }) {
+  async applyItemLearned({ userId, lessonId, totals, itemType, itemId, learned, at, session }) {
     const progress =
-      (await progressModel.findOne({ user: userId, lesson: lessonId })) ??
+      (await progressModel.findOne({ user: userId, lesson: lessonId }).session(session)) ??
       new progressModel({ user: userId, lesson: lessonId });
 
     applyTotals(progress, totals);
@@ -127,7 +123,7 @@ export const createLessonProgressRepository = ({
     }
 
     progress.last_studied_at = at;
-    await progress.save();
+    await progress.save({ session });
 
     return progress.toObject();
   },
@@ -136,11 +132,10 @@ export const createLessonProgressRepository = ({
    * Ghi trạng thái hoàn thành toàn bài một cách nhất quán: ID đã học, counter,
    * tổng số và trạng thái được đặt cùng lúc từ nội dung thật của bài.
    */
-  async saveCompletion({ userId, lessonId, content, completedAt, lastStudiedAt, rewardState }) {
-    const progress = await progressModel.findOne({
-      user: userId,
-      lesson: lessonId,
-    });
+  async saveCompletion({ userId, lessonId, content, completedAt, lastStudiedAt, rewardState, session }) {
+    const progress = await progressModel
+      .findOne({ user: userId, lesson: lessonId })
+      .session(session);
 
     if (!progress) return null;
 
@@ -160,14 +155,15 @@ export const createLessonProgressRepository = ({
     progress.last_studied_at = lastStudiedAt;
     progress.completion_reward_state = rewardState;
 
-    await progress.save();
+    await progress.save({ session });
     return progress.toObject();
   },
 
-  async markCompletionRewardGranted({ userId, lessonId }) {
+  async markCompletionRewardGranted({ userId, lessonId, session }) {
     await progressModel.updateOne(
       { user: userId, lesson: lessonId },
       { $set: { completion_reward_state: 'granted' } },
+      { session },
     );
   },
 
@@ -175,71 +171,6 @@ export const createLessonProgressRepository = ({
     return progressModel.findOneAndDelete({ user: userId, lesson: lessonId });
   },
 
-  /** Ghi nhận "hôm nay có học"; không cộng XP. */
-  async recordStudyActivity(userId) {
-    const streak = await streakModel.findOne({ user: userId });
-    if (!streak) return null;
-
-    const result = streak.updateStreakOnActivity();
-    await streak.save();
-
-    return result;
-  },
-
-  /**
-   * Cộng XP đúng một lần cho mỗi `rewardKey`.
-   *
-   * Điều kiện `reward_keys: { $ne: rewardKey }` và phép cộng nằm trong **một**
-   * lệnh ghi, nên hai request đồng thời chỉ có một request khớp điều kiện. Ghi
-   * bằng update pipeline để `level` được tính lại từ `total_xp` sau khi cộng,
-   * đúng như `addXP` của model làm.
-   *
-   * Trả về `true` nếu lần gọi này thực sự cộng XP, `false` nếu khoản thưởng đã
-   * được ghi nhận từ trước (hoặc user chưa có bản ghi streak).
-   */
-  async grantXpOnce({ userId, rewardKey, amount, reason }) {
-    const result = await streakModel.updateOne(
-      { user: userId, reward_keys: { $ne: rewardKey } },
-      [
-        {
-          $set: {
-            total_xp: { $add: [{ $ifNull: ['$total_xp', 0] }, amount] },
-            reward_keys: {
-              $concatArrays: [{ $ifNull: ['$reward_keys', []] }, [rewardKey]],
-            },
-            xp_history: {
-              $concatArrays: [
-                { $ifNull: ['$xp_history', []] },
-                [{ amount, reason, earned_at: '$$NOW' }],
-              ],
-            },
-          },
-        },
-        {
-          $set: {
-            level: {
-              $add: [{ $floor: { $divide: ['$total_xp', XP_PER_LEVEL] } }, 1],
-            },
-          },
-        },
-      ],
-    );
-
-    return result.modifiedCount === 1;
-  },
-
-  /**
-   * Đánh dấu khoản thưởng là đã ghi nhận mà **không** cộng XP.
-   *
-   * Dùng cho bản ghi hoàn thành từ trước khi có cơ chế khóa: chúng đã được cộng
-   * XP theo cách cũ, nên chỉ cần chiếm khóa để lần sau không phát thưởng lại.
-   */
-  async claimRewardKeyWithoutXp({ userId, rewardKey }) {
-    await streakModel.updateOne(
-      { user: userId, reward_keys: { $ne: rewardKey } },
-      { $push: { reward_keys: rewardKey } },
-    );
-  },
 });
 
 export const lessonProgressRepository = createLessonProgressRepository();

@@ -83,9 +83,15 @@ export const createStreakService = ({
 
     for (const milestone of milestones) {
       const xp = policy.xpFor(policy.MILESTONE_REWARD_TYPE, rewards?.[milestone]);
+      const eventKey = `streak-milestone:${userId}:${milestone}`;
+
+      // Tra trước khi ghi: mốc đã cấp rồi mà vẫn thử ghi thì unique index huỷ
+      // luôn transaction đang dở của hoạt động học.
+      if (await repository.findEventByKey({ userId, eventKey, session })) continue;
+
       const event = await repository.insertEvent({
         userId,
-        eventKey: `streak-milestone:${userId}:${milestone}`,
+        eventKey,
         type: policy.MILESTONE_REWARD_TYPE,
         sourceId: String(milestone),
         occurredAt,
@@ -96,9 +102,6 @@ export const createStreakService = ({
         policyVersion: policy.POLICY_VERSION,
         session,
       });
-      // `null` nghĩa là mốc này đã được cấp trước đó — không phải lỗi.
-      if (!event) continue;
-
       awarded.push(milestone);
       if (xp > 0) {
         await casWithRetry({ userId, session, buildWrite: () => ({ inc: { total_xp: xp } }) });
@@ -144,6 +147,27 @@ export const createStreakService = ({
       const countsAsStudy = policy.countsAsStudy(type);
       const todayKey = rules.dayKey(now);
 
+      // Tra khoá **trước** khi ghi. Không phải để tối ưu: lệnh ghi đụng unique
+      // index sẽ huỷ cả transaction, kéo theo phần nghiệp vụ mà caller vừa ghi
+      // trong cùng session. Hai request song song vẫn có thể cùng vượt qua chỗ
+      // này — bên thua nhận lỗi transient từ `insertEvent` và cả transaction
+      // của nó chạy lại, lần đó thì thấy khoá đã có.
+      const recorded = await repository.findEventByKey({
+        userId,
+        eventKey: occurrenceKey,
+        session,
+      });
+      if (recorded) {
+        const latest = await repository.findByUser({ userId, session });
+        return {
+          currentStreak: latest?.current_streak ?? 0,
+          isNewDay: false,
+          xpAwarded: 0,
+          duplicate: true,
+          milestonesReached: [],
+        };
+      }
+
       const event = await repository.insertEvent({
         userId,
         eventKey: occurrenceKey,
@@ -158,19 +182,6 @@ export const createStreakService = ({
         receipt: context?.receipt,
         session,
       });
-
-      if (!event) {
-        // Đã ghi rồi: gửi lại sau timeout, double submit, hai thiết bị. Trả
-        // đúng trạng thái hiện tại và không đụng vào gì cả.
-        const latest = await repository.findByUser({ userId, session });
-        return {
-          currentStreak: latest?.current_streak ?? 0,
-          isNewDay: false,
-          xpAwarded: 0,
-          duplicate: true,
-          milestonesReached: [],
-        };
-      }
 
       // Hoạt động không phải học và không có XP (đăng nhập, mở bài, bỏ qua):
       // đã vào nhật ký để không phát lại, và dừng ở đó. Đây là chỗ sửa lỗi

@@ -28,10 +28,14 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 262;
+const expectedCount = 258;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
-const expectedSignatureHash = '475fab1e4035d13d6a667352156e2581a0af93b8134b8098a45a28b65ff1bddc';
+// 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
+//   Gỡ `POST /api/streak/add-xp` (client tự khai số XP), `POST /api/streak/test/reset-yesterday`
+//   và `GET /api/streak/test/debug` (công cụ thử nghiệm lọt ra production), cùng
+//   `POST /api/achievement/update-progress` (client tự khai tiến độ rồi nhận XP thưởng).
+const expectedSignatureHash = '72fcea34dfd0a1c3da318cd92ab5057bdb7391732217d83fa9d294b9ce8b8b5b';
 
 const collectSignatures = async () => {
   const signatures = [];

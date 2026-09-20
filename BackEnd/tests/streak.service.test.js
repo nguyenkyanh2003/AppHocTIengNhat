@@ -43,9 +43,18 @@ const fakeRepository = ({ summary = {}, failCasTimes = 0 } = {}) => {
       calls.push(['findByUser', { userId, session }]);
       return { ...state };
     },
+    async findEventByKey({ userId, eventKey, session }) {
+      calls.push(['findEventByKey', { userId, eventKey, session }]);
+      return this.events.find((event) => event.eventKey === eventKey) ?? null;
+    },
     async insertEvent(args) {
       calls.push(['insertEvent', args]);
-      if (eventKeys.has(args.eventKey)) return null;
+      if (eventKeys.has(args.eventKey)) {
+        // Y như driver: lỗi trùng khoá, không phải `null`.
+        throw Object.assign(new Error('E11000'), {
+          errorLabels: ['TransientTransactionError'],
+        });
+      }
       eventKeys.add(args.eventKey);
       const saved = { _id: `e${eventKeys.size}`, ...args };
       this.events.push(saved);
@@ -183,11 +192,22 @@ test('the duplicate guard is the event key alone, never a list read from the sum
   repository.calls.length = 0;
   await service.recordActivity(activity(), { now: NOW });
 
+  // Lần hai không ghi gì: câu trả lời đến từ chính khoá event.
+  assert.equal(namesOf(repository).includes('insertEvent'), false);
+  assert.equal(namesOf(repository)[0], 'findEventByKey');
+});
+
+test('the first write looks up the key, then inserts, without reading a key list', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ repository });
+  await service.recordActivity(activity(), { now: NOW });
+
   // Không đọc lại tóm tắt để tra một mảng khoá: khe hở giữa lúc đọc và lúc
   // ghi chính là lỗi mà thiết kế này loại bỏ.
-  const insertIndex = namesOf(repository).indexOf('insertEvent');
+  const order = namesOf(repository);
+  const insertIndex = order.indexOf('insertEvent');
   assert.ok(insertIndex >= 0);
-  assert.equal(namesOf(repository).slice(0, insertIndex).includes('findByUser'), false);
+  assert.deepEqual(order.slice(0, insertIndex), ['findEventByKey']);
 });
 
 // --- thứ tự ghi ------------------------------------------------------------
@@ -486,4 +506,49 @@ test('a freeze that protects a gap is actually spent, not reused forever', async
   assert.equal(repository.state.freezes_available, 1);
   const frozen = repository.days.filter((day) => day.status === 'frozen');
   assert.deepEqual(frozen.map((day) => day.dayKey), ['2026-09-10']);
+});
+
+test('an activity already in the journal is answered from a read, without touching the write path', async () => {
+  // Gửi lại lần hai phải đi nhánh trùng **trước** khi thử ghi: một lệnh ghi
+  // đụng unique index sẽ huỷ cả transaction, kéo theo phần nghiệp vụ mà
+  // caller vừa ghi trong cùng session đó.
+  const repository = fakeRepository();
+  const service = createStreakService({ repository });
+  const activity = {
+    userId: 'u1',
+    type: 'lesson.progress',
+    sourceId: 'l1',
+    occurrenceKey: 'lesson-item:l1:vocabulary:v1',
+  };
+
+  const first = await service.recordActivity(activity, { session: 'sess', now: NOW });
+  const again = await service.recordActivity(activity, { session: 'sess', now: NOW });
+
+  assert.equal(first.xpAwarded, 2);
+  assert.equal(again.xpAwarded, 0);
+  assert.equal(again.duplicate, true);
+
+  const inserts = repository.calls.filter(([name]) => name === 'insertEvent');
+  assert.equal(inserts.length, 1, 'lần hai không được thử ghi event nữa');
+  const lookups = repository.calls.filter(([name]) => name === 'findEventByKey');
+  assert.equal(lookups.length, 2, 'mỗi lần ghi đều tra khoá trước');
+  assert.equal(lookups[0][1].session, 'sess', 'tra khoá phải nằm trong cùng session');
+});
+
+test('losing the race to insert is raised so the whole transaction runs again', async () => {
+  const repository = fakeRepository();
+  // Khoá chưa có lúc tra, nhưng người khác chèn xong ngay trước lệnh ghi.
+  repository.findEventByKey = async () => null;
+  const service = createStreakService({ repository });
+  const activity = { userId: 'u1', type: 'srs.review', sourceId: 'c1', occurrenceKey: 'k1' };
+
+  await service.recordActivity(activity, { session: 'sess', now: NOW });
+
+  await assert.rejects(
+    service.recordActivity(activity, { session: 'sess', now: NOW }),
+    (error) => {
+      assert.equal(error.errorLabels.includes('TransientTransactionError'), true);
+      return true;
+    },
+  );
 });

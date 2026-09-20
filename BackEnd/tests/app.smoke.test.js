@@ -19,3 +19,17 @@ test('unknown API path keeps the existing 404 contract', async () => {
   assert.deepEqual(response.body, { message: 'API không tồn tại' });
 });
 
+
+test('cac duong tu cap thuong da bien mat khoi app that', async () => {
+  // Không phải chỉ gỡ khỏi router rời: kiểm trên chính app đã lắp đủ route.
+  for (const [method, path] of [
+    ['post', '/api/streak/add-xp'],
+    ['post', '/api/streak/test/reset-yesterday'],
+    ['get', '/api/streak/test/debug'],
+    ['post', '/api/achievement/update-progress'],
+  ]) {
+    const response = await request(app)[method](path).send({});
+    assert.equal(response.status, 404, `${method.toUpperCase()} ${path} phải 404`);
+    assert.deepEqual(response.body, { message: 'API không tồn tại' });
+  }
+});

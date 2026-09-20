@@ -334,10 +334,10 @@ Vì vậy Task 2.1–2.5 là **một đợt**, không tách commit deploy đư�
 có thể **tạo** document và **reset** khi đọc. Cả hai thành projection thuần: user mới nhận
 tóm tắt 0 và `last_activity_day: null` **mà không tạo document**.
 
-- [ ] **B1** Test HTTP: đăng nhập 3 lần không đổi `current_streak`; GET `/my-streak` của user
+- [x] **B1** Test HTTP: đăng nhập 3 lần không đổi `current_streak`; GET `/my-streak` của user
       chưa có document trả số 0 và không tạo gì (repository giả khẳng định không có lệnh ghi).
-- [ ] **B2** fail. **B3** Đổi tên thành `readStreakSummary`, bỏ mọi lệnh ghi.
-- [ ] **B4** `npm test` xanh.
+- [x] **B2** fail. **B3** Đổi tên thành `readStreakSummary`, bỏ mọi lệnh ghi.
+- [x] **B4** `npm test` xanh.
 
 ## Task 2.2: lesson-progress và progress
 
@@ -355,9 +355,9 @@ ngữ nghĩa khoá đang có — `lesson-item:<lesson>:<type>:<item>` và `lesso
 `progress.controller`. Nó cũng cộng XP và ghi streak. Plan này xử lý nó **cùng đợt** — để
 sót một writer cũ là đúng điều spec cấm.
 
-- [ ] **B1** Test: hoàn thành cùng một mục hai lần → XP một lần; hoàn thành bài lần đầu →
+- [x] **B1** Test: hoàn thành cùng một mục hai lần → XP một lần; hoàn thành bài lần đầu →
       20 XP; mở bài → 0 XP và không tạo event học.
-- [ ] **B2** fail. **B3** Sửa. **B4** `npm test` xanh.
+- [x] **B2** fail. **B3** Sửa. **B4** `npm test` xanh.
 
 ## Task 2.3: exercise và JLPT — `attempt_id` và receipt
 
@@ -380,10 +380,10 @@ JLPT hiện upsert `LearningHistory` theo `(user, exam)` nên `_id` của nó **
 một lần nộp — giữ điểm của từng lần trong receipt nhỏ ở `ActivityEvent`, để retry lần A
 không nhận kết quả lần B. Không đổi unique index của history chỉ để làm streak.
 
-- [ ] **B1** Test HTTP: nộp lần đầu ghi kết quả + 1 event; gửi lại cùng `attempt_id` cùng
+- [x] **B1** Test HTTP: nộp lần đầu ghi kết quả + 1 event; gửi lại cùng `attempt_id` cùng
       payload trả **cùng** kết quả và **không** cộng XP lần hai; cùng `attempt_id` payload
       khác → 409; JLPT nộp lần 2 khác điểm không ghi đè kết quả retry của lần 1.
-- [ ] **B2** fail. **B3** Cài đặt. **B4** `npm test` xanh + Flutter gửi `attempt_id`.
+- [x] **B2** fail. **B3** Cài đặt. **B4** `npm test` xanh + Flutter gửi `attempt_id`.
 
 ## Task 2.4: Đóng đường tự cấp thưởng của achievements
 
@@ -396,11 +396,18 @@ Spec §3.6: bỏ `POST /api/achievement/update-progress` — nó nhận progress
 thể dẫn tới cấp XP. Giữ nguyên các đường đọc và CRUD admin. Huy hiệu nào chưa có tiêu chí
 server xác minh thì **chưa tự cấp**.
 
-- [ ] **B1** Test HTTP: route trả 404; đường đọc và CRUD admin vẫn chạy.
-- [ ] **B2** fail. **B3** Xoá route + hàm service/provider Flutter sau khi rà consumer.
-- [ ] **B4** `npm test` xanh.
+- [x] **B1** Test HTTP: route trả 404; đường đọc và CRUD admin vẫn chạy.
+- [x] **B2** fail. **B3** Xoá route + hàm service/provider Flutter sau khi rà consumer.
+- [x] **B4** `npm test` xanh.
 
 ## Task 2.5: Route, contract đọc và export
+
+> **Trạng thái 2026-09-20:** đã làm phần **bắt buộc đi cùng cutover** — gỡ ba route tự cấp
+> thưởng, và cho `/my-streak` + `/xp-history` đọc từ `ActivityEvent`/`StreakDay` (giữ nguyên
+> vỏ response cũ, gộp thêm dữ liệu legacy cho tới khi migration chạy). `/leaderboard` cũng
+> chuyển sang nguồn mới, vì bản cũ lọc theo mảng `xp_history` nên sau cutover sẽ bỏ sót
+> người học. **Chưa làm:** `GET /days`, `xp-history?mode=page`, hợp đồng `period_xp` đầy đủ,
+> export Flutter đọc nhiều trang, và việc bỏ hai mảng legacy khỏi response.
 
 **Files:** Modify `BackEnd/src/modules/streaks/streak.routes.js`, `streak.controller.js`;
 Create `BackEnd/src/modules/streaks/streak.schema.js`;

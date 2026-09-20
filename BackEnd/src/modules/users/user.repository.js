@@ -1,5 +1,6 @@
 import User from '../../../model/User.js';
 import UserStreak from '../../../model/UserStreak.js';
+import { dayKey, projectStreak } from '../streaks/streak-rules.js';
 
 /**
  * `tokenVersion` khai báo `select: false` trong model, nên mọi truy vấn phục vụ
@@ -90,36 +91,34 @@ export const createUserRepository = ({
   },
 
   /**
-   * Ghi nhận hoạt động đăng nhập và trả về tóm tắt streak.
+   * Tóm tắt streak để trả kèm response đăng nhập — **chỉ đọc**.
    *
-   * Toàn bộ phần dùng method của model (`updateStreakOnActivity`, `addXP`) nằm
-   * ở đây để service không phải cầm document Mongoose.
+   * Bản cũ nối chuỗi và cộng 10 XP "Daily login" ở đây, nên đăng nhập một lần
+   * mỗi ngày là đủ giữ chuỗi mà không cần học. Spec §3.4 bỏ khoản đó: đăng
+   * nhập 0 XP, không phải hoạt động học, và không được tạo document hay ghi
+   * đè chuỗi đã đứt. Chuỗi hiển thị là phép chiếu tại thời điểm đọc.
    */
-  async recordLoginStreak(userId) {
-    let streak = await streakModel.findOne({ user: userId });
-
+  async readStreakSummary(userId, now = new Date()) {
+    const streak = await streakModel.findOne({ user: userId }).lean();
     if (!streak) {
-      streak = await streakModel.create({
-        user: userId,
-        current_streak: 0,
-        longest_streak: 0,
-        total_xp: 0,
-        level: 1,
-      });
+      return { current: 0, longest: 0, total_xp: 0, is_new_day: false, streak_broken: false };
     }
 
-    const result = streak.updateStreakOnActivity();
-    if (result.is_new_day) {
-      streak.addXP(10, 'Daily login');
-      await streak.save();
-    }
+    const view = projectStreak(
+      {
+        currentStreak: streak.current_streak ?? 0,
+        lastActivityDay: streak.last_activity_day ?? null,
+        freezesAvailable: streak.freezes_available ?? 0,
+      },
+      dayKey(now),
+    );
 
     return {
-      current: streak.current_streak,
-      longest: streak.longest_streak,
-      total_xp: streak.total_xp,
-      is_new_day: result.is_new_day,
-      streak_broken: result.streak_broken || false,
+      current: view.currentStreak,
+      longest: streak.longest_streak ?? 0,
+      total_xp: streak.total_xp ?? 0,
+      is_new_day: false,
+      streak_broken: view.broken,
     };
   },
 });

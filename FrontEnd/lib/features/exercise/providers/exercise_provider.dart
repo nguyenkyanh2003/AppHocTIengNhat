@@ -105,8 +105,9 @@ class ExerciseProvider extends ChangeNotifier {
   Future<bool> submitExercise(
     String exerciseId,
     List<UserAnswer> answers,
-    int timeSpent,
-  ) async {
+    int timeSpent, {
+    required String attemptId,
+  }) async {
     _isLoading = true;
     _error = null;
     notifyListeners();
@@ -116,6 +117,7 @@ class ExerciseProvider extends ChangeNotifier {
         exerciseId,
         answers,
         timeSpent,
+        attemptId: attemptId,
       );
       return true;
     } catch (e) {

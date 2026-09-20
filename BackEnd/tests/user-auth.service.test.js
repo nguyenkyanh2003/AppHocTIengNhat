@@ -61,13 +61,13 @@ const fakeUserRepository = (seed = [VICTIM]) => {
       return clone(user);
     },
 
-    recordLoginStreak: async () => ({
-      current: 1,
-      longest: 1,
-      total_xp: 10,
-      is_new_day: true,
-      streak_broken: false,
-    }),
+    // Chỉ có đường đọc streak. Không khai báo hàm ghi nào: login mà lỡ gọi
+    // một writer streak thì test nổ ngay với "is not a function".
+    streakReads: 0,
+    async readStreakSummary() {
+      this.streakReads += 1;
+      return { current: 1, longest: 1, total_xp: 10, is_new_day: false, streak_broken: false };
+    },
   };
 };
 
@@ -149,6 +149,9 @@ test('đăng nhập trả token mang tokenVersion và không lộ mật khẩu',
   assert.equal(result.user.MatKhau, undefined);
   assert.equal(result.user.tokenVersion, undefined);
   assert.equal(result.streak.total_xp, 10);
+  // Đăng nhập chỉ đọc tóm tắt streak, không nối chuỗi và không cộng XP.
+  assert.equal(repository.streakReads, 1);
+  assert.equal(result.streak.is_new_day, false);
 
   const authenticate = buildAuthenticate(repository);
   const outcome = await runMiddleware(authenticate, result.token);

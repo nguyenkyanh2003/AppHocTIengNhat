@@ -1,6 +1,7 @@
 import ActivityEvent from '../../../model/ActivityEvent.js';
 import StreakDay from '../../../model/StreakDay.js';
 import UserStreak from '../../../model/UserStreak.js';
+import User from '../../../model/User.js';
 
 /**
  * Truy cập dữ liệu streak: nhật ký hoạt động, lịch ngày, và tóm tắt.
@@ -29,6 +30,12 @@ const DEFAULT_PAGE_SIZE = 20;
 
 const DAY_STATUSES = new Set(['studied', 'frozen', 'legacy']);
 
+/**
+ * Loại event migration dùng để chép `xp_history` cũ vào nhật ký (spec §4.1
+ * bước 5). Có event loại này nghĩa là mảng cũ của user đã được chép.
+ */
+export const LEGACY_XP_TYPE = 'legacy.xp';
+
 const isDuplicateOf = (error, field) =>
   error?.code === 11000 && Boolean(error?.keyPattern && field in error.keyPattern);
 
@@ -41,6 +48,7 @@ export const createStreakRepository = ({
   UserStreak: streakModel = UserStreak,
   ActivityEvent: eventModel = ActivityEvent,
   StreakDay: dayModel = StreakDay,
+  User: userModel = User,
 } = {}) => ({
   /** Đọc tóm tắt hiện tại, không ghi gì và không tiêu băng. */
   findByUser({ userId, session }) {
@@ -95,8 +103,21 @@ export const createStreakRepository = ({
       const [saved] = await eventModel.create([doc], { session });
       return saved;
     } catch (error) {
-      if (isDuplicateOf(error, 'event_key')) return null;
-      throw error;
+      if (!isDuplicateOf(error, 'event_key')) throw error;
+
+      // MongoDB **huỷ cả transaction** khi một lệnh ghi đụng unique index, nên
+      // "trùng khoá" ở đây không thể trả về như một câu trả lời bình thường:
+      // caller sẽ đi tiếp trên một session đã chết và lệnh kế tiếp nổ
+      // "Transaction has been aborted".
+      //
+      // Gắn nhãn transient để `unitOfWork` chạy lại **cả** transaction. Lần
+      // chạy lại tra khoá trước khi ghi, thấy event đã có, và đi nhánh trùng
+      // mà không ghi gì. Đây đúng nghĩa transient: transaction này chưa để lại
+      // gì ở server, và chạy lại là an toàn.
+      throw Object.assign(new Error('Hoạt động này đã được ghi.'), {
+        cause: error,
+        errorLabels: ['TransientTransactionError'],
+      });
     }
   },
 
@@ -119,7 +140,13 @@ export const createStreakRepository = ({
     // empty") — chỉ đính khi có gì để đặt.
     if (patch && Object.keys(patch).length > 0) update.$set = patch;
 
-    return streakModel.findOneAndUpdate({ user: userId, revision: expectedRevision }, update, {
+    // Tóm tắt ghi trước cutover không có trường `revision`, và `revision: 0`
+    // không khớp trường vắng mặt — thiếu nhánh này thì mọi user cũ thua CAS
+    // mãi. `null` khớp cả trường vắng lẫn trường null. Chỉ mức 0 được nới:
+    // revision đầu tiên được ghi là 1, nên từ đó filter lại chặt như cũ.
+    const revision = expectedRevision === 0 ? { $in: [0, null] } : expectedRevision;
+
+    return streakModel.findOneAndUpdate({ user: userId, revision }, update, {
       new: true,
       runValidators: true,
       lean: true,
@@ -269,6 +296,82 @@ export const createStreakRepository = ({
     // Kỳ không có hoạt động nào là 0 XP, không phải `undefined` — aggregate
     // trả mảng rỗng chứ không trả một dòng tổng bằng 0.
     return rows[0]?.total ?? 0;
+  },
+
+  /**
+   * Event đã ghi theo đúng khoá lần xảy ra. Là nguồn của receipt khi client
+   * nộp lại cùng một bài: đọc ở đây để trả lại đúng kết quả đã chấm thay vì
+   * chấm lần hai (spec §3.3).
+   */
+  findEventByKey({ userId, eventKey, session }) {
+    return eventModel.findOne({ user: userId, event_key: eventKey }).session(session).lean();
+  },
+
+  /** Migration đã chép lịch sử XP cũ của user này vào nhật ký chưa. */
+  async hasLegacyImport({ userId }) {
+    return Boolean(await eventModel.exists({ user: userId, type: LEGACY_XP_TYPE }));
+  },
+
+  /** Những user đã được chép lịch sử cũ — bảng xếp hạng không đọc mảng cũ của họ nữa. */
+  usersWithLegacyImport() {
+    return eventModel.distinct('user', { type: LEGACY_XP_TYPE });
+  },
+
+  /**
+   * Bảng xếp hạng trọn đời. `_id` là khoá phụ cuối cùng để hai người bằng điểm
+   * không đổi chỗ cho nhau giữa hai lần tải.
+   */
+  topByTotalXp({ limit }) {
+    return streakModel
+      .find({})
+      .sort({ total_xp: -1, current_streak: -1, _id: 1 })
+      .limit(limit)
+      .lean();
+  },
+
+  /** Số người xếp trên, theo **đúng** thứ tự của `topByTotalXp` kể cả khoá phụ. */
+  countRankedAbove({ totalXp, currentStreak, id }) {
+    return streakModel.countDocuments({
+      $or: [
+        { total_xp: { $gt: totalXp } },
+        { total_xp: totalXp, current_streak: { $gt: currentStreak } },
+        { total_xp: totalXp, current_streak: currentStreak, _id: { $lt: id } },
+      ],
+    });
+  },
+
+  /** XP từng user kiếm được trong một khoảng ngày lịch Việt Nam. */
+  sumXpByUserBetween({ fromDay, toDay }) {
+    return eventModel.aggregate([
+      { $match: { day_key: { $gte: fromDay, $lte: toDay }, xp_delta: { $ne: 0 } } },
+      { $group: { _id: '$user', total: { $sum: '$xp_delta' } } },
+    ]);
+  },
+
+  /**
+   * XP ghi theo cơ chế cũ (mảng `xp_history`) kể từ một mốc, cho những user
+   * chưa được migration chép sang nhật ký. Hết tác dụng khi migration xong và
+   * mảng cũ bị bỏ (spec §4.1 bước 8).
+   */
+  sumLegacyXpByUserSince({ since, excludeUserIds }) {
+    return streakModel.aggregate([
+      { $match: { user: { $nin: excludeUserIds } } },
+      { $unwind: '$xp_history' },
+      { $match: { 'xp_history.earned_at': { $gte: since } } },
+      { $group: { _id: '$user', total: { $sum: '$xp_history.amount' } } },
+    ]);
+  },
+
+  findSummaries({ userIds }) {
+    return streakModel.find({ user: { $in: userIds } }).lean();
+  },
+
+  /**
+   * Chỉ những trường bảng xếp hạng hiển thị. Không có email: bảng xếp hạng
+   * được mọi người dùng xem, và email của người khác không phải thứ họ cần.
+   */
+  findUsersByIds(ids) {
+    return userModel.find({ _id: { $in: ids } }).select('TenDangNhap HoTen AnhDaiDien').lean();
   },
 });
 

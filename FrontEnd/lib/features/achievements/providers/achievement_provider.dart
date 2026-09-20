@@ -91,23 +91,7 @@ class AchievementProvider with ChangeNotifier {
   }
 
   // Update achievement progress
-  Future<bool> updateProgress(String achievementId, int progress) async {
-    try {
-      final result =
-          await _achievementService.updateProgress(achievementId, progress);
-
-      if (result != null) {
-        // Reload achievements to reflect changes
-        await loadMyAchievements();
-        return true;
-      }
-
-      return false;
-    } catch (e) {
-      debugPrint('Error updating achievement progress: $e');
-      return false;
-    }
-  }
+  // Không còn `updateProgress`: xem giải thích ở service.
 
   // Load achievement statistics
   Future<void> loadStats() async {

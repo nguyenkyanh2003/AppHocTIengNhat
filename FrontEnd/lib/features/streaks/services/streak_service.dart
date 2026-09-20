@@ -20,19 +20,8 @@ class StreakService {
     }
   }
 
-  // Thêm XP (tự động cập nhật streak khi có hoạt động học tập)
-  Future<Map<String, dynamic>?> addXP(int amount, String reason) async {
-    try {
-      final response = await _apiClient.post('/streak/add-xp', {
-        'amount': amount,
-        'reason': reason,
-      });
-      return response;
-    } catch (e) {
-      debugPrint('Lỗi khi thêm XP: $e');
-      return null;
-    }
-  }
+  // `POST /streak/add-xp` đã bị gỡ khỏi server: client không tự cộng XP
+  // được nữa. XP do server cấp khi chấm xong bài (spec streak §3.1).
 
   // Lấy lịch sử XP
   Future<List<XPHistory>> getXPHistory() async {

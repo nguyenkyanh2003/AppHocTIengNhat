@@ -1,13 +1,17 @@
 import { ApiError } from '../../shared/http/api-error.js';
+import { unitOfWork as defaultUnitOfWork } from '../../shared/db/unit-of-work.js';
 import { getVietnamTime } from '../../shared/utils/timezone.js';
+import { streakService } from '../streaks/streak.service.js';
 import { lessonProgressRepository } from './lesson-progress.repository.js';
 
-const START_XP = 3;
-const ITEM_XP = 2;
-const COMPLETION_XP = 20;
-const COMPLETION_REASON = 'Hoàn thành bài học';
-
-const startRewardKey = (lessonId) => `lesson-start:${lessonId}`;
+/**
+ * Khoá lần xảy ra, giữ **nguyên văn** ngữ nghĩa của `reward_keys` cũ.
+ *
+ * Migration sẽ chép từng khoá trong mảng cũ thành một event mang đúng khoá này
+ * (spec §4.1 bước 5), nên mục đã được thưởng trước cutover sẽ bị chính unique
+ * index `(user, event_key)` chặn, không thưởng lại lần hai. Đổi cách đặt khoá ở
+ * đây là tự tay vô hiệu hoá phần đó của migration.
+ */
 const completionRewardKey = (lessonId) => `lesson-complete:${lessonId}`;
 const itemRewardKey = ({ lessonId, itemType, itemId }) =>
   `lesson-item:${lessonId}:${itemType}:${itemId}`;
@@ -44,6 +48,8 @@ const rewardStateBefore = (progress) => {
  */
 export const createLessonProgressService = ({
   repository = lessonProgressRepository,
+  streak = streakService,
+  unitOfWork = defaultUnitOfWork,
   now = getVietnamTime,
 } = {}) => {
   /** Nội dung thật của bài, dùng chung cho start, update và complete. */
@@ -57,25 +63,31 @@ export const createLessonProgressService = ({
    * Chốt khoản thưởng hoàn thành bài. Dùng chung cho cả hai đường dẫn tới trạng
    * thái hoàn thành: bấm "hoàn thành toàn bài" và học nốt mục cuối cùng.
    */
-  const settleCompletionReward = async ({ userId, lessonId, beforeState, becameCompleted }) => {
-    const rewardKey = completionRewardKey(lessonId);
-
-    // Đã ghi nhận xong: khóa thưởng đã tồn tại, không còn việc gì để làm.
+  const settleCompletionReward = async ({
+    userId,
+    lessonId,
+    beforeState,
+    becameCompleted,
+    session,
+  }) => {
+    // Đã ghi nhận xong: không còn việc gì để làm.
     if (beforeState === 'granted') return;
 
     if (beforeState === 'pending' || becameCompleted) {
-      await repository.grantXpOnce({
-        userId,
-        rewardKey,
-        amount: COMPLETION_XP,
-        reason: COMPLETION_REASON,
-      });
-      await repository.markCompletionRewardGranted({ userId, lessonId });
-      return;
+      await streak.recordActivity(
+        {
+          userId,
+          type: 'lesson.complete',
+          sourceId: String(lessonId),
+          occurrenceKey: completionRewardKey(lessonId),
+        },
+        { session, now: now() },
+      );
     }
+    // Bản ghi hoàn thành từ trước khi có cơ chế khóa đã được cộng XP theo cách
+    // cũ: chỉ đánh dấu, không phát thưởng hồi tố.
 
-    await repository.claimRewardKeyWithoutXp({ userId, rewardKey });
-    await repository.markCompletionRewardGranted({ userId, lessonId });
+    await repository.markCompletionRewardGranted({ userId, lessonId, session });
   };
 
   return {
@@ -97,17 +109,8 @@ export const createLessonProgressService = ({
         at: now(),
       });
 
-      if (created) {
-        await repository.recordStudyActivity(userId);
-        // Khóa theo bài: reset rồi bắt đầu lại không cộng thêm XP mở bài.
-        await repository.grantXpOnce({
-          userId,
-          rewardKey: startRewardKey(lessonId),
-          amount: START_XP,
-          reason: 'Bắt đầu học bài',
-        });
-      }
-
+      // Mở bài: 0 XP và **không** tạo hoạt động học (spec §3.4). Bản cũ cộng 3
+      // XP và nối chuỗi chỉ vì mở một bài, nên chuỗi giữ được mà không học gì.
       return progress;
     },
 
@@ -120,38 +123,46 @@ export const createLessonProgressService = ({
 
       const before = await repository.findProgress({ userId, lessonId });
 
-      const progress = await repository.applyItemLearned({
-        userId,
-        lessonId,
-        totals: totalsOf(content),
-        itemType,
-        itemId,
-        learned: completed,
-        at: now(),
-      });
-
-      if (completed) {
-        await repository.recordStudyActivity(userId);
-        // Khóa theo từng mục: đánh dấu lại mục cũ, hoặc gỡ rồi đánh dấu lại,
-        // đều không cộng thêm XP.
-        await repository.grantXpOnce({
+      // Tiến độ và hoạt động học ghi trong **một** transaction: lỗi ở bước sau
+      // rollback luôn bước trước, không để lại XP mồ côi hay tiến độ không XP.
+      return unitOfWork.run(async ({ session }) => {
+        const progress = await repository.applyItemLearned({
           userId,
-          rewardKey: itemRewardKey({ lessonId, itemType, itemId }),
-          amount: ITEM_XP,
-          reason: `Học ${itemType}`,
+          lessonId,
+          totals: totalsOf(content),
+          itemType,
+          itemId,
+          learned: completed,
+          at: now(),
+          session,
         });
-      }
 
-      if (!progress.is_completed) return progress;
+        if (completed) {
+          // Khóa theo từng mục: đánh dấu lại mục cũ, hoặc gỡ rồi đánh dấu lại,
+          // đều không cộng thêm XP.
+          await streak.recordActivity(
+            {
+              userId,
+              type: 'lesson.progress',
+              sourceId: String(lessonId),
+              occurrenceKey: itemRewardKey({ lessonId, itemType, itemId }),
+            },
+            { session, now: now() },
+          );
+        }
 
-      await settleCompletionReward({
-        userId,
-        lessonId,
-        beforeState: before?.completion_reward_state,
-        becameCompleted: before?.is_completed !== true,
+        if (!progress.is_completed) return progress;
+
+        await settleCompletionReward({
+          userId,
+          lessonId,
+          beforeState: before?.completion_reward_state,
+          becameCompleted: before?.is_completed !== true,
+          session,
+        });
+
+        return { ...progress, completion_reward_state: 'granted' };
       });
-
-      return { ...progress, completion_reward_state: 'granted' };
     },
 
     /**
@@ -168,27 +179,30 @@ export const createLessonProgressService = ({
       const at = now();
       const beforeState = rewardStateBefore(before);
 
-      const progress = await repository.saveCompletion({
-        userId,
-        lessonId,
-        content,
-        // Giữ nguyên mốc hoàn thành đã có, chỉ đặt mốc mới cho lần đầu.
-        completedAt: before.completed_at ?? at,
-        lastStudiedAt: at,
-        rewardState: beforeState,
+      return unitOfWork.run(async ({ session }) => {
+        const progress = await repository.saveCompletion({
+          userId,
+          lessonId,
+          content,
+          // Giữ nguyên mốc hoàn thành đã có, chỉ đặt mốc mới cho lần đầu.
+          completedAt: before.completed_at ?? at,
+          lastStudiedAt: at,
+          rewardState: beforeState,
+          session,
+        });
+
+        if (!progress) throw ApiError.notFound('Không tìm thấy tiến độ');
+
+        await settleCompletionReward({
+          userId,
+          lessonId,
+          beforeState: before.completion_reward_state,
+          becameCompleted: before.is_completed !== true,
+          session,
+        });
+
+        return { ...progress, completion_reward_state: 'granted' };
       });
-
-      if (!progress) throw ApiError.notFound('Không tìm thấy tiến độ');
-
-      await repository.recordStudyActivity(userId);
-      await settleCompletionReward({
-        userId,
-        lessonId,
-        beforeState: before.completion_reward_state,
-        becameCompleted: before.is_completed !== true,
-      });
-
-      return { ...progress, completion_reward_state: 'granted' };
     },
 
     async resetLesson({ userId, lessonId }) {

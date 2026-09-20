@@ -1,3 +1,4 @@
+import { exerciseSubmissionService } from './exercise-submission.service.js';
 import multer from 'multer';
 import xlsx from 'xlsx';
 import Exercise from '../../../model/Exercise.js';
@@ -100,94 +101,24 @@ export const listByLesson = async (req, res) => {
 };
 
 // Nộp bài và chấm điểm
+//
+// Toàn bộ phần chấm, lưu kết quả và ghi hoạt động học nằm trong
+// `exercise-submission.service.js`: nó chạy trong một transaction và chống
+// nộp trùng bằng `attempt_id`. Controller chỉ còn việc map HTTP.
 export const submitExercise = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const userId = req.user._id;
-        const { answers, timeSpent } = req.body; // answers: [{ question_id, answer_id }]
+    const { id } = req.valid.params;
+    const { attempt_id: attemptId, answers, timeSpent } = req.valid.body;
 
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ error: "ID bài tập không hợp lệ." });
-        }
+    const { result, replayed } = await exerciseSubmissionService.submit({
+        userId: req.user._id,
+        exerciseId: id,
+        attemptId,
+        answers,
+        timeSpent,
+    });
 
-        if (!answers || !Array.isArray(answers) || answers.length === 0) {
-            return res.status(400).json({ error: "Định dạng bài nộp không hợp lệ." });
-        }
-
-        const exercise = await Exercise.findById(id);
-        if (!exercise) {
-            return res.status(404).json({ error: "Không tìm thấy bài tập." });
-        }
-
-        const totalQuestions = exercise.questions.length;
-        if (totalQuestions === 0) {
-            return res.status(404).json({ error: "Bài tập này không có câu hỏi." });
-        }
-
-        const scoredExercise = scoreExerciseAnswers({
-            questions: exercise.questions,
-            answers,
-            passScore: exercise.pass_score ?? 60
-        });
-        const {
-            score,
-            correctCount,
-            userAnswers,
-            isPassed
-        } = scoredExercise;
-
-        // Lưu kết quả
-        const result = await ExerciseResult.create({
-            user_id: userId,
-            exercise_id: id,
-            score,
-            correct_count: correctCount,
-            total_questions: totalQuestions,
-            time_spent: Number(timeSpent || 0),
-            user_answers: userAnswers,
-            is_passed: isPassed,
-            completed_at: new Date()
-        });
-
-        // Tăng số lượt làm bài
-        await Exercise.findByIdAndUpdate(id, { $inc: { total_attempts: 1 } });
-
-        // Cập nhật streak khi hoàn thành bài tập
-        try {
-            const streak = await UserStreak.findOne({ user: userId });
-            if (streak) {
-                const updated = streak.updateStreakOnActivity();
-                if (updated.is_new_day) {
-                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
-                }
-                
-                // Thêm XP cho bài tập (10 XP nếu pass, 5 XP nếu fail)
-                const xpEarned = isPassed ? 10 : 5;
-                streak.addXP(xpEarned, 'Hoàn thành bài tập');
-                await streak.save();
-            }
-        } catch (streakError) {
-            console.error('⚠️ Lỗi cập nhật streak:', streakError);
-            // Không throw error để không ảnh hưởng đến việc submit bài
-        }
-
-        res.status(201).json({
-            _id: result._id,
-            user_id: result.user_id,
-            exercise_id: result.exercise_id,
-            score: result.score,
-            correct_answers: correctCount,
-            total_questions: totalQuestions,
-            time_spent: result.time_spent,
-            passed: isPassed,
-            answers: userAnswers,
-            createdAt: result.createdAt || result.completed_at
-        });
-
-    } catch (error) {
-        console.error("Lỗi nộp bài:", error);
-        res.status(500).json({ error: error.message });
-    }
+    // Gửi lại đúng lượt làm cũ không tạo thêm gì, nên không phải 201.
+    res.status(replayed ? 200 : 201).json(result);
 };
 
 // Xem đáp án (sau khi làm xong)

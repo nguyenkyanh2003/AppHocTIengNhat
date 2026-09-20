@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/utils/attempt_id.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +32,12 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   bool _isStarted = false;
   bool _isSubmitting = false;
 
+  /// Định danh lượt làm hiện tại, sinh khi bấm bắt đầu.
+  ///
+  /// Giữ nguyên suốt lượt: nộp bài lỗi mạng rồi bấm nộp lại vẫn là **một**
+  /// lượt, nên server trả lại kết quả cũ thay vì chấm và cộng XP lần nữa.
+  String _attemptId = newAttemptId();
+
   @override
   void initState() {
     super.initState();
@@ -53,6 +61,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   void _startExercise() {
     setState(() {
       _isStarted = true;
+      // Lượt mới thì định danh mới — đây mới là "làm lại", khác với nộp lại.
+      _attemptId = newAttemptId();
     });
     _startTimer();
   }
@@ -126,6 +136,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
       widget.exerciseId,
       answers,
       _secondsElapsed,
+      attemptId: _attemptId,
     );
 
     if (!mounted) return;

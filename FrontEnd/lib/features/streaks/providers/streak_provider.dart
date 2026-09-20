@@ -44,32 +44,8 @@ class StreakProvider with ChangeNotifier {
     }
   }
 
-  // Thêm XP (tự động cập nhật streak khi có hoạt động học tập)
-  Future<bool> addXP(int amount, String reason) async {
-    try {
-      final result = await _streakService.addXP(amount, reason);
-
-      if (result != null) {
-        // Cập nhật streak từ response (bao gồm cả streak info)
-        if (_currentStreak != null) {
-          _currentStreak = _currentStreak!.copyWith(
-            totalXP: result['total_xp'],
-            level: result['level'],
-            xpToNextLevel: result['xp_to_next_level'],
-            currentStreak: result['current_streak'],
-            longestStreak: result['longest_streak'],
-          );
-          notifyListeners();
-        }
-        return true;
-      }
-
-      return false;
-    } catch (e) {
-      debugPrint('Lỗi khi thêm XP: $e');
-      return false;
-    }
-  }
+  // Không còn `addXP`: XP chỉ đến từ server sau khi chấm bài. Muốn số liệu
+  // mới nhất thì gọi `loadStreak()`.
 
   // Tải lịch sử XP
   Future<void> loadXPHistory() async {

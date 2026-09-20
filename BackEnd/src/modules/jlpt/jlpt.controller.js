@@ -1,10 +1,11 @@
+import { jlptSubmissionService } from './jlpt-submission.service.js';
+import { submissionOf } from './jlpt.schema.js';
 import multer from 'multer';
 import xlsx from 'xlsx';
 import mongoose from 'mongoose';
 import JLPT from '../../../model/JLPT.js';
 import LearningHistory from '../../../model/LearningHistory.js';
 import Grammar from '../../../model/Grammar.js';
-import UserStreak from '../../../model/UserStreak.js';
 import { scoreExamAnswers } from './jlpt-scoring.service.js';
 
 export const upload = multer({ storage: multer.memoryStorage() });
@@ -259,105 +260,23 @@ export const getExam = async (req, res) => {
 };
 
 // API: Nộp bài & chấm điểm (hỗ trợ cả /submit/:id và /:id/submit)
+//
+// Chấm, lưu kết quả và ghi hoạt động học nằm trong
+// `jlpt-submission.service.js`: chạy trong một transaction, chống nộp trùng
+// bằng `attempt_id`. Controller chỉ map HTTP.
 export const submitExamHandler = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const userId = req.user._id;
-        const body = req.body || {};
-        const rawAnswers = body.userAnswers || body.answers || body.user_answers || [];
-        const thoiGianLamBai = body.thoiGianLamBai || body.ThoiGianLamBai || body.time_spent;
-        const started_at = body.started_at;
+    const { id } = req.valid.params;
+    const { answers, timeSpent } = submissionOf(req.valid.body);
 
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: 'ID đề thi không hợp lệ.' });
-        }
-        if (!Array.isArray(rawAnswers) || rawAnswers.length === 0) {
-            return res.status(400).json({ message: 'Dữ liệu bài làm không hợp lệ.' });
-        }
+    const { result } = await jlptSubmissionService.submit({
+        userId: req.user._id,
+        examId: id,
+        attemptId: req.valid.body.attempt_id,
+        answers,
+        timeSpent,
+    });
 
-        const deThi = await JLPT.findById(id);
-        if (!deThi || !deThi.is_published || !deThi.is_active) {
-            return res.status(404).json({ message: 'Đề thi không tồn tại.' });
-        }
-
-        const scoredExam = scoreExamAnswers({
-            sections: deThi.sections,
-            rawAnswers
-        });
-        const diemTuVung = scoredExam.sectionScores.moji_goi;
-        const diemNguPhap = scoredExam.sectionScores.bunpou;
-        const diemDocHieu = scoredExam.sectionScores.dokkai;
-        const diemNgheHieu = scoredExam.sectionScores.choukai;
-        const tongDiemDatDuoc = scoredExam.totalScore;
-        const chiTietKetQuaList = scoredExam.answerDetails.map((detail) => {
-            let questionId = detail.questionId;
-            try {
-                if (!questionId) {
-                    questionId = new mongoose.Types.ObjectId();
-                } else if (typeof questionId === 'string' && mongoose.Types.ObjectId.isValid(questionId)) {
-                    questionId = new mongoose.Types.ObjectId(questionId);
-                } else if (!(questionId instanceof mongoose.Types.ObjectId)) {
-                    questionId = new mongoose.Types.ObjectId();
-                }
-            } catch (error) {
-                questionId = new mongoose.Types.ObjectId();
-            }
-
-            return {
-                question_id: questionId,
-                user_choice: detail.userChoice,
-                is_correct: detail.isCorrect,
-                section: detail.section,
-                question_index: detail.questionIndex,
-                group_index: detail.groupIndex
-            };
-        });
-
-        const isPassed = tongDiemDatDuoc >= deThi.pass_score;
-        const tongThoiGian = thoiGianLamBai || (deThi.time_limit * 60);
-
-        const history = await LearningHistory.findOneAndUpdate(
-            { user: userId, exam: id },
-            {
-                $set: {
-                    score: tongDiemDatDuoc,
-                    is_passed: isPassed,
-                    duration: tongThoiGian,
-                    section_scores: {
-                        moji_goi: diemTuVung,
-                        bunpou: diemNguPhap,
-                        dokkai: diemDocHieu,
-                        choukai: diemNgheHieu
-                    },
-                    user_answers: chiTietKetQuaList,
-                    taken_at: new Date()
-                }
-            },
-            { upsert: true, new: true, setDefaultsOnInsert: true }
-        );
-
-        await UserStreak.findOneAndUpdate(
-            { user: userId },
-            {
-                $setOnInsert: { current_streak: 0, xp: 0 },
-                $max: { longest_streak: 0 }
-            },
-            { upsert: true }
-        );
-
-        res.json({
-            KetQuaCuoiCung: isPassed ? 'Đỗ' : 'Trượt',
-            DiemTuVung: diemTuVung,
-            DiemNguPhap: diemNguPhap,
-            DiemDocHieu: diemDocHieu,
-            DiemNgheHieu: diemNgheHieu,
-            TongDiemDatDuoc: tongDiemDatDuoc,
-            TongThoiGian: tongThoiGian
-        });
-    } catch (error) {
-        console.error('Lỗi nộp bài JLPT:', error);
-        res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-    }
+    res.json(result);
 };
 
 

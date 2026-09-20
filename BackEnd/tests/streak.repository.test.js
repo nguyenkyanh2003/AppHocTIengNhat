@@ -22,6 +22,7 @@ const fakeModel = ({ result = null, createError = null, findOneResult } = {}) =>
       limit: (arg) => (calls.push(['limit', arg]), self),
       skip: (arg) => (calls.push(['skip', arg]), self),
       session: (arg) => (calls.push(['session', arg]), self),
+      select: (arg) => (calls.push(['select', arg]), self),
       lean: async () => rows,
     };
     return self;
@@ -52,6 +53,18 @@ const fakeModel = ({ result = null, createError = null, findOneResult } = {}) =>
     aggregate: async (pipeline, options) => {
       calls.push(['aggregate', pipeline, options]);
       return Array.isArray(result) ? result : [];
+    },
+    exists: async (filter) => {
+      calls.push(['exists', filter]);
+      return result;
+    },
+    distinct: async (field, filter) => {
+      calls.push(['distinct', field, filter]);
+      return Array.isArray(result) ? result : [];
+    },
+    countDocuments: async (filter) => {
+      calls.push(['countDocuments', filter]);
+      return typeof result === 'number' ? result : 0;
     },
   };
 };
@@ -123,20 +136,21 @@ test('insertEvent omits receipt entirely when there is none', async () => {
   assert.equal('receipt' in doc, false);
 });
 
-test('a duplicate event key is an answer, not an exception', async () => {
-  // Đây là **toàn bộ** cơ chế chống trùng: insert thua unique index nghĩa là
-  // hoạt động này đã được ghi rồi. Để lỗi thoát ra ngoài sẽ biến một lần gửi
-  // lại vô hại thành 500.
+test('a duplicate event key inside a transaction asks for a retry, not a null', async () => {
+  // MongoDB **huỷ cả transaction** khi một lệnh ghi đụng unique index. Trả
+  // `null` như một câu trả lời bình thường khiến caller đi tiếp trên một
+  // session đã chết, và lệnh kế tiếp nổ "Transaction has been aborted".
+  // Gắn nhãn transient để unit of work chạy lại cả transaction; lần chạy lại
+  // sẽ thấy event đã có và đi nhánh trùng mà không ghi gì.
   const ActivityEvent = fakeModel({ createError: duplicateKeyError() });
-  const saved = await build({ ActivityEvent }).insertEvent({
-    userId: 'u1',
-    eventKey: 'k',
-    type: 'srs.review',
-    occurredAt: new Date(),
-    dayKey: '2026-09-11',
-    policyVersion: 'p1',
-  });
-  assert.equal(saved, null);
+
+  await assert.rejects(
+    build({ ActivityEvent }).insertEvent({ userId: 'u1', eventKey: 'k1', session: 'sess' }),
+    (error) => {
+      assert.equal(error.errorLabels.includes('TransientTransactionError'), true);
+      return true;
+    },
+  );
 });
 
 test('a duplicate on some other index is still a real error', async () => {
@@ -201,6 +215,28 @@ test('casSummary still bumps revision when there is nothing else to write', asyn
   assert.deepEqual(update.$inc, { revision: 1 });
   // `$set: {}` là lỗi cú pháp của Mongo ("'$set' is empty"), không phải no-op.
   assert.equal('$set' in update, false);
+});
+
+test('casSummary at revision 0 also claims a legacy summary that has no revision field', async () => {
+  // Bốn tóm tắt ghi trước cutover không có trường `revision`. Lọc đúng
+  // `revision: 0` thì không bao giờ khớp chúng: mọi hoạt động của các user đó
+  // thua CAS năm lần rồi trả 409. `null` trong filter của Mongo khớp cả trường
+  // vắng mặt lẫn trường bằng null.
+  const UserStreak = fakeModel({ result: { _id: 's1' } });
+  await build({ UserStreak }).casSummary({ userId: 'u1', expectedRevision: 0 });
+
+  const [, filter] = lastCall(UserStreak, 'findOneAndUpdate');
+  assert.deepEqual(filter, { user: 'u1', revision: { $in: [0, null] } });
+});
+
+test('casSummary above revision 0 never matches a legacy summary', async () => {
+  // Chỉ mức 0 mới được nhận document chưa có revision. Nhận ở mức khác sẽ để
+  // hai request đọc hai revision khác nhau cùng thắng.
+  const UserStreak = fakeModel({ result: { _id: 's1' } });
+  await build({ UserStreak }).casSummary({ userId: 'u1', expectedRevision: 3 });
+
+  const [, filter] = lastCall(UserStreak, 'findOneAndUpdate');
+  assert.deepEqual(filter, { user: 'u1', revision: 3 });
 });
 
 test('casSummary returning null is how a caller learns it lost the race', async () => {
@@ -412,4 +448,106 @@ test('every write carries the session it was given', async () => {
   assert.deepEqual(lastCall(ActivityEvent, 'create')[2], { session: 'sess' });
   assert.equal(lastCall(UserStreak, 'findOneAndUpdate')[3].session, 'sess');
   assert.equal(lastCall(StreakDay, 'updateOne')[3].session, 'sess');
+});
+
+// --- Đường đọc: receipt, lịch sử legacy, bảng xếp hạng -----------------------
+
+test('findEventByKey reads one event by its occurrence key inside the session', async () => {
+  const ActivityEvent = fakeModel({ result: { _id: 'e1', receipt: { fingerprint: 'f' } } });
+  const event = await build({ ActivityEvent }).findEventByKey({
+    userId: 'u1',
+    eventKey: 'exercise-attempt:a1',
+    session: 'sess',
+  });
+
+  assert.deepEqual(event, { _id: 'e1', receipt: { fingerprint: 'f' } });
+  assert.deepEqual(lastCall(ActivityEvent, 'findOne')[1], { user: 'u1', event_key: 'exercise-attempt:a1' });
+  assert.deepEqual(lastCall(ActivityEvent, 'session'), ['session', 'sess']);
+});
+
+test('hasLegacyImport asks whether the migration copied this user history', async () => {
+  const ActivityEvent = fakeModel({ result: { _id: 'e9' } });
+  assert.equal(await build({ ActivityEvent }).hasLegacyImport({ userId: 'u1' }), true);
+  assert.deepEqual(lastCall(ActivityEvent, 'exists')[1], { user: 'u1', type: 'legacy.xp' });
+
+  const none = fakeModel({ result: null });
+  assert.equal(await build({ ActivityEvent: none }).hasLegacyImport({ userId: 'u1' }), false);
+});
+
+test('usersWithLegacyImport lists users whose history already lives in the journal', async () => {
+  const ActivityEvent = fakeModel({ result: ['u3'] });
+  assert.deepEqual(await build({ ActivityEvent }).usersWithLegacyImport(), ['u3']);
+  assert.deepEqual(lastCall(ActivityEvent, 'distinct').slice(1), ['user', { type: 'legacy.xp' }]);
+});
+
+test('topByTotalXp sorts by XP then streak and applies the limit', async () => {
+  const UserStreak = fakeModel({ result: [{ user: 'u1' }] });
+  await build({ UserStreak }).topByTotalXp({ limit: 5 });
+
+  assert.deepEqual(lastCall(UserStreak, 'find')[1], {});
+  assert.deepEqual(lastCall(UserStreak, 'sort')[1], { total_xp: -1, current_streak: -1, _id: 1 });
+  assert.deepEqual(lastCall(UserStreak, 'limit')[1], 5);
+});
+
+test('countRankedAbove counts with the same order the list uses', async () => {
+  const UserStreak = fakeModel({ result: 2 });
+  const above = await build({ UserStreak }).countRankedAbove({
+    totalXp: 30,
+    currentStreak: 4,
+    id: 's5',
+  });
+
+  assert.equal(above, 2);
+  // Cả khoá phụ `_id` cũng phải có mặt: hai người bằng điểm và bằng chuỗi vẫn
+  // đứng theo thứ tự `_id` trong danh sách, nên hạng đếm được phải theo đúng thế.
+  assert.deepEqual(lastCall(UserStreak, 'countDocuments')[1], {
+    $or: [
+      { total_xp: { $gt: 30 } },
+      { total_xp: 30, current_streak: { $gt: 4 } },
+      { total_xp: 30, current_streak: 4, _id: { $lt: 's5' } },
+    ],
+  });
+});
+
+test('sumXpByUserBetween groups XP events per user over a Vietnamese day range', async () => {
+  const ActivityEvent = fakeModel({ result: [{ _id: 'u1', total: 12 }] });
+  const rows = await build({ ActivityEvent }).sumXpByUserBetween({
+    fromDay: '2026-09-13',
+    toDay: '2026-09-19',
+  });
+
+  assert.deepEqual(rows, [{ _id: 'u1', total: 12 }]);
+  const [, pipeline] = lastCall(ActivityEvent, 'aggregate');
+  assert.deepEqual(pipeline, [
+    { $match: { day_key: { $gte: '2026-09-13', $lte: '2026-09-19' }, xp_delta: { $ne: 0 } } },
+    { $group: { _id: '$user', total: { $sum: '$xp_delta' } } },
+  ]);
+});
+
+test('sumLegacyXpByUserSince reads the legacy array and skips migrated users', async () => {
+  const UserStreak = fakeModel({ result: [{ _id: 'u2', total: 20 }] });
+  const since = new Date('2026-08-20T17:00:00.000Z');
+  await build({ UserStreak }).sumLegacyXpByUserSince({ since, excludeUserIds: ['u3'] });
+
+  const [, pipeline] = lastCall(UserStreak, 'aggregate');
+  assert.deepEqual(pipeline, [
+    { $match: { user: { $nin: ['u3'] } } },
+    { $unwind: '$xp_history' },
+    { $match: { 'xp_history.earned_at': { $gte: since } } },
+    { $group: { _id: '$user', total: { $sum: '$xp_history.amount' } } },
+  ]);
+});
+
+test('findSummaries and findUsersByIds read only what the board shows', async () => {
+  const UserStreak = fakeModel({ result: [{ user: 'u1' }] });
+  const User = fakeModel({ result: [{ _id: 'u1' }] });
+  const repository = build({ UserStreak, User });
+
+  await repository.findSummaries({ userIds: ['u1'] });
+  assert.deepEqual(lastCall(UserStreak, 'find')[1], { user: { $in: ['u1'] } });
+
+  await repository.findUsersByIds(['u1']);
+  assert.deepEqual(lastCall(User, 'find')[1], { _id: { $in: ['u1'] } });
+  // Không bao giờ trả mật khẩu hay email đầy đủ của người khác ra bảng xếp hạng.
+  assert.equal(lastCall(User, 'select')[1], 'TenDangNhap HoTen AnhDaiDien');
 });

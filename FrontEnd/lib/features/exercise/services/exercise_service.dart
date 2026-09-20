@@ -90,15 +90,19 @@ class ExerciseService {
   }
 
   // Nộp bài và nhận kết quả
+  /// [attemptId] định danh lượt làm; gửi lại đúng ID cũ thì server trả lại
+  /// kết quả đã chấm thay vì chấm và cộng XP lần hai.
   Future<ExerciseResult> submitExercise(
     String exerciseId,
     List<UserAnswer> answers,
-    int timeSpent,
-  ) async {
+    int timeSpent, {
+    required String attemptId,
+  }) async {
     try {
       final dynamic response = await _apiClient.post(
         '/exercise/submit/$exerciseId',
         {
+          'attempt_id': attemptId,
           'answers': answers.map((a) => a.toJson()).toList(),
           'timeSpent': timeSpent,
         },

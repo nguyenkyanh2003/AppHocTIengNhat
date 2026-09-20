@@ -2,7 +2,6 @@ import SRSProgress from "../../../model/SRSProgress.js";
 import Vocabulary from "../../../model/Vocabulary.js";
 import Kanji from "../../../model/Kanji.js";
 import Grammar from "../../../model/Grammar.js";
-import UserStreak from "../../../model/UserStreak.js";
 
 
 // Lấy danh sách thẻ cần ôn hôm nay
@@ -158,23 +157,10 @@ export const postAnswerById = async (req, res) => {
         
         await card.save();
 
-        // Cập nhật streak khi ôn tập SRS
-        try {
-            const streak = await UserStreak.findOne({ user: userId });
-            if (streak) {
-                const updated = streak.updateStreakOnActivity();
-                if (updated.is_new_day) {
-                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
-                }
-                
-                // Thêm XP dựa trên quality (0-5 points -> 1-6 XP)
-                const xpEarned = quality >= 3 ? quality + 1 : 1;
-                streak.addXP(xpEarned, 'Ôn tập SRS');
-                await streak.save();
-            }
-        } catch (streakError) {
-            console.error('⚠️ Lỗi cập nhật streak:', streakError);
-        }
+        // XP của lượt ôn do cổng ghi chung cấp, với khoá là (thẻ + hạn ôn của
+        // đúng lượt vừa thắng CAS). Phần đó thuộc bước làm lại SRS; ở đây chỉ
+        // gỡ đường cũ: nó tự chọn 1-6 XP theo `quality` client gửi, nằm ngoài
+        // bảng chính sách, và nối chuỗi mà không qua luật ngày nào.
 
         res.json({
             message: "Cập nhật thành công",
@@ -238,20 +224,8 @@ export const postReview = async (req, res) => {
             incorrect_count: 0
         });
 
-        // Cập nhật streak khi thêm từ/kanji/grammar vào ôn tập
-        try {
-            const streak = await UserStreak.findOne({ user: userId });
-            if (streak) {
-                const updated = streak.updateStreakOnActivity();
-                if (updated.is_new_day) {
-                    console.log(`✅ Streak updated for user ${userId}: ${streak.current_streak} days`);
-                }
-                streak.addXP(3, 'Thêm vào SRS');
-                await streak.save();
-            }
-        } catch (streakError) {
-            console.error('⚠️ Lỗi cập nhật streak:', streakError);
-        }
+        // Thêm một từ vào danh sách ôn là 0 XP và không phải hoạt động học
+        // (spec 3.4): đánh dấu để học sau thì chưa học gì cả.
 
         res.status(201).json({
             message: "Thêm vào SRS thành công",

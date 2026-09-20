@@ -84,7 +84,7 @@ export const createUserAuthService = ({
 
     const updated =
       (await repository.touchLastLogin({ id: user._id, at: now() })) ?? user;
-    const streak = await repository.recordLoginStreak(user._id);
+    const streak = await repository.readStreakSummary(user._id);
 
     // Access token mang theo version tại thời điểm phát: đổi mật khẩu sẽ tăng
     // version trong database và mọi token phát trước đó mất hiệu lực ngay.

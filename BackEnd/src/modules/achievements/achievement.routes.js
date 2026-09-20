@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/all', authenticateUser, controller.getAll);
 router.get('/my-achievements', authenticateUser, controller.getMyAchievements);
 router.get('/category/:category', authenticateUser, controller.getCategoryByCategory);
-router.post('/update-progress', authenticateUser, controller.postUpdateProgress);
 router.get('/admin/all', authenticateAdmin, controller.getAdminAll);
 router.post('/admin', authenticateAdmin, controller.postCreate);
 router.put('/admin/:id', authenticateAdmin, controller.putAdminById);

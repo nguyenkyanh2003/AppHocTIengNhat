@@ -2,6 +2,7 @@ import LearningHistory from "../../../model/LearningHistory.js";
 import Lesson from "../../../model/Lesson.js";
 import User from "../../../model/User.js";
 import UserStreak from "../../../model/UserStreak.js";
+import { streakReadService } from "../streaks/streak-read.service.js";
 import { getVietnamTime, convertDatesToVietnam } from "../../shared/utils/timezone.js";
 import dotenv from "dotenv";
 
@@ -110,25 +111,10 @@ export const updateLessonProgress = async (req, res) => {
             .populate('BaiHocID', 'TenBaiHoc CapDo LoaiBaiHoc')
             .lean();
 
-        // Cập nhật streak khi học bài
-        try {
-            const streak = await UserStreak.findOne({ user: nguoiHocID });
-            if (streak) {
-                const updated = streak.updateStreakOnActivity();
-                if (updated.is_new_day) {
-                    console.log(`✅ Streak updated for user ${nguoiHocID}: ${streak.current_streak} days`);
-                }
-                
-                // Thêm XP cho việc học bài (5 XP cho mỗi tiến độ cập nhật)
-                if (newProgress > (progress.TienDo || 0)) {
-                    const xpEarned = newProgress === 100 ? 15 : 5; // 15 XP nếu hoàn thành, 5 XP nếu đang học
-                    streak.addXP(xpEarned, 'Học bài');
-                    await streak.save();
-                }
-            }
-        } catch (streakError) {
-            console.error('⚠️ Lỗi cập nhật streak:', streakError);
-        }
+        // Tiến độ phần trăm của `LearningHistory` **không** cộng XP: bảng chính
+        // sách (spec §3.4) chỉ tính mục bài học hoàn thành, bài tập, JLPT và
+        // SRS. Bản cũ tự cộng 5/15 XP ở đây, nằm ngoài mọi bảng giá, và nuốt
+        // lỗi nên hỏng cũng không ai biết.
 
         res.status(200).json({ 
             message: "Cập nhật tiến độ thành công.", 
@@ -582,15 +568,15 @@ export const getDashboardTimeline = async (req, res) => {
       dailyData[date].lessons += 1;
     });
 
-    const streak = await UserStreak.findOne({ user: userId });
-    if (streak && streak.xp_history) {
-      streak.xp_history.forEach(xp => {
-        const date = xp.earned_at.toISOString().split('T')[0];
-        if (dailyData[date]) {
-          dailyData[date].xp += xp.amount;
-        }
-      });
-    }
+    // Lịch sử XP đọc qua service chung: mảng `xp_history` cũ không còn được
+    // ghi thêm sau cutover, nên đọc thẳng nó là bảng XP đứng yên từ hôm nay.
+    const xpHistory = await streakReadService.xpHistory(userId);
+    xpHistory.forEach(({ amount, earned_at: earnedAt }) => {
+      const date = new Date(earnedAt).toISOString().split('T')[0];
+      if (dailyData[date]) {
+        dailyData[date].xp += amount;
+      }
+    });
 
     const timeline = Object.keys(dailyData).map(date => ({
       date,
@@ -613,8 +599,8 @@ export const getDashboardHeatmap = async (req, res) => {
     const startDate = new Date(year, 0, 1);
     const endDate = new Date(year, 11, 31, 23, 59, 59);
 
-    const streak = await UserStreak.findOne({ user: userId });
-    const activityDates = streak?.activity_dates || [];
+    // Ngày học lấy từ lịch `StreakDay` (gộp cả ngày cũ chưa migration).
+    const activityDates = await streakReadService.activityDates(userId);
 
     const exercises = await ExerciseResult.find({
       user_id: userId,

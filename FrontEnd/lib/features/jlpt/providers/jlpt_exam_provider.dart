@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import '../../../core/utils/attempt_id.dart';
 import 'package:flutter/foundation.dart';
 import '../models/jlpt_models.dart';
 import '../services/jlpt_service.dart';
@@ -13,6 +15,10 @@ class JLPTExamProvider with ChangeNotifier {
       {}; // key: section-index, value: choice index
   Timer? _timer;
   int _secondsLeft = 0;
+
+  /// Định danh lượt thi, sinh khi mở đề. Nộp lại sau lỗi mạng dùng lại đúng ID
+  /// này nên không bị chấm hai lần; thi lại thì `loadExam` sinh ID mới.
+  String _attemptId = newAttemptId();
   JLPTSubmitResult? _result;
   List<JLPTQuestion> _solutions = [];
   bool _loadingSolutions = false;
@@ -30,6 +36,7 @@ class JLPTExamProvider with ChangeNotifier {
   Future<void> loadExam(String id) async {
     _loading = true;
     _exam = null;
+    _attemptId = newAttemptId();
     _answers.clear();
     _result = null;
     _solutions = [];
@@ -74,6 +81,7 @@ class JLPTExamProvider with ChangeNotifier {
     notifyListeners();
     try {
       final payload = {
+        'attempt_id': _attemptId,
         'ThoiGianLamBai': (_exam!.timeLimit * 60) - _secondsLeft,
         'answers': _answers.entries
             .map((e) => {

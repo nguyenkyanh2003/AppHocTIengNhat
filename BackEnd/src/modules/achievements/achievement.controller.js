@@ -72,53 +72,11 @@ export const getCategoryByCategory = async (req, res) => {
   }
 };
 
-// Cập nhật tiến độ thành tích thủ công
-export const postUpdateProgress = async (req, res) => {
-  try {
-    const { achievement_id, progress } = req.body;
-    
-    const achievement = await Achievement.findById(achievement_id);
-    if (!achievement) {
-      return res.status(404).json({ message: 'Achievement không tồn tại' });
-    }
-    
-    let userAchievement = await UserAchievement.findOne({
-      user: req.user._id,
-      achievement: achievement_id
-    });
-    
-    if (!userAchievement) {
-      userAchievement = new UserAchievement({
-        user: req.user._id,
-        achievement: achievement_id,
-        progress: progress
-      });
-    } else {
-      userAchievement.progress = progress;
-    }
-    
-    // Kiểm tra xem thành tích đã hoàn thành chưa
-    if (progress >= achievement.requirement_value && !userAchievement.is_completed) {
-      userAchievement.is_completed = true;
-      userAchievement.earned_at = new Date();
-      
-      // Thưởng XP
-      const UserStreak = (await import('../../../model/UserStreak.js')).default;
-      const streak = await UserStreak.findOne({ user: req.user._id });
-      if (streak) {
-        streak.addXP(achievement.xp_reward, `Thành tích: ${achievement.name_vi}`);
-        await streak.save();
-      }
-    }
-    
-    await userAchievement.save();
-    
-    res.json(userAchievement);
-  } catch (error) {
-    console.error('Lỗi khi cập nhật tiến độ achievement:', error);
-    res.status(500).json({ message: 'Lỗi khi cập nhật tiến độ achievement' });
-  }
-};
+// `POST /achievement/update-progress` đã bị gỡ (spec §3.6).
+//
+// Nó nhận `progress` do client gửi rồi tự đánh dấu hoàn thành và cộng XP
+// thưởng — tức là client tự cấp thưởng cho chính mình. Huy hiệu nào chưa có
+// tiêu chí server tự xác minh thì chưa tự cấp, chứ không nhận lời khai.
 
 // Admin: Tạo thành tích mới
 export const postCreate = async (req, res) => {

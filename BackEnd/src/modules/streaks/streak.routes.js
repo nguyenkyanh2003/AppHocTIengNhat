@@ -1,14 +1,33 @@
 import express from 'express';
+
 import { authenticateUser } from '../../middleware/auth.middleware.js';
-import * as controller from './streak.controller.js';
+import { asyncHandler } from '../../shared/http/async-handler.js';
+import { validate } from '../../shared/http/validate.js';
+import { createStreakController } from './streak.controller.js';
+import { streakReadService } from './streak-read.service.js';
+import * as schema from './streak.schema.js';
 
-const router = express.Router();
+/**
+ * Route streak: chỉ đọc. Nhận dependency qua tham số để test dựng router với
+ * service giả và auth giả, không cần MongoDB hay JWT.
+ */
+export const createStreakRoutes = ({
+  readService = streakReadService,
+  authenticate = authenticateUser,
+} = {}) => {
+  const controller = createStreakController(readService);
+  const router = express.Router();
 
-router.get('/my-streak', authenticateUser, controller.getMyStreak);
-router.post('/add-xp', authenticateUser, controller.postAddXp);
-router.get('/xp-history', authenticateUser, controller.getXpHistory);
-router.get('/leaderboard', authenticateUser, controller.getLeaderboard);
-router.post('/test/reset-yesterday', authenticateUser, controller.postTestResetYesterday);
-router.get('/test/debug', authenticateUser, controller.getTestDebug);
+  router.get('/my-streak', authenticate, asyncHandler(controller.getMyStreak));
+  router.get('/xp-history', authenticate, asyncHandler(controller.getXpHistory));
+  router.get(
+    '/leaderboard',
+    authenticate,
+    validate({ query: schema.leaderboardQuery }),
+    asyncHandler(controller.getLeaderboard),
+  );
 
-export default router;
+  return router;
+};
+
+export default createStreakRoutes();

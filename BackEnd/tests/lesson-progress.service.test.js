@@ -4,6 +4,7 @@ import test from 'node:test';
 import LessonProgress from '../model/LessonProgress.js';
 import { createLessonProgressRepository } from '../src/modules/lesson-progress/lesson-progress.repository.js';
 import { createLessonProgressService } from '../src/modules/lesson-progress/lesson-progress.service.js';
+import { xpFor } from '../src/modules/streaks/streak-policy.js';
 
 const USER_ID = '507f1f77bcf86cd799439011';
 const LESSON_ID = '507f1f77bcf86cd799439012';
@@ -30,12 +31,7 @@ const applyTotals = (doc, totals) => {
  * định được ràng buộc "counter luôn bằng độ dài mảng ID" mà không cần MongoDB.
  */
 const fakeRepository = ({ content = CONTENT, seed = null } = {}) => {
-  const state = {
-    doc: seed,
-    rewardKeys: new Set(),
-    xp: [],
-    activity: 0,
-  };
+  const state = { doc: seed };
 
   const ensureDoc = () => {
     state.doc ??= new LessonProgress({ user: USER_ID, lesson: LESSON_ID });
@@ -106,32 +102,53 @@ const fakeRepository = ({ content = CONTENT, seed = null } = {}) => {
       state.doc = null;
     },
 
-    recordStudyActivity: async () => {
-      state.activity += 1;
-      return { is_new_day: true };
-    },
+  };
+};
 
-    grantXpOnce: async ({ rewardKey, amount, reason }) => {
-      if (state.rewardKeys.has(rewardKey)) return false;
-      state.rewardKeys.add(rewardKey);
-      state.xp.push({ rewardKey, amount, reason });
-      return true;
-    },
-
-    claimRewardKeyWithoutXp: async ({ rewardKey }) => {
-      state.rewardKeys.add(rewardKey);
+/**
+ * Cổng ghi streak giả mô phỏng đúng thứ cả thiết kế dựa vào: khoá lần xảy ra
+ * là duy nhất, gửi lại cùng khoá thì không cộng gì. XP lấy từ **chính sách
+ * thật**, nên test khẳng định được con số spec quy định chứ không phải một số
+ * do test tự đặt.
+ */
+const fakeStreak = () => {
+  const keys = new Set();
+  return {
+    calls: [],
+    awarded: [],
+    failNext: null,
+    async recordActivity(activity, options) {
+      this.calls.push({ activity, options });
+      if (this.failNext) {
+        const error = this.failNext;
+        this.failNext = null;
+        throw error;
+      }
+      if (keys.has(activity.occurrenceKey)) return { xpAwarded: 0, duplicate: true };
+      keys.add(activity.occurrenceKey);
+      const xp = xpFor(activity.type, activity.context?.outcome);
+      this.awarded.push({ ...activity, xp });
+      return { xpAwarded: xp, duplicate: false };
     },
   };
 };
 
-const buildService = (repository) =>
-  createLessonProgressService({
+/** Unit of work giả: chạy thẳng hàm với một session nhận diện được. */
+const SESSION = 'session-1';
+const fakeUnitOfWork = { run: (fn) => fn({ session: SESSION }) };
+
+const buildService = (repository, streak = fakeStreak()) => {
+  const service = createLessonProgressService({
     repository,
+    streak,
+    unitOfWork: fakeUnitOfWork,
     now: () => new Date('2026-01-01T00:00:00.000Z'),
   });
+  service.streak = streak;
+  return service;
+};
 
-const totalXp = (repository) =>
-  repository.state.xp.reduce((sum, entry) => sum + entry.amount, 0);
+const totalXp = (service) => service.streak.awarded.reduce((sum, entry) => sum + entry.xp, 0);
 
 const idsOf = (values) => values.map((value) => String(value));
 
@@ -182,38 +199,35 @@ test('gọi hoàn thành nhiều lần chỉ cộng 20 XP một lần', async ()
   const service = buildService(repository);
 
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  const startXp = totalXp(repository);
+  const startXp = totalXp(service);
 
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
 
-  assert.equal(totalXp(repository) - startXp, 20);
+  assert.equal(totalXp(service) - startXp, 20);
 });
 
 test('thử lại sau lỗi giữa chừng vẫn nhận đủ thưởng và không nhân đôi', async () => {
   const repository = fakeRepository();
   const service = buildService(repository);
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  const startXp = totalXp(repository);
+  const startXp = totalXp(service);
 
-  // Lần đầu: ghi tiến độ xong thì lỗi đúng lúc cộng XP.
-  const grantXpOnce = repository.grantXpOnce;
-  repository.grantXpOnce = async () => {
-    throw new Error('mất kết nối');
-  };
+  // Lần đầu: ghi tiến độ xong thì lỗi đúng lúc ghi hoạt động. Cả hai nằm
+  // trong cùng một unit of work, nên transaction thật rollback cả phần tiến độ.
+  service.streak.failNext = new Error('mất kết nối');
   await assert.rejects(
     service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID }),
     /mất kết nối/,
   );
-  assert.equal(repository.state.doc.completion_reward_state, 'pending');
+  assert.equal(service.streak.calls.at(-1).options.session, SESSION);
 
   // Lần thử lại: khoản thưởng được hoàn tất đúng một lần.
-  repository.grantXpOnce = grantXpOnce;
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
 
-  assert.equal(totalXp(repository) - startXp, 20);
+  assert.equal(totalXp(service) - startXp, 20);
   assert.equal(repository.state.doc.completion_reward_state, 'granted');
 });
 
@@ -229,21 +243,21 @@ test('bản ghi cũ đã hoàn thành được chuẩn hóa nhưng không nhận
 
   const progress = await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
 
-  assert.equal(totalXp(repository), 0);
+  assert.equal(totalXp(service), 0);
   assert.equal(progress.completed_vocabularies, 2);
   assert.equal(progress.total_vocabularies, 2);
   // Mốc hoàn thành cũ được giữ nguyên.
   assert.equal(progress.completed_at.toISOString(), '2025-12-01T00:00:00.000Z');
 
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  assert.equal(totalXp(repository), 0);
+  assert.equal(totalXp(service), 0);
 });
 
 test('học nốt mục cuối cùng cũng nhận thưởng hoàn thành, và complete sau đó không cộng thêm', async () => {
   const repository = fakeRepository();
   const service = buildService(repository);
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  const startXp = totalXp(repository);
+  const startXp = totalXp(service);
 
   for (const [itemType, itemId] of [
     ['vocabulary', VOCAB_A],
@@ -260,17 +274,17 @@ test('học nốt mục cuối cùng cũng nhận thưởng hoàn thành, và co
   }
 
   // 3 mục x 2 XP + 20 XP hoàn thành
-  assert.equal(totalXp(repository) - startXp, 26);
+  assert.equal(totalXp(service) - startXp, 26);
 
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  assert.equal(totalXp(repository) - startXp, 26);
+  assert.equal(totalXp(service) - startXp, 26);
 });
 
 test('đánh dấu lại cùng một mục không cộng thêm 2 XP', async () => {
   const repository = fakeRepository();
   const service = buildService(repository);
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  const startXp = totalXp(repository);
+  const startXp = totalXp(service);
 
   const mark = () =>
     service.updateItem({
@@ -285,14 +299,14 @@ test('đánh dấu lại cùng một mục không cộng thêm 2 XP', async () =
   await mark();
   await mark();
 
-  assert.equal(totalXp(repository) - startXp, 2);
+  assert.equal(totalXp(service) - startXp, 2);
 });
 
 test('gỡ đánh dấu rồi đánh dấu lại không nhận lại khoản thưởng đã ghi nhận', async () => {
   const repository = fakeRepository();
   const service = buildService(repository);
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  const startXp = totalXp(repository);
+  const startXp = totalXp(service);
 
   const setLearned = (completed) =>
     service.updateItem({
@@ -310,7 +324,7 @@ test('gỡ đánh dấu rồi đánh dấu lại không nhận lại khoản th�
 
   await setLearned(true);
 
-  assert.equal(totalXp(repository) - startXp, 2);
+  assert.equal(totalXp(service) - startXp, 2);
 });
 
 test('mục không thuộc bài học bị từ chối 400', async () => {
@@ -352,14 +366,70 @@ test('hoàn thành khi chưa có tiến độ trả 404, bài không tồn tại
   );
 });
 
-test('bắt đầu lại bài đã học không cộng thêm XP mở bài', async () => {
+test('mở bài không cộng XP và không tạo hoạt động học', async () => {
+  // Spec §3.4: mở bài 0 XP và không phải hoạt động học. Bản cũ cộng 3 XP và
+  // nối chuỗi chỉ vì mở một bài.
   const repository = fakeRepository();
   const service = buildService(repository);
 
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
 
-  assert.equal(totalXp(repository), 3);
+  assert.equal(totalXp(service), 0);
+  assert.equal(service.streak.calls.length, 0);
+});
+
+test('học một mục ghi đúng loại, đúng khoá, trong cùng transaction với tiến độ', async () => {
+  const repository = fakeRepository();
+  const service = buildService(repository);
+  await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
+
+  await service.updateItem({
+    userId: USER_ID,
+    lessonId: LESSON_ID,
+    itemType: 'vocabulary',
+    itemId: VOCAB_A,
+    completed: true,
+  });
+
+  const [{ activity, options }] = service.streak.calls;
+  assert.deepEqual(activity, {
+    userId: USER_ID,
+    type: 'lesson.progress',
+    sourceId: LESSON_ID,
+    // Giữ nguyên khoá của cơ chế cũ: migration chép `reward_keys` sang nhật ký
+    // với đúng khoá này, nên mục đã thưởng trước cutover không được thưởng lại.
+    occurrenceKey: `lesson-item:${LESSON_ID}:vocabulary:${VOCAB_A}`,
+  });
+  assert.equal(options.session, SESSION);
+  assert.ok(options.now instanceof Date);
+});
+
+test('hoàn thành bài ghi lesson.complete với khoá theo bài', async () => {
+  const repository = fakeRepository();
+  const service = buildService(repository);
+  await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
+  await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
+
+  const completion = service.streak.calls.find(({ activity }) => activity.type === 'lesson.complete');
+  assert.equal(completion.activity.occurrenceKey, `lesson-complete:${LESSON_ID}`);
+  assert.equal(completion.options.session, SESSION);
+});
+
+test('gỡ đánh dấu một mục không phải hoạt động học', async () => {
+  const repository = fakeRepository();
+  const service = buildService(repository);
+  await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
+
+  await service.updateItem({
+    userId: USER_ID,
+    lessonId: LESSON_ID,
+    itemType: 'vocabulary',
+    itemId: VOCAB_A,
+    completed: false,
+  });
+
+  assert.equal(service.streak.calls.length, 0);
 });
 
 test('reset xóa tiến độ và thống kê phản ánh dữ liệu còn lại', async () => {

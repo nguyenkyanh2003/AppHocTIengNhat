@@ -44,19 +44,8 @@ class AchievementService {
   }
 
   // Update achievement progress
-  Future<UserAchievement?> updateProgress(
-      String achievementId, int progress) async {
-    try {
-      final response = await _apiClient.post('/achievement/update-progress', {
-        'achievement_id': achievementId,
-        'progress': progress,
-      });
-      return UserAchievement.fromJson(response);
-    } catch (e) {
-      debugPrint('Error updating achievement progress: $e');
-      return null;
-    }
-  }
+  // `POST /achievement/update-progress` đã bị gỡ khỏi server: tiến độ thành
+  // tích do server tự xác minh, không nhận lời khai từ client.
 
   // Get achievement statistics
   Future<Map<String, dynamic>?> getStats() async {
