@@ -344,21 +344,3 @@ docs/
 ├── presentation/           kịch bản demo và bảo vệ
 └── testing/                báo cáo kiểm thử
 ```
-
-## Tài liệu
-
-| Tài liệu | Nội dung |
-| --- | --- |
-| [CLAUDE.md](CLAUDE.md) | Nguyên tắc dự án, khuôn mẫu code, các bẫy đã biết trong repo |
-| [conventions.md](docs/architecture/conventions.md) | Quy ước code — khuôn mẫu bắt buộc trước mọi thay đổi |
-| [project-structure.md](docs/architecture/project-structure.md) | Quy tắc đặt file và hướng phụ thuộc |
-| [redesign-roadmap.md](docs/architecture/redesign-roadmap.md) | Lộ trình 14 tuần, baseline đo được, phạm vi từng giai đoạn |
-| [phase-2-plan.md](docs/architecture/phase-2-plan.md) | Việc đang làm: khôi phục vòng lặp học và luyện nói cùng AI |
-| [out-of-scope.md](docs/architecture/out-of-scope.md) | Quyết định tạm hoãn và điều kiện mở lại |
-| [system-overview.md](docs/architecture/system-overview.md) | Sơ đồ kiến trúc hệ thống |
-| [data-model.md](docs/architecture/data-model.md) | Sơ đồ quan hệ dữ liệu |
-| [API_OVERVIEW.md](docs/api/API_OVERVIEW.md) | Tổng quan REST API |
-| [DEMO_SCRIPT.md](docs/presentation/DEMO_SCRIPT.md) | Kịch bản demo và câu hỏi phản biện |
-| [TEST_REPORT.md](docs/testing/TEST_REPORT.md) | Báo cáo kiểm thử |
-| [TEST_STREAK.md](docs/testing/TEST_STREAK.md) | Kịch bản kiểm thử streak thủ công |
-| [docs/README.md](docs/README.md) | Mục lục tài liệu |
