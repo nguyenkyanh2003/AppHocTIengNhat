@@ -63,6 +63,7 @@ import '../../features/study_groups/screens/study_group_list_screen.dart';
 import '../../features/vocabulary/models/vocabulary.dart';
 import '../../features/vocabulary/screens/vocabulary_detail_screen.dart';
 import '../../features/vocabulary/screens/vocabulary_main_screen.dart';
+import '../../features/vocabulary/screens/vocabulary_set_screen.dart';
 import '../shell/app_shell.dart';
 import '../shell/hub_screen.dart';
 import 'router_status_screens.dart';
@@ -115,6 +116,7 @@ abstract final class AppRouter {
     '/lessons/:id/study',
     '/vocabulary',
     '/vocabulary/study',
+    '/vocabulary/sets/:setId',
     '/vocabulary/:id',
     '/kanji',
     '/kanji/:id',
@@ -354,6 +356,12 @@ abstract final class AppRouter {
               path: '/vocabulary',
               builder: (context, state) => const VocabularyMainScreen(),
               routes: [
+                GoRoute(
+                  path: 'sets/:setId',
+                  builder: (context, state) => VocabularySetScreen(
+                    setId: state.pathParameters['setId']!,
+                  ),
+                ),
                 GoRoute(
                   path: ':id',
                   builder: (context, state) => VocabularyDetailScreen(

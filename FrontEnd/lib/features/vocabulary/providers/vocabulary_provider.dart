@@ -187,11 +187,15 @@ class VocabularyProvider extends ChangeNotifier {
   Future<void> loadVocabulariesByLesson(String lessonId) =>
       _loadWholeList(() => _service.getVocabulariesByLesson(lessonId));
 
-  Future<void> loadVocabularyDetail(String id) async {
+  /// [silent]: tải lại đúng từ đang hiện (sau khi đổi trạng thái đã học) mà
+  /// không thay trang bằng vòng xoay.
+  Future<void> loadVocabularyDetail(String id, {bool silent = false}) async {
     final generation = ++_detailGeneration;
 
-    _detail = const ViewState.loading();
-    _notify();
+    if (!(silent && _detail.valueOrNull?.id == id)) {
+      _detail = const ViewState.loading();
+      _notify();
+    }
 
     final result = await ViewState.guard(() => _service.getVocabularyById(id));
 

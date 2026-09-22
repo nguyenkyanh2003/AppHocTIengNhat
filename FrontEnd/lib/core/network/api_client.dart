@@ -76,6 +76,14 @@ class ApiClient {
 
   String? getToken() => _token;
 
+  /// Gọi khi backend báo token đang giữ không còn dùng được (mã
+  /// [sessionExpiredCode]). `AuthProvider` đăng ký hàm này để tự dọn phiên và
+  /// để router đưa người dùng về màn đăng nhập, thay vì mọi màn hình lần lượt
+  /// hiện lỗi "phiên đăng nhập đã hết hạn".
+  void Function()? onSessionExpired;
+
+  static const sessionExpiredCode = 'SESSION_EXPIRED';
+
   Future<void> clearAllData() async {
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys().where((key) =>
@@ -313,46 +321,69 @@ class ApiClient {
       throw ServerException('Máy chủ trả về dữ liệu không hợp lệ.');
     }
 
-    if (response.statusCode >= 200 && response.statusCode < 300) return data;
-    final message =
-        data is Map<String, dynamic> ? data['message']?.toString() : null;
-    if (response.statusCode == 401 || response.statusCode == 403) {
-      throw UnauthorizedException(message ?? 'Phiên đăng nhập không hợp lệ.');
+    final status = response.statusCode;
+    if (status >= 200 && status < 300) return data;
+    final body =
+        data is Map<String, dynamic> ? data : const <String, dynamic>{};
+    final message = body['message']?.toString();
+    final code = body['code']?.toString();
+    final details = body['details'] is Map<String, dynamic>
+        ? body['details'] as Map<String, dynamic>
+        : null;
+
+    if (code == sessionExpiredCode && _token != null) onSessionExpired?.call();
+
+    if (status == 401 || status == 403) {
+      throw UnauthorizedException(message ?? 'Phiên đăng nhập không hợp lệ.',
+          statusCode: status, code: code, details: details);
     }
-    if (response.statusCode == 404) {
-      throw NotFoundException(message ?? 'Không tìm thấy dữ liệu.');
+    if (status == 404) {
+      throw NotFoundException(message ?? 'Không tìm thấy dữ liệu.',
+          statusCode: status, code: code, details: details);
     }
-    if (response.statusCode >= 400 && response.statusCode < 500) {
-      throw BadRequestException(message ?? 'Yêu cầu không hợp lệ.');
+    if (status >= 400 && status < 500) {
+      throw BadRequestException(message ?? 'Yêu cầu không hợp lệ.',
+          statusCode: status, code: code, details: details);
     }
-    throw ServerException(message ?? 'Máy chủ đang gặp sự cố.');
+    throw ServerException(message ?? 'Máy chủ đang gặp sự cố.',
+        statusCode: status, code: code, details: details);
   }
 }
 
 class ApiException implements Exception {
   final String message;
-  ApiException(this.message);
+  final int? statusCode;
+
+  /// Mã nghiệp vụ backend gửi kèm, ví dụ `SESSION_EXPIRED`.
+  final String? code;
+  final Map<String, dynamic>? details;
+
+  ApiException(this.message, {this.statusCode, this.code, this.details});
 
   @override
   String toString() => message;
 }
 
 class UnauthorizedException extends ApiException {
-  UnauthorizedException(super.message);
+  UnauthorizedException(super.message,
+      {super.statusCode, super.code, super.details});
 }
 
 class NotFoundException extends ApiException {
-  NotFoundException(super.message);
+  NotFoundException(super.message,
+      {super.statusCode, super.code, super.details});
 }
 
 class BadRequestException extends ApiException {
-  BadRequestException(super.message);
+  BadRequestException(super.message,
+      {super.statusCode, super.code, super.details});
 }
 
 class ServerException extends ApiException {
-  ServerException(super.message);
+  ServerException(super.message, {super.statusCode, super.code, super.details});
 }
 
 class NetworkException extends ApiException {
-  NetworkException(super.message);
+  NetworkException(super.message,
+      {super.statusCode, super.code, super.details});
 }

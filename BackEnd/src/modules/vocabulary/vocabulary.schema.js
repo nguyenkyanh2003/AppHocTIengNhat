@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { paginationQuery } from '../../shared/http/pagination.js';
+import { SET_ID_PATTERN } from './vocabulary-sets.js';
 
 const objectId = z
   .string()
@@ -47,6 +48,12 @@ export const exportQuery = z.object({
 });
 
 export const idParams = z.object({ id: objectId });
+
+export const setListQuery = z.object({ level });
+
+export const setIdParams = z.object({
+  setId: z.string().regex(SET_ID_PATTERN, 'Mã bộ từ vựng không hợp lệ.'),
+});
 
 export const lessonIdParams = z.object({ lessonId: objectId });
 

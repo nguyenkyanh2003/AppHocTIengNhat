@@ -8,7 +8,9 @@ class AuthProvider extends ChangeNotifier {
   /// Nhận service và client qua constructor để test truyền bản giả.
   AuthProvider({AuthService? authService, ApiClient? apiClient})
       : _authService = authService ?? AuthService(),
-        _apiClient = apiClient ?? ApiClient();
+        _apiClient = apiClient ?? ApiClient() {
+    _apiClient.onSessionExpired = _handleSessionExpired;
+  }
 
   // Lưu ý: Đảm bảo tên class bên file service khớp với chỗ này (AuthService)
   final AuthService _authService;
@@ -297,6 +299,22 @@ class AuthProvider extends ChangeNotifier {
     }
 
     _user = null;
+  }
+
+  /// Token hết hạn hoặc bị thu hồi: dọn phiên cục bộ rồi báo cho router, router
+  /// thấy [isAuthenticated] về `false` sẽ tự chuyển sang màn đăng nhập.
+  Future<void> _handleSessionExpired() async {
+    if (_user == null && _apiClient.getToken() == null) return;
+    await _clearLocalSession();
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    if (_apiClient.onSessionExpired == _handleSessionExpired) {
+      _apiClient.onSessionExpired = null;
+    }
+    super.dispose();
   }
 
   /// Quên mật khẩu - Gửi email reset

@@ -39,6 +39,19 @@ export const createVocabularyRoutes = ({
     asyncHandler(controller.search),
   );
   router.get('/situations', authenticate, asyncHandler(controller.listSituations));
+  // Bộ học theo chủ đề (N5–N4) hoặc theo từ loại + độ khó (N3–N1).
+  router.get(
+    '/sets',
+    authenticate,
+    validate({ query: schema.setListQuery }),
+    asyncHandler(controller.listSets),
+  );
+  router.get(
+    '/sets/:setId',
+    authenticate,
+    validate({ params: schema.setIdParams }),
+    asyncHandler(controller.getSet),
+  );
   router.get(
     '/lesson/:lessonId',
     authenticate,

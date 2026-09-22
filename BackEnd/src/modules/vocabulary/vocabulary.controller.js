@@ -17,6 +17,22 @@ export const createVocabularyController = (service) => ({
     return paginated(res, result);
   },
 
+  async listSets(req, res) {
+    const sets = await service.listSets({
+      userId: req.user._id,
+      level: req.valid.query.level,
+    });
+    return list(res, sets);
+  },
+
+  async getSet(req, res) {
+    const set = await service.getSet({
+      userId: req.user._id,
+      setId: req.valid.params.setId,
+    });
+    return ok(res, set);
+  },
+
   async search(req, res) {
     const items = await service.search(req.valid.query);
     return list(res, items);

@@ -31,6 +31,17 @@ const findUserByIdWithVersion = (id) =>
 const versionOf = (value) => value ?? 0;
 
 /**
+ * Mã cho mọi lỗi "token đang giữ không còn dùng được": hết hạn, sai chữ ký, bị
+ * thu hồi, user đã bị xoá. Client dựa vào mã này để tự đăng xuất và đưa về màn
+ * đăng nhập. Không dựa vào status 401 được, vì sai mật khẩu cũ khi đổi mật khẩu
+ * cũng trả 401 mà không có nghĩa là phiên đã chết.
+ */
+export const SESSION_EXPIRED = 'SESSION_EXPIRED';
+
+const rejectSession = (res, message) =>
+    res.status(401).json({ message, code: SESSION_EXPIRED });
+
+/**
  * Middleware xác thực user.
  *
  * Nhận `findUserById` qua tham số để test dựng được chuỗi "đăng nhập → đổi mật
@@ -65,38 +76,30 @@ export const createAuthenticateUser = ({
             decoded = jwt.verify(token, jwtSecret);
         } catch (err) {
             if (err.name === 'TokenExpiredError') {
-                return res.status(403).json({
-                    message: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'
-                });
+                return rejectSession(res, 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
             }
             if (err.name === 'JsonWebTokenError') {
-                return res.status(403).json({
-                    message: 'Token không hợp lệ.'
-                });
+                return rejectSession(res, 'Token không hợp lệ.');
             }
             throw err;
         }
 
         // Tìm user trong MongoDB
         if (decoded.type && decoded.type !== 'access') {
-            return res.status(403).json({ message: 'Loại token không hợp lệ.' });
+            return rejectSession(res, 'Loại token không hợp lệ.');
         }
 
         const user = await findUserById(decoded.id || decoded.userId);
 
         if (!user) {
-            return res.status(401).json({
-                message: 'Người dùng không tồn tại hoặc đã bị xóa.'
-            });
+            return rejectSession(res, 'Người dùng không tồn tại hoặc đã bị xóa.');
         }
 
         // Đổi mật khẩu tăng `tokenVersion` trong database. Không đối chiếu ở đây
         // thì token phát trước lúc đổi vẫn dùng được tới khi hết hạn, tức là đổi
         // mật khẩu không đuổi được người đang giữ token cũ.
         if (versionOf(decoded.tokenVersion) !== versionOf(user.tokenVersion)) {
-            return res.status(401).json({
-                message: 'Phiên đăng nhập đã kết thúc. Vui lòng đăng nhập lại.'
-            });
+            return rejectSession(res, 'Phiên đăng nhập đã kết thúc. Vui lòng đăng nhập lại.');
         }
 
         // Kiểm tra user có bị khóa không

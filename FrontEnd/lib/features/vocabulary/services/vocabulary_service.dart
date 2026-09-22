@@ -1,5 +1,6 @@
 import '../../../core/network/api_client.dart';
 import '../models/vocabulary.dart';
+import '../models/vocabulary_set.dart';
 
 /// Một trang từ vựng trả về từ API.
 ///
@@ -88,6 +89,26 @@ class VocabularyService {
   Future<Vocabulary> getVocabularyById(String id) async {
     final response = await _apiClient.get('/vocabulary/$id', cache: true);
     return Vocabulary.fromJson(response['data']);
+  }
+
+  /// Các bộ học của một cấp, kèm số từ đã học của người dùng.
+  ///
+  /// Không đặt `cache`: số từ đã học đổi sau mỗi lần học, bản lưu ngoại tuyến
+  /// sẽ hiện tiến độ cũ.
+  Future<List<VocabularySet>> getSets(String level) async {
+    final response =
+        await _apiClient.get(_endpoint('/vocabulary/sets', {'level': level}));
+    return (response['data'] as List? ?? const [])
+        .map((item) => VocabularySet.fromJson(Map<String, dynamic>.from(item)))
+        .toList();
+  }
+
+  Future<VocabularySetDetail> getSet(String setId) async {
+    final response =
+        await _apiClient.get('/vocabulary/sets/${Uri.encodeComponent(setId)}');
+    return VocabularySetDetail.fromJson(
+      Map<String, dynamic>.from(response['data'] as Map),
+    );
   }
 
   /// Đánh dấu đã học: backend tạo tiến độ ôn tập ở box 1.

@@ -152,6 +152,11 @@ abstract final class AppContentWidth {
   /// giữ đúng tỉ lệ như trên điện thoại thay vì bè ra trên màn hình rộng.
   static const double feed = 640;
 
+  /// Trang chi tiết hai cột (chi tiết từ vựng): rộng hơn [reading] để đặt
+  /// thẻ từ bên cạnh phần mở rộng, hẹp hơn [dashboard] để mắt không phải
+  /// quét quá xa giữa hai cột.
+  static const double detail = 960;
+
   /// Dashboard, bảng quản trị, lưới thẻ.
   static const double dashboard = 1200;
 }

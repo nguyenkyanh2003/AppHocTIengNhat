@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
@@ -74,6 +79,8 @@ Future<AuthProvider> _signedInProvider(_FakeAuthService service) async {
   await provider.login('victim', 'correct-horse');
   return provider;
 }
+
+const _json = {'content-type': 'application/json; charset=utf-8'};
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -164,6 +171,63 @@ void main() {
       expect(ok, isFalse);
       expect(provider.error, isNotNull);
       expect(provider.error, isNot(contains('Exception:')));
+    });
+  });
+
+  group('phiên hết hạn', () {
+    setUp(() => FlutterSecureStorage.setMockInitialValues({}));
+    tearDown(() => ApiClient().removeToken());
+
+    test('backend báo SESSION_EXPIRED thì tự đăng xuất', () async {
+      final provider = await _signedInProvider(_FakeAuthService());
+      await ApiClient().setToken('token-het-han');
+      var notified = 0;
+      provider.addListener(() => notified++);
+
+      await http.runWithClient(() async {
+        await expectLater(
+          ApiClient().get('/lesson'),
+          throwsA(isA<UnauthorizedException>()
+              .having((e) => e.code, 'code', 'SESSION_EXPIRED')),
+        );
+      },
+          () => MockClient((_) async => http.Response.bytes(
+              utf8.encode(jsonEncode({
+                'message':
+                    'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
+                'code': 'SESSION_EXPIRED',
+              })),
+              401,
+              headers: _json)));
+      await pumpEventQueue();
+
+      expect(provider.user, isNull);
+      expect(provider.isAuthenticated, isFalse);
+      expect(ApiClient().getToken(), isNull);
+      expect(notified, greaterThan(0));
+    });
+
+    test('401 khác (sai mật khẩu cũ) không đăng xuất', () async {
+      final provider = await _signedInProvider(_FakeAuthService());
+      await ApiClient().setToken('token-con-han');
+
+      await http.runWithClient(() async {
+        await expectLater(
+          ApiClient().put('/users/change-password/user-1', {}),
+          throwsA(isA<UnauthorizedException>()),
+        );
+      },
+          () => MockClient((_) async => http.Response.bytes(
+              utf8.encode(jsonEncode({
+                'message': 'Mật khẩu cũ không chính xác.',
+                'code': 'UNAUTHORIZED',
+              })),
+              401,
+              headers: _json)));
+      await pumpEventQueue();
+
+      expect(provider.user, isNotNull);
+      expect(ApiClient().getToken(), 'token-con-han');
     });
   });
 }

@@ -23,6 +23,7 @@ import '../features/streaks/providers/streak_provider.dart';
 import '../features/study_groups/providers/study_group_provider.dart';
 import '../features/profile/providers/user_provider.dart';
 import '../features/vocabulary/providers/vocabulary_provider.dart';
+import '../features/vocabulary/providers/vocabulary_set_provider.dart';
 
 List<SingleChildWidget> createAppProviders() => [
       ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
@@ -31,6 +32,7 @@ List<SingleChildWidget> createAppProviders() => [
       ChangeNotifierProvider(create: (_) => LessonProvider()),
       ChangeNotifierProvider(create: (_) => LessonProgressProvider()),
       ChangeNotifierProvider(create: (_) => VocabularyProvider()),
+      ChangeNotifierProvider(create: (_) => VocabularySetProvider()),
       ChangeNotifierProvider(create: (_) => KanjiProvider()),
       ChangeNotifierProvider(create: (_) => ExerciseProvider()),
       ChangeNotifierProvider(create: (_) => StreakProvider()),

@@ -2,6 +2,10 @@ import { ApiError } from '../../shared/http/api-error.js';
 import { initialProgress } from '../srs/srs-scheduling.js';
 import { srsRepository } from '../srs/srs.repository.js';
 import { vocabularyRepository } from './vocabulary.repository.js';
+import { buildSets, levelOfSetId } from './vocabulary-sets.js';
+import { buildKanjiBreakdown, kanjiCharacters } from './vocabulary-kanji.js';
+
+const RELATED_LIMIT = 6;
 import {
   buildExportWorkbook as buildWorkbook,
   readWorkbookRows,
@@ -63,7 +67,48 @@ export const createVocabularyService = ({
     };
   };
 
+  const learnedIdSet = async (userId) =>
+    new Set(await srs.findLearnedItemIds({ userId, itemType: ITEM_TYPE }));
+
+  const setsOfLevel = async (level) =>
+    buildSets(level, await repository.findSetFields(level));
+
+  /** Bỏ `wordIds` khỏi bộ, thay bằng số từ và số từ user đã học. */
+  const summarize = ({ wordIds, ...set }, learned) => ({
+    ...set,
+    wordCount: wordIds.length,
+    learnedCount: wordIds.filter((id) => learned.has(id)).length,
+  });
+
   return {
+    async listSets({ userId, level }) {
+      const [sets, learned] = await Promise.all([
+        setsOfLevel(level),
+        learnedIdSet(userId),
+      ]);
+      return sets.map((set) => summarize(set, learned));
+    },
+
+    async getSet({ userId, setId }) {
+      const level = levelOfSetId(setId);
+      const sets = level ? await setsOfLevel(level) : [];
+      const set = sets.find((candidate) => candidate.id === setId);
+      if (!set) throw ApiError.notFound('Không tìm thấy bộ từ vựng.');
+
+      const [words, learned] = await Promise.all([
+        repository.findByIdsInOrder(set.wordIds),
+        learnedIdSet(userId),
+      ]);
+
+      return {
+        ...summarize(set, learned),
+        words: words.map((word) => ({
+          ...word,
+          isLearned: learned.has(String(word._id)),
+        })),
+      };
+    },
+
     async list({ userId, page, limit, level, studyStatus, sortBy }) {
       const baseFilter = level ? { level } : {};
       const filter = await applyStudyStatus(baseFilter, { userId, studyStatus });
@@ -92,14 +137,17 @@ export const createVocabularyService = ({
       const vocabulary = await repository.findDetailById(id);
       if (!vocabulary) throw ApiError.notFound('Không tìm thấy từ vựng.');
 
-      const progress = await srs.findProgress({
-        userId,
-        itemId: id,
-        itemType: ITEM_TYPE,
-      });
+      const characters = kanjiCharacters(vocabulary.word);
+      const [progress, kanjiDocs, relatedWords] = await Promise.all([
+        srs.findProgress({ userId, itemId: id, itemType: ITEM_TYPE }),
+        repository.findKanjiByCharacters(characters),
+        repository.findRelated({ vocabulary, characters, limit: RELATED_LIMIT }),
+      ]);
 
       return {
         ...vocabulary,
+        kanjiBreakdown: buildKanjiBreakdown(vocabulary, kanjiDocs),
+        relatedWords,
         isLearned: !!progress,
         ...(progress
           ? { learnedAt: progress.createdAt, reviewBox: progress.box }

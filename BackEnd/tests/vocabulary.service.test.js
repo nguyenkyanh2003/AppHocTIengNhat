@@ -44,6 +44,8 @@ const fakeVocabularyRepository = (overrides = {}) => {
     lessonExists: async () => true,
     stats: async () => ({ totalVocabularies: 1 }),
     findForExport: async () => [VOCABULARY],
+    findKanjiByCharacters: async () => [],
+    findRelated: async () => [],
   };
 
   return { ...base, ...overrides, calls };
@@ -293,4 +295,19 @@ test('import Excel gắn lesson/level cho mọi dòng hợp lệ', async () => {
   });
 
   assert.deepEqual(inserted, [{ word: '本', lesson: 'l1', level: 'N5' }]);
+});
+
+test('chi tiết từ vựng kèm phân tích chữ Hán và từ liên quan', async () => {
+  const repository = fakeVocabularyRepository({
+    findDetailById: async () => ({ _id: 'v1', word: '名前', hanviet: 'DANH TIỀN', level: 'N5' }),
+    findRelated: async ({ characters }) => {
+      assert.deepEqual(characters, ['名', '前']);
+      return [{ _id: 'v2', word: '名刺' }];
+    },
+  });
+
+  const detail = await buildService({ repository }).getById({ id: 'v1', userId: 'u1' });
+
+  assert.deepEqual(detail.kanjiBreakdown.map((item) => item.hanviet), ['DANH', 'TIỀN']);
+  assert.deepEqual(detail.relatedWords, [{ _id: 'v2', word: '名刺' }]);
 });

@@ -6,6 +6,8 @@ import 'package:http/testing.dart';
 
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
 
+const _json = {'content-type': 'application/json; charset=utf-8'};
+
 void main() {
   test('message-only constructors remain compatible', () {
     final error = ApiException('Lỗi');
@@ -23,11 +25,17 @@ void main() {
               .having((e) => e.code, 'code', 'SRS_PROGRESS_CHANGED')
               .having((e) => e.details?['current_progress']['box'], 'box', 2)),
         );
-      }, () => MockClient((_) async => http.Response(jsonEncode({
-            'message': 'Lịch đã đổi',
-            'code': 'SRS_PROGRESS_CHANGED',
-            'details': {'current_progress': {'box': 2}},
-          }), status)));
+      },
+          () => MockClient((_) async => http.Response.bytes(
+              utf8.encode(jsonEncode({
+                'message': 'Lịch đã đổi',
+                'code': 'SRS_PROGRESS_CHANGED',
+                'details': {
+                  'current_progress': {'box': 2}
+                },
+              })),
+              status,
+              headers: _json)));
     });
   }
 }

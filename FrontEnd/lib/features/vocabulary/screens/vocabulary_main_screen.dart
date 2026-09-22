@@ -10,11 +10,18 @@ import '../../flashcards/providers/flashcard_provider.dart';
 import '../../flashcards/widgets/add_to_flashcard_dialog.dart';
 import '../../flashcards/widgets/flashcard_decks_tab.dart';
 import '../models/vocabulary.dart';
+import '../../auth/providers/auth_provider.dart';
 import '../providers/vocabulary_provider.dart';
+import '../providers/vocabulary_set_provider.dart';
 import '../widgets/vocabulary_filter_bar.dart';
 import '../widgets/vocabulary_list_view.dart';
+import '../widgets/vocabulary_sets_tab.dart';
 
-/// Màn từ vựng: tab danh sách và tab bộ thẻ của người dùng.
+/// Màn từ vựng.
+///
+/// Tab đầu là các **bộ học** khoảng 20 từ — cách học chính. Danh sách đầy đủ
+/// lùi về tab "Tra cứu" cho lúc cần tìm nhanh một từ.
+
 class VocabularyMainScreen extends StatefulWidget {
   const VocabularyMainScreen({super.key});
 
@@ -24,14 +31,21 @@ class VocabularyMainScreen extends StatefulWidget {
 
 class _VocabularyMainScreenState extends State<VocabularyMainScreen>
     with SingleTickerProviderStateMixin {
+  static const _setsTab = 0;
+  static const _lookupTab = 1;
+  static const _decksTab = 2;
+
   late final TabController _tabController =
-      TabController(length: 2, vsync: this)..addListener(() => setState(() {}));
+      TabController(length: 3, vsync: this)..addListener(() => setState(() {}));
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
+      final sets = context.read<VocabularySetProvider>()
+        ..useDefaultLevel(context.read<AuthProvider>().user?.currentLevel);
+      sets.loadSets();
       context.read<VocabularyProvider>().loadVocabularies(refresh: true);
       context.read<FlashcardProvider>().loadDecks(refresh: true);
     });
@@ -44,12 +58,12 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
   }
 
   /// Làm mới đúng tab đang mở, không nạp lại cả hai.
-  Future<void> _refreshCurrentTab() {
-    if (_tabController.index == 0) {
-      return context.read<VocabularyProvider>().loadVocabularies(refresh: true);
-    }
-    return context.read<FlashcardProvider>().loadDecks(refresh: true);
-  }
+  Future<void> _refreshCurrentTab() => switch (_tabController.index) {
+        _setsTab => context.read<VocabularySetProvider>().loadSets(),
+        _lookupTab =>
+          context.read<VocabularyProvider>().loadVocabularies(refresh: true),
+        _ => context.read<FlashcardProvider>().loadDecks(refresh: true),
+      };
 
   Future<void> _createDeck() async {
     final provider = context.read<FlashcardProvider>();
@@ -91,7 +105,8 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
       bottom: TabBar(
         controller: _tabController,
         tabs: const [
-          Tab(text: 'Danh sách'),
+          Tab(text: 'Bộ từ vựng'),
+          Tab(text: 'Tra cứu'),
           Tab(text: 'Bộ thẻ của tôi'),
         ],
       ),
@@ -99,6 +114,7 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
+          const VocabularySetsTab(),
           _VocabularyListTab(
             onOpen: _openDetail,
             onAddToFlashcard: _addToFlashcard,
@@ -107,7 +123,7 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
           FlashcardDecksTab(onCreateDeck: _createDeck),
         ],
       ),
-      floatingActionButton: _tabController.index == 1
+      floatingActionButton: _tabController.index == _decksTab
           ? FloatingActionButton.extended(
               onPressed: _createDeck,
               icon: const Icon(Icons.add),

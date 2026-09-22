@@ -21,6 +21,9 @@ abstract final class AppTypography {
   static const double bodySmall = 14;
   static const double caption = 12;
 
+  /// Mặt chữ tiếng Nhật trên thẻ chính của màn chi tiết từ vựng.
+  static const double wordHero = 56;
+
   /// Nunito cho chữ Latin: dấu tiếng Việt đầy đủ, nét bo tròn thân thiện hợp
   /// phong cách "Duolingo" của app.
   static TextStyle _latin({

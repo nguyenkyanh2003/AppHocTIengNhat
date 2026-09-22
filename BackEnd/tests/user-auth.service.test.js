@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { createAuthenticateUser } from '../src/middleware/auth.middleware.js';
+import {
+  createAuthenticateUser,
+  SESSION_EXPIRED,
+} from '../src/middleware/auth.middleware.js';
 import {
   buildResetLink,
   createUserAuthService,
@@ -291,12 +294,30 @@ test('chuỗi đăng nhập → đổi mật khẩu → token cũ bị từ ch�
   const revoked = await runMiddleware(authenticate, session.token);
   assert.equal(revoked.passed, false);
   assert.equal(revoked.statusCode, 401);
+  assert.equal(revoked.body.code, SESSION_EXPIRED);
 
   const renewed = await service.login({
     username: 'victim',
     password: 'mat-khau-moi',
   });
   assert.equal((await runMiddleware(authenticate, renewed.token)).passed, true);
+});
+
+test('token hết hạn, sai chữ ký hay sai loại đều trả 401 kèm mã SESSION_EXPIRED', async () => {
+  const jwt = (await import('jsonwebtoken')).default;
+  const authenticate = buildAuthenticate(fakeUserRepository());
+  const tokens = [
+    jwt.sign({ id: VICTIM._id, type: 'access' }, JWT_SECRET, { expiresIn: -10 }),
+    jwt.sign({ id: VICTIM._id, type: 'access' }, 'another-secret-at-least-32-characters'),
+    jwt.sign({ id: VICTIM._id, type: 'refresh' }, JWT_SECRET, { expiresIn: '1h' }),
+  ];
+
+  for (const token of tokens) {
+    const result = await runMiddleware(authenticate, token);
+    assert.equal(result.passed, false);
+    assert.equal(result.statusCode, 401);
+    assert.equal(result.body.code, SESSION_EXPIRED);
+  }
 });
 
 test('token cũ không có tokenVersion chỉ dùng được khi database cũng ở version 0', async () => {

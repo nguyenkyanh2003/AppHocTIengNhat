@@ -41,6 +41,7 @@ void main() {
         '/lessons/:id/study',
         '/vocabulary',
         '/vocabulary/study',
+        '/vocabulary/sets/:setId',
         '/vocabulary/:id',
         '/kanji',
         '/kanji/:id',

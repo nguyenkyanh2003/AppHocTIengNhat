@@ -1,4 +1,9 @@
 import mongoose from 'mongoose';
+import {
+    DIFFICULTY_VALUES,
+    TOPIC_CODES,
+    WORD_TYPE_CODES,
+} from '../src/modules/vocabulary/vocabulary-taxonomy.js';
 
 const VocabularySchema = new mongoose.Schema({
     word: { type: String, required: true, index: true }, // Kanji: 学生
@@ -28,7 +33,17 @@ const VocabularySchema = new mongoose.Schema({
     // dấu ngoặc.
     verb_group: { type: Number, enum: [1, 2, 3] },
     // tinh huống sử dụng từ
-    usage_context: { type: String }, 
+    usage_context: { type: String },
+    // Ba trường dưới đây quyết định từ nằm trong bộ học nào — xem
+    // `vocabulary-taxonomy.js`. N5/N4 chia theo `topic`, N3–N1 chia theo
+    // `word_type` + `difficulty`; `word_type` có ở mọi cấp để lọc và làm quiz.
+    //
+    // `difficulty` là mức **trong cùng cấp và cùng từ loại** (1 = cơ bản,
+    // 3 = nâng cao), không so được giữa hai cấp: từ "nâng cao" của N3 vẫn dễ
+    // hơn từ "cơ bản" của N1.
+    topic: { type: String, enum: TOPIC_CODES, index: true },
+    word_type: { type: String, enum: WORD_TYPE_CODES, index: true },
+    difficulty: { type: Number, enum: DIFFICULTY_VALUES },
     // Media
     audio_url: String,
     image_url: String,
