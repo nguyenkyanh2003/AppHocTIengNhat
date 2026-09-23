@@ -276,8 +276,11 @@ abstract final class AppRouter {
         // --- Phiên học và phiên thi: chiếm toàn khung, cố ý không có rail ---
         GoRoute(
           path: '/lessons/:id/study',
-          builder: (context, state) =>
-              LessonStudyScreen(lessonId: state.pathParameters['id']!),
+          // `?step=` mở thẳng một bước từ lộ trình ở màn chi tiết bài.
+          builder: (context, state) => LessonStudyScreen(
+            lessonId: state.pathParameters['id']!,
+            initialStep: int.tryParse(state.uri.queryParameters['step'] ?? '') ?? 0,
+          ),
         ),
         GoRoute(
           path: '/jlpt/:examId/exam',

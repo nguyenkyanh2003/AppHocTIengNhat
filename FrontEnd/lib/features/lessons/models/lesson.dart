@@ -1,3 +1,4 @@
+import '../../vocabulary/models/vocabulary.dart';
 import 'dialogue_turn.dart';
 import 'lesson_video.dart';
 
@@ -48,6 +49,10 @@ class Lesson {
 
   /// Bài có nội dung dạng hội thoại tình huống hay không.
   bool get isSituational => dialogue.isNotEmpty;
+
+  /// Tên bài để hiển thị, bỏ tiền tố "Tình huống:" — nhãn tình huống đã
+  /// có chip riêng, lặp lại trong tiêu đề chỉ làm dài dòng.
+  String get displayTitle => title.replaceFirst(RegExp(r'^Tình huống:\s*'), '');
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
     // Helper function để extract ID từ item (có thể là String hoặc Map)
@@ -188,12 +193,15 @@ class LessonDetail {
   final List<Map<String, dynamic>> kanjis;
   final List<Map<String, dynamic>> grammars;
 
+  /// Từ vựng của bài ở dạng có kiểu, cho màn học và thẻ từ.
+  final List<Vocabulary> words;
+
   LessonDetail({
     required this.lesson,
     required this.vocabularies,
     required this.kanjis,
     required this.grammars,
-  });
+  }) : words = vocabularies.map(Vocabulary.fromJson).toList();
 
   factory LessonDetail.fromJson(Map<String, dynamic> json) {
     // Helper function để convert list an toàn

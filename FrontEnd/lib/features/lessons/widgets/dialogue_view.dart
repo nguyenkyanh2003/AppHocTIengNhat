@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../models/dialogue_turn.dart';
+import 'lesson_goals_card.dart';
 
 /// Hiển thị một bài học tình huống: mục tiêu "làm được gì" và hội thoại của cảnh.
 ///
@@ -11,10 +12,18 @@ class DialogueView extends StatelessWidget {
   final List<DialogueTurn> dialogue;
   final List<String> canDoGoals;
 
+  /// Tắt để người học tự hiểu câu trước rồi mới xem nghĩa.
+  final bool showTranslation;
+
+  /// Có thì mỗi lượt thoại có nút nghe câu tiếng Nhật.
+  final ValueChanged<DialogueTurn>? onSpeak;
+
   const DialogueView({
     super.key,
     required this.dialogue,
     this.canDoGoals = const [],
+    this.showTranslation = true,
+    this.onSpeak,
   });
 
   @override
@@ -27,7 +36,7 @@ class DialogueView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (canDoGoals.isNotEmpty) _CanDoCard(goals: canDoGoals),
+        if (canDoGoals.isNotEmpty) LessonGoalsCard(goals: canDoGoals),
         if (canDoGoals.isNotEmpty) const SizedBox(height: AppSpacing.xl),
         if (dialogue.isNotEmpty) ...[
           const _SectionTitle(icon: Icons.forum_outlined, label: 'Hội thoại'),
@@ -38,6 +47,8 @@ class DialogueView extends StatelessWidget {
               child: _TurnBubble(
                 turn: turn,
                 alignLeft: turn.speaker == firstSpeaker,
+                showTranslation: showTranslation,
+                onSpeak: onSpeak == null ? null : () => onSpeak!(turn),
               ),
             ),
           ),
@@ -71,53 +82,18 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-class _CanDoCard extends StatelessWidget {
-  final List<String> goals;
-
-  const _CanDoCard({required this.goals});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
-      decoration: BoxDecoration(
-        color: AppColors.success.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.success.withValues(alpha: 0.35)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _SectionTitle(
-            icon: Icons.emoji_events_outlined,
-            label: 'Sau bài này bạn làm được',
-          ),
-          const SizedBox(height: AppSpacing.md),
-          ...goals.map(
-            (goal) => Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(Icons.check_circle_outline,
-                      size: 18, color: AppColors.success),
-                  const SizedBox(width: AppSpacing.sm),
-                  Expanded(child: Text(goal)),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _TurnBubble extends StatelessWidget {
   final DialogueTurn turn;
   final bool alignLeft;
+  final bool showTranslation;
+  final VoidCallback? onSpeak;
 
-  const _TurnBubble({required this.turn, required this.alignLeft});
+  const _TurnBubble({
+    required this.turn,
+    required this.alignLeft,
+    required this.showTranslation,
+    this.onSpeak,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -150,12 +126,28 @@ class _TurnBubble extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      turn.textJa,
-                      style: textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        height: 1.5,
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            turn.textJa,
+                            style: textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              height: 1.5,
+                            ),
+                          ),
+                        ),
+                        if (onSpeak != null)
+                          IconButton(
+                            onPressed: onSpeak,
+                            tooltip: 'Nghe câu này',
+                            visualDensity: VisualDensity.compact,
+                            icon: const Icon(Icons.volume_up_outlined,
+                                size: 20, color: AppColors.primary),
+                          ),
+                      ],
                     ),
                     if (turn.reading.isNotEmpty &&
                         turn.reading != turn.textJa) ...[
@@ -166,7 +158,7 @@ class _TurnBubble extends StatelessWidget {
                             ?.copyWith(color: AppColors.textSecondary),
                       ),
                     ],
-                    if (turn.textVi.isNotEmpty) ...[
+                    if (showTranslation && turn.textVi.isNotEmpty) ...[
                       const SizedBox(height: AppSpacing.sm),
                       Text(
                         turn.textVi,

@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+
+import '../../../core/state/view_state.dart';
 import '../models/lesson.dart';
 import '../services/lesson_service.dart';
 
@@ -39,6 +41,13 @@ class LessonProvider with ChangeNotifier {
   // Getters
   List<Lesson> get lessons => _lessons;
   LessonDetail? get currentLessonDetail => _currentLessonDetail;
+
+  /// Chi tiết bài ở dạng [ViewState], để màn hình dùng `AsyncView`.
+  ViewState<LessonDetail> get detailState {
+    if (_error != null) return ViewState.failure(_error!);
+    final detail = _currentLessonDetail;
+    return detail == null ? const ViewState.loading() : ViewState.data(detail);
+  }
   Map<String, dynamic>? get stats => _stats;
   bool get isLoading => _isLoading;
   String? get error => _error;

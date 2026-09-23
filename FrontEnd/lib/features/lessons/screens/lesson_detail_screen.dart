@@ -1,819 +1,183 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_html/flutter_html.dart';
+
 import '../../../app/theme/app_tokens.dart';
-import '../../../app/theme/app_typography.dart';
-import '../providers/lesson_provider.dart';
-import '../providers/lesson_progress_provider.dart';
-import '../models/lesson.dart';
-import '../widgets/dialogue_view.dart';
-import '../widgets/video/lesson_video_section.dart';
+import '../../../shared/widgets/app_dialog.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../models/lesson.dart';
+import '../models/lesson_progress.dart';
+import '../providers/lesson_progress_provider.dart';
+import '../providers/lesson_provider.dart';
+import '../widgets/detail/lesson_hero.dart';
+import '../widgets/detail/lesson_roadmap.dart';
+import '../widgets/detail/lesson_section.dart';
+import '../widgets/detail/lesson_word_grid.dart';
+import '../widgets/lesson_action_button.dart';
+import '../widgets/lesson_goals_card.dart';
+import '../widgets/lesson_reference_lists.dart';
+import '../widgets/video/lesson_video_section.dart';
 
+/// Trang một bài học: bài nói về gì, gồm những bước nào, đã học tới đâu — và
+/// một nút để vào học.
+///
+/// Video tình huống và từ vựng luôn xem lại được ở đây, dù đã hoàn thành bài
+/// hay chưa; phần học có hướng dẫn nằm ở màn học.
 class LessonDetailScreen extends StatefulWidget {
-  final String lessonId;
+  const LessonDetailScreen({super.key, required this.lessonId});
 
-  const LessonDetailScreen({
-    Key? key,
-    required this.lessonId,
-  }) : super(key: key);
+  final String lessonId;
 
   @override
   State<LessonDetailScreen> createState() => _LessonDetailScreenState();
 }
 
-class _LessonDetailScreenState extends State<LessonDetailScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
+class _LessonDetailScreenState extends State<LessonDetailScreen> {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<LessonProvider>(context, listen: false)
-          .loadLessonDetail(widget.lessonId);
-      Provider.of<LessonProgressProvider>(context, listen: false)
-          .loadProgress(widget.lessonId);
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
   }
 
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+  Future<void> _load() async {
+    await Future.wait([
+      context.read<LessonProvider>().loadLessonDetail(widget.lessonId),
+      context.read<LessonProgressProvider>().loadProgress(widget.lessonId),
+    ]);
+  }
+
+  /// Tiến độ đang nằm trong provider có thể là của bài mở trước đó.
+  LessonProgress? _progressOf(LessonProgressProvider provider) {
+    final progress = provider.currentProgress;
+    return progress?.lessonId == widget.lessonId ? progress : null;
+  }
+
+  Future<void> _study([int step = 0]) async {
+    final query = step == 0 ? '' : '?step=$step';
+    await context.push('/lessons/${widget.lessonId}/study$query');
+  }
+
+  Future<void> _confirmReset(LessonProgressProvider progress) async {
+    final confirmed = await showAppDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Học lại từ đầu?'),
+        content: const Text('Dấu "đã nhớ" của các từ trong bài sẽ được xoá. XP đã nhận vẫn giữ nguyên.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('Huỷ')),
+          FilledButton(onPressed: () => Navigator.pop(dialogContext, true), child: const Text('Đặt lại tiến độ')),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final messenger = ScaffoldMessenger.of(context);
+    final ok = await progress.resetProgress(widget.lessonId);
+    messenger.showSnackBar(SnackBar(content: Text(ok ? 'Đã đặt lại tiến độ bài học.' : 'Chưa đặt lại được. Vui lòng thử lại.')));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ContentWidthLimit(
-        child: Consumer<LessonProvider>(
-          builder: (context, provider, child) {
-            if (provider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
+    final lessons = context.watch<LessonProvider>();
+    final progressProvider = context.watch<LessonProgressProvider>();
+    final progress = _progressOf(progressProvider);
 
-            if (provider.error != null) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.error_outline,
-                        size: 64, color: AppColors.error),
-                    const SizedBox(height: 16),
-                    Text(
-                      provider.error!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.error),
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () =>
-                          provider.loadLessonDetail(widget.lessonId),
-                      child: const Text('Thử lại'),
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            if (provider.currentLessonDetail == null) {
-              return const Center(child: Text('Không tìm thấy bài học'));
-            }
-
-            final lessonDetail = provider.currentLessonDetail!;
-            final lesson = lessonDetail.lesson;
-
-            // Thanh hành động nằm **trong** thân trang chứ không phải
-            // `bottomNavigationBar`: chỗ đó đã thuộc về thanh điều hướng chính
-            // của `AppShell`, đặt hai thanh sẽ chồng lên nhau trên màn hẹp.
-            return Column(
-              children: [
-                Expanded(
-                  child: CustomScrollView(
-                    slivers: [
-                      _buildAppBar(lesson),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            _buildHeader(lesson, lessonDetail),
-                            _buildTabBar(),
-                          ],
-                        ),
-                      ),
-                      SliverFillRemaining(
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: [
-                            _buildOverviewTab(lesson, lessonDetail),
-                            _buildVocabularyTab(lessonDetail.vocabularies),
-                            _buildKanjiTab(lessonDetail.kanjis),
-                            _buildGrammarTab(lessonDetail.grammars),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                _buildBottomBar(),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAppBar(Lesson lesson) {
-    return SliverAppBar(
-      expandedHeight: 200,
-      pinned: true,
-      flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          lesson.title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(
-                offset: Offset(0, 1),
-                blurRadius: 3,
-                color: Colors.black45,
-              ),
+    return AppScaffold(
+      title: 'Bài học',
+      actions: [
+        if (progress != null)
+          PopupMenuButton<void>(
+            tooltip: 'Tuỳ chọn',
+            itemBuilder: (context) => [
+              PopupMenuItem(onTap: () => _confirmReset(progressProvider), child: const Text('Đặt lại tiến độ')),
             ],
           ),
-        ),
-        background: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                _getLevelColor(lesson.level),
-                _getLevelColor(lesson.level).withValues(alpha: 0.7),
-              ],
-            ),
-          ),
-          child: Center(
-            child: Icon(
-              Icons.menu_book,
-              size: 80,
-              color: Colors.white.withValues(alpha: 0.3),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHeader(Lesson lesson, LessonDetail lessonDetail) {
-    return Consumer<LessonProgressProvider>(
-      builder: (context, progressProvider, child) {
-        final progress = progressProvider.currentProgress;
-
-        // Lấy số lượng từ lessonDetail (đã populate)
-        final vocabCount = lessonDetail.vocabularies.length;
-        final kanjiCount = lessonDetail.kanjis.length;
-        final grammarCount = lessonDetail.grammars.length;
-
-        return Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      ],
+      body: AsyncView<LessonDetail>(
+        state: lessons.detailState,
+        onRetry: _load,
+        builder: (context, detail) {
+          if (detail.lesson.id != widget.lessonId) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return Column(
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _getLevelColor(lesson.level),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      lesson.getLevelName(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  if (progress != null && progress.isCompleted)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.success,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Row(
-                        children: [
-                          Icon(Icons.check_circle,
-                              size: 16, color: Colors.white),
-                          SizedBox(width: 4),
-                          Text(
-                            'Đã hoàn thành',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: AppTypography.caption,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-
-              // Progress bar
-              if (progress != null) ...[
-                const SizedBox(height: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Tiến độ học tập',
-                          style: TextStyle(
-                            fontSize: AppTypography.bodySmall,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          '${(progress.overallProgress * 100).toInt()}%',
-                          style: TextStyle(
-                            fontSize: AppTypography.bodySmall,
-                            fontWeight: FontWeight.w600,
-                            color: _getLevelColor(lesson.level),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: LinearProgressIndicator(
-                        value: progress.overallProgress,
-                        minHeight: 8,
-                        backgroundColor: AppColors.surfaceVariant,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          _getLevelColor(lesson.level),
-                        ),
-                      ),
-                    ),
-                  ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: ContentPane(child: _content(detail, progress)),
                 ),
-              ],
-              if (lesson.description != null) ...[
-                const SizedBox(height: 12),
-                Text(
-                  lesson.description!,
-                  style: const TextStyle(
-                    fontSize: AppTypography.body,
-                    color: AppColors.textSecondary,
-                    height: 1.5,
-                  ),
-                ),
-              ],
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildStatItem(
-                    Icons.spellcheck,
-                    progress != null
-                        ? '${progress.completedVocabularies}/$vocabCount'
-                        : vocabCount.toString(),
-                    'Từ vựng',
-                    AppColors.primary,
-                    progress?.vocabularyProgress,
-                  ),
-                  _buildStatItem(
-                    Icons.draw_outlined,
-                    progress != null
-                        ? '${progress.completedKanjis}/$kanjiCount'
-                        : kanjiCount.toString(),
-                    'Kanji',
-                    AppColors.warning,
-                    progress?.kanjiProgress,
-                  ),
-                  _buildStatItem(
-                    Icons.segment,
-                    progress != null
-                        ? '${progress.completedGrammars}/$grammarCount'
-                        : grammarCount.toString(),
-                    'Ngữ pháp',
-                    AppColors.success,
-                    progress?.grammarProgress,
-                  ),
-                ],
               ),
+              _actionBar(progress),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
-  Widget _buildStatItem(IconData icon, String value, String label, Color color,
-      [double? progress]) {
+  Widget _content(LessonDetail detail, LessonProgress? progress) {
+    final lesson = detail.lesson;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            if (progress != null)
-              SizedBox(
-                width: 50,
-                height: 50,
-                child: CircularProgressIndicator(
-                  value: progress,
-                  strokeWidth: 3,
-                  backgroundColor: AppColors.surfaceVariant,
-                  valueColor: AlwaysStoppedAnimation<Color>(color),
-                ),
-              ),
-            Icon(icon, color: color, size: progress != null ? 24 : 32),
-          ],
+        LessonHero(detail: detail, progress: progress),
+        if (lesson.canDoGoals.isNotEmpty) ...[
+          AppGap.xl,
+          LessonGoalsCard(goals: lesson.canDoGoals),
+        ],
+        LessonSection(
+          icon: Icons.route_outlined,
+          title: 'Lộ trình bài học',
+          caption: 'Chạm một bước để mở thẳng bước đó.',
+          child: LessonRoadmap(detail: detail, progress: progress, onOpenStep: _study),
         ),
-        const SizedBox(height: 8),
-        Text(
-          value,
-          style: TextStyle(
-            fontSize:
-                progress != null ? AppTypography.body : AppTypography.title,
-            fontWeight: FontWeight.w700,
+        if (lesson.videos.isNotEmpty)
+          LessonSection(
+            icon: Icons.play_circle_outline,
+            title: 'Video tình huống',
+            caption: 'Xem lại bất cứ lúc nào. Chạm vào câu thoại để nghe lại đoạn đó.',
+            child: LessonVideoSection(videos: lesson.videos),
           ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: AppTypography.caption,
-            color: AppColors.textSecondary,
+        if (detail.words.isNotEmpty)
+          LessonSection(
+            icon: Icons.style_outlined,
+            title: 'Từ vựng trong bài',
+            child: LessonWordGrid(
+              words: detail.words,
+              learnedIds: {...?progress?.learnedVocabularyIds},
+              onOpen: (word) => context.push('/vocabulary/${word.id}'),
+            ),
           ),
-        ),
+        if (detail.kanjis.isNotEmpty)
+          LessonSection(
+            icon: Icons.draw_outlined,
+            title: 'Chữ Hán',
+            child: LessonKanjiGrid(kanjis: detail.kanjis),
+          ),
+        if (detail.grammars.isNotEmpty)
+          LessonSection(
+            icon: Icons.account_tree_outlined,
+            title: 'Ngữ pháp',
+            child: LessonGrammarList(grammars: detail.grammars),
+          ),
+        AppGap.xl,
       ],
     );
   }
 
-  Widget _buildTabBar() {
-    return Container(
-      color: Colors.white,
-      child: TabBar(
-        controller: _tabController,
-        labelColor: AppColors.primary,
-        unselectedLabelColor: AppColors.textSecondary,
-        indicatorColor: AppColors.primary,
-        tabs: const [
-          Tab(text: 'Tổng quan'),
-          Tab(icon: Icon(Icons.spellcheck), text: 'Từ vựng'),
-          Tab(text: 'Kanji'),
-          Tab(text: 'Ngữ pháp'),
-        ],
+  Widget _actionBar(LessonProgress? progress) {
+    final (label, icon) = switch (progress) {
+      LessonProgress(isCompleted: true) => ('Học lại bài này', Icons.replay),
+      LessonProgress(completedVocabularies: > 0) => ('Học tiếp', Icons.play_arrow_rounded),
+      _ => ('Bắt đầu học', Icons.play_arrow_rounded),
+    };
+    return Material(
+      elevation: AppElevation.medium,
+      child: ContentPane(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        child: LessonActionButton(label: label, icon: icon, onPressed: _study),
       ),
     );
-  }
-
-  Widget _buildOverviewTab(Lesson lesson, LessonDetail detail) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Video đứng trước hội thoại: xem tình huống diễn ra thế nào rồi mới
-          // đọc lại lời thoại.
-          if (lesson.videos.isNotEmpty) ...[
-            LessonVideoSection(videos: lesson.videos),
-            const SizedBox(height: AppSpacing.xl),
-          ],
-          if (lesson.isSituational) ...[
-            DialogueView(
-              dialogue: lesson.dialogue,
-              canDoGoals: lesson.canDoGoals,
-            ),
-          ] else if (lesson.contentHtml != null &&
-              lesson.contentHtml!.isNotEmpty) ...[
-            const Text(
-              'Nội dung bài học',
-              style: TextStyle(
-                fontSize: AppTypography.subtitle,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Html(
-                  data: lesson.contentHtml,
-                ),
-              ),
-            ),
-          ] else ...[
-            const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.description_outlined,
-                      size: 56, color: AppColors.textDisabled),
-                  SizedBox(height: AppSpacing.lg),
-                  Text(
-                    'Chưa có nội dung bài học',
-                    style: TextStyle(color: AppColors.textSecondary),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildVocabularyTab(List<dynamic> vocabularies) {
-    if (vocabularies.isEmpty) {
-      return _buildEmptyState('Chưa có từ vựng', Icons.spellcheck_outlined);
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: vocabularies.length,
-      itemBuilder: (context, index) {
-        final vocab = vocabularies[index];
-        return Card(
-          margin: const EdgeInsets.only(bottom: 12),
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: AppColors.primary,
-              child: Text('${index + 1}',
-                  style: const TextStyle(color: Colors.white)),
-            ),
-            title: Text(
-              vocab['word'] ?? '',
-              style: AppTypography.japaneseBody(),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (vocab['hiragana'] != null)
-                  Text(
-                    vocab['hiragana'],
-                    style: const TextStyle(color: AppColors.textSecondary),
-                  ),
-                Text(vocab['meaning'] ?? ''),
-              ],
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {
-              // Navigate to vocabulary detail
-            },
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildKanjiTab(List<dynamic> kanjis) {
-    if (kanjis.isEmpty) {
-      return _buildEmptyState('Chưa có Kanji', Icons.draw_outlined);
-    }
-
-    return GridView.builder(
-      padding: const EdgeInsets.all(16),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
-        childAspectRatio: 1.2,
-      ),
-      itemCount: kanjis.length,
-      itemBuilder: (context, index) {
-        final kanji = kanjis[index];
-        return Card(
-          elevation: 2,
-          child: InkWell(
-            onTap: () {
-              // Navigate to kanji detail
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    kanji['character'] ?? '',
-                    style: AppTypography.japaneseDisplay(),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    _listToString(kanji['onyomi']),
-                    style: const TextStyle(
-                      fontSize: AppTypography.caption,
-                      color: AppColors.error,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    _listToString(kanji['kunyomi']),
-                    style: const TextStyle(
-                      fontSize: AppTypography.caption,
-                      color: AppColors.primary,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    kanji['meaning'] ?? '',
-                    style: const TextStyle(
-                      fontSize: AppTypography.caption,
-                      color: AppColors.textSecondary,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildGrammarTab(List<dynamic> grammars) {
-    if (grammars.isEmpty) {
-      return _buildEmptyState('Chưa có ngữ pháp', Icons.segment_outlined);
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: grammars.length,
-      itemBuilder: (context, index) {
-        final grammar = grammars[index];
-        return Card(
-          margin: const EdgeInsets.only(bottom: 12),
-          child: ExpansionTile(
-            leading: CircleAvatar(
-              backgroundColor: AppColors.success,
-              child: Text('${index + 1}',
-                  style: const TextStyle(color: Colors.white)),
-            ),
-            title: Text(
-              grammar['title'] ?? grammar['pattern'] ?? '',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (grammar['structure'] != null)
-                  Text(
-                    grammar['structure'],
-                    style: const TextStyle(
-                      color: AppColors.primary,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                Text(grammar['meaning'] ?? ''),
-              ],
-            ),
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (grammar['usage'] != null &&
-                        grammar['usage'].toString().isNotEmpty) ...[
-                      const Text(
-                        'Cách dùng:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(grammar['usage']),
-                      const SizedBox(height: 12),
-                    ],
-                    if (grammar['examples'] != null &&
-                        (grammar['examples'] as List).isNotEmpty) ...[
-                      const Text(
-                        'Ví dụ:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      ...((grammar['examples'] as List).map((ex) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '• ${ex['sentence'] ?? ''}',
-                                  style: AppTypography.japaneseReading(
-                                      color: AppColors.textPrimary),
-                                ),
-                                Text(
-                                  '  → ${ex['meaning'] ?? ''}',
-                                  style: const TextStyle(
-                                    color: AppColors.textSecondary,
-                                    fontSize: AppTypography.bodySmall,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ))),
-                    ],
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  // Helper method to convert List to String
-  String _listToString(dynamic value) {
-    if (value == null) return '';
-    if (value is String) return value;
-    if (value is List) {
-      return value.map((e) => e.toString()).join(', ');
-    }
-    return value.toString();
-  }
-
-  Widget _buildEmptyState(String message, IconData icon) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 56, color: AppColors.textDisabled),
-          const SizedBox(height: 16),
-          Text(
-            message,
-            style: const TextStyle(color: AppColors.textSecondary),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomBar() {
-    return Consumer<LessonProgressProvider>(
-      builder: (context, progressProvider, child) {
-        final progress = progressProvider.currentProgress;
-        final isCompleted = progress?.isCompleted ?? false;
-
-        return Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 4,
-                offset: const Offset(0, -2),
-              ),
-            ],
-          ),
-          child: SafeArea(
-            child: Row(
-              children: [
-                if (progress != null && !isCompleted)
-                  Expanded(
-                    flex: 1,
-                    child: OutlinedButton(
-                      onPressed: () => _showResetDialog(progressProvider),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: const Icon(Icons.refresh),
-                    ),
-                  ),
-                if (progress != null && !isCompleted) const SizedBox(width: 12),
-                Expanded(
-                  flex: 4,
-                  child: ElevatedButton.icon(
-                    onPressed: () => _startLesson(progressProvider),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: isCompleted ? AppColors.success : null,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    icon: Icon(
-                      isCompleted
-                          ? Icons.check_circle
-                          : (progress != null
-                              ? Icons.play_arrow
-                              : Icons.play_circle_outline),
-                    ),
-                    label: Text(
-                      isCompleted
-                          ? 'Học lại'
-                          : (progress != null ? 'Tiếp tục học' : 'Bắt đầu học'),
-                      style: const TextStyle(
-                        fontSize: AppTypography.subtitle,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Future<void> _startLesson(LessonProgressProvider progressProvider) async {
-    final progress = progressProvider.currentProgress;
-
-    // Nếu chưa có progress, tạo mới
-    if (progress == null) {
-      final success = await progressProvider.startLesson(widget.lessonId);
-      if (!success && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Không thể bắt đầu bài học'),
-            backgroundColor: AppColors.error,
-          ),
-        );
-        return;
-      }
-    }
-
-    // Navigate to study screen
-    if (mounted) {
-      context.push('/lessons/${widget.lessonId}/study');
-    }
-  }
-
-  Future<void> _showResetDialog(LessonProgressProvider progressProvider) async {
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Đặt lại tiến độ'),
-        content: const Text(
-          'Bạn có chắc muốn đặt lại tiến độ học của bài này? '
-          'Tất cả tiến độ sẽ bị xóa.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Hủy'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            style: TextButton.styleFrom(foregroundColor: AppColors.error),
-            child: const Text('Đặt lại'),
-          ),
-        ],
-      ),
-    );
-
-    if (result == true && mounted) {
-      final success = await progressProvider.resetProgress(widget.lessonId);
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              success ? 'Đã đặt lại tiến độ' : 'Không thể đặt lại tiến độ',
-            ),
-            backgroundColor: success ? AppColors.success : AppColors.error,
-          ),
-        );
-      }
-    }
-  }
-
-  Color _getLevelColor(String level) {
-    switch (level) {
-      case 'N1':
-        return AppColors.error;
-      case 'N2':
-        return AppColors.warning;
-      case 'N3':
-        return Colors.amber;
-      case 'N4':
-        return AppColors.success;
-      case 'N5':
-        return AppColors.primary;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

@@ -9,6 +9,9 @@ class LessonProgress {
   final int completedKanjis;
   final int totalKanjis;
   final bool isCompleted;
+
+  /// Từ vựng của bài đã được đánh dấu học — màn học dùng để không bắt học lại.
+  final List<String> learnedVocabularyIds;
   final DateTime? completedAt;
   final DateTime lastStudiedAt;
   final DateTime createdAt;
@@ -25,6 +28,7 @@ class LessonProgress {
     this.completedKanjis = 0,
     this.totalKanjis = 0,
     this.isCompleted = false,
+    this.learnedVocabularyIds = const [],
     this.completedAt,
     required this.lastStudiedAt,
     required this.createdAt,
@@ -43,6 +47,10 @@ class LessonProgress {
       completedKanjis: json['completed_kanjis'] ?? 0,
       totalKanjis: json['total_kanjis'] ?? 0,
       isCompleted: json['is_completed'] ?? false,
+      learnedVocabularyIds: (json['learned_vocabulary_ids'] as List? ?? const [])
+          .map((id) => id is Map ? id['_id']?.toString() ?? '' : id.toString())
+          .where((id) => id.isNotEmpty)
+          .toList(),
       completedAt: json['completed_at'] != null
           ? DateTime.parse(json['completed_at'])
           : null,

@@ -30,9 +30,14 @@ class LessonTranscriptView extends StatefulWidget {
     required this.onSeek,
     this.scrollable = true,
     this.autoScroll = true,
+    this.layers,
   });
 
   final List<TranscriptLine> lines;
+
+  /// Các lớp chữ đang bật. Truyền từ ngoài vào khi nơi khác (phụ đề toàn màn
+  /// hình) cũng cần theo cùng lựa chọn; bỏ trống thì widget tự giữ.
+  final ValueNotifier<Set<TranscriptLayer>>? layers;
 
   /// Chỉ số dòng đang nói; `null` khi đang ở khoảng lặng.
   final int? activeIndex;
@@ -56,12 +61,16 @@ class LessonTranscriptView extends StatefulWidget {
 }
 
 class _LessonTranscriptViewState extends State<LessonTranscriptView> {
-  final Set<TranscriptLayer> _layers = {...TranscriptLayer.values};
+  final ValueNotifier<Set<TranscriptLayer>> _ownLayers =
+      ValueNotifier({...TranscriptLayer.values});
   final ScrollController _scroll = ScrollController();
   final Map<int, GlobalKey> _keys = {};
 
+  ValueNotifier<Set<TranscriptLayer>> get _layers => widget.layers ?? _ownLayers;
+
   @override
   void dispose() {
+    _ownLayers.dispose();
     _scroll.dispose();
     super.dispose();
   }
@@ -74,12 +83,27 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
     }
   }
 
-  /// Đưa dòng đang nói vào tầm nhìn. `ensureVisible` cuộn đúng vùng cuộn đang
-  /// chứa dòng đó — danh sách ở bố cục hai cột, hoặc cả trang ở bố cục một cột.
+  /// Đưa dòng đang nói vào tầm nhìn.
+  ///
+  /// Khung tự cuộn thì **chỉ** cuộn khung đó: `Scrollable.ensureVisible` đi
+  /// ngược lên mọi vùng cuộn bao ngoài, nên nó kéo luôn cả trang theo dòng
+  /// đang nói và đẩy video ra khỏi màn hình trong lúc người học đang xem.
   void _scrollToActive() {
     final active = widget.activeIndex;
     final context = active == null ? null : _keys[active]?.currentContext;
     if (context == null) return;
+
+    if (widget.scrollable && _scroll.hasClients) {
+      final row = context.findRenderObject();
+      if (row == null) return;
+      _scroll.position.ensureVisible(
+        row,
+        duration: AppDurations.normal,
+        curve: Curves.easeOut,
+        alignment: 0.3,
+      );
+      return;
+    }
 
     Scrollable.ensureVisible(
       context,
@@ -90,18 +114,23 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
   }
 
   void _toggle(TranscriptLayer layer) {
-    setState(() {
-      // Luôn giữ ít nhất một lớp: tắt hết thì bảng trống và không hiểu vì sao.
-      if (_layers.contains(layer) && _layers.length > 1) {
-        _layers.remove(layer);
-      } else {
-        _layers.add(layer);
-      }
-    });
+    final layers = {..._layers.value};
+    // Luôn giữ ít nhất một lớp: tắt hết thì bảng trống và không hiểu vì sao.
+    if (layers.contains(layer) && layers.length > 1) {
+      layers.remove(layer);
+    } else {
+      layers.add(layer);
+    }
+    _layers.value = layers;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => ValueListenableBuilder(
+        valueListenable: _layers,
+        builder: (context, layers, _) => _build(context, layers),
+      );
+
+  Widget _build(BuildContext context, Set<TranscriptLayer> layers) {
     final textTheme = Theme.of(context).textTheme;
 
     if (widget.lines.isEmpty) {
@@ -122,7 +151,7 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
       itemBuilder: (context, index) => _TranscriptRow(
         key: _keys.putIfAbsent(index, GlobalKey.new),
         line: widget.lines[index],
-        layers: _layers,
+        layers: layers,
         isActive: index == widget.activeIndex,
         onTap: () => widget.onSeek(widget.lines[index].start),
       ),
@@ -139,7 +168,7 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
             for (final layer in TranscriptLayer.values)
               FilterChip(
                 label: Text(layer.label),
-                selected: _layers.contains(layer),
+                selected: layers.contains(layer),
                 onSelected: (_) => _toggle(layer),
               ),
           ],
@@ -147,6 +176,63 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
         AppGap.md,
         if (widget.scrollable) Flexible(child: list) else list,
       ],
+    );
+  }
+}
+
+/// Phụ đề của câu đang nói, đặt đè lên video khi xem toàn màn hình.
+///
+/// Theo đúng các lớp chữ người học đã bật ở bảng lời thoại; khoảng lặng
+/// ([line] là `null`) thì không hiện gì.
+class TranscriptCaption extends StatelessWidget {
+  const TranscriptCaption({super.key, required this.line, required this.layers});
+
+  final TranscriptLine? line;
+  final Set<TranscriptLayer> layers;
+
+  @override
+  Widget build(BuildContext context) {
+    final line = this.line;
+    if (line == null) return const SizedBox.shrink();
+
+    final romaji = line.romaji;
+    final texts = [
+      if (layers.contains(TranscriptLayer.japanese))
+        Text(
+          line.textJa,
+          style: AppTypography.japaneseReading(color: Colors.white)
+              .copyWith(fontSize: AppTypography.title),
+        ),
+      if (layers.contains(TranscriptLayer.romaji) &&
+          romaji != null &&
+          romaji.isNotEmpty)
+        Text(
+          romaji,
+          style: const TextStyle(
+              color: Colors.white70, fontSize: AppTypography.bodySmall),
+        ),
+      if (layers.contains(TranscriptLayer.vietnamese))
+        Text(
+          line.textVi,
+          style: const TextStyle(
+              color: Colors.white, fontSize: AppTypography.subtitle),
+        ),
+    ];
+    if (texts.isEmpty) return const SizedBox.shrink();
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.6),
+        borderRadius: AppRadius.mdAll,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg, vertical: AppSpacing.sm),
+        child: DefaultTextStyle.merge(
+          textAlign: TextAlign.center,
+          child: Column(mainAxisSize: MainAxisSize.min, children: texts),
+        ),
+      ),
     );
   }
 }

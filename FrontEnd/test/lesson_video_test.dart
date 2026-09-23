@@ -165,4 +165,45 @@ void main() {
       expect(seeked, const Duration(seconds: 8));
     });
   });
+
+  group('phụ đề toàn màn hình', () {
+    Future<void> pumpCaption(WidgetTester tester, TranscriptLine? line, Set<TranscriptLayer> layers) =>
+        tester.pumpWidget(MaterialApp(home: Scaffold(body: TranscriptCaption(line: line, layers: layers))));
+
+    testWidgets('hiện đúng các lớp chữ người học đã bật', (tester) async {
+      await pumpCaption(tester, _lines[0], {TranscriptLayer.japanese, TranscriptLayer.romaji});
+
+      expect(find.text('おはようございます。'), findsOneWidget);
+      expect(find.text('Romaji おはようございます。'), findsOneWidget);
+      // Đã tắt tiếng Việt ở bảng lời thoại thì toàn màn hình cũng không bật lại.
+      expect(find.text('Chào buổi sáng.'), findsNothing);
+    });
+
+    testWidgets('khoảng lặng giữa hai câu thì không hiện gì', (tester) async {
+      await pumpCaption(tester, null, {...TranscriptLayer.values});
+      expect(find.byType(Text), findsNothing);
+    });
+  });
+
+  testWidgets('bảng lời thoại dùng chung lựa chọn lớp chữ được truyền vào', (tester) async {
+    final layers = ValueNotifier<Set<TranscriptLayer>>({...TranscriptLayer.values});
+    addTearDown(layers.dispose);
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: LessonTranscriptView(
+          lines: _lines,
+          activeIndex: null,
+          onSeek: (_) {},
+          layers: layers,
+          autoScroll: false,
+        ),
+      ),
+    ));
+
+    await tester.tap(find.widgetWithText(FilterChip, 'Tiếng Việt'));
+    await tester.pump();
+
+    expect(layers.value.contains(TranscriptLayer.vietnamese), isFalse);
+    expect(find.text('Chào buổi sáng.'), findsNothing);
+  });
 }

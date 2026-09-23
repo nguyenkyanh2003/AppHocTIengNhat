@@ -8,15 +8,22 @@ import 'lesson_video_player.dart';
 
 /// Khối "Video bài học": chọn video, xem video và đọc lời thoại chạy theo.
 ///
-/// Màn rộng đặt video bên trái và lời thoại bên phải như trang gốc; màn hẹp
-/// xếp dọc. Cùng một widget cho web và điện thoại, chỉ khác bố cục.
+/// Video và lời thoại luôn cùng nằm trong tầm nhìn: màn rộng đặt lời thoại
+/// bên phải video, màn hẹp đặt lời thoại trong một khung cuộn riêng ngay dưới
+/// video. Lời thoại không bao giờ dàn dài theo trang — cuộn xuống đọc mà video
+/// trôi khỏi màn hình thì không còn "xem kèm lời thoại" nữa.
 class LessonVideoSection extends StatefulWidget {
   const LessonVideoSection({super.key, required this.videos});
 
   final List<LessonVideo> videos;
 
   /// Dưới bề rộng này thì xếp dọc: hai cột sẽ làm khung video quá nhỏ.
-  static const double twoColumnMinWidth = 900;
+  static const double twoColumnMinWidth = 840;
+
+  /// Chiều cao khung lời thoại khi xếp dọc, tính theo màn hình để video phía
+  /// trên vẫn còn chỗ.
+  static double stackedTranscriptHeight(double screenHeight) =>
+      (screenHeight * 0.4).clamp(220.0, 420.0);
 
   @override
   State<LessonVideoSection> createState() => _LessonVideoSectionState();
@@ -31,6 +38,12 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
   /// dựng lại cả bảng lời thoại theo từng nhịp đó làm giao diện giật. Ở đây
   /// chỉ phát tín hiệu khi **đổi dòng**, nên bảng dựng lại vài lần mỗi video.
   final ValueNotifier<int?> _activeLine = ValueNotifier<int?>(null);
+
+  /// Lớp chữ đang bật (日本語 / Roma-ji / Tiếng Việt), dùng chung cho bảng lời
+  /// thoại và phụ đề toàn màn hình: người học đã tắt tiếng Việt để tự luyện
+  /// thì vào toàn màn hình nó cũng không tự bật lại.
+  final ValueNotifier<Set<TranscriptLayer>> _layers =
+      ValueNotifier({...TranscriptLayer.values});
 
   int _index = 0;
   bool _ready = false;
@@ -49,6 +62,7 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
     _controller?.removeListener(_syncActiveLine);
     _controller?.dispose();
     _activeLine.dispose();
+    _layers.dispose();
     super.dispose();
   }
 
@@ -59,6 +73,25 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
     final index =
         activeTranscriptIndex(_video.transcript, controller.value.position);
     if (index != _activeLine.value) _activeLine.value = index;
+  }
+
+  /// Câu đang nói, hoặc câu gần nhất đã qua khi đang ở khoảng lặng; `-1`
+  /// khi video chưa tới câu đầu tiên.
+  int _currentLine(VideoPlayerController controller) {
+    final active = _activeLine.value;
+    if (active != null) return active;
+    final position = controller.value.position;
+    return _video.transcript.lastIndexWhere((line) => line.start <= position);
+  }
+
+  /// Nhảy tới câu cách câu hiện tại [offset] câu (0 là nghe lại) rồi phát.
+  Future<void> _seekLine(int offset) async {
+    final controller = _controller;
+    final lines = _video.transcript;
+    if (controller == null || lines.isEmpty) return;
+    final target = (_currentLine(controller) + offset).clamp(0, lines.length - 1);
+    await controller.seekTo(lines[target].start);
+    await controller.play();
   }
 
   Future<void> _open(int index) async {
@@ -109,6 +142,23 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
           isReady: _ready,
           errorMessage: _error,
           onRetry: () => _open(_index),
+          fullscreenCaption: ValueListenableBuilder<int?>(
+            valueListenable: _activeLine,
+            builder: (context, active, _) => ValueListenableBuilder<Set<TranscriptLayer>>(
+              valueListenable: _layers,
+              builder: (context, layers, _) => TranscriptCaption(
+                line: active == null ? null : _video.transcript[active],
+                layers: layers,
+              ),
+            ),
+          ),
+          navigation: _video.transcript.isEmpty
+              ? null
+              : TranscriptNavigation(
+                  previous: () => _seekLine(-1),
+                  replay: () => _seekLine(0),
+                  next: () => _seekLine(1),
+                ),
         ),
         AppGap.sm,
         Text(_video.title, style: textTheme.titleMedium),
@@ -129,6 +179,7 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
           builder: (context, activeIndex, _) => LessonTranscriptView(
             lines: _video.transcript,
             activeIndex: activeIndex,
+            layers: _layers,
             scrollable: scrollable,
             onSeek: (position) async {
               await controller.seekTo(position);
@@ -153,29 +204,35 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
             final wide =
                 constraints.maxWidth >= LessonVideoSection.twoColumnMinWidth;
             if (!wide) {
-              // Một cột nằm trong trang đang cuộn: lời thoại dàn hết chiều
-              // cao, trang lo việc cuộn.
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   player,
                   AppGap.lg,
-                  transcript(scrollable: false),
+                  SizedBox(
+                    height: LessonVideoSection.stackedTranscriptHeight(
+                        MediaQuery.sizeOf(context).height),
+                    child: transcript(scrollable: true),
+                  ),
                 ],
               );
             }
+
+            // Khung lời thoại cao bằng khung video 16:9 cộng thanh điều khiển
+            // và tên cảnh, để hai cột kết thúc cùng một đường ngang.
+            const gap = AppSpacing.lg;
+            final playerWidth = (constraints.maxWidth - gap) * 6 / 11;
+            final transcriptHeight = playerWidth * 9 / 16 + 120;
 
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(flex: 6, child: player),
-                AppGap.lg,
+                const SizedBox(width: gap),
                 Expanded(
                   flex: 5,
-                  // Chiều cao cố định để phần lời thoại tự cuộn trong khung,
-                  // thay vì kéo dài cả trang khi video có nhiều dòng.
                   child: SizedBox(
-                    height: 420,
+                    height: transcriptHeight,
                     child: transcript(scrollable: true),
                   ),
                 ),
