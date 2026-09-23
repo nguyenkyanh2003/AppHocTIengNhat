@@ -54,7 +54,10 @@ const fakeVocabularyRepository = (overrides = {}) => {
 const fakeSrsRepository = (overrides = {}) => ({
   findLearnedItemIds: async () => [],
   findProgress: async () => null,
-  createProgress: async (payload) => ({ _id: 'p1', ...payload }),
+  ensureProgress: async ({ initial, ...payload }) => ({
+    progress: { _id: 'p1', ...payload, ...initial },
+    created: true,
+  }),
   deleteProgress: async () => 1,
   ...overrides,
 });
@@ -176,7 +179,15 @@ test('danh sách rỗng vẫn là danh sách, không phải lỗi', async () => 
 test('chi tiết từ vựng gắn trạng thái đã học', async () => {
   const learnedAt = new Date('2026-02-01T00:00:00.000Z');
   const srs = fakeSrsRepository({
-    findProgress: async () => ({ box: 3, createdAt: learnedAt }),
+    findProgress: async () => ({
+      _id: 'p1',
+      item_id: 'v1',
+      item_type: 'Vocabulary',
+      box: 3,
+      streak: 2,
+      next_review: new Date('2026-02-08T00:00:00.000Z'),
+      createdAt: learnedAt,
+    }),
   });
 
   const detail = await buildService({ srs }).getById({ id: 'v1', userId: 'u1' });
@@ -184,6 +195,19 @@ test('chi tiết từ vựng gắn trạng thái đã học', async () => {
   assert.equal(detail.isLearned, true);
   assert.equal(detail.reviewBox, 3);
   assert.equal(detail.learnedAt, learnedAt);
+  assert.deepEqual(detail.srs_progress, {
+    _id: 'p1',
+    item_id: 'v1',
+    item_type: 'Vocabulary',
+    box: 3,
+    next_review: '2026-02-08T00:00:00.000Z',
+    streak: 2,
+  });
+});
+
+test('chi tiết từ vựng chưa học có srs_progress null', async () => {
+  const detail = await buildService().getById({ id: 'v1', userId: 'u1' });
+  assert.equal(detail.srs_progress, null);
 });
 
 test('chi tiết từ vựng không tồn tại trả về lỗi 404', async () => {
@@ -214,11 +238,11 @@ test('cập nhật từ vựng không tồn tại trả về lỗi 404', async (
 });
 
 test('đánh dấu đã học tạo tiến độ box 1 khi chưa có', async () => {
-  let createdPayload = null;
+  let ensured = null;
   const srs = fakeSrsRepository({
-    createProgress: async (payload) => {
-      createdPayload = payload;
-      return { _id: 'p1', ...payload };
+    ensureProgress: async (args) => {
+      ensured = args;
+      return { progress: { _id: 'p1', ...args.initial }, created: true };
     },
   });
 
@@ -228,19 +252,15 @@ test('đánh dấu đã học tạo tiến độ box 1 khi chưa có', async () 
   });
 
   assert.equal(result.created, true);
-  assert.equal(createdPayload.box, 1);
-  assert.equal(createdPayload.itemType, 'Vocabulary');
-  assert.ok(createdPayload.nextReview instanceof Date);
+  assert.equal(ensured.itemType, 'Vocabulary');
+  assert.equal(ensured.initial.box, 1);
+  assert.equal(ensured.initial.streak, 0);
+  assert.ok(ensured.initial.next_review instanceof Date);
 });
 
-test('đánh dấu đã học hai lần không tạo bản ghi trùng', async () => {
-  let createCalls = 0;
+test('đánh dấu đã học lần nữa giữ nguyên lịch đã có', async () => {
   const srs = fakeSrsRepository({
-    findProgress: async () => ({ _id: 'p1', box: 2 }),
-    createProgress: async () => {
-      createCalls += 1;
-      return {};
-    },
+    ensureProgress: async () => ({ progress: { _id: 'p1', box: 2 }, created: false }),
   });
 
   const result = await buildService({ srs }).markLearned({
@@ -249,8 +269,8 @@ test('đánh dấu đã học hai lần không tạo bản ghi trùng', async ()
   });
 
   assert.equal(result.created, false);
-  assert.equal(createCalls, 0);
   assert.equal(result.progress.box, 2);
+  assert.equal(result.message, 'Từ vựng đã được đánh dấu là đã học.');
 });
 
 test('bỏ đánh dấu khi chưa có tiến độ trả về lỗi 404', async () => {

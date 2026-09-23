@@ -88,7 +88,7 @@ Commit `1081b65`. Không làm lại.
       thường**; SRS không cần migration
 - [x] `tests/demo-dataset.test.js` — 17 test, không chạm DB
 
-## Task 0.2: Bộ 40 thẻ sinh tự động
+## Task 0.2: Bộ 40 thẻ sinh tự động — ĐÃ XONG
 
 **Files:** Modify `BackEnd/scripts/demo-dataset.js`, `BackEnd/scripts/seed-demo.js`,
 `BackEnd/tests/demo-dataset.test.js`
@@ -97,12 +97,13 @@ Spec chương trình §4.0 bước 0 đòi "bộ 40 thẻ sinh tự động cho 
 có 8 thẻ nên không kiểm được luồng lấy đợt (`limit` mặc định 20) qua nhiều đợt, cũng không
 kiểm được giới hạn 200 ID loại trừ.
 
-- [ ] **B1** Thêm `buildBulkProgress(count)` vào `demo-dataset.js`: sinh `count` bản ghi tiến
-      độ trỏ vào các từ có sẵn (lặp lại khi hết từ, dùng `item_type: 'Vocabulary'`), `dueInDays`
-      trải từ `-3` đến `0` để tất cả đều đến hạn. Không dùng `Math.random` — chia đều theo chỉ số.
-- [ ] **B2** Test: `buildBulkProgress(40)` trả 40 phần tử, tất cả đến hạn, `box` trong 1..5.
-- [ ] **B3** `seed-demo.js` nhận cờ `--bulk=<n>` (mặc định không bật) để nạp thêm bộ này.
-- [ ] **B4** `npm test` xanh.
+- [x] **B1** Thêm `buildBulkProgress(count)` vào `demo-dataset.js`: sinh lịch cho `count` thẻ,
+      `dueInDays` trải từ `-3` đến `0`, chia đều theo chỉ số. **Lệch plan có chủ đích:** không
+      "lặp lại khi hết từ" — unique index `(user, item_id)` không cho hai thẻ cùng một từ, nên
+      runner lấy các từ N5 có sẵn trong DB (theo `_id` tăng dần, ngoài 15 từ demo).
+- [x] **B2** Test: `buildBulkProgress(40)` trả 40 phần tử, tất cả đến hạn, `box` trải 1..5.
+- [x] **B3** `seed-demo.js` nhận cờ `--bulk=<n>` (1–200, mặc định không bật).
+- [x] **B4** `npm test` xanh.
 
 ## Task 0.3: Audit UserStreak (chỉ đọc)
 
@@ -112,18 +113,18 @@ Spec streak §4.1 bước 1–2 bắt buộc audit **trước** migration. Bám 
 `audit-srs-progress.js` đã có: đọc qua native collection, không ghi gì, không in nội dung
 document, chỉ in tên DB/collection/thời điểm/số lượng theo nhóm.
 
-- [ ] **B1** Đếm theo nhóm: tổng document; `user` thiếu/sai kiểu/không còn tồn tại; trùng
+- [x] **B1** Đếm theo nhóm: tổng document; `user` thiếu/sai kiểu/không còn tồn tại; trùng
       `user`; `last_activity_date` thiếu/null/sai kiểu Date; `total_xp` âm hoặc sai kiểu;
       độ dài `xp_history`, `activity_dates`, `reward_keys` (min/max/tổng); phần tử
       `xp_history` thiếu `amount`/`earned_at`; `current_streak`/`longest_streak` âm hoặc
       `current > longest`.
-- [ ] **B2** In **phân phối giờ:phút UTC** của `activity_dates` và `last_activity_date`.
+- [x] **B2** In **phân phối giờ:phút UTC** của `activity_dates` và `last_activity_date`.
       Đây là cách duy nhất suy ra timezone host từng ghi dữ liệu legacy (§4.1 bước 2); nếu
       phân phối không tụ về một mốc nửa đêm nào thì báo "không xác định được" chứ đừng đoán.
-- [ ] **B3** Audit `UserAchievement`: số bản ghi `is_completed=true` (migration phải sinh
+- [x] **B3** Audit `UserAchievement`: số bản ghi `is_completed=true` (migration phải sinh
       khoá đánh dấu cho từng cái, §4.1 bước 5).
-- [ ] **B4** In index hiện có của cả ba collection.
-- [ ] **B5** Chạy thật, dán kết quả vào spec streak §4.1 giống cách đã làm với audit SRS.
+- [x] **B4** In index hiện có của cả ba collection.
+- [x] **B5** Chạy thật, dán kết quả vào spec streak §4.1 giống cách đã làm với audit SRS.
 
 **Chặn:** không viết migration trước khi bước này chạy xong trên DB thật.
 
@@ -435,9 +436,15 @@ Flutter: `StreakService`/provider/screen theo hợp đồng mới; `export_scree
 như hiện tại, có hủy và có lỗi — lỗi trang giữa **không** được báo xuất thành công một phần.
 Xoá `StreakService.addXP`/`StreakProvider.addXP`.
 
-- [ ] **B1** Test HTTP cho từng dòng bảng trên + test Flutter cho export nhiều trang.
-- [ ] **B2** fail. **B3** Cài đặt. **B4** Đọc bằng mắt danh sách route mới rồi cập nhật
+- [x] **B1** Test HTTP cho từng dòng bảng trên + test Flutter cho export nhiều trang.
+- [x] **B2** fail. **B3** Cài đặt. **B4** Đọc bằng mắt danh sách route mới rồi cập nhật
       `expectedCount`/`expectedSignatureHash`. **B5** Cả hai suite xanh.
+
+> **2026-09-23:** `GET /days`, `xp-history?mode=page` (cursor mờ mang user + `as_of`, đọc
+> nhật ký rồi nối mảng cũ chưa migration) và export Flutter đọc hết mọi trang, lịch đọc lùi
+> từng khoảng 366 ngày tới `first_day` mới thêm vào `/my-streak`; lỗi hay huỷ giữa chừng
+> không tạo tệp. **Còn lại có chủ đích:** hai mảng legacy vẫn nằm trong response
+> `/my-streak` cho tới khi migration gỡ chúng khỏi document (`--drop-legacy-arrays`).
 
 ---
 
@@ -467,9 +474,27 @@ ID thẻ một mình không đủ định danh một lượt (spec streak §3.3)
 Chi tiết từng bước của Bước 3 viết khi Bước 2 xong, vì hình dạng `recordActivity` phải đứng
 yên trước.
 
+> **Trạng thái 2026-09-23 — đã làm 3.1–3.10.** Backend: `srs.schema/repository/service/
+> controller/routes.js`, xoá `srs-progress.*`, route contract 260 → 255 (SRS 12 → 6, streak +1).
+> `GET /api/vocabulary/:id` trả `srs_progress`; mark-learned dùng `ensureProgress` chịu được hai
+> request đồng thời. Flutter: model/service sáu endpoint, `SrsProvider` (loại trừ theo phiên,
+> trần 200, phân loại 404/409), màn `/srs`, badge ở hub `/review`, đặt lại lịch ở chi tiết từ.
+> Smoke test trên Atlas (`smoke-learning-loop.js`, database `_smoke` riêng) đạt; lần chạy đầu
+> tìm ra lỗi thật: unit of work thử lại write conflict ngay lập tức nên hai lượt ôn đồng thời
+> lọt 500 — đã thêm backoff lũy thừa có jitter, 5 lượt.
+
 ---
 
 # Bước 4 — Migration và cutover
+
+> **Trạng thái 2026-09-23 — đã chạy trên `AppHocTiengNhat`.** Audit → sao lưu 16 collection →
+> khôi phục thử checksum khớp → migration 3 user, 9 event, 7 ngày legacy, `total_xp` khớp lịch
+> sử → gỡ ba mảng cũ và 1 streak mồ côi. Chạy lại ghi 0 event.
+> `audit-user-streak.js`,
+> `backup-collections.js` + `restore-collections.js` (EJSON canonical, checksum, khôi phục thử
+> ghi vào manifest), `migrate-streak-legacy.js` (mặc định chạy thử; `--apply` bắt buộc có bản
+> sao lưu đã khôi phục thử). Logic chép nằm ở `streak-legacy.js`, có test cho cả ba trường hợp
+> cutover.
 
 Chỉ bắt đầu khi Task 0.3 đã chạy trên DB thật và Bước 1–3 đã xanh trên fixture.
 

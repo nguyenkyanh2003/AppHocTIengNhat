@@ -1,4 +1,5 @@
 import { ApiError } from '../../shared/http/api-error.js';
+import { toSrsProgressDto } from '../srs/srs.dto.js';
 import { initialProgress } from '../srs/srs-scheduling.js';
 import { srsRepository } from '../srs/srs.repository.js';
 import { vocabularyRepository } from './vocabulary.repository.js';
@@ -152,6 +153,9 @@ export const createVocabularyService = ({
         ...(progress
           ? { learnedAt: progress.createdAt, reviewBox: progress.box }
           : {}),
+        // Lịch cá nhân đọc mới từ server, để màn chi tiết đặt lại được lịch của
+        // thẻ chưa đến hạn mà không phải gọi mark-learned (spec SRS §4).
+        srs_progress: progress ? toSrsProgressDto(progress) : null,
       };
     },
 
@@ -265,38 +269,27 @@ export const createVocabularyService = ({
       return importer.buildExportWorkbook(vocabularies);
     },
 
+    /**
+     * Đánh dấu đã học: tạo tiến độ hộp 1, hoặc trả tiến độ đã có mà **không**
+     * đổi lịch. Hai lần bấm đồng thời cũng chỉ ra một bản ghi.
+     */
     async markLearned({ id, userId }) {
       const vocabulary = await repository.findById(id);
       if (!vocabulary) throw ApiError.notFound('Không tìm thấy từ vựng.');
 
-      const existing = await srs.findProgress({
+      const { progress, created } = await srs.ensureProgress({
         userId,
         itemId: id,
         itemType: ITEM_TYPE,
-      });
-
-      if (existing) {
-        return {
-          progress: existing,
-          created: false,
-          message: 'Từ vựng đã được đánh dấu là đã học.',
-        };
-      }
-
-      const { box, next_review: nextReview, streak } = initialProgress();
-      const progress = await srs.createProgress({
-        userId,
-        itemId: id,
-        itemType: ITEM_TYPE,
-        box,
-        nextReview,
-        streak,
+        initial: initialProgress(),
       });
 
       return {
         progress,
-        created: true,
-        message: 'Đã đánh dấu từ vựng là đã học.',
+        created,
+        message: created
+          ? 'Đã đánh dấu từ vựng là đã học.'
+          : 'Từ vựng đã được đánh dấu là đã học.',
       };
     },
 

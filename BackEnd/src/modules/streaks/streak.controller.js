@@ -1,3 +1,5 @@
+import { ok } from '../../shared/http/respond.js';
+
 /**
  * HTTP của streak — chỉ còn đường **đọc**.
  *
@@ -6,8 +8,9 @@
  * lọt ra production. XP và ngày học giờ chỉ đi qua `recordActivity`, do chính
  * service nghiệp vụ gọi sau khi đã chấm xong (spec §3.1).
  *
- * Response trả thẳng, không bọc `{ data }`: đây là ba hợp đồng client hiện tại
- * đang đọc, và đổi vỏ response là việc của đợt làm lại phần đọc (plan Task 2.5).
+ * `/my-streak`, `/xp-history` không query và `/leaderboard` trả thẳng, không
+ * bọc `{ data }`: đó là hợp đồng client cũ đang đọc. Hai đường mới —
+ * `xp-history?mode=page` và `/days` — theo response contract chung.
  */
 export const createStreakController = (readService) => ({
   async getMyStreak(req, res) {
@@ -15,7 +18,18 @@ export const createStreakController = (readService) => ({
   },
 
   async getXpHistory(req, res) {
-    res.json(await readService.xpHistory(req.user._id));
+    const { mode, limit, cursor } = req.valid.query;
+    if (mode !== 'page') {
+      res.json(await readService.xpHistory(req.user._id));
+      return;
+    }
+    const page = await readService.xpHistoryPage(req.user._id, { limit, cursor });
+    ok(res, page.data, { next_cursor: page.next_cursor, as_of: page.as_of });
+  },
+
+  async getDays(req, res) {
+    const { data, ...meta } = await readService.days(req.user._id, req.valid.query);
+    ok(res, data, meta);
   },
 
   async getLeaderboard(req, res) {

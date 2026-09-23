@@ -5,6 +5,12 @@ import { createStreakService } from '../src/modules/streaks/streak.service.js';
 import { POLICY_VERSION } from '../src/modules/streaks/streak-policy.js';
 
 const NOW = new Date('2026-09-11T03:00:00.000Z'); // 10:00 giờ Việt Nam.
+
+/** Cổng huy hiệu không cấp gì — test nào cần huy hiệu tự truyền cổng riêng. */
+const NO_ACHIEVEMENTS = Object.freeze({
+  findUnlocked: async () => [],
+  markCompleted: async () => assert.fail('không có huy hiệu nào để ghi'),
+});
 const TODAY = '2026-09-11';
 
 /**
@@ -100,7 +106,7 @@ const activity = (over = {}) => ({
 
 test('recordActivity takes the activity and its transaction context separately', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const result = await service.recordActivity(activity(), { session: 'sess', now: NOW });
 
@@ -114,7 +120,7 @@ test('an activity without an occurrence key is refused, not given an invented on
   // Bịa khoá từ `type:sourceId` là đúng cái làm cho `srs.review` không thể
   // chống trùng: một thẻ được ôn lại nhiều lần, nên ID thẻ không định danh
   // được lượt ôn. Caller là service nghiệp vụ — nó biết khoá thật.
-  const service = createStreakService({ repository: fakeRepository() });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository: fakeRepository() });
   await assert.rejects(
     service.recordActivity(activity({ occurrenceKey: undefined }), { now: NOW }),
     (error) => error.status === 400 && error.code === 'MISSING_OCCURRENCE_KEY',
@@ -123,7 +129,7 @@ test('an activity without an occurrence key is refused, not given an invented on
 
 test('an unknown activity type is a 400 before anything is written', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await assert.rejects(
     service.recordActivity(activity({ type: 'lesson.finish' }), { now: NOW }),
     (error) => error.status === 400,
@@ -136,7 +142,7 @@ test('an unknown activity type is a 400 before anything is written', async () =>
 
 test('replaying the same occurrence key changes nothing at all', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const first = await service.recordActivity(activity(), { now: NOW });
   const before = { ...repository.state };
@@ -155,7 +161,7 @@ test('replaying the same occurrence key changes nothing at all', async () => {
 
 test('a duplicate still reports the streak the user actually has', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
 
   const second = await service.recordActivity(activity(), { now: NOW });
@@ -164,7 +170,7 @@ test('a duplicate still reports the streak the user actually has', async () => {
 
 test('two different activities on one day both earn XP but make one study day', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   await service.recordActivity(activity(), { now: NOW });
   await service.recordActivity(
@@ -187,7 +193,7 @@ test('two different activities on one day both earn XP but make one study day', 
 
 test('the duplicate guard is the event key alone, never a list read from the summary', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
   repository.calls.length = 0;
   await service.recordActivity(activity(), { now: NOW });
@@ -199,7 +205,7 @@ test('the duplicate guard is the event key alone, never a list read from the sum
 
 test('the first write looks up the key, then inserts, without reading a key list', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
 
   // Không đọc lại tóm tắt để tra một mảng khoá: khe hở giữa lúc đọc và lúc
@@ -214,7 +220,7 @@ test('the first write looks up the key, then inserts, without reading a key list
 
 test('the event is written before the summary is touched', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
 
   const order = namesOf(repository);
@@ -224,7 +230,7 @@ test('the event is written before the summary is touched', async () => {
 
 test('the event carries the day, the policy stamp and the graded XP', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(
     activity({
       type: 'exercise.submit',
@@ -246,7 +252,7 @@ test('the event carries the day, the policy stamp and the graded XP', async () =
 
 test('a receipt from the caller is stored on the event for retry reads', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(
     activity({
       type: 'jlpt.submit',
@@ -261,7 +267,7 @@ test('a receipt from the caller is stored on the event for retry reads', async (
 
 test('every repository call carries the session it was handed', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { session: 'sess', now: NOW });
 
   for (const [name, args] of repository.calls) {
@@ -275,7 +281,7 @@ test('losing the revision race retries instead of dropping the event', async () 
   // Event đã nằm trong DB rồi; bỏ cuộc ở đây nghĩa là XP của nó biến mất
   // vĩnh viễn và lần gửi lại sau sẽ bị chặn bởi chính khoá đó.
   const repository = fakeRepository({ failCasTimes: 2 });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const result = await service.recordActivity(activity(), { now: NOW });
 
@@ -287,7 +293,7 @@ test('losing the revision race retries instead of dropping the event', async () 
 
 test('each CAS attempt re-reads the revision instead of reusing a stale one', async () => {
   const repository = fakeRepository({ failCasTimes: 1 });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
 
   const attempts = callsTo(repository, 'casSummary');
@@ -296,7 +302,7 @@ test('each CAS attempt re-reads the revision instead of reusing a stale one', as
 
 test('a summary that never stops moving fails loudly instead of looping forever', async () => {
   const repository = fakeRepository({ failCasTimes: Number.MAX_SAFE_INTEGER });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   await assert.rejects(
     service.recordActivity(activity(), { now: NOW }),
@@ -310,7 +316,7 @@ test('a consecutive day extends the streak and counts one more active day', asyn
   const repository = fakeRepository({
     summary: { current_streak: 5, longest_streak: 9, last_activity_day: '2026-09-10', total_active_days: 5 },
   });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const result = await service.recordActivity(activity(), { now: NOW });
 
@@ -321,7 +327,7 @@ test('a consecutive day extends the streak and counts one more active day', asyn
 
 test('a second activity on the same day does not count the day twice', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
   await service.recordActivity(
     activity({ type: 'srs.review', sourceId: 'c1', occurrenceKey: 'srs:c1:2026-09-11' }),
@@ -332,7 +338,7 @@ test('a second activity on the same day does not count the day twice', async () 
 
 test('the first activity ever starts the tracking window', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
   assert.equal(repository.state.tracking_started_day, TODAY);
 });
@@ -341,14 +347,14 @@ test('an existing tracking start is never moved forward', async () => {
   const repository = fakeRepository({
     summary: { current_streak: 5, last_activity_day: '2026-09-10', tracking_started_day: '2026-01-01' },
   });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
   assert.equal(repository.state.tracking_started_day, '2026-01-01');
 });
 
 test('the day record gets the counters that belong to the activity', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(
     activity({
       type: 'srs.review',
@@ -370,7 +376,7 @@ test('the day record gets the counters that belong to the activity', async () =>
 
 test('a wrong self report is counted as wrong but still earns the review XP', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(
     activity({
       type: 'srs.review',
@@ -390,7 +396,7 @@ test('a wrong self report is counted as wrong but still earns the review XP', as
 
 test('logging in is recorded but is not a study day and earns nothing', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const result = await service.recordActivity(
     activity({ type: 'login', sourceId: 'u1', occurrenceKey: 'login:u1:2026-09-11' }),
@@ -407,7 +413,7 @@ test('logging in is recorded but is not a study day and earns nothing', async ()
 
 test('a non-study activity is still journalled so it cannot be replayed', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(
     activity({ type: 'login', sourceId: 'u1', occurrenceKey: 'login:u1:2026-09-11' }),
     { now: NOW },
@@ -422,7 +428,7 @@ test('crossing a milestone emits exactly one reward event that is not study', as
   const repository = fakeRepository({
     summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-10' },
   });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const result = await service.recordActivity(activity(), { now: NOW });
 
@@ -440,7 +446,7 @@ test('a milestone is never awarded twice, even after the streak breaks and rebui
   const repository = fakeRepository({
     summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-10' },
   });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   await service.recordActivity(activity(), { now: NOW });
 
   // Chuỗi đứt rồi leo lại đúng mốc 7 — khoá thưởng đã tồn tại nên không cấp lại.
@@ -455,10 +461,104 @@ test('a milestone is never awarded twice, even after the streak breaks and rebui
 
 test('no milestone means no reward event', async () => {
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   const result = await service.recordActivity(activity(), { now: NOW });
   assert.deepEqual(result.milestonesReached, []);
   assert.equal(repository.events.length, 1);
+});
+
+// --- huy hiệu do server xác minh -------------------------------------------
+
+/** Cổng huy hiệu giả: luôn báo đạt các huy hiệu cho sẵn, ghi lại mọi lần gọi. */
+const unlockingAchievements = (unlocked) => ({
+  lookups: [],
+  completed: [],
+  async findUnlocked(args) {
+    this.lookups.push(args);
+    return unlocked;
+  },
+  async markCompleted(args) {
+    this.completed.push(args);
+  },
+});
+
+test('an achievement the activity unlocks is awarded once, with its configured XP', async () => {
+  const repository = fakeRepository();
+  const achievements = unlockingAchievements([{ id: 'a1', xpReward: 100, progress: 5 }]);
+  const service = createStreakService({ achievements, repository });
+
+  const result = await service.recordActivity(activity(), { session: 'sess', now: NOW });
+
+  assert.deepEqual(result.achievementsAwarded, [{ id: 'a1', xp: 100 }]);
+  const reward = repository.events.find((event) => event.type === 'achievement.unlock');
+  assert.equal(reward.eventKey, 'achievement:u1:a1');
+  assert.equal(reward.xpDelta, 100);
+  assert.equal(reward.countsAsStudy, false);
+  // 20 XP của bài học + 100 XP huy hiệu, nhưng vẫn chỉ một ngày học.
+  assert.equal(repository.state.total_xp, 120);
+  assert.equal(repository.days.length, 1);
+  assert.deepEqual(achievements.completed, [
+    { userId: 'u1', achievementId: 'a1', progress: 5, earnedAt: NOW, session: 'sess' },
+  ]);
+});
+
+test('achievements are judged on the snapshot before any reward XP', async () => {
+  const repository = fakeRepository({ summary: { total_xp: 480 } });
+  const achievements = unlockingAchievements([{ id: 'xp-500', xpReward: 100, progress: 500 }]);
+  const service = createStreakService({ achievements, repository });
+
+  await service.recordActivity(activity(), { session: 'sess', now: NOW });
+
+  // XP của chính huy hiệu vừa cấp không nằm trong số đo đem đi xét.
+  assert.deepEqual(achievements.lookups, [
+    { userId: 'u1', snapshot: { currentStreak: 1, totalXp: 500 }, session: 'sess' },
+  ]);
+});
+
+test('an achievement already recorded is not awarded again', async () => {
+  const repository = fakeRepository();
+  repository.events.push({ eventKey: 'achievement:u1:a1', type: 'achievement.unlock' });
+  const achievements = unlockingAchievements([{ id: 'a1', xpReward: 100, progress: 5 }]);
+  const service = createStreakService({ achievements, repository });
+
+  const result = await service.recordActivity(activity(), { now: NOW });
+
+  assert.deepEqual(result.achievementsAwarded, []);
+  assert.equal(repository.state.total_xp, 20);
+  assert.deepEqual(achievements.completed, []);
+});
+
+test('earned achievements can be awarded outside a study activity, on the live streak', async () => {
+  const repository = fakeRepository({
+    summary: { current_streak: 13, last_activity_day: '2026-09-10', total_xp: 300 },
+  });
+  const achievements = unlockingAchievements([{ id: 'streak-7', xpReward: 100, progress: 7 }]);
+  const service = createStreakService({ achievements, repository });
+
+  const awarded = await service.awardEarnedAchievements('u1', { session: 'sess', now: NOW });
+
+  assert.deepEqual(awarded, [{ id: 'streak-7', xp: 100 }]);
+  assert.deepEqual(achievements.lookups[0].snapshot, { currentStreak: 13, totalXp: 300 });
+  assert.equal(repository.state.total_xp, 400);
+  // Không phải hoạt động học: không có ngày học nào được ghi.
+  assert.equal(repository.days.length, 0);
+});
+
+test('a lapsed streak counts as zero when awarding outside a study activity', async () => {
+  const repository = fakeRepository({ summary: { current_streak: 13, last_activity_day: '2026-09-01' } });
+  const achievements = unlockingAchievements([]);
+  await createStreakService({ achievements, repository }).awardEarnedAchievements('u1', { now: NOW });
+
+  assert.equal(achievements.lookups[0].snapshot.currentStreak, 0);
+});
+
+test('actions that are not study never trigger an achievement check', async () => {
+  const achievements = unlockingAchievements([{ id: 'a1', xpReward: 100, progress: 5 }]);
+  const service = createStreakService({ achievements, repository: fakeRepository() });
+
+  await service.recordActivity(activity({ type: 'login', occurrenceKey: 'login:1' }), { now: NOW });
+
+  assert.deepEqual(achievements.lookups, []);
 });
 
 // --- đường đọc -------------------------------------------------------------
@@ -467,7 +567,7 @@ test('reading the summary never writes, never spends, never rewards', async () =
   const repository = fakeRepository({
     summary: { current_streak: 5, last_activity_day: '2026-09-05', total_xp: 40 },
   });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const view = await service.readSummary({ userId: 'u1', now: NOW });
 
@@ -479,7 +579,7 @@ test('reading the summary never writes, never spends, never rewards', async () =
 test('a user who has never studied reads as all zeroes, not as an error', async () => {
   const repository = fakeRepository();
   repository.findByUser = async () => null;
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   const view = await service.readSummary({ userId: 'u1', now: NOW });
   assert.equal(view.current_streak, 0);
@@ -498,7 +598,7 @@ test('a freeze that protects a gap is actually spent, not reused forever', async
       freezes_available: 2,
     },
   });
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
 
   await service.recordActivity(activity(), { now: NOW });
 
@@ -513,7 +613,7 @@ test('an activity already in the journal is answered from a read, without touchi
   // đụng unique index sẽ huỷ cả transaction, kéo theo phần nghiệp vụ mà
   // caller vừa ghi trong cùng session đó.
   const repository = fakeRepository();
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   const activity = {
     userId: 'u1',
     type: 'lesson.progress',
@@ -539,7 +639,7 @@ test('losing the race to insert is raised so the whole transaction runs again', 
   const repository = fakeRepository();
   // Khoá chưa có lúc tra, nhưng người khác chèn xong ngay trước lệnh ghi.
   repository.findEventByKey = async () => null;
-  const service = createStreakService({ repository });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
   const activity = { userId: 'u1', type: 'srs.review', sourceId: 'c1', occurrenceKey: 'k1' };
 
   await service.recordActivity(activity, { session: 'sess', now: NOW });

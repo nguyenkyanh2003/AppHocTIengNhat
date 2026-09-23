@@ -20,7 +20,7 @@ const routeMounts = new Map([
   ['../src/modules/progress/progress.routes.js', '/api/progress'],
   ['../src/modules/reports/report.routes.js', '/api/report'],
   ['../src/modules/settings/settings.routes.js', '/api/settings'],
-  ['../src/modules/srs/srs-progress.routes.js', '/api/srs'],
+  ['../src/modules/srs/srs.routes.js', '/api/srs'],
   ['../src/modules/streaks/streak.routes.js', '/api/streak'],
   ['../src/modules/transactions/transaction.routes.js', '/api/transactions'],
   ['../src/modules/users/user.routes.js', '/api/users'],
@@ -28,7 +28,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 260;
+const expectedCount = 255;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -37,7 +37,11 @@ const expectedCount = 260;
 //   `POST /api/achievement/update-progress` (client tự khai tiến độ rồi nhận XP thưởng).
 // 2026-09-21: +2 route `GET /api/vocabulary/sets` và `GET /api/vocabulary/sets/:setId`
 //   (bộ học ~20 từ theo chủ đề ở N5–N4, theo từ loại + độ khó ở N3–N1).
-const expectedSignatureHash = 'b4f1cdc6581c1f807560731d2816c48043cb3fd5343a7ce64eef10150a2533a3';
+// 2026-09-23: SRS 12 → 6 route theo spec SRS §3.3: `GET /due`, `GET /due/count`,
+//   `GET /stats`, `POST /review`, `POST /items/:itemId/reset`, `DELETE /items/:itemId`;
+//   bỏ `/answer/:id`, `/my-cards`, `DELETE /:id`, `PUT /reset/:id` và bốn route `/admin/*`.
+//   +1 route `GET /api/streak/days` (lịch học theo khoảng ngày, spec streak §4.3).
+const expectedSignatureHash = 'ca44f482361123e45f562c4fd20021b8d43ac99967ec35ea5eb58ad088e0f23e';
 
 const collectSignatures = async () => {
   const signatures = [];

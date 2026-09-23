@@ -57,7 +57,8 @@ void main() {
           path.endsWith('/stats') ? {'total_cards': 42, 'due_count': 42, 'by_box': {'1': 3}} :
           path.endsWith('/due') ? [{...progressJson, 'item': {'_id': 'v1', 'word': '学生'}}] :
           request.method == 'DELETE' ? {'deleted': false} : progressJson;
-      return http.Response(jsonEncode({'data': data, 'limit': 20}), 200);
+      return http.Response(jsonEncode({'data': data, 'limit': 20}), 200,
+          headers: {'content-type': 'application/json; charset=utf-8'});
     }));
     expect(requests.map((r) => '${r.method} ${r.url.path}'), [
       'GET /api/srs/due', 'GET /api/srs/due/count', 'GET /api/srs/stats',

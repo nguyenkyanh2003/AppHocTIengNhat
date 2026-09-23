@@ -277,6 +277,12 @@ export const createStreakRepository = ({
     return dayModel.find(filter).sort({ day_key: -1 }).limit(pageSize(limit)).lean();
   },
 
+  /** Ngày sớm nhất có trong lịch của user — mốc dừng khi export đọc ngược từng năm. */
+  async findFirstDayKey({ userId }) {
+    const first = await dayModel.findOne({ user: userId }).sort({ day_key: 1 }).select('day_key').lean();
+    return first?.day_key ?? null;
+  },
+
   /**
    * Tổng XP trong một khoảng ngày — nguồn cho leaderboard theo kỳ.
    *

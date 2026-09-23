@@ -125,6 +125,10 @@ class _HubTile extends StatelessWidget {
                   ],
                 ),
               ),
+              if (entry.trailing case final trailing?) ...[
+                AppGap.sm,
+                trailing(context),
+              ],
             ],
           ),
         ),

@@ -19,7 +19,13 @@ export const createStreakRoutes = ({
   const router = express.Router();
 
   router.get('/my-streak', authenticate, asyncHandler(controller.getMyStreak));
-  router.get('/xp-history', authenticate, asyncHandler(controller.getXpHistory));
+  router.get(
+    '/xp-history',
+    authenticate,
+    validate({ query: schema.xpHistoryQuery }),
+    asyncHandler(controller.getXpHistory),
+  );
+  router.get('/days', authenticate, validate({ query: schema.daysQuery }), asyncHandler(controller.getDays));
   router.get(
     '/leaderboard',
     authenticate,

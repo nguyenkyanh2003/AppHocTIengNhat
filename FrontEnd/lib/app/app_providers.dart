@@ -19,6 +19,7 @@ import '../features/notebook/providers/notebook_provider.dart';
 import '../features/progress/providers/progress_provider.dart';
 import '../features/reports/providers/report_provider.dart';
 import '../features/search/providers/search_provider.dart';
+import '../features/srs/providers/srs_provider.dart';
 import '../features/streaks/providers/streak_provider.dart';
 import '../features/study_groups/providers/study_group_provider.dart';
 import '../features/profile/providers/user_provider.dart';
@@ -36,6 +37,7 @@ List<SingleChildWidget> createAppProviders() => [
       ChangeNotifierProvider(create: (_) => KanjiProvider()),
       ChangeNotifierProvider(create: (_) => ExerciseProvider()),
       ChangeNotifierProvider(create: (_) => StreakProvider()),
+      ChangeNotifierProvider(create: (_) => SrsProvider()),
       ChangeNotifierProvider(create: (_) => AchievementProvider()),
       ChangeNotifierProvider(create: (_) => ProgressProvider()),
       ChangeNotifierProvider(create: (_) => StudyGroupProvider()),

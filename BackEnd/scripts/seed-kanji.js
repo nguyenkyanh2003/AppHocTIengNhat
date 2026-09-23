@@ -1,11 +1,20 @@
+/**
+ * Nạp 20 Kanji mẫu có âm Hán-Việt — upsert theo `character` (unique index),
+ * không xoá gì. Xem `content-upsert.js` về lý do và cách xử lý xung đột.
+ *
+ * Không gán `lessonId`: bản cũ gán bài theo vòng `index % số bài`, tức gắn chữ
+ * vào một bài ngẫu nhiên không liên quan. Liên kết bài học đi qua trang quản
+ * trị hoặc `sync-lesson-relations.js`, và upsert không đụng liên kết đã có.
+ *
+ *   node scripts/seed-kanji.js --dry-run
+ *   node scripts/seed-kanji.js [--overwrite]
+ */
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Kanji from '../model/Kanji.js';
-import Lesson from '../model/Lesson.js';
+import { applyPlan, parseFlags, planUpserts, printPlan } from './content-upsert.js';
 
-dotenv.config();
-
-const MONGODB_URI = process.env.MONGODB_URI;
+dotenv.config({ quiet: true });
 
 // Dữ liệu mẫu 20 Kanji cơ bản
 const kanjiData = [
@@ -274,56 +283,22 @@ const kanjiData = [
   },
 ];
 
-async function seedKanji() {
+const run = async () => {
+  const flags = parseFlags();
+  await mongoose.connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME || 'AppHocTiengNhat' });
+  console.log(`✅ Đã kết nối MongoDB${flags.dryRun ? ' (--dry-run, không ghi)' : ''}`);
+
   try {
-    if (!MONGODB_URI) {
-      throw new Error('MONGODB_URI không được định nghĩa trong file .env');
-    }
-
-    await mongoose.connect(MONGODB_URI, { dbName: process.env.DB_NAME || 'AppHocTiengNhat' });
-    console.log('✅ Đã kết nối MongoDB');
-
-    // Xóa dữ liệu cũ
-    await Kanji.deleteMany({});
-    console.log('🗑️  Đã xóa dữ liệu Kanji cũ');
-
-    // Lấy bài học mẫu
-    const lessons = await Lesson.find().limit(10);
-    if (lessons.length === 0) {
-      console.log('❌ Không có bài học nào. Vui lòng tạo bài học trước!');
-      process.exit(1);
-    }
-    console.log(`📚 Tìm thấy ${lessons.length} bài học`);
-
-    // Thêm lessonId vào kanji data
-    const kanjiToInsert = kanjiData.map((kanji, index) => ({
-      ...kanji,
-      lessonId: lessons[index % lessons.length]._id,
-    }));
-
-    // Chèn dữ liệu
-    const result = await Kanji.insertMany(kanjiToInsert);
-    console.log(`✅ Đã tạo ${result.length} Kanji mẫu`);
-
-    // Hiển thị thống kê
-    const stats = {
-      N5: result.filter(k => k.level === 'N5').length,
-      N4: result.filter(k => k.level === 'N4').length,
-      N3: result.filter(k => k.level === 'N3').length,
-      N2: result.filter(k => k.level === 'N2').length,
-    };
-    console.log('\n📊 Thống kê:');
-    console.log(`   N5: ${stats.N5} kanji`);
-    console.log(`   N4: ${stats.N4} kanji`);
-    console.log(`   N3: ${stats.N3} kanji`);
-    console.log(`   N2: ${stats.N2} kanji`);
-    
-    console.log('\n🎉 Seed Kanji thành công!');
-    process.exit(0);
-  } catch (error) {
-    console.error('❌ Lỗi khi seed Kanji:', error);
-    process.exit(1);
+    const existing = await Kanji.find({ character: { $in: kanjiData.map((kanji) => kanji.character) } }).lean();
+    const plan = planUpserts({ rows: kanjiData, existing, keyOf: (kanji) => kanji.character });
+    if (!flags.dryRun) await applyPlan({ model: Kanji, plan, overwrite: flags.overwrite });
+    printPlan('Kanji', plan, flags);
+  } finally {
+    await mongoose.connection.close();
   }
-}
+};
 
-seedKanji();
+run().catch((error) => {
+  console.error('❌ Lỗi:', error.message);
+  process.exit(1);
+});

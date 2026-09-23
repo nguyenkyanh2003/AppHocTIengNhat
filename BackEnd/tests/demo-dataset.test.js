@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  buildBulkProgress,
   DEMO_DUE_COUNT,
+  DEMO_PEERS,
   DEMO_SRS_PROGRESS,
   DEMO_USERS,
   DEMO_VOCABULARIES,
@@ -108,4 +110,26 @@ test('có cả thẻ đến hạn lẫn thẻ chưa tới hạn', () => {
 test('DEMO_DUE_COUNT khớp với số thẻ đến hạn thật', () => {
   const due = DEMO_SRS_PROGRESS.filter((row) => row.dueInDays <= 0).length;
   assert.equal(DEMO_DUE_COUNT, due);
+});
+
+test('bộ thẻ lớn có đủ số thẻ, tất cả đến hạn và trải đủ năm hộp', () => {
+  const rows = buildBulkProgress(40);
+
+  assert.equal(rows.length, 40);
+  assert.ok(rows.every((row) => row.dueInDays <= 0));
+  assert.deepEqual([...new Set(rows.map((row) => row.box))].sort(), [1, 2, 3, 4, 5]);
+  // Không ngẫu nhiên: chạy lại cho đúng cùng một bộ.
+  assert.deepEqual(buildBulkProgress(40), rows);
+});
+
+test('bạn học là tài khoản thường, không trùng tên hay email với tài khoản demo', () => {
+  const all = [...DEMO_USERS, ...DEMO_PEERS];
+  assert.equal(new Set(all.map((user) => user.username)).size, all.length);
+  assert.equal(new Set(all.map((user) => user.email)).size, all.length);
+  for (const peer of DEMO_PEERS) {
+    assert.equal(peer.role, 'user');
+    assert.ok(peer.email.endsWith('@example.test'), 'email demo không được là địa chỉ thật');
+    assert.ok(LEVELS.includes(peer.level));
+    assert.ok(peer.cards > 0 && peer.history.days > 0);
+  }
 });

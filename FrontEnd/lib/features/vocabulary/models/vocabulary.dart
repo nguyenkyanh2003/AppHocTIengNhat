@@ -1,3 +1,5 @@
+import '../../srs/models/srs_progress.dart';
+
 class Vocabulary {
   final String id;
   final String word; // Kanji: 学生
@@ -23,6 +25,10 @@ class Vocabulary {
   /// Chỉ có ở API chi tiết: từ có chung chữ Hán hoặc cùng chủ đề.
   final List<Vocabulary> relatedWords;
 
+  /// Chỉ có ở API chi tiết: lịch ôn của người dùng, `null` khi chưa học.
+  /// Là nguồn `expected_next_review` khi đặt lại lịch ngay tại màn chi tiết.
+  final SrsProgress? srsProgress;
+
   Vocabulary({
     required this.id,
     required this.word,
@@ -43,6 +49,7 @@ class Vocabulary {
     this.reviewBox,
     this.kanjiBreakdown = const [],
     this.relatedWords = const [],
+    this.srsProgress,
   });
 
   factory Vocabulary.fromJson(Map<String, dynamic> json) {
@@ -81,6 +88,9 @@ class Vocabulary {
               ?.map((e) => Vocabulary.fromJson(Map<String, dynamic>.from(e)))
               .toList() ??
           const [],
+      srsProgress: json['srs_progress'] is Map
+          ? SrsProgress.fromJson(Map<String, dynamic>.from(json['srs_progress']))
+          : null,
     );
   }
 
@@ -142,6 +152,7 @@ class Vocabulary {
       reviewBox: reviewBox ?? this.reviewBox,
       kanjiBreakdown: kanjiBreakdown,
       relatedWords: relatedWords,
+      srsProgress: srsProgress,
     );
   }
 }

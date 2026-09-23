@@ -100,10 +100,15 @@ class XPHistory {
   final String reason;
   final DateTime earnedAt;
 
+  /// `activity` (ghi qua đường mới) hoặc `legacy` (chép từ dữ liệu cũ, chưa
+  /// xác minh). Chỉ có ở chế độ phân trang; đường mảng cũ không gửi trường này.
+  final String? source;
+
   XPHistory({
     required this.amount,
     required this.reason,
     required this.earnedAt,
+    this.source,
   });
 
   factory XPHistory.fromJson(Map<String, dynamic> json) {
@@ -111,6 +116,7 @@ class XPHistory {
       amount: json['amount'] ?? 0,
       reason: json['reason'] ?? '',
       earnedAt: DateTime.parse(json['earned_at']),
+      source: json['source'] as String?,
     );
   }
 
@@ -119,6 +125,68 @@ class XPHistory {
       'amount': amount,
       'reason': reason,
       'earned_at': earnedAt.toIso8601String(),
+      if (source != null) 'source': source,
     };
   }
+}
+
+/// Một trang lịch sử XP: `GET /streak/xp-history?mode=page`.
+class XpHistoryPage {
+  const XpHistoryPage({required this.items, required this.nextCursor});
+
+  final List<XPHistory> items;
+
+  /// `null` khi đây là trang cuối.
+  final String? nextCursor;
+}
+
+/// Một ngày trong lịch học (`GET /streak/days`).
+///
+/// [status] là `studied`, `frozen` hoặc `legacy` — ngày cũ chưa chứng minh
+/// được là có học, không được hiển thị như ngày học đã xác minh.
+class StreakDay {
+  const StreakDay({
+    required this.dayKey,
+    required this.status,
+    required this.origin,
+    required this.directXp,
+    required this.reviewCount,
+  });
+
+  factory StreakDay.fromJson(Map<String, dynamic> json) => StreakDay(
+        dayKey: json['day_key'] as String,
+        status: json['status'] as String? ?? 'studied',
+        origin: json['origin'] as String? ?? 'activity',
+        directXp: json['direct_xp'] as int? ?? 0,
+        reviewCount: json['review_count'] as int? ?? 0,
+      );
+
+  final String dayKey;
+  final String status;
+  final String origin;
+  final int directXp;
+  final int reviewCount;
+
+  Map<String, dynamic> toJson() => {
+        'day_key': dayKey,
+        'status': status,
+        'origin': origin,
+        'direct_xp': directXp,
+        'review_count': reviewCount,
+      };
+}
+
+/// Một trang lịch học, kèm khoảng ngày server đã dùng.
+class StreakDaysPage {
+  const StreakDaysPage({
+    required this.days,
+    required this.nextCursor,
+    required this.from,
+    required this.to,
+  });
+
+  final List<StreakDay> days;
+  final String? nextCursor;
+  final String from;
+  final String to;
 }

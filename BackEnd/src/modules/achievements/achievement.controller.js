@@ -1,219 +1,46 @@
-import Achievement from '../../../model/Achievement.js';
-import UserAchievement from '../../../model/UserAchievement.js';
+import { created, ok } from '../../shared/http/respond.js';
 
+/**
+ * HTTP của huy hiệu. Các đường người học giữ nguyên vỏ response cũ (mảng
+ * trần, `{ earned, locked, ... }`) vì client hiện tại đọc thẳng các khoá đó.
+ *
+ * `POST /update-progress` không còn: tiến độ do server tự đếm, và huy hiệu
+ * được cấp trong cổng ghi hoạt động học, không nhận lời khai từ client.
+ */
+export const createAchievementController = (service) => ({
+  async getAll(_req, res) {
+    res.json(await service.listActive());
+  },
 
-// Lấy tất cả thành tích
-export const getAll = async (req, res) => {
-  try {
-    const achievements = await Achievement.find({ is_active: true })
-      .sort({ category: 1, requirement_value: 1 });
-    
-    res.json(achievements);
-  } catch (error) {
-    console.error('Lỗi khi lấy danh sách achievement:', error);
-    res.status(500).json({ message: 'Lỗi khi lấy danh sách achievement' });
-  }
-};
+  async getMyAchievements(req, res) {
+    res.json(await service.myAchievements(req.user._id));
+  },
 
-// Lấy các thành tích của người dùng với tiến độ
-export const getMyAchievements = async (req, res) => {
-  try {
-    const userAchievements = await UserAchievement.find({ user: req.user._id })
-      .populate('achievement')
-      .sort({ is_completed: -1, earned_at: -1 });
-    
-    // Lấy tất cả thành tích để hiển thị các thành tích chưa mở khóa
-    const allAchievements = await Achievement.find({ is_active: true });
-    const earnedIds = userAchievements.map(ua => ua.achievement._id.toString());
-    
-    const lockedAchievements = allAchievements
-      .filter(a => !earnedIds.includes(a._id.toString()))
-      .map(a => ({
-        achievement: a,
-        progress: 0,
-        is_completed: false,
-        is_locked: true
-      }));
-    
-    res.json({
-      earned: userAchievements,
-      locked: lockedAchievements,
-      total: allAchievements.length,
-      completed: userAchievements.filter(ua => ua.is_completed).length
-    });
-  } catch (error) {
-    console.error('Lỗi khi lấy achievement của người dùng:', error);
-    res.status(500).json({ message: 'Lỗi khi lấy achievement của người dùng' });
-  }
-};
+  async getByCategory(req, res) {
+    res.json(await service.byCategory(req.user._id, req.valid.params.category));
+  },
 
-// Lấy thành tích theo danh mục
-export const getCategoryByCategory = async (req, res) => {
-  try {
-    const { category } = req.params;
-    
-    const achievements = await Achievement.find({ 
-      category: category,
-      is_active: true 
-    }).sort({ requirement_value: 1 });
-    
-    const userAchievements = await UserAchievement.find({
-      user: req.user._id,
-      achievement: { $in: achievements.map(a => a._id) }
-    }).populate('achievement');
-    
-    res.json({
-      achievements,
-      user_progress: userAchievements
-    });
-  } catch (error) {
-    console.error('Lỗi khi lấy achievement theo danh mục:', error);
-    res.status(500).json({ message: 'Lỗi khi lấy achievement theo danh mục' });
-  }
-};
+  async getStats(req, res) {
+    res.json(await service.stats(req.user._id));
+  },
 
-// `POST /achievement/update-progress` đã bị gỡ (spec §3.6).
-//
-// Nó nhận `progress` do client gửi rồi tự đánh dấu hoàn thành và cộng XP
-// thưởng — tức là client tự cấp thưởng cho chính mình. Huy hiệu nào chưa có
-// tiêu chí server tự xác minh thì chưa tự cấp, chứ không nhận lời khai.
+  async getAdminAll(_req, res) {
+    ok(res, await service.listAll());
+  },
 
-// Admin: Tạo thành tích mới
-export const postCreate = async (req, res) => {
-  try {
-    const { name, name_vi, description, description_vi, icon, category, requirement_type, requirement_value, xp_reward, rarity } = req.body;
-    
-    // Validate required fields
-    if (!name || !name_vi || !description || !description_vi || !icon || !category || !requirement_type || !requirement_value) {
-      return res.status(400).json({ 
-        message: 'Vui lòng nhập đầy đủ thông tin achievement' 
-      });
-    }
+  async postCreate(req, res) {
+    created(res, await service.create(req.valid.body), { message: 'Tạo thành tích thành công' });
+  },
 
-    const achievement = new Achievement({
-      name,
-      name_vi,
-      description,
-      description_vi,
-      icon,
-      category,
-      requirement_type,
-      requirement_value,
-      xp_reward: xp_reward || 100,
-      rarity: rarity || 'common',
-      is_active: true
-    });
+  async putAdminById(req, res) {
+    const achievement = await service.update(req.valid.params.id, req.valid.body);
+    ok(res, achievement, { message: 'Cập nhật thành công' });
+  },
 
-    await achievement.save();
-    
-    res.status(201).json({
-      message: 'Tạo thành tích thành công',
-      data: achievement
-    });
-  } catch (error) {
-    console.error('Lỗi khi tạo achievement:', error);
-    res.status(500).json({ message: 'Lỗi khi tạo achievement', error: error.message });
-  }
-};
+  async deleteAdminById(req, res) {
+    await service.remove(req.valid.params.id);
+    res.json({ message: 'Xóa achievement thành công' });
+  },
+});
 
-export const getAdminAll = async (_req, res) => {
-  try {
-    const achievements = await Achievement.find().sort({
-      category: 1,
-      requirement_value: 1,
-    });
-    return res.json({ data: achievements });
-  } catch (error) {
-    console.error('Lỗi khi lấy achievement cho admin:', error);
-    return res.status(500).json({ message: 'Không thể lấy danh sách thành tích' });
-  }
-};
-
-export const putAdminById = async (req, res) => {
-  try {
-    const allowedFields = [
-      'name',
-      'name_vi',
-      'description',
-      'description_vi',
-      'icon',
-      'category',
-      'requirement_type',
-      'requirement_value',
-      'xp_reward',
-      'rarity',
-      'is_active',
-    ];
-    const updates = Object.fromEntries(
-      Object.entries(req.body).filter(([key]) => allowedFields.includes(key)),
-    );
-    const achievement = await Achievement.findByIdAndUpdate(
-      req.params.id,
-      updates,
-      { new: true, runValidators: true },
-    );
-    if (!achievement) {
-      return res.status(404).json({ message: 'Achievement không tồn tại' });
-    }
-    return res.json({ message: 'Cập nhật thành công', data: achievement });
-  } catch (error) {
-    console.error('Lỗi khi cập nhật achievement:', error);
-    return res.status(400).json({ message: 'Dữ liệu achievement không hợp lệ' });
-  }
-};
-
-export const deleteAdminById = async (req, res) => {
-  try {
-    const achievement = await Achievement.findByIdAndDelete(req.params.id);
-    if (!achievement) {
-      return res.status(404).json({ message: 'Achievement không tồn tại' });
-    }
-    await UserAchievement.deleteMany({ achievement: achievement._id });
-    return res.json({ message: 'Xóa achievement thành công' });
-  } catch (error) {
-    console.error('Lỗi khi xóa achievement:', error);
-    return res.status(500).json({ message: 'Không thể xóa achievement' });
-  }
-};
-
-// Lấy thống kê thành tích
-export const getStats = async (req, res) => {
-  try {
-    const totalAchievements = await Achievement.countDocuments({ is_active: true });
-    const earnedAchievements = await UserAchievement.countDocuments({
-      user: req.user._id,
-      is_completed: true
-    });
-    
-    const achievementsByCategory = await Achievement.aggregate([
-      { $match: { is_active: true } },
-      { $group: { _id: '$category', count: { $sum: 1 } } }
-    ]);
-    
-    const earnedByCategory = await UserAchievement.aggregate([
-      { $match: { user: req.user._id, is_completed: true } },
-      { 
-        $lookup: {
-          from: 'achievements',
-          localField: 'achievement',
-          foreignField: '_id',
-          as: 'achievement_data'
-        }
-      },
-      { $unwind: '$achievement_data' },
-      { $group: { _id: '$achievement_data.category', count: { $sum: 1 } } }
-    ]);
-    
-    res.json({
-      total_achievements: totalAchievements,
-      earned_achievements: earnedAchievements,
-      completion_rate: totalAchievements > 0 ? (earnedAchievements / totalAchievements * 100).toFixed(1) : 0,
-      by_category: achievementsByCategory,
-      earned_by_category: earnedByCategory
-    });
-  } catch (error) {
-    console.error('Lỗi khi lấy thống kê achievement:', error);
-    res.status(500).json({ message: 'Lỗi khi lấy thống kê achievement' });
-  }
-};
-
+export default createAchievementController;

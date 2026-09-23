@@ -129,22 +129,48 @@ hai dấu ngoặc nhọn. Không thêm tên database vào path của URI — cod
 
 ### 3. Nạp dữ liệu mẫu
 
-Chạy theo đúng thứ tự — bài học phải có trước vì từ vựng và Kanji gắn vào bài:
+Chạy theo đúng thứ tự — bài học phải có trước vì từ vựng, Kanji và bài tập gắn vào bài:
 
 ```powershell
 node scripts/seed-situational-lessons.js   # 20 bài theo tình huống + nội dung đi kèm
-node scripts/seed-vocabulary.js            # bổ sung kho từ vựng
+node scripts/seed-exercises.js             # 60 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 20 bài
 node scripts/seed-kanji.js
 node scripts/seed-grammar.js
 node scripts/sync-lesson-relations.js
 node scripts/seed-jlpt.js                  # đề luyện JLPT
 node scripts/seedAchievements.js           # danh mục huy hiệu
-node scripts/seed-demo.js                  # tài khoản demo + tiến độ mẫu
+node scripts/seed-demo.js --bulk=30        # tài khoản demo, lịch sử học 20 ngày, 4 bạn học, huy hiệu
 node scripts/seed-study-groups.js          # tuỳ chọn, cần có user trước
 ```
 
-Các seeder đều idempotent: chạy lại cho cùng kết quả, không nhân bản dữ liệu. MongoDB tạo
-database lười nên database chỉ xuất hiện sau khi seeder đầu tiên ghi document.
+Các seeder trên upsert theo khoá tự nhiên (tiêu đề bài, mặt chữ Kanji, tên huy hiệu...) nên
+chạy lại không nhân bản dữ liệu và không đổi `_id` — tiến độ học, lịch ôn và lịch sử thi vẫn
+trỏ đúng. Bản ghi đã có mà khác nội dung được báo là xung đột và giữ nguyên, trừ khi chạy lại
+với `--overwrite`; thêm `--dry-run` để xem trước mà không ghi. Kho từ vựng lớn nhập bằng
+`node scripts/import-vocabulary.js --file <csv|xlsx>`, cũng upsert theo `(word, hiragana)`.
+
+MongoDB tạo database lười nên database chỉ xuất hiện sau khi seeder đầu tiên ghi document.
+
+### Chuyển dữ liệu streak cũ
+
+Database có dữ liệu từ trước đợt đổi đường ghi XP (2026-09-20) cần chép lịch sử cũ sang nhật
+ký mới một lần. Thứ tự bắt buộc — migration từ chối ghi nếu chưa có bản sao lưu đã khôi phục thử:
+
+```powershell
+node scripts/audit-user-streak.js                    # chỉ đọc: số liệu và múi giờ gợi ý
+node scripts/backup-collections.js                   # ra backups/<thời điểm>/
+node scripts/restore-collections.js --dir backups/<thời điểm> --target-db AppHocTiengNhat_restore_check
+node scripts/migrate-streak-legacy.js --legacy-tz Asia/Ho_Chi_Minh              # chạy thử
+node scripts/migrate-streak-legacy.js --legacy-tz Asia/Ho_Chi_Minh --apply --backup backups/<thời điểm>   --drop-legacy-arrays --remove-orphans
+```
+
+Chỉ truyền `--legacy-tz` khi audit xác định được múi giờ; không có cờ này migration bỏ qua
+phần ngày cũ thay vì đoán. Chạy lại an toàn, không bao giờ sửa `total_xp`. Database
+`AppHocTiengNhat` đã được chuyển ngày 2026-09-23.
+
+`node scripts/smoke-learning-loop.js` chạy thử vòng ôn SRS → XP → chuỗi ngày trên một database
+riêng `<DB_NAME>_smoke` cùng cluster: transaction, hai lượt ôn đồng thời, rollback. Database đó
+tự xoá sau khi chạy.
 
 ### 4. Chạy backend
 
@@ -173,8 +199,10 @@ flutter build web --dart-define=API_BASE_URL=https://api.example.com/api
 
 ## Tài khoản demo
 
-`node scripts/seed-demo.js` tạo sẵn hai tài khoản kèm dữ liệu học mẫu — từ vựng, thẻ SRS đến
-hạn và chuỗi ngày học:
+`node scripts/seed-demo.js` tạo sẵn hai tài khoản kèm dữ liệu học mẫu: thẻ SRS đến hạn, lịch sử
+học 20 ngày (chuỗi 13 ngày tới hôm qua — học một thẻ là lên 14 và mở huy hiệu), bài tập đã làm,
+huy hiệu đã đạt, và bốn bạn học `demo_minhanh`, `demo_thulan`, `demo_quanghuy`, `demo_ducminh`
+(mật khẩu `Demo123456`) để bảng xếp hạng có người:
 
 | Vai trò | Tài khoản | Mật khẩu |
 | --- | --- | --- |
@@ -229,7 +257,7 @@ cd FrontEnd; flutter test
 ```
 
 Test backend dùng repository và service giả truyền qua tham số, nên không test nào đụng
-MongoDB hay gọi API bên ngoài. Bộ test bao gồm smoke test Express, contract 260 route khoá
+MongoDB hay gọi API bên ngoài. Bộ test bao gồm smoke test Express, contract 255 route khoá
 bằng sha256, contract model, chấm điểm JLPT và bài tập, lịch ôn SRS, luật streak và import
 từ vựng.
 

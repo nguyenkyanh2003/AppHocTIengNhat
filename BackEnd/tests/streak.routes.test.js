@@ -53,6 +53,62 @@ test('GET /xp-history trả mảng đầy đủ cho export', async () => {
   assert.equal(response.body[0].amount, 20);
 });
 
+test('GET /xp-history?mode=page trả trang theo response contract chung', async () => {
+  let received = null;
+  const app = buildApp({
+    xpHistoryPage: async (userId, args) => {
+      received = { userId, ...args };
+      return { data: [{ amount: 2 }], next_cursor: 'abc', as_of: '2026-09-19T03:00:00.000Z' };
+    },
+  });
+
+  const response = await request(app).get('/api/streak/xp-history?mode=page&limit=50&cursor=abc');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, {
+    data: [{ amount: 2 }],
+    next_cursor: 'abc',
+    as_of: '2026-09-19T03:00:00.000Z',
+  });
+  assert.deepEqual(received, { userId: 'user-1', limit: 50, cursor: 'abc' });
+});
+
+test('GET /xp-history?mode=page chặn limit ngoài khoảng và mode lạ', async () => {
+  const app = buildApp({ xpHistoryPage: async () => ({ data: [], next_cursor: null, as_of: '' }) });
+
+  assert.equal((await request(app).get('/api/streak/xp-history?mode=page&limit=101')).status, 400);
+  assert.equal((await request(app).get('/api/streak/xp-history?mode=all')).status, 400);
+});
+
+test('GET /days trả lịch kèm cursor và khoảng ngày đã dùng', async () => {
+  let received = null;
+  const app = buildApp({
+    days: async (userId, query) => {
+      received = { userId, ...query };
+      return { data: [{ day_key: '2026-09-19' }], next_cursor: null, from: '2026-09-01', to: '2026-09-19' };
+    },
+  });
+
+  const response = await request(app).get('/api/streak/days?from=2026-09-01&to=2026-09-19');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, {
+    data: [{ day_key: '2026-09-19' }],
+    next_cursor: null,
+    from: '2026-09-01',
+    to: '2026-09-19',
+  });
+  assert.deepEqual(received, { userId: 'user-1', from: '2026-09-01', to: '2026-09-19', limit: 100 });
+});
+
+test('GET /days từ chối ngày sai định dạng hoặc không có trên lịch', async () => {
+  const app = buildApp({ days: async () => ({ data: [], next_cursor: null }) });
+
+  assert.equal((await request(app).get('/api/streak/days?from=2026-9-1')).status, 400);
+  assert.equal((await request(app).get('/api/streak/days?to=2026-02-30')).status, 400);
+  assert.equal((await request(app).get('/api/streak/days?limit=500')).status, 400);
+});
+
 test('GET /leaderboard nhận period và limit đã kiểm', async () => {
   let received = null;
   const app = buildApp({

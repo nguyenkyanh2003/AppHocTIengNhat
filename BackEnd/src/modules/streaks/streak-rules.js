@@ -116,8 +116,18 @@ export const daysBetween = (fromKey, toKey) => {
   return Math.round((to - from) / 86_400_000);
 };
 
+/** Khoá có đúng dạng `YYYY-MM-DD` **và** là một ngày có thật trên lịch không. */
+export const isDayKey = (key) => {
+  try {
+    parseDayKey(key);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 /** Cộng thêm N ngày lịch vào một khoá ngày, trả về khoá ngày mới. */
-const addDays = (key, amount) => {
+export const addDays = (key, amount) => {
   const [, yearStr, monthStr, dayStr] = /^(\d{4})-(\d{2})-(\d{2})$/.exec(key);
   const next = new Date(Date.UTC(Number(yearStr), Number(monthStr) - 1, Number(dayStr) + amount));
   // Đổi lại qua dayKey với múi giờ UTC để chắc chắn cùng định dạng, không lệ

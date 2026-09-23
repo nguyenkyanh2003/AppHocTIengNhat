@@ -56,6 +56,20 @@ const commitWithRetry = async (session, maxRetries) => {
 };
 
 /**
+ * Chờ trước khi chạy lại một transaction thua write conflict: lũy thừa 2 từ
+ * 25 ms, trần 1 giây, có jitter.
+ *
+ * Chạy lại **ngay** là vô ích: bên thắng vẫn đang giữ document trong
+ * transaction của nó, nên lần thử kế tiếp đụng đúng xung đột đó — smoke test
+ * trên Atlas với hai lượt ôn đồng thời cho thấy ba lần thử liền nhau đều thua
+ * và lỗi lọt ra thành 500. Jitter để hai bên thua không cùng dậy một lúc.
+ */
+const defaultBackoff = (attempt) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, Math.min(1000, 25 * 2 ** attempt) * (0.5 + Math.random() / 2));
+  });
+
+/**
  * Tạo một unit of work gắn với một mongoose connection cụ thể.
  *
  * `maxRetries` áp dụng độc lập cho hai vòng lặp: số lần chạy lại toàn bộ
@@ -64,7 +78,7 @@ const commitWithRetry = async (session, maxRetries) => {
  * gặp `UnknownTransactionCommitResult`. Cả hai đều phải có chặn trên — MongoDB không tự đảm bảo write conflict sẽ hết sau
  * hữu hạn lần, để vòng lặp không chặn có thể treo request mãi mãi.
  */
-export const createUnitOfWork = ({ connection, maxRetries = 3 }) => ({
+export const createUnitOfWork = ({ connection, maxRetries = 5, backoff = defaultBackoff }) => ({
   async run(fn) {
     const session = await connection.startSession();
     try {
@@ -79,7 +93,10 @@ export const createUnitOfWork = ({ connection, maxRetries = 3 }) => ({
           // vẫn còn lượt thử. Lỗi nghiệp vụ (không nhãn) luôn abort ngay,
           // không retry, để không lặp lại tác dụng phụ đã xảy ra trước lỗi.
           await abortQuietly(session);
-          if (hasLabel(error, TRANSIENT_LABEL) && attempt < maxRetries) continue;
+          if (hasLabel(error, TRANSIENT_LABEL) && attempt < maxRetries) {
+            await backoff(attempt);
+            continue;
+          }
           throw error;
         }
 
@@ -98,7 +115,10 @@ export const createUnitOfWork = ({ connection, maxRetries = 3 }) => ({
           // hỏng dù lẽ ra chỉ cần thử lại. Bộ test cũ không bắt được vì chỉ
           // phủ nhánh `UnknownTransactionCommitResult`.
           await abortQuietly(session);
-          if (hasLabel(error, TRANSIENT_LABEL) && attempt < maxRetries) continue;
+          if (hasLabel(error, TRANSIENT_LABEL) && attempt < maxRetries) {
+            await backoff(attempt);
+            continue;
+          }
           throw error;
         }
 

@@ -6,7 +6,8 @@
  * cần DB, và `seed-demo.js` là nơi duy nhất chạm vào database.
  *
  * Bộ demo không có bài học hay bài tập riêng: bài học lấy từ bộ chủ đề trong
- * `situational-lessons.js`, và 15 từ vựng dưới đây đều nằm trong hai bài "Tự
+ * `situational-lessons.js`, bài tập mẫu dựng từ chính bộ đó trong
+ * `sample-exercises.js`, và 15 từ vựng dưới đây đều nằm trong hai bài "Tự
  * giới thiệu" và "Sinh hoạt hằng ngày" của bộ đó. Liên kết từ–bài chỉ có một
  * nơi ghi (`seed-situational-lessons.js`) để hai script không giành nhau một
  * mảng `Lesson.vocabularies`.
@@ -195,3 +196,75 @@ export const DEMO_SRS_PROGRESS = [
 export const DEMO_DUE_COUNT = DEMO_SRS_PROGRESS.filter(
   (row) => row.dueInDays <= 0,
 ).length;
+
+/**
+ * Lịch cho bộ thẻ số lượng lớn (`seed-demo.js --bulk=<n>`), để kiểm luồng ôn
+ * qua nhiều đợt: đợt mặc định 20 thẻ, nên cần hơn 20 thẻ đến hạn cùng lúc mới
+ * thấy được "bỏ qua cả đợt đầu vẫn tới thẻ phía sau".
+ *
+ * Mọi thẻ đều đã đến hạn (`dueInDays` từ -3 tới 0) và trải đủ năm hộp. Chia
+ * theo chỉ số chứ không `Math.random`, để chạy lại cho đúng cùng một bộ.
+ * Mỗi thẻ cần một từ khác nhau — unique index `(user, item_id)` không cho hai
+ * thẻ cùng một từ — nên runner lấy từ N5 có sẵn trong DB, không lặp từ demo.
+ */
+export const buildBulkProgress = (count) =>
+  Array.from({ length: count }, (_, index) => ({
+    box: (index % 5) + 1,
+    streak: index % 5,
+    dueInDays: -(index % 4),
+  }));
+
+/**
+ * Lịch sử học 20 ngày của tài khoản học viên demo (`demo-history.js`).
+ *
+ * Nghỉ đúng một ngày cách đây 14 ngày, nên chuỗi hiện tại là 13 ngày tính tới
+ * hôm qua: học một thẻ trong buổi demo là chuỗi lên 14 và mở huy hiệu "Chiến
+ * Binh Hai Tuần" ngay trước mắt người xem. Hôm nay luôn để trống.
+ */
+export const DEMO_LEARNER_HISTORY = Object.freeze({
+  days: 20,
+  missedOffsets: [14],
+  reviewsPerDay: [4, 9],
+  accuracy: 0.8,
+  exerciseEvery: 3,
+});
+
+/**
+ * Bốn bạn học giả cho bảng xếp hạng tuần/tháng — mỗi người một nhịp học khác
+ * nhau như người dùng thật: chăm chỉ, đều đặn, thất thường, mới bắt đầu.
+ * `cards` là số từ N5 được đánh dấu đã học để lượt ôn có thẻ thật đứng sau.
+ */
+export const DEMO_PEERS = [
+  {
+    username: 'demo_minhanh',
+    fullName: 'Nguyễn Minh Anh',
+    email: 'demo.minhanh@example.test',
+    level: 'N4',
+    cards: 40,
+    history: { days: 20, missedOffsets: [], reviewsPerDay: [8, 14], accuracy: 0.88, exerciseEvery: 2 },
+  },
+  {
+    username: 'demo_thulan',
+    fullName: 'Lê Thu Lan',
+    email: 'demo.thulan@example.test',
+    level: 'N5',
+    cards: 30,
+    history: { days: 20, missedOffsets: [6], reviewsPerDay: [5, 10], accuracy: 0.8, exerciseEvery: 3 },
+  },
+  {
+    username: 'demo_quanghuy',
+    fullName: 'Trần Quang Huy',
+    email: 'demo.quanghuy@example.test',
+    level: 'N5',
+    cards: 25,
+    history: { days: 20, missedOffsets: [3, 9, 10, 17], reviewsPerDay: [3, 8], accuracy: 0.7, exerciseEvery: 4 },
+  },
+  {
+    username: 'demo_ducminh',
+    fullName: 'Phạm Đức Minh',
+    email: 'demo.ducminh@example.test',
+    level: 'N5',
+    cards: 12,
+    history: { days: 5, missedOffsets: [], reviewsPerDay: [2, 6], accuracy: 0.65, exerciseEvery: 5 },
+  },
+].map((peer) => Object.freeze({ ...peer, password: 'Demo123456', role: 'user' }));

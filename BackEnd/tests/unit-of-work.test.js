@@ -94,3 +94,24 @@ test('a failing abort does not replace the error that caused it', async () => {
     /business/,
   );
 });
+test('transient retries wait with a growing backoff before replaying', async () => {
+  const connection = fake();
+  const waits = [];
+  let attempts = 0;
+  await createUnitOfWork({ connection, backoff: async (attempt) => waits.push(attempt) }).run(async () => {
+    attempts += 1;
+    if (attempts < 3) throw labeled('TransientTransactionError');
+  });
+  assert.equal(attempts, 3);
+  assert.deepEqual(waits, [1, 2]);
+});
+test('business errors are never delayed by the backoff', async () => {
+  const connection = fake();
+  const waits = [];
+  await assert.rejects(
+    createUnitOfWork({ connection, backoff: async (attempt) => waits.push(attempt) }).run(async () => {
+      throw new Error('business');
+    }),
+  );
+  assert.deepEqual(waits, []);
+});

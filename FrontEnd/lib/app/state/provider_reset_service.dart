@@ -5,6 +5,7 @@ import '../../features/lessons/providers/lesson_progress_provider.dart';
 import '../../features/vocabulary/providers/vocabulary_provider.dart';
 import '../../features/kanji/providers/kanji_provider.dart';
 import '../../features/exercise/providers/exercise_provider.dart';
+import '../../features/srs/providers/srs_provider.dart';
 import '../../features/streaks/providers/streak_provider.dart';
 import '../../features/achievements/providers/achievement_provider.dart';
 import '../../features/progress/providers/progress_provider.dart';
@@ -49,6 +50,12 @@ class ProviderResetService {
       context.read<StreakProvider>().clear();
     } catch (e) {
       debugPrint('Error resetting StreakProvider: $e');
+    }
+
+    try {
+      context.read<SrsProvider>().clear();
+    } catch (e) {
+      debugPrint('Error resetting SrsProvider: $e');
     }
 
     try {

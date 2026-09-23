@@ -31,15 +31,21 @@ const readOnlyRepository = ({
       calls.push(['findByUser', userId]);
       return summary;
     },
-    async listEvents({ userId, cursor, limit, withXpOnly }) {
-      calls.push(['listEvents', { userId, cursor, limit, withXpOnly }]);
-      const start = cursor ? events.findIndex((e) => e._id === cursor.id) + 1 : 0;
-      return events.slice(start, start + limit);
+    async listEvents({ userId, cursor, limit, withXpOnly, asOf }) {
+      calls.push(['listEvents', { userId, cursor, limit, withXpOnly, asOf }]);
+      const visible = asOf ? events.filter((e) => new Date(e.occurred_at) <= asOf) : events;
+      const start = cursor ? visible.findIndex((e) => e._id === cursor.id) + 1 : 0;
+      return visible.slice(start, start + limit);
     },
-    async listDays({ userId, cursor, limit }) {
-      calls.push(['listDays', { userId, cursor, limit }]);
-      const start = cursor ? days.findIndex((d) => d.day_key === cursor) + 1 : 0;
-      return days.slice(start, start + limit);
+    async listDays({ userId, from, to, cursor, limit }) {
+      calls.push(['listDays', { userId, from, to, cursor, limit }]);
+      const inRange = days.filter((d) => (!from || d.day_key >= from) && (!to || d.day_key <= to));
+      const start = cursor ? inRange.findIndex((d) => d.day_key === cursor) + 1 : 0;
+      return inRange.slice(start, start + limit);
+    },
+    async findFirstDayKey({ userId }) {
+      calls.push(['findFirstDayKey', userId]);
+      return days.length > 0 ? days[days.length - 1].day_key : null;
     },
     async hasLegacyImport({ userId }) {
       calls.push(['hasLegacyImport', userId]);
@@ -309,4 +315,146 @@ test('period leaderboard honours the limit but ranks against everyone', async ()
 
   assert.equal(board.leaderboard.length, 2);
   assert.equal(board.user_rank, 3);
+});
+
+// --- xpHistoryPage ------------------------------------------------------------
+
+const oid = (n) => n.toString(16).padStart(24, '0');
+
+const xpEvents = (count) =>
+  Array.from({ length: count }, (_, i) => ({
+    _id: oid(count - i),
+    type: 'srs.review',
+    xp_delta: 2,
+    occurred_at: new Date(NOW.getTime() - (i + 1) * 60_000),
+  }));
+
+test('xp history page returns one page and a cursor, then the rest', async () => {
+  const service = build(readOnlyRepository({ events: xpEvents(5) }));
+
+  const first = await service.xpHistoryPage(USER, { limit: 3 });
+  assert.equal(first.data.length, 3);
+  assert.equal(first.as_of, NOW.toISOString());
+  assert.ok(first.next_cursor);
+  assert.deepEqual(first.data[0], {
+    amount: 2,
+    reason: 'Ôn tập SRS',
+    earned_at: xpEvents(5)[0].occurred_at,
+    source: 'activity',
+  });
+
+  const second = await service.xpHistoryPage(USER, { limit: 3, cursor: first.next_cursor });
+  assert.equal(second.data.length, 2);
+  assert.equal(second.next_cursor, null);
+  // Mọi trang của một lần đọc nhìn cùng một mốc thời gian.
+  assert.equal(second.as_of, first.as_of);
+});
+
+test('xp history page does not hand out a cursor to an empty last page', async () => {
+  const page = await build(readOnlyRepository({ events: xpEvents(3) })).xpHistoryPage(USER, { limit: 3 });
+  assert.equal(page.data.length, 3);
+  assert.equal(page.next_cursor, null);
+});
+
+test('xp history page continues into legacy entries after the journal, marked as legacy', async () => {
+  const repository = readOnlyRepository({
+    events: xpEvents(2),
+    summary: {
+      user: USER,
+      xp_history: [
+        { amount: 10, reason: 'Daily login', earned_at: new Date('2026-09-10T01:00:00Z') },
+        { amount: 5, reason: 'Old lesson', earned_at: new Date('2026-09-12T01:00:00Z') },
+      ],
+    },
+  });
+  const service = build(repository);
+
+  const first = await service.xpHistoryPage(USER, { limit: 3 });
+  assert.deepEqual(first.data.map((row) => row.source), ['activity', 'activity', 'legacy']);
+  assert.equal(first.data[2].reason, 'Old lesson');
+
+  const second = await service.xpHistoryPage(USER, { limit: 3, cursor: first.next_cursor });
+  assert.deepEqual(second.data.map((row) => row.reason), ['Daily login']);
+  assert.equal(second.next_cursor, null);
+});
+
+test('xp history page marks imported legacy events and skips the old array', async () => {
+  const repository = readOnlyRepository({
+    legacyImported: true,
+    events: [{ _id: oid(1), type: 'legacy.xp', reason: 'Daily login', xp_delta: 10, occurred_at: new Date('2026-09-10T01:00:00Z') }],
+    summary: { user: USER, xp_history: [{ amount: 10, reason: 'Daily login', earned_at: new Date('2026-09-10T01:00:00Z') }] },
+  });
+  const page = await build(repository).xpHistoryPage(USER, { limit: 20 });
+
+  assert.deepEqual(page.data, [
+    { amount: 10, reason: 'Daily login', earned_at: new Date('2026-09-10T01:00:00Z'), source: 'legacy' },
+  ]);
+});
+
+test('xp history page rejects a cursor that is malformed or belongs to someone else', async () => {
+  const service = build(readOnlyRepository({ events: xpEvents(5) }));
+  const { next_cursor: cursor } = await service.xpHistoryPage(USER, { limit: 2 });
+
+  await assert.rejects(() => service.xpHistoryPage('someone-else', { limit: 2, cursor }), {
+    code: 'INVALID_CURSOR',
+    status: 400,
+  });
+  await assert.rejects(() => service.xpHistoryPage(USER, { limit: 2, cursor: 'not-a-cursor' }), {
+    code: 'INVALID_CURSOR',
+  });
+});
+
+// --- days -------------------------------------------------------------------
+
+const calendar = [
+  { day_key: '2026-09-19', status: 'studied', direct_xp: 4, review_count: 2, correct_self_reports: 1, wrong_self_reports: 1 },
+  { day_key: '2026-09-18', status: 'frozen' },
+  { day_key: '2026-09-15', status: 'legacy', origin: 'legacy_unverified' },
+  { day_key: '2025-01-01', status: 'studied' },
+];
+
+test('days defaults to the 366 days ending today and fills missing counters', async () => {
+  const repository = readOnlyRepository({ days: calendar });
+  const result = await build(repository).days(USER, { limit: 100 });
+
+  assert.equal(result.to, TODAY);
+  assert.equal(result.from, '2025-09-19');
+  assert.equal(result.next_cursor, null);
+  assert.deepEqual(result.data.map((day) => day.day_key), ['2026-09-19', '2026-09-18', '2026-09-15']);
+  assert.deepEqual(result.data[1], {
+    day_key: '2026-09-18',
+    status: 'frozen',
+    origin: 'activity',
+    direct_xp: 0,
+    review_count: 0,
+    correct_self_reports: 0,
+    wrong_self_reports: 0,
+  });
+});
+
+test('days pages with a day-key cursor', async () => {
+  const service = build(readOnlyRepository({ days: calendar }));
+
+  const first = await service.days(USER, { from: '2026-01-01', to: TODAY, limit: 2 });
+  assert.equal(first.next_cursor, '2026-09-18');
+
+  const second = await service.days(USER, { from: '2026-01-01', to: TODAY, limit: 2, cursor: first.next_cursor });
+  assert.deepEqual(second.data.map((day) => day.day_key), ['2026-09-15']);
+  assert.equal(second.next_cursor, null);
+});
+
+test('days rejects a reversed range or one longer than a leap year', async () => {
+  const service = build(readOnlyRepository());
+
+  await assert.rejects(() => service.days(USER, { from: '2026-09-19', to: '2026-09-18', limit: 10 }), {
+    code: 'INVALID_DAY_RANGE',
+  });
+  await assert.rejects(() => service.days(USER, { from: '2025-09-18', to: '2026-09-19', limit: 10 }), {
+    code: 'INVALID_DAY_RANGE',
+  });
+});
+
+test('summary exposes the earliest calendar day for export', async () => {
+  const view = await build(readOnlyRepository({ summary: { user: USER }, days: calendar })).summary(USER);
+  assert.equal(view.first_day, '2025-01-01');
 });

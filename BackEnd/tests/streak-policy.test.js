@@ -4,6 +4,7 @@ import {
   POLICY_VERSION,
   STREAK_MILESTONES,
   MILESTONE_REWARD_TYPE,
+  ACHIEVEMENT_REWARD_TYPE,
   ACTIVITY_TYPES,
   xpFor,
   countsAsStudy,
@@ -55,17 +56,23 @@ test('an unknown type is a 400, never a silent zero', () => {
   assert.throws(() => countsAsStudy('lesson.finish'), (error) => error.status === 400);
 });
 
-test('a milestone reward takes its XP from server-side achievement config', () => {
+test('an achievement unlock takes its XP from server-side achievement config', () => {
+  assert.equal(countsAsStudy(ACHIEVEMENT_REWARD_TYPE), false);
+  assert.equal(xpFor(ACHIEVEMENT_REWARD_TYPE, { configuredXp: 50 }), 50);
+  // Huy hiệu không cấu hình thưởng: vẫn ghi event để chống cấp lại, 0 XP.
+  assert.equal(xpFor(ACHIEVEMENT_REWARD_TYPE), 0);
+});
+
+test('a streak milestone is a zero-XP marker, the badge carries the reward', () => {
+  // Một mốc chỉ một khoản thưởng: XP của mốc 7 ngày nằm ở huy hiệu streak.
   assert.equal(countsAsStudy(MILESTONE_REWARD_TYPE), false);
-  assert.equal(xpFor(MILESTONE_REWARD_TYPE, { configuredXp: 50 }), 50);
-  // Chưa cấu hình thưởng cho mốc đó: vẫn ghi event để chống cấp lại, 0 XP.
-  assert.equal(xpFor(MILESTONE_REWARD_TYPE), 0);
+  assert.equal(xpFor(MILESTONE_REWARD_TYPE, { configuredXp: 50 }), 0);
 });
 
 test('a malformed achievement config is rejected instead of being written', () => {
   for (const bad of [-1, 1.5, Number.NaN, '50', 10 ** 9]) {
     assert.throws(
-      () => xpFor(MILESTONE_REWARD_TYPE, { configuredXp: bad }),
+      () => xpFor(ACHIEVEMENT_REWARD_TYPE, { configuredXp: bad }),
       (error) => error.status === 400,
       `configuredXp=${String(bad)} phải bị chặn`,
     );

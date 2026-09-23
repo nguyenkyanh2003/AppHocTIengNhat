@@ -14,7 +14,7 @@ dotenv.config();
 /**
  * Nhập từ vựng từ CSV hoặc Excel — **không xoá gì bao giờ**.
  *
- * Thay cho `seed-vocabulary.js`, script này khác ở ba điểm, và cả ba đều là
+ * Thay cho `seed-vocabulary.js` (đã gỡ), script này khác ở ba điểm, và cả ba đều là
  * lý do nó tồn tại:
  *
  * 1. **Không `deleteMany`.** Seed cũ xoá sạch collection rồi ghi lại, nên mọi

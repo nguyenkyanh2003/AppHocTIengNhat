@@ -1,13 +1,23 @@
 /**
- * Script Import đề thi JLPT N3 tháng 7/2024
- * Chạy: node scripts/import-jlpt-n3-2024-07.js
+ * Nhập đề thi JLPT N3 tháng 7/2024 — upsert theo `title`, không xoá gì.
+ *
+ * Bản cũ `deleteOne` rồi tạo lại đề ở mỗi lần chạy, nên `_id` của đề đổi và
+ * lịch sử thi (`LearningHistory.exam`) mất liên kết. Đề đã có mà khác nội dung
+ * chỉ được ghi đè khi chạy `--overwrite`; đáp án chấm theo **vị trí** câu, nên
+ * ghi đè làm đổi thứ tự câu sẽ lệch với bài làm đã lưu.
+ *
+ *   node scripts/import-jlpt-n3-2024-07.js --dry-run
+ *   node scripts/import-jlpt-n3-2024-07.js [--overwrite]
  */
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import JLPT from "../model/JLPT.js";
+import { applyPlan, parseFlags, planUpserts, printPlan } from "./content-upsert.js";
 
-dotenv.config();
+dotenv.config({ quiet: true });
+
+const flags = parseFlags();
 
 const mongoURI = process.env.MONGODB_URI;
 if (!mongoURI) {
@@ -89,13 +99,6 @@ function transformGroupQuestions(groups) {
 async function importExam() {
   try {
     await connectDB();
-    
-    // Xóa đề thi cũ nếu có
-    await JLPT.deleteOne({ 
-      title: "Kỳ thi JLPT N3 tháng 7.2024 (Đề chính thức)",
-      year: 2024,
-      month: 7
-    });
     
     console.log("📋 Đang transform dữ liệu...");
     
@@ -330,13 +333,10 @@ async function importExam() {
     console.log(`   - Choukai: ${rawData.sections.choukai.length} nhóm (28 câu)`);
     console.log(`   - Audio: /uploads/DeThi/jlpt72024.mp3`);
     
-    // Lưu vào database
-    const newExam = new JLPT(rawData);
-    await newExam.save();
-    
-    console.log(`\n✅ Đã import thành công đề thi JLPT N3!`);
-    console.log(`   ID: ${newExam._id}`);
-    console.log(`   Title: ${newExam.title}`);
+    const existing = await JLPT.find({ title: rawData.title }).lean();
+    const plan = planUpserts({ rows: [rawData], existing, keyOf: (exam) => exam.title });
+    if (!flags.dryRun) await applyPlan({ model: JLPT, plan, overwrite: flags.overwrite });
+    printPlan("Đề JLPT N3 7/2024", plan, flags);
     
   } catch (error) {
     console.error("❌ Lỗi:", error.message);

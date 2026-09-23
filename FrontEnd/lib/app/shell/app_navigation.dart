@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../features/srs/widgets/srs_due_badge.dart';
 import '../localization/app_localizations.dart';
 import '../theme/app_tokens.dart';
 
@@ -12,6 +13,7 @@ class AppNavEntry {
     required this.icon,
     required this.color,
     this.subtitle,
+    this.trailing,
   });
 
   final String path;
@@ -19,6 +21,10 @@ class AppNavEntry {
   final String? subtitle;
   final IconData icon;
   final Color color;
+
+  /// Phần hiển thị động bên phải ô (ví dụ badge số thẻ đến hạn). Chỉ là hàm
+  /// dựng widget — số liệu nằm ở provider, không nằm trong metadata này.
+  final WidgetBuilder? trailing;
 }
 
 /// Một đích đến của thanh điều hướng chính.
@@ -131,9 +137,17 @@ abstract final class AppNavigation {
         selectedIcon: Icons.style,
         entries: const [
           AppNavEntry(
+            path: '/srs',
+            label: 'Ôn tập hôm nay',
+            subtitle: 'Từ vựng đến hạn ôn',
+            icon: Icons.event_repeat,
+            color: AppColors.primary,
+            trailing: SrsDueBadge.builder,
+          ),
+          AppNavEntry(
             path: '/flashcards',
             label: 'Bộ thẻ',
-            subtitle: 'Ôn tập lặp ngắt quãng',
+            subtitle: 'Bộ thẻ tự tạo',
             icon: Icons.style,
             color: AppColors.vocabulary,
           ),

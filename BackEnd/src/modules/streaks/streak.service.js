@@ -1,4 +1,5 @@
 import { ApiError } from '../../shared/http/api-error.js';
+import { achievementService } from '../achievements/achievement.service.js';
 import { streakRepository } from './streak.repository.js';
 import { applyActivity, dayKey, projectStreak } from './streak-rules.js';
 import * as defaultPolicy from './streak-policy.js';
@@ -30,6 +31,7 @@ export const createStreakService = ({
   repository = streakRepository,
   rules = { applyActivity, dayKey, projectStreak },
   policy = defaultPolicy,
+  achievements = achievementService,
 } = {}) => {
   /**
    * Chạy CAS tới khi thắng, đọc lại trạng thái sau mỗi lần thua.
@@ -68,44 +70,80 @@ export const createStreakService = ({
   };
 
   /**
-   * Phát thưởng cho những mốc vừa vượt qua, trong cùng transaction.
+   * Đánh dấu những mốc chuỗi ngày vừa vượt qua, trong cùng transaction.
    *
-   * Khoá theo `user + loại thưởng + mốc` nên mỗi mốc chỉ được cấp đúng một
-   * lần trong đời tài khoản — kể cả khi chuỗi đứt rồi leo lại qua đúng mốc đó
-   * (spec §3.3).
+   * Event mốc là 0 XP: nó chỉ để mỗi mốc được báo đúng một lần trong đời tài
+   * khoản — kể cả khi chuỗi đứt rồi leo lại qua đúng mốc đó (spec §3.3). XP
+   * của mốc nằm ở huy hiệu streak tương ứng, xét ở `awardAchievements`.
    *
    * **Không** gọi lại `recordActivity`: event thưởng không phải hoạt động
-   * học, không đánh dấu ngày, và nếu nó tự quay lại cổng ghi thì XP vừa cộng
-   * có thể đẩy chuỗi qua một mốc khác và sinh vòng lặp phát thưởng (§3.4).
+   * học, không đánh dấu ngày, và nếu nó tự quay lại cổng ghi thì có thể sinh
+   * vòng lặp phát thưởng (§3.4).
    */
-  const awardMilestones = async ({ userId, milestones, occurredAt, todayKey, session, rewards }) => {
-    const awarded = [];
+  const markMilestones = async ({ userId, milestones, occurredAt, todayKey, session }) => {
+    const reached = [];
 
     for (const milestone of milestones) {
-      const xp = policy.xpFor(policy.MILESTONE_REWARD_TYPE, rewards?.[milestone]);
       const eventKey = `streak-milestone:${userId}:${milestone}`;
 
-      // Tra trước khi ghi: mốc đã cấp rồi mà vẫn thử ghi thì unique index huỷ
+      // Tra trước khi ghi: mốc đã có rồi mà vẫn thử ghi thì unique index huỷ
       // luôn transaction đang dở của hoạt động học.
       if (await repository.findEventByKey({ userId, eventKey, session })) continue;
 
-      const event = await repository.insertEvent({
+      await repository.insertEvent({
         userId,
         eventKey,
         type: policy.MILESTONE_REWARD_TYPE,
         sourceId: String(milestone),
         occurredAt,
         dayKey: todayKey,
-        xpDelta: xp,
+        xpDelta: policy.xpFor(policy.MILESTONE_REWARD_TYPE),
         reason: policy.MILESTONE_REWARD_TYPE,
         countsAsStudy: false,
         policyVersion: policy.POLICY_VERSION,
         session,
       });
-      awarded.push(milestone);
+      reached.push(milestone);
+    }
+
+    return reached;
+  };
+
+  /**
+   * Cấp những huy hiệu mà hoạt động vừa ghi làm đạt tiêu chí.
+   *
+   * Tiêu chí do server tự đếm (`achievement-rules.js`), xét trên `snapshot`
+   * **trước** thưởng: XP của huy hiệu vừa cấp không kéo theo huy hiệu XP khác
+   * trong cùng lần ghi. Khoá `achievement:<user>:<huy hiệu>` giữ mỗi huy hiệu
+   * một lần trong đời tài khoản; XP lấy từ cấu hình Achievement qua policy.
+   */
+  const awardAchievements = async ({ userId, snapshot, occurredAt, todayKey, session }) => {
+    const unlocked = await achievements.findUnlocked({ userId, snapshot, session });
+    const awarded = [];
+
+    for (const { id, xpReward, progress } of unlocked) {
+      const eventKey = `achievement:${userId}:${id}`;
+      if (await repository.findEventByKey({ userId, eventKey, session })) continue;
+
+      const xp = policy.xpFor(policy.ACHIEVEMENT_REWARD_TYPE, { configuredXp: xpReward });
+      await repository.insertEvent({
+        userId,
+        eventKey,
+        type: policy.ACHIEVEMENT_REWARD_TYPE,
+        sourceId: id,
+        occurredAt,
+        dayKey: todayKey,
+        xpDelta: xp,
+        reason: policy.ACHIEVEMENT_REWARD_TYPE,
+        countsAsStudy: false,
+        policyVersion: policy.POLICY_VERSION,
+        session,
+      });
       if (xp > 0) {
         await casWithRetry({ userId, session, buildWrite: () => ({ inc: { total_xp: xp } }) });
       }
+      await achievements.markCompleted({ userId, achievementId: id, progress, earnedAt: occurredAt, session });
+      awarded.push({ id, xp });
     }
 
     return awarded;
@@ -165,6 +203,7 @@ export const createStreakService = ({
           xpAwarded: 0,
           duplicate: true,
           milestonesReached: [],
+          achievementsAwarded: [],
         };
       }
 
@@ -195,6 +234,7 @@ export const createStreakService = ({
           xpAwarded: 0,
           duplicate: false,
           milestonesReached: [],
+          achievementsAwarded: [],
         };
       }
 
@@ -212,6 +252,7 @@ export const createStreakService = ({
           xpAwarded: xp,
           duplicate: false,
           milestonesReached: [],
+          achievementsAwarded: [],
         };
       }
 
@@ -278,13 +319,19 @@ export const createStreakService = ({
         await repository.upsertDay({ userId, dayKey: frozenDay, status: 'frozen', session });
       }
 
-      const milestonesReached = await awardMilestones({
+      const milestonesReached = await markMilestones({
         userId,
         milestones: policy.milestonesCrossed(previousStreak, next.currentStreak),
         occurredAt: now,
         todayKey,
         session,
-        rewards: context?.rewards,
+      });
+      const achievementsAwarded = await awardAchievements({
+        userId,
+        snapshot: { currentStreak: summary.current_streak ?? 0, totalXp: summary.total_xp ?? 0 },
+        occurredAt: now,
+        todayKey,
+        session,
       });
 
       return {
@@ -293,7 +340,35 @@ export const createStreakService = ({
         xpAwarded: xp,
         duplicate: false,
         milestonesReached,
+        achievementsAwarded,
       };
+    },
+
+    /**
+     * Xét và cấp huy hiệu **ngoài** một hoạt động học — cho lịch sử vừa được
+     * nhập hoặc dựng sẵn (seed demo), khi chưa có lượt học nào kích hoạt việc xét.
+     *
+     * Dùng đúng phép chiếu của đường đọc (chuỗi đã đứt tính là 0) và cùng cơ chế
+     * cấp một lần như `recordActivity`; không ghi ngày học, không cộng XP học.
+     */
+    async awardEarnedAchievements(userId, { session, now = new Date() } = {}) {
+      const todayKey = rules.dayKey(now);
+      const summary = await repository.ensureSummary({ userId, session });
+      const { currentStreak } = rules.projectStreak(
+        {
+          currentStreak: summary.current_streak ?? 0,
+          lastActivityDay: summary.last_activity_day ?? null,
+          freezesAvailable: summary.freezes_available ?? 0,
+        },
+        todayKey,
+      );
+      return awardAchievements({
+        userId,
+        snapshot: { currentStreak, totalXp: summary.total_xp ?? 0 },
+        occurredAt: now,
+        todayKey,
+        session,
+      });
     },
 
     /**

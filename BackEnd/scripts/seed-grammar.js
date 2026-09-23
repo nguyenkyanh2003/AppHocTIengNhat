@@ -1,21 +1,19 @@
+/**
+ * Nạp 16 mẫu ngữ pháp — upsert theo khoá tự nhiên `(title, level)`, không xoá
+ * gì. Xem `content-upsert.js` về lý do và cách xử lý xung đột.
+ *
+ *   node scripts/seed-grammar.js --dry-run
+ *   node scripts/seed-grammar.js [--overwrite]
+ */
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Grammar from '../model/Grammar.js';
+import { applyPlan, parseFlags, planUpserts, printPlan } from './content-upsert.js';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
-const connectDB = async () => {
-  try {
-    const mongoURI = process.env.MONGODB_URI;
-    await mongoose.connect(mongoURI, {
-      dbName: process.env.DB_NAME || 'AppHocTiengNhat'
-    });
-    console.log('✅ Kết nối MongoDB thành công!');
-  } catch (error) {
-    console.error('❌ Lỗi kết nối MongoDB:', error.message);
-    process.exit(1);
-  }
-};
+/** Cùng một tiêu đề có thể xuất hiện ở hai cấp với cách dùng khác nhau. */
+const grammarKey = (grammar) => `${grammar.level}:${grammar.title}`;
 
 const grammars = [
   // N5 Grammar
@@ -199,32 +197,22 @@ const grammars = [
   }
 ];
 
-const seedGrammar = async () => {
+const run = async () => {
+  const flags = parseFlags();
+  await mongoose.connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME || 'AppHocTiengNhat' });
+  console.log(`✅ Đã kết nối MongoDB${flags.dryRun ? ' (--dry-run, không ghi)' : ''}`);
+
   try {
-    await connectDB();
-
-    // Xóa dữ liệu cũ
-    await Grammar.deleteMany({});
-    console.log('🗑️ Đã xóa dữ liệu ngữ pháp cũ');
-
-    // Thêm dữ liệu mới
-    const result = await Grammar.insertMany(grammars);
-    console.log(`✅ Đã thêm ${result.length} mục ngữ pháp!`);
-
-    // Hiển thị thống kê
-    const stats = await Grammar.aggregate([
-      { $group: { _id: '$level', count: { $sum: 1 } } },
-      { $sort: { _id: 1 } }
-    ]);
-    
-    console.log('\n📊 Thống kê theo level:');
-    stats.forEach(s => console.log(`   ${s._id}: ${s.count} mục`));
-
-    process.exit(0);
-  } catch (error) {
-    console.error('❌ Lỗi:', error.message);
-    process.exit(1);
+    const existing = await Grammar.find({ title: { $in: grammars.map((grammar) => grammar.title) } }).lean();
+    const plan = planUpserts({ rows: grammars, existing, keyOf: grammarKey });
+    if (!flags.dryRun) await applyPlan({ model: Grammar, plan, overwrite: flags.overwrite });
+    printPlan('Ngữ pháp', plan, flags);
+  } finally {
+    await mongoose.connection.close();
   }
 };
 
-seedGrammar();
+run().catch((error) => {
+  console.error('❌ Lỗi:', error.message);
+  process.exit(1);
+});

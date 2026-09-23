@@ -49,6 +49,7 @@ import '../../features/progress/screens/progress_dashboard_screen.dart';
 import '../../features/progress/screens/user_statistics_screen.dart';
 import '../../features/reports/screens/report_screen.dart';
 import '../../features/search/screens/search_screen.dart';
+import '../../features/srs/screens/srs_review_screen.dart';
 import '../../features/settings/screens/export_screen.dart';
 import '../../features/settings/screens/help_screen.dart';
 import '../../features/settings/screens/notification_settings_screen.dart';
@@ -107,6 +108,7 @@ abstract final class AppRouter {
     '/home',
     '/study',
     '/review',
+    '/srs',
     '/progress',
     '/account',
     '/admin',
@@ -481,6 +483,12 @@ abstract final class AppRouter {
                   ],
                 ),
               ],
+            ),
+            // Phiên ôn SRS nằm trong shell: hub `/review` dẫn vào, và người học
+            // vẫn thấy thanh điều hướng để rời phiên bất cứ lúc nào.
+            GoRoute(
+              path: '/srs',
+              builder: (context, state) => const SrsReviewScreen(),
             ),
             GoRoute(
               path: '/streak',

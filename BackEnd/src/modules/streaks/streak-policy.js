@@ -14,7 +14,7 @@ import { ApiError } from '../../shared/http/api-error.js';
  * `POST /streak/add-xp` nhận thẳng `amount` từ client không trần. Ở đây không
  * có tham số nào của caller đi thẳng vào con số trả về — trừ hai ngoại lệ
  * được khai báo tường minh và kiểm chặt bên dưới (`exercise.submit` đọc cờ
- * chấm của server, `streak.milestone` đọc cấu hình Achievement của server).
+ * chấm của server, `achievement.unlock` đọc cấu hình Achievement của server).
  */
 
 /**
@@ -29,8 +29,16 @@ export const POLICY_VERSION = 'streak-policy@2026-09-11';
 /** Thang mốc streak duy nhất, dùng cho cả huy hiệu lẫn thông báo. */
 export const STREAK_MILESTONES = Object.freeze([7, 14, 30, 50, 100, 365]);
 
-/** Loại event dành cho phần thưởng mốc — không phải một hoạt động học. */
+/**
+ * Dấu mốc chuỗi ngày vừa vượt qua — 0 XP, chỉ để không báo lại lần hai.
+ *
+ * XP của mốc streak nằm ở huy hiệu streak tương ứng (`achievement.unlock`),
+ * không cộng thêm ở đây: một mốc chỉ được một khoản thưởng (spec §3.4).
+ */
 export const MILESTONE_REWARD_TYPE = 'streak.milestone';
+
+/** Mở khoá một huy hiệu mà server tự xác minh được tiêu chí. */
+export const ACHIEVEMENT_REWARD_TYPE = 'achievement.unlock';
 
 /**
  * Trần XP cho một phần thưởng cấu hình được.
@@ -69,7 +77,8 @@ const TABLE = Object.freeze({
 
   // Event thưởng: không tính ngày học, không tăng XP mục tiêu ngày, và tuyệt
   // đối không gọi ngược lại `recordActivity` (spec §3.4).
-  [MILESTONE_REWARD_TYPE]: { configured: true, study: false },
+  [MILESTONE_REWARD_TYPE]: { xp: 0, study: false },
+  [ACHIEVEMENT_REWARD_TYPE]: { configured: true, study: false },
 });
 
 /**

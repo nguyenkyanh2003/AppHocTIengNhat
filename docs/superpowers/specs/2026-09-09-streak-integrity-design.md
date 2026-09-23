@@ -203,6 +203,17 @@ Route contract phải tính cả thay đổi này và 12 → 6 route SRS, không
 **Chưa audit Atlas, chưa chạy migration.** Có thể viết hàm/test với fixture trước; audit
 phải hoàn tất trước migration hoặc chạy bản mới trên dữ liệu thật.
 
+> **2026-09-23:** đủ script cho tám bước dưới đây — `audit-user-streak.js` (bước 1–2),
+> `backup-collections.js` + `restore-collections.js` (bước 3), `migrate-streak-legacy.js`
+> (bước 5–8, logic ở `streak-legacy.js`). Huy hiệu do server tự xác minh dùng khoá
+> `achievement:<user>:<huy hiệu>`; migration ghi khoá đó cho `UserAchievement` đã hoàn thành.
+>
+> **Audit + migration đã chạy 2026-09-23** trên `AppHocTiengNhat`: 4 `userstreaks`, 1 trỏ tới
+> tài khoản đã xoá (đã gỡ), 0 bất thường khác; 12/12 mốc `activity_dates`/`last_activity_date`
+> ở 17:00 UTC nên múi giờ cũ là `Asia/Ho_Chi_Minh`; 0 `UserAchievement` hoàn thành. Chép 9
+> event (lịch sử XP + khoá thưởng) và 7 ngày legacy; `total_xp` khớp tổng lịch sử ở cả 3 user;
+> đã gỡ ba mảng cũ. Bản sao lưu đã khôi phục thử: `BackEnd/backups/2026-09-23T08-05-04-752Z/`.
+
 1. Audit SRS theo spec SRS; audit UserStreak: kiểu ngày, số XP, các mảng, reward_keys,
    trùng user; UserAchievement; các trạng thái thưởng pending/granted của bài học.
 2. Xác định timezone host từng giai đoạn đã ghi ngày legacy. Timestamp “nửa đêm host”

@@ -1,6 +1,7 @@
 # Mốc 1 — Khôi phục vòng ôn tập SRS cho từ vựng
 
-Ngày: 2026-09-09 · Trạng thái: đã chỉnh sửa sau đối chiếu; chưa triển khai.
+Ngày: 2026-09-09 · Trạng thái: đã triển khai 2026-09-23 (code, test tự động và smoke test
+transaction trên Atlas — `scripts/smoke-learning-loop.js`).
 Chương trình: [learning-loop-program-design.md](2026-09-09-learning-loop-program-design.md).
 
 Tài liệu này chốt thiết kế để viết implementation plan. Với mốc 1, contract dưới đây thay

@@ -86,8 +86,10 @@ class VocabularyService {
     return _parseList(response['data']);
   }
 
+  /// Không đặt `cache`: chi tiết mang lịch ôn cá nhân, và đặt lại lịch bằng
+  /// một bản lưu cũ sẽ gửi sai mốc hạn ôn kỳ vọng (spec SRS §4).
   Future<Vocabulary> getVocabularyById(String id) async {
-    final response = await _apiClient.get('/vocabulary/$id', cache: true);
+    final response = await _apiClient.get('/vocabulary/$id');
     return Vocabulary.fromJson(response['data']);
   }
 

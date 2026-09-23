@@ -1,116 +1,104 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
+import '../models/srs_card.dart';
 import '../models/srs_progress.dart';
 
-class SRSService {
-  final ApiClient _apiClient = ApiClient();
+/// Sáu endpoint SRS (spec SRS §3.3). Định danh là id **từ vựng**, không phải
+/// id tiến độ.
+///
+/// Không cache ngoại tuyến và không tự gửi lại: danh sách đến hạn và lịch ôn
+/// là dữ liệu cá nhân thay đổi sau mỗi lượt, bản cũ sẽ gửi sai lịch kỳ vọng.
+/// Lỗi giữ nguyên `statusCode`/`code`/`details` của [ApiException] để provider
+/// phân biệt được 404, `SRS_NOT_DUE`, `SRS_PROGRESS_CHANGED`, `ITEM_UNAVAILABLE`.
+class SrsService {
+  SrsService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  /// Get SRS progress for a specific item
-  Future<SRSProgress?> getProgress(String itemId, String itemType) async {
-    try {
-      final response = await _apiClient.get(
-        '/srs/progress/$itemId?item_type=$itemType',
-      );
-      return SRSProgress.fromJson(response);
-    } catch (e) {
-      debugPrint('Error getting SRS progress: $e');
-      return null;
-    }
+  final ApiClient _client;
+
+  static const defaultLimit = 20;
+
+  /// Query của `GET /srs/due`: loại trùng danh sách loại trừ, bỏ hẳn tham số
+  /// khi rỗng.
+  static Map<String, String> buildDueQuery({
+    List<String> excludeItemIds = const [],
+    int limit = defaultLimit,
+  }) {
+    final excluded = excludeItemIds.toSet();
+    return {
+      'item_type': SrsProgress.itemTypeVocabulary,
+      'limit': '$limit',
+      if (excluded.isNotEmpty) 'exclude_item_ids': excluded.join(','),
+    };
   }
 
-  /// Get all items due for review
-  Future<List<SRSProgress>> getDueReviews({String? itemType}) async {
-    try {
-      final queryString = itemType != null ? '?item_type=$itemType' : '';
-      final response = await _apiClient.get('/srs/due$queryString');
-
-      if (response is List) {
-        return response.map((json) => SRSProgress.fromJson(json)).toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Error getting due reviews: $e');
-      return [];
-    }
-  }
-
-  /// Update SRS progress after review
-  /// rating: 1 (Again), 2 (Hard), 3 (Good), 4 (Easy)
-  Future<SRSProgress?> updateProgress({
+  /// Body của một lượt ôn: boolean tự đánh giá và mốc hạn ôn nguyên vẹn.
+  static Map<String, dynamic> buildReviewBody({
     required String itemId,
-    required String itemType,
-    required int rating,
-  }) async {
-    try {
-      final response = await _apiClient.post(
-        '/srs/review',
-        {
-          'item_id': itemId,
-          'item_type': itemType,
-          'rating': rating,
-        },
-      );
-      return SRSProgress.fromJson(response);
-    } catch (e) {
-      debugPrint('Error updating SRS progress: $e');
-      return null;
-    }
-  }
-
-  /// Get statistics for user's SRS progress
-  Future<Map<String, dynamic>> getStatistics() async {
-    try {
-      final response = await _apiClient.get('/srs/statistics');
-      return response as Map<String, dynamic>;
-    } catch (e) {
-      debugPrint('Error getting SRS statistics: $e');
-      return {
-        'total': 0,
-        'due_today': 0,
-        'learned': 0,
-        'mastered': 0,
+    required bool isCorrect,
+    required DateTime expectedNextReview,
+  }) =>
+      {
+        'item_id': itemId,
+        'item_type': SrsProgress.itemTypeVocabulary,
+        'is_correct': isCorrect,
+        'expected_next_review': expectedNextReview.toUtc().toIso8601String(),
       };
-    }
-  }
 
-  /// Reset progress for an item
-  Future<bool> resetProgress(String itemId, String itemType) async {
-    try {
-      await _apiClient.delete('/srs/progress/$itemId');
-      return true;
-    } catch (e) {
-      debugPrint('Error resetting SRS progress: $e');
-      return false;
-    }
-  }
-
-  /// Get learning statistics by time period
-  Future<Map<String, dynamic>> getLearningStats({
-    required DateTime startDate,
-    required DateTime endDate,
+  Future<SrsBatch> fetchDue({
+    List<String> excludeItemIds = const [],
+    int limit = defaultLimit,
   }) async {
-    try {
-      final start = startDate.toIso8601String();
-      final end = endDate.toIso8601String();
-      final response = await _apiClient.get(
-        '/srs/stats?start_date=$start&end_date=$end',
-      );
-      return response as Map<String, dynamic>;
-    } catch (e) {
-      debugPrint('Error getting learning stats: $e');
-      return {};
-    }
+    final query = buildDueQuery(excludeItemIds: excludeItemIds, limit: limit);
+    final response = await _client.get('/srs/due?${Uri(queryParameters: query).query}');
+    return SrsBatch(
+      cards: (response['data'] as List? ?? const [])
+          .map((card) => SrsCard.fromJson(Map<String, dynamic>.from(card)))
+          .toList(),
+      limit: response['limit'] as int? ?? limit,
+    );
   }
 
-  /// Get upcoming reviews count
-  Future<int> getUpcomingReviewsCount() async {
-    try {
-      final response = await _apiClient.get('/srs/upcoming-count');
-      return response['count'] ?? 0;
-    } catch (e) {
-      debugPrint('Error getting upcoming reviews count: $e');
-      return 0;
-    }
+  /// Tổng từ vựng đến hạn — độc lập với đợt đang ôn và danh sách loại trừ.
+  Future<int> fetchDueCount() async {
+    final response = await _client.get('/srs/due/count');
+    return (response['data'] as Map?)?['total'] as int? ?? 0;
+  }
+
+  Future<SrsStats> fetchStats() async {
+    final response = await _client.get('/srs/stats');
+    return SrsStats.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+  }
+
+  Future<SrsProgress> review({
+    required String itemId,
+    required bool isCorrect,
+    required DateTime expectedNextReview,
+  }) async {
+    final response = await _client.post(
+      '/srs/review',
+      buildReviewBody(
+        itemId: itemId,
+        isCorrect: isCorrect,
+        expectedNextReview: expectedNextReview,
+      ),
+    );
+    return SrsProgress.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+  }
+
+  /// Đưa thẻ về hộp 1, ôn lại sau 24 giờ — được cả khi chưa đến hạn.
+  Future<SrsProgress> reset({
+    required String itemId,
+    required DateTime expectedNextReview,
+  }) async {
+    final response = await _client.post('/srs/items/$itemId/reset', {
+      'item_type': SrsProgress.itemTypeVocabulary,
+      'expected_next_review': expectedNextReview.toUtc().toIso8601String(),
+    });
+    return SrsProgress.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+  }
+
+  /// Xoá tiến độ (bỏ dấu đã học). `false` nghĩa là không còn gì để xoá.
+  Future<bool> remove({required String itemId}) async {
+    final response = await _client.delete('/srs/items/$itemId');
+    return (response['data'] as Map?)?['deleted'] as bool? ?? false;
   }
 }

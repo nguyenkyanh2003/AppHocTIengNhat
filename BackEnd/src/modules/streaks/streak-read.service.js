@@ -1,5 +1,6 @@
-import { streakRepository } from './streak.repository.js';
-import { dayKey as defaultDayKey, projectStreak } from './streak-rules.js';
+import { ApiError } from '../../shared/http/api-error.js';
+import { LEGACY_XP_TYPE, streakRepository } from './streak.repository.js';
+import { addDays, dayKey as defaultDayKey, daysBetween, projectStreak } from './streak-rules.js';
 
 /**
  * Đường **đọc** của streak: tóm tắt, lịch sử XP, bảng xếp hạng.
@@ -27,6 +28,53 @@ const VIETNAM_OFFSET = '+07:00';
 /** Số ngày lịch Việt Nam của mỗi kỳ, **tính cả hôm nay**. */
 const PERIOD_DAYS = Object.freeze({ week: 7, month: 30 });
 
+/** Khoảng dài nhất một lần đọc lịch: một năm nhuận, tính cả hai đầu (spec §4.3). */
+const MAX_DAY_RANGE = 366;
+
+const OBJECT_ID = /^[a-f0-9]{24}$/i;
+
+/**
+ * Cursor của lịch sử XP phân trang — mờ với client (base64url của JSON).
+ *
+ * Mang theo user và `as_of`: dán cursor của người khác không đọc được gì, và
+ * mọi trang của một lần xuất nhìn cùng một mốc thời gian (spec §4.2).
+ */
+const encodeCursor = (value) => Buffer.from(JSON.stringify(value), 'utf8').toString('base64url');
+
+const isValidPosition = (value) =>
+  value.phase === 'events'
+    ? value.at === undefined || (!Number.isNaN(Date.parse(value.at)) && OBJECT_ID.test(value.id))
+    : value.phase === 'legacy' && Number.isSafeInteger(value.offset) && value.offset >= 0;
+
+const decodeCursor = (raw, userId) => {
+  let value = null;
+  try {
+    value = JSON.parse(Buffer.from(raw, 'base64url').toString('utf8'));
+  } catch {
+    // Rơi xuống nhánh báo lỗi bên dưới.
+  }
+  const valid =
+    value !== null &&
+    typeof value === 'object' &&
+    value.u === String(userId) &&
+    !Number.isNaN(Date.parse(value.asOf)) &&
+    isValidPosition(value);
+  if (!valid) throw ApiError.badRequest('Cursor không hợp lệ.', { code: 'INVALID_CURSOR' });
+  return value;
+};
+
+const newestFirst = (a, b) => new Date(b.earned_at) - new Date(a.earned_at);
+
+const dayRow = (day) => ({
+  day_key: day.day_key,
+  status: day.status,
+  origin: day.origin ?? 'activity',
+  direct_xp: day.direct_xp ?? 0,
+  review_count: day.review_count ?? 0,
+  correct_self_reports: day.correct_self_reports ?? 0,
+  wrong_self_reports: day.wrong_self_reports ?? 0,
+});
+
 /** Nhãn đọc được cho từng loại event, thay cho tên kỹ thuật. */
 const REASON_LABELS = Object.freeze({
   'srs.review': 'Ôn tập SRS',
@@ -35,6 +83,7 @@ const REASON_LABELS = Object.freeze({
   'exercise.submit': 'Làm bài tập',
   'jlpt.submit': 'Làm đề JLPT',
   'streak.milestone': 'Thưởng mốc chuỗi ngày',
+  'achievement.unlock': 'Mở khoá thành tích',
 });
 
 /**
@@ -150,6 +199,27 @@ export const createStreakReadService = ({
     return new Map(users.map((user) => [String(user._id), user]));
   };
 
+  const historyRow = (event) => ({
+    amount: event.xp_delta,
+    reason: REASON_LABELS[event.type] ?? event.reason ?? event.type,
+    earned_at: event.occurred_at,
+  });
+
+  /**
+   * Mảng `xp_history` cũ, mới nhất trước — rỗng khi migration đã chép nó
+   * thành event, để không dòng nào hiện hai lần.
+   */
+  const legacyXpRows = async (userId) => {
+    const [summary, imported] = await Promise.all([
+      repository.findByUser({ userId }),
+      repository.hasLegacyImport({ userId }),
+    ]);
+    if (imported) return [];
+    return (summary?.xp_history ?? [])
+      .map(({ amount, reason, earned_at: earnedAt }) => ({ amount, reason, earned_at: earnedAt }))
+      .sort(newestFirst);
+  };
+
   return {
     /** Tóm tắt cho trang chủ và màn streak. Không ghi, không tạo document. */
     async summary(userId) {
@@ -176,6 +246,8 @@ export const createStreakReadService = ({
         total_active_days: summary?.total_active_days ?? 0,
         legacy_day_count: summary?.legacy_day_count ?? 0,
         studied_today: lastActivityDay === todayKey,
+        // Mốc dừng cho client đọc lịch ngược từng khoảng qua `GET /days`.
+        first_day: await repository.findFirstDayKey({ userId }),
         activity_dates: await activityDates(userId, summary),
       };
     },
@@ -190,28 +262,89 @@ export const createStreakReadService = ({
      * nên không được cắt trang.
      */
     async xpHistory(userId) {
-      const [events, summary, legacyImported] = await Promise.all([
-        allXpEvents(userId),
-        repository.findByUser({ userId }),
-        repository.hasLegacyImport({ userId }),
-      ]);
+      const [events, legacy] = await Promise.all([allXpEvents(userId), legacyXpRows(userId)]);
+      return [...events.map(historyRow), ...legacy].sort(newestFirst);
+    },
 
-      const fromEvents = events.map((event) => ({
-        amount: event.xp_delta,
-        reason: REASON_LABELS[event.type] ?? event.reason ?? event.type,
-        earned_at: event.occurred_at,
-      }));
-      const fromLegacy = legacyImported
-        ? []
-        : (summary?.xp_history ?? []).map(({ amount, reason, earned_at: earnedAt }) => ({
-            amount,
-            reason,
-            earned_at: earnedAt,
-          }));
+    /**
+     * Một trang lịch sử XP, mới nhất trước: `{ data, next_cursor, as_of }`.
+     *
+     * Đọc qua hai pha nối tiếp: event trong nhật ký, rồi mảng `xp_history` cũ
+     * của user chưa migration. Nối như vậy vẫn đúng thứ tự mới → cũ vì mảng cũ
+     * đã đóng băng từ cutover — không writer nào ghi thêm vào đó nữa.
+     *
+     * Mỗi pha đọc dư một bản ghi để biết còn trang sau hay không, nên client
+     * không phải gọi thêm một lần chỉ để nhận về trang rỗng.
+     */
+    async xpHistoryPage(userId, { limit, cursor: rawCursor }) {
+      const cursor = rawCursor
+        ? decodeCursor(rawCursor, userId)
+        : { u: String(userId), asOf: clock().toISOString(), phase: 'events' };
+      const nextCursor = (position) => encodeCursor({ u: cursor.u, asOf: cursor.asOf, ...position });
+      const page = { data: [], next_cursor: null, as_of: cursor.asOf };
 
-      return [...fromEvents, ...fromLegacy].sort(
-        (a, b) => new Date(b.earned_at) - new Date(a.earned_at),
-      );
+      if (cursor.phase === 'events') {
+        const events = await repository.listEvents({
+          userId,
+          asOf: new Date(cursor.asOf),
+          withXpOnly: true,
+          limit: limit + 1,
+          cursor: cursor.at ? { occurredAt: new Date(cursor.at), id: cursor.id } : undefined,
+        });
+        const shown = events.slice(0, limit);
+        page.data.push(
+          ...shown.map((event) => ({
+            ...historyRow(event),
+            source: event.type === LEGACY_XP_TYPE ? 'legacy' : 'activity',
+          })),
+        );
+        if (events.length > limit) {
+          const last = shown[shown.length - 1];
+          page.next_cursor = nextCursor({
+            phase: 'events',
+            at: new Date(last.occurred_at).toISOString(),
+            id: String(last._id),
+          });
+          return page;
+        }
+      }
+
+      const offset = cursor.phase === 'legacy' ? cursor.offset : 0;
+      const room = limit - page.data.length;
+      const legacy = await legacyXpRows(userId);
+      page.data.push(...legacy.slice(offset, offset + room).map((row) => ({ ...row, source: 'legacy' })));
+      if (offset + room < legacy.length) {
+        page.next_cursor = nextCursor({ phase: 'legacy', offset: offset + room });
+      }
+      return page;
+    },
+
+    /**
+     * Lịch học trong một khoảng ngày, mới nhất trước: `{ data, next_cursor, from, to }`.
+     *
+     * Thiếu `to` thì lấy hôm nay; thiếu `from` thì lùi đủ một khoảng tối đa.
+     * Chỉ đọc `StreakDay` — ngày trong mảng `activity_dates` cũ có mặt ở đây
+     * sau khi migration chép chúng thành ngày `legacy`, vì đổi Date cũ sang
+     * ngày lịch trước khi audit múi giờ là đoán (spec §4.1 bước 2).
+     */
+    async days(userId, { from, to, cursor, limit }) {
+      const end = to ?? dayKey(clock());
+      const start = from ?? addDays(end, -(MAX_DAY_RANGE - 1));
+      const span = daysBetween(start, end);
+      if (span < 0 || span >= MAX_DAY_RANGE) {
+        throw ApiError.badRequest(`Khoảng ngày phải hợp lệ và không quá ${MAX_DAY_RANGE} ngày.`, {
+          code: 'INVALID_DAY_RANGE',
+        });
+      }
+
+      const rows = await repository.listDays({ userId, from: start, to: end, cursor, limit: limit + 1 });
+      const shown = rows.slice(0, limit);
+      return {
+        data: shown.map(dayRow),
+        next_cursor: rows.length > limit ? shown[shown.length - 1].day_key : null,
+        from: start,
+        to: end,
+      };
     },
 
     /**
