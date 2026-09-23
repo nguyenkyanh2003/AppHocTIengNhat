@@ -8,6 +8,7 @@ import '../providers/lesson_provider.dart';
 import '../providers/lesson_progress_provider.dart';
 import '../models/lesson.dart';
 import '../widgets/dialogue_view.dart';
+import '../widgets/video/lesson_video_section.dart';
 import '../../../shared/widgets/content_pane.dart';
 
 class LessonDetailScreen extends StatefulWidget {
@@ -347,7 +348,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
         Text(
           value,
           style: TextStyle(
-            fontSize: progress != null ? AppTypography.body : AppTypography.title,
+            fontSize:
+                progress != null ? AppTypography.body : AppTypography.title,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -386,6 +388,12 @@ class _LessonDetailScreenState extends State<LessonDetailScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Video đứng trước hội thoại: xem tình huống diễn ra thế nào rồi mới
+          // đọc lại lời thoại.
+          if (lesson.videos.isNotEmpty) ...[
+            LessonVideoSection(videos: lesson.videos),
+            const SizedBox(height: AppSpacing.xl),
+          ],
           if (lesson.isSituational) ...[
             DialogueView(
               dialogue: lesson.dialogue,

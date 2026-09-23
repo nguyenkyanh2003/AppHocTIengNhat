@@ -122,8 +122,9 @@ class _TurnBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final bubbleColor =
-        alignLeft ? AppColors.surfaceVariant : AppColors.primary.withValues(alpha: 0.12);
+    final bubbleColor = alignLeft
+        ? AppColors.surfaceVariant
+        : AppColors.primary.withValues(alpha: 0.12);
 
     return Row(
       mainAxisAlignment:

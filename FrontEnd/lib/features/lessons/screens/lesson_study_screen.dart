@@ -309,7 +309,8 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          const Icon(Icons.check_circle_outline, color: AppColors.success, size: 20),
+          const Icon(Icons.check_circle_outline,
+              color: AppColors.success, size: 20),
           const SizedBox(width: 8),
           Expanded(child: Text(text)),
         ],

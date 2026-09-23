@@ -1,4 +1,5 @@
 import 'dialogue_turn.dart';
+import 'lesson_video.dart';
 
 class Lesson {
   final String id;
@@ -18,6 +19,9 @@ class Lesson {
   /// Mục tiêu "sau bài này làm được gì".
   final List<String> canDoGoals;
 
+  /// Video của bài kèm lời thoại; rỗng với bài chưa có video.
+  final List<LessonVideo> videos;
+
   final List<String> vocabularies;
   final List<String> grammars;
   final List<String> kanjis;
@@ -34,6 +38,7 @@ class Lesson {
     this.situation,
     this.dialogue = const [],
     this.canDoGoals = const [],
+    this.videos = const [],
     this.vocabularies = const [],
     this.grammars = const [],
     this.kanjis = const [],
@@ -70,6 +75,7 @@ class Lesson {
       contentHtml: json['content_html'],
       situation: json['situation']?.toString(),
       dialogue: DialogueTurn.listFromJson(json['dialogue']),
+      videos: LessonVideo.listFromJson(json['videos']),
       canDoGoals: (json['can_do_goals'] is List)
           ? (json['can_do_goals'] as List)
               .map((goal) => goal.toString())
