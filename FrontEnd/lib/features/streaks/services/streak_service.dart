@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../../../core/network/api_client.dart';
+import '../models/streak_settings.dart';
 import '../models/user_streak.dart';
 
 class StreakService {
@@ -11,18 +12,34 @@ class StreakService {
   /// Trang lớn nhất server cho phép ở hai đường phân trang.
   static const maxPageSize = 100;
 
-  // Lấy thông tin streak của người dùng hiện tại
-  Future<UserStreak?> getMyStreak() async {
-    try {
-      final response = await _apiClient.get('/streak/my-streak');
-      if (response != null) {
-        return UserStreak.fromJson(response);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Lỗi khi lấy streak: $e');
-      return null;
-    }
+  /// Tóm tắt streak của người đang đăng nhập.
+  ///
+  /// Lỗi được ném lên chứ không đổi thành `null`: người gọi cần phân biệt "đồng
+  /// bộ hỏng" với "không có dữ liệu" — bộ nhắc học không được coi một lần mất
+  /// mạng là "hôm nay chưa học".
+  Future<UserStreak> getMyStreak() async {
+    final response = await _apiClient.get('/streak/my-streak');
+    return UserStreak.fromJson(Map<String, dynamic>.from(response as Map));
+  }
+
+  /// Cài đặt mục tiêu ngày và nhắc học.
+  Future<StreakSettings> getSettings() async {
+    final response = await _apiClient.get('/streak/settings');
+    return StreakSettings.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+  }
+
+  /// Lưu những trường đã đổi; trường `null` giữ nguyên trên server.
+  Future<StreakSettings> updateSettings({
+    int? dailyGoalXp,
+    bool? reminderEnabled,
+    String? reminderTime,
+  }) async {
+    final response = await _apiClient.put('/streak/settings', {
+      if (dailyGoalXp != null) 'daily_goal_xp': dailyGoalXp,
+      if (reminderEnabled != null) 'reminder_enabled': reminderEnabled,
+      if (reminderTime != null) 'reminder_time': reminderTime,
+    });
+    return StreakSettings.fromJson(Map<String, dynamic>.from(response['data'] as Map));
   }
 
   // `POST /streak/add-xp` đã bị gỡ khỏi server: client không tự cộng XP

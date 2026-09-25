@@ -63,6 +63,10 @@ abstract final class AppColors {
   static const Color streak = Color(0xFFFF9600);
   static const Color xp = Color(0xFFFFC800);
 
+  /// Băng bảo vệ chuỗi: xanh băng, tách khỏi cam của chuỗi để ngày "được băng
+  /// che" không bị đọc nhầm thành ngày đã học trên lịch.
+  static const Color freeze = Color(0xFF38BDF8);
+
   /// Hành động chính của Trang chủ ("Tiếp tục học"). Xanh lá đứng tách khỏi tím
   /// thương hiệu, nên mắt tìm ra ngay việc cần làm tiếp thay vì phải đọc hết.
   static const Color heroAction = Color(0xFF58CC02);

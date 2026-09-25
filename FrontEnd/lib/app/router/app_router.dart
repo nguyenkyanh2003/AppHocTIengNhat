@@ -57,7 +57,9 @@ import '../../features/settings/screens/offline_mode_screen.dart';
 import '../../features/settings/screens/settings_screen.dart';
 import '../../features/social/screens/friend_leaderboard_screen.dart';
 import '../../features/streaks/screens/leaderboard_screen.dart';
+import '../../features/streaks/screens/streak_calendar_screen.dart';
 import '../../features/streaks/screens/streak_screen.dart';
+import '../../features/streaks/widgets/streak_reminder_host.dart';
 import '../../features/study_groups/screens/create_group_screen.dart';
 import '../../features/study_groups/screens/group_detail_screen.dart';
 import '../../features/study_groups/screens/study_group_list_screen.dart';
@@ -142,6 +144,7 @@ abstract final class AppRouter {
     '/flashcards/:deckId/cards/new',
     '/flashcards/:deckId/cards/:cardId/edit',
     '/streak',
+    '/streak/calendar',
     '/achievements',
     '/notebook',
     '/notebook/new',
@@ -318,7 +321,8 @@ abstract final class AppRouter {
 
         // --- Mọi trang còn lại nằm trong shell điều hướng ---
         ShellRoute(
-          builder: (context, state, child) => AppShell(child: child),
+          // Nhắc học chỉ chạy trong vùng đã đăng nhập, cùng vòng đời với shell.
+          builder: (context, state, child) => StreakReminderHost(child: AppShell(child: child)),
           routes: [
             GoRoute(
               path: '/home',
@@ -496,6 +500,12 @@ abstract final class AppRouter {
             GoRoute(
               path: '/streak',
               builder: (context, state) => const StreakScreen(),
+              routes: [
+                GoRoute(
+                  path: 'calendar',
+                  builder: (context, state) => const StreakCalendarScreen(),
+                ),
+              ],
             ),
             GoRoute(
               path: '/achievements',

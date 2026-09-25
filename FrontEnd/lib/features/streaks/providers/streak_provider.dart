@@ -1,11 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../models/user_streak.dart';
+
+import '../../../core/state/view_state.dart';
 import '../models/leaderboard.dart';
+import '../models/streak_settings.dart';
+import '../models/user_streak.dart';
 import '../services/streak_service.dart';
 
 class StreakProvider with ChangeNotifier {
-  final StreakService _streakService = StreakService();
+  StreakProvider({StreakService? service}) : _streakService = service ?? StreakService();
+
+  final StreakService _streakService;
 
   UserStreak? _currentStreak;
   List<XPHistory> _xpHistory = [];
@@ -13,6 +18,7 @@ class StreakProvider with ChangeNotifier {
   int? _userRank;
   bool _isLoading = false;
   String? _error;
+  ViewState<StreakSettings> _settings = const ViewState.idle();
 
   UserStreak? get currentStreak => _currentStreak;
   List<XPHistory> get xpHistory => _xpHistory;
@@ -21,27 +27,65 @@ class StreakProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get error => _error;
 
-  // Load user's streak data
-  Future<void> loadStreak() async {
+  /// Cài đặt mục tiêu ngày và nhắc học.
+  ViewState<StreakSettings> get settings => _settings;
+
+  /// Tải tóm tắt streak. Trả `true` khi đồng bộ được với server.
+  ///
+  /// Lỗi thì **giữ nguyên** dữ liệu đang có: mất mạng một lần không được xoá
+  /// trắng màn hình, và người gọi (bộ nhắc học) cần biết lần đồng bộ này hỏng.
+  Future<bool> loadStreak() async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      debugPrint('🔥 Loading streak data from API...');
       _currentStreak = await _streakService.getMyStreak();
-      if (_currentStreak != null) {
-        debugPrint(
-            '✅ Streak loaded - XP: ${_currentStreak!.totalXP}, Streak: ${_currentStreak!.currentStreak} days, Level: ${_currentStreak!.level}');
-      }
-      _error = null;
+      return true;
     } catch (e) {
       _error = 'Không thể tải dữ liệu streak';
-      debugPrint('❌ Error loading streak: $e');
+      debugPrint('Lỗi khi tải streak: $e');
+      return false;
     } finally {
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  /// Tải cài đặt mục tiêu và nhắc học. Lần tải lại hỏng giữ bản đang có.
+  Future<void> loadSettings() async {
+    if (!_settings.hasData) {
+      _settings = const ViewState.loading();
+      notifyListeners();
+    }
+    final result = await ViewState.guard(_streakService.getSettings);
+    if (result.hasData || !_settings.hasData) _settings = result;
+    notifyListeners();
+  }
+
+  /// Lưu cài đặt. Trả `null` khi lưu được, ngược lại là câu báo lỗi để hiện
+  /// ngay trong màn cài đặt.
+  Future<String?> saveSettings({
+    int? dailyGoalXp,
+    bool? reminderEnabled,
+    String? reminderTime,
+  }) async {
+    final result = await ViewState.guard(
+      () => _streakService.updateSettings(
+        dailyGoalXp: dailyGoalXp,
+        reminderEnabled: reminderEnabled,
+        reminderTime: reminderTime,
+      ),
+    );
+    if (result is! ViewData<StreakSettings>) {
+      return result.errorOrNull ?? 'Không lưu được cài đặt.';
+    }
+
+    _settings = result;
+    notifyListeners();
+    // Thẻ mục tiêu đọc từ tóm tắt, nên tải lại để hai nơi khớp nhau.
+    await loadStreak();
+    return null;
   }
 
   // Không còn `addXP`: XP chỉ đến từ server sau khi chấm bài. Muốn số liệu
@@ -95,17 +139,9 @@ class StreakProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void reset() {
-    _currentStreak = null;
-    _xpHistory = [];
-    _leaderboard = [];
-    _userRank = null;
-    _isLoading = false;
-    _error = null;
-    notifyListeners();
-  }
+  void reset() => clear();
 
-  // Clear all state
+  /// Xoá mọi trạng thái, dùng khi đăng xuất.
   void clear() {
     _currentStreak = null;
     _xpHistory = [];
@@ -113,6 +149,7 @@ class StreakProvider with ChangeNotifier {
     _userRank = null;
     _isLoading = false;
     _error = null;
+    _settings = const ViewState.idle();
     notifyListeners();
   }
 }

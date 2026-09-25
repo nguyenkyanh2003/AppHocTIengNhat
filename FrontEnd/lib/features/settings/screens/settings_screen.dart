@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../profile/providers/user_provider.dart';
 import '../../auth/providers/auth_provider.dart';
+import '../../streaks/widgets/streak_settings_sheet.dart';
 import '../../../app/localization/locale_provider.dart';
 import '../services/settings_service.dart';
 import '../../../app/localization/app_localizations.dart';
@@ -103,6 +104,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             // Phần thông báo
             _buildSectionHeader(l10n.notifications),
+            _buildMenuTile(
+              icon: Icons.local_fire_department_outlined,
+              title: l10n.dailyGoalAndReminder,
+              onTap: () => showStreakSettingsSheet(context),
+            ),
             _buildSwitchTile(
               title: l10n.enableNotifications,
               subtitle: l10n.receiveNotifications,

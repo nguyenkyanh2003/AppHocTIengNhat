@@ -64,6 +64,7 @@ void main() {
         '/flashcards/:deckId/cards/new',
         '/flashcards/:deckId/cards/:cardId/edit',
         '/streak',
+        '/streak/calendar',
         '/achievements',
         '/notebook',
         '/notebook/new',

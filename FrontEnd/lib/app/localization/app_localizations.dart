@@ -103,6 +103,7 @@ class AppLocalizations {
       'dark': 'Tối',
       'auto': 'Tự động',
       'other': 'Khác',
+      'daily_goal_and_reminder': 'Mục tiêu ngày & nhắc học',
       'help_feedback': 'Trợ giúp & Phản hồi',
       'privacy_policy': 'Chính sách riêng tư',
       'about_app': 'Về ứng dụng',
@@ -316,6 +317,7 @@ class AppLocalizations {
       'dark': 'Dark',
       'auto': 'Auto',
       'other': 'Other',
+      'daily_goal_and_reminder': 'Daily goal & study reminder',
       'help_feedback': 'Help & Feedback',
       'privacy_policy': 'Privacy Policy',
       'about_app': 'About App',
@@ -529,6 +531,7 @@ class AppLocalizations {
       'dark': 'ダーク',
       'auto': '自動',
       'other': 'その他',
+      'daily_goal_and_reminder': '毎日の目標と学習リマインダー',
       'help_feedback': 'ヘルプとフィードバック',
       'privacy_policy': 'プライバシーポリシー',
       'about_app': 'アプリについて',
@@ -747,6 +750,7 @@ class AppLocalizations {
   String get dark => translate('dark');
   String get auto => translate('auto');
   String get other => translate('other');
+  String get dailyGoalAndReminder => translate('daily_goal_and_reminder');
   String get helpFeedback => translate('help_feedback');
   String get privacyPolicy => translate('privacy_policy');
   String get aboutApp => translate('about_app');
