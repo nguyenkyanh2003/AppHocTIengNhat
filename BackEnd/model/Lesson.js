@@ -38,12 +38,16 @@ const TranscriptLineSchema = new mongoose.Schema({
  *
  * `source` ghi nguồn gốc để màn hình hiển thị và để biết nội dung nào không
  * phải do app tự sản xuất.
+ *
+ * `duration_seconds` đọc từ chính file khi nhập, để app hiện thời lượng trên
+ * khung chờ mà không phải tải video trước.
  */
 const LessonVideoSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
     url: { type: String, required: true, trim: true },
     description: { type: String, default: null, trim: true },
     source: { type: String, default: null, trim: true },
+    duration_seconds: { type: Number, default: null, min: 0 },
     transcript: { type: [TranscriptLineSchema], default: [] },
 }, { _id: false });
 

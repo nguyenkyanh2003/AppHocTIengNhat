@@ -1,9 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
+import 'package:apphoctiengnnhat/app/theme/app_tokens.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson_video.dart';
 import 'package:apphoctiengnnhat/features/lessons/widgets/video/lesson_transcript_view.dart';
+import 'package:apphoctiengnnhat/features/lessons/widgets/video/lesson_video_player.dart';
+import 'package:apphoctiengnnhat/features/lessons/widgets/video/lesson_video_section.dart';
+import 'package:video_player/video_player.dart';
 
 TranscriptLine _line(int start, int? end, String ja, String vi) =>
     TranscriptLine(
@@ -44,6 +51,12 @@ void main() {
       expect(video.transcript.single.end, const Duration(milliseconds: 7500));
       expect(video.transcript.single.label, '00:04');
       expect(video.playbackUrl, startsWith('http'));
+      expect(video.duration, isNull);
+    });
+
+    test('đọc thời lượng backend đã đo sẵn từ file', () {
+      final video = LessonVideo.fromJson({'title': 'V', 'url': '/a.mp4', 'duration_seconds': 36.8});
+      expect(video.duration, const Duration(milliseconds: 36800));
     });
 
     test('bài học không có video thì danh sách rỗng, không lỗi', () {
@@ -206,4 +219,122 @@ void main() {
     expect(layers.value.contains(TranscriptLayer.vietnamese), isFalse);
     expect(find.text('Chào buổi sáng.'), findsNothing);
   });
+
+  group('khối video', () {
+    Future<void> pumpSection(WidgetTester tester, LessonVideo video) =>
+        tester.pumpWidget(MaterialApp(
+          home: Scaffold(body: SingleChildScrollView(child: LessonVideoSection(videos: [video]))),
+        ));
+
+    testWidgets('mở bài chỉ hiện khung chờ, chưa tạo trình phát nào', (tester) async {
+      await pumpSection(
+        tester,
+        LessonVideo(title: 'Chào buổi sáng', url: '/a.mp4', duration: const Duration(seconds: 37), transcript: _lines),
+      );
+
+      expect(find.byType(LessonVideoPoster), findsOneWidget);
+      expect(find.byType(VideoPlayer), findsNothing);
+      expect(find.text('00:37'), findsOneWidget);
+      // Lời thoại vẫn đọc được trước khi phát.
+      expect(find.text('おはようございます。'), findsOneWidget);
+    });
+
+    testWidgets('video chưa có lời thoại thì không dựng khung lời thoại trống, và nói rõ lý do', (tester) async {
+      await pumpSection(tester, const LessonVideo(title: 'Hỏi đường', url: '/b.mp4'));
+
+      expect(find.byType(LessonVideoPoster), findsOneWidget);
+      expect(find.byType(LessonTranscriptView), findsNothing);
+      expect(find.text('Hỏi đường'), findsOneWidget);
+      expect(find.text('Cảnh này chưa có lời thoại chạy theo video.'), findsOneWidget);
+    });
+
+    testWidgets('bấm phát thì lời thoại chạy theo video: câu đang nói được tô sáng', (tester) async {
+      final platform = _FakeVideoPlatform();
+      final previous = VideoPlayerPlatform.instance;
+      VideoPlayerPlatform.instance = platform;
+      addTearDown(() => VideoPlayerPlatform.instance = previous);
+
+      await pumpSection(tester, LessonVideo(title: 'Chào buổi sáng', url: '/a.mp4', transcript: _lines));
+      expect(platform.created, 0, reason: 'mở bài chưa được tạo trình phát');
+
+      await tester.tap(find.byType(LessonVideoPoster));
+      await tester.pumpAndSettle();
+      expect(platform.created, 1);
+      expect(platform.playing, isTrue);
+
+      Color? rowColor(String text) =>
+          tester.widget<Material>(find.ancestor(of: find.text(text), matching: find.byType(Material)).first).color;
+
+      platform.position = const Duration(seconds: 9);
+      await tester.pump(const Duration(milliseconds: 150));
+      await tester.pumpAndSettle();
+      expect(rowColor('いい天気ですね。'), AppColors.primaryLight);
+      expect(rowColor('おはようございます。'), Colors.transparent);
+
+      platform.position = const Duration(seconds: 26);
+      await tester.pump(const Duration(milliseconds: 150));
+      await tester.pumpAndSettle();
+      expect(rowColor('お先に失礼します。'), AppColors.primaryLight);
+      expect(rowColor('いい天気ですね。'), Colors.transparent);
+
+      // Gỡ widget để controller dừng bộ đếm vị trí trước khi test kết thúc.
+      await tester.pumpWidget(const SizedBox());
+    });
+  });
+}
+
+/// Trình phát giả: vị trí phát do test đặt, không cần video thật.
+class _FakeVideoPlatform extends VideoPlayerPlatform {
+  int created = 0;
+  bool playing = false;
+  Duration position = Duration.zero;
+
+  @override
+  Future<void> init() async {}
+
+  @override
+  Future<int?> createWithOptions(VideoCreationOptions options) async => ++created;
+
+  @override
+  Stream<VideoEvent> videoEventsFor(int playerId) {
+    late final StreamController<VideoEvent> events;
+    events = StreamController<VideoEvent>(
+      onListen: () => events.add(VideoEvent(
+        eventType: VideoEventType.initialized,
+        duration: const Duration(seconds: 40),
+        size: const Size(1280, 720),
+      )),
+    );
+    return events.stream;
+  }
+
+  @override
+  Future<void> play(int playerId) async => playing = true;
+
+  @override
+  Future<void> pause(int playerId) async => playing = false;
+
+  @override
+  Future<Duration> getPosition(int playerId) async => position;
+
+  @override
+  Future<void> seekTo(int playerId, Duration position) async => this.position = position;
+
+  @override
+  Future<void> setLooping(int playerId, bool looping) async {}
+
+  @override
+  Future<void> setVolume(int playerId, double volume) async {}
+
+  @override
+  Future<void> setPlaybackSpeed(int playerId, double speed) async {}
+
+  @override
+  Future<void> setMixWithOthers(bool mixWithOthers) async {}
+
+  @override
+  Future<void> dispose(int playerId) async {}
+
+  @override
+  Widget buildViewWithOptions(VideoViewOptions options) => const ColoredBox(color: Colors.black);
 }

@@ -111,7 +111,7 @@ const reviewVideo = (video, index) => {
 };
 
 /**
- * @param {{ level, order, videos }} data Nội dung file dữ liệu.
+ * @param {{ lesson: { title }, videos }} data Nội dung file dữ liệu.
  * @returns {{ videos: Array, errors: string[] }}
  */
 export const reviewLessonVideos = (data) => {
@@ -128,6 +128,14 @@ export const reviewLessonVideos = (data) => {
     const result = reviewVideo(video, index);
     if (result.errors.length > 0) errors.push(...result.errors);
     else videos.push(result.video);
+  });
+
+  // Hai cảnh trỏ cùng một file thì người học bấm "Cảnh 2" mà xem lại cảnh 1.
+  const seen = new Map();
+  videos.forEach((video, index) => {
+    const first = seen.get(video.url);
+    if (first === undefined) seen.set(video.url, index);
+    else errors.push(`Video ${index + 1}: trùng \`url\` với video ${first + 1}.`);
   });
 
   return { videos, errors };

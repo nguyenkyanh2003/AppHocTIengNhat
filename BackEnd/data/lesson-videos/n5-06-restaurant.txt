@@ -1,0 +1,7 @@
+# Lời thoại Tình huống: Ở nhà hàng
+# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Gõ xong chạy: node scripts/apply-transcript.js --lesson 6
+# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+
+## video-1.mp4
+# Đi đến nhà hàng

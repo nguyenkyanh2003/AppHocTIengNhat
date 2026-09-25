@@ -150,13 +150,71 @@ class _PlayOverlay extends StatelessWidget {
         child: AnimatedOpacity(
           duration: AppDurations.fast,
           opacity: value.isPlaying ? 0 : 1,
-          child: const CircleAvatar(
-            radius: AppSpacing.xxl,
-            backgroundColor: Colors.black54,
-            child: Icon(
-              Icons.play_arrow_rounded,
-              size: AppSpacing.xxl,
-              color: Colors.white,
+          child: const _BigPlayIcon(),
+        ),
+      ),
+    );
+  }
+}
+
+class _BigPlayIcon extends StatelessWidget {
+  const _BigPlayIcon();
+
+  @override
+  Widget build(BuildContext context) => const CircleAvatar(
+        radius: AppSpacing.xxl,
+        backgroundColor: Colors.black54,
+        child: Icon(Icons.play_arrow_rounded, size: AppSpacing.xxl, color: Colors.white),
+      );
+}
+
+/// Khung chờ đứng chỗ của video khi người học chưa bấm phát.
+///
+/// Cùng kích thước và nền với [LessonVideoPlayer] nên bấm phát không làm trang
+/// nhảy. Không tạo trình phát, không tải gì từ mạng.
+class LessonVideoPoster extends StatelessWidget {
+  const LessonVideoPoster({super.key, required this.onPlay, this.duration});
+
+  final VoidCallback onPlay;
+
+  /// Thời lượng biết trước từ backend; `null` thì không hiện nhãn thời gian.
+  final Duration? duration;
+
+  @override
+  Widget build(BuildContext context) {
+    final duration = this.duration;
+    return ClipRRect(
+      borderRadius: AppRadius.lgAll,
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Material(
+          color: AppColors.textPrimary,
+          child: InkWell(
+            onTap: onPlay,
+            child: Semantics(
+              button: true,
+              label: 'Phát video',
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  const _BigPlayIcon(),
+                  if (duration != null)
+                    Positioned(
+                      right: AppSpacing.md,
+                      bottom: AppSpacing.md,
+                      child: DecoratedBox(
+                        decoration: const BoxDecoration(color: Colors.black54, borderRadius: AppRadius.smAll),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
+                          child: Text(
+                            LessonVideoPlayer.formatDuration(duration),
+                            style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),

@@ -8,6 +8,9 @@ node_modules/
 uploads/*
 !uploads/.gitkeep
 
+# Video gốc chưa xử lý: vài trăm MB, bản dùng thật nằm trong uploads/lesson-videos/
+data/Video_baihoc/
+
 # Logs
 logs/
 *.log

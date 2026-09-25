@@ -46,7 +46,9 @@ List<StudyStep> buildStudySteps(LessonDetail detail) {
 /// Ước lượng số phút của một bài, để người học biết trước mình cần bao lâu.
 int estimateStudyMinutes(LessonDetail detail) {
   final lesson = detail.lesson;
-  final seconds = lesson.videos.length * 90 +
+  // Video có thời lượng thật thì dùng, video cũ chưa có thì ước 90 giây.
+  final videoSeconds = lesson.videos.fold<int>(0, (sum, video) => sum + (video.duration?.inSeconds ?? 90));
+  final seconds = videoSeconds +
       lesson.dialogue.length * 20 +
       detail.words.length * 25 +
       (detail.kanjis.length + detail.grammars.length) * 60 +

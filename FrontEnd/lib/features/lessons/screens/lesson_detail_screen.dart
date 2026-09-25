@@ -136,7 +136,9 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
           LessonSection(
             icon: Icons.play_circle_outline,
             title: 'Video tình huống',
-            caption: 'Xem lại bất cứ lúc nào. Chạm vào câu thoại để nghe lại đoạn đó.',
+            caption: lesson.videos.any((video) => video.transcript.isNotEmpty)
+                ? 'Xem lại bất cứ lúc nào. Chạm vào câu thoại để nghe lại đoạn đó.'
+                : 'Xem lại tình huống bất cứ lúc nào.',
             child: LessonVideoSection(videos: lesson.videos),
           ),
         if (detail.words.isNotEmpty)

@@ -19,9 +19,11 @@ const fakeChain = (result) => {
 
 test('findMany truyền đúng filter cho Lesson.find và trả kết quả từ lean()', async () => {
   let capturedFilter = null;
+  let capturedProjection = null;
   const Lesson = {
-    find(filter) {
+    find(filter, projection) {
       capturedFilter = filter;
+      capturedProjection = projection;
       return fakeChain([{ _id: 'l1' }]);
     },
   };
@@ -36,6 +38,8 @@ test('findMany truyền đúng filter cho Lesson.find và trả kết quả từ
 
   assert.deepEqual(capturedFilter, { level: 'N5', situation: 'train' });
   assert.deepEqual(items, [{ _id: 'l1' }]);
+  // Danh sách không kéo theo phần nặng chỉ màn chi tiết cần.
+  assert.deepEqual(capturedProjection, { content_html: 0, 'videos.transcript': 0 });
 });
 
 test('findById populate đủ ba mảng tham chiếu vocabularies/grammars/kanjis', async () => {

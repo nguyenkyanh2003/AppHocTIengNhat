@@ -43,7 +43,7 @@ typedef _Delay = Duration Function(String? level);
 /// cảnh hai bộ lọc chạy chồng nhau và về lệch nhau.
 MockClient _backend({_Delay? lessonDelay, _Delay? situationDelay}) {
   final all = [
-    for (var i = 1; i <= 8; i++) _lesson(i, 'N5'),
+    for (var i = 1; i <= 15; i++) _lesson(i, 'N5'),
     for (var i = 1; i <= 6; i++) _lesson(i, 'N4'),
     for (var i = 1; i <= 4; i++) _lesson(i, 'N3'),
     for (var i = 1; i <= 2; i++) _lesson(i, 'N2'),
@@ -65,7 +65,7 @@ MockClient _backend({_Delay? lessonDelay, _Delay? situationDelay}) {
 
     await Future<void>.delayed(lessonDelay?.call(level) ?? Duration.zero);
     final page = int.parse(query['page'] ?? '1');
-    final limit = int.parse(query['limit'] ?? '10');
+    final limit = int.parse(query['limit'] ?? '20');
     final matched = level == null ? all : all.where((l) => l['level'] == level).toList();
     final items = matched.skip((page - 1) * limit).take(limit).toList();
 
@@ -202,7 +202,7 @@ void main() {
 
         expect(_isSelected(tester, 'N4'), isTrue);
         expect(_isSelected(tester, 'N5'), isFalse);
-        expect(_requests, contains(endsWith('/lesson?page=1&limit=10&level=N4')));
+        expect(_requests, contains(endsWith('/lesson?page=1&limit=20&level=N4')));
         expect(_requests, contains(endsWith('/lesson/situations?level=N4')));
         expect(find.text('Tình huống N4 số 1'), findsOneWidget);
         expect(find.textContaining('Tình huống N5'), findsNothing);

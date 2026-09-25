@@ -11,6 +11,13 @@ import Vocabulary from '../../../model/Vocabulary.js';
  * `Vocabulary.lesson`, `Grammar.lesson_id`, `Kanji.lessonId` — đây là nơi
  * duy nhất phải nhớ đúng cả ba, service không được biết chi tiết này.
  */
+/**
+ * Danh sách chỉ cần đủ để dựng thẻ bài học. Lời thoại theo từng giây của video
+ * và nội dung HTML là phần nặng nhất của một bài và chỉ màn chi tiết dùng —
+ * gửi kèm danh sách thì mỗi lần mở trang Bài học phải tải và giải mã vô ích.
+ */
+export const LESSON_LIST_PROJECTION = Object.freeze({ content_html: 0, 'videos.transcript': 0 });
+
 export const createLessonRepository = ({
   Lesson: lessonModel,
   Vocabulary: vocabularyModel,
@@ -18,7 +25,12 @@ export const createLessonRepository = ({
   Kanji: kanjiModel,
 }) => ({
   findMany({ filter, sort, skip, limit }) {
-    return lessonModel.find(filter).sort(sort).skip(skip).limit(limit).lean();
+    return lessonModel
+      .find(filter, LESSON_LIST_PROJECTION)
+      .sort(sort)
+      .skip(skip)
+      .limit(limit)
+      .lean();
   },
 
   count(filter) {

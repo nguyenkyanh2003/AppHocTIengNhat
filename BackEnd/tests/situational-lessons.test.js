@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import test from 'node:test';
 
 import { SITUATIONAL_LESSONS } from '../scripts/situational-lessons.js';
@@ -13,8 +14,8 @@ import { SITUATIONS } from '../src/modules/lessons/situation-catalog.js';
 const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
 const KANJI = /[一-鿿]/;
 
-test('đúng 20 bài, chia N5 8 · N4 6 · N3 4 · N2 2', () => {
-  assert.equal(SITUATIONAL_LESSONS.length, 20);
+test('đúng 27 bài, chia N5 15 · N4 6 · N3 4 · N2 2', () => {
+  assert.equal(SITUATIONAL_LESSONS.length, 27);
 
   const byLevel = Object.fromEntries(
     LEVELS.map((level) => [
@@ -22,7 +23,7 @@ test('đúng 20 bài, chia N5 8 · N4 6 · N3 4 · N2 2', () => {
       SITUATIONAL_LESSONS.filter((lesson) => lesson.level === level).length,
     ]),
   );
-  assert.deepEqual(byLevel, { N5: 8, N4: 6, N3: 4, N2: 2, N1: 0 });
+  assert.deepEqual(byLevel, { N5: 15, N4: 6, N3: 4, N2: 2, N1: 0 });
 });
 
 test('tiêu đề là duy nhất — đây là khoá upsert và khoá giữ lại khi --replace', () => {
@@ -88,5 +89,21 @@ test('mỗi bài có ít nhất 8 từ vựng đủ trường, không trùng tro
     // Khoá duy nhất của Vocabulary là (word, hiragana).
     const keys = lesson.vocabularies.map((v) => `${v.word}|${v.hiragana}`);
     assert.equal(new Set(keys).size, keys.length, lesson.title);
+  }
+});
+
+test('N5 bài 1–12 theo đúng thứ tự 12 chủ đề video, mỗi bài có file video riêng', () => {
+  const dataDir = new URL('../data/lesson-videos/', import.meta.url);
+  const videoLessons = new Map(
+    fs.readdirSync(dataDir)
+      .filter((name) => name.endsWith('.json'))
+      .map((name) => [JSON.parse(fs.readFileSync(new URL(name, dataDir), 'utf8')).lesson.title, name]),
+  );
+
+  const n5 = SITUATIONAL_LESSONS.filter((lesson) => lesson.level === 'N5').sort((a, b) => a.order - b.order);
+  for (const lesson of n5.slice(0, 12)) {
+    const file = videoLessons.get(lesson.title);
+    assert.ok(file, `${lesson.title} chưa có file video`);
+    assert.ok(file.startsWith(`n5-${String(lesson.order).padStart(2, '0')}-`), `${file} lệch thứ tự bài ${lesson.order}`);
   }
 });

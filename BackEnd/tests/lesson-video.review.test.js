@@ -6,6 +6,7 @@ import {
   parseTimecode,
   reviewLessonVideos,
 } from '../src/modules/lessons/lesson-video.review.js';
+import { SITUATIONAL_LESSONS } from '../scripts/situational-lessons.js';
 
 const line = (over = {}) => ({
   start: '00:04:00',
@@ -19,7 +20,7 @@ const line = (over = {}) => ({
 });
 
 const data = (over = {}) => ({
-  lesson: { level: 'N5', order: 1 },
+  lesson: { title: 'Tình huống: Tự giới thiệu' },
   videos: [{ title: 'Chào buổi sáng', url: '/uploads/a.mp4', transcript: [line()] }],
   ...over,
 });
@@ -109,13 +110,44 @@ test('file không có danh sách video bị từ chối cả file', () => {
   assert.match(reviewLessonVideos(null).errors.join(' '), /object JSON/);
 });
 
+test('hai cảnh trỏ cùng một file bị chặn', () => {
+  const { errors } = reviewLessonVideos(
+    data({
+      videos: [
+        { title: 'Cảnh 1', url: '/uploads/a.mp4' },
+        { title: 'Cảnh 2', url: '/uploads/a.mp4' },
+      ],
+    }),
+  );
+  assert.match(errors.join(' '), /Video 2: trùng `url` với video 1/);
+});
+
 // --- file dữ liệu thật -----------------------------------------------------
 
-test('data/lesson-videos/n5-01-greeting.json hợp lệ toàn bộ', () => {
-  const file = new URL('../data/lesson-videos/n5-01-greeting.json', import.meta.url);
-  const { videos, errors } = reviewLessonVideos(JSON.parse(fs.readFileSync(file, 'utf8')));
+const DATA_DIR = new URL('../data/lesson-videos/', import.meta.url);
+const dataFiles = fs.readdirSync(DATA_DIR).filter((name) => name.endsWith('.json'));
 
-  assert.deepEqual(errors, []);
+test('mọi file trong data/lesson-videos hợp lệ và trỏ tới một bài trong bộ chủ đề', () => {
+  const titles = new Set(SITUATIONAL_LESSONS.map((lesson) => lesson.title));
+  const urls = new Set();
+
+  for (const name of dataFiles) {
+    const content = JSON.parse(fs.readFileSync(new URL(name, DATA_DIR), 'utf8'));
+    const { videos, errors } = reviewLessonVideos(content);
+
+    assert.deepEqual(errors, [], name);
+    assert.ok(titles.has(content.lesson?.title), `${name}: không có bài "${content.lesson?.title}"`);
+    for (const video of videos) {
+      assert.ok(!urls.has(video.url), `${name}: ${video.url} đã dùng ở file khác`);
+      urls.add(video.url);
+    }
+  }
+});
+
+test('bài chào hỏi giữ đủ bốn cảnh kèm lời thoại', () => {
+  const content = JSON.parse(fs.readFileSync(new URL('n5-01-greeting.json', DATA_DIR), 'utf8'));
+  const { videos } = reviewLessonVideos(content);
+
   assert.equal(videos.length, 4);
   assert.ok(videos.every((video) => video.transcript.length > 0));
 });

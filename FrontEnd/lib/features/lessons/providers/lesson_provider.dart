@@ -25,12 +25,18 @@ class LessonProvider with ChangeNotifier {
   // Mỗi lần nạp mang một số thế hệ; response về muộn của lần nạp cũ bị bỏ qua.
   int _listGeneration = 0;
   int _situationsGeneration = 0;
+  int _detailGeneration = 0;
 
-  // Pagination
+  /// Chi tiết các bài đã mở trong phiên, theo `id`.
+  final Map<String, LessonDetail> _detailCache = {};
+
+  // Pagination. Đủ rộng để cả một trình độ (N5 hiện 15 bài) nằm trên một
+  // trang: lộ trình học bị cắt đôi giữa chừng thì khó theo, còn danh sách chỉ
+  // chở phần tóm tắt của bài nên tải nhẹ.
   int _currentPage = 1;
   int _totalPages = 1;
   int _totalItems = 0;
-  final int _itemsPerPage = 10;
+  final int _itemsPerPage = 20;
 
   // Filters
   String? _selectedLevel;
@@ -121,23 +127,33 @@ class LessonProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Load chi tiết bài học
+  /// Nạp chi tiết một bài.
+  ///
+  /// Nội dung bài học gần như không đổi, nên bài đã mở trong phiên này hiện
+  /// ngay từ bộ nhớ — không vòng xoay khi quay lại bài vừa học hay đi từ màn
+  /// chi tiết sang màn học — rồi mới lặng lẽ làm mới từ server. Lỗi mạng lúc
+  /// làm mới thì giữ bản đang hiện thay vì biến trang thành màn lỗi.
   Future<void> loadLessonDetail(String id) async {
+    final generation = ++_detailGeneration;
+    final cached = _detailCache[id];
+    _currentLessonDetail = cached;
+    _isLoading = cached == null;
+    _error = null;
+    notifyListeners();
+
     try {
-      _isLoading = true;
-      _error = null;
-      _currentLessonDetail = null;
-      notifyListeners();
-
-      _currentLessonDetail = await _lessonService.getLessonDetail(id);
-
-      _isLoading = false;
-      notifyListeners();
+      final detail = await _lessonService.getLessonDetail(id);
+      _detailCache[id] = detail;
+      // Người học đã mở bài khác trong lúc chờ: chỉ cất vào bộ nhớ.
+      if (generation != _detailGeneration) return;
+      _currentLessonDetail = detail;
     } catch (e) {
-      _error = e.toString();
-      _isLoading = false;
-      notifyListeners();
+      if (generation != _detailGeneration) return;
+      if (cached == null) _error = e.toString();
     }
+
+    _isLoading = false;
+    notifyListeners();
   }
 
   // Load bài học theo level
@@ -266,7 +282,9 @@ class LessonProvider with ChangeNotifier {
   void clear() {
     _listGeneration++;
     _situationsGeneration++;
+    _detailGeneration++;
     _lessons = [];
+    _detailCache.clear();
     _currentLessonDetail = null;
     _stats = null;
     _isLoading = false;

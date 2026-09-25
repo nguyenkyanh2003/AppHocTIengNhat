@@ -20,7 +20,9 @@ class StudyVideoStep extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Xem cảnh này trước. Chạm vào một câu thoại để nghe lại đúng đoạn đó.',
+          video.transcript.isEmpty
+              ? 'Xem cảnh này trước để thấy tình huống diễn ra thế nào.'
+              : 'Xem cảnh này trước. Chạm vào một câu thoại để nghe lại đúng đoạn đó.',
           style: textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
         ),
         AppGap.lg,

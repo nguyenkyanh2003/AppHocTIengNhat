@@ -1,13 +1,12 @@
 {
   "lesson": {
-    "level": "N5",
-    "order": 1
+    "title": "Tình huống: Tự giới thiệu"
   },
   "videos": [
     {
       "title": "Chào buổi sáng",
       "url": "/uploads/lesson-videos/n5-01-greeting/scene-1.mp4",
-      "source": "つながるひろがる にほんごでのくらし (MEXT)",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
         {
           "start": "00:04:00",
@@ -68,7 +67,7 @@
     {
       "title": "Hân hạnh được làm quen, tôi là…",
       "url": "/uploads/lesson-videos/n5-01-greeting/scene-2.mp4",
-      "source": "つながるひろがる にほんごでのくらし (MEXT)",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
         {
           "start": "00:03:00",
@@ -156,7 +155,7 @@
     {
       "title": "Rất mong được sự giúp đỡ",
       "url": "/uploads/lesson-videos/n5-01-greeting/scene-3.mp4",
-      "source": "つながるひろがる にほんごでのくらし (MEXT)",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
         {
           "start": "00:03:00",
@@ -244,7 +243,7 @@
     {
       "title": "Tổng hợp lý thuyết: chào hỏi",
       "url": "/uploads/lesson-videos/n5-01-greeting/summary.mp4",
-      "source": "つながるひろがる にほんごでのくらし (MEXT)",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
         {
           "start": "00:06:00",

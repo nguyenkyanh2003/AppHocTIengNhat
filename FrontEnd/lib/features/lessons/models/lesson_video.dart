@@ -54,20 +54,27 @@ class LessonVideo {
     required this.url,
     this.description,
     this.source,
+    this.duration,
     this.transcript = const [],
   });
 
-  factory LessonVideo.fromJson(Map<String, dynamic> json) => LessonVideo(
-        title: json['title']?.toString() ?? '',
-        url: json['url']?.toString() ?? '',
-        description: json['description']?.toString(),
-        source: json['source']?.toString(),
-        transcript: (json['transcript'] as List? ?? const [])
-            .whereType<Map>()
-            .map((line) =>
-                TranscriptLine.fromJson(Map<String, dynamic>.from(line)))
-            .toList(),
-      );
+  factory LessonVideo.fromJson(Map<String, dynamic> json) {
+    final seconds = json['duration_seconds'];
+    return LessonVideo(
+      title: json['title']?.toString() ?? '',
+      url: json['url']?.toString() ?? '',
+      description: json['description']?.toString(),
+      source: json['source']?.toString(),
+      duration: seconds is num
+          ? Duration(milliseconds: (seconds * 1000).round())
+          : null,
+      transcript: (json['transcript'] as List? ?? const [])
+          .whereType<Map>()
+          .map((line) =>
+              TranscriptLine.fromJson(Map<String, dynamic>.from(line)))
+          .toList(),
+    );
+  }
 
   final String title;
 
@@ -78,6 +85,10 @@ class LessonVideo {
 
   /// Nguồn của video, hiện dưới trình phát để ghi công.
   final String? source;
+
+  /// Thời lượng backend đọc sẵn từ file, để khung chờ hiện được trước khi tải
+  /// video; `null` với video nhập từ trước khi có trường này.
+  final Duration? duration;
 
   final List<TranscriptLine> transcript;
 

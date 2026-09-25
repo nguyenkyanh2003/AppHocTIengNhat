@@ -1,0 +1,63 @@
+# Lời thoại bài 1 — nguồn để sinh phần `transcript` trong n5-01-greeting.json.
+# Sửa file này rồi chạy: node scripts/apply-transcript.js --lesson 1
+# Mỗi dòng: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+
+## scene-1.mp4
+# Chào buổi sáng
+00:04:00-00:07:00 | オウ / Ou | 佐藤さん、おはようございます。 | Satoo-san, ohayoo gozaimasu. | Chào buổi sáng anh Sato.
+00:08:00-00:10:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng.
+00:11:00-00:13:00 | オウ / Ou | いい天気ですね。 | Ii tenki desu ne. | Thời tiết đẹp nhỉ.
+00:13:00-00:15:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | そうですね。 | Soo desu ne. | Đúng vậy nhỉ.
+00:25:00-00:27:00 | オウ / Ou | お先に失礼します。 | Osaki ni shitsureeshimasu. | Chào anh tôi về trước.
+00:27:00-00:29:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | お疲れさまでした。 | Otsukaresama deshita. | Tạm biệt.
+
+## scene-2.mp4
+# Hân hạnh được làm quen, tôi là…
+00:03:00-00:05:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng.
+00:05:00-00:08:00 | オウ / Ou | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng.
+00:07:00-00:10:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | あっ、はじめまして。 | Att, hajimemashite. | A, hân hạnh được làm quen.
+00:11:00-00:12:40 | オウ / Ou | はじめまして。 | Hajimemashite. | Hân hạnh được làm quen.
+00:12:20-00:14:00 | オウ / Ou | オウ・ハオランです。 | Oo haoran desu. | Tôi là Ou Haoran.
+00:15:00-00:16:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | 佐藤です。 | Satoo desu. | Tôi là Sato.
+00:16:00-00:18:00 | オウ / Ou | 佐藤さんですね。 | Satoo-san desu ne. | Anh Sato phải không ạ.
+00:18:00-00:22:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | はい。よろしくお願いします。 | Hai. Yoroshiku onegaishimasu. | Vâng. Mong được sự giúp đỡ.
+00:22:00-00:25:00 | オウ / Ou | どうぞ、よろしくお願いします。 | Doozo, yoroshiku onegaishimasu. | Rất mong được sự giúp đỡ.
+
+## scene-3.mp4
+# Rất mong được sự giúp đỡ
+00:03:00-00:05:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | あ、鈴木さん。 | A, Suzuki-san. | A, Suzuki.
+00:04:00-00:07:00 | 先輩社員の友人 / Người bạn của nhân viên tiền bối | あ、佐藤さん。どうも。 | A, Satoo-san. Doomo. | A, anh Sato. Chào anh.
+00:08:00-00:12:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | 鈴木さん、こちら、同じ会社のオウ・ハオランさん。 | Suzuki-san, kochira, onaji kaisha no Oo haoran-san. | Suzuki ơi, đây là Ou Haoran làm cùng công ty.
+00:13:00-00:15:00 | オウ / Ou | はじめまして。 | Hajimemashite. | Hân hạnh được làm quen.
+00:14:00-00:16:00 | オウ / Ou | オウ・ハオランです。 | Oo haoran desu. | Tôi là Ou Haoran.
+00:16:00-00:17:50 | オウ / Ou | 中国から来ました。 | Chuugoku kara kimashita. | Tôi đến từ Trung Quốc.
+00:18:00-00:20:00 | オウ / Ou | どうぞよろしくお願いします。 | Doozo yoroshiku onegaishimasu. | Rất mong được sự giúp đỡ.
+00:21:00-00:23:00 | 先輩社員の友人 / Người bạn của nhân viên tiền bối | 鈴木です。 | Suzuki desu. | Tôi là Suzuki.
+00:22:00-00:24:00 | 先輩社員の友人 / Người bạn của nhân viên tiền bối | どうぞよろしくお願いします。 | Doozo yoroshiku onegaishimasu. | Rất mong được sự giúp đỡ.
+
+## summary.mp4
+# Tổng hợp lý thuyết: chào hỏi
+00:06:00-00:08:00 | オウ / Ou | はじめまして。 | Hajimemashite. | Hân hạnh được làm quen.
+00:07:00-00:09:00 | オウ / Ou | オウ・ハオランです。 | Oo haoran desu. | Tôi là Ou Haoran.
+00:10:00-00:19:00 | ナレーション / Lồng tiếng | 自己紹介などで、名前を言うとき、名前の後に、「です」をつけます。 |  | Khi nói tên để tự giới thiệu bản thân phải thêm từ “desu” vào sau tên.
+00:20:00-00:25:00 | ナレーション / Lồng tiếng | 動画では、「オウ・ハオランです。」と言いました。 |  | Nhân vật trong video đã nói là “Oo Haoran desu. (Tôi là Ou Haoran.)”.
+00:26:00-00:34:00 | ナレーション / Lồng tiếng | AさんがBさんに自分の名前を言うときは、「Aです」と言います。 |  | Khi A nói tên của mình với B, A sẽ nói là “A desu.(Tôi là A.)”.
+00:36:00-00:43:00 | ナレーション / Lồng tiếng | ほかの人の紹介をするときは、その人の名前の後に、「さん」をつけます。 |  | Khi giới thiệu người khác phải thêm từ “san” vào sau tên của người đó.
+00:51:00-00:53:00 | 先輩社員 / Nhân viên công ty bậc tiền bối | 佐藤です。 | Satoo desu. | Tôi là Sato.
+00:52:00-00:54:00 | オウ / Ou | 佐藤さんですね。 | Satoo-san desu ne. | Anh Sato phải không ạ.
+00:56:00-01:03:00 | ナレーション / Lồng tiếng | 相手の言ったことを確認したいとき、文の最後に「ね」をつけます。 |  | Khi muốn xác nhận lại nội dung mà đối phương đã nói phải thêm từ “ne” vào cuối câu.
+01:04:00-01:07:00 | ナレーション / Lồng tiếng | 「トイレはどこですか。」 |  | “Toire wa doko desu ka. (Nhà vệ sinh ở đâu ạ?)”
+01:07:00-01:09:00 | ナレーション / Lồng tiếng | 「あそこです。」 |  | “Asoko desu. (Ở đằng kia.)”
+01:10:00-01:12:00 | ナレーション / Lồng tiếng | 「あそこですね。」 |  | “Asoko desu ne. (Ở đằng kia phải không ạ.)”
+01:13:00-01:30:00 | ナレーション / Lồng tiếng | 動画の会話では、「佐藤」はほかの人の名前なので「佐藤ですね」ではなく、「佐藤さんですね」と名前に「さん」をつけて言いました。 |  | Trong mẫu hội thoại trên video, “Satoo” là tên của người khác nên nhân vật trong video không nói là “Satoo desu ne. (Sato phải không ạ.)” mà đã thêm từ “san” vào sau tên và nói là “Satoo- san desu ne. (Anh Sato phải không ạ.)”.
+01:31:00-01:43:00 | ナレーション / Lồng tiếng | 「ね」は、「いい天気ですね。」とか「おいしいですね」のように、相手の共感を求める場合にも使います。 |  | Từ “ne” còn được sử dụng khi muốn thu hút sự đồng cảm của đối phương chẳng hạn như "Ii tenki desu ne. (Thời tiết đẹp nhỉ.)” hoặc “Oishii desu ne. (Ngon nhỉ.)”.
+01:50:00-01:52:00 | オウ / Ou | はじめまして。 | Hajimemashite. | Hân hạnh được làm quen.
+01:51:00-01:54:00 | オウ / Ou | オウ・ハオランです。 | Oo haoran desu. | Tôi là Ou Haoran.
+01:53:00-01:56:00 | オウ / Ou | 中国から来ました。 | Chuugoku kara kimashita. | Tôi đến từ Trung Quốc.
+01:57:00-02:04:00 | ナレーション / Lồng tiếng | 自己紹介などで、出身地を言うとき「から来ました」を使います。 |  | Khi nói về nơi xuất thân để tự giới thiệu bản thân, sử dụng mẫu câu “kara kimashita (Tôi đến từ)”.
+02:05:00-02:14:00 | ナレーション / Lồng tiếng | 「場所」の後に助詞の「から」をつけて、出発点、出発した場所を表します。 |  | Thêm trợ từ “kara” vào sau từ chỉ địa điểm để thể hiện điểm xuất phát, nơi đã xuất phát.
+02:15:00-02:21:00 | ナレーション / Lồng tiếng | 「来ました」は、「来ます」の過去形です。 |  | Từ “kimashita” là thể quá khứ của từ “kimasu (đến)”.
+02:23:00-02:29:00 | ナレーション / Lồng tiếng | 動画では、オウさんが「中国から来ました」と言いました。 |  | Trong video anh Ou đã nói là “Chuugoku kara kimashita. (Tôi đến từ Trung Quốc.)”.
+02:30:00-02:37:00 | ナレーション / Lồng tiếng | ブラジル出身の場合は「ブラジルから来ました」と言います。 |  | Trường hợp xuất thân từ Brazil sẽ nói là “Burajiru kara kimashita. (Tôi đến từ Brazil.)”.
+02:38:00-02:50:00 | ナレーション / Lồng tiếng | 「から」は場所だけでなく「9時から勉強します」のように時間と一緒に使うこともできます。 |  | Từ “kara (từ)” không chỉ thể hiện địa điểm mà còn có thể sử dụng với thời gian chẳng hạn như “Ku-ji kara benkyoo-shimasu. (Tôi học từ 9 giờ).”.
+02:50:00-02:53:00 | ナレーション / Lồng tiếng | 「9時」が始まりの時間です。 |  | “Kuji (9 giờ)” là giờ bắt đầu.

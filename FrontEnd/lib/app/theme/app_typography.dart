@@ -26,19 +26,39 @@ abstract final class AppTypography {
 
   /// Nunito cho chữ Latin: dấu tiếng Việt đầy đủ, nét bo tròn thân thiện hợp
   /// phong cách "Duolingo" của app.
+  ///
+  /// Nunito không có chữ Nhật, mà tiêu đề, nút, thẻ từ... đều có lẫn kana và
+  /// kanji. Thiếu font dự phòng, Flutter web phải tự tải Noto Sans JP theo
+  /// từng mảnh ký tự lần đầu gặp: chữ hiện ô trống rồi mới vẽ lại, trang giật
+  /// đúng lúc người học đang cuộn. Dự phòng bằng chính Zen Maru Gothic thì chữ
+  /// Nhật ở mọi chỗ dùng chung hai mặt chữ đã tải từ lúc dựng theme.
   static TextStyle _latin({
     required double size,
     required FontWeight weight,
     required Color color,
     double? height,
     double? letterSpacing,
-  }) =>
-      GoogleFonts.nunito(
-        fontSize: size,
-        fontWeight: weight,
-        color: color,
-        height: height,
-        letterSpacing: letterSpacing,
+  }) {
+    final style = GoogleFonts.nunito(
+      fontSize: size,
+      fontWeight: weight,
+      color: color,
+      height: height,
+      letterSpacing: letterSpacing,
+    );
+    return style.copyWith(fontFamilyFallback: [
+      ...?style.fontFamilyFallback,
+      _japanese(weight).fontFamily!,
+    ]);
+  }
+
+  /// Zen Maru Gothic chỉ ở hai độ đậm: thường và đậm.
+  ///
+  /// Mỗi độ đậm là một file font ~3,8 MB tải lúc chạy; gộp về hai mức thì mở
+  /// bài học không phải chờ tải thêm font nào nữa.
+  static TextStyle _japanese(FontWeight weight) => GoogleFonts.zenMaruGothic(
+        fontWeight:
+            weight.value >= FontWeight.w600.value ? FontWeight.w700 : FontWeight.w500,
       );
 
   /// Baloo 2 — chữ mập, bo tròn, dành riêng cho tiêu đề lớn/hero (màn chào,
@@ -136,7 +156,7 @@ abstract final class AppTypography {
   static TextStyle japaneseDisplay({
     Color? color,
     double size = 40,
-    FontWeight weight = FontWeight.w600,
+    FontWeight weight = FontWeight.w700,
   }) =>
       GoogleFonts.zenMaruGothic(
         fontSize: size,
@@ -156,7 +176,7 @@ abstract final class AppTypography {
   /// Cách đọc (hiragana) đi kèm chữ Nhật — nhỏ và nhạt hơn câu chính.
   static TextStyle japaneseReading({Color? color}) => GoogleFonts.zenMaruGothic(
         fontSize: bodySmall,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
         height: 1.5,
         color: color ?? AppColors.textSecondary,
       );

@@ -55,6 +55,8 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
+  # Trình phát giả trong test lời thoại chạy theo video.
+  video_player_platform_interface: ^6.6.0
   flutter_lints: ^2.0.0
 
 flutter:

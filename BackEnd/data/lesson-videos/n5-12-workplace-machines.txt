@@ -1,0 +1,7 @@
+# Lời thoại Tình huống: Dùng máy móc ở nơi làm việc
+# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Gõ xong chạy: node scripts/apply-transcript.js --lesson 12
+# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+
+## video-1.mp4
+# Sử dụng thành thạo máy móc tại nơi làm việc

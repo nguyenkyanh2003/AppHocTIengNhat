@@ -1,0 +1,7 @@
+# Lời thoại Tình huống: Hỏi quầy hàng và giá
+# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Gõ xong chạy: node scripts/apply-transcript.js --lesson 3
+# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+
+## video-1.mp4
+# Hỏi về quầy hàng và giá cả

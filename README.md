@@ -132,8 +132,9 @@ hai dấu ngoặc nhọn. Không thêm tên database vào path của URI — cod
 Chạy theo đúng thứ tự — bài học phải có trước vì từ vựng, Kanji và bài tập gắn vào bài:
 
 ```powershell
-node scripts/seed-situational-lessons.js   # 20 bài theo tình huống + nội dung đi kèm
-node scripts/seed-exercises.js             # 60 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 20 bài
+node scripts/seed-situational-lessons.js   # 27 bài theo tình huống (N5 15 bài) + từ vựng đi kèm
+node scripts/import-lesson-videos.js --all # gắn video cho N5 bài 1–12, xem mục dưới
+node scripts/seed-exercises.js             # 81 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 27 bài
 node scripts/seed-kanji.js
 node scripts/seed-grammar.js
 node scripts/sync-lesson-relations.js
@@ -150,6 +151,52 @@ với `--overwrite`; thêm `--dry-run` để xem trước mà không ghi. Kho t�
 `node scripts/import-vocabulary.js --file <csv|xlsx>`, cũng upsert theo `(word, hiragana)`.
 
 MongoDB tạo database lười nên database chỉ xuất hiện sau khi seeder đầu tiên ghi document.
+
+### Video bài học
+
+N5 bài 1–12 đi theo 12 chủ đề cấp 1 của *つながるひろがる にほんごでのくらし* (Bộ Giáo dục Nhật
+Bản — MEXT); video ghi nguồn theo điều 6 trong quy ước sử dụng của trang. Mỗi chủ đề có 3 cảnh và
+1 video ôn tập. Video gốc để trong `BackEnd/data/Video_baihoc/<số bài>. <chủ đề>/`, đặt tên theo
+mẫu `10－1．Tên cảnh.mp4` và `10. Ôn tập.mp4` (không commit vào git).
+
+```powershell
+node scripts/stage-lesson-videos.js --dry-run   # kiểm video gốc
+node scripts/stage-lesson-videos.js             # chép vào uploads/, cập nhật data/lesson-videos/*.json
+node scripts/import-lesson-videos.js --all      # ghi vào database
+```
+
+Thư mục nào có hai file giống hệt nhau từng byte, file đánh số bài khác thư mục, hoặc tên sai mẫu
+thì bị từ chối nguyên thư mục và giữ nguyên hiện trạng. Video được dời mục lục lên đầu
+(*faststart*) để khung hình đầu hiện ngay trên web, và thời lượng được lưu cùng video.
+
+### Lời thoại chạy theo video
+
+Bảng lời thoại tô sáng câu đang nói cần **mốc thời gian của từng câu**. Video không kèm track phụ
+đề và trang nguồn cũng không có mốc thời gian, nên phần này gõ tay trong lúc xem video. Gõ vào
+`data/lesson-videos/<tên bài>.txt` — văn bản thuần, mỗi dòng một câu, năm ô ngăn bằng `|`:
+
+```text
+## scene-1.mp4
+00:04-00:07 | オウ / Ou | 佐藤さん、おはようございます。 | Satoo-san, ohayoo gozaimasu. | Chào buổi sáng anh Sato.
+00:08       |           | いい天気ですね。               |                              | Thời tiết đẹp nhỉ.
+```
+
+`## <tên file video>` mở đầu một cảnh. Các ô lần lượt là: mốc `bắt đầu` hoặc `bắt đầu-kết thúc`,
+người nói `tiếng Nhật / tiếng Việt`, câu tiếng Nhật, roma-ji, nghĩa tiếng Việt. Ô để trống nghĩa là
+không có — riêng câu tiếng Nhật và nghĩa tiếng Việt là bắt buộc. Xem
+`data/lesson-videos/n5-01-greeting.txt` để có mẫu đầy đủ của một bài 4 cảnh.
+
+```powershell
+node scripts/apply-transcript.js --all                  # bài chưa có .txt thì tạo khung đủ tiêu đề cảnh
+node scripts/apply-transcript.js --lesson 9             # gõ xong, đọc n5-09-*.txt vào n5-09-*.json
+node scripts/import-lesson-videos.js --all              # ghi vào database
+```
+
+Bài chưa có file `.txt` thì lệnh trên tạo sẵn khung với đúng tên từng cảnh, khỏi phải gõ tay
+`## scene-1.mp4` (gõ sai tên là lời thoại không vào đâu cả). Sai định dạng được báo kèm số dòng và
+giữ nguyên file mô tả. Tiêu đề cảnh chưa gõ câu nào thì bỏ qua, không xoá lời thoại đã có.
+`import-lesson-videos.js` in ra cảnh nào còn thiếu, và `stage-lesson-videos.js` nhập lại video gốc
+cũng không đụng tới lời thoại đã gõ.
 
 ### Chuyển dữ liệu streak cũ
 
