@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { dayKey, daysBetween, applyActivity, projectStreak } from '../src/modules/streaks/streak-rules.js';
+import { addDays, dayKey, daysBetween, applyActivity, projectStreak } from '../src/modules/streaks/streak-rules.js';
 
 const state = { currentStreak: 5, longestStreak: 9, lastActivityDay: '2026-09-09', freezesAvailable: 0 };
 test('Vietnam calendar boundary is independent of host timezone', () => {
@@ -34,8 +34,18 @@ test('insufficient freezes consumes protected days and preserves longest streak'
 });
 test('read projection never mutates or spends freezes', () => {
   const current = { ...state, freezesAvailable: 1 };
-  assert.deepEqual(projectStreak(current, '2026-09-11'), { currentStreak: 5, broken: false });
-  assert.deepEqual(projectStreak(current, '2026-09-12'), { currentStreak: 0, broken: true });
+  assert.deepEqual(projectStreak(current, '2026-09-11'), {
+    currentStreak: 5,
+    broken: false,
+    pendingFrozenDays: ['2026-09-10'],
+    freezesAfter: 0,
+  });
+  assert.deepEqual(projectStreak(current, '2026-09-12'), {
+    currentStreak: 0,
+    broken: true,
+    pendingFrozenDays: ['2026-09-10'],
+    freezesAfter: 0,
+  });
   assert.equal(current.freezesAvailable, 1);
 });
 
@@ -61,4 +71,65 @@ test('day key is built from parts, not from a locale-specific string shape', () 
 test('day key refuses a formatter that cannot supply a full calendar date', () => {
   const partial = { formatToParts: () => [{ type: 'year', value: '2026' }] };
   assert.throws(() => dayKey(new Date(), 'UTC', partial), RangeError);
+});
+
+// --- Phần B: dự báo băng trên đường đọc ---------------------------------------
+
+test('projection names the missed days freezes would protect, without spending them', () => {
+  const current = { currentStreak: 5, lastActivityDay: '2026-09-10', freezesAvailable: 2 };
+  // Nghỉ 11 và 12, hôm nay 13: đủ hai băng, chuỗi vẫn còn.
+  assert.deepEqual(projectStreak(current, '2026-09-13'), {
+    currentStreak: 5,
+    broken: false,
+    pendingFrozenDays: ['2026-09-11', '2026-09-12'],
+    freezesAfter: 0,
+  });
+  assert.equal(current.freezesAvailable, 2);
+});
+
+test('with too few freezes the projection still lists the days they will cover', () => {
+  // Spec §5.2: thiếu băng vẫn tiêu số đã bảo vệ các ngày đầu. Màn hình phải
+  // báo trước điều đó, không được hứa là chuỗi còn.
+  const current = { currentStreak: 5, lastActivityDay: '2026-09-10', freezesAvailable: 2 };
+  assert.deepEqual(projectStreak(current, '2026-09-14'), {
+    currentStreak: 0,
+    broken: true,
+    pendingFrozenDays: ['2026-09-11', '2026-09-12'],
+    freezesAfter: 0,
+  });
+});
+
+test('an unbroken or empty streak has nothing pending', () => {
+  assert.deepEqual(
+    projectStreak({ currentStreak: 3, lastActivityDay: '2026-09-12', freezesAvailable: 1 }, '2026-09-13'),
+    { currentStreak: 3, broken: false, pendingFrozenDays: [], freezesAfter: 1 },
+  );
+  assert.deepEqual(projectStreak({}, '2026-09-13'), {
+    currentStreak: 0,
+    broken: false,
+    pendingFrozenDays: [],
+    freezesAfter: 0,
+  });
+  // Hôm nay chưa kết thúc nên không phải ngày nghỉ.
+  assert.deepEqual(
+    projectStreak({ currentStreak: 3, lastActivityDay: '2026-09-13', freezesAvailable: 2 }, '2026-09-13'),
+    { currentStreak: 3, broken: false, pendingFrozenDays: [], freezesAfter: 2 },
+  );
+});
+
+test('the projection matches exactly what applyActivity will spend', () => {
+  // Đường đọc và đường ghi phải kể cùng một câu chuyện: ngày màn hình báo
+  // "băng sẽ che" phải đúng là ngày được ghi `frozen` khi người học quay lại.
+  for (const freezesAvailable of [0, 1, 2]) {
+    for (const gap of [1, 2, 3, 4, 10]) {
+      const current = { currentStreak: 4, longestStreak: 4, lastActivityDay: '2026-09-10', freezesAvailable };
+      const today = addDays('2026-09-10', gap);
+      const view = projectStreak(current, today);
+      const next = applyActivity(current, today);
+
+      assert.deepEqual(view.pendingFrozenDays, next.frozenDays, `gap ${gap}, băng ${freezesAvailable}`);
+      assert.equal(view.freezesAfter, freezesAvailable - next.freezesUsed);
+      assert.equal(view.broken, next.broken);
+    }
+  }
 });

@@ -9,10 +9,10 @@ import { ok } from '../../shared/http/respond.js';
  * service nghiệp vụ gọi sau khi đã chấm xong (spec §3.1).
  *
  * `/my-streak`, `/xp-history` không query và `/leaderboard` trả thẳng, không
- * bọc `{ data }`: đó là hợp đồng client cũ đang đọc. Hai đường mới —
- * `xp-history?mode=page` và `/days` — theo response contract chung.
+ * bọc `{ data }`: đó là hợp đồng client cũ đang đọc. Các đường mới —
+ * `xp-history?mode=page`, `/days` và `/settings` — theo response contract chung.
  */
-export const createStreakController = (readService) => ({
+export const createStreakController = (readService, settingsService) => ({
   async getMyStreak(req, res) {
     res.json(await readService.summary(req.user._id));
   },
@@ -35,6 +35,14 @@ export const createStreakController = (readService) => ({
   async getLeaderboard(req, res) {
     const { period, limit } = req.valid.query;
     res.json(await readService.leaderboard({ userId: req.user._id, period, limit }));
+  },
+
+  async getSettings(req, res) {
+    ok(res, await settingsService.get(req.user._id));
+  },
+
+  async putSettings(req, res) {
+    ok(res, await settingsService.update(req.user._id, req.valid.body));
   },
 });
 

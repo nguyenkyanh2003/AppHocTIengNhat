@@ -6,6 +6,11 @@ import {
   MILESTONE_REWARD_TYPE,
   ACHIEVEMENT_REWARD_TYPE,
   ACTIVITY_TYPES,
+  DAILY_GOAL_OPTIONS,
+  DEFAULT_DAILY_GOAL,
+  DEFAULT_REMINDER_TIME,
+  FREEZE_GIFT_TYPE,
+  REMINDER_WINDOW,
   xpFor,
   countsAsStudy,
   milestonesCrossed,
@@ -106,4 +111,24 @@ test('the type list is closed and really frozen', () => {
   assert.equal(isActivityType('streak.bonus'), false);
   // Không lọt khoá kế thừa từ Object.prototype.
   assert.equal(isActivityType('toString'), false);
+});
+
+// --- Phần B ------------------------------------------------------------------
+
+test('a freeze gift is a non-study event worth no XP', () => {
+  assert.equal(FREEZE_GIFT_TYPE, 'streak.freeze_gift');
+  assert.equal(xpFor(FREEZE_GIFT_TYPE), 0);
+  assert.equal(countsAsStudy(FREEZE_GIFT_TYPE), false);
+  // Khoá quà băng tách khỏi khoá mốc chuỗi (spec §5.2).
+  assert.notEqual(FREEZE_GIFT_TYPE, MILESTONE_REWARD_TYPE);
+});
+
+test('daily goal choices and reminder window are the ones the spec settled', () => {
+  assert.deepEqual([...DAILY_GOAL_OPTIONS], [10, 20, 30, 50]);
+  assert.equal(DEFAULT_DAILY_GOAL, 20);
+  assert.ok(DAILY_GOAL_OPTIONS.includes(DEFAULT_DAILY_GOAL));
+  assert.deepEqual({ ...REMINDER_WINDOW }, { start: '08:00', end: '21:59' });
+  assert.equal(DEFAULT_REMINDER_TIME, '20:00');
+  assert.ok(Object.isFrozen(DAILY_GOAL_OPTIONS));
+  assert.ok(Object.isFrozen(REMINDER_WINDOW));
 });

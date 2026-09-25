@@ -1,6 +1,14 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { LEGACY_XP_TYPE, streakRepository } from './streak.repository.js';
-import { addDays, dayKey as defaultDayKey, daysBetween, projectStreak } from './streak-rules.js';
+import {
+  addDays,
+  dayKey as defaultDayKey,
+  daysBetween,
+  MAX_FREEZES,
+  projectStreak,
+} from './streak-rules.js';
+import { effectiveGoal, settingsView } from './streak-settings.js';
+import { streakSettingsRepository } from './streak-settings.repository.js';
 
 /**
  * Đường **đọc** của streak: tóm tắt, lịch sử XP, bảng xếp hạng.
@@ -98,6 +106,7 @@ const xpToNextLevel = (totalXp) => levelFor(totalXp) * XP_PER_LEVEL - totalXp;
 
 export const createStreakReadService = ({
   repository = streakRepository,
+  settingsRepository = streakSettingsRepository,
   dayKey = defaultDayKey,
   clock = () => new Date(),
 } = {}) => {
@@ -221,18 +230,45 @@ export const createStreakReadService = ({
   };
 
   return {
-    /** Tóm tắt cho trang chủ và màn streak. Không ghi, không tạo document. */
+    /**
+     * Tóm tắt cho trang chủ và màn streak. Không ghi, không tạo document,
+     * không tiêu băng.
+     *
+     * Băng có hai con số tách bạch (spec §5.2): `freezes_available` là kho **đã
+     * ghi**, còn `pending_frozen_days`/`freezes_after_pending` là dự báo cho lúc
+     * người học quay lại. Gộp hai thứ thì màn hình sẽ hiện một lần tiêu băng
+     * chưa xảy ra như thể đã xảy ra.
+     *
+     * Mục tiêu ngày tính bằng `direct_xp` của hôm nay trong lịch — chỉ XP từ
+     * hoạt động học, không gồm huy hiệu hay băng (spec §5.1).
+     */
     async summary(userId) {
-      const summary = await repository.findByUser({ userId });
       const todayKey = dayKey(clock());
+      const [summary, settings, today] = await Promise.all([
+        repository.findByUser({ userId }),
+        settingsRepository.findByUser({ userId }),
+        repository.findDay({ userId, dayKey: todayKey }),
+      ]);
       const totalXp = summary?.total_xp ?? 0;
       const level = levelFor(totalXp);
       const lastActivityDay = summary?.last_activity_day ?? null;
+      const freezesAvailable = summary?.freezes_available ?? 0;
+      const projection = projectStreak(
+        {
+          currentStreak: summary?.current_streak ?? 0,
+          lastActivityDay,
+          freezesAvailable,
+        },
+        todayKey,
+      );
+      const goalTarget = effectiveGoal(settings, todayKey);
+      const todayXp = today?.direct_xp ?? 0;
+      const goalView = settingsView(settings, todayKey);
 
       return {
         _id: summary?._id ?? null,
         user: userId,
-        current_streak: liveStreak(summary, todayKey),
+        current_streak: projection.currentStreak,
         longest_streak: summary?.longest_streak ?? 0,
         total_xp: totalXp,
         level,
@@ -246,6 +282,19 @@ export const createStreakReadService = ({
         total_active_days: summary?.total_active_days ?? 0,
         legacy_day_count: summary?.legacy_day_count ?? 0,
         studied_today: lastActivityDay === todayKey,
+        tracking_started_day: summary?.tracking_started_day ?? null,
+        freezes_available: freezesAvailable,
+        max_freezes: MAX_FREEZES,
+        pending_freezes: projection.pendingFrozenDays.length,
+        pending_frozen_days: projection.pendingFrozenDays,
+        freezes_after_pending: projection.freezesAfter,
+        daily_goal: {
+          target_xp: goalTarget,
+          today_xp: todayXp,
+          reached: todayXp >= goalTarget,
+          next_target_xp: goalView.next_daily_goal_xp,
+          next_target_from: goalView.next_goal_from,
+        },
         // Mốc dừng cho client đọc lịch ngược từng khoảng qua `GET /days`.
         first_day: await repository.findFirstDayKey({ userId }),
         activity_dates: await activityDates(userId, summary),

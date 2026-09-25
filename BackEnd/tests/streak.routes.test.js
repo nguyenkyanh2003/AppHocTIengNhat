@@ -14,11 +14,11 @@ const passthrough = (req, _res, next) => {
   next();
 };
 
-/** Router thật + service đọc giả + auth giả, không cần MongoDB. */
-const buildApp = (readService = {}) => {
+/** Router thật + service giả + auth giả, không cần MongoDB. */
+const buildApp = (readService = {}, settingsService = {}) => {
   const app = express();
   app.use(express.json());
-  app.use('/api/streak', createStreakRoutes({ readService, authenticate: passthrough }));
+  app.use('/api/streak', createStreakRoutes({ readService, settingsService, authenticate: passthrough }));
   app.use(errorHandler);
   return app;
 };
@@ -154,4 +154,74 @@ test('các đường tự cấp thưởng và đường test đã bị gỡ', as
   assert.equal(addXp.status, 404);
   assert.equal((await request(app).post('/api/streak/test/reset-yesterday')).status, 404);
   assert.equal((await request(app).get('/api/streak/test/debug')).status, 404);
+});
+
+// --- cài đặt mục tiêu ngày và nhắc học (Phần B) -------------------------------
+
+const SETTINGS_VIEW = {
+  daily_goal_xp: 20,
+  next_daily_goal_xp: 30,
+  next_goal_from: '2026-09-26',
+  goal_options: [10, 20, 30, 50],
+  reminder_enabled: true,
+  reminder_time: '20:00',
+  reminder_window: { start: '08:00', end: '21:59' },
+  revision: 2,
+};
+
+test('GET /settings trả cài đặt theo response contract chung', async () => {
+  let askedFor = null;
+  const app = buildApp({}, {
+    get: async (userId) => {
+      askedFor = userId;
+      return SETTINGS_VIEW;
+    },
+  });
+
+  const response = await request(app).get('/api/streak/settings');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, { data: SETTINGS_VIEW });
+  assert.equal(askedFor, 'user-1');
+});
+
+test('PUT /settings chuyển đúng các trường đã kiểm cho service', async () => {
+  let received = null;
+  const app = buildApp({}, {
+    update: async (userId, changes) => {
+      received = { userId, changes };
+      return SETTINGS_VIEW;
+    },
+  });
+
+  const response = await request(app)
+    .put('/api/streak/settings')
+    .send({ daily_goal_xp: 30, reminder_enabled: true, reminder_time: '21:59' });
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, { data: SETTINGS_VIEW });
+  assert.deepEqual(received, {
+    userId: 'user-1',
+    changes: { daily_goal_xp: 30, reminder_enabled: true, reminder_time: '21:59' },
+  });
+});
+
+test('PUT /settings từ chối giá trị ngoài spec và trường lạ', async () => {
+  const app = buildApp({}, { update: async () => assert.fail('không được tới service') });
+
+  for (const body of [
+    { daily_goal_xp: 25 },
+    { daily_goal_xp: '20' },
+    { reminder_time: '22:30' },
+    { reminder_time: '7:30' },
+    { reminder_enabled: 'true' },
+    // Client không được tự đặt băng hay revision qua đường cài đặt.
+    { freezes_available: 2 },
+    { reminder_enabled: true, revision: 99 },
+    {},
+  ]) {
+    const response = await request(app).put('/api/streak/settings').send(body);
+    assert.equal(response.status, 400, JSON.stringify(body));
+    assert.equal(response.body.code, 'VALIDATION_ERROR');
+  }
 });

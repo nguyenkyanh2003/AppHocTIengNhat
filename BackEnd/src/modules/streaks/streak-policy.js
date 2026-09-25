@@ -24,7 +24,7 @@ import { ApiError } from '../../shared/http/api-error.js';
  * và một event 5 XP ghi sau lần đổi bảng giá không có ý nghĩa như nhau, và
  * không có cách nào phân biệt nếu không lưu phiên bản tại thời điểm ghi.
  */
-export const POLICY_VERSION = 'streak-policy@2026-09-11';
+export const POLICY_VERSION = 'streak-policy@2026-09-25';
 
 /** Thang mốc streak duy nhất, dùng cho cả huy hiệu lẫn thông báo. */
 export const STREAK_MILESTONES = Object.freeze([7, 14, 30, 50, 100, 365]);
@@ -39,6 +39,24 @@ export const MILESTONE_REWARD_TYPE = 'streak.milestone';
 
 /** Mở khoá một huy hiệu mà server tự xác minh được tiêu chí. */
 export const ACHIEVEMENT_REWARD_TYPE = 'achievement.unlock';
+
+/**
+ * Quà băng ở mốc chuỗi (spec §5.2). Loại event riêng, khoá riêng
+ * `streak-freeze:<user>:<mốc>`, tách khỏi mốc chuỗi và huy hiệu: huy hiệu đã
+ * nhận trước Phần B vì thế không tự kéo theo băng khi người dùng mở app.
+ */
+export const FREEZE_GIFT_TYPE = 'streak.freeze_gift';
+
+/** Các mức mục tiêu XP mỗi ngày người học được chọn (spec §2, §5.1). */
+export const DAILY_GOAL_OPTIONS = Object.freeze([10, 20, 30, 50]);
+export const DEFAULT_DAILY_GOAL = 20;
+
+/**
+ * Khung giờ được phép nhắc học, theo giờ Việt Nam, tính cả hai đầu (spec
+ * §5.3). Không nhắc trong 22:00–07:59.
+ */
+export const REMINDER_WINDOW = Object.freeze({ start: '08:00', end: '21:59' });
+export const DEFAULT_REMINDER_TIME = '20:00';
 
 /**
  * Trần XP cho một phần thưởng cấu hình được.
@@ -78,6 +96,7 @@ const TABLE = Object.freeze({
   // Event thưởng: không tính ngày học, không tăng XP mục tiêu ngày, và tuyệt
   // đối không gọi ngược lại `recordActivity` (spec §3.4).
   [MILESTONE_REWARD_TYPE]: { xp: 0, study: false },
+  [FREEZE_GIFT_TYPE]: { xp: 0, study: false },
   [ACHIEVEMENT_REWARD_TYPE]: { configured: true, study: false },
 });
 

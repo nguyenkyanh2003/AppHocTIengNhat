@@ -1,7 +1,7 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { achievementService } from '../achievements/achievement.service.js';
 import { streakRepository } from './streak.repository.js';
-import { applyActivity, dayKey, projectStreak } from './streak-rules.js';
+import { applyActivity, dayKey, MAX_FREEZES, projectStreak } from './streak-rules.js';
 import * as defaultPolicy from './streak-policy.js';
 
 /**
@@ -110,6 +110,57 @@ export const createStreakService = ({
   };
 
   /**
+   * Tặng băng cho những mốc chuỗi **vừa vượt qua bằng hoạt động này** (spec §5.2).
+   *
+   * Gọi sau khi CAS chính đã xử lý ngày và khoảng nghỉ: băng tặng hôm nay không
+   * được dùng cứu khoảng nghỉ đã qua. Mỗi mốc tặng đúng một lần trong đời tài
+   * khoản nhờ khoá `streak-freeze:<user>:<mốc>` — tách khỏi khoá mốc chuỗi và
+   * khoá huy hiệu, nên huy hiệu nhận trước Phần B không kéo theo băng.
+   *
+   * Kho đầy thì phần thưởng bị bỏ, không để dành lĩnh sau; event vẫn được ghi
+   * (`receipt.granted = false`) để mốc đó không bao giờ được xét lại. CAS chạy
+   * trước khi ghi event vì receipt cần biết kho **lúc thắng CAS** — cả hai nằm
+   * trong cùng transaction nên thứ tự không làm hở gì.
+   */
+  const giftFreezes = async ({ userId, milestones, occurredAt, todayKey, session }) => {
+    const gifted = [];
+
+    for (const milestone of milestones) {
+      const eventKey = `streak-freeze:${userId}:${milestone}`;
+      if (await repository.findEventByKey({ userId, eventKey, session })) continue;
+
+      let granted = false;
+      await casWithRetry({
+        userId,
+        session,
+        buildWrite: (current) => {
+          const inventory = current.freezes_available ?? 0;
+          granted = inventory < MAX_FREEZES;
+          return { patch: { freezes_available: granted ? inventory + 1 : inventory } };
+        },
+      });
+
+      await repository.insertEvent({
+        userId,
+        eventKey,
+        type: policy.FREEZE_GIFT_TYPE,
+        sourceId: String(milestone),
+        occurredAt,
+        dayKey: todayKey,
+        xpDelta: policy.xpFor(policy.FREEZE_GIFT_TYPE),
+        reason: policy.FREEZE_GIFT_TYPE,
+        countsAsStudy: false,
+        policyVersion: policy.POLICY_VERSION,
+        receipt: { granted },
+        session,
+      });
+      if (granted) gifted.push(milestone);
+    }
+
+    return gifted;
+  };
+
+  /**
    * Cấp những huy hiệu mà hoạt động vừa ghi làm đạt tiêu chí.
    *
    * Tiêu chí do server tự đếm (`achievement-rules.js`), xét trên `snapshot`
@@ -204,6 +255,7 @@ export const createStreakService = ({
           duplicate: true,
           milestonesReached: [],
           achievementsAwarded: [],
+          freezesGifted: [],
         };
       }
 
@@ -235,6 +287,7 @@ export const createStreakService = ({
           duplicate: false,
           milestonesReached: [],
           achievementsAwarded: [],
+          freezesGifted: [],
         };
       }
 
@@ -253,6 +306,7 @@ export const createStreakService = ({
           duplicate: false,
           milestonesReached: [],
           achievementsAwarded: [],
+          freezesGifted: [],
         };
       }
 
@@ -284,8 +338,7 @@ export const createStreakService = ({
           // (spec §3.2).
           if (!current.tracking_started_day) patch.tracking_started_day = todayKey;
           // Băng chỉ bị tiêu ở đây — tức chỉ khi người học thật sự học, không
-          // phải lúc mở app. Phần B mới phát băng nên nhánh này hiện không bao
-          // giờ chạy; viết sẵn vì bỏ trống nó nghĩa là `frozenDays` được ghi
+          // phải lúc mở app. Bỏ trống nhánh này nghĩa là `frozenDays` được ghi
           // vào lịch mà kho băng không bao giờ vơi — băng vô hạn.
           if (next.freezesUsed > 0) {
             patch.freezes_available = (current.freezes_available ?? 0) - next.freezesUsed;
@@ -314,14 +367,21 @@ export const createStreakService = ({
       });
 
       // Ngày được băng che: chỉ đánh dấu lịch, không XP, không phải ngày học.
-      // Băng thuộc Phần B nên hiện `frozenDays` luôn rỗng.
       for (const frozenDay of next.frozenDays) {
         await repository.upsertDay({ userId, dayKey: frozenDay, status: 'frozen', session });
       }
 
+      const crossed = policy.milestonesCrossed(previousStreak, next.currentStreak);
       const milestonesReached = await markMilestones({
         userId,
-        milestones: policy.milestonesCrossed(previousStreak, next.currentStreak),
+        milestones: crossed,
+        occurredAt: now,
+        todayKey,
+        session,
+      });
+      const freezesGifted = await giftFreezes({
+        userId,
+        milestones: crossed,
         occurredAt: now,
         todayKey,
         session,
@@ -341,6 +401,7 @@ export const createStreakService = ({
         duplicate: false,
         milestonesReached,
         achievementsAwarded,
+        freezesGifted,
       };
     },
 

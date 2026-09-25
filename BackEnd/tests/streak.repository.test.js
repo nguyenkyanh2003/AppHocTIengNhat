@@ -551,3 +551,11 @@ test('findSummaries and findUsersByIds read only what the board shows', async ()
   // Không bao giờ trả mật khẩu hay email đầy đủ của người khác ra bảng xếp hạng.
   assert.equal(lastCall(User, 'select')[1], 'TenDangNhap HoTen AnhDaiDien');
 });
+
+test('findDay reads exactly one calendar day of one user', async () => {
+  const StreakDay = fakeModel({ result: { day_key: '2026-09-19', direct_xp: 6 } });
+  const day = await build({ StreakDay }).findDay({ userId: 'u1', dayKey: '2026-09-19' });
+
+  assert.deepEqual(day, { day_key: '2026-09-19', direct_xp: 6 });
+  assert.deepEqual(lastCall(StreakDay, 'findOne')[1], { user: 'u1', day_key: '2026-09-19' });
+});

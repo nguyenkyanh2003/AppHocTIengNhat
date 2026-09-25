@@ -220,18 +220,31 @@ export const applyActivity = (state, todayKey) => {
  * Đường đọc phải dùng hàm này thay vì `applyActivity`: nếu dùng nhầm
  * `applyActivity` thì chỉ mở ứng dụng sau một kỳ nghỉ là băng đã bị trừ, dù
  * người học chưa ôn thẻ nào trong ngày hôm đó.
+ *
+ * Chỉ tính những ngày **đã kết thúc**: hôm nay chưa học không phải ngày nghỉ.
+ * `pendingFrozenDays` là những ngày băng **sẽ** che khi người học quay lại —
+ * đúng từng ngày `applyActivity` sẽ ghi `frozen`, kể cả khi số băng không đủ
+ * cứu chuỗi (spec §5.2: thiếu băng vẫn tiêu phần đã bảo vệ các ngày đầu).
+ * `freezesAfter` là kho còn lại sau lần tiêu dự kiến đó; kho đã ghi không đổi.
  */
 export const projectStreak = (state, todayKey) => {
-  const { currentStreak = 0, lastActivityDay = null, freezesAvailable = 0 } = state;
-  if (!lastActivityDay) return { currentStreak: 0, broken: false };
+  const { currentStreak = 0, lastActivityDay = null } = state;
+  const freezesAvailable = state.freezesAvailable ?? 0;
+  const nothingPending = { pendingFrozenDays: [], freezesAfter: freezesAvailable };
+  if (!lastActivityDay) return { currentStreak: 0, broken: false, ...nothingPending };
 
   const gap = daysBetween(lastActivityDay, todayKey);
   const missed = Math.max(0, gap - 1);
-  if (missed === 0) return { currentStreak, broken: false };
+  if (missed === 0) return { currentStreak, broken: false, ...nothingPending };
 
+  const pendingFrozenDays = Array.from({ length: Math.min(missed, freezesAvailable) }, (_, index) =>
+    addDays(lastActivityDay, index + 1),
+  );
   const covered = missed <= freezesAvailable;
   return {
     currentStreak: covered ? currentStreak : 0,
     broken: !covered,
+    pendingFrozenDays,
+    freezesAfter: freezesAvailable - pendingFrozenDays.length,
   };
 };

@@ -47,6 +47,10 @@ const readOnlyRepository = ({
       calls.push(['findFirstDayKey', userId]);
       return days.length > 0 ? days[days.length - 1].day_key : null;
     },
+    async findDay({ userId, dayKey }) {
+      calls.push(['findDay', { userId, dayKey }]);
+      return days.find((day) => day.day_key === dayKey) ?? null;
+    },
     async hasLegacyImport({ userId }) {
       calls.push(['hasLegacyImport', userId]);
       return legacyImported;
@@ -82,7 +86,19 @@ const readOnlyRepository = ({
   };
 };
 
-const build = (repository) => createStreakReadService({ repository, clock: () => NOW });
+/** Cài đặt giả chỉ có đường đọc, cùng lý do với repository ở trên. */
+const settingsRepositoryWith = (settings = null) => ({
+  async findByUser() {
+    return settings;
+  },
+});
+
+const build = (repository, settings = null) =>
+  createStreakReadService({
+    repository,
+    settingsRepository: settingsRepositoryWith(settings),
+    clock: () => NOW,
+  });
 
 // --- summary ----------------------------------------------------------------
 
@@ -457,4 +473,88 @@ test('days rejects a reversed range or one longer than a leap year', async () =>
 test('summary exposes the earliest calendar day for export', async () => {
   const view = await build(readOnlyRepository({ summary: { user: USER }, days: calendar })).summary(USER);
   assert.equal(view.first_day, '2025-01-01');
+});
+
+// --- Phần B: mục tiêu ngày và dự báo băng trong tóm tắt ---------------------------
+
+test('summary reports today\'s goal progress from studied XP only', async () => {
+  const repository = readOnlyRepository({
+    summary: { user: USER, total_xp: 300, current_streak: 2, last_activity_day: TODAY },
+    days: [{ day_key: TODAY, status: 'studied', direct_xp: 14 }],
+  });
+  const view = await build(repository).summary(USER);
+
+  assert.deepEqual(view.daily_goal, {
+    target_xp: 20,
+    today_xp: 14,
+    reached: false,
+    next_target_xp: null,
+    next_target_from: null,
+  });
+  // Tiến độ mục tiêu là XP học hôm nay, không phải tổng XP trọn đời.
+  assert.notEqual(view.daily_goal.today_xp, view.total_xp);
+});
+
+test('summary shows a reached goal and a goal change waiting for tomorrow', async () => {
+  const repository = readOnlyRepository({
+    summary: { user: USER, total_xp: 40, current_streak: 1, last_activity_day: TODAY },
+    days: [{ day_key: TODAY, status: 'studied', direct_xp: 22 }],
+  });
+  const settings = { daily_goal_xp: 30, previous_goal_xp: 20, goal_effective_from: '2026-09-20' };
+  const view = await build(repository, settings).summary(USER);
+
+  assert.equal(view.daily_goal.target_xp, 20);
+  assert.equal(view.daily_goal.reached, true);
+  assert.equal(view.daily_goal.next_target_xp, 30);
+  assert.equal(view.daily_goal.next_target_from, '2026-09-20');
+});
+
+test('a user who has not studied today has 0 XP towards the goal', async () => {
+  const view = await build(readOnlyRepository()).summary(USER);
+  assert.equal(view.daily_goal.today_xp, 0);
+  assert.equal(view.daily_goal.target_xp, 20);
+  assert.equal(view.daily_goal.reached, false);
+});
+
+test('summary reports the stored inventory and the projected freeze use separately', async () => {
+  // Nghỉ 17 và 18, hôm nay 19: đủ hai băng. Kho đã ghi vẫn là 2; sau khi học
+  // lại sẽ còn 0. Hai con số khác nhau, không được gộp (spec §5.2).
+  const repository = readOnlyRepository({
+    summary: {
+      user: USER,
+      current_streak: 5,
+      longest_streak: 5,
+      last_activity_day: '2026-09-16',
+      freezes_available: 2,
+      tracking_started_day: '2026-09-01',
+    },
+  });
+  const view = await build(repository).summary(USER);
+
+  assert.equal(view.current_streak, 5);
+  assert.equal(view.freezes_available, 2);
+  assert.equal(view.max_freezes, 2);
+  assert.equal(view.pending_freezes, 2);
+  assert.deepEqual(view.pending_frozen_days, ['2026-09-17', '2026-09-18']);
+  assert.equal(view.freezes_after_pending, 0);
+  assert.equal(view.tracking_started_day, '2026-09-01');
+});
+
+test('a broken streak still lists the freezes that will be spent', async () => {
+  const repository = readOnlyRepository({
+    summary: { user: USER, current_streak: 5, last_activity_day: '2026-09-15', freezes_available: 1 },
+  });
+  const view = await build(repository).summary(USER);
+
+  assert.equal(view.current_streak, 0);
+  assert.deepEqual(view.pending_frozen_days, ['2026-09-16']);
+  assert.equal(view.freezes_after_pending, 0);
+});
+
+test('a user with no streak yet has an empty inventory and nothing pending', async () => {
+  const view = await build(readOnlyRepository()).summary(USER);
+  assert.equal(view.freezes_available, 0);
+  assert.equal(view.pending_freezes, 0);
+  assert.deepEqual(view.pending_frozen_days, []);
+  assert.equal(view.tracking_started_day, null);
 });

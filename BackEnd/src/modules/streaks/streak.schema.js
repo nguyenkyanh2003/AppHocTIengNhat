@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
+import { DAILY_GOAL_OPTIONS, REMINDER_WINDOW } from './streak-policy.js';
 import { isDayKey } from './streak-rules.js';
+import { isReminderTime } from './streak-settings.js';
 
 /** Trang lịch sử/lịch: mặc định như phân trang chung, tối đa 100 (spec §4.2, §4.3). */
 const pageLimit = (fallback) => z.coerce.number().int().min(1).max(100).default(fallback);
@@ -37,3 +39,24 @@ export const leaderboardQuery = z.object({
   period: z.enum(['all', 'week', 'month']).default('all'),
   limit: z.coerce.number().int().min(1).max(100).default(50),
 });
+
+/**
+ * Thay đổi cài đặt mục tiêu ngày và nhắc học (spec §5.1, §5.3).
+ *
+ * `strictObject`: trường lạ bị từ chối chứ không bị lờ đi — đường này không
+ * được trở thành cửa sau để client tự đặt `freezes_available` hay `revision`.
+ * Cần ít nhất một thay đổi.
+ */
+export const settingsBody = z
+  .strictObject({
+    daily_goal_xp: z.union(DAILY_GOAL_OPTIONS.map((goal) => z.literal(goal))).optional(),
+    reminder_enabled: z.boolean().optional(),
+    reminder_time: z
+      .string()
+      .refine(
+        isReminderTime,
+        `Giờ nhắc phải có dạng HH:MM, trong khoảng ${REMINDER_WINDOW.start}–${REMINDER_WINDOW.end}.`,
+      )
+      .optional(),
+  })
+  .refine((body) => Object.keys(body).length > 0, { message: 'Cần gửi ít nhất một thay đổi.' });

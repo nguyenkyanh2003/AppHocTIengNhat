@@ -277,6 +277,11 @@ export const createStreakRepository = ({
     return dayModel.find(filter).sort({ day_key: -1 }).limit(pageSize(limit)).lean();
   },
 
+  /** Một ngày trong lịch của user; `null` khi ngày đó chưa có bản ghi. */
+  findDay({ userId, dayKey }) {
+    return dayModel.findOne({ user: userId, day_key: dayKey }).lean();
+  },
+
   /** Ngày sớm nhất có trong lịch của user — mốc dừng khi export đọc ngược từng năm. */
   async findFirstDayKey({ userId }) {
     const first = await dayModel.findOne({ user: userId }).sort({ day_key: 1 }).select('day_key').lean();

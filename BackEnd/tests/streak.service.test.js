@@ -437,9 +437,12 @@ test('crossing a milestone emits exactly one reward event that is not study', as
   assert.ok(reward, 'phải có event thưởng');
   assert.equal(reward.countsAsStudy, false);
   assert.equal(reward.eventKey, 'streak-milestone:u1:7');
-  // Event thưởng không được làm phát sinh thêm ngày học hay thêm event nào.
+  // Event thưởng không được làm phát sinh thêm ngày học hay thêm event học nào.
   assert.equal(repository.days.length, 1);
-  assert.equal(repository.events.length, 2);
+  assert.deepEqual(
+    repository.events.map((event) => event.type).sort(),
+    ['lesson.complete', 'streak.freeze_gift', 'streak.milestone'],
+  );
 });
 
 test('a milestone is never awarded twice, even after the streak breaks and rebuilds', async () => {
@@ -587,9 +590,8 @@ test('a user who has never studied reads as all zeroes, not as an error', async 
 });
 
 test('a freeze that protects a gap is actually spent, not reused forever', async () => {
-  // Băng thuộc Phần B nên chưa có đường nào phát băng. Nhánh này vẫn phải
-  // đúng: ghi ngày `frozen` vào lịch mà không trừ kho băng nghĩa là băng vô
-  // hạn — chuỗi không bao giờ đứt được nữa.
+  // Ghi ngày `frozen` vào lịch mà không trừ kho băng nghĩa là băng vô hạn —
+  // chuỗi không bao giờ đứt được nữa.
   const repository = fakeRepository({
     summary: {
       current_streak: 5,
@@ -651,4 +653,127 @@ test('losing the race to insert is raised so the whole transaction runs again', 
       return true;
     },
   );
+});
+
+// --- Phần B: quà băng ở mốc chuỗi ------------------------------------------------
+
+const giftsOf = (repository) => repository.events.filter((event) => event.type === 'streak.freeze_gift');
+
+test('crossing a milestone gifts one freeze under its own key', async () => {
+  const repository = fakeRepository({
+    summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-10', freezes_available: 0 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+
+  const result = await service.recordActivity(activity(), { session: 'sess', now: NOW });
+
+  assert.deepEqual(result.freezesGifted, [7]);
+  assert.equal(repository.state.freezes_available, 1);
+  const [gift] = giftsOf(repository);
+  // Khoá quà băng tách khỏi khoá mốc chuỗi và huy hiệu (spec §5.2).
+  assert.equal(gift.eventKey, 'streak-freeze:u1:7');
+  assert.equal(gift.xpDelta, 0);
+  assert.equal(gift.countsAsStudy, false);
+  assert.deepEqual(gift.receipt, { granted: true });
+  assert.equal(gift.session, 'sess');
+  assert.equal(gift.policyVersion, POLICY_VERSION);
+});
+
+test('a full inventory keeps two freezes and the gift is not banked for later', async () => {
+  const repository = fakeRepository({
+    summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-10', freezes_available: 2 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+
+  const result = await service.recordActivity(activity(), { now: NOW });
+
+  assert.deepEqual(result.freezesGifted, []);
+  assert.equal(repository.state.freezes_available, 2);
+  // Event vẫn được ghi để mốc này không bao giờ được tặng lại.
+  const [gift] = giftsOf(repository);
+  assert.deepEqual(gift.receipt, { granted: false });
+});
+
+test('a milestone gift is never given twice, even after the streak breaks and climbs again', async () => {
+  const repository = fakeRepository({
+    summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-10', freezes_available: 0 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+  await service.recordActivity(activity(), { now: NOW });
+
+  Object.assign(repository.state, { current_streak: 6, last_activity_day: '2026-09-11', freezes_available: 0 });
+  const again = await service.recordActivity(activity({ occurrenceKey: 'lesson-complete:l2', sourceId: 'l2' }), {
+    now: new Date('2026-09-12T03:00:00.000Z'),
+  });
+
+  assert.deepEqual(again.freezesGifted, []);
+  assert.equal(giftsOf(repository).length, 1);
+  assert.equal(repository.state.freezes_available, 0);
+});
+
+test('the gap is settled with the old inventory before today\'s gift arrives', async () => {
+  // Spec §5.2: tặng sau khi xử lý ngày và khoảng nghỉ — băng vừa kiếm hôm nay
+  // không được dùng cứu khoảng nghỉ đã qua. Nghỉ 10/9, còn 1 băng: băng đó che
+  // ngày 10, chuỗi lên 7, rồi mới nhận quà.
+  const repository = fakeRepository({
+    summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-09', freezes_available: 1 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+
+  const result = await service.recordActivity(activity(), { now: NOW });
+
+  assert.equal(result.currentStreak, 7);
+  assert.deepEqual(result.freezesGifted, [7]);
+  assert.equal(repository.state.freezes_available, 1);
+  const casPatches = callsTo(repository, 'casSummary').map(({ patch }) => patch?.freezes_available);
+  // CAS thứ nhất trừ băng cho khoảng nghỉ, CAS sau mới cộng quà.
+  assert.deepEqual(casPatches.filter((value) => value !== undefined), [0, 1]);
+});
+
+test('a gap that the old inventory cannot cover earns no gift', async () => {
+  // Nghỉ hai ngày, chỉ còn 1 băng: băng vẫn bị tiêu cho ngày đầu nhưng chuỗi
+  // đứt về 1, không vượt mốc nào nên không có quà.
+  const repository = fakeRepository({
+    summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-08', freezes_available: 1 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+
+  const result = await service.recordActivity(activity(), { now: NOW });
+
+  assert.equal(result.currentStreak, 1);
+  assert.deepEqual(result.freezesGifted, []);
+  assert.equal(repository.state.freezes_available, 0);
+  assert.deepEqual(
+    repository.days.filter((day) => day.status === 'frozen').map((day) => day.dayKey),
+    ['2026-09-09'],
+  );
+});
+
+test('replaying the same activity gifts nothing more', async () => {
+  const repository = fakeRepository({
+    summary: { current_streak: 6, longest_streak: 6, last_activity_day: '2026-09-10', freezes_available: 0 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+
+  await service.recordActivity(activity(), { now: NOW });
+  const replay = await service.recordActivity(activity(), { now: NOW });
+
+  assert.equal(replay.duplicate, true);
+  assert.deepEqual(replay.freezesGifted, []);
+  assert.equal(giftsOf(repository).length, 1);
+  assert.equal(repository.state.freezes_available, 1);
+});
+
+test('awarding earned achievements outside an activity never gifts freezes', async () => {
+  // Đường này dùng cho lịch sử vừa nhập/seed: không phải "vừa vượt mốc bằng
+  // hoạt động mới", nên không được phát bù băng (spec §5.2, không hồi tố).
+  const repository = fakeRepository({
+    summary: { current_streak: 30, longest_streak: 30, last_activity_day: '2026-09-11', freezes_available: 0 },
+  });
+  const service = createStreakService({ achievements: NO_ACHIEVEMENTS, repository });
+
+  await service.awardEarnedAchievements('u1', { now: NOW });
+
+  assert.equal(giftsOf(repository).length, 0);
+  assert.equal(repository.state.freezes_available, 0);
 });
