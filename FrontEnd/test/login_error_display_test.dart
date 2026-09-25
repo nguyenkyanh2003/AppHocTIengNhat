@@ -45,6 +45,10 @@ Future<void> _submitWrongPassword(WidgetTester tester) async {
 
   await tester.enterText(find.byType(TextFormField).at(0), 'demo_hocvien');
   await tester.enterText(find.byType(TextFormField).at(1), 'sai-mat-khau');
+  // Form cuộn được và nút nằm dưới mép khung 800×600 của test: cuộn tới nút
+  // trước, không thì cú chạm rơi ra ngoài và không có lần đăng nhập nào.
+  await tester.ensureVisible(find.text('Đăng Nhập'));
+  await tester.pumpAndSettle();
   await tester.tap(find.text('Đăng Nhập'));
   await tester.pumpAndSettle();
 }

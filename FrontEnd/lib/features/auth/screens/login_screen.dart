@@ -293,11 +293,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   /// Ghi nhớ đăng nhập và quên mật khẩu
   Widget _buildRememberAndForgot() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    // Wrap thay Row: màn hẹp (điện thoại 320–360px, cỡ chữ lớn) không đủ chỗ
+    // cho cả hai trên một dòng, Row sẽ tràn; Wrap đẩy "Quên mật khẩu?" xuống.
+    return Wrap(
+      alignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         // Checkbox ghi nhớ
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Checkbox(
               value: _rememberMe,
