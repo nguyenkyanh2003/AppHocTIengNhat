@@ -1,6 +1,7 @@
 # Streak — độ tin cậy và cơ chế duy trì việc học
 
-Ngày: 2026-09-09 · Trạng thái: đã chỉnh sửa sau đối chiếu; chưa triển khai.
+Ngày: 2026-09-09 · Trạng thái: Phần A đã triển khai; Phần B đã triển khai ngày 2026-09-25
+([kế hoạch](../plans/2026-09-25-content-keys-and-streak-part-b.md)).
 Chương trình: [learning-loop-program-design.md](2026-09-09-learning-loop-program-design.md).
 
 - **Phần A thuộc mốc 1:** thống nhất ghi hoạt động, quyền cấp XP, lịch ngày và migration.
@@ -279,6 +280,13 @@ achievements giảm 1 route. Phần B bổ sung endpoint settings riêng, không
 “chỉ bỏ ba route” cho toàn bộ thay đổi.
 
 ## 5. Phần B — mốc 1B
+
+> **Đã triển khai (2026-09-25).** Backend: `StreakSettings` + `GET/PUT /api/streak/settings`,
+> quà băng trong `recordActivity` (event `streak.freeze_gift`, khoá `streak-freeze:<user>:<mốc>`),
+> tóm tắt `GET /my-streak` có `daily_goal`, `pending_frozen_days`, `freezes_after_pending`.
+> Flutter: thẻ mục tiêu ngày và kho băng trên màn streak, sheet cài đặt (mở từ màn streak và
+> màn Cài đặt), màn lịch `/streak/calendar`, nhắc trong app qua `StreakReminderHost` ở
+> `ShellRoute`. Smoke trên MongoDB thật: `node scripts/smoke-streak-part-b.js`.
 
 ### 5.1 Mục tiêu ngày và lịch
 
