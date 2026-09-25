@@ -57,4 +57,9 @@ const ExerciseSchema = new mongoose.Schema({
 
 ExerciseSchema.index({ title: 'text' });
 
+// Khoá tự nhiên: trong một bài học không có hai bài tập cùng tên — khoá mà
+// `seed-exercises.js` dùng. Unique để DB tự chặn trùng (xem
+// `scripts/content-indexes.js`).
+ExerciseSchema.index({ lesson_id: 1, title: 1 }, { unique: true, name: 'exercise_natural_key' });
+
 export default mongoose.model('Exercise', ExerciseSchema);

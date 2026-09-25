@@ -4,7 +4,7 @@ import xlsx from 'xlsx';
 import Exercise from '../../../model/Exercise.js';
 import ExerciseResult from '../../../model/ExerciseResult.js';
 import Lesson from '../../../model/Lesson.js';
-import UserStreak from '../../../model/UserStreak.js';
+import { isDuplicateKeyError } from '../../shared/db/duplicate-key.js';
 import mongoose from 'mongoose';
 import { scoreExerciseAnswers } from './exercise-scoring.service.js';
 
@@ -307,6 +307,12 @@ export const createExercise = async (req, res) => {
         res.status(201).json(newExercise);
 
     } catch (error) {
+        if (isDuplicateKeyError(error)) {
+            return res.status(409).json({
+                error: "Bài học này đã có bài tập cùng tên (kể cả bài đã xoá). Hãy đặt tên khác.",
+                code: 'DUPLICATE_EXERCISE'
+            });
+        }
         console.error("Lỗi thêm bài tập:", error);
         res.status(500).json({ error: error.message });
     }
@@ -335,6 +341,12 @@ export const updateExercise = async (req, res) => {
         res.json(updatedExercise);
 
     } catch (error) {
+        if (isDuplicateKeyError(error)) {
+            return res.status(409).json({
+                error: "Bài học này đã có bài tập cùng tên (kể cả bài đã xoá). Hãy đặt tên khác.",
+                code: 'DUPLICATE_EXERCISE'
+            });
+        }
         console.error("Lỗi cập nhật bài tập:", error);
         res.status(500).json({ error: error.message });
     }

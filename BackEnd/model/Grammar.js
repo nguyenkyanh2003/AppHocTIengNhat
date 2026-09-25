@@ -93,6 +93,12 @@ const GrammarSchema = new mongoose.Schema({
 GrammarSchema.index({ level: 1, is_active: 1 });
 GrammarSchema.index({ lesson_id: 1, level: 1 });
 
+// Khoá tự nhiên: một cấp độ không có hai ngữ pháp cùng tiêu đề. Đây là khoá
+// `seed-grammar.js` dùng để nhận ra bản ghi đã có; unique để DB tự chặn trùng
+// thay vì trông vào việc mọi đường ghi đều nhớ kiểm tra (xem
+// `scripts/content-indexes.js`).
+GrammarSchema.index({ level: 1, title: 1 }, { unique: true, name: 'grammar_natural_key' });
+
 // Text index để tìm kiếm
 GrammarSchema.index({ 
     title: 'text', 

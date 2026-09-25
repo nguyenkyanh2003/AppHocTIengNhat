@@ -44,7 +44,7 @@ const GroupQuestionSchema = new mongoose.Schema({
 // 3. SCHEMA CHÍNH: ĐỀ THI JLPT (Exam)
 const JLPTSchema = new mongoose.Schema({
     // Thông tin chung 
-    title: { type: String, required: true },
+    title: { type: String, required: true, trim: true },
     description: String,
 
     level: { 
@@ -81,5 +81,10 @@ const JLPTSchema = new mongoose.Schema({
 
 }, 
 { timestamps: true });
+
+// Khoá tự nhiên: tên đề là định danh mà `seed-jlpt.js` và
+// `import-jlpt-n3-2024-07.js` dùng để nhận ra đề đã có. Unique để DB tự chặn
+// trùng (xem `scripts/content-indexes.js`).
+JLPTSchema.index({ title: 1 }, { unique: true, name: 'jlpt_natural_key' });
 
 export default mongoose.model('JLPT', JLPTSchema);

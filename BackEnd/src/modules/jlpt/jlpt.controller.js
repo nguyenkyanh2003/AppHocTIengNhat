@@ -1,5 +1,6 @@
 import { jlptSubmissionService } from './jlpt-submission.service.js';
 import { submissionOf } from './jlpt.schema.js';
+import { isDuplicateKeyError } from '../../shared/db/duplicate-key.js';
 import multer from 'multer';
 import xlsx from 'xlsx';
 import mongoose from 'mongoose';
@@ -320,6 +321,12 @@ export const createExam = async (req, res) => {
         });
 
     } catch (error) {
+        if (isDuplicateKeyError(error)) {
+            return res.status(409).json({
+                message: "Đã có đề thi cùng tên (kể cả đề đã xoá). Hãy đặt tên khác.",
+                code: 'DUPLICATE_EXAM'
+            });
+        }
         console.error("Lỗi khi tạo bộ đề thi JLPT:", error);
         res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
     }
@@ -397,6 +404,12 @@ export const updateExam = async (req, res) => {
         });
 
     } catch (error) {
+        if (isDuplicateKeyError(error)) {
+            return res.status(409).json({
+                message: "Đã có đề thi cùng tên (kể cả đề đã xoá). Hãy đặt tên khác.",
+                code: 'DUPLICATE_EXAM'
+            });
+        }
         console.error("Lỗi khi cập nhật thông tin đề thi JLPT:", error);
         res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
     }

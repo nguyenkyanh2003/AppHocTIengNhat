@@ -1,7 +1,8 @@
 import Grammar from '../../../model/Grammar.js';
 import Lesson from '../../../model/Lesson.js';
 import mongoose from 'mongoose';
-import UserStreak from '../../../model/UserStreak.js';
+import { isDuplicateKeyError } from '../../shared/db/duplicate-key.js';
+import { createOrReviveGrammar } from './grammar-natural-key.js';
 
 
 // Lấy danh sách ngữ pháp với phân trang và lọc
@@ -146,24 +147,34 @@ export const postRoot = async (req, res) => {
             return res.status(400).json({ message: "ID bài học không hợp lệ." });
         }
 
-        const newGrammar = await Grammar.create({
-            title,
-            structure,
-            meaning,
-            usage,
-            examples: examples || [],
-            level,
-            lesson_id: lessonID,
-            notes,
-            difficulty: difficulty || 3,
-            related_grammar: relatedGrammar || []
+        const { grammar, revived } = await createOrReviveGrammar({
+            data: {
+                title,
+                structure,
+                meaning,
+                usage,
+                examples: examples || [],
+                level,
+                lesson_id: lessonID,
+                notes,
+                difficulty: difficulty || 3,
+                related_grammar: relatedGrammar || []
+            }
         });
 
         res.status(201).json({
-            message: "Thêm ngữ pháp thành công.",
-            data: newGrammar
+            message: revived
+                ? "Đã khôi phục ngữ pháp đã xoá với nội dung mới."
+                : "Thêm ngữ pháp thành công.",
+            data: grammar
         });
     } catch (error) {
+        if (isDuplicateKeyError(error)) {
+            return res.status(409).json({
+                message: `Cấp ${req.body.level} đã có ngữ pháp "${String(req.body.title).trim()}". Hãy đặt tiêu đề khác.`,
+                code: 'DUPLICATE_GRAMMAR'
+            });
+        }
         console.error("Lỗi khi tạo ngữ pháp:", error);
         res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
     }
@@ -206,6 +217,12 @@ export const putById = async (req, res) => {
             data: updatedGrammar 
         });
     } catch (error) {
+        if (isDuplicateKeyError(error)) {
+            return res.status(409).json({
+                message: "Cấp độ này đã có ngữ pháp khác cùng tiêu đề (kể cả bản đã xoá). Hãy đặt tiêu đề khác.",
+                code: 'DUPLICATE_GRAMMAR'
+            });
+        }
         console.error("Lỗi khi cập nhật ngữ pháp:", error);
         res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
     }
