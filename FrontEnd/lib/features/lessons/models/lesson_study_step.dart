@@ -1,4 +1,5 @@
 import 'lesson.dart';
+import 'lesson_video.dart';
 
 /// Loại của một bước trong phiên học bài.
 enum StudyStepKind { intro, video, dialogue, vocabulary, kanji, grammar, quiz, finish }
@@ -29,18 +30,22 @@ List<StudyStep> buildStudySteps(LessonDetail detail) {
   return [
     const StudyStep(StudyStepKind.intro, 'Mở đầu'),
     for (var index = 0; index < videos.length; index++)
-      StudyStep(
-        StudyStepKind.video,
-        videos.length == 1 ? 'Xem tình huống' : 'Cảnh ${index + 1}: ${videos[index].title}',
-        videoIndex: index,
-      ),
-    if (lesson.isSituational) const StudyStep(StudyStepKind.dialogue, 'Hội thoại'),
+      StudyStep(StudyStepKind.video, _videoStepTitle(videos, index), videoIndex: index),
+    if (lesson.hasDialogue) const StudyStep(StudyStepKind.dialogue, 'Hội thoại'),
     if (detail.words.isNotEmpty) const StudyStep(StudyStepKind.vocabulary, 'Từ vựng'),
     if (detail.kanjis.isNotEmpty) const StudyStep(StudyStepKind.kanji, 'Chữ Hán'),
     if (detail.grammars.isNotEmpty) const StudyStep(StudyStepKind.grammar, 'Ngữ pháp'),
     if (detail.words.length >= quickQuizMinWords) const StudyStep(StudyStepKind.quiz, 'Kiểm tra nhanh'),
     const StudyStep(StudyStepKind.finish, 'Hoàn thành'),
   ];
+}
+
+/// Cảnh tình huống đánh số "Cảnh N"; video ôn tập mang đúng tên của nó.
+String _videoStepTitle(List<LessonVideo> videos, int index) {
+  if (videos.length == 1) return 'Xem tình huống';
+  final number = sceneNumber(videos, index);
+  final title = videos[index].title;
+  return number == null ? title : 'Cảnh $number: $title';
 }
 
 /// Ước lượng số phút của một bài, để người học biết trước mình cần bao lâu.

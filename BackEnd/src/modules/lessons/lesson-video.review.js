@@ -1,3 +1,6 @@
+/** Cùng danh sách với `Lesson.videos.kind` — không import model để test khỏi cần Mongoose. */
+const VIDEO_KINDS = ['scene', 'review'];
+
 /**
  * Kiểm và chuẩn hoá dữ liệu video + lời thoại của bài học.
  *
@@ -61,10 +64,30 @@ const reviewLine = (line, index) => {
       start_seconds: start,
       end_seconds: end,
       speaker_ja: line.speaker_ja?.trim() || null,
+      speaker_romaji: line.speaker_romaji?.trim() || null,
       speaker_vi: line.speaker_vi?.trim() || null,
       text_ja: line.text_ja.trim(),
       romaji: line.romaji?.trim() || null,
       text_vi: line.text_vi.trim(),
+      key_phrase: line.key_phrase === true,
+    },
+  };
+};
+
+/** Một từ trong bảng từ vựng của video: bắt buộc mặt chữ và nghĩa. */
+const reviewWord = (word, index) => {
+  if (word === null || typeof word !== 'object') return { errors: [`Từ ${index + 1}: không phải object.`] };
+  const errors = [];
+  if (!word.word || typeof word.word !== 'string') errors.push(`Từ ${index + 1}: thiếu \`word\`.`);
+  if (!word.meaning || typeof word.meaning !== 'string') errors.push(`Từ ${index + 1}: thiếu \`meaning\`.`);
+  if (errors.length > 0) return { errors };
+  return {
+    errors: [],
+    word: {
+      word: word.word.trim(),
+      reading: word.reading?.trim() || null,
+      romaji: word.romaji?.trim() || null,
+      meaning: word.meaning.trim(),
     },
   };
 };
@@ -78,6 +101,10 @@ const reviewVideo = (video, index) => {
   const errors = [];
   if (!video.title || typeof video.title !== 'string') errors.push(`${label}: thiếu \`title\`.`);
   if (!video.url || typeof video.url !== 'string') errors.push(`${label}: thiếu \`url\`.`);
+  const kind = video.kind ?? 'scene';
+  if (!VIDEO_KINDS.includes(kind)) {
+    errors.push(`${label}: \`kind\` phải là ${VIDEO_KINDS.join(' hoặc ')} (đang là "${video.kind}").`);
+  }
 
   const transcript = [];
   const rawLines = Array.isArray(video.transcript) ? video.transcript : [];
@@ -85,6 +112,13 @@ const reviewVideo = (video, index) => {
     const result = reviewLine(rawLine, lineIndex);
     if (result.errors.length > 0) errors.push(...result.errors.map((e) => `${label} · ${e}`));
     else transcript.push(result.line);
+  });
+
+  const vocabulary = [];
+  (Array.isArray(video.vocabulary) ? video.vocabulary : []).forEach((rawWord, wordIndex) => {
+    const result = reviewWord(rawWord, wordIndex);
+    if (result.errors.length > 0) errors.push(...result.errors.map((e) => `${label} · ${e}`));
+    else vocabulary.push(result.word);
   });
 
   // Lời thoại phải tăng dần theo thời gian: giao diện tô sáng dòng đang nói
@@ -105,7 +139,9 @@ const reviewVideo = (video, index) => {
       url: video.url.trim(),
       description: video.description?.trim() || null,
       source: video.source?.trim() || null,
+      kind,
       transcript,
+      vocabulary,
     },
   };
 };

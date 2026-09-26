@@ -1,7 +1,94 @@
 # Lời thoại Tình huống: Đi tàu
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 8
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-8-12.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Đi tàu điện
+## scene-1.mp4
+# Hỏi đường ray và giờ tàu
+00:02 | 男性客 / Dansee-kyaku / Khách nam | すみません。 | Sumimasen. | Xin lỗi.
+*00:05 | 男性客 / Dansee-kyaku / Khách nam | 静岡に行きたいです。 | Shizuoka ni ikitai desu. | Tôi muốn đi Shizuoka.
+*00:07 | 男性客 / Dansee-kyaku / Khách nam | 電車は何番線ですか。 | Densha wa nan-bansen desu ka. | Tàu ở đường ray số mấy ạ?
+00:10 | 駅員 / Ekiin / Nhân viên nhà ga | 2番線です。 | Ni-bansen desu. | Đường ray số 2 ạ.
+00:11 | 男性客 / Dansee-kyaku / Khách nam | 2番線ですね。 | Ni-bansen desu ne. | Đường ray số 2 nhỉ.
+00:13 | 男性客 / Dansee-kyaku / Khách nam | 電車は何時ですか。 | Densha wa nan-ji desu ka. | Tàu chạy lúc mấy giờ ạ?
+00:15 | 駅員 / Ekiin / Nhân viên nhà ga | 9時45分です。 | Ku-ji yonjuugo-fun desu. | 9 giờ 45 phút ạ.
+00:18 | 男性客 / Dansee-kyaku / Khách nam | く、9時…？ | Ku, ku-ji…? | 9… 9 giờ…?
+00:25 | 駅員 / Ekiin / Nhân viên nhà ga | 9時…45分です。 | Ku-ji… yonjuugo-fun desu. | 9 giờ… 45 phút ạ.
+00:29 | 男性客 / Dansee-kyaku / Khách nam | 9時45分ですね。 | Ku-ji yonjuugo-fun desu ne. | 9 giờ 45 phút nhỉ.
+*00:32 | 男性客 / Dansee-kyaku / Khách nam | 静岡までどのくらいかかりますか。 | Shizuoka made dono kurai kakarimasu ka. | Đến Shizuoka mất khoảng bao lâu ạ?
+00:35 | 駅員 / Ekiin / Nhân viên nhà ga | 30分ぐらいです。 | Sanjuppun gurai desu. | Khoảng 30 phút ạ.
+00:38 | 男性客 / Dansee-kyaku / Khách nam | わかりました。ありがとうございます。 | Wakarimashita. Arigatoo gozaimasu. | Tôi hiểu rồi. Cảm ơn anh.
+00:55 | 駅員 / Ekiin / Nhân viên nhà ga | どうしましたか。 | Doo shimashita ka. | Anh cần gì ạ?
+*00:57 | 男性客 / Dansee-kyaku / Khách nam | 次の静岡行きは何時ですか。 | Tsugi no Shizuoka-yuki wa nan-ji desu ka. | Chuyến tàu tiếp theo đi Shizuoka lúc mấy giờ ạ?
+01:02 | 駅員 / Ekiin / Nhân viên nhà ga | 10時です。 | Juu-ji desu. | 10 giờ ạ.
+01:04 | 男性客 / Dansee-kyaku / Khách nam | 何番線ですか。 | Nan-bansen desu ka. | Đường ray số mấy ạ?
+01:06 | 駅員 / Ekiin / Nhân viên nhà ga | 2番線です。 | Ni-bansen desu. | Đường ray số 2 ạ.
+01:08 | 男性客 / Dansee-kyaku / Khách nam | どうも、ありがとうございます。 | Doomo, arigatoo gozaimasu. | Cảm ơn chị nhiều.
+01:10 | 駅員 / Ekiin / Nhân viên nhà ga | いいえ。 | Iie. | Không có gì ạ.
+### từ vựng
+電車 | でんしゃ | densha | tàu điện
+何番線 | なんばんせん | nan-bansen | đường ray số mấy
+何時 | なんじ | nan-ji | mấy giờ
+どのくらい | どのくらい | dono kurai | khoảng bao lâu
+かかります | かかります | kakarimasu | mất (thời gian, tiền)
+次 | つぎ | tsugi | tiếp theo
+
+## scene-2.mp4
+# Hỏi cách đi và đổi tàu
+*00:02 | 女性客 / Josee-kyaku / Khách nữ | すみません。三島まで行きたいです。 | Sumimasen. Mishima made ikitai desu. | Xin lỗi, tôi muốn đi đến Mishima.
+*00:06 | 女性客 / Josee-kyaku / Khách nữ | どうやって行ったらいいですか。 | Doo yatte ittara ii desu ka. | Tôi nên đi thế nào ạ?
+00:09 | 駅員 / Ekiin / Nhân viên nhà ga | 三島ですね。 | Mishima desu ne. | Đi Mishima phải không ạ?
+00:12 | 駅員 / Ekiin / Nhân viên nhà ga | 2番線の電車に乗ってください。 | Ni-bansen no densha ni notte kudasai. | Chị lên tàu ở đường ray số 2.
+*00:15 | 駅員 / Ekiin / Nhân viên nhà ga | 静岡で熱海行きに乗り換えてください。 | Shizuoka de Atami-yuki ni norikaete kudasai. | Đến Shizuoka thì đổi sang tàu đi Atami.
+00:19 | 女性客 / Josee-kyaku / Khách nữ | 2番線…静岡…熱海… | Ni-bansen… Shizuoka… Atami… | Đường ray số 2… Shizuoka… Atami…
+00:26 | 駅員 / Ekiin / Nhân viên nhà ga | 三島は静岡から64分です。 | Mishima wa Shizuoka kara rokujuuyon-pun desu. | Từ Shizuoka đến Mishima mất 64 phút.
+00:31 | 女性客 / Josee-kyaku / Khách nữ | そうですか。ありがとうございます。 | Soo desu ka. Arigatoo gozaimasu. | Vậy à. Cảm ơn anh.
+### từ vựng
+行きたい | いきたい | ikitai | muốn đi
+どうやって | どうやって | doo yatte | bằng cách nào
+乗ります | のります | norimasu | lên (tàu, xe)
+乗り換えます | のりかえます | norikaemasu | đổi tàu
+
+## scene-3.mp4
+# Hỏi giá vé và nạp tiền vào thẻ
+*00:07 | 女性客 / Josee-kyaku / Khách nữ | すみません。熱海までいくらですか。 | Sumimasen. Atami made ikura desu ka. | Xin lỗi, đến Atami bao nhiêu tiền ạ?
+00:11 | 駅員 / Ekiin / Nhân viên nhà ga | 1,520円です。 | Sen gohyaku nijuu-en desu. | 1.520 yên ạ.
+00:13 | 女性客 / Josee-kyaku / Khách nữ | そうですか。 | Soo desu ka. | Vậy à.
+*00:15 | 女性客 / Josee-kyaku / Khách nữ | これ、チャージしたいです。どこでできますか。 | Kore, chaaji shitai desu. Doko de dekimasu ka. | Tôi muốn nạp tiền vào thẻ này. Nạp ở đâu được ạ?
+00:20 | 駅員 / Ekiin / Nhân viên nhà ga | あの機械でできますよ。 | Ano kikai de dekimasu yo. | Nạp ở cái máy kia được đấy.
+00:22 | 女性客 / Josee-kyaku / Khách nữ | はい。 | Hai. | Vâng.
+00:29 | ナレーター / Nareetaa / Người dẫn | ICカードを入れます。 | Aishii-kaado o iremasu. | Cho thẻ IC vào.
+00:32 | ナレーター / Nareetaa / Người dẫn | チャージボタンを押します。 | Chaaji-botan o oshimasu. | Bấm nút nạp tiền.
+00:35 | ナレーター / Nareetaa / Người dẫn | 金額を選びます。 | Kingaku o erabimasu. | Chọn số tiền.
+00:38 | ナレーター / Nareetaa / Người dẫn | 3,000円。 | Sanzen-en. | 3.000 yên.
+00:39 | ナレーター / Nareetaa / Người dẫn | お金を入れます。 | Okane o iremasu. | Cho tiền vào.
+00:45 | ナレーター / Nareetaa / Người dẫn | チャージできました。 | Chaaji dekimashita. | Đã nạp xong.
+### từ vựng
+チャージ | チャージ | chaaji | nạp tiền (vào thẻ)
+機械 | きかい | kikai | máy
+ICカード | アイシーカード | aishii kaado | thẻ IC
+ボタン | ボタン | botan | nút
+押します | おします | oshimasu | bấm
+金額 | きんがく | kingaku | số tiền
+選びます | えらびます | erabimasu | chọn
+
+## summary.mp4
+# Ôn tập: Đi tàu điện
+00:00 |  /  / Chủ đề | しずおかに いきたいです | shizuoka ni ikitai desu | Tôi muốn đi Shizuoka
+*00:06 | 男性客 / Dansee-kyaku / Khách nam | 静岡に行きたいです。 | Shizuoka ni ikitai desu. | Tôi muốn đi Shizuoka.
+00:10 | ナレーター / Nareetaa / Người dẫn | 「行く」「来る」「帰る」「着く」などの移動を表す動詞の目的地は、場所に助詞の「に」をつけて表します。「へ」を使うこともあります。 | "Iku", "kuru", "kaeru", "tsuku" nado no idoo o arawasu dooshi no mokutekichi wa, basho ni joshi no "ni" o tsukete arawashimasu. "E" o tsukau koto mo arimasu. | Với các động từ chỉ sự di chuyển như "iku" (đi), "kuru" (đến), "kaeru" (về), "tsuku" (tới nơi), điểm đến được diễn tả bằng cách thêm trợ từ "ni" sau địa điểm. Cũng có thể dùng "e".
+00:30 | ナレーター / Nareetaa / Người dẫn | この会話では「静岡に行きたい」と言っていますから、目的地は静岡です。 | Kono kaiwa de wa "Shizuoka ni ikitai" to itte imasu kara, mokutekichi wa Shizuoka desu. | Trong hội thoại này, người khách nói "muốn đi Shizuoka" nên điểm đến là Shizuoka.
+00:40 | ナレーター / Nareetaa / Người dẫn | 「行きたい」は、動詞のます形から「ます」を取って「たい」をつけた形ですが、これは「行く」という行為を希望していることを表します。 | "Ikitai" wa, dooshi no masu-kee kara "masu" o totte "tai" o tsuketa katachi desu ga, kore wa "iku" to iu kooi o kiboo shite iru koto o arawashimasu. | "Ikitai" là dạng bỏ "masu" ở thể masu rồi thêm "tai", diễn tả mong muốn thực hiện hành động "đi".
+00:59 |  /  / Chủ đề | しずおかゆきは なんじですか | shizuoka-yuki wa nan-ji desu ka | Chuyến đi Shizuoka mấy giờ ạ?
+*01:05 | 男性客 / Dansee-kyaku / Khách nam | 次の静岡行きは何時ですか。 | Tsugi no Shizuoka-yuki wa nan-ji desu ka. | Chuyến tàu tiếp theo đi Shizuoka lúc mấy giờ ạ?
+01:09 | 駅員 / Ekiin / Nhân viên nhà ga | 10時です。 | Juu-ji desu. | 10 giờ ạ.
+01:12 | ナレーター / Nareetaa / Người dẫn | 時刻を聞くときは、疑問詞の「なん」に「1時」「2時」の「じ」をつけて、「何時ですか」と聞きます。 | Jikoku o kiku toki wa, gimonshi no "nan" ni "ichi-ji", "ni-ji" no "ji" o tsukete, "Nan-ji desu ka" to kikimasu. | Khi hỏi giờ, ghép từ để hỏi "nan" với "ji" (giờ) như trong "ichi-ji", "ni-ji" để hỏi "Nan-ji desu ka" (Mấy giờ?).
+01:27 | ナレーター / Nareetaa / Người dẫn | この会話では、「次の静岡行きは」と言って、静岡に向かう電車の次の発車時刻を聞いています。 | Kono kaiwa de wa, "tsugi no Shizuoka-yuki wa" to itte, Shizuoka ni mukau densha no tsugi no hassha-jikoku o kiite imasu. | Trong hội thoại này, khách nói "chuyến đi Shizuoka tiếp theo" để hỏi giờ khởi hành của chuyến tàu tiếp theo đi Shizuoka.
+01:41 | ナレーター / Nareetaa / Người dẫn | 例えば、ホテルで朝食の時間帯を聞く場合は、「朝食は何時からですか」「何時までですか」のように「から」や「まで」をつけます。 | Tatoeba, hoteru de chooshoku no jikantai o kiku baai wa, "Chooshoku wa nan-ji kara desu ka", "Nan-ji made desu ka" no yoo ni "kara" ya "made" o tsukemasu. | Ví dụ, khi hỏi giờ ăn sáng ở khách sạn thì thêm "kara" (từ) hoặc "made" (đến): "Bữa sáng từ mấy giờ?", "Đến mấy giờ?".
+02:00 | ナレーター / Nareetaa / Người dẫn | 「なん」は、「年」「月」「日」「曜日」「時」「分」「人」「歳」などのほか、いろいろな助数詞につけて使うことができます。 | "Nan" wa, "nen", "gatsu", "nichi", "yoobi", "ji", "fun", "nin", "sai" nado no hoka, iroiro na josuushi ni tsukete tsukau koto ga dekimasu. | "Nan" có thể ghép với nhiều trợ từ đếm như "nen" (năm), "gatsu" (tháng), "nichi" (ngày), "yoobi" (thứ), "ji" (giờ), "fun" (phút), "nin" (người), "sai" (tuổi)…
+02:19 |  /  / Chủ đề | みしままで いきたいです | mishima made ikitai desu | Tôi muốn đi đến Mishima
+*02:24 | 女性客 / Josee-kyaku / Khách nữ | すみません、三島まで行きたいです。 | Sumimasen, Mishima made ikitai desu. | Xin lỗi, tôi muốn đi đến Mishima.
+02:29 | ナレーター / Nareetaa / Người dẫn | 「行く」「来る」「帰る」「着く」などの移動を表す動詞の目的地は、場所に助詞の「に」「へ」をつけるほかに、「まで」をつけて表すこともあります。 | "Iku", "kuru", "kaeru", "tsuku" nado no idoo o arawasu dooshi no mokutekichi wa, basho ni joshi no "ni", "e" o tsukeru hoka ni, "made" o tsukete arawasu koto mo arimasu. | Điểm đến của các động từ di chuyển, ngoài "ni", "e" còn có thể diễn tả bằng "made" (đến).
+02:49 | ナレーター / Nareetaa / Người dẫn | その場合、「まで」は最終目的地だけでなく、目的地に向かう途中の地点を示すこともあります。 | Sono baai, "made" wa saishuu-mokutekichi dake de naku, mokutekichi ni mukau tochuu no chiten o shimesu koto mo arimasu. | Khi đó, "made" không chỉ chỉ điểm đến cuối cùng mà còn có thể chỉ một điểm giữa đường.
+03:01 | ナレーター / Nareetaa / Người dẫn | 例えば、三島まで新幹線で行って電車に乗り換えるというような場合です。 | Tatoeba, Mishima made shinkansen de itte densha ni norikaeru to iu yoo na baai desu. | Ví dụ như đi tàu Shinkansen đến Mishima rồi đổi sang tàu điện.
+03:11 | ナレーター / Nareetaa / Người dẫn | 「まで」は場所だけでなく、「夜遅くまで勉強する」のように時間にも使うことができます。 | "Made" wa basho dake de naku, "yoru osoku made benkyoo suru" no yoo ni jikan ni mo tsukau koto ga dekimasu. | "Made" không chỉ dùng cho nơi chốn mà còn cho thời gian, như "học đến khuya".

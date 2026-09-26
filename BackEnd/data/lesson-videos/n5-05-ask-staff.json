@@ -4,10 +4,968 @@
   },
   "videos": [
     {
-      "title": "Truyền đạt mong muốn với nhân viên cửa hàng",
-      "url": "/uploads/lesson-videos/n5-05-ask-staff/video-1.mp4",
+      "title": "Xin xem món đồ màu khác",
+      "description": "Hỏi được còn màu khác không và xin xem thêm.",
+      "url": "/uploads/lesson-videos/n5-05-ask-staff/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません。これ、試着したいんですけど。",
+          "romaji": "Sumimasen. Kore, shichaku shitain desu kedo.",
+          "text_vi": "Xin lỗi, tôi muốn mặc thử cái này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、ご試着ですね。こちらへどうぞ。",
+          "romaji": "Hai, goshichaku desu ne. Kochira e doozo.",
+          "text_vi": "Vâng, quý khách mặc thử ạ. Mời đi lối này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いかがですか。",
+          "romaji": "Ikaga desu ka.",
+          "text_vi": "Quý khách thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "あ、サイズはちょうどいいんですけど、",
+          "romaji": "A, saizu wa choodo iin desu kedo,",
+          "text_vi": "À, cỡ thì vừa rồi nhưng mà…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "あのー、他の色はありますか。",
+          "romaji": "Anoo, hoka no iro wa arimasu ka.",
+          "text_vi": "Ừm, có màu khác không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "白とグレーもございます。",
+          "romaji": "Shiro to guree mo gozaimasu.",
+          "text_vi": "Có cả màu trắng và màu xám ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "じゃあ、白も見せてください。",
+          "romaji": "Jaa, shiro mo misete kudasai.",
+          "text_vi": "Vậy cho tôi xem cả màu trắng.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。今お持ちしますね。",
+          "romaji": "Hai. Ima omochi shimasu ne.",
+          "text_vi": "Vâng. Tôi mang ra ngay ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お待たせしました。こちらです。",
+          "romaji": "Omatase shimashita. Kochira desu.",
+          "text_vi": "Để quý khách đợi lâu. Đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "他の",
+          "reading": "ほかの",
+          "romaji": "hoka no",
+          "meaning": "khác"
+        },
+        {
+          "word": "色",
+          "reading": "いろ",
+          "romaji": "iro",
+          "meaning": "màu sắc"
+        },
+        {
+          "word": "白",
+          "reading": "しろ",
+          "romaji": "shiro",
+          "meaning": "màu trắng"
+        },
+        {
+          "word": "グレー",
+          "reading": "グレー",
+          "romaji": "guree",
+          "meaning": "màu xám"
+        },
+        {
+          "word": "見せてください",
+          "reading": "みせてください",
+          "romaji": "misete kudasai",
+          "meaning": "cho tôi xem"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi có cỡ to hơn không",
+      "description": "Nói được đồ đang thử bị chật và hỏi cỡ to hơn.",
+      "url": "/uploads/lesson-videos/n5-05-ask-staff/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "これ、何センチですか。",
+          "romaji": "Kore, nan-senchi desu ka.",
+          "text_vi": "Đôi này cỡ bao nhiêu xăng-ti-mét ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "27センチです。",
+          "romaji": "Nijuunana-senchi desu.",
+          "text_vi": "27 cm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "履いてみてもいいですか。",
+          "romaji": "Haite mite mo ii desu ka.",
+          "text_vi": "Tôi đi thử được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、どうぞ。",
+          "romaji": "Hai, doozo.",
+          "text_vi": "Vâng, mời anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いかがですか。",
+          "romaji": "Ikaga desu ka.",
+          "text_vi": "Anh thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ちょっと…きついです。",
+          "romaji": "Chotto… kitsui desu.",
+          "text_vi": "Hơi… chật ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "もう少し大きいのはありますか。",
+          "romaji": "Moo sukoshi ookii no wa arimasu ka.",
+          "text_vi": "Có đôi to hơn một chút không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、ございます。",
+          "romaji": "Hai, gozaimasu.",
+          "text_vi": "Vâng, có ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "27.5をお持ちしますね。",
+          "romaji": "Nijuunana-ten-go o omochi shimasu ne.",
+          "text_vi": "Tôi mang cỡ 27,5 ra nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "お願いします。",
+          "romaji": "Onegaishimasu.",
+          "text_vi": "Nhờ anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、いかがですか。",
+          "romaji": "Hai, ikaga desu ka.",
+          "text_vi": "Đây ạ, anh thấy thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ちょうどいいです。",
+          "romaji": "Choodo ii desu.",
+          "text_vi": "Vừa khít ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "これにします。",
+          "romaji": "Kore ni shimasu.",
+          "text_vi": "Tôi lấy đôi này.",
+          "key_phrase": true
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "センチ",
+          "reading": "センチ",
+          "romaji": "senchi",
+          "meaning": "xăng-ti-mét"
+        },
+        {
+          "word": "履いてみます",
+          "reading": "はいてみます",
+          "romaji": "haite mimasu",
+          "meaning": "đi thử (giày)"
+        },
+        {
+          "word": "きつい",
+          "reading": "きつい",
+          "romaji": "kitsui",
+          "meaning": "chật"
+        },
+        {
+          "word": "もう少し",
+          "reading": "もうすこし",
+          "romaji": "moo sukoshi",
+          "meaning": "thêm một chút"
+        },
+        {
+          "word": "大きい",
+          "reading": "おおきい",
+          "romaji": "ookii",
+          "meaning": "to, lớn"
+        }
+      ]
+    },
+    {
+      "title": "Đổi và trả hàng",
+      "description": "Nói được đồ không vừa và xin trả hoặc đổi hàng.",
+      "url": "/uploads/lesson-videos/n5-05-ask-staff/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんはズボンを買いましたが、サイズが合わないので返品に来ました。",
+          "romaji": "Anjera-san wa zubon o kaimashita ga, saizu ga awanai node henpin ni kimashita.",
+          "text_vi": "Chị Angela đã mua quần nhưng cỡ không vừa nên đến trả hàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、これ、先週ここで買ったんですけど。",
+          "romaji": "Sumimasen, kore, senshuu koko de kattan desu kedo.",
+          "text_vi": "Xin lỗi, tôi mua cái này ở đây tuần trước.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっとサイズが合わなくて。",
+          "romaji": "Chotto saizu ga awanakute.",
+          "text_vi": "Cỡ hơi không vừa ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "返品はできますか。",
+          "romaji": "Henpin wa dekimasu ka.",
+          "text_vi": "Tôi trả hàng được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。レシートはお持ちですか。",
+          "romaji": "Hai. Reshiito wa omochi desu ka.",
+          "text_vi": "Vâng. Quý khách có mang hóa đơn không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "少々お待ちください。",
+          "romaji": "Shooshoo omachi kudasai.",
+          "text_vi": "Xin quý khách chờ một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お客様、こちらご確認ください。",
+          "romaji": "Okyakusama, kochira gokakunin kudasai.",
+          "text_vi": "Thưa quý khách, xin kiểm tra lại giúp ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、大丈夫です。ありがとうございました。",
+          "romaji": "Hai, daijoobu desu. Arigatoo gozaimashita.",
+          "text_vi": "Vâng, được rồi ạ. Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんはズボンを買いましたが、サイズが合わないので交換に来ました。",
+          "romaji": "Anjera-san wa zubon o kaimashita ga, saizu ga awanai node kookan ni kimashita.",
+          "text_vi": "Chị Angela đã mua quần nhưng cỡ không vừa nên đến đổi hàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、これ、先週ここで買ったんですけど。",
+          "romaji": "Sumimasen, kore, senshuu koko de kattan desu kedo.",
+          "text_vi": "Xin lỗi, tôi mua cái này ở đây tuần trước.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっと小さくて。",
+          "romaji": "Chotto chiisakute.",
+          "text_vi": "Nó hơi nhỏ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "交換はできますか。",
+          "romaji": "Kookan wa dekimasu ka.",
+          "text_vi": "Tôi đổi được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。Mサイズでよろしいですか。",
+          "romaji": "Hai. Emu-saizu de yoroshii desu ka.",
+          "text_vi": "Vâng. Cỡ M được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "少々お待ちください。在庫を確認します。",
+          "romaji": "Shooshoo omachi kudasai. Zaiko o kakunin shimasu.",
+          "text_vi": "Xin chờ một chút. Tôi kiểm tra hàng trong kho ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:54",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お待たせしました。",
+          "romaji": "Omatase shimashita.",
+          "text_vi": "Để quý khách đợi lâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、どうも。",
+          "romaji": "A, doomo.",
+          "text_vi": "À, cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "レシートはお持ちですか。",
+          "romaji": "Reshiito wa omochi desu ka.",
+          "text_vi": "Quý khách có mang hóa đơn không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:05",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "少々お待ちください。",
+          "romaji": "Shooshoo omachi kudasai.",
+          "text_vi": "Xin quý khách chờ một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:19",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "では、お客様、こちらご確認ください。",
+          "romaji": "Dewa, okyakusama, kochira gokakunin kudasai.",
+          "text_vi": "Vậy, thưa quý khách, xin kiểm tra lại giúp ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、大丈夫です。",
+          "romaji": "Hai, daijoobu desu.",
+          "text_vi": "Vâng, được rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:32",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:32:15",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn quý khách.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "ズボン",
+          "reading": "ズボン",
+          "romaji": "zubon",
+          "meaning": "quần dài"
+        },
+        {
+          "word": "先週",
+          "reading": "せんしゅう",
+          "romaji": "senshuu",
+          "meaning": "tuần trước"
+        },
+        {
+          "word": "合わない",
+          "reading": "あわない",
+          "romaji": "awanai",
+          "meaning": "không vừa"
+        },
+        {
+          "word": "返品",
+          "reading": "へんぴん",
+          "romaji": "henpin",
+          "meaning": "trả hàng"
+        },
+        {
+          "word": "交換",
+          "reading": "こうかん",
+          "romaji": "kookan",
+          "meaning": "đổi hàng"
+        },
+        {
+          "word": "レシート",
+          "reading": "レシート",
+          "romaji": "reshiito",
+          "meaning": "hóa đơn"
+        },
+        {
+          "word": "在庫",
+          "reading": "ざいこ",
+          "romaji": "zaiko",
+          "meaning": "hàng trong kho"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Nói mong muốn với nhân viên cửa hàng",
+      "description": "Ôn lại「〜にします」, cách nói「大きいの」và hỏi「〜はできますか」.",
+      "url": "/uploads/lesson-videos/n5-05-ask-staff/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "これに します",
+          "romaji": "kore ni shimasu",
+          "text_vi": "Tôi lấy cái này",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いかがですか。",
+          "romaji": "Ikaga desu ka.",
+          "text_vi": "Anh thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ちょうどいいです。これにします。",
+          "romaji": "Choodo ii desu. Kore ni shimasu.",
+          "text_vi": "Vừa khít rồi. Tôi lấy đôi này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「名詞＋にします」は、2つ以上の選択肢から1つに決めるときに使います。",
+          "romaji": "\"Meeshi + ni shimasu\" wa, futatsu ijoo no sentakushi kara hitotsu ni kimeru toki ni tsukaimasu.",
+          "text_vi": "\"Danh từ + ni shimasu\" dùng khi quyết định chọn 1 trong số từ 2 lựa chọn trở lên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場合、「します」の前に「に」を使います。",
+          "romaji": "Kono baai, \"shimasu\" no mae ni \"ni\" o tsukaimasu.",
+          "text_vi": "Khi đó, dùng \"ni\" trước \"shimasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、レストランで店員が客に「飲み物はコーヒー、紅茶、ジュースがあります。何にしますか」と聞きます。",
+          "romaji": "Tatoeba, resutoran de ten'in ga kyaku ni \"Nomimono wa koohii, koocha, juusu ga arimasu. Nani ni shimasu ka\" to kikimasu.",
+          "text_vi": "Ví dụ, ở nhà hàng nhân viên hỏi khách: \"Đồ uống có cà phê, trà, nước ép. Quý khách dùng gì ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "客は3つの飲み物の中から1つを選んで、店員に伝えます。",
+          "romaji": "Kyaku wa mittsu no nomimono no naka kara hitotsu o erande, ten'in ni tsutaemasu.",
+          "text_vi": "Khách chọn 1 trong 3 loại đồ uống rồi nói với nhân viên.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "コーヒーを選んだときは、「コーヒーにします」と言います。",
+          "romaji": "Koohii o eranda toki wa, \"Koohii ni shimasu\" to iimasu.",
+          "text_vi": "Khi chọn cà phê thì nói \"Cho tôi cà phê\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、例えばレストランの入り口で、店員が客に「テーブルとカウンターがあります。どちらにしますか」と聞くことがあります。",
+          "romaji": "Mata, tatoeba resutoran no iriguchi de, ten'in ga kyaku ni \"Teeburu to kauntaa ga arimasu. Dochira ni shimasu ka\" to kiku koto ga arimasu.",
+          "text_vi": "Hoặc ở cửa nhà hàng, nhân viên có thể hỏi khách: \"Có bàn và quầy. Quý khách chọn chỗ nào ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "カウンターを選んだとき、客は店員に「カウンターにします」と伝えます。",
+          "romaji": "Kauntaa o eranda toki, kyaku wa ten'in ni \"Kauntaa ni shimasu\" to tsutaemasu.",
+          "text_vi": "Khi chọn quầy, khách nói với nhân viên \"Cho tôi ngồi quầy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画の会話では、「これにします」と言って、履いてみた靴を買うことを店員に伝えました。",
+          "romaji": "Dooga no kaiwa de wa, \"Kore ni shimasu\" to itte, haite mita kutsu o kau koto o ten'in ni tsutaemashita.",
+          "text_vi": "Trong hội thoại ở video, khách nói \"Tôi lấy đôi này\" để báo với nhân viên là sẽ mua đôi giày vừa đi thử.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "もうすこし おおきいのは ありますか",
+          "romaji": "moo sukoshi ookii no wa arimasu ka",
+          "text_vi": "Có cái to hơn một chút không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いかがですか。",
+          "romaji": "Ikaga desu ka.",
+          "text_vi": "Anh thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ちょっと…きついです。もう少し大きいのはありますか。",
+          "romaji": "Chotto… kitsui desu. Moo sukoshi ookii no wa arimasu ka.",
+          "text_vi": "Hơi… chật ạ. Có đôi to hơn một chút không?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、靴を履いてみた後で、「もう少し大きいのはありますか」と店員に言いました。",
+          "romaji": "Kono kaiwa de wa, kutsu o haite mita ato de, \"Moo sukoshi ookii no wa arimasu ka\" to ten'in ni iimashita.",
+          "text_vi": "Trong đoạn hội thoại này, sau khi đi thử giày, khách hỏi nhân viên \"Có đôi to hơn một chút không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このとき、「もう少し大きい靴はありますか」という意味で、「もう少し大きいのはありますか」と言っています。",
+          "romaji": "Kono toki, \"Moo sukoshi ookii kutsu wa arimasu ka\" to iu imi de, \"Moo sukoshi ookii no wa arimasu ka\" to itte imasu.",
+          "text_vi": "Ở đây, với nghĩa \"Có đôi giày to hơn một chút không?\", khách nói \"Có cái to hơn một chút không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「靴」が「の」に変わります。",
+          "romaji": "\"Kutsu\" ga \"no\" ni kawarimasu.",
+          "text_vi": "\"Kutsu\" (giày) được thay bằng \"no\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "い形容詞の場合は、例えば「安いパソコン」は「安いの」になります。",
+          "romaji": "I-keeyooshi no baai wa, tatoeba \"yasui pasokon\" wa \"yasui no\" ni narimasu.",
+          "text_vi": "Với tính từ đuôi i, ví dụ \"yasui pasokon\" (máy tính rẻ) thành \"yasui no\" (cái rẻ).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "な形容詞の場合は、例えば「丈夫なテーブル」は「丈夫なの」になります。",
+          "romaji": "Na-keeyooshi no baai wa, tatoeba \"joobu na teeburu\" wa \"joobu na no\" ni narimasu.",
+          "text_vi": "Với tính từ đuôi na, ví dụ \"joobu na teeburu\" (cái bàn chắc chắn) thành \"joobu na no\" (cái chắc chắn).",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、家電量販店のパソコンコーナーで安いパソコンを見たいときに、「少し安いのを見たいです」と店員に伝えることができます。",
+          "romaji": "Tatoeba, kaden-ryoohanten no pasokon-koonaa de yasui pasokon o mitai toki ni, \"Sukoshi yasui no o mitai desu\" to ten'in ni tsutaeru koto ga dekimasu.",
+          "text_vi": "Ví dụ, ở khu máy tính của siêu thị điện máy, khi muốn xem máy rẻ thì có thể nói với nhân viên \"Tôi muốn xem cái rẻ hơn một chút\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:26",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "へんぴんは できますか",
+          "romaji": "henpin wa dekimasu ka",
+          "text_vi": "Có trả hàng được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「できます」には、「日本語ができます」「ピアノができます」「料理ができます」など、能力の意味があります。",
+          "romaji": "\"Dekimasu\" ni wa, \"Nihongo ga dekimasu\", \"Piano ga dekimasu\", \"Ryoori ga dekimasu\" nado, nooryoku no imi ga arimasu.",
+          "text_vi": "\"Dekimasu\" có nghĩa chỉ khả năng, như \"biết tiếng Nhật\", \"biết chơi piano\", \"biết nấu ăn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画の「返品はできますか」というのは、能力の意味ではありません。",
+          "romaji": "Dooga no \"Henpin wa dekimasu ka\" to iu no wa, nooryoku no imi de wa arimasen.",
+          "text_vi": "Câu \"Henpin wa dekimasu ka\" trong video không mang nghĩa khả năng.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:55",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっとサイズが合わなくて。",
+          "romaji": "Chotto saizu ga awanakute.",
+          "text_vi": "Cỡ hơi không vừa ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:59",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "返品はできますか。",
+          "romaji": "Henpin wa dekimasu ka.",
+          "text_vi": "Tôi trả hàng được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "04:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画の会話では、「返品はできますか」と店員に聞きました。",
+          "romaji": "Dooga no kaiwa de wa, \"Henpin wa dekimasu ka\" to ten'in ni kikimashita.",
+          "text_vi": "Trong hội thoại ở video, chị Angela hỏi nhân viên \"Tôi trả hàng được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場合、客は商品を返品したいと思っていましたが、それがこの店で可能かどうかを知りたくて店員に聞きました。",
+          "romaji": "Kono baai, kyaku wa shoohin o henpin shitai to omotte imashita ga, sore ga kono mise de kanoo ka doo ka o shiritakute ten'in ni kikimashita.",
+          "text_vi": "Ở đây, khách muốn trả hàng nhưng muốn biết cửa hàng này có cho phép không nên đã hỏi nhân viên.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「できます」という表現は、ある行為がその場所のルールや状況で可能かどうかを言うときに使います。",
+          "romaji": "\"Dekimasu\" to iu hyoogen wa, aru kooi ga sono basho no ruuru ya jookyoo de kanoo ka doo ka o iu toki ni tsukaimasu.",
+          "text_vi": "Cách nói \"dekimasu\" còn dùng để nói một việc có được phép hay không theo quy định hoặc tình hình ở nơi đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、レストランやカフェで持ち帰りをお願いしたいときに、「持ち帰りはできますか」と聞くことができます。",
+          "romaji": "Tatoeba, resutoran ya kafe de mochikaeri o onegai shitai toki ni, \"Mochikaeri wa dekimasu ka\" to kiku koto ga dekimasu.",
+          "text_vi": "Ví dụ, ở nhà hàng hay quán cà phê, khi muốn mang về thì có thể hỏi \"Có mang về được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、美容院や病院の予約をキャンセルしたいときに、「予約のキャンセルはできますか」と聞くことができます。",
+          "romaji": "Mata, biyooin ya byooin no yoyaku o kyanseru shitai toki ni, \"Yoyaku no kyanseru wa dekimasu ka\" to kiku koto ga dekimasu.",
+          "text_vi": "Hoặc khi muốn hủy lịch hẹn ở tiệm làm tóc hay bệnh viện thì có thể hỏi \"Tôi hủy lịch hẹn được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お店の人がお客に「宅配はできます」、または「宅配はできません」と店のルールを説明することもあります。",
+          "romaji": "Omise no hito ga okyaku ni \"Takuhai wa dekimasu\", mata wa \"Takuhai wa dekimasen\" to mise no ruuru o setsumee suru koto mo arimasu.",
+          "text_vi": "Nhân viên cửa hàng cũng có thể giải thích quy định với khách: \"Có giao hàng tận nhà\" hoặc \"Không giao hàng tận nhà\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

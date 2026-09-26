@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 import { mergeManifest, planLessonFolder, transcriptSkeleton } from './lesson-video-staging.js';
 import { contentHash, faststart, mp4Duration } from './mp4-file.js';
+import { parseTranscriptText } from './transcript-text.js';
 
 /**
  * Đưa video gốc (`data/Video_baihoc/<số bài>. <chủ đề>/`) vào app: chép sang
@@ -122,21 +123,39 @@ const stageFolder = async ({ folder, lesson, manifestName, args }) => {
   }
 
   if (!args.dryRun) await fs.writeFile(manifestPath, `${JSON.stringify(merged, null, 2)}\n`);
-  await writeSkeleton({ dir, lesson, title: manifest.lesson?.title, videos, args });
+  // Tiêu đề cảnh lấy từ file mô tả (đã có thể được sửa tay), không từ tên file.
+  const scenes = merged.videos.map((video) => ({ target: video.url.split('/').pop(), title: video.title }));
+  await writeSkeleton({ dir, lesson, title: manifest.lesson?.title, videos: scenes, args });
   return true;
 };
 
 /**
- * Tạo khung file lời thoại nếu bài chưa có.
+ * Tạo (hoặc làm mới) khung file lời thoại cho đúng danh sách cảnh hiện tại.
  *
- * Không bao giờ đè lên file đã có — trong đó là công gõ tay hàng trăm câu.
+ * Khung chưa gõ câu nào thì được sinh lại, để tiêu đề cảnh luôn khớp tên file
+ * video. File đã có câu thoại thì **không bao giờ** bị đè — đó là công gõ tay;
+ * cảnh nào trong đó không còn khớp video thì chỉ báo ra để sửa.
  */
 const writeSkeleton = async ({ dir, lesson, title, videos, args }) => {
   const textPath = path.join(MANIFEST_DIR, `${dir}.txt`);
-  if (await fs.access(textPath).then(() => true, () => false)) return;
+  const existing = await fs.readFile(textPath, 'utf8').catch(() => null);
+  const skeleton = transcriptSkeleton({ lesson, title, videos });
 
-  console.log(`  📝 ${dir}.txt — khung lời thoại ${args.dryRun ? 'sẽ được tạo' : 'đã tạo'}, chờ gõ câu thoại`);
-  if (!args.dryRun) await fs.writeFile(textPath, transcriptSkeleton({ lesson, title, videos }));
+  if (existing !== null) {
+    if (existing === skeleton) return;
+    const { scenes } = parseTranscriptText(existing);
+    const typed = [...scenes.values()].some((scene) => scene.lines.length > 0 || scene.vocabulary.length > 0);
+    if (typed) {
+      const known = new Set(videos.map((video) => video.target));
+      const stale = [...scenes.keys()].filter((name) => !known.has(name));
+      if (stale.length > 0) console.log(`  ⚠️  ${dir}.txt còn cảnh không có video: ${stale.join(', ')} — sửa tay.`);
+      return;
+    }
+  }
+
+  const action = existing === null ? 'tạo' : 'làm mới';
+  console.log(`  📝 ${dir}.txt — ${args.dryRun ? `sẽ ${action}` : `đã ${action}`} khung lời thoại cho ${videos.length} video`);
+  if (!args.dryRun) await fs.writeFile(textPath, skeleton);
 };
 
 const main = async () => {

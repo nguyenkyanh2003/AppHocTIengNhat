@@ -7,6 +7,7 @@ import '../../../shared/widgets/app_dialog.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../auth/providers/auth_provider.dart';
 import '../models/lesson.dart';
 import '../models/lesson_progress.dart';
 import '../providers/lesson_progress_provider.dart';
@@ -82,15 +83,24 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
     final lessons = context.watch<LessonProvider>();
     final progressProvider = context.watch<LessonProgressProvider>();
     final progress = _progressOf(progressProvider);
+    // Soạn lời thoại là việc của người làm nội dung, không hiện cho học viên.
+    final canEditTranscript = context.watch<AuthProvider>().isAdmin &&
+        (lessons.currentLessonDetail?.lesson.videos.isNotEmpty ?? false);
 
     return AppScaffold(
       title: 'Bài học',
       actions: [
-        if (progress != null)
+        if (progress != null || canEditTranscript)
           PopupMenuButton<void>(
             tooltip: 'Tuỳ chọn',
             itemBuilder: (context) => [
-              PopupMenuItem(onTap: () => _confirmReset(progressProvider), child: const Text('Đặt lại tiến độ')),
+              if (progress != null)
+                PopupMenuItem(onTap: () => _confirmReset(progressProvider), child: const Text('Đặt lại tiến độ')),
+              if (canEditTranscript)
+                PopupMenuItem(
+                  onTap: () => context.push('/admin/lessons/${widget.lessonId}/transcript'),
+                  child: const Text('Soạn lời thoại video'),
+                ),
             ],
           ),
       ],

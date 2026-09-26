@@ -53,11 +53,14 @@ test('file hợp lệ được chuẩn hoá sang giây', () => {
     start_seconds: 4,
     end_seconds: 7,
     speaker_ja: 'オウ',
+    speaker_romaji: null,
     speaker_vi: 'Ou',
     text_ja: 'おはようございます。',
     romaji: 'Ohayoo gozaimasu.',
     text_vi: 'Chào buổi sáng.',
+    key_phrase: false,
   });
+  assert.deepEqual(videos[0].vocabulary, []);
 });
 
 test('thiếu tiêu đề hoặc đường dẫn thì video bị loại và báo lỗi', () => {
@@ -108,6 +111,29 @@ test('kết thúc trước lúc bắt đầu, hoặc thứ tự lùi về trư�
 test('file không có danh sách video bị từ chối cả file', () => {
   assert.match(reviewLessonVideos({ lesson: {} }).errors.join(' '), /videos/);
   assert.match(reviewLessonVideos(null).errors.join(' '), /object JSON/);
+});
+
+test('video mặc định là cảnh tình huống; `kind` lạ bị chặn', () => {
+  const ok = reviewLessonVideos(
+    data({ videos: [{ title: 'Cảnh 1', url: '/a.mp4' }, { title: 'Ôn tập', url: '/b.mp4', kind: 'review' }] }),
+  );
+  assert.deepEqual(ok.errors, []);
+  assert.deepEqual(ok.videos.map((video) => video.kind), ['scene', 'review']);
+
+  const bad = reviewLessonVideos(data({ videos: [{ title: 'V', url: '/a.mp4', kind: 'trailer' }] }));
+  assert.match(bad.errors.join(' '), /`kind` phải là scene hoặc review/);
+});
+
+test('từ vựng của video được chuẩn hoá; từ thiếu mặt chữ hay nghĩa bị báo', () => {
+  const ok = reviewLessonVideos(
+    data({ videos: [{ title: 'V', url: '/a.mp4', vocabulary: [{ word: ' 道 ', reading: 'みち', meaning: 'con đường' }] }] }),
+  );
+  assert.deepEqual(ok.errors, []);
+  assert.deepEqual(ok.videos[0].vocabulary, [{ word: '道', reading: 'みち', romaji: null, meaning: 'con đường' }]);
+
+  const bad = reviewLessonVideos(data({ videos: [{ title: 'V', url: '/a.mp4', vocabulary: [{ word: '道' }, { meaning: 'x' }] }] }));
+  assert.match(bad.errors.join(' '), /Từ 1: thiếu `meaning`/);
+  assert.match(bad.errors.join(' '), /Từ 2: thiếu `word`/);
 });
 
 test('hai cảnh trỏ cùng một file bị chặn', () => {

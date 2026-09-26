@@ -27,7 +27,7 @@ void main() {
       });
 
       expect(lesson.situation, 'supermarket');
-      expect(lesson.isSituational, isTrue);
+      expect(lesson.hasDialogue, isTrue);
       expect(lesson.dialogue.single.textVi, 'Cái này bao nhiêu tiền ạ?');
       expect(lesson.canDoGoals, ['Hỏi được giá của một món hàng']);
     });
@@ -41,7 +41,7 @@ void main() {
       });
 
       expect(lesson.situation, isNull);
-      expect(lesson.isSituational, isFalse);
+      expect(lesson.hasDialogue, isFalse);
       expect(lesson.dialogue, isEmpty);
       expect(lesson.canDoGoals, isEmpty);
     });

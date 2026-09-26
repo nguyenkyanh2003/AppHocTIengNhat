@@ -17,19 +17,35 @@ const DialogueTurnSchema = new mongoose.Schema({
 }, { _id: false });
 
 /**
- * Một dòng lời thoại của video bài học, dùng cho phần "Lời thoại" chạy theo
+ * Một dòng lời thoại của video bài học, dùng cho phần "Kịch bản" chạy theo
  * video: mốc thời gian để tô sáng dòng đang nói, ba ngôn ngữ để người học bật
- * tắt từng loại (tiếng Nhật / Roma-ji / tiếng Việt).
+ * tắt từng loại (tiếng Nhật / Roma-ji / tiếng Việt). Tên người nói cũng có đủ
+ * ba dạng để đứng cạnh đúng lớp chữ của nó.
+ *
+ * `key_phrase` đánh dấu câu then chốt của cảnh — phần "Mẫu câu" liệt kê các
+ * câu này và phát lại đúng đoạn video của từng câu.
  */
 const TranscriptLineSchema = new mongoose.Schema({
     start_seconds: { type: Number, required: true, min: 0 },
     end_seconds: { type: Number, default: null, min: 0 },
     speaker_ja: { type: String, default: null, trim: true },
+    speaker_romaji: { type: String, default: null, trim: true },
     speaker_vi: { type: String, default: null, trim: true },
     text_ja: { type: String, required: true, trim: true },
     romaji: { type: String, default: null, trim: true },
     text_vi: { type: String, required: true, trim: true },
+    key_phrase: { type: Boolean, default: false },
 }, { _id: false });
+
+/** Một từ trong bảng "Từ vựng" của một video: mặt chữ, cách đọc, roma-ji, nghĩa. */
+const VideoWordSchema = new mongoose.Schema({
+    word: { type: String, required: true, trim: true },
+    reading: { type: String, default: null, trim: true },
+    romaji: { type: String, default: null, trim: true },
+    meaning: { type: String, required: true, trim: true },
+}, { _id: false });
+
+export const VIDEO_KINDS = Object.freeze(['scene', 'review']);
 
 /**
  * Video của bài học. `url` là đường dẫn tương đối tới file do backend phục vụ
@@ -41,6 +57,10 @@ const TranscriptLineSchema = new mongoose.Schema({
  *
  * `duration_seconds` đọc từ chính file khi nhập, để app hiện thời lượng trên
  * khung chờ mà không phải tải video trước.
+ *
+ * `kind` tách cảnh tình huống (`scene`) khỏi video ôn tập cuối chủ đề
+ * (`review`): app đánh số "Cảnh 1, 2, 3" cho cảnh, còn video ôn tập mang tên
+ * riêng thay vì thành "Cảnh 4".
  */
 const LessonVideoSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
@@ -48,7 +68,9 @@ const LessonVideoSchema = new mongoose.Schema({
     description: { type: String, default: null, trim: true },
     source: { type: String, default: null, trim: true },
     duration_seconds: { type: Number, default: null, min: 0 },
+    kind: { type: String, enum: VIDEO_KINDS, default: 'scene' },
     transcript: { type: [TranscriptLineSchema], default: [] },
+    vocabulary: { type: [VideoWordSchema], default: [] },
 }, { _id: false });
 
 const LessonSchema = new mongoose.Schema({

@@ -1,3 +1,4 @@
+import { loadVideoKeyPhrases } from './lesson-video-phrases.js';
 import { SITUATIONAL_LESSONS } from './situational-lessons.js';
 
 /**
@@ -9,7 +10,8 @@ import { SITUATIONAL_LESSONS } from './situational-lessons.js';
  *
  * Mỗi bài học sinh ba bài tập trắc nghiệm 4 đáp án, theo ba dạng quen thuộc của
  * các app học tiếng Nhật: nghĩa của từ, cách đọc chữ Hán, và hiểu câu trong hội
- * thoại của bài. Khớp model `Exercise` hiện tại (2–4 đáp án, một đáp án đúng).
+ * thoại của bài. Bài có video lấy câu hội thoại từ các mẫu câu trong kịch bản
+ * video (`data/lesson-videos/`); bài chưa có video dùng hội thoại soạn sẵn. Khớp model `Exercise` hiện tại (2–4 đáp án, một đáp án đúng).
  * Đáp án nhiễu lấy **trong cùng bài**, chọn theo vị trí chứ không `Math.random`,
  * để chạy lại seed luôn ra đúng cùng nội dung và upsert không báo khác nhau giả.
  *
@@ -67,16 +69,22 @@ const readingQuestions = (words) => {
     .filter(Boolean);
 };
 
-/** Mỗi lượt thoại thành một câu hỏi; đáp án nhiễu là bản dịch của lượt khác cùng đoạn. */
-const dialogueQuestions = (dialogue) =>
-  dialogue
+/**
+ * Mỗi câu thoại thành một câu hỏi; đáp án nhiễu là bản dịch của câu khác cùng
+ * bài. Nhận cả lượt thoại soạn sẵn lẫn mẫu câu của video — cùng các trường
+ * `speaker`, `text_ja`, `reading` (có thể thiếu), `text_vi`.
+ */
+const dialogueQuestions = (turns) =>
+  turns
     .map((turn, index) => {
-      const answers = buildChoices(dialogue, index, (t) => t.text_vi);
+      const answers = buildChoices(turns, index, (t) => t.text_vi);
+      const speaker = turn.speaker ? `${turn.speaker}:` : '';
+      const reading = turn.reading ? `（${turn.reading}）` : '';
       return (
         answers && {
-          content: `${turn.speaker}:「${turn.text_ja}」có nghĩa là gì?`,
+          content: `${speaker}「${turn.text_ja}」có nghĩa là gì?`,
           answers,
-          explanation: `${turn.text_ja}（${turn.reading}）— ${turn.text_vi}`,
+          explanation: `${turn.text_ja}${reading}— ${turn.text_vi}`,
         }
       );
     })
@@ -87,9 +95,14 @@ const topicOf = (lesson) => lesson.title.replace(/^Tình huống:\s*/, '');
 /**
  * Bài tập của một bài học, chưa có `lesson_id` — runner gắn sau khi tra bài
  * theo `title`. Bài không đủ từ để dựng câu 4 đáp án thì không sinh bài tập.
+ *
+ * `videoPhrases` là mẫu câu trong kịch bản video của bài; dùng khi bài không
+ * có hội thoại soạn sẵn. Tiêu đề bài tập giữ nguyên dù đổi nguồn câu hỏi, để
+ * bài tập đã có giữ `_id` và kết quả làm bài cũ vẫn trỏ đúng.
  */
-export const exercisesForLesson = (lesson) =>
-  [
+export const exercisesForLesson = (lesson, videoPhrases = []) => {
+  const fromVideo = !(lesson.dialogue?.length > 0);
+  return [
     {
       title: `Nghĩa của từ — ${topicOf(lesson)}`,
       description: `Chọn nghĩa đúng của các từ trong bài "${topicOf(lesson)}".`,
@@ -103,8 +116,10 @@ export const exercisesForLesson = (lesson) =>
     {
       title: `Hội thoại — ${topicOf(lesson)}`,
       type: 'Tổng hợp',
-      description: `Hiểu từng câu trong đoạn hội thoại của bài "${topicOf(lesson)}".`,
-      questions: dialogueQuestions(lesson.dialogue ?? []),
+      description: fromVideo
+        ? `Hiểu các mẫu câu trong video của bài "${topicOf(lesson)}".`
+        : `Hiểu từng câu trong đoạn hội thoại của bài "${topicOf(lesson)}".`,
+      questions: dialogueQuestions(fromVideo ? videoPhrases : lesson.dialogue),
     },
   ]
     .filter((exercise) => exercise.questions.length > 0)
@@ -116,8 +131,14 @@ export const exercisesForLesson = (lesson) =>
       pass_score: 60,
       is_active: true,
     }));
+};
+
+const VIDEO_PHRASES = loadVideoKeyPhrases();
 
 /** Toàn bộ bài tập mẫu, kèm tiêu đề bài học để runner tra `lesson_id`. */
 export const SAMPLE_EXERCISES = SITUATIONAL_LESSONS.flatMap((lesson) =>
-  exercisesForLesson(lesson).map((exercise) => ({ lessonTitle: lesson.title, exercise })),
+  exercisesForLesson(lesson, VIDEO_PHRASES.get(lesson.title)).map((exercise) => ({
+    lessonTitle: lesson.title,
+    exercise,
+  })),
 );

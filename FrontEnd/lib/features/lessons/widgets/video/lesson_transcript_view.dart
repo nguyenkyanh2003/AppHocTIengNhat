@@ -31,6 +31,7 @@ class LessonTranscriptView extends StatefulWidget {
     this.scrollable = true,
     this.autoScroll = true,
     this.layers,
+    this.showLayerToggles = true,
   });
 
   final List<TranscriptLine> lines;
@@ -55,6 +56,10 @@ class LessonTranscriptView extends StatefulWidget {
   /// Tự cuộn tới dòng đang nói. Tắt trong test widget để không phụ thuộc
   /// animation.
   final bool autoScroll;
+
+  /// `false` khi nút bật tắt lớp chữ đã nằm ở ngoài, dùng chung cho nhiều
+  /// phần (Kịch bản / Mẫu câu).
+  final bool showLayerToggles;
 
   @override
   State<LessonTranscriptView> createState() => _LessonTranscriptViewState();
@@ -113,17 +118,6 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
     );
   }
 
-  void _toggle(TranscriptLayer layer) {
-    final layers = {..._layers.value};
-    // Luôn giữ ít nhất một lớp: tắt hết thì bảng trống và không hiểu vì sao.
-    if (layers.contains(layer) && layers.length > 1) {
-      layers.remove(layer);
-    } else {
-      layers.add(layer);
-    }
-    _layers.value = layers;
-  }
-
   @override
   Widget build(BuildContext context) => ValueListenableBuilder(
         valueListenable: _layers,
@@ -161,21 +155,104 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Wrap(
-          spacing: AppSpacing.sm,
-          runSpacing: AppSpacing.sm,
-          children: [
-            for (final layer in TranscriptLayer.values)
-              FilterChip(
-                label: Text(layer.label),
-                selected: layers.contains(layer),
-                onSelected: (_) => _toggle(layer),
-              ),
-          ],
-        ),
-        AppGap.md,
+        if (widget.showLayerToggles) ...[
+          TranscriptLayerToggles(layers: _layers),
+          AppGap.md,
+        ],
         if (widget.scrollable) Flexible(child: list) else list,
       ],
+    );
+  }
+}
+
+/// Ba nút bật tắt lớp chữ 日本語 / Roma-ji / Tiếng Việt.
+class TranscriptLayerToggles extends StatelessWidget {
+  const TranscriptLayerToggles({super.key, required this.layers});
+
+  final ValueNotifier<Set<TranscriptLayer>> layers;
+
+  void _toggle(TranscriptLayer layer) {
+    final next = {...layers.value};
+    // Luôn giữ ít nhất một lớp: tắt hết thì bảng trống và không hiểu vì sao.
+    if (next.contains(layer) && next.length > 1) {
+      next.remove(layer);
+    } else {
+      next.add(layer);
+    }
+    layers.value = next;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<Set<TranscriptLayer>>(
+      valueListenable: layers,
+      builder: (context, selected, _) => Wrap(
+        spacing: AppSpacing.sm,
+        runSpacing: AppSpacing.sm,
+        children: [
+          for (final layer in TranscriptLayer.values)
+            FilterChip(
+              label: Text(layer.label),
+              selected: selected.contains(layer),
+              onSelected: (_) => _toggle(layer),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Các lớp chữ của một câu theo đúng thứ tự hiển thị, mỗi lớp kèm tên người
+/// nói ở cùng lớp đó (プトリ cạnh câu tiếng Nhật, Putri cạnh câu tiếng Việt).
+List<({TranscriptLayer layer, String? speaker, String text})> transcriptLayerRows(
+  TranscriptLine line,
+  Set<TranscriptLayer> layers,
+) =>
+    [
+      if (layers.contains(TranscriptLayer.japanese))
+        (layer: TranscriptLayer.japanese, speaker: line.speakerJa, text: line.textJa),
+      if (layers.contains(TranscriptLayer.romaji) && (line.romaji?.isNotEmpty ?? false))
+        (layer: TranscriptLayer.romaji, speaker: line.speakerRomaji, text: line.romaji!),
+      if (layers.contains(TranscriptLayer.vietnamese))
+        (layer: TranscriptLayer.vietnamese, speaker: line.speakerVi, text: line.textVi),
+    ];
+
+/// Một lớp chữ: tên người nói ở cột trái, câu ở bên phải.
+class TranscriptLayerRow extends StatelessWidget {
+  const TranscriptLayerRow({super.key, required this.layer, required this.speaker, required this.text});
+
+  final TranscriptLayer layer;
+  final String? speaker;
+  final String text;
+
+  /// Đủ cho tên dài nhất đang có ("Nhân viên hướng dẫn") xuống hai dòng.
+  static const double speakerWidth = 96;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final style = switch (layer) {
+      TranscriptLayer.japanese =>
+        AppTypography.japaneseReading(color: AppColors.textPrimary).copyWith(fontSize: AppTypography.body),
+      TranscriptLayer.romaji => textTheme.bodySmall,
+      TranscriptLayer.vietnamese => textTheme.bodyMedium,
+    };
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs / 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: speakerWidth,
+            child: Text(
+              speaker ?? '',
+              style: textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
+            ),
+          ),
+          AppGap.sm,
+          Expanded(child: Text(text, style: style)),
+        ],
+      ),
     );
   }
 }
@@ -254,7 +331,6 @@ class _TranscriptRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final speaker = line.speakerVi ?? line.speakerJa;
 
     return Material(
       color: isActive ? AppColors.primaryLight : Colors.transparent,
@@ -272,8 +348,7 @@ class _TranscriptRow extends StatelessWidget {
                 child: Text(
                   line.label,
                   style: textTheme.labelMedium?.copyWith(
-                    color:
-                        isActive ? AppColors.primary : AppColors.textDisabled,
+                    color: isActive ? AppColors.primary : AppColors.textDisabled,
                   ),
                 ),
               ),
@@ -282,20 +357,8 @@ class _TranscriptRow extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (speaker != null && speaker.isNotEmpty)
-                      Text(speaker, style: textTheme.labelSmall),
-                    if (layers.contains(TranscriptLayer.japanese))
-                      Text(
-                        line.textJa,
-                        style: AppTypography.japaneseReading(
-                          color: AppColors.textPrimary,
-                        ).copyWith(fontSize: AppTypography.body),
-                      ),
-                    if (layers.contains(TranscriptLayer.romaji) &&
-                        (line.romaji?.isNotEmpty ?? false))
-                      Text(line.romaji!, style: textTheme.bodySmall),
-                    if (layers.contains(TranscriptLayer.vietnamese))
-                      Text(line.textVi, style: textTheme.bodyMedium),
+                    for (final row in transcriptLayerRows(line, layers))
+                      TranscriptLayerRow(layer: row.layer, speaker: row.speaker, text: row.text),
                   ],
                 ),
               ),

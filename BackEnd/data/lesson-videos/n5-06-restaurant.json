@@ -4,10 +4,792 @@
   },
   "videos": [
     {
-      "title": "Đi đến nhà hàng",
-      "url": "/uploads/lesson-videos/n5-06-restaurant/video-1.mp4",
+      "title": "Vào quán và nói số người",
+      "description": "Trả lời được nhân viên khi được hỏi đi mấy người và có hút thuốc không.",
+      "url": "/uploads/lesson-videos/n5-06-restaurant/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:10",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お客様は何名様ですか。",
+          "romaji": "Okyakusama wa nanmee-sama desu ka.",
+          "text_vi": "Quý khách đi mấy người ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "2人です。",
+          "romaji": "Futari desu.",
+          "text_vi": "Hai người.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "おたばこは吸われますか。",
+          "romaji": "Otabako wa suwaremasu ka.",
+          "text_vi": "Quý khách có hút thuốc không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "いえ、吸いません。",
+          "romaji": "Ie, suimasen.",
+          "text_vi": "Không, tôi không hút.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "それでは、こちらへどうぞ。",
+          "romaji": "Soredewa, kochira e doozo.",
+          "text_vi": "Vậy mời quý khách đi lối này.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "何名様",
+          "reading": "なんめいさま",
+          "romaji": "nanmee-sama",
+          "meaning": "mấy vị (khách)"
+        },
+        {
+          "word": "2人",
+          "reading": "ふたり",
+          "romaji": "futari",
+          "meaning": "hai người"
+        },
+        {
+          "word": "たばこ",
+          "reading": "たばこ",
+          "romaji": "tabako",
+          "meaning": "thuốc lá"
+        },
+        {
+          "word": "吸います",
+          "reading": "すいます",
+          "romaji": "suimasu",
+          "meaning": "hút (thuốc)"
+        }
+      ]
+    },
+    {
+      "title": "Nhờ giới thiệu quán ăn ngon",
+      "description": "Nói được sở thích ăn uống và nhờ đồng nghiệp giới thiệu quán ngon.",
+      "url": "/uploads/lesson-videos/n5-06-restaurant/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:04",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "佐藤さん、ちょっといいですか。",
+          "romaji": "Satoo-san, chotto ii desu ka.",
+          "text_vi": "Anh Satō ơi, cho em hỏi chút được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はい、何ですか。",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Ừ, chuyện gì thế?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "来週、母が日本に来ます。",
+          "romaji": "Raishuu, haha ga Nihon ni kimasu.",
+          "text_vi": "Tuần sau mẹ em sang Nhật.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "母は日本料理が大好きです。",
+          "romaji": "Haha wa Nihon-ryoori ga daisuki desu.",
+          "text_vi": "Mẹ em rất thích món Nhật.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "え、そうですか。",
+          "romaji": "E, soo desu ka.",
+          "text_vi": "Ồ, thế à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "母とすし屋に行きたいです。",
+          "romaji": "Haha to sushiya ni ikitai desu.",
+          "text_vi": "Em muốn đưa mẹ đi quán sushi.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "おすすめの店はありますか。",
+          "romaji": "Osusume no mise wa arimasu ka.",
+          "text_vi": "Anh có quán nào giới thiệu không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ああ、駅前の「はな寿司」はどうですか。",
+          "romaji": "Aa, ekimae no \"Hana-zushi\" wa doo desu ka.",
+          "text_vi": "À, quán \"Hana-zushi\" trước ga thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "駅前の…はな…ずし…",
+          "romaji": "Ekimae no… hana… zushi…",
+          "text_vi": "Trước ga… Hana… zushi…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、いいですね。ありがとうございます。",
+          "romaji": "Aa, ii desu ne. Arigatoo gozaimasu.",
+          "text_vi": "À, hay quá. Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "いいえ、どういたしまして。",
+          "romaji": "Iie, doo itashimashite.",
+          "text_vi": "Không có gì.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "来週",
+          "reading": "らいしゅう",
+          "romaji": "raishuu",
+          "meaning": "tuần sau"
+        },
+        {
+          "word": "母",
+          "reading": "はは",
+          "romaji": "haha",
+          "meaning": "mẹ (của mình)"
+        },
+        {
+          "word": "日本料理",
+          "reading": "にほんりょうり",
+          "romaji": "Nihon-ryoori",
+          "meaning": "món ăn Nhật"
+        },
+        {
+          "word": "大好き",
+          "reading": "だいすき",
+          "romaji": "daisuki",
+          "meaning": "rất thích"
+        },
+        {
+          "word": "すし屋",
+          "reading": "すしや",
+          "romaji": "sushiya",
+          "meaning": "quán sushi"
+        },
+        {
+          "word": "駅前",
+          "reading": "えきまえ",
+          "romaji": "ekimae",
+          "meaning": "trước nhà ga"
+        }
+      ]
+    },
+    {
+      "title": "Gọi món và thanh toán",
+      "description": "Gọi được món, gọi đồ uống và xin thanh toán riêng.",
+      "url": "/uploads/lesson-videos/n5-06-restaurant/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。こちらがメニューです。",
+          "romaji": "Irasshaimase. Kochira ga menyuu desu.",
+          "text_vi": "Xin chào quý khách. Đây là thực đơn ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お決まりになりましたら、こちらのブザーでお呼びください。",
+          "romaji": "Okimari ni narimashitara, kochira no buzaa de oyobi kudasai.",
+          "text_vi": "Khi chọn xong, quý khách bấm chuông này để gọi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ご注文はお決まりですか。",
+          "romaji": "Gochuumon wa okimari desu ka.",
+          "text_vi": "Quý khách đã chọn món chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "はい。これ、お願いします。",
+          "romaji": "Hai. Kore, onegaishimasu.",
+          "text_vi": "Rồi. Cho tôi món này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ハンバーグ定食ですね。",
+          "romaji": "Hanbaagu-teeshoku desu ne.",
+          "text_vi": "Suất cơm hamburger ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "私は、これ、お願いします。",
+          "romaji": "Watashi wa, kore, onegaishimasu.",
+          "text_vi": "Còn tôi thì món này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "焼肉定食ですね。",
+          "romaji": "Yakiniku-teeshoku desu ne.",
+          "text_vi": "Suất cơm thịt nướng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お飲み物はどうなさいますか。",
+          "romaji": "Onomimono wa doo nasaimasu ka.",
+          "text_vi": "Quý khách dùng đồ uống gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "ドリンクバー2つお願いします。",
+          "romaji": "Dorinku-baa futatsu onegaishimasu.",
+          "text_vi": "Cho hai suất quầy nước tự chọn.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ご注文は以上でよろしいですか。",
+          "romaji": "Gochuumon wa ijoo de yoroshii desu ka.",
+          "text_vi": "Quý khách gọi như vậy là đủ chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お待たせいたしました。",
+          "romaji": "Omatase itashimashita.",
+          "text_vi": "Để quý khách đợi lâu ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "メニュー、お願いします。",
+          "romaji": "Menyuu, onegaishimasu.",
+          "text_vi": "Cho tôi xin thực đơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、かしこまりました。",
+          "romaji": "Hai, kashikomarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "すみません。別々でお願いします。",
+          "romaji": "Sumimasen. Betsubetsu de onegaishimasu.",
+          "text_vi": "Xin lỗi, cho chúng tôi thanh toán riêng.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、かしこまりました。",
+          "romaji": "Hai, kashikomarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ハンバーグ定食のお客様、1,300円です。",
+          "romaji": "Hanbaagu-teeshoku no okyakusama, sen sanbyaku-en desu.",
+          "text_vi": "Quý khách dùng suất hamburger, 1.300 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "焼肉定食のお客様、1,400円です。",
+          "romaji": "Yakiniku-teeshoku no okyakusama, sen yonhyaku-en desu.",
+          "text_vi": "Quý khách dùng suất thịt nướng, 1.400 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn quý khách.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "メニュー",
+          "reading": "メニュー",
+          "romaji": "menyuu",
+          "meaning": "thực đơn"
+        },
+        {
+          "word": "注文",
+          "reading": "ちゅうもん",
+          "romaji": "chuumon",
+          "meaning": "gọi món"
+        },
+        {
+          "word": "定食",
+          "reading": "ていしょく",
+          "romaji": "teeshoku",
+          "meaning": "suất cơm"
+        },
+        {
+          "word": "飲み物",
+          "reading": "のみもの",
+          "romaji": "nomimono",
+          "meaning": "đồ uống"
+        },
+        {
+          "word": "ドリンクバー",
+          "reading": "ドリンクバー",
+          "romaji": "dorinku-baa",
+          "meaning": "quầy nước tự chọn"
+        },
+        {
+          "word": "別々",
+          "reading": "べつべつ",
+          "romaji": "betsubetsu",
+          "meaning": "riêng từng người"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Đi ăn ở nhà hàng",
+      "description": "Ôn lại cách đếm người, cách đếm「ひとつ・ふたつ」và nói thích, ghét với「好きです」.",
+      "url": "/uploads/lesson-videos/n5-06-restaurant/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ふたりです",
+          "romaji": "futari desu",
+          "text_vi": "Hai người ạ",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お客様は何名様ですか。",
+          "romaji": "Okyakusama wa nanmee-sama desu ka.",
+          "text_vi": "Quý khách đi mấy người ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "2人です。",
+          "romaji": "Futari desu.",
+          "text_vi": "Hai người.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "数や量を表すときに助数詞を使います。",
+          "romaji": "Kazu ya ryoo o arawasu toki ni josuushi o tsukaimasu.",
+          "text_vi": "Khi diễn tả số lượng, ta dùng trợ từ đếm (lượng từ).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "数えるものによって、いろいろな助数詞があります。",
+          "romaji": "Kazoeru mono ni yotte, iroiro na josuushi ga arimasu.",
+          "text_vi": "Tùy vào thứ được đếm mà có nhiều loại trợ từ đếm khác nhau.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "人には「人（にん）」を使いますが、1人は「ひとり」、2人は「ふたり」と特別な言い方をします。",
+          "romaji": "Hito ni wa \"nin\" o tsukaimasu ga, hitori wa \"hitori\", futari wa \"futari\" to tokubetsu na iikata o shimasu.",
+          "text_vi": "Đếm người thì dùng \"nin\", nhưng 1 người là \"hitori\", 2 người là \"futari\" – cách nói đặc biệt.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それ以上の人数には「人（にん）」をつけます。",
+          "romaji": "Sore ijoo no ninzuu ni wa \"nin\" o tsukemasu.",
+          "text_vi": "Từ 3 người trở lên thì thêm \"nin\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しかし、4は「よにん」と言います。",
+          "romaji": "Shikashi, yon wa \"yonin\" to iimasu.",
+          "text_vi": "Tuy nhiên, 4 người thì nói là \"yonin\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "人数を聞くとき、普通は「何人（なんにん）」ですが、",
+          "romaji": "Ninzuu o kiku toki, futsuu wa \"nannin\" desu ga,",
+          "text_vi": "Khi hỏi số người, thông thường dùng \"nannin\" (mấy người),",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話の中で、レストランの店員は「何名様」を使っています。",
+          "romaji": "Kono kaiwa no naka de, resutoran no ten'in wa \"nanmee-sama\" o tsukatte imasu.",
+          "text_vi": "nhưng trong hội thoại này, nhân viên nhà hàng dùng \"nanmee-sama\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "丁寧な言い方では「名（めい）」を使うことがあります。",
+          "romaji": "Teenee na iikata de wa \"mee\" o tsukau koto ga arimasu.",
+          "text_vi": "Khi nói lịch sự, có khi dùng \"mee\" (danh).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ふたつ おねがいします",
+          "romaji": "futatsu onegaishimasu",
+          "text_vi": "Cho tôi hai phần",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お飲み物はどうなさいますか。",
+          "romaji": "Onomimono wa doo nasaimasu ka.",
+          "text_vi": "Quý khách dùng đồ uống gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "ドリンクバー2つお願いします。",
+          "romaji": "Dorinku-baa futatsu onegaishimasu.",
+          "text_vi": "Cho tôi hai suất quầy nước tự chọn.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「1つ、2つ」の数え方は小さいものを数えるときに使いますが、その他に、店で買い物をしたり、レストランで飲み物や食べ物を注文したりするときにも使えます。",
+          "romaji": "\"Hitotsu, futatsu\" no kazoekata wa chiisai mono o kazoeru toki ni tsukaimasu ga, sono hoka ni, mise de kaimono o shitari, resutoran de nomimono ya tabemono o chuumon shitari suru toki ni mo tsukaemasu.",
+          "text_vi": "Cách đếm \"hitotsu, futatsu\" dùng để đếm đồ vật nhỏ, ngoài ra còn dùng được khi mua sắm ở cửa hàng hay gọi đồ ăn thức uống ở nhà hàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "使えるものが多いので便利です。",
+          "romaji": "Tsukaeru mono ga ooi node benri desu.",
+          "text_vi": "Dùng được cho nhiều thứ nên rất tiện.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "1から10までは「ひとつ、ふたつ、みっつ」のような数え方をします。",
+          "romaji": "Ichi kara juu made wa \"hitotsu, futatsu, mittsu\" no yoo na kazoekata o shimasu.",
+          "text_vi": "Từ 1 đến 10 thì đếm kiểu \"hitotsu, futatsu, mittsu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「いち、に、さん」ではありません。11より数が多くなると、「じゅういち、じゅうに、じゅうさん」と数をそのまま言います。",
+          "romaji": "\"Ichi, ni, san\" de wa arimasen. Juuichi yori kazu ga ooku naru to, \"juuichi, juuni, juusan\" to kazu o sono mama iimasu.",
+          "text_vi": "Không phải \"ichi, ni, san\". Từ 11 trở lên thì đọc thẳng con số: \"juuichi, juuni, juusan\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "数を聞くときは「いくつ」を使います。",
+          "romaji": "Kazu o kiku toki wa \"ikutsu\" o tsukaimasu.",
+          "text_vi": "Khi hỏi số lượng thì dùng \"ikutsu\" (mấy cái).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "にほんりょうりが だいすきです",
+          "romaji": "nihon-ryoori ga daisuki desu",
+          "text_vi": "Mẹ tôi rất thích món Nhật",
+          "key_phrase": false
+        },
+        {
+          "start": "02:29",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "来週、母が日本に来ます。母は日本料理が大好きです。",
+          "romaji": "Raishuu, haha ga Nihon ni kimasu. Haha wa Nihon-ryoori ga daisuki desu.",
+          "text_vi": "Tuần sau mẹ tôi sang Nhật. Mẹ tôi rất thích món Nhật.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「好きです」は、な形容詞です。",
+          "romaji": "\"Suki desu\" wa, na-keeyooshi desu.",
+          "text_vi": "\"Suki desu\" là tính từ đuôi na.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "好き嫌いを言いたいときに使います。",
+          "romaji": "Suki kirai o iitai toki ni tsukaimasu.",
+          "text_vi": "Dùng khi muốn nói thích hay ghét.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "否定の形は「好きではありません」ですが、話し言葉では「好きじゃありません」「好きじゃないです」になることが多いです。",
+          "romaji": "Hitee no katachi wa \"suki dewa arimasen\" desu ga, hanashikotoba de wa \"suki ja arimasen\", \"suki janai desu\" ni naru koto ga ooi desu.",
+          "text_vi": "Thể phủ định là \"suki dewa arimasen\", nhưng trong văn nói thường thành \"suki ja arimasen\", \"suki janai desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「嫌いです」と言うこともできます。",
+          "romaji": "\"Kirai desu\" to iu koto mo dekimasu.",
+          "text_vi": "Cũng có thể nói \"kirai desu\" (ghét).",
+          "key_phrase": false
+        },
+        {
+          "start": "03:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ものの名前の後に来る助詞は「が」になることに気をつけましょう。",
+          "romaji": "Mono no namae no ato ni kuru joshi wa \"ga\" ni naru koto ni ki o tsukemashoo.",
+          "text_vi": "Lưu ý trợ từ đứng sau tên sự vật là \"ga\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "質問するときは、「何が好きですか」「何が嫌いですか」になりますが、",
+          "romaji": "Shitsumon suru toki wa, \"Nani ga suki desu ka\", \"Nani ga kirai desu ka\" ni narimasu ga,",
+          "text_vi": "Khi hỏi thì nói \"Nani ga suki desu ka\" (Bạn thích gì?), \"Nani ga kirai desu ka\" (Bạn ghét gì?),",
+          "key_phrase": false
+        },
+        {
+          "start": "03:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「好きな食べ物は何ですか」「嫌いな食べ物は何ですか」のように聞くこともできます。",
+          "romaji": "Tatoeba, \"Suki na tabemono wa nan desu ka\", \"Kirai na tabemono wa nan desu ka\" no yoo ni kiku koto mo dekimasu.",
+          "text_vi": "cũng có thể hỏi như \"Món bạn thích là gì?\", \"Món bạn ghét là gì?\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

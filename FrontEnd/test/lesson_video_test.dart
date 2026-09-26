@@ -54,6 +54,16 @@ void main() {
       expect(video.duration, isNull);
     });
 
+    test('số thứ tự cảnh bỏ qua video ôn tập', () {
+      final videos = LessonVideo.listFromJson([
+        {'title': 'A', 'url': '/a.mp4'},
+        {'title': 'B', 'url': '/b.mp4', 'kind': 'scene'},
+        {'title': 'Ôn tập', 'url': '/r.mp4', 'kind': 'review'},
+      ]);
+      expect(videos.map((video) => video.isReview), [false, false, true]);
+      expect([for (var i = 0; i < videos.length; i++) sceneNumber(videos, i)], [1, 2, null]);
+    });
+
     test('đọc thời lượng backend đã đo sẵn từ file', () {
       final video = LessonVideo.fromJson({'title': 'V', 'url': '/a.mp4', 'duration_seconds': 36.8});
       expect(video.duration, const Duration(milliseconds: 36800));
@@ -226,6 +236,25 @@ void main() {
           home: Scaffold(body: SingleChildScrollView(child: LessonVideoSection(videos: [video]))),
         ));
 
+    testWidgets('hàng chọn video: cảnh có số, video ôn tập mang tên riêng', (tester) async {
+      await tester.pumpWidget(const MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: LessonVideoSection(videos: [
+              LessonVideo(title: 'Chào buổi sáng', url: '/1.mp4'),
+              LessonVideo(title: 'Làm quen', url: '/2.mp4'),
+              LessonVideo(title: 'Ôn tập', url: '/r.mp4', isReview: true),
+            ]),
+          ),
+        ),
+      ));
+
+      expect(find.widgetWithText(ChoiceChip, '1. Chào buổi sáng'), findsOneWidget);
+      expect(find.widgetWithText(ChoiceChip, '2. Làm quen'), findsOneWidget);
+      expect(find.widgetWithText(ChoiceChip, 'Ôn tập'), findsOneWidget);
+      expect(find.textContaining('3. '), findsNothing);
+    });
+
     testWidgets('mở bài chỉ hiện khung chờ, chưa tạo trình phát nào', (tester) async {
       await pumpSection(
         tester,
@@ -245,7 +274,7 @@ void main() {
       expect(find.byType(LessonVideoPoster), findsOneWidget);
       expect(find.byType(LessonTranscriptView), findsNothing);
       expect(find.text('Hỏi đường'), findsOneWidget);
-      expect(find.text('Cảnh này chưa có lời thoại chạy theo video.'), findsOneWidget);
+      expect(find.text('Video này chưa có lời thoại chạy theo video.'), findsOneWidget);
     });
 
     testWidgets('bấm phát thì lời thoại chạy theo video: câu đang nói được tô sáng', (tester) async {
@@ -278,6 +307,107 @@ void main() {
       expect(rowColor('いい天気ですね。'), Colors.transparent);
 
       // Gỡ widget để controller dừng bộ đếm vị trí trước khi test kết thúc.
+      await tester.pumpWidget(const SizedBox());
+    });
+
+    // Câu mẫu tự soạn: một câu then chốt ở giữa, câu sau bắt đầu lúc 8 giây.
+    const studyVideo = LessonVideo(
+      title: 'Hỏi đường',
+      url: '/c.mp4',
+      description: 'Hỏi được nhà ga ở đâu.',
+      transcript: [
+        TranscriptLine(start: Duration(seconds: 1), textJa: 'すみません。', textVi: 'Xin lỗi.'),
+        TranscriptLine(
+          start: Duration(seconds: 4),
+          textJa: '駅はどこですか。',
+          romaji: 'Eki wa doko desu ka.',
+          textVi: 'Nhà ga ở đâu ạ?',
+          speakerJa: '客',
+          speakerRomaji: 'Kyaku',
+          speakerVi: 'Khách',
+          isKeyPhrase: true,
+        ),
+        TranscriptLine(start: Duration(seconds: 8), textJa: 'あちらです。', textVi: 'Ở đằng kia ạ.'),
+      ],
+      vocabulary: [VideoWord(word: '駅', reading: 'えき', romaji: 'eki', meaning: 'nhà ga')],
+    );
+
+    Future<void> pumpWide(WidgetTester tester, LessonVideo video) async {
+      tester.view.physicalSize = const Size(1400, 1000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      await pumpSection(tester, video);
+    }
+
+    testWidgets('khung học có đủ Kịch bản / Mẫu câu / Từ vựng và mục tiêu của cảnh', (tester) async {
+      await pumpWide(tester, studyVideo);
+
+      expect(find.text('Hỏi được nhà ga ở đâu.'), findsOneWidget);
+      expect(find.widgetWithText(Tab, 'Kịch bản'), findsOneWidget);
+      expect(find.widgetWithText(Tab, 'Mẫu câu'), findsOneWidget);
+      expect(find.widgetWithText(Tab, 'Từ vựng'), findsOneWidget);
+
+      await tester.tap(find.widgetWithText(Tab, 'Từ vựng'));
+      await tester.pumpAndSettle();
+      expect(find.text('Cách đọc'), findsOneWidget);
+      expect(find.text('えき'), findsOneWidget);
+      expect(find.text('nhà ga'), findsOneWidget);
+    });
+
+    testWidgets('mỗi lớp chữ có tên người nói ở cùng lớp; tắt lớp thì tên cũng ẩn', (tester) async {
+      await pumpWide(tester, studyVideo);
+
+      expect(find.text('客'), findsOneWidget);
+      expect(find.text('Kyaku'), findsOneWidget);
+      expect(find.text('Khách'), findsOneWidget);
+
+      await tester.tap(find.widgetWithText(FilterChip, 'Tiếng Việt'));
+      await tester.pumpAndSettle();
+      expect(find.text('Khách'), findsNothing);
+      expect(find.text('Nhà ga ở đâu ạ?'), findsNothing);
+      expect(find.text('Kyaku'), findsOneWidget);
+    });
+
+    testWidgets('video chỉ có bảng từ thì hiện thẳng bảng, không có thanh tab', (tester) async {
+      await pumpWide(
+        tester,
+        const LessonVideo(
+          title: 'Ôn tập',
+          url: '/d.mp4',
+          vocabulary: [VideoWord(word: '駅', reading: 'えき', meaning: 'nhà ga')],
+        ),
+      );
+
+      expect(find.byType(TabBar), findsNothing);
+      expect(find.byType(FilterChip), findsNothing);
+      expect(find.text('えき'), findsOneWidget);
+    });
+
+    testWidgets('bấm một mẫu câu thì phát đúng đoạn của câu đó rồi tự dừng', (tester) async {
+      final platform = _FakeVideoPlatform();
+      final previous = VideoPlayerPlatform.instance;
+      VideoPlayerPlatform.instance = platform;
+      addTearDown(() => VideoPlayerPlatform.instance = previous);
+
+      await pumpWide(tester, studyVideo);
+      await tester.tap(find.widgetWithText(Tab, 'Mẫu câu'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Eki wa doko desu ka.'));
+      await tester.pumpAndSettle();
+
+      expect(platform.created, 1, reason: 'bấm mẫu câu là mở trình phát');
+      expect(platform.position, const Duration(seconds: 4), reason: 'phát từ đầu câu');
+      expect(platform.playing, isTrue);
+
+      platform.position = const Duration(seconds: 6);
+      await tester.pump(const Duration(milliseconds: 150));
+      expect(platform.playing, isTrue, reason: 'câu chưa hết thì phát tiếp');
+
+      platform.position = const Duration(milliseconds: 8100);
+      await tester.pump(const Duration(milliseconds: 150));
+      await tester.pumpAndSettle();
+      expect(platform.playing, isFalse, reason: 'tới đầu câu sau thì tự dừng');
+
       await tester.pumpWidget(const SizedBox());
     });
   });

@@ -1,7 +1,93 @@
 # Lời thoại Tình huống: Hỏi đường
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 9
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-8-12.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Hỏi đường
+## scene-1.mp4
+# Hiểu lời chỉ đường
+00:03 | アンジェラ / Anjera / Angela | あのー、すみません。 | Anoo, sumimasen. | Dạ, xin lỗi.
+00:05 | 通行人 / Tsuukoonin / Người đi đường | はい。 | Hai. | Vâng.
+*00:07 | アンジェラ / Anjera / Angela | 大里公民館へ行きたいです。 | Oosato-koominkan e ikitai desu. | Tôi muốn đến Nhà văn hóa Ōsato.
+00:12 | 通行人 / Tsuukoonin / Người đi đường | 大里公民館ですね。 | Oosato-koominkan desu ne. | Nhà văn hóa Ōsato phải không?
+00:14 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+*00:16 | 通行人 / Tsuukoonin / Người đi đường | この道をまっすぐ行ってください。 | Kono michi o massugu itte kudasai. | Chị cứ đi thẳng đường này.
+00:20 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:22 | 通行人 / Tsuukoonin / Người đi đường | 郵便局の隣ですよ。 | Yuubinkyoku no tonari desu yo. | Nó ở ngay cạnh bưu điện.
+*00:25 | アンジェラ / Anjera / Angela | どのくらいかかりますか。 | Dono kurai kakarimasu ka. | Mất khoảng bao lâu ạ?
+00:27 | 通行人 / Tsuukoonin / Người đi đường | うーん、10分くらいですよ。 | Uun, juppun kurai desu yo. | Ừm, khoảng 10 phút đấy.
+00:31 | アンジェラ / Anjera / Angela | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn chị.
+00:33 | 通行人 / Tsuukoonin / Người đi đường | いいえ。 | Iie. | Không có gì.
+### từ vựng
+公民館 | こうみんかん | koominkan | nhà văn hóa
+道 | みち | michi | con đường
+まっすぐ | まっすぐ | massugu | thẳng
+郵便局 | ゆうびんきょく | yuubinkyoku | bưu điện
+隣 | となり | tonari | bên cạnh
+どのくらい | どのくらい | dono kurai | khoảng bao lâu
+
+## scene-2.mp4
+# Hỏi đường trên bản đồ
+00:04 | 通行人 / Tsuukoonin / Người đi đường | どうしましたか。 | Doo shimashita ka. | Có chuyện gì vậy?
+*00:05 | アンジェラ / Anjera / Angela | あ、すみません。大里公民館はどこですか。 | A, sumimasen. Oosato-koominkan wa doko desu ka. | À, xin lỗi. Nhà văn hóa Ōsato ở đâu ạ?
+00:10 | 通行人 / Tsuukoonin / Người đi đường | 大里公民館…ここですね。 | Oosato-koominkan… koko desu ne. | Nhà văn hóa Ōsato… ở đây này.
+00:15 | アンジェラ / Anjera / Angela | ああ。 | Aa. | À.
+00:18 | 通行人 / Tsuukoonin / Người đi đường | 郵便局が、ここです。 | Yuubinkyoku ga, koko desu. | Bưu điện ở chỗ này.
+*00:21 | アンジェラ / Anjera / Angela | これは何ですか。 | Kore wa nan desu ka. | Cái này là gì ạ?
+00:23 | 通行人 / Tsuukoonin / Người đi đường | 信号です。 | Shingoo desu. | Là đèn giao thông.
+00:25 | 通行人 / Tsuukoonin / Người đi đường | 中央公園北の信号です。 | Chuuoo-kooen-kita no shingoo desu. | Đèn giao thông Chūō Kōen Kita (phía bắc Công viên Trung tâm).
+00:28 | アンジェラ / Anjera / Angela | 中央公園北ですね。 | Chuuoo-kooen-kita desu ne. | Chūō Kōen Kita nhỉ.
+00:30 | 通行人 / Tsuukoonin / Người đi đường | はい。 | Hai. | Đúng rồi.
+00:31 | アンジェラ / Anjera / Angela | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn anh.
+00:34 | 通行人 / Tsuukoonin / Người đi đường | いいえ。 | Iie. | Không có gì.
+### từ vựng
+ここ | ここ | koko | chỗ này
+信号 | しんごう | shingoo | đèn giao thông
+公園 | こうえん | kooen | công viên
+北 | きた | kita | phía bắc
+何 | なん | nan | cái gì
+
+## scene-3.mp4
+# Nói mình đang đứng ở đâu
+00:13 | アンジェラ / Anjera / Angela | はい、アンジェラです。 | Hai, Anjera desu. | Vâng, Angela nghe đây.
+00:15 | アンジェラ / Anjera / Angela | 遅くなってすみません。 | Osoku natte sumimasen. | Xin lỗi tôi đến muộn.
+00:19 | アンジェラ / Anjera / Angela | はい。今ですか。 | Hai. Ima desu ka. | Vâng. Bây giờ ạ?
+*00:21 | アンジェラ / Anjera / Angela | 歯医者の近くにいます。 | Haisha no chikaku ni imasu. | Tôi đang ở gần phòng nha.
+00:24 | アンジェラ / Anjera / Angela | はい、たぶん大丈夫です。すみません。 | Hai, tabun daijoobu desu. Sumimasen. | Vâng, chắc là ổn ạ. Xin lỗi.
+00:37 | アンジェラ / Anjera / Angela | あ、あの、ちょっとすみません。 | A, ano, chotto sumimasen. | À, dạ, xin lỗi một chút.
+00:40 | 通行人 / Tsuukoonin / Người đi đường | はい。 | Hai. | Vâng.
+*00:41 | アンジェラ / Anjera / Angela | ここは中央公園北ですか。 | Koko wa Chuuoo-kooen-kita desu ka. | Đây có phải Chūō Kōen Kita không ạ?
+00:46 | 通行人 / Tsuukoonin / Người đi đường | いいえ、ここは北じゃなくて、南ですよ。 | Iie, koko wa kita ja nakute, minami desu yo. | Không, đây không phải Kita (Bắc) mà là Minami (Nam).
+*00:52 | アンジェラ / Anjera / Angela | そうですか。中央公園北はどこですか。 | Soo desu ka. Chuuoo-kooen-kita wa doko desu ka. | Vậy à. Thế Chūō Kōen Kita ở đâu ạ?
+00:57 | 通行人 / Tsuukoonin / Người đi đường | もうちょっと先ですよ。 | Moo chotto saki desu yo. | Đi thêm một chút nữa là tới.
+01:00 | アンジェラ / Anjera / Angela | ああ、そうですか。ありがとうございます。 | Aa, soo desu ka. Arigatoo gozaimasu. | À, vậy à. Cảm ơn chị.
+01:03 | 通行人 / Tsuukoonin / Người đi đường | いいえ。 | Iie. | Không có gì.
+### từ vựng
+遅くなります | おそくなります | osoku narimasu | bị muộn
+今 | いま | ima | bây giờ
+歯医者 | はいしゃ | haisha | phòng nha
+近く | ちかく | chikaku | gần
+南 | みなみ | minami | phía nam
+先 | さき | saki | phía trước (đi tiếp)
+
+## summary.mp4
+# Ôn tập: Hỏi và chỉ đường
+00:00 |  /  / Chủ đề | はいしゃの ちかく | haisha no chikaku | Gần nha sĩ
+*00:06 | アンジェラ / Anjera / Angela | はい。今ですか。歯医者の近くにいます。 | Hai. Ima desu ka. Haisha no chikaku ni imasu. | Vâng. Bây giờ ạ? Tôi đang ở gần phòng nha.
+00:12 | ナレーター / Nareetaa / Người dẫn | 人や物の場所を表すときに位置詞を使います。 | Hito ya mono no basho o arawasu toki ni ichishi o tsukaimasu. | Khi diễn tả vị trí của người hay vật, ta dùng từ chỉ vị trí.
+00:18 | ナレーター / Nareetaa / Người dẫn | 位置詞には、「上」「下」「前」「後ろ」「横」「隣」「中」「外」「近く」「間」などがありますが、 | Ichishi ni wa, "ue", "shita", "mae", "ushiro", "yoko", "tonari", "naka", "soto", "chikaku", "aida" nado ga arimasu ga, | Từ chỉ vị trí có "ue" (trên), "shita" (dưới), "mae" (trước), "ushiro" (sau), "yoko" (bên cạnh), "tonari" (kế bên), "naka" (trong), "soto" (ngoài), "chikaku" (gần), "aida" (giữa)…
+00:37 | ナレーター / Nareetaa / Người dẫn | 会話の中で、アンジェラさんは周囲に歯医者の看板を見つけて、歯医者の近くであることを伝えています。 | Kaiwa no naka de, Anjera-san wa shuui ni haisha no kanban o mitsukete, haisha no chikaku de aru koto o tsutaete imasu. | Trong hội thoại, chị Angela thấy biển phòng nha gần đó nên nói mình đang ở gần phòng nha.
+00:49 | ナレーター / Nareetaa / Người dẫn | 「近く」は、近いところという意味の名詞です。 | "Chikaku" wa, chikai tokoro to iu imi no meeshi desu. | "Chikaku" là danh từ có nghĩa là chỗ gần.
+00:58 |  /  / Chủ đề | どのくらい かかりますか | dono kurai kakarimasu ka | Mất khoảng bao lâu ạ?
+*01:04 | アンジェラ / Anjera / Angela | どのくらいかかりますか。 | Dono kurai kakarimasu ka. | Mất khoảng bao lâu ạ?
+01:06 | 通行人 / Tsuukoonin / Người đi đường | うーん、10分くらいですよ。 | Uun, juppun kurai desu yo. | Ừm, khoảng 10 phút đấy.
+01:11 | ナレーター / Nareetaa / Người dẫn | 「どのくらい」は、大体の期間、大きさ、金額などを聞くときに使う疑問詞です。 | "Dono kurai" wa, daitai no kikan, ookisa, kingaku nado o kiku toki ni tsukau gimonshi desu. | "Dono kurai" là từ để hỏi dùng khi hỏi khoảng thời gian, kích thước, số tiền… ước chừng.
+01:23 | ナレーター / Nareetaa / Người dẫn | 「かかります」という動詞は、何かをするために必要な時間やお金について表すときに使います。 | "Kakarimasu" to iu dooshi wa, nanika o suru tame ni hitsuyoo na jikan ya okane ni tsuite arawasu toki ni tsukaimasu. | Động từ "kakarimasu" (mất, tốn) dùng để nói thời gian hay tiền cần để làm việc gì đó.
+01:35 | ナレーター / Nareetaa / Người dẫn | この会話の場合、アンジェラさんは公民館までの大体の所要時間を聞いています。 | Kono kaiwa no baai, Anjera-san wa koominkan made no daitai no shoyoo-jikan o kiite imasu. | Trong hội thoại này, chị Angela hỏi mất khoảng bao lâu để đến nhà văn hóa.
+01:45 | ナレーター / Nareetaa / Người dẫn | 答えるときは、「10分くらい」のように「くらい」をつけて言います。 | Kotaeru toki wa, "juppun kurai" no yoo ni "kurai" o tsukete iimasu. | Khi trả lời thì thêm "kurai" (khoảng) như "khoảng 10 phút".
+01:55 | ナレーター / Nareetaa / Người dẫn | 「どのぐらい」「10分ぐらい」のように「ぐらい」を使うこともあります。 | "Dono gurai", "juppun gurai" no yoo ni "gurai" o tsukau koto mo arimasu. | Cũng có thể dùng "gurai" như "dono gurai", "juppun gurai".
+02:04 |  /  / Chủ đề | はいしゃの ちかくに います | haisha no chikaku ni imasu | Tôi đang ở gần phòng nha
+*02:10 | アンジェラ / Anjera / Angela | はい。今ですか。歯医者の近くにいます。 | Hai. Ima desu ka. Haisha no chikaku ni imasu. | Vâng. Bây giờ ạ? Tôi đang ở gần phòng nha.
+02:16 | ナレーター / Nareetaa / Người dẫn | ある場所に物や生き物が存在することを表すとき、「場所に物があります」「生き物がいます」と言います。 | Aru basho ni mono ya ikimono ga sonzai suru koto o arawasu toki, "basho ni mono ga arimasu", "ikimono ga imasu" to iimasu. | Khi nói ở một nơi có đồ vật hay sinh vật, ta nói "[nơi chốn] ni [đồ vật] ga arimasu", "[sinh vật] ga imasu".
+02:35 | ナレーター / Nareetaa / Người dẫn | 物の場合は「あります」、生き物の場合は「います」を使います。 | Mono no baai wa "arimasu", ikimono no baai wa "imasu" o tsukaimasu. | Đồ vật thì dùng "arimasu", sinh vật thì dùng "imasu".
+02:47 | ナレーター / Nareetaa / Người dẫn | さて、この会話では、電話の相手がアンジェラさんに「今どこにいますか」と聞いているようです。 | Sate, kono kaiwa de wa, denwa no aite ga Anjera-san ni "Ima doko ni imasu ka" to kiite iru yoo desu. | Trong hội thoại này, có vẻ người ở đầu dây bên kia hỏi chị Angela "Bây giờ chị đang ở đâu?".
+03:00 | ナレーター / Nareetaa / Người dẫn | アンジェラさんは「私は」を省略して、自分がいる場所を「歯医者の近くにいます」と答えています。 | Anjera-san wa "watashi wa" o shooryaku shite, jibun ga iru basho o "Haisha no chikaku ni imasu" to kotaete imasu. | Chị Angela lược bỏ "watashi wa" và trả lời nơi mình đang ở: "Tôi đang ở gần phòng nha".

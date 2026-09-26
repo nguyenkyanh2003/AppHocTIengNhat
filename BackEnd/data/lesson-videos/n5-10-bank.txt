@@ -1,7 +1,118 @@
 # Lời thoại Tình huống: Rút tiền và gửi tiết kiệm
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 10
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-8-12.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Sử dụng ngân hàng
+## scene-1.mp4
+# Mở tài khoản ngân hàng
+00:07 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | いらっしゃいませ。今日はどのようなご用件でしょうか。 | Irasshaimase. Kyoo wa dono yoo na goyooken deshoo ka. | Xin chào quý khách. Hôm nay quý khách cần gì ạ?
+*00:11 | アンジェラ / Anjera / Angela | あの、口座を作りたいです。 | Ano, kooza o tsukuritai desu. | Dạ, tôi muốn mở tài khoản.
+00:13 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | はい。こちらへどうぞ。 | Hai. Kochira e doozo. | Vâng. Mời quý khách đi lối này.
+00:19 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | では、こちらの用紙にご記入ください。 | Dewa, kochira no yooshi ni gokinyuu kudasai. | Vậy quý khách điền vào tờ đơn này nhé.
+00:24 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | 今日は、ご印鑑とご本人様を確認できるものをお持ちですか。 | Kyoo wa, goinkan to gohoninsama o kakunin dekiru mono o omochi desu ka. | Hôm nay quý khách có mang con dấu và giấy tờ xác nhận nhân thân không ạ?
+00:29 | アンジェラ / Anjera / Angela | えっと、はんこですね。あと、在留カードを持っています。 | Etto, hanko desu ne. Ato, zairyuu-kaado o motte imasu. | Ừm, con dấu thì có ạ. Tôi còn có thẻ cư trú.
+00:35 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | では、この番号でお呼びしますので、しばらくお待ちください。 | Dewa, kono bangoo de oyobi shimasu node, shibaraku omachi kudasai. | Vậy chúng tôi sẽ gọi theo số này, xin quý khách chờ một lát.
+00:46 | アンジェラ / Anjera / Angela | すみません。よくわからないんですけど… | Sumimasen. Yoku wakaranain desu kedo… | Xin lỗi, tôi không hiểu lắm…
+00:52 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | はい。 | Hai. | Vâng.
+*00:53 | アンジェラ / Anjera / Angela | ここは名前ですか。 | Koko wa namae desu ka. | Chỗ này là tên ạ?
+00:59 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | はい、そうです。ここは名字です。 | Hai, soo desu. Koko wa myooji desu. | Vâng, đúng rồi. Chỗ này là họ.
+01:10 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | では、こちらでお待ちください。 | Dewa, kochira de omachi kudasai. | Vậy quý khách chờ ở đây nhé.
+01:13 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+01:17 | 行員 / Kooin / Nhân viên ngân hàng | 23番のお客様。23番のお客様。 | Nijuusan-ban no okyakusama. Nijuusan-ban no okyakusama. | Quý khách số 23. Quý khách số 23.
+*01:22 | アンジェラ / Anjera / Angela | はい。これでいいですか。 | Hai. Kore de ii desu ka. | Vâng. Thế này được chưa ạ?
+01:30 | 行員 / Kooin / Nhân viên ngân hàng | はい、結構です。 | Hai, kekkoo desu. | Vâng, được rồi ạ.
+01:34 | 行員 / Kooin / Nhân viên ngân hàng | では、こちらにご印鑑をお願いします。 | Dewa, kochira ni goinkan o onegaishimasu. | Vậy xin quý khách đóng dấu vào đây.
+01:46 | 行員 / Kooin / Nhân viên ngân hàng | 在留カードをお持ちですか。 | Zairyuu-kaado o omochi desu ka. | Quý khách có mang thẻ cư trú không ạ?
+01:52 | アンジェラ / Anjera / Angela | はい、これです。 | Hai, kore desu. | Vâng, đây ạ.
+01:54 | 行員 / Kooin / Nhân viên ngân hàng | はい。では、おかけになってお待ちください。 | Hai. Dewa, okake ni natte omachi kudasai. | Vâng. Vậy mời quý khách ngồi đợi.
+### từ vựng
+口座 | こうざ | kooza | tài khoản
+作ります | つくります | tsukurimasu | làm, lập
+用紙 | ようし | yooshi | tờ đơn
+記入 | きにゅう | kinyuu | điền (thông tin)
+印鑑 | いんかん | inkan | con dấu
+在留カード | ざいりゅうカード | zairyuu-kaado | thẻ cư trú
+名字 | みょうじ | myooji | họ
+
+## scene-2.mp4
+# Gửi tiết kiệm hằng tháng
+00:06 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | 今日はどんなご用件でしょうか。 | Kyoo wa donna goyooken deshoo ka. | Hôm nay quý khách cần gì ạ?
+*00:09 | アンジェラ / Anjera / Angela | はい。毎月お金を預けたいです。 | Hai. Maitsuki okane o azuketai desu. | Vâng. Tôi muốn gửi tiền hằng tháng.
+00:12 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | ああ、積立定期ですね。 | Aa, tsumitate-teeki desu ne. | À, tiết kiệm tích lũy định kỳ phải không ạ?
+00:14 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:15 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | どうぞ。こちらの番号でお待ちください。 | Doozo. Kochira no bangoo de omachi kudasai. | Mời quý khách. Xin chờ theo số này ạ.
+00:27 | 行員 / Kooin / Nhân viên ngân hàng | 13番のお客様。 | Juusan-ban no okyakusama. | Quý khách số 13.
+00:29 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:31 | 行員 / Kooin / Nhân viên ngân hàng | お待たせいたしました。どうぞ、おかけください。 | Omatase itashimashita. Doozo, okake kudasai. | Để quý khách đợi lâu. Mời ngồi ạ.
+00:41 | 行員 / Kooin / Nhân viên ngân hàng | お客様、積立定期のお申し込みでよろしいでしょうか。 | Okyakusama, tsumitate-teeki no omooshikomi de yoroshii deshoo ka. | Thưa quý khách, quý khách đăng ký tiết kiệm tích lũy định kỳ phải không ạ?
+00:45 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+*00:46 | 行員 / Kooin / Nhân viên ngân hàng | 毎月いくらぐらい積み立てますか。 | Maitsuki ikura gurai tsumitatemasu ka. | Mỗi tháng quý khách muốn tích lũy khoảng bao nhiêu ạ?
+*00:49 | アンジェラ / Anjera / Angela | 5,000円でお願いします。 | Gosen-en de onegaishimasu. | Cho tôi 5.000 yên.
+00:52 | 行員 / Kooin / Nhân viên ngân hàng | はい、5,000円ですね。かしこまりました。 | Hai, gosen-en desu ne. Kashikomarimashita. | Vâng, 5.000 yên ạ. Tôi hiểu rồi.
+01:00 | アンジェラ / Anjera / Angela | 通帳もいりますか。 | Tsuuchoo mo irimasu ka. | Có cần cả sổ ngân hàng không ạ?
+01:02 | 行員 / Kooin / Nhân viên ngân hàng | はい、お預かりします。 | Hai, oazukari shimasu. | Vâng, tôi xin giữ ạ.
+### từ vựng
+毎月 | まいつき | maitsuki | hằng tháng
+預けます | あずけます | azukemasu | gửi (tiền)
+積立定期 | つみたていてき | tsumitate-teeki | tiết kiệm tích lũy định kỳ
+申し込み | もうしこみ | mooshikomi | đăng ký
+通帳 | つうちょう | tsuuchoo | sổ ngân hàng
+
+## scene-3.mp4
+# Làm thẻ tín dụng
+*00:02 | アンジェラ / Anjera / Angela | あの、クレジットカードを作りたいです。 | Ano, kurejitto-kaado o tsukuritai desu. | Dạ, tôi muốn làm thẻ tín dụng.
+00:06 | 行員 / Kooin / Nhân viên ngân hàng | かしこまりました。 | Kashikomarimashita. | Vâng ạ.
+00:08 | 行員 / Kooin / Nhân viên ngân hàng | キャッシュカードとクレジットカードの一体型になさいますか。 | Kyasshu-kaado to kurejitto-kaado no ittaigata ni nasaimasu ka. | Quý khách có muốn làm loại thẻ gộp thẻ rút tiền và thẻ tín dụng không ạ?
+00:13 | アンジェラ / Anjera / Angela | 一体型は何ですか。 | Ittaigata wa nan desu ka. | Loại gộp là gì ạ?
+00:19 | 行員 / Kooin / Nhân viên ngân hàng | キャッシュカードとクレジットカードが1枚のカードです。 | Kyasshu-kaado to kurejitto-kaado ga ichimai no kaado desu. | Là thẻ rút tiền và thẻ tín dụng gộp trong một thẻ.
+00:25 | 行員 / Kooin / Nhân viên ngân hàng | 別々に作ることもできます。 | Betsubetsu ni tsukuru koto mo dekimasu. | Cũng có thể làm riêng từng thẻ.
+*00:28 | アンジェラ / Anjera / Angela | ああ、こっちがいいです。 | Aa, kocchi ga ii desu. | À, tôi chọn cái này.
+00:31 | 行員 / Kooin / Nhân viên ngân hàng | かしこまりました。では、こちらの用紙にご記入ください。 | Kashikomarimashita. Dewa, kochira no yooshi ni gokinyuu kudasai. | Vâng ạ. Vậy quý khách điền vào tờ đơn này nhé.
+*00:45 | アンジェラ / Anjera / Angela | すみません、ここは何を書きますか。 | Sumimasen, koko wa nani o kakimasu ka. | Xin lỗi, chỗ này viết gì ạ?
+00:54 | 行員 / Kooin / Nhân viên ngân hàng | そこは年収です。 | Soko wa nenshuu desu. | Chỗ đó là thu nhập một năm.
+00:57 | 行員 / Kooin / Nhân viên ngân hàng | 1年間の給料を書いてください。 | Ichinenkan no kyuuryoo o kaite kudasai. | Quý khách viết tiền lương một năm.
+01:01 | 行員 / Kooin / Nhân viên ngân hàng | 大体でいいですよ。 | Daitai de ii desu yo. | Ước chừng cũng được ạ.
+01:03 | アンジェラ / Anjera / Angela | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+01:09 | アンジェラ / Anjera / Angela | これでいいですか。 | Kore de ii desu ka. | Thế này được chưa ạ?
+01:16 | 行員 / Kooin / Nhân viên ngân hàng | はい、結構です。 | Hai, kekkoo desu. | Vâng, được rồi ạ.
+01:18 | 行員 / Kooin / Nhân viên ngân hàng | では、カードは3週間くらい後に、こちらのご住所に郵送します。 | Dewa, kaado wa sanshuukan kurai ato ni, kochira no gojuusho ni yuusoo shimasu. | Khoảng 3 tuần sau, chúng tôi sẽ gửi thẻ qua bưu điện đến địa chỉ này.
+01:26 | アンジェラ / Anjera / Angela | えーと、3週間ですね。わかりました。 | Eeto, sanshuukan desu ne. Wakarimashita. | Ừm, 3 tuần nhỉ. Tôi hiểu rồi.
+### từ vựng
+クレジットカード | クレジットカード | kurejitto-kaado | thẻ tín dụng
+キャッシュカード | キャッシュカード | kyasshu-kaado | thẻ rút tiền
+一体型 | いったいがた | ittaigata | loại gộp (một thẻ)
+年収 | ねんしゅう | nenshuu | thu nhập một năm
+給料 | きゅうりょう | kyuuryoo | tiền lương
+大体 | だいたい | daitai | khoảng, đại khái
+郵送 | ゆうそう | yuusoo | gửi qua bưu điện
+
+## summary.mp4
+# Ôn tập: Dùng dịch vụ ngân hàng
+00:00 |  /  / Chủ đề | これで いいですか | kore de ii desu ka | Thế này được chưa ạ?
+*00:08 | アンジェラ / Anjera / Angela | これでいいですか。 | Kore de ii desu ka. | Thế này được chưa ạ?
+00:16 | 行員 / Kooin / Nhân viên ngân hàng | はい、結構です。 | Hai, kekkoo desu. | Vâng, được rồi ạ.
+00:18 | ナレーター / Nareetaa / Người dẫn | 「これでいいですか」は、「これ」が指すものが相手の求めているものと合っているかどうかを確認する表現です。 | "Kore de ii desu ka" wa, "kore" ga sasu mono ga aite no motomete iru mono to atte iru ka doo ka o kakunin suru hyoogen desu. | "Kore de ii desu ka" là cách nói để xác nhận thứ mình đưa ra có đúng với điều người kia yêu cầu không.
+00:32 | ナレーター / Nareetaa / Người dẫn | ここでは、銀行口座を作るためにアンジェラさんが用紙に記入しましたが、誤りがないか、受け取ってもらえるかどうかを聞いています。 | Koko de wa, ginkoo-kooza o tsukuru tame ni Anjera-san ga yooshi ni kinyuu shimashita ga, ayamari ga nai ka, uketotte moraeru ka doo ka o kiite imasu. | Ở đây, chị Angela điền vào tờ đơn để mở tài khoản ngân hàng và hỏi xem có sai sót gì không, có được nhận không.
+00:51 | ナレーター / Nareetaa / Người dẫn | カードが使えるかどうかわからない店で「カードでいいですか」と聞いたり、 | Kaado ga tsukaeru ka doo ka wakaranai mise de "Kaado de ii desu ka" to kiitari, | Ở cửa hàng không biết có dùng được thẻ không thì hỏi "Trả bằng thẻ được không?",
+01:00 | ナレーター / Nareetaa / Người dẫn | 申込書に漢字で住所が書けないときに「ひらがなでいいですか」と聞いたりするように、 | Mooshikomisho ni kanji de juusho ga kakenai toki ni "Hiragana de ii desu ka" to kiitari suru yoo ni, | hay khi không viết được địa chỉ bằng chữ Hán trên đơn thì hỏi "Viết bằng hiragana được không?",
+01:10 | ナレーター / Nareetaa / Người dẫn | 具体的なものや手段などを入れて、それが相手に受け入れられるかどうかを確認することもできます。 | gutaiteki na mono ya shudan nado o irete, sore ga aite ni ukeirerareru ka doo ka o kakunin suru koto mo dekimasu. | tức là đưa vào một thứ hay cách làm cụ thể để xác nhận người kia có chấp nhận không.
+01:23 | ナレーター / Nareetaa / Người dẫn | この動画では、「これでいいですか」に対して、銀行の人が「はい、結構です」と丁寧に答えていますが、 | Kono dooga de wa, "Kore de ii desu ka" ni taishite, ginkoo no hito ga "Hai, kekkoo desu" to teenee ni kotaete imasu ga, | Trong video, nhân viên ngân hàng trả lời lịch sự "Vâng, được rồi ạ",
+01:38 | ナレーター / Nareetaa / Người dẫn | 「ええ、いいですよ」のように答えることもできます。 | "Ee, ii desu yo" no yoo ni kotaeru koto mo dekimasu. | cũng có thể trả lời "Ừ, được chứ".
+*01:45 |  /  / Chủ đề | こっちが いいです | kocchi ga ii desu | Tôi chọn cái này
+01:53 | ナレーター / Nareetaa / Người dẫn | 「こっち」は「こちら」のカジュアルな言い方です。 | "Kocchi" wa "kochira" no kajuaru na iikata desu. | "Kocchi" là cách nói thân mật của "kochira".
+01:59 | ナレーター / Nareetaa / Người dẫn | 同じように、「そちら」は「そっち」、「あちら」は「あっち」と言い換えられます。 | Onaji yoo ni, "sochira" wa "socchi", "achira" wa "acchi" to iikaeraremasu. | Tương tự, "sochira" thành "socchi", "achira" thành "acchi".
+02:10 | ナレーター / Nareetaa / Người dẫn | 「こっち」「そっち」「あっち」は、基本的に話している人から見た方向を指すときに使われます。 | "Kocchi", "socchi", "acchi" wa, kihonteki ni hanashite iru hito kara mita hookoo o sasu toki ni tsukawaremasu. | "Kocchi", "socchi", "acchi" về cơ bản dùng để chỉ hướng nhìn từ phía người nói.
+02:22 | ナレーター / Nareetaa / Người dẫn | 例えば、地図を見て迷っている人に「あっちですよ」と正しい方向を教えたり、 | Tatoeba, chizu o mite mayotte iru hito ni "Acchi desu yo" to tadashii hookoo o oshietari, | Ví dụ, chỉ đúng hướng cho người đang cầm bản đồ bị lạc: "Ở đằng kia đấy",
+02:33 | ナレーター / Nareetaa / Người dẫn | トイレを探している人に「こっちですよ」と示したり、 | toire o sagashite iru hito ni "Kocchi desu yo" to shimeshitari, | chỉ cho người đang tìm nhà vệ sinh: "Ở đằng này đấy",
+02:40 | ナレーター / Nareetaa / Người dẫn | 同僚を探している人に「そっちに行きましたよ」と教えたりします。 | dooryoo o sagashite iru hito ni "Socchi ni ikimashita yo" to oshietari shimasu. | hay nói với người đang tìm đồng nghiệp: "Anh ấy đi về phía đó rồi".
+02:49 | ナレーター / Nareetaa / Người dẫn | ここでは、アンジェラさんは2種類のクレジットカードの見本を前にして、自分が欲しいカードの方を指して「こっちがいいです」と答えています。 | Koko de wa, Anjera-san wa nishurui no kurejitto-kaado no mihon o mae ni shite, jibun ga hoshii kaado no hoo o sashite "Kocchi ga ii desu" to kotaete imasu. | Ở đây, trước hai mẫu thẻ tín dụng, chị Angela chỉ vào thẻ mình muốn và nói "Tôi chọn cái này".
+03:05 | ナレーター / Nareetaa / Người dẫn | このように、2つのものから1つを選ぶときにも使われます。 | Kono yoo ni, futatsu no mono kara hitotsu o erabu toki ni mo tsukawaremasu. | Như vậy, cách nói này cũng dùng khi chọn 1 trong 2 thứ.
+03:13 | ナレーター / Nareetaa / Người dẫn | 質問するときには、「どっちがいいですか」「どちらがいいですか」のように聞きます。 | Shitsumon suru toki ni wa, "Docchi ga ii desu ka", "Dochira ga ii desu ka" no yoo ni kikimasu. | Khi hỏi thì nói "Docchi ga ii desu ka", "Dochira ga ii desu ka" (Bạn chọn cái nào?).
+03:25 |  /  / Chủ đề | 5000えんで おねがいします | 5000 en de onegaishimasu | Cho tôi 5.000 yên
+03:31 | 行員 / Kooin / Nhân viên ngân hàng | 毎月いくらぐらい積み立てますか。 | Maitsuki ikura gurai tsumitatemasu ka. | Mỗi tháng quý khách muốn tích lũy khoảng bao nhiêu ạ?
+*03:34 | アンジェラ / Anjera / Angela | 5,000円でお願いします。 | Gosen-en de onegaishimasu. | Cho tôi 5.000 yên.
+03:38 | ナレーター / Nareetaa / Người dẫn | 「名詞＋でお願いします」は、何かを依頼するときの希望の範囲や手段などを言うときによく使われる表現です。 | "Meeshi + de onegaishimasu" wa, nanika o irai suru toki no kiboo no han'i ya shudan nado o iu toki ni yoku tsukawareru hyoogen desu. | "Danh từ + de onegaishimasu" là cách nói hay dùng khi nhờ việc gì đó và nêu mức hay cách thức mình mong muốn.
+03:56 | ナレーター / Nareetaa / Người dẫn | ここでは、1か月の積み立ての金額を聞かれたアンジェラさんが、「5,000円で」と希望の金額を指定して依頼しています。 | Koko de wa, ikkagetsu no tsumitate no kingaku o kikareta Anjera-san ga, "gosen-en de" to kiboo no kingaku o shitee shite irai shite imasu. | Ở đây, khi được hỏi số tiền tích lũy mỗi tháng, chị Angela nêu số tiền mình muốn: "5.000 yên".
+04:12 | ナレーター / Nareetaa / Người dẫn | 買い物のときに支払いを現金にするかカードにするかと聞かれて「カードでお願いします」と答えたり、 | Kaimono no toki ni shiharai o genkin ni suru ka kaado ni suru ka to kikarete "Kaado de onegaishimasu" to kotaetari, | Ví dụ khi mua sắm, được hỏi trả tiền mặt hay thẻ thì trả lời "Cho tôi trả bằng thẻ",
+04:25 | ナレーター / Nareetaa / Người dẫn | ランチのドリンクをどれにするかを聞かれて「コーヒーでお願いします」と言うように、 | ranchi no dorinku o dore ni suru ka o kikarete "Koohii de onegaishimasu" to iu yoo ni, | hay được hỏi chọn đồ uống kèm bữa trưa thì nói "Cho tôi cà phê",
+04:35 | ナレーター / Nareetaa / Người dẫn | いくつかの選択肢があって、その中から自分の希望に合ったものを1つ選ぶときによく使われます。 | ikutsuka no sentakushi ga atte, sono naka kara jibun no kiboo ni atta mono o hitotsu erabu toki ni yoku tsukawaremasu. | tức là hay dùng khi có nhiều lựa chọn và chọn ra một thứ hợp ý mình.

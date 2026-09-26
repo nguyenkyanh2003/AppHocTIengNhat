@@ -36,6 +36,7 @@ import '../../features/kanji/screens/kanji_list_screen.dart';
 import '../../features/lessons/screens/lesson_detail_screen.dart';
 import '../../features/lessons/screens/lesson_list_screen.dart';
 import '../../features/lessons/screens/lesson_study_screen.dart';
+import '../../features/lessons/screens/lesson_transcript_editor_screen.dart';
 import '../../features/news/screens/news_detail_screen.dart';
 import '../../features/news/screens/news_list_screen.dart';
 import '../../features/notebook/screens/notebook_detail_screen.dart';
@@ -178,6 +179,7 @@ abstract final class AppRouter {
     '/admin/achievements',
     '/admin/analytics',
     '/admin/transactions',
+    '/admin/lessons/:id/transcript',
   };
 
   /// Quyết định chuyển hướng.
@@ -647,6 +649,12 @@ abstract final class AppRouter {
             GoRoute(
               path: '/admin/transactions',
               builder: (context, state) => const AdminTransactionScreen(),
+            ),
+            GoRoute(
+              path: '/admin/lessons/:id/transcript',
+              builder: (context, state) => LessonTranscriptEditorScreen(
+                lessonId: state.pathParameters['id']!,
+              ),
             ),
           ],
         ),

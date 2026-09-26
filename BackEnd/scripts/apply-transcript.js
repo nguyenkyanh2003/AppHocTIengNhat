@@ -82,7 +82,7 @@ const applyOne = async ({ text, manifest: manifestName }, args) => {
   const { errors: reviewErrors } = reviewLessonVideos(updated);
   const errors = [...textErrors, ...matchErrors, ...reviewErrors];
 
-  for (const { name, count } of applied) console.log(`  ✓ ${name} — ${count} câu thoại`);
+  for (const { name, count, words } of applied) console.log(`  ✓ ${name} — ${count} câu thoại, ${words} từ vựng`);
   for (const name of empty) console.log(`  · ${name} — chưa gõ câu nào, giữ nguyên`);
   for (const error of errors) console.log(`  ✖ ${error}`);
   if (errors.length > 0) {

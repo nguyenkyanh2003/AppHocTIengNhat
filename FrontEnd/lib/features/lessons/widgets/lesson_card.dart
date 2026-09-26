@@ -80,7 +80,10 @@ class LessonCard extends StatelessWidget {
                       spacing: AppSpacing.md,
                       runSpacing: AppSpacing.xs,
                       children: [
-                        if (lesson.isSituational)
+                        if (lesson.videos.isNotEmpty)
+                          _LessonMeta(Icons.play_circle_outline,
+                              '${lesson.videos.length} video'),
+                        if (lesson.hasDialogue)
                           _LessonMeta(Icons.forum_outlined,
                               '${lesson.dialogue.length} lượt thoại'),
                         if (lesson.vocabularies.isNotEmpty)

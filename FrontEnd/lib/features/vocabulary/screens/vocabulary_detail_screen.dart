@@ -65,6 +65,8 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
           item.hiragana.isNotEmpty ? item.hiragana : item.word,
         );
       }
+    } on SpeechUnavailableException catch (error) {
+      messenger.showSnackBar(SnackBar(content: Text('$error')));
     } catch (_) {
       messenger.showSnackBar(
         const SnackBar(content: Text('Không phát được âm thanh.')),

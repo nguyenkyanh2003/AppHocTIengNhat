@@ -14,9 +14,19 @@
 export const VIDEO_SOURCE = '文部科学省「つながるひろがる にほんごでのくらし」';
 
 const SCENE = /^(\d+)\s*[-－]\s*(\d+)\s*[.．]\s*(.+?)\s*\.mp4$/i;
-const SUMMARY = /^(\d+)\s*[.．]?\s+(.+?)\s*\.mp4$/i;
+const SUMMARY = /^(\d+)\s*(?:[.．]\s*|\s+)(.+?)\s*\.mp4$/i;
+
+/** Tên hiển thị của video ôn tập — tên file ôn tập mỗi bài một kiểu ("Ôn tập", "On tap", "Tổng hợp…"). */
+export const REVIEW_TITLE = 'Ôn tập';
 
 const capitalize = (text) => text.charAt(0).toLocaleUpperCase('vi') + text.slice(1);
+
+/**
+ * Tên cảnh lấy từ tên file: bỏ dấu chấm cuối câu mà tên file buộc phải có
+ * trước `.mp4` (`…tài khoản..mp4`), giữ nguyên dấu `…`. Tên file Windows không
+ * chứa được `?`, nên câu hỏi phải thêm dấu tay trong file mô tả.
+ */
+const sceneTitle = (text) => text.trim().replace(/(?<![.…])\.$/, '');
 
 /**
  * @returns {{ lesson: number, scene: number | null, title: string } | null}
@@ -24,7 +34,7 @@ const capitalize = (text) => text.charAt(0).toLocaleUpperCase('vi') + text.slice
  */
 export const parseRawVideoName = (fileName) => {
   const scene = SCENE.exec(fileName);
-  if (scene) return { lesson: Number(scene[1]), scene: Number(scene[2]), title: scene[3].trim() };
+  if (scene) return { lesson: Number(scene[1]), scene: Number(scene[2]), title: sceneTitle(scene[3]) };
 
   const summary = SUMMARY.exec(fileName);
   if (summary) return { lesson: Number(summary[1]), scene: null, title: capitalize(summary[2].trim()) };
@@ -35,7 +45,7 @@ export const parseRawVideoName = (fileName) => {
 /**
  * @param lesson Số bài của thư mục (lấy từ tên thư mục, ví dụ `10. sử dụng ngân hàng`).
  * @param files  `[{ name, hash }]` — `hash` là dấu vân tay nội dung của file.
- * @returns {{ videos: { file, target, title }[], errors: string[] }}
+ * @returns {{ videos: { file, target, title, kind }[], errors: string[] }}
  *   `videos` theo thứ tự cảnh 1, 2, 3… rồi tới video ôn tập.
  */
 export const planLessonFolder = ({ lesson, files }) => {
@@ -54,14 +64,18 @@ export const planLessonFolder = ({ lesson, files }) => {
       continue;
     }
 
-    const video = { file: file.name, title: parsed.title };
     if (parsed.scene === null) {
       if (summary) errors.push(`Có hai video ôn tập: "${summary.file}" và "${file.name}".`);
-      summary = { ...video, target: 'summary.mp4' };
+      summary = { file: file.name, title: REVIEW_TITLE, kind: 'review', target: 'summary.mp4' };
     } else if (scenes.has(parsed.scene)) {
       errors.push(`Hai file cùng là cảnh ${parsed.scene}: "${scenes.get(parsed.scene).file}" và "${file.name}".`);
     } else {
-      scenes.set(parsed.scene, { ...video, target: `scene-${parsed.scene}.mp4` });
+      scenes.set(parsed.scene, {
+        file: file.name,
+        title: parsed.title,
+        kind: 'scene',
+        target: `scene-${parsed.scene}.mp4`,
+      });
     }
   }
 
@@ -105,16 +119,20 @@ export const transcriptSkeleton = ({ lesson, title, videos }) => {
  * File mô tả mới của bài sau khi đưa video vào `uploads/lesson-videos/<dir>/`.
  *
  * Video đã có (cùng `url`) giữ nguyên tên cảnh, mô tả và lời thoại người soạn
- * đã nhập; video mới có lời thoại rỗng chờ bổ sung. Video cũ không còn trong
- * thư mục gốc bị bỏ khỏi file mô tả.
+ * đã nhập — chỉ `kind` được đặt lại vì nó suy ra từ tên file (cảnh hay ôn
+ * tập), không phải thứ người soạn sửa tay. Video mới có lời thoại rỗng chờ bổ
+ * sung. Video cũ không còn trong thư mục gốc bị bỏ khỏi file mô tả.
  */
 export const mergeManifest = ({ manifest, dir, videos }) => {
   const existing = new Map((manifest.videos ?? []).map((video) => [video.url, video]));
   return {
     ...manifest,
-    videos: videos.map(({ target, title }) => {
+    videos: videos.map(({ target, title, kind }) => {
       const url = `/uploads/lesson-videos/${dir}/${target}`;
-      return existing.get(url) ?? { title, url, source: VIDEO_SOURCE, transcript: [] };
+      const current = existing.get(url);
+      return current
+        ? { ...current, kind }
+        : { title, url, kind, source: VIDEO_SOURCE, transcript: [] };
     }),
   };
 };

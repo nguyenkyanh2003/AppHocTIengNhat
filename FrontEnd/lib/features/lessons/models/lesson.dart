@@ -47,8 +47,9 @@ class Lesson {
     required this.updatedAt,
   });
 
-  /// Bài có nội dung dạng hội thoại tình huống hay không.
-  bool get isSituational => dialogue.isNotEmpty;
+  /// Bài có hội thoại soạn sẵn hay không. Bài có video không có phần này —
+  /// lời thoại của bài là kịch bản chạy theo video.
+  bool get hasDialogue => dialogue.isNotEmpty;
 
   /// Tên bài để hiển thị, bỏ tiền tố "Tình huống:" — nhãn tình huống đã
   /// có chip riêng, lặp lại trong tiêu đề chỉ làm dài dòng.

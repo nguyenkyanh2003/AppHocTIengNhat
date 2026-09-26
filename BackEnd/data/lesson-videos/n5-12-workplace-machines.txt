@@ -1,7 +1,121 @@
 # Lời thoại Tình huống: Dùng máy móc ở nơi làm việc
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 12
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-8-12.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Sử dụng thành thạo máy móc tại nơi làm việc
+## scene-1.mp4
+# Báo máy móc không chạy
+00:02 | プトリ / Putori / Putri | あれ？ | Are? | Ơ?
+*00:04 | プトリ / Putori / Putri | 橋本さん、動きません。 | Hashimoto-san, ugokimasen. | Anh Hashimoto ơi, nó không chạy.
+*00:14 | プトリ / Putori / Putri | これ、壊れていますか。 | Kore, kowarete imasu ka. | Cái này bị hỏng rồi ạ?
+00:18 | 橋本 / Hashimoto / Hashimoto | ああ、多分、紙パックですね。 | Aa, tabun, kami-pakku desu ne. | À, chắc là do túi giấy đựng bụi.
+00:22 | プトリ / Putori / Putri | あー、紙パック。 | Aa, kami-pakku. | À, túi giấy.
+00:25 | 橋本 / Hashimoto / Hashimoto | 新しい紙パック、給湯室の引き出しにありますよ。 | Atarashii kami-pakku, kyuutooshitsu no hikidashi ni arimasu yo. | Túi giấy mới có trong ngăn kéo ở phòng pha trà đấy.
+00:29 | プトリ / Putori / Putri | わかりました。 | Wakarimashita. | Em hiểu rồi.
+00:34 | プトリ / Putori / Putri | これですよね？ | Kore desu yo ne? | Là cái này phải không ạ?
+00:37 | 橋本 / Hashimoto / Hashimoto | はい。 | Hai. | Ừ.
+*00:38 | プトリ / Putori / Putri | えっと…使い方の本はどこにありますか。 | Etto… tsukaikata no hon wa doko ni arimasu ka. | Ừm… sách hướng dẫn sử dụng ở đâu ạ?
+00:46 | 橋本 / Hashimoto / Hashimoto | ああ、取扱説明書ですね。 | Aa, toriatsukai-setsumeesho desu ne. | À, sách hướng dẫn sử dụng nhỉ.
+00:50 | プトリ / Putori / Putri | 取り…扱い…説明書… | Tori… atsukai… setsumeesho… | Hướng… dẫn… sử dụng…
+01:08 | 橋本 / Hashimoto / Hashimoto | これですよ。 | Kore desu yo. | Đây này.
+01:11 | プトリ / Putori / Putri | あ、ありがとうございます。 | A, arigatoo gozaimasu. | À, em cảm ơn anh.
+01:16 | プトリ / Putori / Putri | 取扱説明書… | Toriatsukai-setsumeesho… | Sách hướng dẫn sử dụng…
+01:26 | プトリ / Putori / Putri | スイッチを…電…電源プラグ… | Suicchi o… den… dengen-puragu… | Công tắc… ổ… phích cắm điện…
+01:36 | プトリ / Putori / Putri | これですか。 | Kore desu ka. | Là cái này ạ?
+01:38 | 橋本 / Hashimoto / Hashimoto | そうそう。 | Soo soo. | Đúng rồi, đúng rồi.
+### từ vựng
+動きません | うごきません | ugokimasen | không chạy
+壊れています | こわれています | kowarete imasu | bị hỏng
+紙パック | かみパック | kami-pakku | túi giấy đựng bụi
+給湯室 | きゅうとうしつ | kyuutooshitsu | phòng pha trà
+引き出し | ひきだし | hikidashi | ngăn kéo
+取扱説明書 | とりあつかいせつめいしょ | toriatsukai-setsumeesho | sách hướng dẫn sử dụng
+
+## scene-2.mp4
+# Xin phép dùng máy photocopy
+00:03 | 上司 / Jooshi / Cấp trên | 悪いんだけど、これ、事務所で50部コピーしてきてくれる？ | Warui n da kedo, kore, jimusho de gojuu-bu kopii shite kite kureru? | Phiền em chút, em đi photo cái này 50 bản ở văn phòng giúp chị được không?
+00:08 | プトリ / Putori / Putri | わかりました。事務所でコピーですね。 | Wakarimashita. Jimusho de kopii desu ne. | Vâng ạ. Photo ở văn phòng phải không ạ.
+00:22 | プトリ / Putori / Putri | 失礼します。 | Shitsuree shimasu. | Em xin phép.
+00:24 | プトリ / Putori / Putri | あ、小川さん、お疲れ様です。 | A, Ogawa-san, otsukaresama desu. | À, anh Ogawa, anh vất vả rồi ạ.
+00:27 | 小川 / Ogawa / Ogawa | お疲れ様です。 | Otsukaresama desu. | Chào em.
+00:30 | プトリ / Putori / Putri | 小川さん。 | Ogawa-san. | Anh Ogawa ơi.
+00:33 | 小川 / Ogawa / Ogawa | はい。 | Hai. | Ừ.
+*00:34 | プトリ / Putori / Putri | あの、コピーがしたいです。 | Ano, kopii ga shitai desu. | Dạ, em muốn photo ạ.
+*00:43 | プトリ / Putori / Putri | これ、もう終わりましたか。 | Kore, moo owarimashita ka. | Cái này đã xong chưa ạ?
+00:47 | 小川 / Ogawa / Ogawa | はい。 | Hai. | Xong rồi.
+*00:48 | プトリ / Putori / Putri | じゃあ、使ってもいいですか。 | Jaa, tsukatte mo ii desu ka. | Vậy em dùng được không ạ?
+00:53 | 小川 / Ogawa / Ogawa | あ、ちょっとこれだけ先に印刷してもいいですか。 | A, chotto kore dake saki ni insatsu shite mo ii desu ka. | À, cho anh in trước cái này thôi được không?
+00:58 | プトリ / Putori / Putri | 先に…？あ、はい、先にどうぞ。 | Saki ni…? A, hai, saki ni doozo. | Trước ạ…? À, vâng, anh cứ in trước đi ạ.
+01:06 | 小川 / Ogawa / Ogawa | すみません、すぐ終わりますから。 | Sumimasen, sugu owarimasu kara. | Xin lỗi nhé, xong ngay thôi.
+01:08 | プトリ / Putori / Putri | いえ、私の、たくさんありますから、気にしないでください。 | Ie, watashi no, takusan arimasu kara, ki ni shinaide kudasai. | Không sao ạ, của em nhiều lắm, anh đừng bận tâm.
+01:29 | プトリ / Putori / Putri | えっと、コピー…50部…サイズはA4… | Etto, kopii… gojuu-bu… saizu wa ee-yon… | Ừm, photo… 50 bản… khổ A4…
+### từ vựng
+事務所 | じむしょ | jimusho | văn phòng
+コピー | コピー | kopii | photocopy
+〜部 | ぶ | bu | … bản
+終わりました | おわりました | owarimashita | đã xong
+先に | さきに | saki ni | trước
+印刷 | いんさつ | insatsu | in ấn
+
+## scene-3.mp4
+# Thay mực máy photocopy
+00:00 | プトリ / Putori / Putri | エラー？トナーカートリッジ？ | Eraa? Tonaa-kaatorijji? | Báo lỗi à? Hộp mực?
+00:10 | 同僚 / Dooryoo / Đồng nghiệp | どうしましたか。 | Doo shimashita ka. | Có chuyện gì vậy?
+00:12 | プトリ / Putori / Putri | エラーです。 | Eraa desu. | Máy báo lỗi ạ.
+00:14 | 同僚 / Dooryoo / Đồng nghiệp | ああ、トナー…インク切れですね。 | Aa, tonaa… inku-gire desu ne. | À, mực… hết mực rồi nhỉ.
+00:22 | 同僚 / Dooryoo / Đồng nghiệp | 黒のインクが切れてますね。 | Kuro no inku ga kiretemasu ne. | Hết mực đen rồi.
+00:26 | 同僚 / Dooryoo / Đồng nghiệp | 新しいの持ってきますね。 | Atarashii no motte kimasu ne. | Để anh mang hộp mới đến.
+00:34 | 同僚 / Dooryoo / Đồng nghiệp | はい、これです。 | Hai, kore desu. | Đây này.
+00:37 | 同僚 / Dooryoo / Đồng nghiệp | 一人でできますか。 | Hitori de dekimasu ka. | Em tự làm được không?
+*00:38 | プトリ / Putori / Putri | うーん…マニュアルを見ながらやってみます。 | Uun… manyuaru o mi nagara yatte mimasu. | Ừm… em sẽ vừa xem sách hướng dẫn vừa làm thử.
+*00:51 | プトリ / Putori / Putri | やっぱり難しいです。 | Yappari muzukashii desu. | Đúng là khó thật ạ.
+00:55 | 同僚 / Dooryoo / Đồng nghiệp | そうですよね。 | Soo desu yo ne. | Ừ, khó thật nhỉ.
+00:57 | 同僚 / Dooryoo / Đồng nghiệp | えっと、まず、そのカバーを開けて。 | Etto, mazu, sono kabaa o akete. | Ừm, trước tiên em mở cái nắp đó ra.
+01:04 | プトリ / Putori / Putri | ここですね？ | Koko desu ne? | Chỗ này ạ?
+01:05 | 同僚 / Dooryoo / Đồng nghiệp | はい。 | Hai. | Ừ.
+01:06 | 同僚 / Dooryoo / Đồng nghiệp | そうしたら、古いカートリッジを抜きます。 | Soo shitara, furui kaatorijji o nukimasu. | Rồi rút hộp mực cũ ra.
+01:11 | プトリ / Putori / Putri | 黒ですよね？ | Kuro desu yo ne? | Màu đen phải không ạ?
+01:12 | 同僚 / Dooryoo / Đồng nghiệp | はい。 | Hai. | Ừ.
+01:14 | 同僚 / Dooryoo / Đồng nghiệp | 両手で持ってください。 | Ryoote de motte kudasai. | Em cầm bằng cả hai tay nhé.
+01:20 | 同僚 / Dooryoo / Đồng nghiệp | あ、そうです。 | A, soo desu. | À, đúng rồi.
+01:26 | 同僚 / Dooryoo / Đồng nghiệp | こうやって、まっすぐ入れます。 | Koo yatte, massugu iremasu. | Cho vào thẳng như thế này.
+*01:30 | プトリ / Putori / Putri | こうですか。 | Koo desu ka. | Như thế này ạ?
+01:32 | 同僚 / Dooryoo / Đồng nghiệp | そうそう。 | Soo soo. | Đúng rồi, đúng rồi.
+01:44 | 同僚 / Dooryoo / Đồng nghiệp | 終わったら、ここに日付とトナーの色を書いてください。 | Owattara, koko ni hizuke to tonaa no iro o kaite kudasai. | Xong rồi thì em ghi ngày và màu mực vào đây nhé.
+01:48 | プトリ / Putori / Putri | はい、ありがとうございました。 | Hai, arigatoo gozaimashita. | Vâng, em cảm ơn anh.
+### từ vựng
+エラー | エラー | eraa | lỗi
+インク切れ | インクぎれ | inku-gire | hết mực
+一人で | ひとりで | hitori de | một mình
+マニュアル | マニュアル | manyuaru | sách hướng dẫn
+やっぱり | やっぱり | yappari | quả nhiên, đúng là
+開けます | あけます | akemasu | mở
+両手 | りょうて | ryoote | hai tay
+日付 | ひづけ | hizuke | ngày tháng
+
+## summary.mp4
+# Ôn tập: Dùng máy móc ở nơi làm việc
+00:00 |  /  / Chủ đề | つかいかたの ほんは、どこに ありますか | tsukaikata no hon wa, doko ni arimasu ka | Sách hướng dẫn sử dụng ở đâu ạ?
+*00:06 | プトリ / Putori / Putri | 使い方の本はどこにありますか。 | Tsukaikata no hon wa doko ni arimasu ka. | Sách hướng dẫn sử dụng ở đâu ạ?
+00:11 | ナレーター / Nareetaa / Người dẫn | この動画では、プトリさんが掃除機について「使い方の本はどこにありますか」と言っています。 | Kono dooga de wa, Putori-san ga soojiki ni tsuite "Tsukaikata no hon wa doko ni arimasu ka" to itte imasu. | Trong video, chị Putri hỏi về máy hút bụi: "Sách hướng dẫn sử dụng ở đâu ạ?".
+00:24 | ナレーター / Nareetaa / Người dẫn | 「使い方」は、どうやって使うか、使う方法という意味です。 | "Tsukaikata" wa, doo yatte tsukau ka, tsukau hoohoo to iu imi desu. | "Tsukaikata" nghĩa là dùng như thế nào, cách sử dụng.
+00:37 | ナレーター / Nareetaa / Người dẫn | 「方」の前には、いろいろな動詞を使うことができます。動詞のます形の「ます」を取って「方」をつけます。 | "Kata" no mae ni wa, iroiro na dooshi o tsukau koto ga dekimasu. Dooshi no masu-kee no "masu" o totte "kata" o tsukemasu. | Trước "kata" có thể dùng nhiều động từ khác nhau: bỏ "masu" ở thể masu rồi thêm "kata".
+00:54 | ナレーター / Nareetaa / Người dẫn | 「使います」の場合、「ます」を取って「方」をつけて、「使い方」となります。 | "Tsukaimasu" no baai, "masu" o totte "kata" o tsukete, "tsukaikata" to narimasu. | Với "tsukaimasu", bỏ "masu" thêm "kata" thành "tsukaikata" (cách dùng).
+01:09 | ナレーター / Nareetaa / Người dẫn | 漢字をどうやって読むかわからないときは、「この漢字の読み方を教えてください」。 | Kanji o doo yatte yomu ka wakaranai toki wa, "Kono kanji no yomikata o oshiete kudasai". | Khi không biết đọc chữ Hán thế nào: "Xin chỉ cho tôi cách đọc chữ Hán này".
+01:20 | ナレーター / Nareetaa / Người dẫn | 行きたい場所へどうやって行くかわからないときは、「行き方を教えてください」のように使えます。 | Ikitai basho e doo yatte iku ka wakaranai toki wa, "Ikikata o oshiete kudasai" no yoo ni tsukaemasu. | Khi không biết đi đến nơi mình muốn thế nào: "Xin chỉ cho tôi đường đi".
+01:32 | ナレーター / Nareetaa / Người dẫn | 初めて乗る電車やバスにどうやって乗るかわからないときは、「バスの乗り方を教えてください」のように使うこともできます。 | Hajimete noru densha ya basu ni doo yatte noru ka wakaranai toki wa, "Basu no norikata o oshiete kudasai" no yoo ni tsukau koto mo dekimasu. | Khi lần đầu đi tàu, xe buýt mà không biết lên thế nào: "Xin chỉ cho tôi cách đi xe buýt".
+01:48 |  /  / Chủ đề | もう おわりましたか | moo owarimashita ka | Đã xong chưa ạ?
+*01:53 | プトリ / Putori / Putri | これ、もう終わりましたか。 | Kore, moo owarimashita ka. | Cái này đã xong chưa ạ?
+01:57 | ナレーター / Nareetaa / Người dẫn | 「もう＋動詞の過去形」は、行為や出来事がすでに完了していることを伝える表現です。 | "Moo + dooshi no kakokee" wa, kooi ya dekigoto ga sude ni kanryoo shite iru koto o tsutaeru hyoogen desu. | "Moo + động từ quá khứ" diễn tả hành động hay sự việc đã hoàn thành rồi.
+02:12 | ナレーター / Nareetaa / Người dẫn | この動画で、プトリさんはコピーがすべて完了したかどうか聞くために、「これ、もう終わりましたか」と言いました。 | Kono dooga de, Putori-san wa kopii ga subete kanryoo shita ka doo ka kiku tame ni, "Kore, moo owarimashita ka" to iimashita. | Trong video, chị Putri hỏi "Cái này đã xong chưa ạ?" để biết việc photocopy đã xong hết chưa.
+02:27 | ナレーター / Nareetaa / Người dẫn | すでにご飯を食べていたら「もう食べました」、すでに準備ができていたら「もう準備ができました」と言うことができます。 | Sude ni gohan o tabete itara "Moo tabemashita", sude ni junbi ga dekite itara "Moo junbi ga dekimashita" to iu koto ga dekimasu. | Nếu đã ăn rồi thì nói "Moo tabemashita" (Tôi ăn rồi), nếu đã chuẩn bị xong thì nói "Moo junbi ga dekimashita" (Chuẩn bị xong rồi).
+02:45 | ナレーター / Nareetaa / Người dẫn | 例えば、「もう新しいパン屋へ行きましたか」と聞かれたときに、すでに行った場合は「はい、もう行きました」などと答えます。 | Tatoeba, "Moo atarashii pan'ya e ikimashita ka" to kikareta toki ni, sude ni itta baai wa "Hai, moo ikimashita" nado to kotaemasu. | Ví dụ, khi được hỏi "Bạn đã đến tiệm bánh mì mới chưa?", nếu đã đi rồi thì trả lời "Rồi, tôi đi rồi".
+03:06 | ナレーター / Nareetaa / Người dẫn | まだ行っていない場合は、「いいえ、まだです」のように答えることができます。 | Mada itte inai baai wa, "Iie, mada desu" no yoo ni kotaeru koto ga dekimasu. | Nếu chưa đi thì có thể trả lời "Chưa, tôi chưa đi".
+03:16 |  /  / Chủ đề | マニュアルを みながら、やってみます | manyuaru o mi nagara, yatte mimasu | Tôi sẽ vừa xem sách hướng dẫn vừa làm thử
+*03:22 | プトリ / Putori / Putri | マニュアルを見ながらやってみます。 | Manyuaru o mi nagara yatte mimasu. | Tôi sẽ vừa xem sách hướng dẫn vừa làm thử.
+03:26 | ナレーター / Nareetaa / Người dẫn | この動画では、プトリさんが「マニュアルを見ながらやってみます」と言って、コピー機のマニュアルを見ることと、インクの交換作業を同時に行うことを伝えています。 | Kono dooga de wa, Putori-san ga "Manyuaru o mi nagara yatte mimasu" to itte, kopiiki no manyuaru o miru koto to, inku no kookan-sagyoo o dooji ni okonau koto o tsutaete imasu. | Trong video, chị Putri nói "Tôi sẽ vừa xem sách hướng dẫn vừa làm thử", tức là cùng lúc xem hướng dẫn máy photocopy và thay mực.
+03:46 | ナレーター / Nareetaa / Người dẫn | 「AながらB」は、同じ人がAとBの2つの行為を同時にすることを伝える表現です。 | "A nagara B" wa, onaji hito ga A to B no futatsu no kooi o dooji ni suru koto o tsutaeru hyoogen desu. | "A nagara B" diễn tả một người làm cùng lúc hai việc A và B.
+04:01 | ナレーター / Nareetaa / Người dẫn | 後ろに来るBがメインの行為になります。 | Ushiro ni kuru B ga mein no kooi ni narimasu. | Việc B đứng sau là việc chính.
+04:08 | ナレーター / Nareetaa / Người dẫn | 動詞のます形の「ます」を取って「ながら」をつけます。 | Dooshi no masu-kee no "masu" o totte "nagara" o tsukemasu. | Bỏ "masu" ở thể masu rồi thêm "nagara".
+04:16 | ナレーター / Nareetaa / Người dẫn | 例えば、「テレビを見ながら勉強します」「音楽を聞きながら走ります」のように言うことができます。 | Tatoeba, "Terebi o mi nagara benkyoo shimasu", "Ongaku o kiki nagara hashirimasu" no yoo ni iu koto ga dekimasu. | Ví dụ: "Vừa xem tivi vừa học", "Vừa nghe nhạc vừa chạy".
+04:29 | ナレーター / Nareetaa / Người dẫn | 「働きながら子どもを育てます」のように、長い期間かかることにも「AながらB」の表現を使うことができます。 | "Hataraki nagara kodomo o sodatemasu" no yoo ni, nagai kikan kakaru koto ni mo "A nagara B" no hyoogen o tsukau koto ga dekimasu. | "A nagara B" cũng dùng được cho việc kéo dài, như "Vừa đi làm vừa nuôi con".

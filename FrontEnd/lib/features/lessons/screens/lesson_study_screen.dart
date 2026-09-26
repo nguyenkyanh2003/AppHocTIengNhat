@@ -133,10 +133,14 @@ class _StudyBodyState extends State<_StudyBody> {
     if (message != null) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
-  /// Bước video cần khung rộng để lời thoại nằm cạnh video; các bước đọc giữ
-  /// khung hẹp cho dòng chữ dễ theo.
-  double _contentWidth(LessonStudySession session) =>
-      session.step.kind == StudyStepKind.video ? AppContentWidth.detail : AppContentWidth.reading;
+  /// Chỉ bước video **có nội dung học kèm** (lời thoại, bảng từ) mới cần khung
+  /// rộng để khung học nằm cạnh video. Video không có gì kèm đứng một mình
+  /// trong khung đọc như các bước khác, để dòng hướng dẫn thẳng hàng với video.
+  double _contentWidth(LessonStudySession session) {
+    final step = session.step;
+    final video = step.kind == StudyStepKind.video ? session.detail.lesson.videos[step.videoIndex!] : null;
+    return video != null && video.hasStudyContent ? AppContentWidth.detail : AppContentWidth.reading;
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,8 @@
   },
   "videos": [
     {
-      "title": "Chào buổi sáng",
+      "title": "Chào đồng nghiệp đầu và cuối ngày",
+      "description": "Chào hỏi được đồng nghiệp khi đến chỗ làm và khi ra về.",
       "url": "/uploads/lesson-videos/n5-01-greeting/scene-1.mp4",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
@@ -12,60 +13,106 @@
           "start": "00:04:00",
           "end": "00:07:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "佐藤さん、おはようございます。",
           "romaji": "Satoo-san, ohayoo gozaimasu.",
-          "text_vi": "Chào buổi sáng anh Sato."
+          "text_vi": "Chào buổi sáng anh Sato.",
+          "key_phrase": true
         },
         {
           "start": "00:08:00",
           "end": "00:10:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "おはようございます。",
           "romaji": "Ohayoo gozaimasu.",
-          "text_vi": "Chào buổi sáng."
+          "text_vi": "Chào buổi sáng.",
+          "key_phrase": false
         },
         {
           "start": "00:11:00",
           "end": "00:13:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "いい天気ですね。",
           "romaji": "Ii tenki desu ne.",
-          "text_vi": "Thời tiết đẹp nhỉ."
+          "text_vi": "Thời tiết đẹp nhỉ.",
+          "key_phrase": false
         },
         {
           "start": "00:13:00",
           "end": "00:15:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "そうですね。",
           "romaji": "Soo desu ne.",
-          "text_vi": "Đúng vậy nhỉ."
+          "text_vi": "Đúng vậy nhỉ.",
+          "key_phrase": false
         },
         {
           "start": "00:25:00",
           "end": "00:27:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "お先に失礼します。",
           "romaji": "Osaki ni shitsureeshimasu.",
-          "text_vi": "Chào anh tôi về trước."
+          "text_vi": "Chào anh tôi về trước.",
+          "key_phrase": true
         },
         {
           "start": "00:27:00",
           "end": "00:29:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "お疲れさまでした。",
           "romaji": "Otsukaresama deshita.",
-          "text_vi": "Tạm biệt."
+          "text_vi": "Tạm biệt.",
+          "key_phrase": true
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "おはようございます",
+          "reading": "おはようございます",
+          "romaji": "ohayoo gozaimasu",
+          "meaning": "chào buổi sáng"
+        },
+        {
+          "word": "天気",
+          "reading": "てんき",
+          "romaji": "tenki",
+          "meaning": "thời tiết"
+        },
+        {
+          "word": "そうですね",
+          "reading": "そうですね",
+          "romaji": "soo desu ne",
+          "meaning": "đúng vậy nhỉ"
+        },
+        {
+          "word": "お先に失礼します",
+          "reading": "おさきにしつれいします",
+          "romaji": "osaki ni shitsuree shimasu",
+          "meaning": "tôi xin phép về trước"
+        },
+        {
+          "word": "お疲れさまでした",
+          "reading": "おつかれさまでした",
+          "romaji": "otsukaresama deshita",
+          "meaning": "anh/chị đã vất vả rồi"
         }
       ]
     },
     {
-      "title": "Hân hạnh được làm quen, tôi là…",
+      "title": "Làm quen và nói tên mình",
+      "description": "Nói được tên mình khi gặp một người lần đầu.",
       "url": "/uploads/lesson-videos/n5-01-greeting/scene-2.mp4",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
@@ -73,87 +120,133 @@
           "start": "00:03:00",
           "end": "00:05:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "おはようございます。",
           "romaji": "Ohayoo gozaimasu.",
-          "text_vi": "Chào buổi sáng."
+          "text_vi": "Chào buổi sáng.",
+          "key_phrase": false
         },
         {
           "start": "00:05:00",
           "end": "00:08:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "おはようございます。",
           "romaji": "Ohayoo gozaimasu.",
-          "text_vi": "Chào buổi sáng."
+          "text_vi": "Chào buổi sáng.",
+          "key_phrase": false
         },
         {
           "start": "00:07:00",
           "end": "00:10:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "あっ、はじめまして。",
           "romaji": "Att, hajimemashite.",
-          "text_vi": "A, hân hạnh được làm quen."
+          "text_vi": "A, hân hạnh được làm quen.",
+          "key_phrase": false
         },
         {
           "start": "00:11:00",
           "end": "00:12:40",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "はじめまして。",
           "romaji": "Hajimemashite.",
-          "text_vi": "Hân hạnh được làm quen."
+          "text_vi": "Hân hạnh được làm quen.",
+          "key_phrase": true
         },
         {
           "start": "00:12:20",
           "end": "00:14:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "オウ・ハオランです。",
           "romaji": "Oo haoran desu.",
-          "text_vi": "Tôi là Ou Haoran."
+          "text_vi": "Tôi là Ou Haoran.",
+          "key_phrase": true
         },
         {
           "start": "00:15:00",
           "end": "00:16:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "佐藤です。",
           "romaji": "Satoo desu.",
-          "text_vi": "Tôi là Sato."
+          "text_vi": "Tôi là Sato.",
+          "key_phrase": false
         },
         {
           "start": "00:16:00",
           "end": "00:18:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "佐藤さんですね。",
           "romaji": "Satoo-san desu ne.",
-          "text_vi": "Anh Sato phải không ạ."
+          "text_vi": "Anh Sato phải không ạ.",
+          "key_phrase": false
         },
         {
           "start": "00:18:00",
           "end": "00:22:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "はい。よろしくお願いします。",
           "romaji": "Hai. Yoroshiku onegaishimasu.",
-          "text_vi": "Vâng. Mong được sự giúp đỡ."
+          "text_vi": "Vâng. Mong được sự giúp đỡ.",
+          "key_phrase": false
         },
         {
           "start": "00:22:00",
           "end": "00:25:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "どうぞ、よろしくお願いします。",
           "romaji": "Doozo, yoroshiku onegaishimasu.",
-          "text_vi": "Rất mong được sự giúp đỡ."
+          "text_vi": "Rất mong được sự giúp đỡ.",
+          "key_phrase": true
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "はじめまして",
+          "reading": "はじめまして",
+          "romaji": "hajimemashite",
+          "meaning": "rất vui được gặp (lần đầu)"
+        },
+        {
+          "word": "名前",
+          "reading": "なまえ",
+          "romaji": "namae",
+          "meaning": "tên"
+        },
+        {
+          "word": "〜さん",
+          "reading": "さん",
+          "romaji": "san",
+          "meaning": "anh/chị (gọi tên người khác)"
+        },
+        {
+          "word": "よろしくお願いします",
+          "reading": "よろしくおねがいします",
+          "romaji": "yoroshiku onegaishimasu",
+          "meaning": "rất mong được giúp đỡ"
         }
       ]
     },
     {
-      "title": "Rất mong được sự giúp đỡ",
+      "title": "Giới thiệu bản thân với người mới gặp",
+      "description": "Giới thiệu được tên và đất nước của mình khi được người khác giới thiệu.",
       "url": "/uploads/lesson-videos/n5-01-greeting/scene-3.mp4",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
@@ -161,87 +254,139 @@
           "start": "00:03:00",
           "end": "00:05:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "あ、鈴木さん。",
           "romaji": "A, Suzuki-san.",
-          "text_vi": "A, Suzuki."
+          "text_vi": "A, Suzuki.",
+          "key_phrase": false
         },
         {
           "start": "00:04:00",
           "end": "00:07:00",
           "speaker_ja": "先輩社員の友人",
-          "speaker_vi": "Người bạn của nhân viên tiền bối",
+          "speaker_romaji": "Senpai-shain no yuujin",
+          "speaker_vi": "Bạn của nhân viên tiền bối",
           "text_ja": "あ、佐藤さん。どうも。",
           "romaji": "A, Satoo-san. Doomo.",
-          "text_vi": "A, anh Sato. Chào anh."
+          "text_vi": "A, anh Sato. Chào anh.",
+          "key_phrase": false
         },
         {
           "start": "00:08:00",
           "end": "00:12:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "鈴木さん、こちら、同じ会社のオウ・ハオランさん。",
           "romaji": "Suzuki-san, kochira, onaji kaisha no Oo haoran-san.",
-          "text_vi": "Suzuki ơi, đây là Ou Haoran làm cùng công ty."
+          "text_vi": "Suzuki ơi, đây là Ou Haoran làm cùng công ty.",
+          "key_phrase": true
         },
         {
           "start": "00:13:00",
           "end": "00:15:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "はじめまして。",
           "romaji": "Hajimemashite.",
-          "text_vi": "Hân hạnh được làm quen."
+          "text_vi": "Hân hạnh được làm quen.",
+          "key_phrase": false
         },
         {
           "start": "00:14:00",
           "end": "00:16:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "オウ・ハオランです。",
           "romaji": "Oo haoran desu.",
-          "text_vi": "Tôi là Ou Haoran."
+          "text_vi": "Tôi là Ou Haoran.",
+          "key_phrase": false
         },
         {
           "start": "00:16:00",
           "end": "00:17:50",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "中国から来ました。",
           "romaji": "Chuugoku kara kimashita.",
-          "text_vi": "Tôi đến từ Trung Quốc."
+          "text_vi": "Tôi đến từ Trung Quốc.",
+          "key_phrase": true
         },
         {
           "start": "00:18:00",
           "end": "00:20:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "どうぞよろしくお願いします。",
           "romaji": "Doozo yoroshiku onegaishimasu.",
-          "text_vi": "Rất mong được sự giúp đỡ."
+          "text_vi": "Rất mong được sự giúp đỡ.",
+          "key_phrase": true
         },
         {
           "start": "00:21:00",
           "end": "00:23:00",
           "speaker_ja": "先輩社員の友人",
-          "speaker_vi": "Người bạn của nhân viên tiền bối",
+          "speaker_romaji": "Senpai-shain no yuujin",
+          "speaker_vi": "Bạn của nhân viên tiền bối",
           "text_ja": "鈴木です。",
           "romaji": "Suzuki desu.",
-          "text_vi": "Tôi là Suzuki."
+          "text_vi": "Tôi là Suzuki.",
+          "key_phrase": false
         },
         {
           "start": "00:22:00",
           "end": "00:24:00",
           "speaker_ja": "先輩社員の友人",
-          "speaker_vi": "Người bạn của nhân viên tiền bối",
+          "speaker_romaji": "Senpai-shain no yuujin",
+          "speaker_vi": "Bạn của nhân viên tiền bối",
           "text_ja": "どうぞよろしくお願いします。",
           "romaji": "Doozo yoroshiku onegaishimasu.",
-          "text_vi": "Rất mong được sự giúp đỡ."
+          "text_vi": "Rất mong được sự giúp đỡ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "こちら",
+          "reading": "こちら",
+          "romaji": "kochira",
+          "meaning": "đây (khi giới thiệu người)"
+        },
+        {
+          "word": "同じ",
+          "reading": "おなじ",
+          "romaji": "onaji",
+          "meaning": "cùng, giống"
+        },
+        {
+          "word": "会社",
+          "reading": "かいしゃ",
+          "romaji": "kaisha",
+          "meaning": "công ty"
+        },
+        {
+          "word": "中国",
+          "reading": "ちゅうごく",
+          "romaji": "Chuugoku",
+          "meaning": "Trung Quốc"
+        },
+        {
+          "word": "来ました",
+          "reading": "きました",
+          "romaji": "kimashita",
+          "meaning": "đã đến"
         }
       ]
     },
     {
-      "title": "Tổng hợp lý thuyết: chào hỏi",
+      "title": "Ôn tập: Chào hỏi và tự giới thiệu",
+      "description": "Ôn lại cách nói tên mình với「です」, gọi người khác với「さん」và xác nhận bằng「ね」.",
       "url": "/uploads/lesson-videos/n5-01-greeting/summary.mp4",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
@@ -249,219 +394,268 @@
           "start": "00:06:00",
           "end": "00:08:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "はじめまして。",
           "romaji": "Hajimemashite.",
-          "text_vi": "Hân hạnh được làm quen."
+          "text_vi": "Hân hạnh được làm quen.",
+          "key_phrase": false
         },
         {
           "start": "00:07:00",
           "end": "00:09:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "オウ・ハオランです。",
           "romaji": "Oo haoran desu.",
-          "text_vi": "Tôi là Ou Haoran."
+          "text_vi": "Tôi là Ou Haoran.",
+          "key_phrase": true
         },
         {
           "start": "00:10:00",
           "end": "00:19:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "自己紹介などで、名前を言うとき、名前の後に、「です」をつけます。",
           "romaji": null,
-          "text_vi": "Khi nói tên để tự giới thiệu bản thân phải thêm từ “desu” vào sau tên."
+          "text_vi": "Khi nói tên để tự giới thiệu bản thân phải thêm từ “desu” vào sau tên.",
+          "key_phrase": false
         },
         {
           "start": "00:20:00",
           "end": "00:25:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "動画では、「オウ・ハオランです。」と言いました。",
           "romaji": null,
-          "text_vi": "Nhân vật trong video đã nói là “Oo Haoran desu. (Tôi là Ou Haoran.)”."
+          "text_vi": "Nhân vật trong video đã nói là “Oo Haoran desu. (Tôi là Ou Haoran.)”.",
+          "key_phrase": false
         },
         {
           "start": "00:26:00",
           "end": "00:34:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "AさんがBさんに自分の名前を言うときは、「Aです」と言います。",
           "romaji": null,
-          "text_vi": "Khi A nói tên của mình với B, A sẽ nói là “A desu.(Tôi là A.)”."
+          "text_vi": "Khi A nói tên của mình với B, A sẽ nói là “A desu.(Tôi là A.)”.",
+          "key_phrase": false
         },
         {
           "start": "00:36:00",
           "end": "00:43:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "ほかの人の紹介をするときは、その人の名前の後に、「さん」をつけます。",
           "romaji": null,
-          "text_vi": "Khi giới thiệu người khác phải thêm từ “san” vào sau tên của người đó."
+          "text_vi": "Khi giới thiệu người khác phải thêm từ “san” vào sau tên của người đó.",
+          "key_phrase": false
         },
         {
           "start": "00:51:00",
           "end": "00:53:00",
           "speaker_ja": "先輩社員",
-          "speaker_vi": "Nhân viên công ty bậc tiền bối",
+          "speaker_romaji": "Senpai-shain",
+          "speaker_vi": "Nhân viên tiền bối",
           "text_ja": "佐藤です。",
           "romaji": "Satoo desu.",
-          "text_vi": "Tôi là Sato."
+          "text_vi": "Tôi là Sato.",
+          "key_phrase": false
         },
         {
           "start": "00:52:00",
           "end": "00:54:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "佐藤さんですね。",
           "romaji": "Satoo-san desu ne.",
-          "text_vi": "Anh Sato phải không ạ."
+          "text_vi": "Anh Sato phải không ạ.",
+          "key_phrase": true
         },
         {
           "start": "00:56:00",
           "end": "01:03:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "相手の言ったことを確認したいとき、文の最後に「ね」をつけます。",
           "romaji": null,
-          "text_vi": "Khi muốn xác nhận lại nội dung mà đối phương đã nói phải thêm từ “ne” vào cuối câu."
+          "text_vi": "Khi muốn xác nhận lại nội dung mà đối phương đã nói phải thêm từ “ne” vào cuối câu.",
+          "key_phrase": false
         },
         {
           "start": "01:04:00",
           "end": "01:07:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「トイレはどこですか。」",
           "romaji": null,
-          "text_vi": "“Toire wa doko desu ka. (Nhà vệ sinh ở đâu ạ?)”"
+          "text_vi": "“Toire wa doko desu ka. (Nhà vệ sinh ở đâu ạ?)”",
+          "key_phrase": false
         },
         {
           "start": "01:07:00",
           "end": "01:09:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「あそこです。」",
           "romaji": null,
-          "text_vi": "“Asoko desu. (Ở đằng kia.)”"
+          "text_vi": "“Asoko desu. (Ở đằng kia.)”",
+          "key_phrase": false
         },
         {
           "start": "01:10:00",
           "end": "01:12:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「あそこですね。」",
           "romaji": null,
-          "text_vi": "“Asoko desu ne. (Ở đằng kia phải không ạ.)”"
+          "text_vi": "“Asoko desu ne. (Ở đằng kia phải không ạ.)”",
+          "key_phrase": false
         },
         {
           "start": "01:13:00",
           "end": "01:30:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "動画の会話では、「佐藤」はほかの人の名前なので「佐藤ですね」ではなく、「佐藤さんですね」と名前に「さん」をつけて言いました。",
           "romaji": null,
-          "text_vi": "Trong mẫu hội thoại trên video, “Satoo” là tên của người khác nên nhân vật trong video không nói là “Satoo desu ne. (Sato phải không ạ.)” mà đã thêm từ “san” vào sau tên và nói là “Satoo- san desu ne. (Anh Sato phải không ạ.)”."
+          "text_vi": "Trong mẫu hội thoại trên video, “Satoo” là tên của người khác nên nhân vật trong video không nói là “Satoo desu ne. (Sato phải không ạ.)” mà đã thêm từ “san” vào sau tên và nói là “Satoo- san desu ne. (Anh Sato phải không ạ.)”.",
+          "key_phrase": false
         },
         {
           "start": "01:31:00",
           "end": "01:43:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「ね」は、「いい天気ですね。」とか「おいしいですね」のように、相手の共感を求める場合にも使います。",
           "romaji": null,
-          "text_vi": "Từ “ne” còn được sử dụng khi muốn thu hút sự đồng cảm của đối phương chẳng hạn như \"Ii tenki desu ne. (Thời tiết đẹp nhỉ.)” hoặc “Oishii desu ne. (Ngon nhỉ.)”."
+          "text_vi": "Từ “ne” còn được sử dụng khi muốn thu hút sự đồng cảm của đối phương chẳng hạn như \"Ii tenki desu ne. (Thời tiết đẹp nhỉ.)” hoặc “Oishii desu ne. (Ngon nhỉ.)”.",
+          "key_phrase": false
         },
         {
           "start": "01:50:00",
           "end": "01:52:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "はじめまして。",
           "romaji": "Hajimemashite.",
-          "text_vi": "Hân hạnh được làm quen."
+          "text_vi": "Hân hạnh được làm quen.",
+          "key_phrase": false
         },
         {
           "start": "01:51:00",
           "end": "01:54:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "オウ・ハオランです。",
           "romaji": "Oo haoran desu.",
-          "text_vi": "Tôi là Ou Haoran."
+          "text_vi": "Tôi là Ou Haoran.",
+          "key_phrase": false
         },
         {
           "start": "01:53:00",
           "end": "01:56:00",
           "speaker_ja": "オウ",
+          "speaker_romaji": "Ou",
           "speaker_vi": "Ou",
           "text_ja": "中国から来ました。",
           "romaji": "Chuugoku kara kimashita.",
-          "text_vi": "Tôi đến từ Trung Quốc."
+          "text_vi": "Tôi đến từ Trung Quốc.",
+          "key_phrase": false
         },
         {
           "start": "01:57:00",
           "end": "02:04:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "自己紹介などで、出身地を言うとき「から来ました」を使います。",
           "romaji": null,
-          "text_vi": "Khi nói về nơi xuất thân để tự giới thiệu bản thân, sử dụng mẫu câu “kara kimashita (Tôi đến từ)”."
+          "text_vi": "Khi nói về nơi xuất thân để tự giới thiệu bản thân, sử dụng mẫu câu “kara kimashita (Tôi đến từ)”.",
+          "key_phrase": false
         },
         {
           "start": "02:05:00",
           "end": "02:14:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「場所」の後に助詞の「から」をつけて、出発点、出発した場所を表します。",
           "romaji": null,
-          "text_vi": "Thêm trợ từ “kara” vào sau từ chỉ địa điểm để thể hiện điểm xuất phát, nơi đã xuất phát."
+          "text_vi": "Thêm trợ từ “kara” vào sau từ chỉ địa điểm để thể hiện điểm xuất phát, nơi đã xuất phát.",
+          "key_phrase": false
         },
         {
           "start": "02:15:00",
           "end": "02:21:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「来ました」は、「来ます」の過去形です。",
           "romaji": null,
-          "text_vi": "Từ “kimashita” là thể quá khứ của từ “kimasu (đến)”."
+          "text_vi": "Từ “kimashita” là thể quá khứ của từ “kimasu (đến)”.",
+          "key_phrase": false
         },
         {
           "start": "02:23:00",
           "end": "02:29:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "動画では、オウさんが「中国から来ました」と言いました。",
           "romaji": null,
-          "text_vi": "Trong video anh Ou đã nói là “Chuugoku kara kimashita. (Tôi đến từ Trung Quốc.)”."
+          "text_vi": "Trong video anh Ou đã nói là “Chuugoku kara kimashita. (Tôi đến từ Trung Quốc.)”.",
+          "key_phrase": false
         },
         {
           "start": "02:30:00",
           "end": "02:37:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "ブラジル出身の場合は「ブラジルから来ました」と言います。",
           "romaji": null,
-          "text_vi": "Trường hợp xuất thân từ Brazil sẽ nói là “Burajiru kara kimashita. (Tôi đến từ Brazil.)”."
+          "text_vi": "Trường hợp xuất thân từ Brazil sẽ nói là “Burajiru kara kimashita. (Tôi đến từ Brazil.)”.",
+          "key_phrase": false
         },
         {
           "start": "02:38:00",
           "end": "02:50:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「から」は場所だけでなく「9時から勉強します」のように時間と一緒に使うこともできます。",
           "romaji": null,
-          "text_vi": "Từ “kara (từ)” không chỉ thể hiện địa điểm mà còn có thể sử dụng với thời gian chẳng hạn như “Ku-ji kara benkyoo-shimasu. (Tôi học từ 9 giờ).”."
+          "text_vi": "Từ “kara (từ)” không chỉ thể hiện địa điểm mà còn có thể sử dụng với thời gian chẳng hạn như “Ku-ji kara benkyoo-shimasu. (Tôi học từ 9 giờ).”.",
+          "key_phrase": false
         },
         {
           "start": "02:50:00",
           "end": "02:53:00",
           "speaker_ja": "ナレーション",
-          "speaker_vi": "Lồng tiếng",
+          "speaker_romaji": "Nareeshon",
+          "speaker_vi": "Người dẫn",
           "text_ja": "「9時」が始まりの時間です。",
           "romaji": null,
-          "text_vi": "“Kuji (9 giờ)” là giờ bắt đầu."
+          "text_vi": "“Kuji (9 giờ)” là giờ bắt đầu.",
+          "key_phrase": false
         }
-      ]
+      ],
+      "kind": "review"
     }
   ]
 }

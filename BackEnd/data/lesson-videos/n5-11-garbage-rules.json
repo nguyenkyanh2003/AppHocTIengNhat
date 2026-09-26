@@ -4,10 +4,758 @@
   },
   "videos": [
     {
-      "title": "Tìm hiểu quy tắc cư xử của cư dân",
-      "url": "/uploads/lesson-videos/n5-11-garbage-rules/video-1.mp4",
+      "title": "Hỏi cách phân loại rác",
+      "description": "Hỏi được hàng xóm cách vứt rác và hiểu cách phân loại rác.",
+      "url": "/uploads/lesson-videos/n5-11-garbage-rules/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:09",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、鈴木さん、おはようございます。",
+          "romaji": "A, Suzuki-san, ohayoo gozaimasu.",
+          "text_vi": "À, chị Suzuki, chào buổi sáng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "おはようございます。",
+          "romaji": "Ohayoo gozaimasu.",
+          "text_vi": "Chào buổi sáng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "鈴木さん、これ、捨てたいです。これで大丈夫ですか。",
+          "romaji": "Suzuki-san, kore, sutetai desu. Kore de daijoobu desu ka.",
+          "text_vi": "Chị Suzuki ơi, em muốn vứt cái này. Thế này có được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "あー、ダメダメ。ちょっと待って。",
+          "romaji": "Aa, dame dame. Chotto matte.",
+          "text_vi": "Ấy, không được đâu. Đợi chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "紙は燃やすごみ。",
+          "romaji": "Kami wa moyasu gomi.",
+          "text_vi": "Giấy là rác đốt được.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "これは燃やさないごみ。",
+          "romaji": "Kore wa moyasanai gomi.",
+          "text_vi": "Cái này là rác không đốt được.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "鈴木さん、ありがとうございました。助かりました。",
+          "romaji": "Suzuki-san, arigatoo gozaimashita. Tasukarimashita.",
+          "text_vi": "Cảm ơn chị Suzuki. Chị giúp em nhiều quá.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "いえいえ、どういたしまして。またいつでも聞いてくださいね。",
+          "romaji": "Ie ie, doo itashimashite. Mata itsu demo kiite kudasai ne.",
+          "text_vi": "Không có gì đâu. Lúc nào cần cứ hỏi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "捨てます",
+          "reading": "すてます",
+          "romaji": "sutemasu",
+          "meaning": "vứt bỏ"
+        },
+        {
+          "word": "大丈夫",
+          "reading": "だいじょうぶ",
+          "romaji": "daijoobu",
+          "meaning": "ổn, không sao"
+        },
+        {
+          "word": "ダメ",
+          "reading": "ダメ",
+          "romaji": "dame",
+          "meaning": "không được"
+        },
+        {
+          "word": "燃やすごみ",
+          "reading": "もやすごみ",
+          "romaji": "moyasu gomi",
+          "meaning": "rác đốt được"
+        },
+        {
+          "word": "燃やさないごみ",
+          "reading": "もやさないごみ",
+          "romaji": "moyasanai gomi",
+          "meaning": "rác không đốt được"
+        },
+        {
+          "word": "助かりました",
+          "reading": "たすかりました",
+          "romaji": "tasukarimashita",
+          "meaning": "(bạn) đã giúp tôi nhiều"
+        }
+      ]
+    },
+    {
+      "title": "Hiểu biển cấm xả rác",
+      "description": "Hỏi được nghĩa của biển báo và từ lạ, rủ người khác cùng giữ quy tắc.",
+      "url": "/uploads/lesson-videos/n5-11-garbage-rules/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "どうしたんですか。",
+          "romaji": "Doo shitan desu ka.",
+          "text_vi": "Có chuyện gì thế?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これは何ですか。",
+          "romaji": "Kore wa nan desu ka.",
+          "text_vi": "Cái này là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、ポイ捨て禁止ですよ。",
+          "romaji": "Aa, poisute kinshi desu yo.",
+          "text_vi": "À, là \"cấm vứt rác bừa bãi\" đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ポイ…何ですか。",
+          "romaji": "Poi… nan desu ka.",
+          "text_vi": "\"Poi…\" là gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "意味は、「ごみを捨てないでください」です。",
+          "romaji": "Imi wa, \"gomi o sutenaide kudasai\" desu.",
+          "text_vi": "Nghĩa là \"Đừng vứt rác\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "なるほど。私たちも気をつけましょう。",
+          "romaji": "Naruhodo. Watashitachi mo ki o tsukemashoo.",
+          "text_vi": "Ra vậy. Chúng ta cũng cùng chú ý nhé.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Ừ nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "歩きタバコもダメですよ。",
+          "romaji": "Aruki-tabako mo dame desu yo.",
+          "text_vi": "Vừa đi vừa hút thuốc cũng bị cấm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "歩きタバコ…？歩きタバコはどういう意味ですか。",
+          "romaji": "Aruki-tabako…? Aruki-tabako wa doo yuu imi desu ka.",
+          "text_vi": "\"Aruki-tabako\"…? \"Aruki-tabako\" nghĩa là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "歩きながらタバコを吸います、という意味です。",
+          "romaji": "Arukinagara tabako o suimasu, to iu imi desu.",
+          "text_vi": "Nghĩa là vừa đi vừa hút thuốc.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、嫌ですよね。",
+          "romaji": "Aa, iya desu yo ne.",
+          "text_vi": "À, khó chịu thật nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Đúng vậy.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "ポイ捨て",
+          "reading": "ポイすて",
+          "romaji": "poisute",
+          "meaning": "vứt rác bừa bãi"
+        },
+        {
+          "word": "禁止",
+          "reading": "きんし",
+          "romaji": "kinshi",
+          "meaning": "cấm"
+        },
+        {
+          "word": "意味",
+          "reading": "いみ",
+          "romaji": "imi",
+          "meaning": "ý nghĩa"
+        },
+        {
+          "word": "気をつけます",
+          "reading": "きをつけます",
+          "romaji": "ki o tsukemasu",
+          "meaning": "chú ý, cẩn thận"
+        },
+        {
+          "word": "歩きタバコ",
+          "reading": "あるきタバコ",
+          "romaji": "aruki-tabako",
+          "meaning": "vừa đi vừa hút thuốc"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi cách vứt rác cỡ lớn",
+      "description": "Hỏi được cách vứt đồ cỡ lớn và chi phí phải trả.",
+      "url": "/uploads/lesson-videos/n5-11-garbage-rules/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "鈴木さん。",
+          "romaji": "Suzuki-san.",
+          "text_vi": "Chị Suzuki ơi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさん、こんにちは。",
+          "romaji": "Anjera-san, konnichiwa.",
+          "text_vi": "Chào Angela.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、今ちょっといいですか。",
+          "romaji": "Sumimasen, ima chotto ii desu ka.",
+          "text_vi": "Xin lỗi, bây giờ chị rảnh một chút không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい。どうしましたか。",
+          "romaji": "Hai. Doo shimashita ka.",
+          "text_vi": "Ừ. Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "椅子が壊れました。どうやって捨てますか。",
+          "romaji": "Isu ga kowaremashita. Doo yatte sutemasu ka.",
+          "text_vi": "Cái ghế bị hỏng rồi. Vứt nó thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "あー、粗大ごみですね。",
+          "romaji": "Aa, sodai-gomi desu ne.",
+          "text_vi": "À, là rác cỡ lớn nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "粗大ごみ？",
+          "romaji": "Sodai-gomi?",
+          "text_vi": "Rác cỡ lớn ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "大きいごみです。",
+          "romaji": "Ookii gomi desu.",
+          "text_vi": "Là rác to đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "粗大ごみは、どこに捨てますか。",
+          "romaji": "Sodai-gomi wa, doko ni sutemasu ka.",
+          "text_vi": "Rác cỡ lớn thì vứt ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アパートのごみ置き場には捨てることができませんよ。",
+          "romaji": "Apaato no gomi-okiba ni wa suteru koto ga dekimasen yo.",
+          "text_vi": "Không được vứt ở chỗ đổ rác của chung cư đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "電話かインターネットで申し込みをします。",
+          "romaji": "Denwa ka intaanetto de mooshikomi o shimasu.",
+          "text_vi": "Phải đăng ký qua điện thoại hoặc internet.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですか…",
+          "romaji": "Soo desu ka…",
+          "text_vi": "Vậy ạ…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "私が電話しましょうか。",
+          "romaji": "Watashi ga denwa shimashoo ka.",
+          "text_vi": "Để chị gọi giúp nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, nhờ chị ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "お金がかかりますけど、大丈夫ですか。",
+          "romaji": "Okane ga kakarimasu kedo, daijoobu desu ka.",
+          "text_vi": "Sẽ mất tiền đấy, em có ổn không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いくらぐらいかかりますか。高いですか。",
+          "romaji": "Ikura gurai kakarimasu ka. Takai desu ka.",
+          "text_vi": "Mất khoảng bao nhiêu ạ? Có đắt không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ちょっとわかりませんから、聞きますね。",
+          "romaji": "Chotto wakarimasen kara, kikimasu ne.",
+          "text_vi": "Chị cũng không rõ, để chị hỏi nhé.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "椅子",
+          "reading": "いす",
+          "romaji": "isu",
+          "meaning": "cái ghế"
+        },
+        {
+          "word": "壊れました",
+          "reading": "こわれました",
+          "romaji": "kowaremashita",
+          "meaning": "bị hỏng"
+        },
+        {
+          "word": "粗大ごみ",
+          "reading": "そだいごみ",
+          "romaji": "sodai-gomi",
+          "meaning": "rác cỡ lớn"
+        },
+        {
+          "word": "ごみ置き場",
+          "reading": "ごみおきば",
+          "romaji": "gomi-okiba",
+          "meaning": "chỗ đổ rác"
+        },
+        {
+          "word": "申し込み",
+          "reading": "もうしこみ",
+          "romaji": "mooshikomi",
+          "meaning": "đăng ký"
+        },
+        {
+          "word": "お金がかかります",
+          "reading": "おかねがかかります",
+          "romaji": "okane ga kakarimasu",
+          "meaning": "mất tiền"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Quy tắc sinh hoạt khu dân cư",
+      "description": "Ôn lại「どうやって〜ますか」,「どういう意味ですか」và「〜ましょう」.",
+      "url": "/uploads/lesson-videos/n5-11-garbage-rules/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どうやって",
+          "romaji": "doo yatte",
+          "text_vi": "Làm thế nào",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どうやって」は、方法を知りたいときに使います。",
+          "romaji": "\"Doo yatte\" wa, hoohoo o shiritai toki ni tsukaimasu.",
+          "text_vi": "\"Doo yatte\" dùng khi muốn biết cách làm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "椅子が壊れました。どうやって捨てますか。",
+          "romaji": "Isu ga kowaremashita. Doo yatte sutemasu ka.",
+          "text_vi": "Cái ghế bị hỏng rồi. Vứt nó thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、アンジェラさんは椅子などの大きなごみの捨て方がわからなかったので、「どうやって捨てますか」と聞きました。",
+          "romaji": "Kono dooga de, Anjera-san wa isu nado no ookina gomi no sutekata ga wakaranakatta node, \"Doo yatte sutemasu ka\" to kikimashita.",
+          "text_vi": "Trong video, chị Angela không biết cách vứt rác cỡ lớn như ghế nên đã hỏi \"Vứt nó thế nào ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どうやって＋動詞のます形＋か」の形で使います。",
+          "romaji": "\"Doo yatte + dooshi no masu-kee + ka\" no katachi de tsukaimasu.",
+          "text_vi": "Dùng theo mẫu \"doo yatte + động từ thể masu + ka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、漢字の書き方がわからないとき「どうやって書きますか」と聞いたり、",
+          "romaji": "Hoka ni mo, kanji no kakikata ga wakaranai toki \"Doo yatte kakimasu ka\" to kiitari,",
+          "text_vi": "Ngoài ra, khi không biết cách viết chữ Hán thì hỏi \"Viết thế nào ạ?\",",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "使い方がわからないとき「どうやって使いますか」と聞いたり、",
+          "romaji": "tsukaikata ga wakaranai toki \"Doo yatte tsukaimasu ka\" to kiitari,",
+          "text_vi": "khi không biết cách dùng thì hỏi \"Dùng thế nào ạ?\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "行き方がわからないとき「どうやって行きますか」と聞くこともできます。",
+          "romaji": "ikikata ga wakaranai toki \"Doo yatte ikimasu ka\" to kiku koto mo dekimasu.",
+          "text_vi": "khi không biết đường thì có thể hỏi \"Đi thế nào ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どういう いみですか",
+          "romaji": "doo yuu imi desu ka",
+          "text_vi": "Nghĩa là gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どういう意味ですか」は、言葉の意味を聞きたいときに使います。",
+          "romaji": "\"Doo yuu imi desu ka\" wa, kotoba no imi o kikitai toki ni tsukaimasu.",
+          "text_vi": "\"Doo yuu imi desu ka\" dùng khi muốn hỏi nghĩa của từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "歩きタバコもダメですよ。",
+          "romaji": "Aruki-tabako mo dame desu yo.",
+          "text_vi": "Vừa đi vừa hút thuốc cũng bị cấm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "歩きタバコはどういう意味ですか。",
+          "romaji": "Aruki-tabako wa doo yuu imi desu ka.",
+          "text_vi": "\"Aruki-tabako\" nghĩa là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、アンジェラさんは「歩きタバコ」の意味がわからなかったので、「歩きタバコはどういう意味ですか」と聞きました。",
+          "romaji": "Kono dooga de, Anjera-san wa \"aruki-tabako\" no imi ga wakaranakatta node, \"Aruki-tabako wa doo yuu imi desu ka\" to kikimashita.",
+          "text_vi": "Trong video, chị Angela không hiểu \"aruki-tabako\" nên đã hỏi \"Aruki-tabako nghĩa là gì ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "答えるときは、「文＋という意味です」の形で答えます。",
+          "romaji": "Kotaeru toki wa, \"bun + to iu imi desu\" no katachi de kotaemasu.",
+          "text_vi": "Khi trả lời thì dùng mẫu \"câu + to iu imi desu\" (nghĩa là …).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、「歩きながらタバコを吸います、という意味です」と答えています。",
+          "romaji": "Kono dooga de wa, \"Arukinagara tabako o suimasu, to iu imi desu\" to kotaete imasu.",
+          "text_vi": "Trong video, câu trả lời là \"Nghĩa là vừa đi vừa hút thuốc\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「これはどういう意味ですか」と指を指しながら聞けば、その文字が読めなくても意味を知ることができます。",
+          "romaji": "\"Kore wa doo yuu imi desu ka\" to yubi o sashinagara kikeba, sono moji ga yomenakute mo imi o shiru koto ga dekimasu.",
+          "text_vi": "Nếu vừa chỉ tay vừa hỏi \"Cái này nghĩa là gì?\" thì dù không đọc được chữ vẫn biết được nghĩa.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:25",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "きを つけましょう",
+          "romaji": "ki o tsukemashoo",
+          "text_vi": "Chúng ta cùng chú ý nhé",
+          "key_phrase": true
+        },
+        {
+          "start": "02:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「気をつけましょう」は、動詞のます形の「ます」を「ましょう」に変えた形です。",
+          "romaji": "\"Ki o tsukemashoo\" wa, dooshi no masu-kee no \"masu\" o \"mashoo\" ni kaeta katachi desu.",
+          "text_vi": "\"Ki o tsukemashoo\" là dạng đổi \"masu\" ở thể masu thành \"mashoo\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "これは、話し手が聞き手に一緒にそのようにすることを呼びかけるときに使います。",
+          "romaji": "Kore wa, hanashite ga kikite ni issho ni sono yoo ni suru koto o yobikakeru toki ni tsukaimasu.",
+          "text_vi": "Dạng này dùng khi người nói rủ người nghe cùng làm việc gì đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、アンジェラさんはマナーについてのポスターを見て、住民としてのマナーは大切だと思いました。",
+          "romaji": "Kono dooga de, Anjera-san wa manaa ni tsuite no posutaa o mite, juumin to shite no manaa wa taisetsu da to omoimashita.",
+          "text_vi": "Trong video, chị Angela nhìn tấm áp phích về quy tắc ứng xử và nghĩ rằng ý thức của cư dân là quan trọng.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それで、鈴木さんにも一緒に気をつけることを呼びかけました。",
+          "romaji": "Sorede, Suzuki-san ni mo issho ni ki o tsukeru koto o yobikakemashita.",
+          "text_vi": "Vì vậy chị ấy rủ chị Suzuki cùng chú ý.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他に、「急ぎましょう」や「頑張りましょう」などと使うことができます。",
+          "romaji": "Hoka ni, \"Isogimashoo\" ya \"Ganbarimashoo\" nado to tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra có thể dùng như \"Isogimashoo\" (Nhanh lên nào), \"Ganbarimashoo\" (Cùng cố gắng nào).",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

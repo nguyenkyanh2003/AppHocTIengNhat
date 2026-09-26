@@ -1,7 +1,110 @@
 # Lời thoại Tình huống: Chọn đồ và đi thử
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 4
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-2-7.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Chọn và thử mua đồ mong muốn
+## scene-1.mp4
+# Nói món đồ mình muốn mua
+00:08 | 同僚 / Dooryoo / Đồng nghiệp | 今日は何を見たいですか。 | Kyoo wa nani o mitai desu ka. | Hôm nay chị muốn xem gì?
+00:11 | アンジェラ / Anjera / Angela | シャツです。 | Shatsu desu. | Áo sơ mi.
+*00:12 | アンジェラ / Anjera / Angela | コットンのシャツが欲しいです。 | Kotton no shatsu ga hoshii desu. | Tôi muốn một chiếc áo sơ mi cotton.
+00:15 | 同僚 / Dooryoo / Đồng nghiệp | ああ、綿のシャツですね。 | Aa, men no shatsu desu ne. | À, áo sơ mi vải bông nhỉ.
+00:18 | アンジェラ / Anjera / Angela | え？綿とコットンは同じですか。 | E? Men to kotton wa onaji desu ka. | Hả? "Men" với "kotton" là một à?
+00:22 | 同僚 / Dooryoo / Đồng nghiệp | はい、同じ意味ですよ。 | Hai, onaji imi desu yo. | Vâng, cùng nghĩa đấy.
+00:24 | アンジェラ / Anjera / Angela | へえ。 | Hee. | Ồ, vậy à.
+*00:30 | アンジェラ / Anjera / Angela | これ、かわいいですね。 | Kore, kawaii desu ne. | Cái này dễ thương nhỉ.
+00:33 | 同僚 / Dooryoo / Đồng nghiệp | ああ、いいですね。 | Aa, ii desu ne. | À, được đấy.
+00:35 | アンジェラ / Anjera / Angela | えっと…あ、ポリエステル… | Etto… a, poriesuteru… | Ừm… À, vải polyester…
+00:43 | 同僚 / Dooryoo / Đồng nghiệp | ああ、残念ですね。 | Aa, zannen desu ne. | Ôi, tiếc quá nhỉ.
+00:52 | 同僚 / Dooryoo / Đồng nghiệp | これはどうですか。 | Kore wa doo desu ka. | Cái này thì sao?
+00:54 | アンジェラ / Anjera / Angela | ああ、それもかわいいですね。 | Aa, sore mo kawaii desu ne. | À, cái đó cũng dễ thương nhỉ.
+00:59 | 同僚 / Dooryoo / Đồng nghiệp | 綿100％ですよ。 | Men hyaku-paasento desu yo. | 100% vải bông đấy.
+01:04 | アンジェラ / Anjera / Angela | ああ、これが綿ですね。 | Aa, kore ga men desu ne. | À, cái này là vải bông nhỉ.
+*01:07 | アンジェラ / Anjera / Angela | 家で洗濯もできますよね。 | Ie de sentaku mo dekimasu yo ne. | Giặt ở nhà cũng được đúng không?
+01:10 | 同僚 / Dooryoo / Đồng nghiệp | はい、大丈夫ですよ。 | Hai, daijoobu desu yo. | Vâng, được đấy.
+01:12 | アンジェラ / Anjera / Angela | いいですね。 | Ii desu ne. | Hay quá.
+### từ vựng
+シャツ | シャツ | shatsu | áo sơ mi
+コットン | コットン | kotton | vải cotton
+綿 | めん | men | vải bông
+同じ | おなじ | onaji | giống nhau
+かわいい | かわいい | kawaii | dễ thương
+残念 | ざんねん | zannen | đáng tiếc
+
+## scene-2.mp4
+# Hỏi giá đã gồm thuế tiêu thụ
+*00:03 | アンジェラ / Anjera / Angela | いくらですか。 | Ikura desu ka. | Bao nhiêu tiền vậy?
+00:07 | 同僚 / Dooryoo / Đồng nghiệp | ちょうど5,000円ですよ。 | Choodo gosen-en desu yo. | Đúng 5.000 yên đấy.
+*00:12 | アンジェラ / Anjera / Angela | あ、でも、消費税がありますから、5,500円ですよね。 | A, demo, shoohizee ga arimasu kara, gosen gohyaku-en desu yo ne. | À, nhưng vì có thuế tiêu thụ nên là 5.500 yên nhỉ.
+00:21 | 同僚 / Dooryoo / Đồng nghiệp | ちょっと高いですか。 | Chotto takai desu ka. | Hơi đắt à?
+00:23 | アンジェラ / Anjera / Angela | うーん、どうしようかな。 | Uun, doo shiyoo ka na. | Ừm, làm sao đây nhỉ.
+*00:26 | 同僚 / Dooryoo / Đồng nghiệp | ちょっと着てみませんか。 | Chotto kite mimasen ka. | Chị mặc thử xem sao?
+00:28 | アンジェラ / Anjera / Angela | そうですね。じゃあ、着てみます。 | Soo desu ne. Jaa, kite mimasu. | Ừ nhỉ. Vậy tôi mặc thử.
+### từ vựng
+ちょうど | ちょうど | choodo | vừa đúng
+消費税 | しょうひぜい | shoohizee | thuế tiêu thụ
+高い | たかい | takai | đắt
+着てみます | きてみます | kite mimasu | mặc thử
+
+## scene-3.mp4
+# Xin mặc thử quần áo
+*00:01 | アンジェラ / Anjera / Angela | すみません。これ、試着したいんですけど。 | Sumimasen. Kore, shichaku shitain desu kedo. | Xin lỗi, tôi muốn mặc thử cái này.
+00:06 | 店員 / Ten'in / Nhân viên | こちらへどうぞ。 | Kochira e doozo. | Mời chị đi lối này.
+00:10 | 店員 / Ten'in / Nhân viên | 中にフェイスカバーがございますので、ご利用ください。 | Naka ni feisu-kabaa ga gozaimasu node, goriyoo kudasai. | Bên trong có khăn trùm mặt, mời quý khách dùng ạ.
+*00:17 | アンジェラ / Anjera / Angela | 靴は脱ぎますか。 | Kutsu wa nugimasu ka. | Có phải cởi giày không ạ?
+00:19 | 店員 / Ten'in / Nhân viên | はい、お願いします。 | Hai, onegaishimasu. | Vâng, phiền chị cởi giày ạ.
+00:22 | 同僚 / Dooryoo / Đồng nghiệp | アンジェラさん、私、この辺で待ってますね。 | Anjera-san, watashi, kono hen de mattemasu ne. | Angela ơi, tôi đợi quanh đây nhé.
+00:26 | アンジェラ / Anjera / Angela | はい、すみません。 | Hai, sumimasen. | Vâng, phiền chị nhé.
+00:39 | 店員 / Ten'in / Nhân viên | お客様、いかがですか。 | Okyakusama, ikaga desu ka. | Thưa quý khách, thế nào rồi ạ?
+00:42 | アンジェラ / Anjera / Angela | ちょっと待ってください。 | Chotto matte kudasai. | Chờ tôi một chút ạ.
+00:53 | 店員 / Ten'in / Nhân viên | いかがでしたか。 | Ikaga deshita ka. | Quý khách thấy thế nào ạ?
+00:54 | アンジェラ / Anjera / Angela | うーん、ちょっと… | Uun, chotto… | Ừm, hơi…
+*00:57 | アンジェラ / Anjera / Angela | すみません、もう少し考えます。 | Sumimasen, moo sukoshi kangaemasu. | Xin lỗi, để tôi suy nghĩ thêm chút nữa.
+### từ vựng
+試着 | しちゃく | shichaku | mặc thử
+フェイスカバー | フェイスカバー | feisu kabaa | khăn trùm mặt khi thử đồ
+靴 | くつ | kutsu | giày
+脱ぎます | ぬぎます | nugimasu | cởi (giày, áo)
+待ちます | まちます | machimasu | chờ, đợi
+
+## summary.mp4
+# Ôn tập: Chọn và mua đồ mình muốn
+00:00 |  /  / Chủ đề | コットンの シャツが ほしいです | kotton no shatsu ga hoshii desu | Tôi muốn một chiếc áo sơ mi cotton
+00:08 | 同僚 / Dooryoo / Đồng nghiệp | 何を見たいですか。 | Nani o mitai desu ka. | Chị muốn xem gì?
+*00:09 | アンジェラ / Anjera / Angela | シャツです。コットンのシャツが欲しいです。 | Shatsu desu. Kotton no shatsu ga hoshii desu. | Áo sơ mi. Tôi muốn một chiếc áo sơ mi cotton.
+00:14 | ナレーター / Nareetaa / Người dẫn | 欲しいものを伝えるとき、「欲しいもの＋が＋欲しいです」という文型を使います。 | Hoshii mono o tsutaeru toki, "hoshii mono + ga + hoshii desu" to iu bunkee o tsukaimasu. | Khi nói ra thứ mình muốn, ta dùng mẫu câu "[thứ muốn có] + ga + hoshii desu".
+00:30 | ナレーター / Nareetaa / Người dẫn | ここでは、アンジェラさんは「コットンのシャツが欲しいです」と言って、自分の買いたいものを同僚に伝えました。 | Koko de wa, Anjera-san wa "Kotton no shatsu ga hoshii desu" to itte, jibun no kaitai mono o dooryoo ni tsutaemashita. | Ở đây, chị Angela nói "Tôi muốn một chiếc áo sơ mi cotton" để cho đồng nghiệp biết thứ mình muốn mua.
+00:45 | ナレーター / Nareetaa / Người dẫn | 他にも、例えば風邪をひいたとき、薬局で店員さんに「風邪薬が欲しいです」と用件を伝えたり、 | Hoka ni mo, tatoeba kaze o hiita toki, yakkyoku de ten'in-san ni "Kazegusuri ga hoshii desu" to yooken o tsutaetari, | Ngoài ra, ví dụ khi bị cảm, có thể nói với nhân viên hiệu thuốc "Tôi muốn mua thuốc cảm",
+01:00 | ナレーター / Nareetaa / Người dẫn | 友達から誕生日プレゼントは何がいいか聞かれて、「新しい眼鏡が欲しいです」と自分の希望を伝えたりすることができます。 | tomodachi kara tanjoobi purezento wa nani ga ii ka kikarete, "Atarashii megane ga hoshii desu" to jibun no kiboo o tsutaetari suru koto ga dekimasu. | hoặc khi bạn hỏi muốn quà sinh nhật gì thì nói mong muốn của mình: "Tôi muốn một cặp kính mới".
+01:16 | ナレーター / Nareetaa / Người dẫn | 物だけではなく、「時間が欲しいです」「友達が欲しいです」と言うこともできます。 | Mono dake de wa naku, "Jikan ga hoshii desu", "Tomodachi ga hoshii desu" to iu koto mo dekimasu. | Không chỉ đồ vật, còn có thể nói "Tôi muốn có thời gian", "Tôi muốn có bạn".
+01:27 | ナレーター / Nareetaa / Người dẫn | 「食べる」のような動詞を使って「欲しい」の意味を伝えるときは、「食べたいです」「飲みたいです」と言います。 | "Taberu" no yoo na dooshi o tsukatte "hoshii" no imi o tsutaeru toki wa, "Tabetai desu", "Nomitai desu" to iimasu. | Khi dùng động từ như "taberu" (ăn) để nói ý muốn thì nói "Tabetai desu" (muốn ăn), "Nomitai desu" (muốn uống).
+01:41 |  /  / Chủ đề | あ、これ、かわいいですね | a, kore, kawaii desu ne | A, cái này dễ thương nhỉ
+*01:49 | アンジェラ / Anjera / Angela | これ、かわいいですね。 | Kore, kawaii desu ne. | Cái này dễ thương nhỉ.
+01:53 | ナレーター / Nareetaa / Người dẫn | 「かわいいです」は、形容詞の文です。 | "Kawaii desu" wa, keeyooshi no bun desu. | "Kawaii desu" là câu tính từ.
+01:59 | ナレーター / Nareetaa / Người dẫn | 形容詞は、ものの性質や状態、人の気持ちを表します。 | Keeyooshi wa, mono no seeshitsu ya jootai, hito no kimochi o arawashimasu. | Tính từ diễn tả tính chất, trạng thái của sự vật hoặc cảm xúc của con người.
+02:09 | ナレーター / Nareetaa / Người dẫn | 例えば、「かわいい」「にぎやか」「寂しい」「残念」などです。 | Tatoeba, "kawaii", "nigiyaka", "sabishii", "zannen" nado desu. | Ví dụ: "kawaii" (dễ thương), "nigiyaka" (náo nhiệt), "sabishii" (buồn, cô đơn), "zannen" (đáng tiếc).
+02:20 | ナレーター / Nareetaa / Người dẫn | 日本語の形容詞は2種類あります。い形容詞とな形容詞です。 | Nihongo no keeyooshi wa nishurui arimasu. I-keeyooshi to na-keeyooshi desu. | Tính từ tiếng Nhật có 2 loại: tính từ đuôi i và tính từ đuôi na.
+02:31 | ナレーター / Nareetaa / Người dẫn | い形容詞は、名詞の前では「かわいいシャツ」「寂しいとき」のように、「い」で終わります。 | I-keeyooshi wa, meeshi no mae de wa "kawaii shatsu", "sabishii toki" no yoo ni, "i" de owarimasu. | Tính từ đuôi i khi đứng trước danh từ thì kết thúc bằng "i", như "kawaii shatsu" (áo dễ thương), "sabishii toki" (lúc buồn).
+02:46 | ナレーター / Nareetaa / Người dẫn | な形容詞は、「にぎやかな町」「残念な結果」のように、名詞の前は「な」になります。 | Na-keeyooshi wa, "nigiyaka na machi", "zannen na kekka" no yoo ni, meeshi no mae wa "na" ni narimasu. | Tính từ đuôi na khi đứng trước danh từ thì thêm "na", như "nigiyaka na machi" (thành phố náo nhiệt), "zannen na kekka" (kết quả đáng tiếc).
+03:00 | ナレーター / Nareetaa / Người dẫn | この動画では、アンジェラさんは「かわいいですね」と言いました。 | Kono dooga de wa, Anjera-san wa "Kawaii desu ne" to iimashita. | Trong video này, chị Angela đã nói "Dễ thương nhỉ".
+03:08 | ナレーター / Nareetaa / Người dẫn | 「ね」は共感を表します。話し手と聞き手が同じ気持ちのときに使います。 | "Ne" wa kyookan o arawashimasu. Hanashite to kikite ga onaji kimochi no toki ni tsukaimasu. | "Ne" thể hiện sự đồng cảm, dùng khi người nói và người nghe có cùng cảm nhận.
+03:19 | ナレーター / Nareetaa / Người dẫn | 例えば、友人と食事をしているときに「おいしいですね」と言ったり、 | Tatoeba, yuujin to shokuji o shite iru toki ni "Oishii desu ne" to ittari, | Ví dụ, khi đang ăn cùng bạn thì nói "Ngon nhỉ",
+03:27 | ナレーター / Nareetaa / Người dẫn | 人に会ったときに「暑いですね」と言ったり、 | hito ni atta toki ni "Atsui desu ne" to ittari, | khi gặp ai đó thì nói "Nóng nhỉ",
+03:33 | ナレーター / Nareetaa / Người dẫn | 美術館で絵を見ているときに「きれいですね」と言ったりして、 | bijutsukan de e o mite iru toki ni "Kiree desu ne" to ittari shite, | khi ngắm tranh ở bảo tàng mỹ thuật thì nói "Đẹp nhỉ",
+03:41 | ナレーター / Nareetaa / Người dẫn | 自分の気持ちを相手に伝えて共有することができます。 | jibun no kimochi o aite ni tsutaete kyooyuu suru koto ga dekimasu. | như vậy ta có thể truyền đạt và chia sẻ cảm xúc của mình với người kia.
+03:49 |  /  / Chủ đề | しょうひぜいが ありますから、 | shoohizee ga arimasu kara, | Vì có thuế tiêu thụ nên…
+03:56 | アンジェラ / Anjera / Angela | いくらですか。 | Ikura desu ka. | Bao nhiêu tiền vậy?
+04:00 | 同僚 / Dooryoo / Đồng nghiệp | ちょうど5,000円ですよ。 | Choodo gosen-en desu yo. | Đúng 5.000 yên đấy.
+*04:05 | アンジェラ / Anjera / Angela | あ、でも、消費税がありますから、5,500円ですよね。 | A, demo, shoohizee ga arimasu kara, gosen gohyaku-en desu yo ne. | À, nhưng vì có thuế tiêu thụ nên là 5.500 yên nhỉ.
+04:12 | ナレーター / Nareetaa / Người dẫn | 理由を表したいときには、「から」を使って表現します。 | Riyuu o arawashitai toki ni wa, "kara" o tsukatte hyoogen shimasu. | Khi muốn nói lý do, ta dùng "kara".
+04:19 | ナレーター / Nareetaa / Người dẫn | 「から」は文と文をつなぎます。 | "Kara" wa bun to bun o tsunagimasu. | "Kara" nối hai câu với nhau.
+04:25 | ナレーター / Nareetaa / Người dẫn | この動画では、商品の値段は5,000円でしたが、支払う金額は5,500円で、金額が違いました。 | Kono dooga de wa, shoohin no nedan wa gosen-en deshita ga, shiharau kingaku wa gosen gohyaku-en de, kingaku ga chigaimashita. | Trong video này, giá sản phẩm là 5.000 yên nhưng số tiền phải trả là 5.500 yên, hai số tiền khác nhau.
+04:38 | ナレーター / Nareetaa / Người dẫn | その理由を「から」の前で説明しています。 | Sono riyuu o "kara" no mae de setsumee shite imasu. | Lý do được giải thích ở phía trước "kara".
+04:44 | ナレーター / Nareetaa / Người dẫn | 「消費税がありますから、5,500円ですよね」 | "Shoohizee ga arimasu kara, gosen gohyaku-en desu yo ne" | "Vì có thuế tiêu thụ nên là 5.500 yên nhỉ"
+04:51 | ナレーター / Nareetaa / Người dẫn | 値段が5,500円という理由は、消費税があることだと伝えています。 | Nedan ga gosen gohyaku-en to iu riyuu wa, shoohizee ga aru koto da to tsutaete imasu. | Câu này cho biết lý do giá là 5.500 yên là vì có thuế tiêu thụ.
+05:00 | ナレーター / Nareetaa / Người dẫn | 例えば、アレルギーで卵を食べないとき、 | Tatoeba, arerugii de tamago o tabenai toki, | Ví dụ, khi không ăn trứng vì bị dị ứng,
+05:05 | ナレーター / Nareetaa / Người dẫn | 理由を言わないで「卵を食べません」と言うと、「卵を食べない」という事実だけが相手に伝わります。 | riyuu o iwanaide "Tamago o tabemasen" to iu to, "tamago o tabenai" to iu jijitsu dake ga aite ni tsutawarimasu. | nếu chỉ nói "Tôi không ăn trứng" mà không nói lý do thì người kia chỉ biết mỗi việc bạn không ăn trứng.
+05:19 | ナレーター / Nareetaa / Người dẫn | このとき、「から」を使って「アレルギーですから、卵を食べません」と言うと、 | Kono toki, "kara" o tsukatte "Arerugii desu kara, tamago o tabemasen" to iu to, | Lúc này, nếu dùng "kara" và nói "Vì tôi bị dị ứng nên không ăn trứng",
+05:29 | ナレーター / Nareetaa / Người dẫn | 相手に理由も伝わって、状況を理解してもらいやすいです。 | aite ni riyuu mo tsutawatte, jookyoo o rikai shite moraiyasui desu. | thì người kia biết cả lý do và dễ hiểu hoàn cảnh của bạn hơn.
+05:37 | ナレーター / Nareetaa / Người dẫn | ほかにも、好きな芸能人の話をするときに「かっこいいから好きです」と言ったり、 | Hoka ni mo, suki na geenoojin no hanashi o suru toki ni "Kakkoii kara suki desu" to ittari, | Ngoài ra, khi nói về người nổi tiếng mình thích thì nói "Tôi thích vì anh ấy ngầu",
+05:50 | ナレーター / Nareetaa / Người dẫn | 「昨日あまり寝られませんでしたから、仕事に集中できません」と事情を説明したりすることができます。 | "Kinoo amari neraremasen deshita kara, shigoto ni shuuchuu dekimasen" to jijoo o setsumee shitari suru koto ga dekimasu. | hoặc giải thích hoàn cảnh: "Hôm qua tôi không ngủ được mấy nên không tập trung làm việc được".

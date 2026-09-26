@@ -33,7 +33,13 @@ const dryRun = process.argv.includes('--dry-run');
 const replace = process.argv.includes('--replace');
 const BACKUP_DIR = new URL('../backups/', import.meta.url);
 
-const upsertLesson = async ({ vocabularies, ...lesson }) => {
+/**
+ * Bài trong bộ là toàn bộ nội dung của bài đó: thiếu `dialogue` nghĩa là bài
+ * không có hội thoại soạn sẵn (bài có video dùng kịch bản video), nên phải ghi
+ * mảng rỗng — `$set` bỏ qua trường vắng mặt, hội thoại cũ sẽ còn nằm lại.
+ */
+const upsertLesson = async ({ vocabularies, dialogue = [], ...rest }) => {
+  const lesson = { ...rest, dialogue };
   const existing = await Lesson.findOne({ title: lesson.title }).lean();
 
   if (dryRun) {
@@ -156,7 +162,7 @@ const run = async () => {
     report[created ? 'lessonsCreated' : 'lessonsUpdated'] += 1;
     console.log(
       `${created ? '➕' : '♻️ '} ${lesson.level} ${lesson.title} — ` +
-        `${lesson.dialogue.length} lượt thoại, ${lesson.vocabularies.length} từ vựng`,
+        `${lesson.dialogue?.length ?? 0} lượt thoại, ${lesson.vocabularies.length} từ vựng`,
     );
 
     const vocabularyIds = [];

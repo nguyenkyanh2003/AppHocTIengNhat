@@ -30,6 +30,7 @@ class StudyStepView extends StatelessWidget {
           isLearned: session.isLearned,
           isSaving: session.isSaving,
           onMarkLearned: session.markLearned,
+          onUnmarkLearned: session.unmarkLearned,
         ),
       StudyStepKind.kanji => LessonKanjiGrid(kanjis: detail.kanjis),
       StudyStepKind.grammar => LessonGrammarList(grammars: detail.grammars),

@@ -5,6 +5,7 @@ import '../../../../app/theme/app_tokens.dart';
 import '../../models/lesson_video.dart';
 import 'lesson_transcript_view.dart';
 import 'lesson_video_player.dart';
+import 'video_study_panel.dart';
 
 /// Khối "Video bài học": chọn video, xem video và đọc lời thoại chạy theo.
 ///
@@ -50,6 +51,12 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
   final ValueNotifier<Set<TranscriptLayer>> _layers =
       ValueNotifier({...TranscriptLayer.values});
 
+  /// Câu then chốt đang được phát lại ở phần "Mẫu câu", và lúc phải dừng.
+  /// Phát một câu chỉ phát đúng đoạn của câu đó rồi tự dừng — như nghe lại
+  /// một câu trong sách nói.
+  final ValueNotifier<TranscriptLine?> _playingPhrase = ValueNotifier(null);
+  Duration? _phraseEnd;
+
   int _index = 0;
   bool _ready = false;
   String? _error;
@@ -62,6 +69,7 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
     _controller?.dispose();
     _activeLine.dispose();
     _layers.dispose();
+    _playingPhrase.dispose();
     super.dispose();
   }
 
@@ -69,9 +77,30 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
     final controller = _controller;
     if (controller == null) return;
 
-    final index =
-        activeTranscriptIndex(_video.transcript, controller.value.position);
+    final position = controller.value.position;
+    final index = activeTranscriptIndex(_video.transcript, position);
     if (index != _activeLine.value) _activeLine.value = index;
+
+    final phraseEnd = _phraseEnd;
+    if (phraseEnd != null && position >= phraseEnd) {
+      _stopPhrase();
+      controller.pause();
+    }
+  }
+
+  void _stopPhrase() {
+    _phraseEnd = null;
+    _playingPhrase.value = null;
+  }
+
+  /// Phát lại đúng đoạn của một câu then chốt, mở trình phát nếu chưa mở.
+  Future<void> _playPhrase(TranscriptLine line) async {
+    _phraseEnd = _video.endOf(line);
+    _playingPhrase.value = line;
+    final controller = _controller;
+    if (controller == null) return _open(_index, startAt: line.start);
+    await controller.seekTo(line.start);
+    await controller.play();
   }
 
   /// Câu đang nói, hoặc câu gần nhất đã qua khi đang ở khoảng lặng; `-1`
@@ -88,6 +117,7 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
     final controller = _controller;
     final lines = _video.transcript;
     if (controller == null || lines.isEmpty) return;
+    _stopPhrase();
     final target =
         (_currentLine(controller) + offset).clamp(0, lines.length - 1);
     await controller.seekTo(lines[target].start);
@@ -97,6 +127,7 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
   /// Chọn cảnh khác. Chưa phát gì thì chỉ đổi khung chờ; đang xem thì mở
   /// luôn cảnh mới và phát tiếp.
   void _select(int index) {
+    _stopPhrase();
     if (_controller == null) {
       setState(() => _index = index);
     } else {
@@ -106,6 +137,7 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
 
   /// Chạm một câu thoại: tua tới câu đó, mở trình phát nếu chưa mở.
   Future<void> _seekTo(Duration position) async {
+    _stopPhrase();
     final controller = _controller;
     if (controller == null) return _open(_index, startAt: position);
     await controller.seekTo(position);
@@ -163,7 +195,10 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
         if (controller == null)
           LessonVideoPoster(
             duration: _video.duration,
-            onPlay: () => _open(_index),
+            onPlay: () {
+              _stopPhrase();
+              _open(_index);
+            },
           )
         else
           LessonVideoPlayer(
@@ -192,10 +227,6 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
           ),
         AppGap.sm,
         Text(_video.title, style: textTheme.titleMedium),
-        if (_video.description != null) ...[
-          AppGap.xs,
-          Text(_video.description!, style: textTheme.bodyMedium),
-        ],
         if (_video.source != null) ...[
           AppGap.xs,
           Text('Nguồn: ${_video.source!}', style: textTheme.labelSmall),
@@ -203,17 +234,15 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
       ],
     );
 
-    Widget transcript({required bool scrollable}) =>
-        ValueListenableBuilder<int?>(
-          valueListenable: _activeLine,
-          builder: (context, activeIndex, _) => LessonTranscriptView(
-            lines: _video.transcript,
-            activeIndex: activeIndex,
-            layers: _layers,
-            scrollable: scrollable,
-            onSeek: _seekTo,
-          ),
-        );
+    final panel = VideoStudyPanel(
+      key: ValueKey(_video.url),
+      video: _video,
+      activeLine: _activeLine,
+      playingPhrase: _playingPhrase,
+      layers: _layers,
+      onSeek: _seekTo,
+      onPlayPhrase: _playPhrase,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -226,10 +255,13 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
           ),
           AppGap.lg,
         ],
-        // Video chưa có lời thoại thì không dựng khung lời thoại trống bên
-        // cạnh; video đứng một mình, rộng vừa tầm mắt, kèm một dòng nói rõ
-        // vì sao không có chữ chạy theo.
-        if (_video.transcript.isEmpty)
+        if (_video.description != null) ...[
+          _VideoGoal(text: _video.description!),
+          AppGap.md,
+        ],
+        // Video không có gì học kèm thì không dựng khung trống bên cạnh;
+        // video đứng một mình, rộng vừa tầm mắt, kèm một dòng nói rõ vì sao.
+        if (!_video.hasStudyContent)
           Center(
             child: ConstrainedBox(
               constraints:
@@ -254,17 +286,17 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
                     SizedBox(
                       height: LessonVideoSection.stackedTranscriptHeight(
                           MediaQuery.sizeOf(context).height),
-                      child: transcript(scrollable: true),
+                      child: panel,
                     ),
                   ],
                 );
               }
 
-              // Khung lời thoại cao bằng khung video 16:9 cộng thanh điều khiển
-              // và tên cảnh, để hai cột kết thúc cùng một đường ngang.
+              // Khung học cao bằng khung video 16:9 cộng thanh điều khiển và
+              // tên cảnh, để hai cột kết thúc cùng một đường ngang.
               const gap = AppSpacing.lg;
               final playerWidth = (constraints.maxWidth - gap) * 6 / 11;
-              final transcriptHeight = playerWidth * 9 / 16 + 120;
+              final panelHeight = playerWidth * 9 / 16 + 120;
 
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -273,15 +305,33 @@ class _LessonVideoSectionState extends State<LessonVideoSection> {
                   const SizedBox(width: gap),
                   Expanded(
                     flex: 5,
-                    child: SizedBox(
-                      height: transcriptHeight,
-                      child: transcript(scrollable: true),
-                    ),
+                    child: SizedBox(height: panelHeight, child: panel),
                   ),
                 ],
               );
             },
           ),
+      ],
+    );
+  }
+}
+
+/// Mục tiêu "làm được gì" của cảnh, đứng trên video như tiêu đề của bài tập.
+class _VideoGoal extends StatelessWidget {
+  const _VideoGoal({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Icon(Icons.flag_outlined, size: 20, color: AppColors.primary),
+        AppGap.sm,
+        Expanded(
+          child: Text(text, style: Theme.of(context).textTheme.titleSmall),
+        ),
       ],
     );
   }
@@ -299,7 +349,7 @@ class _NoTranscriptNote extends StatelessWidget {
         AppGap.xs,
         Expanded(
           child: Text(
-            'Cảnh này chưa có lời thoại chạy theo video.',
+            'Video này chưa có lời thoại chạy theo video.',
             style: Theme.of(context)
                 .textTheme
                 .bodySmall
@@ -330,7 +380,13 @@ class _VideoPicker extends StatelessWidget {
       children: [
         for (var index = 0; index < videos.length; index++)
           ChoiceChip(
-            label: Text('${index + 1}. ${videos[index].title}'),
+            avatar: videos[index].isReview
+                ? const Icon(Icons.replay_circle_filled_outlined)
+                : null,
+            label: Text(switch (sceneNumber(videos, index)) {
+              final number? => '$number. ${videos[index].title}',
+              null => videos[index].title,
+            }),
             selected: index == selected,
             onSelected: (_) => onSelected(index),
           ),

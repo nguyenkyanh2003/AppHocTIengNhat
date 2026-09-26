@@ -4,10 +4,776 @@
   },
   "videos": [
     {
-      "title": "Mua những vật dụng quen thuộc",
-      "url": "/uploads/lesson-videos/n5-02-daily-goods/video-1.mp4",
+      "title": "Hỏi món hàng nằm ở đâu",
+      "description": "Hỏi được nhân viên món hàng mình cần nằm ở đâu trong siêu thị.",
+      "url": "/uploads/lesson-videos/n5-02-daily-goods/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi, cho tôi hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "牛乳はどこですか。",
+          "romaji": "Gyuunyuu wa doko desu ka.",
+          "text_vi": "Sữa ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "牛乳ですね。",
+          "romaji": "Gyuunyuu desu ne.",
+          "text_vi": "Sữa phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "こちらです。",
+          "romaji": "Kochira desu.",
+          "text_vi": "Ở phía này ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "こちらです。",
+          "romaji": "Kochira desu.",
+          "text_vi": "Đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いいえ、どういたしまして。",
+          "romaji": "Iie, doo itashimashite.",
+          "text_vi": "Dạ, không có gì ạ.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "すみません",
+          "reading": "すみません",
+          "romaji": "sumimasen",
+          "meaning": "xin lỗi (khi gọi người khác)"
+        },
+        {
+          "word": "牛乳",
+          "reading": "ぎゅうにゅう",
+          "romaji": "gyuunyuu",
+          "meaning": "sữa"
+        },
+        {
+          "word": "どこ",
+          "reading": "どこ",
+          "romaji": "doko",
+          "meaning": "ở đâu"
+        },
+        {
+          "word": "こちら",
+          "reading": "こちら",
+          "romaji": "kochira",
+          "meaning": "phía này, đây"
+        },
+        {
+          "word": "どういたしまして",
+          "reading": "どういたしまして",
+          "romaji": "doo itashimashite",
+          "meaning": "không có gì"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi thành phần của món ăn",
+      "description": "Hỏi được món ăn có chứa thứ mình không dùng được (như rượu) hay không.",
+      "url": "/uploads/lesson-videos/n5-02-daily-goods/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、ちょっといいですか。",
+          "romaji": "Anoo, chotto ii desu ka.",
+          "text_vi": "Ừm… cho tôi hỏi một chút được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、何ですか。",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Vâng, có chuyện gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、お酒が入っていますか。",
+          "romaji": "Kore, osake ga haitte imasu ka.",
+          "text_vi": "Món này có lẫn rượu không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いいえ、入っていませんよ。",
+          "romaji": "Iie, haitte imasen yo.",
+          "text_vi": "Không, không có rượu đâu ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あ、そうですか。",
+          "romaji": "A, soo desu ka.",
+          "text_vi": "À, vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いいえ。",
+          "romaji": "Iie.",
+          "text_vi": "Không có gì.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "ちょっといいですか",
+          "reading": "ちょっといいですか",
+          "romaji": "chotto ii desu ka",
+          "meaning": "cho tôi hỏi một chút được không"
+        },
+        {
+          "word": "これ",
+          "reading": "これ",
+          "romaji": "kore",
+          "meaning": "cái này"
+        },
+        {
+          "word": "お酒",
+          "reading": "おさけ",
+          "romaji": "osake",
+          "meaning": "rượu"
+        },
+        {
+          "word": "入っています",
+          "reading": "はいっています",
+          "romaji": "haitte imasu",
+          "meaning": "có chứa"
+        }
+      ]
+    },
+    {
+      "title": "Thanh toán ở quầy",
+      "description": "Trả lời được các câu hỏi của nhân viên thu ngân và hiểu số tiền phải trả.",
+      "url": "/uploads/lesson-videos/n5-02-daily-goods/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "お願いします。",
+          "romaji": "Onegaishimasu.",
+          "text_vi": "Nhờ chị tính tiền giúp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "袋はどうなさいますか。",
+          "romaji": "Fukuro wa doo nasaimasu ka.",
+          "text_vi": "Quý khách có cần túi không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "結構です。",
+          "romaji": "Kekkoo desu.",
+          "text_vi": "Không cần đâu ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "バッグはお持ちですか。",
+          "romaji": "Baggu wa omochi desu ka.",
+          "text_vi": "Quý khách có mang túi không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Có.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "当店のポイントカードはお持ちですか。",
+          "romaji": "Tooten no pointo kaado wa omochi desu ka.",
+          "text_vi": "Quý khách có thẻ tích điểm của cửa hàng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいえ、ありません。",
+          "romaji": "Iie, arimasen.",
+          "text_vi": "Không, tôi không có.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "失礼いたしました。",
+          "romaji": "Shitsuree itashimashita.",
+          "text_vi": "Dạ, xin lỗi quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "1,748円になります。",
+          "romaji": "Sen nanahyaku yonjuuhachi-en ni narimasu.",
+          "text_vi": "Của quý khách hết 1.748 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "2,000円お預かりします。",
+          "romaji": "Nisen-en oazukari shimasu.",
+          "text_vi": "Tôi nhận của quý khách 2.000 yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "252円のお返しになります。",
+          "romaji": "Nihyaku gojuuni-en no okaeshi ni narimasu.",
+          "text_vi": "Tôi gửi lại quý khách 252 yên tiền thừa ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "袋",
+          "reading": "ふくろ",
+          "romaji": "fukuro",
+          "meaning": "túi đựng"
+        },
+        {
+          "word": "結構です",
+          "reading": "けっこうです",
+          "romaji": "kekkoo desu",
+          "meaning": "không cần ạ"
+        },
+        {
+          "word": "バッグ",
+          "reading": "バッグ",
+          "romaji": "baggu",
+          "meaning": "túi xách"
+        },
+        {
+          "word": "ポイントカード",
+          "reading": "ポイントカード",
+          "romaji": "pointo kaado",
+          "meaning": "thẻ tích điểm"
+        },
+        {
+          "word": "お預かりします",
+          "reading": "おあずかりします",
+          "romaji": "oazukari shimasu",
+          "meaning": "xin nhận (tiền của quý khách)"
+        },
+        {
+          "word": "お返し",
+          "reading": "おかえし",
+          "romaji": "okaeshi",
+          "meaning": "tiền thừa trả lại"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Mua đồ dùng hằng ngày",
+      "description": "Ôn lại「どこですか」,「これ・それ・あれ」và cách trả lời「はい・いいえ」.",
+      "url": "/uploads/lesson-videos/n5-02-daily-goods/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "牛乳は どこですか",
+          "romaji": "gyuunyuu wa doko desu ka",
+          "text_vi": "Sữa ở đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi, cho tôi hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "牛乳はどこですか。",
+          "romaji": "Gyuunyuu wa doko desu ka.",
+          "text_vi": "Sữa ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "牛乳ですね。",
+          "romaji": "Gyuunyuu desu ne.",
+          "text_vi": "Sữa phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "こちらです。",
+          "romaji": "Kochira desu.",
+          "text_vi": "Ở phía này ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どこですか」は、場所を知りたいときに使います。",
+          "romaji": "\"Doko desu ka\" wa, basho o shiritai toki ni tsukaimasu.",
+          "text_vi": "\"Doko desu ka\" dùng khi muốn biết vị trí, chỗ của thứ gì đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、アンジェラさんはスーパーで牛乳が置いてある場所がわからなかったので、",
+          "romaji": "Kono kaiwa de wa, Anjera-san wa suupaa de gyuunyuu ga oite aru basho ga wakaranakatta node,",
+          "text_vi": "Trong đoạn hội thoại này, vì chị Angela không biết sữa được bày ở chỗ nào trong siêu thị",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「牛乳はどこですか」と聞きました。",
+          "romaji": "\"Gyuunyuu wa doko desu ka\" to kikimashita.",
+          "text_vi": "nên chị ấy đã hỏi \"Sữa ở đâu ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ものの場所だけではなく、",
+          "romaji": "Mono no basho dake de wa naku,",
+          "text_vi": "Không chỉ để hỏi vị trí đồ vật,",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「駅はどこですか」「市役所はどこですか」のように、建物の場所を聞くときにも使うことができます。",
+          "romaji": "\"Eki wa doko desu ka\", \"Shiyakusho wa doko desu ka\" no yoo ni, tatemono no basho o kiku toki ni mo tsukau koto ga dekimasu.",
+          "text_vi": "mẫu câu này còn dùng được khi hỏi vị trí tòa nhà, ví dụ \"Nhà ga ở đâu?\", \"Tòa thị chính ở đâu?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "これ",
+          "romaji": "kore",
+          "text_vi": "cái này",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、お酒が入っていますか。",
+          "romaji": "Kore, osake ga haitte imasu ka.",
+          "text_vi": "Món này có lẫn rượu không?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「これ」は、ものを指すときに使います。",
+          "romaji": "\"Kore\" wa, mono o sasu toki ni tsukaimasu.",
+          "text_vi": "\"Kore\" dùng khi chỉ vào đồ vật.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ものを指す言い方には、「これ」「それ」「あれ」の3つがあります。",
+          "romaji": "Mono o sasu iikata ni wa, \"kore\", \"sore\", \"are\" no mittsu ga arimasu.",
+          "text_vi": "Có 3 cách nói để chỉ đồ vật: \"kore\", \"sore\", \"are\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分の近くにあるものを指すときは、「これ」。",
+          "romaji": "Jibun no chikaku ni aru mono o sasu toki wa, \"kore\".",
+          "text_vi": "Chỉ đồ vật ở gần mình thì dùng \"kore\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分からは少し離れたところにあって、相手の近くにあるものを指すときは、「それ」。",
+          "romaji": "Jibun kara wa sukoshi hanareta tokoro ni atte, aite no chikaku ni aru mono o sasu toki wa, \"sore\".",
+          "text_vi": "Chỉ đồ vật hơi xa mình và ở gần người đối diện thì dùng \"sore\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分と相手から離れたところにあるものを指すときは、「あれ」と表現します。",
+          "romaji": "Jibun to aite kara hanareta tokoro ni aru mono o sasu toki wa, \"are\" to hyoogen shimasu.",
+          "text_vi": "Chỉ đồ vật ở xa cả mình lẫn người đối diện thì nói là \"are\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、王さんとお店の人は、二人の近くにある商品を一緒に見ていますから、「これ」を使います。",
+          "romaji": "Kono bamen de wa, Oo-san to omise no hito wa, futari no chikaku ni aru shoohin o issho ni mite imasu kara, \"kore\" o tsukaimasu.",
+          "text_vi": "Trong cảnh này, anh Vương và nhân viên cửa hàng đang cùng nhìn món hàng ở gần cả hai người, nên dùng \"kore\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "はい／いいえ",
+          "romaji": "hai / iie",
+          "text_vi": "vâng / không",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "バッグはお持ちですか。",
+          "romaji": "Baggu wa omochi desu ka.",
+          "text_vi": "Quý khách có mang túi không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Có.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "当店のポイントカードはお持ちですか。",
+          "romaji": "Tooten no pointo kaado wa omochi desu ka.",
+          "text_vi": "Quý khách có thẻ tích điểm của cửa hàng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいえ、ありません。",
+          "romaji": "Iie, arimasen.",
+          "text_vi": "Không, tôi không có.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「はい」と「いいえ」は、何か聞かれたときの返事です。",
+          "romaji": "\"Hai\" to \"iie\" wa, nani ka kikareta toki no henji desu.",
+          "text_vi": "\"Hai\" và \"iie\" là câu trả lời khi được ai đó hỏi điều gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「はい」は肯定、「いいえ」は否定です。",
+          "romaji": "\"Hai\" wa kootei, \"iie\" wa hitee desu.",
+          "text_vi": "\"Hai\" là khẳng định, \"iie\" là phủ định.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、アンジェラさんは店員にバッグを持っているか聞かれました。",
+          "romaji": "Kono kaiwa de wa, Anjera-san wa ten'in ni baggu o motte iru ka kikaremashita.",
+          "text_vi": "Trong đoạn hội thoại này, chị Angela được nhân viên hỏi có mang túi không.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "バッグを持っているので、「はい」と答えました。",
+          "romaji": "Baggu o motte iru node, \"hai\" to kotaemashita.",
+          "text_vi": "Vì có mang túi nên chị ấy trả lời \"hai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "次に、ポイントカードを持っているか聞かれました。",
+          "romaji": "Tsugi ni, pointo kaado o motte iru ka kikaremashita.",
+          "text_vi": "Tiếp theo, chị ấy được hỏi có thẻ tích điểm không.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しかし、ポイントカードは持っていないので、「いいえ、ありません」と答えました。",
+          "romaji": "Shikashi, pointo kaado wa motte inai node, \"iie, arimasen\" to kotaemashita.",
+          "text_vi": "Nhưng vì không có thẻ tích điểm nên chị ấy trả lời \"iie, arimasen\" (Không, tôi không có).",
+          "key_phrase": false
+        },
+        {
+          "start": "03:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話では、「はい」の代わりに「ええ」、",
+          "romaji": "Kaiwa de wa, \"hai\" no kawari ni \"ee\",",
+          "text_vi": "Khi nói chuyện, thay cho \"hai\" có thể dùng \"ee\",",
+          "key_phrase": false
+        },
+        {
+          "start": "03:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「いいえ」の代わりに「いえ」を使うこともあります。",
+          "romaji": "\"iie\" no kawari ni \"ie\" o tsukau koto mo arimasu.",
+          "text_vi": "và thay cho \"iie\" có thể dùng \"ie\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "相手と親しい関係であれば、",
+          "romaji": "Aite to shitashii kankee de areba,",
+          "text_vi": "Nếu thân thiết với người đối diện",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「はい」の代わりに「うん」、",
+          "romaji": "\"hai\" no kawari ni \"un\",",
+          "text_vi": "thì thay cho \"hai\" có thể dùng \"un\",",
+          "key_phrase": false
+        },
+        {
+          "start": "03:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「いいえ」の代わりに「ううん」を使うこともできます。",
+          "romaji": "\"iie\" no kawari ni \"uun\" o tsukau koto mo dekimasu.",
+          "text_vi": "thay cho \"iie\" có thể dùng \"uun\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

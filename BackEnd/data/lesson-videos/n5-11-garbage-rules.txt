@@ -1,7 +1,97 @@
 # Lời thoại Tình huống: Quy tắc đổ rác
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 11
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-8-12.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Tìm hiểu quy tắc cư xử của cư dân
+## scene-1.mp4
+# Hỏi cách phân loại rác
+00:09 | 鈴木 / Suzuki / Suzuki | どうしましたか。 | Doo shimashita ka. | Có chuyện gì vậy?
+00:10 | アンジェラ / Anjera / Angela | あ、鈴木さん、おはようございます。 | A, Suzuki-san, ohayoo gozaimasu. | À, chị Suzuki, chào buổi sáng.
+00:13 | 鈴木 / Suzuki / Suzuki | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng.
+*00:14 | アンジェラ / Anjera / Angela | 鈴木さん、これ、捨てたいです。これで大丈夫ですか。 | Suzuki-san, kore, sutetai desu. Kore de daijoobu desu ka. | Chị Suzuki ơi, em muốn vứt cái này. Thế này có được không ạ?
+00:23 | 鈴木 / Suzuki / Suzuki | あー、ダメダメ。ちょっと待って。 | Aa, dame dame. Chotto matte. | Ấy, không được đâu. Đợi chút.
+*00:42 | 鈴木 / Suzuki / Suzuki | 紙は燃やすごみ。 | Kami wa moyasu gomi. | Giấy là rác đốt được.
+*00:46 | 鈴木 / Suzuki / Suzuki | これは燃やさないごみ。 | Kore wa moyasanai gomi. | Cái này là rác không đốt được.
+01:11 | アンジェラ / Anjera / Angela | 鈴木さん、ありがとうございました。助かりました。 | Suzuki-san, arigatoo gozaimashita. Tasukarimashita. | Cảm ơn chị Suzuki. Chị giúp em nhiều quá.
+01:15 | 鈴木 / Suzuki / Suzuki | いえいえ、どういたしまして。またいつでも聞いてくださいね。 | Ie ie, doo itashimashite. Mata itsu demo kiite kudasai ne. | Không có gì đâu. Lúc nào cần cứ hỏi nhé.
+01:19 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+### từ vựng
+捨てます | すてます | sutemasu | vứt bỏ
+大丈夫 | だいじょうぶ | daijoobu | ổn, không sao
+ダメ | ダメ | dame | không được
+燃やすごみ | もやすごみ | moyasu gomi | rác đốt được
+燃やさないごみ | もやさないごみ | moyasanai gomi | rác không đốt được
+助かりました | たすかりました | tasukarimashita | (bạn) đã giúp tôi nhiều
+
+## scene-2.mp4
+# Hiểu biển cấm xả rác
+00:01 | 鈴木 / Suzuki / Suzuki | どうしたんですか。 | Doo shitan desu ka. | Có chuyện gì thế?
+*00:03 | アンジェラ / Anjera / Angela | これは何ですか。 | Kore wa nan desu ka. | Cái này là gì ạ?
+00:07 | 鈴木 / Suzuki / Suzuki | ああ、ポイ捨て禁止ですよ。 | Aa, poisute kinshi desu yo. | À, là "cấm vứt rác bừa bãi" đấy.
+00:11 | アンジェラ / Anjera / Angela | ポイ…何ですか。 | Poi… nan desu ka. | "Poi…" là gì ạ?
+00:15 | 鈴木 / Suzuki / Suzuki | 意味は、「ごみを捨てないでください」です。 | Imi wa, "gomi o sutenaide kudasai" desu. | Nghĩa là "Đừng vứt rác".
+*00:21 | アンジェラ / Anjera / Angela | なるほど。私たちも気をつけましょう。 | Naruhodo. Watashitachi mo ki o tsukemashoo. | Ra vậy. Chúng ta cũng cùng chú ý nhé.
+00:26 | 鈴木 / Suzuki / Suzuki | そうですね。 | Soo desu ne. | Ừ nhỉ.
+00:28 | 鈴木 / Suzuki / Suzuki | 歩きタバコもダメですよ。 | Aruki-tabako mo dame desu yo. | Vừa đi vừa hút thuốc cũng bị cấm đấy.
+*00:31 | アンジェラ / Anjera / Angela | 歩きタバコ…？歩きタバコはどういう意味ですか。 | Aruki-tabako…? Aruki-tabako wa doo yuu imi desu ka. | "Aruki-tabako"…? "Aruki-tabako" nghĩa là gì ạ?
+00:37 | 鈴木 / Suzuki / Suzuki | 歩きながらタバコを吸います、という意味です。 | Arukinagara tabako o suimasu, to iu imi desu. | Nghĩa là vừa đi vừa hút thuốc.
+00:41 | アンジェラ / Anjera / Angela | ああ、嫌ですよね。 | Aa, iya desu yo ne. | À, khó chịu thật nhỉ.
+00:44 | 鈴木 / Suzuki / Suzuki | そうですね。 | Soo desu ne. | Đúng vậy.
+### từ vựng
+ポイ捨て | ポイすて | poisute | vứt rác bừa bãi
+禁止 | きんし | kinshi | cấm
+意味 | いみ | imi | ý nghĩa
+気をつけます | きをつけます | ki o tsukemasu | chú ý, cẩn thận
+歩きタバコ | あるきタバコ | aruki-tabako | vừa đi vừa hút thuốc
+
+## scene-3.mp4
+# Hỏi cách vứt rác cỡ lớn
+00:03 | アンジェラ / Anjera / Angela | 鈴木さん。 | Suzuki-san. | Chị Suzuki ơi.
+00:11 | 鈴木 / Suzuki / Suzuki | アンジェラさん、こんにちは。 | Anjera-san, konnichiwa. | Chào Angela.
+00:14 | アンジェラ / Anjera / Angela | すみません、今ちょっといいですか。 | Sumimasen, ima chotto ii desu ka. | Xin lỗi, bây giờ chị rảnh một chút không ạ?
+00:17 | 鈴木 / Suzuki / Suzuki | はい。どうしましたか。 | Hai. Doo shimashita ka. | Ừ. Có chuyện gì vậy?
+*00:19 | アンジェラ / Anjera / Angela | 椅子が壊れました。どうやって捨てますか。 | Isu ga kowaremashita. Doo yatte sutemasu ka. | Cái ghế bị hỏng rồi. Vứt nó thế nào ạ?
+00:24 | 鈴木 / Suzuki / Suzuki | あー、粗大ごみですね。 | Aa, sodai-gomi desu ne. | À, là rác cỡ lớn nhỉ.
+00:27 | アンジェラ / Anjera / Angela | 粗大ごみ？ | Sodai-gomi? | Rác cỡ lớn ạ?
+00:29 | 鈴木 / Suzuki / Suzuki | 大きいごみです。 | Ookii gomi desu. | Là rác to đấy.
+*00:32 | アンジェラ / Anjera / Angela | 粗大ごみは、どこに捨てますか。 | Sodai-gomi wa, doko ni sutemasu ka. | Rác cỡ lớn thì vứt ở đâu ạ?
+00:36 | 鈴木 / Suzuki / Suzuki | アパートのごみ置き場には捨てることができませんよ。 | Apaato no gomi-okiba ni wa suteru koto ga dekimasen yo. | Không được vứt ở chỗ đổ rác của chung cư đâu.
+00:40 | 鈴木 / Suzuki / Suzuki | 電話かインターネットで申し込みをします。 | Denwa ka intaanetto de mooshikomi o shimasu. | Phải đăng ký qua điện thoại hoặc internet.
+00:44 | アンジェラ / Anjera / Angela | そうですか… | Soo desu ka… | Vậy ạ…
+00:46 | 鈴木 / Suzuki / Suzuki | 私が電話しましょうか。 | Watashi ga denwa shimashoo ka. | Để chị gọi giúp nhé?
+00:48 | アンジェラ / Anjera / Angela | はい、お願いします。 | Hai, onegaishimasu. | Vâng, nhờ chị ạ.
+00:51 | 鈴木 / Suzuki / Suzuki | お金がかかりますけど、大丈夫ですか。 | Okane ga kakarimasu kedo, daijoobu desu ka. | Sẽ mất tiền đấy, em có ổn không?
+*00:54 | アンジェラ / Anjera / Angela | いくらぐらいかかりますか。高いですか。 | Ikura gurai kakarimasu ka. Takai desu ka. | Mất khoảng bao nhiêu ạ? Có đắt không ạ?
+00:59 | 鈴木 / Suzuki / Suzuki | ちょっとわかりませんから、聞きますね。 | Chotto wakarimasen kara, kikimasu ne. | Chị cũng không rõ, để chị hỏi nhé.
+### từ vựng
+椅子 | いす | isu | cái ghế
+壊れました | こわれました | kowaremashita | bị hỏng
+粗大ごみ | そだいごみ | sodai-gomi | rác cỡ lớn
+ごみ置き場 | ごみおきば | gomi-okiba | chỗ đổ rác
+申し込み | もうしこみ | mooshikomi | đăng ký
+お金がかかります | おかねがかかります | okane ga kakarimasu | mất tiền
+
+## summary.mp4
+# Ôn tập: Quy tắc sinh hoạt khu dân cư
+00:00 |  /  / Chủ đề | どうやって | doo yatte | Làm thế nào
+00:07 | ナレーター / Nareetaa / Người dẫn | 「どうやって」は、方法を知りたいときに使います。 | "Doo yatte" wa, hoohoo o shiritai toki ni tsukaimasu. | "Doo yatte" dùng khi muốn biết cách làm.
+*00:14 | アンジェラ / Anjera / Angela | 椅子が壊れました。どうやって捨てますか。 | Isu ga kowaremashita. Doo yatte sutemasu ka. | Cái ghế bị hỏng rồi. Vứt nó thế nào ạ?
+00:18 | ナレーター / Nareetaa / Người dẫn | この動画で、アンジェラさんは椅子などの大きなごみの捨て方がわからなかったので、「どうやって捨てますか」と聞きました。 | Kono dooga de, Anjera-san wa isu nado no ookina gomi no sutekata ga wakaranakatta node, "Doo yatte sutemasu ka" to kikimashita. | Trong video, chị Angela không biết cách vứt rác cỡ lớn như ghế nên đã hỏi "Vứt nó thế nào ạ?".
+00:34 | ナレーター / Nareetaa / Người dẫn | 「どうやって＋動詞のます形＋か」の形で使います。 | "Doo yatte + dooshi no masu-kee + ka" no katachi de tsukaimasu. | Dùng theo mẫu "doo yatte + động từ thể masu + ka".
+00:45 | ナレーター / Nareetaa / Người dẫn | 他にも、漢字の書き方がわからないとき「どうやって書きますか」と聞いたり、 | Hoka ni mo, kanji no kakikata ga wakaranai toki "Doo yatte kakimasu ka" to kiitari, | Ngoài ra, khi không biết cách viết chữ Hán thì hỏi "Viết thế nào ạ?",
+00:55 | ナレーター / Nareetaa / Người dẫn | 使い方がわからないとき「どうやって使いますか」と聞いたり、 | tsukaikata ga wakaranai toki "Doo yatte tsukaimasu ka" to kiitari, | khi không biết cách dùng thì hỏi "Dùng thế nào ạ?",
+01:04 | ナレーター / Nareetaa / Người dẫn | 行き方がわからないとき「どうやって行きますか」と聞くこともできます。 | ikikata ga wakaranai toki "Doo yatte ikimasu ka" to kiku koto mo dekimasu. | khi không biết đường thì có thể hỏi "Đi thế nào ạ?".
+01:13 |  /  / Chủ đề | どういう いみですか | doo yuu imi desu ka | Nghĩa là gì ạ?
+01:20 | ナレーター / Nareetaa / Người dẫn | 「どういう意味ですか」は、言葉の意味を聞きたいときに使います。 | "Doo yuu imi desu ka" wa, kotoba no imi o kikitai toki ni tsukaimasu. | "Doo yuu imi desu ka" dùng khi muốn hỏi nghĩa của từ.
+01:28 | 鈴木 / Suzuki / Suzuki | 歩きタバコもダメですよ。 | Aruki-tabako mo dame desu yo. | Vừa đi vừa hút thuốc cũng bị cấm đấy.
+*01:30 | アンジェラ / Anjera / Angela | 歩きタバコはどういう意味ですか。 | Aruki-tabako wa doo yuu imi desu ka. | "Aruki-tabako" nghĩa là gì ạ?
+01:35 | ナレーター / Nareetaa / Người dẫn | この動画で、アンジェラさんは「歩きタバコ」の意味がわからなかったので、「歩きタバコはどういう意味ですか」と聞きました。 | Kono dooga de, Anjera-san wa "aruki-tabako" no imi ga wakaranakatta node, "Aruki-tabako wa doo yuu imi desu ka" to kikimashita. | Trong video, chị Angela không hiểu "aruki-tabako" nên đã hỏi "Aruki-tabako nghĩa là gì ạ?".
+01:49 | ナレーター / Nareetaa / Người dẫn | 答えるときは、「文＋という意味です」の形で答えます。 | Kotaeru toki wa, "bun + to iu imi desu" no katachi de kotaemasu. | Khi trả lời thì dùng mẫu "câu + to iu imi desu" (nghĩa là …).
+02:00 | ナレーター / Nareetaa / Người dẫn | この動画では、「歩きながらタバコを吸います、という意味です」と答えています。 | Kono dooga de wa, "Arukinagara tabako o suimasu, to iu imi desu" to kotaete imasu. | Trong video, câu trả lời là "Nghĩa là vừa đi vừa hút thuốc".
+02:11 | ナレーター / Nareetaa / Người dẫn | 「これはどういう意味ですか」と指を指しながら聞けば、その文字が読めなくても意味を知ることができます。 | "Kore wa doo yuu imi desu ka" to yubi o sashinagara kikeba, sono moji ga yomenakute mo imi o shiru koto ga dekimasu. | Nếu vừa chỉ tay vừa hỏi "Cái này nghĩa là gì?" thì dù không đọc được chữ vẫn biết được nghĩa.
+*02:25 |  /  / Chủ đề | きを つけましょう | ki o tsukemashoo | Chúng ta cùng chú ý nhé
+02:32 | ナレーター / Nareetaa / Người dẫn | 「気をつけましょう」は、動詞のます形の「ます」を「ましょう」に変えた形です。 | "Ki o tsukemashoo" wa, dooshi no masu-kee no "masu" o "mashoo" ni kaeta katachi desu. | "Ki o tsukemashoo" là dạng đổi "masu" ở thể masu thành "mashoo".
+02:42 | ナレーター / Nareetaa / Người dẫn | これは、話し手が聞き手に一緒にそのようにすることを呼びかけるときに使います。 | Kore wa, hanashite ga kikite ni issho ni sono yoo ni suru koto o yobikakeru toki ni tsukaimasu. | Dạng này dùng khi người nói rủ người nghe cùng làm việc gì đó.
+02:53 | ナレーター / Nareetaa / Người dẫn | この動画で、アンジェラさんはマナーについてのポスターを見て、住民としてのマナーは大切だと思いました。 | Kono dooga de, Anjera-san wa manaa ni tsuite no posutaa o mite, juumin to shite no manaa wa taisetsu da to omoimashita. | Trong video, chị Angela nhìn tấm áp phích về quy tắc ứng xử và nghĩ rằng ý thức của cư dân là quan trọng.
+03:07 | ナレーター / Nareetaa / Người dẫn | それで、鈴木さんにも一緒に気をつけることを呼びかけました。 | Sorede, Suzuki-san ni mo issho ni ki o tsukeru koto o yobikakemashita. | Vì vậy chị ấy rủ chị Suzuki cùng chú ý.
+03:16 | ナレーター / Nareetaa / Người dẫn | 他に、「急ぎましょう」や「頑張りましょう」などと使うことができます。 | Hoka ni, "Isogimashoo" ya "Ganbarimashoo" nado to tsukau koto ga dekimasu. | Ngoài ra có thể dùng như "Isogimashoo" (Nhanh lên nào), "Ganbarimashoo" (Cùng cố gắng nào).

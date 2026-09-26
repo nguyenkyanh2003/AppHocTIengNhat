@@ -4,10 +4,960 @@
   },
   "videos": [
     {
-      "title": "Sử dụng ngân hàng",
-      "url": "/uploads/lesson-videos/n5-10-bank/video-1.mp4",
+      "title": "Mở tài khoản ngân hàng",
+      "description": "Nói được mình muốn mở tài khoản và hỏi lại khi không hiểu cách điền đơn.",
+      "url": "/uploads/lesson-videos/n5-10-bank/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "いらっしゃいませ。今日はどのようなご用件でしょうか。",
+          "romaji": "Irasshaimase. Kyoo wa dono yoo na goyooken deshoo ka.",
+          "text_vi": "Xin chào quý khách. Hôm nay quý khách cần gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、口座を作りたいです。",
+          "romaji": "Ano, kooza o tsukuritai desu.",
+          "text_vi": "Dạ, tôi muốn mở tài khoản.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "はい。こちらへどうぞ。",
+          "romaji": "Hai. Kochira e doozo.",
+          "text_vi": "Vâng. Mời quý khách đi lối này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "では、こちらの用紙にご記入ください。",
+          "romaji": "Dewa, kochira no yooshi ni gokinyuu kudasai.",
+          "text_vi": "Vậy quý khách điền vào tờ đơn này nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "今日は、ご印鑑とご本人様を確認できるものをお持ちですか。",
+          "romaji": "Kyoo wa, goinkan to gohoninsama o kakunin dekiru mono o omochi desu ka.",
+          "text_vi": "Hôm nay quý khách có mang con dấu và giấy tờ xác nhận nhân thân không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "えっと、はんこですね。あと、在留カードを持っています。",
+          "romaji": "Etto, hanko desu ne. Ato, zairyuu-kaado o motte imasu.",
+          "text_vi": "Ừm, con dấu thì có ạ. Tôi còn có thẻ cư trú.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "では、この番号でお呼びしますので、しばらくお待ちください。",
+          "romaji": "Dewa, kono bangoo de oyobi shimasu node, shibaraku omachi kudasai.",
+          "text_vi": "Vậy chúng tôi sẽ gọi theo số này, xin quý khách chờ một lát.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません。よくわからないんですけど…",
+          "romaji": "Sumimasen. Yoku wakaranain desu kedo…",
+          "text_vi": "Xin lỗi, tôi không hiểu lắm…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ここは名前ですか。",
+          "romaji": "Koko wa namae desu ka.",
+          "text_vi": "Chỗ này là tên ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "はい、そうです。ここは名字です。",
+          "romaji": "Hai, soo desu. Koko wa myooji desu.",
+          "text_vi": "Vâng, đúng rồi. Chỗ này là họ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "では、こちらでお待ちください。",
+          "romaji": "Dewa, kochira de omachi kudasai.",
+          "text_vi": "Vậy quý khách chờ ở đây nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "23番のお客様。23番のお客様。",
+          "romaji": "Nijuusan-ban no okyakusama. Nijuusan-ban no okyakusama.",
+          "text_vi": "Quý khách số 23. Quý khách số 23.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。これでいいですか。",
+          "romaji": "Hai. Kore de ii desu ka.",
+          "text_vi": "Vâng. Thế này được chưa ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "はい、結構です。",
+          "romaji": "Hai, kekkoo desu.",
+          "text_vi": "Vâng, được rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "では、こちらにご印鑑をお願いします。",
+          "romaji": "Dewa, kochira ni goinkan o onegaishimasu.",
+          "text_vi": "Vậy xin quý khách đóng dấu vào đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "在留カードをお持ちですか。",
+          "romaji": "Zairyuu-kaado o omochi desu ka.",
+          "text_vi": "Quý khách có mang thẻ cư trú không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、これです。",
+          "romaji": "Hai, kore desu.",
+          "text_vi": "Vâng, đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:54",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "はい。では、おかけになってお待ちください。",
+          "romaji": "Hai. Dewa, okake ni natte omachi kudasai.",
+          "text_vi": "Vâng. Vậy mời quý khách ngồi đợi.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "口座",
+          "reading": "こうざ",
+          "romaji": "kooza",
+          "meaning": "tài khoản"
+        },
+        {
+          "word": "作ります",
+          "reading": "つくります",
+          "romaji": "tsukurimasu",
+          "meaning": "làm, lập"
+        },
+        {
+          "word": "用紙",
+          "reading": "ようし",
+          "romaji": "yooshi",
+          "meaning": "tờ đơn"
+        },
+        {
+          "word": "記入",
+          "reading": "きにゅう",
+          "romaji": "kinyuu",
+          "meaning": "điền (thông tin)"
+        },
+        {
+          "word": "印鑑",
+          "reading": "いんかん",
+          "romaji": "inkan",
+          "meaning": "con dấu"
+        },
+        {
+          "word": "在留カード",
+          "reading": "ざいりゅうカード",
+          "romaji": "zairyuu-kaado",
+          "meaning": "thẻ cư trú"
+        },
+        {
+          "word": "名字",
+          "reading": "みょうじ",
+          "romaji": "myooji",
+          "meaning": "họ"
+        }
+      ]
+    },
+    {
+      "title": "Gửi tiết kiệm hằng tháng",
+      "description": "Nói được mình muốn gửi tiết kiệm hằng tháng và số tiền mong muốn.",
+      "url": "/uploads/lesson-videos/n5-10-bank/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:06",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "今日はどんなご用件でしょうか。",
+          "romaji": "Kyoo wa donna goyooken deshoo ka.",
+          "text_vi": "Hôm nay quý khách cần gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。毎月お金を預けたいです。",
+          "romaji": "Hai. Maitsuki okane o azuketai desu.",
+          "text_vi": "Vâng. Tôi muốn gửi tiền hằng tháng.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "ああ、積立定期ですね。",
+          "romaji": "Aa, tsumitate-teeki desu ne.",
+          "text_vi": "À, tiết kiệm tích lũy định kỳ phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "どうぞ。こちらの番号でお待ちください。",
+          "romaji": "Doozo. Kochira no bangoo de omachi kudasai.",
+          "text_vi": "Mời quý khách. Xin chờ theo số này ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "13番のお客様。",
+          "romaji": "Juusan-ban no okyakusama.",
+          "text_vi": "Quý khách số 13.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "お待たせいたしました。どうぞ、おかけください。",
+          "romaji": "Omatase itashimashita. Doozo, okake kudasai.",
+          "text_vi": "Để quý khách đợi lâu. Mời ngồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "お客様、積立定期のお申し込みでよろしいでしょうか。",
+          "romaji": "Okyakusama, tsumitate-teeki no omooshikomi de yoroshii deshoo ka.",
+          "text_vi": "Thưa quý khách, quý khách đăng ký tiết kiệm tích lũy định kỳ phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "毎月いくらぐらい積み立てますか。",
+          "romaji": "Maitsuki ikura gurai tsumitatemasu ka.",
+          "text_vi": "Mỗi tháng quý khách muốn tích lũy khoảng bao nhiêu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "5,000円でお願いします。",
+          "romaji": "Gosen-en de onegaishimasu.",
+          "text_vi": "Cho tôi 5.000 yên.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "はい、5,000円ですね。かしこまりました。",
+          "romaji": "Hai, gosen-en desu ne. Kashikomarimashita.",
+          "text_vi": "Vâng, 5.000 yên ạ. Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "通帳もいりますか。",
+          "romaji": "Tsuuchoo mo irimasu ka.",
+          "text_vi": "Có cần cả sổ ngân hàng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "はい、お預かりします。",
+          "romaji": "Hai, oazukari shimasu.",
+          "text_vi": "Vâng, tôi xin giữ ạ.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "毎月",
+          "reading": "まいつき",
+          "romaji": "maitsuki",
+          "meaning": "hằng tháng"
+        },
+        {
+          "word": "預けます",
+          "reading": "あずけます",
+          "romaji": "azukemasu",
+          "meaning": "gửi (tiền)"
+        },
+        {
+          "word": "積立定期",
+          "reading": "つみたていてき",
+          "romaji": "tsumitate-teeki",
+          "meaning": "tiết kiệm tích lũy định kỳ"
+        },
+        {
+          "word": "申し込み",
+          "reading": "もうしこみ",
+          "romaji": "mooshikomi",
+          "meaning": "đăng ký"
+        },
+        {
+          "word": "通帳",
+          "reading": "つうちょう",
+          "romaji": "tsuuchoo",
+          "meaning": "sổ ngân hàng"
+        }
+      ]
+    },
+    {
+      "title": "Làm thẻ tín dụng",
+      "description": "Nói được mình muốn làm thẻ tín dụng, chọn loại thẻ và hỏi cách điền đơn.",
+      "url": "/uploads/lesson-videos/n5-10-bank/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、クレジットカードを作りたいです。",
+          "romaji": "Ano, kurejitto-kaado o tsukuritai desu.",
+          "text_vi": "Dạ, tôi muốn làm thẻ tín dụng.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "かしこまりました。",
+          "romaji": "Kashikomarimashita.",
+          "text_vi": "Vâng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "キャッシュカードとクレジットカードの一体型になさいますか。",
+          "romaji": "Kyasshu-kaado to kurejitto-kaado no ittaigata ni nasaimasu ka.",
+          "text_vi": "Quý khách có muốn làm loại thẻ gộp thẻ rút tiền và thẻ tín dụng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "一体型は何ですか。",
+          "romaji": "Ittaigata wa nan desu ka.",
+          "text_vi": "Loại gộp là gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "キャッシュカードとクレジットカードが1枚のカードです。",
+          "romaji": "Kyasshu-kaado to kurejitto-kaado ga ichimai no kaado desu.",
+          "text_vi": "Là thẻ rút tiền và thẻ tín dụng gộp trong một thẻ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "別々に作ることもできます。",
+          "romaji": "Betsubetsu ni tsukuru koto mo dekimasu.",
+          "text_vi": "Cũng có thể làm riêng từng thẻ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、こっちがいいです。",
+          "romaji": "Aa, kocchi ga ii desu.",
+          "text_vi": "À, tôi chọn cái này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "かしこまりました。では、こちらの用紙にご記入ください。",
+          "romaji": "Kashikomarimashita. Dewa, kochira no yooshi ni gokinyuu kudasai.",
+          "text_vi": "Vâng ạ. Vậy quý khách điền vào tờ đơn này nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、ここは何を書きますか。",
+          "romaji": "Sumimasen, koko wa nani o kakimasu ka.",
+          "text_vi": "Xin lỗi, chỗ này viết gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "そこは年収です。",
+          "romaji": "Soko wa nenshuu desu.",
+          "text_vi": "Chỗ đó là thu nhập một năm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "1年間の給料を書いてください。",
+          "romaji": "Ichinenkan no kyuuryoo o kaite kudasai.",
+          "text_vi": "Quý khách viết tiền lương một năm.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "大体でいいですよ。",
+          "romaji": "Daitai de ii desu yo.",
+          "text_vi": "Ước chừng cũng được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これでいいですか。",
+          "romaji": "Kore de ii desu ka.",
+          "text_vi": "Thế này được chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "はい、結構です。",
+          "romaji": "Hai, kekkoo desu.",
+          "text_vi": "Vâng, được rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "では、カードは3週間くらい後に、こちらのご住所に郵送します。",
+          "romaji": "Dewa, kaado wa sanshuukan kurai ato ni, kochira no gojuusho ni yuusoo shimasu.",
+          "text_vi": "Khoảng 3 tuần sau, chúng tôi sẽ gửi thẻ qua bưu điện đến địa chỉ này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "えーと、3週間ですね。わかりました。",
+          "romaji": "Eeto, sanshuukan desu ne. Wakarimashita.",
+          "text_vi": "Ừm, 3 tuần nhỉ. Tôi hiểu rồi.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "クレジットカード",
+          "reading": "クレジットカード",
+          "romaji": "kurejitto-kaado",
+          "meaning": "thẻ tín dụng"
+        },
+        {
+          "word": "キャッシュカード",
+          "reading": "キャッシュカード",
+          "romaji": "kyasshu-kaado",
+          "meaning": "thẻ rút tiền"
+        },
+        {
+          "word": "一体型",
+          "reading": "いったいがた",
+          "romaji": "ittaigata",
+          "meaning": "loại gộp (một thẻ)"
+        },
+        {
+          "word": "年収",
+          "reading": "ねんしゅう",
+          "romaji": "nenshuu",
+          "meaning": "thu nhập một năm"
+        },
+        {
+          "word": "給料",
+          "reading": "きゅうりょう",
+          "romaji": "kyuuryoo",
+          "meaning": "tiền lương"
+        },
+        {
+          "word": "大体",
+          "reading": "だいたい",
+          "romaji": "daitai",
+          "meaning": "khoảng, đại khái"
+        },
+        {
+          "word": "郵送",
+          "reading": "ゆうそう",
+          "romaji": "yuusoo",
+          "meaning": "gửi qua bưu điện"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Dùng dịch vụ ngân hàng",
+      "description": "Ôn lại「これでいいですか」,「こっちがいいです」và「〜でお願いします」.",
+      "url": "/uploads/lesson-videos/n5-10-bank/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "これで いいですか",
+          "romaji": "kore de ii desu ka",
+          "text_vi": "Thế này được chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これでいいですか。",
+          "romaji": "Kore de ii desu ka.",
+          "text_vi": "Thế này được chưa ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "はい、結構です。",
+          "romaji": "Hai, kekkoo desu.",
+          "text_vi": "Vâng, được rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「これでいいですか」は、「これ」が指すものが相手の求めているものと合っているかどうかを確認する表現です。",
+          "romaji": "\"Kore de ii desu ka\" wa, \"kore\" ga sasu mono ga aite no motomete iru mono to atte iru ka doo ka o kakunin suru hyoogen desu.",
+          "text_vi": "\"Kore de ii desu ka\" là cách nói để xác nhận thứ mình đưa ra có đúng với điều người kia yêu cầu không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ここでは、銀行口座を作るためにアンジェラさんが用紙に記入しましたが、誤りがないか、受け取ってもらえるかどうかを聞いています。",
+          "romaji": "Koko de wa, ginkoo-kooza o tsukuru tame ni Anjera-san ga yooshi ni kinyuu shimashita ga, ayamari ga nai ka, uketotte moraeru ka doo ka o kiite imasu.",
+          "text_vi": "Ở đây, chị Angela điền vào tờ đơn để mở tài khoản ngân hàng và hỏi xem có sai sót gì không, có được nhận không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "カードが使えるかどうかわからない店で「カードでいいですか」と聞いたり、",
+          "romaji": "Kaado ga tsukaeru ka doo ka wakaranai mise de \"Kaado de ii desu ka\" to kiitari,",
+          "text_vi": "Ở cửa hàng không biết có dùng được thẻ không thì hỏi \"Trả bằng thẻ được không?\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "申込書に漢字で住所が書けないときに「ひらがなでいいですか」と聞いたりするように、",
+          "romaji": "Mooshikomisho ni kanji de juusho ga kakenai toki ni \"Hiragana de ii desu ka\" to kiitari suru yoo ni,",
+          "text_vi": "hay khi không viết được địa chỉ bằng chữ Hán trên đơn thì hỏi \"Viết bằng hiragana được không?\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "具体的なものや手段などを入れて、それが相手に受け入れられるかどうかを確認することもできます。",
+          "romaji": "gutaiteki na mono ya shudan nado o irete, sore ga aite ni ukeirerareru ka doo ka o kakunin suru koto mo dekimasu.",
+          "text_vi": "tức là đưa vào một thứ hay cách làm cụ thể để xác nhận người kia có chấp nhận không.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、「これでいいですか」に対して、銀行の人が「はい、結構です」と丁寧に答えていますが、",
+          "romaji": "Kono dooga de wa, \"Kore de ii desu ka\" ni taishite, ginkoo no hito ga \"Hai, kekkoo desu\" to teenee ni kotaete imasu ga,",
+          "text_vi": "Trong video, nhân viên ngân hàng trả lời lịch sự \"Vâng, được rồi ạ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ええ、いいですよ」のように答えることもできます。",
+          "romaji": "\"Ee, ii desu yo\" no yoo ni kotaeru koto mo dekimasu.",
+          "text_vi": "cũng có thể trả lời \"Ừ, được chứ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "こっちが いいです",
+          "romaji": "kocchi ga ii desu",
+          "text_vi": "Tôi chọn cái này",
+          "key_phrase": true
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「こっち」は「こちら」のカジュアルな言い方です。",
+          "romaji": "\"Kocchi\" wa \"kochira\" no kajuaru na iikata desu.",
+          "text_vi": "\"Kocchi\" là cách nói thân mật của \"kochira\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "同じように、「そちら」は「そっち」、「あちら」は「あっち」と言い換えられます。",
+          "romaji": "Onaji yoo ni, \"sochira\" wa \"socchi\", \"achira\" wa \"acchi\" to iikaeraremasu.",
+          "text_vi": "Tương tự, \"sochira\" thành \"socchi\", \"achira\" thành \"acchi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「こっち」「そっち」「あっち」は、基本的に話している人から見た方向を指すときに使われます。",
+          "romaji": "\"Kocchi\", \"socchi\", \"acchi\" wa, kihonteki ni hanashite iru hito kara mita hookoo o sasu toki ni tsukawaremasu.",
+          "text_vi": "\"Kocchi\", \"socchi\", \"acchi\" về cơ bản dùng để chỉ hướng nhìn từ phía người nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、地図を見て迷っている人に「あっちですよ」と正しい方向を教えたり、",
+          "romaji": "Tatoeba, chizu o mite mayotte iru hito ni \"Acchi desu yo\" to tadashii hookoo o oshietari,",
+          "text_vi": "Ví dụ, chỉ đúng hướng cho người đang cầm bản đồ bị lạc: \"Ở đằng kia đấy\",",
+          "key_phrase": false
+        },
+        {
+          "start": "02:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "トイレを探している人に「こっちですよ」と示したり、",
+          "romaji": "toire o sagashite iru hito ni \"Kocchi desu yo\" to shimeshitari,",
+          "text_vi": "chỉ cho người đang tìm nhà vệ sinh: \"Ở đằng này đấy\",",
+          "key_phrase": false
+        },
+        {
+          "start": "02:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "同僚を探している人に「そっちに行きましたよ」と教えたりします。",
+          "romaji": "dooryoo o sagashite iru hito ni \"Socchi ni ikimashita yo\" to oshietari shimasu.",
+          "text_vi": "hay nói với người đang tìm đồng nghiệp: \"Anh ấy đi về phía đó rồi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ここでは、アンジェラさんは2種類のクレジットカードの見本を前にして、自分が欲しいカードの方を指して「こっちがいいです」と答えています。",
+          "romaji": "Koko de wa, Anjera-san wa nishurui no kurejitto-kaado no mihon o mae ni shite, jibun ga hoshii kaado no hoo o sashite \"Kocchi ga ii desu\" to kotaete imasu.",
+          "text_vi": "Ở đây, trước hai mẫu thẻ tín dụng, chị Angela chỉ vào thẻ mình muốn và nói \"Tôi chọn cái này\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このように、2つのものから1つを選ぶときにも使われます。",
+          "romaji": "Kono yoo ni, futatsu no mono kara hitotsu o erabu toki ni mo tsukawaremasu.",
+          "text_vi": "Như vậy, cách nói này cũng dùng khi chọn 1 trong 2 thứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "質問するときには、「どっちがいいですか」「どちらがいいですか」のように聞きます。",
+          "romaji": "Shitsumon suru toki ni wa, \"Docchi ga ii desu ka\", \"Dochira ga ii desu ka\" no yoo ni kikimasu.",
+          "text_vi": "Khi hỏi thì nói \"Docchi ga ii desu ka\", \"Dochira ga ii desu ka\" (Bạn chọn cái nào?).",
+          "key_phrase": false
+        },
+        {
+          "start": "03:25",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "5000えんで おねがいします",
+          "romaji": "5000 en de onegaishimasu",
+          "text_vi": "Cho tôi 5.000 yên",
+          "key_phrase": false
+        },
+        {
+          "start": "03:31",
+          "speaker_ja": "行員",
+          "speaker_romaji": "Kooin",
+          "speaker_vi": "Nhân viên ngân hàng",
+          "text_ja": "毎月いくらぐらい積み立てますか。",
+          "romaji": "Maitsuki ikura gurai tsumitatemasu ka.",
+          "text_vi": "Mỗi tháng quý khách muốn tích lũy khoảng bao nhiêu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:34",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "5,000円でお願いします。",
+          "romaji": "Gosen-en de onegaishimasu.",
+          "text_vi": "Cho tôi 5.000 yên.",
+          "key_phrase": true
+        },
+        {
+          "start": "03:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「名詞＋でお願いします」は、何かを依頼するときの希望の範囲や手段などを言うときによく使われる表現です。",
+          "romaji": "\"Meeshi + de onegaishimasu\" wa, nanika o irai suru toki no kiboo no han'i ya shudan nado o iu toki ni yoku tsukawareru hyoogen desu.",
+          "text_vi": "\"Danh từ + de onegaishimasu\" là cách nói hay dùng khi nhờ việc gì đó và nêu mức hay cách thức mình mong muốn.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ここでは、1か月の積み立ての金額を聞かれたアンジェラさんが、「5,000円で」と希望の金額を指定して依頼しています。",
+          "romaji": "Koko de wa, ikkagetsu no tsumitate no kingaku o kikareta Anjera-san ga, \"gosen-en de\" to kiboo no kingaku o shitee shite irai shite imasu.",
+          "text_vi": "Ở đây, khi được hỏi số tiền tích lũy mỗi tháng, chị Angela nêu số tiền mình muốn: \"5.000 yên\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "買い物のときに支払いを現金にするかカードにするかと聞かれて「カードでお願いします」と答えたり、",
+          "romaji": "Kaimono no toki ni shiharai o genkin ni suru ka kaado ni suru ka to kikarete \"Kaado de onegaishimasu\" to kotaetari,",
+          "text_vi": "Ví dụ khi mua sắm, được hỏi trả tiền mặt hay thẻ thì trả lời \"Cho tôi trả bằng thẻ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "04:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ランチのドリンクをどれにするかを聞かれて「コーヒーでお願いします」と言うように、",
+          "romaji": "ranchi no dorinku o dore ni suru ka o kikarete \"Koohii de onegaishimasu\" to iu yoo ni,",
+          "text_vi": "hay được hỏi chọn đồ uống kèm bữa trưa thì nói \"Cho tôi cà phê\",",
+          "key_phrase": false
+        },
+        {
+          "start": "04:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "いくつかの選択肢があって、その中から自分の希望に合ったものを1つ選ぶときによく使われます。",
+          "romaji": "ikutsuka no sentakushi ga atte, sono naka kara jibun no kiboo ni atta mono o hitotsu erabu toki ni yoku tsukawaremasu.",
+          "text_vi": "tức là hay dùng khi có nhiều lựa chọn và chọn ra một thứ hợp ý mình.",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

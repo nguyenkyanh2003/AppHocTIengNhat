@@ -1,7 +1,98 @@
 # Lời thoại Tình huống: Đi siêu thị
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 2
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-2-7.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Mua những vật dụng quen thuộc
+## scene-1.mp4
+# Hỏi món hàng nằm ở đâu
+00:05 | アンジェラ / Anjera / Angela | すみません。 | Sumimasen. | Xin lỗi, cho tôi hỏi.
+00:06 | 店員 / Ten'in / Nhân viên | はい。 | Hai. | Vâng.
+*00:07 | アンジェラ / Anjera / Angela | 牛乳はどこですか。 | Gyuunyuu wa doko desu ka. | Sữa ở đâu ạ?
+00:09 | 店員 / Ten'in / Nhân viên | 牛乳ですね。 | Gyuunyuu desu ne. | Sữa phải không ạ?
+*00:11 | 店員 / Ten'in / Nhân viên | こちらです。 | Kochira desu. | Ở phía này ạ.
+00:13 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:17 | 店員 / Ten'in / Nhân viên | こちらです。 | Kochira desu. | Đây ạ.
+00:18 | アンジェラ / Anjera / Angela | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+00:20 | 店員 / Ten'in / Nhân viên | いいえ、どういたしまして。 | Iie, doo itashimashite. | Dạ, không có gì ạ.
+### từ vựng
+すみません | すみません | sumimasen | xin lỗi (khi gọi người khác)
+牛乳 | ぎゅうにゅう | gyuunyuu | sữa
+どこ | どこ | doko | ở đâu
+こちら | こちら | kochira | phía này, đây
+どういたしまして | どういたしまして | doo itashimashite | không có gì
+
+## scene-2.mp4
+# Hỏi thành phần của món ăn
+*00:05 | 王 / Oo / Vương | あのー、ちょっといいですか。 | Anoo, chotto ii desu ka. | Ừm… cho tôi hỏi một chút được không?
+00:09 | 店員 / Ten'in / Nhân viên | はい、何ですか。 | Hai, nan desu ka. | Vâng, có chuyện gì ạ?
+*00:11 | 王 / Oo / Vương | これ、お酒が入っていますか。 | Kore, osake ga haitte imasu ka. | Món này có lẫn rượu không?
+*00:18 | 店員 / Ten'in / Nhân viên | いいえ、入っていませんよ。 | Iie, haitte imasen yo. | Không, không có rượu đâu ạ.
+00:21 | 王 / Oo / Vương | あ、そうですか。 | A, soo desu ka. | À, vậy à.
+00:22 | 王 / Oo / Vương | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
+00:24 | 店員 / Ten'in / Nhân viên | いいえ。 | Iie. | Không có gì.
+### từ vựng
+ちょっといいですか | ちょっといいですか | chotto ii desu ka | cho tôi hỏi một chút được không
+これ | これ | kore | cái này
+お酒 | おさけ | osake | rượu
+入っています | はいっています | haitte imasu | có chứa
+
+## scene-3.mp4
+# Thanh toán ở quầy
+00:06 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+00:06:15 | アンジェラ / Anjera / Angela | お願いします。 | Onegaishimasu. | Nhờ chị tính tiền giúp.
+*00:20 | 店員 / Ten'in / Nhân viên | 袋はどうなさいますか。 | Fukuro wa doo nasaimasu ka. | Quý khách có cần túi không ạ?
+*00:22 | アンジェラ / Anjera / Angela | 結構です。 | Kekkoo desu. | Không cần đâu ạ.
+00:24 | 店員 / Ten'in / Nhân viên | バッグはお持ちですか。 | Baggu wa omochi desu ka. | Quý khách có mang túi không ạ?
+00:25 | アンジェラ / Anjera / Angela | はい。 | Hai. | Có.
+00:29 | 店員 / Ten'in / Nhân viên | 当店のポイントカードはお持ちですか。 | Tooten no pointo kaado wa omochi desu ka. | Quý khách có thẻ tích điểm của cửa hàng không ạ?
+*00:31 | アンジェラ / Anjera / Angela | いいえ、ありません。 | Iie, arimasen. | Không, tôi không có.
+00:33 | 店員 / Ten'in / Nhân viên | 失礼いたしました。 | Shitsuree itashimashita. | Dạ, xin lỗi quý khách.
+00:35 | 店員 / Ten'in / Nhân viên | 1,748円になります。 | Sen nanahyaku yonjuuhachi-en ni narimasu. | Của quý khách hết 1.748 yên ạ.
+00:45 | 店員 / Ten'in / Nhân viên | 2,000円お預かりします。 | Nisen-en oazukari shimasu. | Tôi nhận của quý khách 2.000 yên.
+00:51 | 店員 / Ten'in / Nhân viên | 252円のお返しになります。 | Nihyaku gojuuni-en no okaeshi ni narimasu. | Tôi gửi lại quý khách 252 yên tiền thừa ạ.
+01:03 | アンジェラ / Anjera / Angela | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+### từ vựng
+袋 | ふくろ | fukuro | túi đựng
+結構です | けっこうです | kekkoo desu | không cần ạ
+バッグ | バッグ | baggu | túi xách
+ポイントカード | ポイントカード | pointo kaado | thẻ tích điểm
+お預かりします | おあずかりします | oazukari shimasu | xin nhận (tiền của quý khách)
+お返し | おかえし | okaeshi | tiền thừa trả lại
+
+## summary.mp4
+# Ôn tập: Mua đồ dùng hằng ngày
+00:00 |  /  / Chủ đề | 牛乳は どこですか | gyuunyuu wa doko desu ka | Sữa ở đâu ạ?
+00:06 | アンジェラ / Anjera / Angela | すみません。 | Sumimasen. | Xin lỗi, cho tôi hỏi.
+00:07 | 店員 / Ten'in / Nhân viên | はい。 | Hai. | Vâng.
+*00:08 | アンジェラ / Anjera / Angela | 牛乳はどこですか。 | Gyuunyuu wa doko desu ka. | Sữa ở đâu ạ?
+00:10 | 店員 / Ten'in / Nhân viên | 牛乳ですね。 | Gyuunyuu desu ne. | Sữa phải không ạ?
+00:12 | 店員 / Ten'in / Nhân viên | こちらです。 | Kochira desu. | Ở phía này ạ.
+00:15 | ナレーター / Nareetaa / Người dẫn | 「どこですか」は、場所を知りたいときに使います。 | "Doko desu ka" wa, basho o shiritai toki ni tsukaimasu. | "Doko desu ka" dùng khi muốn biết vị trí, chỗ của thứ gì đó.
+00:23 | ナレーター / Nareetaa / Người dẫn | この会話では、アンジェラさんはスーパーで牛乳が置いてある場所がわからなかったので、 | Kono kaiwa de wa, Anjera-san wa suupaa de gyuunyuu ga oite aru basho ga wakaranakatta node, | Trong đoạn hội thoại này, vì chị Angela không biết sữa được bày ở chỗ nào trong siêu thị
+00:32 | ナレーター / Nareetaa / Người dẫn | 「牛乳はどこですか」と聞きました。 | "Gyuunyuu wa doko desu ka" to kikimashita. | nên chị ấy đã hỏi "Sữa ở đâu ạ?".
+00:38 | ナレーター / Nareetaa / Người dẫn | ものの場所だけではなく、 | Mono no basho dake de wa naku, | Không chỉ để hỏi vị trí đồ vật,
+00:41 | ナレーター / Nareetaa / Người dẫn | 「駅はどこですか」「市役所はどこですか」のように、建物の場所を聞くときにも使うことができます。 | "Eki wa doko desu ka", "Shiyakusho wa doko desu ka" no yoo ni, tatemono no basho o kiku toki ni mo tsukau koto ga dekimasu. | mẫu câu này còn dùng được khi hỏi vị trí tòa nhà, ví dụ "Nhà ga ở đâu?", "Tòa thị chính ở đâu?".
+00:53 |  /  / Chủ đề | これ | kore | cái này
+*00:59 | 王 / Oo / Vương | これ、お酒が入っていますか。 | Kore, osake ga haitte imasu ka. | Món này có lẫn rượu không?
+01:04 | ナレーター / Nareetaa / Người dẫn | 「これ」は、ものを指すときに使います。 | "Kore" wa, mono o sasu toki ni tsukaimasu. | "Kore" dùng khi chỉ vào đồ vật.
+01:09 | ナレーター / Nareetaa / Người dẫn | ものを指す言い方には、「これ」「それ」「あれ」の3つがあります。 | Mono o sasu iikata ni wa, "kore", "sore", "are" no mittsu ga arimasu. | Có 3 cách nói để chỉ đồ vật: "kore", "sore", "are".
+01:21 | ナレーター / Nareetaa / Người dẫn | 自分の近くにあるものを指すときは、「これ」。 | Jibun no chikaku ni aru mono o sasu toki wa, "kore". | Chỉ đồ vật ở gần mình thì dùng "kore".
+01:27 | ナレーター / Nareetaa / Người dẫn | 自分からは少し離れたところにあって、相手の近くにあるものを指すときは、「それ」。 | Jibun kara wa sukoshi hanareta tokoro ni atte, aite no chikaku ni aru mono o sasu toki wa, "sore". | Chỉ đồ vật hơi xa mình và ở gần người đối diện thì dùng "sore".
+01:38 | ナレーター / Nareetaa / Người dẫn | 自分と相手から離れたところにあるものを指すときは、「あれ」と表現します。 | Jibun to aite kara hanareta tokoro ni aru mono o sasu toki wa, "are" to hyoogen shimasu. | Chỉ đồ vật ở xa cả mình lẫn người đối diện thì nói là "are".
+01:48 | ナレーター / Nareetaa / Người dẫn | この場面では、王さんとお店の人は、二人の近くにある商品を一緒に見ていますから、「これ」を使います。 | Kono bamen de wa, Oo-san to omise no hito wa, futari no chikaku ni aru shoohin o issho ni mite imasu kara, "kore" o tsukaimasu. | Trong cảnh này, anh Vương và nhân viên cửa hàng đang cùng nhìn món hàng ở gần cả hai người, nên dùng "kore".
+02:02 |  /  / Chủ đề | はい／いいえ | hai / iie | vâng / không
+02:08 | 店員 / Ten'in / Nhân viên | バッグはお持ちですか。 | Baggu wa omochi desu ka. | Quý khách có mang túi không ạ?
+02:09 | アンジェラ / Anjera / Angela | はい。 | Hai. | Có.
+02:13 | 店員 / Ten'in / Nhân viên | 当店のポイントカードはお持ちですか。 | Tooten no pointo kaado wa omochi desu ka. | Quý khách có thẻ tích điểm của cửa hàng không ạ?
+*02:16 | アンジェラ / Anjera / Angela | いいえ、ありません。 | Iie, arimasen. | Không, tôi không có.
+02:19 | ナレーター / Nareetaa / Người dẫn | 「はい」と「いいえ」は、何か聞かれたときの返事です。 | "Hai" to "iie" wa, nani ka kikareta toki no henji desu. | "Hai" và "iie" là câu trả lời khi được ai đó hỏi điều gì.
+02:28 | ナレーター / Nareetaa / Người dẫn | 「はい」は肯定、「いいえ」は否定です。 | "Hai" wa kootei, "iie" wa hitee desu. | "Hai" là khẳng định, "iie" là phủ định.
+02:35 | ナレーター / Nareetaa / Người dẫn | この会話では、アンジェラさんは店員にバッグを持っているか聞かれました。 | Kono kaiwa de wa, Anjera-san wa ten'in ni baggu o motte iru ka kikaremashita. | Trong đoạn hội thoại này, chị Angela được nhân viên hỏi có mang túi không.
+02:43 | ナレーター / Nareetaa / Người dẫn | バッグを持っているので、「はい」と答えました。 | Baggu o motte iru node, "hai" to kotaemashita. | Vì có mang túi nên chị ấy trả lời "hai".
+02:50 | ナレーター / Nareetaa / Người dẫn | 次に、ポイントカードを持っているか聞かれました。 | Tsugi ni, pointo kaado o motte iru ka kikaremashita. | Tiếp theo, chị ấy được hỏi có thẻ tích điểm không.
+02:54 | ナレーター / Nareetaa / Người dẫn | しかし、ポイントカードは持っていないので、「いいえ、ありません」と答えました。 | Shikashi, pointo kaado wa motte inai node, "iie, arimasen" to kotaemashita. | Nhưng vì không có thẻ tích điểm nên chị ấy trả lời "iie, arimasen" (Không, tôi không có).
+03:06 | ナレーター / Nareetaa / Người dẫn | 会話では、「はい」の代わりに「ええ」、 | Kaiwa de wa, "hai" no kawari ni "ee", | Khi nói chuyện, thay cho "hai" có thể dùng "ee",
+03:12 | ナレーター / Nareetaa / Người dẫn | 「いいえ」の代わりに「いえ」を使うこともあります。 | "iie" no kawari ni "ie" o tsukau koto mo arimasu. | và thay cho "iie" có thể dùng "ie".
+03:19 | ナレーター / Nareetaa / Người dẫn | 相手と親しい関係であれば、 | Aite to shitashii kankee de areba, | Nếu thân thiết với người đối diện
+03:22 | ナレーター / Nareetaa / Người dẫn | 「はい」の代わりに「うん」、 | "hai" no kawari ni "un", | thì thay cho "hai" có thể dùng "un",
+03:26 | ナレーター / Nareetaa / Người dẫn | 「いいえ」の代わりに「ううん」を使うこともできます。 | "iie" no kawari ni "uun" o tsukau koto mo dekimasu. | thay cho "iie" có thể dùng "uun".

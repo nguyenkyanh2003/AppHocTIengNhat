@@ -39,7 +39,7 @@ test('findMany truyền đúng filter cho Lesson.find và trả kết quả từ
   assert.deepEqual(capturedFilter, { level: 'N5', situation: 'train' });
   assert.deepEqual(items, [{ _id: 'l1' }]);
   // Danh sách không kéo theo phần nặng chỉ màn chi tiết cần.
-  assert.deepEqual(capturedProjection, { content_html: 0, 'videos.transcript': 0 });
+  assert.deepEqual(capturedProjection, { content_html: 0, 'videos.transcript': 0, 'videos.vocabulary': 0 });
 });
 
 test('findById populate đủ ba mảng tham chiếu vocabularies/grammars/kanjis', async () => {

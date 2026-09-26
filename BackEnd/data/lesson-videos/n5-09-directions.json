@@ -4,10 +4,718 @@
   },
   "videos": [
     {
-      "title": "Hỏi đường",
-      "url": "/uploads/lesson-videos/n5-09-directions/video-1.mp4",
+      "title": "Hiểu lời chỉ đường",
+      "description": "Nói được nơi muốn đến và hiểu lời chỉ đường của người đi đường.",
+      "url": "/uploads/lesson-videos/n5-09-directions/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あのー、すみません。",
+          "romaji": "Anoo, sumimasen.",
+          "text_vi": "Dạ, xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "大里公民館へ行きたいです。",
+          "romaji": "Oosato-koominkan e ikitai desu.",
+          "text_vi": "Tôi muốn đến Nhà văn hóa Ōsato.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "大里公民館ですね。",
+          "romaji": "Oosato-koominkan desu ne.",
+          "text_vi": "Nhà văn hóa Ōsato phải không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "この道をまっすぐ行ってください。",
+          "romaji": "Kono michi o massugu itte kudasai.",
+          "text_vi": "Chị cứ đi thẳng đường này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "郵便局の隣ですよ。",
+          "romaji": "Yuubinkyoku no tonari desu yo.",
+          "text_vi": "Nó ở ngay cạnh bưu điện.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どのくらいかかりますか。",
+          "romaji": "Dono kurai kakarimasu ka.",
+          "text_vi": "Mất khoảng bao lâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "うーん、10分くらいですよ。",
+          "romaji": "Uun, juppun kurai desu yo.",
+          "text_vi": "Ừm, khoảng 10 phút đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "いいえ。",
+          "romaji": "Iie.",
+          "text_vi": "Không có gì.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "公民館",
+          "reading": "こうみんかん",
+          "romaji": "koominkan",
+          "meaning": "nhà văn hóa"
+        },
+        {
+          "word": "道",
+          "reading": "みち",
+          "romaji": "michi",
+          "meaning": "con đường"
+        },
+        {
+          "word": "まっすぐ",
+          "reading": "まっすぐ",
+          "romaji": "massugu",
+          "meaning": "thẳng"
+        },
+        {
+          "word": "郵便局",
+          "reading": "ゆうびんきょく",
+          "romaji": "yuubinkyoku",
+          "meaning": "bưu điện"
+        },
+        {
+          "word": "隣",
+          "reading": "となり",
+          "romaji": "tonari",
+          "meaning": "bên cạnh"
+        },
+        {
+          "word": "どのくらい",
+          "reading": "どのくらい",
+          "romaji": "dono kurai",
+          "meaning": "khoảng bao lâu"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi đường trên bản đồ",
+      "description": "Hỏi được một địa điểm ở đâu khi cùng xem bản đồ với người khác.",
+      "url": "/uploads/lesson-videos/n5-09-directions/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:04",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、すみません。大里公民館はどこですか。",
+          "romaji": "A, sumimasen. Oosato-koominkan wa doko desu ka.",
+          "text_vi": "À, xin lỗi. Nhà văn hóa Ōsato ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "大里公民館…ここですね。",
+          "romaji": "Oosato-koominkan… koko desu ne.",
+          "text_vi": "Nhà văn hóa Ōsato… ở đây này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ。",
+          "romaji": "Aa.",
+          "text_vi": "À.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "郵便局が、ここです。",
+          "romaji": "Yuubinkyoku ga, koko desu.",
+          "text_vi": "Bưu điện ở chỗ này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これは何ですか。",
+          "romaji": "Kore wa nan desu ka.",
+          "text_vi": "Cái này là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "信号です。",
+          "romaji": "Shingoo desu.",
+          "text_vi": "Là đèn giao thông.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "中央公園北の信号です。",
+          "romaji": "Chuuoo-kooen-kita no shingoo desu.",
+          "text_vi": "Đèn giao thông Chūō Kōen Kita (phía bắc Công viên Trung tâm).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "中央公園北ですね。",
+          "romaji": "Chuuoo-kooen-kita desu ne.",
+          "text_vi": "Chūō Kōen Kita nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Đúng rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "いいえ。",
+          "romaji": "Iie.",
+          "text_vi": "Không có gì.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "ここ",
+          "reading": "ここ",
+          "romaji": "koko",
+          "meaning": "chỗ này"
+        },
+        {
+          "word": "信号",
+          "reading": "しんごう",
+          "romaji": "shingoo",
+          "meaning": "đèn giao thông"
+        },
+        {
+          "word": "公園",
+          "reading": "こうえん",
+          "romaji": "kooen",
+          "meaning": "công viên"
+        },
+        {
+          "word": "北",
+          "reading": "きた",
+          "romaji": "kita",
+          "meaning": "phía bắc"
+        },
+        {
+          "word": "何",
+          "reading": "なん",
+          "romaji": "nan",
+          "meaning": "cái gì"
+        }
+      ]
+    },
+    {
+      "title": "Nói mình đang đứng ở đâu",
+      "description": "Nói được vị trí của mình qua điện thoại và hỏi lại khi đi nhầm.",
+      "url": "/uploads/lesson-videos/n5-09-directions/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:13",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、アンジェラです。",
+          "romaji": "Hai, Anjera desu.",
+          "text_vi": "Vâng, Angela nghe đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "遅くなってすみません。",
+          "romaji": "Osoku natte sumimasen.",
+          "text_vi": "Xin lỗi tôi đến muộn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。今ですか。",
+          "romaji": "Hai. Ima desu ka.",
+          "text_vi": "Vâng. Bây giờ ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "歯医者の近くにいます。",
+          "romaji": "Haisha no chikaku ni imasu.",
+          "text_vi": "Tôi đang ở gần phòng nha.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、たぶん大丈夫です。すみません。",
+          "romaji": "Hai, tabun daijoobu desu. Sumimasen.",
+          "text_vi": "Vâng, chắc là ổn ạ. Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、あの、ちょっとすみません。",
+          "romaji": "A, ano, chotto sumimasen.",
+          "text_vi": "À, dạ, xin lỗi một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ここは中央公園北ですか。",
+          "romaji": "Koko wa Chuuoo-kooen-kita desu ka.",
+          "text_vi": "Đây có phải Chūō Kōen Kita không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "いいえ、ここは北じゃなくて、南ですよ。",
+          "romaji": "Iie, koko wa kita ja nakute, minami desu yo.",
+          "text_vi": "Không, đây không phải Kita (Bắc) mà là Minami (Nam).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですか。中央公園北はどこですか。",
+          "romaji": "Soo desu ka. Chuuoo-kooen-kita wa doko desu ka.",
+          "text_vi": "Vậy à. Thế Chūō Kōen Kita ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "もうちょっと先ですよ。",
+          "romaji": "Moo chotto saki desu yo.",
+          "text_vi": "Đi thêm một chút nữa là tới.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、そうですか。ありがとうございます。",
+          "romaji": "Aa, soo desu ka. Arigatoo gozaimasu.",
+          "text_vi": "À, vậy à. Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "いいえ。",
+          "romaji": "Iie.",
+          "text_vi": "Không có gì.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "遅くなります",
+          "reading": "おそくなります",
+          "romaji": "osoku narimasu",
+          "meaning": "bị muộn"
+        },
+        {
+          "word": "今",
+          "reading": "いま",
+          "romaji": "ima",
+          "meaning": "bây giờ"
+        },
+        {
+          "word": "歯医者",
+          "reading": "はいしゃ",
+          "romaji": "haisha",
+          "meaning": "phòng nha"
+        },
+        {
+          "word": "近く",
+          "reading": "ちかく",
+          "romaji": "chikaku",
+          "meaning": "gần"
+        },
+        {
+          "word": "南",
+          "reading": "みなみ",
+          "romaji": "minami",
+          "meaning": "phía nam"
+        },
+        {
+          "word": "先",
+          "reading": "さき",
+          "romaji": "saki",
+          "meaning": "phía trước (đi tiếp)"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Hỏi và chỉ đường",
+      "description": "Ôn lại từ chỉ vị trí,「どのくらいかかりますか」và「〜にいます・あります」.",
+      "url": "/uploads/lesson-videos/n5-09-directions/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "はいしゃの ちかく",
+          "romaji": "haisha no chikaku",
+          "text_vi": "Gần nha sĩ",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。今ですか。歯医者の近くにいます。",
+          "romaji": "Hai. Ima desu ka. Haisha no chikaku ni imasu.",
+          "text_vi": "Vâng. Bây giờ ạ? Tôi đang ở gần phòng nha.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "人や物の場所を表すときに位置詞を使います。",
+          "romaji": "Hito ya mono no basho o arawasu toki ni ichishi o tsukaimasu.",
+          "text_vi": "Khi diễn tả vị trí của người hay vật, ta dùng từ chỉ vị trí.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "位置詞には、「上」「下」「前」「後ろ」「横」「隣」「中」「外」「近く」「間」などがありますが、",
+          "romaji": "Ichishi ni wa, \"ue\", \"shita\", \"mae\", \"ushiro\", \"yoko\", \"tonari\", \"naka\", \"soto\", \"chikaku\", \"aida\" nado ga arimasu ga,",
+          "text_vi": "Từ chỉ vị trí có \"ue\" (trên), \"shita\" (dưới), \"mae\" (trước), \"ushiro\" (sau), \"yoko\" (bên cạnh), \"tonari\" (kế bên), \"naka\" (trong), \"soto\" (ngoài), \"chikaku\" (gần), \"aida\" (giữa)…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話の中で、アンジェラさんは周囲に歯医者の看板を見つけて、歯医者の近くであることを伝えています。",
+          "romaji": "Kaiwa no naka de, Anjera-san wa shuui ni haisha no kanban o mitsukete, haisha no chikaku de aru koto o tsutaete imasu.",
+          "text_vi": "Trong hội thoại, chị Angela thấy biển phòng nha gần đó nên nói mình đang ở gần phòng nha.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「近く」は、近いところという意味の名詞です。",
+          "romaji": "\"Chikaku\" wa, chikai tokoro to iu imi no meeshi desu.",
+          "text_vi": "\"Chikaku\" là danh từ có nghĩa là chỗ gần.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どのくらい かかりますか",
+          "romaji": "dono kurai kakarimasu ka",
+          "text_vi": "Mất khoảng bao lâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どのくらいかかりますか。",
+          "romaji": "Dono kurai kakarimasu ka.",
+          "text_vi": "Mất khoảng bao lâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "うーん、10分くらいですよ。",
+          "romaji": "Uun, juppun kurai desu yo.",
+          "text_vi": "Ừm, khoảng 10 phút đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どのくらい」は、大体の期間、大きさ、金額などを聞くときに使う疑問詞です。",
+          "romaji": "\"Dono kurai\" wa, daitai no kikan, ookisa, kingaku nado o kiku toki ni tsukau gimonshi desu.",
+          "text_vi": "\"Dono kurai\" là từ để hỏi dùng khi hỏi khoảng thời gian, kích thước, số tiền… ước chừng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「かかります」という動詞は、何かをするために必要な時間やお金について表すときに使います。",
+          "romaji": "\"Kakarimasu\" to iu dooshi wa, nanika o suru tame ni hitsuyoo na jikan ya okane ni tsuite arawasu toki ni tsukaimasu.",
+          "text_vi": "Động từ \"kakarimasu\" (mất, tốn) dùng để nói thời gian hay tiền cần để làm việc gì đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話の場合、アンジェラさんは公民館までの大体の所要時間を聞いています。",
+          "romaji": "Kono kaiwa no baai, Anjera-san wa koominkan made no daitai no shoyoo-jikan o kiite imasu.",
+          "text_vi": "Trong hội thoại này, chị Angela hỏi mất khoảng bao lâu để đến nhà văn hóa.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "答えるときは、「10分くらい」のように「くらい」をつけて言います。",
+          "romaji": "Kotaeru toki wa, \"juppun kurai\" no yoo ni \"kurai\" o tsukete iimasu.",
+          "text_vi": "Khi trả lời thì thêm \"kurai\" (khoảng) như \"khoảng 10 phút\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どのぐらい」「10分ぐらい」のように「ぐらい」を使うこともあります。",
+          "romaji": "\"Dono gurai\", \"juppun gurai\" no yoo ni \"gurai\" o tsukau koto mo arimasu.",
+          "text_vi": "Cũng có thể dùng \"gurai\" như \"dono gurai\", \"juppun gurai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "はいしゃの ちかくに います",
+          "romaji": "haisha no chikaku ni imasu",
+          "text_vi": "Tôi đang ở gần phòng nha",
+          "key_phrase": false
+        },
+        {
+          "start": "02:10",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。今ですか。歯医者の近くにいます。",
+          "romaji": "Hai. Ima desu ka. Haisha no chikaku ni imasu.",
+          "text_vi": "Vâng. Bây giờ ạ? Tôi đang ở gần phòng nha.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ある場所に物や生き物が存在することを表すとき、「場所に物があります」「生き物がいます」と言います。",
+          "romaji": "Aru basho ni mono ya ikimono ga sonzai suru koto o arawasu toki, \"basho ni mono ga arimasu\", \"ikimono ga imasu\" to iimasu.",
+          "text_vi": "Khi nói ở một nơi có đồ vật hay sinh vật, ta nói \"[nơi chốn] ni [đồ vật] ga arimasu\", \"[sinh vật] ga imasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "物の場合は「あります」、生き物の場合は「います」を使います。",
+          "romaji": "Mono no baai wa \"arimasu\", ikimono no baai wa \"imasu\" o tsukaimasu.",
+          "text_vi": "Đồ vật thì dùng \"arimasu\", sinh vật thì dùng \"imasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "さて、この会話では、電話の相手がアンジェラさんに「今どこにいますか」と聞いているようです。",
+          "romaji": "Sate, kono kaiwa de wa, denwa no aite ga Anjera-san ni \"Ima doko ni imasu ka\" to kiite iru yoo desu.",
+          "text_vi": "Trong hội thoại này, có vẻ người ở đầu dây bên kia hỏi chị Angela \"Bây giờ chị đang ở đâu?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんは「私は」を省略して、自分がいる場所を「歯医者の近くにいます」と答えています。",
+          "romaji": "Anjera-san wa \"watashi wa\" o shooryaku shite, jibun ga iru basho o \"Haisha no chikaku ni imasu\" to kotaete imasu.",
+          "text_vi": "Chị Angela lược bỏ \"watashi wa\" và trả lời nơi mình đang ở: \"Tôi đang ở gần phòng nha\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

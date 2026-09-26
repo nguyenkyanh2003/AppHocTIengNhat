@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:apphoctiengnnhat/app/theme/app_tokens.dart';
 import 'package:apphoctiengnnhat/core/state/view_state.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson_progress.dart';
@@ -62,6 +63,7 @@ class _FakeProgressService extends LessonProgressService {
 
   final List<String> learned;
   final List<String> updated = [];
+  final List<String> unmarked = [];
   int completions = 0;
   bool failUpdates = false;
   bool failComplete = false;
@@ -76,7 +78,7 @@ class _FakeProgressService extends LessonProgressService {
     required String itemId,
     required bool completed,
   }) async {
-    updated.add(itemId);
+    (completed ? updated : unmarked).add(itemId);
     return failUpdates ? null : _progress(learned: [...learned, itemId]);
   }
 
@@ -101,6 +103,42 @@ void main() {
         StudyStepKind.finish,
       ]);
       expect(buildStudySteps(_detail())[2].title, 'Cảnh 2: Làm quen');
+    });
+
+    test('ba cảnh đánh số "Cảnh 1–3", video ôn tập mang tên riêng chứ không thành "Cảnh 4"', () {
+      final detail = LessonDetail.fromJson({
+        '_id': 'l2',
+        'title': 'Tình huống: Hỏi đường',
+        'level': 'N5',
+        'videos': [
+          {'title': 'Hãy đi thẳng đường này', 'url': '/s1.mp4', 'kind': 'scene'},
+          {'title': '〇〇 ở đâu ạ?', 'url': '/s2.mp4', 'kind': 'scene'},
+          {'title': 'Tôi đang ở gần 〇〇', 'url': '/s3.mp4'},
+          {'title': 'Ôn tập', 'url': '/review.mp4', 'kind': 'review'},
+        ],
+      });
+
+      final titles = buildStudySteps(detail)
+          .where((step) => step.kind == StudyStepKind.video)
+          .map((step) => step.title);
+      expect(titles, [
+        'Cảnh 1: Hãy đi thẳng đường này',
+        'Cảnh 2: 〇〇 ở đâu ạ?',
+        'Cảnh 3: Tôi đang ở gần 〇〇',
+        'Ôn tập',
+      ]);
+    });
+
+    test('bài có video mà không có hội thoại soạn sẵn thì đi thẳng từ video sang từ vựng', () {
+      final kinds = buildStudySteps(_detail(dialogue: false)).map((step) => step.kind).toList();
+      expect(kinds, [
+        StudyStepKind.intro,
+        StudyStepKind.video,
+        StudyStepKind.video,
+        StudyStepKind.vocabulary,
+        StudyStepKind.quiz,
+        StudyStepKind.finish,
+      ]);
     });
 
     test('chỉ gồm phần bài có: không video, không hội thoại, quá ít từ thì không kiểm tra', () {
@@ -164,6 +202,19 @@ void main() {
       expect(session.consumeMessage(), isNull);
     });
 
+    test('bỏ đánh dấu gửi completed=false và gỡ từ khỏi danh sách đã nhớ', () async {
+      final service = _FakeProgressService(learned: ['w1']);
+      final session = LessonStudySession(detail: _detail(), service: service);
+      await session.start();
+      final word = session.detail.words[0];
+
+      await session.unmarkLearned(word);
+
+      expect(service.unmarked, ['w1']);
+      expect(session.isLearned(word), isFalse);
+      expect(session.learnedCount, 0);
+    });
+
     test('bước kiểm tra chỉ cho đi tiếp khi đã trả lời hết', () async {
       final session = LessonStudySession(detail: _detail(), service: _FakeProgressService(), initialStep: 5);
       expect(session.step.kind, StudyStepKind.quiz);
@@ -201,6 +252,20 @@ void main() {
   group('giao diện', () {
     Widget host(Widget child) => MaterialApp(home: Scaffold(body: SingleChildScrollView(child: child)));
 
+    testWidgets('chip video đếm cảnh riêng, video ôn tập không tính là một cảnh', (tester) async {
+      final detail = LessonDetail.fromJson({
+        '_id': 'l3',
+        'title': 'Bài',
+        'level': 'N5',
+        'videos': [
+          for (var i = 1; i <= 3; i++) {'title': 'Cảnh $i', 'url': '/s$i.mp4'},
+          {'title': 'Ôn tập', 'url': '/review.mp4', 'kind': 'review'},
+        ],
+      });
+      await tester.pumpWidget(host(LessonContentChips(detail: detail)));
+      expect(find.text('3 cảnh video + ôn tập'), findsOneWidget);
+    });
+
     testWidgets('chip nội dung không hiện loại bài không có', (tester) async {
       await tester.pumpWidget(host(LessonContentChips(detail: _detail())));
       expect(find.text('2 cảnh video'), findsOneWidget);
@@ -232,6 +297,7 @@ void main() {
           isLearned: (word) => learned.contains(word.id),
           isSaving: (_) => false,
           onMarkLearned: (word) async => setState(() => learned.add(word.id)),
+          onUnmarkLearned: (_) async {},
         ),
       )));
 
@@ -244,6 +310,70 @@ void main() {
       await tester.pumpAndSettle();
       expect(learned, {'w1'});
       expect(find.text('Từ 2/6'), findsOneWidget);
+    });
+
+    testWidgets('thanh tiến độ chạy theo từ đang xem, ô của từ đã nhớ tô xanh', (tester) async {
+      final learned = {'w2'};
+      final words = _detail().words;
+      await tester.pumpWidget(host(StudyVocabularyStep(
+        words: words,
+        isLearned: (word) => learned.contains(word.id),
+        isSaving: (_) => false,
+        onMarkLearned: (word) async {},
+        onUnmarkLearned: (_) async {},
+      )));
+
+      Color? segment(int index) =>
+          (tester.widget<AnimatedContainer>(find.byKey(ValueKey('word-progress-$index'))).decoration as BoxDecoration?)
+              ?.color;
+
+      // Tới từ cuối cùng (6/6).
+      for (var i = 0; i < words.length - 1; i++) {
+        await tester.tap(find.byTooltip('Từ sau'));
+        await tester.pumpAndSettle();
+      }
+
+      expect(find.text('Từ 6/6'), findsOneWidget);
+      expect(segment(0), AppColors.primary);
+      expect(segment(1), AppColors.success, reason: 'từ đã nhớ');
+      expect(segment(5), AppColors.primary, reason: 'từ cuối cũng đã được tô khi đang xem');
+
+      await tester.tap(find.byTooltip('Từ trước'));
+      await tester.pumpAndSettle();
+      expect(segment(5), AppColors.surfaceVariant, reason: 'lùi lại thì thanh lùi theo');
+    });
+
+    testWidgets('bấm nhầm "Đã nhớ" thì hoàn tác ngay trên thông báo, hoặc quay lại bỏ đánh dấu', (tester) async {
+      final learned = <String>{};
+      final words = _detail().words;
+      await tester.pumpWidget(host(StatefulBuilder(
+        builder: (context, setState) => StudyVocabularyStep(
+          words: words,
+          isLearned: (word) => learned.contains(word.id),
+          isSaving: (_) => false,
+          onMarkLearned: (word) async => setState(() => learned.add(word.id)),
+          onUnmarkLearned: (word) async => setState(() => learned.remove(word.id)),
+        ),
+      )));
+
+      await tester.tap(find.text('Đã nhớ'));
+      await tester.pumpAndSettle();
+      expect(learned, {'w1'});
+      expect(find.text('Từ 2/6'), findsOneWidget);
+
+      await tester.tap(find.text('Hoàn tác'));
+      await tester.pumpAndSettle();
+      expect(learned, isEmpty, reason: 'hoàn tác gỡ dấu đã nhớ');
+      expect(find.text('Từ 1/6'), findsOneWidget, reason: 'và đưa về đúng từ vừa bấm nhầm');
+
+      await tester.tap(find.text('Đã nhớ'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('Từ trước'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Bỏ đánh dấu đã nhớ'));
+      await tester.pumpAndSettle();
+      expect(learned, isEmpty);
+      expect(find.text('Đã nhớ'), findsOneWidget, reason: 'nút trở lại thành "Đã nhớ"');
     });
 
     testWidgets('chọn đáp án là biết ngay đúng hay sai', (tester) async {

@@ -13,13 +13,16 @@ import { parseTranscriptText } from '../scripts/transcript-text.js';
 // Tên file lấy đúng như trong data/Video_baihoc.
 test('đọc được cảnh và video ôn tập với mọi kiểu dấu đang có', () => {
   assert.deepEqual(parseRawVideoName('10－1．Em muốn mở tài khoản..mp4'), {
-    lesson: 10, scene: 1, title: 'Em muốn mở tài khoản.',
+    lesson: 10, scene: 1, title: 'Em muốn mở tài khoản',
   });
+  assert.equal(parseRawVideoName('5－3．Cỡ không vừa một chút….mp4').title, 'Cỡ không vừa một chút…');
   assert.deepEqual(parseRawVideoName('1-1．Chào buổi sáng.mp4'), { lesson: 1, scene: 1, title: 'Chào buổi sáng' });
   assert.deepEqual(parseRawVideoName('9－2. ở đâu ạ.mp4'), { lesson: 9, scene: 2, title: 'ở đâu ạ' });
   assert.deepEqual(parseRawVideoName('8－2．Tôi muốn đi .mp4'), { lesson: 8, scene: 2, title: 'Tôi muốn đi' });
 
   assert.deepEqual(parseRawVideoName('10. Ôn tập.mp4'), { lesson: 10, scene: null, title: 'Ôn tập' });
+  assert.deepEqual(parseRawVideoName('5.Ôn tập.mp4'), { lesson: 5, scene: null, title: 'Ôn tập' });
+  assert.equal(parseRawVideoName('2. On tap.mp4').lesson, 2);
   assert.deepEqual(parseRawVideoName('1 tổng hợp lý thuyết chào hỏi.mp4'), {
     lesson: 1, scene: null, title: 'Tổng hợp lý thuyết chào hỏi',
   });
@@ -41,7 +44,9 @@ test('bốn video khác nhau: ba cảnh theo thứ tự rồi tới video ôn t�
 
   assert.deepEqual(errors, []);
   assert.deepEqual(videos.map((video) => video.target), ['scene-1.mp4', 'scene-2.mp4', 'scene-3.mp4', 'summary.mp4']);
-  assert.equal(videos[1].title, 'Em muốn làm thẻ tín dụng.');
+  assert.deepEqual(videos.map((video) => video.kind), ['scene', 'scene', 'scene', 'review']);
+  assert.equal(videos[1].title, 'Em muốn làm thẻ tín dụng');
+  assert.equal(videos[3].title, 'Ôn tập', 'video ôn tập luôn mang một tên, dù tên file là "On tap" hay "Tổng hợp…"');
 });
 
 test('bốn file giống hệt nhau thì từ chối cả thư mục — đúng tình trạng bài 2–12 hiện tại', () => {
@@ -99,7 +104,11 @@ test('khung lời thoại sinh ra đủ tiêu đề cảnh và đọc lại đư
   const { scenes, errors } = parseTranscriptText(skeleton);
   assert.deepEqual(errors, [], 'khung mới sinh không được có lỗi định dạng');
   assert.deepEqual([...scenes.keys()], ['scene-1.mp4', 'summary.mp4']);
-  assert.deepEqual([...scenes.values()], [[], []], 'khung chưa có câu thoại nào');
+  assert.deepEqual(
+    [...scenes.values()],
+    [{ lines: [], vocabulary: [] }, { lines: [], vocabulary: [] }],
+    'khung chưa có câu thoại hay từ vựng nào',
+  );
   assert.match(skeleton, /apply-transcript\.js --lesson 10/);
   assert.match(skeleton, /# Em muốn mở tài khoản\./);
 });
@@ -118,16 +127,17 @@ test('cập nhật file mô tả giữ lời thoại đã nhập, thêm cảnh m
     manifest,
     dir: 'n5-09-directions',
     videos: [
-      { target: 'scene-1.mp4', title: 'Hãy đi thẳng đường này' },
-      { target: 'scene-2.mp4', title: 'ở đâu ạ' },
+      { target: 'scene-1.mp4', title: 'Hãy đi thẳng đường này', kind: 'scene' },
+      { target: 'summary.mp4', title: 'Ôn tập', kind: 'review' },
     ],
   });
 
   assert.deepEqual(merged.lesson, manifest.lesson);
-  assert.deepEqual(merged.videos[0], manifest.videos[0]);
+  assert.deepEqual(merged.videos[0], { ...manifest.videos[0], kind: 'scene' }, 'giữ tên và lời thoại đã sửa tay');
   assert.deepEqual(merged.videos[1], {
-    title: 'ở đâu ạ',
-    url: '/uploads/lesson-videos/n5-09-directions/scene-2.mp4',
+    title: 'Ôn tập',
+    url: '/uploads/lesson-videos/n5-09-directions/summary.mp4',
+    kind: 'review',
     source: VIDEO_SOURCE,
     transcript: [],
   });

@@ -4,10 +4,728 @@
   },
   "videos": [
     {
-      "title": "Đi tàu điện",
-      "url": "/uploads/lesson-videos/n5-08-train/video-1.mp4",
+      "title": "Hỏi đường ray và giờ tàu",
+      "description": "Hỏi được tàu đi nơi mình muốn ở đường ray nào, mấy giờ chạy và mất bao lâu.",
+      "url": "/uploads/lesson-videos/n5-08-train/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "静岡に行きたいです。",
+          "romaji": "Shizuoka ni ikitai desu.",
+          "text_vi": "Tôi muốn đi Shizuoka.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "電車は何番線ですか。",
+          "romaji": "Densha wa nan-bansen desu ka.",
+          "text_vi": "Tàu ở đường ray số mấy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "2番線です。",
+          "romaji": "Ni-bansen desu.",
+          "text_vi": "Đường ray số 2 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "2番線ですね。",
+          "romaji": "Ni-bansen desu ne.",
+          "text_vi": "Đường ray số 2 nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "電車は何時ですか。",
+          "romaji": "Densha wa nan-ji desu ka.",
+          "text_vi": "Tàu chạy lúc mấy giờ ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "9時45分です。",
+          "romaji": "Ku-ji yonjuugo-fun desu.",
+          "text_vi": "9 giờ 45 phút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "く、9時…？",
+          "romaji": "Ku, ku-ji…?",
+          "text_vi": "9… 9 giờ…?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "9時…45分です。",
+          "romaji": "Ku-ji… yonjuugo-fun desu.",
+          "text_vi": "9 giờ… 45 phút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "9時45分ですね。",
+          "romaji": "Ku-ji yonjuugo-fun desu ne.",
+          "text_vi": "9 giờ 45 phút nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "静岡までどのくらいかかりますか。",
+          "romaji": "Shizuoka made dono kurai kakarimasu ka.",
+          "text_vi": "Đến Shizuoka mất khoảng bao lâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "30分ぐらいです。",
+          "romaji": "Sanjuppun gurai desu.",
+          "text_vi": "Khoảng 30 phút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "わかりました。ありがとうございます。",
+          "romaji": "Wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "Tôi hiểu rồi. Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Anh cần gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "次の静岡行きは何時ですか。",
+          "romaji": "Tsugi no Shizuoka-yuki wa nan-ji desu ka.",
+          "text_vi": "Chuyến tàu tiếp theo đi Shizuoka lúc mấy giờ ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "10時です。",
+          "romaji": "Juu-ji desu.",
+          "text_vi": "10 giờ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "何番線ですか。",
+          "romaji": "Nan-bansen desu ka.",
+          "text_vi": "Đường ray số mấy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "2番線です。",
+          "romaji": "Ni-bansen desu.",
+          "text_vi": "Đường ray số 2 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "どうも、ありがとうございます。",
+          "romaji": "Doomo, arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị nhiều.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "いいえ。",
+          "romaji": "Iie.",
+          "text_vi": "Không có gì ạ.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "電車",
+          "reading": "でんしゃ",
+          "romaji": "densha",
+          "meaning": "tàu điện"
+        },
+        {
+          "word": "何番線",
+          "reading": "なんばんせん",
+          "romaji": "nan-bansen",
+          "meaning": "đường ray số mấy"
+        },
+        {
+          "word": "何時",
+          "reading": "なんじ",
+          "romaji": "nan-ji",
+          "meaning": "mấy giờ"
+        },
+        {
+          "word": "どのくらい",
+          "reading": "どのくらい",
+          "romaji": "dono kurai",
+          "meaning": "khoảng bao lâu"
+        },
+        {
+          "word": "かかります",
+          "reading": "かかります",
+          "romaji": "kakarimasu",
+          "meaning": "mất (thời gian, tiền)"
+        },
+        {
+          "word": "次",
+          "reading": "つぎ",
+          "romaji": "tsugi",
+          "meaning": "tiếp theo"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi cách đi và đổi tàu",
+      "description": "Hỏi được cách đi tới nơi mình muốn và hiểu chỗ phải đổi tàu.",
+      "url": "/uploads/lesson-videos/n5-08-train/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "すみません。三島まで行きたいです。",
+          "romaji": "Sumimasen. Mishima made ikitai desu.",
+          "text_vi": "Xin lỗi, tôi muốn đi đến Mishima.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "どうやって行ったらいいですか。",
+          "romaji": "Doo yatte ittara ii desu ka.",
+          "text_vi": "Tôi nên đi thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "三島ですね。",
+          "romaji": "Mishima desu ne.",
+          "text_vi": "Đi Mishima phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "2番線の電車に乗ってください。",
+          "romaji": "Ni-bansen no densha ni notte kudasai.",
+          "text_vi": "Chị lên tàu ở đường ray số 2.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "静岡で熱海行きに乗り換えてください。",
+          "romaji": "Shizuoka de Atami-yuki ni norikaete kudasai.",
+          "text_vi": "Đến Shizuoka thì đổi sang tàu đi Atami.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "2番線…静岡…熱海…",
+          "romaji": "Ni-bansen… Shizuoka… Atami…",
+          "text_vi": "Đường ray số 2… Shizuoka… Atami…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "三島は静岡から64分です。",
+          "romaji": "Mishima wa Shizuoka kara rokujuuyon-pun desu.",
+          "text_vi": "Từ Shizuoka đến Mishima mất 64 phút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "そうですか。ありがとうございます。",
+          "romaji": "Soo desu ka. Arigatoo gozaimasu.",
+          "text_vi": "Vậy à. Cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "行きたい",
+          "reading": "いきたい",
+          "romaji": "ikitai",
+          "meaning": "muốn đi"
+        },
+        {
+          "word": "どうやって",
+          "reading": "どうやって",
+          "romaji": "doo yatte",
+          "meaning": "bằng cách nào"
+        },
+        {
+          "word": "乗ります",
+          "reading": "のります",
+          "romaji": "norimasu",
+          "meaning": "lên (tàu, xe)"
+        },
+        {
+          "word": "乗り換えます",
+          "reading": "のりかえます",
+          "romaji": "norikaemasu",
+          "meaning": "đổi tàu"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi giá vé và nạp tiền vào thẻ",
+      "description": "Hỏi được giá vé và biết cách nạp tiền vào thẻ IC ở máy.",
+      "url": "/uploads/lesson-videos/n5-08-train/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "すみません。熱海までいくらですか。",
+          "romaji": "Sumimasen. Atami made ikura desu ka.",
+          "text_vi": "Xin lỗi, đến Atami bao nhiêu tiền ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "1,520円です。",
+          "romaji": "Sen gohyaku nijuu-en desu.",
+          "text_vi": "1.520 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "これ、チャージしたいです。どこでできますか。",
+          "romaji": "Kore, chaaji shitai desu. Doko de dekimasu ka.",
+          "text_vi": "Tôi muốn nạp tiền vào thẻ này. Nạp ở đâu được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "あの機械でできますよ。",
+          "romaji": "Ano kikai de dekimasu yo.",
+          "text_vi": "Nạp ở cái máy kia được đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ICカードを入れます。",
+          "romaji": "Aishii-kaado o iremasu.",
+          "text_vi": "Cho thẻ IC vào.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "チャージボタンを押します。",
+          "romaji": "Chaaji-botan o oshimasu.",
+          "text_vi": "Bấm nút nạp tiền.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "金額を選びます。",
+          "romaji": "Kingaku o erabimasu.",
+          "text_vi": "Chọn số tiền.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "3,000円。",
+          "romaji": "Sanzen-en.",
+          "text_vi": "3.000 yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お金を入れます。",
+          "romaji": "Okane o iremasu.",
+          "text_vi": "Cho tiền vào.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "チャージできました。",
+          "romaji": "Chaaji dekimashita.",
+          "text_vi": "Đã nạp xong.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "チャージ",
+          "reading": "チャージ",
+          "romaji": "chaaji",
+          "meaning": "nạp tiền (vào thẻ)"
+        },
+        {
+          "word": "機械",
+          "reading": "きかい",
+          "romaji": "kikai",
+          "meaning": "máy"
+        },
+        {
+          "word": "ICカード",
+          "reading": "アイシーカード",
+          "romaji": "aishii kaado",
+          "meaning": "thẻ IC"
+        },
+        {
+          "word": "ボタン",
+          "reading": "ボタン",
+          "romaji": "botan",
+          "meaning": "nút"
+        },
+        {
+          "word": "押します",
+          "reading": "おします",
+          "romaji": "oshimasu",
+          "meaning": "bấm"
+        },
+        {
+          "word": "金額",
+          "reading": "きんがく",
+          "romaji": "kingaku",
+          "meaning": "số tiền"
+        },
+        {
+          "word": "選びます",
+          "reading": "えらびます",
+          "romaji": "erabimasu",
+          "meaning": "chọn"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Đi tàu điện",
+      "description": "Ôn lại cách nói điểm đến với「に・へ・まで」và hỏi giờ với「何時」.",
+      "url": "/uploads/lesson-videos/n5-08-train/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "しずおかに いきたいです",
+          "romaji": "shizuoka ni ikitai desu",
+          "text_vi": "Tôi muốn đi Shizuoka",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "静岡に行きたいです。",
+          "romaji": "Shizuoka ni ikitai desu.",
+          "text_vi": "Tôi muốn đi Shizuoka.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「行く」「来る」「帰る」「着く」などの移動を表す動詞の目的地は、場所に助詞の「に」をつけて表します。「へ」を使うこともあります。",
+          "romaji": "\"Iku\", \"kuru\", \"kaeru\", \"tsuku\" nado no idoo o arawasu dooshi no mokutekichi wa, basho ni joshi no \"ni\" o tsukete arawashimasu. \"E\" o tsukau koto mo arimasu.",
+          "text_vi": "Với các động từ chỉ sự di chuyển như \"iku\" (đi), \"kuru\" (đến), \"kaeru\" (về), \"tsuku\" (tới nơi), điểm đến được diễn tả bằng cách thêm trợ từ \"ni\" sau địa điểm. Cũng có thể dùng \"e\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では「静岡に行きたい」と言っていますから、目的地は静岡です。",
+          "romaji": "Kono kaiwa de wa \"Shizuoka ni ikitai\" to itte imasu kara, mokutekichi wa Shizuoka desu.",
+          "text_vi": "Trong hội thoại này, người khách nói \"muốn đi Shizuoka\" nên điểm đến là Shizuoka.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「行きたい」は、動詞のます形から「ます」を取って「たい」をつけた形ですが、これは「行く」という行為を希望していることを表します。",
+          "romaji": "\"Ikitai\" wa, dooshi no masu-kee kara \"masu\" o totte \"tai\" o tsuketa katachi desu ga, kore wa \"iku\" to iu kooi o kiboo shite iru koto o arawashimasu.",
+          "text_vi": "\"Ikitai\" là dạng bỏ \"masu\" ở thể masu rồi thêm \"tai\", diễn tả mong muốn thực hiện hành động \"đi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "しずおかゆきは なんじですか",
+          "romaji": "shizuoka-yuki wa nan-ji desu ka",
+          "text_vi": "Chuyến đi Shizuoka mấy giờ ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "男性客",
+          "speaker_romaji": "Dansee-kyaku",
+          "speaker_vi": "Khách nam",
+          "text_ja": "次の静岡行きは何時ですか。",
+          "romaji": "Tsugi no Shizuoka-yuki wa nan-ji desu ka.",
+          "text_vi": "Chuyến tàu tiếp theo đi Shizuoka lúc mấy giờ ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "駅員",
+          "speaker_romaji": "Ekiin",
+          "speaker_vi": "Nhân viên nhà ga",
+          "text_ja": "10時です。",
+          "romaji": "Juu-ji desu.",
+          "text_vi": "10 giờ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "時刻を聞くときは、疑問詞の「なん」に「1時」「2時」の「じ」をつけて、「何時ですか」と聞きます。",
+          "romaji": "Jikoku o kiku toki wa, gimonshi no \"nan\" ni \"ichi-ji\", \"ni-ji\" no \"ji\" o tsukete, \"Nan-ji desu ka\" to kikimasu.",
+          "text_vi": "Khi hỏi giờ, ghép từ để hỏi \"nan\" với \"ji\" (giờ) như trong \"ichi-ji\", \"ni-ji\" để hỏi \"Nan-ji desu ka\" (Mấy giờ?).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、「次の静岡行きは」と言って、静岡に向かう電車の次の発車時刻を聞いています。",
+          "romaji": "Kono kaiwa de wa, \"tsugi no Shizuoka-yuki wa\" to itte, Shizuoka ni mukau densha no tsugi no hassha-jikoku o kiite imasu.",
+          "text_vi": "Trong hội thoại này, khách nói \"chuyến đi Shizuoka tiếp theo\" để hỏi giờ khởi hành của chuyến tàu tiếp theo đi Shizuoka.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、ホテルで朝食の時間帯を聞く場合は、「朝食は何時からですか」「何時までですか」のように「から」や「まで」をつけます。",
+          "romaji": "Tatoeba, hoteru de chooshoku no jikantai o kiku baai wa, \"Chooshoku wa nan-ji kara desu ka\", \"Nan-ji made desu ka\" no yoo ni \"kara\" ya \"made\" o tsukemasu.",
+          "text_vi": "Ví dụ, khi hỏi giờ ăn sáng ở khách sạn thì thêm \"kara\" (từ) hoặc \"made\" (đến): \"Bữa sáng từ mấy giờ?\", \"Đến mấy giờ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「なん」は、「年」「月」「日」「曜日」「時」「分」「人」「歳」などのほか、いろいろな助数詞につけて使うことができます。",
+          "romaji": "\"Nan\" wa, \"nen\", \"gatsu\", \"nichi\", \"yoobi\", \"ji\", \"fun\", \"nin\", \"sai\" nado no hoka, iroiro na josuushi ni tsukete tsukau koto ga dekimasu.",
+          "text_vi": "\"Nan\" có thể ghép với nhiều trợ từ đếm như \"nen\" (năm), \"gatsu\" (tháng), \"nichi\" (ngày), \"yoobi\" (thứ), \"ji\" (giờ), \"fun\" (phút), \"nin\" (người), \"sai\" (tuổi)…",
+          "key_phrase": false
+        },
+        {
+          "start": "02:19",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "みしままで いきたいです",
+          "romaji": "mishima made ikitai desu",
+          "text_vi": "Tôi muốn đi đến Mishima",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
+          "text_ja": "すみません、三島まで行きたいです。",
+          "romaji": "Sumimasen, Mishima made ikitai desu.",
+          "text_vi": "Xin lỗi, tôi muốn đi đến Mishima.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「行く」「来る」「帰る」「着く」などの移動を表す動詞の目的地は、場所に助詞の「に」「へ」をつけるほかに、「まで」をつけて表すこともあります。",
+          "romaji": "\"Iku\", \"kuru\", \"kaeru\", \"tsuku\" nado no idoo o arawasu dooshi no mokutekichi wa, basho ni joshi no \"ni\", \"e\" o tsukeru hoka ni, \"made\" o tsukete arawasu koto mo arimasu.",
+          "text_vi": "Điểm đến của các động từ di chuyển, ngoài \"ni\", \"e\" còn có thể diễn tả bằng \"made\" (đến).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "その場合、「まで」は最終目的地だけでなく、目的地に向かう途中の地点を示すこともあります。",
+          "romaji": "Sono baai, \"made\" wa saishuu-mokutekichi dake de naku, mokutekichi ni mukau tochuu no chiten o shimesu koto mo arimasu.",
+          "text_vi": "Khi đó, \"made\" không chỉ chỉ điểm đến cuối cùng mà còn có thể chỉ một điểm giữa đường.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、三島まで新幹線で行って電車に乗り換えるというような場合です。",
+          "romaji": "Tatoeba, Mishima made shinkansen de itte densha ni norikaeru to iu yoo na baai desu.",
+          "text_vi": "Ví dụ như đi tàu Shinkansen đến Mishima rồi đổi sang tàu điện.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「まで」は場所だけでなく、「夜遅くまで勉強する」のように時間にも使うことができます。",
+          "romaji": "\"Made\" wa basho dake de naku, \"yoru osoku made benkyoo suru\" no yoo ni jikan ni mo tsukau koto ga dekimasu.",
+          "text_vi": "\"Made\" không chỉ dùng cho nơi chốn mà còn cho thời gian, như \"học đến khuya\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

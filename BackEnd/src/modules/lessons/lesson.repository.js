@@ -16,7 +16,11 @@ import Vocabulary from '../../../model/Vocabulary.js';
  * và nội dung HTML là phần nặng nhất của một bài và chỉ màn chi tiết dùng —
  * gửi kèm danh sách thì mỗi lần mở trang Bài học phải tải và giải mã vô ích.
  */
-export const LESSON_LIST_PROJECTION = Object.freeze({ content_html: 0, 'videos.transcript': 0 });
+export const LESSON_LIST_PROJECTION = Object.freeze({
+  content_html: 0,
+  'videos.transcript': 0,
+  'videos.vocabulary': 0,
+});
 
 export const createLessonRepository = ({
   Lesson: lessonModel,

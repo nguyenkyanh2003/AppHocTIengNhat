@@ -9,7 +9,11 @@
  *
  * N5 bài 1–12 đi theo đúng thứ tự 12 chủ đề cấp 1 của Tsunagaru, mỗi bài gắn
  * video của chủ đề đó (`data/lesson-videos/`); bài 13–15 là bài bổ trợ chưa có
- * video. Hội thoại do app tự soạn, không chép lời thoại của video.
+ * video.
+ *
+ * Bài có video **không** có `dialogue` soạn sẵn: lời thoại của bài là kịch bản
+ * chạy theo video. Hai đoạn hội thoại khác nhau cho cùng một tình huống chỉ
+ * làm người học rối. `dialogue` ở đây dành cho bài chưa có video.
  *
  * ⚠️ Nội dung tiếng Nhật ở đây do Claude soạn và CHƯA được người biết tiếng Nhật
  * rà soát. Phải rà lại trước khi dùng trong bản bảo vệ hoặc demo chính thức.
@@ -43,14 +47,6 @@ export const SITUATIONAL_LESSONS = [
       'Nói được tên và đất nước của mình',
       'Hỏi được nghề nghiệp của người đối diện',
     ],
-    dialogue: [
-      turn('Linh', 'はじめまして。リンです。ベトナムから来ました。', 'はじめまして。リンです。ベトナムからきました。', 'Rất vui được gặp anh. Tôi là Linh. Tôi đến từ Việt Nam.'),
-      turn('Tanaka', 'はじめまして。田中です。どうぞよろしくお願いします。', 'はじめまして。たなかです。どうぞよろしくおねがいします。', 'Rất vui được gặp chị. Tôi là Tanaka. Rất mong được giúp đỡ.'),
-      turn('Linh', 'よろしくお願いします。田中さんのお仕事は何ですか。', 'よろしくおねがいします。たなかさんのおしごとはなんですか。', 'Rất mong được giúp đỡ. Anh Tanaka làm nghề gì ạ?'),
-      turn('Tanaka', '会社員です。リンさんは？', 'かいしゃいんです。リンさんは？', 'Tôi là nhân viên công ty. Còn chị Linh?'),
-      turn('Linh', '学生です。今、日本語を勉強しています。', 'がくせいです。いま、にほんごをべんきょうしています。', 'Tôi là sinh viên. Hiện tôi đang học tiếng Nhật.'),
-      turn('Tanaka', 'そうですか。がんばってください。', 'そうですか。がんばってください。', 'Vậy à. Chị cố gắng nhé.'),
-    ],
     vocabularies: [
       word('名前', 'なまえ', 'tên'),
       word('国', 'くに', 'đất nước'),
@@ -77,15 +73,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được món hàng nằm ở đâu trong siêu thị',
       'Trả lời được khi nhân viên hỏi có cần túi không',
     ],
-    dialogue: [
-      turn('Khách', 'すみません、牛乳はどこですか。', 'すみません、ぎゅうにゅうはどこですか。', 'Xin lỗi, sữa tươi ở đâu ạ?'),
-      turn('Nhân viên', 'あちらの右のたなです。', 'あちらのみぎのたなです。', 'Ở kệ bên phải đằng kia ạ.'),
-      turn('Khách', 'ありがとうございます。これはいくらですか。', 'ありがとうございます。これはいくらですか。', 'Cảm ơn chị. Cái này bao nhiêu tiền ạ?'),
-      turn('Nhân viên', '２００円です。', 'にひゃくえんです。', '200 yên ạ.'),
-      turn('Nhân viên', 'ふくろはいりますか。', 'ふくろはいりますか。', 'Anh/chị có cần túi không ạ?'),
-      turn('Khách', 'いいえ、けっこうです。', 'いいえ、けっこうです。', 'Không, không cần đâu ạ.'),
-      turn('Nhân viên', 'ありがとうございました。', 'ありがとうございました。', 'Xin cảm ơn quý khách.'),
-    ],
     vocabularies: [
       word('牛乳', 'ぎゅうにゅう', 'sữa tươi'),
       word('店員', 'てんいん', 'nhân viên cửa hàng'),
@@ -109,15 +96,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được quầy hàng mình cần nằm ở đâu',
       'Xác nhận được giá của một món hàng',
       'Hỏi được điểm khác nhau giữa hai món để chọn',
-    ],
-    dialogue: [
-      turn('Khách', 'すみません、タオル売り場はどこですか。', 'すみません、タオルうりばはどこですか。', 'Xin lỗi, quầy khăn tắm ở đâu ạ?'),
-      turn('Nhân viên', '３階です。エスカレーターの前です。', 'さんがいです。エスカレーターのまえです。', 'Ở tầng 3 ạ. Ngay trước thang cuốn.'),
-      turn('Khách', 'このタオルは５００円ですか。', 'このタオルはごひゃくえんですか。', 'Chiếc khăn này 500 yên phải không ạ?'),
-      turn('Nhân viên', 'いいえ、それは８００円です。こちらが５００円です。', 'いいえ、それははっぴゃくえんです。こちらがごひゃくえんです。', 'Không ạ, chiếc đó 800 yên. Chiếc này mới là 500 yên.'),
-      turn('Khách', 'どう違いますか。', 'どうちがいますか。', 'Hai chiếc khác nhau thế nào ạ?'),
-      turn('Nhân viên', '８００円のは、洗ってもすぐ乾きますよ。', 'はっぴゃくえんのは、あらってもすぐかわきますよ。', 'Chiếc 800 yên giặt xong là khô ngay đấy ạ.'),
-      turn('Khách', 'じゃあ、８００円のをください。', 'じゃあ、はっぴゃくえんのをください。', 'Vậy cho tôi chiếc 800 yên.'),
     ],
     vocabularies: [
       word('売り場', 'うりば', 'quầy hàng'),
@@ -144,15 +122,6 @@ export const SITUATIONAL_LESSONS = [
       'Xin phép thử trước khi mua',
       'Nói được cỡ của mình và quyết định mua',
     ],
-    dialogue: [
-      turn('Nhân viên', 'いらっしゃいませ。何かお探しですか。', 'いらっしゃいませ。なにかおさがしですか。', 'Kính chào quý khách. Quý khách đang tìm gì ạ?'),
-      turn('Khách', 'はい、運動靴を探しています。', 'はい、うんどうぐつをさがしています。', 'Vâng, tôi đang tìm giày thể thao.'),
-      turn('Nhân viên', 'こちらはいかがですか。軽くて人気がありますよ。', 'こちらはいかがですか。かるくてにんきがありますよ。', 'Đôi này thì sao ạ? Nhẹ và được nhiều người mua lắm.'),
-      turn('Khách', 'いいですね。履いてみてもいいですか。', 'いいですね。はいてみてもいいですか。', 'Đẹp đấy. Tôi đi thử được không ạ?'),
-      turn('Nhân viên', 'どうぞ。サイズはいくつですか。', 'どうぞ。サイズはいくつですか。', 'Mời quý khách. Quý khách đi cỡ bao nhiêu ạ?'),
-      turn('Khách', '２５センチです。', 'にじゅうごセンチです。', 'Cỡ 25 phân ạ.'),
-      turn('Khách', 'ちょうどいいです。これをください。', 'ちょうどいいです。これをください。', 'Vừa khít luôn. Cho tôi đôi này.'),
-    ],
     vocabularies: [
       word('靴', 'くつ', 'giày'),
       word('運動靴', 'うんどうぐつ', 'giày thể thao'),
@@ -176,16 +145,6 @@ export const SITUATIONAL_LESSONS = [
       'Xin xem cùng món hàng nhưng màu khác',
       'Hỏi được có cỡ to hơn hoặc nhỏ hơn không',
       'Nói được đồ mặc thử chưa vừa ở chỗ nào',
-    ],
-    dialogue: [
-      turn('Khách', 'すみません、このシャツの白はありますか。', 'すみません、このシャツのしろはありますか。', 'Xin lỗi, áo sơ mi này có màu trắng không ạ?'),
-      turn('Nhân viên', 'はい、ございます。こちらです。', 'はい、ございます。こちらです。', 'Dạ có ạ. Đây ạ.'),
-      turn('Khách', '着てみてもいいですか。', 'きてみてもいいですか。', 'Tôi mặc thử được không ạ?'),
-      turn('Nhân viên', 'はい、試着室はあちらです。', 'はい、しちゃくしつはあちらです。', 'Dạ được, phòng thử đồ ở đằng kia ạ.'),
-      turn('Khách', 'ちょっと小さいです。もう少し大きいのはありますか。', 'ちょっとちいさいです。もうすこしおおきいのはありますか。', 'Hơi chật một chút. Có cỡ to hơn chút nữa không ạ?'),
-      turn('Nhân viên', 'Ｌサイズがありますよ。どうぞ。', 'エルサイズがありますよ。どうぞ。', 'Có cỡ L đấy ạ. Mời quý khách.'),
-      turn('Khách', 'でも、袖がちょっと長いですね。', 'でも、そでがちょっとながいですね。', 'Nhưng tay áo hơi dài nhỉ.'),
-      turn('Nhân viên', 'では、袖を短くしましょうか。', 'では、そでをみじかくしましょうか。', 'Vậy để tôi sửa tay áo ngắn lại cho quý khách nhé?'),
     ],
     vocabularies: [
       word('服', 'ふく', 'quần áo'),
@@ -212,14 +171,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được món nào ngon hoặc món nào không cay',
       'Xin được hoá đơn khi ăn xong',
     ],
-    dialogue: [
-      turn('Nhân viên', 'いらっしゃいませ。何名さまですか。', 'いらっしゃいませ。なんめいさまですか。', 'Kính chào quý khách. Quý khách đi mấy người ạ?'),
-      turn('Khách', '２人です。', 'ふたりです。', 'Hai người ạ.'),
-      turn('Khách', 'すみません、ちゅうもんをおねがいします。', 'すみません、ちゅうもんをおねがいします。', 'Xin lỗi, cho tôi gọi món ạ.'),
-      turn('Khách', 'ラーメンを１つとおちゃをください。', 'ラーメンをひとつとおちゃをください。', 'Cho tôi một tô ramen và trà ạ.'),
-      turn('Nhân viên', 'かしこまりました。少々おまちください。', 'かしこまりました。しょうしょうおまちください。', 'Vâng ạ. Quý khách vui lòng đợi một chút.'),
-      turn('Khách', 'すみません、おかいけいをおねがいします。', 'すみません、おかいけいをおねがいします。', 'Xin lỗi, cho tôi thanh toán ạ.'),
-    ],
     vocabularies: [
       word('注文', 'ちゅうもん', 'gọi món, đặt hàng'),
       word('料理', 'りょうり', 'món ăn'),
@@ -243,16 +194,6 @@ export const SITUATIONAL_LESSONS = [
       'Nói được mình muốn gửi đồ đi đâu',
       'Hỏi được giá và thời gian gửi',
       'Biết cách nhờ giao lại khi hàng đến lúc mình vắng nhà',
-    ],
-    dialogue: [
-      turn('Khách', 'すみません、この荷物をベトナムに送りたいです。', 'すみません、このにもつをベトナムにおくりたいです。', 'Xin lỗi, tôi muốn gửi kiện hàng này về Việt Nam.'),
-      turn('Nhân viên', '船便と航空便がありますが、どちらにしますか。', 'ふなびんとこうくうびんがありますが、どちらにしますか。', 'Có gửi đường biển và đường hàng không, quý khách chọn cách nào ạ?'),
-      turn('Khách', '航空便はいくらですか。', 'こうくうびんはいくらですか。', 'Gửi đường hàng không hết bao nhiêu tiền ạ?'),
-      turn('Nhân viên', '３２００円です。一週間ぐらいで着きます。', 'さんぜんにひゃくえんです。いっしゅうかんぐらいでつきます。', '3.200 yên ạ. Khoảng một tuần là tới nơi.'),
-      turn('Khách', 'じゃあ、航空便でお願いします。', 'じゃあ、こうくうびんでおねがいします。', 'Vậy cho tôi gửi đường hàng không.'),
-      turn('Nhân viên', 'では、この紙に住所を書いてください。', 'では、このかみにじゅうしょをかいてください。', 'Vậy quý khách vui lòng viết địa chỉ vào tờ giấy này.'),
-      turn('Khách', 'それから、家にいないとき、荷物はどうなりますか。', 'それから、いえにいないとき、にもつはどうなりますか。', 'Còn nữa, hàng gửi đến lúc tôi không có nhà thì sao ạ?'),
-      turn('Nhân viên', 'ポストに不在票が入ります。電話で再配達を頼んでください。', 'ポストにふざいひょうがはいります。でんわでさいはいたつをたのんでください。', 'Sẽ có phiếu báo vắng nhà trong hộp thư. Quý khách gọi điện nhờ giao lại nhé.'),
     ],
     vocabularies: [
       word('郵便局', 'ゆうびんきょく', 'bưu điện'),
@@ -280,14 +221,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được giá vé và mua vé',
       'Hỏi được tàu khởi hành ở sân ga số mấy',
     ],
-    dialogue: [
-      turn('Khách', 'すみません、東京駅までいくらですか。', 'すみません、とうきょうえきまでいくらですか。', 'Xin lỗi, đến ga Tokyo hết bao nhiêu tiền ạ?'),
-      turn('Nhân viên', '４５０円です。', 'よんひゃくごじゅうえんです。', '450 yên ạ.'),
-      turn('Khách', 'きっぷを１まいください。', 'きっぷをいちまいください。', 'Cho tôi một vé ạ.'),
-      turn('Khách', 'この電車は東京駅に行きますか。', 'このでんしゃはとうきょうえきにいきますか。', 'Tàu này có đi ga Tokyo không ạ?'),
-      turn('Nhân viên', 'はい、行きます。３ばんせんです。', 'はい、いきます。さんばんせんです。', 'Có ạ. Sân ga số 3 ạ.'),
-      turn('Khách', 'わかりました。ありがとうございます。', 'わかりました。ありがとうございます。', 'Tôi hiểu rồi. Cảm ơn anh/chị.'),
-    ],
     vocabularies: [
       word('電車', 'でんしゃ', 'tàu điện'),
       word('駅', 'えき', 'nhà ga'),
@@ -310,16 +243,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được gần đây có địa điểm mình cần không',
       'Hiểu chỉ dẫn đi thẳng, rẽ trái, rẽ phải',
       'Hỏi được đi bộ mất bao lâu',
-    ],
-    dialogue: [
-      turn('Khách', 'すみません、この近くに郵便局はありますか。', 'すみません、このちかくにゆうびんきょくはありますか。', 'Xin lỗi, gần đây có bưu điện không ạ?'),
-      turn('Người đi đường', 'ええ、ありますよ。この道をまっすぐ行ってください。', 'ええ、ありますよ。このみちをまっすぐいってください。', 'Có đấy. Bạn cứ đi thẳng con đường này.'),
-      turn('Khách', 'まっすぐですね。', 'まっすぐですね。', 'Đi thẳng ạ.'),
-      turn('Người đi đường', 'はい。二つ目の信号を右に曲がってください。', 'はい。ふたつめのしんごうをみぎにまがってください。', 'Đúng rồi. Đến đèn giao thông thứ hai thì rẽ phải.'),
-      turn('Người đi đường', '郵便局は銀行の隣です。', 'ゆうびんきょくはぎんこうのとなりです。', 'Bưu điện nằm cạnh ngân hàng.'),
-      turn('Khách', '歩いて何分ぐらいですか。', 'あるいてなんぷんぐらいですか。', 'Đi bộ mất khoảng mấy phút ạ?'),
-      turn('Người đi đường', '５分ぐらいです。', 'ごふんぐらいです。', 'Khoảng 5 phút thôi.'),
-      turn('Khách', 'ありがとうございました。', 'ありがとうございました。', 'Cảm ơn anh/chị nhiều ạ.'),
     ],
     vocabularies: [
       word('道', 'みち', 'con đường'),
@@ -346,15 +269,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được rút tiền vào ngày nghỉ có mất phí không',
       'Nói được số tiền muốn tiết kiệm mỗi tháng',
     ],
-    dialogue: [
-      turn('Khách', 'すみません、お金を引き出したいです。', 'すみません、おかねをひきだしたいです。', 'Xin lỗi, tôi muốn rút tiền.'),
-      turn('Nhân viên', 'ＡＴＭはあちらです。カードを入れて、暗証番号を押してください。', 'エーティーエムはあちらです。カードをいれて、あんしょうばんごうをおしてください。', 'Máy ATM ở đằng kia ạ. Quý khách cho thẻ vào rồi bấm mã PIN.'),
-      turn('Khách', '日曜日も使えますか。', 'にちようびもつかえますか。', 'Chủ nhật cũng dùng được chứ ạ?'),
-      turn('Nhân viên', 'はい。でも、手数料が１１０円かかります。', 'はい。でも、てすうりょうがひゃくじゅうえんかかります。', 'Được ạ. Nhưng sẽ mất phí 110 yên.'),
-      turn('Khách', 'そうですか。それから、毎月少し貯金したいです。', 'そうですか。それから、まいつきすこしちょきんしたいです。', 'Vậy à. Ngoài ra, tôi muốn mỗi tháng gửi tiết kiệm một ít.'),
-      turn('Nhân viên', '毎月いくらぐらいですか。', 'まいつきいくらぐらいですか。', 'Mỗi tháng quý khách định gửi khoảng bao nhiêu ạ?'),
-      turn('Khách', '１万円ぐらいです。', 'いちまんえんぐらいです。', 'Khoảng 10.000 yên ạ.'),
-    ],
     vocabularies: [
       word('お金', 'おかね', 'tiền'),
       word('引き出す', 'ひきだす', 'rút (tiền)'),
@@ -378,15 +292,6 @@ export const SITUATIONAL_LESSONS = [
       'Hỏi được loại rác nào đổ vào ngày nào',
       'Hỏi được phải đổ rác trước mấy giờ',
       'Biết cách hỏi khi muốn vứt đồ cỡ lớn',
-    ],
-    dialogue: [
-      turn('Người mới chuyển đến', 'すみません、燃えるごみは何曜日ですか。', 'すみません、もえるごみはなんようびですか。', 'Xin lỗi, rác cháy được thì đổ vào thứ mấy ạ?'),
-      turn('Hàng xóm', '月曜日と木曜日です。', 'げつようびともくようびです。', 'Thứ Hai và thứ Năm.'),
-      turn('Người mới chuyển đến', '瓶や缶は？', 'びんやかんは？', 'Còn chai lọ với lon thì sao ạ?'),
-      turn('Hàng xóm', '水曜日です。朝８時までに出してくださいね。', 'すいようびです。あさはちじまでにだしてくださいね。', 'Thứ Tư. Nhớ đổ trước 8 giờ sáng nhé.'),
-      turn('Người mới chuyển đến', 'この古い椅子はどこに捨てますか。', 'このふるいいすはどこにすてますか。', 'Cái ghế cũ này thì vứt ở đâu ạ?'),
-      turn('Hàng xóm', '大きいごみは、市役所に電話してください。お金がかかりますよ。', 'おおきいごみは、しやくしょにでんわしてください。おかねがかかりますよ。', 'Rác cỡ lớn thì gọi điện cho ủy ban thành phố. Sẽ mất phí đấy.'),
-      turn('Người mới chuyển đến', '分かりました。ありがとうございます。', 'わかりました。ありがとうございます。', 'Tôi hiểu rồi. Cảm ơn chị ạ.'),
     ],
     vocabularies: [
       word('ごみ', 'ごみ', 'rác'),
@@ -412,15 +317,6 @@ export const SITUATIONAL_LESSONS = [
       'Xin phép dùng máy móc ở nơi làm việc',
       'Báo được khi máy không chạy',
       'Xác nhận lại mình làm có đúng không',
-    ],
-    dialogue: [
-      turn('Nhân viên mới', 'すみません、このコピー機を使ってもいいですか。', 'すみません、このコピーきをつかってもいいですか。', 'Xin lỗi, em dùng máy photocopy này được không ạ?'),
-      turn('Đàn anh', 'ええ、どうぞ。', 'ええ、どうぞ。', 'Ừ, cứ dùng đi.'),
-      turn('Nhân viên mới', 'あれ、動きません。壊れていますか。', 'あれ、うごきません。こわれていますか。', 'Ơ, máy không chạy. Máy bị hỏng rồi ạ?'),
-      turn('Đàn anh', 'ああ、紙がありませんね。ここに入れてください。', 'ああ、かみがありませんね。ここにいれてください。', 'À, hết giấy rồi. Em cho giấy vào chỗ này nhé.'),
-      turn('Nhân viên mới', 'こうですか。', 'こうですか。', 'Như thế này ạ?'),
-      turn('Đàn anh', 'はい、そうです。それから、この緑のボタンを押してください。', 'はい、そうです。それから、このみどりのボタンをおしてください。', 'Ừ, đúng rồi. Sau đó em bấm cái nút màu xanh này.'),
-      turn('Nhân viên mới', 'できました。ありがとうございます。', 'できました。ありがとうございます。', 'Được rồi ạ. Em cảm ơn anh.'),
     ],
     vocabularies: [
       word('コピー機', 'コピーき', 'máy photocopy'),

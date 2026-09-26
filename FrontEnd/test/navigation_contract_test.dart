@@ -95,6 +95,7 @@ void main() {
         '/admin/achievements',
         '/admin/analytics',
         '/admin/transactions',
+        '/admin/lessons/:id/transcript',
       });
     });
 

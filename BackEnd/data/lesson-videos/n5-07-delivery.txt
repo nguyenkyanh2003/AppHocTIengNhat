@@ -1,7 +1,109 @@
 # Lời thoại Tình huống: Ở bưu điện
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 7
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-2-7.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Sử dụng dịch vụ chuyển phát
+## scene-1.mp4
+# Cách gửi thư và bưu kiện
+00:00 | ナレーター / Nareetaa / Người dẫn | 日本で、はがきや手紙、荷物を送る場合、どうすればいいでしょうか。 | Nihon de, hagaki ya tegami, nimotsu o okuru baai, doo sureba ii deshoo ka. | Ở Nhật, khi muốn gửi bưu thiếp, thư hay bưu kiện thì phải làm thế nào?
+*00:08 | ナレーター / Nareetaa / Người dẫn | はがきや手紙は郵便局を利用します。 | Hagaki ya tegami wa yuubinkyoku o riyoo shimasu. | Bưu thiếp và thư thì gửi qua bưu điện.
+00:13 | ナレーター / Nareetaa / Người dẫn | 郵便局で切手を買い、はがきや封筒の左上に貼り、ポストに入れてください。 | Yuubinkyoku de kitte o kai, hagaki ya fuutoo no hidariue ni hari, posuto ni irete kudasai. | Hãy mua tem ở bưu điện, dán vào góc trên bên trái của bưu thiếp hoặc phong bì rồi bỏ vào hòm thư.
+00:22 | ナレーター / Nareetaa / Người dẫn | 早く送りたいときは「速達」、 | Hayaku okuritai toki wa "sokutatsu", | Khi muốn gửi nhanh thì dùng "sokutatsu" (chuyển phát nhanh),
+00:26 | ナレーター / Nareetaa / Người dẫn | 大切なものを送るときは「書留」で送りましょう。 | Taisetsu na mono o okuru toki wa "kakitome" de okurimashoo. | khi gửi đồ quan trọng thì gửi "kakitome" (thư bảo đảm).
+*00:31 | ナレーター / Nareetaa / Người dẫn | 荷物を送る場合は、郵便局に荷物を持ち込んでください。 | Nimotsu o okuru baai wa, yuubinkyoku ni nimotsu o mochikonde kudasai. | Khi gửi bưu kiện, hãy mang bưu kiện đến bưu điện.
+00:37 | ナレーター / Nareetaa / Người dẫn | 送料はサイズや重さによって違います。 | Sooryoo wa saizu ya omosa ni yotte chigaimasu. | Phí gửi khác nhau tùy kích thước và trọng lượng.
+00:42 | ナレーター / Nareetaa / Người dẫn | 郵便局の人に荷物を預けて、サイズや重さを量ってもらってください。 | Yuubinkyoku no hito ni nimotsu o azukete, saizu ya omosa o hakatte moratte kudasai. | Hãy đưa bưu kiện cho nhân viên bưu điện để họ đo kích thước và cân trọng lượng.
+00:51 | ナレーター / Nareetaa / Người dẫn | 荷物は郵便局だけでなく、民間の宅配業者を利用することもできます。 | Nimotsu wa yuubinkyoku dake de naku, minkan no takuhai-gyoosha o riyoo suru koto mo dekimasu. | Bưu kiện không chỉ gửi ở bưu điện mà còn có thể gửi qua các công ty chuyển phát tư nhân.
+00:59 | ナレーター / Nareetaa / Người dẫn | その場合は、宅配を扱っているコンビニエンスストアに荷物を持って行き、手続きをします。 | Sono baai wa, takuhai o atsukatte iru konbiniensu-sutoa ni nimotsu o motte iki, tetsuzuki o shimasu. | Khi đó, mang bưu kiện đến cửa hàng tiện lợi có nhận gửi hàng và làm thủ tục.
+01:09 | ナレーター / Nareetaa / Người dẫn | 荷物が大きいときや重いときは、電話をかけて荷物を取りに来てもらってください。 | Nimotsu ga ookii toki ya omoi toki wa, denwa o kakete nimotsu o tori ni kite moratte kudasai. | Khi bưu kiện to hoặc nặng, hãy gọi điện để họ đến lấy hàng.
+01:17 | ナレーター / Nareetaa / Người dẫn | 郵便局も宅配業者も、家や会社まで荷物を取りに来てくれます。 | Yuubinkyoku mo takuhai-gyoosha mo, ie ya kaisha made nimotsu o tori ni kite kuremasu. | Cả bưu điện lẫn công ty chuyển phát đều đến tận nhà hoặc công ty để lấy hàng.
+### từ vựng
+はがき | はがき | hagaki | bưu thiếp
+手紙 | てがみ | tegami | thư
+荷物 | にもつ | nimotsu | bưu kiện, hành lý
+郵便局 | ゆうびんきょく | yuubinkyoku | bưu điện
+切手 | きって | kitte | tem
+速達 | そくたつ | sokutatsu | chuyển phát nhanh
+書留 | かきとめ | kakitome | thư bảo đảm
+送料 | そうりょう | sooryoo | phí gửi
+
+## scene-2.mp4
+# Nhận bưu kiện giao tận nhà
+00:07 | アンジェラ / Anjera / Angela | はーい。 | Haai. | Vâng, ra ngay.
+00:09 | 配達員 / Haitatsuin / Người giao hàng | 星丸運送です。 | Hoshimaru-unsoo desu. | Chuyển phát Hoshimaru đây ạ.
+00:19 | 配達員 / Haitatsuin / Người giao hàng | どうも。 | Doomo. | Chào chị.
+00:22 | 配達員 / Haitatsuin / Người giao hàng | お荷物です。 | Onimotsu desu. | Bưu kiện của chị đây ạ.
+*00:24 | 配達員 / Haitatsuin / Người giao hàng | ここに、はんこお願いします。 | Koko ni, hanko onegaishimasu. | Chị đóng dấu vào đây giúp tôi.
+*00:27 | アンジェラ / Anjera / Angela | あ、サインでもいいですか。 | A, sain demo ii desu ka. | À, ký tên có được không ạ?
+00:29 | 配達員 / Haitatsuin / Người giao hàng | いいですよ。 | Ii desu yo. | Được chứ.
+00:38 | 配達員 / Haitatsuin / Người giao hàng | はい、ありがとうございました。 | Hai, arigatoo gozaimashita. | Vâng, cảm ơn chị.
+00:41 | アンジェラ / Anjera / Angela | はい、どうも。 | Hai, doomo. | Vâng, cảm ơn anh.
+### từ vựng
+お荷物 | おにもつ | onimotsu | bưu kiện (của quý khách)
+はんこ | はんこ | hanko | con dấu
+サイン | サイン | sain | chữ ký
+
+## scene-3.mp4
+# Nhờ giao lại hàng
+*00:09 | アンジェラ / Anjera / Angela | 鈴木さん、これ、何ですか。 | Suzuki-san, kore, nan desu ka. | Chị Suzuki ơi, cái này là gì vậy?
+00:15 | 鈴木 / Suzuki / Suzuki | 不在連絡票です。 | Fuzai-renrakuhyoo desu. | Là phiếu báo vắng nhà đấy.
+00:17 | アンジェラ / Anjera / Angela | 不在連絡票…？ | Fuzai-renrakuhyoo…? | Phiếu báo vắng nhà…?
+00:20 | 鈴木 / Suzuki / Suzuki | アンジェラさんに荷物が来ました。 | Anjera-san ni nimotsu ga kimashita. | Có bưu kiện gửi đến cho Angela.
+00:24 | 鈴木 / Suzuki / Suzuki | アンジェラさんは家にいませんでした。 | Anjera-san wa ie ni imasen deshita. | Nhưng lúc đó Angela không có nhà.
+00:29 | 鈴木 / Suzuki / Suzuki | だから、宅配便の人は荷物を持って帰りました。 | Dakara, takuhaibin no hito wa nimotsu o motte kaerimashita. | Vì vậy người giao hàng đã mang bưu kiện về.
+00:35 | 鈴木 / Suzuki / Suzuki | そのお知らせです。 | Sono oshirase desu. | Đây là giấy báo việc đó.
+*00:37 | アンジェラ / Anjera / Angela | そうですか。どうしたらいいですか。 | Soo desu ka. Doo shitara ii desu ka. | Vậy à. Tôi nên làm thế nào ạ?
+00:42 | 鈴木 / Suzuki / Suzuki | この番号に電話をします。 | Kono bangoo ni denwa o shimasu. | Gọi điện đến số này.
+00:46 | 鈴木 / Suzuki / Suzuki | 私が電話しましょうか。 | Watashi ga denwa shimashoo ka. | Để tôi gọi giúp nhé?
+00:48 | アンジェラ / Anjera / Angela | はい、お願いします。 | Hai, onegaishimasu. | Vâng, nhờ chị.
+*01:01 | 鈴木 / Suzuki / Suzuki | もしもし、再配達をお願いします。 | Moshimoshi, saihaitatsu o onegaishimasu. | A lô, tôi muốn nhờ giao lại hàng.
+01:04 | 受付 / Uketsuke / Tổng đài viên | ご連絡ありがとうございます。 | Gorenraku arigatoo gozaimasu. | Cảm ơn quý khách đã liên hệ.
+01:07 | 受付 / Uketsuke / Tổng đài viên | 不在連絡票のお問い合わせ番号をお願いします。 | Fuzai-renrakuhyoo no otoiawase-bangoo o onegaishimasu. | Xin quý khách đọc mã số tra cứu trên phiếu báo vắng nhà.
+01:11 | 鈴木 / Suzuki / Suzuki | 123の45の12345の6です。 | Ichi-ni-san no yon-go no ichi-ni-san-yon-go no roku desu. | 123-45-12345-6 ạ.
+01:22 | 受付 / Uketsuke / Tổng đài viên | お荷物の確認が取れました。 | Onimotsu no kakunin ga toremashita. | Tôi đã tìm thấy bưu kiện rồi ạ.
+01:24 | 受付 / Uketsuke / Tổng đài viên | 再配達のご希望日はいつでしょうか。 | Saihaitatsu no gokiboobi wa itsu deshoo ka. | Quý khách muốn giao lại vào ngày nào ạ?
+01:28 | 鈴木 / Suzuki / Suzuki | 再配達…えっと… | Saihaitatsu… etto… | Ngày giao lại… ừm…
+01:30 | 鈴木 / Suzuki / Suzuki | 11月5日でお願いします。 | Juuichigatsu itsuka de onegaishimasu. | Cho tôi ngày 5 tháng 11.
+01:33 | 受付 / Uketsuke / Tổng đài viên | お時間のご希望はありますか。 | Ojikan no gokiboo wa arimasu ka. | Quý khách có muốn chọn giờ không ạ?
+01:37 | 鈴木 / Suzuki / Suzuki | 午前中でお願いします。 | Gozenchuu de onegaishimasu. | Cho tôi buổi sáng.
+01:39 | 受付 / Uketsuke / Tổng đài viên | かしこまりました。それでは、11月5日火曜日の午前中に再配達に伺います。 | Kashikomarimashita. Soredewa, juuichigatsu itsuka kayoobi no gozenchuu ni saihaitatsu ni ukagaimasu. | Vâng ạ. Vậy chúng tôi sẽ giao lại vào buổi sáng thứ Ba, ngày 5 tháng 11.
+01:46 | 鈴木 / Suzuki / Suzuki | よろしくお願いします。 | Yoroshiku onegaishimasu. | Nhờ anh nhé.
+01:48 | 受付 / Uketsuke / Tổng đài viên | ご利用ありがとうございました。 | Goriyoo arigatoo gozaimashita. | Cảm ơn quý khách đã sử dụng dịch vụ.
+01:52 | 鈴木 / Suzuki / Suzuki | これで大丈夫。 | Kore de daijoobu. | Thế là xong rồi.
+### từ vựng
+不在連絡票 | ふざいれんらくひょう | fuzai-renrakuhyoo | phiếu báo vắng nhà
+宅配便 | たくはいびん | takuhaibin | giao hàng tận nhà
+お知らせ | おしらせ | oshirase | thông báo
+番号 | ばんごう | bangoo | số
+再配達 | さいはいたつ | saihaitatsu | giao hàng lại
+午前中 | ごぜんちゅう | gozenchuu | trong buổi sáng
+
+## summary.mp4
+# Ôn tập: Dùng dịch vụ chuyển phát
+00:00 |  /  / Chủ đề | サインでも いいですか | sain demo ii desu ka | Ký tên có được không ạ?
+00:06 | 配達員 / Haitatsuin / Người giao hàng | ここに、はんこお願いします。 | Koko ni, hanko onegaishimasu. | Chị đóng dấu vào đây giúp tôi.
+*00:09 | アンジェラ / Anjera / Angela | あ、サインでもいいですか。 | A, sain demo ii desu ka. | À, ký tên có được không ạ?
+00:11 | 配達員 / Haitatsuin / Người giao hàng | いいですよ。 | Ii desu yo. | Được chứ.
+00:14 | ナレーター / Nareetaa / Người dẫn | 「Bでもいいですか」という文は、一番いいのはAですが、Aの代わりにBを使っても大丈夫かどうか聞きたいときに使います。 | "B demo ii desu ka" to iu bun wa, ichiban ii no wa A desu ga, A no kawari ni B o tsukatte mo daijoobu ka doo ka kikitai toki ni tsukaimasu. | Câu "B demo ii desu ka" dùng khi tốt nhất là A nhưng muốn hỏi dùng B thay cho A có được không.
+00:30 | ナレーター / Nareetaa / Người dẫn | この場面では、はんこがA、サインがBになります。 | Kono bamen de wa, hanko ga A, sain ga B ni narimasu. | Trong cảnh này, con dấu là A, chữ ký là B.
+00:35 | ナレーター / Nareetaa / Người dẫn | 宅配便の人はアンジェラさんにはんこをお願いしましたが、 | Takuhaibin no hito wa Anjera-san ni hanko o onegai shimashita ga, | Nhân viên giao hàng nhờ chị Angela đóng dấu,
+00:44 | ナレーター / Nareetaa / Người dẫn | アンジェラさんははんこがないので、その代わりにサインでもいいか聞きました。 | Anjera-san wa hanko ga nai node, sono kawari ni sain demo ii ka kikimashita. | nhưng chị Angela không có con dấu nên đã hỏi ký tên thay vào có được không.
+00:53 | ナレーター / Nareetaa / Người dẫn | 他にも、例えば約束の日時を決めるときに、「土曜日はどうですか」「土曜日はちょっと…。日曜日でもいいですか」のように言います。 | Hoka ni mo, tatoeba yakusoku no nichiji o kimeru toki ni, "Doyoobi wa doo desu ka", "Doyoobi wa chotto…. Nichiyoobi demo ii desu ka" no yoo ni iimasu. | Ngoài ra, ví dụ khi hẹn ngày giờ, có thể nói: "Thứ Bảy được không?" – "Thứ Bảy thì hơi khó… Chủ Nhật có được không?".
+01:11 |  /  / Chủ đề | これ、なんですか | kore, nan desu ka | Cái này là gì vậy?
+*01:16 | アンジェラ / Anjera / Angela | 鈴木さん、これ、何ですか。 | Suzuki-san, kore, nan desu ka. | Chị Suzuki ơi, cái này là gì vậy?
+01:23 | 鈴木 / Suzuki / Suzuki | 不在連絡票です。 | Fuzai-renrakuhyoo desu. | Là phiếu báo vắng nhà đấy.
+01:26 | ナレーター / Nareetaa / Người dẫn | 「これ、何ですか」は「これは何ですか」と同じです。 | "Kore, nan desu ka" wa "Kore wa nan desu ka" to onaji desu. | "Kore, nan desu ka" giống với "Kore wa nan desu ka".
+01:34 | ナレーター / Nareetaa / Người dẫn | 見たものについて、それが何かわからないときに使います。 | Mita mono ni tsuite, sore ga nani ka wakaranai toki ni tsukaimasu. | Dùng khi nhìn thấy một thứ mà không biết đó là gì.
+01:40 | ナレーター / Nareetaa / Người dẫn | 見たものが何かわからないとき、「これ、何ですか」と質問できます。 | Mita mono ga nani ka wakaranai toki, "Kore, nan desu ka" to shitsumon dekimasu. | Khi không biết thứ mình thấy là gì, có thể hỏi "Cái này là gì vậy?".
+01:49 | ナレーター / Nareetaa / Người dẫn | 文の最後に「か」をつけると、質問の文になります。 | Bun no saigo ni "ka" o tsukeru to, shitsumon no bun ni narimasu. | Thêm "ka" vào cuối câu thì thành câu hỏi.
+01:56 | ナレーター / Nareetaa / Người dẫn | 「これ」の代わりに「それ」や「あれ」も使えます。 | "Kore" no kawari ni "sore" ya "are" mo tsukaemasu. | Thay cho "kore" cũng có thể dùng "sore" hoặc "are".
+02:04 | ナレーター / Nareetaa / Người dẫn | この場面では、アンジェラさんは家のポストにある紙が何かわかりませんでした。 | Kono bamen de wa, Anjera-san wa ie no posuto ni aru kami ga nani ka wakarimasen deshita. | Trong cảnh này, chị Angela không biết tờ giấy trong hộp thư nhà mình là gì.
+02:14 | ナレーター / Nareetaa / Người dẫn | それで、鈴木さんに紙を見せ、「これ、何ですか」と聞きました。 | Sorede, Suzuki-san ni kami o mise, "Kore, nan desu ka" to kikimashita. | Vì vậy chị ấy cho chị Suzuki xem tờ giấy và hỏi "Cái này là gì vậy?".
+02:23 | ナレーター / Nareetaa / Người dẫn | 「何」の部分を「誰」「どこ」など他の質問の言葉に変えて、「誰ですか」「どこですか」のように質問することもできます。 | "Nani" no bubun o "dare", "doko" nado hoka no shitsumon no kotoba ni kaete, "Dare desu ka", "Doko desu ka" no yoo ni shitsumon suru koto mo dekimasu. | Có thể thay "nani" bằng các từ để hỏi khác như "dare" (ai), "doko" (đâu) để hỏi "Ai vậy?", "Ở đâu vậy?".
+02:43 |  /  / Chủ đề | どうしたら いいですか | doo shitara ii desu ka | Tôi nên làm thế nào?
+*02:48 | アンジェラ / Anjera / Angela | どうしたらいいですか。 | Doo shitara ii desu ka. | Tôi nên làm thế nào ạ?
+02:52 | 鈴木 / Suzuki / Suzuki | この番号に電話をします。 | Kono bangoo ni denwa o shimasu. | Gọi điện đến số này.
+02:58 | ナレーター / Nareetaa / Người dẫn | 「どうしたらいいですか」は、自分が何かをしなければならないのですが、その方法がわからなくて、アドバイスをもらいたいときに使います。 | "Doo shitara ii desu ka" wa, jibun ga nanika o shinakereba naranai no desu ga, sono hoohoo ga wakaranakute, adobaisu o moraitai toki ni tsukaimasu. | "Doo shitara ii desu ka" dùng khi mình phải làm việc gì đó nhưng không biết cách nên muốn xin lời khuyên.
+03:13 | ナレーター / Nareetaa / Người dẫn | この場面では、アンジェラさんは不在連絡票は何かわかりましたが、これから何をしなければならないかわかりませんでした。 | Kono bamen de wa, Anjera-san wa fuzai-renrakuhyoo wa nani ka wakarimashita ga, korekara nani o shinakereba naranai ka wakarimasen deshita. | Trong cảnh này, chị Angela đã biết phiếu báo vắng nhà là gì, nhưng không biết tiếp theo phải làm gì.
+03:28 | ナレーター / Nareetaa / Người dẫn | それで、鈴木さんに「どうしたらいいですか」と聞きました。 | Sorede, Suzuki-san ni "Doo shitara ii desu ka" to kikimashita. | Vì vậy chị ấy hỏi chị Suzuki "Tôi nên làm thế nào ạ?".
+03:37 | ナレーター / Nareetaa / Người dẫn | 他にも、仕事のときや子どもが病気になって困ったときなど、いろいろな場面で使うことができます。 | Hoka ni mo, shigoto no toki ya kodomo ga byooki ni natte komatta toki nado, iroiro na bamen de tsukau koto ga dekimasu. | Ngoài ra còn dùng được trong nhiều tình huống, như khi làm việc hay khi con bị ốm mà không biết xoay xở thế nào.

@@ -97,8 +97,14 @@ class LessonStudySession extends ChangeNotifier {
 
   /// Lưu một từ là đã nhớ. Gọi lại với từ đã lưu hoặc đang lưu thì bỏ qua,
   /// để bấm đôi không gửi hai lần.
-  Future<void> markLearned(Vocabulary word) async {
-    if (isLearned(word) || isSaving(word)) return;
+  Future<void> markLearned(Vocabulary word) => _setLearned(word, true);
+
+  /// Gỡ dấu "Đã nhớ" của một từ bấm nhầm. Backend không trừ XP và cũng không
+  /// cộng lại khi đánh dấu lần nữa, nên bấm qua bấm lại không lợi dụng được.
+  Future<void> unmarkLearned(Vocabulary word) => _setLearned(word, false);
+
+  Future<void> _setLearned(Vocabulary word, bool learned) async {
+    if (isLearned(word) == learned || isSaving(word)) return;
     _saving.add(word.id);
     _notify();
 
@@ -106,13 +112,17 @@ class LessonStudySession extends ChangeNotifier {
       lessonId: lessonId,
       itemType: 'vocabulary',
       itemId: word.id,
-      completed: true,
+      completed: learned,
     );
     _saving.remove(word.id);
     if (progress == null) {
-      _message = 'Chưa lưu được "${word.word}". Kiểm tra kết nối rồi bấm lại.';
-    } else {
+      _message = learned
+          ? 'Chưa lưu được "${word.word}". Kiểm tra kết nối rồi bấm lại.'
+          : 'Chưa bỏ đánh dấu được "${word.word}". Kiểm tra kết nối rồi bấm lại.';
+    } else if (learned) {
       _learned.add(word.id);
+    } else {
+      _learned.remove(word.id);
     }
     _notify();
   }

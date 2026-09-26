@@ -1,7 +1,118 @@
 # Lời thoại Tình huống: Nói mong muốn với nhân viên cửa hàng
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 5
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-2-7.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Truyền đạt mong muốn với nhân viên cửa hàng
+## scene-1.mp4
+# Xin xem món đồ màu khác
+00:03 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+*00:05 | 客 / Kyaku / Khách | すみません。これ、試着したいんですけど。 | Sumimasen. Kore, shichaku shitain desu kedo. | Xin lỗi, tôi muốn mặc thử cái này.
+00:09 | 店員 / Ten'in / Nhân viên | はい、ご試着ですね。こちらへどうぞ。 | Hai, goshichaku desu ne. Kochira e doozo. | Vâng, quý khách mặc thử ạ. Mời đi lối này.
+00:19 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Quý khách thấy thế nào ạ?
+00:23 | 客 / Kyaku / Khách | あ、サイズはちょうどいいんですけど、 | A, saizu wa choodo iin desu kedo, | À, cỡ thì vừa rồi nhưng mà…
+*00:28 | 客 / Kyaku / Khách | あのー、他の色はありますか。 | Anoo, hoka no iro wa arimasu ka. | Ừm, có màu khác không ạ?
+00:33 | 店員 / Ten'in / Nhân viên | 白とグレーもございます。 | Shiro to guree mo gozaimasu. | Có cả màu trắng và màu xám ạ.
+*00:35 | 客 / Kyaku / Khách | じゃあ、白も見せてください。 | Jaa, shiro mo misete kudasai. | Vậy cho tôi xem cả màu trắng.
+00:38 | 店員 / Ten'in / Nhân viên | はい。今お持ちしますね。 | Hai. Ima omochi shimasu ne. | Vâng. Tôi mang ra ngay ạ.
+00:44 | 店員 / Ten'in / Nhân viên | お待たせしました。こちらです。 | Omatase shimashita. Kochira desu. | Để quý khách đợi lâu. Đây ạ.
+00:47 | 客 / Kyaku / Khách | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+### từ vựng
+他の | ほかの | hoka no | khác
+色 | いろ | iro | màu sắc
+白 | しろ | shiro | màu trắng
+グレー | グレー | guree | màu xám
+見せてください | みせてください | misete kudasai | cho tôi xem
+
+## scene-2.mp4
+# Hỏi có cỡ to hơn không
+00:02 | 客 / Kyaku / Khách | すみません。 | Sumimasen. | Xin lỗi.
+00:05 | 客 / Kyaku / Khách | これ、何センチですか。 | Kore, nan-senchi desu ka. | Đôi này cỡ bao nhiêu xăng-ti-mét ạ?
+00:12 | 店員 / Ten'in / Nhân viên | 27センチです。 | Nijuunana-senchi desu. | 27 cm ạ.
+*00:14 | 客 / Kyaku / Khách | 履いてみてもいいですか。 | Haite mite mo ii desu ka. | Tôi đi thử được không ạ?
+00:16 | 店員 / Ten'in / Nhân viên | はい、どうぞ。 | Hai, doozo. | Vâng, mời anh.
+00:27 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Anh thấy thế nào ạ?
+00:28 | 客 / Kyaku / Khách | ちょっと…きついです。 | Chotto… kitsui desu. | Hơi… chật ạ.
+*00:31 | 客 / Kyaku / Khách | もう少し大きいのはありますか。 | Moo sukoshi ookii no wa arimasu ka. | Có đôi to hơn một chút không ạ?
+00:34 | 店員 / Ten'in / Nhân viên | はい、ございます。 | Hai, gozaimasu. | Vâng, có ạ.
+00:36 | 店員 / Ten'in / Nhân viên | 27.5をお持ちしますね。 | Nijuunana-ten-go o omochi shimasu ne. | Tôi mang cỡ 27,5 ra nhé.
+00:38 | 客 / Kyaku / Khách | お願いします。 | Onegaishimasu. | Nhờ anh.
+00:51 | 店員 / Ten'in / Nhân viên | はい、いかがですか。 | Hai, ikaga desu ka. | Đây ạ, anh thấy thế nào?
+00:54 | 客 / Kyaku / Khách | ちょうどいいです。 | Choodo ii desu. | Vừa khít ạ.
+*00:55 | 客 / Kyaku / Khách | これにします。 | Kore ni shimasu. | Tôi lấy đôi này.
+### từ vựng
+センチ | センチ | senchi | xăng-ti-mét
+履いてみます | はいてみます | haite mimasu | đi thử (giày)
+きつい | きつい | kitsui | chật
+もう少し | もうすこし | moo sukoshi | thêm một chút
+大きい | おおきい | ookii | to, lớn
+
+## scene-3.mp4
+# Đổi và trả hàng
+00:00 | ナレーター / Nareetaa / Người dẫn | アンジェラさんはズボンを買いましたが、サイズが合わないので返品に来ました。 | Anjera-san wa zubon o kaimashita ga, saizu ga awanai node henpin ni kimashita. | Chị Angela đã mua quần nhưng cỡ không vừa nên đến trả hàng.
+00:10 | アンジェラ / Anjera / Angela | すみません、これ、先週ここで買ったんですけど。 | Sumimasen, kore, senshuu koko de kattan desu kedo. | Xin lỗi, tôi mua cái này ở đây tuần trước.
+00:15 | 店員 / Ten'in / Nhân viên | はい。 | Hai. | Vâng.
+*00:21 | アンジェラ / Anjera / Angela | ちょっとサイズが合わなくて。 | Chotto saizu ga awanakute. | Cỡ hơi không vừa ạ.
+*00:25 | アンジェラ / Anjera / Angela | 返品はできますか。 | Henpin wa dekimasu ka. | Tôi trả hàng được không ạ?
+00:28 | 店員 / Ten'in / Nhân viên | はい。レシートはお持ちですか。 | Hai. Reshiito wa omochi desu ka. | Vâng. Quý khách có mang hóa đơn không ạ?
+00:37 | 店員 / Ten'in / Nhân viên | 少々お待ちください。 | Shooshoo omachi kudasai. | Xin quý khách chờ một chút.
+00:59 | 店員 / Ten'in / Nhân viên | お客様、こちらご確認ください。 | Okyakusama, kochira gokakunin kudasai. | Thưa quý khách, xin kiểm tra lại giúp ạ.
+01:05 | アンジェラ / Anjera / Angela | はい、大丈夫です。ありがとうございました。 | Hai, daijoobu desu. Arigatoo gozaimashita. | Vâng, được rồi ạ. Cảm ơn chị.
+01:08 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+01:12 | ナレーター / Nareetaa / Người dẫn | アンジェラさんはズボンを買いましたが、サイズが合わないので交換に来ました。 | Anjera-san wa zubon o kaimashita ga, saizu ga awanai node kookan ni kimashita. | Chị Angela đã mua quần nhưng cỡ không vừa nên đến đổi hàng.
+01:22 | アンジェラ / Anjera / Angela | すみません、これ、先週ここで買ったんですけど。 | Sumimasen, kore, senshuu koko de kattan desu kedo. | Xin lỗi, tôi mua cái này ở đây tuần trước.
+01:26 | 店員 / Ten'in / Nhân viên | はい。 | Hai. | Vâng.
+01:33 | アンジェラ / Anjera / Angela | ちょっと小さくて。 | Chotto chiisakute. | Nó hơi nhỏ ạ.
+*01:36 | アンジェラ / Anjera / Angela | 交換はできますか。 | Kookan wa dekimasu ka. | Tôi đổi được không ạ?
+01:38 | 店員 / Ten'in / Nhân viên | はい。Mサイズでよろしいですか。 | Hai. Emu-saizu de yoroshii desu ka. | Vâng. Cỡ M được không ạ?
+01:41 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+01:42 | 店員 / Ten'in / Nhân viên | 少々お待ちください。在庫を確認します。 | Shooshoo omachi kudasai. Zaiko o kakunin shimasu. | Xin chờ một chút. Tôi kiểm tra hàng trong kho ạ.
+01:54 | 店員 / Ten'in / Nhân viên | お待たせしました。 | Omatase shimashita. | Để quý khách đợi lâu.
+01:55 | アンジェラ / Anjera / Angela | あ、どうも。 | A, doomo. | À, cảm ơn chị.
+01:57 | 店員 / Ten'in / Nhân viên | レシートはお持ちですか。 | Reshiito wa omochi desu ka. | Quý khách có mang hóa đơn không ạ?
+02:05 | 店員 / Ten'in / Nhân viên | 少々お待ちください。 | Shooshoo omachi kudasai. | Xin quý khách chờ một chút.
+02:19 | 店員 / Ten'in / Nhân viên | では、お客様、こちらご確認ください。 | Dewa, okyakusama, kochira gokakunin kudasai. | Vậy, thưa quý khách, xin kiểm tra lại giúp ạ.
+02:24 | アンジェラ / Anjera / Angela | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, được rồi ạ.
+02:32 | アンジェラ / Anjera / Angela | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn chị.
+02:32:15 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+### từ vựng
+ズボン | ズボン | zubon | quần dài
+先週 | せんしゅう | senshuu | tuần trước
+合わない | あわない | awanai | không vừa
+返品 | へんぴん | henpin | trả hàng
+交換 | こうかん | kookan | đổi hàng
+レシート | レシート | reshiito | hóa đơn
+在庫 | ざいこ | zaiko | hàng trong kho
+
+## summary.mp4
+# Ôn tập: Nói mong muốn với nhân viên cửa hàng
+00:00 |  /  / Chủ đề | これに します | kore ni shimasu | Tôi lấy cái này
+00:09 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Anh thấy thế nào ạ?
+*00:11 | 客 / Kyaku / Khách | ちょうどいいです。これにします。 | Choodo ii desu. Kore ni shimasu. | Vừa khít rồi. Tôi lấy đôi này.
+00:16 | ナレーター / Nareetaa / Người dẫn | 「名詞＋にします」は、2つ以上の選択肢から1つに決めるときに使います。 | "Meeshi + ni shimasu" wa, futatsu ijoo no sentakushi kara hitotsu ni kimeru toki ni tsukaimasu. | "Danh từ + ni shimasu" dùng khi quyết định chọn 1 trong số từ 2 lựa chọn trở lên.
+00:28 | ナレーター / Nareetaa / Người dẫn | この場合、「します」の前に「に」を使います。 | Kono baai, "shimasu" no mae ni "ni" o tsukaimasu. | Khi đó, dùng "ni" trước "shimasu".
+00:36 | ナレーター / Nareetaa / Người dẫn | 例えば、レストランで店員が客に「飲み物はコーヒー、紅茶、ジュースがあります。何にしますか」と聞きます。 | Tatoeba, resutoran de ten'in ga kyaku ni "Nomimono wa koohii, koocha, juusu ga arimasu. Nani ni shimasu ka" to kikimasu. | Ví dụ, ở nhà hàng nhân viên hỏi khách: "Đồ uống có cà phê, trà, nước ép. Quý khách dùng gì ạ?".
+00:54 | ナレーター / Nareetaa / Người dẫn | 客は3つの飲み物の中から1つを選んで、店員に伝えます。 | Kyaku wa mittsu no nomimono no naka kara hitotsu o erande, ten'in ni tsutaemasu. | Khách chọn 1 trong 3 loại đồ uống rồi nói với nhân viên.
+01:03 | ナレーター / Nareetaa / Người dẫn | コーヒーを選んだときは、「コーヒーにします」と言います。 | Koohii o eranda toki wa, "Koohii ni shimasu" to iimasu. | Khi chọn cà phê thì nói "Cho tôi cà phê".
+01:11 | ナレーター / Nareetaa / Người dẫn | また、例えばレストランの入り口で、店員が客に「テーブルとカウンターがあります。どちらにしますか」と聞くことがあります。 | Mata, tatoeba resutoran no iriguchi de, ten'in ga kyaku ni "Teeburu to kauntaa ga arimasu. Dochira ni shimasu ka" to kiku koto ga arimasu. | Hoặc ở cửa nhà hàng, nhân viên có thể hỏi khách: "Có bàn và quầy. Quý khách chọn chỗ nào ạ?".
+01:28 | ナレーター / Nareetaa / Người dẫn | カウンターを選んだとき、客は店員に「カウンターにします」と伝えます。 | Kauntaa o eranda toki, kyaku wa ten'in ni "Kauntaa ni shimasu" to tsutaemasu. | Khi chọn quầy, khách nói với nhân viên "Cho tôi ngồi quầy".
+01:40 | ナレーター / Nareetaa / Người dẫn | 動画の会話では、「これにします」と言って、履いてみた靴を買うことを店員に伝えました。 | Dooga no kaiwa de wa, "Kore ni shimasu" to itte, haite mita kutsu o kau koto o ten'in ni tsutaemashita. | Trong hội thoại ở video, khách nói "Tôi lấy đôi này" để báo với nhân viên là sẽ mua đôi giày vừa đi thử.
+01:52 |  /  / Chủ đề | もうすこし おおきいのは ありますか | moo sukoshi ookii no wa arimasu ka | Có cái to hơn một chút không ạ?
+02:00 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Anh thấy thế nào ạ?
+*02:02 | 客 / Kyaku / Khách | ちょっと…きついです。もう少し大きいのはありますか。 | Chotto… kitsui desu. Moo sukoshi ookii no wa arimasu ka. | Hơi… chật ạ. Có đôi to hơn một chút không?
+02:08 | ナレーター / Nareetaa / Người dẫn | この会話では、靴を履いてみた後で、「もう少し大きいのはありますか」と店員に言いました。 | Kono kaiwa de wa, kutsu o haite mita ato de, "Moo sukoshi ookii no wa arimasu ka" to ten'in ni iimashita. | Trong đoạn hội thoại này, sau khi đi thử giày, khách hỏi nhân viên "Có đôi to hơn một chút không?".
+02:20 | ナレーター / Nareetaa / Người dẫn | このとき、「もう少し大きい靴はありますか」という意味で、「もう少し大きいのはありますか」と言っています。 | Kono toki, "Moo sukoshi ookii kutsu wa arimasu ka" to iu imi de, "Moo sukoshi ookii no wa arimasu ka" to itte imasu. | Ở đây, với nghĩa "Có đôi giày to hơn một chút không?", khách nói "Có cái to hơn một chút không?".
+02:37 | ナレーター / Nareetaa / Người dẫn | 「靴」が「の」に変わります。 | "Kutsu" ga "no" ni kawarimasu. | "Kutsu" (giày) được thay bằng "no".
+02:42 | ナレーター / Nareetaa / Người dẫn | い形容詞の場合は、例えば「安いパソコン」は「安いの」になります。 | I-keeyooshi no baai wa, tatoeba "yasui pasokon" wa "yasui no" ni narimasu. | Với tính từ đuôi i, ví dụ "yasui pasokon" (máy tính rẻ) thành "yasui no" (cái rẻ).
+02:55 | ナレーター / Nareetaa / Người dẫn | な形容詞の場合は、例えば「丈夫なテーブル」は「丈夫なの」になります。 | Na-keeyooshi no baai wa, tatoeba "joobu na teeburu" wa "joobu na no" ni narimasu. | Với tính từ đuôi na, ví dụ "joobu na teeburu" (cái bàn chắc chắn) thành "joobu na no" (cái chắc chắn).
+03:07 | ナレーター / Nareetaa / Người dẫn | 例えば、家電量販店のパソコンコーナーで安いパソコンを見たいときに、「少し安いのを見たいです」と店員に伝えることができます。 | Tatoeba, kaden-ryoohanten no pasokon-koonaa de yasui pasokon o mitai toki ni, "Sukoshi yasui no o mitai desu" to ten'in ni tsutaeru koto ga dekimasu. | Ví dụ, ở khu máy tính của siêu thị điện máy, khi muốn xem máy rẻ thì có thể nói với nhân viên "Tôi muốn xem cái rẻ hơn một chút".
+03:26 |  /  / Chủ đề | へんぴんは できますか | henpin wa dekimasu ka | Có trả hàng được không ạ?
+03:32 | ナレーター / Nareetaa / Người dẫn | 「できます」には、「日本語ができます」「ピアノができます」「料理ができます」など、能力の意味があります。 | "Dekimasu" ni wa, "Nihongo ga dekimasu", "Piano ga dekimasu", "Ryoori ga dekimasu" nado, nooryoku no imi ga arimasu. | "Dekimasu" có nghĩa chỉ khả năng, như "biết tiếng Nhật", "biết chơi piano", "biết nấu ăn".
+03:45 | ナレーター / Nareetaa / Người dẫn | 動画の「返品はできますか」というのは、能力の意味ではありません。 | Dooga no "Henpin wa dekimasu ka" to iu no wa, nooryoku no imi de wa arimasen. | Câu "Henpin wa dekimasu ka" trong video không mang nghĩa khả năng.
+03:55 | アンジェラ / Anjera / Angela | ちょっとサイズが合わなくて。 | Chotto saizu ga awanakute. | Cỡ hơi không vừa ạ.
+*03:59 | アンジェラ / Anjera / Angela | 返品はできますか。 | Henpin wa dekimasu ka. | Tôi trả hàng được không ạ?
+04:02 | ナレーター / Nareetaa / Người dẫn | 動画の会話では、「返品はできますか」と店員に聞きました。 | Dooga no kaiwa de wa, "Henpin wa dekimasu ka" to ten'in ni kikimashita. | Trong hội thoại ở video, chị Angela hỏi nhân viên "Tôi trả hàng được không ạ?".
+04:11 | ナレーター / Nareetaa / Người dẫn | この場合、客は商品を返品したいと思っていましたが、それがこの店で可能かどうかを知りたくて店員に聞きました。 | Kono baai, kyaku wa shoohin o henpin shitai to omotte imashita ga, sore ga kono mise de kanoo ka doo ka o shiritakute ten'in ni kikimashita. | Ở đây, khách muốn trả hàng nhưng muốn biết cửa hàng này có cho phép không nên đã hỏi nhân viên.
+04:27 | ナレーター / Nareetaa / Người dẫn | 「できます」という表現は、ある行為がその場所のルールや状況で可能かどうかを言うときに使います。 | "Dekimasu" to iu hyoogen wa, aru kooi ga sono basho no ruuru ya jookyoo de kanoo ka doo ka o iu toki ni tsukaimasu. | Cách nói "dekimasu" còn dùng để nói một việc có được phép hay không theo quy định hoặc tình hình ở nơi đó.
+04:41 | ナレーター / Nareetaa / Người dẫn | 例えば、レストランやカフェで持ち帰りをお願いしたいときに、「持ち帰りはできますか」と聞くことができます。 | Tatoeba, resutoran ya kafe de mochikaeri o onegai shitai toki ni, "Mochikaeri wa dekimasu ka" to kiku koto ga dekimasu. | Ví dụ, ở nhà hàng hay quán cà phê, khi muốn mang về thì có thể hỏi "Có mang về được không ạ?".
+04:55 | ナレーター / Nareetaa / Người dẫn | また、美容院や病院の予約をキャンセルしたいときに、「予約のキャンセルはできますか」と聞くことができます。 | Mata, biyooin ya byooin no yoyaku o kyanseru shitai toki ni, "Yoyaku no kyanseru wa dekimasu ka" to kiku koto ga dekimasu. | Hoặc khi muốn hủy lịch hẹn ở tiệm làm tóc hay bệnh viện thì có thể hỏi "Tôi hủy lịch hẹn được không ạ?".
+05:09 | ナレーター / Nareetaa / Người dẫn | お店の人がお客に「宅配はできます」、または「宅配はできません」と店のルールを説明することもあります。 | Omise no hito ga okyaku ni "Takuhai wa dekimasu", mata wa "Takuhai wa dekimasen" to mise no ruuru o setsumee suru koto mo arimasu. | Nhân viên cửa hàng cũng có thể giải thích quy định với khách: "Có giao hàng tận nhà" hoặc "Không giao hàng tận nhà".

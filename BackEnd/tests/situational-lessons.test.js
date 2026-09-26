@@ -46,8 +46,26 @@ test('mọi bài dùng chủ đề có trong catalog', () => {
   }
 });
 
-test('mỗi bài có 6–8 lượt thoại, lượt nào cũng đủ người nói, chữ Nhật, cách đọc, nghĩa', () => {
-  for (const lesson of SITUATIONAL_LESSONS) {
+/** Tiêu đề các bài đã có video, đọc từ `data/lesson-videos/`. */
+const VIDEO_LESSONS = (() => {
+  const dataDir = new URL('../data/lesson-videos/', import.meta.url);
+  return new Set(
+    fs.readdirSync(dataDir)
+      .filter((name) => name.endsWith('.json'))
+      .map((name) => JSON.parse(fs.readFileSync(new URL(name, dataDir), 'utf8')).lesson.title),
+  );
+})();
+
+test('bài có video không có hội thoại soạn sẵn — lời thoại là kịch bản video', () => {
+  const withVideo = SITUATIONAL_LESSONS.filter((lesson) => VIDEO_LESSONS.has(lesson.title));
+  assert.equal(withVideo.length, 12);
+  for (const lesson of withVideo) {
+    assert.ok(!(lesson.dialogue?.length > 0), `${lesson.title} vừa có video vừa có hội thoại riêng`);
+  }
+});
+
+test('bài chưa có video có 6–8 lượt thoại, lượt nào cũng đủ người nói, chữ Nhật, cách đọc, nghĩa', () => {
+  for (const lesson of SITUATIONAL_LESSONS.filter((l) => !VIDEO_LESSONS.has(l.title))) {
     const count = lesson.dialogue.length;
     assert.ok(count >= 6 && count <= 8, `${lesson.title} có ${count} lượt thoại`);
 
@@ -61,7 +79,7 @@ test('mỗi bài có 6–8 lượt thoại, lượt nào cũng đủ người n�
 
 test('cách đọc của câu thoại và từ vựng không lẫn chữ Hán', () => {
   for (const lesson of SITUATIONAL_LESSONS) {
-    for (const turn of lesson.dialogue) {
+    for (const turn of lesson.dialogue ?? []) {
       assert.ok(!KANJI.test(turn.reading), `${lesson.title}: "${turn.reading}"`);
     }
     for (const vocabulary of lesson.vocabularies) {

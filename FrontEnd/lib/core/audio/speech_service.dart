@@ -1,27 +1,25 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_tts/flutter_tts.dart';
+
+import 'speech_engine.dart' as engine;
+
+export 'speech_voice.dart' show SpeechUnavailableException;
 
 /// Đọc tiếng Nhật bằng giọng tổng hợp của trình duyệt / hệ điều hành.
 ///
 /// Dữ liệu từ vựng chưa có file âm thanh nào (`audio_url` trống ở mọi từ), nên
 /// đây là đường phát âm chính. Khi một từ có `audio_url` thật thì màn hình vẫn
-/// ưu tiên file đó qua [AudioService].
+/// ưu tiên file đó qua `AudioService`.
+///
+/// Thiết bị không có giọng tiếng Nhật thì [speak] ném
+/// [SpeechUnavailableException] — màn hình nên báo cho người học thay vì im
+/// lặng, để họ biết cần cài giọng đọc chứ không phải nút hỏng.
 class SpeechService {
   SpeechService._();
   static final SpeechService instance = SpeechService._();
 
-  FlutterTts? _tts;
-
-  Future<FlutterTts> _engine() async {
-    final existing = _tts;
-    if (existing != null) return existing;
-
-    final tts = FlutterTts();
-    await tts.setLanguage('ja-JP');
-    // Chậm hơn tốc độ nói thường một chút cho người mới học.
-    await tts.setSpeechRate(kIsWeb ? 0.8 : 0.45);
-    return _tts = tts;
-  }
+  /// Chậm hơn tốc độ nói thường một chút cho người mới học. Thang tốc độ của
+  /// trình duyệt và của flutter_tts trên điện thoại khác nhau.
+  static const double _rate = kIsWeb ? 0.8 : 0.45;
 
   /// Bỏ phần chú thích trong cách đọc trước khi đọc:
   /// `すいます(たばこを~)` → `すいます`, `じょうず[な]` → `じょうず`.
@@ -33,9 +31,8 @@ class SpeechService {
   Future<void> speak(String text) async {
     final cleaned = cleanForSpeech(text);
     if (cleaned.isEmpty) return;
-
-    final tts = await _engine();
-    await tts.stop();
-    await tts.speak(cleaned);
+    await engine.speakJapanese(cleaned, rate: _rate);
   }
+
+  Future<void> stop() => engine.stopSpeaking();
 }

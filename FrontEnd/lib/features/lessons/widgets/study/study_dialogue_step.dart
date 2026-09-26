@@ -20,10 +20,13 @@ class _StudyDialogueStepState extends State<StudyDialogueStep> {
   bool _showTranslation = false;
 
   Future<void> _speak(DialogueTurn turn) async {
+    final messenger = ScaffoldMessenger.of(context);
     try {
       await SpeechService.instance.speak(turn.textJa);
+    } on SpeechUnavailableException catch (error) {
+      messenger.showSnackBar(SnackBar(content: Text('$error Câu vẫn đọc được bằng mắt.')));
     } catch (_) {
-      // Thiết bị không có giọng đọc tiếng Nhật: câu vẫn đọc được bằng mắt.
+      messenger.showSnackBar(const SnackBar(content: Text('Không phát được âm thanh.')));
     }
   }
 

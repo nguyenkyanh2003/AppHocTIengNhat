@@ -4,10 +4,944 @@
   },
   "videos": [
     {
-      "title": "Hỏi về quầy hàng và giá cả",
-      "url": "/uploads/lesson-videos/n5-03-counters-prices/video-1.mp4",
+      "title": "Hỏi đường tới quầy hàng",
+      "description": "Hỏi được món đồ bán ở quầy nào và quầy đó ở tầng nào.",
+      "url": "/uploads/lesson-videos/n5-03-counters-prices/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、すみません。",
+          "romaji": "Ano, sumimasen.",
+          "text_vi": "Dạ, xin lỗi cho tôi hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "運動用のTシャツはどこにありますか。",
+          "romaji": "Undooyoo no T-shatsu wa doko ni arimasu ka.",
+          "text_vi": "Áo phông để tập thể thao ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "運動用のTシャツですね。",
+          "romaji": "Undooyoo no T-shatsu desu ne.",
+          "text_vi": "Áo phông tập thể thao phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "スポーツ用品売り場にあります。",
+          "romaji": "Supootsu-yoohin-uriba ni arimasu.",
+          "text_vi": "Có ở quầy đồ thể thao ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "その売り場はどこですか。",
+          "romaji": "Sono uriba wa doko desu ka.",
+          "text_vi": "Quầy hàng đó ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "2階です。",
+          "romaji": "Nikai desu.",
+          "text_vi": "Ở tầng 2 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、エスカレーターの近くですね。",
+          "romaji": "Aa, esukareetaa no chikaku desu ne.",
+          "text_vi": "À, gần thang cuốn nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "上の階へは、あちらからどうぞ。",
+          "romaji": "Ue no kai e wa, achira kara doozo.",
+          "text_vi": "Lên tầng trên thì mời chị đi lối kia ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、わかりました。ありがとうございます。",
+          "romaji": "Hai, wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "Vâng, tôi hiểu rồi. Cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "運動用",
+          "reading": "うんどうよう",
+          "romaji": "undooyoo",
+          "meaning": "dùng để tập thể thao"
+        },
+        {
+          "word": "Tシャツ",
+          "reading": "ティーシャツ",
+          "romaji": "tii shatsu",
+          "meaning": "áo phông"
+        },
+        {
+          "word": "売り場",
+          "reading": "うりば",
+          "romaji": "uriba",
+          "meaning": "quầy hàng"
+        },
+        {
+          "word": "2階",
+          "reading": "にかい",
+          "romaji": "nikai",
+          "meaning": "tầng 2"
+        },
+        {
+          "word": "エスカレーター",
+          "reading": "エスカレーター",
+          "romaji": "esukareetaa",
+          "meaning": "thang cuốn"
+        },
+        {
+          "word": "近く",
+          "reading": "ちかく",
+          "romaji": "chikaku",
+          "meaning": "gần"
+        }
+      ]
+    },
+    {
+      "title": "Xác nhận giá đã gồm thuế",
+      "description": "Xác nhận được giá tiền và hiểu giá đã gồm thuế tiêu thụ.",
+      "url": "/uploads/lesson-videos/n5-03-counters-prices/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いかがですか。",
+          "romaji": "Ikaga desu ka.",
+          "text_vi": "Chị thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "このTシャツ、いいデザインですね。",
+          "romaji": "Kono T-shatsu, ii dezain desu ne.",
+          "text_vi": "Cái áo phông này thiết kế đẹp nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。人気がありますよ。",
+          "romaji": "Hai. Ninki ga arimasu yo.",
+          "text_vi": "Vâng. Mẫu này được ưa chuộng lắm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、サイズもちょうどいいですね。",
+          "romaji": "Aa, saizu mo choodo ii desu ne.",
+          "text_vi": "À, cỡ cũng vừa luôn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "えーと、5,000円ですか。",
+          "romaji": "Eeto, gosen-en desu ka.",
+          "text_vi": "Ừm, 5.000 yên phải không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "税込みで5,500円です。",
+          "romaji": "Zeekomi de gosen gohyaku-en desu.",
+          "text_vi": "Tính cả thuế là 5.500 yên ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "5,500円？",
+          "romaji": "Gosen gohyaku-en?",
+          "text_vi": "5.500 yên ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "500円は税金です。",
+          "romaji": "Gohyaku-en wa zeekin desu.",
+          "text_vi": "500 yên là tiền thuế ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "消費税です。",
+          "romaji": "Shoohizee desu.",
+          "text_vi": "Là thuế tiêu thụ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、わかりました。5,500円ですね。",
+          "romaji": "Aa, wakarimashita. Gosen gohyaku-en desu ne.",
+          "text_vi": "À, tôi hiểu rồi. 5.500 yên nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっと考えます。",
+          "romaji": "Chotto kangaemasu.",
+          "text_vi": "Để tôi suy nghĩ thêm một chút.",
+          "key_phrase": true
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "デザイン",
+          "reading": "デザイン",
+          "romaji": "dezain",
+          "meaning": "thiết kế"
+        },
+        {
+          "word": "人気",
+          "reading": "にんき",
+          "romaji": "ninki",
+          "meaning": "được ưa chuộng"
+        },
+        {
+          "word": "ちょうどいい",
+          "reading": "ちょうどいい",
+          "romaji": "choodo ii",
+          "meaning": "vừa khít"
+        },
+        {
+          "word": "税込み",
+          "reading": "ぜいこみ",
+          "romaji": "zeekomi",
+          "meaning": "đã gồm thuế"
+        },
+        {
+          "word": "消費税",
+          "reading": "しょうひぜい",
+          "romaji": "shoohizee",
+          "meaning": "thuế tiêu thụ"
+        },
+        {
+          "word": "考えます",
+          "reading": "かんがえます",
+          "romaji": "kangaemasu",
+          "meaning": "suy nghĩ"
+        }
+      ]
+    },
+    {
+      "title": "Nhờ nhân viên tư vấn sản phẩm",
+      "description": "Nhờ được nhân viên giới thiệu món phù hợp và hỏi về công dụng của nó.",
+      "url": "/uploads/lesson-videos/n5-03-counters-prices/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "運動用のTシャツが欲しいんですが。",
+          "romaji": "Undooyoo no T-shatsu ga hoshiin desu ga.",
+          "text_vi": "Tôi muốn mua áo phông để tập thể thao.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、こちらです。",
+          "romaji": "Hai, kochira desu.",
+          "text_vi": "Vâng, ở đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どれがおすすめですか。",
+          "romaji": "Dore ga osusume desu ka.",
+          "text_vi": "Cái nào chị khuyên dùng ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "これはいかがですか。",
+          "romaji": "Kore wa ikaga desu ka.",
+          "text_vi": "Cái này thì sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "うーん、動きやすいですか。",
+          "romaji": "Uun, ugokiyasui desu ka.",
+          "text_vi": "Ừm, có dễ vận động không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、動きやすいですよ。",
+          "romaji": "Hai, ugokiyasui desu yo.",
+          "text_vi": "Vâng, dễ vận động lắm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "洗濯の後もすぐ乾きます。",
+          "romaji": "Sentaku no ato mo sugu kawakimasu.",
+          "text_vi": "Giặt xong cũng khô ngay ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "それはいいですね。",
+          "romaji": "Sore wa ii desu ne.",
+          "text_vi": "Vậy thì tốt quá.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いくらですか。",
+          "romaji": "Ikura desu ka.",
+          "text_vi": "Bao nhiêu tiền ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "税込み3,300円です。",
+          "romaji": "Zeekomi sanzen sanbyaku-en desu.",
+          "text_vi": "Tính cả thuế là 3.300 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "じゃあ、これをください。",
+          "romaji": "Jaa, kore o kudasai.",
+          "text_vi": "Vậy cho tôi cái này.",
+          "key_phrase": true
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "欲しい",
+          "reading": "ほしい",
+          "romaji": "hoshii",
+          "meaning": "muốn có"
+        },
+        {
+          "word": "おすすめ",
+          "reading": "おすすめ",
+          "romaji": "osusume",
+          "meaning": "được khuyên dùng"
+        },
+        {
+          "word": "動きやすい",
+          "reading": "うごきやすい",
+          "romaji": "ugokiyasui",
+          "meaning": "dễ vận động"
+        },
+        {
+          "word": "洗濯",
+          "reading": "せんたく",
+          "romaji": "sentaku",
+          "meaning": "giặt giũ"
+        },
+        {
+          "word": "乾きます",
+          "reading": "かわきます",
+          "romaji": "kawakimasu",
+          "meaning": "khô"
+        },
+        {
+          "word": "いくら",
+          "reading": "いくら",
+          "romaji": "ikura",
+          "meaning": "bao nhiêu tiền"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Hỏi quầy hàng và giá cả",
+      "description": "Ôn lại「どこにありますか」,「どれがおすすめですか」và mẫu「〜やすい・〜にくい」.",
+      "url": "/uploads/lesson-videos/n5-03-counters-prices/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "Tシャツは どこに ありますか",
+          "romaji": "T-shatsu wa doko ni arimasu ka",
+          "text_vi": "Áo phông ở đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "運動用のTシャツはどこにありますか。",
+          "romaji": "Undooyoo no T-shatsu wa doko ni arimasu ka.",
+          "text_vi": "Áo phông để tập thể thao ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "案内係",
+          "speaker_romaji": "Annai-gakari",
+          "speaker_vi": "Nhân viên hướng dẫn",
+          "text_ja": "運動用のTシャツですね。スポーツ用品売り場にあります。",
+          "romaji": "Undooyoo no T-shatsu desu ne. Supootsu-yoohin-uriba ni arimasu.",
+          "text_vi": "Áo phông tập thể thao phải không ạ? Có ở quầy đồ thể thao ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "物や生き物の存在する場所を表すとき、「物は場所にあります」、「生き物は場所にいます」と言います。",
+          "romaji": "Mono ya ikimono no sonzai suru basho o arawasu toki, \"mono wa basho ni arimasu\", \"ikimono wa basho ni imasu\" to iimasu.",
+          "text_vi": "Khi nói đồ vật hay sinh vật ở đâu, ta dùng \"[đồ vật] wa [nơi chốn] ni arimasu\" và \"[sinh vật] wa [nơi chốn] ni imasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "物の場合は「あります」、生き物の場合は「います」を使います。",
+          "romaji": "Mono no baai wa \"arimasu\", ikimono no baai wa \"imasu\" o tsukaimasu.",
+          "text_vi": "Đồ vật thì dùng \"arimasu\", sinh vật (người, con vật) thì dùng \"imasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「に」は場所を表す助詞です。",
+          "romaji": "\"Ni\" wa basho o arawasu joshi desu.",
+          "text_vi": "\"Ni\" là trợ từ chỉ nơi chốn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「ATMはコンビニにあります」、「母はコンビニにいます」と言います。",
+          "romaji": "Tatoeba, \"ATM wa konbini ni arimasu\", \"haha wa konbini ni imasu\" to iimasu.",
+          "text_vi": "Ví dụ: \"Cây ATM ở cửa hàng tiện lợi\", \"Mẹ tôi đang ở cửa hàng tiện lợi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "場所がわからないときは、「どこ」を使って、「どこにありますか」、「どこにいますか」と言います。",
+          "romaji": "Basho ga wakaranai toki wa, \"doko\" o tsukatte, \"doko ni arimasu ka\", \"doko ni imasu ka\" to iimasu.",
+          "text_vi": "Khi không biết ở đâu, ta dùng \"doko\" và hỏi \"doko ni arimasu ka\" (đồ vật) hoặc \"doko ni imasu ka\" (người, con vật).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、アンジェラさんは運動用のTシャツの場所がわかりませんでした。",
+          "romaji": "Dooga de wa, Anjera-san wa undooyoo no T-shatsu no basho ga wakarimasen deshita.",
+          "text_vi": "Trong video, chị Angela không biết áo phông tập thể thao ở đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "そこで、「運動用のTシャツはどこにありますか」と聞きました。",
+          "romaji": "Soko de, \"Undooyoo no T-shatsu wa doko ni arimasu ka\" to kikimashita.",
+          "text_vi": "Vì vậy chị ấy đã hỏi \"Áo phông tập thể thao ở đâu ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "答えるときは、動画のように、「スポーツ用品売り場にあります」と、「場所＋にあります」で答えます。",
+          "romaji": "Kotaeru toki wa, dooga no yoo ni, \"Supootsu-yoohin-uriba ni arimasu\" to, \"basho + ni arimasu\" de kotaemasu.",
+          "text_vi": "Khi trả lời thì giống trong video: \"Có ở quầy đồ thể thao ạ\", tức là dùng mẫu \"[nơi chốn] + ni arimasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「スポーツ用品売り場です」のように、「場所＋です」でもいいです。",
+          "romaji": "\"Supootsu-yoohin-uriba desu\" no yoo ni, \"basho + desu\" demo ii desu.",
+          "text_vi": "Nói \"[nơi chốn] + desu\" như \"Ở quầy đồ thể thao ạ\" cũng được.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どれが おすすめですか",
+          "romaji": "dore ga osusume desu ka",
+          "text_vi": "Cái nào được khuyên dùng ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、運動用のTシャツが欲しいんですが。",
+          "romaji": "Sumimasen, undooyoo no T-shatsu ga hoshiin desu ga.",
+          "text_vi": "Xin lỗi, tôi muốn mua áo phông để tập thể thao.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、こちらです。",
+          "romaji": "Hai, kochira desu.",
+          "text_vi": "Vâng, ở đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どれがおすすめですか。",
+          "romaji": "Dore ga osusume desu ka.",
+          "text_vi": "Cái nào chị khuyên dùng ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どれ」は、3つ以上のものの中から1つを選ぶときに使う疑問詞です。",
+          "romaji": "\"Dore\" wa, mittsu ijoo no mono no naka kara hitotsu o erabu toki ni tsukau gimonshi desu.",
+          "text_vi": "\"Dore\" là từ để hỏi dùng khi chọn 1 thứ trong số từ 3 thứ trở lên.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:34",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "どれがおいしいですか。",
+          "romaji": "Dore ga oishii desu ka.",
+          "text_vi": "Cái nào ngon ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:37",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "これがおいしいですよ。",
+          "romaji": "Kore ga oishii desu yo.",
+          "text_vi": "Cái này ngon đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:43",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "どれが好きですか。",
+          "romaji": "Dore ga suki desu ka.",
+          "text_vi": "Anh thích cái nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:46",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "コーヒーが好きです。",
+          "romaji": "Koohii ga suki desu.",
+          "text_vi": "Tôi thích cà phê.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "3つ以上のものの中から1つを選ぶときの疑問詞は「どれ」ですが、2つのものから1つを選ぶときは、「どちら」「どっち」を使います。",
+          "romaji": "Mittsu ijoo no mono no naka kara hitotsu o erabu toki no gimonshi wa \"dore\" desu ga, futatsu no mono kara hitotsu o erabu toki wa, \"dochira\", \"docchi\" o tsukaimasu.",
+          "text_vi": "Chọn 1 trong số từ 3 thứ trở lên thì hỏi bằng \"dore\", còn chọn 1 trong 2 thứ thì dùng \"dochira\" hoặc \"docchi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:09",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "どちらがおいしいですか。",
+          "romaji": "Dochira ga oishii desu ka.",
+          "text_vi": "Cái nào (trong hai cái) ngon hơn ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:12",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "こちらがおいしいですよ。",
+          "romaji": "Kochira ga oishii desu yo.",
+          "text_vi": "Cái này ngon đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:16",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "どっちが好きですか。",
+          "romaji": "Docchi ga suki desu ka.",
+          "text_vi": "Em thích cái nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:19",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "ケーキが好きです。",
+          "romaji": "Keeki ga suki desu.",
+          "text_vi": "Em thích bánh kem.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、アンジェラさんは運動用のTシャツを探していましたが、たくさんあるTシャツを見て、店員に「どれがおすすめですか」と聞きました。",
+          "romaji": "Dooga de wa, Anjera-san wa undooyoo no T-shatsu o sagashite imashita ga, takusan aru T-shatsu o mite, ten'in ni \"Dore ga osusume desu ka\" to kikimashita.",
+          "text_vi": "Trong video, chị Angela đang tìm áo phông tập thể thao, thấy nhiều áo quá nên hỏi nhân viên \"Cái nào chị khuyên dùng ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:41",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "うごきやすいですか",
+          "romaji": "ugokiyasui desu ka",
+          "text_vi": "Có dễ vận động không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:50",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "これはいかがですか。",
+          "romaji": "Kore wa ikaga desu ka.",
+          "text_vi": "Cái này thì sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:51",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "うーん、動きやすいですか。",
+          "romaji": "Uun, ugokiyasui desu ka.",
+          "text_vi": "Ừm, có dễ vận động không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "03:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞＋やすい」は、何かをすることが簡単にできるというときに使います。",
+          "romaji": "\"Dooshi + yasui\" wa, nanika o suru koto ga kantan ni dekiru to iu toki ni tsukaimasu.",
+          "text_vi": "\"Động từ + yasui\" dùng khi muốn nói việc gì đó làm được dễ dàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "値段が安いというときの「安い」とは意味が違います。",
+          "romaji": "Nedan ga yasui to iu toki no \"yasui\" to wa imi ga chigaimasu.",
+          "text_vi": "Nghĩa này khác với \"yasui\" (rẻ) khi nói giá rẻ.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のます形の「ます」を取って、「やすい」をつけます。",
+          "romaji": "Dooshi no masu-kee no \"masu\" o totte, \"yasui\" o tsukemasu.",
+          "text_vi": "Bỏ \"masu\" ở thể masu của động từ rồi thêm \"yasui\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場合、「動きます」の「ます」を取って、「やすい」をつけて、「動きやすい」となります。",
+          "romaji": "Kono baai, \"ugokimasu\" no \"masu\" o totte, \"yasui\" o tsukete, \"ugokiyasui\" to narimasu.",
+          "text_vi": "Ở đây, bỏ \"masu\" của \"ugokimasu\" (vận động) rồi thêm \"yasui\" thành \"ugokiyasui\" (dễ vận động).",
+          "key_phrase": false
+        },
+        {
+          "start": "04:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、アンジェラさんはTシャツ売り場で運動用のTシャツを探していたので、「動きやすいですか」と聞きました。",
+          "romaji": "Dooga de wa, Anjera-san wa T-shatsu-uriba de undooyoo no T-shatsu o sagashite ita node, \"Ugokiyasui desu ka\" to kikimashita.",
+          "text_vi": "Trong video, vì chị Angela đang tìm áo phông tập thể thao ở quầy áo phông nên đã hỏi \"Có dễ vận động không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このように、商品の機能を尋ねるときに「やすい」を使うといいです。",
+          "romaji": "Kono yoo ni, shoohin no kinoo o tazuneru toki ni \"yasui\" o tsukau to ii desu.",
+          "text_vi": "Như vậy, khi hỏi về công năng của sản phẩm thì nên dùng \"yasui\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、薬局で子どものために薬を買うとき、「飲みやすい薬ですか」と聞くことができます。",
+          "romaji": "Tatoeba, yakkyoku de kodomo no tame ni kusuri o kau toki, \"Nomiyasui kusuri desu ka\" to kiku koto ga dekimasu.",
+          "text_vi": "Ví dụ, khi mua thuốc cho con ở hiệu thuốc, có thể hỏi \"Thuốc này có dễ uống không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "反対に、簡単にできないときは、「にくい」を使います。",
+          "romaji": "Hantai ni, kantan ni dekinai toki wa, \"nikui\" o tsukaimasu.",
+          "text_vi": "Ngược lại, khi việc gì đó khó làm thì dùng \"nikui\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「やすい」と同じように、動詞のます形の「ます」を取って、「にくい」をつけます。",
+          "romaji": "\"Yasui\" to onaji yoo ni, dooshi no masu-kee no \"masu\" o totte, \"nikui\" o tsukemasu.",
+          "text_vi": "Giống như \"yasui\", bỏ \"masu\" ở thể masu của động từ rồi thêm \"nikui\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「飲みます」の場合は「飲みにくい」。",
+          "romaji": "Tatoeba, \"nomimasu\" no baai wa \"nominikui\".",
+          "text_vi": "Ví dụ, \"nomimasu\" (uống) thành \"nominikui\" (khó uống).",
+          "key_phrase": false
+        },
+        {
+          "start": "05:45",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "この薬は飲みにくいです。",
+          "romaji": "Kono kusuri wa nominikui desu.",
+          "text_vi": "Thuốc này khó uống.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、字が大きい本と小さい本があります。",
+          "romaji": "Tatoeba, ji ga ookii hon to chiisai hon ga arimasu.",
+          "text_vi": "Ví dụ, có một quyển sách chữ to và một quyển chữ nhỏ.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:58",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "どちらが読みやすいですか。",
+          "romaji": "Dochira ga yomiyasui desu ka.",
+          "text_vi": "Quyển nào dễ đọc hơn?",
+          "key_phrase": false
+        },
+        {
+          "start": "06:01",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "こちらの本は読みやすいです。",
+          "romaji": "Kochira no hon wa yomiyasui desu.",
+          "text_vi": "Quyển này dễ đọc.",
+          "key_phrase": false
+        },
+        {
+          "start": "06:06",
+          "speaker_ja": "例",
+          "speaker_romaji": "Ree",
+          "speaker_vi": "Ví dụ",
+          "text_ja": "こちらの本は読みにくいです。",
+          "romaji": "Kochira no hon wa yominikui desu.",
+          "text_vi": "Quyển này khó đọc.",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

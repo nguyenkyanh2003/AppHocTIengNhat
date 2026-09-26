@@ -172,18 +172,41 @@ thì bị từ chối nguyên thư mục và giữ nguyên hiện trạng. Video
 ### Lời thoại chạy theo video
 
 Bảng lời thoại tô sáng câu đang nói cần **mốc thời gian của từng câu**. Video không kèm track phụ
-đề và trang nguồn cũng không có mốc thời gian, nên phần này gõ tay trong lúc xem video. Gõ vào
-`data/lesson-videos/<tên bài>.txt` — văn bản thuần, mỗi dòng một câu, năm ô ngăn bằng `|`:
+đề và trang nguồn cũng không có mốc thời gian, nên mốc được ghi trong lúc xem video.
+
+**Cách nhanh nhất — công cụ trong app** (tài khoản quản trị): mở bài học → menu ⋮ → *Soạn lời
+thoại video*. Chọn video, dán câu thoại (mỗi dòng `người nói | tiếng Nhật | roma-ji | tiếng Việt`),
+bấm *Bắt đầu canh giờ*, phát video và nhấn **Space** đúng lúc từng câu bắt đầu (Backspace hoàn tác,
+P phát/tạm dừng, ← lùi 3 giây). Xong bấm *Sao chép kết quả* và dán vào file `.txt` của bài, thay phần
+dưới `## <tên file video>`.
+
+**Nhập từ tài liệu Markdown** (mỗi video một bảng Nhật / roma-ji / Việt, như tài liệu lời thoại bài
+2–12):
+
+```powershell
+node scripts/import-transcript-markdown.js --file <tài-liệu.md> [--file …] --dry-run
+node scripts/import-transcript-markdown.js --file <tài-liệu.md>
+```
+
+File `.txt` đã có nội dung thì không bị đè, trừ khi thêm `--overwrite`.
+
+File lời thoại `data/lesson-videos/<tên bài>.txt` là văn bản thuần, mỗi dòng một câu, năm ô ngăn
+bằng `|`. Mỗi video trong app có ba phần học tương ứng: **Kịch bản** (mọi câu), **Mẫu câu** (câu có
+`*` trước mốc, bấm là phát lại đúng đoạn đó) và **Từ vựng** (các dòng sau `### từ vựng`):
 
 ```text
 ## scene-1.mp4
-00:04-00:07 | オウ / Ou | 佐藤さん、おはようございます。 | Satoo-san, ohayoo gozaimasu. | Chào buổi sáng anh Sato.
-00:08       |           | いい天気ですね。               |                              | Thời tiết đẹp nhỉ.
+00:05  | 客 / Kyaku / Khách | すみません。       | Sumimasen.           | Xin lỗi.
+*00:07 | 客 / Kyaku / Khách | 駅はどこですか。   | Eki wa doko desu ka. | Nhà ga ở đâu ạ?
+### từ vựng
+駅 | えき | eki | nhà ga
 ```
 
-`## <tên file video>` mở đầu một cảnh. Các ô lần lượt là: mốc `bắt đầu` hoặc `bắt đầu-kết thúc`,
-người nói `tiếng Nhật / tiếng Việt`, câu tiếng Nhật, roma-ji, nghĩa tiếng Việt. Ô để trống nghĩa là
-không có — riêng câu tiếng Nhật và nghĩa tiếng Việt là bắt buộc. Xem
+`## <tên file video>` mở đầu một cảnh. Các ô lần lượt là: mốc `bắt đầu` hoặc `bắt đầu-kết thúc`
+(thêm `*` ở đầu cho câu then chốt), người nói `tiếng Nhật / roma-ji / tiếng Việt` (hoặc chỉ
+`tiếng Nhật / tiếng Việt`), câu tiếng Nhật, roma-ji, nghĩa tiếng Việt. Dòng từ vựng có bốn ô: mặt
+chữ, cách đọc, roma-ji, nghĩa. Ô để trống nghĩa là không có — riêng câu tiếng Nhật, nghĩa tiếng Việt,
+mặt chữ và nghĩa của từ là bắt buộc. Xem
 `data/lesson-videos/n5-01-greeting.txt` để có mẫu đầy đủ của một bài 4 cảnh.
 
 ```powershell

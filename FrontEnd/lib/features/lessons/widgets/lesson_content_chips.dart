@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../models/lesson.dart';
+import '../models/lesson_video.dart';
 
 /// Bài có những gì: số cảnh video, câu thoại, từ, chữ Hán, mẫu ngữ pháp.
 ///
@@ -16,7 +17,7 @@ class LessonContentChips extends StatelessWidget {
   Widget build(BuildContext context) {
     final lesson = detail.lesson;
     final items = [
-      if (lesson.videos.isNotEmpty) (Icons.play_circle_outline, '${lesson.videos.length} cảnh video'),
+      if (lesson.videos.isNotEmpty) (Icons.play_circle_outline, _videoLabel(lesson.videos)),
       if (lesson.dialogue.isNotEmpty) (Icons.forum_outlined, '${lesson.dialogue.length} câu thoại'),
       if (detail.words.isNotEmpty) (Icons.style_outlined, '${detail.words.length} từ vựng'),
       if (detail.kanjis.isNotEmpty) (Icons.draw_outlined, '${detail.kanjis.length} chữ Hán'),
@@ -47,4 +48,12 @@ class LessonContentChips extends StatelessWidget {
       ],
     );
   }
+}
+
+/// "3 cảnh video + ôn tập": video ôn tập không tính là một cảnh.
+String _videoLabel(List<LessonVideo> videos) {
+  final scenes = videos.where((video) => !video.isReview).length;
+  final hasReview = scenes < videos.length;
+  if (scenes == 0) return 'Video ôn tập';
+  return hasReview ? '$scenes cảnh video + ôn tập' : '$scenes cảnh video';
 }

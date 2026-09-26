@@ -4,10 +4,986 @@
   },
   "videos": [
     {
-      "title": "Sử dụng thành thạo máy móc tại nơi làm việc",
-      "url": "/uploads/lesson-videos/n5-12-workplace-machines/video-1.mp4",
+      "title": "Báo máy móc không chạy",
+      "description": "Báo được khi máy không chạy và hỏi sách hướng dẫn để ở đâu.",
+      "url": "/uploads/lesson-videos/n5-12-workplace-machines/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あれ？",
+          "romaji": "Are?",
+          "text_vi": "Ơ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "橋本さん、動きません。",
+          "romaji": "Hashimoto-san, ugokimasen.",
+          "text_vi": "Anh Hashimoto ơi, nó không chạy.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "これ、壊れていますか。",
+          "romaji": "Kore, kowarete imasu ka.",
+          "text_vi": "Cái này bị hỏng rồi ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "ああ、多分、紙パックですね。",
+          "romaji": "Aa, tabun, kami-pakku desu ne.",
+          "text_vi": "À, chắc là do túi giấy đựng bụi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あー、紙パック。",
+          "romaji": "Aa, kami-pakku.",
+          "text_vi": "À, túi giấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "新しい紙パック、給湯室の引き出しにありますよ。",
+          "romaji": "Atarashii kami-pakku, kyuutooshitsu no hikidashi ni arimasu yo.",
+          "text_vi": "Túi giấy mới có trong ngăn kéo ở phòng pha trà đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Em hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "これですよね？",
+          "romaji": "Kore desu yo ne?",
+          "text_vi": "Là cái này phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "えっと…使い方の本はどこにありますか。",
+          "romaji": "Etto… tsukaikata no hon wa doko ni arimasu ka.",
+          "text_vi": "Ừm… sách hướng dẫn sử dụng ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "ああ、取扱説明書ですね。",
+          "romaji": "Aa, toriatsukai-setsumeesho desu ne.",
+          "text_vi": "À, sách hướng dẫn sử dụng nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "取り…扱い…説明書…",
+          "romaji": "Tori… atsukai… setsumeesho…",
+          "text_vi": "Hướng… dẫn… sử dụng…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "これですよ。",
+          "romaji": "Kore desu yo.",
+          "text_vi": "Đây này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あ、ありがとうございます。",
+          "romaji": "A, arigatoo gozaimasu.",
+          "text_vi": "À, em cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "取扱説明書…",
+          "romaji": "Toriatsukai-setsumeesho…",
+          "text_vi": "Sách hướng dẫn sử dụng…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "スイッチを…電…電源プラグ…",
+          "romaji": "Suicchi o… den… dengen-puragu…",
+          "text_vi": "Công tắc… ổ… phích cắm điện…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "これですか。",
+          "romaji": "Kore desu ka.",
+          "text_vi": "Là cái này ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "そうそう。",
+          "romaji": "Soo soo.",
+          "text_vi": "Đúng rồi, đúng rồi.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "動きません",
+          "reading": "うごきません",
+          "romaji": "ugokimasen",
+          "meaning": "không chạy"
+        },
+        {
+          "word": "壊れています",
+          "reading": "こわれています",
+          "romaji": "kowarete imasu",
+          "meaning": "bị hỏng"
+        },
+        {
+          "word": "紙パック",
+          "reading": "かみパック",
+          "romaji": "kami-pakku",
+          "meaning": "túi giấy đựng bụi"
+        },
+        {
+          "word": "給湯室",
+          "reading": "きゅうとうしつ",
+          "romaji": "kyuutooshitsu",
+          "meaning": "phòng pha trà"
+        },
+        {
+          "word": "引き出し",
+          "reading": "ひきだし",
+          "romaji": "hikidashi",
+          "meaning": "ngăn kéo"
+        },
+        {
+          "word": "取扱説明書",
+          "reading": "とりあつかいせつめいしょ",
+          "romaji": "toriatsukai-setsumeesho",
+          "meaning": "sách hướng dẫn sử dụng"
+        }
+      ]
+    },
+    {
+      "title": "Xin phép dùng máy photocopy",
+      "description": "Hỏi được người khác đã dùng xong chưa và xin phép dùng máy.",
+      "url": "/uploads/lesson-videos/n5-12-workplace-machines/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "悪いんだけど、これ、事務所で50部コピーしてきてくれる？",
+          "romaji": "Warui n da kedo, kore, jimusho de gojuu-bu kopii shite kite kureru?",
+          "text_vi": "Phiền em chút, em đi photo cái này 50 bản ở văn phòng giúp chị được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "わかりました。事務所でコピーですね。",
+          "romaji": "Wakarimashita. Jimusho de kopii desu ne.",
+          "text_vi": "Vâng ạ. Photo ở văn phòng phải không ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "失礼します。",
+          "romaji": "Shitsuree shimasu.",
+          "text_vi": "Em xin phép.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あ、小川さん、お疲れ様です。",
+          "romaji": "A, Ogawa-san, otsukaresama desu.",
+          "text_vi": "À, anh Ogawa, anh vất vả rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "小川",
+          "speaker_romaji": "Ogawa",
+          "speaker_vi": "Ogawa",
+          "text_ja": "お疲れ様です。",
+          "romaji": "Otsukaresama desu.",
+          "text_vi": "Chào em.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "小川さん。",
+          "romaji": "Ogawa-san.",
+          "text_vi": "Anh Ogawa ơi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "小川",
+          "speaker_romaji": "Ogawa",
+          "speaker_vi": "Ogawa",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あの、コピーがしたいです。",
+          "romaji": "Ano, kopii ga shitai desu.",
+          "text_vi": "Dạ, em muốn photo ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "これ、もう終わりましたか。",
+          "romaji": "Kore, moo owarimashita ka.",
+          "text_vi": "Cái này đã xong chưa ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "小川",
+          "speaker_romaji": "Ogawa",
+          "speaker_vi": "Ogawa",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Xong rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "じゃあ、使ってもいいですか。",
+          "romaji": "Jaa, tsukatte mo ii desu ka.",
+          "text_vi": "Vậy em dùng được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "小川",
+          "speaker_romaji": "Ogawa",
+          "speaker_vi": "Ogawa",
+          "text_ja": "あ、ちょっとこれだけ先に印刷してもいいですか。",
+          "romaji": "A, chotto kore dake saki ni insatsu shite mo ii desu ka.",
+          "text_vi": "À, cho anh in trước cái này thôi được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "先に…？あ、はい、先にどうぞ。",
+          "romaji": "Saki ni…? A, hai, saki ni doozo.",
+          "text_vi": "Trước ạ…? À, vâng, anh cứ in trước đi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "小川",
+          "speaker_romaji": "Ogawa",
+          "speaker_vi": "Ogawa",
+          "text_ja": "すみません、すぐ終わりますから。",
+          "romaji": "Sumimasen, sugu owarimasu kara.",
+          "text_vi": "Xin lỗi nhé, xong ngay thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "いえ、私の、たくさんありますから、気にしないでください。",
+          "romaji": "Ie, watashi no, takusan arimasu kara, ki ni shinaide kudasai.",
+          "text_vi": "Không sao ạ, của em nhiều lắm, anh đừng bận tâm.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "えっと、コピー…50部…サイズはA4…",
+          "romaji": "Etto, kopii… gojuu-bu… saizu wa ee-yon…",
+          "text_vi": "Ừm, photo… 50 bản… khổ A4…",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "事務所",
+          "reading": "じむしょ",
+          "romaji": "jimusho",
+          "meaning": "văn phòng"
+        },
+        {
+          "word": "コピー",
+          "reading": "コピー",
+          "romaji": "kopii",
+          "meaning": "photocopy"
+        },
+        {
+          "word": "〜部",
+          "reading": "ぶ",
+          "romaji": "bu",
+          "meaning": "… bản"
+        },
+        {
+          "word": "終わりました",
+          "reading": "おわりました",
+          "romaji": "owarimashita",
+          "meaning": "đã xong"
+        },
+        {
+          "word": "先に",
+          "reading": "さきに",
+          "romaji": "saki ni",
+          "meaning": "trước"
+        },
+        {
+          "word": "印刷",
+          "reading": "いんさつ",
+          "romaji": "insatsu",
+          "meaning": "in ấn"
+        }
+      ]
+    },
+    {
+      "title": "Thay mực máy photocopy",
+      "description": "Làm theo hướng dẫn thay mực và hỏi lại xem mình làm đúng chưa.",
+      "url": "/uploads/lesson-videos/n5-12-workplace-machines/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "エラー？トナーカートリッジ？",
+          "romaji": "Eraa? Tonaa-kaatorijji?",
+          "text_vi": "Báo lỗi à? Hộp mực?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "エラーです。",
+          "romaji": "Eraa desu.",
+          "text_vi": "Máy báo lỗi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、トナー…インク切れですね。",
+          "romaji": "Aa, tonaa… inku-gire desu ne.",
+          "text_vi": "À, mực… hết mực rồi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "黒のインクが切れてますね。",
+          "romaji": "Kuro no inku ga kiretemasu ne.",
+          "text_vi": "Hết mực đen rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "新しいの持ってきますね。",
+          "romaji": "Atarashii no motte kimasu ne.",
+          "text_vi": "Để anh mang hộp mới đến.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい、これです。",
+          "romaji": "Hai, kore desu.",
+          "text_vi": "Đây này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "一人でできますか。",
+          "romaji": "Hitori de dekimasu ka.",
+          "text_vi": "Em tự làm được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "うーん…マニュアルを見ながらやってみます。",
+          "romaji": "Uun… manyuaru o mi nagara yatte mimasu.",
+          "text_vi": "Ừm… em sẽ vừa xem sách hướng dẫn vừa làm thử.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "やっぱり難しいです。",
+          "romaji": "Yappari muzukashii desu.",
+          "text_vi": "Đúng là khó thật ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうですよね。",
+          "romaji": "Soo desu yo ne.",
+          "text_vi": "Ừ, khó thật nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "えっと、まず、そのカバーを開けて。",
+          "romaji": "Etto, mazu, sono kabaa o akete.",
+          "text_vi": "Ừm, trước tiên em mở cái nắp đó ra.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "ここですね？",
+          "romaji": "Koko desu ne?",
+          "text_vi": "Chỗ này ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうしたら、古いカートリッジを抜きます。",
+          "romaji": "Soo shitara, furui kaatorijji o nukimasu.",
+          "text_vi": "Rồi rút hộp mực cũ ra.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "黒ですよね？",
+          "romaji": "Kuro desu yo ne?",
+          "text_vi": "Màu đen phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "両手で持ってください。",
+          "romaji": "Ryoote de motte kudasai.",
+          "text_vi": "Em cầm bằng cả hai tay nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "あ、そうです。",
+          "romaji": "A, soo desu.",
+          "text_vi": "À, đúng rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "こうやって、まっすぐ入れます。",
+          "romaji": "Koo yatte, massugu iremasu.",
+          "text_vi": "Cho vào thẳng như thế này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "こうですか。",
+          "romaji": "Koo desu ka.",
+          "text_vi": "Như thế này ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうそう。",
+          "romaji": "Soo soo.",
+          "text_vi": "Đúng rồi, đúng rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "終わったら、ここに日付とトナーの色を書いてください。",
+          "romaji": "Owattara, koko ni hizuke to tonaa no iro o kaite kudasai.",
+          "text_vi": "Xong rồi thì em ghi ngày và màu mực vào đây nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "はい、ありがとうございました。",
+          "romaji": "Hai, arigatoo gozaimashita.",
+          "text_vi": "Vâng, em cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "エラー",
+          "reading": "エラー",
+          "romaji": "eraa",
+          "meaning": "lỗi"
+        },
+        {
+          "word": "インク切れ",
+          "reading": "インクぎれ",
+          "romaji": "inku-gire",
+          "meaning": "hết mực"
+        },
+        {
+          "word": "一人で",
+          "reading": "ひとりで",
+          "romaji": "hitori de",
+          "meaning": "một mình"
+        },
+        {
+          "word": "マニュアル",
+          "reading": "マニュアル",
+          "romaji": "manyuaru",
+          "meaning": "sách hướng dẫn"
+        },
+        {
+          "word": "やっぱり",
+          "reading": "やっぱり",
+          "romaji": "yappari",
+          "meaning": "quả nhiên, đúng là"
+        },
+        {
+          "word": "開けます",
+          "reading": "あけます",
+          "romaji": "akemasu",
+          "meaning": "mở"
+        },
+        {
+          "word": "両手",
+          "reading": "りょうて",
+          "romaji": "ryoote",
+          "meaning": "hai tay"
+        },
+        {
+          "word": "日付",
+          "reading": "ひづけ",
+          "romaji": "hizuke",
+          "meaning": "ngày tháng"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Dùng máy móc ở nơi làm việc",
+      "description": "Ôn lại「〜方」,「もう〜ました」và「〜ながら〜」.",
+      "url": "/uploads/lesson-videos/n5-12-workplace-machines/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "つかいかたの ほんは、どこに ありますか",
+          "romaji": "tsukaikata no hon wa, doko ni arimasu ka",
+          "text_vi": "Sách hướng dẫn sử dụng ở đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "使い方の本はどこにありますか。",
+          "romaji": "Tsukaikata no hon wa doko ni arimasu ka.",
+          "text_vi": "Sách hướng dẫn sử dụng ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、プトリさんが掃除機について「使い方の本はどこにありますか」と言っています。",
+          "romaji": "Kono dooga de wa, Putori-san ga soojiki ni tsuite \"Tsukaikata no hon wa doko ni arimasu ka\" to itte imasu.",
+          "text_vi": "Trong video, chị Putri hỏi về máy hút bụi: \"Sách hướng dẫn sử dụng ở đâu ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「使い方」は、どうやって使うか、使う方法という意味です。",
+          "romaji": "\"Tsukaikata\" wa, doo yatte tsukau ka, tsukau hoohoo to iu imi desu.",
+          "text_vi": "\"Tsukaikata\" nghĩa là dùng như thế nào, cách sử dụng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「方」の前には、いろいろな動詞を使うことができます。動詞のます形の「ます」を取って「方」をつけます。",
+          "romaji": "\"Kata\" no mae ni wa, iroiro na dooshi o tsukau koto ga dekimasu. Dooshi no masu-kee no \"masu\" o totte \"kata\" o tsukemasu.",
+          "text_vi": "Trước \"kata\" có thể dùng nhiều động từ khác nhau: bỏ \"masu\" ở thể masu rồi thêm \"kata\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「使います」の場合、「ます」を取って「方」をつけて、「使い方」となります。",
+          "romaji": "\"Tsukaimasu\" no baai, \"masu\" o totte \"kata\" o tsukete, \"tsukaikata\" to narimasu.",
+          "text_vi": "Với \"tsukaimasu\", bỏ \"masu\" thêm \"kata\" thành \"tsukaikata\" (cách dùng).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "漢字をどうやって読むかわからないときは、「この漢字の読み方を教えてください」。",
+          "romaji": "Kanji o doo yatte yomu ka wakaranai toki wa, \"Kono kanji no yomikata o oshiete kudasai\".",
+          "text_vi": "Khi không biết đọc chữ Hán thế nào: \"Xin chỉ cho tôi cách đọc chữ Hán này\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "行きたい場所へどうやって行くかわからないときは、「行き方を教えてください」のように使えます。",
+          "romaji": "Ikitai basho e doo yatte iku ka wakaranai toki wa, \"Ikikata o oshiete kudasai\" no yoo ni tsukaemasu.",
+          "text_vi": "Khi không biết đi đến nơi mình muốn thế nào: \"Xin chỉ cho tôi đường đi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "初めて乗る電車やバスにどうやって乗るかわからないときは、「バスの乗り方を教えてください」のように使うこともできます。",
+          "romaji": "Hajimete noru densha ya basu ni doo yatte noru ka wakaranai toki wa, \"Basu no norikata o oshiete kudasai\" no yoo ni tsukau koto mo dekimasu.",
+          "text_vi": "Khi lần đầu đi tàu, xe buýt mà không biết lên thế nào: \"Xin chỉ cho tôi cách đi xe buýt\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "もう おわりましたか",
+          "romaji": "moo owarimashita ka",
+          "text_vi": "Đã xong chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "これ、もう終わりましたか。",
+          "romaji": "Kore, moo owarimashita ka.",
+          "text_vi": "Cái này đã xong chưa ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「もう＋動詞の過去形」は、行為や出来事がすでに完了していることを伝える表現です。",
+          "romaji": "\"Moo + dooshi no kakokee\" wa, kooi ya dekigoto ga sude ni kanryoo shite iru koto o tsutaeru hyoogen desu.",
+          "text_vi": "\"Moo + động từ quá khứ\" diễn tả hành động hay sự việc đã hoàn thành rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、プトリさんはコピーがすべて完了したかどうか聞くために、「これ、もう終わりましたか」と言いました。",
+          "romaji": "Kono dooga de, Putori-san wa kopii ga subete kanryoo shita ka doo ka kiku tame ni, \"Kore, moo owarimashita ka\" to iimashita.",
+          "text_vi": "Trong video, chị Putri hỏi \"Cái này đã xong chưa ạ?\" để biết việc photocopy đã xong hết chưa.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "すでにご飯を食べていたら「もう食べました」、すでに準備ができていたら「もう準備ができました」と言うことができます。",
+          "romaji": "Sude ni gohan o tabete itara \"Moo tabemashita\", sude ni junbi ga dekite itara \"Moo junbi ga dekimashita\" to iu koto ga dekimasu.",
+          "text_vi": "Nếu đã ăn rồi thì nói \"Moo tabemashita\" (Tôi ăn rồi), nếu đã chuẩn bị xong thì nói \"Moo junbi ga dekimashita\" (Chuẩn bị xong rồi).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「もう新しいパン屋へ行きましたか」と聞かれたときに、すでに行った場合は「はい、もう行きました」などと答えます。",
+          "romaji": "Tatoeba, \"Moo atarashii pan'ya e ikimashita ka\" to kikareta toki ni, sude ni itta baai wa \"Hai, moo ikimashita\" nado to kotaemasu.",
+          "text_vi": "Ví dụ, khi được hỏi \"Bạn đã đến tiệm bánh mì mới chưa?\", nếu đã đi rồi thì trả lời \"Rồi, tôi đi rồi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "まだ行っていない場合は、「いいえ、まだです」のように答えることができます。",
+          "romaji": "Mada itte inai baai wa, \"Iie, mada desu\" no yoo ni kotaeru koto ga dekimasu.",
+          "text_vi": "Nếu chưa đi thì có thể trả lời \"Chưa, tôi chưa đi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:16",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "マニュアルを みながら、やってみます",
+          "romaji": "manyuaru o mi nagara, yatte mimasu",
+          "text_vi": "Tôi sẽ vừa xem sách hướng dẫn vừa làm thử",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "マニュアルを見ながらやってみます。",
+          "romaji": "Manyuaru o mi nagara yatte mimasu.",
+          "text_vi": "Tôi sẽ vừa xem sách hướng dẫn vừa làm thử.",
+          "key_phrase": true
+        },
+        {
+          "start": "03:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、プトリさんが「マニュアルを見ながらやってみます」と言って、コピー機のマニュアルを見ることと、インクの交換作業を同時に行うことを伝えています。",
+          "romaji": "Kono dooga de wa, Putori-san ga \"Manyuaru o mi nagara yatte mimasu\" to itte, kopiiki no manyuaru o miru koto to, inku no kookan-sagyoo o dooji ni okonau koto o tsutaete imasu.",
+          "text_vi": "Trong video, chị Putri nói \"Tôi sẽ vừa xem sách hướng dẫn vừa làm thử\", tức là cùng lúc xem hướng dẫn máy photocopy và thay mực.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「AながらB」は、同じ人がAとBの2つの行為を同時にすることを伝える表現です。",
+          "romaji": "\"A nagara B\" wa, onaji hito ga A to B no futatsu no kooi o dooji ni suru koto o tsutaeru hyoogen desu.",
+          "text_vi": "\"A nagara B\" diễn tả một người làm cùng lúc hai việc A và B.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "後ろに来るBがメインの行為になります。",
+          "romaji": "Ushiro ni kuru B ga mein no kooi ni narimasu.",
+          "text_vi": "Việc B đứng sau là việc chính.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のます形の「ます」を取って「ながら」をつけます。",
+          "romaji": "Dooshi no masu-kee no \"masu\" o totte \"nagara\" o tsukemasu.",
+          "text_vi": "Bỏ \"masu\" ở thể masu rồi thêm \"nagara\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「テレビを見ながら勉強します」「音楽を聞きながら走ります」のように言うことができます。",
+          "romaji": "Tatoeba, \"Terebi o mi nagara benkyoo shimasu\", \"Ongaku o kiki nagara hashirimasu\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Ví dụ: \"Vừa xem tivi vừa học\", \"Vừa nghe nhạc vừa chạy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「働きながら子どもを育てます」のように、長い期間かかることにも「AながらB」の表現を使うことができます。",
+          "romaji": "\"Hataraki nagara kodomo o sodatemasu\" no yoo ni, nagai kikan kakaru koto ni mo \"A nagara B\" no hyoogen o tsukau koto ga dekimasu.",
+          "text_vi": "\"A nagara B\" cũng dùng được cho việc kéo dài, như \"Vừa đi làm vừa nuôi con\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

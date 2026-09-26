@@ -4,10 +4,878 @@
   },
   "videos": [
     {
-      "title": "Sử dụng dịch vụ chuyển phát",
-      "url": "/uploads/lesson-videos/n5-07-delivery/video-1.mp4",
+      "title": "Cách gửi thư và bưu kiện",
+      "description": "Biết cách gửi thư, bưu kiện ở bưu điện và qua dịch vụ chuyển phát.",
+      "url": "/uploads/lesson-videos/n5-07-delivery/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "日本で、はがきや手紙、荷物を送る場合、どうすればいいでしょうか。",
+          "romaji": "Nihon de, hagaki ya tegami, nimotsu o okuru baai, doo sureba ii deshoo ka.",
+          "text_vi": "Ở Nhật, khi muốn gửi bưu thiếp, thư hay bưu kiện thì phải làm thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "はがきや手紙は郵便局を利用します。",
+          "romaji": "Hagaki ya tegami wa yuubinkyoku o riyoo shimasu.",
+          "text_vi": "Bưu thiếp và thư thì gửi qua bưu điện.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "郵便局で切手を買い、はがきや封筒の左上に貼り、ポストに入れてください。",
+          "romaji": "Yuubinkyoku de kitte o kai, hagaki ya fuutoo no hidariue ni hari, posuto ni irete kudasai.",
+          "text_vi": "Hãy mua tem ở bưu điện, dán vào góc trên bên trái của bưu thiếp hoặc phong bì rồi bỏ vào hòm thư.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "早く送りたいときは「速達」、",
+          "romaji": "Hayaku okuritai toki wa \"sokutatsu\",",
+          "text_vi": "Khi muốn gửi nhanh thì dùng \"sokutatsu\" (chuyển phát nhanh),",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "大切なものを送るときは「書留」で送りましょう。",
+          "romaji": "Taisetsu na mono o okuru toki wa \"kakitome\" de okurimashoo.",
+          "text_vi": "khi gửi đồ quan trọng thì gửi \"kakitome\" (thư bảo đảm).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "荷物を送る場合は、郵便局に荷物を持ち込んでください。",
+          "romaji": "Nimotsu o okuru baai wa, yuubinkyoku ni nimotsu o mochikonde kudasai.",
+          "text_vi": "Khi gửi bưu kiện, hãy mang bưu kiện đến bưu điện.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "送料はサイズや重さによって違います。",
+          "romaji": "Sooryoo wa saizu ya omosa ni yotte chigaimasu.",
+          "text_vi": "Phí gửi khác nhau tùy kích thước và trọng lượng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "郵便局の人に荷物を預けて、サイズや重さを量ってもらってください。",
+          "romaji": "Yuubinkyoku no hito ni nimotsu o azukete, saizu ya omosa o hakatte moratte kudasai.",
+          "text_vi": "Hãy đưa bưu kiện cho nhân viên bưu điện để họ đo kích thước và cân trọng lượng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "荷物は郵便局だけでなく、民間の宅配業者を利用することもできます。",
+          "romaji": "Nimotsu wa yuubinkyoku dake de naku, minkan no takuhai-gyoosha o riyoo suru koto mo dekimasu.",
+          "text_vi": "Bưu kiện không chỉ gửi ở bưu điện mà còn có thể gửi qua các công ty chuyển phát tư nhân.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "その場合は、宅配を扱っているコンビニエンスストアに荷物を持って行き、手続きをします。",
+          "romaji": "Sono baai wa, takuhai o atsukatte iru konbiniensu-sutoa ni nimotsu o motte iki, tetsuzuki o shimasu.",
+          "text_vi": "Khi đó, mang bưu kiện đến cửa hàng tiện lợi có nhận gửi hàng và làm thủ tục.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "荷物が大きいときや重いときは、電話をかけて荷物を取りに来てもらってください。",
+          "romaji": "Nimotsu ga ookii toki ya omoi toki wa, denwa o kakete nimotsu o tori ni kite moratte kudasai.",
+          "text_vi": "Khi bưu kiện to hoặc nặng, hãy gọi điện để họ đến lấy hàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "郵便局も宅配業者も、家や会社まで荷物を取りに来てくれます。",
+          "romaji": "Yuubinkyoku mo takuhai-gyoosha mo, ie ya kaisha made nimotsu o tori ni kite kuremasu.",
+          "text_vi": "Cả bưu điện lẫn công ty chuyển phát đều đến tận nhà hoặc công ty để lấy hàng.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "はがき",
+          "reading": "はがき",
+          "romaji": "hagaki",
+          "meaning": "bưu thiếp"
+        },
+        {
+          "word": "手紙",
+          "reading": "てがみ",
+          "romaji": "tegami",
+          "meaning": "thư"
+        },
+        {
+          "word": "荷物",
+          "reading": "にもつ",
+          "romaji": "nimotsu",
+          "meaning": "bưu kiện, hành lý"
+        },
+        {
+          "word": "郵便局",
+          "reading": "ゆうびんきょく",
+          "romaji": "yuubinkyoku",
+          "meaning": "bưu điện"
+        },
+        {
+          "word": "切手",
+          "reading": "きって",
+          "romaji": "kitte",
+          "meaning": "tem"
+        },
+        {
+          "word": "速達",
+          "reading": "そくたつ",
+          "romaji": "sokutatsu",
+          "meaning": "chuyển phát nhanh"
+        },
+        {
+          "word": "書留",
+          "reading": "かきとめ",
+          "romaji": "kakitome",
+          "meaning": "thư bảo đảm"
+        },
+        {
+          "word": "送料",
+          "reading": "そうりょう",
+          "romaji": "sooryoo",
+          "meaning": "phí gửi"
+        }
+      ]
+    },
+    {
+      "title": "Nhận bưu kiện giao tận nhà",
+      "description": "Nhận được bưu kiện và hỏi ký tên thay đóng dấu có được không.",
+      "url": "/uploads/lesson-videos/n5-07-delivery/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はーい。",
+          "romaji": "Haai.",
+          "text_vi": "Vâng, ra ngay.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "星丸運送です。",
+          "romaji": "Hoshimaru-unsoo desu.",
+          "text_vi": "Chuyển phát Hoshimaru đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "どうも。",
+          "romaji": "Doomo.",
+          "text_vi": "Chào chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "お荷物です。",
+          "romaji": "Onimotsu desu.",
+          "text_vi": "Bưu kiện của chị đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "ここに、はんこお願いします。",
+          "romaji": "Koko ni, hanko onegaishimasu.",
+          "text_vi": "Chị đóng dấu vào đây giúp tôi.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、サインでもいいですか。",
+          "romaji": "A, sain demo ii desu ka.",
+          "text_vi": "À, ký tên có được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "いいですよ。",
+          "romaji": "Ii desu yo.",
+          "text_vi": "Được chứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "はい、ありがとうございました。",
+          "romaji": "Hai, arigatoo gozaimashita.",
+          "text_vi": "Vâng, cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、どうも。",
+          "romaji": "Hai, doomo.",
+          "text_vi": "Vâng, cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "お荷物",
+          "reading": "おにもつ",
+          "romaji": "onimotsu",
+          "meaning": "bưu kiện (của quý khách)"
+        },
+        {
+          "word": "はんこ",
+          "reading": "はんこ",
+          "romaji": "hanko",
+          "meaning": "con dấu"
+        },
+        {
+          "word": "サイン",
+          "reading": "サイン",
+          "romaji": "sain",
+          "meaning": "chữ ký"
+        }
+      ]
+    },
+    {
+      "title": "Nhờ giao lại hàng",
+      "description": "Hiểu phiếu báo vắng nhà và nhờ giao lại hàng qua điện thoại.",
+      "url": "/uploads/lesson-videos/n5-07-delivery/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "鈴木さん、これ、何ですか。",
+          "romaji": "Suzuki-san, kore, nan desu ka.",
+          "text_vi": "Chị Suzuki ơi, cái này là gì vậy?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "不在連絡票です。",
+          "romaji": "Fuzai-renrakuhyoo desu.",
+          "text_vi": "Là phiếu báo vắng nhà đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "不在連絡票…？",
+          "romaji": "Fuzai-renrakuhyoo…?",
+          "text_vi": "Phiếu báo vắng nhà…?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさんに荷物が来ました。",
+          "romaji": "Anjera-san ni nimotsu ga kimashita.",
+          "text_vi": "Có bưu kiện gửi đến cho Angela.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさんは家にいませんでした。",
+          "romaji": "Anjera-san wa ie ni imasen deshita.",
+          "text_vi": "Nhưng lúc đó Angela không có nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "だから、宅配便の人は荷物を持って帰りました。",
+          "romaji": "Dakara, takuhaibin no hito wa nimotsu o motte kaerimashita.",
+          "text_vi": "Vì vậy người giao hàng đã mang bưu kiện về.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そのお知らせです。",
+          "romaji": "Sono oshirase desu.",
+          "text_vi": "Đây là giấy báo việc đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですか。どうしたらいいですか。",
+          "romaji": "Soo desu ka. Doo shitara ii desu ka.",
+          "text_vi": "Vậy à. Tôi nên làm thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "この番号に電話をします。",
+          "romaji": "Kono bangoo ni denwa o shimasu.",
+          "text_vi": "Gọi điện đến số này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "私が電話しましょうか。",
+          "romaji": "Watashi ga denwa shimashoo ka.",
+          "text_vi": "Để tôi gọi giúp nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, nhờ chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "もしもし、再配達をお願いします。",
+          "romaji": "Moshimoshi, saihaitatsu o onegaishimasu.",
+          "text_vi": "A lô, tôi muốn nhờ giao lại hàng.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "ご連絡ありがとうございます。",
+          "romaji": "Gorenraku arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn quý khách đã liên hệ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "不在連絡票のお問い合わせ番号をお願いします。",
+          "romaji": "Fuzai-renrakuhyoo no otoiawase-bangoo o onegaishimasu.",
+          "text_vi": "Xin quý khách đọc mã số tra cứu trên phiếu báo vắng nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "123の45の12345の6です。",
+          "romaji": "Ichi-ni-san no yon-go no ichi-ni-san-yon-go no roku desu.",
+          "text_vi": "123-45-12345-6 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "お荷物の確認が取れました。",
+          "romaji": "Onimotsu no kakunin ga toremashita.",
+          "text_vi": "Tôi đã tìm thấy bưu kiện rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "再配達のご希望日はいつでしょうか。",
+          "romaji": "Saihaitatsu no gokiboobi wa itsu deshoo ka.",
+          "text_vi": "Quý khách muốn giao lại vào ngày nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "再配達…えっと…",
+          "romaji": "Saihaitatsu… etto…",
+          "text_vi": "Ngày giao lại… ừm…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "11月5日でお願いします。",
+          "romaji": "Juuichigatsu itsuka de onegaishimasu.",
+          "text_vi": "Cho tôi ngày 5 tháng 11.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "お時間のご希望はありますか。",
+          "romaji": "Ojikan no gokiboo wa arimasu ka.",
+          "text_vi": "Quý khách có muốn chọn giờ không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "午前中でお願いします。",
+          "romaji": "Gozenchuu de onegaishimasu.",
+          "text_vi": "Cho tôi buổi sáng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "かしこまりました。それでは、11月5日火曜日の午前中に再配達に伺います。",
+          "romaji": "Kashikomarimashita. Soredewa, juuichigatsu itsuka kayoobi no gozenchuu ni saihaitatsu ni ukagaimasu.",
+          "text_vi": "Vâng ạ. Vậy chúng tôi sẽ giao lại vào buổi sáng thứ Ba, ngày 5 tháng 11.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "よろしくお願いします。",
+          "romaji": "Yoroshiku onegaishimasu.",
+          "text_vi": "Nhờ anh nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Tổng đài viên",
+          "text_ja": "ご利用ありがとうございました。",
+          "romaji": "Goriyoo arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn quý khách đã sử dụng dịch vụ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "これで大丈夫。",
+          "romaji": "Kore de daijoobu.",
+          "text_vi": "Thế là xong rồi.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "不在連絡票",
+          "reading": "ふざいれんらくひょう",
+          "romaji": "fuzai-renrakuhyoo",
+          "meaning": "phiếu báo vắng nhà"
+        },
+        {
+          "word": "宅配便",
+          "reading": "たくはいびん",
+          "romaji": "takuhaibin",
+          "meaning": "giao hàng tận nhà"
+        },
+        {
+          "word": "お知らせ",
+          "reading": "おしらせ",
+          "romaji": "oshirase",
+          "meaning": "thông báo"
+        },
+        {
+          "word": "番号",
+          "reading": "ばんごう",
+          "romaji": "bangoo",
+          "meaning": "số"
+        },
+        {
+          "word": "再配達",
+          "reading": "さいはいたつ",
+          "romaji": "saihaitatsu",
+          "meaning": "giao hàng lại"
+        },
+        {
+          "word": "午前中",
+          "reading": "ごぜんちゅう",
+          "romaji": "gozenchuu",
+          "meaning": "trong buổi sáng"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Dùng dịch vụ chuyển phát",
+      "description": "Ôn lại「〜でもいいですか」,「これ、何ですか」và「どうしたらいいですか」.",
+      "url": "/uploads/lesson-videos/n5-07-delivery/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "サインでも いいですか",
+          "romaji": "sain demo ii desu ka",
+          "text_vi": "Ký tên có được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "ここに、はんこお願いします。",
+          "romaji": "Koko ni, hanko onegaishimasu.",
+          "text_vi": "Chị đóng dấu vào đây giúp tôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、サインでもいいですか。",
+          "romaji": "A, sain demo ii desu ka.",
+          "text_vi": "À, ký tên có được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "配達員",
+          "speaker_romaji": "Haitatsuin",
+          "speaker_vi": "Người giao hàng",
+          "text_ja": "いいですよ。",
+          "romaji": "Ii desu yo.",
+          "text_vi": "Được chứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「Bでもいいですか」という文は、一番いいのはAですが、Aの代わりにBを使っても大丈夫かどうか聞きたいときに使います。",
+          "romaji": "\"B demo ii desu ka\" to iu bun wa, ichiban ii no wa A desu ga, A no kawari ni B o tsukatte mo daijoobu ka doo ka kikitai toki ni tsukaimasu.",
+          "text_vi": "Câu \"B demo ii desu ka\" dùng khi tốt nhất là A nhưng muốn hỏi dùng B thay cho A có được không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、はんこがA、サインがBになります。",
+          "romaji": "Kono bamen de wa, hanko ga A, sain ga B ni narimasu.",
+          "text_vi": "Trong cảnh này, con dấu là A, chữ ký là B.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "宅配便の人はアンジェラさんにはんこをお願いしましたが、",
+          "romaji": "Takuhaibin no hito wa Anjera-san ni hanko o onegai shimashita ga,",
+          "text_vi": "Nhân viên giao hàng nhờ chị Angela đóng dấu,",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんははんこがないので、その代わりにサインでもいいか聞きました。",
+          "romaji": "Anjera-san wa hanko ga nai node, sono kawari ni sain demo ii ka kikimashita.",
+          "text_vi": "nhưng chị Angela không có con dấu nên đã hỏi ký tên thay vào có được không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、例えば約束の日時を決めるときに、「土曜日はどうですか」「土曜日はちょっと…。日曜日でもいいですか」のように言います。",
+          "romaji": "Hoka ni mo, tatoeba yakusoku no nichiji o kimeru toki ni, \"Doyoobi wa doo desu ka\", \"Doyoobi wa chotto…. Nichiyoobi demo ii desu ka\" no yoo ni iimasu.",
+          "text_vi": "Ngoài ra, ví dụ khi hẹn ngày giờ, có thể nói: \"Thứ Bảy được không?\" – \"Thứ Bảy thì hơi khó… Chủ Nhật có được không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "これ、なんですか",
+          "romaji": "kore, nan desu ka",
+          "text_vi": "Cái này là gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "鈴木さん、これ、何ですか。",
+          "romaji": "Suzuki-san, kore, nan desu ka.",
+          "text_vi": "Chị Suzuki ơi, cái này là gì vậy?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "不在連絡票です。",
+          "romaji": "Fuzai-renrakuhyoo desu.",
+          "text_vi": "Là phiếu báo vắng nhà đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「これ、何ですか」は「これは何ですか」と同じです。",
+          "romaji": "\"Kore, nan desu ka\" wa \"Kore wa nan desu ka\" to onaji desu.",
+          "text_vi": "\"Kore, nan desu ka\" giống với \"Kore wa nan desu ka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "見たものについて、それが何かわからないときに使います。",
+          "romaji": "Mita mono ni tsuite, sore ga nani ka wakaranai toki ni tsukaimasu.",
+          "text_vi": "Dùng khi nhìn thấy một thứ mà không biết đó là gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "見たものが何かわからないとき、「これ、何ですか」と質問できます。",
+          "romaji": "Mita mono ga nani ka wakaranai toki, \"Kore, nan desu ka\" to shitsumon dekimasu.",
+          "text_vi": "Khi không biết thứ mình thấy là gì, có thể hỏi \"Cái này là gì vậy?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "文の最後に「か」をつけると、質問の文になります。",
+          "romaji": "Bun no saigo ni \"ka\" o tsukeru to, shitsumon no bun ni narimasu.",
+          "text_vi": "Thêm \"ka\" vào cuối câu thì thành câu hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「これ」の代わりに「それ」や「あれ」も使えます。",
+          "romaji": "\"Kore\" no kawari ni \"sore\" ya \"are\" mo tsukaemasu.",
+          "text_vi": "Thay cho \"kore\" cũng có thể dùng \"sore\" hoặc \"are\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、アンジェラさんは家のポストにある紙が何かわかりませんでした。",
+          "romaji": "Kono bamen de wa, Anjera-san wa ie no posuto ni aru kami ga nani ka wakarimasen deshita.",
+          "text_vi": "Trong cảnh này, chị Angela không biết tờ giấy trong hộp thư nhà mình là gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それで、鈴木さんに紙を見せ、「これ、何ですか」と聞きました。",
+          "romaji": "Sorede, Suzuki-san ni kami o mise, \"Kore, nan desu ka\" to kikimashita.",
+          "text_vi": "Vì vậy chị ấy cho chị Suzuki xem tờ giấy và hỏi \"Cái này là gì vậy?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「何」の部分を「誰」「どこ」など他の質問の言葉に変えて、「誰ですか」「どこですか」のように質問することもできます。",
+          "romaji": "\"Nani\" no bubun o \"dare\", \"doko\" nado hoka no shitsumon no kotoba ni kaete, \"Dare desu ka\", \"Doko desu ka\" no yoo ni shitsumon suru koto mo dekimasu.",
+          "text_vi": "Có thể thay \"nani\" bằng các từ để hỏi khác như \"dare\" (ai), \"doko\" (đâu) để hỏi \"Ai vậy?\", \"Ở đâu vậy?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:43",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どうしたら いいですか",
+          "romaji": "doo shitara ii desu ka",
+          "text_vi": "Tôi nên làm thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:48",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どうしたらいいですか。",
+          "romaji": "Doo shitara ii desu ka.",
+          "text_vi": "Tôi nên làm thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:52",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "この番号に電話をします。",
+          "romaji": "Kono bangoo ni denwa o shimasu.",
+          "text_vi": "Gọi điện đến số này.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どうしたらいいですか」は、自分が何かをしなければならないのですが、その方法がわからなくて、アドバイスをもらいたいときに使います。",
+          "romaji": "\"Doo shitara ii desu ka\" wa, jibun ga nanika o shinakereba naranai no desu ga, sono hoohoo ga wakaranakute, adobaisu o moraitai toki ni tsukaimasu.",
+          "text_vi": "\"Doo shitara ii desu ka\" dùng khi mình phải làm việc gì đó nhưng không biết cách nên muốn xin lời khuyên.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、アンジェラさんは不在連絡票は何かわかりましたが、これから何をしなければならないかわかりませんでした。",
+          "romaji": "Kono bamen de wa, Anjera-san wa fuzai-renrakuhyoo wa nani ka wakarimashita ga, korekara nani o shinakereba naranai ka wakarimasen deshita.",
+          "text_vi": "Trong cảnh này, chị Angela đã biết phiếu báo vắng nhà là gì, nhưng không biết tiếp theo phải làm gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それで、鈴木さんに「どうしたらいいですか」と聞きました。",
+          "romaji": "Sorede, Suzuki-san ni \"Doo shitara ii desu ka\" to kikimashita.",
+          "text_vi": "Vì vậy chị ấy hỏi chị Suzuki \"Tôi nên làm thế nào ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、仕事のときや子どもが病気になって困ったときなど、いろいろな場面で使うことができます。",
+          "romaji": "Hoka ni mo, shigoto no toki ya kodomo ga byooki ni natte komatta toki nado, iroiro na bamen de tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra còn dùng được trong nhiều tình huống, như khi làm việc hay khi con bị ốm mà không biết xoay xở thế nào.",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

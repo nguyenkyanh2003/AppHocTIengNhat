@@ -1,7 +1,116 @@
 # Lời thoại Tình huống: Hỏi quầy hàng và giá
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 3
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-2-7.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Hỏi về quầy hàng và giá cả
+## scene-1.mp4
+# Hỏi đường tới quầy hàng
+00:02 | アンジェラ / Anjera / Angela | あの、すみません。 | Ano, sumimasen. | Dạ, xin lỗi cho tôi hỏi.
+00:04 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | はい。 | Hai. | Vâng.
+*00:05 | アンジェラ / Anjera / Angela | 運動用のTシャツはどこにありますか。 | Undooyoo no T-shatsu wa doko ni arimasu ka. | Áo phông để tập thể thao ở đâu ạ?
+00:09 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | 運動用のTシャツですね。 | Undooyoo no T-shatsu desu ne. | Áo phông tập thể thao phải không ạ?
+00:12 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | スポーツ用品売り場にあります。 | Supootsu-yoohin-uriba ni arimasu. | Có ở quầy đồ thể thao ạ.
+*00:15 | アンジェラ / Anjera / Angela | その売り場はどこですか。 | Sono uriba wa doko desu ka. | Quầy hàng đó ở đâu ạ?
+00:19 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | 2階です。 | Nikai desu. | Ở tầng 2 ạ.
+00:22 | アンジェラ / Anjera / Angela | ああ、エスカレーターの近くですね。 | Aa, esukareetaa no chikaku desu ne. | À, gần thang cuốn nhỉ.
+00:25 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | はい。 | Hai. | Vâng.
+00:26 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | 上の階へは、あちらからどうぞ。 | Ue no kai e wa, achira kara doozo. | Lên tầng trên thì mời chị đi lối kia ạ.
+00:31 | アンジェラ / Anjera / Angela | はい、わかりました。ありがとうございます。 | Hai, wakarimashita. Arigatoo gozaimasu. | Vâng, tôi hiểu rồi. Cảm ơn chị.
+### từ vựng
+運動用 | うんどうよう | undooyoo | dùng để tập thể thao
+Tシャツ | ティーシャツ | tii shatsu | áo phông
+売り場 | うりば | uriba | quầy hàng
+2階 | にかい | nikai | tầng 2
+エスカレーター | エスカレーター | esukareetaa | thang cuốn
+近く | ちかく | chikaku | gần
+
+## scene-2.mp4
+# Xác nhận giá đã gồm thuế
+00:05 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Chị thấy thế nào ạ?
+00:07 | アンジェラ / Anjera / Angela | このTシャツ、いいデザインですね。 | Kono T-shatsu, ii dezain desu ne. | Cái áo phông này thiết kế đẹp nhỉ.
+00:11 | 店員 / Ten'in / Nhân viên | はい。人気がありますよ。 | Hai. Ninki ga arimasu yo. | Vâng. Mẫu này được ưa chuộng lắm ạ.
+00:17 | アンジェラ / Anjera / Angela | ああ、サイズもちょうどいいですね。 | Aa, saizu mo choodo ii desu ne. | À, cỡ cũng vừa luôn.
+*00:21 | アンジェラ / Anjera / Angela | えーと、5,000円ですか。 | Eeto, gosen-en desu ka. | Ừm, 5.000 yên phải không ạ?
+*00:25 | 店員 / Ten'in / Nhân viên | 税込みで5,500円です。 | Zeekomi de gosen gohyaku-en desu. | Tính cả thuế là 5.500 yên ạ.
+00:29 | アンジェラ / Anjera / Angela | 5,500円？ | Gosen gohyaku-en? | 5.500 yên ạ?
+00:32 | 店員 / Ten'in / Nhân viên | 500円は税金です。 | Gohyaku-en wa zeekin desu. | 500 yên là tiền thuế ạ.
+00:35 | 店員 / Ten'in / Nhân viên | 消費税です。 | Shoohizee desu. | Là thuế tiêu thụ ạ.
+00:37 | アンジェラ / Anjera / Angela | ああ、わかりました。5,500円ですね。 | Aa, wakarimashita. Gosen gohyaku-en desu ne. | À, tôi hiểu rồi. 5.500 yên nhỉ.
+*00:41 | アンジェラ / Anjera / Angela | ちょっと考えます。 | Chotto kangaemasu. | Để tôi suy nghĩ thêm một chút.
+### từ vựng
+デザイン | デザイン | dezain | thiết kế
+人気 | にんき | ninki | được ưa chuộng
+ちょうどいい | ちょうどいい | choodo ii | vừa khít
+税込み | ぜいこみ | zeekomi | đã gồm thuế
+消費税 | しょうひぜい | shoohizee | thuế tiêu thụ
+考えます | かんがえます | kangaemasu | suy nghĩ
+
+## scene-3.mp4
+# Nhờ nhân viên tư vấn sản phẩm
+00:03 | アンジェラ / Anjera / Angela | すみません。 | Sumimasen. | Xin lỗi.
+00:04 | アンジェラ / Anjera / Angela | 運動用のTシャツが欲しいんですが。 | Undooyoo no T-shatsu ga hoshiin desu ga. | Tôi muốn mua áo phông để tập thể thao.
+00:08 | 店員 / Ten'in / Nhân viên | はい、こちらです。 | Hai, kochira desu. | Vâng, ở đây ạ.
+*00:11 | アンジェラ / Anjera / Angela | どれがおすすめですか。 | Dore ga osusume desu ka. | Cái nào chị khuyên dùng ạ?
+00:17 | 店員 / Ten'in / Nhân viên | これはいかがですか。 | Kore wa ikaga desu ka. | Cái này thì sao ạ?
+*00:19 | アンジェラ / Anjera / Angela | うーん、動きやすいですか。 | Uun, ugokiyasui desu ka. | Ừm, có dễ vận động không ạ?
+00:21 | 店員 / Ten'in / Nhân viên | はい、動きやすいですよ。 | Hai, ugokiyasui desu yo. | Vâng, dễ vận động lắm ạ.
+00:23 | 店員 / Ten'in / Nhân viên | 洗濯の後もすぐ乾きます。 | Sentaku no ato mo sugu kawakimasu. | Giặt xong cũng khô ngay ạ.
+00:26 | アンジェラ / Anjera / Angela | それはいいですね。 | Sore wa ii desu ne. | Vậy thì tốt quá.
+00:27 | アンジェラ / Anjera / Angela | いくらですか。 | Ikura desu ka. | Bao nhiêu tiền ạ?
+00:30 | 店員 / Ten'in / Nhân viên | 税込み3,300円です。 | Zeekomi sanzen sanbyaku-en desu. | Tính cả thuế là 3.300 yên ạ.
+*00:32 | アンジェラ / Anjera / Angela | じゃあ、これをください。 | Jaa, kore o kudasai. | Vậy cho tôi cái này.
+### từ vựng
+欲しい | ほしい | hoshii | muốn có
+おすすめ | おすすめ | osusume | được khuyên dùng
+動きやすい | うごきやすい | ugokiyasui | dễ vận động
+洗濯 | せんたく | sentaku | giặt giũ
+乾きます | かわきます | kawakimasu | khô
+いくら | いくら | ikura | bao nhiêu tiền
+
+## summary.mp4
+# Ôn tập: Hỏi quầy hàng và giá cả
+00:00 |  /  / Chủ đề | Tシャツは どこに ありますか | T-shatsu wa doko ni arimasu ka | Áo phông ở đâu ạ?
+*00:06 | アンジェラ / Anjera / Angela | 運動用のTシャツはどこにありますか。 | Undooyoo no T-shatsu wa doko ni arimasu ka. | Áo phông để tập thể thao ở đâu ạ?
+00:11 | 案内係 / Annai-gakari / Nhân viên hướng dẫn | 運動用のTシャツですね。スポーツ用品売り場にあります。 | Undooyoo no T-shatsu desu ne. Supootsu-yoohin-uriba ni arimasu. | Áo phông tập thể thao phải không ạ? Có ở quầy đồ thể thao ạ.
+00:17 | ナレーター / Nareetaa / Người dẫn | 物や生き物の存在する場所を表すとき、「物は場所にあります」、「生き物は場所にいます」と言います。 | Mono ya ikimono no sonzai suru basho o arawasu toki, "mono wa basho ni arimasu", "ikimono wa basho ni imasu" to iimasu. | Khi nói đồ vật hay sinh vật ở đâu, ta dùng "[đồ vật] wa [nơi chốn] ni arimasu" và "[sinh vật] wa [nơi chốn] ni imasu".
+00:33 | ナレーター / Nareetaa / Người dẫn | 物の場合は「あります」、生き物の場合は「います」を使います。 | Mono no baai wa "arimasu", ikimono no baai wa "imasu" o tsukaimasu. | Đồ vật thì dùng "arimasu", sinh vật (người, con vật) thì dùng "imasu".
+00:42 | ナレーター / Nareetaa / Người dẫn | 「に」は場所を表す助詞です。 | "Ni" wa basho o arawasu joshi desu. | "Ni" là trợ từ chỉ nơi chốn.
+00:48 | ナレーター / Nareetaa / Người dẫn | 例えば、「ATMはコンビニにあります」、「母はコンビニにいます」と言います。 | Tatoeba, "ATM wa konbini ni arimasu", "haha wa konbini ni imasu" to iimasu. | Ví dụ: "Cây ATM ở cửa hàng tiện lợi", "Mẹ tôi đang ở cửa hàng tiện lợi".
+01:02 | ナレーター / Nareetaa / Người dẫn | 場所がわからないときは、「どこ」を使って、「どこにありますか」、「どこにいますか」と言います。 | Basho ga wakaranai toki wa, "doko" o tsukatte, "doko ni arimasu ka", "doko ni imasu ka" to iimasu. | Khi không biết ở đâu, ta dùng "doko" và hỏi "doko ni arimasu ka" (đồ vật) hoặc "doko ni imasu ka" (người, con vật).
+01:16 | ナレーター / Nareetaa / Người dẫn | 動画では、アンジェラさんは運動用のTシャツの場所がわかりませんでした。 | Dooga de wa, Anjera-san wa undooyoo no T-shatsu no basho ga wakarimasen deshita. | Trong video, chị Angela không biết áo phông tập thể thao ở đâu.
+01:25 | ナレーター / Nareetaa / Người dẫn | そこで、「運動用のTシャツはどこにありますか」と聞きました。 | Soko de, "Undooyoo no T-shatsu wa doko ni arimasu ka" to kikimashita. | Vì vậy chị ấy đã hỏi "Áo phông tập thể thao ở đâu ạ?".
+01:35 | ナレーター / Nareetaa / Người dẫn | 答えるときは、動画のように、「スポーツ用品売り場にあります」と、「場所＋にあります」で答えます。 | Kotaeru toki wa, dooga no yoo ni, "Supootsu-yoohin-uriba ni arimasu" to, "basho + ni arimasu" de kotaemasu. | Khi trả lời thì giống trong video: "Có ở quầy đồ thể thao ạ", tức là dùng mẫu "[nơi chốn] + ni arimasu".
+01:50 | ナレーター / Nareetaa / Người dẫn | 「スポーツ用品売り場です」のように、「場所＋です」でもいいです。 | "Supootsu-yoohin-uriba desu" no yoo ni, "basho + desu" demo ii desu. | Nói "[nơi chốn] + desu" như "Ở quầy đồ thể thao ạ" cũng được.
+02:00 |  /  / Chủ đề | どれが おすすめですか | dore ga osusume desu ka | Cái nào được khuyên dùng ạ?
+02:08 | アンジェラ / Anjera / Angela | すみません、運動用のTシャツが欲しいんですが。 | Sumimasen, undooyoo no T-shatsu ga hoshiin desu ga. | Xin lỗi, tôi muốn mua áo phông để tập thể thao.
+02:13 | 店員 / Ten'in / Nhân viên | はい、こちらです。 | Hai, kochira desu. | Vâng, ở đây ạ.
+*02:17 | アンジェラ / Anjera / Angela | どれがおすすめですか。 | Dore ga osusume desu ka. | Cái nào chị khuyên dùng ạ?
+02:22 | ナレーター / Nareetaa / Người dẫn | 「どれ」は、3つ以上のものの中から1つを選ぶときに使う疑問詞です。 | "Dore" wa, mittsu ijoo no mono no naka kara hitotsu o erabu toki ni tsukau gimonshi desu. | "Dore" là từ để hỏi dùng khi chọn 1 thứ trong số từ 3 thứ trở lên.
+02:34 | 例 / Ree / Ví dụ | どれがおいしいですか。 | Dore ga oishii desu ka. | Cái nào ngon ạ?
+02:37 | 例 / Ree / Ví dụ | これがおいしいですよ。 | Kore ga oishii desu yo. | Cái này ngon đấy.
+02:43 | 例 / Ree / Ví dụ | どれが好きですか。 | Dore ga suki desu ka. | Anh thích cái nào?
+02:46 | 例 / Ree / Ví dụ | コーヒーが好きです。 | Koohii ga suki desu. | Tôi thích cà phê.
+02:51 | ナレーター / Nareetaa / Người dẫn | 3つ以上のものの中から1つを選ぶときの疑問詞は「どれ」ですが、2つのものから1つを選ぶときは、「どちら」「どっち」を使います。 | Mittsu ijoo no mono no naka kara hitotsu o erabu toki no gimonshi wa "dore" desu ga, futatsu no mono kara hitotsu o erabu toki wa, "dochira", "docchi" o tsukaimasu. | Chọn 1 trong số từ 3 thứ trở lên thì hỏi bằng "dore", còn chọn 1 trong 2 thứ thì dùng "dochira" hoặc "docchi".
+03:09 | 例 / Ree / Ví dụ | どちらがおいしいですか。 | Dochira ga oishii desu ka. | Cái nào (trong hai cái) ngon hơn ạ?
+03:12 | 例 / Ree / Ví dụ | こちらがおいしいですよ。 | Kochira ga oishii desu yo. | Cái này ngon đấy.
+03:16 | 例 / Ree / Ví dụ | どっちが好きですか。 | Docchi ga suki desu ka. | Em thích cái nào?
+03:19 | 例 / Ree / Ví dụ | ケーキが好きです。 | Keeki ga suki desu. | Em thích bánh kem.
+03:23 | ナレーター / Nareetaa / Người dẫn | 動画では、アンジェラさんは運動用のTシャツを探していましたが、たくさんあるTシャツを見て、店員に「どれがおすすめですか」と聞きました。 | Dooga de wa, Anjera-san wa undooyoo no T-shatsu o sagashite imashita ga, takusan aru T-shatsu o mite, ten'in ni "Dore ga osusume desu ka" to kikimashita. | Trong video, chị Angela đang tìm áo phông tập thể thao, thấy nhiều áo quá nên hỏi nhân viên "Cái nào chị khuyên dùng ạ?".
+03:41 |  /  / Chủ đề | うごきやすいですか | ugokiyasui desu ka | Có dễ vận động không ạ?
+03:50 | 店員 / Ten'in / Nhân viên | これはいかがですか。 | Kore wa ikaga desu ka. | Cái này thì sao ạ?
+*03:51 | アンジェラ / Anjera / Angela | うーん、動きやすいですか。 | Uun, ugokiyasui desu ka. | Ừm, có dễ vận động không ạ?
+03:58 | ナレーター / Nareetaa / Người dẫn | 「動詞＋やすい」は、何かをすることが簡単にできるというときに使います。 | "Dooshi + yasui" wa, nanika o suru koto ga kantan ni dekiru to iu toki ni tsukaimasu. | "Động từ + yasui" dùng khi muốn nói việc gì đó làm được dễ dàng.
+04:10 | ナレーター / Nareetaa / Người dẫn | 値段が安いというときの「安い」とは意味が違います。 | Nedan ga yasui to iu toki no "yasui" to wa imi ga chigaimasu. | Nghĩa này khác với "yasui" (rẻ) khi nói giá rẻ.
+04:19 | ナレーター / Nareetaa / Người dẫn | 動詞のます形の「ます」を取って、「やすい」をつけます。 | Dooshi no masu-kee no "masu" o totte, "yasui" o tsukemasu. | Bỏ "masu" ở thể masu của động từ rồi thêm "yasui".
+04:28 | ナレーター / Nareetaa / Người dẫn | この場合、「動きます」の「ます」を取って、「やすい」をつけて、「動きやすい」となります。 | Kono baai, "ugokimasu" no "masu" o totte, "yasui" o tsukete, "ugokiyasui" to narimasu. | Ở đây, bỏ "masu" của "ugokimasu" (vận động) rồi thêm "yasui" thành "ugokiyasui" (dễ vận động).
+04:40 | ナレーター / Nareetaa / Người dẫn | 動画では、アンジェラさんはTシャツ売り場で運動用のTシャツを探していたので、「動きやすいですか」と聞きました。 | Dooga de wa, Anjera-san wa T-shatsu-uriba de undooyoo no T-shatsu o sagashite ita node, "Ugokiyasui desu ka" to kikimashita. | Trong video, vì chị Angela đang tìm áo phông tập thể thao ở quầy áo phông nên đã hỏi "Có dễ vận động không ạ?".
+04:54 | ナレーター / Nareetaa / Người dẫn | このように、商品の機能を尋ねるときに「やすい」を使うといいです。 | Kono yoo ni, shoohin no kinoo o tazuneru toki ni "yasui" o tsukau to ii desu. | Như vậy, khi hỏi về công năng của sản phẩm thì nên dùng "yasui".
+05:04 | ナレーター / Nareetaa / Người dẫn | 例えば、薬局で子どものために薬を買うとき、「飲みやすい薬ですか」と聞くことができます。 | Tatoeba, yakkyoku de kodomo no tame ni kusuri o kau toki, "Nomiyasui kusuri desu ka" to kiku koto ga dekimasu. | Ví dụ, khi mua thuốc cho con ở hiệu thuốc, có thể hỏi "Thuốc này có dễ uống không ạ?".
+05:17 | ナレーター / Nareetaa / Người dẫn | 反対に、簡単にできないときは、「にくい」を使います。 | Hantai ni, kantan ni dekinai toki wa, "nikui" o tsukaimasu. | Ngược lại, khi việc gì đó khó làm thì dùng "nikui".
+05:27 | ナレーター / Nareetaa / Người dẫn | 「やすい」と同じように、動詞のます形の「ます」を取って、「にくい」をつけます。 | "Yasui" to onaji yoo ni, dooshi no masu-kee no "masu" o totte, "nikui" o tsukemasu. | Giống như "yasui", bỏ "masu" ở thể masu của động từ rồi thêm "nikui".
+05:38 | ナレーター / Nareetaa / Người dẫn | 例えば、「飲みます」の場合は「飲みにくい」。 | Tatoeba, "nomimasu" no baai wa "nominikui". | Ví dụ, "nomimasu" (uống) thành "nominikui" (khó uống).
+05:45 | 例 / Ree / Ví dụ | この薬は飲みにくいです。 | Kono kusuri wa nominikui desu. | Thuốc này khó uống.
+05:51 | ナレーター / Nareetaa / Người dẫn | 例えば、字が大きい本と小さい本があります。 | Tatoeba, ji ga ookii hon to chiisai hon ga arimasu. | Ví dụ, có một quyển sách chữ to và một quyển chữ nhỏ.
+05:58 | 例 / Ree / Ví dụ | どちらが読みやすいですか。 | Dochira ga yomiyasui desu ka. | Quyển nào dễ đọc hơn?
+06:01 | 例 / Ree / Ví dụ | こちらの本は読みやすいです。 | Kochira no hon wa yomiyasui desu. | Quyển này dễ đọc.
+06:06 | 例 / Ree / Ví dụ | こちらの本は読みにくいです。 | Kochira no hon wa yominikui desu. | Quyển này khó đọc.

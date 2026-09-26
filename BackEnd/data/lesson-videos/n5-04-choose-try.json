@@ -4,10 +4,896 @@
   },
   "videos": [
     {
-      "title": "Chọn và thử mua đồ mong muốn",
-      "url": "/uploads/lesson-videos/n5-04-choose-try/video-1.mp4",
+      "title": "Nói món đồ mình muốn mua",
+      "description": "Nói được món đồ mình muốn mua và hỏi về chất liệu.",
+      "url": "/uploads/lesson-videos/n5-04-choose-try/scene-1.mp4",
+      "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
-      "transcript": []
+      "transcript": [
+        {
+          "start": "00:08",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "今日は何を見たいですか。",
+          "romaji": "Kyoo wa nani o mitai desu ka.",
+          "text_vi": "Hôm nay chị muốn xem gì?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "シャツです。",
+          "romaji": "Shatsu desu.",
+          "text_vi": "Áo sơ mi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "コットンのシャツが欲しいです。",
+          "romaji": "Kotton no shatsu ga hoshii desu.",
+          "text_vi": "Tôi muốn một chiếc áo sơ mi cotton.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、綿のシャツですね。",
+          "romaji": "Aa, men no shatsu desu ne.",
+          "text_vi": "À, áo sơ mi vải bông nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "え？綿とコットンは同じですか。",
+          "romaji": "E? Men to kotton wa onaji desu ka.",
+          "text_vi": "Hả? \"Men\" với \"kotton\" là một à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい、同じ意味ですよ。",
+          "romaji": "Hai, onaji imi desu yo.",
+          "text_vi": "Vâng, cùng nghĩa đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ。",
+          "romaji": "Hee.",
+          "text_vi": "Ồ, vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これ、かわいいですね。",
+          "romaji": "Kore, kawaii desu ne.",
+          "text_vi": "Cái này dễ thương nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、いいですね。",
+          "romaji": "Aa, ii desu ne.",
+          "text_vi": "À, được đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "えっと…あ、ポリエステル…",
+          "romaji": "Etto… a, poriesuteru…",
+          "text_vi": "Ừm… À, vải polyester…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、残念ですね。",
+          "romaji": "Aa, zannen desu ne.",
+          "text_vi": "Ôi, tiếc quá nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "これはどうですか。",
+          "romaji": "Kore wa doo desu ka.",
+          "text_vi": "Cái này thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、それもかわいいですね。",
+          "romaji": "Aa, sore mo kawaii desu ne.",
+          "text_vi": "À, cái đó cũng dễ thương nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "綿100％ですよ。",
+          "romaji": "Men hyaku-paasento desu yo.",
+          "text_vi": "100% vải bông đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、これが綿ですね。",
+          "romaji": "Aa, kore ga men desu ne.",
+          "text_vi": "À, cái này là vải bông nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "家で洗濯もできますよね。",
+          "romaji": "Ie de sentaku mo dekimasu yo ne.",
+          "text_vi": "Giặt ở nhà cũng được đúng không?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい、大丈夫ですよ。",
+          "romaji": "Hai, daijoobu desu yo.",
+          "text_vi": "Vâng, được đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいですね。",
+          "romaji": "Ii desu ne.",
+          "text_vi": "Hay quá.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "シャツ",
+          "reading": "シャツ",
+          "romaji": "shatsu",
+          "meaning": "áo sơ mi"
+        },
+        {
+          "word": "コットン",
+          "reading": "コットン",
+          "romaji": "kotton",
+          "meaning": "vải cotton"
+        },
+        {
+          "word": "綿",
+          "reading": "めん",
+          "romaji": "men",
+          "meaning": "vải bông"
+        },
+        {
+          "word": "同じ",
+          "reading": "おなじ",
+          "romaji": "onaji",
+          "meaning": "giống nhau"
+        },
+        {
+          "word": "かわいい",
+          "reading": "かわいい",
+          "romaji": "kawaii",
+          "meaning": "dễ thương"
+        },
+        {
+          "word": "残念",
+          "reading": "ざんねん",
+          "romaji": "zannen",
+          "meaning": "đáng tiếc"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi giá đã gồm thuế tiêu thụ",
+      "description": "Tính được giá đã gồm thuế tiêu thụ và nói lý do bằng「から」.",
+      "url": "/uploads/lesson-videos/n5-04-choose-try/scene-2.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いくらですか。",
+          "romaji": "Ikura desu ka.",
+          "text_vi": "Bao nhiêu tiền vậy?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ちょうど5,000円ですよ。",
+          "romaji": "Choodo gosen-en desu yo.",
+          "text_vi": "Đúng 5.000 yên đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、でも、消費税がありますから、5,500円ですよね。",
+          "romaji": "A, demo, shoohizee ga arimasu kara, gosen gohyaku-en desu yo ne.",
+          "text_vi": "À, nhưng vì có thuế tiêu thụ nên là 5.500 yên nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ちょっと高いですか。",
+          "romaji": "Chotto takai desu ka.",
+          "text_vi": "Hơi đắt à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "うーん、どうしようかな。",
+          "romaji": "Uun, doo shiyoo ka na.",
+          "text_vi": "Ừm, làm sao đây nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ちょっと着てみませんか。",
+          "romaji": "Chotto kite mimasen ka.",
+          "text_vi": "Chị mặc thử xem sao?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですね。じゃあ、着てみます。",
+          "romaji": "Soo desu ne. Jaa, kite mimasu.",
+          "text_vi": "Ừ nhỉ. Vậy tôi mặc thử.",
+          "key_phrase": false
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "ちょうど",
+          "reading": "ちょうど",
+          "romaji": "choodo",
+          "meaning": "vừa đúng"
+        },
+        {
+          "word": "消費税",
+          "reading": "しょうひぜい",
+          "romaji": "shoohizee",
+          "meaning": "thuế tiêu thụ"
+        },
+        {
+          "word": "高い",
+          "reading": "たかい",
+          "romaji": "takai",
+          "meaning": "đắt"
+        },
+        {
+          "word": "着てみます",
+          "reading": "きてみます",
+          "romaji": "kite mimasu",
+          "meaning": "mặc thử"
+        }
+      ]
+    },
+    {
+      "title": "Xin mặc thử quần áo",
+      "description": "Xin được mặc thử và hiểu các lưu ý ở phòng thử đồ.",
+      "url": "/uploads/lesson-videos/n5-04-choose-try/scene-3.mp4",
+      "kind": "scene",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません。これ、試着したいんですけど。",
+          "romaji": "Sumimasen. Kore, shichaku shitain desu kedo.",
+          "text_vi": "Xin lỗi, tôi muốn mặc thử cái này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "こちらへどうぞ。",
+          "romaji": "Kochira e doozo.",
+          "text_vi": "Mời chị đi lối này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "中にフェイスカバーがございますので、ご利用ください。",
+          "romaji": "Naka ni feisu-kabaa ga gozaimasu node, goriyoo kudasai.",
+          "text_vi": "Bên trong có khăn trùm mặt, mời quý khách dùng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "靴は脱ぎますか。",
+          "romaji": "Kutsu wa nugimasu ka.",
+          "text_vi": "Có phải cởi giày không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, phiền chị cởi giày ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "アンジェラさん、私、この辺で待ってますね。",
+          "romaji": "Anjera-san, watashi, kono hen de mattemasu ne.",
+          "text_vi": "Angela ơi, tôi đợi quanh đây nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、すみません。",
+          "romaji": "Hai, sumimasen.",
+          "text_vi": "Vâng, phiền chị nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お客様、いかがですか。",
+          "romaji": "Okyakusama, ikaga desu ka.",
+          "text_vi": "Thưa quý khách, thế nào rồi ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっと待ってください。",
+          "romaji": "Chotto matte kudasai.",
+          "text_vi": "Chờ tôi một chút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いかがでしたか。",
+          "romaji": "Ikaga deshita ka.",
+          "text_vi": "Quý khách thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "うーん、ちょっと…",
+          "romaji": "Uun, chotto…",
+          "text_vi": "Ừm, hơi…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、もう少し考えます。",
+          "romaji": "Sumimasen, moo sukoshi kangaemasu.",
+          "text_vi": "Xin lỗi, để tôi suy nghĩ thêm chút nữa.",
+          "key_phrase": true
+        }
+      ],
+      "vocabulary": [
+        {
+          "word": "試着",
+          "reading": "しちゃく",
+          "romaji": "shichaku",
+          "meaning": "mặc thử"
+        },
+        {
+          "word": "フェイスカバー",
+          "reading": "フェイスカバー",
+          "romaji": "feisu kabaa",
+          "meaning": "khăn trùm mặt khi thử đồ"
+        },
+        {
+          "word": "靴",
+          "reading": "くつ",
+          "romaji": "kutsu",
+          "meaning": "giày"
+        },
+        {
+          "word": "脱ぎます",
+          "reading": "ぬぎます",
+          "romaji": "nugimasu",
+          "meaning": "cởi (giày, áo)"
+        },
+        {
+          "word": "待ちます",
+          "reading": "まちます",
+          "romaji": "machimasu",
+          "meaning": "chờ, đợi"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Chọn và mua đồ mình muốn",
+      "description": "Ôn lại「〜が欲しいです」, câu tính từ với「ね」và cách nói lý do với「から」.",
+      "url": "/uploads/lesson-videos/n5-04-choose-try/summary.mp4",
+      "kind": "review",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "コットンの シャツが ほしいです",
+          "romaji": "kotton no shatsu ga hoshii desu",
+          "text_vi": "Tôi muốn một chiếc áo sơ mi cotton",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "何を見たいですか。",
+          "romaji": "Nani o mitai desu ka.",
+          "text_vi": "Chị muốn xem gì?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "シャツです。コットンのシャツが欲しいです。",
+          "romaji": "Shatsu desu. Kotton no shatsu ga hoshii desu.",
+          "text_vi": "Áo sơ mi. Tôi muốn một chiếc áo sơ mi cotton.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "欲しいものを伝えるとき、「欲しいもの＋が＋欲しいです」という文型を使います。",
+          "romaji": "Hoshii mono o tsutaeru toki, \"hoshii mono + ga + hoshii desu\" to iu bunkee o tsukaimasu.",
+          "text_vi": "Khi nói ra thứ mình muốn, ta dùng mẫu câu \"[thứ muốn có] + ga + hoshii desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ここでは、アンジェラさんは「コットンのシャツが欲しいです」と言って、自分の買いたいものを同僚に伝えました。",
+          "romaji": "Koko de wa, Anjera-san wa \"Kotton no shatsu ga hoshii desu\" to itte, jibun no kaitai mono o dooryoo ni tsutaemashita.",
+          "text_vi": "Ở đây, chị Angela nói \"Tôi muốn một chiếc áo sơ mi cotton\" để cho đồng nghiệp biết thứ mình muốn mua.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、例えば風邪をひいたとき、薬局で店員さんに「風邪薬が欲しいです」と用件を伝えたり、",
+          "romaji": "Hoka ni mo, tatoeba kaze o hiita toki, yakkyoku de ten'in-san ni \"Kazegusuri ga hoshii desu\" to yooken o tsutaetari,",
+          "text_vi": "Ngoài ra, ví dụ khi bị cảm, có thể nói với nhân viên hiệu thuốc \"Tôi muốn mua thuốc cảm\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "友達から誕生日プレゼントは何がいいか聞かれて、「新しい眼鏡が欲しいです」と自分の希望を伝えたりすることができます。",
+          "romaji": "tomodachi kara tanjoobi purezento wa nani ga ii ka kikarete, \"Atarashii megane ga hoshii desu\" to jibun no kiboo o tsutaetari suru koto ga dekimasu.",
+          "text_vi": "hoặc khi bạn hỏi muốn quà sinh nhật gì thì nói mong muốn của mình: \"Tôi muốn một cặp kính mới\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "物だけではなく、「時間が欲しいです」「友達が欲しいです」と言うこともできます。",
+          "romaji": "Mono dake de wa naku, \"Jikan ga hoshii desu\", \"Tomodachi ga hoshii desu\" to iu koto mo dekimasu.",
+          "text_vi": "Không chỉ đồ vật, còn có thể nói \"Tôi muốn có thời gian\", \"Tôi muốn có bạn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「食べる」のような動詞を使って「欲しい」の意味を伝えるときは、「食べたいです」「飲みたいです」と言います。",
+          "romaji": "\"Taberu\" no yoo na dooshi o tsukatte \"hoshii\" no imi o tsutaeru toki wa, \"Tabetai desu\", \"Nomitai desu\" to iimasu.",
+          "text_vi": "Khi dùng động từ như \"taberu\" (ăn) để nói ý muốn thì nói \"Tabetai desu\" (muốn ăn), \"Nomitai desu\" (muốn uống).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "あ、これ、かわいいですね",
+          "romaji": "a, kore, kawaii desu ne",
+          "text_vi": "A, cái này dễ thương nhỉ",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これ、かわいいですね。",
+          "romaji": "Kore, kawaii desu ne.",
+          "text_vi": "Cái này dễ thương nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「かわいいです」は、形容詞の文です。",
+          "romaji": "\"Kawaii desu\" wa, keeyooshi no bun desu.",
+          "text_vi": "\"Kawaii desu\" là câu tính từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "形容詞は、ものの性質や状態、人の気持ちを表します。",
+          "romaji": "Keeyooshi wa, mono no seeshitsu ya jootai, hito no kimochi o arawashimasu.",
+          "text_vi": "Tính từ diễn tả tính chất, trạng thái của sự vật hoặc cảm xúc của con người.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「かわいい」「にぎやか」「寂しい」「残念」などです。",
+          "romaji": "Tatoeba, \"kawaii\", \"nigiyaka\", \"sabishii\", \"zannen\" nado desu.",
+          "text_vi": "Ví dụ: \"kawaii\" (dễ thương), \"nigiyaka\" (náo nhiệt), \"sabishii\" (buồn, cô đơn), \"zannen\" (đáng tiếc).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "日本語の形容詞は2種類あります。い形容詞とな形容詞です。",
+          "romaji": "Nihongo no keeyooshi wa nishurui arimasu. I-keeyooshi to na-keeyooshi desu.",
+          "text_vi": "Tính từ tiếng Nhật có 2 loại: tính từ đuôi i và tính từ đuôi na.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "い形容詞は、名詞の前では「かわいいシャツ」「寂しいとき」のように、「い」で終わります。",
+          "romaji": "I-keeyooshi wa, meeshi no mae de wa \"kawaii shatsu\", \"sabishii toki\" no yoo ni, \"i\" de owarimasu.",
+          "text_vi": "Tính từ đuôi i khi đứng trước danh từ thì kết thúc bằng \"i\", như \"kawaii shatsu\" (áo dễ thương), \"sabishii toki\" (lúc buồn).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "な形容詞は、「にぎやかな町」「残念な結果」のように、名詞の前は「な」になります。",
+          "romaji": "Na-keeyooshi wa, \"nigiyaka na machi\", \"zannen na kekka\" no yoo ni, meeshi no mae wa \"na\" ni narimasu.",
+          "text_vi": "Tính từ đuôi na khi đứng trước danh từ thì thêm \"na\", như \"nigiyaka na machi\" (thành phố náo nhiệt), \"zannen na kekka\" (kết quả đáng tiếc).",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、アンジェラさんは「かわいいですね」と言いました。",
+          "romaji": "Kono dooga de wa, Anjera-san wa \"Kawaii desu ne\" to iimashita.",
+          "text_vi": "Trong video này, chị Angela đã nói \"Dễ thương nhỉ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ね」は共感を表します。話し手と聞き手が同じ気持ちのときに使います。",
+          "romaji": "\"Ne\" wa kyookan o arawashimasu. Hanashite to kikite ga onaji kimochi no toki ni tsukaimasu.",
+          "text_vi": "\"Ne\" thể hiện sự đồng cảm, dùng khi người nói và người nghe có cùng cảm nhận.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、友人と食事をしているときに「おいしいですね」と言ったり、",
+          "romaji": "Tatoeba, yuujin to shokuji o shite iru toki ni \"Oishii desu ne\" to ittari,",
+          "text_vi": "Ví dụ, khi đang ăn cùng bạn thì nói \"Ngon nhỉ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "03:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "人に会ったときに「暑いですね」と言ったり、",
+          "romaji": "hito ni atta toki ni \"Atsui desu ne\" to ittari,",
+          "text_vi": "khi gặp ai đó thì nói \"Nóng nhỉ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "03:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "美術館で絵を見ているときに「きれいですね」と言ったりして、",
+          "romaji": "bijutsukan de e o mite iru toki ni \"Kiree desu ne\" to ittari shite,",
+          "text_vi": "khi ngắm tranh ở bảo tàng mỹ thuật thì nói \"Đẹp nhỉ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "03:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分の気持ちを相手に伝えて共有することができます。",
+          "romaji": "jibun no kimochi o aite ni tsutaete kyooyuu suru koto ga dekimasu.",
+          "text_vi": "như vậy ta có thể truyền đạt và chia sẻ cảm xúc của mình với người kia.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:49",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "しょうひぜいが ありますから、",
+          "romaji": "shoohizee ga arimasu kara,",
+          "text_vi": "Vì có thuế tiêu thụ nên…",
+          "key_phrase": false
+        },
+        {
+          "start": "03:56",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いくらですか。",
+          "romaji": "Ikura desu ka.",
+          "text_vi": "Bao nhiêu tiền vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "04:00",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ちょうど5,000円ですよ。",
+          "romaji": "Choodo gosen-en desu yo.",
+          "text_vi": "Đúng 5.000 yên đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、でも、消費税がありますから、5,500円ですよね。",
+          "romaji": "A, demo, shoohizee ga arimasu kara, gosen gohyaku-en desu yo ne.",
+          "text_vi": "À, nhưng vì có thuế tiêu thụ nên là 5.500 yên nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "04:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "理由を表したいときには、「から」を使って表現します。",
+          "romaji": "Riyuu o arawashitai toki ni wa, \"kara\" o tsukatte hyoogen shimasu.",
+          "text_vi": "Khi muốn nói lý do, ta dùng \"kara\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「から」は文と文をつなぎます。",
+          "romaji": "\"Kara\" wa bun to bun o tsunagimasu.",
+          "text_vi": "\"Kara\" nối hai câu với nhau.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、商品の値段は5,000円でしたが、支払う金額は5,500円で、金額が違いました。",
+          "romaji": "Kono dooga de wa, shoohin no nedan wa gosen-en deshita ga, shiharau kingaku wa gosen gohyaku-en de, kingaku ga chigaimashita.",
+          "text_vi": "Trong video này, giá sản phẩm là 5.000 yên nhưng số tiền phải trả là 5.500 yên, hai số tiền khác nhau.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "その理由を「から」の前で説明しています。",
+          "romaji": "Sono riyuu o \"kara\" no mae de setsumee shite imasu.",
+          "text_vi": "Lý do được giải thích ở phía trước \"kara\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「消費税がありますから、5,500円ですよね」",
+          "romaji": "\"Shoohizee ga arimasu kara, gosen gohyaku-en desu yo ne\"",
+          "text_vi": "\"Vì có thuế tiêu thụ nên là 5.500 yên nhỉ\"",
+          "key_phrase": false
+        },
+        {
+          "start": "04:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "値段が5,500円という理由は、消費税があることだと伝えています。",
+          "romaji": "Nedan ga gosen gohyaku-en to iu riyuu wa, shoohizee ga aru koto da to tsutaete imasu.",
+          "text_vi": "Câu này cho biết lý do giá là 5.500 yên là vì có thuế tiêu thụ.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、アレルギーで卵を食べないとき、",
+          "romaji": "Tatoeba, arerugii de tamago o tabenai toki,",
+          "text_vi": "Ví dụ, khi không ăn trứng vì bị dị ứng,",
+          "key_phrase": false
+        },
+        {
+          "start": "05:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "理由を言わないで「卵を食べません」と言うと、「卵を食べない」という事実だけが相手に伝わります。",
+          "romaji": "riyuu o iwanaide \"Tamago o tabemasen\" to iu to, \"tamago o tabenai\" to iu jijitsu dake ga aite ni tsutawarimasu.",
+          "text_vi": "nếu chỉ nói \"Tôi không ăn trứng\" mà không nói lý do thì người kia chỉ biết mỗi việc bạn không ăn trứng.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このとき、「から」を使って「アレルギーですから、卵を食べません」と言うと、",
+          "romaji": "Kono toki, \"kara\" o tsukatte \"Arerugii desu kara, tamago o tabemasen\" to iu to,",
+          "text_vi": "Lúc này, nếu dùng \"kara\" và nói \"Vì tôi bị dị ứng nên không ăn trứng\",",
+          "key_phrase": false
+        },
+        {
+          "start": "05:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "相手に理由も伝わって、状況を理解してもらいやすいです。",
+          "romaji": "aite ni riyuu mo tsutawatte, jookyoo o rikai shite moraiyasui desu.",
+          "text_vi": "thì người kia biết cả lý do và dễ hiểu hoàn cảnh của bạn hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ほかにも、好きな芸能人の話をするときに「かっこいいから好きです」と言ったり、",
+          "romaji": "Hoka ni mo, suki na geenoojin no hanashi o suru toki ni \"Kakkoii kara suki desu\" to ittari,",
+          "text_vi": "Ngoài ra, khi nói về người nổi tiếng mình thích thì nói \"Tôi thích vì anh ấy ngầu\",",
+          "key_phrase": false
+        },
+        {
+          "start": "05:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「昨日あまり寝られませんでしたから、仕事に集中できません」と事情を説明したりすることができます。",
+          "romaji": "\"Kinoo amari neraremasen deshita kara, shigoto ni shuuchuu dekimasen\" to jijoo o setsumee shitari suru koto ga dekimasu.",
+          "text_vi": "hoặc giải thích hoàn cảnh: \"Hôm qua tôi không ngủ được mấy nên không tập trung làm việc được\".",
+          "key_phrase": false
+        }
+      ]
     }
   ]
 }

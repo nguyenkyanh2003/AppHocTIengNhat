@@ -1,7 +1,100 @@
 # Lời thoại Tình huống: Ở nhà hàng
-# Mỗi dòng một câu: mốc | người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
-# Gõ xong chạy: node scripts/apply-transcript.js --lesson 6
-# Mẫu đầy đủ: data/lesson-videos/n5-01-greeting.txt
+# Nhập từ Loi-thoai-Tsunahiro-bai-2-7.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
 
-## video-1.mp4
-# Đi đến nhà hàng
+## scene-1.mp4
+# Vào quán và nói số người
+00:10 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+*00:13 | 店員 / Ten'in / Nhân viên | お客様は何名様ですか。 | Okyakusama wa nanmee-sama desu ka. | Quý khách đi mấy người ạ?
+*00:15 | 男性客 / Dansee-kyaku / Khách nam | 2人です。 | Futari desu. | Hai người.
+00:17 | 店員 / Ten'in / Nhân viên | おたばこは吸われますか。 | Otabako wa suwaremasu ka. | Quý khách có hút thuốc không ạ?
+*00:19 | 男性客 / Dansee-kyaku / Khách nam | いえ、吸いません。 | Ie, suimasen. | Không, tôi không hút.
+00:21 | 店員 / Ten'in / Nhân viên | それでは、こちらへどうぞ。 | Soredewa, kochira e doozo. | Vậy mời quý khách đi lối này.
+### từ vựng
+何名様 | なんめいさま | nanmee-sama | mấy vị (khách)
+2人 | ふたり | futari | hai người
+たばこ | たばこ | tabako | thuốc lá
+吸います | すいます | suimasu | hút (thuốc)
+
+## scene-2.mp4
+# Nhờ giới thiệu quán ăn ngon
+00:04 | 同僚 / Dooryoo / Đồng nghiệp | 佐藤さん、ちょっといいですか。 | Satoo-san, chotto ii desu ka. | Anh Satō ơi, cho em hỏi chút được không?
+00:07 | 佐藤 / Satoo / Satō | はい、何ですか。 | Hai, nan desu ka. | Ừ, chuyện gì thế?
+00:10 | 同僚 / Dooryoo / Đồng nghiệp | 来週、母が日本に来ます。 | Raishuu, haha ga Nihon ni kimasu. | Tuần sau mẹ em sang Nhật.
+*00:15 | 同僚 / Dooryoo / Đồng nghiệp | 母は日本料理が大好きです。 | Haha wa Nihon-ryoori ga daisuki desu. | Mẹ em rất thích món Nhật.
+00:18 | 佐藤 / Satoo / Satō | え、そうですか。 | E, soo desu ka. | Ồ, thế à.
+*00:22 | 同僚 / Dooryoo / Đồng nghiệp | 母とすし屋に行きたいです。 | Haha to sushiya ni ikitai desu. | Em muốn đưa mẹ đi quán sushi.
+*00:25 | 同僚 / Dooryoo / Đồng nghiệp | おすすめの店はありますか。 | Osusume no mise wa arimasu ka. | Anh có quán nào giới thiệu không ạ?
+00:29 | 佐藤 / Satoo / Satō | ああ、駅前の「はな寿司」はどうですか。 | Aa, ekimae no "Hana-zushi" wa doo desu ka. | À, quán "Hana-zushi" trước ga thì sao?
+00:37 | 同僚 / Dooryoo / Đồng nghiệp | 駅前の…はな…ずし… | Ekimae no… hana… zushi… | Trước ga… Hana… zushi…
+00:44 | 同僚 / Dooryoo / Đồng nghiệp | ああ、いいですね。ありがとうございます。 | Aa, ii desu ne. Arigatoo gozaimasu. | À, hay quá. Cảm ơn anh.
+00:48 | 佐藤 / Satoo / Satō | いいえ、どういたしまして。 | Iie, doo itashimashite. | Không có gì.
+### từ vựng
+来週 | らいしゅう | raishuu | tuần sau
+母 | はは | haha | mẹ (của mình)
+日本料理 | にほんりょうり | Nihon-ryoori | món ăn Nhật
+大好き | だいすき | daisuki | rất thích
+すし屋 | すしや | sushiya | quán sushi
+駅前 | えきまえ | ekimae | trước nhà ga
+
+## scene-3.mp4
+# Gọi món và thanh toán
+00:03 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。こちらがメニューです。 | Irasshaimase. Kochira ga menyuu desu. | Xin chào quý khách. Đây là thực đơn ạ.
+00:09 | 店員 / Ten'in / Nhân viên | お決まりになりましたら、こちらのブザーでお呼びください。 | Okimari ni narimashitara, kochira no buzaa de oyobi kudasai. | Khi chọn xong, quý khách bấm chuông này để gọi ạ.
+00:21 | 店員 / Ten'in / Nhân viên | ご注文はお決まりですか。 | Gochuumon wa okimari desu ka. | Quý khách đã chọn món chưa ạ?
+*00:24 | 女性客 / Josee-kyaku / Khách nữ | はい。これ、お願いします。 | Hai. Kore, onegaishimasu. | Rồi. Cho tôi món này.
+00:27 | 店員 / Ten'in / Nhân viên | ハンバーグ定食ですね。 | Hanbaagu-teeshoku desu ne. | Suất cơm hamburger ạ.
+00:30 | 男性客 / Dansee-kyaku / Khách nam | 私は、これ、お願いします。 | Watashi wa, kore, onegaishimasu. | Còn tôi thì món này.
+00:35 | 店員 / Ten'in / Nhân viên | 焼肉定食ですね。 | Yakiniku-teeshoku desu ne. | Suất cơm thịt nướng ạ.
+00:38 | 店員 / Ten'in / Nhân viên | お飲み物はどうなさいますか。 | Onomimono wa doo nasaimasu ka. | Quý khách dùng đồ uống gì ạ?
+*00:40 | 女性客 / Josee-kyaku / Khách nữ | ドリンクバー2つお願いします。 | Dorinku-baa futatsu onegaishimasu. | Cho hai suất quầy nước tự chọn.
+00:44 | 店員 / Ten'in / Nhân viên | ご注文は以上でよろしいですか。 | Gochuumon wa ijoo de yoroshii desu ka. | Quý khách gọi như vậy là đủ chưa ạ?
+00:46 | 男性客 / Dansee-kyaku / Khách nam | はい。 | Hai. | Vâng.
+00:59 | 男性客 / Dansee-kyaku / Khách nam | すみません。 | Sumimasen. | Xin lỗi.
+01:04 | 店員 / Ten'in / Nhân viên | お待たせいたしました。 | Omatase itashimashita. | Để quý khách đợi lâu ạ.
+01:06 | 男性客 / Dansee-kyaku / Khách nam | メニュー、お願いします。 | Menyuu, onegaishimasu. | Cho tôi xin thực đơn.
+01:08 | 店員 / Ten'in / Nhân viên | はい、かしこまりました。 | Hai, kashikomarimashita. | Vâng, tôi hiểu rồi ạ.
+*01:23 | 男性客 / Dansee-kyaku / Khách nam | すみません。別々でお願いします。 | Sumimasen. Betsubetsu de onegaishimasu. | Xin lỗi, cho chúng tôi thanh toán riêng.
+01:26 | 店員 / Ten'in / Nhân viên | はい、かしこまりました。 | Hai, kashikomarimashita. | Vâng, tôi hiểu rồi ạ.
+01:28 | 店員 / Ten'in / Nhân viên | ハンバーグ定食のお客様、1,300円です。 | Hanbaagu-teeshoku no okyakusama, sen sanbyaku-en desu. | Quý khách dùng suất hamburger, 1.300 yên ạ.
+01:55 | 店員 / Ten'in / Nhân viên | 焼肉定食のお客様、1,400円です。 | Yakiniku-teeshoku no okyakusama, sen yonhyaku-en desu. | Quý khách dùng suất thịt nướng, 1.400 yên ạ.
+02:09 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+### từ vựng
+メニュー | メニュー | menyuu | thực đơn
+注文 | ちゅうもん | chuumon | gọi món
+定食 | ていしょく | teeshoku | suất cơm
+飲み物 | のみもの | nomimono | đồ uống
+ドリンクバー | ドリンクバー | dorinku-baa | quầy nước tự chọn
+別々 | べつべつ | betsubetsu | riêng từng người
+
+## summary.mp4
+# Ôn tập: Đi ăn ở nhà hàng
+00:00 |  /  / Chủ đề | ふたりです | futari desu | Hai người ạ
+00:06 | 店員 / Ten'in / Nhân viên | お客様は何名様ですか。 | Okyakusama wa nanmee-sama desu ka. | Quý khách đi mấy người ạ?
+*00:09 | 男性客 / Dansee-kyaku / Khách nam | 2人です。 | Futari desu. | Hai người.
+00:11 | ナレーター / Nareetaa / Người dẫn | 数や量を表すときに助数詞を使います。 | Kazu ya ryoo o arawasu toki ni josuushi o tsukaimasu. | Khi diễn tả số lượng, ta dùng trợ từ đếm (lượng từ).
+00:17 | ナレーター / Nareetaa / Người dẫn | 数えるものによって、いろいろな助数詞があります。 | Kazoeru mono ni yotte, iroiro na josuushi ga arimasu. | Tùy vào thứ được đếm mà có nhiều loại trợ từ đếm khác nhau.
+00:22 | ナレーター / Nareetaa / Người dẫn | 人には「人（にん）」を使いますが、1人は「ひとり」、2人は「ふたり」と特別な言い方をします。 | Hito ni wa "nin" o tsukaimasu ga, hitori wa "hitori", futari wa "futari" to tokubetsu na iikata o shimasu. | Đếm người thì dùng "nin", nhưng 1 người là "hitori", 2 người là "futari" – cách nói đặc biệt.
+00:38 | ナレーター / Nareetaa / Người dẫn | それ以上の人数には「人（にん）」をつけます。 | Sore ijoo no ninzuu ni wa "nin" o tsukemasu. | Từ 3 người trở lên thì thêm "nin".
+00:44 | ナレーター / Nareetaa / Người dẫn | しかし、4は「よにん」と言います。 | Shikashi, yon wa "yonin" to iimasu. | Tuy nhiên, 4 người thì nói là "yonin".
+00:50 | ナレーター / Nareetaa / Người dẫn | 人数を聞くとき、普通は「何人（なんにん）」ですが、 | Ninzuu o kiku toki, futsuu wa "nannin" desu ga, | Khi hỏi số người, thông thường dùng "nannin" (mấy người),
+00:56 | ナレーター / Nareetaa / Người dẫn | この会話の中で、レストランの店員は「何名様」を使っています。 | Kono kaiwa no naka de, resutoran no ten'in wa "nanmee-sama" o tsukatte imasu. | nhưng trong hội thoại này, nhân viên nhà hàng dùng "nanmee-sama".
+01:06 | ナレーター / Nareetaa / Người dẫn | 丁寧な言い方では「名（めい）」を使うことがあります。 | Teenee na iikata de wa "mee" o tsukau koto ga arimasu. | Khi nói lịch sự, có khi dùng "mee" (danh).
+01:13 |  /  / Chủ đề | ふたつ おねがいします | futatsu onegaishimasu | Cho tôi hai phần
+01:18 | 店員 / Ten'in / Nhân viên | お飲み物はどうなさいますか。 | Onomimono wa doo nasaimasu ka. | Quý khách dùng đồ uống gì ạ?
+*01:21 | 女性客 / Josee-kyaku / Khách nữ | ドリンクバー2つお願いします。 | Dorinku-baa futatsu onegaishimasu. | Cho tôi hai suất quầy nước tự chọn.
+01:25 | ナレーター / Nareetaa / Người dẫn | 「1つ、2つ」の数え方は小さいものを数えるときに使いますが、その他に、店で買い物をしたり、レストランで飲み物や食べ物を注文したりするときにも使えます。 | "Hitotsu, futatsu" no kazoekata wa chiisai mono o kazoeru toki ni tsukaimasu ga, sono hoka ni, mise de kaimono o shitari, resutoran de nomimono ya tabemono o chuumon shitari suru toki ni mo tsukaemasu. | Cách đếm "hitotsu, futatsu" dùng để đếm đồ vật nhỏ, ngoài ra còn dùng được khi mua sắm ở cửa hàng hay gọi đồ ăn thức uống ở nhà hàng.
+01:44 | ナレーター / Nareetaa / Người dẫn | 使えるものが多いので便利です。 | Tsukaeru mono ga ooi node benri desu. | Dùng được cho nhiều thứ nên rất tiện.
+01:48 | ナレーター / Nareetaa / Người dẫn | 1から10までは「ひとつ、ふたつ、みっつ」のような数え方をします。 | Ichi kara juu made wa "hitotsu, futatsu, mittsu" no yoo na kazoekata o shimasu. | Từ 1 đến 10 thì đếm kiểu "hitotsu, futatsu, mittsu".
+01:57 | ナレーター / Nareetaa / Người dẫn | 「いち、に、さん」ではありません。11より数が多くなると、「じゅういち、じゅうに、じゅうさん」と数をそのまま言います。 | "Ichi, ni, san" de wa arimasen. Juuichi yori kazu ga ooku naru to, "juuichi, juuni, juusan" to kazu o sono mama iimasu. | Không phải "ichi, ni, san". Từ 11 trở lên thì đọc thẳng con số: "juuichi, juuni, juusan".
+02:16 | ナレーター / Nareetaa / Người dẫn | 数を聞くときは「いくつ」を使います。 | Kazu o kiku toki wa "ikutsu" o tsukaimasu. | Khi hỏi số lượng thì dùng "ikutsu" (mấy cái).
+02:24 |  /  / Chủ đề | にほんりょうりが だいすきです | nihon-ryoori ga daisuki desu | Mẹ tôi rất thích món Nhật
+*02:29 | 同僚 / Dooryoo / Đồng nghiệp | 来週、母が日本に来ます。母は日本料理が大好きです。 | Raishuu, haha ga Nihon ni kimasu. Haha wa Nihon-ryoori ga daisuki desu. | Tuần sau mẹ tôi sang Nhật. Mẹ tôi rất thích món Nhật.
+02:38 | ナレーター / Nareetaa / Người dẫn | 「好きです」は、な形容詞です。 | "Suki desu" wa, na-keeyooshi desu. | "Suki desu" là tính từ đuôi na.
+02:44 | ナレーター / Nareetaa / Người dẫn | 好き嫌いを言いたいときに使います。 | Suki kirai o iitai toki ni tsukaimasu. | Dùng khi muốn nói thích hay ghét.
+02:49 | ナレーター / Nareetaa / Người dẫn | 否定の形は「好きではありません」ですが、話し言葉では「好きじゃありません」「好きじゃないです」になることが多いです。 | Hitee no katachi wa "suki dewa arimasen" desu ga, hanashikotoba de wa "suki ja arimasen", "suki janai desu" ni naru koto ga ooi desu. | Thể phủ định là "suki dewa arimasen", nhưng trong văn nói thường thành "suki ja arimasen", "suki janai desu".
+03:07 | ナレーター / Nareetaa / Người dẫn | 「嫌いです」と言うこともできます。 | "Kirai desu" to iu koto mo dekimasu. | Cũng có thể nói "kirai desu" (ghét).
+03:13 | ナレーター / Nareetaa / Người dẫn | ものの名前の後に来る助詞は「が」になることに気をつけましょう。 | Mono no namae no ato ni kuru joshi wa "ga" ni naru koto ni ki o tsukemashoo. | Lưu ý trợ từ đứng sau tên sự vật là "ga".
+03:20 | ナレーター / Nareetaa / Người dẫn | 質問するときは、「何が好きですか」「何が嫌いですか」になりますが、 | Shitsumon suru toki wa, "Nani ga suki desu ka", "Nani ga kirai desu ka" ni narimasu ga, | Khi hỏi thì nói "Nani ga suki desu ka" (Bạn thích gì?), "Nani ga kirai desu ka" (Bạn ghét gì?),
+03:30 | ナレーター / Nareetaa / Người dẫn | 例えば、「好きな食べ物は何ですか」「嫌いな食べ物は何ですか」のように聞くこともできます。 | Tatoeba, "Suki na tabemono wa nan desu ka", "Kirai na tabemono wa nan desu ka" no yoo ni kiku koto mo dekimasu. | cũng có thể hỏi như "Món bạn thích là gì?", "Món bạn ghét là gì?".
