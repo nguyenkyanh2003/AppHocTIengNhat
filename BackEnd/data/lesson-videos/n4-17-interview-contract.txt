@@ -1,0 +1,131 @@
+# Lời thoại Tình huống: Phỏng vấn và ký hợp đồng
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-16-19.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Nói nguyện vọng làm nhân viên chính thức
+00:13 | 相談員 / Soodan'in / Nhân viên tư vấn | はい、じゃあ申込書はこちらにいただきますね。 | Hai, jaa mooshikomisho wa kochira ni itadakimasu ne. | Vâng, vậy tôi xin nhận đơn đăng ký ở đây nhé.
+00:24 | 相談員 / Soodan'in / Nhân viên tư vấn | お名前は?今井ミゲルさんですかね。 | Onamae wa? Imai Migeru-san desu ka ne. | Tên anh là gì ạ? Anh là Imai Miguel phải không ạ?
+00:28 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、今井です。 | Hai, Imai desu. | Vâng, tôi là Imai.
+00:31 | 相談員 / Soodan'in / Nhân viên tư vấn | 外国の方ですね。在留カードをお持ちですか? | Gaikoku no kata desu ne. Zairyuu kaado o omochi desu ka. | Anh là người nước ngoài nhỉ. Anh có mang theo thẻ cư trú không ạ?
+00:36 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、これです。 | Hai, kore desu. | Vâng, đây ạ.
+00:47 | 相談員 / Soodan'in / Nhân viên tư vấn | 国籍はブラジルで、在留資格は定住者ですね。 | Kokuseki wa Burajiru de, zairyuu shikaku wa teejuusha desu ne. | Quốc tịch Brazil, tư cách lưu trú là Định trú nhỉ.
+00:53 | 今井ミゲル / Imai Migeru / Imai Miguel | そうです。3年前に日本に来ました。 | Soo desu. San-nen mae ni Nihon ni kimashita. | Đúng vậy ạ. Tôi đến Nhật 3 năm trước.
+00:58 | 相談員 / Soodan'in / Nhân viên tư vấn | 3年前ですか? | San-nen mae desu ka. | 3 năm trước ạ?
+01:00 | 今井ミゲル / Imai Migeru / Imai Miguel | はい。 | Hai. | Vâng.
+01:03 | 相談員 / Soodan'in / Nhân viên tư vấn | 今井さん、ご家族は? | Imai-san, gokazoku wa? | Anh Imai, gia đình anh thế nào ạ?
+01:06 | 今井ミゲル / Imai Migeru / Imai Miguel | 妻と1歳の子どもがいます。 | Tsuma to issai no kodomo ga imasu. | Tôi có vợ và một con 1 tuổi.
+01:09 | 相談員 / Soodan'in / Nhân viên tư vấn | 3人家族ですね。 | San-nin kazoku desu ne. | Gia đình 3 người nhỉ.
+01:11 | 今井ミゲル / Imai Migeru / Imai Miguel | はい。 | Hai. | Vâng.
+01:13 | 相談員 / Soodan'in / Nhân viên tư vấn | 今井さんは日本で働いた経験はありますか? | Imai-san wa Nihon de hataraita keeken wa arimasu ka. | Anh Imai đã từng làm việc ở Nhật chưa ạ?
+01:17 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、今工場で働いています。前も工場でした。ずっとです。 | Hai, ima koojoo de hataraite imasu. Mae mo koojoo deshita. Zutto desu. | Vâng, hiện tôi đang làm ở nhà máy. Trước đây cũng làm ở nhà máy. Toàn là nhà máy.
+01:24 | 相談員 / Soodan'in / Nhân viên tư vấn | ああ、そうですか。正社員が希望なんですね。 | Aa, soo desu ka. Seeshain ga kiboo nan desu ne. | À, vậy ạ. Anh mong muốn làm nhân viên chính thức nhỉ.
+*01:30 | 今井ミゲル / Imai Migeru / Imai Miguel | はい。正社員として働きたいです。家族もいますし、同じ会社で働きたいと思っています。 | Hai. Seeshain toshite hatarakitai desu. Kazoku mo imasu shi, onaji kaisha de hatarakitai to omotte imasu. | Vâng. Tôi muốn làm việc với tư cách nhân viên chính thức. Vì có gia đình nên tôi muốn làm lâu dài ở cùng một công ty.
+01:40 | 今井ミゲル / Imai Migeru / Imai Miguel | あ、そういえば、契約社員っていうのもありますか? | A, soo ieba, keeyaku-shain tte yuu no mo arimasu ka. | À, nói mới nhớ, cũng có kiểu nhân viên hợp đồng phải không ạ?
+*01:48 | 今井ミゲル / Imai Migeru / Imai Miguel | 契約社員として働いてる友達結構いますけど、給料も悪くないみたいです。契約社員って正社員と何が違うんですか? | Keeyaku-shain toshite hataraiteru tomodachi kekkoo imasu kedo, kyuuryoo mo warukunai mitai desu. Keeyaku-shain tte seeshain to nani ga chigau n desu ka. | Tôi có khá nhiều bạn làm nhân viên hợp đồng, nghe nói lương cũng không tệ. Nhân viên hợp đồng khác nhân viên chính thức ở điểm nào ạ?
+02:01 | 相談員 / Soodan'in / Nhân viên tư vấn | 契約社員は正社員と違って、働く期間が決まっているんです。半年とか1年とか。 | Keeyaku-shain wa seeshain to chigatte, hataraku kikan ga kimatte iru n desu. Hantoshi toka ichinen toka. | Nhân viên hợp đồng khác nhân viên chính thức ở chỗ có quy định thời hạn làm việc, ví dụ nửa năm hay một năm.
+*02:11 | 今井ミゲル / Imai Migeru / Imai Miguel | そうなんですね。私は長く働きたいので、やっぱり正社員の仕事を見つけたいです。 | Soo nan desu ne. Watashi wa nagaku hatarakitai node, yappari seeshain no shigoto o mitsuketai desu. | Vậy ạ. Vì tôi muốn làm việc lâu dài nên tôi vẫn muốn tìm công việc nhân viên chính thức.
+02:21 | 今井ミゲル / Imai Migeru / Imai Miguel | 分かりました。 | Wakarimashita. | Tôi hiểu rồi ạ.
+02:23 | 相談員 / Soodan'in / Nhân viên tư vấn | このあたりはまだ会社があまり多くないので、あまり無理はしない方がいいです。 | Kono atari wa mada kaisha ga amari ookunai node, amari muri wa shinai hoo ga ii desu. | (nghe chưa thật rõ) Khu vực này công ty chưa nhiều lắm, nên anh đừng cố quá.
+02:31 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、分かりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi ạ.
+02:33 | 相談員 / Soodan'in / Nhân viên tư vấn | 通勤の時間はどれくらいまでを考えていますか? | Tsuukin no jikan wa dorekurai made o kangaete imasu ka. | Anh dự tính thời gian đi làm khoảng bao lâu ạ?
+02:38 | 今井ミゲル / Imai Migeru / Imai Miguel | えっと、自転車で30分、40分。正社員で働けるなら少し遠くてもいいです。 | Etto, jitensha de sanjuppun, yonjuppun. Seeshain de hatarakeru nara sukoshi tookutemo ii desu. | Dạ, đi xe đạp khoảng 30, 40 phút. Nếu được làm nhân viên chính thức thì hơi xa một chút cũng được.
+02:50 | 相談員 / Soodan'in / Nhân viên tư vấn | 分かりました。 | Wakarimashita. | Tôi hiểu rồi ạ.
+03:04 | 相談員 / Soodan'in / Nhân viên tư vấn | いくつか求人票を見てみますか。 | Ikutsuka kyuujinhyoo o mite mimasu ka. | Anh xem thử vài tờ thông tin tuyển dụng nhé?
+03:08 | 今井ミゲル / Imai Migeru / Imai Miguel | お願いします。 | Onegaishimasu. | Vâng, nhờ chị/anh.
+### từ vựng
+在留資格 | ざいりゅうしかく | zairyuu-shikaku | tư cách lưu trú
+定住者 | ていじゅうしゃ | teejuusha | người định trú
+経験 | けいけん | keeken | kinh nghiệm
+正社員 | せいしゃいん | seeshain | nhân viên chính thức
+契約社員 | けいやくしゃいん | keeyaku-shain | nhân viên hợp đồng
+求人票 | きゅうじんひょう | kyuujinhyoo | phiếu thông tin tuyển dụng
+
+## scene-1.mp4
+# Buổi phỏng vấn xin việc
+00:21 | 今井ミゲル / Imai Migeru / Imai Miguel | 失礼いたします。 | Shitsuree itashimasu. | Xin phép vào ạ.
+00:30 | 今井ミゲル / Imai Migeru / Imai Miguel | 今井ミゲルです。どうぞよろしくお願いいたします。 | Imai Migeru desu. Doozo yoroshiku onegai itashimasu. | Tôi là Imai Miguel. Rất mong được giúp đỡ ạ.
+00:37 | 面接官 / Mensetsukan / Người phỏng vấn | どうぞ、お座りください。 | Doozo, osuwari kudasai. | Mời anh ngồi.
+00:39 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh chị.
+00:48 | 面接官 / Mensetsukan / Người phỏng vấn | では今井さん、履歴書にも書いていただいていますが、経歴を簡単に教えてください。 | Dewa Imai-san, rirekisho ni mo kaite itadaite imasu ga, keereki o kantan ni oshiete kudasai. | Vậy anh Imai, anh cũng đã ghi trong sơ yếu lý lịch rồi, nhưng xin anh cho biết sơ qua về quá trình làm việc.
+*01:01 | 今井ミゲル / Imai Migeru / Imai Miguel | すみません、経歴ってどういう意味ですか。 | Sumimasen, keereki tte doo yuu imi desu ka. | Xin lỗi, "keereki" nghĩa là gì vậy ạ?
+01:14 | 面接官 / Mensetsukan / Người phỏng vấn | 今井さんはこれまでどんな仕事をしていましたか。 | Imai-san wa kore made donna shigoto o shite imashita ka. | Anh Imai trước đây đã từng làm công việc gì?
+*01:22 | 今井ミゲル / Imai Migeru / Imai Miguel | 国では中学校で数学の教師をしていました。日本に来てからはずっと工場で働いています。 | Kuni de wa chuugakkoo de suugaku no kyooshi o shite imashita. Nihon ni kite kara wa zutto koojoo de hataraite imasu. | Ở nước tôi, tôi từng làm giáo viên toán ở trường trung học cơ sở. Từ khi sang Nhật thì tôi vẫn luôn làm việc ở nhà máy.
+01:34 | 面接官 / Mensetsukan / Người phỏng vấn | そうなんですね。では、この会社への志望動機を教えてください。 | Soo nan desu ne. Dewa, kono kaisha e no shiboo dooki o oshiete kudasai. | Vậy à. Vậy xin cho biết động cơ ứng tuyển vào công ty này.
+*01:45 | 今井ミゲル / Imai Migeru / Imai Miguel | 志望動機というのは、どうしてこの会社に入りたいかということですか。 | Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka. | "Động cơ ứng tuyển" nghĩa là lý do vì sao tôi muốn vào công ty này phải không ạ?
+01:57 | 面接官 / Mensetsukan / Người phỏng vấn | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+02:00 | 今井ミゲル / Imai Migeru / Imai Miguel | 私は前にこちらのお店で買い物をしたことがあります。その時、お店の人がとても親切でした。私もここで働いて、その店員さんのように、お客さんの役に立ちたいと思っています。 | Watashi wa mae ni kochira no omise de kaimono o shita koto ga arimasu. Sono toki, omise no hito ga totemo shinsetsu deshita. Watashi mo koko de hataraite, sono ten'insan no yoo ni, okyakusan no yaku ni tachitai to omotte imasu. | Trước đây tôi đã từng mua hàng ở cửa hàng này. Lúc đó, nhân viên cửa hàng rất tốt bụng. Tôi cũng muốn làm việc ở đây, giống như nhân viên đó, để giúp ích cho khách hàng.
+02:22 | 面接官 / Mensetsukan / Người phỏng vấn | ああ、そうですか。あと、今井さん、通勤手段ですが、どうやって店まで通いますか。 | Aa, soo desu ka. Ato, Imai-san, tsuukin shudan desu ga, doo yatte mise made kayoimasu ka. | À, vậy ạ. Ngoài ra, anh Imai, về phương tiện đi làm, anh sẽ đến cửa hàng bằng cách nào?
+*02:36 | 今井ミゲル / Imai Migeru / Imai Miguel | 自転車で来ようと思っています。 | Jitensha de koyoo to omotte imasu. | Tôi định đi xe đạp ạ.
+02:42 | 面接官 / Mensetsukan / Người phỏng vấn | わかりました。これで面接を終わります。結果は5日以内にご連絡します。 | Wakarimashita. Kore de mensetsu o owarimasu. Kekka wa itsuka inai ni gorenraku shimasu. | Tôi hiểu rồi. Vậy buổi phỏng vấn kết thúc tại đây. Chúng tôi sẽ báo kết quả trong vòng 5 ngày.
+02:54 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございました。失礼いたします。 | Arigatoo gozaimashita. Shitsuree itashimasu. | Cảm ơn anh chị ạ. Tôi xin phép ra ngoài.
+### từ vựng
+面接 | めんせつ | mensetsu | phỏng vấn
+履歴書 | りれきしょ | rirekisho | sơ yếu lý lịch
+経歴 | けいれき | keereki | quá trình làm việc
+教師 | きょうし | kyooshi | giáo viên
+志望動機 | しぼうどうき | shiboo-dooki | động cơ ứng tuyển
+結果 | けっか | kekka | kết quả
+
+## scene-3.mp4
+# Ký hợp đồng lao động
+00:21 | 担当者 / Tantoosha / Nhân viên phụ trách | こちらが契約書です。こちらが日本語、こちらが同じ内容をポルトガル語にしたものです。 | Kochira ga keeyakusho desu. Kochira ga nihongo, kochira ga onaji naiyoo o porutogarugo ni shita mono desu. | Đây là hợp đồng lao động. Bản này là tiếng Nhật, bản này là cùng nội dung nhưng dịch sang tiếng Bồ Đào Nha.
+00:38 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
+00:41 | 担当者 / Tantoosha / Nhân viên phụ trách | 翻訳を見ながら契約書の内容を確認してください。 | Hon'yaku o minagara keeyakusho no naiyoo o kakunin shite kudasai. | Anh vừa xem bản dịch vừa kiểm tra nội dung hợp đồng nhé.
+00:46 | 今井ミゲル / Imai Migeru / Imai Miguel | わかりました。 | Wakarimashita. | Tôi hiểu rồi ạ.
+00:48 | 担当者 / Tantoosha / Nhân viên phụ trách | わからないところは遠慮しないで質問してくださいね。 | Wakaranai tokoro wa enryo shinaide shitsumon shite kudasai ne. | Chỗ nào không hiểu thì đừng ngại, cứ hỏi nhé.
+00:53 | 今井ミゲル / Imai Migeru / Imai Miguel | はい。 | Hai. | Vâng.
+*01:01 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、ちょっとよろしいですか? | Ano, chotto yoroshii desu ka. | À, tôi hỏi một chút được không ạ?
+01:05 | 担当者 / Tantoosha / Nhân viên phụ trách | 何ですか。 | Nan desu ka. | Anh hỏi gì ạ?
+*01:07 | 今井ミゲル / Imai Migeru / Imai Miguel | 休みのことなんですけど、これは毎週2日必ず休みがあるということですよね。 | Yasumi no koto nan desu kedo, kore wa maishuu futsuka kanarazu yasumi ga aru to iu koto desu yo ne. | Là về chuyện ngày nghỉ, cái này nghĩa là mỗi tuần chắc chắn có 2 ngày nghỉ đúng không ạ?
+01:20 | 担当者 / Tantoosha / Nhân viên phụ trách | はい、完全週休2日です。 | Hai, kanzen shuukyuu futsuka desu. | Vâng, chế độ nghỉ trọn 2 ngày mỗi tuần ạ.
+01:24 | 今井ミゲル / Imai Migeru / Imai Miguel | 土日が休みになることはありますか? | Donichi ga yasumi ni naru koto wa arimasu ka. | Có khi nào ngày nghỉ rơi vào thứ 7, chủ nhật không ạ?
+01:28 | 担当者 / Tantoosha / Nhân viên phụ trách | シフトによりますね。休みたい日が決まっていたら、シフトの希望を取るときに相談してください。 | Shifuto ni yorimasu ne. Yasumitai hi ga kimatte itara, shifuto no kiboo o toru toki ni soodan shite kudasai. | Còn tùy vào ca làm việc. Nếu anh đã định sẵn ngày muốn nghỉ thì khi đăng ký nguyện vọng ca làm, cứ trao đổi nhé.
+01:38 | 今井ミゲル / Imai Migeru / Imai Miguel | わかりました。 | Wakarimashita. | Tôi hiểu rồi ạ.
+01:41 | 担当者 / Tantoosha / Nhân viên phụ trách | それから、ここ見ていただけますか。仕事が始まってから3か月間は試用期間です。 | Sorekara, koko mite itadakemasu ka. Shigoto ga hajimatte kara sankagetsukan wa shiyoo kikan desu. | Ngoài ra, anh xem chỗ này giúp tôi nhé. Trong 3 tháng kể từ khi bắt đầu làm việc là thời gian thử việc.
+01:55 | 今井ミゲル / Imai Migeru / Imai Miguel | あ、テストみたいな? | A, tesuto mitai na? | À, giống như là kiểu thử thách phải không ạ?
+01:59 | 担当者 / Tantoosha / Nhân viên phụ trách | でも、試用期間といっても問題なければ契約はそのまま続きます。 | Demo, shiyoo kikan to itte mo mondai nakereba keeyaku wa sonomama tsuzukimasu. | Nhưng dù gọi là thời gian thử việc thì nếu không có vấn đề gì, hợp đồng vẫn cứ tiếp tục như vậy.
+*02:06 | 今井ミゲル / Imai Migeru / Imai Miguel | そうですか。あの、その間、給料は? | Soo desu ka. Ano, sono aida, kyuuryoo wa? | Vậy ạ. À, trong thời gian đó, lương thì thế nào ạ?
+02:15 | 担当者 / Tantoosha / Nhân viên phụ trách | こちらの金額でお支払いします。 | Kochira no kingaku de oshiharai shimasu. | Chúng tôi sẽ trả theo mức tiền này ạ.
+02:18 | 今井ミゲル / Imai Migeru / Imai Miguel | わかりました。 | Wakarimashita. | Tôi hiểu rồi ạ.
+02:22 | 担当者 / Tantoosha / Nhân viên phụ trách | それでは、ここに住所と名前を書いて、はい、ここですね。 | Soredewa, koko ni juusho to namae o kaite, hai, koko desu ne. | Vậy thì anh viết địa chỉ và tên vào đây, vâng, ở chỗ này ạ.
+*03:00 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、契約書は私にもいただけますか? | Ano, keeyakusho wa watashi ni mo itadakemasu ka. | À, tôi cũng có thể nhận bản hợp đồng được không ạ?
+03:05 | 担当者 / Tantoosha / Nhân viên phụ trách | はい、1枚は今井さんが持っていてください。 | Hai, ichimai wa Imai-san ga motte ite kudasai. | Vâng, một bản mời anh Imai giữ ạ.
+03:11 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
+03:22 | 担当者 / Tantoosha / Nhân viên phụ trách | それでは来週の月曜日からよろしくお願いしますね。 | Soredewa raishuu no getsuyoobi kara yoroshiku onegaishimasu ne. | Vậy thì từ thứ Hai tuần sau, mong anh giúp đỡ nhé.
+03:26 | 今井ミゲル / Imai Migeru / Imai Miguel | こちらこそ、どうぞよろしくお願いいたします。 | Kochira koso, doozo yoroshiku onegai itashimasu. | Tôi mới là người mong được anh giúp đỡ ạ.
+### từ vựng
+契約書 | けいやくしょ | keeyakusho | hợp đồng
+週休 | しゅうきゅう | shuukyuu | ngày nghỉ trong tuần
+シフト | シフト | shifuto | ca làm
+試用期間 | しようきかん | shiyoo-kikan | thời gian thử việc
+支払う | しはらう | shiharau | trả tiền
+遠慮 | えんりょ | enryo | ngại ngần
+
+## summary.mp4
+# Ôn tập: Phỏng vấn và ký hợp đồng
+00:00 |  /  / Chủ đề | せいしゃいんとして はたらきたいです | see-shain to shite hatarakitai desu | Muốn làm việc với tư cách là nhân viên chính thức
+00:06 | 面接官 / Mensetsukan / Người phỏng vấn | 正社員が希望なんですね。 | Seeshain ga kiboo nan desu ne. | Anh mong muốn làm nhân viên chính thức phải không?
+*00:10 | 今井ミゲル / Imai Migeru / Imai Miguel | 正社員として働きたいです。 | Seeshain toshite hatarakitai desu. | Tôi muốn làm việc với tư cách là nhân viên chính thức.
+00:13 | ナレーター / Nareetaa / Người dẫn | この動画で今井さんは「正社員として働きたいです」と言っています。 | Kono dooga de Imai-san wa "Seeshain toshite hatarakitai desu" to itte imasu. | Trong video này, anh Imai nói "Tôi muốn làm việc với tư cách là nhân viên chính thức".
+00:23 | ナレーター / Nareetaa / Người dẫn | 仕事の形は正社員、パート社員、アルバイトなどいろいろありますが、今井さんは自分が働きたい仕事の形は正社員だと伝えています。 | Shigoto no katachi wa seeshain, paato shain, arubaito nado iroiro arimasu ga, Imai-san wa jibun ga hatarakitai shigoto no katachi wa seeshain da to tsutaete imasu. | Hình thức công việc có nhiều loại như nhân viên chính thức, nhân viên bán thời gian, làm thêm..., và anh Imai đang nói rằng hình thức mình muốn làm là nhân viên chính thức.
+00:45 | ナレーター / Nareetaa / Người dẫn | 名詞＋「として」は、その人の立場を表現するときに使います。 | Meeshi + "toshite" wa, sono hito no tachiba o hyoogen suru toki ni tsukaimasu. | Danh từ + "toshite" dùng để diễn tả vị trí, tư cách của người đó.
+00:57 | ナレーター / Nareetaa / Người dẫn | 例えば、病院では看護師などが仕事をしています。「私は医者として働いています」「看護師として働いています」「受付スタッフとして働いています」ということができます。 | Tatoeba, byooin de wa kangoshi nado ga shigoto o shite imasu. "Watashi wa isha toshite hataraite imasu", "kangoshi toshite hataraite imasu", "uketsuke sutaffu toshite hataraite imasu" to iu koto ga dekimasu. | Ví dụ, ở bệnh viện có y tá và nhiều người khác làm việc. Có thể nói "Tôi làm việc với tư cách bác sĩ", "làm việc với tư cách y tá", "làm việc với tư cách nhân viên lễ tân".
+01:30 | ナレーター / Nareetaa / Người dẫn | 「として」は物の役割を説明することもできます。「私はスマホを辞書として使います」「私はスマホをカメラとして使います」ということができます。 | "Toshite" wa mono no yakuwari o setsumee suru koto mo dekimasu. "Watashi wa sumaho o jisho toshite tsukaimasu", "watashi wa sumaho o kamera toshite tsukaimasu" to iu koto ga dekimasu. | "Toshite" cũng có thể dùng để giải thích vai trò của đồ vật. Có thể nói "Tôi dùng điện thoại như một cuốn từ điển", "Tôi dùng điện thoại như một máy ảnh".
+01:58 |  /  / Chủ đề | くにでは きょうしを していました | kuni de wa kyooshi o shite imashita | Ở nước tôi từng làm giáo viên
+02:00 | 面接官 / Mensetsukan / Người phỏng vấn | 今井さんはこれまでどんな仕事をしていましたか。 | Imai-san wa kore made donna shigoto o shite imashita ka. | Anh Imai trước đây đã từng làm công việc gì?
+*02:08 | 今井ミゲル / Imai Migeru / Imai Miguel | 国では中学校で数学の教師をしていました。 | Kuni de wa chuugakkoo de suugaku no kyooshi o shite imashita. | Ở nước tôi, tôi từng làm giáo viên toán ở trường trung học cơ sở.
+02:14 | ナレーター / Nareetaa / Người dẫn | この動画では今井さんが、国で数学の教師だったと伝えています。 | Kono dooga de wa Imai-san ga, kuni de suugaku no kyooshi datta to tsutaete imasu. | Trong video này, anh Imai đang truyền đạt rằng ở nước mình anh từng là giáo viên toán.
+02:24 | ナレーター / Nareetaa / Người dẫn | 職業を言うときには、「しています」を使います。「しています」の前には教師、銀行員、看護師など職業を言います。 | Shokugyoo o iu toki ni wa, "shite imasu" o tsukaimasu. "Shite imasu" no mae ni wa kyooshi, ginkooin, kangoshi nado shokugyoo o iimasu. | Khi nói về nghề nghiệp thì dùng "shite imasu". Trước "shite imasu" thì nói nghề nghiệp như giáo viên, nhân viên ngân hàng, y tá.
+02:44 | ナレーター / Nareetaa / Người dẫn | 「前は教師をしていました」「病院で看護師をしています」ということができます。 | "Mae wa kyooshi o shite imashita", "byooin de kangoshi o shite imasu" to iu koto ga dekimasu. | Có thể nói "Trước đây tôi từng làm giáo viên", "Tôi đang làm y tá ở bệnh viện".
+02:58 | ナレーター / Nareetaa / Người dẫn | 職業ではなくて、働いている場所を言うときは、「田中病院で働いています」「田中病院に勤めています」と言います。 | Shokugyoo dewa nakute, hataraite iru basho o iu toki wa, "Tanaka byooin de hataraite imasu", "Tanaka byooin ni tsutomete imasu" to iimasu. | Khi nói về nơi làm việc chứ không phải nghề nghiệp, thì nói "Tôi làm việc ở bệnh viện Tanaka", "Tôi làm việc tại bệnh viện Tanaka".
+03:20 |  /  / Chủ đề | Aというのは、Bということですか | "A" to yuu no wa, "B" to yuu koto desu ka | A nghĩa là B phải không?
+03:22 | 面接官 / Mensetsukan / Người phỏng vấn | では、この会社への志望動機を教えてください。 | Dewa, kono kaisha e no shiboo dooki o oshiete kudasai. | Vậy anh hãy cho tôi biết động cơ ứng tuyển vào công ty này.
+*03:28 | 今井ミゲル / Imai Migeru / Imai Miguel | 志望動機というのは、どうしてこの会社に入りたいかということですか。 | Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka. | "Động cơ ứng tuyển" nghĩa là lý do vì sao tôi muốn vào công ty này phải không ạ?
+03:41 | 面接官 / Mensetsukan / Người phỏng vấn | そうです。 | Soo desu. | Đúng vậy.
+03:44 | ナレーター / Nareetaa / Người dẫn | この動画では面接官が今井さんに「志望動機は何ですか」と聞きました。 | Kono dooga de wa mensetsukan ga Imai-san ni "Shiboo dooki wa nan desu ka" to kikimashita. | Trong video này, người phỏng vấn đã hỏi anh Imai "Động cơ ứng tuyển của anh là gì?".
+03:55 | ナレーター / Nareetaa / Người dẫn | 今井さんは「志望動機というのは、どうしてこの会社に入りたいかということですか」と言って志望動機の意味を確認しました。 | Imai-san wa "Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka" to itte shiboo dooki no imi o kakunin shimashita. | Anh Imai đã nói "Động cơ ứng tuyển nghĩa là lý do vì sao muốn vào công ty này phải không?" để xác nhận lại ý nghĩa của "động cơ ứng tuyển".
+04:12 | ナレーター / Nareetaa / Người dẫn | 「AというのはBということですか」は、Aの意味がBだと確認するときに使います。 | "A to iu no wa B to iu koto desu ka" wa, A no imi ga B da to kakunin suru toki ni tsukaimasu. | Mẫu "A to iu no wa B to iu koto desu ka" dùng khi muốn xác nhận rằng nghĩa của A là B.
+04:26 | ナレーター / Nareetaa / Người dẫn | 「Aの前のBは」→説明です。例えば「通勤というのは会社に通うということです」と説明することができます。 | "A no mae no B wa" → setsumee desu. Tatoeba "tsuukin to iu no wa kaisha ni kayou to iu koto desu" to setsumee suru koto ga dekimasu. | Phần B đứng sau "to iu no wa" là phần giải thích. Ví dụ có thể giải thích "tsuukin (đi làm) nghĩa là đi đến công ty".
+05:04 | ナレーター / Nareetaa / Người dẫn | 今井さんは「志望動機というのは、どうしてこの会社に入りたいかということですか」と質問しています。Bには「どうして〜」のような疑問文を使うこともできます。その時はBの部分の最後に「か」をつけます。 | Imai-san wa "Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka" to shitsumon shite imasu. B ni wa "dooshite~" no yoo na gimonbun o tsukau koto mo dekimasu. Sono toki wa B no bubun no saigo ni "ka" o tsukemasu. | Anh Imai đang hỏi "Động cơ ứng tuyển nghĩa là lý do vì sao muốn vào công ty này phải không?". Ở phần B cũng có thể dùng câu hỏi kiểu "tại sao...", khi đó thêm "ka" vào cuối phần B.

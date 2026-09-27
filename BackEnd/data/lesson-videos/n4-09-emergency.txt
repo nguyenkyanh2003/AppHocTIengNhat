@@ -1,0 +1,106 @@
+# Lời thoại Tình huống: Nhờ giúp đỡ khi khẩn cấp
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-6-10.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Gọi cảnh sát báo tai nạn
+00:08 | 警察 / Keesatsu / Cảnh sát | 警察です。事件ですか、事故ですか。 | Keesatsu desu. Jiken desu ka, jiko desu ka. | Cảnh sát nghe. Vụ án hay tai nạn?
+*00:12 | 王 / Oo / Vương | 事故です。友達が車にはねられました。 | Jiko desu. Tomodachi ga kuruma ni haneraremashita. | Tai nạn ạ. Bạn tôi bị ô tô đâm.
+00:17 | 警察 / Keesatsu / Cảnh sát | 場所はどこですか。 | Basho wa doko desu ka. | Ở đâu?
+*00:21 | 王 / Oo / Vương | 焼津市大里の信号の近くです。 | Yaizu-shi Oosato no shingoo no chikaku desu. | Gần đèn giao thông ở Ōsato, thành phố Yaizu.
+00:25 | 警察 / Keesatsu / Cảnh sát | どのような状況でしたか。 | Dono yoo na jookyoo deshita ka. | Tình hình như thế nào?
+*00:28 | 王 / Oo / Vương | すみません。私は外国人です。日本語があまりできません。早く来てください。 | Sumimasen. Watashi wa gaikokujin desu. Nihongo ga amari dekimasen. Hayaku kite kudasai. | Xin lỗi. Tôi là người nước ngoài. Tôi không giỏi tiếng Nhật. Xin đến nhanh giúp.
+00:35 | 警察 / Keesatsu / Cảnh sát | わかりました。あなたのお名前を教えてください。 | Wakarimashita. Anata no onamae o oshiete kudasai. | Tôi hiểu rồi. Cho biết tên của anh.
+00:41 | 王 / Oo / Vương | 名前は王ハオランです。 | Namae wa Oo Haoran desu. | Tên tôi là Ō Haoran.
+00:44 | 警察 / Keesatsu / Cảnh sát | 王さんの住所は？ | Oo-san no juusho wa? | Địa chỉ của anh Vương?
+00:47 | 王 / Oo / Vương | 住所は焼津市大里1の1の1です。 | Juusho wa Yaizu-shi Oosato ichi no ichi no ichi desu. | Địa chỉ là 1-1-1 Ōsato, thành phố Yaizu.
+00:52 | 警察 / Keesatsu / Cảnh sát | わかりました。そちらに警察が向かっています。 | Wakarimashita. Sochira ni keesatsu ga mukatte imasu. | Được rồi. Cảnh sát đang đến chỗ anh.
+00:57 | 警察 / Keesatsu / Cảnh sát | それから、すぐに救急車も手配します。そこで待っていてください。 | Sorekara, sugu ni kyuukyuusha mo tehai shimasu. Soko de matte ite kudasai. | Chúng tôi cũng sẽ gọi xe cấp cứu ngay. Anh đợi ở đó nhé.
+01:03 | 王 / Oo / Vương | はい、お願いします。 | Hai, onegaishimasu. | Vâng, nhờ các anh.
+### từ vựng
+警察 | けいさつ | keesatsu | cảnh sát
+事件 | じけん | jiken | vụ án
+事故 | じこ | jiko | tai nạn
+はねる | はねる | haneru | đâm (xe)
+状況 | じょうきょう | jookyoo | tình hình
+住所 | じゅうしょ | juusho | địa chỉ
+救急車 | きゅうきゅうしゃ | kyuukyuusha | xe cấp cứu
+
+## scene-1.mp4
+# Nhờ người đi đường giúp
+*00:02 | アンジェラ / Anjera / Angela | すみません、助けてください。 | Sumimasen, tasukete kudasai. | Xin lỗi, giúp tôi với.
+00:04 | 通行人 / Tsuukoonin / Người đi đường | どうしたんですか。 | Doo shitan desu ka. | Có chuyện gì vậy?
+*00:05 | アンジェラ / Anjera / Angela | 友達が車にはねられたんです。 | Tomodachi ga kuruma ni haneraretan desu. | Bạn tôi bị ô tô đâm.
+00:08 | 通行人 / Tsuukoonin / Người đi đường | え？ | E? | Hả?
+00:09 | アンジェラ / Anjera / Angela | 私は外国人です。日本語がわかりません。助けてください。 | Watashi wa gaikokujin desu. Nihongo ga wakarimasen. Tasukete kudasai. | Tôi là người nước ngoài. Tôi không biết tiếng Nhật. Giúp tôi với.
+00:15 | 通行人 / Tsuukoonin / Người đi đường | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+*00:24 | 通行人 / Tsuukoonin / Người đi đường | 今、警察を呼びました。ここで待っていてください。 | Ima, keesatsu o yobimashita. Koko de matte ite kudasai. | Tôi vừa gọi cảnh sát rồi. Chị đợi ở đây nhé.
+00:27 | アンジェラ / Anjera / Angela | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+### từ vựng
+助ける | たすける | tasukeru | giúp
+外国人 | がいこくじん | gaikokujin | người nước ngoài
+呼ぶ | よぶ | yobu | gọi
+待つ | まつ | matsu | đợi
+
+## scene-3.mp4
+# Gọi 119 xin xe cấp cứu
+00:09 | 消防 / Shooboo / Tổng đài 119 | はい、119番消防です。 | Hai, hyakujuukyuu-ban shooboo desu. | Vâng, đây là cứu hỏa – cấp cứu 119.
+*00:13 | 消防 / Shooboo / Tổng đài 119 | 火事ですか、救急ですか。 | Kaji desu ka, kyuukyuu desu ka. | Hỏa hoạn hay cấp cứu?
+00:17 | 王 / Oo / Vương | 救急です。 | Kyuukyuu desu. | Cấp cứu ạ.
+*00:18 | 消防 / Shooboo / Tổng đài 119 | 救急車が必要ですか。 | Kyuukyuusha ga hitsuyoo desu ka. | Có cần xe cấp cứu không?
+00:21 | 王 / Oo / Vương | はい、必要です。 | Hai, hitsuyoo desu. | Vâng, cần ạ.
+00:25 | 消防 / Shooboo / Tổng đài 119 | 住所を教えてください。 | Juusho o oshiete kudasai. | Cho biết địa chỉ.
+00:28 | 王 / Oo / Vương | 焼津市大里1の1の1です。 | Yaizu-shi Oosato ichi no ichi no ichi desu. | 1-1-1 Ōsato, thành phố Yaizu.
+00:33 | 消防 / Shooboo / Tổng đài 119 | お名前を教えてください。 | Onamae o oshiete kudasai. | Cho biết tên.
+00:36 | 王 / Oo / Vương | 王ハオランです。 | Oo Haoran desu. | Tôi là Ō Haoran.
+00:38 | 消防 / Shooboo / Tổng đài 119 | どうしましたか。 | Doo shimashita ka. | Có chuyện gì?
+*00:41 | 王 / Oo / Vương | 友達が階段から落ちました。 | Tomodachi ga kaidan kara ochimashita. | Bạn tôi bị ngã cầu thang.
+00:46 | 消防 / Shooboo / Tổng đài 119 | 男性ですか、女性ですか。 | Dansee desu ka, josee desu ka. | Nam hay nữ?
+00:49 | 王 / Oo / Vương | 男性です。 | Dansee desu. | Nam ạ.
+*00:52 | 消防 / Shooboo / Tổng đài 119 | 意識はありますか。 | Ishiki wa arimasu ka. | Còn tỉnh không?
+00:55 | 王 / Oo / Vương | 意識…？ | Ishiki…? | "Ishiki"…?
+00:58 | 王 / Oo / Vương | すみません、私は外国人です。日本語があまりわかりません。 | Sumimasen, watashi wa gaikokujin desu. Nihongo ga amari wakarimasen. | Xin lỗi, tôi là người nước ngoài. Tôi không hiểu tiếng Nhật lắm.
+01:05 | 消防 / Shooboo / Tổng đài 119 | わかりました。すぐ救急車が行きます。 | Wakarimashita. Sugu kyuukyuusha ga ikimasu. | Được rồi. Xe cấp cứu sẽ đến ngay.
+01:11 | 消防 / Shooboo / Tổng đài 119 | そこで待っていてください。 | Soko de matte ite kudasai. | Anh đợi ở đó nhé.
+01:14 | 王 / Oo / Vương | ありがとうございます。よろしくお願いします。 | Arigatoo gozaimasu. Yoroshiku onegaishimasu. | Cảm ơn. Nhờ các anh.
+### từ vựng
+火事 | かじ | kaji | hỏa hoạn
+救急 | きゅうきゅう | kyuukyuu | cấp cứu
+消防 | しょうぼう | shooboo | cứu hỏa
+階段 | かいだん | kaidan | cầu thang
+落ちる | おちる | ochiru | ngã, rơi
+意識 | いしき | ishiki | sự tỉnh táo
+男性 | だんせい | dansee | nam giới
+
+## summary.mp4
+# Ôn tập: Nhờ giúp đỡ khi khẩn cấp
+00:00 |  /  / Chủ đề | はねられました | haneraremashita | Bị (xe) đâm
+*00:10 | 王 / Oo / Vương | 友達が車にはねられました。 | Tomodachi ga kuruma ni haneraremashita. | Bạn tôi bị ô tô đâm.
+00:16 | ナレーター / Nareetaa / Người dẫn | この動画では、「友達が車にはねられました」と言っています。 | Kono dooga de wa, "Tomodachi ga kuruma ni haneraremashita" to itte imasu. | Trong video, nhân vật nói "Bạn tôi bị ô tô đâm".
+00:24 | ナレーター / Nareetaa / Người dẫn | 「はねられました」は、受け身の表現です。 | "Haneraremashita" wa, ukemi no hyoogen desu. | "Haneraremashita" là cách nói bị động.
+00:30 | ナレーター / Nareetaa / Người dẫn | 「車が友達をはねました」を受け身形を使って言い換えると、「友達が車にはねられました」となります。 | "Kuruma ga tomodachi o hanemashita" o ukemi-kee o tsukatte iikaeru to, "Tomodachi ga kuruma ni haneraremashita" to narimasu. | Chuyển câu "Ô tô đâm bạn tôi" sang thể bị động thì thành "Bạn tôi bị ô tô đâm".
+00:47 | ナレーター / Nareetaa / Người dẫn | 受け身形を使うと、行為を受けた友達が主語になります。 | Ukemi-kee o tsukau to, kooi o uketa tomodachi ga shugo ni narimasu. | Dùng thể bị động thì người bạn – người chịu hành động – trở thành chủ ngữ.
+00:55 | ナレーター / Nareetaa / Người dẫn | その行為をした車の後には、助詞の「に」を使います。 | Sono kooi o shita kuruma no ato ni wa, joshi no "ni" o tsukaimasu. | Sau "ô tô" – thứ gây ra hành động – dùng trợ từ "ni".
+01:05 | ナレーター / Nareetaa / Người dẫn | 他の例を見てみましょう。「先生が学生を褒めました」。行為を受けたのは学生です。 | Hoka no ree o mite mimashoo. "Sensee ga gakusee o homemashita". Kooi o uketa no wa gakusee desu. | Xem thêm ví dụ khác: "Thầy giáo khen học sinh". Người được khen là học sinh.
+01:18 | ナレーター / Nareetaa / Người dẫn | 受け身形を使って言い換えると、「学生が先生に褒められました」となります。 | Ukemi-kee o tsukatte iikaeru to, "Gakusee ga sensee ni homeraremashita" to narimasu. | Chuyển sang bị động thì thành "Học sinh được thầy giáo khen".
+01:30 | ナレーター / Nareetaa / Người dẫn | 動画のように、受け身の文では被害に遭ったことを表すことも多いです。 | Dooga no yoo ni, ukemi no bun de wa higai ni atta koto o arawasu koto mo ooi desu. | Như trong video, câu bị động thường diễn tả việc bị thiệt hại.
+01:39 | ナレーター / Nareetaa / Người dẫn | 例えば、「殴る」という動詞の受け身形は「殴られる」です。 | Tatoeba, "naguru" to iu dooshi no ukemi-kee wa "nagurareru" desu. | Ví dụ, thể bị động của "naguru" (đánh) là "nagurareru" (bị đánh).
+01:48 | ナレーター / Nareetaa / Người dẫn | 私が被害に遭ったときは、私を主語にして、「私がAさんに殴られました」となります。 | Watashi ga higai ni atta toki wa, watashi o shugo ni shite, "Watashi ga A-san ni naguraremashita" to narimasu. | Khi tôi là người bị hại thì lấy tôi làm chủ ngữ: "Tôi bị anh A đánh".
+02:02 | ナレーター / Nareetaa / Người dẫn | 「私」が主語のときは、「私」を言わないで、「Aさんに殴られました」と言うことが多いです。 | "Watashi" ga shugo no toki wa, "watashi" o iwanaide, "A-san ni naguraremashita" to iu koto ga ooi desu. | Khi chủ ngữ là "tôi" thì thường không nói "tôi" mà chỉ nói "Bị anh A đánh".
+02:17 |  /  / Chủ đề | にほんごが あまり できません | nihongo ga amari dekimasen | Tôi không giỏi tiếng Nhật lắm
+*02:25 | 王 / Oo / Vương | すみません。私は外国人です。日本語があまりできません。 | Sumimasen. Watashi wa gaikokujin desu. Nihongo ga amari dekimasen. | Xin lỗi. Tôi là người nước ngoài. Tôi không giỏi tiếng Nhật lắm.
+02:32 | ナレーター / Nareetaa / Người dẫn | 名詞に「ができます」をつけると可能を表します。「できません」と言うと不可能を表します。 | Meeshi ni "ga dekimasu" o tsukeru to kanoo o arawashimasu. "Dekimasen" to iu to fukanoo o arawashimasu. | Thêm "ga dekimasu" sau danh từ để diễn tả khả năng. Nói "dekimasen" thì diễn tả không thể.
+02:48 | ナレーター / Nareetaa / Người dẫn | この動画では、「日本語があまりできません」と言っています。 | Kono dooga de wa, "Nihongo ga amari dekimasen" to itte imasu. | Trong video, nhân vật nói "Tôi không giỏi tiếng Nhật lắm".
+02:56 | ナレーター / Nareetaa / Người dẫn | 「あまり」は、たくさんではないという意味で、否定文で使います。 | "Amari" wa, takusan de wa nai to iu imi de, hiteebun de tsukaimasu. | "Amari" nghĩa là không nhiều, dùng trong câu phủ định.
+03:05 | ナレーター / Nareetaa / Người dẫn | 「日本語があまりできません」は、「日本語はたくさんはできません」という意味です。 | "Nihongo ga amari dekimasen" wa, "Nihongo wa takusan wa dekimasen" to iu imi desu. | "Nihongo ga amari dekimasen" nghĩa là "Tiếng Nhật thì tôi không biết nhiều".
+03:17 | ナレーター / Nareetaa / Người dẫn | 「中国語ができます」「スキーができます」「ピアノができます」のように、言語やスポーツや楽器の能力について話すことが多いです。 | "Chuugokugo ga dekimasu", "Sukii ga dekimasu", "Piano ga dekimasu" no yoo ni, gengo ya supootsu ya gakki no nooryoku ni tsuite hanasu koto ga ooi desu. | Thường dùng để nói về khả năng ngôn ngữ, thể thao, nhạc cụ, như "Tôi biết tiếng Trung", "Tôi biết trượt tuyết", "Tôi biết chơi piano".
+03:35 | ナレーター / Nareetaa / Người dẫn | また、何か理由があって「今日は残業ができません」とか、「夜は電話ができません」と言うこともできます。 | Mata, nanika riyuu ga atte "Kyoo wa zangyoo ga dekimasen" toka, "Yoru wa denwa ga dekimasen" to iu koto mo dekimasu. | Ngoài ra, khi có lý do gì đó, cũng có thể nói "Hôm nay tôi không làm thêm giờ được", "Buổi tối tôi không gọi điện được".
+03:48 |  /  / Chủ đề | たすけて ください | tasukete kudasai | Giúp tôi với
+*03:54 | アンジェラ / Anjera / Angela | すみません、助けてください。 | Sumimasen, tasukete kudasai. | Xin lỗi, giúp tôi với.
+03:57 | 通行人 / Tsuukoonin / Người đi đường | どうしたんですか。 | Doo shitan desu ka. | Có chuyện gì vậy?
+03:59 | ナレーター / Nareetaa / Người dẫn | 動詞のて形に「ください」をつけて、誰かにお願いをしたり、丁寧に指示したりすることができます。 | Dooshi no te-kee ni "kudasai" o tsukete, dareka ni onegai o shitari, teenee ni shiji shitari suru koto ga dekimasu. | Thêm "kudasai" vào thể te của động từ để nhờ ai đó hoặc chỉ dẫn một cách lịch sự.
+04:13 | ナレーター / Nareetaa / Người dẫn | 「助ける」のて形は「助けて」です。 | "Tasukeru" no te-kee wa "tasukete" desu. | Thể te của "tasukeru" (giúp) là "tasukete".
+04:20 | ナレーター / Nareetaa / Người dẫn | 動画では、女性が知らない女性に「助けてください」とお願いをしています。聞いた人はその女性を助けます。 | Dooga de wa, josee ga shiranai josee ni "Tasukete kudasai" to onegai o shite imasu. Kiita hito wa sono josee o tasukemasu. | Trong video, một phụ nữ nhờ người phụ nữ lạ "Giúp tôi với". Người nghe đã giúp chị ấy.
+04:36 | ナレーター / Nareetaa / Người dẫn | 宅配便の配達員が荷物を受け取った人に「サインしてください」と言ったり、 | Takuhaibin no haitatsuin ga nimotsu o uketotta hito ni "Sain shite kudasai" to ittari, | Người giao hàng nói với người nhận "Xin ký tên",
+04:45 | ナレーター / Nareetaa / Người dẫn | 駅員が乗客に「白線の後ろに下がってください」と丁寧に指示したりすることもあります。 | Ekiin ga jookyaku ni "Hakusen no ushiro ni sagatte kudasai" to teenee ni shiji shitari suru koto mo arimasu. | hay nhân viên nhà ga lịch sự nhắc hành khách "Xin lùi lại sau vạch trắng".

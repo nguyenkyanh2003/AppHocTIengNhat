@@ -1,0 +1,112 @@
+# Lời thoại Tình huống: Chọn cửa hàng phù hợp
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-3.mp4
+# Gọi điện đặt bàn ở nhà hàng
+00:06 | 店員 / Ten'in / Nhân viên | お電話ありがとうございます。レストランつなひろテラスでございます。 | Odenwa arigatoo gozaimasu. Resutoran Tsunahiro Terasu de gozaimasu. | Cảm ơn quý khách đã gọi điện. Nhà hàng Tsunahiro Terrace xin nghe.
+*00:11 | 王 / Oo / Vương | あのー、予約をしたいんですが。 | Anoo, yoyaku o shitain desu ga. | Dạ, tôi muốn đặt chỗ.
+00:16 | 店員 / Ten'in / Nhân viên | はい、ありがとうございます。ご予約ですね。お日にちはお決まりですか。 | Hai, arigatoo gozaimasu. Goyoyaku desu ne. Ohinichi wa okimari desu ka. | Vâng, cảm ơn quý khách. Đặt chỗ ạ. Quý khách đã chọn ngày chưa ạ?
+*00:23 | 王 / Oo / Vương | 明日の7時でお願いします。 | Ashita no shichi-ji de onegaishimasu. | Cho tôi 7 giờ ngày mai.
+00:27 | 店員 / Ten'in / Nhân viên | かしこまりました。何名様ですか。 | Kashikomarimashita. Nanmee-sama desu ka. | Vâng ạ. Quý khách đi mấy người ạ?
+00:31 | 王 / Oo / Vương | 2人です。 | Futari desu. | Hai người.
+00:33 | 店員 / Ten'in / Nhân viên | 少々お待ちください。 | Shooshoo omachi kudasai. | Xin quý khách chờ một chút.
+00:39 | 店員 / Ten'in / Nhân viên | お待たせいたしました。明日の7時でお取りできます。 | Omatase itashimashita. Ashita no shichi-ji de otori dekimasu. | Để quý khách đợi lâu. 7 giờ ngày mai đặt được ạ.
+00:45 | 王 / Oo / Vương | あ、はい。 | A, hai. | À, vâng.
+00:47 | 店員 / Ten'in / Nhân viên | それでは、お名前とご連絡先をお願いします。 | Soredewa, onamae to gorenrakusaki o onegaishimasu. | Vậy xin quý khách cho biết tên và số liên lạc.
+00:52 | 王 / Oo / Vương | 王ハオランです。電話番号は000-1234-5678です。 | Oo Haoran desu. Denwa-bangoo wa zero-zero-zero no ichi-ni-san-yon no go-roku-nana-hachi desu. | Tôi là Vương Hạo Nhiên (Ō Haoran). Số điện thoại là 000-1234-5678.
+01:03 | 店員 / Ten'in / Nhân viên | かしこまりました。確認いたします。 | Kashikomarimashita. Kakunin itashimasu. | Vâng ạ. Tôi xin xác nhận lại.
+01:06 | 店員 / Ten'in / Nhân viên | 王ハオラン様で、お電話番号は000-1234-5678ですね。 | Oo Haoran-sama de, odenwa-bangoo wa zero-zero-zero no ichi-ni-san-yon no go-roku-nana-hachi desu ne. | Quý khách Ō Haoran, số điện thoại 000-1234-5678 phải không ạ?
+01:18 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+01:20 | 店員 / Ten'in / Nhân viên | カウンター席のご用意でよろしいでしょうか。 | Kauntaa-seki no goyooi de yoroshii deshoo ka. | Chúng tôi chuẩn bị chỗ ngồi quầy được không ạ?
+*01:24 | 王 / Oo / Vương | えっと、夜景を見たいので、窓際の席がいいんですけど。 | Etto, yakee o mitai node, madogiwa no seki ga iin desu kedo. | Ừm, tôi muốn ngắm cảnh đêm nên muốn ngồi cạnh cửa sổ.
+01:31 | 店員 / Ten'in / Nhân viên | かしこまりました。 | Kashikomarimashita. | Vâng ạ.
+01:34 | 店員 / Ten'in / Nhân viên | はい、窓際のお席、ご用意できます。 | Hai, madogiwa no oseki, goyooi dekimasu. | Vâng, chúng tôi chuẩn bị được chỗ cạnh cửa sổ ạ.
+01:39 | 店員 / Ten'in / Nhân viên | それでは、明日の7時、2名様、窓際のお席をご用意してお待ちしております。 | Soredewa, ashita no shichi-ji, nimee-sama, madogiwa no oseki o goyooi shite omachi shite orimasu. | Vậy chúng tôi sẽ chuẩn bị chỗ cạnh cửa sổ cho 2 người lúc 7 giờ ngày mai và chờ quý khách.
+01:46 | 王 / Oo / Vương | よろしくお願いします。 | Yoroshiku onegaishimasu. | Nhờ chị nhé.
+### từ vựng
+予約 | よやく | yoyaku | đặt chỗ
+何名様 | なんめいさま | nanmee-sama | mấy vị khách
+連絡先 | れんらくさき | renrakusaki | thông tin liên lạc
+電話番号 | でんわばんごう | denwa-bangoo | số điện thoại
+夜景 | やけい | yakee | cảnh đêm
+窓際 | まどぎわ | madogiwa | cạnh cửa sổ
+カウンター席 | カウンターせき | kauntaa-seki | chỗ ngồi ở quầy
+
+## scene-2.mp4
+# Gọi món trưa được giới thiệu
+00:14 | 王 / Oo / Vương | すみません。 | Sumimasen. | Xin lỗi.
+*00:16 | 王 / Oo / Vương | 今日のおすすめランチって何ですか。 | Kyoo no osusume-ranchi tte nan desu ka. | Bữa trưa được giới thiệu hôm nay là gì ạ?
+00:19 | 店員 / Ten'in / Nhân viên | はい、本日のおすすめランチはこちらです。 | Hai, honjitsu no osusume-ranchi wa kochira desu. | Vâng, bữa trưa được giới thiệu hôm nay là đây ạ.
+00:25 | 店員 / Ten'in / Nhân viên | この中からお好きなものをお選びいただけます。 | Kono naka kara osuki na mono o oerabi itadakemasu. | Quý khách có thể chọn món mình thích trong số này.
+00:29 | 王 / Oo / Vương | へえ、いろいろあるんですね。 | Hee, iroiro arun desu ne. | Ồ, có nhiều món nhỉ.
+00:32 | 店員 / Ten'in / Nhân viên | はい、そうです。 | Hai, soo desu. | Vâng ạ.
+*00:34 | 王 / Oo / Vương | ドリンクバーはついていますか。 | Dorinku-baa wa tsuite imasu ka. | Có kèm quầy nước tự chọn không ạ?
+00:37 | 店員 / Ten'in / Nhân viên | ドリンクバーは、プラス150円でお付けすることができます。 | Dorinku-baa wa, purasu hyakugojuu-en de otsuke suru koto ga dekimasu. | Quầy nước tự chọn thì thêm 150 yên là có ạ.
+00:42 | 王 / Oo / Vương | うーん… | Uun… | Ừm…
+*00:47 | 王 / Oo / Vương | この中で一番早いのはどれですか。 | Kono naka de ichiban hayai no wa dore desu ka. | Trong số này món nào ra nhanh nhất ạ?
+00:52 | 店員 / Ten'in / Nhân viên | そうですね…親子丼でしたら、すぐにお出しできます。 | Soo desu ne… oyakodon deshitara, sugu ni odashi dekimasu. | Để xem… Nếu là cơm gà trứng (oyakodon) thì có thể mang ra ngay ạ.
+00:59 | 王 / Oo / Vương | 親子丼？ | Oyakodon? | Oyakodon ạ?
+01:02 | 店員 / Ten'in / Nhân viên | はい。鶏肉と卵のお料理です。 | Hai. Toriniku to tamago no oryoori desu. | Vâng. Là món gà và trứng ạ.
+01:07 | 王 / Oo / Vương | ああ、それじゃあ親子丼で。ドリンクバーもつけてください。 | Aa, sore jaa oyakodon de. Dorinku-baa mo tsukete kudasai. | À, vậy cho tôi oyakodon. Cho thêm cả quầy nước nữa.
+01:12 | 店員 / Ten'in / Nhân viên | はい、かしこまりました。 | Hai, kashikomarimashita. | Vâng, tôi hiểu rồi ạ.
+### từ vựng
+本日 | ほんじつ | honjitsu | hôm nay (lịch sự)
+おすすめ | おすすめ | osusume | được giới thiệu
+ランチ | ランチ | ranchi | bữa trưa
+ドリンクバー | ドリンクバー | dorinku-baa | quầy nước tự chọn
+親子丼 | おやこどん | oyakodon | cơm gà trứng
+鶏肉 | とりにく | toriniku | thịt gà
+
+## scene-1.mp4
+# Hỏi chỗ chụp ảnh thẻ
+00:03 | 王 / Oo / Vương | すみません、ちょっといいですか。 | Sumimasen, chotto ii desu ka. | Xin lỗi, anh cho em hỏi chút được không ạ?
+00:05 | 先輩 / Senpai / Đàn anh | はい。 | Hai. | Ừ.
+*00:07 | 王 / Oo / Vương | 写真が必要なんですけど…ここです。 | Shashin ga hitsuyoo nan desu kedo… koko desu. | Em cần ảnh… chỗ này ạ.
+00:12 | 先輩 / Senpai / Đàn anh | ああ、証明写真ですね。 | Aa, shoomee-shashin desu ne. | À, ảnh thẻ nhỉ.
+*00:17 | 王 / Oo / Vương | 証明写真って、どこで撮りますか。 | Shoomee-shashin tte, doko de torimasu ka. | Ảnh thẻ thì chụp ở đâu ạ?
+00:21 | 先輩 / Senpai / Đàn anh | そうですね…ああ、駅前に写真用のボックスがありますよ。 | Soo desu ne… aa, ekimae ni shashin-yoo no bokkusu ga arimasu yo. | Để xem… À, trước ga có buồng chụp ảnh đấy.
+00:28 | 王 / Oo / Vương | ああ、あの交番の隣の白いボックスですね。 | Aa, ano kooban no tonari no shiroi bokkusu desu ne. | À, cái buồng màu trắng cạnh đồn cảnh sát phải không ạ.
+00:33 | 先輩 / Senpai / Đàn anh | そうそう。 | Soo soo. | Đúng rồi.
+00:35 | 先輩 / Senpai / Đàn anh | 一人で大丈夫ですか。 | Hitori de daijoobu desu ka. | Em tự đi một mình được không?
+*00:37 | 王 / Oo / Vương | 一人で大丈夫だと思います。 | Hitori de daijoobu da to omoimasu. | Em nghĩ em tự đi được ạ.
+00:41 | 先輩 / Senpai / Đàn anh | そうですか。 | Soo desu ka. | Vậy à.
+00:42 | 王 / Oo / Vương | 昼休みに行ってみます。ありがとうございました。 | Hiruyasumi ni itte mimasu. Arigatoo gozaimashita. | Giờ nghỉ trưa em sẽ đi thử. Cảm ơn anh.
+00:46 | 先輩 / Senpai / Đàn anh | いいえ。 | Iie. | Không có gì.
+### từ vựng
+証明写真 | しょうめいしゃしん | shoomee-shashin | ảnh thẻ
+必要 | ひつよう | hitsuyoo | cần thiết
+撮る | とる | toru | chụp (ảnh)
+駅前 | えきまえ | ekimae | trước nhà ga
+交番 | こうばん | kooban | đồn cảnh sát
+昼休み | ひるやすみ | hiruyasumi | giờ nghỉ trưa
+
+## summary.mp4
+# Ôn tập: Chọn cửa hàng phù hợp
+00:00 |  /  / Chủ đề | やけいを みたいので… | yakee o mitai node… | Vì muốn ngắm cảnh đêm nên…
+*00:06 | 王 / Oo / Vương | 夜景を見たいので、窓際の席がいいんですけど。 | Yakee o mitai node, madogiwa no seki ga iin desu kedo. | Tôi muốn ngắm cảnh đêm nên muốn ngồi cạnh cửa sổ.
+00:12 | ナレーター / Nareetaa / Người dẫn | 「ので」は、理由を伝えるときに使います。 | "Node" wa, riyuu o tsutaeru toki ni tsukaimasu. | "Node" dùng khi nói lý do.
+00:19 | ナレーター / Nareetaa / Người dẫn | この場面で、王さんは「夜景を見たいので、窓際の席がいいんですけど」と言いました。 | Kono bamen de, Oo-san wa "Yakee o mitai node, madogiwa no seki ga iin desu kedo" to iimashita. | Trong cảnh này, anh Vương nói "Tôi muốn ngắm cảnh đêm nên muốn ngồi cạnh cửa sổ".
+00:31 | ナレーター / Nareetaa / Người dẫn | 窓際の席を希望した理由は、夜景を見たいと思ったからです。 | Madogiwa no seki o kiboo shita riyuu wa, yakee o mitai to omotta kara desu. | Lý do muốn ngồi cạnh cửa sổ là vì muốn ngắm cảnh đêm.
+00:41 | ナレーター / Nareetaa / Người dẫn | 理由を伝える「ので」を使って、「夜景を見たいので、窓際の席がいいんですけど」と、店員に希望とその理由を伝えました。 | Riyuu o tsutaeru "node" o tsukatte, "Yakee o mitai node, madogiwa no seki ga iin desu kedo" to, ten'in ni kiboo to sono riyuu o tsutaemashita. | Dùng "node" để nói lý do, anh ấy cho nhân viên biết mong muốn và lý do của mình.
+01:00 | ナレーター / Nareetaa / Người dẫn | 理由を表すときは「から」という表現もありますが、「ので」のほうが丁寧な印象を与えることができます。 | Riyuu o arawasu toki wa "kara" to iu hyoogen mo arimasu ga, "node" no hoo ga teenee na inshoo o ataeru koto ga dekimasu. | Để nói lý do cũng có "kara", nhưng "node" tạo ấn tượng lịch sự hơn.
+01:17 | ナレーター / Nareetaa / Người dẫn | 例えば、「頭が痛いので、休ませてください」、「コピーしたいので、細かくしてください」、「書き方がわからないので、教えてもらえませんか」のように使うことができます。 | Tatoeba, "Atama ga itai node, yasumasete kudasai", "Kopii shitai node, komakaku shite kudasai", "Kakikata ga wakaranai node, oshiete moraemasen ka" no yoo ni tsukau koto ga dekimasu. | Ví dụ: "Tôi đau đầu nên cho tôi nghỉ", "Tôi muốn photocopy nên đổi giúp tôi tiền lẻ", "Tôi không biết cách viết nên chỉ giúp tôi được không?".
+01:38 | ナレーター / Nareetaa / Người dẫn | 「ので」の前は普通形です。ただし、名詞とな形容詞の場合は、「だ」ではなく「な」になります。 | "Node" no mae wa futsuukee desu. Tadashi, meeshi to na-keeyooshi no baai wa, "da" de wa naku "na" ni narimasu. | Trước "node" là thể thông thường. Nhưng với danh từ và tính từ đuôi na thì dùng "na" thay cho "da".
+01:58 |  /  / Chủ đề | いちばん はやいのは どれですか | ichiban hayai no wa dore desu ka | Món nào ra nhanh nhất ạ?
+*02:04 | 王 / Oo / Vương | この中で一番早いのはどれですか。 | Kono naka de ichiban hayai no wa dore desu ka. | Trong số này món nào ra nhanh nhất ạ?
+02:09 | 店員 / Ten'in / Nhân viên | そうですね…親子丼でしたら、すぐにお出しできます。 | Soo desu ne… oyakodon deshitara, sugu ni odashi dekimasu. | Để xem… Nếu là oyakodon thì có thể mang ra ngay ạ.
+02:16 | ナレーター / Nareetaa / Người dẫn | この動画で、王さんは急いでいたので、できるだけ早く出てくる料理を知りたいと思いました。 | Kono dooga de, Oo-san wa isoide ita node, dekiru dake hayaku dete kuru ryoori o shiritai to omoimashita. | Trong video, anh Vương đang vội nên muốn biết món nào ra nhanh nhất.
+02:27 | ナレーター / Nareetaa / Người dẫn | これを店員に聞くとき、「どれが一番早いですか」と言うこともできますが、王さんは「一番早いのはどれですか」と聞きました。 | Kore o ten'in ni kiku toki, "Dore ga ichiban hayai desu ka" to iu koto mo dekimasu ga, Oo-san wa "Ichiban hayai no wa dore desu ka" to kikimashita. | Khi hỏi nhân viên, có thể nói "Dore ga ichiban hayai desu ka", nhưng anh Vương hỏi "Ichiban hayai no wa dore desu ka".
+02:46 | ナレーター / Nareetaa / Người dẫn | 「一番早い」を「は」の前に置いてトピックにすると、これについて知りたいということを伝えることができます。 | "Ichiban hayai" o "wa" no mae ni oite topikku ni suru to, kore ni tsuite shiritai to iu koto o tsutaeru koto ga dekimasu. | Đặt "ichiban hayai" trước "wa" làm chủ đề thì thể hiện được rằng mình muốn biết về điều đó.
+03:00 | ナレーター / Nareetaa / Người dẫn | 「は」の前は「普通形＋の」です。 | "Wa" no mae wa "futsuukee + no" desu. | Trước "wa" là "thể thông thường + no".
+03:09 | ナレーター / Nareetaa / Người dẫn | 他にも、「一番安いのはどれですか」や「日本に来たのはいつですか」のように使うことができます。 | Hoka ni mo, "Ichiban yasui no wa dore desu ka" ya "Nihon ni kita no wa itsu desu ka" no yoo ni tsukau koto ga dekimasu. | Ngoài ra có thể dùng như "Cái rẻ nhất là cái nào?", "Bạn đến Nhật khi nào?".
+03:24 |  /  / Chủ đề | だいじょうぶだと おもいます | daijoobu da to omoimasu | Tôi nghĩ là ổn
+03:30 | 先輩 / Senpai / Đàn anh | 一人で大丈夫ですか。 | Hitori de daijoobu desu ka. | Em tự đi một mình được không?
+*03:32 | 王 / Oo / Vương | 一人で大丈夫だと思います。 | Hitori de daijoobu da to omoimasu. | Em nghĩ em tự đi được ạ.
+03:35 | ナレーター / Nareetaa / Người dẫn | 自分の推量や判断を伝えるときは、「と思います」を使います。 | Jibun no suiryoo ya handan o tsutaeru toki wa, "to omoimasu" o tsukaimasu. | Khi nói suy đoán hay nhận định của mình thì dùng "to omoimasu".
+03:45 | ナレーター / Nareetaa / Người dẫn | 「と思います」の前は普通形です。 | "To omoimasu" no mae wa futsuukee desu. | Trước "to omoimasu" là thể thông thường.
+03:52 | ナレーター / Nareetaa / Người dẫn | この動画では、「一人で大丈夫ですか」と聞かれて、王さんは自分では多分大丈夫だと判断したので、「大丈夫だと思います」と答えました。 | Kono dooga de wa, "Hitori de daijoobu desu ka" to kikarete, Oo-san wa jibun de wa tabun daijoobu da to handan shita node, "Daijoobu da to omoimasu" to kotaemashita. | Trong video, khi được hỏi "Đi một mình được không?", anh Vương tự nhận định chắc là ổn nên trả lời "Em nghĩ là ổn".
+04:12 | ナレーター / Nareetaa / Người dẫn | 絶対に大丈夫という自信があるときは、「大丈夫です」と答えてもいいです。 | Zettai ni daijoobu to iu jishin ga aru toki wa, "Daijoobu desu" to kotaete mo ii desu. | Khi chắc chắn là ổn thì có thể trả lời "Daijoobu desu".
+04:22 | ナレーター / Nareetaa / Người dẫn | 他にも、「間に合いますか」と聞かれたときには「間に合うと思います」、 | Hoka ni mo, "Maniaimasu ka" to kikareta toki ni wa "Maniau to omoimasu", | Ngoài ra, khi được hỏi "Có kịp không?" thì đáp "Tôi nghĩ là kịp",
+04:32 | ナレーター / Nareetaa / Người dẫn | 「佐藤さん、明日来るかなあ」と聞かれたときには「来ると思います」のように使うことができます。 | "Satoo-san, ashita kuru ka naa" to kikareta toki ni wa "Kuru to omoimasu" no yoo ni tsukau koto ga dekimasu. | khi được hỏi "Không biết mai anh Satō có đến không nhỉ?" thì đáp "Tôi nghĩ là anh ấy sẽ đến".

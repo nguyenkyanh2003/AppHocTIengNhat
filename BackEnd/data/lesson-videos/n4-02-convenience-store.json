@@ -1,0 +1,929 @@
+{
+  "lesson": {
+    "title": "Tình huống: Dùng dịch vụ ở cửa hàng tiện lợi"
+  },
+  "videos": [
+    {
+      "title": "Bách hóa, siêu thị và cửa hàng tiện lợi",
+      "description": "Biết mỗi loại cửa hàng bán gì và cửa hàng tiện lợi làm được những dịch vụ nào.",
+      "url": "/uploads/lesson-videos/n4-02-convenience-store/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "日本には買い物をする店がたくさんあります。デパート、スーパー、コンビニエンスストアについて説明しましょう。",
+          "romaji": "Nihon ni wa kaimono o suru mise ga takusan arimasu. Depaato, suupaa, konbiniensu-sutoa ni tsuite setsumee shimashoo.",
+          "text_vi": "Ở Nhật có rất nhiều nơi mua sắm. Hãy cùng tìm hiểu về cửa hàng bách hóa, siêu thị và cửa hàng tiện lợi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "デパートでは、ちょっと高いものやおしゃれなものを売っています。",
+          "romaji": "Depaato de wa, chotto takai mono ya oshare na mono o utte imasu.",
+          "text_vi": "Cửa hàng bách hóa bán đồ hơi đắt và đồ thời trang.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "衣類や化粧品もあれば、食品もあります。いろいろなものを売っています。",
+          "romaji": "Irui ya keshoohin mo areba, shokuhin mo arimasu. Iroiro na mono o utte imasu.",
+          "text_vi": "Có quần áo, mỹ phẩm, có cả thực phẩm. Bán đủ thứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "大切な贈り物を買うことが多いです。",
+          "romaji": "Taisetsu na okurimono o kau koto ga ooi desu.",
+          "text_vi": "Người ta hay mua quà tặng quan trọng ở đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "スーパーは、生活に必要な買い物をするときに便利です。",
+          "romaji": "Suupaa wa, seekatsu ni hitsuyoo na kaimono o suru toki ni benri desu.",
+          "text_vi": "Siêu thị tiện khi mua đồ cần thiết cho cuộc sống.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "野菜、果物、肉、魚などの新鮮な食品や、調味料、冷凍食品、いろいろな飲み物、お酒などを買うことができます。",
+          "romaji": "Yasai, kudamono, niku, sakana nado no shinsen na shokuhin ya, choomiryoo, reetoo-shokuhin, iroiro na nomimono, osake nado o kau koto ga dekimasu.",
+          "text_vi": "Có thể mua thực phẩm tươi như rau, trái cây, thịt, cá, cùng gia vị, đồ đông lạnh, các loại đồ uống, rượu…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、トイレットペーパーや洗剤など、日用品のほとんどをスーパーで買うことができます。",
+          "romaji": "Mata, toiretto-peepaa ya senzai nado, nichiyoohin no hotondo o suupaa de kau koto ga dekimasu.",
+          "text_vi": "Ngoài ra, hầu hết đồ dùng hằng ngày như giấy vệ sinh, bột giặt đều mua được ở siêu thị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "コンビニエンスストアは、「コンビニ」と言うことが多いです。",
+          "romaji": "Konbiniensu-sutoa wa, \"konbini\" to iu koto ga ooi desu.",
+          "text_vi": "Cửa hàng tiện lợi thường được gọi tắt là \"konbini\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "コンビニも普段の買い物に便利ですが、品物の種類はスーパーほど多くありません。",
+          "romaji": "Konbini mo fudan no kaimono ni benri desu ga, shinamono no shurui wa suupaa hodo ooku arimasen.",
+          "text_vi": "Konbini cũng tiện cho mua sắm hằng ngày, nhưng chủng loại hàng không nhiều bằng siêu thị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "コンビニでは、宅配便を出したり、電気代などの公共料金や税金を払ったり、コンサートのチケットを買ったりすることができます。",
+          "romaji": "Konbini de wa, takuhaibin o dashitari, denkidai nado no kookyoo-ryookin ya zeekin o harattari, konsaato no chiketto o kattari suru koto ga dekimasu.",
+          "text_vi": "Ở konbini có thể gửi bưu kiện, trả tiền điện và các loại phí công cộng, nộp thuế, mua vé hòa nhạc…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ATMもあります。",
+          "romaji": "Eetiiemu mo arimasu.",
+          "text_vi": "Còn có cả cây ATM.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "コンビニは、朝早い時間も夜遅い時間も開いているところが多いです。お休みもほとんどありません。",
+          "romaji": "Konbini wa, asa hayai jikan mo yoru osoi jikan mo aite iru tokoro ga ooi desu. Oyasumi mo hotondo arimasen.",
+          "text_vi": "Nhiều konbini mở cửa cả sáng sớm lẫn đêm khuya, hầu như không có ngày nghỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分の都合に合わせて、買う場所を選びましょう。",
+          "romaji": "Jibun no tsugoo ni awasete, kau basho o erabimashoo.",
+          "text_vi": "Hãy chọn nơi mua sắm phù hợp với hoàn cảnh của mình.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "デパート",
+          "reading": "デパート",
+          "romaji": "depaato",
+          "meaning": "cửa hàng bách hóa"
+        },
+        {
+          "word": "贈り物",
+          "reading": "おくりもの",
+          "romaji": "okurimono",
+          "meaning": "quà tặng"
+        },
+        {
+          "word": "日用品",
+          "reading": "にちようひん",
+          "romaji": "nichiyoohin",
+          "meaning": "đồ dùng hằng ngày"
+        },
+        {
+          "word": "冷凍食品",
+          "reading": "れいとうしょくひん",
+          "romaji": "reetoo-shokuhin",
+          "meaning": "thực phẩm đông lạnh"
+        },
+        {
+          "word": "公共料金",
+          "reading": "こうきょうりょうきん",
+          "romaji": "kookyoo-ryookin",
+          "meaning": "phí dịch vụ công cộng"
+        },
+        {
+          "word": "宅配便",
+          "reading": "たくはいびん",
+          "romaji": "takuhaibin",
+          "meaning": "dịch vụ chuyển phát"
+        },
+        {
+          "word": "調味料",
+          "reading": "ちょうみりょう",
+          "romaji": "choomiryoo",
+          "meaning": "gia vị"
+        }
+      ]
+    },
+    {
+      "title": "Trả tiền điện và rút tiền ở cửa hàng tiện lợi",
+      "description": "Hỏi được có trả hóa đơn ở quầy được không, hỏi chỗ ATM và làm theo các bước rút tiền.",
+      "url": "/uploads/lesson-videos/n4-02-convenience-store/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、ここで払えますか。",
+          "romaji": "Kore, koko de haraemasu ka.",
+          "text_vi": "Cái này trả ở đây được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "大丈夫ですよ。",
+          "romaji": "Daijoobu desu yo.",
+          "text_vi": "Được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "じゃあ、お願いします。",
+          "romaji": "Jaa, onegaishimasu.",
+          "text_vi": "Vậy nhờ anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "かしこまりました。",
+          "romaji": "Kashikomarimashita.",
+          "text_vi": "Vâng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "9,142円になります。",
+          "romaji": "Kyuusen hyaku yonjuuni-en ni narimasu.",
+          "text_vi": "Của quý khách hết 9.142 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これでお願いします。",
+          "romaji": "Kore de onegaishimasu.",
+          "text_vi": "Anh lấy tiền này nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "1万円お預かりします。",
+          "romaji": "Ichiman-en oazukari shimasu.",
+          "text_vi": "Tôi nhận của quý khách 10.000 yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "858円のお返しになります。",
+          "romaji": "Happyaku gojuuhachi-en no okaeshi ni narimasu.",
+          "text_vi": "Tôi gửi lại quý khách 858 yên tiền thừa.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、すみません。お金を下ろしたいんですが、ATMはどこですか。",
+          "romaji": "Anoo, sumimasen. Okane o oroshitain desu ga, eetiiemu wa doko desu ka.",
+          "text_vi": "Ừm, xin lỗi. Tôi muốn rút tiền, cây ATM ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "あちらです。",
+          "romaji": "Achira desu.",
+          "text_vi": "Ở đằng kia ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "使い方はわかりますか。",
+          "romaji": "Tsukaikata wa wakarimasu ka.",
+          "text_vi": "Anh có biết cách dùng không?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、多分。",
+          "romaji": "Hai, tabun.",
+          "text_vi": "Vâng, chắc là biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "カードを入れます。",
+          "romaji": "Kaado o iremasu.",
+          "text_vi": "Cho thẻ vào.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「お引き出し」を押します。",
+          "romaji": "\"Ohikidashi\" o oshimasu.",
+          "text_vi": "Bấm \"Rút tiền\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "手数料がわかります。「確認」を押します。",
+          "romaji": "Tesuuryoo ga wakarimasu. \"Kakunin\" o oshimasu.",
+          "text_vi": "Màn hình hiện phí giao dịch. Bấm \"Xác nhận\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "暗証番号を入力します。",
+          "romaji": "Anshoo-bangoo o nyuuryoku shimasu.",
+          "text_vi": "Nhập mã PIN.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "金額と「円」を押します。",
+          "romaji": "Kingaku to \"en\" o oshimasu.",
+          "text_vi": "Bấm số tiền rồi bấm \"Yên\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お金とカードを受け取ります。",
+          "romaji": "Okane to kaado o uketorimasu.",
+          "text_vi": "Nhận tiền và thẻ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "電気料金",
+          "reading": "でんきりょうきん",
+          "romaji": "denki-ryookin",
+          "meaning": "tiền điện"
+        },
+        {
+          "word": "払う",
+          "reading": "はらう",
+          "romaji": "harau",
+          "meaning": "trả tiền"
+        },
+        {
+          "word": "お金を下ろす",
+          "reading": "おかねをおろす",
+          "romaji": "okane o orosu",
+          "meaning": "rút tiền"
+        },
+        {
+          "word": "手数料",
+          "reading": "てすうりょう",
+          "romaji": "tesuuryoo",
+          "meaning": "phí giao dịch"
+        },
+        {
+          "word": "暗証番号",
+          "reading": "あんしょうばんごう",
+          "romaji": "anshoo-bangoo",
+          "meaning": "mã PIN"
+        },
+        {
+          "word": "金額",
+          "reading": "きんがく",
+          "romaji": "kingaku",
+          "meaning": "số tiền"
+        }
+      ]
+    },
+    {
+      "title": "Mua cơm hộp ở cửa hàng tiện lợi",
+      "description": "Trả lời được khi nhân viên hỏi có hâm nóng không, xin thêm thìa và hỏi dùng phiếu giảm giá.",
+      "url": "/uploads/lesson-videos/n4-02-convenience-store/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、お願いします。",
+          "romaji": "Kore, onegaishimasu.",
+          "text_vi": "Tính cho tôi cái này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お弁当は温めますか。",
+          "romaji": "Obentoo wa atatamemasu ka.",
+          "text_vi": "Quý khách có muốn hâm nóng cơm hộp không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, nhờ anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お箸をお付けしますか。",
+          "romaji": "Ohashi o otsuke shimasu ka.",
+          "text_vi": "Quý khách có lấy đũa không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。スプーンももらえますか。",
+          "romaji": "Hai. Supuun mo moraemasu ka.",
+          "text_vi": "Có. Cho tôi xin thêm cái thìa được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "かしこまりました。",
+          "romaji": "Kashikomarimashita.",
+          "text_vi": "Vâng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "864円になります。",
+          "romaji": "Happyaku rokujuuyo-en ni narimasu.",
+          "text_vi": "Của quý khách hết 864 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "1,000円お預かりします。",
+          "romaji": "Sen-en oazukari shimasu.",
+          "text_vi": "Tôi nhận của quý khách 1.000 yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "当店のポイントカードはお持ちですか。",
+          "romaji": "Tooten no pointo-kaado wa omochi desu ka.",
+          "text_vi": "Quý khách có thẻ tích điểm của cửa hàng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ちょっと待ってください。",
+          "romaji": "Chotto matte kudasai.",
+          "text_vi": "Chờ tôi một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、クーポンを持っているんですが、使えますか。",
+          "romaji": "Anoo, kuupon o motte irun desu ga, tsukaemasu ka.",
+          "text_vi": "Ừm, tôi có phiếu giảm giá, dùng được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ちょっと拝見しますね。",
+          "romaji": "Chotto haiken shimasu ne.",
+          "text_vi": "Cho tôi xem một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お客様、申し訳ありません。こちらは有効期限が切れています。",
+          "romaji": "Okyakusama, mooshiwake arimasen. Kochira wa yuukoo-kigen ga kirete imasu.",
+          "text_vi": "Thưa quý khách, thành thật xin lỗi. Phiếu này đã hết hạn sử dụng rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、そうですか。",
+          "romaji": "Aa, soo desu ka.",
+          "text_vi": "À, vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ポイントはご利用になりますか。",
+          "romaji": "Pointo wa goriyoo ni narimasu ka.",
+          "text_vi": "Quý khách có dùng điểm không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "いえ、貯めておいてください。",
+          "romaji": "Ie, tamete oite kudasai.",
+          "text_vi": "Không, cứ tích lại cho tôi.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "かしこまりました。",
+          "romaji": "Kashikomarimashita.",
+          "text_vi": "Vâng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "136円のお返しになります。",
+          "romaji": "Hyaku sanjuuroku-en no okaeshi ni narimasu.",
+          "text_vi": "Tôi gửi lại quý khách 136 yên tiền thừa.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn quý khách.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "弁当",
+          "reading": "べんとう",
+          "romaji": "bentoo",
+          "meaning": "cơm hộp"
+        },
+        {
+          "word": "温める",
+          "reading": "あたためる",
+          "romaji": "atatameru",
+          "meaning": "hâm nóng"
+        },
+        {
+          "word": "箸",
+          "reading": "はし",
+          "romaji": "hashi",
+          "meaning": "đũa"
+        },
+        {
+          "word": "スプーン",
+          "reading": "スプーン",
+          "romaji": "supuun",
+          "meaning": "thìa"
+        },
+        {
+          "word": "クーポン",
+          "reading": "クーポン",
+          "romaji": "kuupon",
+          "meaning": "phiếu giảm giá"
+        },
+        {
+          "word": "有効期限",
+          "reading": "ゆうこうきげん",
+          "romaji": "yuukoo-kigen",
+          "meaning": "hạn sử dụng"
+        },
+        {
+          "word": "貯める",
+          "reading": "ためる",
+          "romaji": "tameru",
+          "meaning": "tích lũy"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Dùng dịch vụ ở cửa hàng tiện lợi",
+      "description": "Ôn lại thể khả năng「払えます」,「〜たいんですが」và trợ từ「も」.",
+      "url": "/uploads/lesson-videos/n4-02-convenience-store/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ここで はらえますか",
+          "romaji": "koko de haraemasu ka",
+          "text_vi": "Có trả tiền ở đây được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、ここで払えますか。",
+          "romaji": "Kore, koko de haraemasu ka.",
+          "text_vi": "Cái này trả ở đây được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "大丈夫ですよ。",
+          "romaji": "Daijoobu desu yo.",
+          "text_vi": "Được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞の可能形は、「することができます」と同じ意味です。",
+          "romaji": "Dooshi no kanookee wa, \"suru koto ga dekimasu\" to onaji imi desu.",
+          "text_vi": "Thể khả năng của động từ có nghĩa giống \"suru koto ga dekimasu\" (có thể làm).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「払えます」は「払うことができます」と同じです。",
+          "romaji": "\"Haraemasu\" wa \"harau koto ga dekimasu\" to onaji desu.",
+          "text_vi": "\"Haraemasu\" giống \"harau koto ga dekimasu\" (có thể trả tiền).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、王さんは電気料金をコンビニで払うことができるかどうかを聞きたいので、「払えますか」と聞いています。",
+          "romaji": "Kono bamen de wa, Oo-san wa denki-ryookin o konbini de harau koto ga dekiru ka doo ka o kikitai node, \"Haraemasu ka\" to kiite imasu.",
+          "text_vi": "Trong cảnh này, anh Vương muốn hỏi có trả tiền điện ở cửa hàng tiện lợi được không nên hỏi \"Haraemasu ka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、「払えますか」の代わりに「払うことができますか」と言うこともできます。",
+          "romaji": "Kono bamen de wa, \"Haraemasu ka\" no kawari ni \"Harau koto ga dekimasu ka\" to iu koto mo dekimasu.",
+          "text_vi": "Ở đây cũng có thể nói \"Harau koto ga dekimasu ka\" thay cho \"Haraemasu ka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、図書館で「借りられますか」とか、お店のレジで「カードは使えますか」と聞くことができます。",
+          "romaji": "Hoka ni mo, toshokan de \"Kariraremasu ka\" toka, omise no reji de \"Kaado wa tsukaemasu ka\" to kiku koto ga dekimasu.",
+          "text_vi": "Ngoài ra, ở thư viện có thể hỏi \"Mượn được không ạ?\", ở quầy thu ngân có thể hỏi \"Dùng thẻ được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "おかねを おろしたいんですが",
+          "romaji": "okane o oroshitain desu ga",
+          "text_vi": "Tôi muốn rút tiền…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "お金を下ろしたいんですが、ATMはどこですか。",
+          "romaji": "Okane o oroshitain desu ga, eetiiemu wa doko desu ka.",
+          "text_vi": "Tôi muốn rút tiền, cây ATM ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "あちらです。",
+          "romaji": "Achira desu.",
+          "text_vi": "Ở đằng kia ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞のます形＋たいです」は、自分の希望や願望を伝えるときに使う表現です。",
+          "romaji": "\"Dooshi no masu-kee + tai desu\" wa, jibun no kiboo ya ganboo o tsutaeru toki ni tsukau hyoogen desu.",
+          "text_vi": "\"Động từ thể masu + tai desu\" dùng để nói mong muốn, nguyện vọng của mình.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のます形の「ます」を消して「たいです」をつけます。",
+          "romaji": "Dooshi no masu-kee no \"masu\" o keshite \"tai desu\" o tsukemasu.",
+          "text_vi": "Bỏ \"masu\" ở thể masu rồi thêm \"tai desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、「お金を下ろしたいんですが」と言っています。",
+          "romaji": "Kono kaiwa de wa, \"Okane o oroshitain desu ga\" to itte imasu.",
+          "text_vi": "Trong hội thoại này, anh Vương nói \"Okane o oroshitain desu ga\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「お金を下ろしたいんですが」は、「お金を下ろしたいです」より少し遠回しに自分の希望や願望を伝える丁寧な表現です。",
+          "romaji": "\"Okane o oroshitain desu ga\" wa, \"Okane o oroshitai desu\" yori sukoshi toomawashi ni jibun no kiboo ya ganboo o tsutaeru teenee na hyoogen desu.",
+          "text_vi": "\"Okane o oroshitain desu ga\" là cách nói lịch sự, nói tránh hơn một chút so với \"Okane o oroshitai desu\" (Tôi muốn rút tiền).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:14",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "スプーンも もらえますか",
+          "romaji": "supuun mo moraemasu ka",
+          "text_vi": "Cho tôi xin thêm thìa được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:20",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "お箸をお付けしますか。",
+          "romaji": "Ohashi o otsuke shimasu ka.",
+          "text_vi": "Quý khách có lấy đũa không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:23",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。スプーンももらえますか。",
+          "romaji": "Hai. Supuun mo moraemasu ka.",
+          "text_vi": "Có. Cho tôi xin thêm cái thìa được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「も」は、さらにもう一つ付け加えるときに使います。",
+          "romaji": "\"Mo\" wa, sara ni moo hitotsu tsukekuwaeru toki ni tsukaimasu.",
+          "text_vi": "\"Mo\" dùng khi thêm vào một thứ nữa.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「ケーキを食べます。そして、アイスクリームも食べます」のように、ケーキだけでなくアイスクリームも食べるときに使います。",
+          "romaji": "Tatoeba, \"Keeki o tabemasu. Soshite, aisukuriimu mo tabemasu\" no yoo ni, keeki dake de naku aisukuriimu mo taberu toki ni tsukaimasu.",
+          "text_vi": "Ví dụ: \"Tôi ăn bánh kem. Và tôi ăn cả kem nữa\" – dùng khi ăn không chỉ bánh kem mà cả kem.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この場面では、王さんはお箸だけでなくスプーンも欲しかったので、「スプーンももらえますか」と「も」を使っています。",
+          "romaji": "Kono bamen de wa, Oo-san wa ohashi dake de naku supuun mo hoshikatta node, \"Supuun mo moraemasu ka\" to \"mo\" o tsukatte imasu.",
+          "text_vi": "Trong cảnh này, anh Vương muốn cả thìa chứ không chỉ đũa nên dùng \"mo\": \"Cho tôi xin thêm cái thìa\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「そばが好きです。うどんも好きです」とか、「これ、ください」「それもください」と使うことができます。",
+          "romaji": "Hoka ni mo, \"Soba ga suki desu. Udon mo suki desu\" toka, \"Kore, kudasai\" \"Sore mo kudasai\" to tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra có thể dùng như \"Tôi thích soba. Tôi cũng thích udon\", hay \"Cho tôi cái này\" – \"Cho tôi cả cái đó nữa\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

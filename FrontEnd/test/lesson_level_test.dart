@@ -6,7 +6,7 @@ void main() {
   group('defaultLessonLevel', () {
     test('dùng đúng trình độ trong hồ sơ', () {
       expect(defaultLessonLevel('N4'), 'N4');
-      expect(defaultLessonLevel('N2'), 'N2');
+      expect(defaultLessonLevel('N3'), 'N3');
     });
 
     test('chấp nhận chữ thường, khoảng trắng và dạng số của hồ sơ cũ', () {
@@ -14,8 +14,13 @@ void main() {
       expect(defaultLessonLevel('5'), 'N5');
     });
 
-    test('người học N1 bắt đầu ở N2 vì chưa có bài N1', () {
-      expect(defaultLessonLevel('N1'), 'N2');
+    test('người học N2, N1 bắt đầu ở N3 — cấp cao nhất có bài tình huống', () {
+      expect(defaultLessonLevel('N2'), 'N3');
+      expect(defaultLessonLevel('N1'), 'N3');
+    });
+
+    test('hàng lọc chỉ có các cấp có bài tình huống', () {
+      expect(kLessonLevels, ['N5', 'N4', 'N3']);
     });
 
     test('hồ sơ thiếu hoặc sai định dạng bắt đầu từ N5', () {

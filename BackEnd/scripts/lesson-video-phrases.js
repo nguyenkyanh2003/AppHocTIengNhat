@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { parseManifestName } from './lesson-video-manifests.js';
+
 const DATA_DIR = fileURLToPath(new URL('../data/lesson-videos/', import.meta.url));
 
 /**
@@ -17,7 +19,7 @@ const DATA_DIR = fileURLToPath(new URL('../data/lesson-videos/', import.meta.url
  */
 export const loadVideoKeyPhrases = (dir = DATA_DIR) => {
   const byLesson = new Map();
-  const names = fs.readdirSync(dir).filter((name) => /^n5-\d{2}-.+\.json$/.test(name)).sort();
+  const names = fs.readdirSync(dir).filter((name) => parseManifestName(name)).sort();
 
   for (const name of names) {
     const manifest = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));

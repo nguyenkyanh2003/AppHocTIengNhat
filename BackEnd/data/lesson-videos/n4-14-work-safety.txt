@@ -1,0 +1,116 @@
+# Lời thoại Tình huống: An toàn khi làm việc
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-11-15.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Chỉ tay hô to xác nhận an toàn
+*00:05 | 先輩 / Senpai / Đàn anh | 待って待って、ミゲルさん。指差呼称しないと。 | Matte matte, Migeru-san. Shisa koshoo shinai to. | Khoan đã, anh Miguel. Phải chỉ tay hô to chứ.
+00:12 | ミゲル / Migeru / Miguel | 指差…？何ですか。 | Shisa...? Nan desu ka. | Chỉ tay...? Là gì vậy ạ?
+00:16 | 先輩 / Senpai / Đàn anh | ほら、指差呼称。指を指して安全を確認する作業だよ。 | Hora, shisa koshoo. Yubi o sashite anzen o kakunin suru sagyoo da yo. | Đó, chỉ tay hô to. Là thao tác chỉ tay để xác nhận an toàn đó.
+*00:24 | ミゲル / Migeru / Miguel | はいはい、ガイダンスで練習しました。前の仕事ではしたことがありません。 | Hai hai, gaidansu de renshuu shimashita. Mae no shigoto de wa shita koto ga arimasen. | Vâng vâng, tôi đã tập ở buổi hướng dẫn rồi. Nhưng công việc trước tôi chưa từng làm.
+00:32 | 先輩 / Senpai / Đàn anh | そうなんだ。じゃあもう一度一緒にやってみようか。 | Soo nan da. Jaa moo ichido issho ni yatte miyoo ka. | Vậy à. Vậy làm lại cùng nhau một lần nữa nhé.
+00:37 | ミゲル / Migeru / Miguel | はい、お願いします。 | Hai, onegaishimasu. | Vâng, nhờ anh ạ.
+*00:39 | 先輩 / Senpai / Đàn anh | まず右を見て、それからこういう感じに指をさしながら「右、よし」って言って。 | Mazu migi o mite, sorekara koo iu kanji ni yubi o sashinagara "migi, yoshi" tte itte. | Trước tiên nhìn bên phải, rồi vừa chỉ tay như thế này vừa nói "phải, được".
+00:52 | ミゲル / Migeru / Miguel | 右、よし。 | Migi, yoshi. | Phải, được.
+01:02 | 先輩 / Senpai / Đàn anh | 次は同じように、左。 | Tsugi wa onaji yoo ni, hidari. | Tiếp theo cũng làm tương tự, bên trái.
+01:05 | ミゲル / Migeru / Miguel | 左、よし。 | Hidari, yoshi. | Trái, được.
+01:12 | 先輩 / Senpai / Đàn anh | 最後は前方。 | Saigo wa zenpoo. | Cuối cùng là phía trước.
+01:15 | ミゲル / Migeru / Miguel | 前方、よし。 | Zenpoo, yoshi. | Phía trước, được.
+01:28 | 先輩 / Senpai / Đàn anh | そうそう。じゃあ一人でやってみて。白い線に立って。 | Soo soo. Jaa hitori de yatte mite. Shiroi sen ni tatte. | Đúng rồi đó. Vậy anh thử làm một mình xem. Đứng vào vạch trắng đi.
+01:38 | ミゲル / Migeru / Miguel | 右、よし。 | Migi, yoshi. | Phải, được.
+01:43 | ミゲル / Migeru / Miguel | 左、よし。 | Hidari, yoshi. | Trái, được.
+01:48 | ミゲル / Migeru / Miguel | 前方、よし。 | Zenpoo, yoshi. | Phía trước, được.
+01:51 | 先輩 / Senpai / Đàn anh | そうそう。確認できたら渡って。 | Soo soo. Kakunin dekitara watatte. | Đúng vậy. Xác nhận xong rồi thì đi qua.
+01:55 | ミゲル / Migeru / Miguel | わかった、はい。ありがとうございました。 | Wakatta, hai. Arigatoo gozaimashita. | Em hiểu rồi ạ. Cảm ơn anh.
+### từ vựng
+指差呼称 | しさこしょう | shisa-koshoo | chỉ tay hô to
+安全 | あんぜん | anzen | an toàn
+確認 | かくにん | kakunin | xác nhận
+前方 | ぜんぽう | zenpoo | phía trước
+よし | よし | yoshi | được rồi
+渡る | わたる | wataru | đi qua
+
+## scene-2.mp4
+# Nghe nhắc nhở an toàn buổi sáng
+00:01 | 大城 / Ooshiro / Ōshiro | 皆さん、おはようございます。 | Minasan, ohayoo gozaimasu. | Chào buổi sáng mọi người.
+00:03 | ミゲル / Migeru / Miguel | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng ạ.
+00:07 | 大城 / Ooshiro / Ōshiro | 先週、隣の工場でスプレー缶の事故が起きました。 | Senshuu, tonari no koojoo de supuree-kan no jiko ga okimashita. | Tuần trước, ở nhà máy bên cạnh đã xảy ra tai nạn bình xịt.
+00:16 | 大城 / Ooshiro / Ōshiro | 今回はけがをした人はいなかったそうですが、とても危ない状況でした。 | Konkai wa kega o shita hito wa inakatta soo desu ga, totemo abunai jookyoo deshita. | Lần này nghe nói không ai bị thương, nhưng tình huống rất nguy hiểm.
+00:22 | 大城 / Ooshiro / Ōshiro | 皆さんもスプレー缶の取り扱い、十分気をつけてください。 | Minasan mo supuree-kan no toriatsukai, juubun ki o tsukete kudasai. | Mọi người cũng hãy hết sức chú ý khi sử dụng bình xịt.
+00:28 | 大城 / Ooshiro / Ōshiro | この掲示、全員で復唱してください。「換気注意」「換気注意」「火気厳禁」「火気厳禁」。 | Kono keeji, zenin de fukushoo shite kudasai. "Kanki chuui" "kanki chuui" "kaki genkin" "kaki genkin". | Bảng thông báo này, tất cả mọi người hãy đọc theo. "Chú ý thông gió" "Chú ý thông gió" "Cấm lửa" "Cấm lửa".
+00:42 | 大城 / Ooshiro / Ōshiro | 一人一人気をつけて作業をしてください。 | Hitori hitori ki o tsukete sagyoo o shite kudasai. | Từng người hãy chú ý khi làm việc.
+00:48 | 大城 / Ooshiro / Ōshiro | それから、来週水曜日は定例ミーティングです。今後安全についての研修も行う予定です。 | Sorekara, raishuu suiyoobi wa teeree miitingu desu. Kongo anzen ni tsuite no kenshuu mo okonau yotee desu. | Ngoài ra, thứ Tư tuần sau là buổi họp định kỳ. Sắp tới cũng sẽ có buổi tập huấn về an toàn.
+00:57 | 大城 / Ooshiro / Ōshiro | 資料は今週中に配りますから、ミーティングの前によく読んでおいてください。 | Shiryoo wa konshuuchuu ni kubarimasu kara, miitingu no mae ni yoku yonde oite kudasai. | Tài liệu sẽ được phát trong tuần này, mọi người hãy đọc kỹ trước buổi họp nhé.
+01:06 | 大城 / Ooshiro / Ōshiro | 本日も安全第一で頑張りましょう。よろしくお願いします。 | Honjitsu mo anzen daiichi de ganbarimashoo. Yoroshiku onegaishimasu. | Hôm nay cũng hãy cố gắng đặt an toàn lên hàng đầu nhé. Mong mọi người hợp tác.
+01:18 | 大城 / Ooshiro / Ōshiro | ミゲルさん、さっきの事故の話、わかりましたか。 | Migeru-san, sakki no jiko no hanashi, wakarimashita ka. | Anh Miguel, câu chuyện tai nạn vừa nãy anh hiểu chưa?
+*01:22 | ミゲル / Migeru / Miguel | はい。「火気厳禁」は絶対ダメという意味ですよね。 | Hai. "Kaki genkin" wa zettai dame to iu imi desu yo ne. | Vâng. "Kaki genkin" nghĩa là tuyệt đối không được, đúng không ạ?
+01:27 | 大城 / Ooshiro / Ōshiro | そうそう。 | Soo soo. | Đúng đúng.
+01:28 | ミゲル / Migeru / Miguel | 気をつけます。 | Ki o tsukemasu. | Em sẽ chú ý ạ.
+01:30 | ミゲル / Migeru / Miguel | あの、大城さん。 | Ano, Ooshiro-san. | À, anh Ōshiro ơi.
+*01:33 | ミゲル / Migeru / Miguel | 来週のミーティングのことでお願いがあるんですが。 | Raishuu no miitingu no koto de onegai ga arun desu ga. | Em có việc muốn nhờ về cuộc họp tuần sau ạ.
+01:38 | ミゲル / Migeru / Miguel | 資料は新しい言葉や漢字が多いので、多分自分一人では読めないと思います。 | Shiryoo wa atarashii kotoba ya kanji ga ooi node, tabun jibun hitori de wa yomenai to omoimasu. | Tài liệu có nhiều từ mới và chữ Hán nên chắc em một mình không đọc hiểu được.
+*01:48 | ミゲル / Migeru / Miguel | できれば、その資料を翻訳してもらいたいんですが。 | Dekireba, sono shiryoo o honyaku shite moraitain desu ga. | Nếu được thì em muốn nhờ ai đó dịch giúp tài liệu đó ạ.
+01:56 | ミゲル / Migeru / Miguel | やっぱり日本語より自分の国の言葉の方がよくわかるので。 | Yappari nihongo yori jibun no kuni no kotoba no hoo ga yoku wakaru node. | Vì dù sao thì tiếng nước em vẫn dễ hiểu hơn tiếng Nhật ạ.
+02:02 | 大城 / Ooshiro / Ōshiro | それはそうですよね。 | Sore wa soo desu yo ne. | Đúng vậy nhỉ.
+02:04 | ミゲル / Migeru / Miguel | 無理を言ってすみません。 | Muri o itte sumimasen. | Xin lỗi vì đã đòi hỏi quá đáng.
+02:08 | 大城 / Ooshiro / Ōshiro | 多分、総務の方で用意していると思いますけれど、念のため確認しておきますね。 | Tabun, soomu no hoo de yooi shite iru to omoimasu keredo, nen no tame kakunin shite okimasu ne. | Chắc bên tổng vụ đã chuẩn bị sẵn rồi, nhưng để chắc chắn thì tôi sẽ xác nhận lại nhé.
+02:16 | ミゲル / Migeru / Miguel | ありがとうございます。よろしくお願いします。 | Arigatoo gozaimasu. Yoroshiku onegaishimasu. | Cảm ơn anh. Mong anh giúp đỡ ạ.
+### từ vựng
+スプレー缶 | スプレーかん | supuree-kan | bình xịt
+換気 | かんき | kanki | thông gió
+火気厳禁 | かきげんきん | kaki-genkin | cấm lửa
+復唱 | ふくしょう | fukushoo | đọc lại theo
+研修 | けんしゅう | kenshuu | tập huấn
+翻訳 | ほんやく | hon'yaku | dịch
+
+## scene-3.mp4
+# Họp dự đoán nguy hiểm
+00:00 | 大城 / Ooshiro / Ōshiro | はい、これから定例ミーティングを始めます。 | Hai, kore kara teeree miitingu o hajimemasu. | Vâng, bây giờ chúng ta bắt đầu buổi họp định kỳ.
+00:05 | 大城 / Ooshiro / Ōshiro | 今日は危険予知ミーティングをしますね。 | Kyoo wa kiken yochi miitingu o shimasu ne. | Hôm nay chúng ta sẽ họp dự đoán nguy hiểm nhé.
+00:12 | 大城 / Ooshiro / Ōshiro | この絵を見てください。この絵を見て、どんな危険があるか隣の人と話してください。 | Kono e o mite kudasai. Kono e o mite, donna kiken ga aru ka tonari no hito to hanashite kudasai. | Mọi người xem bức tranh này. Nhìn tranh rồi trao đổi với người bên cạnh xem có nguy hiểm gì.
+*00:23 | ミゲル / Migeru / Miguel | あのー、今は絵を見て話せばいいんですよね。 | Anoo, ima wa e o mite hanaseba iin desu yo ne. | À, bây giờ chỉ cần nhìn tranh rồi nói chuyện thôi phải không ạ.
+00:28 | 先輩 / Senpai / Đàn anh | そうだね。ミゲルさんは何がダメだと思う？ | Soo da ne. Migeru-san wa nani ga dame da to omou? | Đúng rồi. Anh Miguel nghĩ điều gì không ổn?
+*00:35 | ミゲル / Migeru / Miguel | そうですね。窓が開いてないですね。このままだと危ないと思います。 | Soo desu ne. Mado ga aitenai desu ne. Kono mama da to abunai to omoimasu. | Để em xem. Cửa sổ chưa mở nhỉ. Cứ như vậy thì em nghĩ nguy hiểm.
+00:44 | 先輩 / Senpai / Đàn anh | ね。一酸化炭素中毒になっちゃうよね。 | Ne. Issankatanso chuudoku ni nacchau yo ne. | Đúng không. Sẽ bị ngộ độc khí carbon monoxide đó.
+00:50 | ミゲル / Migeru / Miguel | 一酸化炭素中毒ですか。 | Issankatanso chuudoku desu ka. | Ngộ độc khí carbon monoxide ạ?
+00:57 | 先輩 / Senpai / Đàn anh | 一酸化炭素っていうガスが出て、中毒になること。 | Issankatanso tte iu gasu ga dete, chuudoku ni naru koto. | Là khi khí gọi là carbon monoxide thoát ra và gây ngộ độc đó.
+*01:04 | ミゲル / Migeru / Miguel | 中毒って何ですか。 | Chuudoku tte nan desu ka. | Chuudoku (ngộ độc) là gì vậy ạ?
+01:07 | 先輩 / Senpai / Đàn anh | 例えば、このみたいな体に悪い煙をたくさん吸って、吐き気がしたり苦しくなったり、すごく具合が悪くなること。 | Tatoeba, kono mitai na karada ni warui kemuri o takusan sutte, hakike ga shitari kurushiku nattari, sugoku guai ga waruku naru koto. | Ví dụ như hít nhiều khói độc hại cho cơ thể như thế này, bị buồn nôn, khó thở, người rất khó chịu.
+01:25 | ミゲル / Migeru / Miguel | あ、わかりました。ありがとうございます。 | A, wakarimashita. Arigatoo gozaimasu. | À, em hiểu rồi ạ. Cảm ơn anh.
+01:30 | 大城 / Ooshiro / Ōshiro | こういうところでは絶対換気が必要だよね。空気を入れ替えること。 | Koo iu tokoro de wa zettai kanki ga hitsuyoo da yo ne. Kuuki o irekaeru koto. | Ở những nơi như thế này thì nhất định cần thông gió nhỉ. Tức là thay đổi không khí.
+01:43 | ミゲル / Migeru / Miguel | ああ、そうですね。 | Aa, soo desu ne. | À, đúng vậy ạ.
+01:45 | 大城 / Ooshiro / Ōshiro | まず一つは、換気をしていないから一酸化炭素中毒になるかもしれない。これでいいですか。 | Mazu hitotsu wa, kanki o shite inai kara issankatanso chuudoku ni naru kamoshirenai. Kore de ii desu ka. | Trước tiên, một điều là vì không thông gió nên có thể bị ngộ độc khí CO. Như vậy được không ạ?
+01:56 | 先輩 / Senpai / Đàn anh | いいね。 | Ii ne. | Được đó.
+02:02 | 先輩 / Senpai / Đàn anh | そうだ、発表はミゲルさん、お願いできる？ | Soo da, happyoo wa Migeru-san, onegai dekiru? | À đúng rồi, phần thuyết trình nhờ anh Miguel được không?
+02:09 | ミゲル / Migeru / Miguel | え、できるかな…。 | E, dekiru ka na... | Ơ, không biết em có làm được không...
+02:17 | 大城 / Ooshiro / Ōshiro | それではグループごとに発表してもらいます。 | Sore de wa guruupu goto ni happyoo shite moraimasu. | Vậy thì mời từng nhóm lên thuyết trình.
+02:21 | 大城 / Ooshiro / Ōshiro | では、こちらのグループお願いします。 | Dewa, kochira no guruupu onegaishimasu. | Vậy mời nhóm này trình bày trước ạ.
+### từ vựng
+定例 | ていれい | teeree | định kỳ
+危険予知 | きけんよち | kiken-yochi | dự đoán nguy hiểm
+一酸化炭素 | いっさんかたんそ | issankatanso | khí CO
+中毒 | ちゅうどく | chuudoku | ngộ độc
+吐き気 | はきけ | hakike | buồn nôn
+発表 | はっぴょう | happyoo | thuyết trình
+
+## summary.mp4
+# Ôn tập: An toàn khi làm việc
+00:05 |  /  / Chủ đề | まどが あいてないです | mado ga aitenai desu | Cửa sổ chưa mở
+*00:08 | ミゲル / Migeru / Miguel | そうですね。窓が開いてないですね。 | Soo desu ne. Mado ga aitenai desu ne. | Đúng vậy nhỉ. Cửa sổ chưa mở.
+00:14 | ナレーター / Nareetaa / Người dẫn | 話し言葉では、もともとの表現を短くして言うことがよくあります。 | Hanashi kotoba de wa, motomoto no hyoogen o mijikaku shite iu koto ga yoku arimasu. | Trong văn nói, người ta thường rút ngắn cách diễn đạt vốn có.
+00:23 | ナレーター / Nareetaa / Người dẫn | この動画でミゲルさんは「窓が開いてないです」と言いました。 | Kono dooga de Migeru-san wa "Mado ga aitenai desu" to iimashita. | Trong video này, anh Miguel đã nói "Cửa sổ chưa mở".
+00:34 | ナレーター / Nareetaa / Người dẫn | 「開いていないです」の「て」がい抜きされて「開いてないです」となっています。「していません」も「していないです」も同じ意味です。 | "Aite inai desu" no "i" ga inuki sarete "aitenai desu" to natte imasu. "Shite imasen" mo "shite inai desu" mo onaji imi desu. | Chữ "i" trong "aite inai desu" bị lược bỏ (i-nuki) thành "aitenai desu". "Shite imasen" và "shite inai desu" cũng cùng một nghĩa.
+00:57 | ナレーター / Nareetaa / Người dẫn | 「開いている」→「開いてる」、「していない」→「してない」「開いてない」のように言うことができます。 | "Aite iru" → "aiteru", "shite inai" → "shitenai", "aitenai" no yoo ni iu koto ga dekimasu. | Có thể nói tương tự như "aite iru" → "aiteru", "shite inai" → "shitenai", "aitenai".
+01:25 | ナレーター / Nareetaa / Người dẫn | 話し言葉では、音が変わることもあります。例えば、「開けておいてください」が「開けといてください」ということがあります。 | Hanashi kotoba de wa, oto ga kawaru koto mo arimasu. Tatoeba, "akete oite kudasai" ga "aketoite kudasai" to iu koto ga arimasu. | Trong văn nói, âm cũng có thể biến đổi. Ví dụ, "akete oite kudasai" (hãy để mở sẵn) có khi thành "aketoite kudasai".
+01:50 | ナレーター / Nareetaa / Người dẫn | 「て＋おいて」が短くなって「といて」となります。「読んでおいてください」も「読んどいてください」となります。 | "Te + oite" ga mijikaku natte "toite" to narimasu. "Yonde oite kudasai" mo "yondoite kudasai" to narimasu. | "Te + oite" rút ngắn thành "toite". "Yonde oite kudasai" (đọc trước giúp nhé) cũng thành "yondoite kudasai".
+02:10 | ナレーター / Nareetaa / Người dẫn | 他にも、「食べなければなりません」が「早く食べなきゃなりません」ということもあります。「なければ」が短くなって「なきゃ」となります。 | Hoka ni mo, "tabenakereba narimasen" ga "hayaku tabenakya narimasen" to iu koto mo arimasu. "Nakereba" ga mijikaku natte "nakya" to narimasu. | Ngoài ra, "tabenakereba narimasen" (phải ăn) cũng có khi thành "hayaku tabenakya narimasen". "Nakereba" rút ngắn thành "nakya".
+02:36 | ナレーター / Nareetaa / Người dẫn | 動画の中では「一酸化炭素中毒になっちゃうよね」と言っています。「しまう」が短くなって「ちゃう」「じゃう」となります。 | Dooga no naka de wa "Issankatanso chuudoku ni nacchau yo ne" to itte imasu. "Shimau" ga mijikaku natte "chau", "jau" to narimasu. | Trong video có câu "sẽ bị ngộ độc khí CO đó nhỉ". "Shimau" rút ngắn thành "chau"/"jau".
+03:17 |  /  / Chủ đề | おねがいが あるんですが | onegai ga arun desu ga | Tôi có việc muốn nhờ
+*03:18 | ミゲル / Migeru / Miguel | 大城さん、来週のミーティングのことでお願いがあるんですが。 | Ooshiro-san, raishuu no miitingu no koto de onegai ga arun desu ga. | Anh Ōshiro ơi, tôi có việc muốn nhờ về cuộc họp tuần sau.
+03:24 | ナレーター / Nareetaa / Người dẫn | この動画でミゲルさんは「お願いがあるんですが」と言いました。 | Kono dooga de Migeru-san wa "Onegai ga arun desu ga" to iimashita. | Trong video này, anh Miguel đã nói "Tôi có việc muốn nhờ".
+03:39 | ナレーター / Nareetaa / Người dẫn | 「お願いがあるんですが」の「の」が省略されて「お願いがあるんですが」となっています。 | "Onegai ga aru no desu ga" no "no" ga shooryaku sarete "onegai ga arun desu ga" to natte imasu. | "No" trong "onegai ga aru no desu ga" bị lược bỏ thành "onegai ga arun desu ga".
+03:50 | ナレーター / Nareetaa / Người dẫn | 話し言葉では、このように音が変わることがよくあります。意味は同じですが、音が変わるとカジュアルな感じになります。 | Hanashi kotoba de wa, kono yoo ni oto ga kawaru koto ga yoku arimasu. Imi wa onaji desu ga, oto ga kawaru to kajuaru na kanji ni narimasu. | Trong văn nói, âm thường biến đổi như vậy. Nghĩa vẫn giống nhau, nhưng khi âm biến đổi thì nghe có cảm giác thân mật, tự nhiên hơn.
+04:08 | ナレーター / Nareetaa / Người dẫn | 他にも「わからない」→「わかんない」、「信じられない」→「信じらんない」のように音が変わることもあります。 | Hoka ni mo "wakaranai" → "wakannai", "shinjirarenai" → "shinjirannai" no yoo ni oto ga kawaru koto mo arimasu. | Ngoài ra cũng có thể biến âm như "wakaranai" → "wakannai", "shinjirarenai" → "shinjirannai".
+04:26 | ナレーター / Nareetaa / Người dẫn | 話し言葉では、文末が省略されることもあります。「雨が降るかもしれない」の「しれない」が省略されて「雨が降るかも」となります。 | Hanashi kotoba de wa, bunmatsu ga shooryaku sareru koto mo arimasu. "Ame ga furu kamo shirenai" no "shirenai" ga shooryaku sarete "ame ga furu kamo" to narimasu. | Trong văn nói, cuối câu cũng có thể bị lược bỏ. "Shirenai" trong "ame ga furu kamo shirenai" (có lẽ trời sẽ mưa) bị lược thành "ame ga furu kamo".
+04:47 | ナレーター / Nareetaa / Người dẫn | 「具合が悪いなら早く帰ったらどうですか」も、省略されて「具合が悪いなら早く帰ったら」となったりします。このように文末を省略した話し方は、親しい人同士のやりとりの中でよく使います。 | "Guai ga warui nara hayaku kaettara doo desu ka" mo, shooryaku sarete "Guai ga warui nara hayaku kaettara" to nattari shimasu. Kono yoo ni bunmatsu o shooryaku shita hanashikata wa, shitashii hito dooshi no yaritori no naka de yoku tsukaimasu. | Câu "guai ga warui nara hayaku kaettara doo desu ka" (nếu khó ở thì về sớm thế nào) cũng có khi bị lược thành "guai ga warui nara hayaku kaettara". Cách nói lược bỏ cuối câu như vậy thường dùng giữa những người thân thiết.

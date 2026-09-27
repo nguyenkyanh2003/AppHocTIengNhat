@@ -26,6 +26,9 @@ export const SITUATIONS = Object.freeze([
   'phone_call', // gọi điện thoại
   'real_estate', // tìm/thuê nhà
   'emergency', // tình huống khẩn cấp/thiên tai
+  'events', // sự kiện, lễ hội, sở thích
+  'library', // thư viện
+  'job_hunting', // tìm việc, phỏng vấn, ký hợp đồng
 ]);
 
 export default SITUATIONS;

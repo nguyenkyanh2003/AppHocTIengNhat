@@ -1,0 +1,811 @@
+{
+  "lesson": {
+    "title": "Tình huống: Mua sắm khéo ở siêu thị"
+  },
+  "videos": [
+    {
+      "title": "Hỏi thành phần gây dị ứng",
+      "description": "Hỏi được thực phẩm có chứa chất mình bị dị ứng không và đọc được nhãn thành phần.",
+      "url": "/uploads/lesson-videos/n4-05-smart-shopping/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "王さんは大豆のアレルギーがあるので、大豆が入っていないパンを探しています。",
+          "romaji": "Oo-san wa daizu no arerugii ga aru node, daizu ga haitte inai pan o sagashite imasu.",
+          "text_vi": "Anh Vương bị dị ứng đậu nành nên đang tìm loại bánh mì không có đậu nành.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません。",
+          "romaji": "Sumimasen.",
+          "text_vi": "Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい、何ですか。",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Vâng, có chuyện gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "この食パン、大豆を使ってますか。",
+          "romaji": "Kono shokupan, daizu o tsukattemasu ka.",
+          "text_vi": "Bánh mì gối này có dùng đậu nành không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ああ、大豆ですね。",
+          "romaji": "Aa, daizu desu ne.",
+          "text_vi": "À, đậu nành ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "使ってますね。",
+          "romaji": "Tsukattemasu ne.",
+          "text_vi": "Có dùng đấy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "どこに書いてあるんですか。",
+          "romaji": "Doko ni kaite arun desu ka.",
+          "text_vi": "Được ghi ở đâu vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "この四角の中の、原材料名に書いてありますよ。",
+          "romaji": "Kono shikaku no naka no, genzairyoo-mee ni kaite arimasu yo.",
+          "text_vi": "Có ghi ở mục thành phần nguyên liệu trong ô vuông này đấy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "へえ、大豆って書いてありますね。",
+          "romaji": "Hee, daizu tte kaite arimasu ne.",
+          "text_vi": "Ồ, có ghi chữ đậu nành thật.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あ、これ、大豆って書いてありませんよね。",
+          "romaji": "A, kore, daizu tte kaite arimasen yo ne.",
+          "text_vi": "À, cái này không ghi đậu nành nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ああ、そうですね。大豆、使ってませんね。",
+          "romaji": "Aa, soo desu ne. Daizu, tsukattemasen ne.",
+          "text_vi": "À, đúng vậy. Cái này không dùng đậu nành.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、よかった。じゃあ、これにします。",
+          "romaji": "Aa, yokatta. Jaa, kore ni shimasu.",
+          "text_vi": "À, may quá. Vậy tôi lấy cái này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いいえ。よかったですね。",
+          "romaji": "Iie. Yokatta desu ne.",
+          "text_vi": "Không có gì. May quá nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "大豆",
+          "reading": "だいず",
+          "romaji": "daizu",
+          "meaning": "đậu nành"
+        },
+        {
+          "word": "アレルギー",
+          "reading": "アレルギー",
+          "romaji": "arerugii",
+          "meaning": "dị ứng"
+        },
+        {
+          "word": "食パン",
+          "reading": "しょくパン",
+          "romaji": "shokupan",
+          "meaning": "bánh mì gối"
+        },
+        {
+          "word": "原材料名",
+          "reading": "げんざいりょうめい",
+          "romaji": "genzairyoo-mee",
+          "meaning": "tên nguyên liệu"
+        },
+        {
+          "word": "四角",
+          "reading": "しかく",
+          "romaji": "shikaku",
+          "meaning": "ô vuông"
+        }
+      ]
+    },
+    {
+      "title": "Xem tờ quảng cáo và chọn thịt giá tốt",
+      "description": "Đọc được tờ quảng cáo siêu thị, so sánh giá và chọn món hời cùng bạn.",
+      "url": "/uploads/lesson-videos/n4-05-smart-shopping/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "明日のバーベキューは、何人集まりますか。",
+          "romaji": "Ashita no baabekyuu wa, nannin atsumarimasu ka.",
+          "text_vi": "Buổi nướng thịt ngày mai có bao nhiêu người đến ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "私たちを入れて10人ですよ。",
+          "romaji": "Watashitachi o irete juunin desu yo.",
+          "text_vi": "Tính cả chúng ta là 10 người.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "何時ごろ買い物に行きますか。",
+          "romaji": "Nanji goro kaimono ni ikimasu ka.",
+          "text_vi": "Khoảng mấy giờ mình đi mua đồ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "安くておいしいお肉があるといいですね。",
+          "romaji": "Yasukute oishii oniku ga aru to ii desu ne.",
+          "text_vi": "Có thịt vừa rẻ vừa ngon thì tốt nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "今日の新聞に、スーパーのチラシが入っていましたよね。",
+          "romaji": "Kyoo no shinbun ni, suupaa no chirashi ga haitte imashita yo ne.",
+          "text_vi": "Báo hôm nay có kẹp tờ quảng cáo của siêu thị nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "今日は肉の日ですよ。29日は「にく」だから。",
+          "romaji": "Kyoo wa niku no hi desu yo. Nijuuku-nichi wa \"niku\" dakara.",
+          "text_vi": "Hôm nay là \"ngày thịt\" đấy. Vì ngày 29 đọc là \"ni-ku\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ、面白いですね。",
+          "romaji": "Hee, omoshiroi desu ne.",
+          "text_vi": "Ồ, thú vị nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "今日はどこのスーパーも肉が安いですね。",
+          "romaji": "Kyoo wa doko no suupaa mo niku ga yasui desu ne.",
+          "text_vi": "Hôm nay siêu thị nào thịt cũng rẻ nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "このお肉、100グラム498円だって。",
+          "romaji": "Kono oniku, hyaku-guramu yonhyaku kyuujuuhachi-en datte.",
+          "text_vi": "Thịt này 100 gam có 498 yên thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "こっちは100グラム700円です。ちょっと高いですね。",
+          "romaji": "Kocchi wa hyaku-guramu nanahyaku-en desu. Chotto takai desu ne.",
+          "text_vi": "Cái này 100 gam 700 yên. Hơi đắt nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あ、でも、それは国産ですから、高いですけど、お買い得かもしれませんね。",
+          "romaji": "A, demo, sore wa kokusan desu kara, takai desu kedo, okaidoku kamo shiremasen ne.",
+          "text_vi": "À, nhưng đó là thịt trong nước nên đắt, nhưng có khi lại là món hời đấy.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ。",
+          "romaji": "Hee.",
+          "text_vi": "Ồ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "こっちの盛り合わせはどうですか。1,980円。500グラムも入ってますよ。",
+          "romaji": "Kocchi no moriawase wa doo desu ka. Sen kyuuhyaku hachijuu-en. Gohyaku-guramu mo haittemasu yo.",
+          "text_vi": "Còn khay thịt thập cẩm này thì sao? 1.980 yên mà có tận 500 gam đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わあ、いいですね。これ、買いましょう。",
+          "romaji": "Waa, ii desu ne. Kore, kaimashoo.",
+          "text_vi": "Ồ, được đấy. Mua cái này đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですね。あとは、お店に行ってから考えましょう。",
+          "romaji": "Soo desu ne. Ato wa, omise ni itte kara kangaemashoo.",
+          "text_vi": "Ừ nhỉ. Còn lại thì đến cửa hàng rồi tính.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "バーベキュー",
+          "reading": "バーベキュー",
+          "romaji": "baabekyuu",
+          "meaning": "tiệc nướng"
+        },
+        {
+          "word": "新聞",
+          "reading": "しんぶん",
+          "romaji": "shinbun",
+          "meaning": "báo"
+        },
+        {
+          "word": "チラシ",
+          "reading": "チラシ",
+          "romaji": "chirashi",
+          "meaning": "tờ quảng cáo"
+        },
+        {
+          "word": "国産",
+          "reading": "こくさん",
+          "romaji": "kokusan",
+          "meaning": "hàng trong nước"
+        },
+        {
+          "word": "お買い得",
+          "reading": "おかいどく",
+          "romaji": "okaidoku",
+          "meaning": "món hời"
+        },
+        {
+          "word": "盛り合わせ",
+          "reading": "もりあわせ",
+          "romaji": "moriawase",
+          "meaning": "khay thập cẩm"
+        },
+        {
+          "word": "グラム",
+          "reading": "グラム",
+          "romaji": "guramu",
+          "meaning": "gam"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi lại khi giá không đúng",
+      "description": "Nói được với nhân viên khi giá tính tiền khác giá mình nghĩ.",
+      "url": "/uploads/lesson-videos/n4-05-smart-shopping/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、すみません。",
+          "romaji": "Anoo, sumimasen.",
+          "text_vi": "Dạ, xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "何でしょうか。",
+          "romaji": "Nan deshoo ka.",
+          "text_vi": "Anh cần gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、さっきここで買ったんですけど。",
+          "romaji": "Kore, sakki koko de kattan desu kedo.",
+          "text_vi": "Cái này tôi vừa mua ở đây.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "はい。どうなさいましたか。",
+          "romaji": "Hai. Doo nasaimashita ka.",
+          "text_vi": "Vâng. Có vấn đề gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、値段が違うんですけど。",
+          "romaji": "Kore, nedan ga chigaun desu kedo.",
+          "text_vi": "Cái này giá không đúng ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ああ、ちょっと見せていただけますか。",
+          "romaji": "Aa, chotto misete itadakemasu ka.",
+          "text_vi": "À, anh cho tôi xem một chút được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ああ、割引は、この下に書いてあるんですよ。",
+          "romaji": "Aa, waribiki wa, kono shita ni kaite arun desu yo.",
+          "text_vi": "À, phần giảm giá được ghi ở phía dưới này đấy ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、そうなんですね。わかりました。ありがとうございます。",
+          "romaji": "Aa, soo nan desu ne. Wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "À, ra vậy. Tôi hiểu rồi. Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "いえ、どういたしまして。",
+          "romaji": "Ie, doo itashimashite.",
+          "text_vi": "Không có gì ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "値段",
+          "reading": "ねだん",
+          "romaji": "nedan",
+          "meaning": "giá"
+        },
+        {
+          "word": "違う",
+          "reading": "ちがう",
+          "romaji": "chigau",
+          "meaning": "khác, sai"
+        },
+        {
+          "word": "割引",
+          "reading": "わりびき",
+          "romaji": "waribiki",
+          "meaning": "giảm giá"
+        },
+        {
+          "word": "さっき",
+          "reading": "さっき",
+          "romaji": "sakki",
+          "meaning": "lúc nãy"
+        },
+        {
+          "word": "見せる",
+          "reading": "みせる",
+          "romaji": "miseru",
+          "meaning": "cho xem"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Mua sắm khéo ở siêu thị",
+      "description": "Ôn lại「〜てあります」,「〜といいですね」và「〜ています」chỉ kết quả.",
+      "url": "/uploads/lesson-videos/n4-05-smart-shopping/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どこに かいて あるんですか",
+          "romaji": "doko ni kaite arun desu ka",
+          "text_vi": "Được ghi ở đâu vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「〜てあります」は、誰かが何か目的を持ってある動作をして、その結果が残っている状態を表します。",
+          "romaji": "\"~te arimasu\" wa, dareka ga nanika mokuteki o motte aru doosa o shite, sono kekka ga nokotte iru jootai o arawashimasu.",
+          "text_vi": "\"~te arimasu\" diễn tả trạng thái còn lại kết quả của hành động mà ai đó đã làm có mục đích.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形に「あります」をつけます。",
+          "romaji": "Dooshi no te-kee ni \"arimasu\" o tsukemasu.",
+          "text_vi": "Thêm \"arimasu\" vào thể te của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このときの主語は、動作を行った人ではなく、動作の対象のものです。",
+          "romaji": "Kono toki no shugo wa, doosa o okonatta hito de wa naku, doosa no taishoo no mono desu.",
+          "text_vi": "Chủ ngữ lúc này không phải người làm hành động mà là đồ vật chịu tác động.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、自動販売機が壊れたので、誰かが「故障中」の紙を貼りました。その状態を見て、「故障中の紙が貼ってあります」と言います。",
+          "romaji": "Tatoeba, jidoo-hanbaiki ga kowareta node, dareka ga \"koshoochuu\" no kami o harimashita. Sono jootai o mite, \"Koshoochuu no kami ga hatte arimasu\" to iimasu.",
+          "text_vi": "Ví dụ, máy bán hàng tự động bị hỏng nên có người dán tờ giấy \"Đang hỏng\". Nhìn thấy vậy ta nói \"Có dán tờ giấy báo hỏng\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、客は「大豆」という表示を探しましたが、どこにも見つけられませんでした。",
+          "romaji": "Kono dooga de, kyaku wa \"daizu\" to iu hyooji o sagashimashita ga, doko ni mo mitsukeraremasen deshita.",
+          "text_vi": "Trong video, người khách tìm chữ \"đậu nành\" trên nhãn nhưng không thấy đâu cả.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それで、「どこに書いてあるんですか」と聞きました。",
+          "romaji": "Sorede, \"Doko ni kaite arun desu ka\" to kikimashita.",
+          "text_vi": "Vì vậy anh ấy hỏi \"Được ghi ở đâu vậy ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "店員は「この四角の中の原材料名に書いてありますよ」と客に教えました。",
+          "romaji": "Ten'in wa \"Kono shikaku no naka no genzairyoo-mee ni kaite arimasu yo\" to kyaku ni oshiemashita.",
+          "text_vi": "Nhân viên chỉ cho khách: \"Có ghi ở mục thành phần nguyên liệu trong ô vuông này\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「テーブルに花が飾ってあります」とか、「予約席のプレートが置いてあります」のように使うことができます。",
+          "romaji": "Hoka ni mo, \"Teeburu ni hana ga kazatte arimasu\" toka, \"Yoyakuseki no pureeto ga oite arimasu\" no yoo ni tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra có thể dùng như \"Trên bàn có cắm hoa\", \"Có đặt biển bàn đã đặt trước\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "あると いいですね",
+          "romaji": "aru to ii desu ne",
+          "text_vi": "Có thì tốt nhỉ",
+          "key_phrase": true
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞の辞書形・ない形に「といいですね」をつけて、そうなってほしいという未来への希望や願いを伝えることができます。",
+          "romaji": "Dooshi no jishokee, nai-kee ni \"to ii desu ne\" o tsukete, soo natte hoshii to iu mirai e no kiboo ya negai o tsutaeru koto ga dekimasu.",
+          "text_vi": "Thêm \"to ii desu ne\" vào thể từ điển hoặc thể nai của động từ để bày tỏ mong muốn, hy vọng điều gì đó sẽ xảy ra.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会社の同僚が病気です。元気になってほしいので、「早く元気になるといいですね」と自分の気持ちを伝えます。",
+          "romaji": "Kaisha no dooryoo ga byooki desu. Genki ni natte hoshii node, \"Hayaku genki ni naru to ii desu ne\" to jibun no kimochi o tsutaemasu.",
+          "text_vi": "Đồng nghiệp bị ốm. Vì mong người đó khỏe lại nên ta nói \"Mong anh sớm khỏe lại\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんとアンジェラさんがバーベキューの買い物について話しています。",
+          "romaji": "Kono dooga de wa, Oo-san to Anjera-san ga baabekyuu no kaimono ni tsuite hanashite imasu.",
+          "text_vi": "Trong video, anh Vương và chị Angela đang nói chuyện về việc mua đồ cho buổi nướng thịt.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「安くておいしい肉があるといいですね」と希望を述べています。",
+          "romaji": "\"Yasukute oishii niku ga aru to ii desu ne\" to kiboo o nobete imasu.",
+          "text_vi": "Họ nói lên mong muốn: \"Có thịt vừa rẻ vừa ngon thì tốt nhỉ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このように「といいですね」と言って、お互いの希望や願いを共有することで、人間関係を深めることができます。",
+          "romaji": "Kono yoo ni \"to ii desu ne\" to itte, otagai no kiboo ya negai o kyooyuu suru koto de, ningen-kankee o fukameru koto ga dekimasu.",
+          "text_vi": "Nói \"to ii desu ne\" để chia sẻ mong muốn với nhau giúp thắt chặt quan hệ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「といいですね」は丁寧な言い方ですが、親しい人同士なら「といいね」と言うこともできます。",
+          "romaji": "\"To ii desu ne\" wa teenee na iikata desu ga, shitashii hito dooshi nara \"to ii ne\" to iu koto mo dekimasu.",
+          "text_vi": "\"To ii desu ne\" là cách nói lịch sự, giữa những người thân thiết có thể nói \"to ii ne\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "明日は友達とピクニックに行きます。天気が心配です。友達と「明日晴れるといいね」とか「明日雨が降らないといいね」と言うことができます。",
+          "romaji": "Ashita wa tomodachi to pikunikku ni ikimasu. Tenki ga shinpai desu. Tomodachi to \"Ashita hareru to ii ne\" toka \"Ashita ame ga furanai to ii ne\" to iu koto ga dekimasu.",
+          "text_vi": "Mai đi dã ngoại với bạn, lo thời tiết. Có thể nói với bạn \"Mai trời nắng thì tốt nhỉ\" hay \"Mai không mưa thì tốt nhỉ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:29",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "チラシが はいって いましたよね",
+          "romaji": "chirashi ga haitte imashita yo ne",
+          "text_vi": "Có tờ quảng cáo kẹp trong báo nhỉ",
+          "key_phrase": true
+        },
+        {
+          "start": "03:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「〜ています」は、今より前に起きたことの結果が、そのまま残っていることを表すことができます。",
+          "romaji": "\"~te imasu\" wa, ima yori mae ni okita koto no kekka ga, sono mama nokotte iru koto o arawasu koto ga dekimasu.",
+          "text_vi": "\"~te imasu\" có thể diễn tả kết quả của việc đã xảy ra trước đó vẫn còn nguyên.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形に「います」をつけます。",
+          "romaji": "Dooshi no te-kee ni \"imasu\" o tsukemasu.",
+          "text_vi": "Thêm \"imasu\" vào thể te của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この文型では、「消える」「落ちる」「並ぶ」など、変化を表す自動詞を使います。",
+          "romaji": "Kono bunkee de wa, \"kieru\", \"ochiru\", \"narabu\" nado, henka o arawasu jidooshi o tsukaimasu.",
+          "text_vi": "Mẫu này dùng tự động từ chỉ sự thay đổi như \"kieru\" (tắt), \"ochiru\" (rơi), \"narabu\" (xếp hàng).",
+          "key_phrase": false
+        },
+        {
+          "start": "04:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "変化した「もの」や「人」などが主語になります。",
+          "romaji": "Henka shita \"mono\" ya \"hito\" nado ga shugo ni narimasu.",
+          "text_vi": "Chủ ngữ là đồ vật hay người đã thay đổi.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この変化には、誰かの目的や意図は含まれません。",
+          "romaji": "Kono henka ni wa, dareka no mokuteki ya ito wa fukumaremasen.",
+          "text_vi": "Sự thay đổi này không bao hàm mục đích hay ý đồ của ai.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「電気が消えました」「電気が消えています」、「財布が落ちました」「財布が落ちています」、「人が大勢並びました」「人が大勢並んでいます」と言うことができます。",
+          "romaji": "\"Denki ga kiemashita\" \"Denki ga kiete imasu\", \"Saifu ga ochimashita\" \"Saifu ga ochite imasu\", \"Hito ga oozee narabimashita\" \"Hito ga oozee narande imasu\" to iu koto ga dekimasu.",
+          "text_vi": "Có thể nói: \"Đèn đã tắt\" – \"Đèn đang tắt\", \"Ví rơi\" – \"Có cái ví đang rơi ở đó\", \"Nhiều người đã xếp hàng\" – \"Nhiều người đang xếp hàng\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんが「今日の新聞にスーパーのチラシが入っていましたよね」と言っています。",
+          "romaji": "Kono dooga de wa, Oo-san ga \"Kyoo no shinbun ni suupaa no chirashi ga haitte imashita yo ne\" to itte imasu.",
+          "text_vi": "Trong video, anh Vương nói \"Báo hôm nay có kẹp tờ quảng cáo của siêu thị nhỉ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「チラシが入っている」は、新聞の中にチラシが入った結果が残っていることを表します。",
+          "romaji": "\"Chirashi ga haitte iru\" wa, shinbun no naka ni chirashi ga haitta kekka ga nokotte iru koto o arawashimasu.",
+          "text_vi": "\"Chirashi ga haitte iru\" diễn tả kết quả tờ quảng cáo đã được kẹp vào báo vẫn còn đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "王さんはアンジェラさんと話す前に、新聞のチラシを見ました。それで「入っています」ではなくて、「入っていました」と過去形で言いました。",
+          "romaji": "Oo-san wa Anjera-san to hanasu mae ni, shinbun no chirashi o mimashita. Sorede \"haitte imasu\" de wa nakute, \"haitte imashita\" to kakokee de iimashita.",
+          "text_vi": "Anh Vương đã xem tờ quảng cáo trước khi nói chuyện với chị Angela, nên nói ở thì quá khứ \"haitte imashita\" chứ không phải \"haitte imasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「よね」は、確認や共感を示しています。",
+          "romaji": "\"Yo ne\" wa, kakunin ya kyookan o shimeshite imasu.",
+          "text_vi": "\"Yo ne\" thể hiện sự xác nhận hoặc đồng cảm.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

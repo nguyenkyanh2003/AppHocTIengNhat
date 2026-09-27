@@ -2,21 +2,25 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { manifestsByLesson, parseLevel } from './lesson-video-manifests.js';
 import { mergeManifest, planLessonFolder, transcriptSkeleton } from './lesson-video-staging.js';
 import { contentHash, faststart, mp4Duration } from './mp4-file.js';
 import { parseTranscriptText } from './transcript-text.js';
 
 /**
- * Đưa video gốc (`data/Video_baihoc/<số bài>. <chủ đề>/`) vào app: chép sang
- * `uploads/lesson-videos/<tên file mô tả>/scene-<n>.mp4` + `summary.mp4`, tối ưu
- * faststart, và cập nhật danh sách cảnh trong `data/lesson-videos/*.json`.
+ * Đưa video gốc (`data/Video_baihoc/<trình độ>/<số bài>. <chủ đề>/`) vào app:
+ * chép sang `uploads/lesson-videos/<tên file mô tả>/scene-<n>.mp4` +
+ * `summary.mp4`, tối ưu faststart, và cập nhật danh sách cảnh trong
+ * `data/lesson-videos/<trình độ>-<số bài>-*.json`.
  *
  * Không ghi DB — chạy `import-lesson-videos.js --all` sau đó. Thư mục nào có
  * bất thường (tên sai mẫu, file đánh số bài khác, hai file giống hệt nhau)
  * được báo rõ và giữ nguyên hiện trạng; các thư mục khác vẫn được đưa vào.
  *
- *   node scripts/stage-lesson-videos.js --dry-run
- *   node scripts/stage-lesson-videos.js [--from data/Video_baihoc]
+ *   node scripts/stage-lesson-videos.js --level N4 --dry-run
+ *   node scripts/stage-lesson-videos.js --level N4 [--from data/Video_baihoc/N4]
+ *
+ * Không có `--level` thì là N5.
  */
 
 const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
@@ -24,20 +28,16 @@ const MANIFEST_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');
 const UPLOAD_DIR = path.join(BACKEND_DIR, 'uploads', 'lesson-videos');
 
 const parseArgs = (argv) => {
-  const args = { dryRun: false, from: path.join(BACKEND_DIR, 'data', 'Video_baihoc') };
+  const args = { dryRun: false, level: 'N5', from: null };
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     if (flag === '--dry-run') args.dryRun = true;
+    else if (flag === '--level') args.level = parseLevel(argv[(index += 1)]);
     else if (flag === '--from') args.from = path.resolve(argv[(index += 1)]);
     else throw new Error(`Cờ không nhận ra: ${flag}`);
   }
+  args.from ??= path.join(BACKEND_DIR, 'data', 'Video_baihoc', args.level);
   return args;
-};
-
-/** File mô tả theo số bài, từ tên dạng `n5-10-bank.json`. */
-const manifestsByLesson = async () => {
-  const names = (await fs.readdir(MANIFEST_DIR)).filter((name) => /^n5-\d{2}-.+\.json$/.test(name));
-  return new Map(names.map((name) => [Number(name.slice(3, 5)), name]));
 };
 
 /** Chép một video sang `uploads`, bỏ qua nếu bản đích đã đúng từng byte. */
@@ -97,7 +97,7 @@ const stageFolder = async ({ folder, lesson, manifestName, args }) => {
   for (const name of names) files.push(await readVideoFile(folderPath, name));
 
   const { videos, errors } = planLessonFolder({ lesson, files });
-  console.log(`\nBài ${lesson} · ${folder} → ${manifestName}`);
+  console.log(`\n${args.level} bài ${lesson} · ${folder} → ${manifestName}`);
   if (errors.length > 0) {
     errors.forEach((error) => console.log(`  ✖ ${error}`));
     printEvidence(files);
@@ -160,7 +160,7 @@ const writeSkeleton = async ({ dir, lesson, title, videos, args }) => {
 
 const main = async () => {
   const args = parseArgs(process.argv.slice(2));
-  const manifests = await manifestsByLesson();
+  const manifests = manifestsByLesson(args.level);
   const folders = (await fs.readdir(args.from, { withFileTypes: true }))
     .filter((entry) => entry.isDirectory() && /^\d+/.test(entry.name))
     .map((entry) => ({ folder: entry.name, lesson: Number(/^\d+/.exec(entry.name)[0]) }))
@@ -171,7 +171,8 @@ const main = async () => {
   for (const { folder, lesson } of folders) {
     const manifestName = manifests.get(lesson);
     if (!manifestName) {
-      console.log(`\nBài ${lesson} · ${folder}\n  ✖ Chưa có file data/lesson-videos/n5-${String(lesson).padStart(2, '0')}-*.json.`);
+      const expected = `${args.level.toLowerCase()}-${String(lesson).padStart(2, '0')}-*.json`;
+      console.log(`\n${args.level} bài ${lesson} · ${folder}\n  ✖ Chưa có file data/lesson-videos/${expected}.`);
       rejected.push(lesson);
     } else if (await stageFolder({ folder, lesson, manifestName, args })) {
       staged += 1;

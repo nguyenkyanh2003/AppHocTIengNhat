@@ -1,0 +1,129 @@
+# Lời thoại Tình huống: Tiệm tóc, tiệm giặt và cửa hàng điện thoại
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Gửi áo ở tiệm giặt là
+00:01 | 王 / Oo / Vương | すみません。これ、お願いします。 | Sumimasen. Kore, onegaishimasu. | Xin lỗi, nhờ anh cái này.
+00:05 | 店員 / Ten'in / Nhân viên | はい。 | Hai. | Vâng.
+*00:08 | 店員 / Ten'in / Nhân viên | 会員証はお持ちですか。 | Kaiinshoo wa omochi desu ka. | Quý khách có thẻ hội viên không ạ?
+00:10 | 王 / Oo / Vương | いえ、持っていません。 | Ie, motte imasen. | Không, tôi không có.
+00:12 | 店員 / Ten'in / Nhân viên | では、お作りしますので、こちらにご記入ください。 | Dewa, otsukuri shimasu node, kochira ni gokinyuu kudasai. | Vậy chúng tôi sẽ làm thẻ, mời quý khách điền vào đây.
+00:19 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:27 | 王 / Oo / Vương | これでいいですか。 | Kore de ii desu ka. | Thế này được chưa ạ?
+00:34 | 店員 / Ten'in / Nhân viên | はい、結構です。 | Hai, kekkoo desu. | Vâng, được rồi ạ.
+00:36 | 店員 / Ten'in / Nhân viên | こちらはお急ぎですか。 | Kochira wa oisogi desu ka. | Đồ này quý khách có cần gấp không ạ?
+*00:39 | 王 / Oo / Vương | はい。今日中にできますか。 | Hai. Kyoojuu ni dekimasu ka. | Có. Có thể xong trong hôm nay không ạ?
+00:42 | 店員 / Ten'in / Nhân viên | はい。今のお時間でしたら、お急ぎサービスをご利用いただけますよ。 | Hai. Ima no ojikan deshitara, oisogi-saabisu o goriyoo itadakemasu yo. | Vâng. Giờ này thì quý khách dùng được dịch vụ làm gấp đấy ạ.
+00:50 | 店員 / Ten'in / Nhân viên | 無料です。 | Muryoo desu. | Miễn phí ạ.
+*00:51 | 王 / Oo / Vương | じゃあ、それでお願いします。 | Jaa, sore de onegaishimasu. | Vậy nhờ anh làm như thế.
+00:54 | 店員 / Ten'in / Nhân viên | かしこまりました。仕上がりは今日の午後5時以降です。 | Kashikomarimashita. Shiagari wa kyoo no gogo go-ji ikoo desu. | Vâng ạ. Sau 5 giờ chiều hôm nay là xong ạ.
+00:59 | 王 / Oo / Vương | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+01:02 | 店員 / Ten'in / Nhân viên | Yシャツが2枚で440円です。 | Waishatsu ga nimai de yonhyaku yonjuu-en desu. | Hai áo sơ mi, hết 440 yên ạ.
+01:16 | 店員 / Ten'in / Nhân viên | こちらがお預かり票と会員証です。 | Kochira ga oazukari-hyoo to kaiinshoo desu. | Đây là phiếu nhận đồ và thẻ hội viên ạ.
+01:25 | 王 / Oo / Vương | これは何ですか。 | Kore wa nan desu ka. | Cái này là gì ạ?
+01:27 | 店員 / Ten'in / Nhân viên | 受け取りのとき、出してください。 | Uketori no toki, dashite kudasai. | Khi đến lấy đồ quý khách đưa ra giúp ạ.
+01:30 | 王 / Oo / Vương | ああ、わかりました。じゃあ、よろしくお願いします。 | Aa, wakarimashita. Jaa, yoroshiku onegaishimasu. | À, tôi hiểu rồi. Vậy nhờ anh nhé.
+01:35 | 店員 / Ten'in / Nhân viên | はい、ありがとうございました。 | Hai, arigatoo gozaimashita. | Vâng, cảm ơn quý khách.
+### từ vựng
+会員証 | かいいんしょう | kaiinshoo | thẻ hội viên
+記入 | きにゅう | kinyuu | điền vào
+急ぎ | いそぎ | isogi | gấp
+今日中 | きょうじゅう | kyoojuu | trong hôm nay
+無料 | むりょう | muryoo | miễn phí
+仕上がり | しあがり | shiagari | lúc (đồ) xong
+受け取り | うけとり | uketori | việc nhận lại
+
+## scene-1.mp4
+# Cắt tóc ở tiệm làm tóc
+00:03 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+*00:04 | アンジェラ / Anjera / Angela | あのー、予約していないんですが、大丈夫ですか。 | Anoo, yoyaku shite inain desu ga, daijoobu desu ka. | Dạ, tôi chưa đặt lịch trước, có được không ạ?
+00:07 | 店員 / Ten'in / Nhân viên | はい、大丈夫ですよ。 | Hai, daijoobu desu yo. | Vâng, được ạ.
+00:10 | 店員 / Ten'in / Nhân viên | 今日はどうなさいますか。 | Kyoo wa doo nasaimasu ka. | Hôm nay quý khách muốn làm gì ạ?
+*00:12 | アンジェラ / Anjera / Angela | あのー、カットとシャンプーをお願いします。 | Anoo, katto to shanpuu o onegaishimasu. | Dạ, cho tôi cắt tóc và gội đầu.
+00:16 | 店員 / Ten'in / Nhân viên | はい、かしこまりました。 | Hai, kashikomarimashita. | Vâng, tôi hiểu rồi ạ.
+00:21 | 店員 / Ten'in / Nhân viên | では、シャンプー台へどうぞ。 | Dewa, shanpuu-dai e doozo. | Vậy mời quý khách ra ghế gội đầu.
+00:32 | 店員 / Ten'in / Nhân viên | どのくらいカットしますか。 | Dono kurai katto shimasu ka. | Quý khách muốn cắt khoảng bao nhiêu ạ?
+*00:33 | アンジェラ / Anjera / Angela | えーと、3センチぐらい切ってください。 | Eeto, san-senchi gurai kitte kudasai. | Ừm, cắt khoảng 3 cm giúp tôi.
+00:39 | 店員 / Ten'in / Nhân viên | これぐらいですか。 | Kore gurai desu ka. | Khoảng chừng này ạ?
+*00:41 | アンジェラ / Anjera / Angela | もう少し短くしてください。あと1センチぐらい。 | Moo sukoshi mijikaku shite kudasai. Ato issenchi gurai. | Ngắn hơn chút nữa. Thêm khoảng 1 cm.
+00:48 | 店員 / Ten'in / Nhân viên | はい、かしこまりました。 | Hai, kashikomarimashita. | Vâng ạ.
+00:52 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Quý khách thấy thế nào ạ?
+00:54 | アンジェラ / Anjera / Angela | あ、いい感じですね。ありがとうございます。 | A, ii kanji desu ne. Arigatoo gozaimasu. | À, đẹp đấy. Cảm ơn chị.
+01:03 | 店員 / Ten'in / Nhân viên | では、本日はシャンプーとカットで3,500円になります。 | Dewa, honjitsu wa shanpuu to katto de sanzen gohyaku-en ni narimasu. | Hôm nay gội và cắt hết 3.500 yên ạ.
+01:09 | アンジェラ / Anjera / Angela | はい。これでお願いします。 | Hai. Kore de onegaishimasu. | Vâng. Chị lấy tiền này nhé.
+01:18 | 店員 / Ten'in / Nhân viên | 6,500円のお返しです。 | Rokusen gohyaku-en no okaeshi desu. | Tôi gửi lại 6.500 yên tiền thừa.
+01:25 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+01:27 | アンジェラ / Anjera / Angela | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn chị.
+### từ vựng
+カット | カット | katto | cắt tóc
+シャンプー | シャンプー | shanpuu | gội đầu
+短い | みじかい | mijikai | ngắn
+切る | きる | kiru | cắt
+センチ | センチ | senchi | xăng-ti-mét
+いい感じ | いいかんじ | ii kanji | trông ổn
+
+## scene-3.mp4
+# Mua điện thoại và chọn gói cước
+00:03 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+00:06 | 店員 / Ten'in / Nhân viên | 今日は機種変更でしょうか、新規のお申し込みでしょうか。 | Kyoo wa kishu-henkoo deshoo ka, shinki no omooshikomi deshoo ka. | Hôm nay quý khách muốn đổi máy hay đăng ký mới ạ?
+00:11 | 王 / Oo / Vương | えっと、申し込みです。 | Etto, mooshikomi desu. | Ừm, đăng ký mới ạ.
+00:14 | 店員 / Ten'in / Nhân viên | かしこまりました。ご希望の機種はお決まりですか。 | Kashikomarimashita. Gokiboo no kishu wa okimari desu ka. | Vâng ạ. Quý khách đã chọn được máy chưa ạ?
+*00:20 | 王 / Oo / Vương | どうしようかなあ…写真がきれいに撮れる機種はどれですか。 | Doo shiyoo ka naa… Shashin ga kiree ni toreru kishu wa dore desu ka. | Chọn cái nào đây nhỉ… Máy nào chụp ảnh đẹp ạ?
+00:27 | 店員 / Ten'in / Nhân viên | それでしたら、こちらがおすすめですよ。 | Sore deshitara, kochira ga osusume desu yo. | Nếu vậy thì tôi khuyên dùng máy này ạ.
+00:40 | 王 / Oo / Vương | ああ、いいですね。じゃあ、これに決めます。 | Aa, ii desu ne. Jaa, kore ni kimemasu. | À, được đấy. Vậy tôi chọn máy này.
+00:45 | 店員 / Ten'in / Nhân viên | かしこまりました。では、こちらへどうぞ。 | Kashikomarimashita. Dewa, kochira e doozo. | Vâng ạ. Mời quý khách đi lối này.
+00:53 | 店員 / Ten'in / Nhân viên | こちらが料金プランです。 | Kochira ga ryookin-puran desu. | Đây là các gói cước ạ.
+01:01 | 店員 / Ten'in / Nhân viên | ご希望のプランはありますか。 | Gokiboo no puran wa arimasu ka. | Quý khách muốn chọn gói nào ạ?
+01:04 | 王 / Oo / Vương | うーん、よくわからないんですけど。 | Uun, yoku wakaranain desu kedo. | Ừm, tôi không rõ lắm.
+01:09 | 店員 / Ten'in / Nhân viên | インターネットやSNSはお使いになりますか。 | Intaanetto ya esu-enu-esu wa otsukai ni narimasu ka. | Quý khách có dùng internet hay mạng xã hội không ạ?
+*01:13 | 王 / Oo / Vương | ええ、使います。でも、電話はあまり使いません。 | Ee, tsukaimasu. Demo, denwa wa amari tsukaimasen. | Có, tôi có dùng. Nhưng ít gọi điện.
+01:19 | 店員 / Ten'in / Nhân viên | それでしたら、こちらのプランでいいと思いますよ。 | Sore deshitara, kochira no puran de ii to omoimasu yo. | Vậy thì tôi nghĩ gói này hợp đấy ạ.
+01:26 | 王 / Oo / Vương | じゃあ、これにします。 | Jaa, kore ni shimasu. | Vậy tôi lấy gói này.
+01:29 | 店員 / Ten'in / Nhân viên | 月々のお支払いはどうなさいますか。 | Tsukizuki no oshiharai wa doo nasaimasu ka. | Quý khách thanh toán hằng tháng bằng cách nào ạ?
+*01:33 | 王 / Oo / Vương | クレジットカードでもいいですか。 | Kurejitto-kaado demo ii desu ka. | Bằng thẻ tín dụng có được không ạ?
+01:36 | 店員 / Ten'in / Nhân viên | はい、もちろんです。 | Hai, mochiron desu. | Vâng, tất nhiên rồi ạ.
+01:39 | 店員 / Ten'in / Nhân viên | それから、在留カードはお持ちですか。 | Sorekara, zairyuu-kaado wa omochi desu ka. | Ngoài ra, quý khách có mang thẻ cư trú không ạ?
+01:42 | 王 / Oo / Vương | はい。 | Hai. | Có.
+01:56 | 店員 / Ten'in / Nhân viên | ありがとうございます。では、お手続きをします。 | Arigatoo gozaimasu. Dewa, otetsuzuki o shimasu. | Cảm ơn quý khách. Tôi xin làm thủ tục.
+02:00 | 王 / Oo / Vương | はい、よろしくお願いします。 | Hai, yoroshiku onegaishimasu. | Vâng, nhờ anh.
+### từ vựng
+機種変更 | きしゅへんこう | kishu-henkoo | đổi máy
+新規 | しんき | shinki | đăng ký mới
+機種 | きしゅ | kishu | mẫu máy
+料金プラン | りょうきんプラン | ryookin-puran | gói cước
+月々 | つきづき | tsukizuki | hằng tháng
+支払い | しはらい | shiharai | việc thanh toán
+在留カード | ざいりゅうカード | zairyuu-kaado | thẻ cư trú
+
+## summary.mp4
+# Ôn tập: Tiệm tóc, tiệm giặt và cửa hàng điện thoại
+00:00 |  /  / Chủ đề | みじかく してください | mijikaku shite kudasai | Cắt ngắn giúp tôi
+00:08 | 店員 / Ten'in / Nhân viên | これぐらいですか。 | Kore gurai desu ka. | Khoảng chừng này ạ?
+*00:10 | アンジェラ / Anjera / Angela | もう少し短くしてください。 | Moo sukoshi mijikaku shite kudasai. | Ngắn hơn chút nữa giúp tôi.
+00:14 | ナレーター / Nareetaa / Người dẫn | 会話の中で、美容院の客は髪を長い状態から短い状態に変えるために、「短くしてください」と美容師に頼んでいます。 | Kaiwa no naka de, biyooin no kyaku wa kami o nagai jootai kara mijikai jootai ni kaeru tame ni, "Mijikaku shite kudasai" to biyooshi ni tanonde imasu. | Trong hội thoại, khách ở tiệm làm tóc nhờ thợ "Cắt ngắn giúp tôi" để tóc từ dài thành ngắn.
+00:32 | ナレーター / Nareetaa / Người dẫn | 形容詞や名詞に「します」をつけて、ある状態を意図的に別の状態に変えることを表します。 | Keeyooshi ya meeshi ni "shimasu" o tsukete, aru jootai o itoteki ni betsu no jootai ni kaeru koto o arawashimasu. | Thêm "shimasu" vào tính từ hay danh từ để diễn tả việc cố ý thay đổi từ trạng thái này sang trạng thái khác.
+00:47 | ナレーター / Nareetaa / Người dẫn | い形容詞の場合、最後の「い」を「く」に変えます。「短い」は「短く」となります。 | I-keeyooshi no baai, saigo no "i" o "ku" ni kaemasu. "Mijikai" wa "mijikaku" to narimasu. | Với tính từ đuôi i, đổi "i" cuối thành "ku": "mijikai" thành "mijikaku".
+01:03 | ナレーター / Nareetaa / Người dẫn | 「エアコンをつけて涼しくしました」とか、「荷物を軽くしました」のように言うことができます。 | "Eakon o tsukete suzushiku shimashita" toka, "Nimotsu o karuku shimashita" no yoo ni iu koto ga dekimasu. | Có thể nói như "Tôi bật điều hòa cho mát", "Tôi làm hành lý nhẹ đi".
+01:16 | ナレーター / Nareetaa / Người dẫn | な形容詞や名詞の場合は、「します」の前に「に」を使います。 | Na-keeyooshi ya meeshi no baai wa, "shimasu" no mae ni "ni" o tsukaimasu. | Với tính từ đuôi na và danh từ thì dùng "ni" trước "shimasu".
+01:27 | ナレーター / Nareetaa / Người dẫn | 「静かにしてください」、「ご飯を半分にしてもらえますか」となります。 | "Shizuka ni shite kudasai", "Gohan o hanbun ni shite moraemasu ka" to narimasu. | Ví dụ: "Xin giữ yên lặng", "Cho tôi nửa suất cơm được không?".
+01:41 |  /  / Chủ đề | どうしよう かなあ | doo shiyoo kanaa | Làm sao đây nhỉ
+01:46 | 店員 / Ten'in / Nhân viên | ご希望の機種はお決まりですか。 | Gokiboo no kishu wa okimari desu ka. | Quý khách đã chọn được máy chưa ạ?
+*01:51 | 王 / Oo / Vương | どうしようかなあ。 | Doo shiyoo ka naa. | Chọn cái nào đây nhỉ.
+01:54 | ナレーター / Nareetaa / Người dẫn | 「かなあ」という文の形は、話し手が疑ったり、確信が持てなかったりする気持ちを表します。 | "Ka naa" to iu bun no katachi wa, hanashite ga utagattari, kakushin ga motenakattari suru kimochi o arawashimasu. | Mẫu câu "ka naa" diễn tả cảm giác nghi ngờ, không chắc chắn của người nói.
+02:06 | ナレーター / Nareetaa / Người dẫn | また、誰かに話すというよりは、独り言で自分に問いかけるようなときによく使います。 | Mata, dareka ni hanasu to iu yori wa, hitorigoto de jibun ni toikakeru yoo na toki ni yoku tsukaimasu. | Nó thường dùng khi nói một mình, tự hỏi bản thân hơn là nói với ai đó.
+02:18 | ナレーター / Nareetaa / Người dẫn | 携帯を買いに来た王さんは、まだどんな機種にするかを決めることができなくて、「どうしよう」と言っています。 | Keetai o kai ni kita Oo-san wa, mada donna kishu ni suru ka o kimeru koto ga dekinakute, "Doo shiyoo" to itte imasu. | Anh Vương đến mua điện thoại nhưng chưa quyết được chọn máy nào nên nói "Doo shiyoo" (Làm sao đây).
+02:31 | ナレーター / Nareetaa / Người dẫn | 「かなあ」がつくと、迷っている気持ちがもっと強く表されます。 | "Ka naa" ga tsuku to, mayotte iru kimochi ga motto tsuyoku arawasaremasu. | Thêm "ka naa" thì cảm giác phân vân được thể hiện rõ hơn.
+02:40 | ナレーター / Nareetaa / Người dẫn | 「かなあ」は、動詞の普通形や形容詞、名詞に接続します。 | "Ka naa" wa, dooshi no futsuukee ya keeyooshi, meeshi ni setsuzoku shimasu. | "Ka naa" đi sau động từ thể thông thường, tính từ, danh từ.
+02:50 | ナレーター / Nareetaa / Người dẫn | 例えば、明日の天気を心配して「明日晴れるかなあ」と言ったり、洋服を試着したときに「ちょっときついかなあ」と言ったりします。 | Tatoeba, ashita no tenki o shinpai shite "Ashita hareru ka naa" to ittari, yoofuku o shichaku shita toki ni "Chotto kitsui ka naa" to ittari shimasu. | Ví dụ, lo thời tiết thì nói "Mai có nắng không nhỉ", mặc thử quần áo thì nói "Hơi chật nhỉ".
+03:08 | ナレーター / Nareetaa / Người dẫn | 「おじいちゃんは元気かなあ」のように、な形容詞に接続する場合は「な」はつけません。 | "Ojiichan wa genki ka naa" no yoo ni, na-keeyooshi ni setsuzoku suru baai wa "na" wa tsukemasen. | Khi đi sau tính từ đuôi na như "Không biết ông có khỏe không nhỉ" thì không thêm "na".
+03:20 | ナレーター / Nareetaa / Người dẫn | 「かな」と短く言う場合もあります。 | "Ka na" to mijikaku iu baai mo arimasu. | Cũng có khi nói ngắn là "ka na".
+*03:26 |  /  / Chủ đề | しゃしんが きれいに とれる きしゅ | shashin ga kiree ni toreru kishu | Máy chụp ảnh đẹp
+03:31 | ナレーター / Nareetaa / Người dẫn | 「田中さんの本」「赤いかばん」「元気な子ども」は、本、かばん、子どもなどの名詞に、田中さん、赤い、元気な、などの名詞や形容詞をつけて、その様子を表していますが、 | "Tanaka-san no hon", "akai kaban", "genki na kodomo" wa, hon, kaban, kodomo nado no meeshi ni, Tanaka-san, akai, genki na, nado no meeshi ya keeyooshi o tsukete, sono yoosu o arawashite imasu ga, | "Sách của anh Tanaka", "cái cặp màu đỏ", "đứa trẻ khỏe mạnh" – ta gắn danh từ, tính từ như Tanaka-san, akai, genki na vào danh từ sách, cặp, trẻ con để mô tả chúng,
+03:57 | ナレーター / Nareetaa / Người dẫn | 名詞や形容詞の代わりに、文で名詞を修飾することもできます。 | Meeshi ya keeyooshi no kawari ni, bun de meeshi o shuushoku suru koto mo dekimasu. | thay cho danh từ, tính từ thì cũng có thể dùng cả một câu để bổ nghĩa cho danh từ.
+04:05 | ナレーター / Nareetaa / Người dẫn | 会話では、携帯ショップに来た王さんが、欲しい機種について「写真がきれいに撮れる」という文で説明しています。 | Kaiwa de wa, keetai-shoppu ni kita Oo-san ga, hoshii kishu ni tsuite "shashin ga kiree ni toreru" to iu bun de setsumee shite imasu. | Trong hội thoại, anh Vương ở cửa hàng điện thoại mô tả máy mình muốn bằng câu "chụp ảnh đẹp".
+04:20 | ナレーター / Nareetaa / Người dẫn | このように名詞を修飾する文の動詞は、普通形を使います。 | Kono yoo ni meeshi o shuushoku suru bun no dooshi wa, futsuukee o tsukaimasu. | Động từ trong câu bổ nghĩa cho danh từ dùng thể thông thường.
+04:29 | ナレーター / Nareetaa / Người dẫn | 修飾する文に主語がある場合は、助詞は「が」を使います。 | Shuushoku suru bun ni shugo ga aru baai wa, joshi wa "ga" o tsukaimasu. | Nếu câu bổ nghĩa có chủ ngữ thì dùng trợ từ "ga".
+04:38 | ナレーター / Nareetaa / Người dẫn | 病院で初めて診察を受けるときに、医者が「毎日飲んでいる薬はありますか」と聞いたり、 | Byooin de hajimete shinsatsu o ukeru toki ni, isha ga "Mainichi nonde iru kusuri wa arimasu ka" to kiitari, | Khi khám bệnh lần đầu ở bệnh viện, bác sĩ hỏi "Anh có đang uống thuốc gì hằng ngày không?",
+04:51 | ナレーター / Nareetaa / Người dẫn | 友達に「先週駅前にできたレストランは、安くておいしいですよ」と教えたり、いろいろな場面で使うことができます。 | Tomodachi ni "Senshuu ekimae ni dekita resutoran wa, yasukute oishii desu yo" to oshietari, iroiro na bamen de tsukau koto ga dekimasu. | hay nói với bạn "Nhà hàng mới mở tuần trước ở trước ga vừa rẻ vừa ngon đấy" – dùng được trong nhiều tình huống.

@@ -14,8 +14,8 @@ import { SITUATIONS } from '../src/modules/lessons/situation-catalog.js';
 const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
 const KANJI = /[一-鿿]/;
 
-test('đúng 27 bài, chia N5 15 · N4 6 · N3 4 · N2 2', () => {
-  assert.equal(SITUATIONAL_LESSONS.length, 27);
+test('đúng 35 bài, chia N5 12 · N4 19 · N3 4, không có bài N2, N1', () => {
+  assert.equal(SITUATIONAL_LESSONS.length, 35);
 
   const byLevel = Object.fromEntries(
     LEVELS.map((level) => [
@@ -23,7 +23,7 @@ test('đúng 27 bài, chia N5 15 · N4 6 · N3 4 · N2 2', () => {
       SITUATIONAL_LESSONS.filter((lesson) => lesson.level === level).length,
     ]),
   );
-  assert.deepEqual(byLevel, { N5: 15, N4: 6, N3: 4, N2: 2, N1: 0 });
+  assert.deepEqual(byLevel, { N5: 12, N4: 19, N3: 4, N2: 0, N1: 0 });
 });
 
 test('tiêu đề là duy nhất — đây là khoá upsert và khoá giữ lại khi --replace', () => {
@@ -58,7 +58,7 @@ const VIDEO_LESSONS = (() => {
 
 test('bài có video không có hội thoại soạn sẵn — lời thoại là kịch bản video', () => {
   const withVideo = SITUATIONAL_LESSONS.filter((lesson) => VIDEO_LESSONS.has(lesson.title));
-  assert.equal(withVideo.length, 12);
+  assert.equal(withVideo.length, 31);
   for (const lesson of withVideo) {
     assert.ok(!(lesson.dialogue?.length > 0), `${lesson.title} vừa có video vừa có hội thoại riêng`);
   }
@@ -110,18 +110,22 @@ test('mỗi bài có ít nhất 8 từ vựng đủ trường, không trùng tro
   }
 });
 
-test('N5 bài 1–12 theo đúng thứ tự 12 chủ đề video, mỗi bài có file video riêng', () => {
-  const dataDir = new URL('../data/lesson-videos/', import.meta.url);
-  const videoLessons = new Map(
-    fs.readdirSync(dataDir)
-      .filter((name) => name.endsWith('.json'))
-      .map((name) => [JSON.parse(fs.readFileSync(new URL(name, dataDir), 'utf8')).lesson.title, name]),
-  );
+for (const [level, count] of [['N5', 12], ['N4', 19]]) {
+  test(`${level} gồm đúng ${count} bài theo thứ tự chủ đề video, bài nào cũng có file video riêng`, () => {
+    const dataDir = new URL('../data/lesson-videos/', import.meta.url);
+    const videoLessons = new Map(
+      fs.readdirSync(dataDir)
+        .filter((name) => name.endsWith('.json'))
+        .map((name) => [JSON.parse(fs.readFileSync(new URL(name, dataDir), 'utf8')).lesson.title, name]),
+    );
 
-  const n5 = SITUATIONAL_LESSONS.filter((lesson) => lesson.level === 'N5').sort((a, b) => a.order - b.order);
-  for (const lesson of n5.slice(0, 12)) {
-    const file = videoLessons.get(lesson.title);
-    assert.ok(file, `${lesson.title} chưa có file video`);
-    assert.ok(file.startsWith(`n5-${String(lesson.order).padStart(2, '0')}-`), `${file} lệch thứ tự bài ${lesson.order}`);
-  }
-});
+    const lessons = SITUATIONAL_LESSONS.filter((lesson) => lesson.level === level).sort((a, b) => a.order - b.order);
+    assert.equal(lessons.length, count);
+    for (const lesson of lessons) {
+      const file = videoLessons.get(lesson.title);
+      assert.ok(file, `${lesson.title} chưa có file video`);
+      const prefix = `${level.toLowerCase()}-${String(lesson.order).padStart(2, '0')}-`;
+      assert.ok(file.startsWith(prefix), `${file} lệch thứ tự bài ${lesson.order}`);
+    }
+  });
+}

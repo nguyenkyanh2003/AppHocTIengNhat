@@ -1,0 +1,105 @@
+# Lời thoại Tình huống: Gửi thư và thiệp năm mới
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-11-15.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Gửi thư chuyển phát nhanh
+*00:07 | 客 / Kyaku / Khách | すみません、これ、埼玉県の所沢市に送りたいんですけど。 | Sumimasen, kore, Saitama-ken no Tokorozawa-shi ni okuritain desu kedo. | Xin lỗi, tôi muốn gửi cái này đến thành phố Tokorozawa, tỉnh Saitama ạ.
+00:13 | 郵便局員 / Yuubinkyoku-in / Nhân viên bưu điện | ちょっとお預かりしますね。そうですね、今の時間からですと、あさっての午前中ですね。 | Chotto oazukari shimasu ne. Soo desu ne, ima no jikan kara desu to, asatte no gozenchuu desu ne. | Tôi xin nhận nhé. Để xem, từ giờ này thì sẽ đến vào buổi sáng ngày kia ạ.
+*00:25 | 客 / Kyaku / Khách | ああ、そうですか。どうしても明日までに届けたいんですけど、どうしたらいいですか。 | Aa, soo desu ka. Dooshitemo ashita made ni todoketain desu kedo, doo shitara ii desu ka. | À, vậy ạ. Tôi nhất định muốn gửi đến trước ngày mai, phải làm sao ạ?
+*00:33 | 郵便局員 / Yuubinkyoku-in / Nhân viên bưu điện | あ、速達で送れば明日までに間に合いますよ。 | A, sokutatsu de okureba ashita made ni maniaimasu yo. | À, nếu gửi chuyển phát nhanh thì sẽ kịp trước ngày mai đó.
+*00:37 | 客 / Kyaku / Khách | ああ、そうですか。じゃあ、それでお願いします。いくらかかりますか。 | Aa, soo desu ka. Jaa, sore de onegaishimasu. Ikura kakarimasu ka. | À, vậy ạ. Vậy nhờ chị gửi kiểu đó giúp tôi. Hết bao nhiêu tiền ạ?
+00:44 | 郵便局員 / Yuubinkyoku-in / Nhân viên bưu điện | 普通料金が84円で、速達料金が290円プラスになりますので、合わせて374円になります。 | Futsuu ryookin ga hachijuu-yon-en de, sokutatsu ryookin ga nihyaku-kyuujuu-en purasu ni narimasu node, awasete sanbyaku-nanajuu-yon-en ni narimasu. | Cước thường là 84 yên, cộng thêm cước chuyển phát nhanh 290 yên, tổng cộng là 374 yên.
+00:57 | 客 / Kyaku / Khách | 374円ですね。 | Sanbyaku-nanajuu-yon-en desu ne. | 374 yên phải không ạ.
+01:08 | 郵便局員 / Yuubinkyoku-in / Nhân viên bưu điện | はい、ちょうどお預かりします。 | Hai, choodo oazukari shimasu. | Vâng, tôi nhận đủ số tiền rồi ạ.
+01:15 | 客 / Kyaku / Khách | じゃあ、よろしくお願いします。ありがとうございました。 | Jaa, yoroshiku onegaishimasu. Arigatoo gozaimashita. | Vậy nhờ chị giúp tôi nhé. Cảm ơn chị.
+### từ vựng
+送る | おくる | okuru | gửi
+届ける | とどける | todokeru | gửi đến
+速達 | そくたつ | sokutatsu | chuyển phát nhanh
+間に合う | まにあう | maniau | kịp
+料金 | りょうきん | ryookin | cước phí
+あさって | あさって | asatte | ngày kia
+
+## scene-2.mp4
+# Viết lời chúc trên thiệp năm mới
+00:00 | 王 / Oo / Vương | 佐藤さん、ちょっといいですか。 | Satoo-san, chotto ii desu ka. | Chị Satō, chị có rảnh chút không ạ?
+*00:05 | 王 / Oo / Vương | 前の日本語教室のボランティアの方に年賀状を出したいんですけど、書き方を教えてもらえませんか。 | Mae no nihongo kyooshitsu no borantia no kata ni nengajoo o dashitain desu kedo, kakikata o oshiete moraemasen ka. | Tôi muốn gửi thiệp năm mới cho cô tình nguyện viên ở lớp tiếng Nhật trước đây, chị chỉ cách viết giúp tôi được không?
+00:14 | 佐藤 / Satoo / Satō | ああ、いいですよ。 | Aa, ii desu yo. | À, được chứ.
+00:20 | 王 / Oo / Vương | これ、コンビニで買ったんですけど、どうですか。 | Kore, konbini de kattan desu kedo, doo desu ka. | Cái này tôi mua ở cửa hàng tiện lợi, chị thấy sao ạ?
+*00:26 | 佐藤 / Satoo / Satō | ああ、いいですね。まず、ここに「あけましておめでとうございます」と書いて、それからこの辺に何かメッセージを書くといいですよ。 | Aa, ii desu ne. Mazu, koko ni "akemashite omedetoo gozaimasu" to kaite, sorekara kono hen ni nanika messeeji o kaku to ii desu yo. | À, được đó. Trước tiên viết "Chúc mừng năm mới" ở đây, rồi viết thêm vài lời nhắn ở khoảng này là được.
+00:40 | 王 / Oo / Vương | はぁ、メッセージ…。 | Haa, messeeji... | À, lời nhắn...
+00:45 | 佐藤 / Satoo / Satō | 元気ですか。 | Genki desu ka. | (Ví dụ) Anh/chị có khỏe không?
+*00:47 | 王 / Oo / Vương | 私は今、仕事が忙しいです。今年もよろしくお願いします。どうですか。 | Watashi wa ima, shigoto ga isogashii desu. Kotoshi mo yoroshiku onegaishimasu. Doo desu ka. | Tôi dạo này công việc bận rộn. Năm nay cũng mong được giúp đỡ ạ. Như vậy được không ạ?
+00:57 | 佐藤 / Satoo / Satō | とてもいいと思います。 | Totemo ii to omoimasu. | Tôi thấy rất được đó.
+01:08 | 王 / Oo / Vương | 私は今、動画が忙しいです。大丈夫ですか。 | Watashi wa ima, dooga ga isogashii desu. Daijoobu desu ka. | Tôi dạo này bận xem/làm video. Như vậy được không ạ?
+01:31 | 佐藤 / Satoo / Satō | とてもいいと思いますよ。あと、ここに何年の元旦と書きます。 | Totemo ii to omoimasu yo. Ato, koko ni nan-nen no gantan to kakimasu. | Tôi thấy rất được đó. Ngoài ra, ở đây thì ghi ngày mùng 1 tháng 1 năm nào.
+01:38 | 王 / Oo / Vương | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+01:40 | 佐藤 / Satoo / Satō | それからここには、王さんの名前を書いてください。 | Sorekara koko ni wa, Oo-san no namae o kaite kudasai. | Sau đó ở đây thì anh Vương ghi tên của mình vào.
+01:47 | 王 / Oo / Vương | 私の名前ですね。わかりました。書いてみます。 | Watashi no namae desu ne. Wakarimashita. Kaite mimasu. | Tên của tôi phải không ạ. Tôi hiểu rồi. Để tôi thử viết xem.
+### từ vựng
+年賀状 | ねんがじょう | nengajoo | thiệp năm mới
+書き方 | かきかた | kakikata | cách viết
+あけましておめでとうございます | あけましておめでとうございます | akemashite omedetoo gozaimasu | chúc mừng năm mới
+元旦 | がんたん | gantan | mùng 1 Tết
+今年 | ことし | kotoshi | năm nay
+メッセージ | メッセージ | messeeji | lời nhắn
+
+## summary.mp4
+# Viết địa chỉ và chữ「様」trên thiệp
+00:07 | 王 / Oo / Vương | できました。これで大丈夫ですか。 | Dekimashita. Kore de daijoobu desu ka. | Xong rồi. Như thế này được không?
+00:12 | 友人 / Yuujin / Người bạn | あー、すごくいいですね。 | Aa, sugoku ii desu ne. | À, đẹp lắm đó.
+00:17 | 友人 / Yuujin / Người bạn | それから、ここには相手の郵便番号を書きます。 | Sorekara, koko ni wa aite no yuubinbangoo o kakimasu. | Sau đó, ở đây thì ghi mã bưu điện của người nhận.
+00:23 | 王 / Oo / Vương | 郵便番号ですね。 | Yuubinbangoo desu ne. | Mã bưu điện à.
+00:35 | 友人 / Yuujin / Người bạn | ここには住所を書きます。 | Koko ni wa juusho o kakimasu. | Ở đây thì ghi địa chỉ.
+*00:38 | 王 / Oo / Vương | 住所、とても長いんですけど、どうやって書いたらいいですか。 | Juusho, totemo nagain desu kedo, doo yatte kaitara ii desu ka. | Địa chỉ dài quá, nên viết như thế nào ạ?
+*00:48 | 友人 / Yuujin / Người bạn | じゃあ、途中で切って、二行にするといいですよ。 | Jaa, tochuu de kitte, ni-gyoo ni suru to ii desu yo. | Vậy thì cắt giữa chừng, viết thành 2 dòng là được.
+00:52 | 王 / Oo / Vương | ああ、そうですか。 | Aa, soo desu ka. | À, vậy à.
+01:00 | 王 / Oo / Vương | 東京都…かすみ…マンション205号室。 | Tookyoo-to... Kasumi... Manshon nihyaku-go-goo-shitsu. | Tokyo-to... Kasumi... Chung cư phòng 205.
+01:49 | 友人 / Yuujin / Người bạn | ああ、いいですね。ここは相手の名前です。少し大きく書いてください。 | Aa, ii desu ne. Koko wa aite no namae desu. Sukoshi ookiku kaite kudasai. | À, đẹp đó. Chỗ này là tên người nhận. Anh viết to hơn một chút nhé.
+02:02 | 友人 / Yuujin / Người bạn | 最後に「様」と書いてください。 | Saigo ni "sama" to kaite kudasai. | Cuối cùng thì viết chữ "sama" (kính gửi).
+*02:07 | 王 / Oo / Vương | 「様」？すみません、ここに書いてもらえませんか。 | "Sama"? Sumimasen, koko ni kaite moraemasen ka. | "Sama" ạ? Xin lỗi, anh viết giúp em ở đây được không?
+02:13 | 友人 / Yuujin / Người bạn | はい、いいですよ。 | Hai, ii desu yo. | Được chứ.
+02:28 | 友人 / Yuujin / Người bạn | では、どうぞ。 | Dewa, doozo. | Vậy mời anh xem.
+02:32 | 友人 / Yuujin / Người bạn | 田中、稔、様。 | Tanaka, Minoru, sama. | Kính gửi ông Tanaka Minoru.
+02:43 | 王 / Oo / Vương | これでいいですか。 | Kore de ii desu ka. | Như thế này được chưa ạ?
+02:45 | 友人 / Yuujin / Người bạn | はい。あとはここに、王さんの住所と名前を書いてください。 | Hai. Ato wa koko ni, Oo-san no juusho to namae o kaite kudasai. | Được rồi. Còn lại thì anh Vương ghi địa chỉ và tên của mình vào đây.
+02:59 | 王 / Oo / Vương | できました。 | Dekimashita. | Xong rồi ạ.
+*03:02 | 王 / Oo / Vương | 年賀状はいつ出したらいいですか。 | Nengajoo wa itsu dashitara ii desu ka. | Thiệp năm mới thì nên gửi khi nào ạ?
+03:05 | 友人 / Yuujin / Người bạn | もう出せますよ。 | Moo dasemasu yo. | Giờ gửi được rồi đó.
+03:07 | 王 / Oo / Vương | そうですか。じゃあ、帰りにポストの前を通るから、出しておきます。 | Soo desu ka. Jaa, kaeri ni posuto no mae o tooru kara, dashite okimasu. | Vậy ạ. Vậy lúc về em có đi ngang qua thùng thư nên sẽ gửi luôn.
+03:17 | 友人 / Yuujin / Người bạn | それがいいですね。必ず「年賀状」と書いてある方に入れてくださいね。 | Sore ga ii desu ne. Kanarazu "nengajoo" to kaite aru hoo ni irete kudasai ne. | Vậy tốt đó. Nhớ bỏ vào ngăn có ghi "nengajō" nhé.
+03:25 | 王 / Oo / Vương | わかりました。ありがとうございます。 | Wakarimashita. Arigatoo gozaimasu. | Em hiểu rồi ạ. Cảm ơn anh.
+### từ vựng
+郵便番号 | ゆうびんばんごう | yuubin-bangoo | mã bưu điện
+住所 | じゅうしょ | juusho | địa chỉ
+〜様 | さま | sama | kính gửi (ông/bà)
+二行 | にぎょう | nigyoo | hai dòng
+出す | だす | dasu | gửi (thư)
+ポスト | ポスト | posuto | hòm thư
+
+## scene-3.mp4
+# Ôn tập: Gửi thư và thiệp năm mới
+00:00 |  /  / Chủ đề | あした までに | ashita made ni | Trước ngày mai
+*00:06 | 郵便局員 / Yuubinkyoku-in / Nhân viên bưu điện | どうしても明日までに届けたいんですか。 | Dooshitemo ashita made ni todoketain desu ka. | Anh nhất định muốn gửi đến trước ngày mai à?
+00:12 | ナレーター / Nareetaa / Người dẫn | 「日にち」「曜日」「時間」＋「までに」は、何かをするときの期限や締め切りを伝えたいときに使います。 | "Hinichi", "yoobi", "jikan" + "made ni" wa, nanika o suru toki no kigen ya shimekiri o tsutaetai toki ni tsukaimasu. | "Ngày", "thứ", "giờ" + "made ni" dùng khi muốn nói thời hạn, hạn chót để làm việc gì đó.
+00:26 | ナレーター / Nareetaa / Người dẫn | 例えば、「10時までに寝ます」は、10時かそれより前に寝るという意味です。 | Tatoeba, "juuji made ni nemasu" wa, juuji ka sore yori mae ni neru to iu imi desu. | Ví dụ, "juuji made ni nemasu" (ngủ trước 10 giờ) nghĩa là ngủ lúc 10 giờ hoặc trước đó.
+00:38 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんが明日までに手紙を届けたいと言っています。 | Kono dooga de wa, Oo-san ga ashita made ni tegami o todoketai to itte imasu. | Trong video này, anh Vương nói rằng muốn gửi thư đến trước ngày mai.
+00:47 | ナレーター / Nareetaa / Người dẫn | 明日か、それより前に手紙が届くようにしたいという意味です。 | Ashita ka, sore yori mae ni tegami ga todoku yoo ni shitai to iu imi desu. | Nghĩa là muốn thư được chuyển đến vào ngày mai hoặc trước đó.
+00:58 |  /  / Chủ đề | どうやって かいたら いいですか | doo yatte kaitara ii desu ka | Nên viết như thế nào?
+*01:01 | 王 / Oo / Vương | 住所、とても長いんですけど、どうやって書いたらいいですか。 | Juusho, totemo nagain desu kedo, doo yatte kaitara ii desu ka. | Địa chỉ dài quá, nên viết như thế nào ạ?
+01:09 | 友人 / Yuujin / Người bạn | じゃあ、途中で切って、二行にするといいですよ。 | Jaa, tochuu de kitte, ni-gyoo ni suru to ii desu yo. | Vậy thì cắt giữa chừng, viết thành 2 dòng là được.
+01:15 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんは住所の書き方がわからなかったので、「どうやって書いたらいいですか」と聞きました。 | Kono dooga de wa, Oo-san wa juusho no kakikata ga wakaranakatta node, "Doo yatte kaitara ii desu ka" to kikimashita. | Trong video này, vì không biết cách viết địa chỉ nên anh Vương đã hỏi "Nên viết như thế nào?".
+01:30 | ナレーター / Nareetaa / Người dẫn | 動詞のマス形＋「たら」＋「いいですか」は、書き方がわからなくてアドバイスが欲しいときに使います。 | Dooshi no masu-kee + "tara" + "ii desu ka" wa, kakikata ga wakaranakute adobaisu ga hoshii toki ni tsukaimasu. | Mẫu thể masu của động từ + "tara" + "ii desu ka" dùng khi không biết cách làm và muốn xin lời khuyên.
+01:44 | ナレーター / Nareetaa / Người dẫn | ここでは、動詞の「書きます」を「た形」に変えて、「どうやって書いたらいいですか」とします。 | Koko de wa, dooshi no "kakimasu" o "ta-kee" ni kaete, "Doo yatte kaitara ii desu ka" to shimasu. | Ở đây, đổi động từ "kakimasu" sang thể ta rồi thành "Doo yatte kaitara ii desu ka".
+02:00 | ナレーター / Nareetaa / Người dẫn | この動画で、王さんは年賀状を出す時期もわからなかったので、「いつ出したらいいですか」と聞きました。 | Kono dooga de, Oo-san wa nengajoo o dasu jiki mo wakaranakatta node, "Itsu dashitara ii desu ka" to kikimashita. | Trong video này, vì không biết thời điểm gửi thiệp năm mới nên anh Vương đã hỏi "Nên gửi khi nào?".
+02:15 |  /  / Chủ đề | ここに かいて もらえませんか | koko ni kaite moraemasen ka | Có thể viết giúp tôi ở đây không?
+02:21 | 友人 / Yuujin / Người bạn | 最後に「様」と書いてください。 | Saigo ni "sama" to kaite kudasai. | Cuối cùng thì viết chữ "sama".
+*02:26 | 王 / Oo / Vương | すみません、ここに書いてもらえませんか。 | Sumimasen, koko ni kaite moraemasen ka. | Xin lỗi, anh viết giúp em ở đây được không?
+02:31 | ナレーター / Nareetaa / Người dẫn | 動詞のて形＋「もらえますか」「もらえませんか」は、依頼をするときに使います。 | Dooshi no te-kee + "moraemasu ka" "moraemasen ka" wa, irai o suru toki ni tsukaimasu. | Mẫu thể te của động từ + "moraemasu ka"/"moraemasen ka" dùng khi nhờ vả ai đó.
+02:42 | ナレーター / Nareetaa / Người dẫn | 「ください」と同じように使えます。 | "Kudasai" to onaji yoo ni tsukaemasu. | Có thể dùng giống như "kudasai".
+02:52 | ナレーター / Nareetaa / Người dẫn | 「もらいます」の可能形が「もらえます」となります。 | "Moraimasu" no kanoo-kee ga "moraemasu" to narimasu. | Thể khả năng của "moraimasu" là "moraemasu".
+03:02 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんは漢字の書き方がわからないので、「書いてもらえませんか」と言いました。 | Kono dooga de wa, Oo-san wa kanji no kakikata ga wakaranai node, "Kaite moraemasen ka" to iimashita. | Trong video này, vì không biết cách viết chữ Hán nên anh Vương đã nói "Có thể viết giúp tôi không?".
+03:14 | ナレーター / Nareetaa / Người dẫn | 「書いてください」より丁寧な印象になります。 | "Kaite kudasai" yori teenee na inshoo ni narimasu. | Nghe lịch sự hơn so với "Kaite kudasai".
+03:21 | ナレーター / Nareetaa / Người dẫn | また、さらに丁寧な言い方として、動詞のて形＋「いただけますか」「いただけませんか」も同じように使えます。 | Mata, sarani teenee na iikata toshite, dooshi no te-kee + "itadakemasu ka" "itadakemasen ka" mo onaji yoo ni tsukaemasu. | Ngoài ra, cách nói lịch sự hơn nữa là thể te của động từ + "itadakemasu ka"/"itadakemasen ka" cũng dùng tương tự.

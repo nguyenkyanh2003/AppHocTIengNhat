@@ -1,0 +1,119 @@
+# Lời thoại Tình huống: Đi khám bệnh
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-6-10.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-3.mp4
+# Lần đầu đến phòng khám
+00:04 | 王 / Oo / Vương | あの、すみません。 | Ano, sumimasen. | Dạ, xin lỗi.
+00:05 | 受付 / Uketsuke / Lễ tân | はい。おはようございます。こちらは初めてですか。 | Hai. Ohayoo gozaimasu. Kochira wa hajimete desu ka. | Vâng. Chào anh. Anh đến đây lần đầu phải không ạ?
+00:10 | 王 / Oo / Vương | はい、初めてです。 | Hai, hajimete desu. | Vâng, lần đầu ạ.
+00:12 | 受付 / Uketsuke / Lễ tân | 初診ですね。保険証をお持ちですか。 | Shoshin desu ne. Hokenshoo o omochi desu ka. | Khám lần đầu nhỉ. Anh có mang thẻ bảo hiểm không ạ?
+00:16 | 王 / Oo / Vương | はい。 | Hai. | Có ạ.
+00:21 | 受付 / Uketsuke / Lễ tân | ちょっとお預かりしますね。 | Chotto oazukari shimasu ne. | Tôi xin giữ một chút nhé.
+00:24 | 受付 / Uketsuke / Lễ tân | 今日はどうなさいましたか。 | Kyoo wa doo nasaimashita ka. | Hôm nay anh bị làm sao ạ?
+*00:27 | 王 / Oo / Vương | 風邪をひいたみたいです。 | Kaze o hiita mitai desu. | Hình như tôi bị cảm.
+00:29 | 受付 / Uketsuke / Lễ tân | そうなんですね。では、こちらの問診票に記入をお願いします。 | Soo nan desu ne. Dewa, kochira no monshinhyoo ni kinyuu o onegaishimasu. | Vậy ạ. Vậy anh điền vào phiếu khai bệnh này giúp tôi.
+00:36 | 受付 / Uketsuke / Lễ tân | 日本語ですけれど、大丈夫ですか。 | Nihongo desu keredo, daijoobu desu ka. | Phiếu bằng tiếng Nhật, anh có ổn không ạ?
+*00:38 | 王 / Oo / Vương | はい。わからないところがあったら聞きます。 | Hai. Wakaranai tokoro ga attara kikimasu. | Vâng. Chỗ nào không hiểu tôi sẽ hỏi.
+00:48 | 受付 / Uketsuke / Lễ tân | 熱を測って、ここに書いてください。 | Netsu o hakatte, koko ni kaite kudasai. | Anh đo nhiệt độ rồi ghi vào đây nhé.
+00:52 | 王 / Oo / Vương | あ、わかりました。 | A, wakarimashita. | À, tôi hiểu rồi.
+00:55 | 受付 / Uketsuke / Lễ tân | では、あちらのソファにおかけになってご記入ください。 | Dewa, achira no sofa ni okake ni natte gokinyuu kudasai. | Vậy mời anh ngồi ở ghế sofa đằng kia điền nhé.
+00:59 | 王 / Oo / Vương | はい、ありがとうございます。 | Hai, arigatoo gozaimasu. | Vâng, cảm ơn chị.
+01:14 | 王 / Oo / Vương | すみません。これ、37度8分でした。これでいいですか。 | Sumimasen. Kore, sanjuunana-do hachi-bu deshita. Kore de ii desu ka. | Xin lỗi. Nhiệt độ là 37,8 độ. Ghi thế này được không ạ?
+01:23 | 受付 / Uketsuke / Lễ tân | はい、いいですよ。 | Hai, ii desu yo. | Vâng, được rồi ạ.
+*01:25 | 王 / Oo / Vương | あと、ここは何を書けばいいですか。 | Ato, koko wa nani o kakeba ii desu ka. | Còn chỗ này thì ghi gì ạ?
+01:31 | 受付 / Uketsuke / Lễ tân | ここはアレルギー…例えば、薬を飲むと喉がかゆくなるとか。 | Koko wa arerugii… tatoeba, kusuri o nomu to nodo ga kayuku naru toka. | Chỗ này là dị ứng… ví dụ như uống thuốc thì bị ngứa họng chẳng hạn.
+01:38 | 王 / Oo / Vương | ああ、わかりました。 | Aa, wakarimashita. | À, tôi hiểu rồi.
+01:47 | 王 / Oo / Vương | お願いします。 | Onegaishimasu. | Nhờ chị ạ.
+01:48 | 受付 / Uketsuke / Lễ tân | はい、お預かりします。では、座ってお待ちください。 | Hai, oazukari shimasu. Dewa, suwatte omachi kudasai. | Vâng, tôi xin nhận. Mời anh ngồi đợi.
+### từ vựng
+初診 | しょしん | shoshin | khám lần đầu
+保険証 | ほけんしょう | hokenshoo | thẻ bảo hiểm
+問診票 | もんしんひょう | monshinhyoo | phiếu khai bệnh
+熱を測る | ねつをはかる | netsu o hakaru | đo nhiệt độ
+風邪をひく | かぜをひく | kaze o hiku | bị cảm
+アレルギー | アレルギー | arerugii | dị ứng
+
+## scene-2.mp4
+# Khám bong gân với bác sĩ
+00:01 | 看護師 / Kangoshi / Y tá | 王さん、3番の診察室にお入りください。 | Oo-san, sanban no shinsatsushitsu ni ohairi kudasai. | Anh Vương, mời anh vào phòng khám số 3.
+00:07 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:13 | 医者 / Isha / Bác sĩ | どうぞ。 | Doozo. | Mời vào.
+00:23 | 医者 / Isha / Bác sĩ | お荷物、そちらにどうぞ。 | Onimotsu, sochira ni doozo. | Anh để đồ ở đằng kia nhé.
+00:29 | 医者 / Isha / Bác sĩ | どうしましたか。 | Doo shimashita ka. | Anh bị làm sao?
+*00:30 | 王 / Oo / Vương | 今朝、会社に行く途中に転んで、足首が腫れているんです。 | Kesa, kaisha ni iku tochuu ni koronde, ashikubi ga harete irun desu. | Sáng nay trên đường đi làm tôi bị ngã, cổ chân bị sưng.
+00:39 | 医者 / Isha / Bác sĩ | じゃあ、ちょっと見ますね。 | Jaa, chotto mimasu ne. | Vậy để tôi xem nhé.
+00:44 | 医者 / Isha / Bác sĩ | ああ、結構腫れていますね。 | Aa, kekkoo harete imasu ne. | À, sưng khá nhiều đấy.
+00:51 | 医者 / Isha / Bác sĩ | 念のため、レントゲンを撮っておきますね。 | Nen no tame, rentogen o totte okimasu ne. | Để chắc chắn, tôi chụp X-quang luôn nhé.
+00:53 | 王 / Oo / Vương | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+*01:00 | 医者 / Isha / Bác sĩ | ああ、骨は折れていませんね。捻挫です。 | Aa, hone wa orete imasen ne. Nenza desu. | À, xương không bị gãy. Là bong gân.
+*01:09 | 王 / Oo / Vương | じゃあ、お風呂に入ってもいいですか。 | Jaa, ofuro ni haitte mo ii desu ka. | Vậy tôi tắm bồn được không ạ?
+01:11 | 医者 / Isha / Bác sĩ | ああ、お風呂は2、3日入らないでください。 | Aa, ofuro wa ni-san-nichi hairanaide kudasai. | À, anh đừng tắm bồn trong 2, 3 ngày.
+01:18 | 王 / Oo / Vương | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+01:20 | 医者 / Isha / Bác sĩ | 痛み止めの薬と湿布を出しておきますね。 | Itamidome no kusuri to shippu o dashite okimasu ne. | Tôi kê cho anh thuốc giảm đau và miếng dán nhé.
+01:24 | 王 / Oo / Vương | はい、わかりました。ありがとうございます。 | Hai, wakarimashita. Arigatoo gozaimasu. | Vâng, tôi hiểu rồi. Cảm ơn bác sĩ.
+01:27 | 医者 / Isha / Bác sĩ | お大事に。 | Odaiji ni. | Anh giữ gìn sức khỏe nhé.
+### từ vựng
+診察室 | しんさつしつ | shinsatsushitsu | phòng khám
+足首 | あしくび | ashikubi | cổ chân
+腫れる | はれる | hareru | sưng
+転ぶ | ころぶ | korobu | ngã
+レントゲン | レントゲン | rentogen | chụp X-quang
+捻挫 | ねんざ | nenza | bong gân
+湿布 | しっぷ | shippu | miếng dán giảm đau
+
+## scene-1.mp4
+# Thanh toán và nhận đơn thuốc
+00:01 | 受付 / Uketsuke / Lễ tân | 王さん、王ハオランさん。 | Oo-san, Oo Haoran-san. | Anh Vương, anh Ō Haoran.
+00:05 | 王 / Oo / Vương | はーい。 | Haai. | Vâng.
+00:11 | 受付 / Uketsuke / Lễ tân | 今日は1,600円になります。 | Kyoo wa sen roppyaku-en ni narimasu. | Hôm nay hết 1.600 yên ạ.
+00:14 | 王 / Oo / Vương | はい。2,000円でお願いします。 | Hai. Nisen-en de onegaishimasu. | Vâng. Chị lấy 2.000 yên nhé.
+00:19 | 受付 / Uketsuke / Lễ tân | 2,000円お預かりします。 | Nisen-en oazukari shimasu. | Tôi nhận của anh 2.000 yên.
+00:24 | 受付 / Uketsuke / Lễ tân | 400円のお返しになります。 | Yonhyaku-en no okaeshi ni narimasu. | Tôi gửi lại anh 400 yên tiền thừa.
+*00:27 | 受付 / Uketsuke / Lễ tân | それから、保険証と診察券です。 | Sorekara, hokenshoo to shinsatsuken desu. | Còn đây là thẻ bảo hiểm và thẻ khám bệnh.
+00:31 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:32 | 受付 / Uketsuke / Lễ tân | 次回いらっしゃるときは、こちらの診察券をお持ちください。 | Jikai irassharu toki wa, kochira no shinsatsuken o omochi kudasai. | Lần sau đến anh nhớ mang theo thẻ khám bệnh này.
+00:36 | 王 / Oo / Vương | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+*00:38 | 受付 / Uketsuke / Lễ tân | それから、こちらが処方箋になります。 | Sorekara, kochira ga shohoosen ni narimasu. | Và đây là đơn thuốc ạ.
+00:43 | 王 / Oo / Vương | 処方箋… | Shohoosen… | Đơn thuốc…
+00:44 | 受付 / Uketsuke / Lễ tân | はい。薬局で薬を買うときに、この紙を出してください。 | Hai. Yakkyoku de kusuri o kau toki ni, kono kami o dashite kudasai. | Vâng. Khi mua thuốc ở hiệu thuốc anh đưa tờ giấy này ra.
+00:50 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:51 | 受付 / Uketsuke / Lễ tân | 王さんは今日、この薬が出ています。 | Oo-san wa kyoo, kono kusuri ga dete imasu. | Hôm nay anh được kê thuốc này.
+00:55 | 王 / Oo / Vương | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+*00:58 | 王 / Oo / Vương | どこの薬局でもいいですか。 | Doko no yakkyoku demo ii desu ka. | Hiệu thuốc nào cũng được ạ?
+01:01 | 受付 / Uketsuke / Lễ tân | ああ、このビルの隣の薬局が一番近いですよ。 | Aa, kono biru no tonari no yakkyoku ga ichiban chikai desu yo. | À, hiệu thuốc cạnh tòa nhà này là gần nhất đấy.
+01:06 | 王 / Oo / Vương | ああ、わかりました。ありがとうございます。 | Aa, wakarimashita. Arigatoo gozaimasu. | À, tôi hiểu rồi. Cảm ơn chị.
+01:11 | 受付 / Uketsuke / Lễ tân | お大事に。 | Odaiji ni. | Anh giữ gìn sức khỏe nhé.
+### từ vựng
+診察券 | しんさつけん | shinsatsuken | thẻ khám bệnh
+処方箋 | しょほうせん | shohoosen | đơn thuốc
+薬局 | やっきょく | yakkyoku | hiệu thuốc
+次回 | じかい | jikai | lần sau
+お大事に | おだいじに | odaiji ni | giữ gìn sức khỏe nhé
+
+## summary.mp4
+# Ôn tập: Đi khám bệnh
+00:00 |  /  / Chủ đề | あしくびが はれているんです | ashikubi ga hareteirun desu | Cổ chân tôi bị sưng
+00:06 | 医者 / Isha / Bác sĩ | どうしましたか。 | Doo shimashita ka. | Anh bị làm sao?
+*00:08 | 王 / Oo / Vương | 今朝、会社に行く途中に転んで、足首が腫れているんです。 | Kesa, kaisha ni iku tochuu ni koronde, ashikubi ga harete irun desu. | Sáng nay trên đường đi làm tôi bị ngã, cổ chân bị sưng.
+00:16 | ナレーター / Nareetaa / Người dẫn | 「普通形＋んです」は、状況や理由を相手に伝えたいときに使う表現です。 | "Futsuukee + n desu" wa, jookyoo ya riyuu o aite ni tsutaetai toki ni tsukau hyoogen desu. | "Thể thông thường + n desu" dùng khi muốn cho người kia biết tình trạng hay lý do.
+00:27 | ナレーター / Nareetaa / Người dẫn | この会話では、お医者さんが「どうしましたか」と聞いています。 | Kono kaiwa de wa, oishasan ga "Doo shimashita ka" to kiite imasu. | Trong hội thoại, bác sĩ hỏi "Anh bị làm sao?".
+00:35 | ナレーター / Nareetaa / Người dẫn | それに対して「足首が腫れています」と答えても事実は伝わりますが、「足首が腫れているんです」と答えたほうが、会話らしい受け答えになります。 | Sore ni taishite "Ashikubi ga harete imasu" to kotaete mo jijitsu wa tsutawarimasu ga, "Ashikubi ga harete irun desu" to kotaeta hoo ga, kaiwa rashii ukekotae ni narimasu. | Trả lời "Cổ chân bị sưng" (harete imasu) thì vẫn truyền đạt được sự việc, nhưng nói "harete irun desu" nghe tự nhiên như hội thoại hơn.
+00:54 | ナレーター / Nareetaa / Người dẫn | 話し言葉では「んです」を使いますが、書き言葉や改まった話し方の場合は「のです」が使われます。 | Hanashikotoba de wa "n desu" o tsukaimasu ga, kakikotoba ya aratamatta hanashikata no baai wa "no desu" ga tsukawaremasu. | Văn nói dùng "n desu", còn văn viết hoặc cách nói trang trọng thì dùng "no desu".
+*01:12 |  /  / Chủ đề | ころんで、あしくびが はれている | koronde, ashikubi ga hareteiru | Bị ngã nên cổ chân bị sưng
+01:17 | 王 / Oo / Vương | 今朝、会社に行く途中に転んで、足首が腫れているんです。 | Kesa, kaisha ni iku tochuu ni koronde, ashikubi ga harete irun desu. | Sáng nay trên đường đi làm tôi bị ngã, cổ chân bị sưng.
+01:25 | ナレーター / Nareetaa / Người dẫn | 動詞のて形で2つの文をつなげたときに、前の文が後の文の状態を引き起こす原因や理由を表す場合があります。 | Dooshi no te-kee de futatsu no bun o tsunageta toki ni, mae no bun ga ato no bun no jootai o hikiokosu gen'in ya riyuu o arawasu baai ga arimasu. | Khi nối hai câu bằng thể te của động từ, có lúc câu trước diễn tả nguyên nhân, lý do gây ra trạng thái ở câu sau.
+01:41 | ナレーター / Nareetaa / Người dẫn | 会話の中の患者は、足首が腫れた状態で病院に来ましたが、その原因を説明するのに、「今朝、会社に行く途中で転んで」と動詞のて形を使って話しているわけです。 | Kaiwa no naka no kanja wa, ashikubi ga hareta jootai de byooin ni kimashita ga, sono gen'in o setsumee suru no ni, "Kesa, kaisha ni iku tochuu de koronde" to dooshi no te-kee o tsukatte hanashite iru wake desu. | Bệnh nhân trong hội thoại đến bệnh viện với cổ chân bị sưng, và để giải thích nguyên nhân thì dùng thể te: "Sáng nay trên đường đi làm bị ngã".
+02:02 | ナレーター / Nareetaa / Người dẫn | この用法では、後の文に話し手の意思を表す表現が入ることはありません。 | Kono yoohoo de wa, ato no bun ni hanashite no ishi o arawasu hyoogen ga hairu koto wa arimasen. | Với cách dùng này, câu sau không chứa cách nói thể hiện ý chí của người nói.
+02:13 | ナレーター / Nareetaa / Người dẫn | 動詞のない形、い形容詞、な形容詞、名詞でも同じような用法があります。 | Dooshi no nai-kee, i-keeyooshi, na-keeyooshi, meeshi demo onaji yoo na yoohoo ga arimasu. | Thể nai của động từ, tính từ đuôi i, đuôi na và danh từ cũng có cách dùng tương tự.
+02:25 |  /  / Chủ đề | おふろに はいっても いいですか | ofuro ni haittemo ii desu ka | Tôi tắm bồn được không ạ?
+*02:33 | 王 / Oo / Vương | じゃあ、お風呂に入ってもいいですか。 | Jaa, ofuro ni haitte mo ii desu ka. | Vậy tôi tắm bồn được không ạ?
+02:34 | 医者 / Isha / Bác sĩ | ああ、お風呂は2、3日入らないでください。 | Aa, ofuro wa ni-san-nichi hairanaide kudasai. | À, anh đừng tắm bồn trong 2, 3 ngày.
+02:41 | 王 / Oo / Vương | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+02:44 | ナレーター / Nareetaa / Người dẫn | 「動詞のて形＋もいいですか」は、相手に許可を求めるときの言い方です。 | "Dooshi no te-kee + mo ii desu ka" wa, aite ni kyoka o motomeru toki no iikata desu. | "Động từ thể te + mo ii desu ka" là cách xin phép người khác.
+02:55 | ナレーター / Nareetaa / Người dẫn | 例えば、「写真を撮ってもいいですか」「トイレに行ってもいいですか」のようになります。 | Tatoeba, "Shashin o totte mo ii desu ka", "Toire ni itte mo ii desu ka" no yoo ni narimasu. | Ví dụ: "Tôi chụp ảnh được không?", "Tôi đi vệ sinh được không?".
+03:06 | ナレーター / Nareetaa / Người dẫn | この会話では、患者がお医者さんにお風呂に入ることへの許可を求めています。 | Kono kaiwa de wa, kanja ga oishasan ni ofuro ni hairu koto e no kyoka o motomete imasu. | Trong hội thoại, bệnh nhân xin bác sĩ cho phép tắm bồn.
+03:17 | ナレーター / Nareetaa / Người dẫn | お医者さんは「入らないでください」と言って許可しませんでした。 | Oishasan wa "Hairanaide kudasai" to itte kyoka shimasen deshita. | Bác sĩ nói "Đừng tắm" – không cho phép.
+03:25 | ナレーター / Nareetaa / Người dẫn | お医者さんですからはっきり答えていますが、日本人は「いいえ、ちょっと…」と最後まで言わないことがよくあります。 | Oishasan desu kara hakkiri kotaete imasu ga, Nihonjin wa "Iie, chotto…" to saigo made iwanai koto ga yoku arimasu. | Vì là bác sĩ nên trả lời rõ ràng, nhưng người Nhật thường nói "Không, hơi…" mà không nói hết câu.
+03:40 | ナレーター / Nareetaa / Người dẫn | 許可する場合は、「はい、いいですよ」「はい、どうぞ」のように答えます。 | Kyoka suru baai wa, "Hai, ii desu yo", "Hai, doozo" no yoo ni kotaemasu. | Khi cho phép thì trả lời "Vâng, được chứ", "Vâng, xin mời".

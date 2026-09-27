@@ -1,0 +1,1013 @@
+{
+  "lesson": {
+    "title": "Tình huống: Tham gia tổ dân phố"
+  },
+  "videos": [
+    {
+      "title": "Bảng thông báo truyền tay của tổ dân phố",
+      "description": "Hỏi được nghĩa của từ lạ như「町内会」và hỏi cách tham gia hoạt động của khu phố.",
+      "url": "/uploads/lesson-videos/n4-06-neighborhood-association/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "おはようございます、鈴木さん。",
+          "romaji": "Ohayoo gozaimasu, Suzuki-san.",
+          "text_vi": "Chào buổi sáng, chị Suzuki.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "おはようございます、アンジェラさん。",
+          "romaji": "Ohayoo gozaimasu, Anjera-san.",
+          "text_vi": "Chào buổi sáng, Angela.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "それは何ですか。",
+          "romaji": "Sore wa nan desu ka.",
+          "text_vi": "Cái đó là gì vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "町内会の回覧板ですよ。",
+          "romaji": "Choonaikai no kairanban desu yo.",
+          "text_vi": "Là bảng thông báo truyền tay của tổ dân phố đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "町内会って何ですか。",
+          "romaji": "Choonaikai tte nan desu ka.",
+          "text_vi": "Tổ dân phố là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "同じ地域に住んでいる人たちの会です。いろんな活動をしているんですよ。",
+          "romaji": "Onaji chiiki ni sunde iru hitotachi no kai desu. Ironna katsudoo o shite irun desu yo.",
+          "text_vi": "Là hội của những người sống cùng khu vực. Có nhiều hoạt động lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ほら、町内会の行事やお知らせとか書いてあるんですよ。",
+          "romaji": "Hora, choonaikai no gyooji ya oshirase toka kaite arun desu yo.",
+          "text_vi": "Đây này, có ghi các sự kiện và thông báo của tổ dân phố.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これはバーベキューですか。",
+          "romaji": "Kore wa baabekyuu desu ka.",
+          "text_vi": "Cái này là tiệc nướng ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、そうそう。",
+          "romaji": "Aa, soo soo.",
+          "text_vi": "À, đúng rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "楽しそうですね。私も参加できますか。",
+          "romaji": "Tanoshisoo desu ne. Watashi mo sanka dekimasu ka.",
+          "text_vi": "Trông vui quá. Em cũng tham gia được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい。でも、アンジェラさん、もう町内会に入りましたか。",
+          "romaji": "Hai. Demo, Anjera-san, moo choonaikai ni hairimashita ka.",
+          "text_vi": "Được chứ. Nhưng mà Angela đã vào tổ dân phố chưa?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいえ、まだです。どうやったら入れますか。",
+          "romaji": "Iie, mada desu. Doo yattara hairemasu ka.",
+          "text_vi": "Chưa ạ. Làm thế nào để vào được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "このあたりは3班だから、あそこの高橋さんちで聞いてみてください。班長さんだから。",
+          "romaji": "Kono atari wa sanpan dakara, asoko no Takahashi-san-chi de kiite mite kudasai. Hanchoo-san dakara.",
+          "text_vi": "Khu này là tổ 3, em thử hỏi ở nhà bà Takahashi đằng kia nhé. Bà ấy là tổ trưởng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "後で行ってみます。",
+          "romaji": "Ato de itte mimasu.",
+          "text_vi": "Lát nữa em sẽ đến thử.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "町内会",
+          "reading": "ちょうないかい",
+          "romaji": "choonaikai",
+          "meaning": "tổ dân phố"
+        },
+        {
+          "word": "回覧板",
+          "reading": "かいらんばん",
+          "romaji": "kairanban",
+          "meaning": "bảng thông báo truyền tay"
+        },
+        {
+          "word": "地域",
+          "reading": "ちいき",
+          "romaji": "chiiki",
+          "meaning": "khu vực"
+        },
+        {
+          "word": "活動",
+          "reading": "かつどう",
+          "romaji": "katsudoo",
+          "meaning": "hoạt động"
+        },
+        {
+          "word": "行事",
+          "reading": "ぎょうじ",
+          "romaji": "gyooji",
+          "meaning": "sự kiện"
+        },
+        {
+          "word": "参加",
+          "reading": "さんか",
+          "romaji": "sanka",
+          "meaning": "tham gia"
+        },
+        {
+          "word": "班長",
+          "reading": "はんちょう",
+          "romaji": "hanchoo",
+          "meaning": "tổ trưởng"
+        }
+      ]
+    },
+    {
+      "title": "Xin vào tổ dân phố",
+      "description": "Nói được mình muốn vào tổ dân phố và hiểu hội phí, các hoạt động, lượt trực.",
+      "url": "/uploads/lesson-videos/n4-06-neighborhood-association/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "はーい。",
+          "romaji": "Haai.",
+          "text_vi": "Vâng, ra đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:03",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "あ、アンジェラさん。こんにちは。",
+          "romaji": "A, Anjera-san. Konnichiwa.",
+          "text_vi": "À, Angela. Chào cháu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "こんにちは。今ちょっといいですか。",
+          "romaji": "Konnichiwa. Ima chotto ii desu ka.",
+          "text_vi": "Cháu chào bác. Bây giờ bác rảnh một chút không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "はい。どうしましたか。",
+          "romaji": "Hai. Doo shimashita ka.",
+          "text_vi": "Ừ. Có chuyện gì thế?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "私も町内会に入りたいんですけど。",
+          "romaji": "Watashi mo choonaikai ni hairitain desu kedo.",
+          "text_vi": "Cháu cũng muốn vào tổ dân phố ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "ああ、そうですか。ありがとうございます。",
+          "romaji": "Aa, soo desu ka. Arigatoo gozaimasu.",
+          "text_vi": "À, vậy à. Cảm ơn cháu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "じゃあ、ちょっと説明しますね。",
+          "romaji": "Jaa, chotto setsumee shimasu ne.",
+          "text_vi": "Vậy để bác giải thích một chút nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, bác giải thích giúp cháu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "まず、1年間の会費は3,000円です。",
+          "romaji": "Mazu, ichinenkan no kaihi wa sanzen-en desu.",
+          "text_vi": "Trước tiên, hội phí một năm là 3.000 yên.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "3,000円。",
+          "romaji": "Sanzen-en.",
+          "text_vi": "3.000 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "それで、お花見とか、バーベキューとか、あと防災訓練もやっています。",
+          "romaji": "Sorede, ohanami toka, baabekyuu toka, ato boosai-kunren mo yatte imasu.",
+          "text_vi": "Rồi có đi ngắm hoa anh đào, tiệc nướng, ngoài ra còn diễn tập phòng chống thiên tai.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ、そうなんですか。",
+          "romaji": "Hee, soo nan desu ka.",
+          "text_vi": "Ồ, vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "それから、町内会はごみ置き場の掃除もしています。",
+          "romaji": "Sorekara, choonaikai wa gomi-okiba no sooji mo shite imasu.",
+          "text_vi": "Ngoài ra tổ dân phố còn dọn dẹp chỗ đổ rác.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ、全然知りませんでした。",
+          "romaji": "Hee, zenzen shirimasen deshita.",
+          "text_vi": "Ồ, cháu hoàn toàn không biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "ごみ置き場の掃除は、みんなが当番でやっています。",
+          "romaji": "Gomi-okiba no sooji wa, minna ga tooban de yatte imasu.",
+          "text_vi": "Việc dọn chỗ đổ rác thì mọi người thay phiên nhau làm.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "大体2か月に1回くらい当番が回ってきます。",
+          "romaji": "Daitai nikagetsu ni ikkai kurai tooban ga mawatte kimasu.",
+          "text_vi": "Khoảng 2 tháng lại đến lượt một lần.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、そうですか。",
+          "romaji": "Aa, soo desu ka.",
+          "text_vi": "À, vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "これが申込書です。",
+          "romaji": "Kore ga mooshikomisho desu.",
+          "text_vi": "Đây là đơn đăng ký.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。じゃあ、家に帰って、後でお金と一緒に持ってきます。",
+          "romaji": "Arigatoo gozaimasu. Jaa, ie ni kaette, ato de okane to issho ni motte kimasu.",
+          "text_vi": "Cháu cảm ơn bác. Vậy cháu về nhà rồi lát nữa mang đến cùng với tiền.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "高橋",
+          "speaker_romaji": "Takahashi",
+          "speaker_vi": "Takahashi",
+          "text_ja": "はい、いいですよ。お願いします。",
+          "romaji": "Hai, ii desu yo. Onegaishimasu.",
+          "text_vi": "Ừ, được rồi. Nhờ cháu nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "失礼します。",
+          "romaji": "Shitsuree shimasu.",
+          "text_vi": "Cháu xin phép ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "会費",
+          "reading": "かいひ",
+          "romaji": "kaihi",
+          "meaning": "hội phí"
+        },
+        {
+          "word": "花見",
+          "reading": "はなみ",
+          "romaji": "hanami",
+          "meaning": "ngắm hoa anh đào"
+        },
+        {
+          "word": "防災訓練",
+          "reading": "ぼうさいくんれん",
+          "romaji": "boosai-kunren",
+          "meaning": "diễn tập phòng chống thiên tai"
+        },
+        {
+          "word": "当番",
+          "reading": "とうばん",
+          "romaji": "tooban",
+          "meaning": "phiên trực"
+        },
+        {
+          "word": "申込書",
+          "reading": "もうしこみしょ",
+          "romaji": "mooshikomisho",
+          "meaning": "đơn đăng ký"
+        },
+        {
+          "word": "説明",
+          "reading": "せつめい",
+          "romaji": "setsumee",
+          "meaning": "giải thích"
+        }
+      ]
+    },
+    {
+      "title": "Chuẩn bị cho lượt dọn chỗ đổ rác",
+      "description": "Nhờ được hàng xóm chỉ cách làm lượt trực dọn chỗ đổ rác lần đầu.",
+      "url": "/uploads/lesson-videos/n4-06-neighborhood-association/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "こんばんは。アンジェラです。",
+          "romaji": "Konbanwa. Anjera desu.",
+          "text_vi": "Chào chị. Em là Angela.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさん。",
+          "romaji": "Anjera-san.",
+          "text_vi": "À, Angela.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "夜遅くにすみません。",
+          "romaji": "Yoru osoku ni sumimasen.",
+          "text_vi": "Xin lỗi vì đến muộn thế này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "これ、ありがとうございます。",
+          "romaji": "Kore, arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn em vì cái này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっと教えてほしいんですけど。",
+          "romaji": "Chotto oshiete hoshiin desu kedo.",
+          "text_vi": "Em muốn nhờ chị chỉ giúp một chút.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい、何ですか。",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Ừ, chuyện gì thế?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "明日、私、ごみ置き場の掃除当番なんですけど。",
+          "romaji": "Ashita, watashi, gomi-okiba no sooji-tooban nan desu kedo.",
+          "text_vi": "Ngày mai em đến lượt dọn chỗ đổ rác.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、そうですか。ご苦労様です。",
+          "romaji": "Aa, soo desu ka. Gokuroosama desu.",
+          "text_vi": "À, vậy à. Vất vả cho em rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "初めてなんですけど、どうしたらいいですか。",
+          "romaji": "Hajimete nan desu kedo, doo shitara ii desu ka.",
+          "text_vi": "Đây là lần đầu, em nên làm thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "あー、大丈夫大丈夫。他にも当番の人がいますから。",
+          "romaji": "Aa, daijoobu daijoobu. Hoka ni mo tooban no hito ga imasu kara.",
+          "text_vi": "À, không sao đâu. Còn có người khác cùng trực nữa.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさんは7時までに行けばいいですよ。",
+          "romaji": "Anjera-san wa shichi-ji made ni ikeba ii desu yo.",
+          "text_vi": "Em chỉ cần đến trước 7 giờ là được.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "7時ですね。どんな格好をして行ったらいいですか。",
+          "romaji": "Shichi-ji desu ne. Donna kakkoo o shite ittara ii desu ka.",
+          "text_vi": "7 giờ nhỉ. Em nên mặc gì để đi ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "普通でいいですよ。軍手とか持って行ったら？",
+          "romaji": "Futsuu de ii desu yo. Gunte toka motte ittara?",
+          "text_vi": "Bình thường thôi. Em mang theo găng tay vải nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "軍手ですか。持っていないんですけど…",
+          "romaji": "Gunte desu ka. Motte inain desu kedo…",
+          "text_vi": "Găng tay vải ạ? Em không có…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですか。じゃあ、うちにたくさんあるから、一つあげましょうか。",
+          "romaji": "Soo desu ka. Jaa, uchi ni takusan aru kara, hitotsu agemashoo ka.",
+          "text_vi": "Vậy à. Nhà chị có nhiều, chị cho em một đôi nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいんですか。",
+          "romaji": "Iin desu ka.",
+          "text_vi": "Được ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい、どうぞ。",
+          "romaji": "Hai, doozo.",
+          "text_vi": "Đây, em cầm lấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Em cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、何時ごろ終わりますか。",
+          "romaji": "Ano, nanji goro owarimasu ka.",
+          "text_vi": "Dạ, khoảng mấy giờ thì xong ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "いつもは大体8時半ごろですよ。",
+          "romaji": "Itsumo wa daitai hachi-ji han goro desu yo.",
+          "text_vi": "Thường thì khoảng 8 giờ rưỡi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、そうですか。ありがとうございました。助かりました。",
+          "romaji": "Aa, soo desu ka. Arigatoo gozaimashita. Tasukarimashita.",
+          "text_vi": "À, vậy ạ. Cảm ơn chị. Chị giúp em nhiều quá.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "頑張ってくださいね。",
+          "romaji": "Ganbatte kudasai ne.",
+          "text_vi": "Cố lên nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はーい。",
+          "romaji": "Haai.",
+          "text_vi": "Vâng ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "ごみ置き場",
+          "reading": "ごみおきば",
+          "romaji": "gomi-okiba",
+          "meaning": "chỗ đổ rác"
+        },
+        {
+          "word": "掃除",
+          "reading": "そうじ",
+          "romaji": "sooji",
+          "meaning": "dọn dẹp"
+        },
+        {
+          "word": "格好",
+          "reading": "かっこう",
+          "romaji": "kakkoo",
+          "meaning": "trang phục"
+        },
+        {
+          "word": "軍手",
+          "reading": "ぐんて",
+          "romaji": "gunte",
+          "meaning": "găng tay vải"
+        },
+        {
+          "word": "ご苦労様です",
+          "reading": "ごくろうさまです",
+          "romaji": "gokuroosama desu",
+          "meaning": "vất vả rồi"
+        },
+        {
+          "word": "助かる",
+          "reading": "たすかる",
+          "romaji": "tasukaru",
+          "meaning": "được giúp đỡ nhiều"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Tham gia tổ dân phố",
+      "description": "Ôn lại「〜って何ですか」,「〜そうです」và「〜てほしいんですけど」.",
+      "url": "/uploads/lesson-videos/n4-06-neighborhood-association/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ちょうないかいって なんですか",
+          "romaji": "\"choonaikai\" tte nan desu ka",
+          "text_vi": "\"Choonaikai\" là gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "それは何ですか。",
+          "romaji": "Sore wa nan desu ka.",
+          "text_vi": "Cái đó là gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "町内会の回覧板ですよ。",
+          "romaji": "Choonaikai no kairanban desu yo.",
+          "text_vi": "Là bảng thông báo truyền tay của tổ dân phố đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "町内会って何ですか。",
+          "romaji": "Choonaikai tte nan desu ka.",
+          "text_vi": "Tổ dân phố là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「名詞の後に＋って何ですか」は、その名詞の意味を聞くときに使います。",
+          "romaji": "\"Meeshi no ato ni + tte nan desu ka\" wa, sono meeshi no imi o kiku toki ni tsukaimasu.",
+          "text_vi": "\"Danh từ + tte nan desu ka\" dùng khi hỏi nghĩa của danh từ đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "初めて聞いた言葉や、聞いたことはあるけれど意味がよくわからないとき、相手にその言葉の意味を教えてもらうための表現です。",
+          "romaji": "Hajimete kiita kotoba ya, kiita koto wa aru keredo imi ga yoku wakaranai toki, aite ni sono kotoba no imi o oshiete morau tame no hyoogen desu.",
+          "text_vi": "Đây là cách nói để nhờ người kia giải thích nghĩa của từ mới nghe lần đầu, hoặc từ đã nghe nhưng chưa hiểu rõ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、鈴木さんが「町内会」と言いました。アンジェラさんは「町内会」という言葉の意味がわかりませんでした。",
+          "romaji": "Dooga de wa, Suzuki-san ga \"choonaikai\" to iimashita. Anjera-san wa \"choonaikai\" to iu kotoba no imi ga wakarimasen deshita.",
+          "text_vi": "Trong video, chị Suzuki nói \"choonaikai\". Chị Angela không hiểu từ \"choonaikai\" nghĩa là gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それで、鈴木さんに「町内会って何ですか」と聞きました。",
+          "romaji": "Sorede, Suzuki-san ni \"Choonaikai tte nan desu ka\" to kikimashita.",
+          "text_vi": "Vì vậy chị ấy hỏi chị Suzuki \"Choonaikai là gì ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、Aさんが「今日はお花見があります」と言いました。でも、あなたはお花見が何かわかりません。",
+          "romaji": "Tatoeba, A-san ga \"Kyoo wa ohanami ga arimasu\" to iimashita. Demo, anata wa ohanami ga nani ka wakarimasen.",
+          "text_vi": "Ví dụ, anh A nói \"Hôm nay có buổi ngắm hoa\". Nhưng bạn không biết \"ohanami\" là gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "そのときは、「お花見って何ですか」と聞きます。",
+          "romaji": "Sono toki wa, \"Ohanami tte nan desu ka\" to kikimasu.",
+          "text_vi": "Khi đó thì hỏi \"Ohanami là gì ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "たのしそうですね",
+          "romaji": "tanoshisoo desu ne",
+          "text_vi": "Trông vui nhỉ",
+          "key_phrase": false
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これはバーベキューですか。",
+          "romaji": "Kore wa baabekyuu desu ka.",
+          "text_vi": "Cái này là tiệc nướng ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、そうそう。",
+          "romaji": "Aa, soo soo.",
+          "text_vi": "À, đúng rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "楽しそうですね。",
+          "romaji": "Tanoshisoo desu ne.",
+          "text_vi": "Trông vui quá.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「形容詞＋そうです」は、見た印象を言うときに使います。",
+          "romaji": "\"Keeyooshi + soo desu\" wa, mita inshoo o iu toki ni tsukaimasu.",
+          "text_vi": "\"Tính từ + soo desu\" dùng để nói ấn tượng khi nhìn thấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "い形容詞の場合は、「い」を消して「そうです」をつけます。",
+          "romaji": "I-keeyooshi no baai wa, \"i\" o keshite \"soo desu\" o tsukemasu.",
+          "text_vi": "Với tính từ đuôi i, bỏ \"i\" rồi thêm \"soo desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "な形容詞の場合は、「な」は使わないで、そのまま「そうです」をつけます。",
+          "romaji": "Na-keeyooshi no baai wa, \"na\" wa tsukawanaide, sono mama \"soo desu\" o tsukemasu.",
+          "text_vi": "Với tính từ đuôi na, không dùng \"na\" mà thêm luôn \"soo desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、アンジェラさんはバーベキューのチラシの絵を見て、「楽しそうですね」と言いました。",
+          "romaji": "Dooga de wa, Anjera-san wa baabekyuu no chirashi no e o mite, \"Tanoshisoo desu ne\" to iimashita.",
+          "text_vi": "Trong video, chị Angela nhìn hình trên tờ thông báo tiệc nướng và nói \"Trông vui quá\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、ケーキがおいしいかどうかは見ただけでは本当はわかりませんが、見た印象で「おいしそうです」と言うことができます。",
+          "romaji": "Tatoeba, keeki ga oishii ka doo ka wa mita dake de wa hontoo wa wakarimasen ga, mita inshoo de \"Oishisoo desu\" to iu koto ga dekimasu.",
+          "text_vi": "Ví dụ, chỉ nhìn thì không biết bánh có thật sự ngon không, nhưng theo ấn tượng có thể nói \"Trông ngon quá\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:40",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "おしえて ほしいんですけど",
+          "romaji": "oshiete hoshiin desu kedo",
+          "text_vi": "Tôi muốn nhờ chỉ giúp…",
+          "key_phrase": false
+        },
+        {
+          "start": "02:46",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっと教えてほしいんですけど。",
+          "romaji": "Chotto oshiete hoshiin desu kedo.",
+          "text_vi": "Em muốn nhờ chị chỉ giúp một chút.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形に「ほしいんですけど」をつけると、相手への希望やお願いを表すことができます。",
+          "romaji": "Dooshi no te-kee ni \"hoshiin desu kedo\" o tsukeru to, aite e no kiboo ya onegai o arawasu koto ga dekimasu.",
+          "text_vi": "Thêm \"hoshiin desu kedo\" vào thể te của động từ để bày tỏ mong muốn hay lời nhờ vả với người kia.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、アンジェラさんが鈴木さんに、最初に「教えてほしいんですけど」と言って相談を始めました。",
+          "romaji": "Kono dooga de wa, Anjera-san ga Suzuki-san ni, saisho ni \"Oshiete hoshiin desu kedo\" to itte soodan o hajimemashita.",
+          "text_vi": "Trong video, chị Angela mở đầu bằng câu \"Em muốn nhờ chị chỉ giúp\" rồi mới bắt đầu hỏi chị Suzuki.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "いきなり質問するより、相手も答えやすいです。",
+          "romaji": "Ikinari shitsumon suru yori, aite mo kotaeyasui desu.",
+          "text_vi": "So với hỏi ngay lập tức, như vậy người kia cũng dễ trả lời hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「教えてほしいんですけど」は、「教えてもらいたいんですけど」と言うこともできます。",
+          "romaji": "\"Oshiete hoshiin desu kedo\" wa, \"Oshiete moraitain desu kedo\" to iu koto mo dekimasu.",
+          "text_vi": "\"Oshiete hoshiin desu kedo\" cũng có thể nói là \"Oshiete moraitain desu kedo\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

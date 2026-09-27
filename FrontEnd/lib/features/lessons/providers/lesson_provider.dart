@@ -30,7 +30,7 @@ class LessonProvider with ChangeNotifier {
   /// Chi tiết các bài đã mở trong phiên, theo `id`.
   final Map<String, LessonDetail> _detailCache = {};
 
-  // Pagination. Đủ rộng để cả một trình độ (N5 hiện 15 bài) nằm trên một
+  // Pagination. Đủ rộng để cả một trình độ (N5 hiện 12 bài) nằm trên một
   // trang: lộ trình học bị cắt đôi giữa chừng thì khó theo, còn danh sách chỉ
   // chở phần tóm tắt của bài nên tải nhẹ.
   int _currentPage = 1;

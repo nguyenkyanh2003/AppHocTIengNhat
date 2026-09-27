@@ -1,0 +1,99 @@
+# Lời thoại Tình huống: Dùng máy tính và điện thoại
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-11-15.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-3.mp4
+# Gõ chữ Nhật trên máy tính
+*00:03 | 王 / Oo / Vương | すみません、この病院について調べたいんですけど。 | Sumimasen, kono byooin ni tsuite shirabetain desu kedo. | Xin lỗi, tôi muốn tìm hiểu về bệnh viện này ạ.
+00:09 | 佐藤 / Satoo / Satō | はいはい。服部病院ですね。 | Hai hai. Hattori byooin desu ne. | Vâng vâng. Bệnh viện Hattori phải không.
+*00:15 | 王 / Oo / Vương | ひらがなが出ないんです。 | Hiragana ga denain desu. | Chữ hiragana không hiện ra được ạ.
+00:24 | 佐藤 / Satoo / Satō | じゃあまず、このキーを押してください。 | Jaa mazu, kono kii o oshite kudasai. | Vậy trước tiên, em hãy bấm vào nút này.
+00:28 | 王 / Oo / Vương | ここですね。 | Koko desu ne. | Chỗ này phải không ạ.
+00:37 | 王 / Oo / Vương | あ、ひらがなになりました。 | A, hiragana ni narimashita. | A, thành hiragana rồi ạ.
+00:39 | 佐藤 / Satoo / Satō | そしたら、ここに「服部病院」って入れてみてください。 | Soshitara, koko ni "Hattori byooin" tte irete mite kudasai. | Vậy thì em thử gõ "Hattori byōin" vào đây xem.
+00:44 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:55 | 王 / Oo / Vương | あれ、うまくできないんですけど。 | Are, umaku dekinain desu kedo. | Ơ, em làm không được ạ.
+00:57 | 佐藤 / Satoo / Satō | ああ、ローマ字入力結構難しいですよね。じゃあ言いますね。 | Aa, roomaji nyuuryoku kekkoo muzukashii desu yo ne. Jaa iimasu ne. | À, gõ kiểu romaji cũng khá khó nhỉ. Vậy để anh đọc cho em nhé.
+01:06 | 佐藤 / Satoo / Satō | H、A、T、T… | Eechi, Ee, Tii, Tii... | H, A, T, T…
+01:13 | 王 / Oo / Vương | これでいいですか。 | Kore de ii desu ka. | Như vậy được không ạ.
+01:15 | 佐藤 / Satoo / Satō | ええ。次に、このキーを押すと漢字に変換されますよ。 | Ee. Tsugi ni, kono kii o osu to kanji ni henkan saremasu yo. | Ừ. Tiếp theo, bấm nút này thì sẽ chuyển sang chữ Hán đó.
+*01:24 | 王 / Oo / Vương | あ、これを押せばいいんですね。 | A, kore o oseba iin desu ne. | À, bấm cái này là được phải không ạ.
+01:29 | 佐藤 / Satoo / Satō | 正しい漢字を選んだら、エンターキーを押してください。 | Tadashii kanji o erandara, entaa kii o oshite kudasai. | Sau khi chọn đúng chữ Hán rồi thì bấm phím Enter.
+01:38 | 王 / Oo / Vương | できました。ありがとうございます。 | Dekimashita. Arigatoo gozaimasu. | Xong rồi ạ. Cảm ơn anh.
+### từ vựng
+調べる | しらべる | shiraberu | tra cứu
+入力 | にゅうりょく | nyuuryoku | nhập (chữ)
+キー | キー | kii | phím
+ローマ字 | ローマじ | roomaji | chữ La-tinh
+変換 | へんかん | henkan | chuyển đổi (chữ)
+エンターキー | エンターキー | entaa-kii | phím Enter
+
+## scene-2.mp4
+# Nhờ xem giúp email thông báo
+*00:01 | 王 / Oo / Vương | 佐藤さん、すみません。来週のミーティングのこと、皆さんにお知らせのメールを書いたんですが、ちょっと見ていただけますか。 | Satoo-san, sumimasen. Raishuu no miitingu no koto, minasan ni oshirase no meeru o kaitan desu ga, chotto mite itadakemasu ka. | Anh Satō ơi, xin lỗi. Tôi đã viết email thông báo cho mọi người về cuộc họp tuần sau, anh xem giúp tôi được không?
+00:12 | 佐藤 / Satoo / Satō | いいですよ。 | Ii desu yo. | Được chứ.
+00:22 | 佐藤 / Satoo / Satō | いいですねー。これでOKです。 | Ii desu nee. Kore de OK desu. | Được đấy. Như vậy là ổn rồi.
+00:26 | 王 / Oo / Vương | ありがとう。じゃあこれ、私にもBCCで送っておいてくれますか。 | Arigatoo. Jaa kore, watashi ni mo BCC de okutte oite kuremasu ka. | Cảm ơn anh. Vậy anh gửi BCC cho tôi luôn nhé.
+00:34 | 佐藤 / Satoo / Satō | BCC？ | BCC? | BCC ạ?
+*00:37 | 王 / Oo / Vương | すみません、BCCとCCで、どう違いますか。 | Sumimasen, BCC to CC de, doo chigaimasu ka. | Xin lỗi, BCC với CC khác nhau thế nào ạ?
+00:44 | 佐藤 / Satoo / Satō | BCCのメールアドレスは、受信した人には見えないんですよ。 | BCC no meeru adoresu wa, jushin shita hito ni wa mienain desu yo. | Địa chỉ email trong BCC thì người nhận không thấy được đâu.
+00:49 | 王 / Oo / Vương | あー、なるほど。 | Aa, naruhodo. | À, ra vậy.
+00:56 | 佐藤 / Satoo / Satō | あのー、ここはどうしますか。 | Anoo, koko wa doo shimasu ka. | À, còn chỗ này thì làm sao ạ?
+00:59 | 王 / Oo / Vương | ああ、件名ですね。 | Aa, kenmee desu ne. | À, tiêu đề đó phải không.
+*01:06 | 王 / Oo / Vương | 件名は「来週のミーティングのお知らせ」にしといてください。 | Kenmee wa "Raishuu no miitingu no oshirase" ni shitoite kudasai. | Tiêu đề thì để là "Thông báo cuộc họp tuần sau" giúp tôi nhé.
+01:09 | 佐藤 / Satoo / Satō | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+01:16 | 佐藤 / Satoo / Satō | 大丈夫そうですね。 | Daijoobu soo desu ne. | Có vẻ ổn rồi đó.
+*01:19 | 王 / Oo / Vương | じゃあ、これで送っておきます。 | Jaa, kore de okutte okimasu. | Vậy tôi gửi trước như thế này nhé.
+01:21 | 佐藤 / Satoo / Satō | よろしくお願いします。 | Yoroshiku onegaishimasu. | Nhờ anh giúp đỡ.
+### từ vựng
+ミーティング | ミーティング | miitingu | cuộc họp
+お知らせ | おしらせ | oshirase | thông báo
+メール | メール | meeru | email
+受信 | じゅしん | jushin | nhận (thư)
+件名 | けんめい | kenmee | tiêu đề email
+
+## scene-1.mp4
+# Gọi trung tâm đồ thất lạc
+00:01 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | はい、忘れ物お問い合わせセンターです。 | Hai, wasuremono otoiawase sentaa desu. | Vâng, đây là Trung tâm hỏi đáp đồ thất lạc xin nghe.
+00:04 | 王 / Oo / Vương | もしもし。 | Moshimoshi. | A lô.
+*00:06 | 王 / Oo / Vương | あの、定期を落としたみたいなんですけど、駅に届いているか調べていただけませんか。 | Ano, teeki o otoshita mitai nan desu kedo, eki ni todoite iru ka shirabete itadakemasen ka. | Dạ, hình như tôi đánh rơi thẻ đi lại tháng, chị kiểm tra giúp xem nhà ga có nhận được không ạ?
+00:15 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | 定期券ですね。いつ落とされましたか。 | Teekiken desu ne. Itsu otosaremashita ka. | Thẻ đi lại tháng phải không ạ. Anh đánh rơi khi nào ạ?
+00:19 | 王 / Oo / Vương | 昨日です。 | Kinoo desu. | Hôm qua ạ.
+00:21 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | どの辺で落とされたかわかりますか。 | Dono hen de otosareta ka wakarimasu ka. | Anh có biết đánh rơi ở khoảng nào không ạ?
+00:24 | 王 / Oo / Vương | あー、ちょっとわからないんです。 | Aa, chotto wakaranain desu. | À, tôi không rõ lắm ạ.
+00:28 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | では、定期券のご利用区間はどちらからどちらまでですか。 | Dewa, teekiken no goriyoo kukan wa dochira kara dochira made desu ka. | Vậy chặng sử dụng của thẻ đi lại tháng là từ đâu đến đâu ạ?
+*00:33 | 王 / Oo / Vương | 潮来から成田までです。 | Itako kara Narita made desu. | Từ Itako đến Narita ạ.
+00:37 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | 登録しているお名前を教えてください。 | Tooroku shite iru onamae o oshiete kudasai. | Xin cho tôi biết tên đã đăng ký ạ.
+00:40 | 王 / Oo / Vương | 王です。 | Oo desu. | Tôi tên là Vương ạ.
+00:43 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | 承知いたしました。お調べいたしますので、少々お待ちください。 | Shoochi itashimashita. Oshirabe itashimasu node, shooshoo omachi kudasai. | Vâng, tôi đã rõ. Tôi sẽ kiểm tra nên xin anh chờ một chút ạ.
+00:49 | 王 / Oo / Vương | ありがとうございます。よろしくお願いします。 | Arigatoo gozaimasu. Yoroshiku onegaishimasu. | Cảm ơn chị. Nhờ chị giúp đỡ ạ.
+### từ vựng
+忘れ物 | わすれもの | wasuremono | đồ bỏ quên
+定期券 | ていきけん | teekiken | vé tháng
+落とす | おとす | otosu | đánh rơi
+利用区間 | りようくかん | riyoo-kukan | chặng sử dụng
+承知いたしました | しょうちいたしました | shoochi itashimashita | tôi đã rõ
+
+## summary.mp4
+# Ôn tập: Dùng máy tính và điện thoại
+*00:00 |  /  / Chủ đề | ひらがなが でないんです | hiragana ga denain desu | Không hiện chữ hiragana
+00:06 | ナレーター / Nareetaa / Người dẫn | 動詞には他動詞と自動詞があります。 | Dooshi ni wa tadooshi to jidooshi ga arimasu. | Động từ có tha động từ và tự động từ.
+00:12 | ナレーター / Nareetaa / Người dẫn | 人の動きにフォーカスするときは主に他動詞を使いますが、物の動きにフォーカスするときは自動詞を使います。 | Hito no ugoki ni fookasu suru toki wa omo ni tadooshi o tsukaimasu ga, mono no ugoki ni fookasu suru toki wa jidooshi o tsukaimasu. | Khi tập trung vào hành động của người thì chủ yếu dùng tha động từ, còn khi tập trung vào chuyển động của vật thì dùng tự động từ.
+00:26 | ナレーター / Nareetaa / Người dẫn | 例えばこの場面では、人にフォーカスしたとき、他動詞を使って「電気をつけます」と言います。助詞は「を」を使います。 | Tatoeba kono bamen de wa, hito ni fookasu shita toki, tadooshi o tsukatte "denki o tsukemasu" to iimasu. Joshi wa "o" o tsukaimasu. | Ví dụ trong cảnh này, khi tập trung vào người thì dùng tha động từ nói "bật đèn" (denki o tsukemasu). Trợ từ dùng là "o".
+00:45 | ナレーター / Nareetaa / Người dẫn | 物にフォーカスしたとき、自動詞を使って「電気がつきます」と言います。助詞は「が」を使います。 | Mono ni fookasu shita toki, jidooshi o tsukatte "denki ga tsukimasu" to iimasu. Joshi wa "ga" o tsukaimasu. | Khi tập trung vào vật thì dùng tự động từ nói "đèn sáng lên" (denki ga tsukimasu). Trợ từ dùng là "ga".
+01:01 | ナレーター / Nareetaa / Người dẫn | 他にも、「テレビを消します」「テレビが消えます」「ドアを閉めます」「ドアが閉まります」のようになります。 | Hoka ni mo, "terebi o keshimasu", "terebi ga kiemasu", "doa o shimemasu", "doa ga shimarimasu" no yoo ni narimasu. | Ngoài ra còn có "tắt tivi / tivi tắt", "đóng cửa / cửa đóng lại" tương tự như vậy.
+01:38 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんがパソコンで入力したらひらがなが出ませんでした。 | Kono dooga de wa, Oo-san ga pasokon de nyuuryoku shitara hiragana ga demasen deshita. | Trong video này, khi anh Vương gõ trên máy tính thì chữ hiragana không hiện ra.
+01:54 | ナレーター / Nareetaa / Người dẫn | 文字にフォーカスしましたから、自動詞の「出ます」を使って「ひらがなが出ないんです」と言いました。 | Moji ni fookasu shimashita kara, jidooshi no "demasu" o tsukatte "Hiragana ga denain desu" to iimashita. | Vì tập trung vào chữ nên đã dùng tự động từ "demasu" (hiện ra) để nói "Chữ hiragana không hiện ra".
+*02:06 |  /  / Chủ đề | これで おくって おきます | kore de okutte okimasu | Vậy tôi gửi trước như thế này nhé
+02:06:15 | ナレーター / Nareetaa / Người dẫn | 動詞のて形＋「おきます」は、後で起こることのための準備について言うときに使います。 | Dooshi no te-kee + "okimasu" wa, ato de okoru koto no tame no junbi ni tsuite iu toki ni tsukaimasu. | Mẫu thể te của động từ + "okimasu" dùng khi nói về việc chuẩn bị trước cho một việc sẽ xảy ra sau đó.
+02:18 | ナレーター / Nareetaa / Người dẫn | 例えば、友達が家に来るとき、その前に準備をします。「この時、部屋を掃除しておきます」「お菓子を買っておきます」のように使います。 | Tatoeba, tomodachi ga ie ni kuru toki, sono mae ni junbi o shimasu. "Kono toki, heya o sooji shite okimasu", "okashi o katte okimasu" no yoo ni tsukaimasu. | Ví dụ, khi bạn sắp đến nhà chơi thì chuẩn bị trước. Dùng như "Lúc này thì dọn phòng trước", "mua bánh kẹo trước".
+02:38 | ナレーター / Nareetaa / Người dẫn | 「おきます」の前は「て形」です。 | "Okimasu" no mae wa "te-kee" desu. | Trước "okimasu" là thể te.
+02:44 | ナレーター / Nareetaa / Người dẫn | この動画で王さんは会議の準備のためにお知らせのメールを書きました。そしてこの後それを送りますから、「これで送っておきます」と言いました。 | Kono dooga de Oo-san wa kaigi no junbi no tame ni oshirase no meeru o kakimashita. Soshite kono ato sore o okurimasu kara, "Kore de okutte okimasu" to iimashita. | Trong video này, anh Vương đã viết email thông báo để chuẩn bị cho cuộc họp. Vì sau đó sẽ gửi email nên anh nói "Vậy tôi gửi trước như thế này nhé".
+*03:10 |  /  / Chủ đề | みたいです | mitai desu | Hình như là...
+03:10:15 | ナレーター / Nareetaa / Người dẫn | 「みたいです」は、状況から考えて、たぶんそう思う、というときに使います。 | "Mitai desu" wa, jookyoo kara kangaete, tabun soo omou, to iu toki ni tsukaimasu. | "Mitai desu" dùng khi suy đoán từ tình huống mà nghĩ có lẽ là như vậy.
+03:20 | ナレーター / Nareetaa / Người dẫn | 「みたいです」の前は普通形です。ただし、名詞とな形容詞の「だ」は付きません。例えば、「雨みたいです」「簡単みたいです」で、「だ」は付きません。 | "Mitai desu" no mae wa futsuu-kee desu. Tadashi, meeshi to na-keeyooshi no "da" wa tsukimasen. Tatoeba, "ame mitai desu", "kantan mitai desu" de, "da" wa tsukimasen. | Trước "mitai desu" là thể thông thường. Tuy nhiên, "da" của danh từ và tính từ đuôi na thì không được thêm vào. Ví dụ "ame mitai desu" (hình như trời mưa), "kantan mitai desu" (hình như dễ) thì không có "da".
+03:43 | ナレーター / Nareetaa / Người dẫn | この動画では王さんは「定期を落としたみたいなんです」と言いました。 | Kono dooga de wa Oo-san wa "Teeki o otoshita mitai nan desu" to iimashita. | Trong video này, anh Vương nói "Hình như tôi đã đánh rơi thẻ đi lại tháng rồi".
+03:52 | ナレーター / Nareetaa / Người dẫn | 定期が家にないこと、そして使った場面を思い出して、たぶんどこかで落としたと思いました。 | Teeki ga ie ni nai koto, soshite tsukatta bamen o omoidashite, tabun dokoka de otoshita to omoimashita. | Vì thẻ không có ở nhà, và nhớ lại lúc đã dùng nó, nên anh nghĩ có lẽ đã đánh rơi ở đâu đó.
+04:04 | ナレーター / Nareetaa / Người dẫn | 他にも、隣のうちのチャイムを押しても誰も出てきません。電気もついていません。この状況から、たぶんいないと判断して「いないみたいです」のように使います。 | Hoka ni mo, tonari no uchi no chaimu o oshite mo dare mo dete kimasen. Denki mo tsuite imasen. Kono jookyoo kara, tabun inai to handan shite "Inai mitai desu" no yoo ni tsukaimasu. | Ngoài ra, ví dụ bấm chuông nhà bên cạnh mà không ai ra, đèn cũng không sáng. Từ tình huống đó thì đoán có lẽ họ không có nhà nên nói "Hình như không có nhà".
+04:27 | ナレーター / Nareetaa / Người dẫn | また、「風邪をひいたみたいです」「彼女は怒っているみたいです」のように使えます。 | Mata, "kaze o hiita mitai desu", "kanojo wa okotte iru mitai desu" no yoo ni tsukaemasu. | Ngoài ra cũng có thể dùng như "Hình như bị cảm rồi", "Hình như cô ấy đang giận".

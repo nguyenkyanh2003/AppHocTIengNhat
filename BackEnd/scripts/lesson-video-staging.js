@@ -118,21 +118,20 @@ export const transcriptSkeleton = ({ lesson, title, videos }) => {
 /**
  * File mô tả mới của bài sau khi đưa video vào `uploads/lesson-videos/<dir>/`.
  *
- * Video đã có (cùng `url`) giữ nguyên tên cảnh, mô tả và lời thoại người soạn
- * đã nhập — chỉ `kind` được đặt lại vì nó suy ra từ tên file (cảnh hay ôn
- * tập), không phải thứ người soạn sửa tay. Video mới có lời thoại rỗng chờ bổ
- * sung. Video cũ không còn trong thư mục gốc bị bỏ khỏi file mô tả.
+ * Video đã có (cùng `url`) giữ nguyên mọi thứ người soạn đã nhập — tên cảnh,
+ * mục tiêu, lời thoại, **thứ tự và `kind`**. Tên file gốc không phải lúc nào
+ * cũng đúng nội dung (file "Ôn tập" chứa một cảnh hội thoại, cảnh 1 và cảnh 3
+ * bị đổi chỗ…), nên sau khi xem video người soạn sắp lại theo nội dung, và chạy
+ * stage lại không được đảo mất việc đó. `kind` suy từ tên file chỉ là giá trị
+ * ban đầu của video mới; video mới nối vào cuối, lời thoại rỗng chờ bổ sung.
+ * Video cũ không còn trong thư mục gốc bị bỏ khỏi file mô tả.
  */
 export const mergeManifest = ({ manifest, dir, videos }) => {
-  const existing = new Map((manifest.videos ?? []).map((video) => [video.url, video]));
-  return {
-    ...manifest,
-    videos: videos.map(({ target, title, kind }) => {
-      const url = `/uploads/lesson-videos/${dir}/${target}`;
-      const current = existing.get(url);
-      return current
-        ? { ...current, kind }
-        : { title, url, kind, source: VIDEO_SOURCE, transcript: [] };
-    }),
-  };
+  const planned = new Map(videos.map((video) => [`/uploads/lesson-videos/${dir}/${video.target}`, video]));
+  const kept = (manifest.videos ?? []).filter((video) => planned.has(video.url));
+  const keptUrls = new Set(kept.map((video) => video.url));
+  const added = [...planned]
+    .filter(([url]) => !keptUrls.has(url))
+    .map(([url, { title, kind }]) => ({ title, url, kind, source: VIDEO_SOURCE, transcript: [] }));
+  return { ...manifest, videos: [...kept, ...added] };
 };

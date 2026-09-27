@@ -1,0 +1,785 @@
+{
+  "lesson": {
+    "title": "Tình huống: Dùng máy tính và điện thoại"
+  },
+  "videos": [
+    {
+      "title": "Gõ chữ Nhật trên máy tính",
+      "description": "Nói được khi máy không hiện chữ hiragana và làm theo hướng dẫn chuyển sang chữ Hán.",
+      "url": "/uploads/lesson-videos/n4-13-computer-phone/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません、この病院について調べたいんですけど。",
+          "romaji": "Sumimasen, kono byooin ni tsuite shirabetain desu kedo.",
+          "text_vi": "Xin lỗi, tôi muốn tìm hiểu về bệnh viện này ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はいはい。服部病院ですね。",
+          "romaji": "Hai hai. Hattori byooin desu ne.",
+          "text_vi": "Vâng vâng. Bệnh viện Hattori phải không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ひらがなが出ないんです。",
+          "romaji": "Hiragana ga denain desu.",
+          "text_vi": "Chữ hiragana không hiện ra được ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "じゃあまず、このキーを押してください。",
+          "romaji": "Jaa mazu, kono kii o oshite kudasai.",
+          "text_vi": "Vậy trước tiên, em hãy bấm vào nút này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ここですね。",
+          "romaji": "Koko desu ne.",
+          "text_vi": "Chỗ này phải không ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あ、ひらがなになりました。",
+          "romaji": "A, hiragana ni narimashita.",
+          "text_vi": "A, thành hiragana rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "そしたら、ここに「服部病院」って入れてみてください。",
+          "romaji": "Soshitara, koko ni \"Hattori byooin\" tte irete mite kudasai.",
+          "text_vi": "Vậy thì em thử gõ \"Hattori byōin\" vào đây xem.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あれ、うまくできないんですけど。",
+          "romaji": "Are, umaku dekinain desu kedo.",
+          "text_vi": "Ơ, em làm không được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ああ、ローマ字入力結構難しいですよね。じゃあ言いますね。",
+          "romaji": "Aa, roomaji nyuuryoku kekkoo muzukashii desu yo ne. Jaa iimasu ne.",
+          "text_vi": "À, gõ kiểu romaji cũng khá khó nhỉ. Vậy để anh đọc cho em nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "H、A、T、T…",
+          "romaji": "Eechi, Ee, Tii, Tii...",
+          "text_vi": "H, A, T, T…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これでいいですか。",
+          "romaji": "Kore de ii desu ka.",
+          "text_vi": "Như vậy được không ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ええ。次に、このキーを押すと漢字に変換されますよ。",
+          "romaji": "Ee. Tsugi ni, kono kii o osu to kanji ni henkan saremasu yo.",
+          "text_vi": "Ừ. Tiếp theo, bấm nút này thì sẽ chuyển sang chữ Hán đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あ、これを押せばいいんですね。",
+          "romaji": "A, kore o oseba iin desu ne.",
+          "text_vi": "À, bấm cái này là được phải không ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "正しい漢字を選んだら、エンターキーを押してください。",
+          "romaji": "Tadashii kanji o erandara, entaa kii o oshite kudasai.",
+          "text_vi": "Sau khi chọn đúng chữ Hán rồi thì bấm phím Enter.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "できました。ありがとうございます。",
+          "romaji": "Dekimashita. Arigatoo gozaimasu.",
+          "text_vi": "Xong rồi ạ. Cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "調べる",
+          "reading": "しらべる",
+          "romaji": "shiraberu",
+          "meaning": "tra cứu"
+        },
+        {
+          "word": "入力",
+          "reading": "にゅうりょく",
+          "romaji": "nyuuryoku",
+          "meaning": "nhập (chữ)"
+        },
+        {
+          "word": "キー",
+          "reading": "キー",
+          "romaji": "kii",
+          "meaning": "phím"
+        },
+        {
+          "word": "ローマ字",
+          "reading": "ローマじ",
+          "romaji": "roomaji",
+          "meaning": "chữ La-tinh"
+        },
+        {
+          "word": "変換",
+          "reading": "へんかん",
+          "romaji": "henkan",
+          "meaning": "chuyển đổi (chữ)"
+        },
+        {
+          "word": "エンターキー",
+          "reading": "エンターキー",
+          "romaji": "entaa-kii",
+          "meaning": "phím Enter"
+        }
+      ]
+    },
+    {
+      "title": "Nhờ xem giúp email thông báo",
+      "description": "Nhờ được đồng nghiệp xem email, hỏi BCC khác CC thế nào và đặt tiêu đề email.",
+      "url": "/uploads/lesson-videos/n4-13-computer-phone/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "佐藤さん、すみません。来週のミーティングのこと、皆さんにお知らせのメールを書いたんですが、ちょっと見ていただけますか。",
+          "romaji": "Satoo-san, sumimasen. Raishuu no miitingu no koto, minasan ni oshirase no meeru o kaitan desu ga, chotto mite itadakemasu ka.",
+          "text_vi": "Anh Satō ơi, xin lỗi. Tôi đã viết email thông báo cho mọi người về cuộc họp tuần sau, anh xem giúp tôi được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "いいですよ。",
+          "romaji": "Ii desu yo.",
+          "text_vi": "Được chứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "いいですねー。これでOKです。",
+          "romaji": "Ii desu nee. Kore de OK desu.",
+          "text_vi": "Được đấy. Như vậy là ổn rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ありがとう。じゃあこれ、私にもBCCで送っておいてくれますか。",
+          "romaji": "Arigatoo. Jaa kore, watashi ni mo BCC de okutte oite kuremasu ka.",
+          "text_vi": "Cảm ơn anh. Vậy anh gửi BCC cho tôi luôn nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "BCC？",
+          "romaji": "BCC?",
+          "text_vi": "BCC ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません、BCCとCCで、どう違いますか。",
+          "romaji": "Sumimasen, BCC to CC de, doo chigaimasu ka.",
+          "text_vi": "Xin lỗi, BCC với CC khác nhau thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "BCCのメールアドレスは、受信した人には見えないんですよ。",
+          "romaji": "BCC no meeru adoresu wa, jushin shita hito ni wa mienain desu yo.",
+          "text_vi": "Địa chỉ email trong BCC thì người nhận không thấy được đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あー、なるほど。",
+          "romaji": "Aa, naruhodo.",
+          "text_vi": "À, ra vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "あのー、ここはどうしますか。",
+          "romaji": "Anoo, koko wa doo shimasu ka.",
+          "text_vi": "À, còn chỗ này thì làm sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、件名ですね。",
+          "romaji": "Aa, kenmee desu ne.",
+          "text_vi": "À, tiêu đề đó phải không.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "件名は「来週のミーティングのお知らせ」にしといてください。",
+          "romaji": "Kenmee wa \"Raishuu no miitingu no oshirase\" ni shitoite kudasai.",
+          "text_vi": "Tiêu đề thì để là \"Thông báo cuộc họp tuần sau\" giúp tôi nhé.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "大丈夫そうですね。",
+          "romaji": "Daijoobu soo desu ne.",
+          "text_vi": "Có vẻ ổn rồi đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "じゃあ、これで送っておきます。",
+          "romaji": "Jaa, kore de okutte okimasu.",
+          "text_vi": "Vậy tôi gửi trước như thế này nhé.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "よろしくお願いします。",
+          "romaji": "Yoroshiku onegaishimasu.",
+          "text_vi": "Nhờ anh giúp đỡ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "ミーティング",
+          "reading": "ミーティング",
+          "romaji": "miitingu",
+          "meaning": "cuộc họp"
+        },
+        {
+          "word": "お知らせ",
+          "reading": "おしらせ",
+          "romaji": "oshirase",
+          "meaning": "thông báo"
+        },
+        {
+          "word": "メール",
+          "reading": "メール",
+          "romaji": "meeru",
+          "meaning": "email"
+        },
+        {
+          "word": "受信",
+          "reading": "じゅしん",
+          "romaji": "jushin",
+          "meaning": "nhận (thư)"
+        },
+        {
+          "word": "件名",
+          "reading": "けんめい",
+          "romaji": "kenmee",
+          "meaning": "tiêu đề email"
+        }
+      ]
+    },
+    {
+      "title": "Gọi trung tâm đồ thất lạc",
+      "description": "Gọi được trung tâm đồ thất lạc, nói mình làm rơi gì, khi nào và chặng đi.",
+      "url": "/uploads/lesson-videos/n4-13-computer-phone/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "センター職員",
+          "speaker_romaji": "Sentaa shokuin",
+          "speaker_vi": "Nhân viên trung tâm",
+          "text_ja": "はい、忘れ物お問い合わせセンターです。",
+          "romaji": "Hai, wasuremono otoiawase sentaa desu.",
+          "text_vi": "Vâng, đây là Trung tâm hỏi đáp đồ thất lạc xin nghe.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "もしもし。",
+          "romaji": "Moshimoshi.",
+          "text_vi": "A lô.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あの、定期を落としたみたいなんですけど、駅に届いているか調べていただけませんか。",
+          "romaji": "Ano, teeki o otoshita mitai nan desu kedo, eki ni todoite iru ka shirabete itadakemasen ka.",
+          "text_vi": "Dạ, hình như tôi đánh rơi thẻ đi lại tháng, chị kiểm tra giúp xem nhà ga có nhận được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "センター職員",
+          "speaker_romaji": "Sentaa shokuin",
+          "speaker_vi": "Nhân viên trung tâm",
+          "text_ja": "定期券ですね。いつ落とされましたか。",
+          "romaji": "Teekiken desu ne. Itsu otosaremashita ka.",
+          "text_vi": "Thẻ đi lại tháng phải không ạ. Anh đánh rơi khi nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "昨日です。",
+          "romaji": "Kinoo desu.",
+          "text_vi": "Hôm qua ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "センター職員",
+          "speaker_romaji": "Sentaa shokuin",
+          "speaker_vi": "Nhân viên trung tâm",
+          "text_ja": "どの辺で落とされたかわかりますか。",
+          "romaji": "Dono hen de otosareta ka wakarimasu ka.",
+          "text_vi": "Anh có biết đánh rơi ở khoảng nào không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あー、ちょっとわからないんです。",
+          "romaji": "Aa, chotto wakaranain desu.",
+          "text_vi": "À, tôi không rõ lắm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "センター職員",
+          "speaker_romaji": "Sentaa shokuin",
+          "speaker_vi": "Nhân viên trung tâm",
+          "text_ja": "では、定期券のご利用区間はどちらからどちらまでですか。",
+          "romaji": "Dewa, teekiken no goriyoo kukan wa dochira kara dochira made desu ka.",
+          "text_vi": "Vậy chặng sử dụng của thẻ đi lại tháng là từ đâu đến đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "潮来から成田までです。",
+          "romaji": "Itako kara Narita made desu.",
+          "text_vi": "Từ Itako đến Narita ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "センター職員",
+          "speaker_romaji": "Sentaa shokuin",
+          "speaker_vi": "Nhân viên trung tâm",
+          "text_ja": "登録しているお名前を教えてください。",
+          "romaji": "Tooroku shite iru onamae o oshiete kudasai.",
+          "text_vi": "Xin cho tôi biết tên đã đăng ký ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "王です。",
+          "romaji": "Oo desu.",
+          "text_vi": "Tôi tên là Vương ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "センター職員",
+          "speaker_romaji": "Sentaa shokuin",
+          "speaker_vi": "Nhân viên trung tâm",
+          "text_ja": "承知いたしました。お調べいたしますので、少々お待ちください。",
+          "romaji": "Shoochi itashimashita. Oshirabe itashimasu node, shooshoo omachi kudasai.",
+          "text_vi": "Vâng, tôi đã rõ. Tôi sẽ kiểm tra nên xin anh chờ một chút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ありがとうございます。よろしくお願いします。",
+          "romaji": "Arigatoo gozaimasu. Yoroshiku onegaishimasu.",
+          "text_vi": "Cảm ơn chị. Nhờ chị giúp đỡ ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "忘れ物",
+          "reading": "わすれもの",
+          "romaji": "wasuremono",
+          "meaning": "đồ bỏ quên"
+        },
+        {
+          "word": "定期券",
+          "reading": "ていきけん",
+          "romaji": "teekiken",
+          "meaning": "vé tháng"
+        },
+        {
+          "word": "落とす",
+          "reading": "おとす",
+          "romaji": "otosu",
+          "meaning": "đánh rơi"
+        },
+        {
+          "word": "利用区間",
+          "reading": "りようくかん",
+          "romaji": "riyoo-kukan",
+          "meaning": "chặng sử dụng"
+        },
+        {
+          "word": "承知いたしました",
+          "reading": "しょうちいたしました",
+          "romaji": "shoochi itashimashita",
+          "meaning": "tôi đã rõ"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Dùng máy tính và điện thoại",
+      "description": "Ôn lại tự động từ và tha động từ,「〜ておきます」và「〜みたいです」.",
+      "url": "/uploads/lesson-videos/n4-13-computer-phone/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ひらがなが でないんです",
+          "romaji": "hiragana ga denain desu",
+          "text_vi": "Không hiện chữ hiragana",
+          "key_phrase": true
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞には他動詞と自動詞があります。",
+          "romaji": "Dooshi ni wa tadooshi to jidooshi ga arimasu.",
+          "text_vi": "Động từ có tha động từ và tự động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "人の動きにフォーカスするときは主に他動詞を使いますが、物の動きにフォーカスするときは自動詞を使います。",
+          "romaji": "Hito no ugoki ni fookasu suru toki wa omo ni tadooshi o tsukaimasu ga, mono no ugoki ni fookasu suru toki wa jidooshi o tsukaimasu.",
+          "text_vi": "Khi tập trung vào hành động của người thì chủ yếu dùng tha động từ, còn khi tập trung vào chuyển động của vật thì dùng tự động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えばこの場面では、人にフォーカスしたとき、他動詞を使って「電気をつけます」と言います。助詞は「を」を使います。",
+          "romaji": "Tatoeba kono bamen de wa, hito ni fookasu shita toki, tadooshi o tsukatte \"denki o tsukemasu\" to iimasu. Joshi wa \"o\" o tsukaimasu.",
+          "text_vi": "Ví dụ trong cảnh này, khi tập trung vào người thì dùng tha động từ nói \"bật đèn\" (denki o tsukemasu). Trợ từ dùng là \"o\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "物にフォーカスしたとき、自動詞を使って「電気がつきます」と言います。助詞は「が」を使います。",
+          "romaji": "Mono ni fookasu shita toki, jidooshi o tsukatte \"denki ga tsukimasu\" to iimasu. Joshi wa \"ga\" o tsukaimasu.",
+          "text_vi": "Khi tập trung vào vật thì dùng tự động từ nói \"đèn sáng lên\" (denki ga tsukimasu). Trợ từ dùng là \"ga\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「テレビを消します」「テレビが消えます」「ドアを閉めます」「ドアが閉まります」のようになります。",
+          "romaji": "Hoka ni mo, \"terebi o keshimasu\", \"terebi ga kiemasu\", \"doa o shimemasu\", \"doa ga shimarimasu\" no yoo ni narimasu.",
+          "text_vi": "Ngoài ra còn có \"tắt tivi / tivi tắt\", \"đóng cửa / cửa đóng lại\" tương tự như vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんがパソコンで入力したらひらがなが出ませんでした。",
+          "romaji": "Kono dooga de wa, Oo-san ga pasokon de nyuuryoku shitara hiragana ga demasen deshita.",
+          "text_vi": "Trong video này, khi anh Vương gõ trên máy tính thì chữ hiragana không hiện ra.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "文字にフォーカスしましたから、自動詞の「出ます」を使って「ひらがなが出ないんです」と言いました。",
+          "romaji": "Moji ni fookasu shimashita kara, jidooshi no \"demasu\" o tsukatte \"Hiragana ga denain desu\" to iimashita.",
+          "text_vi": "Vì tập trung vào chữ nên đã dùng tự động từ \"demasu\" (hiện ra) để nói \"Chữ hiragana không hiện ra\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:06",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "これで おくって おきます",
+          "romaji": "kore de okutte okimasu",
+          "text_vi": "Vậy tôi gửi trước như thế này nhé",
+          "key_phrase": true
+        },
+        {
+          "start": "02:06:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形＋「おきます」は、後で起こることのための準備について言うときに使います。",
+          "romaji": "Dooshi no te-kee + \"okimasu\" wa, ato de okoru koto no tame no junbi ni tsuite iu toki ni tsukaimasu.",
+          "text_vi": "Mẫu thể te của động từ + \"okimasu\" dùng khi nói về việc chuẩn bị trước cho một việc sẽ xảy ra sau đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、友達が家に来るとき、その前に準備をします。「この時、部屋を掃除しておきます」「お菓子を買っておきます」のように使います。",
+          "romaji": "Tatoeba, tomodachi ga ie ni kuru toki, sono mae ni junbi o shimasu. \"Kono toki, heya o sooji shite okimasu\", \"okashi o katte okimasu\" no yoo ni tsukaimasu.",
+          "text_vi": "Ví dụ, khi bạn sắp đến nhà chơi thì chuẩn bị trước. Dùng như \"Lúc này thì dọn phòng trước\", \"mua bánh kẹo trước\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「おきます」の前は「て形」です。",
+          "romaji": "\"Okimasu\" no mae wa \"te-kee\" desu.",
+          "text_vi": "Trước \"okimasu\" là thể te.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で王さんは会議の準備のためにお知らせのメールを書きました。そしてこの後それを送りますから、「これで送っておきます」と言いました。",
+          "romaji": "Kono dooga de Oo-san wa kaigi no junbi no tame ni oshirase no meeru o kakimashita. Soshite kono ato sore o okurimasu kara, \"Kore de okutte okimasu\" to iimashita.",
+          "text_vi": "Trong video này, anh Vương đã viết email thông báo để chuẩn bị cho cuộc họp. Vì sau đó sẽ gửi email nên anh nói \"Vậy tôi gửi trước như thế này nhé\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:10",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "みたいです",
+          "romaji": "mitai desu",
+          "text_vi": "Hình như là...",
+          "key_phrase": true
+        },
+        {
+          "start": "03:10:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「みたいです」は、状況から考えて、たぶんそう思う、というときに使います。",
+          "romaji": "\"Mitai desu\" wa, jookyoo kara kangaete, tabun soo omou, to iu toki ni tsukaimasu.",
+          "text_vi": "\"Mitai desu\" dùng khi suy đoán từ tình huống mà nghĩ có lẽ là như vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「みたいです」の前は普通形です。ただし、名詞とな形容詞の「だ」は付きません。例えば、「雨みたいです」「簡単みたいです」で、「だ」は付きません。",
+          "romaji": "\"Mitai desu\" no mae wa futsuu-kee desu. Tadashi, meeshi to na-keeyooshi no \"da\" wa tsukimasen. Tatoeba, \"ame mitai desu\", \"kantan mitai desu\" de, \"da\" wa tsukimasen.",
+          "text_vi": "Trước \"mitai desu\" là thể thông thường. Tuy nhiên, \"da\" của danh từ và tính từ đuôi na thì không được thêm vào. Ví dụ \"ame mitai desu\" (hình như trời mưa), \"kantan mitai desu\" (hình như dễ) thì không có \"da\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では王さんは「定期を落としたみたいなんです」と言いました。",
+          "romaji": "Kono dooga de wa Oo-san wa \"Teeki o otoshita mitai nan desu\" to iimashita.",
+          "text_vi": "Trong video này, anh Vương nói \"Hình như tôi đã đánh rơi thẻ đi lại tháng rồi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "定期が家にないこと、そして使った場面を思い出して、たぶんどこかで落としたと思いました。",
+          "romaji": "Teeki ga ie ni nai koto, soshite tsukatta bamen o omoidashite, tabun dokoka de otoshita to omoimashita.",
+          "text_vi": "Vì thẻ không có ở nhà, và nhớ lại lúc đã dùng nó, nên anh nghĩ có lẽ đã đánh rơi ở đâu đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、隣のうちのチャイムを押しても誰も出てきません。電気もついていません。この状況から、たぶんいないと判断して「いないみたいです」のように使います。",
+          "romaji": "Hoka ni mo, tonari no uchi no chaimu o oshite mo dare mo dete kimasen. Denki mo tsuite imasen. Kono jookyoo kara, tabun inai to handan shite \"Inai mitai desu\" no yoo ni tsukaimasu.",
+          "text_vi": "Ngoài ra, ví dụ bấm chuông nhà bên cạnh mà không ai ra, đèn cũng không sáng. Từ tình huống đó thì đoán có lẽ họ không có nhà nên nói \"Hình như không có nhà\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、「風邪をひいたみたいです」「彼女は怒っているみたいです」のように使えます。",
+          "romaji": "Mata, \"kaze o hiita mitai desu\", \"kanojo wa okotte iru mitai desu\" no yoo ni tsukaemasu.",
+          "text_vi": "Ngoài ra cũng có thể dùng như \"Hình như bị cảm rồi\", \"Hình như cô ấy đang giận\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

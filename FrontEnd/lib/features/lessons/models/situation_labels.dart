@@ -33,6 +33,9 @@ const Map<String, ({String label, IconData icon})> kSituationLabels = {
   'phone_call': (label: 'Gọi điện thoại', icon: Icons.phone_outlined),
   'real_estate': (label: 'Tìm thuê nhà', icon: Icons.home_work_outlined),
   'emergency': (label: 'Tình huống khẩn cấp', icon: Icons.emergency_outlined),
+  'events': (label: 'Sự kiện, sở thích', icon: Icons.celebration_outlined),
+  'library': (label: 'Thư viện', icon: Icons.local_library_outlined),
+  'job_hunting': (label: 'Tìm việc làm', icon: Icons.badge_outlined),
 };
 
 String situationLabel(String code) => kSituationLabels[code]?.label ?? code;

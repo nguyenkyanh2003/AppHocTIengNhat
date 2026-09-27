@@ -72,3 +72,17 @@ test('câu thiếu hàng hay video lạc bài đều bị báo đúng dòng', ()
   assert.match(errors[1], /^Dòng 4: câu lúc 00:01 có 2 hàng/);
   assert.equal(errors.length, 2);
 });
+
+test('tài liệu N4 ghi "## Tình huống N" và "### N-k. Tên" cũng đọc được', () => {
+  const { lessons, errors } = parseTranscriptMarkdown(
+    [
+      '## Tình huống 16 – Tìm việc',
+      '### 16-2. Xem tờ rơi · Xem tờ rơi tuyển dụng',
+      '| **00:05** | 山本 | 何を見てるんですか。 |',
+      '| | Yamamoto | Nani o miterun desu ka. |',
+      '| | Yamamoto | Chị đang xem gì vậy? |',
+    ].join('\n'),
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(lessons.get(16).get('scene-2.mp4')[0].textJa, '何を見てるんですか。');
+});

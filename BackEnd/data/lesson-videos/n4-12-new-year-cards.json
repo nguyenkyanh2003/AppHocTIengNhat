@@ -1,0 +1,837 @@
+{
+  "lesson": {
+    "title": "Tình huống: Gửi thư và thiệp năm mới"
+  },
+  "videos": [
+    {
+      "title": "Gửi thư chuyển phát nhanh",
+      "description": "Hỏi được thư tới ngày nào và nhờ gửi chuyển phát nhanh để kịp hạn.",
+      "url": "/uploads/lesson-videos/n4-12-new-year-cards/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません、これ、埼玉県の所沢市に送りたいんですけど。",
+          "romaji": "Sumimasen, kore, Saitama-ken no Tokorozawa-shi ni okuritain desu kedo.",
+          "text_vi": "Xin lỗi, tôi muốn gửi cái này đến thành phố Tokorozawa, tỉnh Saitama ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "ちょっとお預かりしますね。そうですね、今の時間からですと、あさっての午前中ですね。",
+          "romaji": "Chotto oazukari shimasu ne. Soo desu ne, ima no jikan kara desu to, asatte no gozenchuu desu ne.",
+          "text_vi": "Tôi xin nhận nhé. Để xem, từ giờ này thì sẽ đến vào buổi sáng ngày kia ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ああ、そうですか。どうしても明日までに届けたいんですけど、どうしたらいいですか。",
+          "romaji": "Aa, soo desu ka. Dooshitemo ashita made ni todoketain desu kedo, doo shitara ii desu ka.",
+          "text_vi": "À, vậy ạ. Tôi nhất định muốn gửi đến trước ngày mai, phải làm sao ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "あ、速達で送れば明日までに間に合いますよ。",
+          "romaji": "A, sokutatsu de okureba ashita made ni maniaimasu yo.",
+          "text_vi": "À, nếu gửi chuyển phát nhanh thì sẽ kịp trước ngày mai đó.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ああ、そうですか。じゃあ、それでお願いします。いくらかかりますか。",
+          "romaji": "Aa, soo desu ka. Jaa, sore de onegaishimasu. Ikura kakarimasu ka.",
+          "text_vi": "À, vậy ạ. Vậy nhờ chị gửi kiểu đó giúp tôi. Hết bao nhiêu tiền ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "普通料金が84円で、速達料金が290円プラスになりますので、合わせて374円になります。",
+          "romaji": "Futsuu ryookin ga hachijuu-yon-en de, sokutatsu ryookin ga nihyaku-kyuujuu-en purasu ni narimasu node, awasete sanbyaku-nanajuu-yon-en ni narimasu.",
+          "text_vi": "Cước thường là 84 yên, cộng thêm cước chuyển phát nhanh 290 yên, tổng cộng là 374 yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "374円ですね。",
+          "romaji": "Sanbyaku-nanajuu-yon-en desu ne.",
+          "text_vi": "374 yên phải không ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "はい、ちょうどお預かりします。",
+          "romaji": "Hai, choodo oazukari shimasu.",
+          "text_vi": "Vâng, tôi nhận đủ số tiền rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "じゃあ、よろしくお願いします。ありがとうございました。",
+          "romaji": "Jaa, yoroshiku onegaishimasu. Arigatoo gozaimashita.",
+          "text_vi": "Vậy nhờ chị giúp tôi nhé. Cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "送る",
+          "reading": "おくる",
+          "romaji": "okuru",
+          "meaning": "gửi"
+        },
+        {
+          "word": "届ける",
+          "reading": "とどける",
+          "romaji": "todokeru",
+          "meaning": "gửi đến"
+        },
+        {
+          "word": "速達",
+          "reading": "そくたつ",
+          "romaji": "sokutatsu",
+          "meaning": "chuyển phát nhanh"
+        },
+        {
+          "word": "間に合う",
+          "reading": "まにあう",
+          "romaji": "maniau",
+          "meaning": "kịp"
+        },
+        {
+          "word": "料金",
+          "reading": "りょうきん",
+          "romaji": "ryookin",
+          "meaning": "cước phí"
+        },
+        {
+          "word": "あさって",
+          "reading": "あさって",
+          "romaji": "asatte",
+          "meaning": "ngày kia"
+        }
+      ]
+    },
+    {
+      "title": "Viết lời chúc trên thiệp năm mới",
+      "description": "Nhờ được người khác chỉ cách viết thiệp năm mới và tự viết vài lời chúc.",
+      "url": "/uploads/lesson-videos/n4-12-new-year-cards/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "佐藤さん、ちょっといいですか。",
+          "romaji": "Satoo-san, chotto ii desu ka.",
+          "text_vi": "Chị Satō, chị có rảnh chút không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "前の日本語教室のボランティアの方に年賀状を出したいんですけど、書き方を教えてもらえませんか。",
+          "romaji": "Mae no nihongo kyooshitsu no borantia no kata ni nengajoo o dashitain desu kedo, kakikata o oshiete moraemasen ka.",
+          "text_vi": "Tôi muốn gửi thiệp năm mới cho cô tình nguyện viên ở lớp tiếng Nhật trước đây, chị chỉ cách viết giúp tôi được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ああ、いいですよ。",
+          "romaji": "Aa, ii desu yo.",
+          "text_vi": "À, được chứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これ、コンビニで買ったんですけど、どうですか。",
+          "romaji": "Kore, konbini de kattan desu kedo, doo desu ka.",
+          "text_vi": "Cái này tôi mua ở cửa hàng tiện lợi, chị thấy sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ああ、いいですね。まず、ここに「あけましておめでとうございます」と書いて、それからこの辺に何かメッセージを書くといいですよ。",
+          "romaji": "Aa, ii desu ne. Mazu, koko ni \"akemashite omedetoo gozaimasu\" to kaite, sorekara kono hen ni nanika messeeji o kaku to ii desu yo.",
+          "text_vi": "À, được đó. Trước tiên viết \"Chúc mừng năm mới\" ở đây, rồi viết thêm vài lời nhắn ở khoảng này là được.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はぁ、メッセージ…。",
+          "romaji": "Haa, messeeji...",
+          "text_vi": "À, lời nhắn...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "元気ですか。",
+          "romaji": "Genki desu ka.",
+          "text_vi": "(Ví dụ) Anh/chị có khỏe không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "私は今、仕事が忙しいです。今年もよろしくお願いします。どうですか。",
+          "romaji": "Watashi wa ima, shigoto ga isogashii desu. Kotoshi mo yoroshiku onegaishimasu. Doo desu ka.",
+          "text_vi": "Tôi dạo này công việc bận rộn. Năm nay cũng mong được giúp đỡ ạ. Như vậy được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "とてもいいと思います。",
+          "romaji": "Totemo ii to omoimasu.",
+          "text_vi": "Tôi thấy rất được đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "私は今、動画が忙しいです。大丈夫ですか。",
+          "romaji": "Watashi wa ima, dooga ga isogashii desu. Daijoobu desu ka.",
+          "text_vi": "Tôi dạo này bận xem/làm video. Như vậy được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "とてもいいと思いますよ。あと、ここに何年の元旦と書きます。",
+          "romaji": "Totemo ii to omoimasu yo. Ato, koko ni nan-nen no gantan to kakimasu.",
+          "text_vi": "Tôi thấy rất được đó. Ngoài ra, ở đây thì ghi ngày mùng 1 tháng 1 năm nào.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "それからここには、王さんの名前を書いてください。",
+          "romaji": "Sorekara koko ni wa, Oo-san no namae o kaite kudasai.",
+          "text_vi": "Sau đó ở đây thì anh Vương ghi tên của mình vào.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:47",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "私の名前ですね。わかりました。書いてみます。",
+          "romaji": "Watashi no namae desu ne. Wakarimashita. Kaite mimasu.",
+          "text_vi": "Tên của tôi phải không ạ. Tôi hiểu rồi. Để tôi thử viết xem.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "年賀状",
+          "reading": "ねんがじょう",
+          "romaji": "nengajoo",
+          "meaning": "thiệp năm mới"
+        },
+        {
+          "word": "書き方",
+          "reading": "かきかた",
+          "romaji": "kakikata",
+          "meaning": "cách viết"
+        },
+        {
+          "word": "あけましておめでとうございます",
+          "reading": "あけましておめでとうございます",
+          "romaji": "akemashite omedetoo gozaimasu",
+          "meaning": "chúc mừng năm mới"
+        },
+        {
+          "word": "元旦",
+          "reading": "がんたん",
+          "romaji": "gantan",
+          "meaning": "mùng 1 Tết"
+        },
+        {
+          "word": "今年",
+          "reading": "ことし",
+          "romaji": "kotoshi",
+          "meaning": "năm nay"
+        },
+        {
+          "word": "メッセージ",
+          "reading": "メッセージ",
+          "romaji": "messeeji",
+          "meaning": "lời nhắn"
+        }
+      ]
+    },
+    {
+      "title": "Viết địa chỉ và chữ「様」trên thiệp",
+      "description": "Viết được mã bưu điện, địa chỉ, tên người nhận kèm「様」và hỏi khi nào gửi thiệp.",
+      "url": "/uploads/lesson-videos/n4-12-new-year-cards/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "できました。これで大丈夫ですか。",
+          "romaji": "Dekimashita. Kore de daijoobu desu ka.",
+          "text_vi": "Xong rồi. Như thế này được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "あー、すごくいいですね。",
+          "romaji": "Aa, sugoku ii desu ne.",
+          "text_vi": "À, đẹp lắm đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "それから、ここには相手の郵便番号を書きます。",
+          "romaji": "Sorekara, koko ni wa aite no yuubinbangoo o kakimasu.",
+          "text_vi": "Sau đó, ở đây thì ghi mã bưu điện của người nhận.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "郵便番号ですね。",
+          "romaji": "Yuubinbangoo desu ne.",
+          "text_vi": "Mã bưu điện à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "ここには住所を書きます。",
+          "romaji": "Koko ni wa juusho o kakimasu.",
+          "text_vi": "Ở đây thì ghi địa chỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "住所、とても長いんですけど、どうやって書いたらいいですか。",
+          "romaji": "Juusho, totemo nagain desu kedo, doo yatte kaitara ii desu ka.",
+          "text_vi": "Địa chỉ dài quá, nên viết như thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "じゃあ、途中で切って、二行にするといいですよ。",
+          "romaji": "Jaa, tochuu de kitte, ni-gyoo ni suru to ii desu yo.",
+          "text_vi": "Vậy thì cắt giữa chừng, viết thành 2 dòng là được.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、そうですか。",
+          "romaji": "Aa, soo desu ka.",
+          "text_vi": "À, vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "東京都…かすみ…マンション205号室。",
+          "romaji": "Tookyoo-to... Kasumi... Manshon nihyaku-go-goo-shitsu.",
+          "text_vi": "Tokyo-to... Kasumi... Chung cư phòng 205.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "ああ、いいですね。ここは相手の名前です。少し大きく書いてください。",
+          "romaji": "Aa, ii desu ne. Koko wa aite no namae desu. Sukoshi ookiku kaite kudasai.",
+          "text_vi": "À, đẹp đó. Chỗ này là tên người nhận. Anh viết to hơn một chút nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "最後に「様」と書いてください。",
+          "romaji": "Saigo ni \"sama\" to kaite kudasai.",
+          "text_vi": "Cuối cùng thì viết chữ \"sama\" (kính gửi).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "「様」？すみません、ここに書いてもらえませんか。",
+          "romaji": "\"Sama\"? Sumimasen, koko ni kaite moraemasen ka.",
+          "text_vi": "\"Sama\" ạ? Xin lỗi, anh viết giúp em ở đây được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "はい、いいですよ。",
+          "romaji": "Hai, ii desu yo.",
+          "text_vi": "Được chứ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:28",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "では、どうぞ。",
+          "romaji": "Dewa, doozo.",
+          "text_vi": "Vậy mời anh xem.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:32",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "田中、稔、様。",
+          "romaji": "Tanaka, Minoru, sama.",
+          "text_vi": "Kính gửi ông Tanaka Minoru.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:43",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これでいいですか。",
+          "romaji": "Kore de ii desu ka.",
+          "text_vi": "Như thế này được chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:45",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "はい。あとはここに、王さんの住所と名前を書いてください。",
+          "romaji": "Hai. Ato wa koko ni, Oo-san no juusho to namae o kaite kudasai.",
+          "text_vi": "Được rồi. Còn lại thì anh Vương ghi địa chỉ và tên của mình vào đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:59",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "できました。",
+          "romaji": "Dekimashita.",
+          "text_vi": "Xong rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:02",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "年賀状はいつ出したらいいですか。",
+          "romaji": "Nengajoo wa itsu dashitara ii desu ka.",
+          "text_vi": "Thiệp năm mới thì nên gửi khi nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "03:05",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "もう出せますよ。",
+          "romaji": "Moo dasemasu yo.",
+          "text_vi": "Giờ gửi được rồi đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですか。じゃあ、帰りにポストの前を通るから、出しておきます。",
+          "romaji": "Soo desu ka. Jaa, kaeri ni posuto no mae o tooru kara, dashite okimasu.",
+          "text_vi": "Vậy ạ. Vậy lúc về em có đi ngang qua thùng thư nên sẽ gửi luôn.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "それがいいですね。必ず「年賀状」と書いてある方に入れてくださいね。",
+          "romaji": "Sore ga ii desu ne. Kanarazu \"nengajoo\" to kaite aru hoo ni irete kudasai ne.",
+          "text_vi": "Vậy tốt đó. Nhớ bỏ vào ngăn có ghi \"nengajō\" nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:25",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "わかりました。ありがとうございます。",
+          "romaji": "Wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "Em hiểu rồi ạ. Cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "郵便番号",
+          "reading": "ゆうびんばんごう",
+          "romaji": "yuubin-bangoo",
+          "meaning": "mã bưu điện"
+        },
+        {
+          "word": "住所",
+          "reading": "じゅうしょ",
+          "romaji": "juusho",
+          "meaning": "địa chỉ"
+        },
+        {
+          "word": "〜様",
+          "reading": "さま",
+          "romaji": "sama",
+          "meaning": "kính gửi (ông/bà)"
+        },
+        {
+          "word": "二行",
+          "reading": "にぎょう",
+          "romaji": "nigyoo",
+          "meaning": "hai dòng"
+        },
+        {
+          "word": "出す",
+          "reading": "だす",
+          "romaji": "dasu",
+          "meaning": "gửi (thư)"
+        },
+        {
+          "word": "ポスト",
+          "reading": "ポスト",
+          "romaji": "posuto",
+          "meaning": "hòm thư"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Gửi thư và thiệp năm mới",
+      "description": "Ôn lại「〜までに」,「どうやって〜たらいいですか」và「〜てもらえませんか」.",
+      "url": "/uploads/lesson-videos/n4-12-new-year-cards/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "あした までに",
+          "romaji": "ashita made ni",
+          "text_vi": "Trước ngày mai",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "どうしても明日までに届けたいんですか。",
+          "romaji": "Dooshitemo ashita made ni todoketain desu ka.",
+          "text_vi": "Anh nhất định muốn gửi đến trước ngày mai à?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「日にち」「曜日」「時間」＋「までに」は、何かをするときの期限や締め切りを伝えたいときに使います。",
+          "romaji": "\"Hinichi\", \"yoobi\", \"jikan\" + \"made ni\" wa, nanika o suru toki no kigen ya shimekiri o tsutaetai toki ni tsukaimasu.",
+          "text_vi": "\"Ngày\", \"thứ\", \"giờ\" + \"made ni\" dùng khi muốn nói thời hạn, hạn chót để làm việc gì đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「10時までに寝ます」は、10時かそれより前に寝るという意味です。",
+          "romaji": "Tatoeba, \"juuji made ni nemasu\" wa, juuji ka sore yori mae ni neru to iu imi desu.",
+          "text_vi": "Ví dụ, \"juuji made ni nemasu\" (ngủ trước 10 giờ) nghĩa là ngủ lúc 10 giờ hoặc trước đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんが明日までに手紙を届けたいと言っています。",
+          "romaji": "Kono dooga de wa, Oo-san ga ashita made ni tegami o todoketai to itte imasu.",
+          "text_vi": "Trong video này, anh Vương nói rằng muốn gửi thư đến trước ngày mai.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "明日か、それより前に手紙が届くようにしたいという意味です。",
+          "romaji": "Ashita ka, sore yori mae ni tegami ga todoku yoo ni shitai to iu imi desu.",
+          "text_vi": "Nghĩa là muốn thư được chuyển đến vào ngày mai hoặc trước đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どうやって かいたら いいですか",
+          "romaji": "doo yatte kaitara ii desu ka",
+          "text_vi": "Nên viết như thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "住所、とても長いんですけど、どうやって書いたらいいですか。",
+          "romaji": "Juusho, totemo nagain desu kedo, doo yatte kaitara ii desu ka.",
+          "text_vi": "Địa chỉ dài quá, nên viết như thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "じゃあ、途中で切って、二行にするといいですよ。",
+          "romaji": "Jaa, tochuu de kitte, ni-gyoo ni suru to ii desu yo.",
+          "text_vi": "Vậy thì cắt giữa chừng, viết thành 2 dòng là được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんは住所の書き方がわからなかったので、「どうやって書いたらいいですか」と聞きました。",
+          "romaji": "Kono dooga de wa, Oo-san wa juusho no kakikata ga wakaranakatta node, \"Doo yatte kaitara ii desu ka\" to kikimashita.",
+          "text_vi": "Trong video này, vì không biết cách viết địa chỉ nên anh Vương đã hỏi \"Nên viết như thế nào?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のマス形＋「たら」＋「いいですか」は、書き方がわからなくてアドバイスが欲しいときに使います。",
+          "romaji": "Dooshi no masu-kee + \"tara\" + \"ii desu ka\" wa, kakikata ga wakaranakute adobaisu ga hoshii toki ni tsukaimasu.",
+          "text_vi": "Mẫu thể masu của động từ + \"tara\" + \"ii desu ka\" dùng khi không biết cách làm và muốn xin lời khuyên.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ここでは、動詞の「書きます」を「た形」に変えて、「どうやって書いたらいいですか」とします。",
+          "romaji": "Koko de wa, dooshi no \"kakimasu\" o \"ta-kee\" ni kaete, \"Doo yatte kaitara ii desu ka\" to shimasu.",
+          "text_vi": "Ở đây, đổi động từ \"kakimasu\" sang thể ta rồi thành \"Doo yatte kaitara ii desu ka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、王さんは年賀状を出す時期もわからなかったので、「いつ出したらいいですか」と聞きました。",
+          "romaji": "Kono dooga de, Oo-san wa nengajoo o dasu jiki mo wakaranakatta node, \"Itsu dashitara ii desu ka\" to kikimashita.",
+          "text_vi": "Trong video này, vì không biết thời điểm gửi thiệp năm mới nên anh Vương đã hỏi \"Nên gửi khi nào?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:15",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ここに かいて もらえませんか",
+          "romaji": "koko ni kaite moraemasen ka",
+          "text_vi": "Có thể viết giúp tôi ở đây không?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": "友人",
+          "speaker_romaji": "Yuujin",
+          "speaker_vi": "Người bạn",
+          "text_ja": "最後に「様」と書いてください。",
+          "romaji": "Saigo ni \"sama\" to kaite kudasai.",
+          "text_vi": "Cuối cùng thì viết chữ \"sama\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:26",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません、ここに書いてもらえませんか。",
+          "romaji": "Sumimasen, koko ni kaite moraemasen ka.",
+          "text_vi": "Xin lỗi, anh viết giúp em ở đây được không?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形＋「もらえますか」「もらえませんか」は、依頼をするときに使います。",
+          "romaji": "Dooshi no te-kee + \"moraemasu ka\" \"moraemasen ka\" wa, irai o suru toki ni tsukaimasu.",
+          "text_vi": "Mẫu thể te của động từ + \"moraemasu ka\"/\"moraemasen ka\" dùng khi nhờ vả ai đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ください」と同じように使えます。",
+          "romaji": "\"Kudasai\" to onaji yoo ni tsukaemasu.",
+          "text_vi": "Có thể dùng giống như \"kudasai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「もらいます」の可能形が「もらえます」となります。",
+          "romaji": "\"Moraimasu\" no kanoo-kee ga \"moraemasu\" to narimasu.",
+          "text_vi": "Thể khả năng của \"moraimasu\" là \"moraemasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんは漢字の書き方がわからないので、「書いてもらえませんか」と言いました。",
+          "romaji": "Kono dooga de wa, Oo-san wa kanji no kakikata ga wakaranai node, \"Kaite moraemasen ka\" to iimashita.",
+          "text_vi": "Trong video này, vì không biết cách viết chữ Hán nên anh Vương đã nói \"Có thể viết giúp tôi không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「書いてください」より丁寧な印象になります。",
+          "romaji": "\"Kaite kudasai\" yori teenee na inshoo ni narimasu.",
+          "text_vi": "Nghe lịch sự hơn so với \"Kaite kudasai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、さらに丁寧な言い方として、動詞のて形＋「いただけますか」「いただけませんか」も同じように使えます。",
+          "romaji": "Mata, sarani teenee na iikata toshite, dooshi no te-kee + \"itadakemasu ka\" \"itadakemasen ka\" mo onaji yoo ni tsukaemasu.",
+          "text_vi": "Ngoài ra, cách nói lịch sự hơn nữa là thể te của động từ + \"itadakemasu ka\"/\"itadakemasen ka\" cũng dùng tương tự.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

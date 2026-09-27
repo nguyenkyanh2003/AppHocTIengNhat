@@ -4,7 +4,7 @@
  *
  * Khuôn tài liệu:
  *
- *   ## Bài 8 – Đi tàu điện
+ *   ## Bài 8 – Đi tàu điện          (hoặc `## Tình huống 8 – …`)
  *   ### 8. Ôn tập · …          → summary.mp4
  *   ### 8-1 · …                → scene-1.mp4
  *   | Thời gian | Người nói | Lời thoại |
@@ -21,7 +21,7 @@
  * Hàm thuần, không đọc đĩa — `import-transcript-markdown.js` lo phần file.
  */
 
-const LESSON_HEADING = /^##\s+Bài\s+(\d+)\b/;
+const LESSON_HEADING = /^##\s+(?:Bài|Tình huống)\s+(\d+)\b/;
 const VIDEO_HEADING = /^###\s+(\d+)(?:-(\d+))?\.?\s/;
 const TIME = /^\*\*(\d{1,2}:\d{2})\*\*$/;
 

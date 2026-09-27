@@ -1,0 +1,128 @@
+# Lời thoại Tình huống: Thuế, bảo hiểm và đăng ký cư trú
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-6-10.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-3.mp4
+# Đăng ký cư trú ở tòa thị chính
+00:05 | 王 / Oo / Vương | あのー。 | Anoo. | Dạ…
+00:09 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい。 | Hai. | Vâng.
+*00:11 | 王 / Oo / Vương | 先週、日本へ来ました。どんな手続きをしたらいいですか。 | Senshuu, Nihon e kimashita. Donna tetsuzuki o shitara ii desu ka. | Tuần trước tôi mới đến Nhật. Tôi nên làm những thủ tục gì ạ?
+00:18 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | いつから潮来市にお住まいですか。 | Itsu kara Itako-shi ni osumai desu ka. | Anh sống ở thành phố Itako từ khi nào ạ?
+00:22 | 王 / Oo / Vương | 昨日からです。 | Kinoo kara desu. | Từ hôm qua ạ.
+00:23 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | ああ、もう潮来市にお住まいなんですね。わかりました。 | Aa, moo Itako-shi ni osumai nan desu ne. Wakarimashita. | À, anh đã sống ở thành phố Itako rồi nhỉ. Tôi hiểu rồi.
+00:28 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | では、住民登録の手続きをお願いします。 | Dewa, juumin-tooroku no tetsuzuki o onegaishimasu. | Vậy xin anh làm thủ tục đăng ký cư trú.
+*00:32 | 王 / Oo / Vương | 住民登録って何ですか。 | Juumin-tooroku tte nan desu ka. | Đăng ký cư trú là gì ạ?
+00:38 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | 潮来市の住民ですよ、潮来市に住んでいますよ、という意味の登録です。 | Itako-shi no juumin desu yo, Itako-shi ni sunde imasu yo, to iu imi no tooroku desu. | Là đăng ký để xác nhận anh là cư dân, đang sống ở thành phố Itako.
+00:45 | 王 / Oo / Vương | ああ、わかりました。 | Aa, wakarimashita. | À, tôi hiểu rồi.
+00:48 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | パスポートと在留カードをお持ちですか。 | Pasupooto to zairyuu-kaado o omochi desu ka. | Anh có mang hộ chiếu và thẻ cư trú không ạ?
+00:52 | 王 / Oo / Vương | はい、あります。 | Hai, arimasu. | Có ạ.
+01:06 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | 王ハオランさんですね。ご家族は？ | Oo Haoran-san desu ne. Gokazoku wa? | Anh là Ō Haoran nhỉ. Gia đình anh thì sao ạ?
+01:11 | 王 / Oo / Vương | 一人です。 | Hitori desu. | Tôi ở một mình.
+01:13 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | わかりました。こちら、ちょっとお預かりしますね。 | Wakarimashita. Kochira, chotto oazukari shimasu ne. | Tôi hiểu rồi. Tôi xin giữ những giấy tờ này một chút.
+01:18 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+01:22 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | では、こちらの用紙にご記入ください。 | Dewa, kochira no yooshi ni gokinyuu kudasai. | Vậy mời anh điền vào tờ đơn này.
+01:25 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+01:26 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | これ、記入するのは、この太い線の中だけでいいですよ。 | Kore, kinyuu suru no wa, kono futoi sen no naka dake de ii desu yo. | Anh chỉ cần điền phần trong khung viền đậm này thôi.
+01:31 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+01:32 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | わからないことがあったら聞いてください。 | Wakaranai koto ga attara kiite kudasai. | Có gì không hiểu anh cứ hỏi nhé.
+01:35 | 王 / Oo / Vương | はい、ありがとうございます。 | Hai, arigatoo gozaimasu. | Vâng, cảm ơn chị.
+*01:49 | 王 / Oo / Vương | あのー、これでいいですか。 | Anoo, kore de ii desu ka. | Dạ, thế này được chưa ạ?
+02:01 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, được rồi ạ.
+02:03 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | では、登録ができたらこの番号でお呼びしますので、あちらでおかけになってお待ちください。 | Dewa, tooroku ga dekitara kono bangoo de oyobi shimasu node, achira de okake ni natte omachi kudasai. | Khi đăng ký xong chúng tôi sẽ gọi theo số này, mời anh ngồi đợi ở đằng kia.
+02:11 | 王 / Oo / Vương | はい、よろしくお願いします。 | Hai, yoroshiku onegaishimasu. | Vâng, nhờ chị.
+### từ vựng
+手続き | てつづき | tetsuzuki | thủ tục
+住民登録 | じゅうみんとうろく | juumin-tooroku | đăng ký cư trú
+住民 | じゅうみん | juumin | cư dân
+パスポート | パスポート | pasupooto | hộ chiếu
+用紙 | ようし | yooshi | tờ đơn
+家族 | かぞく | kazoku | gia đình
+
+## scene-2.mp4
+# Hỏi về các khoản trừ trong phiếu lương
+00:00 | 佐藤 / Satoo / Satō | はい。 | Hai. | Ừ.
+*00:02 | 王 / Oo / Vương | 佐藤さん、ちょっと教えてほしいことがあるんですけど、聞いてもいいですか。 | Satoo-san, chotto oshiete hoshii koto ga arun desu kedo, kiite mo ii desu ka. | Anh Satō, có chuyện tôi muốn nhờ anh chỉ giúp, tôi hỏi được không ạ?
+00:09 | 佐藤 / Satoo / Satō | はい、どうぞ。 | Hai, doozo. | Ừ, cứ hỏi đi.
+*00:11 | 王 / Oo / Vương | 給料のことなんですけど。 | Kyuuryoo no koto nan desu kedo. | Là chuyện tiền lương ạ.
+00:14 | 佐藤 / Satoo / Satō | どうしましたか。 | Doo shimashita ka. | Có chuyện gì vậy?
+00:17 | 王 / Oo / Vương | 最初に聞いた給料より、ずいぶん少ないです。どうしてですか。 | Saisho ni kiita kyuuryoo yori, zuibun sukunai desu. Dooshite desu ka. | Ít hơn nhiều so với mức lương tôi được nghe lúc đầu. Tại sao vậy ạ?
+00:23 | 佐藤 / Satoo / Satō | 今、給与明細を持っていますか。 | Ima, kyuuyo-meesai o motte imasu ka. | Bây giờ anh có mang phiếu lương không?
+00:26 | 王 / Oo / Vương | はい。今日もらったばかりです。 | Hai. Kyoo moratta bakari desu. | Có. Tôi vừa nhận hôm nay.
+00:29 | 佐藤 / Satoo / Satō | 見てもいいですか。 | Mite mo ii desu ka. | Cho tôi xem được không?
+00:32 | 王 / Oo / Vương | はい、どうぞ。 | Hai, doozo. | Vâng, anh xem đi.
+00:45 | 佐藤 / Satoo / Satō | 日本では、給料からいろいろなお金が引かれるんですよ。 | Nihon de wa, kyuuryoo kara iroiro na okane ga hikarerun desu yo. | Ở Nhật, lương bị trừ nhiều khoản lắm.
+00:52 | 佐藤 / Satoo / Satō | 例えば、これは所得税です。 | Tatoeba, kore wa shotokuzee desu. | Ví dụ, đây là thuế thu nhập.
+00:57 | 王 / Oo / Vương | 所得税？ | Shotokuzee? | Thuế thu nhập?
+00:59 | 佐藤 / Satoo / Satō | 給料をもらったら、必ず国に税金を払うんですよ。 | Kyuuryoo o morattara, kanarazu kuni ni zeekin o haraun desu yo. | Hễ nhận lương là phải nộp thuế cho nhà nước.
+*01:03 | 王 / Oo / Vương | え、外国人も払わなければならないんですか。 | E, gaikokujin mo harawanakereba naranain desu ka. | Hả, người nước ngoài cũng phải nộp ạ?
+01:08 | 佐藤 / Satoo / Satō | はい、そうですよ。 | Hai, soo desu yo. | Ừ, đúng vậy.
+01:11 | 佐藤 / Satoo / Satō | それから、これは住民税です。 | Sorekara, kore wa juuminzee desu. | Còn đây là thuế cư trú.
+01:15 | 王 / Oo / Vương | 住民税… | Juuminzee… | Thuế cư trú…
+01:16 | 佐藤 / Satoo / Satō | 王さんは日本に来たばかりですから、今年は払いません。でも、来年からは払わなければなりません。 | Oo-san wa Nihon ni kita bakari desu kara, kotoshi wa haraimasen. Demo, rainen kara wa harawanakereba narimasen. | Anh Vương mới đến Nhật nên năm nay không phải nộp. Nhưng từ năm sau thì phải nộp.
+*01:26 | 王 / Oo / Vương | 所得税と住民税はどう違いますか。 | Shotokuzee to juuminzee wa doo chigaimasu ka. | Thuế thu nhập và thuế cư trú khác nhau thế nào ạ?
+01:31 | 佐藤 / Satoo / Satō | ああ、住民税は住んでいる市と県に払います。 | Aa, juuminzee wa sunde iru shi to ken ni haraimasu. | À, thuế cư trú thì nộp cho thành phố và tỉnh nơi mình sống.
+01:37 | 王 / Oo / Vương | へえ、いろいろな税金があるんですね。 | Hee, iroiro na zeekin ga arun desu ne. | Ồ, có nhiều loại thuế nhỉ.
+01:42 | 佐藤 / Satoo / Satō | そうですね。給料が高くなれば、税金も高くなりますよ。 | Soo desu ne. Kyuuryoo ga takaku nareba, zeekin mo takaku narimasu yo. | Đúng vậy. Lương cao thì thuế cũng cao đấy.
+### từ vựng
+給料 | きゅうりょう | kyuuryoo | tiền lương
+給与明細 | きゅうよめいさい | kyuuyo-meesai | phiếu lương
+所得税 | しょとくぜい | shotokuzee | thuế thu nhập
+住民税 | じゅうみんぜい | juuminzee | thuế cư trú
+引く | ひく | hiku | trừ đi
+税金 | ぜいきん | zeekin | tiền thuế
+
+## scene-1.mp4
+# Bảo hiểm y tế và lương hưu
+*00:01 | 王 / Oo / Vương | これも税金ですか。 | Kore mo zeekin desu ka. | Cái này cũng là thuế ạ?
+00:04 | 佐藤 / Satoo / Satō | いいえ、これは保険です。 | Iie, kore wa hoken desu. | Không, cái này là bảo hiểm.
+00:08 | 佐藤 / Satoo / Satō | いろいろな保険がありますけど、これは健康保険です。 | Iroiro na hoken ga arimasu kedo, kore wa kenkoo-hoken desu. | Có nhiều loại bảo hiểm, cái này là bảo hiểm y tế.
+00:13 | 王 / Oo / Vương | ああ、健康保険はわかります。この間、保険証をもらいました。 | Aa, kenkoo-hoken wa wakarimasu. Kono aida, hokenshoo o moraimashita. | À, bảo hiểm y tế thì tôi biết. Hôm trước tôi đã nhận thẻ bảo hiểm.
+00:20 | 佐藤 / Satoo / Satō | ああ、そうですか。保険証があれば、病院で払うお金が少なくなりますね。 | Aa, soo desu ka. Hokenshoo ga areba, byooin de harau okane ga sukunaku narimasu ne. | À, vậy à. Có thẻ bảo hiểm thì tiền trả ở bệnh viện sẽ ít đi.
+00:29 | 王 / Oo / Vương | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+00:31 | 佐藤 / Satoo / Satō | 30%だけ払えばいいんですよ。 | Sanjuppaasento dake haraeba iin desu yo. | Chỉ cần trả 30% thôi.
+00:35 | 王 / Oo / Vương | これは何ですか。 | Kore wa nan desu ka. | Cái này là gì ạ?
+00:37 | 佐藤 / Satoo / Satō | これは年金です。 | Kore wa nenkin desu. | Cái này là lương hưu (niên kim).
+00:40 | 佐藤 / Satoo / Satō | 保険も年金も、毎月お金を払います。 | Hoken mo nenkin mo, maitsuki okane o haraimasu. | Cả bảo hiểm và lương hưu đều đóng tiền hằng tháng.
+00:45 | 王 / Oo / Vương | うーん。 | Uun. | Ừm.
+00:47 | 佐藤 / Satoo / Satō | 年を取ったり、病気や事故で働けなくなったりしたら、国からお金をもらうことができるんですよ。 | Toshi o tottari, byooki ya jiko de hatarakenaku nattari shitara, kuni kara okane o morau koto ga dekirun desu yo. | Khi về già, hoặc không làm việc được do bệnh tật, tai nạn, thì có thể nhận tiền từ nhà nước.
+*00:55 | 王 / Oo / Vương | へえ。年金は何歳まで払いますか。 | Hee. Nenkin wa nansai made haraimasu ka. | Ồ. Lương hưu phải đóng đến bao nhiêu tuổi ạ?
+01:00 | 佐藤 / Satoo / Satō | 年金の種類によって違いますけど、誰でも60歳まで払わなければなりません。 | Nenkin no shurui ni yotte chigaimasu kedo, dare demo rokujussai made harawanakereba narimasen. | Tùy loại lương hưu mà khác nhau, nhưng ai cũng phải đóng đến 60 tuổi.
+*01:08 | 王 / Oo / Vương | でも、私は何年か働いたら、国へ帰ろうと思っています。 | Demo, watashi wa nannen ka hataraitara, kuni e kaeroo to omotte imasu. | Nhưng tôi định làm vài năm rồi về nước.
+01:15 | 佐藤 / Satoo / Satō | そうですか。もしかしたら、出身国によって払い方が変わるかもしれません。 | Soo desu ka. Moshika shitara, shusshinkoku ni yotte haraikata ga kawaru kamo shiremasen. | Vậy à. Có thể cách đóng sẽ khác tùy nước bạn đến từ đâu.
+01:24 | 王 / Oo / Vương | 国によって制度が違いますから、難しいですね。 | Kuni ni yotte seedo ga chigaimasu kara, muzukashii desu ne. | Chế độ mỗi nước khác nhau nên khó nhỉ.
+01:29 | 佐藤 / Satoo / Satō | そうですね。 | Soo desu ne. | Ừ nhỉ.
+*01:31 | 王 / Oo / Vương | 明日、人事課の山田さんに聞いてみることにします。 | Ashita, jinjika no Yamada-san ni kiite miru koto ni shimasu. | Mai tôi sẽ thử hỏi chị Yamada ở phòng nhân sự.
+01:36 | 佐藤 / Satoo / Satō | そうですね。大切なことですから、ぜひそうしてください。 | Soo desu ne. Taisetsu na koto desu kara, zehi soo shite kudasai. | Ừ. Chuyện quan trọng nên nhất định hỏi nhé.
+01:42 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+### từ vựng
+保険 | ほけん | hoken | bảo hiểm
+健康保険 | けんこうほけん | kenkoo-hoken | bảo hiểm y tế
+年金 | ねんきん | nenkin | lương hưu
+制度 | せいど | seedo | chế độ
+人事課 | じんじか | jinjika | phòng nhân sự
+出身国 | しゅっしんこく | shusshinkoku | nước xuất thân
+
+## summary.mp4
+# Ôn tập: Thuế, bảo hiểm và đăng ký cư trú
+00:00 |  /  / Chủ đề | きゅうりょうの ことなんですけど | kyuuryoo no koto nan desu kedo | Là chuyện tiền lương ạ
+00:06 | 王 / Oo / Vương | 佐藤さん、ちょっと教えてほしいことがあるんですけど、聞いてもいいですか。 | Satoo-san, chotto oshiete hoshii koto ga arun desu kedo, kiite mo ii desu ka. | Anh Satō, có chuyện tôi muốn nhờ anh chỉ giúp, tôi hỏi được không ạ?
+00:14 | 佐藤 / Satoo / Satō | はい、どうぞ。 | Hai, doozo. | Ừ, cứ hỏi đi.
+*00:16 | 王 / Oo / Vương | 給料のことなんですけど。 | Kyuuryoo no koto nan desu kedo. | Là chuyện tiền lương ạ.
+00:20 | ナレーター / Nareetaa / Người dẫn | この動画の中で、男性は「給料のことなんですけど」と話題を相手に伝えてから質問をしています。 | Kono dooga no naka de, dansee wa "Kyuuryoo no koto nan desu kedo" to wadai o aite ni tsutaete kara shitsumon o shite imasu. | Trong video, người đàn ông nói trước chủ đề "Là chuyện tiền lương ạ" rồi mới đặt câu hỏi.
+00:34 | ナレーター / Nareetaa / Người dẫn | 長い質問や相談をするとき、名詞の後に「のことなんですけど」とつけると、質問をする前に話題を伝えることができます。 | Nagai shitsumon ya soodan o suru toki, meeshi no ato ni "no koto nan desu kedo" to tsukeru to, shitsumon o suru mae ni wadai o tsutaeru koto ga dekimasu. | Khi muốn hỏi hay trao đổi dài, thêm "no koto nan desu kedo" sau danh từ để nêu chủ đề trước khi hỏi.
+00:51 | ナレーター / Nareetaa / Người dẫn | 例えば、学校の先生に子どもについて長い質問や相談をしたいときに「子どものことなんですけど」と言ったり、 | Tatoeba, gakkoo no sensee ni kodomo ni tsuite nagai shitsumon ya soodan o shitai toki ni "Kodomo no koto nan desu kedo" to ittari, | Ví dụ, khi muốn hỏi thầy cô về con mình thì nói "Là chuyện về con tôi ạ",
+01:07 | ナレーター / Nareetaa / Người dẫn | 市役所に電話して「住民票のことなんですけど」と話し始めたりすると、それを聞いた人は話題が何かわかって話を聞くことができます。 | Shiyakusho ni denwa shite "Juuminhyoo no koto nan desu kedo" to hanashi hajimetari suru to, sore o kiita hito wa wadai ga nani ka wakatte hanashi o kiku koto ga dekimasu. | hay gọi điện đến tòa thị chính và mở đầu "Là chuyện về giấy chứng nhận cư trú ạ" – người nghe biết được chủ đề nên dễ nghe hơn.
+01:24 |  /  / Chủ đề | はらわなければ ならないんですか | harawanakereba naranain desu ka | Cũng phải nộp ạ?
+01:31 | 佐藤 / Satoo / Satō | 給料をもらったら、必ず国に税金を払うんですよ。 | Kyuuryoo o morattara, kanarazu kuni ni zeekin o haraun desu yo. | Hễ nhận lương là phải nộp thuế cho nhà nước.
+*01:36 | 王 / Oo / Vương | え、外国人も払わなければならないんですか。 | E, gaikokujin mo harawanakereba naranain desu ka. | Hả, người nước ngoài cũng phải nộp ạ?
+01:42 | ナレーター / Nareetaa / Người dẫn | 動詞のない形の後に「なければならない」をつけるときは、その動作をする義務があることを表します。 | Dooshi no nai-kee no ato ni "nakereba naranai" o tsukeru toki wa, sono doosa o suru gimu ga aru koto o arawashimasu. | Thêm "nakereba naranai" sau thể nai của động từ để diễn tả nghĩa vụ phải làm việc đó.
+01:56 | ナレーター / Nareetaa / Người dẫn | 「払う」のない形に「なければならない」をつけて「払わなければならない」と言うと、払う義務があるという意味になります。 | "Harau" no nai-kee ni "nakereba naranai" o tsukete "harawanakereba naranai" to iu to, harau gimu ga aru to iu imi ni narimasu. | Thêm "nakereba naranai" vào thể nai của "harau" thành "harawanakereba naranai", nghĩa là có nghĩa vụ phải trả.
+02:13 | ナレーター / Nareetaa / Người dẫn | そして「んですか」とつけると、その義務について「意外だ」とか「驚きだ」という気持ちを表すことができます。 | Soshite "n desu ka" to tsukeru to, sono gimu ni tsuite "igai da" toka "odoroki da" to iu kimochi o arawasu koto ga dekimasu. | Thêm "n desu ka" thì thể hiện cảm giác bất ngờ, ngạc nhiên về nghĩa vụ đó.
+02:27 | ナレーター / Nareetaa / Người dẫn | 「え、外国人も払わなければならないんですか」から、とても驚いていることがわかります。 | "E, gaikokujin mo harawanakereba naranain desu ka" kara, totemo odoroite iru koto ga wakarimasu. | Qua câu "Hả, người nước ngoài cũng phải nộp ạ?" có thể thấy anh ấy rất ngạc nhiên.
+02:38 |  /  / Chủ đề | くにへ かえろうと おもって います | kuni e kaeroo to omotte imasu | Tôi định về nước
+*02:44 | 王 / Oo / Vương | でも、私は何年か働いたら、国へ帰ろうと思っています。 | Demo, watashi wa nannen ka hataraitara, kuni e kaeroo to omotte imasu. | Nhưng tôi định làm vài năm rồi về nước.
+02:53 | ナレーター / Nareetaa / Người dẫn | 動詞の意向形の後に「思っています」をつける文型は、したいという意思が続いているときに使います。 | Dooshi no ikookee no ato ni "omotte imasu" o tsukeru bunkee wa, shitai to iu ishi ga tsuzuite iru toki ni tsukaimasu. | Mẫu "thể ý chí của động từ + omotte imasu" dùng khi ý muốn làm gì đó vẫn đang kéo dài.
+03:07 | ナレーター / Nareetaa / Người dẫn | 「帰る」の意向形は「帰ろう」です。 | "Kaeru" no ikookee wa "kaeroo" desu. | Thể ý chí của "kaeru" (về) là "kaeroo".
+03:14 | ナレーター / Nareetaa / Người dẫn | この会話の中では、「国に帰ろうと思っています」と言っています。国に帰る意思が継続していることを示しています。 | Kono kaiwa no naka de wa, "Kuni ni kaeroo to omotte imasu" to itte imasu. Kuni ni kaeru ishi ga keezoku shite iru koto o shimeshite imasu. | Trong hội thoại, anh Vương nói "Tôi định về nước", cho thấy ý định về nước vẫn luôn có.
+03:30 | ナレーター / Nareetaa / Người dẫn | 例えば、「アメリカに住もうと思っています」「タバコをやめようと思っています」など、これからしたいことの意思を示すことができます。 | Tatoeba, "Amerika ni sumoo to omotte imasu", "Tabako o yameyoo to omotte imasu" nado, korekara shitai koto no ishi o shimesu koto ga dekimasu. | Ví dụ "Tôi định sống ở Mỹ", "Tôi định bỏ thuốc lá" – để thể hiện ý định sắp tới.

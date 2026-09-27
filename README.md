@@ -132,9 +132,9 @@ hai dấu ngoặc nhọn. Không thêm tên database vào path của URI — cod
 Chạy theo đúng thứ tự — bài học phải có trước vì từ vựng, Kanji và bài tập gắn vào bài:
 
 ```powershell
-node scripts/seed-situational-lessons.js   # 27 bài theo tình huống (N5 15 bài) + từ vựng đi kèm
+node scripts/seed-situational-lessons.js   # 35 bài theo tình huống (N5 12, N4 19 bài có video; N3 4) + từ vựng
 node scripts/import-lesson-videos.js --all # gắn video cho N5 bài 1–12, xem mục dưới
-node scripts/seed-exercises.js             # 81 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 27 bài
+node scripts/seed-exercises.js             # 105 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 35 bài
 node scripts/seed-kanji.js
 node scripts/seed-grammar.js
 node scripts/sync-lesson-relations.js
@@ -154,16 +154,22 @@ MongoDB tạo database lười nên database chỉ xuất hiện sau khi seeder 
 
 ### Video bài học
 
-N5 bài 1–12 đi theo 12 chủ đề cấp 1 của *つながるひろがる にほんごでのくらし* (Bộ Giáo dục Nhật
-Bản — MEXT); video ghi nguồn theo điều 6 trong quy ước sử dụng của trang. Mỗi chủ đề có 3 cảnh và
-1 video ôn tập. Video gốc để trong `BackEnd/data/Video_baihoc/<số bài>. <chủ đề>/`, đặt tên theo
-mẫu `10－1．Tên cảnh.mp4` và `10. Ôn tập.mp4` (không commit vào git).
+N5 bài 1–12 và N4 bài 1–19 đi theo các chủ đề cấp 1 và cấp 2 của *つながるひろがる
+にほんごでのくらし* (Bộ Giáo dục Nhật Bản — MEXT); video ghi nguồn theo điều 6 trong quy ước sử dụng
+của trang. Mỗi chủ đề có 3 cảnh và 1 video ôn tập. Video gốc để trong
+`BackEnd/data/Video_baihoc/<N5|N4>/<số bài>. <chủ đề>/`, đặt tên theo mẫu `10－1．Tên cảnh.mp4` và
+`10. Ôn tập.mp4` (không commit vào git). Mỗi bài có một file mô tả `data/lesson-videos/<n5|n4>-<số
+bài>-<tên>.json` — tạo file này (chỉ cần `lesson.title`) trước khi stage bài mới.
 
 ```powershell
-node scripts/stage-lesson-videos.js --dry-run   # kiểm video gốc
-node scripts/stage-lesson-videos.js             # chép vào uploads/, cập nhật data/lesson-videos/*.json
-node scripts/import-lesson-videos.js --all      # ghi vào database
+node scripts/stage-lesson-videos.js --level N4 --dry-run   # kiểm video gốc (bỏ --level là N5)
+node scripts/stage-lesson-videos.js --level N4             # chép vào uploads/, cập nhật file mô tả
+node scripts/import-lesson-videos.js --all                 # ghi vào database
 ```
+
+Tên file gốc không phải lúc nào cũng đúng nội dung (N4 có nhiều bài bị xáo cảnh, file "Ôn tập"
+chứa một cảnh hội thoại). Sau khi xem video, sắp lại `videos` trong file mô tả theo nội dung và đặt
+`kind` (`scene` / `review`) — chạy stage lại vẫn giữ thứ tự, tên và `kind` đã sửa.
 
 Thư mục nào có hai file giống hệt nhau từng byte, file đánh số bài khác thư mục, hoặc tên sai mẫu
 thì bị từ chối nguyên thư mục và giữ nguyên hiện trạng. Video được dời mục lục lên đầu
@@ -184,9 +190,12 @@ dưới `## <tên file video>`.
 2–12):
 
 ```powershell
-node scripts/import-transcript-markdown.js --file <tài-liệu.md> [--file …] --dry-run
-node scripts/import-transcript-markdown.js --file <tài-liệu.md>
+node scripts/import-transcript-markdown.js [--level N4] --file <tài-liệu.md> [--file …] --dry-run
+node scripts/import-transcript-markdown.js [--level N4] --file <tài-liệu.md> [--skip 11-S]
 ```
+
+Mục của tài liệu ứng với file video theo số (`16-2` → `scene-2.mp4`, `16. Ôn tập` → `summary.mp4`).
+`--skip` bỏ qua một mục không khớp video thật (`S` là video ôn tập).
 
 File `.txt` đã có nội dung thì không bị đè, trừ khi thêm `--overwrite`.
 

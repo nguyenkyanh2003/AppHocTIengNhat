@@ -43,7 +43,7 @@ typedef _Delay = Duration Function(String? level);
 /// cảnh hai bộ lọc chạy chồng nhau và về lệch nhau.
 MockClient _backend({_Delay? lessonDelay, _Delay? situationDelay}) {
   final all = [
-    for (var i = 1; i <= 15; i++) _lesson(i, 'N5'),
+    for (var i = 1; i <= 12; i++) _lesson(i, 'N5'),
     for (var i = 1; i <= 6; i++) _lesson(i, 'N4'),
     for (var i = 1; i <= 4; i++) _lesson(i, 'N3'),
     for (var i = 1; i <= 2; i++) _lesson(i, 'N2'),
@@ -170,13 +170,16 @@ void main() {
   });
 
   group('hàng chọn trình độ', () {
-    testWidgets('luôn hiện đủ Mọi trình độ và N5–N1, chọn sẵn trình độ mặc định', (tester) async {
+    testWidgets('hiện Mọi trình độ và N5–N3 (không có N2, N1), chọn sẵn trình độ mặc định', (tester) async {
       await http.runWithClient(() async {
         await _open(tester);
 
-        for (final label in ['Mọi trình độ', 'N5', 'N4', 'N3', 'N2', 'N1']) {
+        for (final label in ['Mọi trình độ', 'N5', 'N4', 'N3']) {
           expect(_levelChip(label), findsOneWidget, reason: label);
         }
+        // Không có bài tình huống N2, N1 thì không hiện nút lọc dẫn tới danh sách rỗng.
+        expect(_levelChip('N2'), findsNothing);
+        expect(_levelChip('N1'), findsNothing);
         // Người học chưa có trình độ trong hồ sơ bắt đầu từ N5.
         expect(_isSelected(tester, 'N5'), isTrue);
         expect(_isSelected(tester, 'Mọi trình độ'), isFalse);

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { reviewLessonVideos } from '../src/modules/lessons/lesson-video.review.js';
+import { allManifestNames, manifestsByLesson, parseLevel, parseManifestName } from './lesson-video-manifests.js';
 import { transcriptSkeleton } from './lesson-video-staging.js';
 import { applyTranscripts, parseTranscriptText } from './transcript-text.js';
 
@@ -17,8 +18,9 @@ import { applyTranscripts, parseTranscriptText } from './transcript-text.js';
  * văn bản mô tả trong `transcript-text.js`; mẫu đầy đủ ở
  * `data/lesson-videos/n5-01-greeting.txt`.
  *
- *   node scripts/apply-transcript.js --all          # tạo khung .txt cho bài chưa có
- *   node scripts/apply-transcript.js --lesson 9     # đọc n5-09-*.txt vào n5-09-*.json
+ *   node scripts/apply-transcript.js --all                 # mọi bài, mọi trình độ
+ *   node scripts/apply-transcript.js --lesson 9            # đọc n5-09-*.txt vào n5-09-*.json
+ *   node scripts/apply-transcript.js --level N4 --lesson 9 # n4-09-*
  *   node scripts/apply-transcript.js --lesson 9 --dry-run
  */
 
@@ -26,12 +28,13 @@ const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
 const MANIFEST_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');
 
 const parseArgs = (argv) => {
-  const args = { dryRun: false, all: false };
+  const args = { dryRun: false, all: false, level: 'N5' };
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     if (flag === '--dry-run') args.dryRun = true;
     else if (flag === '--all') args.all = true;
     else if (flag === '--lesson') args.lesson = Number(argv[(index += 1)]);
+    else if (flag === '--level') args.level = parseLevel(argv[(index += 1)]);
     else throw new Error(`Cờ không nhận ra: ${flag}`);
   }
   if (!args.all === !args.lesson) throw new Error('Cần đúng một trong hai: --all hoặc --lesson <số bài>.');
@@ -40,10 +43,10 @@ const parseArgs = (argv) => {
 
 /** Bài cần xử lý, lấy theo file mô tả video — đó mới là nơi biết bài có cảnh nào. */
 const lessonsToProcess = async (args) => {
-  const names = (await fs.readdir(MANIFEST_DIR)).filter((name) => /^n5-\d{2}-.+\.json$/.test(name));
-  const wanted = args.all ? names : names.filter((name) => Number(name.slice(3, 5)) === args.lesson);
-  if (wanted.length === 0) throw new Error(`Không có file mô tả video của bài ${args.lesson}.`);
-  return wanted.sort().map((name) => ({ manifest: name, text: name.replace(/\.json$/, '.txt') }));
+  const one = manifestsByLesson(args.level).get(args.lesson);
+  const wanted = args.all ? allManifestNames() : one ? [one] : [];
+  if (wanted.length === 0) throw new Error(`Không có file mô tả video của ${args.level} bài ${args.lesson}.`);
+  return wanted.map((name) => ({ manifest: name, text: name.replace(/\.json$/, '.txt') }));
 };
 
 /** Bài chưa có file lời thoại thì tạo khung rồi dừng ở đó, chờ người soạn gõ. */
@@ -71,7 +74,7 @@ const applyOne = async ({ text, manifest: manifestName }, args) => {
   const textPath = path.join(MANIFEST_DIR, text);
   const raw = await fs.readFile(textPath, 'utf8').catch(() => null);
   if (raw === null) {
-    return createSkeleton({ manifest, manifestName, text, lesson: Number(manifestName.slice(3, 5)), args });
+    return createSkeleton({ manifest, manifestName, text, lesson: parseManifestName(manifestName).lesson, args });
   }
 
   const { scenes, errors: textErrors } = parseTranscriptText(raw);

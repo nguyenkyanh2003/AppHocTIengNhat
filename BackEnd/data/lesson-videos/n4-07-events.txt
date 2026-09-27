@@ -1,0 +1,104 @@
+# Lời thoại Tình huống: Đi sự kiện và tìm sở thích mới
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-6-10.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Rủ nhau đi chợ đồ cũ
+00:04 | 鈴木 / Suzuki / Suzuki | 王さん、今度の土曜日、中央公園でフリマですよ。 | Oo-san, kondo no doyoobi, Chuuoo-kooen de furima desu yo. | Anh Vương ơi, thứ Bảy tới có chợ đồ cũ ở Công viên Trung tâm đấy.
+00:10 | 王 / Oo / Vương | フリマ？ | Furima? | Furima ạ?
+00:12 | 鈴木 / Suzuki / Suzuki | フリマ…フリーマーケット。 | Furima… furii-maaketto. | Furima… tức là chợ trời (flea market).
+00:15 | 鈴木 / Suzuki / Suzuki | みんなが公園でいろいろな物を売ります。何でも安くて、すごく楽しいですよ。 | Minna ga kooen de iroiro na mono o urimasu. Nandemo yasukute, sugoku tanoshii desu yo. | Mọi người bán đủ thứ ở công viên. Cái gì cũng rẻ, vui lắm.
+00:24 | 王 / Oo / Vương | そうですか。私も会社の友達と一緒に行きたいです。 | Soo desu ka. Watashi mo kaisha no tomodachi to issho ni ikitai desu. | Vậy à. Tôi cũng muốn đi cùng bạn ở công ty.
+*00:30 | 王 / Oo / Vương | 申し込みをしなければなりませんか。 | Mooshikomi o shinakereba narimasen ka. | Có phải đăng ký trước không ạ?
+*00:34 | 鈴木 / Suzuki / Suzuki | いいえ、誰でも参加できますよ。 | Iie, dare demo sanka dekimasu yo. | Không, ai cũng tham gia được.
+00:37 | 王 / Oo / Vương | そうですか。鈴木さんも行きますか。 | Soo desu ka. Suzuki-san mo ikimasu ka. | Vậy à. Chị Suzuki cũng đi chứ?
+00:41 | 鈴木 / Suzuki / Suzuki | はい。私も子ども会の人たちと一緒に古い本やおもちゃを売ります。 | Hai. Watashi mo kodomokai no hitotachi to issho ni furui hon ya omocha o urimasu. | Có. Tôi cũng bán sách cũ và đồ chơi cùng mọi người trong hội phụ huynh.
+00:47 | 鈴木 / Suzuki / Suzuki | だから、朝9時に集合することになっているんですよ。 | Dakara, asa ku-ji ni shuugoo suru koto ni natte irun desu yo. | Nên 9 giờ sáng phải tập trung rồi.
+00:51 | 王 / Oo / Vương | ああ、そうですか。朝から大変ですね。 | Aa, soo desu ka. Asa kara taihen desu ne. | À, vậy à. Từ sáng sớm vất vả nhỉ.
+00:58 | 王 / Oo / Vương | 土曜日、友達と行きますね。 | Doyoobi, tomodachi to ikimasu ne. | Thứ Bảy tôi sẽ đi cùng bạn nhé.
+01:01 | 鈴木 / Suzuki / Suzuki | はい、待っていますね。 | Hai, matte imasu ne. | Vâng, tôi đợi đấy.
+*01:03 | 王 / Oo / Vương | 晴れるといいですね。 | Hareru to ii desu ne. | Mong là trời nắng nhỉ.
+01:06 | 鈴木 / Suzuki / Suzuki | そうですね。 | Soo desu ne. | Ừ nhỉ.
+### từ vựng
+フリーマーケット | フリーマーケット | furii-maaketto | chợ đồ cũ
+売る | うる | uru | bán
+申し込み | もうしこみ | mooshikomi | đăng ký
+子ども会 | こどもかい | kodomokai | hội phụ huynh trẻ em
+集合 | しゅうごう | shuugoo | tập trung
+晴れる | はれる | hareru | trời nắng
+
+## scene-3.mp4
+# Tìm một việc mới cho ngày nghỉ
+00:03 | 先輩 / Senpai / Đàn anh | 王さん、お疲れ様。 | Oo-san, otsukaresama. | Anh Vương, vất vả rồi.
+00:05 | 王 / Oo / Vương | お疲れ様です。 | Otsukaresama desu. | Anh cũng vất vả rồi ạ.
+00:12 | 先輩 / Senpai / Đàn anh | 王さん、日本の生活はどうですか。 | Oo-san, Nihon no seekatsu wa doo desu ka. | Anh Vương, cuộc sống ở Nhật thế nào?
+00:17 | 王 / Oo / Vương | そうですね、まあまあです。 | Soo desu ne, maamaa desu. | Dạ, cũng tàm tạm ạ.
+00:20 | 先輩 / Senpai / Đàn anh | そうですか。休みの日は何をしているんですか。 | Soo desu ka. Yasumi no hi wa nani o shite irun desu ka. | Vậy à. Ngày nghỉ anh làm gì?
+00:26 | 王 / Oo / Vương | そうですね、土日は今ちょっと暇です。 | Soo desu ne, donichi wa ima chotto hima desu. | Dạ, thứ Bảy Chủ Nhật dạo này em hơi rảnh.
+*00:31 | 王 / Oo / Vương | 何か新しいことをやりたいです。何かおすすめはありますか。 | Nanika atarashii koto o yaritai desu. Nanika osusume wa arimasu ka. | Em muốn làm việc gì đó mới mẻ. Anh có gợi ý gì không ạ?
+*00:38 | 先輩 / Senpai / Đàn anh | うーん…あ、図書館へ行ったことがありますか。 | Uun… a, toshokan e itta koto ga arimasu ka. | Ừm… À, anh đã đến thư viện bao giờ chưa?
+00:44 | 王 / Oo / Vương | いいえ。私はまだ日本語の本が読めませんから。 | Iie. Watashi wa mada Nihongo no hon ga yomemasen kara. | Chưa ạ. Vì em chưa đọc được sách tiếng Nhật.
+00:50 | 先輩 / Senpai / Đàn anh | ああ、そうですか。でも、図書館には外国語の本もありますよ。 | Aa, soo desu ka. Demo, toshokan ni wa gaikokugo no hon mo arimasu yo. | À, vậy à. Nhưng thư viện cũng có sách tiếng nước ngoài đấy.
+00:57 | 王 / Oo / Vương | へえ、そうですか。いいですね。どうやったら利用できますか。 | Hee, soo desu ka. Ii desu ne. Doo yattara riyoo dekimasu ka. | Ồ, vậy ạ. Hay quá. Làm thế nào để sử dụng được ạ?
+01:04 | 先輩 / Senpai / Đàn anh | 市内の人は誰でも利用できますよ。 | Shinai no hito wa dare demo riyoo dekimasu yo. | Người sống trong thành phố ai cũng dùng được.
+01:08 | 先輩 / Senpai / Đàn anh | まず図書館へ行って、受付で登録の手続きをしてください。 | Mazu toshokan e itte, uketsuke de tooroku no tetsuzuki o shite kudasai. | Trước tiên anh đến thư viện, làm thủ tục đăng ký ở quầy tiếp tân.
+*01:16 | 王 / Oo / Vương | 登録ですか。何を持って行ったらいいですか。 | Tooroku desu ka. Nani o motte ittara ii desu ka. | Đăng ký ạ. Em nên mang theo gì ạ?
+01:21 | 先輩 / Senpai / Đàn anh | 身分証明書…在留カードを持って行ってください。 | Mibun-shoomeesho… zairyuu-kaado o motte itte kudasai. | Giấy tờ tùy thân… anh mang thẻ cư trú theo nhé.
+01:26 | 先輩 / Senpai / Đàn anh | あとは、図書館の人が教えてくれますよ。 | Ato wa, toshokan no hito ga oshiete kuremasu yo. | Còn lại thì người ở thư viện sẽ hướng dẫn cho.
+*01:30 | 王 / Oo / Vương | わかりました。行ってみます。 | Wakarimashita. Itte mimasu. | Em hiểu rồi. Em sẽ đi thử.
+01:33 | 先輩 / Senpai / Đàn anh | はい、ぜひ行ってみてください。一人で大丈夫ですか。 | Hai, zehi itte mite kudasai. Hitori de daijoobu desu ka. | Ừ, nhất định đi thử nhé. Anh đi một mình được không?
+01:38 | 王 / Oo / Vương | はい、大丈夫です。ありがとうございます。 | Hai, daijoobu desu. Arigatoo gozaimasu. | Vâng, em đi được ạ. Em cảm ơn anh.
+### từ vựng
+生活 | せいかつ | seekatsu | cuộc sống
+暇 | ひま | hima | rảnh rỗi
+図書館 | としょかん | toshokan | thư viện
+外国語 | がいこくご | gaikokugo | tiếng nước ngoài
+登録 | とうろく | tooroku | đăng ký
+身分証明書 | みぶんしょうめいしょ | mibun-shoomeesho | giấy tờ tùy thân
+
+## scene-2.mp4
+# Hẹn đi lễ hội mùa hè
+00:06 | アンジェラ / Anjera / Angela | 来週は夏祭りですね。 | Raishuu wa natsu-matsuri desu ne. | Tuần sau là lễ hội mùa hè nhỉ.
+*00:10 | 同僚 / Dooryoo / Đồng nghiệp | アンジェラさんは、日本の夏祭りに参加したことがありますか。 | Anjera-san wa, Nihon no natsu-matsuri ni sanka shita koto ga arimasu ka. | Angela đã từng tham gia lễ hội mùa hè ở Nhật chưa?
+00:16 | アンジェラ / Anjera / Angela | いいえ、まだありません。 | Iie, mada arimasen. | Chưa, tôi chưa đi bao giờ.
+*00:19 | 同僚 / Dooryoo / Đồng nghiệp | じゃあ、一緒に行ってみませんか。 | Jaa, issho ni itte mimasen ka. | Vậy cùng đi thử không?
+00:24 | アンジェラ / Anjera / Angela | はい、行きたいです。何かおいしいものがありますか。 | Hai, ikitai desu. Nanika oishii mono ga arimasu ka. | Có, tôi muốn đi. Có món gì ngon không?
+00:31 | 同僚 / Dooryoo / Đồng nghiệp | そうですねー、私のおすすめはお好み焼きです。 | Soo desu nee, watashi no osusume wa okonomiyaki desu. | Để xem, tôi khuyên món okonomiyaki (bánh xèo Nhật).
+00:37 | アンジェラ / Anjera / Angela | ああ、いいですね。 | Aa, ii desu ne. | À, hay đấy.
+00:40 | 同僚 / Dooryoo / Đồng nghiệp | あ、金魚すくいも楽しいですよ。 | A, kingyo-sukui mo tanoshii desu yo. | À, vớt cá vàng cũng vui lắm.
+*00:44 | アンジェラ / Anjera / Angela | 金魚すくい？金魚すくいって何ですか。 | Kingyo-sukui? Kingyo-sukui tte nan desu ka. | Vớt cá vàng? Kingyo-sukui là gì vậy?
+00:51 | 同僚 / Dooryoo / Đồng nghiệp | 金魚は、小さくてかわいい魚です。紙のスプーンで金魚を取ります。 | Kingyo wa, chiisakute kawaii sakana desu. Kami no supuun de kingyo o torimasu. | Kingyo là loài cá nhỏ và dễ thương. Người ta dùng cái vợt bằng giấy để vớt cá vàng.
+01:03 | アンジェラ / Anjera / Angela | ああ、ネットで見ました、見ました。やってみたいです。 | Aa, netto de mimashita, mimashita. Yatte mitai desu. | À, tôi thấy trên mạng rồi. Tôi muốn thử.
+01:08 | 同僚 / Dooryoo / Đồng nghiệp | じゃあ、後でメールしますね。 | Jaa, ato de meeru shimasu ne. | Vậy lát nữa tôi nhắn tin cho nhé.
+01:11 | アンジェラ / Anjera / Angela | ありがとうございます。楽しみです。 | Arigatoo gozaimasu. Tanoshimi desu. | Cảm ơn chị. Tôi mong lắm.
+### từ vựng
+夏祭り | なつまつり | natsu-matsuri | lễ hội mùa hè
+お好み焼き | おこのみやき | okonomiyaki | bánh xèo Nhật
+金魚すくい | きんぎょすくい | kingyo-sukui | vớt cá vàng
+楽しみ | たのしみ | tanoshimi | mong chờ
+誘う | さそう | sasou | rủ
+
+## summary.mp4
+# Ôn tập: Đi sự kiện và tìm sở thích mới
+00:00 |  /  / Chủ đề | なにか あたらしい こと | nani ka atarashii koto | Một việc gì đó mới mẻ
+*00:06 | 王 / Oo / Vương | 何か新しいことをやりたいです。何かおすすめはありますか。 | Nanika atarashii koto o yaritai desu. Nanika osusume wa arimasu ka. | Tôi muốn làm việc gì đó mới mẻ. Anh có gợi ý gì không ạ?
+00:13 | ナレーター / Nareetaa / Người dẫn | 「何」という疑問詞に「か」がつくと、ものや事の内容がはっきりしていないことを表します。 | "Nani" to iu gimonshi ni "ka" ga tsuku to, mono ya koto no naiyoo ga hakkiri shite inai koto o arawashimasu. | Thêm "ka" vào từ để hỏi "nani" thì diễn tả nội dung sự vật, sự việc chưa rõ ràng.
+00:25 | ナレーター / Nareetaa / Người dẫn | 会話の中で、王さんは週末に暇なので新しいことをしたいと思っていますが、何をするかは決めていません。それで「何か新しいこと」と言っています。 | Kaiwa no naka de, Oo-san wa shuumatsu ni hima na node atarashii koto o shitai to omotte imasu ga, nani o suru ka wa kimete imasen. Sorede "nanika atarashii koto" to itte imasu. | Trong hội thoại, anh Vương cuối tuần rảnh nên muốn làm việc gì đó mới, nhưng chưa quyết định làm gì. Vì vậy anh nói "nanika atarashii koto" (việc gì đó mới mẻ).
+00:44 | ナレーター / Nareetaa / Người dẫn | また、先輩からアドバイスをもらいたくて、「何かおすすめはありますか」と聞いています。 | Mata, senpai kara adobaisu o moraitakute, "Nanika osusume wa arimasu ka" to kiite imasu. | Anh ấy cũng muốn xin lời khuyên của đàn anh nên hỏi "Anh có gợi ý gì không?".
+00:56 | ナレーター / Nareetaa / Người dẫn | 「か」は、「いつ」「誰」「どこ」「どれ」にもつきます。 | "Ka" wa, "itsu", "dare", "doko", "dore" ni mo tsukimasu. | "Ka" cũng có thể gắn vào "itsu" (khi nào), "dare" (ai), "doko" (đâu), "dore" (cái nào).
+01:05 |  /  / Chủ đề | さんかした ことが ありますか | sanka-shita koto ga arimasu ka | Đã từng tham gia chưa?
+*01:12 | 同僚 / Dooryoo / Đồng nghiệp | アンジェラさんは、日本の夏祭りに参加したことがありますか。 | Anjera-san wa, Nihon no natsu-matsuri ni sanka shita koto ga arimasu ka. | Angela đã từng tham gia lễ hội mùa hè ở Nhật chưa?
+01:17 | アンジェラ / Anjera / Angela | いいえ、まだありません。 | Iie, mada arimasen. | Chưa, tôi chưa đi bao giờ.
+01:22 | ナレーター / Nareetaa / Người dẫn | 「こと」には、動詞やい形容詞、な形容詞の普通形、またはそれらを使った文に接続して、その行為や状態を名詞にする働きがあります。 | "Koto" ni wa, dooshi ya i-keeyooshi, na-keeyooshi no futsuukee, mata wa sorera o tsukatta bun ni setsuzoku shite, sono kooi ya jootai o meeshi ni suru hataraki ga arimasu. | "Koto" đi sau thể thông thường của động từ, tính từ, hoặc câu dùng chúng, để biến hành động hay trạng thái đó thành danh từ.
+01:40 | ナレーター / Nareetaa / Người dẫn | 例えば、「趣味はスポーツです」と言うときに、スポーツをするのか見るのかをさらに言いたければ、「スポーツをすることです」「見ることです」のように言うことができます。 | Tatoeba, "Shumi wa supootsu desu" to iu toki ni, supootsu o suru no ka miru no ka o sara ni iitakereba, "Supootsu o suru koto desu", "Miru koto desu" no yoo ni iu koto ga dekimasu. | Ví dụ, khi nói "Sở thích của tôi là thể thao", nếu muốn nói rõ là chơi hay xem thì nói "Là chơi thể thao", "Là xem thể thao".
+02:03 | ナレーター / Nareetaa / Người dẫn | 「こと」を使った定型の表現に、「ことになる」「ことがある」などがあります。 | "Koto" o tsukatta teekee no hyoogen ni, "koto ni naru", "koto ga aru" nado ga arimasu. | Các mẫu cố định dùng "koto" có "koto ni naru", "koto ga aru"…
+02:13 | ナレーター / Nareetaa / Người dẫn | 会話の中では、「参加したことがありますか」のように、動詞のた形に「ことがある」をつけて、その経験があるかどうかを聞いています。 | Kaiwa no naka de wa, "Sanka shita koto ga arimasu ka" no yoo ni, dooshi no ta-kee ni "koto ga aru" o tsukete, sono keeken ga aru ka doo ka o kiite imasu. | Trong hội thoại, "Sanka shita koto ga arimasu ka" – thêm "koto ga aru" vào thể ta của động từ để hỏi đã từng có trải nghiệm đó chưa.
+02:28 |  /  / Chủ đề | いって みます | itte mimasu | Tôi sẽ đi thử
+*02:35 | 王 / Oo / Vương | わかりました。行ってみます。 | Wakarimashita. Itte mimasu. | Em hiểu rồi. Em sẽ đi thử.
+02:38 | 先輩 / Senpai / Đàn anh | はい、ぜひ行ってみてください。 | Hai, zehi itte mite kudasai. | Ừ, nhất định đi thử nhé.
+02:41 | ナレーター / Nareetaa / Người dẫn | 「動詞のて形＋みます」は、 | "Dooshi no te-kee + mimasu" wa, | "Động từ thể te + mimasu"
+02:47 | ナレーター / Nareetaa / Người dẫn | 試しに動詞の行為をするという意味になります。 | tameshi ni dooshi no kooi o suru to iu imi ni narimasu. | có nghĩa là làm thử hành động đó.
+02:54 | ナレーター / Nareetaa / Người dẫn | 先輩社員が王さんに図書館に行くことを勧めていますが、王さんは初めて図書館に行くので、いろいろとわからないことがあります。 | Senpai-shain ga Oo-san ni toshokan ni iku koto o susumete imasu ga, Oo-san wa hajimete toshokan ni iku node, iroiro to wakaranai koto ga arimasu. | Đàn anh ở công ty khuyên anh Vương đến thư viện, nhưng anh Vương lần đầu đi nên có nhiều điều chưa biết.
+03:08 | ナレーター / Nareetaa / Người dẫn | それでも、行けば図書館の人に教えてもらえるようなので、「とりあえず行ってみます」と言っているわけです。 | Soredemo, ikeba toshokan no hito ni oshiete moraeru yoo na node, "toriaezu itte mimasu" to itte iru wake desu. | Dù vậy, đến nơi thì sẽ được nhân viên thư viện hướng dẫn, nên anh nói "Trước mắt em sẽ đi thử".
+03:20 | ナレーター / Nareetaa / Người dẫn | それに対して、先輩社員も「行ってください」という強い言い方ではなく、「行ってみてください」と返しています。 | Sore ni taishite, senpai-shain mo "itte kudasai" to iu tsuyoi iikata de wa naku, "itte mite kudasai" to kaeshite imasu. | Đáp lại, đàn anh cũng không nói mạnh "Hãy đi đi" mà nói "Anh đi thử xem".

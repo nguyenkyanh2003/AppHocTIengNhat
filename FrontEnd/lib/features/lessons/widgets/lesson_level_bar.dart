@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../models/lesson_level.dart';
 
-/// Hàng chọn trình độ của màn Bài học: Mọi trình độ · N5 … N1.
+/// Hàng chọn trình độ của màn Bài học: Mọi trình độ · N5 · N4 · N3.
 ///
 /// Luôn hiện và chỉ chọn một, để đổi trình độ mất đúng một chạm. Trình độ trong
 /// hồ sơ có biểu tượng riêng, để người học vẫn biết đâu là cấp của mình khi

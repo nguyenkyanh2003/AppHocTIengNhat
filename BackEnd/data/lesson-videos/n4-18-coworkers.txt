@@ -1,0 +1,123 @@
+# Lời thoại Tình huống: Giao tiếp với đồng nghiệp
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-16-19.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Nghe điện thoại khi đồng nghiệp vắng
+00:07 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、資材課、今井です。 | Hai, Shizai-ka, Imai desu. | Vâng, phòng vật tư, tôi là Imai.
+00:09 | 西川 / Nishikawa / Nishikawa | お疲れさまです。総務課の西川です。 | Otsukaresama desu. Soomu-ka no Nishikawa desu. | Chào anh. Tôi là Nishikawa ở phòng tổng vụ.
+00:13 | 今井ミゲル / Imai Migeru / Imai Miguel | お疲れさまです。 | Otsukaresama desu. | Chào chị.
+00:16 | 西川 / Nishikawa / Nishikawa | あの、木村さんいますか。 | Ano, Kimura-san imasu ka. | À, anh Kimura có ở đó không ạ?
+*00:18 | 今井ミゲル / Imai Migeru / Imai Miguel | 木村さんは今、席を外しています。会議中ですね。 | Kimura-san wa ima, seki o hazushite imasu. Kaigichuu desu ne. | Anh Kimura hiện không có ở bàn ạ. Đang họp mà.
+00:31 | 西川 / Nishikawa / Nishikawa | ああ、そうですか。急いで確認したいことがあるんだけど、どうしようかな。 | Aa, soo desu ka. Isoide kakunin shitai koto ga aru n dakedo, doo shiyoo ka na. | À, vậy à. Tôi có việc cần xác nhận gấp, không biết phải làm sao đây.
+*00:44 | 西川 / Nishikawa / Nishikawa | 会議、何時までですか。 | Kaigi, nanji made desu ka. | Cuộc họp kéo dài đến mấy giờ vậy?
+00:48 | 今井ミゲル / Imai Migeru / Imai Miguel | 11時までです。 | Juuichiji made desu. | Đến 11 giờ ạ.
+00:52 | 西川 / Nishikawa / Nishikawa | そろそろ終わる時間ですね。 | Sorosoro owaru jikan desu ne. | Vậy sắp đến giờ kết thúc rồi nhỉ.
+*00:56 | 西川 / Nishikawa / Nishikawa | 木村さんが戻ったら、すぐに折り返してくださいって伝えてもらえますか。 | Kimura-san ga modottara, sugu ni orikaeshite kudasai tte tsutaete moraemasu ka. | Khi nào anh Kimura quay lại, anh có thể nhắn giúp là gọi lại ngay được không ạ?
+01:02 | 今井ミゲル / Imai Migeru / Imai Miguel | 折り返しですね。 | Orikaeshi desu ne. | Gọi lại nhé.
+01:07 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、内線番号は? | Ano, naisen bangoo wa? | À, số nội bộ của chị là gì ạ?
+01:11 | 西川 / Nishikawa / Nishikawa | 3869にお願いします。 | San-hachi-roku-kyuu ni onegaishimasu. | Số 3869 ạ.
+01:14 | 今井ミゲル / Imai Migeru / Imai Miguel | 3869ですね。もう一度お名前をお願いできますか。 | San-hachi-roku-kyuu desu ne. Moo ichido onamae o onegai dekimasu ka. | 3869 nhé. Chị cho tôi xin lại tên một lần nữa được không ạ?
+01:21 | 西川 / Nishikawa / Nishikawa | はい、総務課の西川です。 | Hai, Soomu-ka no Nishikawa desu. | Vâng, tôi là Nishikawa ở phòng tổng vụ.
+*01:26 | 今井ミゲル / Imai Migeru / Imai Miguel | 総務課の西川さんですね。わかりました。伝えておきます。 | Soomu-ka no Nishikawa-san desu ne. Wakarimashita. Tsutaete okimasu. | Chị Nishikawa ở phòng tổng vụ nhỉ. Tôi hiểu rồi ạ. Tôi sẽ nhắn lại giúp.
+01:32 | 西川 / Nishikawa / Nishikawa | よろしくお願いします。じゃあ失礼します。 | Yoroshiku onegaishimasu. Jaa shitsuree shimasu. | Nhờ anh nhé. Vậy tôi xin phép ạ.
+02:03 | 木村 / Kimura / Kimura | あっ、今井さんメモありがとう。 | A, Imai-san memo arigatoo. | À, cảm ơn anh Imai đã để lại tin nhắn nhé.
+02:06 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、すぐに折り返しお願いします。 | Hai, sugu ni orikaeshi onegaishimasu. | Vâng, chị Nishikawa nhờ anh gọi lại ngay giúp ạ.
+### từ vựng
+資材課 | しざいか | shizai-ka | phòng vật tư
+総務課 | そうむか | soomu-ka | phòng tổng vụ
+席を外す | せきをはずす | seki o hazusu | vắng khỏi chỗ
+会議中 | かいぎちゅう | kaigichuu | đang họp
+折り返す | おりかえす | orikaesu | gọi lại
+内線番号 | ないせんばんごう | naisen-bangoo | số máy lẻ
+伝える | つたえる | tsutaeru | nhắn lại
+
+## scene-1.mp4
+# Rủ đi ăn trưa và từ chối khéo
+00:06 | 同僚 / Dooryoo / Đồng nghiệp | お弁当持ってきてないので、どこかに食べに行こうと思ってます。 | Obentoo motte kite nai node, dokoka ni tabe ni ikoo to omotte imasu. | Tôi không mang cơm hộp nên định đi ăn ở đâu đó.
+*00:14 | 同僚 / Dooryoo / Đồng nghiệp | じゃあ、最近新しくできたうどん屋、行ってみませんか? | Jaa, saikin atarashiku dekita udon'ya, itte mimasen ka. | Vậy chị đi thử quán mì udon mới mở gần đây không?
+00:22 | 同僚 / Dooryoo / Đồng nghiệp | うどん屋、どこですか? | Udon'ya, doko desu ka. | Quán udon đó ở đâu vậy?
+00:25 | 同僚 / Dooryoo / Đồng nghiệp | ほら、前にコンビニの隣に中華料理屋があったでしょう。工事中でしたよね。 | Hora, mae ni konbini no tonari ni chuuka ryoorya ga atta deshoo. Koojichuu deshita yo ne. | Kìa, trước đây bên cạnh cửa hàng tiện lợi có quán ăn Trung Hoa đúng không. Nó đang thi công mà nhỉ.
+*00:35 | 同僚 / Dooryoo / Đồng nghiệp | え?あそこがうどん屋になったんですか? | E? Asoko ga udon'ya ni nattan desu ka. | Hả? Chỗ đó thành quán udon rồi à?
+00:39 | 同僚 / Dooryoo / Đồng nghiệp | そうなんですよ。 | Soo nan desu yo. | Đúng vậy đó.
+00:41 | 同僚 / Dooryoo / Đồng nghiệp | へえ、うどん好きなので行ってみたいです。 | Hee, udon suki na node itte mitai desu. | Ồ, tôi thích udon nên muốn đi thử.
+00:46 | 同僚 / Dooryoo / Đồng nghiệp | じゃあ行きましょう。 | Jaa ikimashoo. | Vậy thì đi thôi.
+00:53 | 同僚 / Dooryoo / Đồng nghiệp | 集計作業終わりましたか? | Shuukee sagyoo owarimashita ka. | Anh làm xong việc tổng hợp số liệu chưa?
+00:55 | 今井ミゲル / Imai Migeru / Imai Miguel | はい。 | Hai. | Rồi ạ.
+00:56 | 同僚 / Dooryoo / Đồng nghiệp | お昼どうしますか?私たち、新しくできたうどん屋に行くんですけど、一緒にどうですか? | Ohiru doo shimasu ka. Watashitachi, atarashiku dekita udon'ya ni iku n desu kedo, issho ni doo desu ka. | Trưa nay anh tính sao? Chúng tôi định đi quán mì udon mới mở, anh đi cùng không?
+*01:10 | 今井ミゲル / Imai Migeru / Imai Miguel | ちょっと、朝から食欲がなくて。 | Chotto, asa kara shokuyoku ga nakute. | À, từ sáng tôi không có cảm giác thèm ăn.
+01:16 | 同僚 / Dooryoo / Đồng nghiệp | え?大丈夫ですか? | E? Daijoobu desu ka. | Hả? Anh có sao không?
+01:19 | 今井ミゲル / Imai Migeru / Imai Miguel | 昨日、友達と焼き肉食べに行ったんですけど、食べ過ぎちゃって、まだ何も食べたくないんです。 | Kinoo, tomodachi to yakiniku tabe ni itta n desu kedo, tabesugichatte, mada nanimo tabetakunai n desu. | Hôm qua tôi đi ăn thịt nướng với bạn, ăn quá nhiều nên giờ vẫn chưa muốn ăn gì cả.
+01:31 | 同僚 / Dooryoo / Đồng nghiệp | あらら。薬飲みましたか? | Arara. Kusuri nomimashita ka. | Ôi trời. Anh uống thuốc chưa?
+01:36 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、飲みました。 | Hai, nomimashita. | Vâng, tôi uống rồi ạ.
+*01:39 | 同僚 / Dooryoo / Đồng nghiệp | じゃあ今日は無理しない方がいいですね。また今度誘ってください。 | Jaa kyoo wa muri shinai hoo ga ii desu ne. Mata kondo sasotte kudasai. | Vậy hôm nay anh đừng cố quá nhé. Lần sau lại rủ tôi nhé.
+01:47 | 今井ミゲル / Imai Migeru / Imai Miguel | はい、また今度一緒に行きましょう。 | Hai, mata kondo issho ni ikimashoo. | Vâng, lần sau mình cùng đi nhé.
+01:52 | 同僚 / Dooryoo / Đồng nghiệp | じゃあ行ってきます。 | Jaa ittekimasu. | Vậy tôi đi nhé.
+### từ vựng
+うどん屋 | うどんや | udon'ya | quán udon
+工事中 | こうじちゅう | koojichuu | đang thi công
+集計 | しゅうけい | shuukee | tổng hợp số liệu
+食欲 | しょくよく | shokuyoku | cảm giác thèm ăn
+焼き肉 | やきにく | yakiniku | thịt nướng
+食べ過ぎる | たべすぎる | tabesugiru | ăn quá nhiều
+
+## scene-3.mp4
+# Khi nào nói「お疲れさまです」
+00:01 | 後輩 / Koohai / Đàn em | あ、木村さん。 | A, Kimura-san. | A, chị Kimura.
+00:04 | 木村 / Kimura / Kimura | お疲れさまです。 | Otsukaresama desu. | Chào mọi người.
+*00:09 | 後輩 / Koohai / Đàn em | お疲れさまですって、便利な言葉ですね。 | Otsukaresama desu tte, benri na kotoba desu ne. | "Otsukaresama desu" là câu nói tiện lợi nhỉ.
+00:13 | 木村 / Kimura / Kimura | え?便利な言葉? | E? Benri na kotoba? | Hả? Câu nói tiện lợi?
+*00:16 | 後輩 / Koohai / Đàn em | はい。お疲れさまですわ、朝でも昼でも夜でも使えますよね。 | Hai. Otsukaresama desu wa, asa demo hiru demo yoru demo tsukaemasu yo ne. | Vâng. "Otsukaresama desu" thì buổi sáng, trưa hay tối gì cũng dùng được nhỉ.
+00:24 | 木村 / Kimura / Kimura | ああ、確かに。入社したばかりの時に、みんないつも「お疲れさまです」って言ってて、びっくりしました。 | Aa, tashika ni. Nyuusha shita bakari no toki ni, minna itsumo "Otsukaresama desu" tte itte te, bikkuri shimashita. | À, đúng thật. Lúc mới vào công ty, tôi bất ngờ vì ai cũng luôn miệng nói "Otsukaresama desu".
+00:36 | 後輩 / Koohai / Đàn em | 誰にでも使えますしね。 | Dare ni demo tsukaemasu shi ne. | Với ai cũng dùng được nữa nhỉ.
+00:39 | 木村 / Kimura / Kimura | でも私、この間失敗したんですよ。 | Demo watashi, kono aida shippai shita n desu yo. | Nhưng dạo trước tôi đã thất bại một lần đấy.
+00:43 | 後輩 / Koohai / Đàn em | どんな? | Donna? | Chuyện gì vậy ạ?
+00:44 | 木村 / Kimura / Kimura | この前、取引先の会社に挨拶に行った時、玄関で社長さんに会ったんです。その時、社長さんに「お疲れさまです」って言ったら、先輩に叱られました。 | Kono mae, torihikisaki no kaisha ni aisatsu ni itta toki, genkan de shachoo-san ni atta n desu. Sono toki, shachoo-san ni "Otsukaresama desu" tte ittara, senpai ni shikararemashita. | Lần trước, khi đến chào hỏi công ty đối tác, tôi gặp giám đốc ngay ở cửa. Lúc đó tôi nói "Otsukaresama desu" với giám đốc thì bị đàn anh mắng.
+00:58 | 後輩 / Koohai / Đàn em | え?何で? | E? Nande? | Hả? Sao vậy ạ?
+01:01 | 木村 / Kimura / Kimura | 何か失礼なんだって。 | Nanka shitsuree nan datte. | Nghe nói là bất lịch sự gì đó.
+01:05 | 後輩 / Koohai / Đàn em | 確かに、違う会社の社長さんには言いませんね。 | Tashika ni, chigau kaisha no shachoo-san ni wa iimasen ne. | Đúng thật, với giám đốc công ty khác thì không nói vậy nhỉ.
+01:10 | 木村 / Kimura / Kimura | 便利だけど、使わない方がいい時もあるんですね。 | Benri dakedo, tsukawanai hoo ga ii toki mo aru n desu ne. | Tiện lợi thật, nhưng cũng có lúc không nên dùng nhỉ.
+01:17 | 後輩 / Koohai / Đàn em | そういえば、私の国にも面白い挨拶があるんですよ。 | Soo ieba, watashi no kuni ni mo omoshiroi aisatsu ga aru n desu yo. | Nói mới nhớ, ở nước tôi cũng có một câu chào thú vị đấy.
+01:22 | 木村 / Kimura / Kimura | 何々? | Nani nani? | Gì vậy, gì vậy?
+*01:24 | 後輩 / Koohai / Đàn em | 「ご飯食べた?」ってよく言います。 | "Gohan tabeta?" tte yoku iimasu. | Người ta hay nói "Ăn cơm chưa?".
+01:31 | 木村 / Kimura / Kimura | それ、挨拶なんですか? | Sore, aisatsu nan desu ka. | Đó là câu chào hỏi à?
+01:34 | 後輩 / Koohai / Đàn em | はい。おはようとか、こんにちはみたいに使いますよ。 | Hai. Ohayoo toka, konnichiwa mitai ni tsukaimasu yo. | Vâng. Dùng giống như "chào buổi sáng" hay "xin chào" vậy đó.
+01:41 | 木村 / Kimura / Kimura | へえ、それって会社でも使いますか? | Hee, sore tte kaisha demo tsukaimasu ka. | Ồ, vậy ở công ty cũng dùng được à?
+01:45 | 後輩 / Koohai / Đàn em | そうですね、会社でも仲良くしてる人には使うかな。 | Soo desu ne, kaisha demo nakayoku shite iru hito ni wa tsukau ka na. | Dạ, ở công ty thì chắc dùng với người thân thiết thôi.
+01:51 | 木村 / Kimura / Kimura | ご飯食べたって聞かれたら、どう答えるんですか? | Gohan tabeta tte kikaretara, doo kotaeru n desu ka. | Nếu bị hỏi "Ăn cơm chưa?" thì trả lời sao ạ?
+01:57 | 後輩 / Koohai / Đàn em | 「食べた」って答えます。食べてなくても、ただの挨拶ですから。 | "Tabeta" tte kotaemasu. Tabete nakute mo, tada no aisatsu desu kara. | Tôi trả lời "Ăn rồi". Dù chưa ăn thì cũng chỉ là câu chào thôi mà.
+02:07 | 木村 / Kimura / Kimura | そうなんだ。いろんな挨拶がありますね。 | Soo nan da. Ironna aisatsu ga arimasu ne. | Ra là vậy. Có nhiều kiểu chào hỏi khác nhau thật nhỉ.
+### từ vựng
+便利 | べんり | benri | tiện lợi
+入社 | にゅうしゃ | nyuusha | vào công ty
+取引先 | とりひきさき | torihikisaki | đối tác
+社長 | しゃちょう | shachoo | giám đốc
+失礼 | しつれい | shitsuree | bất lịch sự
+叱る | しかる | shikaru | mắng
+
+## summary.mp4
+# Ôn tập: Giao tiếp với đồng nghiệp
+00:00 |  /  / Chủ đề | かいぎちゅうですね | kaigichuu desu ne | Đang họp mà
+00:07 | 同僚 / Dooryoo / Đồng nghiệp | 木村さんいますか? | Kimura-san imasu ka. | Anh Kimura có ở đó không ạ?
+*00:09 | 今井ミゲル / Imai Migeru / Imai Miguel | 木村さんは今、席を外しています。 | Kimura-san wa ima, seki o hazushite imasu. | Anh Kimura hiện đang không có ở bàn ạ.
+*00:20 | 今井ミゲル / Imai Migeru / Imai Miguel | 会議中ですね。 | Kaigichuu desu ne. | Đang họp mà nhỉ.
+00:22 | ナレーター / Nareetaa / Người dẫn | この動画では、この人が電話で「木村さんいますか?」と今井さんに聞きました。それに対して、今井さんは「会議中ですね」と言って、木村さんが今、会議をしている最中だと伝えています。 | Kono dooga de wa, kono hito ga denwa de "Kimura-san imasu ka" to Imai-san ni kikimashita. Sore ni taishite, Imai-san wa "Kaigichuu desu ne" to itte, Kimura-san ga ima, kaigi o shite iru saichuu da to tsutaete imasu. | Trong video này, người này đã gọi điện hỏi anh Imai "Anh Kimura có ở đó không?". Đáp lại, anh Imai nói "Đang họp mà" để cho biết anh Kimura hiện đang trong lúc họp.
+00:51 | ナレーター / Nareetaa / Người dẫn | 名詞+中は、その動作や状態が続いていることを表します。中の前には、動作や状態を表す名詞を使います。 | Meeshi + chuu wa, sono doosa ya jootai ga tsuzuite iru koto o arawashimasu. Chuu no mae ni wa, doosa ya jootai o arawasu meeshi o tsukaimasu. | "Danh từ + chuu (中)" thể hiện hành động hay trạng thái đó đang tiếp diễn. Trước "chuu" thì dùng danh từ chỉ hành động hay trạng thái.
+01:10 | ナレーター / Nareetaa / Người dẫn | 例えば、電話をしている最中であれば電話中、食事をしている最中であれば食事中、工事をしている最中であれば工事中のように使います。 | Tatoeba, denwa o shite iru saichuu de areba denwachuu, shokuji o shite iru saichuu de areba shokujichuu, kooji o shite iru saichuu de areba koojichuu no yoo ni tsukaimasu. | Ví dụ, nếu đang trong lúc gọi điện thì dùng "denwachuu" (đang gọi điện), đang trong lúc ăn cơm thì "shokujichuu" (đang ăn), đang trong lúc thi công thì "koojichuu" (đang thi công).
+01:33 | ナレーター / Nareetaa / Người dẫn | 看板や表示などでもよく使われます。工事中、営業中、使用中のように、看板に「〜中」と書いてあれば、何かをしている最中だという意味です。 | Kanban ya hyooji nado demo yoku tsukawaremasu. Koojichuu, eegyoochuu, shiyoochuu no yoo ni, kanban ni "~chuu" to kaite areba, nanika o shite iru saichuu da to iu imi desu. | Cũng thường được dùng trên biển báo, bảng hiệu. Như "koojichuu" (đang thi công), "eegyoochuu" (đang mở cửa), "shiyoochuu" (đang sử dụng); nếu trên biển ghi "~chuu" thì có nghĩa là đang trong lúc làm việc gì đó.
+02:01 |  /  / Chủ đề | あそこが うどんやに なったんですか | asoko ga udon'ya ni nattan desu ka | Chỗ đó thành quán mì udon rồi à?
+02:07 | ナレーター / Nareetaa / Người dẫn | 会話の中に出てきたものや人、場所などについて、その人、あのお店などの指示詞を使うときは、次のように使い分けます。 | Kaiwa no naka ni dete kita mono ya hito, basho nado ni tsuite, sono hito, ano omise nado no shijishi o tsukau toki wa, tsugi no yoo ni tsukaiwakemasu. | Khi dùng đại từ chỉ định như "sono hito" (người đó), "ano omise" (quán đó) để nói về vật, người, địa điểm đã xuất hiện trong hội thoại, thì phân biệt sử dụng như sau.
+02:29 | ナレーター / Nareetaa / Người dẫn | それ、その、あれ、あの などの「そ」で始まる指示詞は、二人のうちどちらか一方が直接知らないものについて話すときに使います。 | Sore, sono, are, ano nado no "so" de hajimaru shijishi wa, futari no uchi dochira ka ippoo ga chokusetsu shiranai mono ni tsuite hanasu toki ni tsukaimasu. | Các đại từ chỉ định bắt đầu bằng "so" như "sore, sono" dùng khi nói về vật mà một trong hai người không trực tiếp biết.
+02:53 | ナレーター / Nareetaa / Người dẫn | あれ、あの人などの「あ」で始まる指示詞は、二人とも知っているものについて話すときに使います。 | Are, ano hito nado no "a" de hajimaru shijishi wa, futari tomo shitte iru mono ni tsuite hanasu toki ni tsukaimasu. | Các đại từ chỉ định bắt đầu bằng "a" như "are, ano hito" dùng khi nói về vật mà cả hai người đều biết.
+03:13 | ナレーター / Nareetaa / Người dẫn | 例えば、Aさんが「昨日、さくらにお寿司を食べに行きました」と言いました。Bさんが「さくら」という店を知らなかったら、「そのお店、どこにあるんですか?」と質問します。 | Tatoeba, A-san ga "Kinoo, Sakura ni osushi o tabe ni ikimashita" to iimashita. B-san ga "Sakura" to iu mise o shiranakattara, "Sono omise, doko ni aru n desu ka" to shitsumon shimasu. | Ví dụ, anh A nói "Hôm qua tôi đã đi ăn sushi ở quán Sakura". Nếu chị B không biết quán "Sakura" thì sẽ hỏi "Quán đó ở đâu vậy?".
+03:44 | ナレーター / Nareetaa / Người dẫn | Bさんが「さくら」という店を知っていたら、「あのお店、美味しいですよね」と言います。 | B-san ga "Sakura" to iu mise o shitte itara, "Ano omise, oishii desu yo ne" to iimasu. | Nếu chị B biết quán "Sakura" thì sẽ nói "Quán đó ngon nhỉ".
+03:59 | ナレーター / Nareetaa / Người dẫn | この動画では、二人の同僚がうどん屋の場所について話しています。同僚が話したうどん屋の場所について、もう一人が「あそこがうどん屋になったんですか」と聞いています。 | Kono dooga de wa, futari no dooryoo ga udon'ya no basho ni tsuite hanashite imasu. Dooryoo ga hanashita udon'ya no basho ni tsuite, moo hitori ga "Asoko ga udon'ya ni nattan desu ka" to kiite imasu. | Trong video này, hai đồng nghiệp đang nói về vị trí của quán mì udon. Về địa điểm quán udon mà đồng nghiệp vừa nhắc tới, người còn lại hỏi "Chỗ đó thành quán udon rồi à?".
+04:42 | 同僚 / Dooryoo / Đồng nghiệp | 朝から元気がなくて、大丈夫ですか? | Asa kara genki ga nakute, daijoobu desu ka. | Từ sáng anh có vẻ không khỏe, anh ổn không?
+*04:50 | 今井ミゲル / Imai Migeru / Imai Miguel | 昨日、友達と焼き肉食べに行ったんですけど、食べ過ぎちゃって。 | Kinoo, tomodachi to yakiniku tabe ni itta n desu kedo, tabesugichatte. | Hôm qua tôi đi ăn thịt nướng với bạn, rồi ăn quá nhiều.
+04:57 | ナレーター / Nareetaa / Người dẫn | この動画では、今井さんが「昨日、焼き肉を食べ過ぎちゃって」と言って、焼き肉をたくさん食べたせいで食欲がないことを伝え、食事の誘いを断っています。 | Kono dooga de wa, Imai-san ga "Kinoo, yakiniku o tabesugichatte" to itte, yakiniku o takusan tabeta see de shokuyoku ga nai koto o tsutae, shokuji no sasoi o kotowatte imasu. | Trong video này, anh Imai nói "Hôm qua tôi ăn thịt nướng quá nhiều" để cho biết vì ăn nhiều thịt nướng nên không có cảm giác thèm ăn, và từ chối lời rủ ăn cơm.
+05:20 |  /  / Chủ đề | きのう、やきにくを たべすぎ ちゃって | kinoo, yakiniku o tabesugichatte | Hôm qua ăn thịt nướng quá nhiều
+05:21 | ナレーター / Nareetaa / Người dẫn | 動詞ます形+すぎます は、その行為や状態が程度を超えていることを表します。すぎますの前には、動詞や、形容詞のいをとった形、な形容詞のなをとった形を使います。 | Dooshi masu-kee + sugimasu wa, sono kooi ya jootai ga teedo o koete iru koto o arawashimasu. Sugimasu no mae ni wa, dooshi ya, keeyooshi no i o totta katachi, na-keeyooshi no na o totta katachi o tsukaimasu. | "Dạng masu của động từ + sugimasu" thể hiện hành động hay trạng thái đó vượt quá mức độ. Trước "sugimasu" thì dùng động từ, tính từ đuôi i đã bỏ i, hoặc tính từ đuôi na đã bỏ na.
+05:51 | ナレーター / Nareetaa / Người dẫn | すぎます は、その行為や状態に対してマイナスの評価を持っているときに使うことが多いです。 | Sugimasu wa, sono kooi ya jootai ni taishite mainasu no hyooka o motte iru toki ni tsukau koto ga ooi desu. | "Sugimasu" thường được dùng khi có đánh giá tiêu cực về hành động hay trạng thái đó.
+06:04 | ナレーター / Nareetaa / Người dẫn | 例えば、焼き肉をたくさん食べました。焼き肉を食べ過ぎましたなら、食べ過ぎて苦しい、体調が悪いなどのマイナスの評価が含まれます。 | Tatoeba, yakiniku o takusan tabemashita. Yakiniku o tabesugimashita nara, tabesugite kurushii, taichoo ga warui nado no mainasu no hyooka ga fukumaremasu. | Ví dụ, "đã ăn nhiều thịt nướng". Nếu nói "đã ăn thịt nướng quá nhiều" thì bao hàm đánh giá tiêu cực như ăn nhiều quá nên khó chịu, cơ thể mệt mỏi.
+06:29 | ナレーター / Nareetaa / Người dẫn | このケーキは甘いです、と、このケーキは甘すぎますなら、甘すぎておいしくないなどのマイナスの評価が含まれます。 | Kono keeki wa amai desu, to, kono keeki wa amasugimasu nara, amasugite oishikunai nado no mainasu no hyooka ga fukumaremasu. | So với câu "chiếc bánh này ngọt", nếu nói "chiếc bánh này ngọt quá" thì bao hàm đánh giá tiêu cực như ngọt quá nên không ngon.

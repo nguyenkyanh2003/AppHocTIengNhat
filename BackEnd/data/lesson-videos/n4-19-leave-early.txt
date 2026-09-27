@@ -1,0 +1,126 @@
+# Lời thoại Tình huống: Xin nghỉ phép và về sớm
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-16-19.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-3.mp4
+# Xin về sớm vì con bị sốt
+00:00 | 木村 / Kimura / Kimura | はい、資材部、木村です。 | Hai, Shizai-bu, Kimura desu. | Vâng, phòng vật tư, tôi là Kimura.
+00:11 | 木村 / Kimura / Kimura | はい、かしこまりました。少々お待ちください。 | Hai, kashikomarimashita. Shooshoo omachi kudasai. | Vâng, tôi hiểu rồi ạ. Xin chờ một chút.
+00:17 | 木村 / Kimura / Kimura | 今井さん、保育園からお電話ですよ。 | Imai-san, hoikuen kara odenwa desu yo. | Anh Imai, có điện thoại từ nhà trẻ gọi đến này.
+00:21 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+00:26 | 今井ミゲル / Imai Migeru / Imai Miguel | お待たせいたしました。今井です。 | Omatase itashimashita. Imai desu. | Xin lỗi để anh/chị chờ. Tôi là Imai.
+00:31 | 今井ミゲル / Imai Migeru / Imai Miguel | そうですか?わかりました。じゃあ、職場の人に話して、できるだけ早く迎えに行きます。ご連絡ありがとうございました。 | Soo desu ka. Wakarimashita. Jaa, shokuba no hito ni hanashite, dekiru dake hayaku mukae ni ikimasu. Gorenraku arigatoo gozaimashita. | Vậy ạ? Tôi hiểu rồi. Vậy tôi sẽ báo với mọi người ở chỗ làm rồi đến đón cháu sớm nhất có thể. Cảm ơn đã liên lạc ạ.
+00:56 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、高橋課長。 | Ano, Takahashi kachoo. | À, trưởng phòng Takahashi.
+00:58 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | はい、何ですか? | Hai, nan desu ka. | Ừ, có chuyện gì vậy?
+*01:00 | 今井ミゲル / Imai Migeru / Imai Miguel | 実は、子どもが保育園で熱を出しまして。 | Jitsu wa, kodomo ga hoikuen de netsu o dashimashite. | Thật ra là con tôi bị sốt ở nhà trẻ ạ.
+01:07 | 今井ミゲル / Imai Migeru / Imai Miguel | 今日はどうしても私が迎えに行かないといけなくて。 | Kyoo wa dooshitemo watashi ga mukae ni ikanaito ikenakute. | Hôm nay nhất định tôi phải đi đón cháu.
+01:11 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | そうですか。 | Soo desu ka. | Vậy à.
+*01:13 | 今井ミゲル / Imai Migeru / Imai Miguel | 申し訳ありませんが、今日、これから早退してもよろしいでしょうか? | Mooshiwake arimasen ga, kyoo, korekara sootai shitemo yoroshii deshoo ka. | Xin lỗi anh, hôm nay tôi xin phép về sớm bây giờ được không ạ?
+01:21 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | わかりました。急ぎの仕事は木村さんに引き継いでから退社してください。 | Wakarimashita. Isogi no shigoto wa Kimura-san ni hikitsuide kara taisha shite kudasai. | Tôi hiểu rồi. Việc gấp thì anh bàn giao cho chị Kimura rồi hẵng về nhé.
+01:27 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | 木村さん、今井さんが今日はこのあと早退するから、残りの仕事お願いできますか? | Kimura-san, Imai-san ga kyoo wa kono ato sootai suru kara, nokori no shigoto onegai dekimasu ka. | Chị Kimura, hôm nay anh Imai sẽ về sớm sau đây, chị lo giúp phần việc còn lại được không?
+01:35 | 木村 / Kimura / Kimura | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi ạ.
+01:38 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+01:41 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | 帰る前に、もう一度私に声をかけてくださいね。 | Kaeru mae ni, moo ichido watashi ni koe o kakete kudasai ne. | Trước khi về, anh nhớ báo lại cho tôi một lần nữa nhé.
+*01:46 | 今井ミゲル / Imai Migeru / Imai Miguel | お手数おかけして申し訳ありません。 | Otesuu okakeshite mooshiwake arimasen. | Xin lỗi vì đã làm phiền mọi người.
+01:51 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | 大丈夫ですよ。 | Daijoobu desu yo. | Không sao đâu.
+*02:04 | 今井ミゲル / Imai Migeru / Imai Miguel | 高橋課長、これで退社させていただきます。 | Takahashi kachoo, kore de taisha sasete itadakimasu. | Trưởng phòng Takahashi, tôi xin phép ra về ạ.
+02:09 | 高橋課長 / Takahashi kachoo / Trưởng phòng Takahashi | ああ、わかりました。お子さん、お大事に。 | Aa, wakarimashita. Okosan, odaiji ni. | À, tôi hiểu rồi. Cho tôi gửi lời chúc cháu mau khỏe nhé.
+02:14 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。失礼いたします。 | Arigatoo gozaimasu. Shitsuree itashimasu. | Cảm ơn anh ạ. Tôi xin phép về trước.
+### từ vựng
+保育園 | ほいくえん | hoikuen | nhà trẻ
+熱を出す | ねつをだす | netsu o dasu | bị sốt
+迎える | むかえる | mukaeru | đón
+早退 | そうたい | sootai | về sớm
+引き継ぐ | ひきつぐ | hikitsugu | bàn giao
+退社 | たいしゃ | taisha | ra về (khỏi công ty)
+手数 | てすう | tesuu | phiền hà
+
+## scene-1.mp4
+# Xin nghỉ phép có lương
+*00:01 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、すみません、今、お時間よろしいでしょうか? | Ano, sumimasen, ima, ojikan yoroshii deshoo ka. | À, xin lỗi anh, bây giờ anh có rảnh chút không ạ?
+00:08 | 上司 / Jooshi / Cấp trên | はい、何ですか? | Hai, nan desu ka. | Ừ, có chuyện gì vậy?
+*00:11 | 今井ミゲル / Imai Migeru / Imai Miguel | 実は6月に国の両親が日本へ遊びに来るんです。それで5日間ほどお休みをいただきたいのですが。 | Jitsu wa rokugatsu ni kuni no ryooshin ga Nihon e asobi ni kuru n desu. Sorede itsukakan hodo oyasumi o itadakitai no desu ga. | Thật ra tháng 6 này bố mẹ tôi ở quê sẽ sang Nhật chơi. Vì vậy tôi muốn xin nghỉ khoảng 5 ngày ạ.
+*00:27 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、有給を使いたいんですけど。 | Ano, yuukyuu o tsukaitai n desu kedo. | À, tôi muốn dùng ngày nghỉ phép có lương ạ.
+00:31 | 上司 / Jooshi / Cấp trên | ああ、有給ね。もちろんです。ちょっと待ってくださいね。 | Aa, yuukyuu ne. Mochiron desu. Chotto matte kudasai ne. | À, nghỉ phép có lương à. Tất nhiên rồi. Anh đợi chút nhé.
+00:42 | 上司 / Jooshi / Cấp trên | 今井さん、有給ほとんど使っていないから、まだたくさん残っていますよ。 | Imai-san, yuukyuu hotondo tsukatte inai kara, mada takusan nokotte imasu yo. | Anh Imai, vì hầu như anh chưa dùng ngày nghỉ phép có lương nên vẫn còn nhiều lắm đấy.
+00:48 | 今井ミゲル / Imai Migeru / Imai Miguel | あっ、そうですか? | A, soo desu ka. | A, vậy ạ?
+00:50 | 上司 / Jooshi / Cấp trên | いつから、いつまでですか? | Itsukara, itsu made desu ka. | Từ ngày nào đến ngày nào vậy?
+00:54 | 今井ミゲル / Imai Migeru / Imai Miguel | えっと、6月10日から14日までです。 | Etto, rokugatsu tooka kara juuyokka made desu. | Dạ, từ ngày 10 đến ngày 14 tháng 6 ạ.
+01:01 | 上司 / Jooshi / Cấp trên | えっと、6月の10日から14日までですね。わかりました。 | Etto, rokugatsu no tooka kara juuyokka made desu ne. Wakarimashita. | À, từ ngày 10 đến ngày 14 tháng 6 nhỉ. Tôi hiểu rồi.
+01:10 | 上司 / Jooshi / Cấp trên | 今からだったらシフトの調整もしやすいし、助かります。 | Ima kara dattara shifuto no choosee mo shiyasui shi, tasukarimasu. | Nếu là từ bây giờ thì cũng dễ điều chỉnh ca làm, giúp tôi nhiều đấy.
+01:15 | 上司 / Jooshi / Cấp trên | じゃ、申請しておいてください。 | Ja, shinsee shite oite kudasai. | Vậy anh làm đơn xin nghỉ trước nhé.
+01:20 | 今井ミゲル / Imai Migeru / Imai Miguel | ありがとうございます。よろしくお願いします。 | Arigatoo gozaimasu. Yoroshiku onegaishimasu. | Cảm ơn anh ạ. Mong anh giúp đỡ.
+### từ vựng
+両親 | りょうしん | ryooshin | bố mẹ
+有給 | ゆうきゅう | yuukyuu | nghỉ phép có lương
+残る | のこる | nokoru | còn lại
+調整 | ちょうせい | choosee | điều chỉnh
+申請 | しんせい | shinsee | đăng ký, xin
+
+## scene-2.mp4
+# Cảm ơn đồng nghiệp sau kỳ nghỉ
+00:02 | 木村 / Kimura / Kimura | あっ、今井さん。 | A, Imai-san. | A, anh Imai.
+00:05 | 今井ミゲル / Imai Migeru / Imai Miguel | ここ座ってもいいですか? | Koko suwattemo ii desu ka. | Em ngồi đây được không ạ?
+00:07 | 木村 / Kimura / Kimura | どうぞ。 | Doozo. | Mời anh.
+*00:16 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、木村さん、お休みの間ありがとうございました。 | Ano, Kimura-san, oyasumi no aida arigatoo gozaimashita. | À, chị Kimura, cảm ơn chị đã giúp em trong lúc em nghỉ ạ.
+00:24 | 木村 / Kimura / Kimura | いえ、全然気にしないでください。 | Ie, zenzen ki ni shinaide kudasai. | Không có gì, anh đừng bận tâm.
+*00:28 | 今井ミゲル / Imai Migeru / Imai Miguel | おかげさまで久しぶりに家族で集まることができました。 | Okagesama de hisashiburi ni kazoku de atsumaru koto ga dekimashita. | Nhờ chị mà lâu lắm rồi gia đình em mới tụ họp được.
+00:34 | 木村 / Kimura / Kimura | それは良かったですね。皆さん、ゆっくりできましたか? | Sore wa yokatta desu ne. Minasan, yukkuri dekimashita ka. | Vậy thì tốt quá. Mọi người có thoải mái nghỉ ngơi được không?
+00:39 | 今井ミゲル / Imai Migeru / Imai Miguel | はい。うちの親、日本初めてだったんですよ。だから、とっても楽しそうでした。 | Hai. Uchi no oya, Nihon hajimete datta n desu yo. Dakara, tottemo tanoshisoo deshita. | Vâng. Bố mẹ em lần đầu đến Nhật đấy ạ. Vì vậy trông họ rất vui.
+00:48 | 木村 / Kimura / Kimura | へえ、どこか行ったんですか? | Hee, dokoka itta n desu ka. | Ồ, có đi đâu chơi không?
+00:52 | 今井ミゲル / Imai Migeru / Imai Miguel | いろいろ行きました。ちょっと写真見ます? | Iroiro ikimashita. Chotto shashin mimasu? | Đi nhiều chỗ lắm ạ. Chị xem ảnh chút nhé?
+00:57 | 木村 / Kimura / Kimura | あっ、見せて見せて。 | A, misete misete. | A, cho tôi xem, cho tôi xem.
+01:06 | 木村 / Kimura / Kimura | あー、富士山、天気良かったんですね。あ、寿司にも行ったんですね。 | Aa, Fujisan, tenki yokatta n desu ne. A, sushi ni mo itta n desu ne. | À, núi Phú Sĩ, trời đẹp thật nhỉ. A, còn đi ăn sushi nữa à.
+01:23 | 木村 / Kimura / Kimura | わ、すごい、お皿の数。これ何人で食べたんですか? | Wa, sugoi, osara no kazu. Kore nannin de tabeta n desu ka. | Ồ, nhiều đĩa quá. Cái này mấy người ăn vậy?
+01:29 | 今井ミゲル / Imai Migeru / Imai Miguel | すごく美味しくて。 | Sugoku oishikute. | Ngon lắm luôn ạ.
+*01:32 | 今井ミゲル / Imai Migeru / Imai Miguel | あ、そうだ。両親が国からお菓子を持ってきたんですけど、皆さんに配っても大丈夫ですか? | A, sooda. Ryooshin ga kuni kara okashi o motte kita n desu kedo, minasan ni kubattemo daijoobu desu ka. | À, đúng rồi. Bố mẹ em mang bánh kẹo từ quê sang, em phát cho mọi người có được không ạ?
+01:41 | 木村 / Kimura / Kimura | もちろん。 | Mochiron. | Tất nhiên rồi.
+*01:43 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、どうやって配ったらいいですか?皆さん、外出も多いし、いつも忙しそうだし。 | Ano, doo yatte kubattara ii desu ka. Minasan, gaishutsu mo ooi shi, itsumo isogashisoo da shi. | À, em nên phát như thế nào ạ? Mọi người hay ra ngoài, lại lúc nào cũng có vẻ bận rộn nữa.
+01:52 | 木村 / Kimura / Kimura | そうですね。一人一人配るの大変だから、メッセージをつけて休憩室に置いておくのはどうですか? | Soo desu ne. Hitori hitori kubaru no taihen dakara, messeeji o tsukete kyuukeeshitsu ni oite oku no wa doo desu ka. | Để xem nào. Phát cho từng người thì vất vả, hay là để kèm lời nhắn ở phòng nghỉ thì sao?
+02:04 | 今井ミゲル / Imai Migeru / Imai Miguel | あ、そうすれば感謝の気持ちも伝えられますね。 | A, soo sureba kansha no kimochi mo tsutaeraremasu ne. | À, làm vậy thì cũng truyền tải được lòng biết ơn nhỉ.
+02:11 | 今井ミゲル / Imai Migeru / Imai Miguel | どんなメッセージがいいかなあ。 | Donna messeeji ga ii ka naa. | Không biết nên viết lời nhắn thế nào nhỉ.
+### từ vựng
+おかげさまで | おかげさまで | okagesama de | nhờ anh chị (mà…)
+久しぶり | ひさしぶり | hisashiburi | lâu lắm rồi
+配る | くばる | kubaru | phát, chia
+外出 | がいしゅつ | gaishutsu | ra ngoài
+休憩室 | きゅうけいしつ | kyuukeeshitsu | phòng nghỉ
+感謝 | かんしゃ | kansha | lòng biết ơn
+
+## summary.mp4
+# Ôn tập: Xin nghỉ phép và về sớm
+00:00 |  /  / Chủ đề | そうたいしても よろしいでしょうか | sootai shitemo yoroshii deshoo ka | Tôi xin phép về sớm được không ạ?
+*00:06 | 今井ミゲル / Imai Migeru / Imai Miguel | 申し訳ありませんが、今日、これから早退してもよろしいでしょうか。 | Mooshiwake arimasen ga, kyoo, korekara sootai shitemo yoroshii deshoo ka. | Xin lỗi anh, hôm nay tôi xin phép về sớm bây giờ được không ạ?
+00:14 | 上司 / Jooshi / Cấp trên | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+00:15 | ナレーター / Nareetaa / Người dẫn | 動詞のて形+もよろしいでしょうかは、相手に許可を求める時に使う表現です。 | Dooshi no te-kee + mo yoroshii deshoo ka wa, aite ni kyoka o motomeru toki ni tsukau hyoogen desu. | "Dạng te của động từ + mo yoroshii deshoo ka" là mẫu câu dùng khi xin phép đối phương.
+00:34 | ナレーター / Nareetaa / Người dẫn | 動詞のて形+もいいですかという表現を聞いたことがあるかもしれません。これも許可を求める時の言い方です。てもよろしいでしょうかは、てもいいですかより丁寧な言い方です。 | Dooshi no te-kee + mo ii desu ka to iu hyoogen o kiita koto ga aru kamoshiremasen. Kore mo kyoka o motomeru toki no iikata desu. Temo yoroshii deshoo ka wa, temo ii desu ka yori teenee na iikata desu. | Có thể bạn từng nghe mẫu "dạng te + mo ii desu ka". Đây cũng là cách xin phép. "Temo yoroshii deshoo ka" là cách nói lịch sự hơn "temo ii desu ka".
+01:02 | ナレーター / Nareetaa / Người dẫn | 例えば、写真を撮ってもいいですか、と尋ねることもできますが、もっと丁寧に聞きたい時は、写真を撮ってもよろしいでしょうか、ということもできます。 | Tatoeba, shashin o tottemo ii desu ka, to tazuneru koto mo dekimasu ga, motto teenee ni kikitai toki wa, shashin o tottemo yoroshii deshoo ka, to iu koto mo dekimasu. | Ví dụ, có thể hỏi "Chụp ảnh được không?", nhưng khi muốn hỏi lịch sự hơn thì có thể nói "Tôi chụp ảnh được không ạ?".
+01:20 | 今井ミゲル / Imai Migeru / Imai Miguel | 申し訳ありませんが、今日、これから早退してもよろしいでしょうか。 | Mooshiwake arimasen ga, kyoo, korekara sootai shitemo yoroshii deshoo ka. | Xin lỗi anh, hôm nay tôi xin phép về sớm bây giờ được không ạ?
+01:28 | 上司 / Jooshi / Cấp trên | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+01:30 | ナレーター / Nareetaa / Người dẫn | この動画で今井さんは、職場で上司に対して、自分の都合で早退することについて許可を求めているので、「早退してもよろしいでしょうか」と言っています。 | Kono dooga de Imai-san wa, shokuba de jooshi ni taishite, jibun no tsugoo de sootai suru koto ni tsuite kyoka o motomete iru node, "Sootai shitemo yoroshii deshoo ka" to itte imasu. | Trong video này, anh Imai đang xin phép cấp trên ở nơi làm việc về việc về sớm vì lý do cá nhân, nên anh nói "Tôi xin phép về sớm được không ạ?".
+02:03 | ナレーター / Nareetaa / Người dẫn | 他にも、例えば、会社で上司に、今質問してもよろしいでしょうか、資料を借りてもよろしいでしょうかのように使うことができます。 | Hoka ni mo, tatoeba, kaisha de jooshi ni, ima shitsumon shitemo yoroshii deshoo ka, shiryoo o karitemo yoroshii deshoo ka no yoo ni tsukau koto ga dekimasu. | Ngoài ra, ví dụ ở công ty có thể dùng với cấp trên như "Bây giờ tôi hỏi được không ạ?", "Tôi mượn tài liệu được không ạ?".
+02:27 | ナレーター / Nareetaa / Người dẫn | この動画では、上司は「わかりました」と言って早退を許可しました。他にも、構いません、そうです、などの言い方で許可することもあります。 | Kono dooga de wa, jooshi wa "Wakarimashita" to itte sootai o kyoka shimashita. Hoka ni mo, "Kamaimasen", "Soo desu" nado no iikata de kyoka suru koto mo arimasu. | Trong video này, cấp trên nói "Tôi hiểu rồi" để cho phép về sớm. Ngoài ra cũng có thể cho phép bằng những cách nói như "Không sao", "Được thôi".
+02:56 | ナレーター / Nareetaa / Người dẫn | 許可しない場合、日本では初対面の人と話す時やビジネスの場面などでは、最後まではっきり言わないことがあります。例えば、「うーん、ちょっと、申し訳ないけど」などと言います。 | Kyoka shinai baai, Nihon de wa shotaimen no hito to hanasu toki ya bijinesu no bamen nado de wa, saigo made hakkiri iwanai koto ga arimasu. Tatoeba, "Uun, chotto, mooshiwakenai kedo" nado to iimasu. | Trường hợp không cho phép, ở Nhật khi nói chuyện với người mới gặp lần đầu hay trong tình huống công việc, đôi khi người ta không nói rõ đến cùng. Ví dụ sẽ nói "Ừm, hơi... xin lỗi nhưng mà...".
+03:24 |  /  / Chủ đề | にほんへ あそびにくるんです | nihon e asobi ni kurun desu | Đến Nhật để chơi
+*03:24:15 | 今井ミゲル / Imai Migeru / Imai Miguel | 実は6月に国の両親が日本へ遊びに来るんです。 | Jitsu wa rokugatsu ni kuni no ryooshin ga Nihon e asobi ni kuru n desu. | Thật ra tháng 6 này bố mẹ tôi ở quê sẽ sang Nhật chơi.
+03:30 | ナレーター / Nareetaa / Người dẫn | 動詞のます形+に来ますで、その場所へ来る目的を表すことができます。 | Dooshi no masu-kee + ni kimasu de, sono basho e kuru mokuteki o arawasu koto ga dekimasu. | "Dạng masu của động từ + ni kimasu" có thể diễn tả mục đích đến nơi đó.
+03:52 | ナレーター / Nareetaa / Người dẫn | この動画では、今井さんが「6月に両親が日本へ行きます」と言っています。その目的は?遊ぶためです。遊びます、遊びに来ます、と言います。 | Kono dooga de wa, Imai-san ga "Rokugatsu ni ryooshin ga Nihon e ikimasu" to itte imasu. Sono mokuteki wa? Asobu tame desu. Asobimasu, asobi ni kimasu, to iimasu. | Trong video này, anh Imai nói "Tháng 6 bố mẹ tôi sẽ sang Nhật". Mục đích là gì? Là để chơi. Ta nói "asobimasu" (chơi), "asobi ni kimasu" (đến để chơi).
+04:23 | ナレーター / Nareetaa / Người dẫn | この文型は、動詞のます形の後に「に」を入れて、それから動詞を続ける時に使えます。 | Kono bunkee wa, dooshi no masu-kee no ato ni "ni" o irete, sorekara dooshi o tsuzukeru toki ni tsukaemasu. | Mẫu câu này dùng khi sau dạng masu của động từ thêm "ni" rồi tiếp một động từ khác.
+04:37 | ナレーター / Nareetaa / Người dẫn | 例えば、コンビニへ行きます。ジュースを買うのが目的だったら、コンビニへジュースを買いに行きます、と言います。 | Tatoeba, konbini e ikimasu. Juusu o kau no ga mokuteki dattara, konbini e juusu o kai ni ikimasu, to iimasu. | Ví dụ, "đi đến cửa hàng tiện lợi". Nếu mục đích là mua nước ngọt thì nói "đi đến cửa hàng tiện lợi để mua nước ngọt".
+04:52 | ナレーター / Nareetaa / Người dẫn | 電気代を払うのが目的だったら、コンビニへ電気代を払いに行きます、と言います。 | Denkidai o harau no ga mokuteki dattara, konbini e denkidai o harai ni ikimasu, to iimasu. | Nếu mục đích là trả tiền điện thì nói "đi đến cửa hàng tiện lợi để trả tiền điện".
+05:03 | ナレーター / Nareetaa / Người dẫn | 動詞だけでなく、買い物、アルバイトなど、目的を表す名詞を使うこともできます。例えば、スーパーへ買い物に行きます、のようになります。 | Dooshi dake de naku, kaimono, arubaito nado, mokuteki o arawasu meeshi o tsukau koto mo dekimasu. Tatoeba, suupaa e kaimono ni ikimasu, no yoo ni narimasu. | Không chỉ động từ, mà còn có thể dùng danh từ chỉ mục đích như "mua sắm", "làm thêm". Ví dụ sẽ thành "đi đến siêu thị để mua sắm".
+05:30 | 今井ミゲル / Imai Migeru / Imai Miguel | 両親が国からお菓子を持ってきたんですけど、皆さんに配っても大丈夫ですか? | Ryooshin ga kuni kara okashi o motte kita n desu kedo, minasan ni kubattemo daijoobu desu ka. | Bố mẹ tôi mang bánh kẹo từ quê sang, tôi phát cho mọi người có được không ạ?
+05:38 | 同僚 / Dooryoo / Đồng nghiệp | もちろん。 | Mochiron. | Tất nhiên rồi.
+05:40 | 今井ミゲル / Imai Migeru / Imai Miguel | あの、どうやって配ったらいいですか? | Ano, doo yatte kubattara ii desu ka. | À, tôi nên phát như thế nào ạ?
+*05:43 | 今井ミゲル / Imai Migeru / Imai Miguel | 皆さん、外出も多いし、いつも忙しそうだし。 | Minasan, gaishutsu mo ooi shi, itsumo isogashisoo da shi. | Mọi người hay ra ngoài, lại lúc nào cũng có vẻ bận rộn nữa.
+05:51 |  /  / Chủ đề | ＿＿し、＿＿し | ___ shi, ___ shi | vừa... vừa...
+05:53 | ナレーター / Nareetaa / Người dẫn | 動詞・形容詞・名詞の普通形+しは、理由を並べて言う時に使います。 | Dooshi, keeyooshi, meeshi no futsuu-kee + shi wa, riyuu o narabete iu toki ni tsukaimasu. | "Thể thường của động từ, tính từ, danh từ + shi" dùng khi liệt kê các lý do.
+06:02 | ナレーター / Nareetaa / Người dẫn | 例えば、あの店のラーメンは人気があります。理由は、美味しいからです。それに安いからです。 | Tatoeba, ano mise no raamen wa ninki ga arimasu. Riyuu wa, oishii kara desu. Sore ni yasui kara desu. | Ví dụ, món ramen của quán đó rất được ưa chuộng. Lý do là vì ngon. Ngoài ra còn vì rẻ.
+06:15 | ナレーター / Nareetaa / Người dẫn | あの店のラーメンは、美味しいし、安いし、人気があります、のようになります。 | Ano mise no raamen wa, oishii shi, yasui shi, ninki ga arimasu, no yoo ni narimasu. | Sẽ thành câu "Món ramen của quán đó vừa ngon vừa rẻ nên được ưa chuộng".
+06:28 | ナレーター / Nareetaa / Người dẫn | しの前は普通形でOKです。例えば、美味しいです→美味しいし、真面目です→真面目だし、のようになります。 | Shi no mae wa futsuu-kee de OK desu. Tatoeba, oishii desu → oishii shi, majime desu → majime da shi, no yoo ni narimasu. | Trước "shi" dùng thể thường là được. Ví dụ, "oishii desu" (ngon) → "oishii shi", "majime desu" (nghiêm túc) → "majime da shi".
+06:51 | ナレーター / Nareetaa / Người dẫn | 頭がいいです、のように、な形容詞や名詞+しを使う場合は、頭もいいし、のように形が変わります。 | Atama ga ii desu, no yoo ni, na-keeyooshi ya meeshi + shi o tsukau baai wa, atama mo ii shi, no yoo ni katachi ga kawarimasu. | Như câu "atama ga ii desu" (thông minh), khi dùng tính từ đuôi na hay danh từ + shi thì hình thức đổi thành "atama mo ii shi".
+07:12 | ナレーター / Nareetaa / Người dẫn | 彼女は真面目だし、頭もいいし、この仕事にぴったりです、のように使います。 | Kanojo wa majime da shi, atama mo ii shi, kono shigoto ni pittari desu, no yoo ni tsukaimasu. | Dùng như câu "Cô ấy vừa nghiêm túc vừa thông minh nên rất hợp với công việc này".
+07:27 | ナレーター / Nareetaa / Người dẫn | しは特に会話でよく使います。しの後が分かっている時は、省略して言わないことも多いです。 | Shi wa tokuni kaiwa de yoku tsukaimasu. Shi no ato ga wakatte iru toki wa, shooryaku shite iwanai koto mo ooi desu. | "Shi" đặc biệt hay dùng trong hội thoại. Khi phần sau "shi" đã rõ thì cũng thường được lược bỏ không nói.
+07:42 | ナレーター / Nareetaa / Người dẫn | 例えば、「あの店のラーメン、人気があるんでしょ」と聞かれた時、「うん、美味しいし」と言った場合、そのラーメンが人気のある理由を付け加えることができます。 | Tatoeba, "Ano mise no raamen, ninki ga aru n desho" to kikareta toki, "Un, oishii shi" to itta baai, sono raamen ga ninki no aru riyuu o tsukekuwaeru koto ga dekimasu. | Ví dụ, khi bị hỏi "Ramen quán đó được ưa chuộng nhỉ?", nếu trả lời "Ừ, vì ngon mà" thì có thể bổ sung thêm lý do món ramen đó được ưa chuộng.
+08:07 | ナレーター / Nareetaa / Người dẫn | この動画でも今井さんは、「あの、どうやって配ったらいいですか」と聞かれてから、「皆さん、外出も多いし、いつも忙しそうだし」と言って、どうやって配ったらいいかが分からない理由を付け加えています。 | Kono dooga demo Imai-san wa, "Ano, doo yatte kubattara ii desu ka" to kikarete kara, "Minasan, gaishutsu mo ooi shi, itsumo isogashisoo da shi" to itte, doo yatte kubattara ii ka ga wakaranai riyuu o tsukekuwaete imasu. | Trong video này, sau khi được hỏi "À, tôi nên phát như thế nào ạ?", anh Imai nói "Mọi người hay ra ngoài, lại lúc nào cũng có vẻ bận rộn" để bổ sung lý do vì sao không biết nên phát như thế nào.

@@ -1,0 +1,1013 @@
+{
+  "lesson": {
+    "title": "Tình huống: Giao tiếp với đồng nghiệp"
+  },
+  "videos": [
+    {
+      "title": "Nghe điện thoại khi đồng nghiệp vắng",
+      "description": "Nói được đồng nghiệp đang vắng, ghi lời nhắn, số nội bộ và nhắn gọi lại.",
+      "url": "/uploads/lesson-videos/n4-18-coworkers/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、資材課、今井です。",
+          "romaji": "Hai, Shizai-ka, Imai desu.",
+          "text_vi": "Vâng, phòng vật tư, tôi là Imai.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "お疲れさまです。総務課の西川です。",
+          "romaji": "Otsukaresama desu. Soomu-ka no Nishikawa desu.",
+          "text_vi": "Chào anh. Tôi là Nishikawa ở phòng tổng vụ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "お疲れさまです。",
+          "romaji": "Otsukaresama desu.",
+          "text_vi": "Chào chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "あの、木村さんいますか。",
+          "romaji": "Ano, Kimura-san imasu ka.",
+          "text_vi": "À, anh Kimura có ở đó không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "木村さんは今、席を外しています。会議中ですね。",
+          "romaji": "Kimura-san wa ima, seki o hazushite imasu. Kaigichuu desu ne.",
+          "text_vi": "Anh Kimura hiện không có ở bàn ạ. Đang họp mà.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "ああ、そうですか。急いで確認したいことがあるんだけど、どうしようかな。",
+          "romaji": "Aa, soo desu ka. Isoide kakunin shitai koto ga aru n dakedo, doo shiyoo ka na.",
+          "text_vi": "À, vậy à. Tôi có việc cần xác nhận gấp, không biết phải làm sao đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "会議、何時までですか。",
+          "romaji": "Kaigi, nanji made desu ka.",
+          "text_vi": "Cuộc họp kéo dài đến mấy giờ vậy?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "11時までです。",
+          "romaji": "Juuichiji made desu.",
+          "text_vi": "Đến 11 giờ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "そろそろ終わる時間ですね。",
+          "romaji": "Sorosoro owaru jikan desu ne.",
+          "text_vi": "Vậy sắp đến giờ kết thúc rồi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "木村さんが戻ったら、すぐに折り返してくださいって伝えてもらえますか。",
+          "romaji": "Kimura-san ga modottara, sugu ni orikaeshite kudasai tte tsutaete moraemasu ka.",
+          "text_vi": "Khi nào anh Kimura quay lại, anh có thể nhắn giúp là gọi lại ngay được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "折り返しですね。",
+          "romaji": "Orikaeshi desu ne.",
+          "text_vi": "Gọi lại nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、内線番号は?",
+          "romaji": "Ano, naisen bangoo wa?",
+          "text_vi": "À, số nội bộ của chị là gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "3869にお願いします。",
+          "romaji": "San-hachi-roku-kyuu ni onegaishimasu.",
+          "text_vi": "Số 3869 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "3869ですね。もう一度お名前をお願いできますか。",
+          "romaji": "San-hachi-roku-kyuu desu ne. Moo ichido onamae o onegai dekimasu ka.",
+          "text_vi": "3869 nhé. Chị cho tôi xin lại tên một lần nữa được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "はい、総務課の西川です。",
+          "romaji": "Hai, Soomu-ka no Nishikawa desu.",
+          "text_vi": "Vâng, tôi là Nishikawa ở phòng tổng vụ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "総務課の西川さんですね。わかりました。伝えておきます。",
+          "romaji": "Soomu-ka no Nishikawa-san desu ne. Wakarimashita. Tsutaete okimasu.",
+          "text_vi": "Chị Nishikawa ở phòng tổng vụ nhỉ. Tôi hiểu rồi ạ. Tôi sẽ nhắn lại giúp.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "西川",
+          "speaker_romaji": "Nishikawa",
+          "speaker_vi": "Nishikawa",
+          "text_ja": "よろしくお願いします。じゃあ失礼します。",
+          "romaji": "Yoroshiku onegaishimasu. Jaa shitsuree shimasu.",
+          "text_vi": "Nhờ anh nhé. Vậy tôi xin phép ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "あっ、今井さんメモありがとう。",
+          "romaji": "A, Imai-san memo arigatoo.",
+          "text_vi": "À, cảm ơn anh Imai đã để lại tin nhắn nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:06",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、すぐに折り返しお願いします。",
+          "romaji": "Hai, sugu ni orikaeshi onegaishimasu.",
+          "text_vi": "Vâng, chị Nishikawa nhờ anh gọi lại ngay giúp ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "資材課",
+          "reading": "しざいか",
+          "romaji": "shizai-ka",
+          "meaning": "phòng vật tư"
+        },
+        {
+          "word": "総務課",
+          "reading": "そうむか",
+          "romaji": "soomu-ka",
+          "meaning": "phòng tổng vụ"
+        },
+        {
+          "word": "席を外す",
+          "reading": "せきをはずす",
+          "romaji": "seki o hazusu",
+          "meaning": "vắng khỏi chỗ"
+        },
+        {
+          "word": "会議中",
+          "reading": "かいぎちゅう",
+          "romaji": "kaigichuu",
+          "meaning": "đang họp"
+        },
+        {
+          "word": "折り返す",
+          "reading": "おりかえす",
+          "romaji": "orikaesu",
+          "meaning": "gọi lại"
+        },
+        {
+          "word": "内線番号",
+          "reading": "ないせんばんごう",
+          "romaji": "naisen-bangoo",
+          "meaning": "số máy lẻ"
+        },
+        {
+          "word": "伝える",
+          "reading": "つたえる",
+          "romaji": "tsutaeru",
+          "meaning": "nhắn lại"
+        }
+      ]
+    },
+    {
+      "title": "Rủ đi ăn trưa và từ chối khéo",
+      "description": "Rủ được đồng nghiệp đi ăn và từ chối lời rủ kèm lý do một cách nhẹ nhàng.",
+      "url": "/uploads/lesson-videos/n4-18-coworkers/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:06",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "お弁当持ってきてないので、どこかに食べに行こうと思ってます。",
+          "romaji": "Obentoo motte kite nai node, dokoka ni tabe ni ikoo to omotte imasu.",
+          "text_vi": "Tôi không mang cơm hộp nên định đi ăn ở đâu đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "じゃあ、最近新しくできたうどん屋、行ってみませんか?",
+          "romaji": "Jaa, saikin atarashiku dekita udon'ya, itte mimasen ka.",
+          "text_vi": "Vậy chị đi thử quán mì udon mới mở gần đây không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "うどん屋、どこですか?",
+          "romaji": "Udon'ya, doko desu ka.",
+          "text_vi": "Quán udon đó ở đâu vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ほら、前にコンビニの隣に中華料理屋があったでしょう。工事中でしたよね。",
+          "romaji": "Hora, mae ni konbini no tonari ni chuuka ryoorya ga atta deshoo. Koojichuu deshita yo ne.",
+          "text_vi": "Kìa, trước đây bên cạnh cửa hàng tiện lợi có quán ăn Trung Hoa đúng không. Nó đang thi công mà nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "え?あそこがうどん屋になったんですか?",
+          "romaji": "E? Asoko ga udon'ya ni nattan desu ka.",
+          "text_vi": "Hả? Chỗ đó thành quán udon rồi à?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうなんですよ。",
+          "romaji": "Soo nan desu yo.",
+          "text_vi": "Đúng vậy đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "へえ、うどん好きなので行ってみたいです。",
+          "romaji": "Hee, udon suki na node itte mitai desu.",
+          "text_vi": "Ồ, tôi thích udon nên muốn đi thử.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "じゃあ行きましょう。",
+          "romaji": "Jaa ikimashoo.",
+          "text_vi": "Vậy thì đi thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "集計作業終わりましたか?",
+          "romaji": "Shuukee sagyoo owarimashita ka.",
+          "text_vi": "Anh làm xong việc tổng hợp số liệu chưa?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "お昼どうしますか?私たち、新しくできたうどん屋に行くんですけど、一緒にどうですか?",
+          "romaji": "Ohiru doo shimasu ka. Watashitachi, atarashiku dekita udon'ya ni iku n desu kedo, issho ni doo desu ka.",
+          "text_vi": "Trưa nay anh tính sao? Chúng tôi định đi quán mì udon mới mở, anh đi cùng không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ちょっと、朝から食欲がなくて。",
+          "romaji": "Chotto, asa kara shokuyoku ga nakute.",
+          "text_vi": "À, từ sáng tôi không có cảm giác thèm ăn.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "え?大丈夫ですか?",
+          "romaji": "E? Daijoobu desu ka.",
+          "text_vi": "Hả? Anh có sao không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "昨日、友達と焼き肉食べに行ったんですけど、食べ過ぎちゃって、まだ何も食べたくないんです。",
+          "romaji": "Kinoo, tomodachi to yakiniku tabe ni itta n desu kedo, tabesugichatte, mada nanimo tabetakunai n desu.",
+          "text_vi": "Hôm qua tôi đi ăn thịt nướng với bạn, ăn quá nhiều nên giờ vẫn chưa muốn ăn gì cả.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "あらら。薬飲みましたか?",
+          "romaji": "Arara. Kusuri nomimashita ka.",
+          "text_vi": "Ôi trời. Anh uống thuốc chưa?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、飲みました。",
+          "romaji": "Hai, nomimashita.",
+          "text_vi": "Vâng, tôi uống rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "じゃあ今日は無理しない方がいいですね。また今度誘ってください。",
+          "romaji": "Jaa kyoo wa muri shinai hoo ga ii desu ne. Mata kondo sasotte kudasai.",
+          "text_vi": "Vậy hôm nay anh đừng cố quá nhé. Lần sau lại rủ tôi nhé.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:47",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、また今度一緒に行きましょう。",
+          "romaji": "Hai, mata kondo issho ni ikimashoo.",
+          "text_vi": "Vâng, lần sau mình cùng đi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "じゃあ行ってきます。",
+          "romaji": "Jaa ittekimasu.",
+          "text_vi": "Vậy tôi đi nhé.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "うどん屋",
+          "reading": "うどんや",
+          "romaji": "udon'ya",
+          "meaning": "quán udon"
+        },
+        {
+          "word": "工事中",
+          "reading": "こうじちゅう",
+          "romaji": "koojichuu",
+          "meaning": "đang thi công"
+        },
+        {
+          "word": "集計",
+          "reading": "しゅうけい",
+          "romaji": "shuukee",
+          "meaning": "tổng hợp số liệu"
+        },
+        {
+          "word": "食欲",
+          "reading": "しょくよく",
+          "romaji": "shokuyoku",
+          "meaning": "cảm giác thèm ăn"
+        },
+        {
+          "word": "焼き肉",
+          "reading": "やきにく",
+          "romaji": "yakiniku",
+          "meaning": "thịt nướng"
+        },
+        {
+          "word": "食べ過ぎる",
+          "reading": "たべすぎる",
+          "romaji": "tabesugiru",
+          "meaning": "ăn quá nhiều"
+        }
+      ]
+    },
+    {
+      "title": "Khi nào nói「お疲れさまです」",
+      "description": "Hiểu được khi nào dùng「お疲れさまです」, khi nào không, và kể về lời chào ở nước mình.",
+      "url": "/uploads/lesson-videos/n4-18-coworkers/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "あ、木村さん。",
+          "romaji": "A, Kimura-san.",
+          "text_vi": "A, chị Kimura.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "お疲れさまです。",
+          "romaji": "Otsukaresama desu.",
+          "text_vi": "Chào mọi người.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "お疲れさまですって、便利な言葉ですね。",
+          "romaji": "Otsukaresama desu tte, benri na kotoba desu ne.",
+          "text_vi": "\"Otsukaresama desu\" là câu nói tiện lợi nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "え?便利な言葉?",
+          "romaji": "E? Benri na kotoba?",
+          "text_vi": "Hả? Câu nói tiện lợi?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "はい。お疲れさまですわ、朝でも昼でも夜でも使えますよね。",
+          "romaji": "Hai. Otsukaresama desu wa, asa demo hiru demo yoru demo tsukaemasu yo ne.",
+          "text_vi": "Vâng. \"Otsukaresama desu\" thì buổi sáng, trưa hay tối gì cũng dùng được nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "ああ、確かに。入社したばかりの時に、みんないつも「お疲れさまです」って言ってて、びっくりしました。",
+          "romaji": "Aa, tashika ni. Nyuusha shita bakari no toki ni, minna itsumo \"Otsukaresama desu\" tte itte te, bikkuri shimashita.",
+          "text_vi": "À, đúng thật. Lúc mới vào công ty, tôi bất ngờ vì ai cũng luôn miệng nói \"Otsukaresama desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "誰にでも使えますしね。",
+          "romaji": "Dare ni demo tsukaemasu shi ne.",
+          "text_vi": "Với ai cũng dùng được nữa nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "でも私、この間失敗したんですよ。",
+          "romaji": "Demo watashi, kono aida shippai shita n desu yo.",
+          "text_vi": "Nhưng dạo trước tôi đã thất bại một lần đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "どんな?",
+          "romaji": "Donna?",
+          "text_vi": "Chuyện gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "この前、取引先の会社に挨拶に行った時、玄関で社長さんに会ったんです。その時、社長さんに「お疲れさまです」って言ったら、先輩に叱られました。",
+          "romaji": "Kono mae, torihikisaki no kaisha ni aisatsu ni itta toki, genkan de shachoo-san ni atta n desu. Sono toki, shachoo-san ni \"Otsukaresama desu\" tte ittara, senpai ni shikararemashita.",
+          "text_vi": "Lần trước, khi đến chào hỏi công ty đối tác, tôi gặp giám đốc ngay ở cửa. Lúc đó tôi nói \"Otsukaresama desu\" với giám đốc thì bị đàn anh mắng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "え?何で?",
+          "romaji": "E? Nande?",
+          "text_vi": "Hả? Sao vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "何か失礼なんだって。",
+          "romaji": "Nanka shitsuree nan datte.",
+          "text_vi": "Nghe nói là bất lịch sự gì đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "確かに、違う会社の社長さんには言いませんね。",
+          "romaji": "Tashika ni, chigau kaisha no shachoo-san ni wa iimasen ne.",
+          "text_vi": "Đúng thật, với giám đốc công ty khác thì không nói vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "便利だけど、使わない方がいい時もあるんですね。",
+          "romaji": "Benri dakedo, tsukawanai hoo ga ii toki mo aru n desu ne.",
+          "text_vi": "Tiện lợi thật, nhưng cũng có lúc không nên dùng nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "そういえば、私の国にも面白い挨拶があるんですよ。",
+          "romaji": "Soo ieba, watashi no kuni ni mo omoshiroi aisatsu ga aru n desu yo.",
+          "text_vi": "Nói mới nhớ, ở nước tôi cũng có một câu chào thú vị đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "何々?",
+          "romaji": "Nani nani?",
+          "text_vi": "Gì vậy, gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "「ご飯食べた?」ってよく言います。",
+          "romaji": "\"Gohan tabeta?\" tte yoku iimasu.",
+          "text_vi": "Người ta hay nói \"Ăn cơm chưa?\".",
+          "key_phrase": true
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "それ、挨拶なんですか?",
+          "romaji": "Sore, aisatsu nan desu ka.",
+          "text_vi": "Đó là câu chào hỏi à?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "はい。おはようとか、こんにちはみたいに使いますよ。",
+          "romaji": "Hai. Ohayoo toka, konnichiwa mitai ni tsukaimasu yo.",
+          "text_vi": "Vâng. Dùng giống như \"chào buổi sáng\" hay \"xin chào\" vậy đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "へえ、それって会社でも使いますか?",
+          "romaji": "Hee, sore tte kaisha demo tsukaimasu ka.",
+          "text_vi": "Ồ, vậy ở công ty cũng dùng được à?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "そうですね、会社でも仲良くしてる人には使うかな。",
+          "romaji": "Soo desu ne, kaisha demo nakayoku shite iru hito ni wa tsukau ka na.",
+          "text_vi": "Dạ, ở công ty thì chắc dùng với người thân thiết thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "ご飯食べたって聞かれたら、どう答えるんですか?",
+          "romaji": "Gohan tabeta tte kikaretara, doo kotaeru n desu ka.",
+          "text_vi": "Nếu bị hỏi \"Ăn cơm chưa?\" thì trả lời sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "後輩",
+          "speaker_romaji": "Koohai",
+          "speaker_vi": "Đàn em",
+          "text_ja": "「食べた」って答えます。食べてなくても、ただの挨拶ですから。",
+          "romaji": "\"Tabeta\" tte kotaemasu. Tabete nakute mo, tada no aisatsu desu kara.",
+          "text_vi": "Tôi trả lời \"Ăn rồi\". Dù chưa ăn thì cũng chỉ là câu chào thôi mà.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "そうなんだ。いろんな挨拶がありますね。",
+          "romaji": "Soo nan da. Ironna aisatsu ga arimasu ne.",
+          "text_vi": "Ra là vậy. Có nhiều kiểu chào hỏi khác nhau thật nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "便利",
+          "reading": "べんり",
+          "romaji": "benri",
+          "meaning": "tiện lợi"
+        },
+        {
+          "word": "入社",
+          "reading": "にゅうしゃ",
+          "romaji": "nyuusha",
+          "meaning": "vào công ty"
+        },
+        {
+          "word": "取引先",
+          "reading": "とりひきさき",
+          "romaji": "torihikisaki",
+          "meaning": "đối tác"
+        },
+        {
+          "word": "社長",
+          "reading": "しゃちょう",
+          "romaji": "shachoo",
+          "meaning": "giám đốc"
+        },
+        {
+          "word": "失礼",
+          "reading": "しつれい",
+          "romaji": "shitsuree",
+          "meaning": "bất lịch sự"
+        },
+        {
+          "word": "叱る",
+          "reading": "しかる",
+          "romaji": "shikaru",
+          "meaning": "mắng"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Giao tiếp với đồng nghiệp",
+      "description": "Ôn lại「〜中」, cách dùng「そ・あ」khi nhắc tới điều đã nói và「〜すぎます」.",
+      "url": "/uploads/lesson-videos/n4-18-coworkers/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "かいぎちゅうですね",
+          "romaji": "kaigichuu desu ne",
+          "text_vi": "Đang họp mà",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "木村さんいますか?",
+          "romaji": "Kimura-san imasu ka.",
+          "text_vi": "Anh Kimura có ở đó không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "木村さんは今、席を外しています。",
+          "romaji": "Kimura-san wa ima, seki o hazushite imasu.",
+          "text_vi": "Anh Kimura hiện đang không có ở bàn ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "会議中ですね。",
+          "romaji": "Kaigichuu desu ne.",
+          "text_vi": "Đang họp mà nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、この人が電話で「木村さんいますか?」と今井さんに聞きました。それに対して、今井さんは「会議中ですね」と言って、木村さんが今、会議をしている最中だと伝えています。",
+          "romaji": "Kono dooga de wa, kono hito ga denwa de \"Kimura-san imasu ka\" to Imai-san ni kikimashita. Sore ni taishite, Imai-san wa \"Kaigichuu desu ne\" to itte, Kimura-san ga ima, kaigi o shite iru saichuu da to tsutaete imasu.",
+          "text_vi": "Trong video này, người này đã gọi điện hỏi anh Imai \"Anh Kimura có ở đó không?\". Đáp lại, anh Imai nói \"Đang họp mà\" để cho biết anh Kimura hiện đang trong lúc họp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "名詞+中は、その動作や状態が続いていることを表します。中の前には、動作や状態を表す名詞を使います。",
+          "romaji": "Meeshi + chuu wa, sono doosa ya jootai ga tsuzuite iru koto o arawashimasu. Chuu no mae ni wa, doosa ya jootai o arawasu meeshi o tsukaimasu.",
+          "text_vi": "\"Danh từ + chuu (中)\" thể hiện hành động hay trạng thái đó đang tiếp diễn. Trước \"chuu\" thì dùng danh từ chỉ hành động hay trạng thái.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、電話をしている最中であれば電話中、食事をしている最中であれば食事中、工事をしている最中であれば工事中のように使います。",
+          "romaji": "Tatoeba, denwa o shite iru saichuu de areba denwachuu, shokuji o shite iru saichuu de areba shokujichuu, kooji o shite iru saichuu de areba koojichuu no yoo ni tsukaimasu.",
+          "text_vi": "Ví dụ, nếu đang trong lúc gọi điện thì dùng \"denwachuu\" (đang gọi điện), đang trong lúc ăn cơm thì \"shokujichuu\" (đang ăn), đang trong lúc thi công thì \"koojichuu\" (đang thi công).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "看板や表示などでもよく使われます。工事中、営業中、使用中のように、看板に「〜中」と書いてあれば、何かをしている最中だという意味です。",
+          "romaji": "Kanban ya hyooji nado demo yoku tsukawaremasu. Koojichuu, eegyoochuu, shiyoochuu no yoo ni, kanban ni \"~chuu\" to kaite areba, nanika o shite iru saichuu da to iu imi desu.",
+          "text_vi": "Cũng thường được dùng trên biển báo, bảng hiệu. Như \"koojichuu\" (đang thi công), \"eegyoochuu\" (đang mở cửa), \"shiyoochuu\" (đang sử dụng); nếu trên biển ghi \"~chuu\" thì có nghĩa là đang trong lúc làm việc gì đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "あそこが うどんやに なったんですか",
+          "romaji": "asoko ga udon'ya ni nattan desu ka",
+          "text_vi": "Chỗ đó thành quán mì udon rồi à?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話の中に出てきたものや人、場所などについて、その人、あのお店などの指示詞を使うときは、次のように使い分けます。",
+          "romaji": "Kaiwa no naka ni dete kita mono ya hito, basho nado ni tsuite, sono hito, ano omise nado no shijishi o tsukau toki wa, tsugi no yoo ni tsukaiwakemasu.",
+          "text_vi": "Khi dùng đại từ chỉ định như \"sono hito\" (người đó), \"ano omise\" (quán đó) để nói về vật, người, địa điểm đã xuất hiện trong hội thoại, thì phân biệt sử dụng như sau.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それ、その、あれ、あの などの「そ」で始まる指示詞は、二人のうちどちらか一方が直接知らないものについて話すときに使います。",
+          "romaji": "Sore, sono, are, ano nado no \"so\" de hajimaru shijishi wa, futari no uchi dochira ka ippoo ga chokusetsu shiranai mono ni tsuite hanasu toki ni tsukaimasu.",
+          "text_vi": "Các đại từ chỉ định bắt đầu bằng \"so\" như \"sore, sono\" dùng khi nói về vật mà một trong hai người không trực tiếp biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "あれ、あの人などの「あ」で始まる指示詞は、二人とも知っているものについて話すときに使います。",
+          "romaji": "Are, ano hito nado no \"a\" de hajimaru shijishi wa, futari tomo shitte iru mono ni tsuite hanasu toki ni tsukaimasu.",
+          "text_vi": "Các đại từ chỉ định bắt đầu bằng \"a\" như \"are, ano hito\" dùng khi nói về vật mà cả hai người đều biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、Aさんが「昨日、さくらにお寿司を食べに行きました」と言いました。Bさんが「さくら」という店を知らなかったら、「そのお店、どこにあるんですか?」と質問します。",
+          "romaji": "Tatoeba, A-san ga \"Kinoo, Sakura ni osushi o tabe ni ikimashita\" to iimashita. B-san ga \"Sakura\" to iu mise o shiranakattara, \"Sono omise, doko ni aru n desu ka\" to shitsumon shimasu.",
+          "text_vi": "Ví dụ, anh A nói \"Hôm qua tôi đã đi ăn sushi ở quán Sakura\". Nếu chị B không biết quán \"Sakura\" thì sẽ hỏi \"Quán đó ở đâu vậy?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "Bさんが「さくら」という店を知っていたら、「あのお店、美味しいですよね」と言います。",
+          "romaji": "B-san ga \"Sakura\" to iu mise o shitte itara, \"Ano omise, oishii desu yo ne\" to iimasu.",
+          "text_vi": "Nếu chị B biết quán \"Sakura\" thì sẽ nói \"Quán đó ngon nhỉ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、二人の同僚がうどん屋の場所について話しています。同僚が話したうどん屋の場所について、もう一人が「あそこがうどん屋になったんですか」と聞いています。",
+          "romaji": "Kono dooga de wa, futari no dooryoo ga udon'ya no basho ni tsuite hanashite imasu. Dooryoo ga hanashita udon'ya no basho ni tsuite, moo hitori ga \"Asoko ga udon'ya ni nattan desu ka\" to kiite imasu.",
+          "text_vi": "Trong video này, hai đồng nghiệp đang nói về vị trí của quán mì udon. Về địa điểm quán udon mà đồng nghiệp vừa nhắc tới, người còn lại hỏi \"Chỗ đó thành quán udon rồi à?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:42",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "朝から元気がなくて、大丈夫ですか?",
+          "romaji": "Asa kara genki ga nakute, daijoobu desu ka.",
+          "text_vi": "Từ sáng anh có vẻ không khỏe, anh ổn không?",
+          "key_phrase": false
+        },
+        {
+          "start": "04:50",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "昨日、友達と焼き肉食べに行ったんですけど、食べ過ぎちゃって。",
+          "romaji": "Kinoo, tomodachi to yakiniku tabe ni itta n desu kedo, tabesugichatte.",
+          "text_vi": "Hôm qua tôi đi ăn thịt nướng với bạn, rồi ăn quá nhiều.",
+          "key_phrase": true
+        },
+        {
+          "start": "04:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、今井さんが「昨日、焼き肉を食べ過ぎちゃって」と言って、焼き肉をたくさん食べたせいで食欲がないことを伝え、食事の誘いを断っています。",
+          "romaji": "Kono dooga de wa, Imai-san ga \"Kinoo, yakiniku o tabesugichatte\" to itte, yakiniku o takusan tabeta see de shokuyoku ga nai koto o tsutae, shokuji no sasoi o kotowatte imasu.",
+          "text_vi": "Trong video này, anh Imai nói \"Hôm qua tôi ăn thịt nướng quá nhiều\" để cho biết vì ăn nhiều thịt nướng nên không có cảm giác thèm ăn, và từ chối lời rủ ăn cơm.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:20",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "きのう、やきにくを たべすぎ ちゃって",
+          "romaji": "kinoo, yakiniku o tabesugichatte",
+          "text_vi": "Hôm qua ăn thịt nướng quá nhiều",
+          "key_phrase": false
+        },
+        {
+          "start": "05:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞ます形+すぎます は、その行為や状態が程度を超えていることを表します。すぎますの前には、動詞や、形容詞のいをとった形、な形容詞のなをとった形を使います。",
+          "romaji": "Dooshi masu-kee + sugimasu wa, sono kooi ya jootai ga teedo o koete iru koto o arawashimasu. Sugimasu no mae ni wa, dooshi ya, keeyooshi no i o totta katachi, na-keeyooshi no na o totta katachi o tsukaimasu.",
+          "text_vi": "\"Dạng masu của động từ + sugimasu\" thể hiện hành động hay trạng thái đó vượt quá mức độ. Trước \"sugimasu\" thì dùng động từ, tính từ đuôi i đã bỏ i, hoặc tính từ đuôi na đã bỏ na.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "すぎます は、その行為や状態に対してマイナスの評価を持っているときに使うことが多いです。",
+          "romaji": "Sugimasu wa, sono kooi ya jootai ni taishite mainasu no hyooka o motte iru toki ni tsukau koto ga ooi desu.",
+          "text_vi": "\"Sugimasu\" thường được dùng khi có đánh giá tiêu cực về hành động hay trạng thái đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "06:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、焼き肉をたくさん食べました。焼き肉を食べ過ぎましたなら、食べ過ぎて苦しい、体調が悪いなどのマイナスの評価が含まれます。",
+          "romaji": "Tatoeba, yakiniku o takusan tabemashita. Yakiniku o tabesugimashita nara, tabesugite kurushii, taichoo ga warui nado no mainasu no hyooka ga fukumaremasu.",
+          "text_vi": "Ví dụ, \"đã ăn nhiều thịt nướng\". Nếu nói \"đã ăn thịt nướng quá nhiều\" thì bao hàm đánh giá tiêu cực như ăn nhiều quá nên khó chịu, cơ thể mệt mỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "06:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このケーキは甘いです、と、このケーキは甘すぎますなら、甘すぎておいしくないなどのマイナスの評価が含まれます。",
+          "romaji": "Kono keeki wa amai desu, to, kono keeki wa amasugimasu nara, amasugite oishikunai nado no mainasu no hyooka ga fukumaremasu.",
+          "text_vi": "So với câu \"chiếc bánh này ngọt\", nếu nói \"chiếc bánh này ngọt quá\" thì bao hàm đánh giá tiêu cực như ngọt quá nên không ngon.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

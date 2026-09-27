@@ -1,0 +1,102 @@
+# Lời thoại Tình huống: Mua sắm khéo ở siêu thị
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Hỏi thành phần gây dị ứng
+00:00 | ナレーター / Nareetaa / Người dẫn | 王さんは大豆のアレルギーがあるので、大豆が入っていないパンを探しています。 | Oo-san wa daizu no arerugii ga aru node, daizu ga haitte inai pan o sagashite imasu. | Anh Vương bị dị ứng đậu nành nên đang tìm loại bánh mì không có đậu nành.
+00:07 | 王 / Oo / Vương | すみません。 | Sumimasen. | Xin lỗi.
+00:08 | 店員 / Ten'in / Nhân viên | はい、何ですか。 | Hai, nan desu ka. | Vâng, có chuyện gì ạ?
+*00:11 | 王 / Oo / Vương | この食パン、大豆を使ってますか。 | Kono shokupan, daizu o tsukattemasu ka. | Bánh mì gối này có dùng đậu nành không ạ?
+00:15 | 店員 / Ten'in / Nhân viên | ああ、大豆ですね。 | Aa, daizu desu ne. | À, đậu nành ạ.
+00:19 | 店員 / Ten'in / Nhân viên | 使ってますね。 | Tsukattemasu ne. | Có dùng đấy ạ.
+*00:22 | 王 / Oo / Vương | どこに書いてあるんですか。 | Doko ni kaite arun desu ka. | Được ghi ở đâu vậy ạ?
+00:25 | 店員 / Ten'in / Nhân viên | この四角の中の、原材料名に書いてありますよ。 | Kono shikaku no naka no, genzairyoo-mee ni kaite arimasu yo. | Có ghi ở mục thành phần nguyên liệu trong ô vuông này đấy ạ.
+00:32 | 王 / Oo / Vương | へえ、大豆って書いてありますね。 | Hee, daizu tte kaite arimasu ne. | Ồ, có ghi chữ đậu nành thật.
+*00:43 | 王 / Oo / Vương | あ、これ、大豆って書いてありませんよね。 | A, kore, daizu tte kaite arimasen yo ne. | À, cái này không ghi đậu nành nhỉ.
+00:48 | 店員 / Ten'in / Nhân viên | ああ、そうですね。大豆、使ってませんね。 | Aa, soo desu ne. Daizu, tsukattemasen ne. | À, đúng vậy. Cái này không dùng đậu nành.
+00:54 | 王 / Oo / Vương | ああ、よかった。じゃあ、これにします。 | Aa, yokatta. Jaa, kore ni shimasu. | À, may quá. Vậy tôi lấy cái này.
+00:59 | 王 / Oo / Vương | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn anh.
+01:01 | 店員 / Ten'in / Nhân viên | いいえ。よかったですね。 | Iie. Yokatta desu ne. | Không có gì. May quá nhỉ.
+### từ vựng
+大豆 | だいず | daizu | đậu nành
+アレルギー | アレルギー | arerugii | dị ứng
+食パン | しょくパン | shokupan | bánh mì gối
+原材料名 | げんざいりょうめい | genzairyoo-mee | tên nguyên liệu
+四角 | しかく | shikaku | ô vuông
+
+## scene-3.mp4
+# Xem tờ quảng cáo và chọn thịt giá tốt
+*00:00 | 王 / Oo / Vương | 明日のバーベキューは、何人集まりますか。 | Ashita no baabekyuu wa, nannin atsumarimasu ka. | Buổi nướng thịt ngày mai có bao nhiêu người đến ạ?
+00:04 | アンジェラ / Anjera / Angela | 私たちを入れて10人ですよ。 | Watashitachi o irete juunin desu yo. | Tính cả chúng ta là 10 người.
+00:08 | アンジェラ / Anjera / Angela | 何時ごろ買い物に行きますか。 | Nanji goro kaimono ni ikimasu ka. | Khoảng mấy giờ mình đi mua đồ?
+*00:10 | アンジェラ / Anjera / Angela | 安くておいしいお肉があるといいですね。 | Yasukute oishii oniku ga aru to ii desu ne. | Có thịt vừa rẻ vừa ngon thì tốt nhỉ.
+*00:15 | 王 / Oo / Vương | 今日の新聞に、スーパーのチラシが入っていましたよね。 | Kyoo no shinbun ni, suupaa no chirashi ga haitte imashita yo ne. | Báo hôm nay có kẹp tờ quảng cáo của siêu thị nhỉ.
+00:33 | 王 / Oo / Vương | 今日は肉の日ですよ。29日は「にく」だから。 | Kyoo wa niku no hi desu yo. Nijuuku-nichi wa "niku" dakara. | Hôm nay là "ngày thịt" đấy. Vì ngày 29 đọc là "ni-ku".
+00:40 | アンジェラ / Anjera / Angela | へえ、面白いですね。 | Hee, omoshiroi desu ne. | Ồ, thú vị nhỉ.
+00:45 | 王 / Oo / Vương | 今日はどこのスーパーも肉が安いですね。 | Kyoo wa doko no suupaa mo niku ga yasui desu ne. | Hôm nay siêu thị nào thịt cũng rẻ nhỉ.
+00:50 | 王 / Oo / Vương | このお肉、100グラム498円だって。 | Kono oniku, hyaku-guramu yonhyaku kyuujuuhachi-en datte. | Thịt này 100 gam có 498 yên thôi.
+00:56 | アンジェラ / Anjera / Angela | こっちは100グラム700円です。ちょっと高いですね。 | Kocchi wa hyaku-guramu nanahyaku-en desu. Chotto takai desu ne. | Cái này 100 gam 700 yên. Hơi đắt nhỉ.
+*01:04 | 王 / Oo / Vương | あ、でも、それは国産ですから、高いですけど、お買い得かもしれませんね。 | A, demo, sore wa kokusan desu kara, takai desu kedo, okaidoku kamo shiremasen ne. | À, nhưng đó là thịt trong nước nên đắt, nhưng có khi lại là món hời đấy.
+01:15 | アンジェラ / Anjera / Angela | へえ。 | Hee. | Ồ.
+01:19 | 王 / Oo / Vương | こっちの盛り合わせはどうですか。1,980円。500グラムも入ってますよ。 | Kocchi no moriawase wa doo desu ka. Sen kyuuhyaku hachijuu-en. Gohyaku-guramu mo haittemasu yo. | Còn khay thịt thập cẩm này thì sao? 1.980 yên mà có tận 500 gam đấy.
+01:29 | アンジェラ / Anjera / Angela | わあ、いいですね。これ、買いましょう。 | Waa, ii desu ne. Kore, kaimashoo. | Ồ, được đấy. Mua cái này đi.
+01:35 | 王 / Oo / Vương | そうですね。あとは、お店に行ってから考えましょう。 | Soo desu ne. Ato wa, omise ni itte kara kangaemashoo. | Ừ nhỉ. Còn lại thì đến cửa hàng rồi tính.
+### từ vựng
+バーベキュー | バーベキュー | baabekyuu | tiệc nướng
+新聞 | しんぶん | shinbun | báo
+チラシ | チラシ | chirashi | tờ quảng cáo
+国産 | こくさん | kokusan | hàng trong nước
+お買い得 | おかいどく | okaidoku | món hời
+盛り合わせ | もりあわせ | moriawase | khay thập cẩm
+グラム | グラム | guramu | gam
+
+## scene-1.mp4
+# Hỏi lại khi giá không đúng
+00:02 | 王 / Oo / Vương | あのー、すみません。 | Anoo, sumimasen. | Dạ, xin lỗi.
+00:06 | 店員 / Ten'in / Nhân viên | 何でしょうか。 | Nan deshoo ka. | Anh cần gì ạ?
+*00:07 | 王 / Oo / Vương | これ、さっきここで買ったんですけど。 | Kore, sakki koko de kattan desu kedo. | Cái này tôi vừa mua ở đây.
+00:13 | 店員 / Ten'in / Nhân viên | はい。どうなさいましたか。 | Hai. Doo nasaimashita ka. | Vâng. Có vấn đề gì ạ?
+*00:17 | 王 / Oo / Vương | これ、値段が違うんですけど。 | Kore, nedan ga chigaun desu kedo. | Cái này giá không đúng ạ.
+00:21 | 店員 / Ten'in / Nhân viên | ああ、ちょっと見せていただけますか。 | Aa, chotto misete itadakemasu ka. | À, anh cho tôi xem một chút được không?
+*00:27 | 店員 / Ten'in / Nhân viên | ああ、割引は、この下に書いてあるんですよ。 | Aa, waribiki wa, kono shita ni kaite arun desu yo. | À, phần giảm giá được ghi ở phía dưới này đấy ạ.
+00:36 | 王 / Oo / Vương | ああ、そうなんですね。わかりました。ありがとうございます。 | Aa, soo nan desu ne. Wakarimashita. Arigatoo gozaimasu. | À, ra vậy. Tôi hiểu rồi. Cảm ơn anh.
+00:42 | 店員 / Ten'in / Nhân viên | いえ、どういたしまして。 | Ie, doo itashimashite. | Không có gì ạ.
+### từ vựng
+値段 | ねだん | nedan | giá
+違う | ちがう | chigau | khác, sai
+割引 | わりびき | waribiki | giảm giá
+さっき | さっき | sakki | lúc nãy
+見せる | みせる | miseru | cho xem
+
+## summary.mp4
+# Ôn tập: Mua sắm khéo ở siêu thị
+*00:00 |  /  / Chủ đề | どこに かいて あるんですか | doko ni kaite arun desu ka | Được ghi ở đâu vậy ạ?
+00:06 | ナレーター / Nareetaa / Người dẫn | 「〜てあります」は、誰かが何か目的を持ってある動作をして、その結果が残っている状態を表します。 | "~te arimasu" wa, dareka ga nanika mokuteki o motte aru doosa o shite, sono kekka ga nokotte iru jootai o arawashimasu. | "~te arimasu" diễn tả trạng thái còn lại kết quả của hành động mà ai đó đã làm có mục đích.
+00:21 | ナレーター / Nareetaa / Người dẫn | 動詞のて形に「あります」をつけます。 | Dooshi no te-kee ni "arimasu" o tsukemasu. | Thêm "arimasu" vào thể te của động từ.
+00:27 | ナレーター / Nareetaa / Người dẫn | このときの主語は、動作を行った人ではなく、動作の対象のものです。 | Kono toki no shugo wa, doosa o okonatta hito de wa naku, doosa no taishoo no mono desu. | Chủ ngữ lúc này không phải người làm hành động mà là đồ vật chịu tác động.
+00:39 | ナレーター / Nareetaa / Người dẫn | 例えば、自動販売機が壊れたので、誰かが「故障中」の紙を貼りました。その状態を見て、「故障中の紙が貼ってあります」と言います。 | Tatoeba, jidoo-hanbaiki ga kowareta node, dareka ga "koshoochuu" no kami o harimashita. Sono jootai o mite, "Koshoochuu no kami ga hatte arimasu" to iimasu. | Ví dụ, máy bán hàng tự động bị hỏng nên có người dán tờ giấy "Đang hỏng". Nhìn thấy vậy ta nói "Có dán tờ giấy báo hỏng".
+00:59 | ナレーター / Nareetaa / Người dẫn | この動画で、客は「大豆」という表示を探しましたが、どこにも見つけられませんでした。 | Kono dooga de, kyaku wa "daizu" to iu hyooji o sagashimashita ga, doko ni mo mitsukeraremasen deshita. | Trong video, người khách tìm chữ "đậu nành" trên nhãn nhưng không thấy đâu cả.
+01:10 | ナレーター / Nareetaa / Người dẫn | それで、「どこに書いてあるんですか」と聞きました。 | Sorede, "Doko ni kaite arun desu ka" to kikimashita. | Vì vậy anh ấy hỏi "Được ghi ở đâu vậy ạ?".
+01:16 | ナレーター / Nareetaa / Người dẫn | 店員は「この四角の中の原材料名に書いてありますよ」と客に教えました。 | Ten'in wa "Kono shikaku no naka no genzairyoo-mee ni kaite arimasu yo" to kyaku ni oshiemashita. | Nhân viên chỉ cho khách: "Có ghi ở mục thành phần nguyên liệu trong ô vuông này".
+01:26 | ナレーター / Nareetaa / Người dẫn | 他にも、「テーブルに花が飾ってあります」とか、「予約席のプレートが置いてあります」のように使うことができます。 | Hoka ni mo, "Teeburu ni hana ga kazatte arimasu" toka, "Yoyakuseki no pureeto ga oite arimasu" no yoo ni tsukau koto ga dekimasu. | Ngoài ra có thể dùng như "Trên bàn có cắm hoa", "Có đặt biển bàn đã đặt trước".
+*01:42 |  /  / Chủ đề | あると いいですね | aru to ii desu ne | Có thì tốt nhỉ
+01:48 | ナレーター / Nareetaa / Người dẫn | 動詞の辞書形・ない形に「といいですね」をつけて、そうなってほしいという未来への希望や願いを伝えることができます。 | Dooshi no jishokee, nai-kee ni "to ii desu ne" o tsukete, soo natte hoshii to iu mirai e no kiboo ya negai o tsutaeru koto ga dekimasu. | Thêm "to ii desu ne" vào thể từ điển hoặc thể nai của động từ để bày tỏ mong muốn, hy vọng điều gì đó sẽ xảy ra.
+02:05 | ナレーター / Nareetaa / Người dẫn | 会社の同僚が病気です。元気になってほしいので、「早く元気になるといいですね」と自分の気持ちを伝えます。 | Kaisha no dooryoo ga byooki desu. Genki ni natte hoshii node, "Hayaku genki ni naru to ii desu ne" to jibun no kimochi o tsutaemasu. | Đồng nghiệp bị ốm. Vì mong người đó khỏe lại nên ta nói "Mong anh sớm khỏe lại".
+02:21 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんとアンジェラさんがバーベキューの買い物について話しています。 | Kono dooga de wa, Oo-san to Anjera-san ga baabekyuu no kaimono ni tsuite hanashite imasu. | Trong video, anh Vương và chị Angela đang nói chuyện về việc mua đồ cho buổi nướng thịt.
+02:31 | ナレーター / Nareetaa / Người dẫn | 「安くておいしい肉があるといいですね」と希望を述べています。 | "Yasukute oishii niku ga aru to ii desu ne" to kiboo o nobete imasu. | Họ nói lên mong muốn: "Có thịt vừa rẻ vừa ngon thì tốt nhỉ".
+02:40 | ナレーター / Nareetaa / Người dẫn | このように「といいですね」と言って、お互いの希望や願いを共有することで、人間関係を深めることができます。 | Kono yoo ni "to ii desu ne" to itte, otagai no kiboo ya negai o kyooyuu suru koto de, ningen-kankee o fukameru koto ga dekimasu. | Nói "to ii desu ne" để chia sẻ mong muốn với nhau giúp thắt chặt quan hệ.
+02:55 | ナレーター / Nareetaa / Người dẫn | 「といいですね」は丁寧な言い方ですが、親しい人同士なら「といいね」と言うこともできます。 | "To ii desu ne" wa teenee na iikata desu ga, shitashii hito dooshi nara "to ii ne" to iu koto mo dekimasu. | "To ii desu ne" là cách nói lịch sự, giữa những người thân thiết có thể nói "to ii ne".
+03:08 | ナレーター / Nareetaa / Người dẫn | 明日は友達とピクニックに行きます。天気が心配です。友達と「明日晴れるといいね」とか「明日雨が降らないといいね」と言うことができます。 | Ashita wa tomodachi to pikunikku ni ikimasu. Tenki ga shinpai desu. Tomodachi to "Ashita hareru to ii ne" toka "Ashita ame ga furanai to ii ne" to iu koto ga dekimasu. | Mai đi dã ngoại với bạn, lo thời tiết. Có thể nói với bạn "Mai trời nắng thì tốt nhỉ" hay "Mai không mưa thì tốt nhỉ".
+*03:29 |  /  / Chủ đề | チラシが はいって いましたよね | chirashi ga haitte imashita yo ne | Có tờ quảng cáo kẹp trong báo nhỉ
+03:35 | ナレーター / Nareetaa / Người dẫn | 「〜ています」は、今より前に起きたことの結果が、そのまま残っていることを表すことができます。 | "~te imasu" wa, ima yori mae ni okita koto no kekka ga, sono mama nokotte iru koto o arawasu koto ga dekimasu. | "~te imasu" có thể diễn tả kết quả của việc đã xảy ra trước đó vẫn còn nguyên.
+03:47 | ナレーター / Nareetaa / Người dẫn | 動詞のて形に「います」をつけます。 | Dooshi no te-kee ni "imasu" o tsukemasu. | Thêm "imasu" vào thể te của động từ.
+03:52 | ナレーター / Nareetaa / Người dẫn | この文型では、「消える」「落ちる」「並ぶ」など、変化を表す自動詞を使います。 | Kono bunkee de wa, "kieru", "ochiru", "narabu" nado, henka o arawasu jidooshi o tsukaimasu. | Mẫu này dùng tự động từ chỉ sự thay đổi như "kieru" (tắt), "ochiru" (rơi), "narabu" (xếp hàng).
+04:07 | ナレーター / Nareetaa / Người dẫn | 変化した「もの」や「人」などが主語になります。 | Henka shita "mono" ya "hito" nado ga shugo ni narimasu. | Chủ ngữ là đồ vật hay người đã thay đổi.
+04:16 | ナレーター / Nareetaa / Người dẫn | この変化には、誰かの目的や意図は含まれません。 | Kono henka ni wa, dareka no mokuteki ya ito wa fukumaremasen. | Sự thay đổi này không bao hàm mục đích hay ý đồ của ai.
+04:25 | ナレーター / Nareetaa / Người dẫn | 「電気が消えました」「電気が消えています」、「財布が落ちました」「財布が落ちています」、「人が大勢並びました」「人が大勢並んでいます」と言うことができます。 | "Denki ga kiemashita" "Denki ga kiete imasu", "Saifu ga ochimashita" "Saifu ga ochite imasu", "Hito ga oozee narabimashita" "Hito ga oozee narande imasu" to iu koto ga dekimasu. | Có thể nói: "Đèn đã tắt" – "Đèn đang tắt", "Ví rơi" – "Có cái ví đang rơi ở đó", "Nhiều người đã xếp hàng" – "Nhiều người đang xếp hàng".
+04:52 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんが「今日の新聞にスーパーのチラシが入っていましたよね」と言っています。 | Kono dooga de wa, Oo-san ga "Kyoo no shinbun ni suupaa no chirashi ga haitte imashita yo ne" to itte imasu. | Trong video, anh Vương nói "Báo hôm nay có kẹp tờ quảng cáo của siêu thị nhỉ".
+05:04 | ナレーター / Nareetaa / Người dẫn | 「チラシが入っている」は、新聞の中にチラシが入った結果が残っていることを表します。 | "Chirashi ga haitte iru" wa, shinbun no naka ni chirashi ga haitta kekka ga nokotte iru koto o arawashimasu. | "Chirashi ga haitte iru" diễn tả kết quả tờ quảng cáo đã được kẹp vào báo vẫn còn đó.
+05:16 | ナレーター / Nareetaa / Người dẫn | 王さんはアンジェラさんと話す前に、新聞のチラシを見ました。それで「入っています」ではなくて、「入っていました」と過去形で言いました。 | Oo-san wa Anjera-san to hanasu mae ni, shinbun no chirashi o mimashita. Sorede "haitte imasu" de wa nakute, "haitte imashita" to kakokee de iimashita. | Anh Vương đã xem tờ quảng cáo trước khi nói chuyện với chị Angela, nên nói ở thì quá khứ "haitte imashita" chứ không phải "haitte imasu".
+05:36 | ナレーター / Nareetaa / Người dẫn | 「よね」は、確認や共感を示しています。 | "Yo ne" wa, kakunin ya kyookan o shimeshite imasu. | "Yo ne" thể hiện sự xác nhận hoặc đồng cảm.

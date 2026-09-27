@@ -1,0 +1,1067 @@
+{
+  "lesson": {
+    "title": "Tình huống: Thuế, bảo hiểm và đăng ký cư trú"
+  },
+  "videos": [
+    {
+      "title": "Đăng ký cư trú ở tòa thị chính",
+      "description": "Hỏi được mình cần làm thủ tục gì khi mới đến và làm đăng ký cư trú ở tòa thị chính.",
+      "url": "/uploads/lesson-videos/n4-10-tax-insurance/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー。",
+          "romaji": "Anoo.",
+          "text_vi": "Dạ…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "先週、日本へ来ました。どんな手続きをしたらいいですか。",
+          "romaji": "Senshuu, Nihon e kimashita. Donna tetsuzuki o shitara ii desu ka.",
+          "text_vi": "Tuần trước tôi mới đến Nhật. Tôi nên làm những thủ tục gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "いつから潮来市にお住まいですか。",
+          "romaji": "Itsu kara Itako-shi ni osumai desu ka.",
+          "text_vi": "Anh sống ở thành phố Itako từ khi nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "昨日からです。",
+          "romaji": "Kinoo kara desu.",
+          "text_vi": "Từ hôm qua ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "ああ、もう潮来市にお住まいなんですね。わかりました。",
+          "romaji": "Aa, moo Itako-shi ni osumai nan desu ne. Wakarimashita.",
+          "text_vi": "À, anh đã sống ở thành phố Itako rồi nhỉ. Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "では、住民登録の手続きをお願いします。",
+          "romaji": "Dewa, juumin-tooroku no tetsuzuki o onegaishimasu.",
+          "text_vi": "Vậy xin anh làm thủ tục đăng ký cư trú.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "住民登録って何ですか。",
+          "romaji": "Juumin-tooroku tte nan desu ka.",
+          "text_vi": "Đăng ký cư trú là gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "潮来市の住民ですよ、潮来市に住んでいますよ、という意味の登録です。",
+          "romaji": "Itako-shi no juumin desu yo, Itako-shi ni sunde imasu yo, to iu imi no tooroku desu.",
+          "text_vi": "Là đăng ký để xác nhận anh là cư dân, đang sống ở thành phố Itako.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、わかりました。",
+          "romaji": "Aa, wakarimashita.",
+          "text_vi": "À, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "パスポートと在留カードをお持ちですか。",
+          "romaji": "Pasupooto to zairyuu-kaado o omochi desu ka.",
+          "text_vi": "Anh có mang hộ chiếu và thẻ cư trú không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、あります。",
+          "romaji": "Hai, arimasu.",
+          "text_vi": "Có ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "王ハオランさんですね。ご家族は？",
+          "romaji": "Oo Haoran-san desu ne. Gokazoku wa?",
+          "text_vi": "Anh là Ō Haoran nhỉ. Gia đình anh thì sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "一人です。",
+          "romaji": "Hitori desu.",
+          "text_vi": "Tôi ở một mình.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "わかりました。こちら、ちょっとお預かりしますね。",
+          "romaji": "Wakarimashita. Kochira, chotto oazukari shimasu ne.",
+          "text_vi": "Tôi hiểu rồi. Tôi xin giữ những giấy tờ này một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "では、こちらの用紙にご記入ください。",
+          "romaji": "Dewa, kochira no yooshi ni gokinyuu kudasai.",
+          "text_vi": "Vậy mời anh điền vào tờ đơn này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "これ、記入するのは、この太い線の中だけでいいですよ。",
+          "romaji": "Kore, kinyuu suru no wa, kono futoi sen no naka dake de ii desu yo.",
+          "text_vi": "Anh chỉ cần điền phần trong khung viền đậm này thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "わからないことがあったら聞いてください。",
+          "romaji": "Wakaranai koto ga attara kiite kudasai.",
+          "text_vi": "Có gì không hiểu anh cứ hỏi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、ありがとうございます。",
+          "romaji": "Hai, arigatoo gozaimasu.",
+          "text_vi": "Vâng, cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、これでいいですか。",
+          "romaji": "Anoo, kore de ii desu ka.",
+          "text_vi": "Dạ, thế này được chưa ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい、大丈夫です。",
+          "romaji": "Hai, daijoobu desu.",
+          "text_vi": "Vâng, được rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "では、登録ができたらこの番号でお呼びしますので、あちらでおかけになってお待ちください。",
+          "romaji": "Dewa, tooroku ga dekitara kono bangoo de oyobi shimasu node, achira de okake ni natte omachi kudasai.",
+          "text_vi": "Khi đăng ký xong chúng tôi sẽ gọi theo số này, mời anh ngồi đợi ở đằng kia.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、よろしくお願いします。",
+          "romaji": "Hai, yoroshiku onegaishimasu.",
+          "text_vi": "Vâng, nhờ chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "手続き",
+          "reading": "てつづき",
+          "romaji": "tetsuzuki",
+          "meaning": "thủ tục"
+        },
+        {
+          "word": "住民登録",
+          "reading": "じゅうみんとうろく",
+          "romaji": "juumin-tooroku",
+          "meaning": "đăng ký cư trú"
+        },
+        {
+          "word": "住民",
+          "reading": "じゅうみん",
+          "romaji": "juumin",
+          "meaning": "cư dân"
+        },
+        {
+          "word": "パスポート",
+          "reading": "パスポート",
+          "romaji": "pasupooto",
+          "meaning": "hộ chiếu"
+        },
+        {
+          "word": "用紙",
+          "reading": "ようし",
+          "romaji": "yooshi",
+          "meaning": "tờ đơn"
+        },
+        {
+          "word": "家族",
+          "reading": "かぞく",
+          "romaji": "kazoku",
+          "meaning": "gia đình"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi về các khoản trừ trong phiếu lương",
+      "description": "Hỏi được vì sao lương thực nhận ít hơn và hiểu thuế thu nhập, thuế cư trú.",
+      "url": "/uploads/lesson-videos/n4-10-tax-insurance/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:02",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "佐藤さん、ちょっと教えてほしいことがあるんですけど、聞いてもいいですか。",
+          "romaji": "Satoo-san, chotto oshiete hoshii koto ga arun desu kedo, kiite mo ii desu ka.",
+          "text_vi": "Anh Satō, có chuyện tôi muốn nhờ anh chỉ giúp, tôi hỏi được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はい、どうぞ。",
+          "romaji": "Hai, doozo.",
+          "text_vi": "Ừ, cứ hỏi đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "給料のことなんですけど。",
+          "romaji": "Kyuuryoo no koto nan desu kedo.",
+          "text_vi": "Là chuyện tiền lương ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "最初に聞いた給料より、ずいぶん少ないです。どうしてですか。",
+          "romaji": "Saisho ni kiita kyuuryoo yori, zuibun sukunai desu. Dooshite desu ka.",
+          "text_vi": "Ít hơn nhiều so với mức lương tôi được nghe lúc đầu. Tại sao vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "今、給与明細を持っていますか。",
+          "romaji": "Ima, kyuuyo-meesai o motte imasu ka.",
+          "text_vi": "Bây giờ anh có mang phiếu lương không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。今日もらったばかりです。",
+          "romaji": "Hai. Kyoo moratta bakari desu.",
+          "text_vi": "Có. Tôi vừa nhận hôm nay.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "見てもいいですか。",
+          "romaji": "Mite mo ii desu ka.",
+          "text_vi": "Cho tôi xem được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、どうぞ。",
+          "romaji": "Hai, doozo.",
+          "text_vi": "Vâng, anh xem đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "日本では、給料からいろいろなお金が引かれるんですよ。",
+          "romaji": "Nihon de wa, kyuuryoo kara iroiro na okane ga hikarerun desu yo.",
+          "text_vi": "Ở Nhật, lương bị trừ nhiều khoản lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "例えば、これは所得税です。",
+          "romaji": "Tatoeba, kore wa shotokuzee desu.",
+          "text_vi": "Ví dụ, đây là thuế thu nhập.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "所得税？",
+          "romaji": "Shotokuzee?",
+          "text_vi": "Thuế thu nhập?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "給料をもらったら、必ず国に税金を払うんですよ。",
+          "romaji": "Kyuuryoo o morattara, kanarazu kuni ni zeekin o haraun desu yo.",
+          "text_vi": "Hễ nhận lương là phải nộp thuế cho nhà nước.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "え、外国人も払わなければならないんですか。",
+          "romaji": "E, gaikokujin mo harawanakereba naranain desu ka.",
+          "text_vi": "Hả, người nước ngoài cũng phải nộp ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はい、そうですよ。",
+          "romaji": "Hai, soo desu yo.",
+          "text_vi": "Ừ, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "それから、これは住民税です。",
+          "romaji": "Sorekara, kore wa juuminzee desu.",
+          "text_vi": "Còn đây là thuế cư trú.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "住民税…",
+          "romaji": "Juuminzee…",
+          "text_vi": "Thuế cư trú…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "王さんは日本に来たばかりですから、今年は払いません。でも、来年からは払わなければなりません。",
+          "romaji": "Oo-san wa Nihon ni kita bakari desu kara, kotoshi wa haraimasen. Demo, rainen kara wa harawanakereba narimasen.",
+          "text_vi": "Anh Vương mới đến Nhật nên năm nay không phải nộp. Nhưng từ năm sau thì phải nộp.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "所得税と住民税はどう違いますか。",
+          "romaji": "Shotokuzee to juuminzee wa doo chigaimasu ka.",
+          "text_vi": "Thuế thu nhập và thuế cư trú khác nhau thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ああ、住民税は住んでいる市と県に払います。",
+          "romaji": "Aa, juuminzee wa sunde iru shi to ken ni haraimasu.",
+          "text_vi": "À, thuế cư trú thì nộp cho thành phố và tỉnh nơi mình sống.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "へえ、いろいろな税金があるんですね。",
+          "romaji": "Hee, iroiro na zeekin ga arun desu ne.",
+          "text_vi": "Ồ, có nhiều loại thuế nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "そうですね。給料が高くなれば、税金も高くなりますよ。",
+          "romaji": "Soo desu ne. Kyuuryoo ga takaku nareba, zeekin mo takaku narimasu yo.",
+          "text_vi": "Đúng vậy. Lương cao thì thuế cũng cao đấy.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "給料",
+          "reading": "きゅうりょう",
+          "romaji": "kyuuryoo",
+          "meaning": "tiền lương"
+        },
+        {
+          "word": "給与明細",
+          "reading": "きゅうよめいさい",
+          "romaji": "kyuuyo-meesai",
+          "meaning": "phiếu lương"
+        },
+        {
+          "word": "所得税",
+          "reading": "しょとくぜい",
+          "romaji": "shotokuzee",
+          "meaning": "thuế thu nhập"
+        },
+        {
+          "word": "住民税",
+          "reading": "じゅうみんぜい",
+          "romaji": "juuminzee",
+          "meaning": "thuế cư trú"
+        },
+        {
+          "word": "引く",
+          "reading": "ひく",
+          "romaji": "hiku",
+          "meaning": "trừ đi"
+        },
+        {
+          "word": "税金",
+          "reading": "ぜいきん",
+          "romaji": "zeekin",
+          "meaning": "tiền thuế"
+        }
+      ]
+    },
+    {
+      "title": "Bảo hiểm y tế và lương hưu",
+      "description": "Hiểu được bảo hiểm y tế, lương hưu và biết hỏi phòng nhân sự khi chưa rõ.",
+      "url": "/uploads/lesson-videos/n4-10-tax-insurance/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これも税金ですか。",
+          "romaji": "Kore mo zeekin desu ka.",
+          "text_vi": "Cái này cũng là thuế ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "いいえ、これは保険です。",
+          "romaji": "Iie, kore wa hoken desu.",
+          "text_vi": "Không, cái này là bảo hiểm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "いろいろな保険がありますけど、これは健康保険です。",
+          "romaji": "Iroiro na hoken ga arimasu kedo, kore wa kenkoo-hoken desu.",
+          "text_vi": "Có nhiều loại bảo hiểm, cái này là bảo hiểm y tế.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、健康保険はわかります。この間、保険証をもらいました。",
+          "romaji": "Aa, kenkoo-hoken wa wakarimasu. Kono aida, hokenshoo o moraimashita.",
+          "text_vi": "À, bảo hiểm y tế thì tôi biết. Hôm trước tôi đã nhận thẻ bảo hiểm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "ああ、そうですか。保険証があれば、病院で払うお金が少なくなりますね。",
+          "romaji": "Aa, soo desu ka. Hokenshoo ga areba, byooin de harau okane ga sukunaku narimasu ne.",
+          "text_vi": "À, vậy à. Có thẻ bảo hiểm thì tiền trả ở bệnh viện sẽ ít đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "30%だけ払えばいいんですよ。",
+          "romaji": "Sanjuppaasento dake haraeba iin desu yo.",
+          "text_vi": "Chỉ cần trả 30% thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "これは何ですか。",
+          "romaji": "Kore wa nan desu ka.",
+          "text_vi": "Cái này là gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "これは年金です。",
+          "romaji": "Kore wa nenkin desu.",
+          "text_vi": "Cái này là lương hưu (niên kim).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "保険も年金も、毎月お金を払います。",
+          "romaji": "Hoken mo nenkin mo, maitsuki okane o haraimasu.",
+          "text_vi": "Cả bảo hiểm và lương hưu đều đóng tiền hằng tháng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "うーん。",
+          "romaji": "Uun.",
+          "text_vi": "Ừm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "年を取ったり、病気や事故で働けなくなったりしたら、国からお金をもらうことができるんですよ。",
+          "romaji": "Toshi o tottari, byooki ya jiko de hatarakenaku nattari shitara, kuni kara okane o morau koto ga dekirun desu yo.",
+          "text_vi": "Khi về già, hoặc không làm việc được do bệnh tật, tai nạn, thì có thể nhận tiền từ nhà nước.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "へえ。年金は何歳まで払いますか。",
+          "romaji": "Hee. Nenkin wa nansai made haraimasu ka.",
+          "text_vi": "Ồ. Lương hưu phải đóng đến bao nhiêu tuổi ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "年金の種類によって違いますけど、誰でも60歳まで払わなければなりません。",
+          "romaji": "Nenkin no shurui ni yotte chigaimasu kedo, dare demo rokujussai made harawanakereba narimasen.",
+          "text_vi": "Tùy loại lương hưu mà khác nhau, nhưng ai cũng phải đóng đến 60 tuổi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "でも、私は何年か働いたら、国へ帰ろうと思っています。",
+          "romaji": "Demo, watashi wa nannen ka hataraitara, kuni e kaeroo to omotte imasu.",
+          "text_vi": "Nhưng tôi định làm vài năm rồi về nước.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "そうですか。もしかしたら、出身国によって払い方が変わるかもしれません。",
+          "romaji": "Soo desu ka. Moshika shitara, shusshinkoku ni yotte haraikata ga kawaru kamo shiremasen.",
+          "text_vi": "Vậy à. Có thể cách đóng sẽ khác tùy nước bạn đến từ đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "国によって制度が違いますから、難しいですね。",
+          "romaji": "Kuni ni yotte seedo ga chigaimasu kara, muzukashii desu ne.",
+          "text_vi": "Chế độ mỗi nước khác nhau nên khó nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Ừ nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "明日、人事課の山田さんに聞いてみることにします。",
+          "romaji": "Ashita, jinjika no Yamada-san ni kiite miru koto ni shimasu.",
+          "text_vi": "Mai tôi sẽ thử hỏi chị Yamada ở phòng nhân sự.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "そうですね。大切なことですから、ぜひそうしてください。",
+          "romaji": "Soo desu ne. Taisetsu na koto desu kara, zehi soo shite kudasai.",
+          "text_vi": "Ừ. Chuyện quan trọng nên nhất định hỏi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "保険",
+          "reading": "ほけん",
+          "romaji": "hoken",
+          "meaning": "bảo hiểm"
+        },
+        {
+          "word": "健康保険",
+          "reading": "けんこうほけん",
+          "romaji": "kenkoo-hoken",
+          "meaning": "bảo hiểm y tế"
+        },
+        {
+          "word": "年金",
+          "reading": "ねんきん",
+          "romaji": "nenkin",
+          "meaning": "lương hưu"
+        },
+        {
+          "word": "制度",
+          "reading": "せいど",
+          "romaji": "seedo",
+          "meaning": "chế độ"
+        },
+        {
+          "word": "人事課",
+          "reading": "じんじか",
+          "romaji": "jinjika",
+          "meaning": "phòng nhân sự"
+        },
+        {
+          "word": "出身国",
+          "reading": "しゅっしんこく",
+          "romaji": "shusshinkoku",
+          "meaning": "nước xuất thân"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Thuế, bảo hiểm và đăng ký cư trú",
+      "description": "Ôn lại「〜のことなんですけど」,「〜なければならないんですか」và「〜ようと思っています」.",
+      "url": "/uploads/lesson-videos/n4-10-tax-insurance/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "きゅうりょうの ことなんですけど",
+          "romaji": "kyuuryoo no koto nan desu kedo",
+          "text_vi": "Là chuyện tiền lương ạ",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "佐藤さん、ちょっと教えてほしいことがあるんですけど、聞いてもいいですか。",
+          "romaji": "Satoo-san, chotto oshiete hoshii koto ga arun desu kedo, kiite mo ii desu ka.",
+          "text_vi": "Anh Satō, có chuyện tôi muốn nhờ anh chỉ giúp, tôi hỏi được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "はい、どうぞ。",
+          "romaji": "Hai, doozo.",
+          "text_vi": "Ừ, cứ hỏi đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "給料のことなんですけど。",
+          "romaji": "Kyuuryoo no koto nan desu kedo.",
+          "text_vi": "Là chuyện tiền lương ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画の中で、男性は「給料のことなんですけど」と話題を相手に伝えてから質問をしています。",
+          "romaji": "Kono dooga no naka de, dansee wa \"Kyuuryoo no koto nan desu kedo\" to wadai o aite ni tsutaete kara shitsumon o shite imasu.",
+          "text_vi": "Trong video, người đàn ông nói trước chủ đề \"Là chuyện tiền lương ạ\" rồi mới đặt câu hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "長い質問や相談をするとき、名詞の後に「のことなんですけど」とつけると、質問をする前に話題を伝えることができます。",
+          "romaji": "Nagai shitsumon ya soodan o suru toki, meeshi no ato ni \"no koto nan desu kedo\" to tsukeru to, shitsumon o suru mae ni wadai o tsutaeru koto ga dekimasu.",
+          "text_vi": "Khi muốn hỏi hay trao đổi dài, thêm \"no koto nan desu kedo\" sau danh từ để nêu chủ đề trước khi hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、学校の先生に子どもについて長い質問や相談をしたいときに「子どものことなんですけど」と言ったり、",
+          "romaji": "Tatoeba, gakkoo no sensee ni kodomo ni tsuite nagai shitsumon ya soodan o shitai toki ni \"Kodomo no koto nan desu kedo\" to ittari,",
+          "text_vi": "Ví dụ, khi muốn hỏi thầy cô về con mình thì nói \"Là chuyện về con tôi ạ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "市役所に電話して「住民票のことなんですけど」と話し始めたりすると、それを聞いた人は話題が何かわかって話を聞くことができます。",
+          "romaji": "Shiyakusho ni denwa shite \"Juuminhyoo no koto nan desu kedo\" to hanashi hajimetari suru to, sore o kiita hito wa wadai ga nani ka wakatte hanashi o kiku koto ga dekimasu.",
+          "text_vi": "hay gọi điện đến tòa thị chính và mở đầu \"Là chuyện về giấy chứng nhận cư trú ạ\" – người nghe biết được chủ đề nên dễ nghe hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "はらわなければ ならないんですか",
+          "romaji": "harawanakereba naranain desu ka",
+          "text_vi": "Cũng phải nộp ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
+          "text_ja": "給料をもらったら、必ず国に税金を払うんですよ。",
+          "romaji": "Kyuuryoo o morattara, kanarazu kuni ni zeekin o haraun desu yo.",
+          "text_vi": "Hễ nhận lương là phải nộp thuế cho nhà nước.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "え、外国人も払わなければならないんですか。",
+          "romaji": "E, gaikokujin mo harawanakereba naranain desu ka.",
+          "text_vi": "Hả, người nước ngoài cũng phải nộp ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のない形の後に「なければならない」をつけるときは、その動作をする義務があることを表します。",
+          "romaji": "Dooshi no nai-kee no ato ni \"nakereba naranai\" o tsukeru toki wa, sono doosa o suru gimu ga aru koto o arawashimasu.",
+          "text_vi": "Thêm \"nakereba naranai\" sau thể nai của động từ để diễn tả nghĩa vụ phải làm việc đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「払う」のない形に「なければならない」をつけて「払わなければならない」と言うと、払う義務があるという意味になります。",
+          "romaji": "\"Harau\" no nai-kee ni \"nakereba naranai\" o tsukete \"harawanakereba naranai\" to iu to, harau gimu ga aru to iu imi ni narimasu.",
+          "text_vi": "Thêm \"nakereba naranai\" vào thể nai của \"harau\" thành \"harawanakereba naranai\", nghĩa là có nghĩa vụ phải trả.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "そして「んですか」とつけると、その義務について「意外だ」とか「驚きだ」という気持ちを表すことができます。",
+          "romaji": "Soshite \"n desu ka\" to tsukeru to, sono gimu ni tsuite \"igai da\" toka \"odoroki da\" to iu kimochi o arawasu koto ga dekimasu.",
+          "text_vi": "Thêm \"n desu ka\" thì thể hiện cảm giác bất ngờ, ngạc nhiên về nghĩa vụ đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「え、外国人も払わなければならないんですか」から、とても驚いていることがわかります。",
+          "romaji": "\"E, gaikokujin mo harawanakereba naranain desu ka\" kara, totemo odoroite iru koto ga wakarimasu.",
+          "text_vi": "Qua câu \"Hả, người nước ngoài cũng phải nộp ạ?\" có thể thấy anh ấy rất ngạc nhiên.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:38",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "くにへ かえろうと おもって います",
+          "romaji": "kuni e kaeroo to omotte imasu",
+          "text_vi": "Tôi định về nước",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "でも、私は何年か働いたら、国へ帰ろうと思っています。",
+          "romaji": "Demo, watashi wa nannen ka hataraitara, kuni e kaeroo to omotte imasu.",
+          "text_vi": "Nhưng tôi định làm vài năm rồi về nước.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞の意向形の後に「思っています」をつける文型は、したいという意思が続いているときに使います。",
+          "romaji": "Dooshi no ikookee no ato ni \"omotte imasu\" o tsukeru bunkee wa, shitai to iu ishi ga tsuzuite iru toki ni tsukaimasu.",
+          "text_vi": "Mẫu \"thể ý chí của động từ + omotte imasu\" dùng khi ý muốn làm gì đó vẫn đang kéo dài.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「帰る」の意向形は「帰ろう」です。",
+          "romaji": "\"Kaeru\" no ikookee wa \"kaeroo\" desu.",
+          "text_vi": "Thể ý chí của \"kaeru\" (về) là \"kaeroo\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話の中では、「国に帰ろうと思っています」と言っています。国に帰る意思が継続していることを示しています。",
+          "romaji": "Kono kaiwa no naka de wa, \"Kuni ni kaeroo to omotte imasu\" to itte imasu. Kuni ni kaeru ishi ga keezoku shite iru koto o shimeshite imasu.",
+          "text_vi": "Trong hội thoại, anh Vương nói \"Tôi định về nước\", cho thấy ý định về nước vẫn luôn có.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「アメリカに住もうと思っています」「タバコをやめようと思っています」など、これからしたいことの意思を示すことができます。",
+          "romaji": "Tatoeba, \"Amerika ni sumoo to omotte imasu\", \"Tabako o yameyoo to omotte imasu\" nado, korekara shitai koto no ishi o shimesu koto ga dekimasu.",
+          "text_vi": "Ví dụ \"Tôi định sống ở Mỹ\", \"Tôi định bỏ thuốc lá\" – để thể hiện ý định sắp tới.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

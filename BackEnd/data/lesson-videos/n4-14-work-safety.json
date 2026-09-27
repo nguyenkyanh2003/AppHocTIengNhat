@@ -1,0 +1,947 @@
+{
+  "lesson": {
+    "title": "Tình huống: An toàn khi làm việc"
+  },
+  "videos": [
+    {
+      "title": "Chỉ tay hô to xác nhận an toàn",
+      "description": "Hiểu và làm được động tác chỉ tay hô to「右、よし」trước khi đi qua lối đi trong xưởng.",
+      "url": "/uploads/lesson-videos/n4-14-work-safety/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "待って待って、ミゲルさん。指差呼称しないと。",
+          "romaji": "Matte matte, Migeru-san. Shisa koshoo shinai to.",
+          "text_vi": "Khoan đã, anh Miguel. Phải chỉ tay hô to chứ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "指差…？何ですか。",
+          "romaji": "Shisa...? Nan desu ka.",
+          "text_vi": "Chỉ tay...? Là gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "ほら、指差呼称。指を指して安全を確認する作業だよ。",
+          "romaji": "Hora, shisa koshoo. Yubi o sashite anzen o kakunin suru sagyoo da yo.",
+          "text_vi": "Đó, chỉ tay hô to. Là thao tác chỉ tay để xác nhận an toàn đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "はいはい、ガイダンスで練習しました。前の仕事ではしたことがありません。",
+          "romaji": "Hai hai, gaidansu de renshuu shimashita. Mae no shigoto de wa shita koto ga arimasen.",
+          "text_vi": "Vâng vâng, tôi đã tập ở buổi hướng dẫn rồi. Nhưng công việc trước tôi chưa từng làm.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうなんだ。じゃあもう一度一緒にやってみようか。",
+          "romaji": "Soo nan da. Jaa moo ichido issho ni yatte miyoo ka.",
+          "text_vi": "Vậy à. Vậy làm lại cùng nhau một lần nữa nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, nhờ anh ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "まず右を見て、それからこういう感じに指をさしながら「右、よし」って言って。",
+          "romaji": "Mazu migi o mite, sorekara koo iu kanji ni yubi o sashinagara \"migi, yoshi\" tte itte.",
+          "text_vi": "Trước tiên nhìn bên phải, rồi vừa chỉ tay như thế này vừa nói \"phải, được\".",
+          "key_phrase": true
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "右、よし。",
+          "romaji": "Migi, yoshi.",
+          "text_vi": "Phải, được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "次は同じように、左。",
+          "romaji": "Tsugi wa onaji yoo ni, hidari.",
+          "text_vi": "Tiếp theo cũng làm tương tự, bên trái.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "左、よし。",
+          "romaji": "Hidari, yoshi.",
+          "text_vi": "Trái, được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "最後は前方。",
+          "romaji": "Saigo wa zenpoo.",
+          "text_vi": "Cuối cùng là phía trước.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "前方、よし。",
+          "romaji": "Zenpoo, yoshi.",
+          "text_vi": "Phía trước, được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうそう。じゃあ一人でやってみて。白い線に立って。",
+          "romaji": "Soo soo. Jaa hitori de yatte mite. Shiroi sen ni tatte.",
+          "text_vi": "Đúng rồi đó. Vậy anh thử làm một mình xem. Đứng vào vạch trắng đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "右、よし。",
+          "romaji": "Migi, yoshi.",
+          "text_vi": "Phải, được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "左、よし。",
+          "romaji": "Hidari, yoshi.",
+          "text_vi": "Trái, được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "前方、よし。",
+          "romaji": "Zenpoo, yoshi.",
+          "text_vi": "Phía trước, được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうそう。確認できたら渡って。",
+          "romaji": "Soo soo. Kakunin dekitara watatte.",
+          "text_vi": "Đúng vậy. Xác nhận xong rồi thì đi qua.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "わかった、はい。ありがとうございました。",
+          "romaji": "Wakatta, hai. Arigatoo gozaimashita.",
+          "text_vi": "Em hiểu rồi ạ. Cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "指差呼称",
+          "reading": "しさこしょう",
+          "romaji": "shisa-koshoo",
+          "meaning": "chỉ tay hô to"
+        },
+        {
+          "word": "安全",
+          "reading": "あんぜん",
+          "romaji": "anzen",
+          "meaning": "an toàn"
+        },
+        {
+          "word": "確認",
+          "reading": "かくにん",
+          "romaji": "kakunin",
+          "meaning": "xác nhận"
+        },
+        {
+          "word": "前方",
+          "reading": "ぜんぽう",
+          "romaji": "zenpoo",
+          "meaning": "phía trước"
+        },
+        {
+          "word": "よし",
+          "reading": "よし",
+          "romaji": "yoshi",
+          "meaning": "được rồi"
+        },
+        {
+          "word": "渡る",
+          "reading": "わたる",
+          "romaji": "wataru",
+          "meaning": "đi qua"
+        }
+      ]
+    },
+    {
+      "title": "Nghe nhắc nhở an toàn buổi sáng",
+      "description": "Hiểu được lời nhắc an toàn buổi sáng và nhờ dịch tài liệu sang tiếng nước mình.",
+      "url": "/uploads/lesson-videos/n4-14-work-safety/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "皆さん、おはようございます。",
+          "romaji": "Minasan, ohayoo gozaimasu.",
+          "text_vi": "Chào buổi sáng mọi người.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:03",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "おはようございます。",
+          "romaji": "Ohayoo gozaimasu.",
+          "text_vi": "Chào buổi sáng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "先週、隣の工場でスプレー缶の事故が起きました。",
+          "romaji": "Senshuu, tonari no koojoo de supuree-kan no jiko ga okimashita.",
+          "text_vi": "Tuần trước, ở nhà máy bên cạnh đã xảy ra tai nạn bình xịt.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "今回はけがをした人はいなかったそうですが、とても危ない状況でした。",
+          "romaji": "Konkai wa kega o shita hito wa inakatta soo desu ga, totemo abunai jookyoo deshita.",
+          "text_vi": "Lần này nghe nói không ai bị thương, nhưng tình huống rất nguy hiểm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "皆さんもスプレー缶の取り扱い、十分気をつけてください。",
+          "romaji": "Minasan mo supuree-kan no toriatsukai, juubun ki o tsukete kudasai.",
+          "text_vi": "Mọi người cũng hãy hết sức chú ý khi sử dụng bình xịt.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "この掲示、全員で復唱してください。「換気注意」「換気注意」「火気厳禁」「火気厳禁」。",
+          "romaji": "Kono keeji, zenin de fukushoo shite kudasai. \"Kanki chuui\" \"kanki chuui\" \"kaki genkin\" \"kaki genkin\".",
+          "text_vi": "Bảng thông báo này, tất cả mọi người hãy đọc theo. \"Chú ý thông gió\" \"Chú ý thông gió\" \"Cấm lửa\" \"Cấm lửa\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "一人一人気をつけて作業をしてください。",
+          "romaji": "Hitori hitori ki o tsukete sagyoo o shite kudasai.",
+          "text_vi": "Từng người hãy chú ý khi làm việc.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "それから、来週水曜日は定例ミーティングです。今後安全についての研修も行う予定です。",
+          "romaji": "Sorekara, raishuu suiyoobi wa teeree miitingu desu. Kongo anzen ni tsuite no kenshuu mo okonau yotee desu.",
+          "text_vi": "Ngoài ra, thứ Tư tuần sau là buổi họp định kỳ. Sắp tới cũng sẽ có buổi tập huấn về an toàn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "資料は今週中に配りますから、ミーティングの前によく読んでおいてください。",
+          "romaji": "Shiryoo wa konshuuchuu ni kubarimasu kara, miitingu no mae ni yoku yonde oite kudasai.",
+          "text_vi": "Tài liệu sẽ được phát trong tuần này, mọi người hãy đọc kỹ trước buổi họp nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "本日も安全第一で頑張りましょう。よろしくお願いします。",
+          "romaji": "Honjitsu mo anzen daiichi de ganbarimashoo. Yoroshiku onegaishimasu.",
+          "text_vi": "Hôm nay cũng hãy cố gắng đặt an toàn lên hàng đầu nhé. Mong mọi người hợp tác.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "ミゲルさん、さっきの事故の話、わかりましたか。",
+          "romaji": "Migeru-san, sakki no jiko no hanashi, wakarimashita ka.",
+          "text_vi": "Anh Miguel, câu chuyện tai nạn vừa nãy anh hiểu chưa?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "はい。「火気厳禁」は絶対ダメという意味ですよね。",
+          "romaji": "Hai. \"Kaki genkin\" wa zettai dame to iu imi desu yo ne.",
+          "text_vi": "Vâng. \"Kaki genkin\" nghĩa là tuyệt đối không được, đúng không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "そうそう。",
+          "romaji": "Soo soo.",
+          "text_vi": "Đúng đúng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "気をつけます。",
+          "romaji": "Ki o tsukemasu.",
+          "text_vi": "Em sẽ chú ý ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "あの、大城さん。",
+          "romaji": "Ano, Ooshiro-san.",
+          "text_vi": "À, anh Ōshiro ơi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "来週のミーティングのことでお願いがあるんですが。",
+          "romaji": "Raishuu no miitingu no koto de onegai ga arun desu ga.",
+          "text_vi": "Em có việc muốn nhờ về cuộc họp tuần sau ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "資料は新しい言葉や漢字が多いので、多分自分一人では読めないと思います。",
+          "romaji": "Shiryoo wa atarashii kotoba ya kanji ga ooi node, tabun jibun hitori de wa yomenai to omoimasu.",
+          "text_vi": "Tài liệu có nhiều từ mới và chữ Hán nên chắc em một mình không đọc hiểu được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "できれば、その資料を翻訳してもらいたいんですが。",
+          "romaji": "Dekireba, sono shiryoo o honyaku shite moraitain desu ga.",
+          "text_vi": "Nếu được thì em muốn nhờ ai đó dịch giúp tài liệu đó ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "やっぱり日本語より自分の国の言葉の方がよくわかるので。",
+          "romaji": "Yappari nihongo yori jibun no kuni no kotoba no hoo ga yoku wakaru node.",
+          "text_vi": "Vì dù sao thì tiếng nước em vẫn dễ hiểu hơn tiếng Nhật ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "それはそうですよね。",
+          "romaji": "Sore wa soo desu yo ne.",
+          "text_vi": "Đúng vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "無理を言ってすみません。",
+          "romaji": "Muri o itte sumimasen.",
+          "text_vi": "Xin lỗi vì đã đòi hỏi quá đáng.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "多分、総務の方で用意していると思いますけれど、念のため確認しておきますね。",
+          "romaji": "Tabun, soomu no hoo de yooi shite iru to omoimasu keredo, nen no tame kakunin shite okimasu ne.",
+          "text_vi": "Chắc bên tổng vụ đã chuẩn bị sẵn rồi, nhưng để chắc chắn thì tôi sẽ xác nhận lại nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:16",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "ありがとうございます。よろしくお願いします。",
+          "romaji": "Arigatoo gozaimasu. Yoroshiku onegaishimasu.",
+          "text_vi": "Cảm ơn anh. Mong anh giúp đỡ ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "スプレー缶",
+          "reading": "スプレーかん",
+          "romaji": "supuree-kan",
+          "meaning": "bình xịt"
+        },
+        {
+          "word": "換気",
+          "reading": "かんき",
+          "romaji": "kanki",
+          "meaning": "thông gió"
+        },
+        {
+          "word": "火気厳禁",
+          "reading": "かきげんきん",
+          "romaji": "kaki-genkin",
+          "meaning": "cấm lửa"
+        },
+        {
+          "word": "復唱",
+          "reading": "ふくしょう",
+          "romaji": "fukushoo",
+          "meaning": "đọc lại theo"
+        },
+        {
+          "word": "研修",
+          "reading": "けんしゅう",
+          "romaji": "kenshuu",
+          "meaning": "tập huấn"
+        },
+        {
+          "word": "翻訳",
+          "reading": "ほんやく",
+          "romaji": "hon'yaku",
+          "meaning": "dịch"
+        }
+      ]
+    },
+    {
+      "title": "Họp dự đoán nguy hiểm",
+      "description": "Nói được điều nguy hiểm trong tranh và hỏi nghĩa từ khó như「中毒」trong buổi họp.",
+      "url": "/uploads/lesson-videos/n4-14-work-safety/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "はい、これから定例ミーティングを始めます。",
+          "romaji": "Hai, kore kara teeree miitingu o hajimemasu.",
+          "text_vi": "Vâng, bây giờ chúng ta bắt đầu buổi họp định kỳ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "今日は危険予知ミーティングをしますね。",
+          "romaji": "Kyoo wa kiken yochi miitingu o shimasu ne.",
+          "text_vi": "Hôm nay chúng ta sẽ họp dự đoán nguy hiểm nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "この絵を見てください。この絵を見て、どんな危険があるか隣の人と話してください。",
+          "romaji": "Kono e o mite kudasai. Kono e o mite, donna kiken ga aru ka tonari no hito to hanashite kudasai.",
+          "text_vi": "Mọi người xem bức tranh này. Nhìn tranh rồi trao đổi với người bên cạnh xem có nguy hiểm gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "あのー、今は絵を見て話せばいいんですよね。",
+          "romaji": "Anoo, ima wa e o mite hanaseba iin desu yo ne.",
+          "text_vi": "À, bây giờ chỉ cần nhìn tranh rồi nói chuyện thôi phải không ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうだね。ミゲルさんは何がダメだと思う？",
+          "romaji": "Soo da ne. Migeru-san wa nani ga dame da to omou?",
+          "text_vi": "Đúng rồi. Anh Miguel nghĩ điều gì không ổn?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "そうですね。窓が開いてないですね。このままだと危ないと思います。",
+          "romaji": "Soo desu ne. Mado ga aitenai desu ne. Kono mama da to abunai to omoimasu.",
+          "text_vi": "Để em xem. Cửa sổ chưa mở nhỉ. Cứ như vậy thì em nghĩ nguy hiểm.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "ね。一酸化炭素中毒になっちゃうよね。",
+          "romaji": "Ne. Issankatanso chuudoku ni nacchau yo ne.",
+          "text_vi": "Đúng không. Sẽ bị ngộ độc khí carbon monoxide đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "一酸化炭素中毒ですか。",
+          "romaji": "Issankatanso chuudoku desu ka.",
+          "text_vi": "Ngộ độc khí carbon monoxide ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "一酸化炭素っていうガスが出て、中毒になること。",
+          "romaji": "Issankatanso tte iu gasu ga dete, chuudoku ni naru koto.",
+          "text_vi": "Là khi khí gọi là carbon monoxide thoát ra và gây ngộ độc đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "中毒って何ですか。",
+          "romaji": "Chuudoku tte nan desu ka.",
+          "text_vi": "Chuudoku (ngộ độc) là gì vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "例えば、このみたいな体に悪い煙をたくさん吸って、吐き気がしたり苦しくなったり、すごく具合が悪くなること。",
+          "romaji": "Tatoeba, kono mitai na karada ni warui kemuri o takusan sutte, hakike ga shitari kurushiku nattari, sugoku guai ga waruku naru koto.",
+          "text_vi": "Ví dụ như hít nhiều khói độc hại cho cơ thể như thế này, bị buồn nôn, khó thở, người rất khó chịu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "あ、わかりました。ありがとうございます。",
+          "romaji": "A, wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "À, em hiểu rồi ạ. Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "こういうところでは絶対換気が必要だよね。空気を入れ替えること。",
+          "romaji": "Koo iu tokoro de wa zettai kanki ga hitsuyoo da yo ne. Kuuki o irekaeru koto.",
+          "text_vi": "Ở những nơi như thế này thì nhất định cần thông gió nhỉ. Tức là thay đổi không khí.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "ああ、そうですね。",
+          "romaji": "Aa, soo desu ne.",
+          "text_vi": "À, đúng vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "まず一つは、換気をしていないから一酸化炭素中毒になるかもしれない。これでいいですか。",
+          "romaji": "Mazu hitotsu wa, kanki o shite inai kara issankatanso chuudoku ni naru kamoshirenai. Kore de ii desu ka.",
+          "text_vi": "Trước tiên, một điều là vì không thông gió nên có thể bị ngộ độc khí CO. Như vậy được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "いいね。",
+          "romaji": "Ii ne.",
+          "text_vi": "Được đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうだ、発表はミゲルさん、お願いできる？",
+          "romaji": "Soo da, happyoo wa Migeru-san, onegai dekiru?",
+          "text_vi": "À đúng rồi, phần thuyết trình nhờ anh Miguel được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "え、できるかな…。",
+          "romaji": "E, dekiru ka na...",
+          "text_vi": "Ơ, không biết em có làm được không...",
+          "key_phrase": false
+        },
+        {
+          "start": "02:17",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "それではグループごとに発表してもらいます。",
+          "romaji": "Sore de wa guruupu goto ni happyoo shite moraimasu.",
+          "text_vi": "Vậy thì mời từng nhóm lên thuyết trình.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "では、こちらのグループお願いします。",
+          "romaji": "Dewa, kochira no guruupu onegaishimasu.",
+          "text_vi": "Vậy mời nhóm này trình bày trước ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "定例",
+          "reading": "ていれい",
+          "romaji": "teeree",
+          "meaning": "định kỳ"
+        },
+        {
+          "word": "危険予知",
+          "reading": "きけんよち",
+          "romaji": "kiken-yochi",
+          "meaning": "dự đoán nguy hiểm"
+        },
+        {
+          "word": "一酸化炭素",
+          "reading": "いっさんかたんそ",
+          "romaji": "issankatanso",
+          "meaning": "khí CO"
+        },
+        {
+          "word": "中毒",
+          "reading": "ちゅうどく",
+          "romaji": "chuudoku",
+          "meaning": "ngộ độc"
+        },
+        {
+          "word": "吐き気",
+          "reading": "はきけ",
+          "romaji": "hakike",
+          "meaning": "buồn nôn"
+        },
+        {
+          "word": "発表",
+          "reading": "はっぴょう",
+          "romaji": "happyoo",
+          "meaning": "thuyết trình"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: An toàn khi làm việc",
+      "description": "Ôn lại cách nói rút gọn trong văn nói:「〜てない」,「〜んです」,「〜ちゃう」.",
+      "url": "/uploads/lesson-videos/n4-14-work-safety/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "まどが あいてないです",
+          "romaji": "mado ga aitenai desu",
+          "text_vi": "Cửa sổ chưa mở",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "そうですね。窓が開いてないですね。",
+          "romaji": "Soo desu ne. Mado ga aitenai desu ne.",
+          "text_vi": "Đúng vậy nhỉ. Cửa sổ chưa mở.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "話し言葉では、もともとの表現を短くして言うことがよくあります。",
+          "romaji": "Hanashi kotoba de wa, motomoto no hyoogen o mijikaku shite iu koto ga yoku arimasu.",
+          "text_vi": "Trong văn nói, người ta thường rút ngắn cách diễn đạt vốn có.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画でミゲルさんは「窓が開いてないです」と言いました。",
+          "romaji": "Kono dooga de Migeru-san wa \"Mado ga aitenai desu\" to iimashita.",
+          "text_vi": "Trong video này, anh Miguel đã nói \"Cửa sổ chưa mở\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「開いていないです」の「て」がい抜きされて「開いてないです」となっています。「していません」も「していないです」も同じ意味です。",
+          "romaji": "\"Aite inai desu\" no \"i\" ga inuki sarete \"aitenai desu\" to natte imasu. \"Shite imasen\" mo \"shite inai desu\" mo onaji imi desu.",
+          "text_vi": "Chữ \"i\" trong \"aite inai desu\" bị lược bỏ (i-nuki) thành \"aitenai desu\". \"Shite imasen\" và \"shite inai desu\" cũng cùng một nghĩa.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「開いている」→「開いてる」、「していない」→「してない」「開いてない」のように言うことができます。",
+          "romaji": "\"Aite iru\" → \"aiteru\", \"shite inai\" → \"shitenai\", \"aitenai\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói tương tự như \"aite iru\" → \"aiteru\", \"shite inai\" → \"shitenai\", \"aitenai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "話し言葉では、音が変わることもあります。例えば、「開けておいてください」が「開けといてください」ということがあります。",
+          "romaji": "Hanashi kotoba de wa, oto ga kawaru koto mo arimasu. Tatoeba, \"akete oite kudasai\" ga \"aketoite kudasai\" to iu koto ga arimasu.",
+          "text_vi": "Trong văn nói, âm cũng có thể biến đổi. Ví dụ, \"akete oite kudasai\" (hãy để mở sẵn) có khi thành \"aketoite kudasai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「て＋おいて」が短くなって「といて」となります。「読んでおいてください」も「読んどいてください」となります。",
+          "romaji": "\"Te + oite\" ga mijikaku natte \"toite\" to narimasu. \"Yonde oite kudasai\" mo \"yondoite kudasai\" to narimasu.",
+          "text_vi": "\"Te + oite\" rút ngắn thành \"toite\". \"Yonde oite kudasai\" (đọc trước giúp nhé) cũng thành \"yondoite kudasai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「食べなければなりません」が「早く食べなきゃなりません」ということもあります。「なければ」が短くなって「なきゃ」となります。",
+          "romaji": "Hoka ni mo, \"tabenakereba narimasen\" ga \"hayaku tabenakya narimasen\" to iu koto mo arimasu. \"Nakereba\" ga mijikaku natte \"nakya\" to narimasu.",
+          "text_vi": "Ngoài ra, \"tabenakereba narimasen\" (phải ăn) cũng có khi thành \"hayaku tabenakya narimasen\". \"Nakereba\" rút ngắn thành \"nakya\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画の中では「一酸化炭素中毒になっちゃうよね」と言っています。「しまう」が短くなって「ちゃう」「じゃう」となります。",
+          "romaji": "Dooga no naka de wa \"Issankatanso chuudoku ni nacchau yo ne\" to itte imasu. \"Shimau\" ga mijikaku natte \"chau\", \"jau\" to narimasu.",
+          "text_vi": "Trong video có câu \"sẽ bị ngộ độc khí CO đó nhỉ\". \"Shimau\" rút ngắn thành \"chau\"/\"jau\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "おねがいが あるんですが",
+          "romaji": "onegai ga arun desu ga",
+          "text_vi": "Tôi có việc muốn nhờ",
+          "key_phrase": false
+        },
+        {
+          "start": "03:18",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "大城さん、来週のミーティングのことでお願いがあるんですが。",
+          "romaji": "Ooshiro-san, raishuu no miitingu no koto de onegai ga arun desu ga.",
+          "text_vi": "Anh Ōshiro ơi, tôi có việc muốn nhờ về cuộc họp tuần sau.",
+          "key_phrase": true
+        },
+        {
+          "start": "03:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画でミゲルさんは「お願いがあるんですが」と言いました。",
+          "romaji": "Kono dooga de Migeru-san wa \"Onegai ga arun desu ga\" to iimashita.",
+          "text_vi": "Trong video này, anh Miguel đã nói \"Tôi có việc muốn nhờ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「お願いがあるんですが」の「の」が省略されて「お願いがあるんですが」となっています。",
+          "romaji": "\"Onegai ga aru no desu ga\" no \"no\" ga shooryaku sarete \"onegai ga arun desu ga\" to natte imasu.",
+          "text_vi": "\"No\" trong \"onegai ga aru no desu ga\" bị lược bỏ thành \"onegai ga arun desu ga\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "話し言葉では、このように音が変わることがよくあります。意味は同じですが、音が変わるとカジュアルな感じになります。",
+          "romaji": "Hanashi kotoba de wa, kono yoo ni oto ga kawaru koto ga yoku arimasu. Imi wa onaji desu ga, oto ga kawaru to kajuaru na kanji ni narimasu.",
+          "text_vi": "Trong văn nói, âm thường biến đổi như vậy. Nghĩa vẫn giống nhau, nhưng khi âm biến đổi thì nghe có cảm giác thân mật, tự nhiên hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも「わからない」→「わかんない」、「信じられない」→「信じらんない」のように音が変わることもあります。",
+          "romaji": "Hoka ni mo \"wakaranai\" → \"wakannai\", \"shinjirarenai\" → \"shinjirannai\" no yoo ni oto ga kawaru koto mo arimasu.",
+          "text_vi": "Ngoài ra cũng có thể biến âm như \"wakaranai\" → \"wakannai\", \"shinjirarenai\" → \"shinjirannai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "話し言葉では、文末が省略されることもあります。「雨が降るかもしれない」の「しれない」が省略されて「雨が降るかも」となります。",
+          "romaji": "Hanashi kotoba de wa, bunmatsu ga shooryaku sareru koto mo arimasu. \"Ame ga furu kamo shirenai\" no \"shirenai\" ga shooryaku sarete \"ame ga furu kamo\" to narimasu.",
+          "text_vi": "Trong văn nói, cuối câu cũng có thể bị lược bỏ. \"Shirenai\" trong \"ame ga furu kamo shirenai\" (có lẽ trời sẽ mưa) bị lược thành \"ame ga furu kamo\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「具合が悪いなら早く帰ったらどうですか」も、省略されて「具合が悪いなら早く帰ったら」となったりします。このように文末を省略した話し方は、親しい人同士のやりとりの中でよく使います。",
+          "romaji": "\"Guai ga warui nara hayaku kaettara doo desu ka\" mo, shooryaku sarete \"Guai ga warui nara hayaku kaettara\" to nattari shimasu. Kono yoo ni bunmatsu o shooryaku shita hanashikata wa, shitashii hito dooshi no yaritori no naka de yoku tsukaimasu.",
+          "text_vi": "Câu \"guai ga warui nara hayaku kaettara doo desu ka\" (nếu khó ở thì về sớm thế nào) cũng có khi bị lược thành \"guai ga warui nara hayaku kaettara\". Cách nói lược bỏ cuối câu như vậy thường dùng giữa những người thân thiết.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+# Lời thoại Tình huống: Tham gia tổ dân phố
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-6-10.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Bảng thông báo truyền tay của tổ dân phố
+00:07 | アンジェラ / Anjera / Angela | おはようございます、鈴木さん。 | Ohayoo gozaimasu, Suzuki-san. | Chào buổi sáng, chị Suzuki.
+00:09 | 鈴木 / Suzuki / Suzuki | おはようございます、アンジェラさん。 | Ohayoo gozaimasu, Anjera-san. | Chào buổi sáng, Angela.
+*00:11 | アンジェラ / Anjera / Angela | それは何ですか。 | Sore wa nan desu ka. | Cái đó là gì vậy ạ?
+00:14 | 鈴木 / Suzuki / Suzuki | 町内会の回覧板ですよ。 | Choonaikai no kairanban desu yo. | Là bảng thông báo truyền tay của tổ dân phố đấy.
+*00:16 | アンジェラ / Anjera / Angela | 町内会って何ですか。 | Choonaikai tte nan desu ka. | Tổ dân phố là gì ạ?
+00:20 | 鈴木 / Suzuki / Suzuki | 同じ地域に住んでいる人たちの会です。いろんな活動をしているんですよ。 | Onaji chiiki ni sunde iru hitotachi no kai desu. Ironna katsudoo o shite irun desu yo. | Là hội của những người sống cùng khu vực. Có nhiều hoạt động lắm.
+00:27 | 鈴木 / Suzuki / Suzuki | ほら、町内会の行事やお知らせとか書いてあるんですよ。 | Hora, choonaikai no gyooji ya oshirase toka kaite arun desu yo. | Đây này, có ghi các sự kiện và thông báo của tổ dân phố.
+00:33 | アンジェラ / Anjera / Angela | そうですか。 | Soo desu ka. | Vậy ạ.
+00:35 | アンジェラ / Anjera / Angela | これはバーベキューですか。 | Kore wa baabekyuu desu ka. | Cái này là tiệc nướng ạ?
+00:37 | 鈴木 / Suzuki / Suzuki | ああ、そうそう。 | Aa, soo soo. | À, đúng rồi.
+*00:38 | アンジェラ / Anjera / Angela | 楽しそうですね。私も参加できますか。 | Tanoshisoo desu ne. Watashi mo sanka dekimasu ka. | Trông vui quá. Em cũng tham gia được không ạ?
+00:43 | 鈴木 / Suzuki / Suzuki | はい。でも、アンジェラさん、もう町内会に入りましたか。 | Hai. Demo, Anjera-san, moo choonaikai ni hairimashita ka. | Được chứ. Nhưng mà Angela đã vào tổ dân phố chưa?
+*00:49 | アンジェラ / Anjera / Angela | いいえ、まだです。どうやったら入れますか。 | Iie, mada desu. Doo yattara hairemasu ka. | Chưa ạ. Làm thế nào để vào được ạ?
+00:54 | 鈴木 / Suzuki / Suzuki | このあたりは3班だから、あそこの高橋さんちで聞いてみてください。班長さんだから。 | Kono atari wa sanpan dakara, asoko no Takahashi-san-chi de kiite mite kudasai. Hanchoo-san dakara. | Khu này là tổ 3, em thử hỏi ở nhà bà Takahashi đằng kia nhé. Bà ấy là tổ trưởng.
+01:02 | アンジェラ / Anjera / Angela | 後で行ってみます。 | Ato de itte mimasu. | Lát nữa em sẽ đến thử.
+### từ vựng
+町内会 | ちょうないかい | choonaikai | tổ dân phố
+回覧板 | かいらんばん | kairanban | bảng thông báo truyền tay
+地域 | ちいき | chiiki | khu vực
+活動 | かつどう | katsudoo | hoạt động
+行事 | ぎょうじ | gyooji | sự kiện
+参加 | さんか | sanka | tham gia
+班長 | はんちょう | hanchoo | tổ trưởng
+
+## scene-3.mp4
+# Xin vào tổ dân phố
+00:01 | 高橋 / Takahashi / Takahashi | はーい。 | Haai. | Vâng, ra đây.
+00:03 | 高橋 / Takahashi / Takahashi | あ、アンジェラさん。こんにちは。 | A, Anjera-san. Konnichiwa. | À, Angela. Chào cháu.
+00:07 | アンジェラ / Anjera / Angela | こんにちは。今ちょっといいですか。 | Konnichiwa. Ima chotto ii desu ka. | Cháu chào bác. Bây giờ bác rảnh một chút không ạ?
+00:11 | 高橋 / Takahashi / Takahashi | はい。どうしましたか。 | Hai. Doo shimashita ka. | Ừ. Có chuyện gì thế?
+*00:14 | アンジェラ / Anjera / Angela | 私も町内会に入りたいんですけど。 | Watashi mo choonaikai ni hairitain desu kedo. | Cháu cũng muốn vào tổ dân phố ạ.
+00:19 | 高橋 / Takahashi / Takahashi | ああ、そうですか。ありがとうございます。 | Aa, soo desu ka. Arigatoo gozaimasu. | À, vậy à. Cảm ơn cháu.
+00:23 | 高橋 / Takahashi / Takahashi | じゃあ、ちょっと説明しますね。 | Jaa, chotto setsumee shimasu ne. | Vậy để bác giải thích một chút nhé.
+00:26 | アンジェラ / Anjera / Angela | はい、お願いします。 | Hai, onegaishimasu. | Vâng, bác giải thích giúp cháu.
+*00:30 | 高橋 / Takahashi / Takahashi | まず、1年間の会費は3,000円です。 | Mazu, ichinenkan no kaihi wa sanzen-en desu. | Trước tiên, hội phí một năm là 3.000 yên.
+00:35 | アンジェラ / Anjera / Angela | 3,000円。 | Sanzen-en. | 3.000 yên ạ.
+00:36 | 高橋 / Takahashi / Takahashi | それで、お花見とか、バーベキューとか、あと防災訓練もやっています。 | Sorede, ohanami toka, baabekyuu toka, ato boosai-kunren mo yatte imasu. | Rồi có đi ngắm hoa anh đào, tiệc nướng, ngoài ra còn diễn tập phòng chống thiên tai.
+00:44 | アンジェラ / Anjera / Angela | へえ、そうなんですか。 | Hee, soo nan desu ka. | Ồ, vậy ạ.
+00:47 | 高橋 / Takahashi / Takahashi | それから、町内会はごみ置き場の掃除もしています。 | Sorekara, choonaikai wa gomi-okiba no sooji mo shite imasu. | Ngoài ra tổ dân phố còn dọn dẹp chỗ đổ rác.
+00:53 | アンジェラ / Anjera / Angela | へえ、全然知りませんでした。 | Hee, zenzen shirimasen deshita. | Ồ, cháu hoàn toàn không biết.
+00:56 | 高橋 / Takahashi / Takahashi | ごみ置き場の掃除は、みんなが当番でやっています。 | Gomi-okiba no sooji wa, minna ga tooban de yatte imasu. | Việc dọn chỗ đổ rác thì mọi người thay phiên nhau làm.
+*01:01 | 高橋 / Takahashi / Takahashi | 大体2か月に1回くらい当番が回ってきます。 | Daitai nikagetsu ni ikkai kurai tooban ga mawatte kimasu. | Khoảng 2 tháng lại đến lượt một lần.
+01:07 | アンジェラ / Anjera / Angela | ああ、そうですか。 | Aa, soo desu ka. | À, vậy ạ.
+01:12 | 高橋 / Takahashi / Takahashi | これが申込書です。 | Kore ga mooshikomisho desu. | Đây là đơn đăng ký.
+01:16 | アンジェラ / Anjera / Angela | ありがとうございます。じゃあ、家に帰って、後でお金と一緒に持ってきます。 | Arigatoo gozaimasu. Jaa, ie ni kaette, ato de okane to issho ni motte kimasu. | Cháu cảm ơn bác. Vậy cháu về nhà rồi lát nữa mang đến cùng với tiền.
+01:23 | 高橋 / Takahashi / Takahashi | はい、いいですよ。お願いします。 | Hai, ii desu yo. Onegaishimasu. | Ừ, được rồi. Nhờ cháu nhé.
+01:26 | アンジェラ / Anjera / Angela | 失礼します。 | Shitsuree shimasu. | Cháu xin phép ạ.
+### từ vựng
+会費 | かいひ | kaihi | hội phí
+花見 | はなみ | hanami | ngắm hoa anh đào
+防災訓練 | ぼうさいくんれん | boosai-kunren | diễn tập phòng chống thiên tai
+当番 | とうばん | tooban | phiên trực
+申込書 | もうしこみしょ | mooshikomisho | đơn đăng ký
+説明 | せつめい | setsumee | giải thích
+
+## scene-2.mp4
+# Chuẩn bị cho lượt dọn chỗ đổ rác
+00:01 | 鈴木 / Suzuki / Suzuki | はい。 | Hai. | Vâng.
+00:03 | アンジェラ / Anjera / Angela | こんばんは。アンジェラです。 | Konbanwa. Anjera desu. | Chào chị. Em là Angela.
+00:05 | 鈴木 / Suzuki / Suzuki | アンジェラさん。 | Anjera-san. | À, Angela.
+00:07 | アンジェラ / Anjera / Angela | 夜遅くにすみません。 | Yoru osoku ni sumimasen. | Xin lỗi vì đến muộn thế này.
+00:10 | 鈴木 / Suzuki / Suzuki | これ、ありがとうございます。 | Kore, arigatoo gozaimasu. | Cảm ơn em vì cái này.
+*00:13 | アンジェラ / Anjera / Angela | ちょっと教えてほしいんですけど。 | Chotto oshiete hoshiin desu kedo. | Em muốn nhờ chị chỉ giúp một chút.
+00:16 | 鈴木 / Suzuki / Suzuki | はい、何ですか。 | Hai, nan desu ka. | Ừ, chuyện gì thế?
+00:18 | アンジェラ / Anjera / Angela | 明日、私、ごみ置き場の掃除当番なんですけど。 | Ashita, watashi, gomi-okiba no sooji-tooban nan desu kedo. | Ngày mai em đến lượt dọn chỗ đổ rác.
+00:22 | 鈴木 / Suzuki / Suzuki | ああ、そうですか。ご苦労様です。 | Aa, soo desu ka. Gokuroosama desu. | À, vậy à. Vất vả cho em rồi.
+*00:26 | アンジェラ / Anjera / Angela | 初めてなんですけど、どうしたらいいですか。 | Hajimete nan desu kedo, doo shitara ii desu ka. | Đây là lần đầu, em nên làm thế nào ạ?
+00:30 | 鈴木 / Suzuki / Suzuki | あー、大丈夫大丈夫。他にも当番の人がいますから。 | Aa, daijoobu daijoobu. Hoka ni mo tooban no hito ga imasu kara. | À, không sao đâu. Còn có người khác cùng trực nữa.
+00:35 | 鈴木 / Suzuki / Suzuki | アンジェラさんは7時までに行けばいいですよ。 | Anjera-san wa shichi-ji made ni ikeba ii desu yo. | Em chỉ cần đến trước 7 giờ là được.
+*00:39 | アンジェラ / Anjera / Angela | 7時ですね。どんな格好をして行ったらいいですか。 | Shichi-ji desu ne. Donna kakkoo o shite ittara ii desu ka. | 7 giờ nhỉ. Em nên mặc gì để đi ạ?
+00:45 | 鈴木 / Suzuki / Suzuki | 普通でいいですよ。軍手とか持って行ったら？ | Futsuu de ii desu yo. Gunte toka motte ittara? | Bình thường thôi. Em mang theo găng tay vải nhé?
+00:49 | アンジェラ / Anjera / Angela | 軍手ですか。持っていないんですけど… | Gunte desu ka. Motte inain desu kedo… | Găng tay vải ạ? Em không có…
+00:55 | 鈴木 / Suzuki / Suzuki | そうですか。じゃあ、うちにたくさんあるから、一つあげましょうか。 | Soo desu ka. Jaa, uchi ni takusan aru kara, hitotsu agemashoo ka. | Vậy à. Nhà chị có nhiều, chị cho em một đôi nhé?
+01:01 | アンジェラ / Anjera / Angela | いいんですか。 | Iin desu ka. | Được ạ?
+01:06 | 鈴木 / Suzuki / Suzuki | はい、どうぞ。 | Hai, doozo. | Đây, em cầm lấy.
+01:07 | アンジェラ / Anjera / Angela | ありがとうございます。 | Arigatoo gozaimasu. | Em cảm ơn chị.
+01:09 | アンジェラ / Anjera / Angela | あの、何時ごろ終わりますか。 | Ano, nanji goro owarimasu ka. | Dạ, khoảng mấy giờ thì xong ạ?
+01:13 | 鈴木 / Suzuki / Suzuki | いつもは大体8時半ごろですよ。 | Itsumo wa daitai hachi-ji han goro desu yo. | Thường thì khoảng 8 giờ rưỡi.
+01:17 | アンジェラ / Anjera / Angela | ああ、そうですか。ありがとうございました。助かりました。 | Aa, soo desu ka. Arigatoo gozaimashita. Tasukarimashita. | À, vậy ạ. Cảm ơn chị. Chị giúp em nhiều quá.
+01:22 | 鈴木 / Suzuki / Suzuki | 頑張ってくださいね。 | Ganbatte kudasai ne. | Cố lên nhé.
+01:24 | アンジェラ / Anjera / Angela | はーい。 | Haai. | Vâng ạ.
+### từ vựng
+ごみ置き場 | ごみおきば | gomi-okiba | chỗ đổ rác
+掃除 | そうじ | sooji | dọn dẹp
+格好 | かっこう | kakkoo | trang phục
+軍手 | ぐんて | gunte | găng tay vải
+ご苦労様です | ごくろうさまです | gokuroosama desu | vất vả rồi
+助かる | たすかる | tasukaru | được giúp đỡ nhiều
+
+## summary.mp4
+# Ôn tập: Tham gia tổ dân phố
+00:00 |  /  / Chủ đề | ちょうないかいって なんですか | "choonaikai" tte nan desu ka | "Choonaikai" là gì vậy ạ?
+00:06 | アンジェラ / Anjera / Angela | それは何ですか。 | Sore wa nan desu ka. | Cái đó là gì vậy ạ?
+00:08 | 鈴木 / Suzuki / Suzuki | 町内会の回覧板ですよ。 | Choonaikai no kairanban desu yo. | Là bảng thông báo truyền tay của tổ dân phố đấy.
+*00:11 | アンジェラ / Anjera / Angela | 町内会って何ですか。 | Choonaikai tte nan desu ka. | Tổ dân phố là gì ạ?
+00:16 | ナレーター / Nareetaa / Người dẫn | 「名詞の後に＋って何ですか」は、その名詞の意味を聞くときに使います。 | "Meeshi no ato ni + tte nan desu ka" wa, sono meeshi no imi o kiku toki ni tsukaimasu. | "Danh từ + tte nan desu ka" dùng khi hỏi nghĩa của danh từ đó.
+00:27 | ナレーター / Nareetaa / Người dẫn | 初めて聞いた言葉や、聞いたことはあるけれど意味がよくわからないとき、相手にその言葉の意味を教えてもらうための表現です。 | Hajimete kiita kotoba ya, kiita koto wa aru keredo imi ga yoku wakaranai toki, aite ni sono kotoba no imi o oshiete morau tame no hyoogen desu. | Đây là cách nói để nhờ người kia giải thích nghĩa của từ mới nghe lần đầu, hoặc từ đã nghe nhưng chưa hiểu rõ.
+00:43 | ナレーター / Nareetaa / Người dẫn | 動画では、鈴木さんが「町内会」と言いました。アンジェラさんは「町内会」という言葉の意味がわかりませんでした。 | Dooga de wa, Suzuki-san ga "choonaikai" to iimashita. Anjera-san wa "choonaikai" to iu kotoba no imi ga wakarimasen deshita. | Trong video, chị Suzuki nói "choonaikai". Chị Angela không hiểu từ "choonaikai" nghĩa là gì.
+00:58 | ナレーター / Nareetaa / Người dẫn | それで、鈴木さんに「町内会って何ですか」と聞きました。 | Sorede, Suzuki-san ni "Choonaikai tte nan desu ka" to kikimashita. | Vì vậy chị ấy hỏi chị Suzuki "Choonaikai là gì ạ?".
+01:07 | ナレーター / Nareetaa / Người dẫn | 例えば、Aさんが「今日はお花見があります」と言いました。でも、あなたはお花見が何かわかりません。 | Tatoeba, A-san ga "Kyoo wa ohanami ga arimasu" to iimashita. Demo, anata wa ohanami ga nani ka wakarimasen. | Ví dụ, anh A nói "Hôm nay có buổi ngắm hoa". Nhưng bạn không biết "ohanami" là gì.
+01:24 | ナレーター / Nareetaa / Người dẫn | そのときは、「お花見って何ですか」と聞きます。 | Sono toki wa, "Ohanami tte nan desu ka" to kikimasu. | Khi đó thì hỏi "Ohanami là gì ạ?".
+01:32 |  /  / Chủ đề | たのしそうですね | tanoshisoo desu ne | Trông vui nhỉ
+01:39 | アンジェラ / Anjera / Angela | これはバーベキューですか。 | Kore wa baabekyuu desu ka. | Cái này là tiệc nướng ạ?
+01:41 | 鈴木 / Suzuki / Suzuki | ああ、そうそう。 | Aa, soo soo. | À, đúng rồi.
+*01:43 | アンジェラ / Anjera / Angela | 楽しそうですね。 | Tanoshisoo desu ne. | Trông vui quá.
+01:46 | ナレーター / Nareetaa / Người dẫn | 「形容詞＋そうです」は、見た印象を言うときに使います。 | "Keeyooshi + soo desu" wa, mita inshoo o iu toki ni tsukaimasu. | "Tính từ + soo desu" dùng để nói ấn tượng khi nhìn thấy.
+01:55 | ナレーター / Nareetaa / Người dẫn | い形容詞の場合は、「い」を消して「そうです」をつけます。 | I-keeyooshi no baai wa, "i" o keshite "soo desu" o tsukemasu. | Với tính từ đuôi i, bỏ "i" rồi thêm "soo desu".
+02:03 | ナレーター / Nareetaa / Người dẫn | な形容詞の場合は、「な」は使わないで、そのまま「そうです」をつけます。 | Na-keeyooshi no baai wa, "na" wa tsukawanaide, sono mama "soo desu" o tsukemasu. | Với tính từ đuôi na, không dùng "na" mà thêm luôn "soo desu".
+02:14 | ナレーター / Nareetaa / Người dẫn | 動画では、アンジェラさんはバーベキューのチラシの絵を見て、「楽しそうですね」と言いました。 | Dooga de wa, Anjera-san wa baabekyuu no chirashi no e o mite, "Tanoshisoo desu ne" to iimashita. | Trong video, chị Angela nhìn hình trên tờ thông báo tiệc nướng và nói "Trông vui quá".
+02:24 | ナレーター / Nareetaa / Người dẫn | 例えば、ケーキがおいしいかどうかは見ただけでは本当はわかりませんが、見た印象で「おいしそうです」と言うことができます。 | Tatoeba, keeki ga oishii ka doo ka wa mita dake de wa hontoo wa wakarimasen ga, mita inshoo de "Oishisoo desu" to iu koto ga dekimasu. | Ví dụ, chỉ nhìn thì không biết bánh có thật sự ngon không, nhưng theo ấn tượng có thể nói "Trông ngon quá".
+02:40 |  /  / Chủ đề | おしえて ほしいんですけど | oshiete hoshiin desu kedo | Tôi muốn nhờ chỉ giúp…
+*02:46 | アンジェラ / Anjera / Angela | ちょっと教えてほしいんですけど。 | Chotto oshiete hoshiin desu kedo. | Em muốn nhờ chị chỉ giúp một chút.
+02:50 | ナレーター / Nareetaa / Người dẫn | 動詞のて形に「ほしいんですけど」をつけると、相手への希望やお願いを表すことができます。 | Dooshi no te-kee ni "hoshiin desu kedo" o tsukeru to, aite e no kiboo ya onegai o arawasu koto ga dekimasu. | Thêm "hoshiin desu kedo" vào thể te của động từ để bày tỏ mong muốn hay lời nhờ vả với người kia.
+03:04 | ナレーター / Nareetaa / Người dẫn | この動画では、アンジェラさんが鈴木さんに、最初に「教えてほしいんですけど」と言って相談を始めました。 | Kono dooga de wa, Anjera-san ga Suzuki-san ni, saisho ni "Oshiete hoshiin desu kedo" to itte soodan o hajimemashita. | Trong video, chị Angela mở đầu bằng câu "Em muốn nhờ chị chỉ giúp" rồi mới bắt đầu hỏi chị Suzuki.
+03:18 | ナレーター / Nareetaa / Người dẫn | いきなり質問するより、相手も答えやすいです。 | Ikinari shitsumon suru yori, aite mo kotaeyasui desu. | So với hỏi ngay lập tức, như vậy người kia cũng dễ trả lời hơn.
+03:28 | ナレーター / Nareetaa / Người dẫn | 「教えてほしいんですけど」は、「教えてもらいたいんですけど」と言うこともできます。 | "Oshiete hoshiin desu kedo" wa, "Oshiete moraitain desu kedo" to iu koto mo dekimasu. | "Oshiete hoshiin desu kedo" cũng có thể nói là "Oshiete moraitain desu kedo".

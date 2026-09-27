@@ -133,7 +133,7 @@ test('cập nhật file mô tả giữ lời thoại đã nhập, thêm cảnh m
   });
 
   assert.deepEqual(merged.lesson, manifest.lesson);
-  assert.deepEqual(merged.videos[0], { ...manifest.videos[0], kind: 'scene' }, 'giữ tên và lời thoại đã sửa tay');
+  assert.deepEqual(merged.videos[0], manifest.videos[0], 'giữ tên và lời thoại đã sửa tay');
   assert.deepEqual(merged.videos[1], {
     title: 'Ôn tập',
     url: '/uploads/lesson-videos/n5-09-directions/summary.mp4',
@@ -142,4 +142,39 @@ test('cập nhật file mô tả giữ lời thoại đã nhập, thêm cảnh m
     transcript: [],
   });
   assert.equal(merged.videos.length, 2, 'video-1.mp4 không còn trong thư mục gốc thì bị bỏ');
+});
+
+test('chạy stage lại giữ thứ tự và loại video người soạn đã sắp theo nội dung', () => {
+  // File "12. Ôn tập" thực ra là một cảnh, còn ôn tập thật nằm ở file cảnh 3.
+  const url = (name) => `/uploads/lesson-videos/n4-12-cards/${name}`;
+  const manifest = {
+    lesson: { title: 'Tình huống: Gửi thư' },
+    videos: [
+      { title: 'Gửi thư', url: url('scene-1.mp4'), kind: 'scene', transcript: [] },
+      { title: 'Viết chữ 様', url: url('summary.mp4'), kind: 'scene', transcript: [] },
+      { title: 'Ôn tập', url: url('scene-3.mp4'), kind: 'review', transcript: [] },
+    ],
+  };
+
+  const merged = mergeManifest({
+    manifest,
+    dir: 'n4-12-cards',
+    videos: [
+      { target: 'scene-1.mp4', title: 'x', kind: 'scene' },
+      { target: 'scene-2.mp4', title: 'Chúc mừng năm mới', kind: 'scene' },
+      { target: 'scene-3.mp4', title: 'x', kind: 'scene' },
+      { target: 'summary.mp4', title: 'Ôn tập', kind: 'review' },
+    ],
+  });
+
+  assert.deepEqual(
+    merged.videos.map((video) => [video.url.split('/').pop(), video.kind]),
+    [
+      ['scene-1.mp4', 'scene'],
+      ['summary.mp4', 'scene'],
+      ['scene-3.mp4', 'review'],
+      ['scene-2.mp4', 'scene'],
+    ],
+    'video đã có giữ chỗ và loại; video mới nối vào cuối với loại suy từ tên file',
+  );
 });

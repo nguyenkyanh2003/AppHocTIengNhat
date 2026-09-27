@@ -1,0 +1,1085 @@
+{
+  "lesson": {
+    "title": "Tình huống: Chào hỏi đúng người, đúng lúc"
+  },
+  "videos": [
+    {
+      "title": "Chào hỏi hằng ngày và cúi chào",
+      "description": "Chọn được lời chào hợp với người đối diện, thời điểm trong ngày và biết cách cúi chào.",
+      "url": "/uploads/lesson-videos/n4-01-greetings/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "日本だけでなく、世界のどこでも挨拶はありますが、どんな場面でどんな挨拶をするのかは、国や地域によって異なります。",
+          "romaji": "Nihon dake de naku, sekai no doko demo aisatsu wa arimasu ga, donna bamen de donna aisatsu o suru no ka wa, kuni ya chiiki ni yotte kotonarimasu.",
+          "text_vi": "Không chỉ ở Nhật mà ở đâu trên thế giới cũng có lời chào, nhưng chào thế nào trong tình huống nào thì khác nhau tùy đất nước, vùng miền.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "日本では、学校でも職場でもよく挨拶をします。",
+          "romaji": "Nihon de wa, gakkoo demo shokuba demo yoku aisatsu o shimasu.",
+          "text_vi": "Ở Nhật, người ta chào hỏi nhiều cả ở trường lẫn nơi làm việc.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "挨拶をしてコミュニケーションのきっかけを作ることは、良い人間関係を保つために大切なことです。",
+          "romaji": "Aisatsu o shite komyunikeeshon no kikkake o tsukuru koto wa, yoi ningen-kankee o tamotsu tame ni taisetsu na koto desu.",
+          "text_vi": "Chào hỏi để mở đầu giao tiếp là điều quan trọng để giữ mối quan hệ tốt đẹp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "挨拶の言葉は、相手や場面によって違います。",
+          "romaji": "Aisatsu no kotoba wa, aite ya bamen ni yotte chigaimasu.",
+          "text_vi": "Lời chào khác nhau tùy người đối diện và tình huống.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "朝、友達に会ったときは「おはよう」と言います。",
+          "romaji": "Asa, tomodachi ni atta toki wa \"Ohayoo\" to iimasu.",
+          "text_vi": "Buổi sáng gặp bạn bè thì nói \"Ohayoo\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "先輩や先生、同僚、上司には「おはようございます」と丁寧に言います。",
+          "romaji": "Senpai ya sensee, dooryoo, jooshi ni wa \"Ohayoo gozaimasu\" to teenee ni iimasu.",
+          "text_vi": "Với đàn anh đàn chị, thầy cô, đồng nghiệp, cấp trên thì nói lịch sự \"Ohayoo gozaimasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "学校から帰るときは、友達には「じゃあね」とか「バイバイ」、先輩や先生には「さようなら」と言います。",
+          "romaji": "Gakkoo kara kaeru toki wa, tomodachi ni wa \"Jaa ne\" toka \"Baibai\", senpai ya sensee ni wa \"Sayoonara\" to iimasu.",
+          "text_vi": "Khi ra về ở trường, với bạn bè thì nói \"Jaa ne\" hay \"Bye bye\", với đàn anh đàn chị, thầy cô thì nói \"Sayoonara\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "職場を出るときは、「お疲れ様でした」とか「お先に失礼します」と言います。",
+          "romaji": "Shokuba o deru toki wa, \"Otsukaresama deshita\" toka \"Osaki ni shitsuree shimasu\" to iimasu.",
+          "text_vi": "Khi rời nơi làm việc thì nói \"Otsukaresama deshita\" (Anh chị vất vả rồi) hoặc \"Osaki ni shitsuree shimasu\" (Tôi xin phép về trước).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "挨拶の言葉は、時間によっても違います。",
+          "romaji": "Aisatsu no kotoba wa, jikan ni yotte mo chigaimasu.",
+          "text_vi": "Lời chào cũng khác nhau tùy thời điểm trong ngày.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "朝は「おはようございます」、日中は「こんにちは」、暗くなってきたら「こんばんは」と言います。",
+          "romaji": "Asa wa \"Ohayoo gozaimasu\", nitchuu wa \"Konnichiwa\", kuraku natte kitara \"Konbanwa\" to iimasu.",
+          "text_vi": "Buổi sáng nói \"Ohayoo gozaimasu\", ban ngày nói \"Konnichiwa\", khi trời tối nói \"Konbanwa\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、「暑いですね」とか「いい天気ですね」と、天気の話をすることも多いです。",
+          "romaji": "Mata, \"Atsui desu ne\" toka \"Ii tenki desu ne\" to, tenki no hanashi o suru koto mo ooi desu.",
+          "text_vi": "Ngoài ra, người ta cũng hay nói chuyện thời tiết như \"Nóng nhỉ\", \"Trời đẹp nhỉ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しばらく会わなかった人に会ったときは、「お久しぶりです」と言うことが多いです。",
+          "romaji": "Shibaraku awanakatta hito ni atta toki wa, \"Ohisashiburi desu\" to iu koto ga ooi desu.",
+          "text_vi": "Khi gặp người lâu rồi không gặp thì thường nói \"Ohisashiburi desu\" (Lâu rồi không gặp).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "挨拶をするときは、大抵お辞儀をします。",
+          "romaji": "Aisatsu o suru toki wa, taitei ojigi o shimasu.",
+          "text_vi": "Khi chào hỏi thường cúi chào.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お辞儀は、腰から上を前に倒して頭を下げて、相手に敬意を伝えるものです。",
+          "romaji": "Ojigi wa, koshi kara ue o mae ni taoshite atama o sagete, aite ni keei o tsutaeru mono desu.",
+          "text_vi": "Cúi chào là nghiêng phần trên từ thắt lưng về phía trước, cúi đầu để bày tỏ sự kính trọng với người kia.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "場面や気持ちによって、お辞儀の深さが変わります。丁寧なお辞儀ほど、深いお辞儀になります。",
+          "romaji": "Bamen ya kimochi ni yotte, ojigi no fukasa ga kawarimasu. Teenee na ojigi hodo, fukai ojigi ni narimasu.",
+          "text_vi": "Độ sâu của cái cúi chào thay đổi tùy tình huống và cảm xúc. Càng lịch sự thì cúi càng sâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "日本ではよくお辞儀をしますが、握手をしたり、肩を抱き合ったりすることはほとんどありません。",
+          "romaji": "Nihon de wa yoku ojigi o shimasu ga, akushu o shitari, kata o dakiattari suru koto wa hotondo arimasen.",
+          "text_vi": "Ở Nhật người ta hay cúi chào, nhưng hầu như không bắt tay hay ôm vai nhau.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "あまり普段は話をしない人でも、顔を知っていたら軽く会釈をします。",
+          "romaji": "Amari fudan wa hanashi o shinai hito demo, kao o shitte itara karuku eshaku o shimasu.",
+          "text_vi": "Dù là người bình thường ít nói chuyện, nếu biết mặt thì cũng khẽ gật đầu chào.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "少しだけ頭を下げ、相手に敬意を伝えます。会釈もお辞儀の一つです。",
+          "romaji": "Sukoshi dake atama o sage, aite ni keei o tsutaemasu. Eshaku mo ojigi no hitotsu desu.",
+          "text_vi": "Chỉ cúi đầu một chút để bày tỏ sự kính trọng. Gật đầu chào (eshaku) cũng là một kiểu cúi chào.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "仕事で初めて会った人には、「はじめまして。王と申します。よろしくお願いいたします」と自己紹介をします。",
+          "romaji": "Shigoto de hajimete atta hito ni wa, \"Hajimemashite. Oo to mooshimasu. Yoroshiku onegai itashimasu\" to jiko-shookai o shimasu.",
+          "text_vi": "Với người mới gặp lần đầu trong công việc, ta tự giới thiệu: \"Rất hân hạnh. Tôi tên là Vương. Rất mong được giúp đỡ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このときは、少し深くお辞儀をします。",
+          "romaji": "Kono toki wa, sukoshi fukaku ojigi o shimasu.",
+          "text_vi": "Lúc này thì cúi chào sâu hơn một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お礼を言いたいときは「ありがとうございます」、謝るときは「すみません」「ごめんなさい」と言います。",
+          "romaji": "Oree o iitai toki wa \"Arigatoo gozaimasu\", ayamaru toki wa \"Sumimasen\", \"Gomen nasai\" to iimasu.",
+          "text_vi": "Khi muốn cảm ơn thì nói \"Arigatoo gozaimasu\", khi xin lỗi thì nói \"Sumimasen\", \"Gomen nasai\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "職場では「申し訳ありません」と言うことも多いです。",
+          "romaji": "Shokuba de wa \"Mooshiwake arimasen\" to iu koto mo ooi desu.",
+          "text_vi": "Ở nơi làm việc cũng hay nói \"Mooshiwake arimasen\" (Thành thật xin lỗi).",
+          "key_phrase": false
+        },
+        {
+          "start": "04:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "深くお辞儀をします。",
+          "romaji": "Fukaku ojigi o shimasu.",
+          "text_vi": "Và cúi chào thật sâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "どの挨拶も、言葉だけでなく、心を込めて言うことが大切です。",
+          "romaji": "Dono aisatsu mo, kotoba dake de naku, kokoro o komete iu koto ga taisetsu desu.",
+          "text_vi": "Lời chào nào cũng vậy, không chỉ là lời nói mà quan trọng là nói bằng cả tấm lòng.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "挨拶",
+          "reading": "あいさつ",
+          "romaji": "aisatsu",
+          "meaning": "lời chào"
+        },
+        {
+          "word": "お辞儀",
+          "reading": "おじぎ",
+          "romaji": "ojigi",
+          "meaning": "cúi chào"
+        },
+        {
+          "word": "会釈",
+          "reading": "えしゃく",
+          "romaji": "eshaku",
+          "meaning": "gật đầu chào"
+        },
+        {
+          "word": "職場",
+          "reading": "しょくば",
+          "romaji": "shokuba",
+          "meaning": "nơi làm việc"
+        },
+        {
+          "word": "お先に失礼します",
+          "reading": "おさきにしつれいします",
+          "romaji": "osaki ni shitsuree shimasu",
+          "meaning": "tôi xin phép về trước"
+        },
+        {
+          "word": "お久しぶりです",
+          "reading": "おひさしぶりです",
+          "romaji": "ohisashiburi desu",
+          "meaning": "lâu rồi không gặp"
+        },
+        {
+          "word": "申し訳ありません",
+          "reading": "もうしわけありません",
+          "romaji": "mooshiwake arimasen",
+          "meaning": "thành thật xin lỗi"
+        }
+      ]
+    },
+    {
+      "title": "Lời chúc mừng, thăm hỏi và chia buồn",
+      "description": "Nói được lời chúc mừng, lời chào khi thăm người ốm và lời chia buồn đúng dịp.",
+      "url": "/uploads/lesson-videos/n4-01-greetings/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "毎日の生活の中でもいろいろな挨拶を使い分けますが、特別な出来事があったときには、その場面に合った挨拶をしなければなりません。",
+          "romaji": "Mainichi no seekatsu no naka demo iroiro na aisatsu o tsukaiwakemasu ga, tokubetsu na dekigoto ga atta toki ni wa, sono bamen ni atta aisatsu o shinakereba narimasen.",
+          "text_vi": "Trong cuộc sống hằng ngày ta dùng nhiều lời chào khác nhau, nhưng khi có sự kiện đặc biệt thì phải dùng lời chào hợp với tình huống đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "誕生日や結婚、入学、卒業、就職、出産など、相手にいいことがあったら、「おめでとう」とか「おめでとうございます」と言います。",
+          "romaji": "Tanjoobi ya kekkon, nyuugaku, sotsugyoo, shuushoku, shussan nado, aite ni ii koto ga attara, \"Omedetoo\" toka \"Omedetoo gozaimasu\" to iimasu.",
+          "text_vi": "Khi người kia có chuyện vui như sinh nhật, kết hôn, nhập học, tốt nghiệp, đi làm, sinh con… thì nói \"Omedetoo\" hoặc \"Omedetoo gozaimasu\" (Chúc mừng).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お葬式のときには、話はあまりしないほうがいいです。",
+          "romaji": "Osooshiki no toki ni wa, hanashi wa amari shinai hoo ga ii desu.",
+          "text_vi": "Ở đám tang thì không nên nói chuyện nhiều.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "亡くなった方のご家族には、「この度はどうも」とか「ご愁傷様です」と、お悔やみの気持ちを伝えましょう。",
+          "romaji": "Nakunatta kata no gokazoku ni wa, \"Kono tabi wa doomo\" toka \"Goshuushoosama desu\" to, okuyami no kimochi o tsutaemashoo.",
+          "text_vi": "Với gia đình người đã mất, hãy bày tỏ lòng thương tiếc bằng câu \"Kono tabi wa doomo\" hoặc \"Goshuushoosama desu\" (Xin chia buồn).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "大きな声で言わないように気をつけましょう。",
+          "romaji": "Ookina koe de iwanai yoo ni ki o tsukemashoo.",
+          "text_vi": "Chú ý đừng nói to.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、もし友達が病気で入院して、お見舞いに行ったら、帰るときには「お大事に」と言いましょう。",
+          "romaji": "Mata, moshi tomodachi ga byooki de nyuuin shite, omimai ni ittara, kaeru toki ni wa \"Odaiji ni\" to iimashoo.",
+          "text_vi": "Ngoài ra, nếu bạn bị ốm phải nằm viện và mình đi thăm, thì lúc về hãy nói \"Odaiji ni\" (Giữ gìn sức khỏe nhé).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "入院していなくても、例えば職場で体調が良くない人がいたら、その人と別れるときには「お大事に」と言います。",
+          "romaji": "Nyuuin shite inakute mo, tatoeba shokuba de taichoo ga yokunai hito ga itara, sono hito to wakareru toki ni wa \"Odaiji ni\" to iimasu.",
+          "text_vi": "Dù không nằm viện, ví dụ ở chỗ làm có người không khỏe thì khi chia tay người đó cũng nói \"Odaiji ni\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "挨拶をされたときは、どうしたらいいでしょう。",
+          "romaji": "Aisatsu o sareta toki wa, doo shitara ii deshoo.",
+          "text_vi": "Khi được người khác chào hỏi thì nên làm thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、あなたが「おめでとう」とか「お大事に」と言われたら、「ありがとうございます」と返事をすればいいんです。",
+          "romaji": "Tatoeba, anata ga \"Omedetoo\" toka \"Odaiji ni\" to iwaretara, \"Arigatoo gozaimasu\" to henji o sureba iin desu.",
+          "text_vi": "Ví dụ, khi được nói \"Chúc mừng\" hay \"Giữ gìn sức khỏe nhé\", bạn chỉ cần đáp \"Cảm ơn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、「すみません」と言われて、自分も相手に対してすみませんと思っていた場合は、「こちらこそすみません」と返すことができます。",
+          "romaji": "Mata, \"Sumimasen\" to iwarete, jibun mo aite ni taishite sumimasen to omotte ita baai wa, \"Kochira koso sumimasen\" to kaesu koto ga dekimasu.",
+          "text_vi": "Khi được xin lỗi mà mình cũng thấy có lỗi với người kia, có thể đáp \"Kochira koso sumimasen\" (Tôi mới là người phải xin lỗi).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「お世話になりました」「こちらこそお世話になりました」、「よろしくお願いします」「こちらこそよろしくお願いします」と言うことができます。",
+          "romaji": "Hoka ni mo, \"Osewa ni narimashita\" \"Kochira koso osewa ni narimashita\", \"Yoroshiku onegaishimasu\" \"Kochira koso yoroshiku onegaishimasu\" to iu koto ga dekimasu.",
+          "text_vi": "Ngoài ra còn có: \"Cảm ơn anh chị đã giúp đỡ\" – \"Tôi mới phải cảm ơn\", \"Rất mong được giúp đỡ\" – \"Tôi cũng vậy, rất mong được giúp đỡ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "特別な出来事があったときには、直接会うことができなくても、早く気持ちを伝えたほうがいいことが多いので、はがきやカード、手紙を送ることが多いです。",
+          "romaji": "Tokubetsu na dekigoto ga atta toki ni wa, chokusetsu au koto ga dekinakute mo, hayaku kimochi o tsutaeta hoo ga ii koto ga ooi node, hagaki ya kaado, tegami o okuru koto ga ooi desu.",
+          "text_vi": "Khi có sự kiện đặc biệt, dù không gặp trực tiếp được thì cũng nên sớm bày tỏ tình cảm, nên người ta hay gửi bưu thiếp, thiệp hoặc thư.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "今はインターネットでいろいろ文例を見ることができますから、参考にするのもいいでしょう。",
+          "romaji": "Ima wa intaanetto de iroiro bunree o miru koto ga dekimasu kara, sankoo ni suru no mo ii deshoo.",
+          "text_vi": "Bây giờ có thể xem nhiều câu mẫu trên internet, tham khảo cũng tốt.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ただ、難しい文を書き写しても、相手にあまり気持ちは伝わりません。",
+          "romaji": "Tada, muzukashii bun o kakiutsushite mo, aite ni amari kimochi wa tsutawarimasen.",
+          "text_vi": "Tuy nhiên, chép lại những câu khó thì cũng không truyền được nhiều tình cảm.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "簡単でもいいので、相手への気持ちを言葉にして書くようにしましょう。",
+          "romaji": "Kantan demo ii node, aite e no kimochi o kotoba ni shite kaku yoo ni shimashoo.",
+          "text_vi": "Đơn giản cũng được, hãy tự viết thành lời tình cảm của mình dành cho người kia.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "相手にはがきや手紙を送る前に、自分の周りの日本人に、文面が適当かどうか確認してもらってもよいでしょう。",
+          "romaji": "Aite ni hagaki ya tegami o okuru mae ni, jibun no mawari no Nihonjin ni, bunmen ga tekitoo ka doo ka kakunin shite moratte mo yoi deshoo.",
+          "text_vi": "Trước khi gửi bưu thiếp hay thư, cũng có thể nhờ người Nhật quanh mình xem giúp nội dung có phù hợp không.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "場面に合わせるとともに、タイミングや方法にも気をつけて挨拶をし、相手への気持ちを伝えるようにしましょう。",
+          "romaji": "Bamen ni awaseru to tomo ni, taimingu ya hoohoo ni mo ki o tsukete aisatsu o shi, aite e no kimochi o tsutaeru yoo ni shimashoo.",
+          "text_vi": "Hãy chào hỏi phù hợp với tình huống, chú ý cả thời điểm và cách thức, để truyền đạt tình cảm của mình tới người kia.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "おめでとうございます",
+          "reading": "おめでとうございます",
+          "romaji": "omedetoo gozaimasu",
+          "meaning": "chúc mừng"
+        },
+        {
+          "word": "葬式",
+          "reading": "そうしき",
+          "romaji": "sooshiki",
+          "meaning": "đám tang"
+        },
+        {
+          "word": "ご愁傷様です",
+          "reading": "ごしゅうしょうさまです",
+          "romaji": "goshuushoosama desu",
+          "meaning": "xin chia buồn"
+        },
+        {
+          "word": "見舞い",
+          "reading": "みまい",
+          "romaji": "mimai",
+          "meaning": "việc đi thăm người ốm"
+        },
+        {
+          "word": "お大事に",
+          "reading": "おだいじに",
+          "romaji": "odaiji ni",
+          "meaning": "giữ gìn sức khỏe nhé"
+        },
+        {
+          "word": "こちらこそ",
+          "reading": "こちらこそ",
+          "romaji": "kochira koso",
+          "meaning": "tôi mới là người phải…"
+        },
+        {
+          "word": "お世話になりました",
+          "reading": "おせわになりました",
+          "romaji": "osewa ni narimashita",
+          "meaning": "cảm ơn đã giúp đỡ"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi cách mừng đám cưới",
+      "description": "Hỏi được đồng nghiệp nên tặng gì khi đi đám cưới và đưa tiền mừng thế nào.",
+      "url": "/uploads/lesson-videos/n4-01-greetings/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、ちょっといいですか。",
+          "romaji": "Anoo, chotto ii desu ka.",
+          "text_vi": "Dạ, anh cho em hỏi chút được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "はい、何ですか。",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Ừ, chuyện gì thế?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "来月、同期の山本さんが結婚します。",
+          "romaji": "Raigetsu, dooki no Yamamoto-san ga kekkon shimasu.",
+          "text_vi": "Tháng sau anh Yamamoto vào công ty cùng đợt với em sẽ cưới.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "へえ、そうですか。",
+          "romaji": "Hee, soo desu ka.",
+          "text_vi": "Ồ, vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "それで、昨日これをもらいました。",
+          "romaji": "Sorede, kinoo kore o moraimashita.",
+          "text_vi": "Nên hôm qua em nhận được cái này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "ああ、結婚式の招待状ですね。",
+          "romaji": "Aa, kekkonshiki no shootaijoo desu ne.",
+          "text_vi": "À, thiệp mời đám cưới nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ええ。あの、日本では結婚のとき、何をあげますか。",
+          "romaji": "Ee. Ano, Nihon de wa kekkon no toki, nani o agemasu ka.",
+          "text_vi": "Vâng. Dạ, ở Nhật khi đi đám cưới thì tặng gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうですね。お金を渡すことが多いですよ。",
+          "romaji": "Soo desu ne. Okane o watasu koto ga ooi desu yo.",
+          "text_vi": "Để xem. Thường là mừng tiền đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "お金ですか。どうやって渡せばいいですか。",
+          "romaji": "Okane desu ka. Doo yatte wataseba ii desu ka.",
+          "text_vi": "Tiền ạ? Đưa như thế nào thì được ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "これに入れます。のし袋です。",
+          "romaji": "Kore ni iremasu. Noshibukuro desu.",
+          "text_vi": "Cho vào cái này. Đây là phong bì mừng (noshibukuro).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "のし袋…初めて聞きました。",
+          "romaji": "Noshibukuro… hajimete kikimashita.",
+          "text_vi": "Noshibukuro… lần đầu em nghe thấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "どこで売っていますか。",
+          "romaji": "Doko de utte imasu ka.",
+          "text_vi": "Mua ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "コンビニでも売ってますよ。",
+          "romaji": "Konbini demo uttemasu yo.",
+          "text_vi": "Cửa hàng tiện lợi cũng có bán đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですか。のし袋ですね。",
+          "romaji": "Soo desu ka. Noshibukuro desu ne.",
+          "text_vi": "Vậy ạ. Noshibukuro nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "お金はいつ渡してもいいですか。",
+          "romaji": "Okane wa itsu watashite mo ii desu ka.",
+          "text_vi": "Tiền thì đưa lúc nào cũng được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "普通は、結婚式の当日に持って行って、受付で渡しますよ。",
+          "romaji": "Futsuu wa, kekkonshiki no toojitsu ni motte itte, uketsuke de watashimasu yo.",
+          "text_vi": "Thường thì mang đến vào đúng ngày cưới rồi đưa ở bàn lễ tân.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、そうですか。また、いろいろ教えてください。",
+          "romaji": "Aa, soo desu ka. Mata, iroiro oshiete kudasai.",
+          "text_vi": "À, vậy ạ. Sau này anh chỉ thêm cho em nhé.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "結婚式",
+          "reading": "けっこんしき",
+          "romaji": "kekkonshiki",
+          "meaning": "đám cưới"
+        },
+        {
+          "word": "招待状",
+          "reading": "しょうたいじょう",
+          "romaji": "shootaijoo",
+          "meaning": "thiệp mời"
+        },
+        {
+          "word": "同期",
+          "reading": "どうき",
+          "romaji": "dooki",
+          "meaning": "người vào công ty cùng đợt"
+        },
+        {
+          "word": "のし袋",
+          "reading": "のしぶくろ",
+          "romaji": "noshibukuro",
+          "meaning": "phong bì mừng"
+        },
+        {
+          "word": "渡す",
+          "reading": "わたす",
+          "romaji": "watasu",
+          "meaning": "trao, đưa"
+        },
+        {
+          "word": "当日",
+          "reading": "とうじつ",
+          "romaji": "toojitsu",
+          "meaning": "đúng ngày hôm đó"
+        },
+        {
+          "word": "受付",
+          "reading": "うけつけ",
+          "romaji": "uketsuke",
+          "meaning": "bàn lễ tân"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Chào hỏi đúng người, đúng lúc",
+      "description": "Ôn lại「もらいます・あげます」,「〜ています」và「いつ〜てもいいですか」.",
+      "url": "/uploads/lesson-videos/n4-01-greetings/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "きのう これを もらいました",
+          "romaji": "kinoo kore o moraimashita",
+          "text_vi": "Hôm qua tôi đã nhận được cái này",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "昨日、これをもらいました。",
+          "romaji": "Kinoo, kore o moraimashita.",
+          "text_vi": "Hôm qua em nhận được cái này.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "ああ、結婚式の招待状ですね。",
+          "romaji": "Aa, kekkonshiki no shootaijoo desu ne.",
+          "text_vi": "À, thiệp mời đám cưới nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あのー、日本では結婚のとき、何をあげますか。",
+          "romaji": "Anoo, Nihon de wa kekkon no toki, nani o agemasu ka.",
+          "text_vi": "Dạ, ở Nhật khi đi đám cưới thì tặng gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画の中では、「もらいました」とか「あげます」と言っています。",
+          "romaji": "Kono dooga no naka de wa, \"moraimashita\" toka \"agemasu\" to itte imasu.",
+          "text_vi": "Trong video này có các từ \"moraimashita\" (đã nhận) và \"agemasu\" (tặng, cho).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「もらいます」「あげます」は、物のやりとりを表現する動詞です。",
+          "romaji": "\"Moraimasu\", \"agemasu\" wa, mono no yaritori o hyoogen suru dooshi desu.",
+          "text_vi": "\"Moraimasu\", \"agemasu\" là động từ diễn tả việc cho và nhận đồ vật.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "物がある人から別の人に移動するときに使います。",
+          "romaji": "Mono ga aru hito kara betsu no hito ni idoo suru toki ni tsukaimasu.",
+          "text_vi": "Dùng khi đồ vật chuyển từ người này sang người khác.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で、結婚式の招待状は同僚の山本さんから王さんに移動しました。",
+          "romaji": "Kono dooga de, kekkonshiki no shootaijoo wa dooryoo no Yamamoto-san kara Oo-san ni idoo shimashita.",
+          "text_vi": "Trong video, thiệp mời đám cưới đi từ anh Yamamoto (đồng nghiệp) sang anh Vương.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "王さんは「私は山本さんに招待状をもらいました」と言いました。",
+          "romaji": "Oo-san wa \"Watashi wa Yamamoto-san ni shootaijoo o moraimashita\" to iimashita.",
+          "text_vi": "Anh Vương nói \"Tôi đã nhận thiệp mời từ anh Yamamoto\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、王さんは結婚する山本さんへのプレゼントのことを考えました。",
+          "romaji": "Mata, Oo-san wa kekkon suru Yamamoto-san e no purezento no koto o kangaemashita.",
+          "text_vi": "Anh Vương cũng nghĩ đến quà tặng anh Yamamoto sắp cưới.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「私は山本さんにプレゼントをあげます」と言います。物は王さんから山本さんに移動します。",
+          "romaji": "\"Watashi wa Yamamoto-san ni purezento o agemasu\" to iimasu. Mono wa Oo-san kara Yamamoto-san ni idoo shimasu.",
+          "text_vi": "Ta nói \"Tôi tặng quà cho anh Yamamoto\". Đồ vật đi từ anh Vương sang anh Yamamoto.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "友達の誕生日には「私は友達にプレゼントをあげます」、",
+          "romaji": "Tomodachi no tanjoobi ni wa \"Watashi wa tomodachi ni purezento o agemasu\",",
+          "text_vi": "Vào sinh nhật bạn thì nói \"Tôi tặng quà cho bạn\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分の誕生日には「私は友達にプレゼントをもらいます」と言います。",
+          "romaji": "jibun no tanjoobi ni wa \"Watashi wa tomodachi ni purezento o moraimasu\" to iimasu.",
+          "text_vi": "vào sinh nhật mình thì nói \"Tôi nhận quà từ bạn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "どちらも主語は「私」です。どちらも助詞の「に」を使います。",
+          "romaji": "Dochira mo shugo wa \"watashi\" desu. Dochira mo joshi no \"ni\" o tsukaimasu.",
+          "text_vi": "Cả hai câu chủ ngữ đều là \"watashi\" (tôi), và đều dùng trợ từ \"ni\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自分がプレゼントをもらったとき、友達を主語にして、「友達がプレゼントをくれました」と言うこともあります。",
+          "romaji": "Jibun ga purezento o moratta toki, tomodachi o shugo ni shite, \"Tomodachi ga purezento o kuremashita\" to iu koto mo arimasu.",
+          "text_vi": "Khi mình nhận quà, cũng có thể lấy bạn làm chủ ngữ và nói \"Bạn đã tặng quà cho tôi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どこで うっていますか",
+          "romaji": "doko de utte imasu ka",
+          "text_vi": "Mua ở đâu vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:36",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "のし袋…初めて聞きました。",
+          "romaji": "Noshibukuro… hajimete kikimashita.",
+          "text_vi": "Noshibukuro… lần đầu em nghe thấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:42",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "どこで売っていますか。",
+          "romaji": "Doko de utte imasu ka.",
+          "text_vi": "Mua ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:45",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "コンビニでも売ってますよ。",
+          "romaji": "Konbini demo uttemasu yo.",
+          "text_vi": "Cửa hàng tiện lợi cũng có bán đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:47",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「売ってます」は「売っています」と同じです。",
+          "romaji": "\"Uttemasu\" wa \"utte imasu\" to onaji desu.",
+          "text_vi": "\"Uttemasu\" giống với \"utte imasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ている」は、動詞のて形に「いる」をつけた表現です。",
+          "romaji": "\"Te iru\" wa, dooshi no te-kee ni \"iru\" o tsuketa hyoogen desu.",
+          "text_vi": "\"Te iru\" là thể te của động từ thêm \"iru\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ています」は、長い期間、同じ行為や状態が続いているときに使います。",
+          "romaji": "\"Te imasu\" wa, nagai kikan, onaji kooi ya jootai ga tsuzuite iru toki ni tsukaimasu.",
+          "text_vi": "\"Te imasu\" dùng khi một hành động hay trạng thái kéo dài trong thời gian dài.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「コンビニでのし袋を売っています」、「私の学校ではタブレットを使っています」、「妹はスーパーでアルバイトをしています」と言うことができます。",
+          "romaji": "\"Konbini de noshibukuro o utte imasu\", \"Watashi no gakkoo de wa taburetto o tsukatte imasu\", \"Imooto wa suupaa de arubaito o shite imasu\" to iu koto ga dekimasu.",
+          "text_vi": "Có thể nói: \"Cửa hàng tiện lợi có bán noshibukuro\", \"Trường tôi dùng máy tính bảng\", \"Em gái tôi làm thêm ở siêu thị\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:39",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "いつ わたしても いいですか",
+          "romaji": "itsu watashitemo ii desu ka",
+          "text_vi": "Đưa lúc nào cũng được ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:45",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "お金はいつ渡してもいいですか。",
+          "romaji": "Okane wa itsu watashite mo ii desu ka.",
+          "text_vi": "Tiền thì đưa lúc nào cũng được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "03:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この文型は、「いつ」のような疑問詞と、動詞のて形＋「も」を一緒に使います。",
+          "romaji": "Kono bunkee wa, \"itsu\" no yoo na gimonshi to, dooshi no te-kee + \"mo\" o issho ni tsukaimasu.",
+          "text_vi": "Mẫu câu này dùng từ để hỏi như \"itsu\" (khi nào) cùng với động từ thể te + \"mo\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「いつ渡してもいいですか」は、今日渡しても、明日渡しても、渡すのはいつでも大丈夫ですか、という意味です。",
+          "romaji": "\"Itsu watashite mo ii desu ka\" wa, kyoo watashite mo, ashita watashite mo, watasu no wa itsu demo daijoobu desu ka, to iu imi desu.",
+          "text_vi": "\"Itsu watashite mo ii desu ka\" nghĩa là đưa hôm nay hay ngày mai, đưa lúc nào cũng được phải không.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "図書館に行って、本を何冊借りられるかわからないとき、「何冊借りてもいいですか」と質問することもできます。",
+          "romaji": "Toshokan ni itte, hon o nan-satsu karirareru ka wakaranai toki, \"Nan-satsu karite mo ii desu ka\" to shitsumon suru koto mo dekimasu.",
+          "text_vi": "Khi đến thư viện mà không biết được mượn bao nhiêu cuốn, có thể hỏi \"Mượn bao nhiêu cuốn cũng được ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "5冊借りても、10冊借りても、何冊でも大丈夫ですか、という意味です。",
+          "romaji": "Go-satsu karite mo, jussatsu karite mo, nan-satsu demo daijoobu desu ka, to iu imi desu.",
+          "text_vi": "Nghĩa là mượn 5 cuốn hay 10 cuốn, bao nhiêu cuốn cũng được phải không.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "あるレストランがとても人気があることを伝えたいとき、「あのレストランはいつ行っても混んでいます」と言うこともできます。",
+          "romaji": "Aru resutoran ga totemo ninki ga aru koto o tsutaetai toki, \"Ano resutoran wa itsu itte mo konde imasu\" to iu koto mo dekimasu.",
+          "text_vi": "Khi muốn nói một nhà hàng rất đông khách, có thể nói \"Nhà hàng đó đi lúc nào cũng đông\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "朝行っても、昼行っても、夜行っても、いつでも混んでいます、という意味です。",
+          "romaji": "Asa itte mo, hiru itte mo, yoru itte mo, itsu demo konde imasu, to iu imi desu.",
+          "text_vi": "Nghĩa là đi buổi sáng, buổi trưa hay buổi tối cũng đều đông.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

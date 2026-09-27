@@ -1,0 +1,1047 @@
+{
+  "lesson": {
+    "title": "Tình huống: Xin nghỉ phép và về sớm"
+  },
+  "videos": [
+    {
+      "title": "Xin về sớm vì con bị sốt",
+      "description": "Xin phép cấp trên về sớm một cách lịch sự và bàn giao việc cho đồng nghiệp.",
+      "url": "/uploads/lesson-videos/n4-19-leave-early/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "はい、資材部、木村です。",
+          "romaji": "Hai, Shizai-bu, Kimura desu.",
+          "text_vi": "Vâng, phòng vật tư, tôi là Kimura.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "はい、かしこまりました。少々お待ちください。",
+          "romaji": "Hai, kashikomarimashita. Shooshoo omachi kudasai.",
+          "text_vi": "Vâng, tôi hiểu rồi ạ. Xin chờ một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "今井さん、保育園からお電話ですよ。",
+          "romaji": "Imai-san, hoikuen kara odenwa desu yo.",
+          "text_vi": "Anh Imai, có điện thoại từ nhà trẻ gọi đến này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "お待たせいたしました。今井です。",
+          "romaji": "Omatase itashimashita. Imai desu.",
+          "text_vi": "Xin lỗi để anh/chị chờ. Tôi là Imai.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "そうですか?わかりました。じゃあ、職場の人に話して、できるだけ早く迎えに行きます。ご連絡ありがとうございました。",
+          "romaji": "Soo desu ka. Wakarimashita. Jaa, shokuba no hito ni hanashite, dekiru dake hayaku mukae ni ikimasu. Gorenraku arigatoo gozaimashita.",
+          "text_vi": "Vậy ạ? Tôi hiểu rồi. Vậy tôi sẽ báo với mọi người ở chỗ làm rồi đến đón cháu sớm nhất có thể. Cảm ơn đã liên lạc ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、高橋課長。",
+          "romaji": "Ano, Takahashi kachoo.",
+          "text_vi": "À, trưởng phòng Takahashi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "はい、何ですか?",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Ừ, có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "実は、子どもが保育園で熱を出しまして。",
+          "romaji": "Jitsu wa, kodomo ga hoikuen de netsu o dashimashite.",
+          "text_vi": "Thật ra là con tôi bị sốt ở nhà trẻ ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "今日はどうしても私が迎えに行かないといけなくて。",
+          "romaji": "Kyoo wa dooshitemo watashi ga mukae ni ikanaito ikenakute.",
+          "text_vi": "Hôm nay nhất định tôi phải đi đón cháu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "申し訳ありませんが、今日、これから早退してもよろしいでしょうか?",
+          "romaji": "Mooshiwake arimasen ga, kyoo, korekara sootai shitemo yoroshii deshoo ka.",
+          "text_vi": "Xin lỗi anh, hôm nay tôi xin phép về sớm bây giờ được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "わかりました。急ぎの仕事は木村さんに引き継いでから退社してください。",
+          "romaji": "Wakarimashita. Isogi no shigoto wa Kimura-san ni hikitsuide kara taisha shite kudasai.",
+          "text_vi": "Tôi hiểu rồi. Việc gấp thì anh bàn giao cho chị Kimura rồi hẵng về nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "木村さん、今井さんが今日はこのあと早退するから、残りの仕事お願いできますか?",
+          "romaji": "Kimura-san, Imai-san ga kyoo wa kono ato sootai suru kara, nokori no shigoto onegai dekimasu ka.",
+          "text_vi": "Chị Kimura, hôm nay anh Imai sẽ về sớm sau đây, chị lo giúp phần việc còn lại được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "帰る前に、もう一度私に声をかけてくださいね。",
+          "romaji": "Kaeru mae ni, moo ichido watashi ni koe o kakete kudasai ne.",
+          "text_vi": "Trước khi về, anh nhớ báo lại cho tôi một lần nữa nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "お手数おかけして申し訳ありません。",
+          "romaji": "Otesuu okakeshite mooshiwake arimasen.",
+          "text_vi": "Xin lỗi vì đã làm phiền mọi người.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "大丈夫ですよ。",
+          "romaji": "Daijoobu desu yo.",
+          "text_vi": "Không sao đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "高橋課長、これで退社させていただきます。",
+          "romaji": "Takahashi kachoo, kore de taisha sasete itadakimasu.",
+          "text_vi": "Trưởng phòng Takahashi, tôi xin phép ra về ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "高橋課長",
+          "speaker_romaji": "Takahashi kachoo",
+          "speaker_vi": "Trưởng phòng Takahashi",
+          "text_ja": "ああ、わかりました。お子さん、お大事に。",
+          "romaji": "Aa, wakarimashita. Okosan, odaiji ni.",
+          "text_vi": "À, tôi hiểu rồi. Cho tôi gửi lời chúc cháu mau khỏe nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:14",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。失礼いたします。",
+          "romaji": "Arigatoo gozaimasu. Shitsuree itashimasu.",
+          "text_vi": "Cảm ơn anh ạ. Tôi xin phép về trước.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "保育園",
+          "reading": "ほいくえん",
+          "romaji": "hoikuen",
+          "meaning": "nhà trẻ"
+        },
+        {
+          "word": "熱を出す",
+          "reading": "ねつをだす",
+          "romaji": "netsu o dasu",
+          "meaning": "bị sốt"
+        },
+        {
+          "word": "迎える",
+          "reading": "むかえる",
+          "romaji": "mukaeru",
+          "meaning": "đón"
+        },
+        {
+          "word": "早退",
+          "reading": "そうたい",
+          "romaji": "sootai",
+          "meaning": "về sớm"
+        },
+        {
+          "word": "引き継ぐ",
+          "reading": "ひきつぐ",
+          "romaji": "hikitsugu",
+          "meaning": "bàn giao"
+        },
+        {
+          "word": "退社",
+          "reading": "たいしゃ",
+          "romaji": "taisha",
+          "meaning": "ra về (khỏi công ty)"
+        },
+        {
+          "word": "手数",
+          "reading": "てすう",
+          "romaji": "tesuu",
+          "meaning": "phiền hà"
+        }
+      ]
+    },
+    {
+      "title": "Xin nghỉ phép có lương",
+      "description": "Nói được lý do, số ngày và thời gian muốn nghỉ phép có lương với cấp trên.",
+      "url": "/uploads/lesson-videos/n4-19-leave-early/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、すみません、今、お時間よろしいでしょうか?",
+          "romaji": "Ano, sumimasen, ima, ojikan yoroshii deshoo ka.",
+          "text_vi": "À, xin lỗi anh, bây giờ anh có rảnh chút không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "はい、何ですか?",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Ừ, có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "実は6月に国の両親が日本へ遊びに来るんです。それで5日間ほどお休みをいただきたいのですが。",
+          "romaji": "Jitsu wa rokugatsu ni kuni no ryooshin ga Nihon e asobi ni kuru n desu. Sorede itsukakan hodo oyasumi o itadakitai no desu ga.",
+          "text_vi": "Thật ra tháng 6 này bố mẹ tôi ở quê sẽ sang Nhật chơi. Vì vậy tôi muốn xin nghỉ khoảng 5 ngày ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、有給を使いたいんですけど。",
+          "romaji": "Ano, yuukyuu o tsukaitai n desu kedo.",
+          "text_vi": "À, tôi muốn dùng ngày nghỉ phép có lương ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "ああ、有給ね。もちろんです。ちょっと待ってくださいね。",
+          "romaji": "Aa, yuukyuu ne. Mochiron desu. Chotto matte kudasai ne.",
+          "text_vi": "À, nghỉ phép có lương à. Tất nhiên rồi. Anh đợi chút nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "今井さん、有給ほとんど使っていないから、まだたくさん残っていますよ。",
+          "romaji": "Imai-san, yuukyuu hotondo tsukatte inai kara, mada takusan nokotte imasu yo.",
+          "text_vi": "Anh Imai, vì hầu như anh chưa dùng ngày nghỉ phép có lương nên vẫn còn nhiều lắm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あっ、そうですか?",
+          "romaji": "A, soo desu ka.",
+          "text_vi": "A, vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "いつから、いつまでですか?",
+          "romaji": "Itsukara, itsu made desu ka.",
+          "text_vi": "Từ ngày nào đến ngày nào vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "えっと、6月10日から14日までです。",
+          "romaji": "Etto, rokugatsu tooka kara juuyokka made desu.",
+          "text_vi": "Dạ, từ ngày 10 đến ngày 14 tháng 6 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "えっと、6月の10日から14日までですね。わかりました。",
+          "romaji": "Etto, rokugatsu no tooka kara juuyokka made desu ne. Wakarimashita.",
+          "text_vi": "À, từ ngày 10 đến ngày 14 tháng 6 nhỉ. Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "今からだったらシフトの調整もしやすいし、助かります。",
+          "romaji": "Ima kara dattara shifuto no choosee mo shiyasui shi, tasukarimasu.",
+          "text_vi": "Nếu là từ bây giờ thì cũng dễ điều chỉnh ca làm, giúp tôi nhiều đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "じゃ、申請しておいてください。",
+          "romaji": "Ja, shinsee shite oite kudasai.",
+          "text_vi": "Vậy anh làm đơn xin nghỉ trước nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。よろしくお願いします。",
+          "romaji": "Arigatoo gozaimasu. Yoroshiku onegaishimasu.",
+          "text_vi": "Cảm ơn anh ạ. Mong anh giúp đỡ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "両親",
+          "reading": "りょうしん",
+          "romaji": "ryooshin",
+          "meaning": "bố mẹ"
+        },
+        {
+          "word": "有給",
+          "reading": "ゆうきゅう",
+          "romaji": "yuukyuu",
+          "meaning": "nghỉ phép có lương"
+        },
+        {
+          "word": "残る",
+          "reading": "のこる",
+          "romaji": "nokoru",
+          "meaning": "còn lại"
+        },
+        {
+          "word": "調整",
+          "reading": "ちょうせい",
+          "romaji": "choosee",
+          "meaning": "điều chỉnh"
+        },
+        {
+          "word": "申請",
+          "reading": "しんせい",
+          "romaji": "shinsee",
+          "meaning": "đăng ký, xin"
+        }
+      ]
+    },
+    {
+      "title": "Cảm ơn đồng nghiệp sau kỳ nghỉ",
+      "description": "Cảm ơn được đồng nghiệp đã giúp lúc mình nghỉ và hỏi cách chia quà cho mọi người.",
+      "url": "/uploads/lesson-videos/n4-19-leave-early/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "あっ、今井さん。",
+          "romaji": "A, Imai-san.",
+          "text_vi": "A, anh Imai.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ここ座ってもいいですか?",
+          "romaji": "Koko suwattemo ii desu ka.",
+          "text_vi": "Em ngồi đây được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "どうぞ。",
+          "romaji": "Doozo.",
+          "text_vi": "Mời anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、木村さん、お休みの間ありがとうございました。",
+          "romaji": "Ano, Kimura-san, oyasumi no aida arigatoo gozaimashita.",
+          "text_vi": "À, chị Kimura, cảm ơn chị đã giúp em trong lúc em nghỉ ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "いえ、全然気にしないでください。",
+          "romaji": "Ie, zenzen ki ni shinaide kudasai.",
+          "text_vi": "Không có gì, anh đừng bận tâm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "おかげさまで久しぶりに家族で集まることができました。",
+          "romaji": "Okagesama de hisashiburi ni kazoku de atsumaru koto ga dekimashita.",
+          "text_vi": "Nhờ chị mà lâu lắm rồi gia đình em mới tụ họp được.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "それは良かったですね。皆さん、ゆっくりできましたか?",
+          "romaji": "Sore wa yokatta desu ne. Minasan, yukkuri dekimashita ka.",
+          "text_vi": "Vậy thì tốt quá. Mọi người có thoải mái nghỉ ngơi được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい。うちの親、日本初めてだったんですよ。だから、とっても楽しそうでした。",
+          "romaji": "Hai. Uchi no oya, Nihon hajimete datta n desu yo. Dakara, tottemo tanoshisoo deshita.",
+          "text_vi": "Vâng. Bố mẹ em lần đầu đến Nhật đấy ạ. Vì vậy trông họ rất vui.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "へえ、どこか行ったんですか?",
+          "romaji": "Hee, dokoka itta n desu ka.",
+          "text_vi": "Ồ, có đi đâu chơi không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "いろいろ行きました。ちょっと写真見ます?",
+          "romaji": "Iroiro ikimashita. Chotto shashin mimasu?",
+          "text_vi": "Đi nhiều chỗ lắm ạ. Chị xem ảnh chút nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "あっ、見せて見せて。",
+          "romaji": "A, misete misete.",
+          "text_vi": "A, cho tôi xem, cho tôi xem.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "あー、富士山、天気良かったんですね。あ、寿司にも行ったんですね。",
+          "romaji": "Aa, Fujisan, tenki yokatta n desu ne. A, sushi ni mo itta n desu ne.",
+          "text_vi": "À, núi Phú Sĩ, trời đẹp thật nhỉ. A, còn đi ăn sushi nữa à.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "わ、すごい、お皿の数。これ何人で食べたんですか?",
+          "romaji": "Wa, sugoi, osara no kazu. Kore nannin de tabeta n desu ka.",
+          "text_vi": "Ồ, nhiều đĩa quá. Cái này mấy người ăn vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "すごく美味しくて。",
+          "romaji": "Sugoku oishikute.",
+          "text_vi": "Ngon lắm luôn ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あ、そうだ。両親が国からお菓子を持ってきたんですけど、皆さんに配っても大丈夫ですか?",
+          "romaji": "A, sooda. Ryooshin ga kuni kara okashi o motte kita n desu kedo, minasan ni kubattemo daijoobu desu ka.",
+          "text_vi": "À, đúng rồi. Bố mẹ em mang bánh kẹo từ quê sang, em phát cho mọi người có được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "もちろん。",
+          "romaji": "Mochiron.",
+          "text_vi": "Tất nhiên rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、どうやって配ったらいいですか?皆さん、外出も多いし、いつも忙しそうだし。",
+          "romaji": "Ano, doo yatte kubattara ii desu ka. Minasan, gaishutsu mo ooi shi, itsumo isogashisoo da shi.",
+          "text_vi": "À, em nên phát như thế nào ạ? Mọi người hay ra ngoài, lại lúc nào cũng có vẻ bận rộn nữa.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "木村",
+          "speaker_romaji": "Kimura",
+          "speaker_vi": "Kimura",
+          "text_ja": "そうですね。一人一人配るの大変だから、メッセージをつけて休憩室に置いておくのはどうですか?",
+          "romaji": "Soo desu ne. Hitori hitori kubaru no taihen dakara, messeeji o tsukete kyuukeeshitsu ni oite oku no wa doo desu ka.",
+          "text_vi": "Để xem nào. Phát cho từng người thì vất vả, hay là để kèm lời nhắn ở phòng nghỉ thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あ、そうすれば感謝の気持ちも伝えられますね。",
+          "romaji": "A, soo sureba kansha no kimochi mo tsutaeraremasu ne.",
+          "text_vi": "À, làm vậy thì cũng truyền tải được lòng biết ơn nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:11",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "どんなメッセージがいいかなあ。",
+          "romaji": "Donna messeeji ga ii ka naa.",
+          "text_vi": "Không biết nên viết lời nhắn thế nào nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "おかげさまで",
+          "reading": "おかげさまで",
+          "romaji": "okagesama de",
+          "meaning": "nhờ anh chị (mà…)"
+        },
+        {
+          "word": "久しぶり",
+          "reading": "ひさしぶり",
+          "romaji": "hisashiburi",
+          "meaning": "lâu lắm rồi"
+        },
+        {
+          "word": "配る",
+          "reading": "くばる",
+          "romaji": "kubaru",
+          "meaning": "phát, chia"
+        },
+        {
+          "word": "外出",
+          "reading": "がいしゅつ",
+          "romaji": "gaishutsu",
+          "meaning": "ra ngoài"
+        },
+        {
+          "word": "休憩室",
+          "reading": "きゅうけいしつ",
+          "romaji": "kyuukeeshitsu",
+          "meaning": "phòng nghỉ"
+        },
+        {
+          "word": "感謝",
+          "reading": "かんしゃ",
+          "romaji": "kansha",
+          "meaning": "lòng biết ơn"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Xin nghỉ phép và về sớm",
+      "description": "Ôn lại「〜てもよろしいでしょうか」,「〜に来ます」chỉ mục đích và「〜し、〜し」.",
+      "url": "/uploads/lesson-videos/n4-19-leave-early/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "そうたいしても よろしいでしょうか",
+          "romaji": "sootai shitemo yoroshii deshoo ka",
+          "text_vi": "Tôi xin phép về sớm được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "申し訳ありませんが、今日、これから早退してもよろしいでしょうか。",
+          "romaji": "Mooshiwake arimasen ga, kyoo, korekara sootai shitemo yoroshii deshoo ka.",
+          "text_vi": "Xin lỗi anh, hôm nay tôi xin phép về sớm bây giờ được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形+もよろしいでしょうかは、相手に許可を求める時に使う表現です。",
+          "romaji": "Dooshi no te-kee + mo yoroshii deshoo ka wa, aite ni kyoka o motomeru toki ni tsukau hyoogen desu.",
+          "text_vi": "\"Dạng te của động từ + mo yoroshii deshoo ka\" là mẫu câu dùng khi xin phép đối phương.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形+もいいですかという表現を聞いたことがあるかもしれません。これも許可を求める時の言い方です。てもよろしいでしょうかは、てもいいですかより丁寧な言い方です。",
+          "romaji": "Dooshi no te-kee + mo ii desu ka to iu hyoogen o kiita koto ga aru kamoshiremasen. Kore mo kyoka o motomeru toki no iikata desu. Temo yoroshii deshoo ka wa, temo ii desu ka yori teenee na iikata desu.",
+          "text_vi": "Có thể bạn từng nghe mẫu \"dạng te + mo ii desu ka\". Đây cũng là cách xin phép. \"Temo yoroshii deshoo ka\" là cách nói lịch sự hơn \"temo ii desu ka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、写真を撮ってもいいですか、と尋ねることもできますが、もっと丁寧に聞きたい時は、写真を撮ってもよろしいでしょうか、ということもできます。",
+          "romaji": "Tatoeba, shashin o tottemo ii desu ka, to tazuneru koto mo dekimasu ga, motto teenee ni kikitai toki wa, shashin o tottemo yoroshii deshoo ka, to iu koto mo dekimasu.",
+          "text_vi": "Ví dụ, có thể hỏi \"Chụp ảnh được không?\", nhưng khi muốn hỏi lịch sự hơn thì có thể nói \"Tôi chụp ảnh được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "申し訳ありませんが、今日、これから早退してもよろしいでしょうか。",
+          "romaji": "Mooshiwake arimasen ga, kyoo, korekara sootai shitemo yoroshii deshoo ka.",
+          "text_vi": "Xin lỗi anh, hôm nay tôi xin phép về sớm bây giờ được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で今井さんは、職場で上司に対して、自分の都合で早退することについて許可を求めているので、「早退してもよろしいでしょうか」と言っています。",
+          "romaji": "Kono dooga de Imai-san wa, shokuba de jooshi ni taishite, jibun no tsugoo de sootai suru koto ni tsuite kyoka o motomete iru node, \"Sootai shitemo yoroshii deshoo ka\" to itte imasu.",
+          "text_vi": "Trong video này, anh Imai đang xin phép cấp trên ở nơi làm việc về việc về sớm vì lý do cá nhân, nên anh nói \"Tôi xin phép về sớm được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、例えば、会社で上司に、今質問してもよろしいでしょうか、資料を借りてもよろしいでしょうかのように使うことができます。",
+          "romaji": "Hoka ni mo, tatoeba, kaisha de jooshi ni, ima shitsumon shitemo yoroshii deshoo ka, shiryoo o karitemo yoroshii deshoo ka no yoo ni tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra, ví dụ ở công ty có thể dùng với cấp trên như \"Bây giờ tôi hỏi được không ạ?\", \"Tôi mượn tài liệu được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、上司は「わかりました」と言って早退を許可しました。他にも、構いません、そうです、などの言い方で許可することもあります。",
+          "romaji": "Kono dooga de wa, jooshi wa \"Wakarimashita\" to itte sootai o kyoka shimashita. Hoka ni mo, \"Kamaimasen\", \"Soo desu\" nado no iikata de kyoka suru koto mo arimasu.",
+          "text_vi": "Trong video này, cấp trên nói \"Tôi hiểu rồi\" để cho phép về sớm. Ngoài ra cũng có thể cho phép bằng những cách nói như \"Không sao\", \"Được thôi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "許可しない場合、日本では初対面の人と話す時やビジネスの場面などでは、最後まではっきり言わないことがあります。例えば、「うーん、ちょっと、申し訳ないけど」などと言います。",
+          "romaji": "Kyoka shinai baai, Nihon de wa shotaimen no hito to hanasu toki ya bijinesu no bamen nado de wa, saigo made hakkiri iwanai koto ga arimasu. Tatoeba, \"Uun, chotto, mooshiwakenai kedo\" nado to iimasu.",
+          "text_vi": "Trường hợp không cho phép, ở Nhật khi nói chuyện với người mới gặp lần đầu hay trong tình huống công việc, đôi khi người ta không nói rõ đến cùng. Ví dụ sẽ nói \"Ừm, hơi... xin lỗi nhưng mà...\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:24",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "にほんへ あそびにくるんです",
+          "romaji": "nihon e asobi ni kurun desu",
+          "text_vi": "Đến Nhật để chơi",
+          "key_phrase": false
+        },
+        {
+          "start": "03:24:15",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "実は6月に国の両親が日本へ遊びに来るんです。",
+          "romaji": "Jitsu wa rokugatsu ni kuni no ryooshin ga Nihon e asobi ni kuru n desu.",
+          "text_vi": "Thật ra tháng 6 này bố mẹ tôi ở quê sẽ sang Nhật chơi.",
+          "key_phrase": true
+        },
+        {
+          "start": "03:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のます形+に来ますで、その場所へ来る目的を表すことができます。",
+          "romaji": "Dooshi no masu-kee + ni kimasu de, sono basho e kuru mokuteki o arawasu koto ga dekimasu.",
+          "text_vi": "\"Dạng masu của động từ + ni kimasu\" có thể diễn tả mục đích đến nơi đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、今井さんが「6月に両親が日本へ行きます」と言っています。その目的は?遊ぶためです。遊びます、遊びに来ます、と言います。",
+          "romaji": "Kono dooga de wa, Imai-san ga \"Rokugatsu ni ryooshin ga Nihon e ikimasu\" to itte imasu. Sono mokuteki wa? Asobu tame desu. Asobimasu, asobi ni kimasu, to iimasu.",
+          "text_vi": "Trong video này, anh Imai nói \"Tháng 6 bố mẹ tôi sẽ sang Nhật\". Mục đích là gì? Là để chơi. Ta nói \"asobimasu\" (chơi), \"asobi ni kimasu\" (đến để chơi).",
+          "key_phrase": false
+        },
+        {
+          "start": "04:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この文型は、動詞のます形の後に「に」を入れて、それから動詞を続ける時に使えます。",
+          "romaji": "Kono bunkee wa, dooshi no masu-kee no ato ni \"ni\" o irete, sorekara dooshi o tsuzukeru toki ni tsukaemasu.",
+          "text_vi": "Mẫu câu này dùng khi sau dạng masu của động từ thêm \"ni\" rồi tiếp một động từ khác.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、コンビニへ行きます。ジュースを買うのが目的だったら、コンビニへジュースを買いに行きます、と言います。",
+          "romaji": "Tatoeba, konbini e ikimasu. Juusu o kau no ga mokuteki dattara, konbini e juusu o kai ni ikimasu, to iimasu.",
+          "text_vi": "Ví dụ, \"đi đến cửa hàng tiện lợi\". Nếu mục đích là mua nước ngọt thì nói \"đi đến cửa hàng tiện lợi để mua nước ngọt\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "電気代を払うのが目的だったら、コンビニへ電気代を払いに行きます、と言います。",
+          "romaji": "Denkidai o harau no ga mokuteki dattara, konbini e denkidai o harai ni ikimasu, to iimasu.",
+          "text_vi": "Nếu mục đích là trả tiền điện thì nói \"đi đến cửa hàng tiện lợi để trả tiền điện\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞だけでなく、買い物、アルバイトなど、目的を表す名詞を使うこともできます。例えば、スーパーへ買い物に行きます、のようになります。",
+          "romaji": "Dooshi dake de naku, kaimono, arubaito nado, mokuteki o arawasu meeshi o tsukau koto mo dekimasu. Tatoeba, suupaa e kaimono ni ikimasu, no yoo ni narimasu.",
+          "text_vi": "Không chỉ động từ, mà còn có thể dùng danh từ chỉ mục đích như \"mua sắm\", \"làm thêm\". Ví dụ sẽ thành \"đi đến siêu thị để mua sắm\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:30",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "両親が国からお菓子を持ってきたんですけど、皆さんに配っても大丈夫ですか?",
+          "romaji": "Ryooshin ga kuni kara okashi o motte kita n desu kedo, minasan ni kubattemo daijoobu desu ka.",
+          "text_vi": "Bố mẹ tôi mang bánh kẹo từ quê sang, tôi phát cho mọi người có được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "05:38",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "もちろん。",
+          "romaji": "Mochiron.",
+          "text_vi": "Tất nhiên rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:40",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、どうやって配ったらいいですか?",
+          "romaji": "Ano, doo yatte kubattara ii desu ka.",
+          "text_vi": "À, tôi nên phát như thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "05:43",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "皆さん、外出も多いし、いつも忙しそうだし。",
+          "romaji": "Minasan, gaishutsu mo ooi shi, itsumo isogashisoo da shi.",
+          "text_vi": "Mọi người hay ra ngoài, lại lúc nào cũng có vẻ bận rộn nữa.",
+          "key_phrase": true
+        },
+        {
+          "start": "05:51",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "＿＿し、＿＿し",
+          "romaji": "___ shi, ___ shi",
+          "text_vi": "vừa... vừa...",
+          "key_phrase": false
+        },
+        {
+          "start": "05:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞・形容詞・名詞の普通形+しは、理由を並べて言う時に使います。",
+          "romaji": "Dooshi, keeyooshi, meeshi no futsuu-kee + shi wa, riyuu o narabete iu toki ni tsukaimasu.",
+          "text_vi": "\"Thể thường của động từ, tính từ, danh từ + shi\" dùng khi liệt kê các lý do.",
+          "key_phrase": false
+        },
+        {
+          "start": "06:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、あの店のラーメンは人気があります。理由は、美味しいからです。それに安いからです。",
+          "romaji": "Tatoeba, ano mise no raamen wa ninki ga arimasu. Riyuu wa, oishii kara desu. Sore ni yasui kara desu.",
+          "text_vi": "Ví dụ, món ramen của quán đó rất được ưa chuộng. Lý do là vì ngon. Ngoài ra còn vì rẻ.",
+          "key_phrase": false
+        },
+        {
+          "start": "06:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "あの店のラーメンは、美味しいし、安いし、人気があります、のようになります。",
+          "romaji": "Ano mise no raamen wa, oishii shi, yasui shi, ninki ga arimasu, no yoo ni narimasu.",
+          "text_vi": "Sẽ thành câu \"Món ramen của quán đó vừa ngon vừa rẻ nên được ưa chuộng\".",
+          "key_phrase": false
+        },
+        {
+          "start": "06:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しの前は普通形でOKです。例えば、美味しいです→美味しいし、真面目です→真面目だし、のようになります。",
+          "romaji": "Shi no mae wa futsuu-kee de OK desu. Tatoeba, oishii desu → oishii shi, majime desu → majime da shi, no yoo ni narimasu.",
+          "text_vi": "Trước \"shi\" dùng thể thường là được. Ví dụ, \"oishii desu\" (ngon) → \"oishii shi\", \"majime desu\" (nghiêm túc) → \"majime da shi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "06:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "頭がいいです、のように、な形容詞や名詞+しを使う場合は、頭もいいし、のように形が変わります。",
+          "romaji": "Atama ga ii desu, no yoo ni, na-keeyooshi ya meeshi + shi o tsukau baai wa, atama mo ii shi, no yoo ni katachi ga kawarimasu.",
+          "text_vi": "Như câu \"atama ga ii desu\" (thông minh), khi dùng tính từ đuôi na hay danh từ + shi thì hình thức đổi thành \"atama mo ii shi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "07:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "彼女は真面目だし、頭もいいし、この仕事にぴったりです、のように使います。",
+          "romaji": "Kanojo wa majime da shi, atama mo ii shi, kono shigoto ni pittari desu, no yoo ni tsukaimasu.",
+          "text_vi": "Dùng như câu \"Cô ấy vừa nghiêm túc vừa thông minh nên rất hợp với công việc này\".",
+          "key_phrase": false
+        },
+        {
+          "start": "07:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しは特に会話でよく使います。しの後が分かっている時は、省略して言わないことも多いです。",
+          "romaji": "Shi wa tokuni kaiwa de yoku tsukaimasu. Shi no ato ga wakatte iru toki wa, shooryaku shite iwanai koto mo ooi desu.",
+          "text_vi": "\"Shi\" đặc biệt hay dùng trong hội thoại. Khi phần sau \"shi\" đã rõ thì cũng thường được lược bỏ không nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "07:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「あの店のラーメン、人気があるんでしょ」と聞かれた時、「うん、美味しいし」と言った場合、そのラーメンが人気のある理由を付け加えることができます。",
+          "romaji": "Tatoeba, \"Ano mise no raamen, ninki ga aru n desho\" to kikareta toki, \"Un, oishii shi\" to itta baai, sono raamen ga ninki no aru riyuu o tsukekuwaeru koto ga dekimasu.",
+          "text_vi": "Ví dụ, khi bị hỏi \"Ramen quán đó được ưa chuộng nhỉ?\", nếu trả lời \"Ừ, vì ngon mà\" thì có thể bổ sung thêm lý do món ramen đó được ưa chuộng.",
+          "key_phrase": false
+        },
+        {
+          "start": "08:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画でも今井さんは、「あの、どうやって配ったらいいですか」と聞かれてから、「皆さん、外出も多いし、いつも忙しそうだし」と言って、どうやって配ったらいいかが分からない理由を付け加えています。",
+          "romaji": "Kono dooga demo Imai-san wa, \"Ano, doo yatte kubattara ii desu ka\" to kikarete kara, \"Minasan, gaishutsu mo ooi shi, itsumo isogashisoo da shi\" to itte, doo yatte kubattara ii ka ga wakaranai riyuu o tsukekuwaete imasu.",
+          "text_vi": "Trong video này, sau khi được hỏi \"À, tôi nên phát như thế nào ạ?\", anh Imai nói \"Mọi người hay ra ngoài, lại lúc nào cũng có vẻ bận rộn\" để bổ sung lý do vì sao không biết nên phát như thế nào.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

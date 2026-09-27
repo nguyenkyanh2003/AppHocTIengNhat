@@ -1,0 +1,131 @@
+# Lời thoại Tình huống: Chào hỏi đúng người, đúng lúc
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## summary.mp4
+# Chào hỏi hằng ngày và cúi chào
+00:02 | ナレーター / Nareetaa / Người dẫn | 日本だけでなく、世界のどこでも挨拶はありますが、どんな場面でどんな挨拶をするのかは、国や地域によって異なります。 | Nihon dake de naku, sekai no doko demo aisatsu wa arimasu ga, donna bamen de donna aisatsu o suru no ka wa, kuni ya chiiki ni yotte kotonarimasu. | Không chỉ ở Nhật mà ở đâu trên thế giới cũng có lời chào, nhưng chào thế nào trong tình huống nào thì khác nhau tùy đất nước, vùng miền.
+00:16 | ナレーター / Nareetaa / Người dẫn | 日本では、学校でも職場でもよく挨拶をします。 | Nihon de wa, gakkoo demo shokuba demo yoku aisatsu o shimasu. | Ở Nhật, người ta chào hỏi nhiều cả ở trường lẫn nơi làm việc.
+00:25 | ナレーター / Nareetaa / Người dẫn | 挨拶をしてコミュニケーションのきっかけを作ることは、良い人間関係を保つために大切なことです。 | Aisatsu o shite komyunikeeshon no kikkake o tsukuru koto wa, yoi ningen-kankee o tamotsu tame ni taisetsu na koto desu. | Chào hỏi để mở đầu giao tiếp là điều quan trọng để giữ mối quan hệ tốt đẹp.
+00:36 | ナレーター / Nareetaa / Người dẫn | 挨拶の言葉は、相手や場面によって違います。 | Aisatsu no kotoba wa, aite ya bamen ni yotte chigaimasu. | Lời chào khác nhau tùy người đối diện và tình huống.
+00:43 | ナレーター / Nareetaa / Người dẫn | 朝、友達に会ったときは「おはよう」と言います。 | Asa, tomodachi ni atta toki wa "Ohayoo" to iimasu. | Buổi sáng gặp bạn bè thì nói "Ohayoo".
+00:51 | ナレーター / Nareetaa / Người dẫn | 先輩や先生、同僚、上司には「おはようございます」と丁寧に言います。 | Senpai ya sensee, dooryoo, jooshi ni wa "Ohayoo gozaimasu" to teenee ni iimasu. | Với đàn anh đàn chị, thầy cô, đồng nghiệp, cấp trên thì nói lịch sự "Ohayoo gozaimasu".
+01:03 | ナレーター / Nareetaa / Người dẫn | 学校から帰るときは、友達には「じゃあね」とか「バイバイ」、先輩や先生には「さようなら」と言います。 | Gakkoo kara kaeru toki wa, tomodachi ni wa "Jaa ne" toka "Baibai", senpai ya sensee ni wa "Sayoonara" to iimasu. | Khi ra về ở trường, với bạn bè thì nói "Jaa ne" hay "Bye bye", với đàn anh đàn chị, thầy cô thì nói "Sayoonara".
+01:20 | ナレーター / Nareetaa / Người dẫn | 職場を出るときは、「お疲れ様でした」とか「お先に失礼します」と言います。 | Shokuba o deru toki wa, "Otsukaresama deshita" toka "Osaki ni shitsuree shimasu" to iimasu. | Khi rời nơi làm việc thì nói "Otsukaresama deshita" (Anh chị vất vả rồi) hoặc "Osaki ni shitsuree shimasu" (Tôi xin phép về trước).
+01:32 | ナレーター / Nareetaa / Người dẫn | 挨拶の言葉は、時間によっても違います。 | Aisatsu no kotoba wa, jikan ni yotte mo chigaimasu. | Lời chào cũng khác nhau tùy thời điểm trong ngày.
+01:38 | ナレーター / Nareetaa / Người dẫn | 朝は「おはようございます」、日中は「こんにちは」、暗くなってきたら「こんばんは」と言います。 | Asa wa "Ohayoo gozaimasu", nitchuu wa "Konnichiwa", kuraku natte kitara "Konbanwa" to iimasu. | Buổi sáng nói "Ohayoo gozaimasu", ban ngày nói "Konnichiwa", khi trời tối nói "Konbanwa".
+01:54 | ナレーター / Nareetaa / Người dẫn | また、「暑いですね」とか「いい天気ですね」と、天気の話をすることも多いです。 | Mata, "Atsui desu ne" toka "Ii tenki desu ne" to, tenki no hanashi o suru koto mo ooi desu. | Ngoài ra, người ta cũng hay nói chuyện thời tiết như "Nóng nhỉ", "Trời đẹp nhỉ".
+02:07 | ナレーター / Nareetaa / Người dẫn | しばらく会わなかった人に会ったときは、「お久しぶりです」と言うことが多いです。 | Shibaraku awanakatta hito ni atta toki wa, "Ohisashiburi desu" to iu koto ga ooi desu. | Khi gặp người lâu rồi không gặp thì thường nói "Ohisashiburi desu" (Lâu rồi không gặp).
+02:18 | ナレーター / Nareetaa / Người dẫn | 挨拶をするときは、大抵お辞儀をします。 | Aisatsu o suru toki wa, taitei ojigi o shimasu. | Khi chào hỏi thường cúi chào.
+02:25 | ナレーター / Nareetaa / Người dẫn | お辞儀は、腰から上を前に倒して頭を下げて、相手に敬意を伝えるものです。 | Ojigi wa, koshi kara ue o mae ni taoshite atama o sagete, aite ni keei o tsutaeru mono desu. | Cúi chào là nghiêng phần trên từ thắt lưng về phía trước, cúi đầu để bày tỏ sự kính trọng với người kia.
+02:39 | ナレーター / Nareetaa / Người dẫn | 場面や気持ちによって、お辞儀の深さが変わります。丁寧なお辞儀ほど、深いお辞儀になります。 | Bamen ya kimochi ni yotte, ojigi no fukasa ga kawarimasu. Teenee na ojigi hodo, fukai ojigi ni narimasu. | Độ sâu của cái cúi chào thay đổi tùy tình huống và cảm xúc. Càng lịch sự thì cúi càng sâu.
+02:53 | ナレーター / Nareetaa / Người dẫn | 日本ではよくお辞儀をしますが、握手をしたり、肩を抱き合ったりすることはほとんどありません。 | Nihon de wa yoku ojigi o shimasu ga, akushu o shitari, kata o dakiattari suru koto wa hotondo arimasen. | Ở Nhật người ta hay cúi chào, nhưng hầu như không bắt tay hay ôm vai nhau.
+03:07 | ナレーター / Nareetaa / Người dẫn | あまり普段は話をしない人でも、顔を知っていたら軽く会釈をします。 | Amari fudan wa hanashi o shinai hito demo, kao o shitte itara karuku eshaku o shimasu. | Dù là người bình thường ít nói chuyện, nếu biết mặt thì cũng khẽ gật đầu chào.
+03:18 | ナレーター / Nareetaa / Người dẫn | 少しだけ頭を下げ、相手に敬意を伝えます。会釈もお辞儀の一つです。 | Sukoshi dake atama o sage, aite ni keei o tsutaemasu. Eshaku mo ojigi no hitotsu desu. | Chỉ cúi đầu một chút để bày tỏ sự kính trọng. Gật đầu chào (eshaku) cũng là một kiểu cúi chào.
+03:32 | ナレーター / Nareetaa / Người dẫn | 仕事で初めて会った人には、「はじめまして。王と申します。よろしくお願いいたします」と自己紹介をします。 | Shigoto de hajimete atta hito ni wa, "Hajimemashite. Oo to mooshimasu. Yoroshiku onegai itashimasu" to jiko-shookai o shimasu. | Với người mới gặp lần đầu trong công việc, ta tự giới thiệu: "Rất hân hạnh. Tôi tên là Vương. Rất mong được giúp đỡ".
+03:50 | ナレーター / Nareetaa / Người dẫn | このときは、少し深くお辞儀をします。 | Kono toki wa, sukoshi fukaku ojigi o shimasu. | Lúc này thì cúi chào sâu hơn một chút.
+03:57 | ナレーター / Nareetaa / Người dẫn | お礼を言いたいときは「ありがとうございます」、謝るときは「すみません」「ごめんなさい」と言います。 | Oree o iitai toki wa "Arigatoo gozaimasu", ayamaru toki wa "Sumimasen", "Gomen nasai" to iimasu. | Khi muốn cảm ơn thì nói "Arigatoo gozaimasu", khi xin lỗi thì nói "Sumimasen", "Gomen nasai".
+04:15 | ナレーター / Nareetaa / Người dẫn | 職場では「申し訳ありません」と言うことも多いです。 | Shokuba de wa "Mooshiwake arimasen" to iu koto mo ooi desu. | Ở nơi làm việc cũng hay nói "Mooshiwake arimasen" (Thành thật xin lỗi).
+04:21 | ナレーター / Nareetaa / Người dẫn | 深くお辞儀をします。 | Fukaku ojigi o shimasu. | Và cúi chào thật sâu.
+04:28 | ナレーター / Nareetaa / Người dẫn | どの挨拶も、言葉だけでなく、心を込めて言うことが大切です。 | Dono aisatsu mo, kotoba dake de naku, kokoro o komete iu koto ga taisetsu desu. | Lời chào nào cũng vậy, không chỉ là lời nói mà quan trọng là nói bằng cả tấm lòng.
+### từ vựng
+挨拶 | あいさつ | aisatsu | lời chào
+お辞儀 | おじぎ | ojigi | cúi chào
+会釈 | えしゃく | eshaku | gật đầu chào
+職場 | しょくば | shokuba | nơi làm việc
+お先に失礼します | おさきにしつれいします | osaki ni shitsuree shimasu | tôi xin phép về trước
+お久しぶりです | おひさしぶりです | ohisashiburi desu | lâu rồi không gặp
+申し訳ありません | もうしわけありません | mooshiwake arimasen | thành thật xin lỗi
+
+## scene-2.mp4
+# Lời chúc mừng, thăm hỏi và chia buồn
+00:00 | ナレーター / Nareetaa / Người dẫn | 毎日の生活の中でもいろいろな挨拶を使い分けますが、特別な出来事があったときには、その場面に合った挨拶をしなければなりません。 | Mainichi no seekatsu no naka demo iroiro na aisatsu o tsukaiwakemasu ga, tokubetsu na dekigoto ga atta toki ni wa, sono bamen ni atta aisatsu o shinakereba narimasen. | Trong cuộc sống hằng ngày ta dùng nhiều lời chào khác nhau, nhưng khi có sự kiện đặc biệt thì phải dùng lời chào hợp với tình huống đó.
+00:19 | ナレーター / Nareetaa / Người dẫn | 誕生日や結婚、入学、卒業、就職、出産など、相手にいいことがあったら、「おめでとう」とか「おめでとうございます」と言います。 | Tanjoobi ya kekkon, nyuugaku, sotsugyoo, shuushoku, shussan nado, aite ni ii koto ga attara, "Omedetoo" toka "Omedetoo gozaimasu" to iimasu. | Khi người kia có chuyện vui như sinh nhật, kết hôn, nhập học, tốt nghiệp, đi làm, sinh con… thì nói "Omedetoo" hoặc "Omedetoo gozaimasu" (Chúc mừng).
+00:42 | ナレーター / Nareetaa / Người dẫn | お葬式のときには、話はあまりしないほうがいいです。 | Osooshiki no toki ni wa, hanashi wa amari shinai hoo ga ii desu. | Ở đám tang thì không nên nói chuyện nhiều.
+00:49 | ナレーター / Nareetaa / Người dẫn | 亡くなった方のご家族には、「この度はどうも」とか「ご愁傷様です」と、お悔やみの気持ちを伝えましょう。 | Nakunatta kata no gokazoku ni wa, "Kono tabi wa doomo" toka "Goshuushoosama desu" to, okuyami no kimochi o tsutaemashoo. | Với gia đình người đã mất, hãy bày tỏ lòng thương tiếc bằng câu "Kono tabi wa doomo" hoặc "Goshuushoosama desu" (Xin chia buồn).
+01:05 | ナレーター / Nareetaa / Người dẫn | 大きな声で言わないように気をつけましょう。 | Ookina koe de iwanai yoo ni ki o tsukemashoo. | Chú ý đừng nói to.
+01:10 | ナレーター / Nareetaa / Người dẫn | また、もし友達が病気で入院して、お見舞いに行ったら、帰るときには「お大事に」と言いましょう。 | Mata, moshi tomodachi ga byooki de nyuuin shite, omimai ni ittara, kaeru toki ni wa "Odaiji ni" to iimashoo. | Ngoài ra, nếu bạn bị ốm phải nằm viện và mình đi thăm, thì lúc về hãy nói "Odaiji ni" (Giữ gìn sức khỏe nhé).
+01:27 | ナレーター / Nareetaa / Người dẫn | 入院していなくても、例えば職場で体調が良くない人がいたら、その人と別れるときには「お大事に」と言います。 | Nyuuin shite inakute mo, tatoeba shokuba de taichoo ga yokunai hito ga itara, sono hito to wakareru toki ni wa "Odaiji ni" to iimasu. | Dù không nằm viện, ví dụ ở chỗ làm có người không khỏe thì khi chia tay người đó cũng nói "Odaiji ni".
+01:46 | ナレーター / Nareetaa / Người dẫn | 挨拶をされたときは、どうしたらいいでしょう。 | Aisatsu o sareta toki wa, doo shitara ii deshoo. | Khi được người khác chào hỏi thì nên làm thế nào?
+01:51 | ナレーター / Nareetaa / Người dẫn | 例えば、あなたが「おめでとう」とか「お大事に」と言われたら、「ありがとうございます」と返事をすればいいんです。 | Tatoeba, anata ga "Omedetoo" toka "Odaiji ni" to iwaretara, "Arigatoo gozaimasu" to henji o sureba iin desu. | Ví dụ, khi được nói "Chúc mừng" hay "Giữ gìn sức khỏe nhé", bạn chỉ cần đáp "Cảm ơn".
+02:08 | ナレーター / Nareetaa / Người dẫn | また、「すみません」と言われて、自分も相手に対してすみませんと思っていた場合は、「こちらこそすみません」と返すことができます。 | Mata, "Sumimasen" to iwarete, jibun mo aite ni taishite sumimasen to omotte ita baai wa, "Kochira koso sumimasen" to kaesu koto ga dekimasu. | Khi được xin lỗi mà mình cũng thấy có lỗi với người kia, có thể đáp "Kochira koso sumimasen" (Tôi mới là người phải xin lỗi).
+02:28 | ナレーター / Nareetaa / Người dẫn | 他にも、「お世話になりました」「こちらこそお世話になりました」、「よろしくお願いします」「こちらこそよろしくお願いします」と言うことができます。 | Hoka ni mo, "Osewa ni narimashita" "Kochira koso osewa ni narimashita", "Yoroshiku onegaishimasu" "Kochira koso yoroshiku onegaishimasu" to iu koto ga dekimasu. | Ngoài ra còn có: "Cảm ơn anh chị đã giúp đỡ" – "Tôi mới phải cảm ơn", "Rất mong được giúp đỡ" – "Tôi cũng vậy, rất mong được giúp đỡ".
+02:48 | ナレーター / Nareetaa / Người dẫn | 特別な出来事があったときには、直接会うことができなくても、早く気持ちを伝えたほうがいいことが多いので、はがきやカード、手紙を送ることが多いです。 | Tokubetsu na dekigoto ga atta toki ni wa, chokusetsu au koto ga dekinakute mo, hayaku kimochi o tsutaeta hoo ga ii koto ga ooi node, hagaki ya kaado, tegami o okuru koto ga ooi desu. | Khi có sự kiện đặc biệt, dù không gặp trực tiếp được thì cũng nên sớm bày tỏ tình cảm, nên người ta hay gửi bưu thiếp, thiệp hoặc thư.
+03:10 | ナレーター / Nareetaa / Người dẫn | 今はインターネットでいろいろ文例を見ることができますから、参考にするのもいいでしょう。 | Ima wa intaanetto de iroiro bunree o miru koto ga dekimasu kara, sankoo ni suru no mo ii deshoo. | Bây giờ có thể xem nhiều câu mẫu trên internet, tham khảo cũng tốt.
+03:22 | ナレーター / Nareetaa / Người dẫn | ただ、難しい文を書き写しても、相手にあまり気持ちは伝わりません。 | Tada, muzukashii bun o kakiutsushite mo, aite ni amari kimochi wa tsutawarimasen. | Tuy nhiên, chép lại những câu khó thì cũng không truyền được nhiều tình cảm.
+03:33 | ナレーター / Nareetaa / Người dẫn | 簡単でもいいので、相手への気持ちを言葉にして書くようにしましょう。 | Kantan demo ii node, aite e no kimochi o kotoba ni shite kaku yoo ni shimashoo. | Đơn giản cũng được, hãy tự viết thành lời tình cảm của mình dành cho người kia.
+03:43 | ナレーター / Nareetaa / Người dẫn | 相手にはがきや手紙を送る前に、自分の周りの日本人に、文面が適当かどうか確認してもらってもよいでしょう。 | Aite ni hagaki ya tegami o okuru mae ni, jibun no mawari no Nihonjin ni, bunmen ga tekitoo ka doo ka kakunin shite moratte mo yoi deshoo. | Trước khi gửi bưu thiếp hay thư, cũng có thể nhờ người Nhật quanh mình xem giúp nội dung có phù hợp không.
+04:01 | ナレーター / Nareetaa / Người dẫn | 場面に合わせるとともに、タイミングや方法にも気をつけて挨拶をし、相手への気持ちを伝えるようにしましょう。 | Bamen ni awaseru to tomo ni, taimingu ya hoohoo ni mo ki o tsukete aisatsu o shi, aite e no kimochi o tsutaeru yoo ni shimashoo. | Hãy chào hỏi phù hợp với tình huống, chú ý cả thời điểm và cách thức, để truyền đạt tình cảm của mình tới người kia.
+### từ vựng
+おめでとうございます | おめでとうございます | omedetoo gozaimasu | chúc mừng
+葬式 | そうしき | sooshiki | đám tang
+ご愁傷様です | ごしゅうしょうさまです | goshuushoosama desu | xin chia buồn
+見舞い | みまい | mimai | việc đi thăm người ốm
+お大事に | おだいじに | odaiji ni | giữ gìn sức khỏe nhé
+こちらこそ | こちらこそ | kochira koso | tôi mới là người phải…
+お世話になりました | おせわになりました | osewa ni narimashita | cảm ơn đã giúp đỡ
+
+## scene-1.mp4
+# Hỏi cách mừng đám cưới
+00:01 | 王 / Oo / Vương | あのー、ちょっといいですか。 | Anoo, chotto ii desu ka. | Dạ, anh cho em hỏi chút được không ạ?
+00:05 | 先輩 / Senpai / Đàn anh | はい、何ですか。 | Hai, nan desu ka. | Ừ, chuyện gì thế?
+00:07 | 王 / Oo / Vương | 来月、同期の山本さんが結婚します。 | Raigetsu, dooki no Yamamoto-san ga kekkon shimasu. | Tháng sau anh Yamamoto vào công ty cùng đợt với em sẽ cưới.
+00:10 | 先輩 / Senpai / Đàn anh | へえ、そうですか。 | Hee, soo desu ka. | Ồ, vậy à.
+*00:13 | 王 / Oo / Vương | それで、昨日これをもらいました。 | Sorede, kinoo kore o moraimashita. | Nên hôm qua em nhận được cái này.
+00:20 | 先輩 / Senpai / Đàn anh | ああ、結婚式の招待状ですね。 | Aa, kekkonshiki no shootaijoo desu ne. | À, thiệp mời đám cưới nhỉ.
+*00:24 | 王 / Oo / Vương | ええ。あの、日本では結婚のとき、何をあげますか。 | Ee. Ano, Nihon de wa kekkon no toki, nani o agemasu ka. | Vâng. Dạ, ở Nhật khi đi đám cưới thì tặng gì ạ?
+00:32 | 先輩 / Senpai / Đàn anh | そうですね。お金を渡すことが多いですよ。 | Soo desu ne. Okane o watasu koto ga ooi desu yo. | Để xem. Thường là mừng tiền đấy.
+00:37 | 王 / Oo / Vương | お金ですか。どうやって渡せばいいですか。 | Okane desu ka. Doo yatte wataseba ii desu ka. | Tiền ạ? Đưa như thế nào thì được ạ?
+00:48 | 先輩 / Senpai / Đàn anh | これに入れます。のし袋です。 | Kore ni iremasu. Noshibukuro desu. | Cho vào cái này. Đây là phong bì mừng (noshibukuro).
+00:54 | 王 / Oo / Vương | のし袋…初めて聞きました。 | Noshibukuro… hajimete kikimashita. | Noshibukuro… lần đầu em nghe thấy.
+*00:59 | 王 / Oo / Vương | どこで売っていますか。 | Doko de utte imasu ka. | Mua ở đâu ạ?
+01:02 | 先輩 / Senpai / Đàn anh | コンビニでも売ってますよ。 | Konbini demo uttemasu yo. | Cửa hàng tiện lợi cũng có bán đấy.
+01:04 | 王 / Oo / Vương | そうですか。のし袋ですね。 | Soo desu ka. Noshibukuro desu ne. | Vậy ạ. Noshibukuro nhỉ.
+01:07 | 先輩 / Senpai / Đàn anh | はい。 | Hai. | Ừ.
+*01:08 | 王 / Oo / Vương | お金はいつ渡してもいいですか。 | Okane wa itsu watashite mo ii desu ka. | Tiền thì đưa lúc nào cũng được ạ?
+01:11 | 先輩 / Senpai / Đàn anh | 普通は、結婚式の当日に持って行って、受付で渡しますよ。 | Futsuu wa, kekkonshiki no toojitsu ni motte itte, uketsuke de watashimasu yo. | Thường thì mang đến vào đúng ngày cưới rồi đưa ở bàn lễ tân.
+01:17 | 王 / Oo / Vương | ああ、そうですか。また、いろいろ教えてください。 | Aa, soo desu ka. Mata, iroiro oshiete kudasai. | À, vậy ạ. Sau này anh chỉ thêm cho em nhé.
+### từ vựng
+結婚式 | けっこんしき | kekkonshiki | đám cưới
+招待状 | しょうたいじょう | shootaijoo | thiệp mời
+同期 | どうき | dooki | người vào công ty cùng đợt
+のし袋 | のしぶくろ | noshibukuro | phong bì mừng
+渡す | わたす | watasu | trao, đưa
+当日 | とうじつ | toojitsu | đúng ngày hôm đó
+受付 | うけつけ | uketsuke | bàn lễ tân
+
+## scene-3.mp4
+# Ôn tập: Chào hỏi đúng người, đúng lúc
+00:00 |  /  / Chủ đề | きのう これを もらいました | kinoo kore o moraimashita | Hôm qua tôi đã nhận được cái này
+*00:06 | 王 / Oo / Vương | 昨日、これをもらいました。 | Kinoo, kore o moraimashita. | Hôm qua em nhận được cái này.
+00:11 | 先輩 / Senpai / Đàn anh | ああ、結婚式の招待状ですね。 | Aa, kekkonshiki no shootaijoo desu ne. | À, thiệp mời đám cưới nhỉ.
+00:16 | 王 / Oo / Vương | あのー、日本では結婚のとき、何をあげますか。 | Anoo, Nihon de wa kekkon no toki, nani o agemasu ka. | Dạ, ở Nhật khi đi đám cưới thì tặng gì ạ?
+00:23 | ナレーター / Nareetaa / Người dẫn | この動画の中では、「もらいました」とか「あげます」と言っています。 | Kono dooga no naka de wa, "moraimashita" toka "agemasu" to itte imasu. | Trong video này có các từ "moraimashita" (đã nhận) và "agemasu" (tặng, cho).
+00:34 | ナレーター / Nareetaa / Người dẫn | 「もらいます」「あげます」は、物のやりとりを表現する動詞です。 | "Moraimasu", "agemasu" wa, mono no yaritori o hyoogen suru dooshi desu. | "Moraimasu", "agemasu" là động từ diễn tả việc cho và nhận đồ vật.
+00:45 | ナレーター / Nareetaa / Người dẫn | 物がある人から別の人に移動するときに使います。 | Mono ga aru hito kara betsu no hito ni idoo suru toki ni tsukaimasu. | Dùng khi đồ vật chuyển từ người này sang người khác.
+00:53 | ナレーター / Nareetaa / Người dẫn | この動画で、結婚式の招待状は同僚の山本さんから王さんに移動しました。 | Kono dooga de, kekkonshiki no shootaijoo wa dooryoo no Yamamoto-san kara Oo-san ni idoo shimashita. | Trong video, thiệp mời đám cưới đi từ anh Yamamoto (đồng nghiệp) sang anh Vương.
+01:05 | ナレーター / Nareetaa / Người dẫn | 王さんは「私は山本さんに招待状をもらいました」と言いました。 | Oo-san wa "Watashi wa Yamamoto-san ni shootaijoo o moraimashita" to iimashita. | Anh Vương nói "Tôi đã nhận thiệp mời từ anh Yamamoto".
+01:17 | ナレーター / Nareetaa / Người dẫn | また、王さんは結婚する山本さんへのプレゼントのことを考えました。 | Mata, Oo-san wa kekkon suru Yamamoto-san e no purezento no koto o kangaemashita. | Anh Vương cũng nghĩ đến quà tặng anh Yamamoto sắp cưới.
+01:28 | ナレーター / Nareetaa / Người dẫn | 「私は山本さんにプレゼントをあげます」と言います。物は王さんから山本さんに移動します。 | "Watashi wa Yamamoto-san ni purezento o agemasu" to iimasu. Mono wa Oo-san kara Yamamoto-san ni idoo shimasu. | Ta nói "Tôi tặng quà cho anh Yamamoto". Đồ vật đi từ anh Vương sang anh Yamamoto.
+01:43 | ナレーター / Nareetaa / Người dẫn | 友達の誕生日には「私は友達にプレゼントをあげます」、 | Tomodachi no tanjoobi ni wa "Watashi wa tomodachi ni purezento o agemasu", | Vào sinh nhật bạn thì nói "Tôi tặng quà cho bạn",
+01:52 | ナレーター / Nareetaa / Người dẫn | 自分の誕生日には「私は友達にプレゼントをもらいます」と言います。 | jibun no tanjoobi ni wa "Watashi wa tomodachi ni purezento o moraimasu" to iimasu. | vào sinh nhật mình thì nói "Tôi nhận quà từ bạn".
+02:03 | ナレーター / Nareetaa / Người dẫn | どちらも主語は「私」です。どちらも助詞の「に」を使います。 | Dochira mo shugo wa "watashi" desu. Dochira mo joshi no "ni" o tsukaimasu. | Cả hai câu chủ ngữ đều là "watashi" (tôi), và đều dùng trợ từ "ni".
+02:16 | ナレーター / Nareetaa / Người dẫn | 自分がプレゼントをもらったとき、友達を主語にして、「友達がプレゼントをくれました」と言うこともあります。 | Jibun ga purezento o moratta toki, tomodachi o shugo ni shite, "Tomodachi ga purezento o kuremashita" to iu koto mo arimasu. | Khi mình nhận quà, cũng có thể lấy bạn làm chủ ngữ và nói "Bạn đã tặng quà cho tôi".
+02:31 |  /  / Chủ đề | どこで うっていますか | doko de utte imasu ka | Mua ở đâu vậy?
+02:36 | 王 / Oo / Vương | のし袋…初めて聞きました。 | Noshibukuro… hajimete kikimashita. | Noshibukuro… lần đầu em nghe thấy.
+*02:42 | 王 / Oo / Vương | どこで売っていますか。 | Doko de utte imasu ka. | Mua ở đâu ạ?
+02:45 | 先輩 / Senpai / Đàn anh | コンビニでも売ってますよ。 | Konbini demo uttemasu yo. | Cửa hàng tiện lợi cũng có bán đấy.
+02:47 | 王 / Oo / Vương | そうですか。 | Soo desu ka. | Vậy ạ.
+02:49 | ナレーター / Nareetaa / Người dẫn | 「売ってます」は「売っています」と同じです。 | "Uttemasu" wa "utte imasu" to onaji desu. | "Uttemasu" giống với "utte imasu".
+02:58 | ナレーター / Nareetaa / Người dẫn | 「ている」は、動詞のて形に「いる」をつけた表現です。 | "Te iru" wa, dooshi no te-kee ni "iru" o tsuketa hyoogen desu. | "Te iru" là thể te của động từ thêm "iru".
+03:06 | ナレーター / Nareetaa / Người dẫn | 「ています」は、長い期間、同じ行為や状態が続いているときに使います。 | "Te imasu" wa, nagai kikan, onaji kooi ya jootai ga tsuzuite iru toki ni tsukaimasu. | "Te imasu" dùng khi một hành động hay trạng thái kéo dài trong thời gian dài.
+03:16 | ナレーター / Nareetaa / Người dẫn | 「コンビニでのし袋を売っています」、「私の学校ではタブレットを使っています」、「妹はスーパーでアルバイトをしています」と言うことができます。 | "Konbini de noshibukuro o utte imasu", "Watashi no gakkoo de wa taburetto o tsukatte imasu", "Imooto wa suupaa de arubaito o shite imasu" to iu koto ga dekimasu. | Có thể nói: "Cửa hàng tiện lợi có bán noshibukuro", "Trường tôi dùng máy tính bảng", "Em gái tôi làm thêm ở siêu thị".
+03:39 |  /  / Chủ đề | いつ わたしても いいですか | itsu watashitemo ii desu ka | Đưa lúc nào cũng được ạ?
+*03:45 | 王 / Oo / Vương | お金はいつ渡してもいいですか。 | Okane wa itsu watashite mo ii desu ka. | Tiền thì đưa lúc nào cũng được ạ?
+03:49 | ナレーター / Nareetaa / Người dẫn | この文型は、「いつ」のような疑問詞と、動詞のて形＋「も」を一緒に使います。 | Kono bunkee wa, "itsu" no yoo na gimonshi to, dooshi no te-kee + "mo" o issho ni tsukaimasu. | Mẫu câu này dùng từ để hỏi như "itsu" (khi nào) cùng với động từ thể te + "mo".
+04:01 | ナレーター / Nareetaa / Người dẫn | 「いつ渡してもいいですか」は、今日渡しても、明日渡しても、渡すのはいつでも大丈夫ですか、という意味です。 | "Itsu watashite mo ii desu ka" wa, kyoo watashite mo, ashita watashite mo, watasu no wa itsu demo daijoobu desu ka, to iu imi desu. | "Itsu watashite mo ii desu ka" nghĩa là đưa hôm nay hay ngày mai, đưa lúc nào cũng được phải không.
+04:18 | ナレーター / Nareetaa / Người dẫn | 図書館に行って、本を何冊借りられるかわからないとき、「何冊借りてもいいですか」と質問することもできます。 | Toshokan ni itte, hon o nan-satsu karirareru ka wakaranai toki, "Nan-satsu karite mo ii desu ka" to shitsumon suru koto mo dekimasu. | Khi đến thư viện mà không biết được mượn bao nhiêu cuốn, có thể hỏi "Mượn bao nhiêu cuốn cũng được ạ?".
+04:35 | ナレーター / Nareetaa / Người dẫn | 5冊借りても、10冊借りても、何冊でも大丈夫ですか、という意味です。 | Go-satsu karite mo, jussatsu karite mo, nan-satsu demo daijoobu desu ka, to iu imi desu. | Nghĩa là mượn 5 cuốn hay 10 cuốn, bao nhiêu cuốn cũng được phải không.
+04:45 | ナレーター / Nareetaa / Người dẫn | あるレストランがとても人気があることを伝えたいとき、「あのレストランはいつ行っても混んでいます」と言うこともできます。 | Aru resutoran ga totemo ninki ga aru koto o tsutaetai toki, "Ano resutoran wa itsu itte mo konde imasu" to iu koto mo dekimasu. | Khi muốn nói một nhà hàng rất đông khách, có thể nói "Nhà hàng đó đi lúc nào cũng đông".
+05:00 | ナレーター / Nareetaa / Người dẫn | 朝行っても、昼行っても、夜行っても、いつでも混んでいます、という意味です。 | Asa itte mo, hiru itte mo, yoru itte mo, itsu demo konde imasu, to iu imi desu. | Nghĩa là đi buổi sáng, buổi trưa hay buổi tối cũng đều đông.

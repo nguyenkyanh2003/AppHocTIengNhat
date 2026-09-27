@@ -1,0 +1,831 @@
+{
+  "lesson": {
+    "title": "Tình huống: Đi sự kiện và tìm sở thích mới"
+  },
+  "videos": [
+    {
+      "title": "Rủ nhau đi chợ đồ cũ",
+      "description": "Hỏi được sự kiện có cần đăng ký không và hẹn đi cùng hàng xóm.",
+      "url": "/uploads/lesson-videos/n4-07-events/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:04",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "王さん、今度の土曜日、中央公園でフリマですよ。",
+          "romaji": "Oo-san, kondo no doyoobi, Chuuoo-kooen de furima desu yo.",
+          "text_vi": "Anh Vương ơi, thứ Bảy tới có chợ đồ cũ ở Công viên Trung tâm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "フリマ？",
+          "romaji": "Furima?",
+          "text_vi": "Furima ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "フリマ…フリーマーケット。",
+          "romaji": "Furima… furii-maaketto.",
+          "text_vi": "Furima… tức là chợ trời (flea market).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "みんなが公園でいろいろな物を売ります。何でも安くて、すごく楽しいですよ。",
+          "romaji": "Minna ga kooen de iroiro na mono o urimasu. Nandemo yasukute, sugoku tanoshii desu yo.",
+          "text_vi": "Mọi người bán đủ thứ ở công viên. Cái gì cũng rẻ, vui lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですか。私も会社の友達と一緒に行きたいです。",
+          "romaji": "Soo desu ka. Watashi mo kaisha no tomodachi to issho ni ikitai desu.",
+          "text_vi": "Vậy à. Tôi cũng muốn đi cùng bạn ở công ty.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "申し込みをしなければなりませんか。",
+          "romaji": "Mooshikomi o shinakereba narimasen ka.",
+          "text_vi": "Có phải đăng ký trước không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "いいえ、誰でも参加できますよ。",
+          "romaji": "Iie, dare demo sanka dekimasu yo.",
+          "text_vi": "Không, ai cũng tham gia được.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですか。鈴木さんも行きますか。",
+          "romaji": "Soo desu ka. Suzuki-san mo ikimasu ka.",
+          "text_vi": "Vậy à. Chị Suzuki cũng đi chứ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい。私も子ども会の人たちと一緒に古い本やおもちゃを売ります。",
+          "romaji": "Hai. Watashi mo kodomokai no hitotachi to issho ni furui hon ya omocha o urimasu.",
+          "text_vi": "Có. Tôi cũng bán sách cũ và đồ chơi cùng mọi người trong hội phụ huynh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "だから、朝9時に集合することになっているんですよ。",
+          "romaji": "Dakara, asa ku-ji ni shuugoo suru koto ni natte irun desu yo.",
+          "text_vi": "Nên 9 giờ sáng phải tập trung rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、そうですか。朝から大変ですね。",
+          "romaji": "Aa, soo desu ka. Asa kara taihen desu ne.",
+          "text_vi": "À, vậy à. Từ sáng sớm vất vả nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "土曜日、友達と行きますね。",
+          "romaji": "Doyoobi, tomodachi to ikimasu ne.",
+          "text_vi": "Thứ Bảy tôi sẽ đi cùng bạn nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい、待っていますね。",
+          "romaji": "Hai, matte imasu ne.",
+          "text_vi": "Vâng, tôi đợi đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "晴れるといいですね。",
+          "romaji": "Hareru to ii desu ne.",
+          "text_vi": "Mong là trời nắng nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Ừ nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "フリーマーケット",
+          "reading": "フリーマーケット",
+          "romaji": "furii-maaketto",
+          "meaning": "chợ đồ cũ"
+        },
+        {
+          "word": "売る",
+          "reading": "うる",
+          "romaji": "uru",
+          "meaning": "bán"
+        },
+        {
+          "word": "申し込み",
+          "reading": "もうしこみ",
+          "romaji": "mooshikomi",
+          "meaning": "đăng ký"
+        },
+        {
+          "word": "子ども会",
+          "reading": "こどもかい",
+          "romaji": "kodomokai",
+          "meaning": "hội phụ huynh trẻ em"
+        },
+        {
+          "word": "集合",
+          "reading": "しゅうごう",
+          "romaji": "shuugoo",
+          "meaning": "tập trung"
+        },
+        {
+          "word": "晴れる",
+          "reading": "はれる",
+          "romaji": "hareru",
+          "meaning": "trời nắng"
+        }
+      ]
+    },
+    {
+      "title": "Tìm một việc mới cho ngày nghỉ",
+      "description": "Nhờ được đàn anh gợi ý việc làm cuối tuần và hỏi cách đăng ký dùng thư viện.",
+      "url": "/uploads/lesson-videos/n4-07-events/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "王さん、お疲れ様。",
+          "romaji": "Oo-san, otsukaresama.",
+          "text_vi": "Anh Vương, vất vả rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "お疲れ様です。",
+          "romaji": "Otsukaresama desu.",
+          "text_vi": "Anh cũng vất vả rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "王さん、日本の生活はどうですか。",
+          "romaji": "Oo-san, Nihon no seekatsu wa doo desu ka.",
+          "text_vi": "Anh Vương, cuộc sống ở Nhật thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですね、まあまあです。",
+          "romaji": "Soo desu ne, maamaa desu.",
+          "text_vi": "Dạ, cũng tàm tạm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "そうですか。休みの日は何をしているんですか。",
+          "romaji": "Soo desu ka. Yasumi no hi wa nani o shite irun desu ka.",
+          "text_vi": "Vậy à. Ngày nghỉ anh làm gì?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "そうですね、土日は今ちょっと暇です。",
+          "romaji": "Soo desu ne, donichi wa ima chotto hima desu.",
+          "text_vi": "Dạ, thứ Bảy Chủ Nhật dạo này em hơi rảnh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "何か新しいことをやりたいです。何かおすすめはありますか。",
+          "romaji": "Nanika atarashii koto o yaritai desu. Nanika osusume wa arimasu ka.",
+          "text_vi": "Em muốn làm việc gì đó mới mẻ. Anh có gợi ý gì không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "うーん…あ、図書館へ行ったことがありますか。",
+          "romaji": "Uun… a, toshokan e itta koto ga arimasu ka.",
+          "text_vi": "Ừm… À, anh đã đến thư viện bao giờ chưa?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "いいえ。私はまだ日本語の本が読めませんから。",
+          "romaji": "Iie. Watashi wa mada Nihongo no hon ga yomemasen kara.",
+          "text_vi": "Chưa ạ. Vì em chưa đọc được sách tiếng Nhật.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "ああ、そうですか。でも、図書館には外国語の本もありますよ。",
+          "romaji": "Aa, soo desu ka. Demo, toshokan ni wa gaikokugo no hon mo arimasu yo.",
+          "text_vi": "À, vậy à. Nhưng thư viện cũng có sách tiếng nước ngoài đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "へえ、そうですか。いいですね。どうやったら利用できますか。",
+          "romaji": "Hee, soo desu ka. Ii desu ne. Doo yattara riyoo dekimasu ka.",
+          "text_vi": "Ồ, vậy ạ. Hay quá. Làm thế nào để sử dụng được ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "市内の人は誰でも利用できますよ。",
+          "romaji": "Shinai no hito wa dare demo riyoo dekimasu yo.",
+          "text_vi": "Người sống trong thành phố ai cũng dùng được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "まず図書館へ行って、受付で登録の手続きをしてください。",
+          "romaji": "Mazu toshokan e itte, uketsuke de tooroku no tetsuzuki o shite kudasai.",
+          "text_vi": "Trước tiên anh đến thư viện, làm thủ tục đăng ký ở quầy tiếp tân.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "登録ですか。何を持って行ったらいいですか。",
+          "romaji": "Tooroku desu ka. Nani o motte ittara ii desu ka.",
+          "text_vi": "Đăng ký ạ. Em nên mang theo gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "身分証明書…在留カードを持って行ってください。",
+          "romaji": "Mibun-shoomeesho… zairyuu-kaado o motte itte kudasai.",
+          "text_vi": "Giấy tờ tùy thân… anh mang thẻ cư trú theo nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "あとは、図書館の人が教えてくれますよ。",
+          "romaji": "Ato wa, toshokan no hito ga oshiete kuremasu yo.",
+          "text_vi": "Còn lại thì người ở thư viện sẽ hướng dẫn cho.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "わかりました。行ってみます。",
+          "romaji": "Wakarimashita. Itte mimasu.",
+          "text_vi": "Em hiểu rồi. Em sẽ đi thử.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "はい、ぜひ行ってみてください。一人で大丈夫ですか。",
+          "romaji": "Hai, zehi itte mite kudasai. Hitori de daijoobu desu ka.",
+          "text_vi": "Ừ, nhất định đi thử nhé. Anh đi một mình được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、大丈夫です。ありがとうございます。",
+          "romaji": "Hai, daijoobu desu. Arigatoo gozaimasu.",
+          "text_vi": "Vâng, em đi được ạ. Em cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "生活",
+          "reading": "せいかつ",
+          "romaji": "seekatsu",
+          "meaning": "cuộc sống"
+        },
+        {
+          "word": "暇",
+          "reading": "ひま",
+          "romaji": "hima",
+          "meaning": "rảnh rỗi"
+        },
+        {
+          "word": "図書館",
+          "reading": "としょかん",
+          "romaji": "toshokan",
+          "meaning": "thư viện"
+        },
+        {
+          "word": "外国語",
+          "reading": "がいこくご",
+          "romaji": "gaikokugo",
+          "meaning": "tiếng nước ngoài"
+        },
+        {
+          "word": "登録",
+          "reading": "とうろく",
+          "romaji": "tooroku",
+          "meaning": "đăng ký"
+        },
+        {
+          "word": "身分証明書",
+          "reading": "みぶんしょうめいしょ",
+          "romaji": "mibun-shoomeesho",
+          "meaning": "giấy tờ tùy thân"
+        }
+      ]
+    },
+    {
+      "title": "Hẹn đi lễ hội mùa hè",
+      "description": "Nói được mình chưa từng đi lễ hội, hỏi có món gì ngon và nhận lời rủ.",
+      "url": "/uploads/lesson-videos/n4-07-events/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "来週は夏祭りですね。",
+          "romaji": "Raishuu wa natsu-matsuri desu ne.",
+          "text_vi": "Tuần sau là lễ hội mùa hè nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "アンジェラさんは、日本の夏祭りに参加したことがありますか。",
+          "romaji": "Anjera-san wa, Nihon no natsu-matsuri ni sanka shita koto ga arimasu ka.",
+          "text_vi": "Angela đã từng tham gia lễ hội mùa hè ở Nhật chưa?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいえ、まだありません。",
+          "romaji": "Iie, mada arimasen.",
+          "text_vi": "Chưa, tôi chưa đi bao giờ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "じゃあ、一緒に行ってみませんか。",
+          "romaji": "Jaa, issho ni itte mimasen ka.",
+          "text_vi": "Vậy cùng đi thử không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、行きたいです。何かおいしいものがありますか。",
+          "romaji": "Hai, ikitai desu. Nanika oishii mono ga arimasu ka.",
+          "text_vi": "Có, tôi muốn đi. Có món gì ngon không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうですねー、私のおすすめはお好み焼きです。",
+          "romaji": "Soo desu nee, watashi no osusume wa okonomiyaki desu.",
+          "text_vi": "Để xem, tôi khuyên món okonomiyaki (bánh xèo Nhật).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、いいですね。",
+          "romaji": "Aa, ii desu ne.",
+          "text_vi": "À, hay đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "あ、金魚すくいも楽しいですよ。",
+          "romaji": "A, kingyo-sukui mo tanoshii desu yo.",
+          "text_vi": "À, vớt cá vàng cũng vui lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "金魚すくい？金魚すくいって何ですか。",
+          "romaji": "Kingyo-sukui? Kingyo-sukui tte nan desu ka.",
+          "text_vi": "Vớt cá vàng? Kingyo-sukui là gì vậy?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "金魚は、小さくてかわいい魚です。紙のスプーンで金魚を取ります。",
+          "romaji": "Kingyo wa, chiisakute kawaii sakana desu. Kami no supuun de kingyo o torimasu.",
+          "text_vi": "Kingyo là loài cá nhỏ và dễ thương. Người ta dùng cái vợt bằng giấy để vớt cá vàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、ネットで見ました、見ました。やってみたいです。",
+          "romaji": "Aa, netto de mimashita, mimashita. Yatte mitai desu.",
+          "text_vi": "À, tôi thấy trên mạng rồi. Tôi muốn thử.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "じゃあ、後でメールしますね。",
+          "romaji": "Jaa, ato de meeru shimasu ne.",
+          "text_vi": "Vậy lát nữa tôi nhắn tin cho nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。楽しみです。",
+          "romaji": "Arigatoo gozaimasu. Tanoshimi desu.",
+          "text_vi": "Cảm ơn chị. Tôi mong lắm.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "夏祭り",
+          "reading": "なつまつり",
+          "romaji": "natsu-matsuri",
+          "meaning": "lễ hội mùa hè"
+        },
+        {
+          "word": "お好み焼き",
+          "reading": "おこのみやき",
+          "romaji": "okonomiyaki",
+          "meaning": "bánh xèo Nhật"
+        },
+        {
+          "word": "金魚すくい",
+          "reading": "きんぎょすくい",
+          "romaji": "kingyo-sukui",
+          "meaning": "vớt cá vàng"
+        },
+        {
+          "word": "楽しみ",
+          "reading": "たのしみ",
+          "romaji": "tanoshimi",
+          "meaning": "mong chờ"
+        },
+        {
+          "word": "誘う",
+          "reading": "さそう",
+          "romaji": "sasou",
+          "meaning": "rủ"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Đi sự kiện và tìm sở thích mới",
+      "description": "Ôn lại「何か」,「〜たことがあります」và「〜てみます」.",
+      "url": "/uploads/lesson-videos/n4-07-events/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "なにか あたらしい こと",
+          "romaji": "nani ka atarashii koto",
+          "text_vi": "Một việc gì đó mới mẻ",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "何か新しいことをやりたいです。何かおすすめはありますか。",
+          "romaji": "Nanika atarashii koto o yaritai desu. Nanika osusume wa arimasu ka.",
+          "text_vi": "Tôi muốn làm việc gì đó mới mẻ. Anh có gợi ý gì không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「何」という疑問詞に「か」がつくと、ものや事の内容がはっきりしていないことを表します。",
+          "romaji": "\"Nani\" to iu gimonshi ni \"ka\" ga tsuku to, mono ya koto no naiyoo ga hakkiri shite inai koto o arawashimasu.",
+          "text_vi": "Thêm \"ka\" vào từ để hỏi \"nani\" thì diễn tả nội dung sự vật, sự việc chưa rõ ràng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話の中で、王さんは週末に暇なので新しいことをしたいと思っていますが、何をするかは決めていません。それで「何か新しいこと」と言っています。",
+          "romaji": "Kaiwa no naka de, Oo-san wa shuumatsu ni hima na node atarashii koto o shitai to omotte imasu ga, nani o suru ka wa kimete imasen. Sorede \"nanika atarashii koto\" to itte imasu.",
+          "text_vi": "Trong hội thoại, anh Vương cuối tuần rảnh nên muốn làm việc gì đó mới, nhưng chưa quyết định làm gì. Vì vậy anh nói \"nanika atarashii koto\" (việc gì đó mới mẻ).",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、先輩からアドバイスをもらいたくて、「何かおすすめはありますか」と聞いています。",
+          "romaji": "Mata, senpai kara adobaisu o moraitakute, \"Nanika osusume wa arimasu ka\" to kiite imasu.",
+          "text_vi": "Anh ấy cũng muốn xin lời khuyên của đàn anh nên hỏi \"Anh có gợi ý gì không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「か」は、「いつ」「誰」「どこ」「どれ」にもつきます。",
+          "romaji": "\"Ka\" wa, \"itsu\", \"dare\", \"doko\", \"dore\" ni mo tsukimasu.",
+          "text_vi": "\"Ka\" cũng có thể gắn vào \"itsu\" (khi nào), \"dare\" (ai), \"doko\" (đâu), \"dore\" (cái nào).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "さんかした ことが ありますか",
+          "romaji": "sanka-shita koto ga arimasu ka",
+          "text_vi": "Đã từng tham gia chưa?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "アンジェラさんは、日本の夏祭りに参加したことがありますか。",
+          "romaji": "Anjera-san wa, Nihon no natsu-matsuri ni sanka shita koto ga arimasu ka.",
+          "text_vi": "Angela đã từng tham gia lễ hội mùa hè ở Nhật chưa?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いいえ、まだありません。",
+          "romaji": "Iie, mada arimasen.",
+          "text_vi": "Chưa, tôi chưa đi bao giờ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「こと」には、動詞やい形容詞、な形容詞の普通形、またはそれらを使った文に接続して、その行為や状態を名詞にする働きがあります。",
+          "romaji": "\"Koto\" ni wa, dooshi ya i-keeyooshi, na-keeyooshi no futsuukee, mata wa sorera o tsukatta bun ni setsuzoku shite, sono kooi ya jootai o meeshi ni suru hataraki ga arimasu.",
+          "text_vi": "\"Koto\" đi sau thể thông thường của động từ, tính từ, hoặc câu dùng chúng, để biến hành động hay trạng thái đó thành danh từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「趣味はスポーツです」と言うときに、スポーツをするのか見るのかをさらに言いたければ、「スポーツをすることです」「見ることです」のように言うことができます。",
+          "romaji": "Tatoeba, \"Shumi wa supootsu desu\" to iu toki ni, supootsu o suru no ka miru no ka o sara ni iitakereba, \"Supootsu o suru koto desu\", \"Miru koto desu\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Ví dụ, khi nói \"Sở thích của tôi là thể thao\", nếu muốn nói rõ là chơi hay xem thì nói \"Là chơi thể thao\", \"Là xem thể thao\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「こと」を使った定型の表現に、「ことになる」「ことがある」などがあります。",
+          "romaji": "\"Koto\" o tsukatta teekee no hyoogen ni, \"koto ni naru\", \"koto ga aru\" nado ga arimasu.",
+          "text_vi": "Các mẫu cố định dùng \"koto\" có \"koto ni naru\", \"koto ga aru\"…",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話の中では、「参加したことがありますか」のように、動詞のた形に「ことがある」をつけて、その経験があるかどうかを聞いています。",
+          "romaji": "Kaiwa no naka de wa, \"Sanka shita koto ga arimasu ka\" no yoo ni, dooshi no ta-kee ni \"koto ga aru\" o tsukete, sono keeken ga aru ka doo ka o kiite imasu.",
+          "text_vi": "Trong hội thoại, \"Sanka shita koto ga arimasu ka\" – thêm \"koto ga aru\" vào thể ta của động từ để hỏi đã từng có trải nghiệm đó chưa.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:28",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "いって みます",
+          "romaji": "itte mimasu",
+          "text_vi": "Tôi sẽ đi thử",
+          "key_phrase": false
+        },
+        {
+          "start": "02:35",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "わかりました。行ってみます。",
+          "romaji": "Wakarimashita. Itte mimasu.",
+          "text_vi": "Em hiểu rồi. Em sẽ đi thử.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:38",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "はい、ぜひ行ってみてください。",
+          "romaji": "Hai, zehi itte mite kudasai.",
+          "text_vi": "Ừ, nhất định đi thử nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞のて形＋みます」は、",
+          "romaji": "\"Dooshi no te-kee + mimasu\" wa,",
+          "text_vi": "\"Động từ thể te + mimasu\"",
+          "key_phrase": false
+        },
+        {
+          "start": "02:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "試しに動詞の行為をするという意味になります。",
+          "romaji": "tameshi ni dooshi no kooi o suru to iu imi ni narimasu.",
+          "text_vi": "có nghĩa là làm thử hành động đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "先輩社員が王さんに図書館に行くことを勧めていますが、王さんは初めて図書館に行くので、いろいろとわからないことがあります。",
+          "romaji": "Senpai-shain ga Oo-san ni toshokan ni iku koto o susumete imasu ga, Oo-san wa hajimete toshokan ni iku node, iroiro to wakaranai koto ga arimasu.",
+          "text_vi": "Đàn anh ở công ty khuyên anh Vương đến thư viện, nhưng anh Vương lần đầu đi nên có nhiều điều chưa biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それでも、行けば図書館の人に教えてもらえるようなので、「とりあえず行ってみます」と言っているわけです。",
+          "romaji": "Soredemo, ikeba toshokan no hito ni oshiete moraeru yoo na node, \"toriaezu itte mimasu\" to itte iru wake desu.",
+          "text_vi": "Dù vậy, đến nơi thì sẽ được nhân viên thư viện hướng dẫn, nên anh nói \"Trước mắt em sẽ đi thử\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それに対して、先輩社員も「行ってください」という強い言い方ではなく、「行ってみてください」と返しています。",
+          "romaji": "Sore ni taishite, senpai-shain mo \"itte kudasai\" to iu tsuyoi iikata de wa naku, \"itte mite kudasai\" to kaeshite imasu.",
+          "text_vi": "Đáp lại, đàn anh cũng không nói mạnh \"Hãy đi đi\" mà nói \"Anh đi thử xem\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

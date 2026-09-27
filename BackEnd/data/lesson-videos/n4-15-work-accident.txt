@@ -1,0 +1,140 @@
+# Lời thoại Tình huống: Xử lý tai nạn ở nơi làm việc
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-11-15.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Gọi người giúp khi có người ngã
+00:05 | 太郎 / Taroo / Tarō | 吉田さん、おはようございます。そろそろ朝ごはんの時間ですよ。 | Yoshida-san, ohayoo gozaimasu. Sorosoro asagohan no jikan desu yo. | Bác Yoshida, chào buổi sáng ạ. Sắp đến giờ ăn sáng rồi ạ.
+*00:13 | 太郎 / Taroo / Tarō | 吉田さん、大丈夫ですか。どこか痛いですか。 | Yoshida-san, daijoobu desu ka. Dokoka itai desu ka. | Bác Yoshida, bác có sao không ạ? Có đau chỗ nào không ạ?
+*00:23 | 太郎 / Taroo / Tarō | すみません、誰か来てください。お願いします。 | Sumimasen, dareka kite kudasai. Onegaishimasu. | Xin lỗi, ai đó hãy đến đây giúp với.
+00:30 | 斉藤 / Saitoo / Saitō | 太郎さん、どうしたの？ | Taroo-san, doo shita no? | Anh Tarō, có chuyện gì vậy?
+00:32 | 太郎 / Taroo / Tarō | あの、吉田さんが…。 | Ano, Yoshida-san ga... | À, bác Yoshida bị...
+00:38 | 太郎 / Taroo / Tarō | 吉田さん、大丈夫ですか。どこか痛いですか。 | Yoshida-san, daijoobu desu ka. Dokoka itai desu ka. | Bác Yoshida, bác có sao không ạ? Có đau chỗ nào không ạ?
+00:46 | 斉藤 / Saitoo / Saitō | 危ないね。 | Abunai ne. | Nguy hiểm quá nhỉ.
+*00:50 | 斉藤 / Saitoo / Saitō | 鳥取さん、鈴木さん呼んできて。 | Tottori-san, Suzuki-san yonde kite. | Chị Tottori, đi gọi chị Suzuki giúp tôi.
+00:53 | 鳥取 / Tottori / Tottori | 鈴木さんですか。 | Suzuki-san desu ka. | Chị Suzuki ạ?
+00:55 | 斉藤 / Saitoo / Saitō | そう、あの看護師の鈴木さん。 | Soo, ano kangoshi no Suzuki-san. | Đúng rồi, chị Suzuki y tá đó.
+00:59 | 鳥取 / Tottori / Tottori | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+01:09 | 鳥取 / Tottori / Tottori | すみません。鈴木さん、いらっしゃいますか。 | Sumimasen. Suzuki-san, irasshaimasu ka. | Xin lỗi, chị Suzuki có đây không ạ?
+01:14 | 受付 / Uketsuke / Lễ tân | はい。 | Hai. | Có ạ.
+01:16 | 鳥取 / Tottori / Tottori | 鈴木さん、すみません。 | Suzuki-san, sumimasen. | Chị Suzuki, xin lỗi chị.
+01:19 | 鳥取 / Tottori / Tottori | 301号室の吉田さんが、ベッドの上で動けなくなっていて。 | Sanbyaku-ichi-gooshitsu no Yoshida-san ga, beddo no ue de ugokenaku natte ite. | Bác Yoshida phòng 301 đang không cử động được trên giường.
+01:28 | 鳥取 / Tottori / Tottori | 301号室の吉田さんです。 | Sanbyaku-ichi-gooshitsu no Yoshida-san desu. | Là bác Yoshida phòng 301 ạ.
+01:30 | 鈴木 / Suzuki / Suzuki | はい。 | Hai. | Vâng.
+01:33 | 鳥取 / Tottori / Tottori | それで、斉藤さんに鈴木さんを呼んでくるように言われました。 | Sorede, Saitoo-san ni Suzuki-san o yonde kuru yoo ni iwaremashita. | Vì vậy, chị Saitō đã bảo tôi đi gọi chị đến.
+01:38 | 鳥取 / Tottori / Tottori | お願いします。 | Onegaishimasu. | Nhờ chị giúp ạ.
+01:44 | 鈴木 / Suzuki / Suzuki | わかった、すぐ行くね。 | Wakatta, sugu iku ne. | Được rồi, tôi đến ngay đây.
+*01:45 | 鳥取 / Tottori / Tottori | 斉藤さん、鈴木さんすぐに来るそうです。 | Saitoo-san, Suzuki-san sugu ni kuru soo desu. | Chị Saitō, chị Suzuki bảo sẽ đến ngay ạ.
+01:49 | 斉藤 / Saitoo / Saitō | わかった。ありがとう。 | Wakatta. Arigatoo. | Được rồi. Cảm ơn.
+### từ vựng
+痛い | いたい | itai | đau
+看護師 | かんごし | kangoshi | y tá
+〜号室 | ごうしつ | gooshitsu | phòng số …
+動く | うごく | ugoku | cử động
+呼ぶ | よぶ | yobu | gọi
+危ない | あぶない | abunai | nguy hiểm
+
+## scene-2.mp4
+# Báo cáo sự việc với quản lý
+00:05 | ミゲル / Migeru / Miguel | お客様、大丈夫ですか。 | Okyakusama, daijoobu desu ka. | Quý khách có sao không ạ?
+00:12 | ミゲル / Migeru / Miguel | どこが痛いですか。頭も打ったかも…。立てますか。ちょっと無理かも…。少しお待ちください。 | Doko ga itai desu ka. Atama mo utta kamo... Tatemasu ka. Chotto muri kamo... Sukoshi omachi kudasai. | Chỗ nào đau ạ? Hình như đập cả đầu nữa... Đứng dậy được không ạ? Có lẽ hơi khó... Xin đợi một chút ạ.
+00:42 | ミゲル / Migeru / Miguel | 店長、お疲れ様です。 | Tenchoo, otsukaresama desu. | Chị quản lý, chị vất vả rồi ạ.
+*00:47 | ミゲル / Migeru / Miguel | あのー、今朝のお客様のことをご報告したいんですが、今よろしいですか。 | Anoo, kesa no okyakusama no koto o gohookoku shitain desu ga, ima yoroshii desu ka. | À, em muốn báo cáo với chị về việc của một khách hàng sáng nay, bây giờ tiện không ạ?
+00:54 | 店長 / Tenchoo / Cửa hàng trưởng | はいはい。今、現場リーダーの田中さんからも報告をもらいました。 | Hai hai. Ima, genba riidaa no Tanaka-san kara mo hookoku o moraimashita. | Vâng vâng. Tôi vừa nhận báo cáo từ anh Tanaka, trưởng ca hiện trường rồi.
+01:04 | 店長 / Tenchoo / Cửa hàng trưởng | ミゲルさんが最初に対応してくれたんですって？ | Migeru-san ga saisho ni taioo shite kuretan desutte? | Nghe nói anh Miguel đã là người xử lý đầu tiên phải không?
+01:07 | ミゲル / Migeru / Miguel | あ、はい。 | A, hai. | À, vâng ạ.
+01:09 | 店長 / Tenchoo / Cửa hàng trưởng | 私もミゲルさんから様子を教えてもらいたいと思っていたところです。どんな状況だったか聞かせてくれる？ | Watashi mo Migeru-san kara yoosu o oshiete moraitai to omotte ita tokoro desu. Donna jookyoo datta ka kikasete kureru? | Tôi cũng đang muốn nghe anh Miguel kể lại tình hình đây. Anh kể cho tôi nghe tình huống như thế nào được không?
+*01:17 | ミゲル / Migeru / Miguel | はい。朝9時ごろレジにいたら、店の外で大きな音がしたので急いで様子を見に行きました。 | Hai. Asa kuji goro reji ni itara, mise no soto de ookina oto ga shita node isoide yoosu o mi ni ikimashita. | Vâng. Khoảng 9 giờ sáng em đang đứng ở quầy thu ngân thì nghe tiếng động lớn ở ngoài cửa hàng nên em vội chạy ra xem.
+01:28 | ミゲル / Migeru / Miguel | そうしたら、お客様が倒れていました。 | Soo shitara, okyakusama ga taorete imashita. | Rồi thì thấy một vị khách đã ngã xuống.
+01:31 | 店長 / Tenchoo / Cửa hàng trưởng | どのあたり？ | Dono atari? | Ở khoảng nào vậy?
+01:33 | ミゲル / Migeru / Miguel | お店の自動ドアを出て左のところです。 | Omise no jidoo doa o dete hidari no tokoro desu. | Ở chỗ bên trái ngay khi ra khỏi cửa tự động của cửa hàng ạ.
+01:41 | 店長 / Tenchoo / Cửa hàng trưởng | ああ、あそこね。それで？ | Aa, asoko ne. Sorede? | À, chỗ đó à. Rồi sao nữa?
+01:45 | ミゲル / Migeru / Miguel | 腕と腰が痛くて立てないようだったので、店の中にいた田中さんを呼びに行きました。 | Ude to koshi ga itakute tatenai yoo datta node, mise no naka ni ita Tanaka-san o yobi ni ikimashita. | Vì tay và lưng đau nên có vẻ khách không đứng dậy được, nên em đã chạy vào gọi anh Tanaka đang ở trong cửa hàng.
+01:54 | ミゲル / Migeru / Miguel | その後、田中さんが救急車を呼びました。 | Sono ato, Tanaka-san ga kyuukyuusha o yobimashita. | Sau đó, anh Tanaka đã gọi xe cấp cứu.
+01:59 | 店長 / Tenchoo / Cửa hàng trưởng | そう、大変でしたね。対応ありがとうございました。 | Soo, taihen deshita ne. Taioo arigatoo gozaimashita. | Vậy à, vất vả cho em rồi. Cảm ơn em đã xử lý.
+02:08 | 店長 / Tenchoo / Cửa hàng trưởng | あともう一つ教えてくれる？ | Ato moo hitotsu oshiete kureru? | Cho tôi hỏi thêm một điều nữa nhé?
+02:12 | 店長 / Tenchoo / Cửa hàng trưởng | お客様、なんで転んだかわかりますか。 | Okyakusama, nande koronda ka wakarimasu ka. | Anh có biết vì sao khách bị ngã không?
+*02:17 | ミゲル / Migeru / Miguel | はい。店の前に何台か自転車が止めてあって、その自転車につまずいたみたいです。 | Hai. Mise no mae ni nandai ka jitensha ga tomete atte, sono jitensha ni tsumazuita mitai desu. | Vâng. Trước cửa hàng có để mấy chiếc xe đạp, hình như khách bị vấp vào xe đạp đó ạ.
+02:28 | 店長 / Tenchoo / Cửa hàng trưởng | そっか、駐輪禁止って掲示もあるんだけどな。 | Sokka, chuurin kinshi tte keeji mo arun dakedo na. | Vậy à, cũng có bảng cấm để xe đạp mà nhỉ.
+02:35 | 店長 / Tenchoo / Cửa hàng trưởng | 駐輪禁止の掲示、今のはちょっと分かりづらいかもしれません。 | Chuurin kinshi no keeji, ima no wa chotto wakarizurai kamoshiremasen. | Bảng cấm để xe đạp hiện tại có lẽ hơi khó nhận biết.
+02:41 | 店長 / Tenchoo / Cửa hàng trưởng | 掲示をもう少し大きくした方がいいかもしれませんね。 | Keeji o moo sukoshi ookiku shita hoo ga ii kamoshiremasen ne. | Có lẽ nên làm bảng to hơn một chút.
+02:46 | ミゲル / Migeru / Miguel | そうですね。 | Soo desu ne. | Đúng vậy ạ.
+### từ vựng
+報告 | ほうこく | hookoku | báo cáo
+現場 | げんば | genba | hiện trường
+対応 | たいおう | taioo | xử lý
+自動ドア | じどうドア | jidoo-doa | cửa tự động
+救急車 | きゅうきゅうしゃ | kyuukyuusha | xe cấp cứu
+駐輪禁止 | ちゅうりんきんし | chuurin-kinshi | cấm đỗ xe đạp
+つまずく | つまずく | tsumazuku | vấp
+
+## summary.mp4
+# Làm thủ tục bảo hiểm tai nạn lao động
+00:04 | 同僚 / Dooryoo / Đồng nghiệp | さあ、足どうしたの？大丈夫？ | Saa, ashi doo shita no? Daijoobu? | Này, chân sao vậy? Có sao không?
+*00:11 | プトリ / Putori / Putri | 実は昨日の帰りに歩道橋の階段を踏み外しちゃって。 | Jitsu wa kinoo no kaeri ni hodookyoo no kaidan o fumihazushichatte. | Thật ra là hôm qua trên đường về em bị trượt chân ở cầu thang cầu vượt bộ hành.
+00:20 | 同僚 / Dooryoo / Đồng nghiệp | 大丈夫？ | Daijoobu? | Có sao không?
+*00:22 | プトリ / Putori / Putri | はい、ただの捻挫だと思います。きっと何度か病院に通わないといけないんですよね。 | Hai, tada no nenza da to omoimasu. Kitto nando ka byooin ni kayowanai to ikenain desu yo ne. | Vâng, em nghĩ chỉ là bong gân thôi. Chắc là phải đi khám vài lần mới được.
+00:33 | 同僚 / Dooryoo / Đồng nghiệp | そうですね。早く病院に行って診てもらった方がいいよ。 | Soo desu ne. Hayaku byooin ni itte mite moratta hoo ga ii yo. | Đúng vậy. Nên đi khám sớm thì hơn.
+00:40 | プトリ / Putori / Putri | そうですよね。 | Soo desu yo ne. | Đúng vậy nhỉ.
+00:44 | 同僚 / Dooryoo / Đồng nghiệp | でも、それ多分労災の対象になりますよ。 | Demo, sore tabun roosai no taishoo ni narimasu yo. | Nhưng mà, chuyện đó chắc thuộc diện bảo hiểm tai nạn lao động (労災) đó.
+00:48 | プトリ / Putori / Putri | 労災？ | Roosai? | Roosai ạ?
+00:51 | 同僚 / Dooryoo / Đồng nghiệp | 例えば仕事中に怪我をしたら労災から治療費が出るんだけど、それと同じ。 | Tatoeba shigoto-chuu ni kega o shitara roosai kara chiryoohi ga derun dakedo, sore to onaji. | Ví dụ như nếu bị thương trong lúc làm việc thì tiền chữa trị sẽ được lấy từ bảo hiểm lao động, cũng giống như vậy.
+00:59 | プトリ / Putori / Putri | 会社から帰る途中でも大丈夫なんですか。 | Kaisha kara kaeru tochuu demo daijoobu nan desu ka. | Cả lúc đang trên đường về từ công ty cũng được áp dụng ạ?
+01:05 | 同僚 / Dooryoo / Đồng nghiệp | うん、確かそのはず。 | Un, tashika sono hazu. | Ừ, chắc là vậy đó.
+01:07 | プトリ / Putori / Putri | そうなんですか？ | Soo nan desu ka? | Vậy ạ?
+*01:11 | プトリ / Putori / Putri | えっと、労災、どうやって手続きするか教えてもらえますか。 | Etto, roosai, doo yatte tetsuzuki suru ka oshiete moraemasu ka. | À, chị chỉ cho em cách làm thủ tục roosai như thế nào được không ạ?
+01:21 | 同僚 / Dooryoo / Đồng nghiệp | 手続きのことは総務課に聞いてみてくれる？ | Tetsuzuki no koto wa soomu-ka ni kiite mite kureru? | Về thủ tục thì em hỏi bên phòng tổng vụ giúp chị được không?
+01:25 | プトリ / Putori / Putri | 総務課ですね。わかりました。 | Soomu-ka desu ne. Wakarimashita. | Phòng tổng vụ phải không ạ. Em hiểu rồi.
+01:34 | プトリ / Putori / Putri | あの、労災の手続きってここでできるんですか。 | Ano, roosai no tetsuzuki tte koko de dekirun desu ka. | À, thủ tục roosai làm ở đây được không ạ?
+01:43 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | はい、労災の申請ですね。 | Hai, roosai no shinsee desu ne. | Vâng, là đăng ký roosai phải không ạ.
+01:46 | プトリ / Putori / Putri | 会社から帰る途中の怪我でも申請できますか。 | Kaisha kara kaeru tochuu no kega demo shinsee dekimasu ka. | Bị thương trên đường về từ công ty cũng đăng ký được không ạ?
+01:52 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | できますよ。 | Dekimasu yo. | Được chứ ạ.
+01:54 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | 会社に提出している通勤ルートで怪我をしたんですよね。 | Kaisha ni teeshutsu shite iru tsuukin ruuto de kega o shitan desu yo ne. | Chị bị thương trên tuyến đường đi làm đã đăng ký với công ty phải không ạ.
+01:59 | プトリ / Putori / Putri | はい。 | Hai. | Vâng.
+02:01 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | じゃあ申請できますね。今書類を準備しますのでちょっとお待ちください。 | Jaa shinsee dekimasu ne. Ima shorui o junbi shimasu node chotto omachi kudasai. | Vậy thì đăng ký được ạ. Bây giờ tôi chuẩn bị giấy tờ nên chị đợi một chút nhé.
+02:10 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | 病院には行きましたか。 | Byooin ni wa ikimashita ka. | Chị đã đi khám chưa ạ?
+02:14 | プトリ / Putori / Putri | まだです。 | Mada desu. | Chưa ạ.
+02:16 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | まだなんですね。大丈夫ですか。 | Mada nan desu ne. Daijoobu desu ka. | Chưa à. Chị có sao không ạ?
+02:20 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | 向かいのクリニック評判いいですから、この後すぐ行って診てもらうといいですよ。 | Mukai no kurinikku hyooban ii desu kara, kono ato sugu itte mite morau to ii desu yo. | Phòng khám đối diện được đánh giá tốt lắm, chị nên đi khám ngay sau đây.
+02:26 | プトリ / Putori / Putri | 向かいのクリニックですね。ありがとうございます。 | Mukai no kurinikku desu ne. Arigatoo gozaimasu. | Phòng khám đối diện phải không ạ. Cảm ơn chị.
+02:31 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | これなんですけど… | Kore nan desu kedo... | Cái này là...
+02:38 | プトリ / Putori / Putri | 難しい漢字が多いですね。 | Muzukashii kanji ga ooi desu ne. | Có nhiều chữ Hán khó quá.
+*02:42 | プトリ / Putori / Putri | すみません、この漢字はどういう意味ですか。 | Sumimasen, kono kanji wa doo yuu imi desu ka. | Xin lỗi, chữ này nghĩa là gì ạ?
+02:50 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | 「または発病年月日」ね。 | "Mata wa hatsubyoo nengappi" ne. | Là "hoặc ngày phát bệnh" đó.
+02:54 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | 怪我をしたり病気になったりしたのはいつかっていうことです。 | Kega o shitari byooki ni nattari shita no wa itsu ka tte iu koto desu. | Nghĩa là bị thương hoặc mắc bệnh vào lúc nào.
+03:05 | プトリ / Putori / Putri | これ、翻訳したものってありますか。 | Kore, honyaku shita mono tte arimasu ka. | Cái này có bản đã dịch không ạ?
+03:11 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | いやー、翻訳したものはないんですけど。 | Iyaa, honyaku shita mono wa nain desu kedo. | Không có bản dịch sẵn đâu ạ.
+03:16 | 総務課の職員 / Soomu-ka no shokuin / Nhân viên phòng tổng vụ | お話を聞きながらこちらで書くこともできますよ。 | Ohanashi o kikinagara kochira de kaku koto mo dekimasu yo. | Chị có thể vừa kể vừa để tôi viết giúp cũng được đó.
+03:21 | プトリ / Putori / Putri | それじゃあお願いします。 | Sore jaa onegaishimasu. | Vậy thì nhờ chị giúp em ạ.
+### từ vựng
+歩道橋 | ほどうきょう | hodookyoo | cầu vượt bộ hành
+踏み外す | ふみはずす | fumihazusu | trượt chân
+捻挫 | ねんざ | nenza | bong gân
+労災 | ろうさい | roosai | tai nạn lao động
+総務課 | そうむか | soomu-ka | phòng tổng vụ
+通勤 | つうきん | tsuukin | đi làm
+申請 | しんせい | shinsee | đăng ký, xin
+
+## scene-3.mp4
+# Ôn tập: Xử lý tai nạn ở nơi làm việc
+00:00 |  /  / Chủ đề | おおきな おと | ookina oto | Tiếng động lớn
+*00:06 | ミゲル / Migeru / Miguel | 朝9時ごろレジにいたら、店の外で大きな音がしたので急いで様子を見に行きました。 | Asa kuji goro reji ni itara, mise no soto de ookina oto ga shita node isoide yoosu o mi ni ikimashita. | Khoảng 9 giờ sáng tôi đang đứng ở quầy thu ngân thì nghe tiếng động lớn ở ngoài cửa hàng nên vội chạy ra xem.
+00:16 | ナレーター / Nareetaa / Người dẫn | この動画でミゲルさんは「大きな音がした」と言いました。 | Kono dooga de Migeru-san wa "ookina oto ga shita" to iimashita. | Trong video này, anh Miguel đã nói "có tiếng động lớn".
+00:25 | ナレーター / Nareetaa / Người dẫn | 「大きな」は「音」という名詞を説明する言葉で、連体詞と言います。 | "Ookina" wa "oto" to iu meeshi o setsumee suru kotoba de, rentaishi to iimasu. | "Ookina" là từ bổ nghĩa cho danh từ "oto" (âm thanh), gọi là liên thể từ (rentaishi).
+00:37 | ナレーター / Nareetaa / Người dẫn | 名詞の前でしか使いません。形容詞と違い、文の終わりでは使いません。 | Meeshi no mae de shika tsukaimasen. Keeyooshi to chigai, bun no owari de wa tsukaimasen. | Chỉ dùng trước danh từ. Khác với tính từ, không dùng ở cuối câu.
+00:49 | ナレーター / Nareetaa / Người dẫn | 他にも「小さな猫」「おかしな夢」「いろんな楽器」「この帽子」のように使います。 | Hoka ni mo "chiisana neko", "okashina yume", "ironna gakki", "kono booshi" no yoo ni tsukaimasu. | Ngoài ra cũng dùng như "con mèo nhỏ", "giấc mơ kỳ lạ", "đủ loại nhạc cụ", "cái mũ này".
+*01:05 |  /  / Chủ đề | わかりづらい かもしれません | wakarizurai kamoshiremasen | Có thể sẽ khó nhận biết
+01:12 | ナレーター / Nareetaa / Người dẫn | この動画の中でミゲルさんは、駐輪禁止の看板について「わかりづらいかもしれません」と言っています。 | Kono dooga no naka de Migeru-san wa, chuurin kinshi no kanban ni tsuite "wakarizurai kamoshiremasen" to itte imasu. | Trong video này, anh Miguel nói về tấm biển cấm để xe đạp rằng "có thể sẽ khó nhận biết".
+01:31 | ナレーター / Nareetaa / Người dẫn | この「わかりづらい」は、お客さんには看板がなかなか見えない、看板があることがわからないという意味になります。 | Kono "wakarizurai" wa, okyakusan ni wa kanban ga nakanaka mienai, kanban ga aru koto ga wakaranai to iu imi ni narimasu. | "Wakarizurai" ở đây nghĩa là khách hàng khó nhìn thấy tấm biển, không nhận ra là có biển.
+01:49 | ナレーター / Nareetaa / Người dẫn | 動詞のます形の「ます」をとって、「づらいです」をつけます。 | Dooshi no masu-kee no "masu" o totte, "zurai desu" o tsukemasu. | Bỏ "masu" trong thể masu của động từ rồi thêm "zurai desu".
+01:59 | ナレーター / Nareetaa / Người dẫn | 動詞と一緒に「づらいです」を使うと、それをするのが難しい、それをするのが困難だという意味になります。 | Dooshi to issho ni "zurai desu" o tsukau to, sore o suru no ga muzukashii, sore o suru no ga konnan da to iu imi ni narimasu. | Khi dùng "zurai desu" cùng động từ thì nghĩa là làm việc đó khó khăn, khó thực hiện.
+02:15 | ナレーター / Nareetaa / Người dẫn | 「歩きます」の場合、「ます」をとって「づらいです」をつけて「歩きづらいです」となります。 | "Arukimasu" no baai, "masu" o totte "zurai desu" o tsukete "arukizurai desu" to narimasu. | Với "arukimasu" (đi bộ) thì bỏ "masu" rồi thêm "zurai desu" thành "arukizurai desu" (khó đi).
+02:34 | ナレーター / Nareetaa / Người dẫn | 「このスカートは長くて歩きづらいですね」「この本の字は読みづらいんです」「今月は忙しいから休みが取りづらいです」のように使うことができます。 | "Kono sukaato wa nagakute arukizurai desu ne", "Kono hon no ji wa yomizurain desu", "Kongetsu wa isogashii kara yasumi ga torizurai desu" no yoo ni tsukau koto ga dekimasu. | Có thể dùng như "Cái váy này dài nên khó đi lại nhỉ", "Chữ trong cuốn sách này khó đọc", "Tháng này bận nên khó xin nghỉ".
+*02:58 |  /  / Chủ đề | かよわないと いけないです | kayowanai to ikenai desu | Phải đi (khám) mới được
+03:00 | ナレーター / Nareetaa / Người dẫn | 「きっと何度か病院に通わないと」。この動画でプトリさんは「病院に通わないといけないですよね」と言っています。 | "Kitto nando ka byooin ni kayowanai to". Kono dooga de Putori-san wa "byooin ni kayowanai to ikenai desu yo ne" to itte imasu. | "Chắc là phải đi khám vài lần mới được". Trong video này, chị Putori nói "phải đi khám nhiều lần mới được nhỉ".
+03:35 | ナレーター / Nareetaa / Người dẫn | 「ないといけません」は「なければなりません」と同じ意味です。 | "Nai to ikemasen" wa "nakereba narimasen" to onaji imi desu. | "Nai to ikemasen" có nghĩa giống với "nakereba narimasen" (phải làm gì đó).
+03:42 | ナレーター / Nareetaa / Người dẫn | 何かをする義務があると感じているとか、何かをする必要性が高いと思っていると言いたいときに使います。話し言葉でよく使われます。 | Nanika o suru gimu ga aru to kanjite iru toka, nanika o suru hitsuyoosee ga takai to omotte iru to iitai toki ni tsukaimasu. Hanashi kotoba de yoku tsukawaremasu. | Dùng khi muốn nói rằng cảm thấy có nghĩa vụ phải làm gì đó, hoặc nghĩ rằng rất cần thiết phải làm gì đó. Thường dùng trong văn nói.
+04:05 | ナレーター / Nareetaa / Người dẫn | この動画でプトリさんは、足を怪我して何回か病院に通わなければならない、病院に通う必要があるということを上司に伝えています。 | Kono dooga de Putori-san wa, ashi o kega shite nankai ka byooin ni kayowanakereba naranai, byooin ni kayoo hitsuyoo ga aru to iu koto o jooshi ni tsutaete imasu. | Trong video này, chị Putori bị thương ở chân và đang báo với cấp trên rằng phải đi khám vài lần, cần phải đến bệnh viện.
+04:30 | ナレーター / Nareetaa / Người dẫn | 「ないといけません」は動詞のない形に「といけません」をつけます。 | "Nai to ikemasen" wa dooshi no nai-kee ni "to ikemasen" o tsukemasu. | "Nai to ikemasen" thêm vào thể nai của động từ.
+04:40 | ナレーター / Nareetaa / Người dẫn | 「終電がなくなるのでもう帰らないといけません」「寝坊したので駅まで走らないといけません」「明日までに税金を払わないといけません」のように言うことができます。 | "Shuuden ga naku naru node moo kaeranai to ikemasen", "Neboo shita node eki made hashiranai to ikemasen", "Ashita made ni zeekin o harawanai to ikemasen" no yoo ni iu koto ga dekimasu. | Có thể nói như "Vì sắp hết chuyến tàu cuối nên phải về thôi", "Vì ngủ quên nên phải chạy đến ga", "Phải nộp thuế trước ngày mai".

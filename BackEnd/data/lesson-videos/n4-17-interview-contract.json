@@ -1,0 +1,1097 @@
+{
+  "lesson": {
+    "title": "Tình huống: Phỏng vấn và ký hợp đồng"
+  },
+  "videos": [
+    {
+      "title": "Nói nguyện vọng làm nhân viên chính thức",
+      "description": "Nói được mình muốn làm nhân viên chính thức và hỏi nhân viên hợp đồng khác gì.",
+      "url": "/uploads/lesson-videos/n4-17-interview-contract/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:13",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "はい、じゃあ申込書はこちらにいただきますね。",
+          "romaji": "Hai, jaa mooshikomisho wa kochira ni itadakimasu ne.",
+          "text_vi": "Vâng, vậy tôi xin nhận đơn đăng ký ở đây nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "お名前は?今井ミゲルさんですかね。",
+          "romaji": "Onamae wa? Imai Migeru-san desu ka ne.",
+          "text_vi": "Tên anh là gì ạ? Anh là Imai Miguel phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、今井です。",
+          "romaji": "Hai, Imai desu.",
+          "text_vi": "Vâng, tôi là Imai.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "外国の方ですね。在留カードをお持ちですか?",
+          "romaji": "Gaikoku no kata desu ne. Zairyuu kaado o omochi desu ka.",
+          "text_vi": "Anh là người nước ngoài nhỉ. Anh có mang theo thẻ cư trú không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、これです。",
+          "romaji": "Hai, kore desu.",
+          "text_vi": "Vâng, đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "国籍はブラジルで、在留資格は定住者ですね。",
+          "romaji": "Kokuseki wa Burajiru de, zairyuu shikaku wa teejuusha desu ne.",
+          "text_vi": "Quốc tịch Brazil, tư cách lưu trú là Định trú nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "そうです。3年前に日本に来ました。",
+          "romaji": "Soo desu. San-nen mae ni Nihon ni kimashita.",
+          "text_vi": "Đúng vậy ạ. Tôi đến Nhật 3 năm trước.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "3年前ですか?",
+          "romaji": "San-nen mae desu ka.",
+          "text_vi": "3 năm trước ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "今井さん、ご家族は?",
+          "romaji": "Imai-san, gokazoku wa?",
+          "text_vi": "Anh Imai, gia đình anh thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "妻と1歳の子どもがいます。",
+          "romaji": "Tsuma to issai no kodomo ga imasu.",
+          "text_vi": "Tôi có vợ và một con 1 tuổi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "3人家族ですね。",
+          "romaji": "San-nin kazoku desu ne.",
+          "text_vi": "Gia đình 3 người nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "今井さんは日本で働いた経験はありますか?",
+          "romaji": "Imai-san wa Nihon de hataraita keeken wa arimasu ka.",
+          "text_vi": "Anh Imai đã từng làm việc ở Nhật chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、今工場で働いています。前も工場でした。ずっとです。",
+          "romaji": "Hai, ima koojoo de hataraite imasu. Mae mo koojoo deshita. Zutto desu.",
+          "text_vi": "Vâng, hiện tôi đang làm ở nhà máy. Trước đây cũng làm ở nhà máy. Toàn là nhà máy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "ああ、そうですか。正社員が希望なんですね。",
+          "romaji": "Aa, soo desu ka. Seeshain ga kiboo nan desu ne.",
+          "text_vi": "À, vậy ạ. Anh mong muốn làm nhân viên chính thức nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい。正社員として働きたいです。家族もいますし、同じ会社で働きたいと思っています。",
+          "romaji": "Hai. Seeshain toshite hatarakitai desu. Kazoku mo imasu shi, onaji kaisha de hatarakitai to omotte imasu.",
+          "text_vi": "Vâng. Tôi muốn làm việc với tư cách nhân viên chính thức. Vì có gia đình nên tôi muốn làm lâu dài ở cùng một công ty.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あ、そういえば、契約社員っていうのもありますか?",
+          "romaji": "A, soo ieba, keeyaku-shain tte yuu no mo arimasu ka.",
+          "text_vi": "À, nói mới nhớ, cũng có kiểu nhân viên hợp đồng phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "契約社員として働いてる友達結構いますけど、給料も悪くないみたいです。契約社員って正社員と何が違うんですか?",
+          "romaji": "Keeyaku-shain toshite hataraiteru tomodachi kekkoo imasu kedo, kyuuryoo mo warukunai mitai desu. Keeyaku-shain tte seeshain to nani ga chigau n desu ka.",
+          "text_vi": "Tôi có khá nhiều bạn làm nhân viên hợp đồng, nghe nói lương cũng không tệ. Nhân viên hợp đồng khác nhân viên chính thức ở điểm nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "契約社員は正社員と違って、働く期間が決まっているんです。半年とか1年とか。",
+          "romaji": "Keeyaku-shain wa seeshain to chigatte, hataraku kikan ga kimatte iru n desu. Hantoshi toka ichinen toka.",
+          "text_vi": "Nhân viên hợp đồng khác nhân viên chính thức ở chỗ có quy định thời hạn làm việc, ví dụ nửa năm hay một năm.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:11",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "そうなんですね。私は長く働きたいので、やっぱり正社員の仕事を見つけたいです。",
+          "romaji": "Soo nan desu ne. Watashi wa nagaku hatarakitai node, yappari seeshain no shigoto o mitsuketai desu.",
+          "text_vi": "Vậy ạ. Vì tôi muốn làm việc lâu dài nên tôi vẫn muốn tìm công việc nhân viên chính thức.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "分かりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:23",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "このあたりはまだ会社があまり多くないので、あまり無理はしない方がいいです。",
+          "romaji": "Kono atari wa mada kaisha ga amari ookunai node, amari muri wa shinai hoo ga ii desu.",
+          "text_vi": "(nghe chưa thật rõ) Khu vực này công ty chưa nhiều lắm, nên anh đừng cố quá.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい、分かりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:33",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "通勤の時間はどれくらいまでを考えていますか?",
+          "romaji": "Tsuukin no jikan wa dorekurai made o kangaete imasu ka.",
+          "text_vi": "Anh dự tính thời gian đi làm khoảng bao lâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:38",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "えっと、自転車で30分、40分。正社員で働けるなら少し遠くてもいいです。",
+          "romaji": "Etto, jitensha de sanjuppun, yonjuppun. Seeshain de hatarakeru nara sukoshi tookutemo ii desu.",
+          "text_vi": "Dạ, đi xe đạp khoảng 30, 40 phút. Nếu được làm nhân viên chính thức thì hơi xa một chút cũng được.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "分かりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:04",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "いくつか求人票を見てみますか。",
+          "romaji": "Ikutsuka kyuujinhyoo o mite mimasu ka.",
+          "text_vi": "Anh xem thử vài tờ thông tin tuyển dụng nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:08",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "お願いします。",
+          "romaji": "Onegaishimasu.",
+          "text_vi": "Vâng, nhờ chị/anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "在留資格",
+          "reading": "ざいりゅうしかく",
+          "romaji": "zairyuu-shikaku",
+          "meaning": "tư cách lưu trú"
+        },
+        {
+          "word": "定住者",
+          "reading": "ていじゅうしゃ",
+          "romaji": "teejuusha",
+          "meaning": "người định trú"
+        },
+        {
+          "word": "経験",
+          "reading": "けいけん",
+          "romaji": "keeken",
+          "meaning": "kinh nghiệm"
+        },
+        {
+          "word": "正社員",
+          "reading": "せいしゃいん",
+          "romaji": "seeshain",
+          "meaning": "nhân viên chính thức"
+        },
+        {
+          "word": "契約社員",
+          "reading": "けいやくしゃいん",
+          "romaji": "keeyaku-shain",
+          "meaning": "nhân viên hợp đồng"
+        },
+        {
+          "word": "求人票",
+          "reading": "きゅうじんひょう",
+          "romaji": "kyuujinhyoo",
+          "meaning": "phiếu thông tin tuyển dụng"
+        }
+      ]
+    },
+    {
+      "title": "Buổi phỏng vấn xin việc",
+      "description": "Trả lời được câu hỏi về kinh nghiệm, động cơ ứng tuyển, cách đi làm và hỏi lại từ khó.",
+      "url": "/uploads/lesson-videos/n4-17-interview-contract/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:21",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "失礼いたします。",
+          "romaji": "Shitsuree itashimasu.",
+          "text_vi": "Xin phép vào ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "今井ミゲルです。どうぞよろしくお願いいたします。",
+          "romaji": "Imai Migeru desu. Doozo yoroshiku onegai itashimasu.",
+          "text_vi": "Tôi là Imai Miguel. Rất mong được giúp đỡ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "どうぞ、お座りください。",
+          "romaji": "Doozo, osuwari kudasai.",
+          "text_vi": "Mời anh ngồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "では今井さん、履歴書にも書いていただいていますが、経歴を簡単に教えてください。",
+          "romaji": "Dewa Imai-san, rirekisho ni mo kaite itadaite imasu ga, keereki o kantan ni oshiete kudasai.",
+          "text_vi": "Vậy anh Imai, anh cũng đã ghi trong sơ yếu lý lịch rồi, nhưng xin anh cho biết sơ qua về quá trình làm việc.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "すみません、経歴ってどういう意味ですか。",
+          "romaji": "Sumimasen, keereki tte doo yuu imi desu ka.",
+          "text_vi": "Xin lỗi, \"keereki\" nghĩa là gì vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "今井さんはこれまでどんな仕事をしていましたか。",
+          "romaji": "Imai-san wa kore made donna shigoto o shite imashita ka.",
+          "text_vi": "Anh Imai trước đây đã từng làm công việc gì?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "国では中学校で数学の教師をしていました。日本に来てからはずっと工場で働いています。",
+          "romaji": "Kuni de wa chuugakkoo de suugaku no kyooshi o shite imashita. Nihon ni kite kara wa zutto koojoo de hataraite imasu.",
+          "text_vi": "Ở nước tôi, tôi từng làm giáo viên toán ở trường trung học cơ sở. Từ khi sang Nhật thì tôi vẫn luôn làm việc ở nhà máy.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "そうなんですね。では、この会社への志望動機を教えてください。",
+          "romaji": "Soo nan desu ne. Dewa, kono kaisha e no shiboo dooki o oshiete kudasai.",
+          "text_vi": "Vậy à. Vậy xin cho biết động cơ ứng tuyển vào công ty này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "志望動機というのは、どうしてこの会社に入りたいかということですか。",
+          "romaji": "Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka.",
+          "text_vi": "\"Động cơ ứng tuyển\" nghĩa là lý do vì sao tôi muốn vào công ty này phải không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "私は前にこちらのお店で買い物をしたことがあります。その時、お店の人がとても親切でした。私もここで働いて、その店員さんのように、お客さんの役に立ちたいと思っています。",
+          "romaji": "Watashi wa mae ni kochira no omise de kaimono o shita koto ga arimasu. Sono toki, omise no hito ga totemo shinsetsu deshita. Watashi mo koko de hataraite, sono ten'insan no yoo ni, okyakusan no yaku ni tachitai to omotte imasu.",
+          "text_vi": "Trước đây tôi đã từng mua hàng ở cửa hàng này. Lúc đó, nhân viên cửa hàng rất tốt bụng. Tôi cũng muốn làm việc ở đây, giống như nhân viên đó, để giúp ích cho khách hàng.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "ああ、そうですか。あと、今井さん、通勤手段ですが、どうやって店まで通いますか。",
+          "romaji": "Aa, soo desu ka. Ato, Imai-san, tsuukin shudan desu ga, doo yatte mise made kayoimasu ka.",
+          "text_vi": "À, vậy ạ. Ngoài ra, anh Imai, về phương tiện đi làm, anh sẽ đến cửa hàng bằng cách nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:36",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "自転車で来ようと思っています。",
+          "romaji": "Jitensha de koyoo to omotte imasu.",
+          "text_vi": "Tôi định đi xe đạp ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:42",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "わかりました。これで面接を終わります。結果は5日以内にご連絡します。",
+          "romaji": "Wakarimashita. Kore de mensetsu o owarimasu. Kekka wa itsuka inai ni gorenraku shimasu.",
+          "text_vi": "Tôi hiểu rồi. Vậy buổi phỏng vấn kết thúc tại đây. Chúng tôi sẽ báo kết quả trong vòng 5 ngày.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:54",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございました。失礼いたします。",
+          "romaji": "Arigatoo gozaimashita. Shitsuree itashimasu.",
+          "text_vi": "Cảm ơn anh chị ạ. Tôi xin phép ra ngoài.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "面接",
+          "reading": "めんせつ",
+          "romaji": "mensetsu",
+          "meaning": "phỏng vấn"
+        },
+        {
+          "word": "履歴書",
+          "reading": "りれきしょ",
+          "romaji": "rirekisho",
+          "meaning": "sơ yếu lý lịch"
+        },
+        {
+          "word": "経歴",
+          "reading": "けいれき",
+          "romaji": "keereki",
+          "meaning": "quá trình làm việc"
+        },
+        {
+          "word": "教師",
+          "reading": "きょうし",
+          "romaji": "kyooshi",
+          "meaning": "giáo viên"
+        },
+        {
+          "word": "志望動機",
+          "reading": "しぼうどうき",
+          "romaji": "shiboo-dooki",
+          "meaning": "động cơ ứng tuyển"
+        },
+        {
+          "word": "結果",
+          "reading": "けっか",
+          "romaji": "kekka",
+          "meaning": "kết quả"
+        }
+      ]
+    },
+    {
+      "title": "Ký hợp đồng lao động",
+      "description": "Hỏi lại được về ngày nghỉ, thời gian thử việc, lương và xin giữ một bản hợp đồng.",
+      "url": "/uploads/lesson-videos/n4-17-interview-contract/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:21",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "こちらが契約書です。こちらが日本語、こちらが同じ内容をポルトガル語にしたものです。",
+          "romaji": "Kochira ga keeyakusho desu. Kochira ga nihongo, kochira ga onaji naiyoo o porutogarugo ni shita mono desu.",
+          "text_vi": "Đây là hợp đồng lao động. Bản này là tiếng Nhật, bản này là cùng nội dung nhưng dịch sang tiếng Bồ Đào Nha.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "翻訳を見ながら契約書の内容を確認してください。",
+          "romaji": "Hon'yaku o minagara keeyakusho no naiyoo o kakunin shite kudasai.",
+          "text_vi": "Anh vừa xem bản dịch vừa kiểm tra nội dung hợp đồng nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "わからないところは遠慮しないで質問してくださいね。",
+          "romaji": "Wakaranai tokoro wa enryo shinaide shitsumon shite kudasai ne.",
+          "text_vi": "Chỗ nào không hiểu thì đừng ngại, cứ hỏi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、ちょっとよろしいですか?",
+          "romaji": "Ano, chotto yoroshii desu ka.",
+          "text_vi": "À, tôi hỏi một chút được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "何ですか。",
+          "romaji": "Nan desu ka.",
+          "text_vi": "Anh hỏi gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "休みのことなんですけど、これは毎週2日必ず休みがあるということですよね。",
+          "romaji": "Yasumi no koto nan desu kedo, kore wa maishuu futsuka kanarazu yasumi ga aru to iu koto desu yo ne.",
+          "text_vi": "Là về chuyện ngày nghỉ, cái này nghĩa là mỗi tuần chắc chắn có 2 ngày nghỉ đúng không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "はい、完全週休2日です。",
+          "romaji": "Hai, kanzen shuukyuu futsuka desu.",
+          "text_vi": "Vâng, chế độ nghỉ trọn 2 ngày mỗi tuần ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "土日が休みになることはありますか?",
+          "romaji": "Donichi ga yasumi ni naru koto wa arimasu ka.",
+          "text_vi": "Có khi nào ngày nghỉ rơi vào thứ 7, chủ nhật không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "シフトによりますね。休みたい日が決まっていたら、シフトの希望を取るときに相談してください。",
+          "romaji": "Shifuto ni yorimasu ne. Yasumitai hi ga kimatte itara, shifuto no kiboo o toru toki ni soodan shite kudasai.",
+          "text_vi": "Còn tùy vào ca làm việc. Nếu anh đã định sẵn ngày muốn nghỉ thì khi đăng ký nguyện vọng ca làm, cứ trao đổi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "それから、ここ見ていただけますか。仕事が始まってから3か月間は試用期間です。",
+          "romaji": "Sorekara, koko mite itadakemasu ka. Shigoto ga hajimatte kara sankagetsukan wa shiyoo kikan desu.",
+          "text_vi": "Ngoài ra, anh xem chỗ này giúp tôi nhé. Trong 3 tháng kể từ khi bắt đầu làm việc là thời gian thử việc.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あ、テストみたいな?",
+          "romaji": "A, tesuto mitai na?",
+          "text_vi": "À, giống như là kiểu thử thách phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:59",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "でも、試用期間といっても問題なければ契約はそのまま続きます。",
+          "romaji": "Demo, shiyoo kikan to itte mo mondai nakereba keeyaku wa sonomama tsuzukimasu.",
+          "text_vi": "Nhưng dù gọi là thời gian thử việc thì nếu không có vấn đề gì, hợp đồng vẫn cứ tiếp tục như vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:06",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "そうですか。あの、その間、給料は?",
+          "romaji": "Soo desu ka. Ano, sono aida, kyuuryoo wa?",
+          "text_vi": "Vậy ạ. À, trong thời gian đó, lương thì thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:15",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "こちらの金額でお支払いします。",
+          "romaji": "Kochira no kingaku de oshiharai shimasu.",
+          "text_vi": "Chúng tôi sẽ trả theo mức tiền này ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:18",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "それでは、ここに住所と名前を書いて、はい、ここですね。",
+          "romaji": "Soredewa, koko ni juusho to namae o kaite, hai, koko desu ne.",
+          "text_vi": "Vậy thì anh viết địa chỉ và tên vào đây, vâng, ở chỗ này ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "あの、契約書は私にもいただけますか?",
+          "romaji": "Ano, keeyakusho wa watashi ni mo itadakemasu ka.",
+          "text_vi": "À, tôi cũng có thể nhận bản hợp đồng được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "03:05",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "はい、1枚は今井さんが持っていてください。",
+          "romaji": "Hai, ichimai wa Imai-san ga motte ite kudasai.",
+          "text_vi": "Vâng, một bản mời anh Imai giữ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:11",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
+          "speaker_ja": "担当者",
+          "speaker_romaji": "Tantoosha",
+          "speaker_vi": "Nhân viên phụ trách",
+          "text_ja": "それでは来週の月曜日からよろしくお願いしますね。",
+          "romaji": "Soredewa raishuu no getsuyoobi kara yoroshiku onegaishimasu ne.",
+          "text_vi": "Vậy thì từ thứ Hai tuần sau, mong anh giúp đỡ nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:26",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "こちらこそ、どうぞよろしくお願いいたします。",
+          "romaji": "Kochira koso, doozo yoroshiku onegai itashimasu.",
+          "text_vi": "Tôi mới là người mong được anh giúp đỡ ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "契約書",
+          "reading": "けいやくしょ",
+          "romaji": "keeyakusho",
+          "meaning": "hợp đồng"
+        },
+        {
+          "word": "週休",
+          "reading": "しゅうきゅう",
+          "romaji": "shuukyuu",
+          "meaning": "ngày nghỉ trong tuần"
+        },
+        {
+          "word": "シフト",
+          "reading": "シフト",
+          "romaji": "shifuto",
+          "meaning": "ca làm"
+        },
+        {
+          "word": "試用期間",
+          "reading": "しようきかん",
+          "romaji": "shiyoo-kikan",
+          "meaning": "thời gian thử việc"
+        },
+        {
+          "word": "支払う",
+          "reading": "しはらう",
+          "romaji": "shiharau",
+          "meaning": "trả tiền"
+        },
+        {
+          "word": "遠慮",
+          "reading": "えんりょ",
+          "romaji": "enryo",
+          "meaning": "ngại ngần"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Phỏng vấn và ký hợp đồng",
+      "description": "Ôn lại「〜として」,「〜をしていました」và「AというのはBということですか」.",
+      "url": "/uploads/lesson-videos/n4-17-interview-contract/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "せいしゃいんとして はたらきたいです",
+          "romaji": "see-shain to shite hatarakitai desu",
+          "text_vi": "Muốn làm việc với tư cách là nhân viên chính thức",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "正社員が希望なんですね。",
+          "romaji": "Seeshain ga kiboo nan desu ne.",
+          "text_vi": "Anh mong muốn làm nhân viên chính thức phải không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "正社員として働きたいです。",
+          "romaji": "Seeshain toshite hatarakitai desu.",
+          "text_vi": "Tôi muốn làm việc với tư cách là nhân viên chính thức.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で今井さんは「正社員として働きたいです」と言っています。",
+          "romaji": "Kono dooga de Imai-san wa \"Seeshain toshite hatarakitai desu\" to itte imasu.",
+          "text_vi": "Trong video này, anh Imai nói \"Tôi muốn làm việc với tư cách là nhân viên chính thức\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "仕事の形は正社員、パート社員、アルバイトなどいろいろありますが、今井さんは自分が働きたい仕事の形は正社員だと伝えています。",
+          "romaji": "Shigoto no katachi wa seeshain, paato shain, arubaito nado iroiro arimasu ga, Imai-san wa jibun ga hatarakitai shigoto no katachi wa seeshain da to tsutaete imasu.",
+          "text_vi": "Hình thức công việc có nhiều loại như nhân viên chính thức, nhân viên bán thời gian, làm thêm..., và anh Imai đang nói rằng hình thức mình muốn làm là nhân viên chính thức.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "名詞＋「として」は、その人の立場を表現するときに使います。",
+          "romaji": "Meeshi + \"toshite\" wa, sono hito no tachiba o hyoogen suru toki ni tsukaimasu.",
+          "text_vi": "Danh từ + \"toshite\" dùng để diễn tả vị trí, tư cách của người đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、病院では看護師などが仕事をしています。「私は医者として働いています」「看護師として働いています」「受付スタッフとして働いています」ということができます。",
+          "romaji": "Tatoeba, byooin de wa kangoshi nado ga shigoto o shite imasu. \"Watashi wa isha toshite hataraite imasu\", \"kangoshi toshite hataraite imasu\", \"uketsuke sutaffu toshite hataraite imasu\" to iu koto ga dekimasu.",
+          "text_vi": "Ví dụ, ở bệnh viện có y tá và nhiều người khác làm việc. Có thể nói \"Tôi làm việc với tư cách bác sĩ\", \"làm việc với tư cách y tá\", \"làm việc với tư cách nhân viên lễ tân\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「として」は物の役割を説明することもできます。「私はスマホを辞書として使います」「私はスマホをカメラとして使います」ということができます。",
+          "romaji": "\"Toshite\" wa mono no yakuwari o setsumee suru koto mo dekimasu. \"Watashi wa sumaho o jisho toshite tsukaimasu\", \"watashi wa sumaho o kamera toshite tsukaimasu\" to iu koto ga dekimasu.",
+          "text_vi": "\"Toshite\" cũng có thể dùng để giải thích vai trò của đồ vật. Có thể nói \"Tôi dùng điện thoại như một cuốn từ điển\", \"Tôi dùng điện thoại như một máy ảnh\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:58",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "くにでは きょうしを していました",
+          "romaji": "kuni de wa kyooshi o shite imashita",
+          "text_vi": "Ở nước tôi từng làm giáo viên",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "今井さんはこれまでどんな仕事をしていましたか。",
+          "romaji": "Imai-san wa kore made donna shigoto o shite imashita ka.",
+          "text_vi": "Anh Imai trước đây đã từng làm công việc gì?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "国では中学校で数学の教師をしていました。",
+          "romaji": "Kuni de wa chuugakkoo de suugaku no kyooshi o shite imashita.",
+          "text_vi": "Ở nước tôi, tôi từng làm giáo viên toán ở trường trung học cơ sở.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では今井さんが、国で数学の教師だったと伝えています。",
+          "romaji": "Kono dooga de wa Imai-san ga, kuni de suugaku no kyooshi datta to tsutaete imasu.",
+          "text_vi": "Trong video này, anh Imai đang truyền đạt rằng ở nước mình anh từng là giáo viên toán.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "職業を言うときには、「しています」を使います。「しています」の前には教師、銀行員、看護師など職業を言います。",
+          "romaji": "Shokugyoo o iu toki ni wa, \"shite imasu\" o tsukaimasu. \"Shite imasu\" no mae ni wa kyooshi, ginkooin, kangoshi nado shokugyoo o iimasu.",
+          "text_vi": "Khi nói về nghề nghiệp thì dùng \"shite imasu\". Trước \"shite imasu\" thì nói nghề nghiệp như giáo viên, nhân viên ngân hàng, y tá.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「前は教師をしていました」「病院で看護師をしています」ということができます。",
+          "romaji": "\"Mae wa kyooshi o shite imashita\", \"byooin de kangoshi o shite imasu\" to iu koto ga dekimasu.",
+          "text_vi": "Có thể nói \"Trước đây tôi từng làm giáo viên\", \"Tôi đang làm y tá ở bệnh viện\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "職業ではなくて、働いている場所を言うときは、「田中病院で働いています」「田中病院に勤めています」と言います。",
+          "romaji": "Shokugyoo dewa nakute, hataraite iru basho o iu toki wa, \"Tanaka byooin de hataraite imasu\", \"Tanaka byooin ni tsutomete imasu\" to iimasu.",
+          "text_vi": "Khi nói về nơi làm việc chứ không phải nghề nghiệp, thì nói \"Tôi làm việc ở bệnh viện Tanaka\", \"Tôi làm việc tại bệnh viện Tanaka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "Aというのは、Bということですか",
+          "romaji": "\"A\" to yuu no wa, \"B\" to yuu koto desu ka",
+          "text_vi": "A nghĩa là B phải không?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "では、この会社への志望動機を教えてください。",
+          "romaji": "Dewa, kono kaisha e no shiboo dooki o oshiete kudasai.",
+          "text_vi": "Vậy anh hãy cho tôi biết động cơ ứng tuyển vào công ty này.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:28",
+          "speaker_ja": "今井ミゲル",
+          "speaker_romaji": "Imai Migeru",
+          "speaker_vi": "Imai Miguel",
+          "text_ja": "志望動機というのは、どうしてこの会社に入りたいかということですか。",
+          "romaji": "Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka.",
+          "text_vi": "\"Động cơ ứng tuyển\" nghĩa là lý do vì sao tôi muốn vào công ty này phải không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "03:41",
+          "speaker_ja": "面接官",
+          "speaker_romaji": "Mensetsukan",
+          "speaker_vi": "Người phỏng vấn",
+          "text_ja": "そうです。",
+          "romaji": "Soo desu.",
+          "text_vi": "Đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では面接官が今井さんに「志望動機は何ですか」と聞きました。",
+          "romaji": "Kono dooga de wa mensetsukan ga Imai-san ni \"Shiboo dooki wa nan desu ka\" to kikimashita.",
+          "text_vi": "Trong video này, người phỏng vấn đã hỏi anh Imai \"Động cơ ứng tuyển của anh là gì?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "今井さんは「志望動機というのは、どうしてこの会社に入りたいかということですか」と言って志望動機の意味を確認しました。",
+          "romaji": "Imai-san wa \"Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka\" to itte shiboo dooki no imi o kakunin shimashita.",
+          "text_vi": "Anh Imai đã nói \"Động cơ ứng tuyển nghĩa là lý do vì sao muốn vào công ty này phải không?\" để xác nhận lại ý nghĩa của \"động cơ ứng tuyển\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「AというのはBということですか」は、Aの意味がBだと確認するときに使います。",
+          "romaji": "\"A to iu no wa B to iu koto desu ka\" wa, A no imi ga B da to kakunin suru toki ni tsukaimasu.",
+          "text_vi": "Mẫu \"A to iu no wa B to iu koto desu ka\" dùng khi muốn xác nhận rằng nghĩa của A là B.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「Aの前のBは」→説明です。例えば「通勤というのは会社に通うということです」と説明することができます。",
+          "romaji": "\"A no mae no B wa\" → setsumee desu. Tatoeba \"tsuukin to iu no wa kaisha ni kayou to iu koto desu\" to setsumee suru koto ga dekimasu.",
+          "text_vi": "Phần B đứng sau \"to iu no wa\" là phần giải thích. Ví dụ có thể giải thích \"tsuukin (đi làm) nghĩa là đi đến công ty\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "今井さんは「志望動機というのは、どうしてこの会社に入りたいかということですか」と質問しています。Bには「どうして〜」のような疑問文を使うこともできます。その時はBの部分の最後に「か」をつけます。",
+          "romaji": "Imai-san wa \"Shiboo dooki to iu no wa, dooshite kono kaisha ni hairitai ka to iu koto desu ka\" to shitsumon shite imasu. B ni wa \"dooshite~\" no yoo na gimonbun o tsukau koto mo dekimasu. Sono toki wa B no bubun no saigo ni \"ka\" o tsukemasu.",
+          "text_vi": "Anh Imai đang hỏi \"Động cơ ứng tuyển nghĩa là lý do vì sao muốn vào công ty này phải không?\". Ở phần B cũng có thể dùng câu hỏi kiểu \"tại sao...\", khi đó thêm \"ka\" vào cuối phần B.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

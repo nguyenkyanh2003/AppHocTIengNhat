@@ -1,0 +1,977 @@
+{
+  "lesson": {
+    "title": "Tình huống: Tìm việc làm"
+  },
+  "videos": [
+    {
+      "title": "Xem tờ rơi tuyển dụng",
+      "description": "Hỏi được cách đọc chữ trên tờ tuyển dụng và hỏi gần đây có công việc nào tốt không.",
+      "url": "/uploads/lesson-videos/n4-16-job-hunting/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "プトリさん、何を一生懸命見てるんですか。",
+          "romaji": "Putori-san, nani o isshookenmee mite irun desu ka.",
+          "text_vi": "Chị Putori, chị đang chăm chú xem gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あっ、山本さん。あの、この漢字の読み方なんですか。",
+          "romaji": "A, Yamamoto-san. Ano, kono kanji no yomikata nan desu ka.",
+          "text_vi": "À, anh Yamamoto. À, chữ Hán này đọc là gì vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "これは募集ですね。",
+          "romaji": "Kore wa boshuu desu ne.",
+          "text_vi": "Cái này là \"boshuu\" (tuyển dụng) đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "スタッフが欲しいという意味ですか。",
+          "romaji": "Sutaffu ga hoshii to iu imi desu ka.",
+          "text_vi": "Nghĩa là muốn tuyển nhân viên phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "そうそう。これは時給、1300円。仕事はレジの仕事いいですね。",
+          "romaji": "Soo soo. Kore wa jikyuu, senzanbyaku-en. Shigoto wa reji no shigoto ii desu ne.",
+          "text_vi": "Đúng đúng. Đây là lương giờ, 1300 yên. Công việc là thu ngân, cũng tốt đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "あと、ここ、清掃とか掃除とか、商品陳列、商品を並べるとかもありますね。",
+          "romaji": "Ato, koko, seesoo toka sooji toka, shoohin chinretsu, shoohin o naraberu toka mo arimasu ne.",
+          "text_vi": "Ngoài ra, ở đây còn có dọn dẹp vệ sinh, sắp xếp hàng hóa, bày hàng lên kệ nữa.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "そうですか。漢字難しいですね。",
+          "romaji": "Soo desu ka. Kanji muzukashii desu ne.",
+          "text_vi": "Vậy ạ. Chữ Hán khó thật nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "プトリさん、仕事探してるんですか。",
+          "romaji": "Putori-san, shigoto sagashiteirun desu ka.",
+          "text_vi": "Chị Putori đang tìm việc à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "はい、ちょっと働きたいと思って。",
+          "romaji": "Hai, chotto hatarakitai to omotte.",
+          "text_vi": "Vâng, em nghĩ muốn đi làm thêm một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "そうなんだ。コンビニの仕事がいいですか。",
+          "romaji": "Soo nan da. Konbini no shigoto ga ii desu ka.",
+          "text_vi": "Vậy à. Công việc ở cửa hàng tiện lợi có được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "どんな仕事でもいいんですけど、私も少し働きたいと思って。1日4時間くらい働きたいんですけど、この近くでなんかいい仕事ありませんか。",
+          "romaji": "Donna shigoto demo iin desu kedo, watashi mo sukoshi hatarakitai to omotte. Ichinichi yojikan gurai hatarakitain desu kedo, kono chikaku de nanka ii shigoto arimasen ka.",
+          "text_vi": "Việc gì cũng được, em chỉ muốn làm thêm một chút thôi. Em muốn làm khoảng 4 tiếng một ngày, gần đây có công việc tốt nào không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "そうだな。ショッピングモールに貼ってあるチラシとか見るのはどう？",
+          "romaji": "Soo da na. Shoppingu mooru ni hatte aru chirashi toka miru no wa doo?",
+          "text_vi": "Để xem nào. Hay là xem mấy tờ rơi dán ở trung tâm thương mại?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "ショッピングモールにチラシありますか。",
+          "romaji": "Shoppingu mooru ni chirashi arimasu ka.",
+          "text_vi": "Ở trung tâm thương mại có tờ rơi à?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "あるある、駅前の青空モールってよく行くでしょ？あそこの1階のトイレの前に貼ってあるよね。",
+          "romaji": "Aru aru, ekimae no Aozora mooru tte yoku iku desho? Asoko no ikkai no toire no mae ni hatte aru yo ne.",
+          "text_vi": "Có có, chị hay đi trung tâm Aozora trước ga phải không? Ở đó dán trước nhà vệ sinh tầng 1 đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "そういえば見たことあります。",
+          "romaji": "Soo ieba mita koto arimasu.",
+          "text_vi": "À, đúng rồi em có thấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "あとは、ハローワークでも紹介してもらえると思うよ。",
+          "romaji": "Ato wa, Haroo Waaku demo shookai shite moraeru to omou yo.",
+          "text_vi": "Ngoài ra, chị cũng có thể nhờ Hello Work giới thiệu cho đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "ハローワーク？",
+          "romaji": "Haroo Waaku?",
+          "text_vi": "Hello Work ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:06",
+          "speaker_ja": "山本",
+          "speaker_romaji": "Yamamoto",
+          "speaker_vi": "Yamamoto",
+          "text_ja": "ハローワーク。",
+          "romaji": "Haroo Waaku.",
+          "text_vi": "Hello Work đó.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "募集",
+          "reading": "ぼしゅう",
+          "romaji": "boshuu",
+          "meaning": "tuyển dụng"
+        },
+        {
+          "word": "時給",
+          "reading": "じきゅう",
+          "romaji": "jikyuu",
+          "meaning": "lương theo giờ"
+        },
+        {
+          "word": "レジ",
+          "reading": "レジ",
+          "romaji": "reji",
+          "meaning": "quầy thu ngân"
+        },
+        {
+          "word": "清掃",
+          "reading": "せいそう",
+          "romaji": "seesoo",
+          "meaning": "dọn vệ sinh"
+        },
+        {
+          "word": "陳列",
+          "reading": "ちんれつ",
+          "romaji": "chinretsu",
+          "meaning": "bày hàng"
+        },
+        {
+          "word": "ハローワーク",
+          "reading": "ハローワーク",
+          "romaji": "haroo waaku",
+          "meaning": "trung tâm giới thiệu việc làm"
+        }
+      ]
+    },
+    {
+      "title": "Đăng ký tìm việc ở Hello Work",
+      "description": "Hỏi được có mất phí không, đăng ký tìm việc và xin tài liệu bằng tiếng Anh.",
+      "url": "/uploads/lesson-videos/n4-16-job-hunting/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "すみません、初めて来たんですが、ここで仕事を紹介してもらったらお金がかかりますか。",
+          "romaji": "Sumimasen, hajimete kitan desu ga, koko de shigoto o shookai shite morattara okane ga kakarimasu ka.",
+          "text_vi": "Xin lỗi, em lần đầu đến đây, nếu được giới thiệu việc làm ở đây thì có mất tiền không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "いえ、かかりませんよ。",
+          "romaji": "Ie, kakarimasen yo.",
+          "text_vi": "Không, không mất tiền đâu ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "そうですか。あと、私が外国人なんですけど、大丈夫ですか。",
+          "romaji": "Soo desu ka. Ato, watashi ga gaikokujin nan desu kedo, daijoobu desu ka.",
+          "text_vi": "Vậy ạ. À, em là người nước ngoài, có được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "はい。専用の窓口がありますから、そちらで聞いてみてください。こちらの番号でお待ちください。",
+          "romaji": "Hai. Sen'yoo no madoguchi ga arimasu kara, sochira de kiite mite kudasai. Kochira no bangoo de omachi kudasai.",
+          "text_vi": "Vâng. Có quầy riêng dành cho việc này, chị hỏi ở đó nhé. Chị chờ theo số này ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "よろしくお願いします。どうされましたか。",
+          "romaji": "Yoroshiku onegaishimasu. Doo saremashita ka.",
+          "text_vi": "Xin chào. Chị cần gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "仕事をしたいです。",
+          "romaji": "Shigoto o shitai desu.",
+          "text_vi": "Em muốn tìm việc làm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48:15",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "今までどこかで仕事をしていましたか。",
+          "romaji": "Ima made dokoka de shigoto o shite imashita ka.",
+          "text_vi": "Từ trước đến nay chị đã làm việc ở đâu chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "いえ、初めてです。",
+          "romaji": "Ie, hajimete desu.",
+          "text_vi": "Không ạ, đây là lần đầu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "そうですか。では、まず在留カードの確認をさせていただけますか。",
+          "romaji": "Soo desu ka. Dewa, mazu zairyuu kaado no kakunin o sasete itadakemasu ka.",
+          "text_vi": "Vậy ạ. Vậy trước tiên tôi xin kiểm tra thẻ cư trú của chị được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "特にお仕事の時間の制限もありませんね。",
+          "romaji": "Tokuni oshigoto no jikan no seegen mo arimasen ne.",
+          "text_vi": "Cũng không có giới hạn thời gian làm việc đặc biệt nào nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "では今日はまず、登録手続きをお願いします。",
+          "romaji": "Dewa kyoo wa mazu, tooroku tetsuzuki o onegaishimasu.",
+          "text_vi": "Vậy hôm nay trước tiên nhờ chị làm thủ tục đăng ký.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "お名前とか住所とか、お仕事の希望なんかを教えていただきます。",
+          "romaji": "Onamae toka juusho toka, oshigoto no kiboo nanka o oshiete itadakimasu.",
+          "text_vi": "Chị cho tôi biết tên, địa chỉ, và nguyện vọng công việc của chị nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "まずこちらの求職申込書に記入をお願いします。",
+          "romaji": "Mazu kochira no kyuushoku mooshikomisho ni kinyuu o onegaishimasu.",
+          "text_vi": "Trước tiên nhờ chị điền vào đơn xin việc này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "こちらに書き方の説明もあります。ご自分で書けそうですか。",
+          "romaji": "Kochira ni kakikata no setsumee mo arimasu. Gojibun de kakesoo desu ka.",
+          "text_vi": "Ở đây có hướng dẫn cách viết. Chị tự viết được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "はい、これを見ながら書いてみます。",
+          "romaji": "Hai, kore o minagara kaite mimasu.",
+          "text_vi": "Vâng, em sẽ vừa xem cái này vừa viết thử.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "わからないところがあったら聞いてくださいね。",
+          "romaji": "Wakaranai tokoro ga attara kiite kudasai ne.",
+          "text_vi": "Nếu có chỗ nào không hiểu thì cứ hỏi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:06",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "書けるとこだけ書いたら教えてください。",
+          "romaji": "Kakeru toko dake kaitara oshiete kudasai.",
+          "text_vi": "Chị viết được phần nào thì cứ báo tôi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:28",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "ではこれで登録手続きは終了です。",
+          "romaji": "Dewa kore de tooroku tetsuzuki wa shuuryoo desu.",
+          "text_vi": "Vậy là thủ tục đăng ký hoàn tất rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:33",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "この後はどうしたらいいですか。",
+          "romaji": "Kono ato wa doo shitara ii desu ka.",
+          "text_vi": "Sau đó em nên làm gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:37",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "プトリさんの希望に合う仕事を探して、ご紹介することになりますが、今日いくつかお仕事を見てみますか。",
+          "romaji": "Putori-san no kiboo ni au shigoto o sagashite, goshookai suru koto ni narimasu ga, kyoo ikutsuka oshigoto o mite mimasu ka.",
+          "text_vi": "Chúng tôi sẽ tìm và giới thiệu công việc phù hợp nguyện vọng của chị, hôm nay chị có muốn xem thử vài công việc không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "また来てもいいですか。",
+          "romaji": "Mata kite mo ii desu ka.",
+          "text_vi": "Em quay lại sau được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:53",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "はい、もちろんです。",
+          "romaji": "Hai, mochiron desu.",
+          "text_vi": "Vâng, tất nhiên rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "あのー、英語とかで書いてある資料、何かありますか。",
+          "romaji": "Anoo, eego toka de kaite aru shiryoo, nanika arimasu ka.",
+          "text_vi": "À, có tài liệu nào được viết bằng tiếng Anh chẳng hạn không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "03:06",
+          "speaker_ja": "相談員",
+          "speaker_romaji": "Soodan'in",
+          "speaker_vi": "Nhân viên tư vấn",
+          "text_ja": "はい。あそこのラックにいくつかありますから、自由にお取りください。",
+          "romaji": "Hai. Asoko no rakku ni ikutsuka arimasu kara, jiyuu ni otori kudasai.",
+          "text_vi": "Vâng. Ở kệ đằng kia có vài loại, chị cứ tự nhiên lấy nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:12",
+          "speaker_ja": "プトリ",
+          "speaker_romaji": "Putori",
+          "speaker_vi": "Putri",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "紹介",
+          "reading": "しょうかい",
+          "romaji": "shookai",
+          "meaning": "giới thiệu"
+        },
+        {
+          "word": "窓口",
+          "reading": "まどぐち",
+          "romaji": "madoguchi",
+          "meaning": "quầy giao dịch"
+        },
+        {
+          "word": "求職",
+          "reading": "きゅうしょく",
+          "romaji": "kyuushoku",
+          "meaning": "tìm việc"
+        },
+        {
+          "word": "手続き",
+          "reading": "てつづき",
+          "romaji": "tetsuzuki",
+          "meaning": "thủ tục"
+        },
+        {
+          "word": "資料",
+          "reading": "しりょう",
+          "romaji": "shiryoo",
+          "meaning": "tài liệu"
+        },
+        {
+          "word": "希望",
+          "reading": "きぼう",
+          "romaji": "kiboo",
+          "meaning": "nguyện vọng"
+        }
+      ]
+    },
+    {
+      "title": "Nghe giới thiệu một công việc",
+      "description": "Hỏi lại từ không hiểu trong thông tin tuyển dụng và nói điều mình mong muốn ở chỗ làm.",
+      "url": "/uploads/lesson-videos/n4-16-job-hunting/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:05",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "これいかがですか。城南町にある工場で、ご自宅からだと多分自転車で30分ぐらいですね。",
+          "romaji": "Kore ikaga desu ka. Joonan-choo ni aru koojoo de, gojitaku kara da to tabun jitensha de sanjuppun gurai desu ne.",
+          "text_vi": "Chị thấy công việc này thế nào ạ? Đây là nhà máy ở khu Jōnan, từ nhà chị đi xe đạp chắc khoảng 30 phút.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "仕事は荷物の仕分けとかラベル貼りです。",
+          "romaji": "Shigoto wa nimotsu no shiwake toka raberu-bari desu.",
+          "text_vi": "Công việc là phân loại hàng và dán nhãn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "荷物の仕分けって何ですか。",
+          "romaji": "Nimotsu no shiwake tte nan desu ka.",
+          "text_vi": "Phân loại hàng là gì vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "荷物を、これはこっち、これはあっちとか仕分ける仕事です。",
+          "romaji": "Nimotsu o, kore wa kocchi, kore wa acchi toka shiwakeru shigoto desu.",
+          "text_vi": "Là công việc phân loại hàng, cái này để bên này, cái kia để bên kia.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "時給は1300円からで、交通費あり、未経験者OKだそうです。",
+          "romaji": "Jikyuu wa senzanbyaku-en kara de, kootsuuhi ari, mikeekensha OK da soo desu.",
+          "text_vi": "Lương giờ từ 1300 yên, có trợ cấp đi lại, nghe nói người chưa có kinh nghiệm cũng được.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "すみません、何がOKですか。",
+          "romaji": "Sumimasen, nani ga OK desu ka.",
+          "text_vi": "Xin lỗi, cái gì được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "この仕事をやったことがない人でも大丈夫ってことです。",
+          "romaji": "Kono shigoto o yatta koto ga nai hito demo daijoobu tte koto desu.",
+          "text_vi": "Nghĩa là người chưa từng làm công việc này cũng không sao.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "ああ、そうですか。時間は？",
+          "romaji": "Aa, soo desu ka. Jikan wa?",
+          "text_vi": "À, vậy ạ. Còn thời gian làm việc thì sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "8時半から12時半までで、4時間の勤務になります。",
+          "romaji": "Hachiji-han kara juuniji-han made de, yojikan no kinmu ni narimasu.",
+          "text_vi": "Từ 8 rưỡi đến 12 rưỡi, tức là làm 4 tiếng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "4時間、ちょっといいですね。あと、この会社、外国人はいますか。",
+          "romaji": "Yojikan, chotto ii desu ne. Ato, kono kaisha, gaikokujin wa imasu ka.",
+          "text_vi": "4 tiếng, cũng tốt đó ạ. À, công ty này có người nước ngoài không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "ここには書いてないですね。",
+          "romaji": "Koko ni wa kaite nai desu ne.",
+          "text_vi": "Ở đây thì không ghi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "前の仕事のとき、私一人しか外国人がいなかったんです。それで、時々私だけみんなの会話がわからなくてちょっと困りました。",
+          "romaji": "Mae no shigoto no toki, watashi hitori shika gaikokujin ga inakattan desu. Sorede, tokidoki watashi dake minna no kaiwa ga wakaranakute chotto komarimashita.",
+          "text_vi": "Lúc làm công việc trước, chỉ có mỗi mình tôi là người nước ngoài. Vì vậy, thỉnh thoảng chỉ mình tôi không hiểu được cuộc trò chuyện của mọi người nên hơi khó xử.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "なるほど。そういうことがあったんですね。同じ国の人がいるといいですよね。",
+          "romaji": "Naruhodo. Soo iu koto ga attan desu ne. Onaji kuni no hito ga iru to ii desu yo ne.",
+          "text_vi": "Ra vậy. Đã có chuyện như vậy à. Có người cùng nước thì tốt hơn nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "はい、いたら嬉しいです。でも同じ国じゃなくても大丈夫です。",
+          "romaji": "Hai, itara ureshii desu. Demo onaji kuni janakute mo daijoobu desu.",
+          "text_vi": "Vâng, nếu có thì tôi mừng lắm. Nhưng không cùng nước cũng không sao ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "職員",
+          "speaker_romaji": "Shokuin",
+          "speaker_vi": "Nhân viên",
+          "text_ja": "電話で聞いてみましょうか。",
+          "romaji": "Denwa de kiite mimashoo ka.",
+          "text_vi": "Để tôi gọi điện hỏi thử nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "お願いします。",
+          "romaji": "Onegaishimasu.",
+          "text_vi": "Nhờ chị giúp em ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "工場",
+          "reading": "こうじょう",
+          "romaji": "koojoo",
+          "meaning": "nhà máy"
+        },
+        {
+          "word": "仕分け",
+          "reading": "しわけ",
+          "romaji": "shiwake",
+          "meaning": "phân loại"
+        },
+        {
+          "word": "ラベル",
+          "reading": "ラベル",
+          "romaji": "raberu",
+          "meaning": "nhãn"
+        },
+        {
+          "word": "交通費",
+          "reading": "こうつうひ",
+          "romaji": "kootsuuhi",
+          "meaning": "phí đi lại"
+        },
+        {
+          "word": "未経験者",
+          "reading": "みけいけんしゃ",
+          "romaji": "mikeekensha",
+          "meaning": "người chưa có kinh nghiệm"
+        },
+        {
+          "word": "勤務",
+          "reading": "きんむ",
+          "romaji": "kinmu",
+          "meaning": "làm việc (ca)"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Tìm việc làm",
+      "description": "Ôn lại câu hỏi phủ định「〜ありませんか」,「〜しか〜ない」và thể て chỉ nguyên nhân.",
+      "url": "/uploads/lesson-videos/n4-16-job-hunting/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "いい しごと ありませんか",
+          "romaji": "ii shigoto arimasen ka",
+          "text_vi": "Có công việc tốt nào không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "この近くでなんかいい仕事ありませんか。",
+          "romaji": "Kono chikaku de nanka ii shigoto arimasen ka.",
+          "text_vi": "Gần đây có công việc tốt nào không nhỉ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画で女の人は、「いい仕事ありませんか」と友達に質問しています。",
+          "romaji": "Kono dooga de onna no hito wa, \"Ii shigoto arimasen ka\" to tomodachi ni shitsumon shite imasu.",
+          "text_vi": "Trong video này, người phụ nữ hỏi bạn mình \"Có công việc tốt nào không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この文は「ステーブがありません」「ありますか」と同じように、あるかないかを尋ねています。",
+          "romaji": "Kono bun wa \"suteebu ga arimasen\" \"arimasu ka\" to onaji yoo ni, aru ka nai ka o tazunete imasu.",
+          "text_vi": "Câu này cũng giống như \"suteebu ga arimasen\"/\"arimasu ka\", dùng để hỏi có hay không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "否定形の質問文を使う場合は、「ありません」とは反対の「あるかもしれない」という話し手の期待が含まれます。",
+          "romaji": "Hitee-kee no shitsumonbun o tsukau baai wa, \"arimasen\" to wa hantai no \"aru kamoshirenai\" to iu hanashite no kitai ga fukumaremasu.",
+          "text_vi": "Khi dùng câu hỏi ở dạng phủ định thì hàm chứa kỳ vọng ngược lại với \"arimasen\", tức là \"có lẽ là có\" của người nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「寒くないですか」という質問の場合は、「寒くない」とは反対の「寒いかもしれない」という心配な気持ちが含まれます。",
+          "romaji": "\"Samukunai desu ka\" to iu shitsumon no baai wa, \"samukunai\" to wa hantai no \"samui kamoshirenai\" to iu shinpai na kimochi ga fukumaremasu.",
+          "text_vi": "Với câu hỏi \"Có lạnh không?\" (dạng phủ định) thì hàm chứa sự lo lắng ngược lại với \"không lạnh\", tức là \"có lẽ là lạnh\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「辛くないですか」と思って質問することもできます。",
+          "romaji": "\"Tsurakunai desu ka\" to omotte shitsumon suru koto mo dekimasu.",
+          "text_vi": "Cũng có thể hỏi với suy nghĩ như \"Có vất vả không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "答えるときは、「寒くないですか」「寒くないです」「辛くないですか」「辛くないです」のように答えます。",
+          "romaji": "Kotaeru toki wa, \"samukunai desu ka\" \"samukunai desu\" \"tsurakunai desu ka\" \"tsurakunai desu\" no yoo ni kotaemasu.",
+          "text_vi": "Khi trả lời thì đáp lại tương tự như câu hỏi, ví dụ \"Không lạnh đâu\", \"Không vất vả đâu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ひとりしか いなかったんです",
+          "romaji": "hitori shika inakattan desu",
+          "text_vi": "Chỉ có một mình",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02:15",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "前の仕事のとき、私一人しか外国人がいなかったんです。",
+          "romaji": "Mae no shigoto no toki, watashi hitori shika gaikokujin ga inakattan desu.",
+          "text_vi": "Lúc làm công việc trước, chỉ có mỗi mình tôi là người nước ngoài thôi.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では女の人が、以前働いていた会社について「私一人しか外国人がいなかった」と言っています。",
+          "romaji": "Kono dooga de wa onna no hito ga, izen hataraite ita kaisha ni tsuite \"Watashi hitori shika gaikokujin ga inakatta\" to itte imasu.",
+          "text_vi": "Trong video này, người phụ nữ nói về công ty mình từng làm việc rằng \"Chỉ có mỗi mình tôi là người nước ngoài\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "外国人が自分一人で少ないと思っていた、ということを伝えています。",
+          "romaji": "Gaikokujin ga jibun hitori de sukunai to omotte ita, to iu koto o tsutaete imasu.",
+          "text_vi": "Đang truyền đạt rằng cô ấy nghĩ số người nước ngoài chỉ có một mình mình, tức là rất ít.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "名詞＋「しか」＋動詞の否定形は、量や範囲が限られていることを伝えたいときに使います。",
+          "romaji": "Meeshi + \"shika\" + dooshi no hitee-kee wa, ryoo ya han'i ga kagirarete iru koto o tsutaetai toki ni tsukaimasu.",
+          "text_vi": "Mẫu danh từ + \"shika\" + động từ thể phủ định dùng khi muốn nói rằng số lượng hoặc phạm vi bị giới hạn.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、2万円の商品を買いたいけれどお金が足りないという気持ちを伝えたいとき、「財布に1万円しかありません」ということができます。",
+          "romaji": "Tatoeba, niman-en no shoohin o kaitai keredo okane ga tarinai to iu kimochi o tsutaetai toki, \"Saifu ni ichiman-en shika arimasen\" to iu koto ga dekimasu.",
+          "text_vi": "Ví dụ, khi muốn diễn tả cảm giác muốn mua món hàng giá 2 vạn yên nhưng không đủ tiền, có thể nói \"Trong ví chỉ có 1 vạn yên thôi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、「月曜日以外は都合が悪いので、月曜日しか行けません」「うちの猫はこのキャットフードしか食べません」のように使うことができます。",
+          "romaji": "Mata, \"Getsuyoobi igai wa tsugoo ga warui node, getsuyoobi shika ikemasen\", \"Uchi no neko wa kono kyattofuudo shika tabemasen\" no yoo ni tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra cũng có thể dùng như \"Trừ thứ Hai ra thì tôi không tiện, nên chỉ có thể đi vào thứ Hai thôi\", \"Con mèo nhà tôi chỉ ăn loại thức ăn này thôi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:06",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "わからなくて、こまりました",
+          "romaji": "wakaranakute, komarimashita",
+          "text_vi": "Không hiểu nên gặp khó khăn",
+          "key_phrase": false
+        },
+        {
+          "start": "04:10",
+          "speaker_ja": "女性",
+          "speaker_romaji": "Josee",
+          "speaker_vi": "Chị (người tìm việc)",
+          "text_ja": "それで、時々私だけみんなの会話がわからなくて困りました。",
+          "romaji": "Sorede, tokidoki watashi dake minna no kaiwa ga wakaranakute komarimashita.",
+          "text_vi": "Vì vậy, thỉnh thoảng chỉ mình tôi không hiểu được cuộc trò chuyện của mọi người nên rất khó xử.",
+          "key_phrase": true
+        },
+        {
+          "start": "04:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では女の人が、前の会社でわからないことがあったので困った、ということを伝えています。",
+          "romaji": "Kono dooga de wa onna no hito ga, mae no kaisha de wakaranai koto ga atta node komatta, to iu koto o tsutaete imasu.",
+          "text_vi": "Trong video này, người phụ nữ đang truyền đạt rằng vì có điều không hiểu ở công ty trước nên đã gặp khó khăn.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "みんなの会話がわからなかった、それで女の人はどう思っていたか。「わからなくて困りました」ということを伝えています。",
+          "romaji": "Minna no kaiwa ga wakaranakatta, sorede onna no hito wa doo omotte ita ka. \"Wakaranakute komarimashita\" to iu koto o tsutaete imasu.",
+          "text_vi": "Cô ấy không hiểu được cuộc trò chuyện của mọi người, vậy cô ấy đã nghĩ gì? Cô ấy truyền đạt rằng \"Vì không hiểu nên đã gặp khó khăn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「て形」は前の言葉と後ろの言葉をきれいにつないでいます。",
+          "romaji": "\"Te-kee\" wa mae no kotoba to ushiro no kotoba o kiree ni tsunaide imasu.",
+          "text_vi": "Thể te kết nối một cách gọn gàng giữa từ phía trước và từ phía sau.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「残業が多くて、心配で眠れませんでした」「遅くなってすみません」のように使います。",
+          "romaji": "Hoka ni mo, \"Zangyoo ga ookute, shinpai de nemuremasen deshita\", \"Osoku natte sumimasen\" no yoo ni tsukaimasu.",
+          "text_vi": "Ngoài ra cũng dùng như \"Vì làm thêm giờ nhiều nên lo lắng không ngủ được\", \"Xin lỗi vì đã đến muộn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "後ろには、落ちを表す表現や不可能を表す表現を使うことが多いです。",
+          "romaji": "Ushiro ni wa, ochi o arawasu hyoogen ya fukanoo o arawasu hyoogen o tsukau koto ga ooi desu.",
+          "text_vi": "Phía sau thường dùng cách diễn đạt thể hiện kết quả không mong muốn hoặc điều không thể làm được.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

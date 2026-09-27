@@ -1,0 +1,119 @@
+# Lời thoại Tình huống: Tìm việc làm
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-16-19.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Xem tờ rơi tuyển dụng
+00:05 | 山本 / Yamamoto / Yamamoto | プトリさん、何を一生懸命見てるんですか。 | Putori-san, nani o isshookenmee mite irun desu ka. | Chị Putori, chị đang chăm chú xem gì vậy?
+*00:07 | プトリ / Putori / Putri | あっ、山本さん。あの、この漢字の読み方なんですか。 | A, Yamamoto-san. Ano, kono kanji no yomikata nan desu ka. | À, anh Yamamoto. À, chữ Hán này đọc là gì vậy ạ?
+00:15 | 山本 / Yamamoto / Yamamoto | これは募集ですね。 | Kore wa boshuu desu ne. | Cái này là "boshuu" (tuyển dụng) đó.
+00:18 | プトリ / Putori / Putri | スタッフが欲しいという意味ですか。 | Sutaffu ga hoshii to iu imi desu ka. | Nghĩa là muốn tuyển nhân viên phải không ạ?
+00:22 | 山本 / Yamamoto / Yamamoto | そうそう。これは時給、1300円。仕事はレジの仕事いいですね。 | Soo soo. Kore wa jikyuu, senzanbyaku-en. Shigoto wa reji no shigoto ii desu ne. | Đúng đúng. Đây là lương giờ, 1300 yên. Công việc là thu ngân, cũng tốt đó.
+00:36 | 山本 / Yamamoto / Yamamoto | あと、ここ、清掃とか掃除とか、商品陳列、商品を並べるとかもありますね。 | Ato, koko, seesoo toka sooji toka, shoohin chinretsu, shoohin o naraberu toka mo arimasu ne. | Ngoài ra, ở đây còn có dọn dẹp vệ sinh, sắp xếp hàng hóa, bày hàng lên kệ nữa.
+00:46 | プトリ / Putori / Putri | そうですか。漢字難しいですね。 | Soo desu ka. Kanji muzukashii desu ne. | Vậy ạ. Chữ Hán khó thật nhỉ.
+00:47 | 山本 / Yamamoto / Yamamoto | プトリさん、仕事探してるんですか。 | Putori-san, shigoto sagashiteirun desu ka. | Chị Putori đang tìm việc à?
+00:50 | プトリ / Putori / Putri | はい、ちょっと働きたいと思って。 | Hai, chotto hatarakitai to omotte. | Vâng, em nghĩ muốn đi làm thêm một chút.
+00:58 | 山本 / Yamamoto / Yamamoto | そうなんだ。コンビニの仕事がいいですか。 | Soo nan da. Konbini no shigoto ga ii desu ka. | Vậy à. Công việc ở cửa hàng tiện lợi có được không?
+*01:01 | プトリ / Putori / Putri | どんな仕事でもいいんですけど、私も少し働きたいと思って。1日4時間くらい働きたいんですけど、この近くでなんかいい仕事ありませんか。 | Donna shigoto demo iin desu kedo, watashi mo sukoshi hatarakitai to omotte. Ichinichi yojikan gurai hatarakitain desu kedo, kono chikaku de nanka ii shigoto arimasen ka. | Việc gì cũng được, em chỉ muốn làm thêm một chút thôi. Em muốn làm khoảng 4 tiếng một ngày, gần đây có công việc tốt nào không ạ?
+01:21 | 山本 / Yamamoto / Yamamoto | そうだな。ショッピングモールに貼ってあるチラシとか見るのはどう？ | Soo da na. Shoppingu mooru ni hatte aru chirashi toka miru no wa doo? | Để xem nào. Hay là xem mấy tờ rơi dán ở trung tâm thương mại?
+*01:31 | プトリ / Putori / Putri | ショッピングモールにチラシありますか。 | Shoppingu mooru ni chirashi arimasu ka. | Ở trung tâm thương mại có tờ rơi à?
+01:34 | 山本 / Yamamoto / Yamamoto | あるある、駅前の青空モールってよく行くでしょ？あそこの1階のトイレの前に貼ってあるよね。 | Aru aru, ekimae no Aozora mooru tte yoku iku desho? Asoko no ikkai no toire no mae ni hatte aru yo ne. | Có có, chị hay đi trung tâm Aozora trước ga phải không? Ở đó dán trước nhà vệ sinh tầng 1 đó.
+01:53 | プトリ / Putori / Putri | そういえば見たことあります。 | Soo ieba mita koto arimasu. | À, đúng rồi em có thấy.
+01:56 | 山本 / Yamamoto / Yamamoto | あとは、ハローワークでも紹介してもらえると思うよ。 | Ato wa, Haroo Waaku demo shookai shite moraeru to omou yo. | Ngoài ra, chị cũng có thể nhờ Hello Work giới thiệu cho đó.
+02:02 | プトリ / Putori / Putri | ハローワーク？ | Haroo Waaku? | Hello Work ạ?
+02:06 | 山本 / Yamamoto / Yamamoto | ハローワーク。 | Haroo Waaku. | Hello Work đó.
+### từ vựng
+募集 | ぼしゅう | boshuu | tuyển dụng
+時給 | じきゅう | jikyuu | lương theo giờ
+レジ | レジ | reji | quầy thu ngân
+清掃 | せいそう | seesoo | dọn vệ sinh
+陳列 | ちんれつ | chinretsu | bày hàng
+ハローワーク | ハローワーク | haroo waaku | trung tâm giới thiệu việc làm
+
+## scene-3.mp4
+# Đăng ký tìm việc ở Hello Work
+*00:02 | プトリ / Putori / Putri | すみません、初めて来たんですが、ここで仕事を紹介してもらったらお金がかかりますか。 | Sumimasen, hajimete kitan desu ga, koko de shigoto o shookai shite morattara okane ga kakarimasu ka. | Xin lỗi, em lần đầu đến đây, nếu được giới thiệu việc làm ở đây thì có mất tiền không ạ?
+00:11 | 受付 / Uketsuke / Lễ tân | いえ、かかりませんよ。 | Ie, kakarimasen yo. | Không, không mất tiền đâu ạ.
+*00:13 | プトリ / Putori / Putri | そうですか。あと、私が外国人なんですけど、大丈夫ですか。 | Soo desu ka. Ato, watashi ga gaikokujin nan desu kedo, daijoobu desu ka. | Vậy ạ. À, em là người nước ngoài, có được không ạ?
+00:21 | 受付 / Uketsuke / Lễ tân | はい。専用の窓口がありますから、そちらで聞いてみてください。こちらの番号でお待ちください。 | Hai. Sen'yoo no madoguchi ga arimasu kara, sochira de kiite mite kudasai. Kochira no bangoo de omachi kudasai. | Vâng. Có quầy riêng dành cho việc này, chị hỏi ở đó nhé. Chị chờ theo số này ạ.
+00:43 | 相談員 / Soodan'in / Nhân viên tư vấn | よろしくお願いします。どうされましたか。 | Yoroshiku onegaishimasu. Doo saremashita ka. | Xin chào. Chị cần gì ạ?
+00:48 | プトリ / Putori / Putri | 仕事をしたいです。 | Shigoto o shitai desu. | Em muốn tìm việc làm ạ.
+00:48:15 | 相談員 / Soodan'in / Nhân viên tư vấn | 今までどこかで仕事をしていましたか。 | Ima made dokoka de shigoto o shite imashita ka. | Từ trước đến nay chị đã làm việc ở đâu chưa ạ?
+00:55 | プトリ / Putori / Putri | いえ、初めてです。 | Ie, hajimete desu. | Không ạ, đây là lần đầu.
+00:58 | 相談員 / Soodan'in / Nhân viên tư vấn | そうですか。では、まず在留カードの確認をさせていただけますか。 | Soo desu ka. Dewa, mazu zairyuu kaado no kakunin o sasete itadakemasu ka. | Vậy ạ. Vậy trước tiên tôi xin kiểm tra thẻ cư trú của chị được không ạ?
+01:15 | 相談員 / Soodan'in / Nhân viên tư vấn | 特にお仕事の時間の制限もありませんね。 | Tokuni oshigoto no jikan no seegen mo arimasen ne. | Cũng không có giới hạn thời gian làm việc đặc biệt nào nhỉ.
+01:25 | 相談員 / Soodan'in / Nhân viên tư vấn | では今日はまず、登録手続きをお願いします。 | Dewa kyoo wa mazu, tooroku tetsuzuki o onegaishimasu. | Vậy hôm nay trước tiên nhờ chị làm thủ tục đăng ký.
+01:34 | 相談員 / Soodan'in / Nhân viên tư vấn | お名前とか住所とか、お仕事の希望なんかを教えていただきます。 | Onamae toka juusho toka, oshigoto no kiboo nanka o oshiete itadakimasu. | Chị cho tôi biết tên, địa chỉ, và nguyện vọng công việc của chị nhé.
+01:43 | 相談員 / Soodan'in / Nhân viên tư vấn | まずこちらの求職申込書に記入をお願いします。 | Mazu kochira no kyuushoku mooshikomisho ni kinyuu o onegaishimasu. | Trước tiên nhờ chị điền vào đơn xin việc này.
+01:50 | 相談員 / Soodan'in / Nhân viên tư vấn | こちらに書き方の説明もあります。ご自分で書けそうですか。 | Kochira ni kakikata no setsumee mo arimasu. Gojibun de kakesoo desu ka. | Ở đây có hướng dẫn cách viết. Chị tự viết được không ạ?
+*01:57 | プトリ / Putori / Putri | はい、これを見ながら書いてみます。 | Hai, kore o minagara kaite mimasu. | Vâng, em sẽ vừa xem cái này vừa viết thử.
+02:01 | 相談員 / Soodan'in / Nhân viên tư vấn | わからないところがあったら聞いてくださいね。 | Wakaranai tokoro ga attara kiite kudasai ne. | Nếu có chỗ nào không hiểu thì cứ hỏi nhé.
+02:06 | プトリ / Putori / Putri | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+02:08 | 相談員 / Soodan'in / Nhân viên tư vấn | 書けるとこだけ書いたら教えてください。 | Kakeru toko dake kaitara oshiete kudasai. | Chị viết được phần nào thì cứ báo tôi nhé.
+02:28 | 相談員 / Soodan'in / Nhân viên tư vấn | ではこれで登録手続きは終了です。 | Dewa kore de tooroku tetsuzuki wa shuuryoo desu. | Vậy là thủ tục đăng ký hoàn tất rồi ạ.
+02:33 | プトリ / Putori / Putri | この後はどうしたらいいですか。 | Kono ato wa doo shitara ii desu ka. | Sau đó em nên làm gì ạ?
+02:37 | 相談員 / Soodan'in / Nhân viên tư vấn | プトリさんの希望に合う仕事を探して、ご紹介することになりますが、今日いくつかお仕事を見てみますか。 | Putori-san no kiboo ni au shigoto o sagashite, goshookai suru koto ni narimasu ga, kyoo ikutsuka oshigoto o mite mimasu ka. | Chúng tôi sẽ tìm và giới thiệu công việc phù hợp nguyện vọng của chị, hôm nay chị có muốn xem thử vài công việc không ạ?
+02:50 | プトリ / Putori / Putri | また来てもいいですか。 | Mata kite mo ii desu ka. | Em quay lại sau được không ạ?
+02:53 | 相談員 / Soodan'in / Nhân viên tư vấn | はい、もちろんです。 | Hai, mochiron desu. | Vâng, tất nhiên rồi ạ.
+*03:00 | プトリ / Putori / Putri | あのー、英語とかで書いてある資料、何かありますか。 | Anoo, eego toka de kaite aru shiryoo, nanika arimasu ka. | À, có tài liệu nào được viết bằng tiếng Anh chẳng hạn không ạ?
+03:06 | 相談員 / Soodan'in / Nhân viên tư vấn | はい。あそこのラックにいくつかありますから、自由にお取りください。 | Hai. Asoko no rakku ni ikutsuka arimasu kara, jiyuu ni otori kudasai. | Vâng. Ở kệ đằng kia có vài loại, chị cứ tự nhiên lấy nhé.
+03:12 | プトリ / Putori / Putri | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+### từ vựng
+紹介 | しょうかい | shookai | giới thiệu
+窓口 | まどぐち | madoguchi | quầy giao dịch
+求職 | きゅうしょく | kyuushoku | tìm việc
+手続き | てつづき | tetsuzuki | thủ tục
+資料 | しりょう | shiryoo | tài liệu
+希望 | きぼう | kiboo | nguyện vọng
+
+## scene-1.mp4
+# Nghe giới thiệu một công việc
+00:05 | 職員 / Shokuin / Nhân viên | これいかがですか。城南町にある工場で、ご自宅からだと多分自転車で30分ぐらいですね。 | Kore ikaga desu ka. Joonan-choo ni aru koojoo de, gojitaku kara da to tabun jitensha de sanjuppun gurai desu ne. | Chị thấy công việc này thế nào ạ? Đây là nhà máy ở khu Jōnan, từ nhà chị đi xe đạp chắc khoảng 30 phút.
+00:16 | 職員 / Shokuin / Nhân viên | 仕事は荷物の仕分けとかラベル貼りです。 | Shigoto wa nimotsu no shiwake toka raberu-bari desu. | Công việc là phân loại hàng và dán nhãn.
+*00:22 | 女性 / Josee / Chị (người tìm việc) | 荷物の仕分けって何ですか。 | Nimotsu no shiwake tte nan desu ka. | Phân loại hàng là gì vậy ạ?
+00:28 | 職員 / Shokuin / Nhân viên | 荷物を、これはこっち、これはあっちとか仕分ける仕事です。 | Nimotsu o, kore wa kocchi, kore wa acchi toka shiwakeru shigoto desu. | Là công việc phân loại hàng, cái này để bên này, cái kia để bên kia.
+00:35 | 職員 / Shokuin / Nhân viên | 時給は1300円からで、交通費あり、未経験者OKだそうです。 | Jikyuu wa senzanbyaku-en kara de, kootsuuhi ari, mikeekensha OK da soo desu. | Lương giờ từ 1300 yên, có trợ cấp đi lại, nghe nói người chưa có kinh nghiệm cũng được.
+*00:43 | 女性 / Josee / Chị (người tìm việc) | すみません、何がOKですか。 | Sumimasen, nani ga OK desu ka. | Xin lỗi, cái gì được ạ?
+00:48 | 職員 / Shokuin / Nhân viên | この仕事をやったことがない人でも大丈夫ってことです。 | Kono shigoto o yatta koto ga nai hito demo daijoobu tte koto desu. | Nghĩa là người chưa từng làm công việc này cũng không sao.
+00:54 | 女性 / Josee / Chị (người tìm việc) | ああ、そうですか。時間は？ | Aa, soo desu ka. Jikan wa? | À, vậy ạ. Còn thời gian làm việc thì sao ạ?
+00:58 | 職員 / Shokuin / Nhân viên | 8時半から12時半までで、4時間の勤務になります。 | Hachiji-han kara juuniji-han made de, yojikan no kinmu ni narimasu. | Từ 8 rưỡi đến 12 rưỡi, tức là làm 4 tiếng.
+*01:05 | 女性 / Josee / Chị (người tìm việc) | 4時間、ちょっといいですね。あと、この会社、外国人はいますか。 | Yojikan, chotto ii desu ne. Ato, kono kaisha, gaikokujin wa imasu ka. | 4 tiếng, cũng tốt đó ạ. À, công ty này có người nước ngoài không ạ?
+01:13 | 職員 / Shokuin / Nhân viên | ここには書いてないですね。 | Koko ni wa kaite nai desu ne. | Ở đây thì không ghi ạ.
+*01:18 | 女性 / Josee / Chị (người tìm việc) | 前の仕事のとき、私一人しか外国人がいなかったんです。それで、時々私だけみんなの会話がわからなくてちょっと困りました。 | Mae no shigoto no toki, watashi hitori shika gaikokujin ga inakattan desu. Sorede, tokidoki watashi dake minna no kaiwa ga wakaranakute chotto komarimashita. | Lúc làm công việc trước, chỉ có mỗi mình tôi là người nước ngoài. Vì vậy, thỉnh thoảng chỉ mình tôi không hiểu được cuộc trò chuyện của mọi người nên hơi khó xử.
+01:31 | 職員 / Shokuin / Nhân viên | なるほど。そういうことがあったんですね。同じ国の人がいるといいですよね。 | Naruhodo. Soo iu koto ga attan desu ne. Onaji kuni no hito ga iru to ii desu yo ne. | Ra vậy. Đã có chuyện như vậy à. Có người cùng nước thì tốt hơn nhỉ.
+01:40 | 女性 / Josee / Chị (người tìm việc) | はい、いたら嬉しいです。でも同じ国じゃなくても大丈夫です。 | Hai, itara ureshii desu. Demo onaji kuni janakute mo daijoobu desu. | Vâng, nếu có thì tôi mừng lắm. Nhưng không cùng nước cũng không sao ạ.
+01:48 | 職員 / Shokuin / Nhân viên | 電話で聞いてみましょうか。 | Denwa de kiite mimashoo ka. | Để tôi gọi điện hỏi thử nhé?
+01:50 | 女性 / Josee / Chị (người tìm việc) | お願いします。 | Onegaishimasu. | Nhờ chị giúp em ạ.
+### từ vựng
+工場 | こうじょう | koojoo | nhà máy
+仕分け | しわけ | shiwake | phân loại
+ラベル | ラベル | raberu | nhãn
+交通費 | こうつうひ | kootsuuhi | phí đi lại
+未経験者 | みけいけんしゃ | mikeekensha | người chưa có kinh nghiệm
+勤務 | きんむ | kinmu | làm việc (ca)
+
+## summary.mp4
+# Ôn tập: Tìm việc làm
+00:00 |  /  / Chủ đề | いい しごと ありませんか | ii shigoto arimasen ka | Có công việc tốt nào không?
+*00:06 | 女性 / Josee / Chị (người tìm việc) | この近くでなんかいい仕事ありませんか。 | Kono chikaku de nanka ii shigoto arimasen ka. | Gần đây có công việc tốt nào không nhỉ?
+00:10 | ナレーター / Nareetaa / Người dẫn | この動画で女の人は、「いい仕事ありませんか」と友達に質問しています。 | Kono dooga de onna no hito wa, "Ii shigoto arimasen ka" to tomodachi ni shitsumon shite imasu. | Trong video này, người phụ nữ hỏi bạn mình "Có công việc tốt nào không?".
+00:23 | ナレーター / Nareetaa / Người dẫn | この文は「ステーブがありません」「ありますか」と同じように、あるかないかを尋ねています。 | Kono bun wa "suteebu ga arimasen" "arimasu ka" to onaji yoo ni, aru ka nai ka o tazunete imasu. | Câu này cũng giống như "suteebu ga arimasen"/"arimasu ka", dùng để hỏi có hay không.
+00:52 | ナレーター / Nareetaa / Người dẫn | 否定形の質問文を使う場合は、「ありません」とは反対の「あるかもしれない」という話し手の期待が含まれます。 | Hitee-kee no shitsumonbun o tsukau baai wa, "arimasen" to wa hantai no "aru kamoshirenai" to iu hanashite no kitai ga fukumaremasu. | Khi dùng câu hỏi ở dạng phủ định thì hàm chứa kỳ vọng ngược lại với "arimasen", tức là "có lẽ là có" của người nói.
+01:09 | ナレーター / Nareetaa / Người dẫn | 「寒くないですか」という質問の場合は、「寒くない」とは反対の「寒いかもしれない」という心配な気持ちが含まれます。 | "Samukunai desu ka" to iu shitsumon no baai wa, "samukunai" to wa hantai no "samui kamoshirenai" to iu shinpai na kimochi ga fukumaremasu. | Với câu hỏi "Có lạnh không?" (dạng phủ định) thì hàm chứa sự lo lắng ngược lại với "không lạnh", tức là "có lẽ là lạnh".
+01:27 | ナレーター / Nareetaa / Người dẫn | 「辛くないですか」と思って質問することもできます。 | "Tsurakunai desu ka" to omotte shitsumon suru koto mo dekimasu. | Cũng có thể hỏi với suy nghĩ như "Có vất vả không?".
+01:38 | ナレーター / Nareetaa / Người dẫn | 答えるときは、「寒くないですか」「寒くないです」「辛くないですか」「辛くないです」のように答えます。 | Kotaeru toki wa, "samukunai desu ka" "samukunai desu" "tsurakunai desu ka" "tsurakunai desu" no yoo ni kotaemasu. | Khi trả lời thì đáp lại tương tự như câu hỏi, ví dụ "Không lạnh đâu", "Không vất vả đâu".
+02:02 |  /  / Chủ đề | ひとりしか いなかったんです | hitori shika inakattan desu | Chỉ có một mình
+*02:02:15 | 女性 / Josee / Chị (người tìm việc) | 前の仕事のとき、私一人しか外国人がいなかったんです。 | Mae no shigoto no toki, watashi hitori shika gaikokujin ga inakattan desu. | Lúc làm công việc trước, chỉ có mỗi mình tôi là người nước ngoài thôi.
+02:07 | ナレーター / Nareetaa / Người dẫn | この動画では女の人が、以前働いていた会社について「私一人しか外国人がいなかった」と言っています。 | Kono dooga de wa onna no hito ga, izen hataraite ita kaisha ni tsuite "Watashi hitori shika gaikokujin ga inakatta" to itte imasu. | Trong video này, người phụ nữ nói về công ty mình từng làm việc rằng "Chỉ có mỗi mình tôi là người nước ngoài".
+02:24 | ナレーター / Nareetaa / Người dẫn | 外国人が自分一人で少ないと思っていた、ということを伝えています。 | Gaikokujin ga jibun hitori de sukunai to omotte ita, to iu koto o tsutaete imasu. | Đang truyền đạt rằng cô ấy nghĩ số người nước ngoài chỉ có một mình mình, tức là rất ít.
+02:34 | ナレーター / Nareetaa / Người dẫn | 名詞＋「しか」＋動詞の否定形は、量や範囲が限られていることを伝えたいときに使います。 | Meeshi + "shika" + dooshi no hitee-kee wa, ryoo ya han'i ga kagirarete iru koto o tsutaetai toki ni tsukaimasu. | Mẫu danh từ + "shika" + động từ thể phủ định dùng khi muốn nói rằng số lượng hoặc phạm vi bị giới hạn.
+02:52 | ナレーター / Nareetaa / Người dẫn | 例えば、2万円の商品を買いたいけれどお金が足りないという気持ちを伝えたいとき、「財布に1万円しかありません」ということができます。 | Tatoeba, niman-en no shoohin o kaitai keredo okane ga tarinai to iu kimochi o tsutaetai toki, "Saifu ni ichiman-en shika arimasen" to iu koto ga dekimasu. | Ví dụ, khi muốn diễn tả cảm giác muốn mua món hàng giá 2 vạn yên nhưng không đủ tiền, có thể nói "Trong ví chỉ có 1 vạn yên thôi".
+03:10 | ナレーター / Nareetaa / Người dẫn | また、「月曜日以外は都合が悪いので、月曜日しか行けません」「うちの猫はこのキャットフードしか食べません」のように使うことができます。 | Mata, "Getsuyoobi igai wa tsugoo ga warui node, getsuyoobi shika ikemasen", "Uchi no neko wa kono kyattofuudo shika tabemasen" no yoo ni tsukau koto ga dekimasu. | Ngoài ra cũng có thể dùng như "Trừ thứ Hai ra thì tôi không tiện, nên chỉ có thể đi vào thứ Hai thôi", "Con mèo nhà tôi chỉ ăn loại thức ăn này thôi".
+04:06 |  /  / Chủ đề | わからなくて、こまりました | wakaranakute, komarimashita | Không hiểu nên gặp khó khăn
+*04:10 | 女性 / Josee / Chị (người tìm việc) | それで、時々私だけみんなの会話がわからなくて困りました。 | Sorede, tokidoki watashi dake minna no kaiwa ga wakaranakute komarimashita. | Vì vậy, thỉnh thoảng chỉ mình tôi không hiểu được cuộc trò chuyện của mọi người nên rất khó xử.
+04:17 | ナレーター / Nareetaa / Người dẫn | この動画では女の人が、前の会社でわからないことがあったので困った、ということを伝えています。 | Kono dooga de wa onna no hito ga, mae no kaisha de wakaranai koto ga atta node komatta, to iu koto o tsutaete imasu. | Trong video này, người phụ nữ đang truyền đạt rằng vì có điều không hiểu ở công ty trước nên đã gặp khó khăn.
+04:34 | ナレーター / Nareetaa / Người dẫn | みんなの会話がわからなかった、それで女の人はどう思っていたか。「わからなくて困りました」ということを伝えています。 | Minna no kaiwa ga wakaranakatta, sorede onna no hito wa doo omotte ita ka. "Wakaranakute komarimashita" to iu koto o tsutaete imasu. | Cô ấy không hiểu được cuộc trò chuyện của mọi người, vậy cô ấy đã nghĩ gì? Cô ấy truyền đạt rằng "Vì không hiểu nên đã gặp khó khăn".
+04:45 | ナレーター / Nareetaa / Người dẫn | 「て形」は前の言葉と後ろの言葉をきれいにつないでいます。 | "Te-kee" wa mae no kotoba to ushiro no kotoba o kiree ni tsunaide imasu. | Thể te kết nối một cách gọn gàng giữa từ phía trước và từ phía sau.
+04:57 | ナレーター / Nareetaa / Người dẫn | 他にも、「残業が多くて、心配で眠れませんでした」「遅くなってすみません」のように使います。 | Hoka ni mo, "Zangyoo ga ookute, shinpai de nemuremasen deshita", "Osoku natte sumimasen" no yoo ni tsukaimasu. | Ngoài ra cũng dùng như "Vì làm thêm giờ nhiều nên lo lắng không ngủ được", "Xin lỗi vì đã đến muộn".
+05:16 | ナレーター / Nareetaa / Người dẫn | 後ろには、落ちを表す表現や不可能を表す表現を使うことが多いです。 | Ushiro ni wa, ochi o arawasu hyoogen ya fukanoo o arawasu hyoogen o tsukau koto ga ooi desu. | Phía sau thường dùng cách diễn đạt thể hiện kết quả không mong muốn hoặc điều không thể làm được.

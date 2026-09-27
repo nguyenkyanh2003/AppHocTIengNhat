@@ -1,0 +1,977 @@
+{
+  "lesson": {
+    "title": "Tình huống: Đi khám bệnh"
+  },
+  "videos": [
+    {
+      "title": "Lần đầu đến phòng khám",
+      "description": "Nói được triệu chứng ở quầy lễ tân, điền phiếu khai bệnh và hỏi lại chỗ không hiểu.",
+      "url": "/uploads/lesson-videos/n4-08-clinic/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:04",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あの、すみません。",
+          "romaji": "Ano, sumimasen.",
+          "text_vi": "Dạ, xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "はい。おはようございます。こちらは初めてですか。",
+          "romaji": "Hai. Ohayoo gozaimasu. Kochira wa hajimete desu ka.",
+          "text_vi": "Vâng. Chào anh. Anh đến đây lần đầu phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、初めてです。",
+          "romaji": "Hai, hajimete desu.",
+          "text_vi": "Vâng, lần đầu ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "初診ですね。保険証をお持ちですか。",
+          "romaji": "Shoshin desu ne. Hokenshoo o omochi desu ka.",
+          "text_vi": "Khám lần đầu nhỉ. Anh có mang thẻ bảo hiểm không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Có ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "ちょっとお預かりしますね。",
+          "romaji": "Chotto oazukari shimasu ne.",
+          "text_vi": "Tôi xin giữ một chút nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "今日はどうなさいましたか。",
+          "romaji": "Kyoo wa doo nasaimashita ka.",
+          "text_vi": "Hôm nay anh bị làm sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "風邪をひいたみたいです。",
+          "romaji": "Kaze o hiita mitai desu.",
+          "text_vi": "Hình như tôi bị cảm.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "そうなんですね。では、こちらの問診票に記入をお願いします。",
+          "romaji": "Soo nan desu ne. Dewa, kochira no monshinhyoo ni kinyuu o onegaishimasu.",
+          "text_vi": "Vậy ạ. Vậy anh điền vào phiếu khai bệnh này giúp tôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "日本語ですけれど、大丈夫ですか。",
+          "romaji": "Nihongo desu keredo, daijoobu desu ka.",
+          "text_vi": "Phiếu bằng tiếng Nhật, anh có ổn không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。わからないところがあったら聞きます。",
+          "romaji": "Hai. Wakaranai tokoro ga attara kikimasu.",
+          "text_vi": "Vâng. Chỗ nào không hiểu tôi sẽ hỏi.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "熱を測って、ここに書いてください。",
+          "romaji": "Netsu o hakatte, koko ni kaite kudasai.",
+          "text_vi": "Anh đo nhiệt độ rồi ghi vào đây nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あ、わかりました。",
+          "romaji": "A, wakarimashita.",
+          "text_vi": "À, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "では、あちらのソファにおかけになってご記入ください。",
+          "romaji": "Dewa, achira no sofa ni okake ni natte gokinyuu kudasai.",
+          "text_vi": "Vậy mời anh ngồi ở ghế sofa đằng kia điền nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、ありがとうございます。",
+          "romaji": "Hai, arigatoo gozaimasu.",
+          "text_vi": "Vâng, cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません。これ、37度8分でした。これでいいですか。",
+          "romaji": "Sumimasen. Kore, sanjuunana-do hachi-bu deshita. Kore de ii desu ka.",
+          "text_vi": "Xin lỗi. Nhiệt độ là 37,8 độ. Ghi thế này được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "はい、いいですよ。",
+          "romaji": "Hai, ii desu yo.",
+          "text_vi": "Vâng, được rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "あと、ここは何を書けばいいですか。",
+          "romaji": "Ato, koko wa nani o kakeba ii desu ka.",
+          "text_vi": "Còn chỗ này thì ghi gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "ここはアレルギー…例えば、薬を飲むと喉がかゆくなるとか。",
+          "romaji": "Koko wa arerugii… tatoeba, kusuri o nomu to nodo ga kayuku naru toka.",
+          "text_vi": "Chỗ này là dị ứng… ví dụ như uống thuốc thì bị ngứa họng chẳng hạn.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、わかりました。",
+          "romaji": "Aa, wakarimashita.",
+          "text_vi": "À, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:47",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "お願いします。",
+          "romaji": "Onegaishimasu.",
+          "text_vi": "Nhờ chị ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "はい、お預かりします。では、座ってお待ちください。",
+          "romaji": "Hai, oazukari shimasu. Dewa, suwatte omachi kudasai.",
+          "text_vi": "Vâng, tôi xin nhận. Mời anh ngồi đợi.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "初診",
+          "reading": "しょしん",
+          "romaji": "shoshin",
+          "meaning": "khám lần đầu"
+        },
+        {
+          "word": "保険証",
+          "reading": "ほけんしょう",
+          "romaji": "hokenshoo",
+          "meaning": "thẻ bảo hiểm"
+        },
+        {
+          "word": "問診票",
+          "reading": "もんしんひょう",
+          "romaji": "monshinhyoo",
+          "meaning": "phiếu khai bệnh"
+        },
+        {
+          "word": "熱を測る",
+          "reading": "ねつをはかる",
+          "romaji": "netsu o hakaru",
+          "meaning": "đo nhiệt độ"
+        },
+        {
+          "word": "風邪をひく",
+          "reading": "かぜをひく",
+          "romaji": "kaze o hiku",
+          "meaning": "bị cảm"
+        },
+        {
+          "word": "アレルギー",
+          "reading": "アレルギー",
+          "romaji": "arerugii",
+          "meaning": "dị ứng"
+        }
+      ]
+    },
+    {
+      "title": "Khám bong gân với bác sĩ",
+      "description": "Kể được nguyên nhân bị thương và xin phép bác sĩ về sinh hoạt sau khi khám.",
+      "url": "/uploads/lesson-videos/n4-08-clinic/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "看護師",
+          "speaker_romaji": "Kangoshi",
+          "speaker_vi": "Y tá",
+          "text_ja": "王さん、3番の診察室にお入りください。",
+          "romaji": "Oo-san, sanban no shinsatsushitsu ni ohairi kudasai.",
+          "text_vi": "Anh Vương, mời anh vào phòng khám số 3.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "どうぞ。",
+          "romaji": "Doozo.",
+          "text_vi": "Mời vào.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "お荷物、そちらにどうぞ。",
+          "romaji": "Onimotsu, sochira ni doozo.",
+          "text_vi": "Anh để đồ ở đằng kia nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Anh bị làm sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "今朝、会社に行く途中に転んで、足首が腫れているんです。",
+          "romaji": "Kesa, kaisha ni iku tochuu ni koronde, ashikubi ga harete irun desu.",
+          "text_vi": "Sáng nay trên đường đi làm tôi bị ngã, cổ chân bị sưng.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "じゃあ、ちょっと見ますね。",
+          "romaji": "Jaa, chotto mimasu ne.",
+          "text_vi": "Vậy để tôi xem nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "ああ、結構腫れていますね。",
+          "romaji": "Aa, kekkoo harete imasu ne.",
+          "text_vi": "À, sưng khá nhiều đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "念のため、レントゲンを撮っておきますね。",
+          "romaji": "Nen no tame, rentogen o totte okimasu ne.",
+          "text_vi": "Để chắc chắn, tôi chụp X-quang luôn nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "ああ、骨は折れていませんね。捻挫です。",
+          "romaji": "Aa, hone wa orete imasen ne. Nenza desu.",
+          "text_vi": "À, xương không bị gãy. Là bong gân.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "じゃあ、お風呂に入ってもいいですか。",
+          "romaji": "Jaa, ofuro ni haitte mo ii desu ka.",
+          "text_vi": "Vậy tôi tắm bồn được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "ああ、お風呂は2、3日入らないでください。",
+          "romaji": "Aa, ofuro wa ni-san-nichi hairanaide kudasai.",
+          "text_vi": "À, anh đừng tắm bồn trong 2, 3 ngày.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "痛み止めの薬と湿布を出しておきますね。",
+          "romaji": "Itamidome no kusuri to shippu o dashite okimasu ne.",
+          "text_vi": "Tôi kê cho anh thuốc giảm đau và miếng dán nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、わかりました。ありがとうございます。",
+          "romaji": "Hai, wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "Vâng, tôi hiểu rồi. Cảm ơn bác sĩ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:27",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "お大事に。",
+          "romaji": "Odaiji ni.",
+          "text_vi": "Anh giữ gìn sức khỏe nhé.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "診察室",
+          "reading": "しんさつしつ",
+          "romaji": "shinsatsushitsu",
+          "meaning": "phòng khám"
+        },
+        {
+          "word": "足首",
+          "reading": "あしくび",
+          "romaji": "ashikubi",
+          "meaning": "cổ chân"
+        },
+        {
+          "word": "腫れる",
+          "reading": "はれる",
+          "romaji": "hareru",
+          "meaning": "sưng"
+        },
+        {
+          "word": "転ぶ",
+          "reading": "ころぶ",
+          "romaji": "korobu",
+          "meaning": "ngã"
+        },
+        {
+          "word": "レントゲン",
+          "reading": "レントゲン",
+          "romaji": "rentogen",
+          "meaning": "chụp X-quang"
+        },
+        {
+          "word": "捻挫",
+          "reading": "ねんざ",
+          "romaji": "nenza",
+          "meaning": "bong gân"
+        },
+        {
+          "word": "湿布",
+          "reading": "しっぷ",
+          "romaji": "shippu",
+          "meaning": "miếng dán giảm đau"
+        }
+      ]
+    },
+    {
+      "title": "Thanh toán và nhận đơn thuốc",
+      "description": "Hiểu được thẻ khám bệnh, đơn thuốc và hỏi nên mua thuốc ở hiệu thuốc nào.",
+      "url": "/uploads/lesson-videos/n4-08-clinic/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "王さん、王ハオランさん。",
+          "romaji": "Oo-san, Oo Haoran-san.",
+          "text_vi": "Anh Vương, anh Ō Haoran.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はーい。",
+          "romaji": "Haai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "今日は1,600円になります。",
+          "romaji": "Kyoo wa sen roppyaku-en ni narimasu.",
+          "text_vi": "Hôm nay hết 1.600 yên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。2,000円でお願いします。",
+          "romaji": "Hai. Nisen-en de onegaishimasu.",
+          "text_vi": "Vâng. Chị lấy 2.000 yên nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "2,000円お預かりします。",
+          "romaji": "Nisen-en oazukari shimasu.",
+          "text_vi": "Tôi nhận của anh 2.000 yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "400円のお返しになります。",
+          "romaji": "Yonhyaku-en no okaeshi ni narimasu.",
+          "text_vi": "Tôi gửi lại anh 400 yên tiền thừa.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "それから、保険証と診察券です。",
+          "romaji": "Sorekara, hokenshoo to shinsatsuken desu.",
+          "text_vi": "Còn đây là thẻ bảo hiểm và thẻ khám bệnh.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "次回いらっしゃるときは、こちらの診察券をお持ちください。",
+          "romaji": "Jikai irassharu toki wa, kochira no shinsatsuken o omochi kudasai.",
+          "text_vi": "Lần sau đến anh nhớ mang theo thẻ khám bệnh này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "それから、こちらが処方箋になります。",
+          "romaji": "Sorekara, kochira ga shohoosen ni narimasu.",
+          "text_vi": "Và đây là đơn thuốc ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "処方箋…",
+          "romaji": "Shohoosen…",
+          "text_vi": "Đơn thuốc…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "はい。薬局で薬を買うときに、この紙を出してください。",
+          "romaji": "Hai. Yakkyoku de kusuri o kau toki ni, kono kami o dashite kudasai.",
+          "text_vi": "Vâng. Khi mua thuốc ở hiệu thuốc anh đưa tờ giấy này ra.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "王さんは今日、この薬が出ています。",
+          "romaji": "Oo-san wa kyoo, kono kusuri ga dete imasu.",
+          "text_vi": "Hôm nay anh được kê thuốc này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "どこの薬局でもいいですか。",
+          "romaji": "Doko no yakkyoku demo ii desu ka.",
+          "text_vi": "Hiệu thuốc nào cũng được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "ああ、このビルの隣の薬局が一番近いですよ。",
+          "romaji": "Aa, kono biru no tonari no yakkyoku ga ichiban chikai desu yo.",
+          "text_vi": "À, hiệu thuốc cạnh tòa nhà này là gần nhất đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ああ、わかりました。ありがとうございます。",
+          "romaji": "Aa, wakarimashita. Arigatoo gozaimasu.",
+          "text_vi": "À, tôi hiểu rồi. Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "受付",
+          "speaker_romaji": "Uketsuke",
+          "speaker_vi": "Lễ tân",
+          "text_ja": "お大事に。",
+          "romaji": "Odaiji ni.",
+          "text_vi": "Anh giữ gìn sức khỏe nhé.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "診察券",
+          "reading": "しんさつけん",
+          "romaji": "shinsatsuken",
+          "meaning": "thẻ khám bệnh"
+        },
+        {
+          "word": "処方箋",
+          "reading": "しょほうせん",
+          "romaji": "shohoosen",
+          "meaning": "đơn thuốc"
+        },
+        {
+          "word": "薬局",
+          "reading": "やっきょく",
+          "romaji": "yakkyoku",
+          "meaning": "hiệu thuốc"
+        },
+        {
+          "word": "次回",
+          "reading": "じかい",
+          "romaji": "jikai",
+          "meaning": "lần sau"
+        },
+        {
+          "word": "お大事に",
+          "reading": "おだいじに",
+          "romaji": "odaiji ni",
+          "meaning": "giữ gìn sức khỏe nhé"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Đi khám bệnh",
+      "description": "Ôn lại「〜んです」, thể て chỉ nguyên nhân và「〜てもいいですか」.",
+      "url": "/uploads/lesson-videos/n4-08-clinic/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "あしくびが はれているんです",
+          "romaji": "ashikubi ga hareteirun desu",
+          "text_vi": "Cổ chân tôi bị sưng",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Anh bị làm sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "今朝、会社に行く途中に転んで、足首が腫れているんです。",
+          "romaji": "Kesa, kaisha ni iku tochuu ni koronde, ashikubi ga harete irun desu.",
+          "text_vi": "Sáng nay trên đường đi làm tôi bị ngã, cổ chân bị sưng.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「普通形＋んです」は、状況や理由を相手に伝えたいときに使う表現です。",
+          "romaji": "\"Futsuukee + n desu\" wa, jookyoo ya riyuu o aite ni tsutaetai toki ni tsukau hyoogen desu.",
+          "text_vi": "\"Thể thông thường + n desu\" dùng khi muốn cho người kia biết tình trạng hay lý do.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、お医者さんが「どうしましたか」と聞いています。",
+          "romaji": "Kono kaiwa de wa, oishasan ga \"Doo shimashita ka\" to kiite imasu.",
+          "text_vi": "Trong hội thoại, bác sĩ hỏi \"Anh bị làm sao?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それに対して「足首が腫れています」と答えても事実は伝わりますが、「足首が腫れているんです」と答えたほうが、会話らしい受け答えになります。",
+          "romaji": "Sore ni taishite \"Ashikubi ga harete imasu\" to kotaete mo jijitsu wa tsutawarimasu ga, \"Ashikubi ga harete irun desu\" to kotaeta hoo ga, kaiwa rashii ukekotae ni narimasu.",
+          "text_vi": "Trả lời \"Cổ chân bị sưng\" (harete imasu) thì vẫn truyền đạt được sự việc, nhưng nói \"harete irun desu\" nghe tự nhiên như hội thoại hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "話し言葉では「んです」を使いますが、書き言葉や改まった話し方の場合は「のです」が使われます。",
+          "romaji": "Hanashikotoba de wa \"n desu\" o tsukaimasu ga, kakikotoba ya aratamatta hanashikata no baai wa \"no desu\" ga tsukawaremasu.",
+          "text_vi": "Văn nói dùng \"n desu\", còn văn viết hoặc cách nói trang trọng thì dùng \"no desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "ころんで、あしくびが はれている",
+          "romaji": "koronde, ashikubi ga hareteiru",
+          "text_vi": "Bị ngã nên cổ chân bị sưng",
+          "key_phrase": true
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "今朝、会社に行く途中に転んで、足首が腫れているんです。",
+          "romaji": "Kesa, kaisha ni iku tochuu ni koronde, ashikubi ga harete irun desu.",
+          "text_vi": "Sáng nay trên đường đi làm tôi bị ngã, cổ chân bị sưng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形で2つの文をつなげたときに、前の文が後の文の状態を引き起こす原因や理由を表す場合があります。",
+          "romaji": "Dooshi no te-kee de futatsu no bun o tsunageta toki ni, mae no bun ga ato no bun no jootai o hikiokosu gen'in ya riyuu o arawasu baai ga arimasu.",
+          "text_vi": "Khi nối hai câu bằng thể te của động từ, có lúc câu trước diễn tả nguyên nhân, lý do gây ra trạng thái ở câu sau.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話の中の患者は、足首が腫れた状態で病院に来ましたが、その原因を説明するのに、「今朝、会社に行く途中で転んで」と動詞のて形を使って話しているわけです。",
+          "romaji": "Kaiwa no naka no kanja wa, ashikubi ga hareta jootai de byooin ni kimashita ga, sono gen'in o setsumee suru no ni, \"Kesa, kaisha ni iku tochuu de koronde\" to dooshi no te-kee o tsukatte hanashite iru wake desu.",
+          "text_vi": "Bệnh nhân trong hội thoại đến bệnh viện với cổ chân bị sưng, và để giải thích nguyên nhân thì dùng thể te: \"Sáng nay trên đường đi làm bị ngã\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この用法では、後の文に話し手の意思を表す表現が入ることはありません。",
+          "romaji": "Kono yoohoo de wa, ato no bun ni hanashite no ishi o arawasu hyoogen ga hairu koto wa arimasen.",
+          "text_vi": "Với cách dùng này, câu sau không chứa cách nói thể hiện ý chí của người nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のない形、い形容詞、な形容詞、名詞でも同じような用法があります。",
+          "romaji": "Dooshi no nai-kee, i-keeyooshi, na-keeyooshi, meeshi demo onaji yoo na yoohoo ga arimasu.",
+          "text_vi": "Thể nai của động từ, tính từ đuôi i, đuôi na và danh từ cũng có cách dùng tương tự.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:25",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "おふろに はいっても いいですか",
+          "romaji": "ofuro ni haittemo ii desu ka",
+          "text_vi": "Tôi tắm bồn được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:33",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "じゃあ、お風呂に入ってもいいですか。",
+          "romaji": "Jaa, ofuro ni haitte mo ii desu ka.",
+          "text_vi": "Vậy tôi tắm bồn được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "02:34",
+          "speaker_ja": "医者",
+          "speaker_romaji": "Isha",
+          "speaker_vi": "Bác sĩ",
+          "text_ja": "ああ、お風呂は2、3日入らないでください。",
+          "romaji": "Aa, ofuro wa ni-san-nichi hairanaide kudasai.",
+          "text_vi": "À, anh đừng tắm bồn trong 2, 3 ngày.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:41",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞のて形＋もいいですか」は、相手に許可を求めるときの言い方です。",
+          "romaji": "\"Dooshi no te-kee + mo ii desu ka\" wa, aite ni kyoka o motomeru toki no iikata desu.",
+          "text_vi": "\"Động từ thể te + mo ii desu ka\" là cách xin phép người khác.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「写真を撮ってもいいですか」「トイレに行ってもいいですか」のようになります。",
+          "romaji": "Tatoeba, \"Shashin o totte mo ii desu ka\", \"Toire ni itte mo ii desu ka\" no yoo ni narimasu.",
+          "text_vi": "Ví dụ: \"Tôi chụp ảnh được không?\", \"Tôi đi vệ sinh được không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:06",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この会話では、患者がお医者さんにお風呂に入ることへの許可を求めています。",
+          "romaji": "Kono kaiwa de wa, kanja ga oishasan ni ofuro ni hairu koto e no kyoka o motomete imasu.",
+          "text_vi": "Trong hội thoại, bệnh nhân xin bác sĩ cho phép tắm bồn.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お医者さんは「入らないでください」と言って許可しませんでした。",
+          "romaji": "Oishasan wa \"Hairanaide kudasai\" to itte kyoka shimasen deshita.",
+          "text_vi": "Bác sĩ nói \"Đừng tắm\" – không cho phép.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お医者さんですからはっきり答えていますが、日本人は「いいえ、ちょっと…」と最後まで言わないことがよくあります。",
+          "romaji": "Oishasan desu kara hakkiri kotaete imasu ga, Nihonjin wa \"Iie, chotto…\" to saigo made iwanai koto ga yoku arimasu.",
+          "text_vi": "Vì là bác sĩ nên trả lời rõ ràng, nhưng người Nhật thường nói \"Không, hơi…\" mà không nói hết câu.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "許可する場合は、「はい、いいですよ」「はい、どうぞ」のように答えます。",
+          "romaji": "Kyoka suru baai wa, \"Hai, ii desu yo\", \"Hai, doozo\" no yoo ni kotaemasu.",
+          "text_vi": "Khi cho phép thì trả lời \"Vâng, được chứ\", \"Vâng, xin mời\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

@@ -1,0 +1,847 @@
+{
+  "lesson": {
+    "title": "Tình huống: Nhờ giúp đỡ khi khẩn cấp"
+  },
+  "videos": [
+    {
+      "title": "Gọi cảnh sát báo tai nạn",
+      "description": "Gọi được số 110, nói là tai nạn, nói địa điểm, tên và địa chỉ của mình.",
+      "url": "/uploads/lesson-videos/n4-09-emergency/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:08",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "警察です。事件ですか、事故ですか。",
+          "romaji": "Keesatsu desu. Jiken desu ka, jiko desu ka.",
+          "text_vi": "Cảnh sát nghe. Vụ án hay tai nạn?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "事故です。友達が車にはねられました。",
+          "romaji": "Jiko desu. Tomodachi ga kuruma ni haneraremashita.",
+          "text_vi": "Tai nạn ạ. Bạn tôi bị ô tô đâm.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "場所はどこですか。",
+          "romaji": "Basho wa doko desu ka.",
+          "text_vi": "Ở đâu?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "焼津市大里の信号の近くです。",
+          "romaji": "Yaizu-shi Oosato no shingoo no chikaku desu.",
+          "text_vi": "Gần đèn giao thông ở Ōsato, thành phố Yaizu.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "どのような状況でしたか。",
+          "romaji": "Dono yoo na jookyoo deshita ka.",
+          "text_vi": "Tình hình như thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません。私は外国人です。日本語があまりできません。早く来てください。",
+          "romaji": "Sumimasen. Watashi wa gaikokujin desu. Nihongo ga amari dekimasen. Hayaku kite kudasai.",
+          "text_vi": "Xin lỗi. Tôi là người nước ngoài. Tôi không giỏi tiếng Nhật. Xin đến nhanh giúp.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "わかりました。あなたのお名前を教えてください。",
+          "romaji": "Wakarimashita. Anata no onamae o oshiete kudasai.",
+          "text_vi": "Tôi hiểu rồi. Cho biết tên của anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "名前は王ハオランです。",
+          "romaji": "Namae wa Oo Haoran desu.",
+          "text_vi": "Tên tôi là Ō Haoran.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "王さんの住所は？",
+          "romaji": "Oo-san no juusho wa?",
+          "text_vi": "Địa chỉ của anh Vương?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "住所は焼津市大里1の1の1です。",
+          "romaji": "Juusho wa Yaizu-shi Oosato ichi no ichi no ichi desu.",
+          "text_vi": "Địa chỉ là 1-1-1 Ōsato, thành phố Yaizu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "わかりました。そちらに警察が向かっています。",
+          "romaji": "Wakarimashita. Sochira ni keesatsu ga mukatte imasu.",
+          "text_vi": "Được rồi. Cảnh sát đang đến chỗ anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "それから、すぐに救急車も手配します。そこで待っていてください。",
+          "romaji": "Sorekara, sugu ni kyuukyuusha mo tehai shimasu. Soko de matte ite kudasai.",
+          "text_vi": "Chúng tôi cũng sẽ gọi xe cấp cứu ngay. Anh đợi ở đó nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, nhờ các anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "警察",
+          "reading": "けいさつ",
+          "romaji": "keesatsu",
+          "meaning": "cảnh sát"
+        },
+        {
+          "word": "事件",
+          "reading": "じけん",
+          "romaji": "jiken",
+          "meaning": "vụ án"
+        },
+        {
+          "word": "事故",
+          "reading": "じこ",
+          "romaji": "jiko",
+          "meaning": "tai nạn"
+        },
+        {
+          "word": "はねる",
+          "reading": "はねる",
+          "romaji": "haneru",
+          "meaning": "đâm (xe)"
+        },
+        {
+          "word": "状況",
+          "reading": "じょうきょう",
+          "romaji": "jookyoo",
+          "meaning": "tình hình"
+        },
+        {
+          "word": "住所",
+          "reading": "じゅうしょ",
+          "romaji": "juusho",
+          "meaning": "địa chỉ"
+        },
+        {
+          "word": "救急車",
+          "reading": "きゅうきゅうしゃ",
+          "romaji": "kyuukyuusha",
+          "meaning": "xe cấp cứu"
+        }
+      ]
+    },
+    {
+      "title": "Nhờ người đi đường giúp",
+      "description": "Nhờ được người lạ giúp khi bạn bị tai nạn và nói mình không giỏi tiếng Nhật.",
+      "url": "/uploads/lesson-videos/n4-09-emergency/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、助けてください。",
+          "romaji": "Sumimasen, tasukete kudasai.",
+          "text_vi": "Xin lỗi, giúp tôi với.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "どうしたんですか。",
+          "romaji": "Doo shitan desu ka.",
+          "text_vi": "Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "友達が車にはねられたんです。",
+          "romaji": "Tomodachi ga kuruma ni haneraretan desu.",
+          "text_vi": "Bạn tôi bị ô tô đâm.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "え？",
+          "romaji": "E?",
+          "text_vi": "Hả?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "私は外国人です。日本語がわかりません。助けてください。",
+          "romaji": "Watashi wa gaikokujin desu. Nihongo ga wakarimasen. Tasukete kudasai.",
+          "text_vi": "Tôi là người nước ngoài. Tôi không biết tiếng Nhật. Giúp tôi với.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "今、警察を呼びました。ここで待っていてください。",
+          "romaji": "Ima, keesatsu o yobimashita. Koko de matte ite kudasai.",
+          "text_vi": "Tôi vừa gọi cảnh sát rồi. Chị đợi ở đây nhé.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "助ける",
+          "reading": "たすける",
+          "romaji": "tasukeru",
+          "meaning": "giúp"
+        },
+        {
+          "word": "外国人",
+          "reading": "がいこくじん",
+          "romaji": "gaikokujin",
+          "meaning": "người nước ngoài"
+        },
+        {
+          "word": "呼ぶ",
+          "reading": "よぶ",
+          "romaji": "yobu",
+          "meaning": "gọi"
+        },
+        {
+          "word": "待つ",
+          "reading": "まつ",
+          "romaji": "matsu",
+          "meaning": "đợi"
+        }
+      ]
+    },
+    {
+      "title": "Gọi 119 xin xe cấp cứu",
+      "description": "Gọi được số 119, nói cần xe cấp cứu, địa chỉ và chuyện gì đã xảy ra.",
+      "url": "/uploads/lesson-videos/n4-09-emergency/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:09",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "はい、119番消防です。",
+          "romaji": "Hai, hyakujuukyuu-ban shooboo desu.",
+          "text_vi": "Vâng, đây là cứu hỏa – cấp cứu 119.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "火事ですか、救急ですか。",
+          "romaji": "Kaji desu ka, kyuukyuu desu ka.",
+          "text_vi": "Hỏa hoạn hay cấp cứu?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "救急です。",
+          "romaji": "Kyuukyuu desu.",
+          "text_vi": "Cấp cứu ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:18",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "救急車が必要ですか。",
+          "romaji": "Kyuukyuusha ga hitsuyoo desu ka.",
+          "text_vi": "Có cần xe cấp cứu không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "はい、必要です。",
+          "romaji": "Hai, hitsuyoo desu.",
+          "text_vi": "Vâng, cần ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "住所を教えてください。",
+          "romaji": "Juusho o oshiete kudasai.",
+          "text_vi": "Cho biết địa chỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "焼津市大里1の1の1です。",
+          "romaji": "Yaizu-shi Oosato ichi no ichi no ichi desu.",
+          "text_vi": "1-1-1 Ōsato, thành phố Yaizu.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "お名前を教えてください。",
+          "romaji": "Onamae o oshiete kudasai.",
+          "text_vi": "Cho biết tên.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "王ハオランです。",
+          "romaji": "Oo Haoran desu.",
+          "text_vi": "Tôi là Ō Haoran.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:38",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "どうしましたか。",
+          "romaji": "Doo shimashita ka.",
+          "text_vi": "Có chuyện gì?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "友達が階段から落ちました。",
+          "romaji": "Tomodachi ga kaidan kara ochimashita.",
+          "text_vi": "Bạn tôi bị ngã cầu thang.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "男性ですか、女性ですか。",
+          "romaji": "Dansee desu ka, josee desu ka.",
+          "text_vi": "Nam hay nữ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "男性です。",
+          "romaji": "Dansee desu.",
+          "text_vi": "Nam ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "意識はありますか。",
+          "romaji": "Ishiki wa arimasu ka.",
+          "text_vi": "Còn tỉnh không?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "意識…？",
+          "romaji": "Ishiki…?",
+          "text_vi": "\"Ishiki\"…?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません、私は外国人です。日本語があまりわかりません。",
+          "romaji": "Sumimasen, watashi wa gaikokujin desu. Nihongo ga amari wakarimasen.",
+          "text_vi": "Xin lỗi, tôi là người nước ngoài. Tôi không hiểu tiếng Nhật lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "わかりました。すぐ救急車が行きます。",
+          "romaji": "Wakarimashita. Sugu kyuukyuusha ga ikimasu.",
+          "text_vi": "Được rồi. Xe cấp cứu sẽ đến ngay.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "消防",
+          "speaker_romaji": "Shooboo",
+          "speaker_vi": "Tổng đài 119",
+          "text_ja": "そこで待っていてください。",
+          "romaji": "Soko de matte ite kudasai.",
+          "text_vi": "Anh đợi ở đó nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "ありがとうございます。よろしくお願いします。",
+          "romaji": "Arigatoo gozaimasu. Yoroshiku onegaishimasu.",
+          "text_vi": "Cảm ơn. Nhờ các anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "火事",
+          "reading": "かじ",
+          "romaji": "kaji",
+          "meaning": "hỏa hoạn"
+        },
+        {
+          "word": "救急",
+          "reading": "きゅうきゅう",
+          "romaji": "kyuukyuu",
+          "meaning": "cấp cứu"
+        },
+        {
+          "word": "消防",
+          "reading": "しょうぼう",
+          "romaji": "shooboo",
+          "meaning": "cứu hỏa"
+        },
+        {
+          "word": "階段",
+          "reading": "かいだん",
+          "romaji": "kaidan",
+          "meaning": "cầu thang"
+        },
+        {
+          "word": "落ちる",
+          "reading": "おちる",
+          "romaji": "ochiru",
+          "meaning": "ngã, rơi"
+        },
+        {
+          "word": "意識",
+          "reading": "いしき",
+          "romaji": "ishiki",
+          "meaning": "sự tỉnh táo"
+        },
+        {
+          "word": "男性",
+          "reading": "だんせい",
+          "romaji": "dansee",
+          "meaning": "nam giới"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Nhờ giúp đỡ khi khẩn cấp",
+      "description": "Ôn lại thể bị động「はねられました」,「〜ができません」và「〜てください」.",
+      "url": "/uploads/lesson-videos/n4-09-emergency/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "はねられました",
+          "romaji": "haneraremashita",
+          "text_vi": "Bị (xe) đâm",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "友達が車にはねられました。",
+          "romaji": "Tomodachi ga kuruma ni haneraremashita.",
+          "text_vi": "Bạn tôi bị ô tô đâm.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、「友達が車にはねられました」と言っています。",
+          "romaji": "Kono dooga de wa, \"Tomodachi ga kuruma ni haneraremashita\" to itte imasu.",
+          "text_vi": "Trong video, nhân vật nói \"Bạn tôi bị ô tô đâm\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「はねられました」は、受け身の表現です。",
+          "romaji": "\"Haneraremashita\" wa, ukemi no hyoogen desu.",
+          "text_vi": "\"Haneraremashita\" là cách nói bị động.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「車が友達をはねました」を受け身形を使って言い換えると、「友達が車にはねられました」となります。",
+          "romaji": "\"Kuruma ga tomodachi o hanemashita\" o ukemi-kee o tsukatte iikaeru to, \"Tomodachi ga kuruma ni haneraremashita\" to narimasu.",
+          "text_vi": "Chuyển câu \"Ô tô đâm bạn tôi\" sang thể bị động thì thành \"Bạn tôi bị ô tô đâm\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "受け身形を使うと、行為を受けた友達が主語になります。",
+          "romaji": "Ukemi-kee o tsukau to, kooi o uketa tomodachi ga shugo ni narimasu.",
+          "text_vi": "Dùng thể bị động thì người bạn – người chịu hành động – trở thành chủ ngữ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "その行為をした車の後には、助詞の「に」を使います。",
+          "romaji": "Sono kooi o shita kuruma no ato ni wa, joshi no \"ni\" o tsukaimasu.",
+          "text_vi": "Sau \"ô tô\" – thứ gây ra hành động – dùng trợ từ \"ni\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他の例を見てみましょう。「先生が学生を褒めました」。行為を受けたのは学生です。",
+          "romaji": "Hoka no ree o mite mimashoo. \"Sensee ga gakusee o homemashita\". Kooi o uketa no wa gakusee desu.",
+          "text_vi": "Xem thêm ví dụ khác: \"Thầy giáo khen học sinh\". Người được khen là học sinh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "受け身形を使って言い換えると、「学生が先生に褒められました」となります。",
+          "romaji": "Ukemi-kee o tsukatte iikaeru to, \"Gakusee ga sensee ni homeraremashita\" to narimasu.",
+          "text_vi": "Chuyển sang bị động thì thành \"Học sinh được thầy giáo khen\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画のように、受け身の文では被害に遭ったことを表すことも多いです。",
+          "romaji": "Dooga no yoo ni, ukemi no bun de wa higai ni atta koto o arawasu koto mo ooi desu.",
+          "text_vi": "Như trong video, câu bị động thường diễn tả việc bị thiệt hại.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「殴る」という動詞の受け身形は「殴られる」です。",
+          "romaji": "Tatoeba, \"naguru\" to iu dooshi no ukemi-kee wa \"nagurareru\" desu.",
+          "text_vi": "Ví dụ, thể bị động của \"naguru\" (đánh) là \"nagurareru\" (bị đánh).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "私が被害に遭ったときは、私を主語にして、「私がAさんに殴られました」となります。",
+          "romaji": "Watashi ga higai ni atta toki wa, watashi o shugo ni shite, \"Watashi ga A-san ni naguraremashita\" to narimasu.",
+          "text_vi": "Khi tôi là người bị hại thì lấy tôi làm chủ ngữ: \"Tôi bị anh A đánh\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「私」が主語のときは、「私」を言わないで、「Aさんに殴られました」と言うことが多いです。",
+          "romaji": "\"Watashi\" ga shugo no toki wa, \"watashi\" o iwanaide, \"A-san ni naguraremashita\" to iu koto ga ooi desu.",
+          "text_vi": "Khi chủ ngữ là \"tôi\" thì thường không nói \"tôi\" mà chỉ nói \"Bị anh A đánh\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:17",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "にほんごが あまり できません",
+          "romaji": "nihongo ga amari dekimasen",
+          "text_vi": "Tôi không giỏi tiếng Nhật lắm",
+          "key_phrase": false
+        },
+        {
+          "start": "02:25",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "すみません。私は外国人です。日本語があまりできません。",
+          "romaji": "Sumimasen. Watashi wa gaikokujin desu. Nihongo ga amari dekimasen.",
+          "text_vi": "Xin lỗi. Tôi là người nước ngoài. Tôi không giỏi tiếng Nhật lắm.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "名詞に「ができます」をつけると可能を表します。「できません」と言うと不可能を表します。",
+          "romaji": "Meeshi ni \"ga dekimasu\" o tsukeru to kanoo o arawashimasu. \"Dekimasen\" to iu to fukanoo o arawashimasu.",
+          "text_vi": "Thêm \"ga dekimasu\" sau danh từ để diễn tả khả năng. Nói \"dekimasen\" thì diễn tả không thể.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、「日本語があまりできません」と言っています。",
+          "romaji": "Kono dooga de wa, \"Nihongo ga amari dekimasen\" to itte imasu.",
+          "text_vi": "Trong video, nhân vật nói \"Tôi không giỏi tiếng Nhật lắm\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「あまり」は、たくさんではないという意味で、否定文で使います。",
+          "romaji": "\"Amari\" wa, takusan de wa nai to iu imi de, hiteebun de tsukaimasu.",
+          "text_vi": "\"Amari\" nghĩa là không nhiều, dùng trong câu phủ định.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「日本語があまりできません」は、「日本語はたくさんはできません」という意味です。",
+          "romaji": "\"Nihongo ga amari dekimasen\" wa, \"Nihongo wa takusan wa dekimasen\" to iu imi desu.",
+          "text_vi": "\"Nihongo ga amari dekimasen\" nghĩa là \"Tiếng Nhật thì tôi không biết nhiều\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「中国語ができます」「スキーができます」「ピアノができます」のように、言語やスポーツや楽器の能力について話すことが多いです。",
+          "romaji": "\"Chuugokugo ga dekimasu\", \"Sukii ga dekimasu\", \"Piano ga dekimasu\" no yoo ni, gengo ya supootsu ya gakki no nooryoku ni tsuite hanasu koto ga ooi desu.",
+          "text_vi": "Thường dùng để nói về khả năng ngôn ngữ, thể thao, nhạc cụ, như \"Tôi biết tiếng Trung\", \"Tôi biết trượt tuyết\", \"Tôi biết chơi piano\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、何か理由があって「今日は残業ができません」とか、「夜は電話ができません」と言うこともできます。",
+          "romaji": "Mata, nanika riyuu ga atte \"Kyoo wa zangyoo ga dekimasen\" toka, \"Yoru wa denwa ga dekimasen\" to iu koto mo dekimasu.",
+          "text_vi": "Ngoài ra, khi có lý do gì đó, cũng có thể nói \"Hôm nay tôi không làm thêm giờ được\", \"Buổi tối tôi không gọi điện được\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:48",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "たすけて ください",
+          "romaji": "tasukete kudasai",
+          "text_vi": "Giúp tôi với",
+          "key_phrase": false
+        },
+        {
+          "start": "03:54",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "すみません、助けてください。",
+          "romaji": "Sumimasen, tasukete kudasai.",
+          "text_vi": "Xin lỗi, giúp tôi với.",
+          "key_phrase": true
+        },
+        {
+          "start": "03:57",
+          "speaker_ja": "通行人",
+          "speaker_romaji": "Tsuukoonin",
+          "speaker_vi": "Người đi đường",
+          "text_ja": "どうしたんですか。",
+          "romaji": "Doo shitan desu ka.",
+          "text_vi": "Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形に「ください」をつけて、誰かにお願いをしたり、丁寧に指示したりすることができます。",
+          "romaji": "Dooshi no te-kee ni \"kudasai\" o tsukete, dareka ni onegai o shitari, teenee ni shiji shitari suru koto ga dekimasu.",
+          "text_vi": "Thêm \"kudasai\" vào thể te của động từ để nhờ ai đó hoặc chỉ dẫn một cách lịch sự.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:13",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「助ける」のて形は「助けて」です。",
+          "romaji": "\"Tasukeru\" no te-kee wa \"tasukete\" desu.",
+          "text_vi": "Thể te của \"tasukeru\" (giúp) là \"tasukete\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、女性が知らない女性に「助けてください」とお願いをしています。聞いた人はその女性を助けます。",
+          "romaji": "Dooga de wa, josee ga shiranai josee ni \"Tasukete kudasai\" to onegai o shite imasu. Kiita hito wa sono josee o tasukemasu.",
+          "text_vi": "Trong video, một phụ nữ nhờ người phụ nữ lạ \"Giúp tôi với\". Người nghe đã giúp chị ấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "宅配便の配達員が荷物を受け取った人に「サインしてください」と言ったり、",
+          "romaji": "Takuhaibin no haitatsuin ga nimotsu o uketotta hito ni \"Sain shite kudasai\" to ittari,",
+          "text_vi": "Người giao hàng nói với người nhận \"Xin ký tên\",",
+          "key_phrase": false
+        },
+        {
+          "start": "04:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "駅員が乗客に「白線の後ろに下がってください」と丁寧に指示したりすることもあります。",
+          "romaji": "Ekiin ga jookyaku ni \"Hakusen no ushiro ni sagatte kudasai\" to teenee ni shiji shitari suru koto mo arimasu.",
+          "text_vi": "hay nhân viên nhà ga lịch sự nhắc hành khách \"Xin lùi lại sau vạch trắng\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

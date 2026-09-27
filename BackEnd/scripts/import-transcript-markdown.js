@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { manifestsByLesson, parseLevel } from './lesson-video-manifests.js';
 import { parseTranscriptMarkdown, spreadTimecodes } from './transcript-markdown.js';
 import { parseTranscriptText } from './transcript-text.js';
 
@@ -13,8 +14,11 @@ import { parseTranscriptText } from './transcript-text.js';
  * (`*`) và thêm bảng từ vựng ngay trong đó, rồi chạy tiếp
  * `apply-transcript.js` và `import-lesson-videos.js` như mọi khi.
  *
- *   node scripts/import-transcript-markdown.js --file <tài liệu.md> [--file …] --dry-run
- *   node scripts/import-transcript-markdown.js --file <tài liệu.md> [--overwrite]
+ *   node scripts/import-transcript-markdown.js [--level N4] --file <tài liệu.md> [--file …] --dry-run
+ *   node scripts/import-transcript-markdown.js [--level N4] --file <tài liệu.md> [--overwrite]
+ *
+ * Không có `--level` thì là N5. `--skip 11-S` bỏ qua một video của tài liệu
+ * (`S` là video ôn tập), dùng khi đoạn lời thoại đó không khớp video thật.
  *
  * File `.txt` đã có câu thoại hay từ vựng thì không bị đè, trừ khi thêm
  * `--overwrite` — trong đó có thể là công đánh dấu và soạn từ vựng.
@@ -24,12 +28,14 @@ const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
 const MANIFEST_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');
 
 const parseArgs = (argv) => {
-  const args = { files: [], dryRun: false, overwrite: false };
+  const args = { files: [], dryRun: false, overwrite: false, level: 'N5', skip: new Set() };
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     if (flag === '--dry-run') args.dryRun = true;
     else if (flag === '--overwrite') args.overwrite = true;
     else if (flag === '--file') args.files.push(path.resolve(argv[(index += 1)]));
+    else if (flag === '--level') args.level = parseLevel(argv[(index += 1)]);
+    else if (flag === '--skip') args.skip.add(argv[(index += 1)].toUpperCase());
     else throw new Error(`Cờ không nhận ra: ${flag}`);
   }
   if (args.files.length === 0) throw new Error('Cần ít nhất một --file <tài liệu.md>.');
@@ -59,10 +65,9 @@ const buildText = ({ lessonTitle, source, videos, scenesByFile }) => {
   return `${out.join('\n')}\n`;
 };
 
-const manifestsByLesson = async () => {
-  const names = (await fs.readdir(MANIFEST_DIR)).filter((name) => /^n5-\d{2}-.+\.json$/.test(name));
-  return new Map(names.map((name) => [Number(name.slice(3, 5)), name]));
-};
+/** Nhãn `--skip` của một video trong tài liệu: `11-S` (ôn tập) hoặc `11-2` (cảnh 2). */
+const skipLabel = (lesson, fileName) =>
+  fileName === 'summary.mp4' ? `${lesson}-S` : `${lesson}-${/^scene-(\d+)\.mp4$/.exec(fileName)?.[1]}`;
 
 const importLesson = async ({ lesson, scenesByFile, source, manifestName, args }) => {
   const manifest = JSON.parse(await fs.readFile(path.join(MANIFEST_DIR, manifestName), 'utf8'));
@@ -70,7 +75,12 @@ const importLesson = async ({ lesson, scenesByFile, source, manifestName, args }
   const unknown = [...scenesByFile.keys()].filter((name) => !known.has(name));
   const textName = manifestName.replace(/\.json$/, '.txt');
 
-  console.log(`\nBài ${lesson} → ${textName}`);
+  console.log(`\n${args.level} bài ${lesson} → ${textName}`);
+  for (const name of [...scenesByFile.keys()]) {
+    if (!args.skip.has(skipLabel(lesson, name))) continue;
+    scenesByFile.delete(name);
+    console.log(`  − bỏ qua ${name} (--skip ${skipLabel(lesson, name)})`);
+  }
   if (unknown.length > 0) {
     console.log(`  ✖ Tài liệu có video không có trong bài: ${unknown.join(', ')}.`);
     return false;
@@ -101,7 +111,7 @@ const importLesson = async ({ lesson, scenesByFile, source, manifestName, args }
 
 const main = async () => {
   const args = parseArgs(process.argv.slice(2));
-  const manifests = await manifestsByLesson();
+  const manifests = manifestsByLesson(args.level);
   let written = 0;
   let failed = 0;
 
@@ -117,7 +127,8 @@ const main = async () => {
     for (const [lesson, scenesByFile] of lessons) {
       const manifestName = manifests.get(lesson);
       if (!manifestName) {
-        console.log(`\nBài ${lesson}: chưa có file mô tả video n5-${String(lesson).padStart(2, '0')}-*.json.`);
+        const expected = `${args.level.toLowerCase()}-${String(lesson).padStart(2, '0')}-*.json`;
+        console.log(`\n${args.level} bài ${lesson}: chưa có file mô tả video ${expected}.`);
         failed += 1;
       } else if (await importLesson({ lesson, scenesByFile, source, manifestName, args })) {
         written += 1;

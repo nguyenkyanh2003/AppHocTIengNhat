@@ -1,0 +1,115 @@
+# Lời thoại Tình huống: Dùng dịch vụ ở cửa hàng tiện lợi
+# Nhập từ Loi-thoai-Tsunahiro-N4-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-2.mp4
+# Bách hóa, siêu thị và cửa hàng tiện lợi
+00:01 | ナレーター / Nareetaa / Người dẫn | 日本には買い物をする店がたくさんあります。デパート、スーパー、コンビニエンスストアについて説明しましょう。 | Nihon ni wa kaimono o suru mise ga takusan arimasu. Depaato, suupaa, konbiniensu-sutoa ni tsuite setsumee shimashoo. | Ở Nhật có rất nhiều nơi mua sắm. Hãy cùng tìm hiểu về cửa hàng bách hóa, siêu thị và cửa hàng tiện lợi.
+00:13 | ナレーター / Nareetaa / Người dẫn | デパートでは、ちょっと高いものやおしゃれなものを売っています。 | Depaato de wa, chotto takai mono ya oshare na mono o utte imasu. | Cửa hàng bách hóa bán đồ hơi đắt và đồ thời trang.
+00:20 | ナレーター / Nareetaa / Người dẫn | 衣類や化粧品もあれば、食品もあります。いろいろなものを売っています。 | Irui ya keshoohin mo areba, shokuhin mo arimasu. Iroiro na mono o utte imasu. | Có quần áo, mỹ phẩm, có cả thực phẩm. Bán đủ thứ.
+00:28 | ナレーター / Nareetaa / Người dẫn | 大切な贈り物を買うことが多いです。 | Taisetsu na okurimono o kau koto ga ooi desu. | Người ta hay mua quà tặng quan trọng ở đây.
+00:33 | ナレーター / Nareetaa / Người dẫn | スーパーは、生活に必要な買い物をするときに便利です。 | Suupaa wa, seekatsu ni hitsuyoo na kaimono o suru toki ni benri desu. | Siêu thị tiện khi mua đồ cần thiết cho cuộc sống.
+00:39 | ナレーター / Nareetaa / Người dẫn | 野菜、果物、肉、魚などの新鮮な食品や、調味料、冷凍食品、いろいろな飲み物、お酒などを買うことができます。 | Yasai, kudamono, niku, sakana nado no shinsen na shokuhin ya, choomiryoo, reetoo-shokuhin, iroiro na nomimono, osake nado o kau koto ga dekimasu. | Có thể mua thực phẩm tươi như rau, trái cây, thịt, cá, cùng gia vị, đồ đông lạnh, các loại đồ uống, rượu…
+00:54 | ナレーター / Nareetaa / Người dẫn | また、トイレットペーパーや洗剤など、日用品のほとんどをスーパーで買うことができます。 | Mata, toiretto-peepaa ya senzai nado, nichiyoohin no hotondo o suupaa de kau koto ga dekimasu. | Ngoài ra, hầu hết đồ dùng hằng ngày như giấy vệ sinh, bột giặt đều mua được ở siêu thị.
+01:04 | ナレーター / Nareetaa / Người dẫn | コンビニエンスストアは、「コンビニ」と言うことが多いです。 | Konbiniensu-sutoa wa, "konbini" to iu koto ga ooi desu. | Cửa hàng tiện lợi thường được gọi tắt là "konbini".
+01:09 | ナレーター / Nareetaa / Người dẫn | コンビニも普段の買い物に便利ですが、品物の種類はスーパーほど多くありません。 | Konbini mo fudan no kaimono ni benri desu ga, shinamono no shurui wa suupaa hodo ooku arimasen. | Konbini cũng tiện cho mua sắm hằng ngày, nhưng chủng loại hàng không nhiều bằng siêu thị.
+01:18 | ナレーター / Nareetaa / Người dẫn | コンビニでは、宅配便を出したり、電気代などの公共料金や税金を払ったり、コンサートのチケットを買ったりすることができます。 | Konbini de wa, takuhaibin o dashitari, denkidai nado no kookyoo-ryookin ya zeekin o harattari, konsaato no chiketto o kattari suru koto ga dekimasu. | Ở konbini có thể gửi bưu kiện, trả tiền điện và các loại phí công cộng, nộp thuế, mua vé hòa nhạc…
+01:31 | ナレーター / Nareetaa / Người dẫn | ATMもあります。 | Eetiiemu mo arimasu. | Còn có cả cây ATM.
+01:34 | ナレーター / Nareetaa / Người dẫn | コンビニは、朝早い時間も夜遅い時間も開いているところが多いです。お休みもほとんどありません。 | Konbini wa, asa hayai jikan mo yoru osoi jikan mo aite iru tokoro ga ooi desu. Oyasumi mo hotondo arimasen. | Nhiều konbini mở cửa cả sáng sớm lẫn đêm khuya, hầu như không có ngày nghỉ.
+01:44 | ナレーター / Nareetaa / Người dẫn | 自分の都合に合わせて、買う場所を選びましょう。 | Jibun no tsugoo ni awasete, kau basho o erabimashoo. | Hãy chọn nơi mua sắm phù hợp với hoàn cảnh của mình.
+### từ vựng
+デパート | デパート | depaato | cửa hàng bách hóa
+贈り物 | おくりもの | okurimono | quà tặng
+日用品 | にちようひん | nichiyoohin | đồ dùng hằng ngày
+冷凍食品 | れいとうしょくひん | reetoo-shokuhin | thực phẩm đông lạnh
+公共料金 | こうきょうりょうきん | kookyoo-ryookin | phí dịch vụ công cộng
+宅配便 | たくはいびん | takuhaibin | dịch vụ chuyển phát
+調味料 | ちょうみりょう | choomiryoo | gia vị
+
+## scene-3.mp4
+# Trả tiền điện và rút tiền ở cửa hàng tiện lợi
+00:05 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+*00:10 | 王 / Oo / Vương | これ、ここで払えますか。 | Kore, koko de haraemasu ka. | Cái này trả ở đây được không ạ?
+00:16 | 店員 / Ten'in / Nhân viên | 大丈夫ですよ。 | Daijoobu desu yo. | Được ạ.
+00:18 | 王 / Oo / Vương | じゃあ、お願いします。 | Jaa, onegaishimasu. | Vậy nhờ anh.
+00:20 | 店員 / Ten'in / Nhân viên | かしこまりました。 | Kashikomarimashita. | Vâng ạ.
+00:28 | 店員 / Ten'in / Nhân viên | 9,142円になります。 | Kyuusen hyaku yonjuuni-en ni narimasu. | Của quý khách hết 9.142 yên ạ.
+00:32 | 王 / Oo / Vương | これでお願いします。 | Kore de onegaishimasu. | Anh lấy tiền này nhé.
+00:36 | 店員 / Ten'in / Nhân viên | 1万円お預かりします。 | Ichiman-en oazukari shimasu. | Tôi nhận của quý khách 10.000 yên.
+00:44 | 店員 / Ten'in / Nhân viên | 858円のお返しになります。 | Happyaku gojuuhachi-en no okaeshi ni narimasu. | Tôi gửi lại quý khách 858 yên tiền thừa.
+*00:56 | 王 / Oo / Vương | あのー、すみません。お金を下ろしたいんですが、ATMはどこですか。 | Anoo, sumimasen. Okane o oroshitain desu ga, eetiiemu wa doko desu ka. | Ừm, xin lỗi. Tôi muốn rút tiền, cây ATM ở đâu ạ?
+01:03 | 店員 / Ten'in / Nhân viên | あちらです。 | Achira desu. | Ở đằng kia ạ.
+01:04 | 王 / Oo / Vương | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
+*01:06 | 店員 / Ten'in / Nhân viên | 使い方はわかりますか。 | Tsukaikata wa wakarimasu ka. | Anh có biết cách dùng không?
+01:08 | 王 / Oo / Vương | はい、多分。 | Hai, tabun. | Vâng, chắc là biết.
+01:18 | ナレーター / Nareetaa / Người dẫn | カードを入れます。 | Kaado o iremasu. | Cho thẻ vào.
+01:23 | ナレーター / Nareetaa / Người dẫn | 「お引き出し」を押します。 | "Ohikidashi" o oshimasu. | Bấm "Rút tiền".
+01:27 | ナレーター / Nareetaa / Người dẫn | 手数料がわかります。「確認」を押します。 | Tesuuryoo ga wakarimasu. "Kakunin" o oshimasu. | Màn hình hiện phí giao dịch. Bấm "Xác nhận".
+01:34 | ナレーター / Nareetaa / Người dẫn | 暗証番号を入力します。 | Anshoo-bangoo o nyuuryoku shimasu. | Nhập mã PIN.
+01:39 | ナレーター / Nareetaa / Người dẫn | 金額と「円」を押します。 | Kingaku to "en" o oshimasu. | Bấm số tiền rồi bấm "Yên".
+01:48 | ナレーター / Nareetaa / Người dẫn | お金とカードを受け取ります。 | Okane to kaado o uketorimasu. | Nhận tiền và thẻ.
+### từ vựng
+電気料金 | でんきりょうきん | denki-ryookin | tiền điện
+払う | はらう | harau | trả tiền
+お金を下ろす | おかねをおろす | okane o orosu | rút tiền
+手数料 | てすうりょう | tesuuryoo | phí giao dịch
+暗証番号 | あんしょうばんごう | anshoo-bangoo | mã PIN
+金額 | きんがく | kingaku | số tiền
+
+## scene-1.mp4
+# Mua cơm hộp ở cửa hàng tiện lợi
+00:03 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+00:07 | 王 / Oo / Vương | これ、お願いします。 | Kore, onegaishimasu. | Tính cho tôi cái này.
+*00:15 | 店員 / Ten'in / Nhân viên | お弁当は温めますか。 | Obentoo wa atatamemasu ka. | Quý khách có muốn hâm nóng cơm hộp không ạ?
+00:17 | 王 / Oo / Vương | はい、お願いします。 | Hai, onegaishimasu. | Vâng, nhờ anh.
+00:25 | 店員 / Ten'in / Nhân viên | お箸をお付けしますか。 | Ohashi o otsuke shimasu ka. | Quý khách có lấy đũa không ạ?
+*00:28 | 王 / Oo / Vương | はい。スプーンももらえますか。 | Hai. Supuun mo moraemasu ka. | Có. Cho tôi xin thêm cái thìa được không?
+00:31 | 店員 / Ten'in / Nhân viên | かしこまりました。 | Kashikomarimashita. | Vâng ạ.
+00:35 | 店員 / Ten'in / Nhân viên | 864円になります。 | Happyaku rokujuuyo-en ni narimasu. | Của quý khách hết 864 yên ạ.
+00:44 | 店員 / Ten'in / Nhân viên | 1,000円お預かりします。 | Sen-en oazukari shimasu. | Tôi nhận của quý khách 1.000 yên.
+00:47 | 店員 / Ten'in / Nhân viên | 当店のポイントカードはお持ちですか。 | Tooten no pointo-kaado wa omochi desu ka. | Quý khách có thẻ tích điểm của cửa hàng không ạ?
+00:50 | 王 / Oo / Vương | ちょっと待ってください。 | Chotto matte kudasai. | Chờ tôi một chút.
+*00:54 | 王 / Oo / Vương | あのー、クーポンを持っているんですが、使えますか。 | Anoo, kuupon o motte irun desu ga, tsukaemasu ka. | Ừm, tôi có phiếu giảm giá, dùng được không ạ?
+00:59 | 店員 / Ten'in / Nhân viên | ちょっと拝見しますね。 | Chotto haiken shimasu ne. | Cho tôi xem một chút.
+01:04 | 店員 / Ten'in / Nhân viên | お客様、申し訳ありません。こちらは有効期限が切れています。 | Okyakusama, mooshiwake arimasen. Kochira wa yuukoo-kigen ga kirete imasu. | Thưa quý khách, thành thật xin lỗi. Phiếu này đã hết hạn sử dụng rồi ạ.
+01:10 | 王 / Oo / Vương | ああ、そうですか。 | Aa, soo desu ka. | À, vậy à.
+01:13 | 店員 / Ten'in / Nhân viên | ポイントはご利用になりますか。 | Pointo wa goriyoo ni narimasu ka. | Quý khách có dùng điểm không ạ?
+*01:15 | 王 / Oo / Vương | いえ、貯めておいてください。 | Ie, tamete oite kudasai. | Không, cứ tích lại cho tôi.
+01:19 | 店員 / Ten'in / Nhân viên | かしこまりました。 | Kashikomarimashita. | Vâng ạ.
+01:28 | 店員 / Ten'in / Nhân viên | 136円のお返しになります。 | Hyaku sanjuuroku-en no okaeshi ni narimasu. | Tôi gửi lại quý khách 136 yên tiền thừa.
+01:36 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+### từ vựng
+弁当 | べんとう | bentoo | cơm hộp
+温める | あたためる | atatameru | hâm nóng
+箸 | はし | hashi | đũa
+スプーン | スプーン | supuun | thìa
+クーポン | クーポン | kuupon | phiếu giảm giá
+有効期限 | ゆうこうきげん | yuukoo-kigen | hạn sử dụng
+貯める | ためる | tameru | tích lũy
+
+## summary.mp4
+# Ôn tập: Dùng dịch vụ ở cửa hàng tiện lợi
+00:00 |  /  / Chủ đề | ここで はらえますか | koko de haraemasu ka | Có trả tiền ở đây được không ạ?
+00:06 | 店員 / Ten'in / Nhân viên | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+*00:11 | 王 / Oo / Vương | これ、ここで払えますか。 | Kore, koko de haraemasu ka. | Cái này trả ở đây được không ạ?
+00:17 | 店員 / Ten'in / Nhân viên | 大丈夫ですよ。 | Daijoobu desu yo. | Được ạ.
+00:20 | ナレーター / Nareetaa / Người dẫn | 動詞の可能形は、「することができます」と同じ意味です。 | Dooshi no kanookee wa, "suru koto ga dekimasu" to onaji imi desu. | Thể khả năng của động từ có nghĩa giống "suru koto ga dekimasu" (có thể làm).
+00:27 | ナレーター / Nareetaa / Người dẫn | 「払えます」は「払うことができます」と同じです。 | "Haraemasu" wa "harau koto ga dekimasu" to onaji desu. | "Haraemasu" giống "harau koto ga dekimasu" (có thể trả tiền).
+00:34 | ナレーター / Nareetaa / Người dẫn | この場面では、王さんは電気料金をコンビニで払うことができるかどうかを聞きたいので、「払えますか」と聞いています。 | Kono bamen de wa, Oo-san wa denki-ryookin o konbini de harau koto ga dekiru ka doo ka o kikitai node, "Haraemasu ka" to kiite imasu. | Trong cảnh này, anh Vương muốn hỏi có trả tiền điện ở cửa hàng tiện lợi được không nên hỏi "Haraemasu ka".
+00:49 | ナレーター / Nareetaa / Người dẫn | この場面では、「払えますか」の代わりに「払うことができますか」と言うこともできます。 | Kono bamen de wa, "Haraemasu ka" no kawari ni "Harau koto ga dekimasu ka" to iu koto mo dekimasu. | Ở đây cũng có thể nói "Harau koto ga dekimasu ka" thay cho "Haraemasu ka".
+01:01 | ナレーター / Nareetaa / Người dẫn | 他にも、図書館で「借りられますか」とか、お店のレジで「カードは使えますか」と聞くことができます。 | Hoka ni mo, toshokan de "Kariraremasu ka" toka, omise no reji de "Kaado wa tsukaemasu ka" to kiku koto ga dekimasu. | Ngoài ra, ở thư viện có thể hỏi "Mượn được không ạ?", ở quầy thu ngân có thể hỏi "Dùng thẻ được không ạ?".
+01:16 |  /  / Chủ đề | おかねを おろしたいんですが | okane o oroshitain desu ga | Tôi muốn rút tiền…
+*01:22 | 王 / Oo / Vương | お金を下ろしたいんですが、ATMはどこですか。 | Okane o oroshitain desu ga, eetiiemu wa doko desu ka. | Tôi muốn rút tiền, cây ATM ở đâu ạ?
+01:27 | 店員 / Ten'in / Nhân viên | あちらです。 | Achira desu. | Ở đằng kia ạ.
+01:30 | ナレーター / Nareetaa / Người dẫn | 「動詞のます形＋たいです」は、自分の希望や願望を伝えるときに使う表現です。 | "Dooshi no masu-kee + tai desu" wa, jibun no kiboo ya ganboo o tsutaeru toki ni tsukau hyoogen desu. | "Động từ thể masu + tai desu" dùng để nói mong muốn, nguyện vọng của mình.
+01:41 | ナレーター / Nareetaa / Người dẫn | 動詞のます形の「ます」を消して「たいです」をつけます。 | Dooshi no masu-kee no "masu" o keshite "tai desu" o tsukemasu. | Bỏ "masu" ở thể masu rồi thêm "tai desu".
+01:48 | ナレーター / Nareetaa / Người dẫn | この会話では、「お金を下ろしたいんですが」と言っています。 | Kono kaiwa de wa, "Okane o oroshitain desu ga" to itte imasu. | Trong hội thoại này, anh Vương nói "Okane o oroshitain desu ga".
+01:57 | ナレーター / Nareetaa / Người dẫn | 「お金を下ろしたいんですが」は、「お金を下ろしたいです」より少し遠回しに自分の希望や願望を伝える丁寧な表現です。 | "Okane o oroshitain desu ga" wa, "Okane o oroshitai desu" yori sukoshi toomawashi ni jibun no kiboo ya ganboo o tsutaeru teenee na hyoogen desu. | "Okane o oroshitain desu ga" là cách nói lịch sự, nói tránh hơn một chút so với "Okane o oroshitai desu" (Tôi muốn rút tiền).
+02:14 |  /  / Chủ đề | スプーンも もらえますか | supuun mo moraemasu ka | Cho tôi xin thêm thìa được không?
+02:20 | 店員 / Ten'in / Nhân viên | お箸をお付けしますか。 | Ohashi o otsuke shimasu ka. | Quý khách có lấy đũa không ạ?
+*02:23 | 王 / Oo / Vương | はい。スプーンももらえますか。 | Hai. Supuun mo moraemasu ka. | Có. Cho tôi xin thêm cái thìa được không?
+02:26 | ナレーター / Nareetaa / Người dẫn | 「も」は、さらにもう一つ付け加えるときに使います。 | "Mo" wa, sara ni moo hitotsu tsukekuwaeru toki ni tsukaimasu. | "Mo" dùng khi thêm vào một thứ nữa.
+02:32 | ナレーター / Nareetaa / Người dẫn | 例えば、「ケーキを食べます。そして、アイスクリームも食べます」のように、ケーキだけでなくアイスクリームも食べるときに使います。 | Tatoeba, "Keeki o tabemasu. Soshite, aisukuriimu mo tabemasu" no yoo ni, keeki dake de naku aisukuriimu mo taberu toki ni tsukaimasu. | Ví dụ: "Tôi ăn bánh kem. Và tôi ăn cả kem nữa" – dùng khi ăn không chỉ bánh kem mà cả kem.
+02:50 | ナレーター / Nareetaa / Người dẫn | この場面では、王さんはお箸だけでなくスプーンも欲しかったので、「スプーンももらえますか」と「も」を使っています。 | Kono bamen de wa, Oo-san wa ohashi dake de naku supuun mo hoshikatta node, "Supuun mo moraemasu ka" to "mo" o tsukatte imasu. | Trong cảnh này, anh Vương muốn cả thìa chứ không chỉ đũa nên dùng "mo": "Cho tôi xin thêm cái thìa".
+03:06 | ナレーター / Nareetaa / Người dẫn | 他にも、「そばが好きです。うどんも好きです」とか、「これ、ください」「それもください」と使うことができます。 | Hoka ni mo, "Soba ga suki desu. Udon mo suki desu" toka, "Kore, kudasai" "Sore mo kudasai" to tsukau koto ga dekimasu. | Ngoài ra có thể dùng như "Tôi thích soba. Tôi cũng thích udon", hay "Cho tôi cái này" – "Cho tôi cả cái đó nữa".

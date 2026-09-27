@@ -1,0 +1,574 @@
+{
+  "lesson": {
+    "title": "Tình huống: Ở thư viện"
+  },
+  "videos": [
+    {
+      "title": "Làm thẻ thư viện lần đầu",
+      "description": "Điền được đơn làm thẻ thư viện và đưa giấy tờ xác nhận địa chỉ.",
+      "url": "/uploads/lesson-videos/n4-11-library/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません、初めて来たんですけど。",
+          "romaji": "Sumimasen, hajimete kitan desu kedo.",
+          "text_vi": "Xin lỗi, tôi lần đầu đến đây ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "こちらへどうぞ。お住まいは市内ですか。",
+          "romaji": "Kochira e doozo. Osumai wa shinai desu ka.",
+          "text_vi": "Mời anh lại đây. Anh có sống trong thành phố này không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "あ、はい。",
+          "romaji": "A, hai.",
+          "text_vi": "À, vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "じゃあ、こちらの用紙にご記入ください。",
+          "romaji": "Jaa, kochira no yooshi ni gokinyuu kudasai.",
+          "text_vi": "Vậy anh điền vào tờ giấy này giúp tôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません、ここ、ちょっとわからないんですけど。どこですか。",
+          "romaji": "Sumimasen, koko, chotto wakaranain desu kedo. Doko desu ka.",
+          "text_vi": "Xin lỗi, chỗ này tôi không hiểu lắm. Là chỗ nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "ここです。Tは大正、Sは昭和、Hは平成、Rは令和、わからなければ西暦でもいいですよ。",
+          "romaji": "Koko desu. Tii wa Taishoo, Esu wa Shoowa, Eechi wa Heesee, Aaru wa Reewa, wakaranakereba seereki demo ii desu yo.",
+          "text_vi": "Là chỗ này. T là Taishō, S là Shōwa, H là Heisei, R là Reiwa, nếu không rõ thì ghi theo năm dương lịch cũng được.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "これでいいですか。",
+          "romaji": "Kore de ii desu ka.",
+          "text_vi": "Như thế này được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "はい、結構ですよ。こちらはお客様の携帯電話番号ですか。",
+          "romaji": "Hai, kekkoo desu yo. Kochira wa okyakusama no keetai denwa bangoo desu ka.",
+          "text_vi": "Vâng, được rồi ạ. Chỗ này là số điện thoại di động của anh phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "今日は住所が確認できるものをお持ちですか。",
+          "romaji": "Kyoo wa juusho ga kakunin dekiru mono o omochi desu ka.",
+          "text_vi": "Hôm nay anh có mang theo giấy tờ xác nhận địa chỉ không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "はい。マイナンバーカードでもいいですか。",
+          "romaji": "Hai. Mai nanbaa kaado demo ii desu ka.",
+          "text_vi": "Vâng. Thẻ số cá nhân (My Number) cũng được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "ちょっとお預かりします。",
+          "romaji": "Chotto oazukari shimasu.",
+          "text_vi": "Tôi xin mượn xem một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "では、ただいま貸し出しカードを作りますので、しばらくお待ちください。",
+          "romaji": "Dewa, tadaima kashidashi kaado o tsukurimasu node, shibaraku omachi kudasai.",
+          "text_vi": "Vậy bây giờ tôi sẽ làm thẻ mượn sách, anh vui lòng chờ một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "市内",
+          "reading": "しない",
+          "romaji": "shinai",
+          "meaning": "trong thành phố"
+        },
+        {
+          "word": "西暦",
+          "reading": "せいれき",
+          "romaji": "seereki",
+          "meaning": "năm dương lịch"
+        },
+        {
+          "word": "携帯電話",
+          "reading": "けいたいでんわ",
+          "romaji": "keetai-denwa",
+          "meaning": "điện thoại di động"
+        },
+        {
+          "word": "住所",
+          "reading": "じゅうしょ",
+          "romaji": "juusho",
+          "meaning": "địa chỉ"
+        },
+        {
+          "word": "マイナンバーカード",
+          "reading": "マイナンバーカード",
+          "romaji": "mai nanbaa kaado",
+          "meaning": "thẻ mã số cá nhân"
+        },
+        {
+          "word": "記入",
+          "reading": "きにゅう",
+          "romaji": "kinyuu",
+          "meaning": "điền vào"
+        }
+      ]
+    },
+    {
+      "title": "Nhận thẻ và hỏi số sách được mượn",
+      "description": "Hỏi được được mượn bao nhiêu cuốn và sách mình cần nằm ở kệ nào.",
+      "url": "/uploads/lesson-videos/n4-11-library/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "こちらが貸し出しカードになります。お名前、こちらで間違いないですか。",
+          "romaji": "Kochira ga kashidashi kaado ni narimasu. Onamae, kochira de machigai nai desu ka.",
+          "text_vi": "Đây là thẻ mượn sách của anh/chị. Tên ở đây có đúng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "はい、大丈夫です。",
+          "romaji": "Hai, daijoobu desu.",
+          "text_vi": "Vâng, đúng rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "本を借りるときは必ず持ってきてくださいね。",
+          "romaji": "Hon o kariru toki wa kanarazu motte kite kudasai ne.",
+          "text_vi": "Khi mượn sách thì nhớ mang theo thẻ này nhé.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "それから、これが図書館の利用案内です。後でよく読んでおいてください。",
+          "romaji": "Sorekara, kore ga toshokan no riyoo annai desu. Ato de yoku yonde oite kudasai.",
+          "text_vi": "Ngoài ra, đây là hướng dẫn sử dụng thư viện. Anh/chị hãy đọc kỹ sau nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "あの、本は何冊借りられますか。",
+          "romaji": "Ano, hon wa nansatsu kariraremasu ka.",
+          "text_vi": "À, tôi có thể mượn bao nhiêu cuốn sách ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "一人6冊までです。",
+          "romaji": "Hitori roku-satsu made desu.",
+          "text_vi": "Mỗi người được mượn tối đa 6 cuốn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "そうですか。あの、英語の本はどこにありますか。",
+          "romaji": "Soo desu ka. Ano, eego no hon wa doko ni arimasu ka.",
+          "text_vi": "Vậy ạ. À, sách tiếng Anh ở đâu vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "Bの15ですよ。",
+          "romaji": "Bii no juugo desu yo.",
+          "text_vi": "Ở kệ B số 15 đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "貸し出しカード",
+          "reading": "かしだしカード",
+          "romaji": "kashidashi-kaado",
+          "meaning": "thẻ mượn sách"
+        },
+        {
+          "word": "利用案内",
+          "reading": "りようあんない",
+          "romaji": "riyoo-annai",
+          "meaning": "hướng dẫn sử dụng"
+        },
+        {
+          "word": "借りる",
+          "reading": "かりる",
+          "romaji": "kariru",
+          "meaning": "mượn"
+        },
+        {
+          "word": "英語",
+          "reading": "えいご",
+          "romaji": "eego",
+          "meaning": "tiếng Anh"
+        },
+        {
+          "word": "〜冊",
+          "reading": "さつ",
+          "romaji": "satsu",
+          "meaning": "… cuốn"
+        }
+      ]
+    },
+    {
+      "title": "Mượn sách và hỏi hạn trả",
+      "description": "Mượn được sách, hiểu loại sách không được mượn và hỏi cách trả sách buổi tối.",
+      "url": "/uploads/lesson-videos/n4-11-library/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません、これお願いします。",
+          "romaji": "Sumimasen, kore onegaishimasu.",
+          "text_vi": "Xin lỗi, cho tôi mượn cái này với.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "貸し出しカードお持ちですか。",
+          "romaji": "Kashidashi kaado omochi desu ka.",
+          "text_vi": "Chị có mang theo thẻ mượn sách không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "はい、持ってます。",
+          "romaji": "Hai, mottemasu.",
+          "text_vi": "Vâng, tôi có mang theo.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "あ、すみません。辞書は貸し出しできないことになってるんです。",
+          "romaji": "A, sumimasen. Jisho wa kashidashi dekinai koto ni natterun desu.",
+          "text_vi": "À, xin lỗi chị. Từ điển thì không được cho mượn ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "ここにこのシールが貼ってある本は、貸し出しできないんです。",
+          "romaji": "Koko ni kono shiiru ga hatte aru hon wa, kashidashi dekinain desu.",
+          "text_vi": "Sách nào dán nhãn này thì không thể cho mượn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "え？そうなんですか。すみません。",
+          "romaji": "E? Soo nan desu ka. Sumimasen.",
+          "text_vi": "Ơ? Vậy ạ. Xin lỗi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "館内でご覧になりますか。",
+          "romaji": "Kannai de goran ni narimasu ka.",
+          "text_vi": "Chị có muốn đọc tại thư viện không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "いいえ、結構です。",
+          "romaji": "Iie, kekkoo desu.",
+          "text_vi": "Không, không cần đâu ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "じゃあ、こちらで返しておきますね。",
+          "romaji": "Jaa, kochira de kaeshite okimasu ne.",
+          "text_vi": "Vậy tôi để lại đây nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "すみません、こっちは大丈夫ですよね。",
+          "romaji": "Sumimasen, kocchi wa daijoobu desu yo ne.",
+          "text_vi": "Xin lỗi, còn cuốn này thì được đúng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "はい、大丈夫です。",
+          "romaji": "Hai, daijoobu desu.",
+          "text_vi": "Vâng, được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "じゃあ、この2冊お願いします。",
+          "romaji": "Jaa, kono ni-satsu onegaishimasu.",
+          "text_vi": "Vậy cho tôi mượn 2 cuốn này ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "では、9月20日までにご返却ください。",
+          "romaji": "Dewa, kugatsu hatsuka made ni gohenkyaku kudasai.",
+          "text_vi": "Vậy anh/chị hãy trả sách trước ngày 20 tháng 9 nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:06",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "あの、夜遅い時間でもお返しできますか。",
+          "romaji": "Ano, yoru osoi jikan demo okaeshi dekimasu ka.",
+          "text_vi": "À, tối muộn tôi có trả được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "図書館員",
+          "speaker_romaji": "Toshokan-in",
+          "speaker_vi": "Nhân viên thư viện",
+          "text_ja": "はい。ボックスに入れてください。何時でも大丈夫ですよ。",
+          "romaji": "Hai. Bokkusu ni irete kudasai. Nanji demo daijoobu desu yo.",
+          "text_vi": "Vâng. Chị bỏ vào hộp trả sách là được. Giờ nào cũng được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "客",
+          "speaker_romaji": "Kyaku",
+          "speaker_vi": "Khách",
+          "text_ja": "はい、ありがとうございます。",
+          "romaji": "Hai, arigatoo gozaimasu.",
+          "text_vi": "Vâng, cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "辞書",
+          "reading": "じしょ",
+          "romaji": "jisho",
+          "meaning": "từ điển"
+        },
+        {
+          "word": "館内",
+          "reading": "かんない",
+          "romaji": "kannai",
+          "meaning": "trong thư viện"
+        },
+        {
+          "word": "返却",
+          "reading": "へんきゃく",
+          "romaji": "henkyaku",
+          "meaning": "trả lại"
+        },
+        {
+          "word": "返す",
+          "reading": "かえす",
+          "romaji": "kaesu",
+          "meaning": "trả"
+        },
+        {
+          "word": "シール",
+          "reading": "シール",
+          "romaji": "shiiru",
+          "meaning": "nhãn dán"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Ở thư viện",
+      "description": "Xem lại các mẫu câu chính của tình huống ở thư viện.",
+      "url": "/uploads/lesson-videos/n4-11-library/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [],
+      "kind": "review"
+    }
+  ]
+}
