@@ -75,30 +75,6 @@ export const getMyReports = async (req, res) => {
     }
 };
 
-// Lấy chi tiết báo cáo
-export const getById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const userId = req.user._id;
-        const isAdmin = req.user?.VaiTro === 'admin';
-
-        const query = isAdmin ? { _id: id } : { _id: id, user_id: userId };
-
-        const report = await Report.findOne(query)
-            .populate('user_id', 'HoTen Email')
-            .lean();
-
-        if (!report) {
-            return res.status(404).json({ message: "Không tìm thấy báo cáo." });
-        }
-
-        res.json({ data: report });
-    } catch (error) {
-        console.error("Lỗi lấy chi tiết báo cáo:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
-
 // Hủy báo cáo (chỉ khi pending)
 export const deleteById = async (req, res) => {
     try {
@@ -204,38 +180,6 @@ export const putAdminByIdStatus = async (req, res) => {
     }
 };
 
-// Cập nhật độ ưu tiên (admin)
-export const putAdminByIdPriority = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { priority } = req.body;
-
-        if (!priority || !['low', 'medium', 'high', 'urgent'].includes(priority)) {
-            return res.status(400).json({ 
-                message: "Priority phải là: low, medium, high, hoặc urgent." 
-            });
-        }
-
-        const updatedReport = await Report.findByIdAndUpdate(
-            id,
-            { priority },
-            { new: true }
-        );
-
-        if (!updatedReport) {
-            return res.status(404).json({ message: "Không tìm thấy báo cáo." });
-        }
-
-        res.json({
-            message: "Cập nhật độ ưu tiên thành công",
-            data: updatedReport
-        });
-    } catch (error) {
-        console.error("Lỗi cập nhật độ ưu tiên:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
-
 // Xóa báo cáo (admin)
 export const deleteAdminById = async (req, res) => {
     try {
@@ -253,27 +197,6 @@ export const deleteAdminById = async (req, res) => {
         });
     } catch (error) {
         console.error("Lỗi xóa báo cáo:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
-
-// Xóa nhiều báo cáo (admin)
-export const deleteAdminBulkDelete = async (req, res) => {
-    try {
-        const { ids } = req.body;
-        
-        if (!Array.isArray(ids) || ids.length === 0) {
-            return res.status(400).json({ message: "Danh sách ID không hợp lệ." });
-        }
-
-        const result = await Report.deleteMany({ _id: { $in: ids } });
-
-        res.json({
-            message: `Đã xóa ${result.deletedCount} báo cáo.`,
-            deletedCount: result.deletedCount
-        });
-    } catch (error) {
-        console.error("Lỗi xóa nhiều báo cáo:", error);
         res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
     }
 };
@@ -345,5 +268,3 @@ export const getAdminStats = async (req, res) => {
         res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
     }
 };
-
-

@@ -44,28 +44,6 @@ export const getRoot = async (req, res) => {
   }
 };
 
-// Lấy chi tiết một thông báo
-export const getById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const userID = req.user._id;
-
-    const notification = await Notification.findOne({
-      _id: id,
-      NguoiHocID: userID
-    }).lean();
-
-    if (!notification) {
-      return res.status(404).json({ message: 'Không tìm thấy thông báo.' });
-    }
-
-    res.json({ data: notification });
-  } catch (error) {
-    console.error("Lỗi khi lấy chi tiết thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-
 // Lấy số lượng thông báo chưa đọc
 export const getCountUnread = async (req, res) => {
   try {
@@ -158,26 +136,6 @@ export const deleteById = async (req, res) => {
     }
 };
 
-// Xóa tất cả thông báo đã đọc
-export const deleteClearRead = async (req, res) => {
-    try {
-      const userID = req.user._id;
-
-      const result = await Notification.deleteMany({
-        NguoiHocID: userID,
-        TrangThai: 'DaDoc'
-      });
-
-      res.json({ 
-        message: `Đã xóa ${result.deletedCount} thông báo đã đọc.`,
-        deletedCount: result.deletedCount
-      });
-    } catch (error) {
-      console.error("Lỗi khi xóa thông báo đã đọc:", error);
-      res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-    }
-};
-
 // Gửi thông báo cho một người dùng
 export const postRoot = async (req, res) => {
   try {
@@ -202,37 +160,6 @@ export const postRoot = async (req, res) => {
     });
   } catch (error) {
     console.error("Lỗi khi tạo thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-
-// Gửi thông báo cho nhiều người dùng
-export const postBroadcast = async (req, res) => {
-  try {
-    const { TieuDe, NoiDung, NguoiHocIDs, Link } = req.body;
-
-    if (!TieuDe || !NoiDung || !Array.isArray(NguoiHocIDs) || NguoiHocIDs.length === 0) {
-      return res.status(400).json({ message: "Thiếu thông tin bắt buộc." });
-    }
-
-    const notifications = NguoiHocIDs.map(userId => ({
-      NguoiHocID: userId,
-      TieuDe,
-      NoiDung,
-      Link: Link || null,
-      TrangThai: 'ChuaDoc',
-      NgayTao: new Date()
-    }));
-
-    const createdNotifications = await Notification.insertMany(notifications);
-
-    res.status(201).json({ 
-      message: `Gửi thông báo thành công cho ${createdNotifications.length} người dùng`, 
-      count: createdNotifications.length,
-      data: createdNotifications 
-    });
-  } catch (error) {
-    console.error("Lỗi khi gửi thông báo hàng loạt:", error);
     res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
   }
 };
@@ -273,139 +200,3 @@ export const postBroadcastAll = async (req, res) => {
     res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
   }
 };
-
-// Lấy tất cả thông báo
-export const getAdminAll = async (req, res) => {
-  try {
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 10;
-    const { status, userId } = req.query;
-
-    const query = {};
-
-    if (status) {
-      query.TrangThai = status === 'read' ? 'DaDoc' : 'ChuaDoc';
-    }
-    if (userId) {
-      query.NguoiHocID = userId;
-    }
-
-    const skip = (page - 1) * limit;
-
-    const [notifications, total] = await Promise.all([
-        Notification.find(query)
-            .sort({ NgayTao: -1 })
-            .skip(skip)
-            .limit(limit)
-            .populate('NguoiHocID', 'HoTen Email')
-            .lean(),
-        Notification.countDocuments(query)
-    ]);
-    
-    res.json({
-      totalItems: total,
-      totalPages: Math.ceil(total / limit),
-      currentPage: page,
-      data: notifications,
-    });
-  } catch (error) {
-    console.error("Lỗi khi lấy tất cả thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-
-// Thống kê thông báo
-export const getAdminStats = async (req, res) => {
-  try {
-    const [total, unread, read, byUser] = await Promise.all([
-      Notification.countDocuments(),
-      Notification.countDocuments({ TrangThai: 'ChuaDoc' }),
-      Notification.countDocuments({ TrangThai: 'DaDoc' }),
-      Notification.aggregate([
-        { $group: { _id: "$NguoiHocID", count: { $sum: 1 }, unread: { $sum: { $cond: [{ $eq: ["$TrangThai", "ChuaDoc"] }, 1, 0] } } } },
-        { $sort: { count: -1 } },
-        { $limit: 10 }
-      ])
-    ]);
-
-    res.json({
-      total,
-      unread,
-      read,
-      readRate: total > 0 ? ((read / total) * 100).toFixed(2) : 0,
-      topUsers: byUser
-    });
-  } catch (error) {
-    console.error("Lỗi khi lấy thống kê thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-
-// Cập nhật thông báo 
-export const putAdminById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updateData = req.body;
-
-    const updatedNotification = await Notification.findByIdAndUpdate(
-      id,
-      updateData,
-      { new: true, runValidators: true }
-    );
-
-    if (!updatedNotification) {
-      return res.status(404).json({ message: 'Không tìm thấy thông báo.' });
-    }
-
-    res.json({ 
-      message: 'Cập nhật thành công', 
-      data: updatedNotification 
-    });
-  } catch (error) {
-    console.error("Lỗi khi cập nhật thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-
-// Xóa thông báo 
-export const deleteAdminById = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const deletedNotification = await Notification.findByIdAndDelete(id);
-
-    if (!deletedNotification) {
-      return res.status(404).json({ message: 'Không tìm thấy thông báo.' });
-    }
-
-    res.json({ 
-      message: 'Xóa thành công.',
-      data: deletedNotification
-    });
-  } catch (error) {
-    console.error("Lỗi khi xóa thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-
-// Xóa nhiều thông báo 
-export const deleteAdminBulkDelete = async (req, res) => {
-  try {
-    const { ids } = req.body;
-
-    if (!Array.isArray(ids) || ids.length === 0) {
-      return res.status(400).json({ message: "Danh sách ID không hợp lệ." });
-    }
-
-    const result = await Notification.deleteMany({ _id: { $in: ids } });
-
-    res.json({ 
-      message: `Đã xóa ${result.deletedCount} thông báo.`,
-      deletedCount: result.deletedCount
-    });
-  } catch (error) {
-    console.error("Lỗi khi xóa nhiều thông báo:", error);
-    res.status(500).json({ message: 'Lỗi máy chủ', error: error.message });
-  }
-};
-

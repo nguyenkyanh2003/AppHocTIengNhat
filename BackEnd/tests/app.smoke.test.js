@@ -60,6 +60,16 @@ const REMOVED_ROUTES = [
   ['get', '/api/transactions/my-transactions'],
   ['post', '/api/transactions/admin/507f1f77bcf86cd799439011/refund'],
   ['get', '/api/transactions/admin/stats/overview'],
+  // notifications
+  ['get', '/api/notifications/admin/all'],
+  ['delete', '/api/notifications/clear/read'],
+  // news
+  ['get', '/api/news/admin/stats'],
+  ['delete', '/api/news'],
+  // notebook
+  ['get', '/api/notebook/admin/all'],
+  // reports
+  ['put', '/api/report/admin/507f1f77bcf86cd799439011/priority'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {
