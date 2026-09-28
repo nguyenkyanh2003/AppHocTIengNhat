@@ -77,6 +77,12 @@ const REMOVED_ROUTES = [
   ['post', '/api/users/admin/users'],
   // grammar
   ['get', '/api/grammar/popular/N5'],
+  // vocabulary
+  ['get', '/api/vocabulary/random/practice'],
+  ['post', '/api/vocabulary/learn/507f1f77bcf86cd799439011'],
+  // lessons
+  ['get', '/api/lesson/type/ngu-phap'],
+  ['patch', '/api/lesson/507f1f77bcf86cd799439011'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {

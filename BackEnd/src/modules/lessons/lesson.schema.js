@@ -52,10 +52,6 @@ export const idParams = z.object({ id: objectId });
 
 export const capDoParams = z.object({ capDo: level });
 
-export const loaiBaiHocParams = z.object({
-  loaiBaiHoc: z.string().trim().min(1),
-});
-
 export const createBody = z.preprocess(
   normalizeLessonBody,
   z.object({
@@ -81,13 +77,6 @@ export const updateBody = z.preprocess(
     situation: situation.optional(),
   }),
 );
-
-export const bulkBody = z.object({
-  lessons: z
-    .array(createBody)
-    .min(1, 'Danh sách phải có từ 1 đến 100 bài học.')
-    .max(100, 'Danh sách phải có từ 1 đến 100 bài học.'),
-});
 
 export const idsBody = z.object({
   ids: z

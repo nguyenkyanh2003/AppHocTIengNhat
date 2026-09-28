@@ -42,12 +42,6 @@ export const createLessonRoutes = ({
     asyncHandler(controller.getLevelByCapDo),
   );
   router.get(
-    '/type/:loaiBaiHoc',
-    authenticate,
-    validate({ params: schema.loaiBaiHocParams }),
-    asyncHandler(controller.getTypeByLoaiBaiHoc),
-  );
-  router.get(
     '/stats/overview',
     authorizeAdmin,
     asyncHandler(controller.getStatsOverview),
@@ -64,19 +58,7 @@ export const createLessonRoutes = ({
     validate({ body: schema.createBody }),
     asyncHandler(controller.postRoot),
   );
-  router.post(
-    '/bulk',
-    authorizeAdmin,
-    validate({ body: schema.bulkBody }),
-    asyncHandler(controller.postBulk),
-  );
   router.put(
-    '/:id',
-    authorizeAdmin,
-    validate({ params: schema.idParams, body: schema.updateBody }),
-    asyncHandler(controller.putById),
-  );
-  router.patch(
     '/:id',
     authorizeAdmin,
     validate({ params: schema.idParams, body: schema.updateBody }),

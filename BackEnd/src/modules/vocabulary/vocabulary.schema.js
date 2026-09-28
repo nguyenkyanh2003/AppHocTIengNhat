@@ -33,20 +33,6 @@ export const searchQuery = z.object({
   level: optional(level),
 });
 
-export const situationSearchQuery = z.object({
-  q: z.string().trim().min(1, 'Vui lòng nhập tên tình huống muốn tìm.'),
-});
-
-export const randomPracticeQuery = z.object({
-  limit: z.coerce.number().int().min(1).max(100).default(10),
-  level: optional(level),
-});
-
-export const exportQuery = z.object({
-  level: optional(level),
-  lesson: optional(objectId),
-});
-
 export const idParams = z.object({ id: objectId });
 
 export const setListQuery = z.object({ level });
@@ -56,12 +42,6 @@ export const setIdParams = z.object({
 });
 
 export const lessonIdParams = z.object({ lessonId: objectId });
-
-export const levelParams = z.object({ levelEnum: level });
-
-export const learnBody = z.object({
-  lessonId: objectId,
-});
 
 export const createBody = z.object({
   lesson: objectId,

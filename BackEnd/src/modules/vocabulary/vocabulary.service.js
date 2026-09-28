@@ -7,11 +7,7 @@ import { buildSets, levelOfSetId } from './vocabulary-sets.js';
 import { buildKanjiBreakdown, kanjiCharacters } from './vocabulary-kanji.js';
 
 const RELATED_LIMIT = 6;
-import {
-  buildExportWorkbook as buildWorkbook,
-  readWorkbookRows,
-  toVocabularyRows,
-} from './vocabulary-import.service.js';
+import { readWorkbookRows, toVocabularyRows } from './vocabulary-import.service.js';
 
 const ITEM_TYPE = 'Vocabulary';
 
@@ -46,11 +42,7 @@ const buildKeywordFilter = (keyword) => {
 export const createVocabularyService = ({
   vocabularyRepository: repository,
   srsRepository: srs,
-  importer = {
-    readWorkbookRows,
-    toVocabularyRows,
-    buildExportWorkbook: buildWorkbook,
-  },
+  importer = { readWorkbookRows, toVocabularyRows },
 }) => {
   /** Giới hạn danh sách theo trạng thái đã học của user, trước khi phân trang. */
   const applyStudyStatus = async (filter, { userId, studyStatus }) => {
@@ -166,41 +158,6 @@ export const createVocabularyService = ({
       });
     },
 
-    listByLevel(level) {
-      return repository.findAll({ filter: { level }, sort: sortFor('newest') });
-    },
-
-    async listSituations() {
-      const situations = await repository.distinctUsageContexts();
-      return [...situations].sort();
-    },
-
-    searchBySituation(query) {
-      return repository.findAll({
-        filter: { usage_context: new RegExp(escapeRegExp(query), 'i') },
-        sort: sortFor('newest'),
-      });
-    },
-
-    randomPractice({ limit, level }) {
-      return repository.sample({ filter: level ? { level } : {}, size: limit });
-    },
-
-    /**
-     * Học từ vựng trong bài học. XP chỉ được cộng qua lesson-progress, nên ở đây
-     * chỉ kiểm tra từ vựng tồn tại rồi chỉ đường sang API đó.
-     */
-    async learnInLesson({ id, lessonId }) {
-      const vocabulary = await repository.findById(id);
-      if (!vocabulary) throw ApiError.notFound('Không tìm thấy từ vựng.');
-
-      return {
-        message:
-          'Vui lòng sử dụng API /lesson-progress/lesson/:lessonId/update để cập nhật tiến độ học',
-        redirect: `/lesson-progress/lesson/${lessonId}/update`,
-      };
-    },
-
     async create(payload) {
       const exists = await repository.lessonExists(payload.lesson);
       if (!exists) {
@@ -254,19 +211,6 @@ export const createVocabularyService = ({
       }
 
       return repository.insertMany(rows);
-    },
-
-    stats() {
-      return repository.stats();
-    },
-
-    async buildExportWorkbook({ level, lesson }) {
-      const filter = {};
-      if (level) filter.level = level;
-      if (lesson) filter.lesson = lesson;
-
-      const vocabularies = await repository.findForExport(filter);
-      return importer.buildExportWorkbook(vocabularies);
     },
 
     /**

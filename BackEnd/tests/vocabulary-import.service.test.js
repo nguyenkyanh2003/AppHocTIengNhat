@@ -5,7 +5,6 @@ import Excel from 'exceljs';
 
 import {
   EXCEL_HEADERS,
-  buildExportWorkbook,
   readWorkbookRows,
   toVocabularyRows,
 } from '../src/modules/vocabulary/vocabulary-import.service.js';
@@ -117,29 +116,4 @@ test('file thiếu cột bắt buộc báo lỗi 400 nêu rõ cột thiếu', as
     (error) =>
       error.status === 400 && error.message.includes(EXCEL_HEADERS.meaning),
   );
-});
-
-test('workbook xuất ra có đủ 6 cột và một dòng cho mỗi từ', () => {
-  const workbook = buildExportWorkbook([
-    {
-      word: '学生',
-      hiragana: 'がくせい',
-      meaning: 'học sinh',
-      level: 'N5',
-      usage_context: null,
-      lesson: { title: 'Bài 1' },
-    },
-  ]);
-
-  const worksheet = workbook.getWorksheet('Tu Vung');
-  assert.equal(worksheet.columns.length, 6);
-  assert.equal(worksheet.rowCount, 2);
-  assert.deepEqual(worksheet.getRow(2).values.slice(1), [
-    '学生',
-    'がくせい',
-    'học sinh',
-    'N5',
-    '',
-    'Bài 1',
-  ]);
 });

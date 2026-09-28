@@ -84,33 +84,3 @@ export const readWorkbookRows = async (buffer) => {
 
   return rows;
 };
-
-/** Tạo workbook xuất Excel với header tiếng Việt. */
-export const buildExportWorkbook = (vocabularies) => {
-  const workbook = new Excel.Workbook();
-  const worksheet = workbook.addWorksheet('Tu Vung');
-
-  worksheet.columns = [
-    { header: EXCEL_HEADERS.word, key: 'word', width: 20 },
-    { header: EXCEL_HEADERS.hiragana, key: 'hiragana', width: 20 },
-    { header: EXCEL_HEADERS.meaning, key: 'meaning', width: 30 },
-    { header: EXCEL_HEADERS.level, key: 'level', width: 10 },
-    { header: EXCEL_HEADERS.usage_context, key: 'usage_context', width: 20 },
-    { header: EXCEL_HEADERS.lesson, key: 'lessonName', width: 30 },
-  ];
-
-  vocabularies.forEach((vocabulary) => {
-    worksheet.addRow({
-      word: vocabulary.word,
-      hiragana: vocabulary.hiragana,
-      meaning: vocabulary.meaning,
-      level: vocabulary.level,
-      usage_context: vocabulary.usage_context || '',
-      lessonName: vocabulary.lesson?.title || '',
-    });
-  });
-
-  worksheet.getRow(1).font = { bold: true };
-
-  return workbook;
-};

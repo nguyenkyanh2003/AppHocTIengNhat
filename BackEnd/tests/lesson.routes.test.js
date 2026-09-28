@@ -173,15 +173,6 @@ test('GET /level/:capDo rỗng vẫn là 200 và mảng rỗng', async () => {
   assert.deepEqual(response.body, { data: [], total: 0 });
 });
 
-test('GET /type/:loaiBaiHoc rỗng vẫn là 200 và mảng rỗng', async () => {
-  const app = buildApp({ getByType: async () => [] });
-
-  const response = await request(app).get('/api/lesson/type/ngu-phap');
-
-  assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { data: [], total: 0 });
-});
-
 test('GET /stats/overview trả đúng vỏ phẳng cũ, không bọc trong data', async () => {
   const app = buildApp({
     getStatsOverview: async () => ({ totalLessons: 3, byLevel: [], byType: [] }),
@@ -241,22 +232,7 @@ test('POST / thiếu title/level bị chặn 400', async () => {
   assert.equal(response.status, 400);
 });
 
-test('POST /bulk tạo nhiều bài, giới hạn 1-100 phần tử', async () => {
-  const app = buildApp({
-    createMany: async (inputs) => inputs.map((item, index) => ({ _id: `l${index}`, ...item })),
-  });
-
-  const ok = await request(app)
-    .post('/api/lesson/bulk')
-    .send({ lessons: [{ title: 'A', level: 'N5' }, { title: 'B', level: 'N4' }] });
-  assert.equal(ok.status, 201);
-  assert.equal(ok.body.data.length, 2);
-
-  const empty = await request(app).post('/api/lesson/bulk').send({ lessons: [] });
-  assert.equal(empty.status, 400);
-});
-
-test('PUT /:id và PATCH /:id gọi cùng một service.update', async () => {
+test('PUT /:id gọi service.update, PATCH /:id không còn', async () => {
   const calls = [];
   const app = buildApp({
     update: async (id, body) => { calls.push([id, body]); return { _id: id, ...body }; },
@@ -266,8 +242,12 @@ test('PUT /:id và PATCH /:id gọi cùng một service.update', async () => {
   const patch = await request(app).patch(`/api/lesson/${VALID_ID}`).send({ title: 'B' });
 
   assert.equal(put.status, 200);
-  assert.equal(patch.status, 200);
-  assert.equal(calls.length, 2);
+  // App test không gắn notFoundHandler: method không khai báo rơi về 404 mặc định của Express.
+  assert.equal(patch.status, 404);
+  // updateBody chuẩn hoá qua normalizeLessonBody nên body có thêm khoá undefined — chỉ so trường gửi lên.
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][0], VALID_ID);
+  assert.equal(calls[0][1].title, 'A');
 });
 
 test('DELETE /:id còn tham chiếu trả 409 kèm details', async () => {

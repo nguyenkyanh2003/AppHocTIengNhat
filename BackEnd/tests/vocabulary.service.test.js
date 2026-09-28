@@ -31,19 +31,12 @@ const fakeVocabularyRepository = (overrides = {}) => {
       return VOCABULARY;
     },
     findPopulatedById: async (id) => ({ ...VOCABULARY, _id: id }),
-    distinctUsageContexts: async () => ['Nhà hàng', 'Bưu điện'],
-    sample: async (args) => {
-      calls.push(['sample', args]);
-      return [];
-    },
     create: async (payload) => ({ _id: 'new-id', ...payload }),
     updateById: async (id, data) => ({ _id: id, ...data }),
     deleteById: async () => VOCABULARY,
     deleteManyByIds: async (ids) => ids.length,
     insertMany: async (rows) => rows,
     lessonExists: async () => true,
-    stats: async () => ({ totalVocabularies: 1 }),
-    findForExport: async () => [VOCABULARY],
     findKanjiByCharacters: async () => [],
     findRelated: async () => [],
   };
@@ -172,8 +165,6 @@ test('danh sách rỗng vẫn là danh sách, không phải lỗi', async () => 
   const service = buildService({ repository });
 
   assert.deepEqual(await service.search({ keyword: 'không có' }), []);
-  assert.deepEqual(await service.listByLevel('N1'), []);
-  assert.deepEqual(await service.searchBySituation('không có'), []);
 });
 
 test('chi tiết từ vựng gắn trạng thái đã học', async () => {
@@ -286,7 +277,6 @@ test('import Excel rỗng trả về lỗi 400', async () => {
   const importer = {
     readWorkbookRows: async () => [],
     toVocabularyRows: () => [],
-    buildExportWorkbook: () => ({}),
   };
 
   await assert.rejects(
@@ -305,7 +295,6 @@ test('import Excel gắn lesson/level cho mọi dòng hợp lệ', async () => {
     readWorkbookRows: async () => [{ TuVung: '本' }],
     toVocabularyRows: (rows, context) =>
       rows.map((row) => ({ word: row.TuVung, ...context })),
-    buildExportWorkbook: () => ({}),
   };
 
   const inserted = await buildService({ importer }).importFromExcel({

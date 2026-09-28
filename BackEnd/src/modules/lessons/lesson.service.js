@@ -79,23 +79,12 @@ export const createLessonService = ({ lessonRepository: repository }) => ({
     return [...situations].sort();
   },
 
-  getByType(typePattern) {
-    return repository.findByTypePattern({
-      $regex: escapeRegExp(typePattern),
-      $options: 'i',
-    });
-  },
-
   getStatsOverview() {
     return repository.aggregateStats();
   },
 
   create(input) {
     return repository.create(input);
-  },
-
-  createMany(inputs) {
-    return repository.createMany(inputs);
   },
 
   async update(id, input) {

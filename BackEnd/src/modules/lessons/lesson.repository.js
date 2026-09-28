@@ -76,13 +76,6 @@ export const createLessonRepository = ({
     return lessonModel.distinct('situation', filter);
   },
 
-  findByTypePattern(regexFilter) {
-    return lessonModel
-      .find({ type: regexFilter })
-      .sort({ level: -1, order: 1 })
-      .lean();
-  },
-
   async aggregateStats() {
     const [totalLessons, byLevel, byType] = await Promise.all([
       lessonModel.countDocuments(),
@@ -102,10 +95,6 @@ export const createLessonRepository = ({
 
   create(input) {
     return lessonModel.create(input);
-  },
-
-  createMany(inputs) {
-    return lessonModel.insertMany(inputs);
   },
 
   updateById(id, input) {

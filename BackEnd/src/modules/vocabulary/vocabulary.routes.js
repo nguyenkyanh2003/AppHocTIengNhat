@@ -38,7 +38,6 @@ export const createVocabularyRoutes = ({
     validate({ query: schema.searchQuery }),
     asyncHandler(controller.search),
   );
-  router.get('/situations', authenticate, asyncHandler(controller.listSituations));
   // Bộ học theo chủ đề (N5–N4) hoặc theo từ loại + độ khó (N3–N1).
   router.get(
     '/sets',
@@ -59,41 +58,10 @@ export const createVocabularyRoutes = ({
     asyncHandler(controller.listByLesson),
   );
   router.get(
-    '/level/:levelEnum',
-    authenticate,
-    validate({ params: schema.levelParams }),
-    asyncHandler(controller.listByLevel),
-  );
-  router.get(
-    '/situation/search',
-    authenticate,
-    validate({ query: schema.situationSearchQuery }),
-    asyncHandler(controller.searchBySituation),
-  );
-  router.get(
-    '/random/practice',
-    authenticate,
-    validate({ query: schema.randomPracticeQuery }),
-    asyncHandler(controller.randomPractice),
-  );
-  router.get('/admin/stats', authorizeAdmin, asyncHandler(controller.adminStats));
-  router.get(
-    '/admin/export',
-    authorizeAdmin,
-    validate({ query: schema.exportQuery }),
-    asyncHandler(controller.adminExport),
-  );
-  router.get(
     '/:id',
     authenticate,
     validate({ params: schema.idParams }),
     asyncHandler(controller.detail),
-  );
-  router.post(
-    '/learn/:id',
-    authenticate,
-    validate({ params: schema.idParams, body: schema.learnBody }),
-    asyncHandler(controller.learnInLesson),
   );
   router.post(
     '/',

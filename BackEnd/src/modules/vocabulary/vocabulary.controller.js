@@ -38,28 +38,8 @@ export const createVocabularyController = (service) => ({
     return list(res, items);
   },
 
-  async listSituations(req, res) {
-    const situations = await service.listSituations();
-    return list(res, situations);
-  },
-
   async listByLesson(req, res) {
     const items = await service.listByLesson(req.valid.params.lessonId);
-    return list(res, items);
-  },
-
-  async listByLevel(req, res) {
-    const items = await service.listByLevel(req.valid.params.levelEnum);
-    return list(res, items);
-  },
-
-  async searchBySituation(req, res) {
-    const items = await service.searchBySituation(req.valid.query.q);
-    return list(res, items);
-  },
-
-  async randomPractice(req, res) {
-    const items = await service.randomPractice(req.valid.query);
     return list(res, items);
   },
 
@@ -70,15 +50,6 @@ export const createVocabularyController = (service) => ({
     });
 
     return ok(res, vocabulary);
-  },
-
-  async learnInLesson(req, res) {
-    const result = await service.learnInLesson({
-      id: req.valid.params.id,
-      lessonId: req.valid.body.lessonId,
-    });
-
-    return res.json(result);
   },
 
   async create(req, res) {
@@ -115,27 +86,6 @@ export const createVocabularyController = (service) => ({
       message: `Thêm thành công ${vocabularies.length} từ vựng.`,
       count: vocabularies.length,
     });
-  },
-
-  async adminStats(req, res) {
-    const stats = await service.stats();
-    return ok(res, stats);
-  },
-
-  async adminExport(req, res) {
-    const workbook = await service.buildExportWorkbook(req.valid.query);
-
-    res.setHeader(
-      'Content-Type',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    );
-    res.setHeader(
-      'Content-Disposition',
-      `attachment; filename=vocabulary_export_${Date.now()}.xlsx`,
-    );
-
-    await workbook.xlsx.write(res);
-    return res.end();
   },
 
   async markLearned(req, res) {

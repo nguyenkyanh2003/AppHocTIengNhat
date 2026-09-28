@@ -32,11 +32,6 @@ export const createLessonController = (service) => ({
     return list(res, lessons);
   },
 
-  async getTypeByLoaiBaiHoc(req, res) {
-    const lessons = await service.getByType(req.valid.params.loaiBaiHoc);
-    return list(res, lessons);
-  },
-
   async getStatsOverview(req, res) {
     const stats = await service.getStatsOverview();
     return res.json(stats);
@@ -45,13 +40,6 @@ export const createLessonController = (service) => ({
   async postRoot(req, res) {
     const lesson = await service.create(req.valid.body);
     return created(res, lesson, { message: 'Thêm bài học thành công.' });
-  },
-
-  async postBulk(req, res) {
-    const lessons = await service.createMany(req.valid.body.lessons);
-    return created(res, lessons, {
-      message: `Thêm thành công ${lessons.length} bài học.`,
-    });
   },
 
   async putById(req, res) {

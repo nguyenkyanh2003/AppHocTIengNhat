@@ -109,19 +109,10 @@ test('tìm kiếm thiếu từ khoá trả về 400', async () => {
   assert.equal(response.status, 400);
 });
 
-test('danh sách theo cấp độ rỗng vẫn là 200', async () => {
-  const app = buildApp({ listByLevel: async () => [] });
+test('đường cũ /situations giờ rơi vào /:id và bị validate chặn 400, không chạm service', async () => {
+  const app = buildApp({ getById: async () => assert.fail('không được gọi service') });
 
-  const response = await request(app).get('/api/vocabulary/level/N1');
-
-  assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { data: [], total: 0 });
-});
-
-test('cấp độ không hợp lệ trả về 400', async () => {
-  const app = buildApp({ listByLevel: async () => assert.fail('không được gọi') });
-
-  const response = await request(app).get('/api/vocabulary/level/N9');
+  const response = await request(app).get('/api/vocabulary/situations');
 
   assert.equal(response.status, 400);
 });
@@ -266,30 +257,6 @@ test('bỏ đánh dấu đã học trả về message', async () => {
 
   assert.equal(response.status, 200);
   assert.deepEqual(response.body, { message: 'Đã xóa đánh dấu đã học.' });
-});
-
-test('học từ vựng trong bài học yêu cầu lessonId', async () => {
-  const app = buildApp({
-    learnInLesson: async ({ lessonId }) => ({
-      message: 'ok',
-      redirect: `/lesson-progress/lesson/${lessonId}/update`,
-    }),
-  });
-
-  const missing = await request(app)
-    .post(`/api/vocabulary/learn/${VALID_ID}`)
-    .send({});
-  assert.equal(missing.status, 400);
-
-  const accepted = await request(app)
-    .post(`/api/vocabulary/learn/${VALID_ID}`)
-    .send({ lessonId: OTHER_ID });
-
-  assert.equal(accepted.status, 200);
-  assert.equal(
-    accepted.body.redirect,
-    `/lesson-progress/lesson/${OTHER_ID}/update`,
-  );
 });
 
 test('import Excel không kèm file trả về 400', async () => {
