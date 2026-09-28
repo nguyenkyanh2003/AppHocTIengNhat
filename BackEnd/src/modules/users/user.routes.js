@@ -63,7 +63,6 @@ export const createUserRoutes = ({
     asyncHandler(auth.resetPassword),
   );
   router.get("/profile/:id", authenticate, controller.getProfileById);
-  router.get("/me", authenticate, controller.getMe);
   router.put("/profile/:id", authenticate, controller.putProfileById);
   router.put(
     "/change-password/:id",
@@ -75,13 +74,10 @@ export const createUserRoutes = ({
     asyncHandler(auth.changePassword),
   );
   router.get("/admin/users", authorizeAdmin, controller.getAdminUsers);
-  router.get("/admin/users/:id", authorizeAdmin, controller.getAdminUsersById);
-  router.post("/admin/users", authorizeAdmin, controller.postAdminUsers);
   router.put("/admin/users/:id", authorizeAdmin, controller.putAdminUsersById);
   router.delete("/admin/users/:id", authorizeAdmin, controller.deleteAdminUsersById);
   router.delete("/admin/users", authorizeAdmin, controller.deleteAdminUsers);
   router.get("/admin/stats", authorizeAdmin, controller.getAdminStats);
-  router.put("/admin/users/:id/toggle-status", authorizeAdmin, controller.putAdminUsersByIdToggleStatus);
   router.put("/profile/:userID/avatar", authenticate, uploadAvatar, controller.putProfileByUserIDAvatar);
 
   return router;

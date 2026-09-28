@@ -96,30 +96,6 @@ export const getProfileById = async (req, res) => {
   }
 };
 
-// xem profile hiện tại
-export const getMe = async (req, res) => {
-  try {
-    const userId = req.user._id;
-    if (!userId) {
-       return res.status(400).json({ message: "Lỗi: Không tìm thấy ID trong Token" });
-    }
-
-    const user = await User.findById(userId).select('-MatKhau');
-
-    if (!user) {
-      return res.status(404).json({ message: "Người dùng không tồn tại." });
-    }
-
-    res.json({ 
-      message: "Lấy thông tin thành công", 
-      user: withoutPassword(user)
-    });
-  } catch (error) {
-    console.error("Lỗi lấy thông tin người dùng:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
 // sửa profile
 export const putProfileById = async (req, res) => {
   try {
@@ -220,65 +196,6 @@ export const getAdminUsers = async (req, res) => {
     });
   } catch (error) {
     console.error("Lỗi lấy danh sách người dùng:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
-// Lấy thông tin chi tiết người dùng 
-export const getAdminUsersById = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select('-MatKhau');
-    
-    if (!user) {
-      return res.status(404).json({ message: "Người dùng không tồn tại." });
-    }
-
-    res.json({ data: withoutPassword(user) });
-  } catch (error) {
-    console.error("Lỗi lấy thông tin người dùng:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
-// Tạo người dùng mới 
-export const postAdminUsers = async (req, res) => {
-  try {
-    const { username, hoTen, password, email, trinhDo, vaiTro } = req.body;
-    
-    if (!username || !hoTen || !password || !email) {
-      return res.status(400).json({ message: "Vui lòng nhập đầy đủ thông tin bắt buộc." });
-    }
-    if (password.length < 8) {
-      return res.status(400).json({ message: "Mật khẩu phải có ít nhất 8 ký tự." });
-    }
-
-    const existingUser = await User.findOne({ TenDangNhap: username });
-    if (existingUser) {
-      return res.status(409).json({ message: "Tên đăng nhập đã tồn tại." });
-    }
-
-    const existingEmail = await User.findOne({ Email: email });
-    if (existingEmail) {
-      return res.status(409).json({ message: "Email đã được sử dụng." });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
-      TenDangNhap: username,
-      HoTen: hoTen,
-      MatKhau: hashedPassword,
-      Email: email,
-      TrinhDo: trinhDo || 'N5',
-      VaiTro: vaiTro || 'user',
-      NgayTao: new Date()
-    });
-
-    res.status(201).json({
-      message: "Tạo người dùng thành công",
-      user: withoutPassword(newUser)
-    });
-  } catch (error) {
-    console.error("Lỗi tạo người dùng:", error);
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
   }
 };
@@ -428,28 +345,6 @@ export const getAdminStats = async (req, res) => {
   }
 };
 
-// Khóa/Mở khóa tài khoản 
-export const putAdminUsersByIdToggleStatus = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    
-    if (!user) {
-      return res.status(404).json({ message: "Người dùng không tồn tại." });
-    }
-
-    user.TrangThai = user.TrangThai === 'active' ? 'locked' : 'active';
-    await user.save();
-
-    res.json({ 
-      message: `Đã ${user.TrangThai === 'locked' ? 'khóa' : 'mở khóa'} tài khoản thành công`,
-      user: withoutPassword(user)
-    });
-  } catch (error) {
-    console.error("Lỗi thay đổi trạng thái tài khoản:", error);
-    res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-  }
-};
-
 // API Upload avatar
 export const putProfileByUserIDAvatar = async (req, res) => {
   try {
@@ -487,4 +382,3 @@ export const putProfileByUserIDAvatar = async (req, res) => {
     res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
   }
 };
-

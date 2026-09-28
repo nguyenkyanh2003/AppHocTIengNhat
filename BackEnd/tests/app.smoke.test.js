@@ -70,6 +70,13 @@ const REMOVED_ROUTES = [
   ['get', '/api/notebook/admin/all'],
   // reports
   ['put', '/api/report/admin/507f1f77bcf86cd799439011/priority'],
+  // study-groups
+  ['get', '/api/group/admin/all'],
+  // users
+  ['get', '/api/users/me'],
+  ['post', '/api/users/admin/users'],
+  // grammar
+  ['get', '/api/grammar/popular/N5'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {

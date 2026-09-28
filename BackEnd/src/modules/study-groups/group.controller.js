@@ -532,56 +532,6 @@ export const demoteMember = async (req, res) => {
     }
 };
 
-// API Mời người dùng vào nhóm private (admin)
-export const inviteMember = async (req, res) => {
-    try {
-        const { groupID, userID } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(userID)) {
-            return res.status(400).json({ message: "ID người dùng không hợp lệ." });
-        }
-
-        const user = await User.findById(userID);
-        if (!user) {
-            return res.status(404).json({ message: "Người dùng không tồn tại." });
-        }
-
-        const group = req.group;
-
-        try {
-            group.addMember(userID, 'member');
-            await group.save();
-
-            // Tạo system message để thông báo thành viên mới tham gia
-            const userName = user.full_name || user.HoTen || user.username || user.TenDangNhap || 'Thành viên';
-            await GroupChat.create({
-                group_id: groupID,
-                user_id: userID,
-                content: `${userName} đã tham gia nhóm`,
-                type: 'SYSTEM'
-            });
-
-            res.status(201).json({
-                message: `Đã mời ${user.full_name || user.HoTen || user.username || user.TenDangNhap} vào nhóm.`,
-                data: { user_id: userID, group_id: groupID }
-            });
-
-        } catch (error) {
-            if (error.message.includes('đã là thành viên')) {
-                return res.status(400).json({ message: error.message });
-            }
-            if (error.message.includes('số lượng')) {
-                return res.status(400).json({ message: error.message });
-            }
-            throw error;
-        }
-
-    } catch (error) {
-        console.error("Lỗi mời thành viên:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
-
 // API Thống kê nhóm
 export const getGroupStats = async (req, res) => {
     try {
@@ -630,92 +580,6 @@ export const getGroupStats = async (req, res) => {
         res.status(500).json({ message: 'Lỗi máy chủ.', error: error.message });
     }
 };
-//  ADMIN ROUTES
-// API Lấy tất cả nhóm (Admin hệ thống)
-export const listAdminGroups = async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 20;
-        const skip = (page - 1) * limit;
-
-        const [groups, total] = await Promise.all([
-            StudyGroup.find()
-                .populate('creator_id', populateUserFields)
-                .select('-members')
-                .sort({ createdAt: -1 })
-                .limit(limit)
-                .skip(skip)
-                .lean(),
-            StudyGroup.countDocuments()
-        ]);
-
-        res.json({
-            totalItems: total,
-            totalPages: Math.ceil(total / limit),
-            currentPage: page,
-            data: groups
-        });
-
-    } catch (error) {
-        console.error("Lỗi khi admin lấy nhóm:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-// API Xóa nhóm (Admin hệ thống - hard delete)
-export const deleteAdminGroup = async (req, res) => {
-    try {
-        const { groupID } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(groupID)) {
-            return res.status(400).json({ message: "ID nhóm không hợp lệ." });
-        }
-
-        const group = await StudyGroup.findByIdAndDelete(groupID);
-        if (!group) {
-            return res.status(404).json({ message: "Nhóm không tồn tại." });
-        }
-
-        res.json({ message: "(Admin) Đã xóa nhóm thành công." });
-
-    } catch (error) {
-        console.error("Lỗi admin xóa nhóm:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-// API Thống kê tổng quan (Admin)
-export const getAdminGroupStatistics = async (req, res) => {
-    try {
-        const [totalGroups, activeGroups, privateGroups, totalMembers] = await Promise.all([
-            StudyGroup.countDocuments(),
-            StudyGroup.countDocuments({ is_active: true }),
-            StudyGroup.countDocuments({ is_private: true }),
-            StudyGroup.aggregate([
-                { $group: { _id: null, total: { $sum: '$member_count' } } }
-            ])
-        ]);
-
-        const stats = {
-            total_groups: totalGroups,
-            active_groups: activeGroups,
-            inactive_groups: totalGroups - activeGroups,
-            private_groups: privateGroups,
-            public_groups: totalGroups - privateGroups,
-            total_members: totalMembers[0]?.total || 0,
-            avg_members_per_group: totalGroups > 0 
-                ? ((totalMembers[0]?.total || 0) / totalGroups).toFixed(2) 
-                : 0
-        };
-
-        res.json({ data: stats });
-
-    } catch (error) {
-        console.error("Lỗi lấy thống kê:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
-
 // API Upload group avatar
 export const updateGroupAvatar = async (req, res) => {
     try {
@@ -748,4 +612,3 @@ export const updateGroupAvatar = async (req, res) => {
         res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
     }
 };
-
