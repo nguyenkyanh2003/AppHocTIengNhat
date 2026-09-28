@@ -33,9 +33,25 @@ class AppLocalizations {
       // Home Screen
       'home_greeting': 'Xin chào',
       'home_subtitle': 'Hôm nay học gì nào?',
+      'greeting_morning': 'Chào buổi sáng',
+      'greeting_afternoon': 'Chào buổi chiều',
+      'greeting_evening': 'Chào buổi tối',
+      'home_journey': 'Hãy tiếp tục hành trình học tiếng Nhật',
+      'streak_run': 'Chuỗi liên tiếp',
+      'experience': 'Kinh nghiệm',
+      'next_lesson_eyebrow': 'Bài học tiếp theo',
+      'lesson_number': 'Bài',
+      'minutes_short': 'phút',
+      'level_progress': 'Tiến độ',
+      'lessons_unit': 'bài',
+      'level_finished': 'Bạn đã học hết bài',
+      'browse_lessons': 'Xem các bài học',
+      'study_corner': 'Góc học tập',
+      'example_label': 'Ví dụ',
+      'listen_pronunciation': 'Nghe phát âm',
       'continue_eyebrow': 'TIẾP TỤC BÀI HỌC',
       'continue_title': 'Bài học theo chủ đề',
-      'continue_cta': 'Học tiếp',
+      'continue_cta': 'Tiếp tục học',
       'word_of_day': 'Từ mới hôm nay',
       'explore': 'Khám phá',
       'welcome_back': 'Chào mừng trở lại!',
@@ -47,7 +63,7 @@ class AppLocalizations {
       'points': 'Điểm',
       'xp': 'XP',
       'total_xp': 'Tổng XP',
-      'latest_news': 'Tin Tức Mới',
+      'latest_news': 'Tin tức mới',
       'view_all': 'Xem tất cả',
       'lessons': 'Học tập',
       'review': 'Ôn tập',
@@ -247,6 +263,22 @@ class AppLocalizations {
       // Home Screen
       'home_greeting': 'Hello',
       'home_subtitle': 'What shall we learn today?',
+      'greeting_morning': 'Good morning',
+      'greeting_afternoon': 'Good afternoon',
+      'greeting_evening': 'Good evening',
+      'home_journey': 'Keep going on your Japanese journey',
+      'streak_run': 'Day streak',
+      'experience': 'Experience',
+      'next_lesson_eyebrow': 'Next lesson',
+      'lesson_number': 'Lesson',
+      'minutes_short': 'min',
+      'level_progress': 'Progress',
+      'lessons_unit': 'lessons',
+      'level_finished': 'You have finished every lesson in',
+      'browse_lessons': 'Browse lessons',
+      'study_corner': 'Study corner',
+      'example_label': 'Example',
+      'listen_pronunciation': 'Listen',
       'continue_eyebrow': 'CONTINUE LEARNING',
       'continue_title': 'Topic lessons',
       'continue_cta': 'Continue',
@@ -261,7 +293,7 @@ class AppLocalizations {
       'points': 'Points',
       'xp': 'XP',
       'total_xp': 'Total XP',
-      'latest_news': 'Latest News',
+      'latest_news': 'Latest news',
       'view_all': 'View all',
       'lessons': 'Lessons',
       'review': 'Review',
@@ -461,6 +493,22 @@ class AppLocalizations {
       // Home Screen
       'home_greeting': 'こんにちは',
       'home_subtitle': '今日は何を学ぶ？',
+      'greeting_morning': 'おはようございます',
+      'greeting_afternoon': 'こんにちは',
+      'greeting_evening': 'こんばんは',
+      'home_journey': '日本語の学習を続けましょう',
+      'streak_run': '連続日数',
+      'experience': '経験値',
+      'next_lesson_eyebrow': '次のレッスン',
+      'lesson_number': 'レッスン',
+      'minutes_short': '分',
+      'level_progress': '進度',
+      'lessons_unit': 'レッスン',
+      'level_finished': 'すべて完了しました：',
+      'browse_lessons': 'レッスン一覧',
+      'study_corner': '学習コーナー',
+      'example_label': '例文',
+      'listen_pronunciation': '発音を聞く',
       'continue_eyebrow': '学習を続ける',
       'continue_title': 'テーマ別レッスン',
       'continue_cta': '続ける',
@@ -684,6 +732,23 @@ class AppLocalizations {
   String get continueTitle => translate('continue_title');
   String get continueCta => translate('continue_cta');
   String get wordOfDay => translate('word_of_day');
+  String get greetingMorning => translate('greeting_morning');
+  String get greetingAfternoon => translate('greeting_afternoon');
+  String get greetingEvening => translate('greeting_evening');
+  String get homeJourney => translate('home_journey');
+  String get streakRun => translate('streak_run');
+  String get experience => translate('experience');
+  String get nextLessonEyebrow => translate('next_lesson_eyebrow');
+  String get lessonNumber => translate('lesson_number');
+  String get minutesShort => translate('minutes_short');
+  String get levelProgress => translate('level_progress');
+  String get lessonsUnit => translate('lessons_unit');
+  String get levelFinished => translate('level_finished');
+  String get browseLessons => translate('browse_lessons');
+  String get studyCorner => translate('study_corner');
+  String get exampleLabel => translate('example_label');
+  String get listenPronunciation => translate('listen_pronunciation');
+  String get latestNews => translate('latest_news');
   String get explore => translate('explore');
   String get welcomeBack => translate('welcome_back');
   String get continueLearning => translate('continue_learning');
@@ -694,7 +759,6 @@ class AppLocalizations {
   String get points => translate('points');
   String get xp => translate('xp');
   String get totalXp => translate('total_xp');
-  String get latestNews => translate('latest_news');
   String get viewAll => translate('view_all');
   String get lessons => translate('lessons');
   String get home => translate('home');

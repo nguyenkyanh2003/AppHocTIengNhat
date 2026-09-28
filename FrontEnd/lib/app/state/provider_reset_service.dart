@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../features/home/providers/home_provider.dart';
 import '../../features/lessons/providers/lesson_provider.dart';
 import '../../features/lessons/providers/lesson_progress_provider.dart';
 import '../../features/vocabulary/providers/vocabulary_provider.dart';
@@ -16,6 +17,12 @@ import '../../features/notebook/providers/notebook_provider.dart';
 class ProviderResetService {
   static void resetAllProviders(BuildContext context) {
     // Reset từng provider về state ban đầu
+    try {
+      context.read<HomeProvider>().clear();
+    } catch (e) {
+      debugPrint('Error resetting HomeProvider: $e');
+    }
+
     try {
       context.read<LessonProvider>().clear();
     } catch (e) {

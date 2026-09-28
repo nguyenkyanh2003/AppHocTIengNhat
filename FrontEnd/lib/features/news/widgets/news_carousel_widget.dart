@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../providers/news_provider.dart';
-import '../models/news.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
 
+import '../../../app/theme/app_typography.dart';
+import '../../../app/theme/calm_colors.dart';
+import '../models/news.dart';
+import '../providers/news_provider.dart';
+
+/// Khối "Tin tức mới" trên Trang chủ: 5 bài mới nhất cuộn ngang, thẻ thứ hai
+/// lấp ló ở mép phải để người học biết còn cuộn được.
+///
+/// [header] (tiêu đề mục + "Xem tất cả") do Trang chủ truyền vào để cùng kiểu
+/// với các mục khác, và chỉ hiện khi có bài — chưa có bài nào thì cả khối không
+/// chiếm chỗ.
+///
+/// Mọi thẻ cao bằng nhau vì tiêu đề luôn được dành đúng chỗ hai dòng — tính từ
+/// cỡ chữ × hệ số dòng cố định và mức phóng to chữ của người dùng, nên không phụ
+/// thuộc font nào vẽ chữ. Không đo chiều cao nội dung (`IntrinsicHeight`): trên
+/// web phép đo chạy trước khi font chữ Nhật tải xong, tính tiêu đề một dòng và
+/// cắt mất dòng phụ của thẻ có tiêu đề hai dòng. Chỉ có 5 thẻ nên dựng hết một
+/// lượt thay vì danh sách lười.
 class NewsCarouselWidget extends StatefulWidget {
-  const NewsCarouselWidget({Key? key}) : super(key: key);
+  const NewsCarouselWidget({super.key, this.header});
+
+  final Widget? header;
+
+  static const double _cardWidth = 260;
+  static const double _imageHeight = 120;
 
   @override
   State<NewsCarouselWidget> createState() => _NewsCarouselWidgetState();
@@ -18,10 +37,9 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final provider = Provider.of<NewsProvider>(context, listen: false);
-      if (provider.newsList.isEmpty) {
-        provider.loadNews();
-      }
+      if (!mounted) return;
+      final provider = context.read<NewsProvider>();
+      if (provider.newsList.isEmpty) provider.loadNews();
     });
   }
 
@@ -29,44 +47,23 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   Widget build(BuildContext context) {
     return Consumer<NewsProvider>(
       builder: (context, provider, _) {
-        if (provider.newsList.isEmpty) {
-          return const SizedBox.shrink();
-        }
-
+        if (provider.newsList.isEmpty) return const SizedBox.shrink();
         final newsList = provider.newsList.take(5).toList();
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            if (widget.header != null) widget.header!,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Tin Tức Mới',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      context.push('/news');
-                    },
-                    child: const Text('Xem tất cả'),
-                  ),
+                  for (var index = 0; index < newsList.length; index++) ...[
+                    if (index > 0) const SizedBox(width: 12),
+                    _NewsCard(news: newsList[index]),
+                  ],
                 ],
-              ),
-            ),
-            SizedBox(
-              height: 250,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                itemCount: newsList.length,
-                itemBuilder: (context, index) {
-                  return _buildNewsCard(context, newsList[index]);
-                },
               ),
             ),
           ],
@@ -74,153 +71,96 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
       },
     );
   }
+}
 
-  Widget _buildNewsCard(BuildContext context, News news) {
-    return GestureDetector(
-      onTap: () {
-        context.push('/news/${news.id}');
-      },
-      child: Container(
-        width: 280,
-        margin: const EdgeInsets.only(right: 12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Image
-            if (news.imageUrl != null)
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                child: Image.network(
+class _NewsCard extends StatelessWidget {
+  const _NewsCard({required this.news});
+
+  final News news;
+
+  static const _radius = BorderRadius.all(Radius.circular(18));
+  static const double _titleSize = 15;
+  static const double _titleLineHeight = 1.35;
+
+  @override
+  Widget build(BuildContext context) {
+    final calm = CalmColors.of(context);
+    final placeholder = Container(
+      height: NewsCarouselWidget._imageHeight,
+      color: calm.kanjiTile,
+      alignment: Alignment.center,
+      child: Icon(Icons.newspaper_rounded, size: 40, color: calm.textSecondary),
+    );
+    // Chưa có trường chuyên mục / thời gian đọc: dòng phụ là trình độ và ngày đăng.
+    final meta = [
+      if (news.level != null && news.level!.isNotEmpty) news.level!,
+      news.timeAgo
+    ].join(' · ');
+
+    // Chỗ cho đúng hai dòng tiêu đề, theo mức phóng to chữ của người dùng.
+    final titleBox = (MediaQuery.textScalerOf(context).scale(_titleSize) *
+            _titleLineHeight *
+            2)
+        .ceilToDouble();
+
+    return SizedBox(
+      width: NewsCarouselWidget._cardWidth,
+      child: Material(
+        color: calm.card,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+            borderRadius: _radius, side: BorderSide(color: calm.cardBorder)),
+        child: InkWell(
+          onTap: () => context.push('/news/${news.id}'),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (news.imageUrl != null)
+                Image.network(
                   news.imageUrl!,
-                  height: 120,
+                  height: NewsCarouselWidget._imageHeight,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      height: 120,
-                      color: AppColors.border,
-                      child: const Icon(Icons.image, size: 48),
-                    );
-                  },
-                ),
-              )
-            else
-              Container(
-                height: 120,
-                decoration: const BoxDecoration(
-                  color: AppColors.primaryLight,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                child: const Icon(Icons.newspaper, size: 48),
-              ),
-
-            // Content
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Level badge
-                  if (news.level != null)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: _getLevelColor(news.level),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
+                  errorBuilder: (_, __, ___) => placeholder,
+                )
+              else
+                placeholder,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: titleBox,
                       child: Text(
-                        news.level!,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: AppTypography.caption,
-                          fontWeight: FontWeight.bold,
+                        news.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTypography.ui(
+                          size: _titleSize,
+                          weight: FontWeight.w600,
+                          color: calm.textPrimary,
+                          height: _titleLineHeight,
                         ),
                       ),
                     ),
-                  const SizedBox(height: 8),
-
-                  // Title
-                  Text(
-                    news.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: AppTypography.bodySmall,
-                      fontWeight: FontWeight.bold,
+                    const SizedBox(height: 8),
+                    Text(
+                      meta,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.ui(
+                          size: 12.5,
+                          weight: FontWeight.w500,
+                          color: calm.textSecondary),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-
-                  // Time & Views
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        news.timeAgo,
-                        style: const TextStyle(
-                          fontSize: AppTypography.caption,
-                          color: AppColors.textSecondary,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const Icon(Icons.visibility,
-                              size: 12, color: AppColors.textSecondary),
-                          const SizedBox(width: 2),
-                          Text(
-                            '${news.views}',
-                            style: const TextStyle(
-                              fontSize: AppTypography.caption,
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  Color _getLevelColor(String? level) {
-    switch (level) {
-      case 'N5':
-        return AppColors.success;
-      case 'N4':
-        return Colors.lightGreen;
-      case 'N3':
-        return Colors.amber;
-      case 'N2':
-        return AppColors.warning;
-      case 'N1':
-        return AppColors.error;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

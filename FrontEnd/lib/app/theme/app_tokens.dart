@@ -193,3 +193,68 @@ abstract final class AppBreakpoints {
   /// Bề rộng rail mở rộng.
   static const double railExtendedWidth = 256;
 }
+
+/// Bảng màu dịu của Trang chủ (thiết kế 2026-09): nền kem ấm, xanh lá đậm cho
+/// hành động chính, tím cho thao tác và liên kết, cam/vàng dịu cho chuỗi ngày
+/// và XP. Giảm độ rực so với bảng màu Duolingo cũ nhưng giữ nguyên ý nghĩa
+/// từng màu.
+///
+/// Đây là giá trị thô cho chế độ sáng. Widget không đọc thẳng từ đây mà qua
+/// `CalmColors.of(context)` để chế độ tối có bộ màu riêng.
+abstract final class AppPalette {
+  static const Color background = Color(0xFFF6F5F0);
+  static const Color card = Color(0xFFFFFFFF);
+  static const Color cardBorder = Color(0xFFE7E5DC);
+  static const Color divider = Color(0xFFEEECE4);
+  static const Color textPrimary = Color(0xFF1C2A22);
+  static const Color textSecondary = Color(0xFF5B6660);
+
+  static const Color green = Color(0xFF1D6B48);
+  static const Color onGreenEyebrow = Color(0xFFCDE8D8);
+  static const Color onGreenMuted = Color(0xFFDCEFE3);
+  static const Color warm = Color(0xFFF4C58B);
+
+  static const Color purple = Color(0xFF4B3FB0);
+  static const Color purpleSoft = Color(0xFFECE9FB);
+
+  static const Color streakCard = Color(0xFFFDEEE2);
+  static const Color streakIconBg = Color(0xFFF9D9C0);
+  static const Color streakIcon = Color(0xFFB8531C);
+  static const Color streakValue = Color(0xFF7A3413);
+  static const Color streakLabel = Color(0xFF8C5A3C);
+  static const Color notificationDot = Color(0xFFD0652A);
+
+  static const Color xpCard = Color(0xFFFBF3D6);
+  static const Color xpIconBg = Color(0xFFF5E6AE);
+  static const Color xpIcon = Color(0xFF9A7208);
+  static const Color xpValue = Color(0xFF6B4E00);
+  static const Color xpLabel = Color(0xFF7A6420);
+
+  static const Color kanjiTile = Color(0xFFF4F2EC);
+  static const Color tagGreenBg = Color(0xFFEAF3EE);
+  static const Color tagGreen = Color(0xFF1D5C3E);
+
+  static const Color navInactive = Color(0xFF4A5550);
+
+  /// Hình minh hoạ núi Phú Sĩ trên thẻ "Bài học tiếp theo" (vẽ bằng code, nền
+  /// trong suốt): hai lớp núi sáng dần lên nền xanh và chóp tuyết.
+  static const Color illustrationHill = Color(0xFF2A7C57);
+  static const Color illustrationMountain = Color(0xFF4A9A74);
+  static const Color illustrationSnow = Color(0xFFF1F7F3);
+
+  /// Màu từng ô ở "Góc học tập": nền nhạt / icon.
+  static const Color lessonBg = Color(0xFFEAF3EE);
+  static const Color lessonFg = green;
+  static const Color vocabularyBg = purpleSoft;
+  static const Color vocabularyFg = purple;
+  static const Color kanjiBg = Color(0xFFFDEEE2);
+  static const Color kanjiFg = Color(0xFFB8531C);
+  static const Color exerciseBg = Color(0xFFE6EEF8);
+  static const Color exerciseFg = Color(0xFF2F5E9E);
+  static const Color jlptBg = Color(0xFFFBF3D6);
+  static const Color jlptFg = Color(0xFF8A6508);
+  static const Color groupBg = Color(0xFFE3F2F0);
+  static const Color groupFg = Color(0xFF1F6F66);
+  static const Color notebookBg = Color(0xFFF8E8EC);
+  static const Color notebookFg = Color(0xFFA33E5C);
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../theme/calm_colors.dart';
 import '../../features/auth/providers/auth_provider.dart';
 import '../theme/app_tokens.dart';
 import 'app_navigation.dart';
@@ -53,22 +54,29 @@ class AppShell extends StatelessWidget {
     if (width < AppBreakpoints.rail) {
       return Scaffold(
         body: child,
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: index < 0 ? 0 : index,
-          onDestinationSelected: (i) => _onSelect(context, destinations[i]),
-          // Quá 5 đích đến thì nhãn luôn hiện sẽ bị cắt trên máy 360px; chỉ
-          // hiện nhãn của mục đang chọn giữ được chữ đọc được.
-          labelBehavior: destinations.length > 5
-              ? NavigationDestinationLabelBehavior.onlyShowSelected
-              : NavigationDestinationLabelBehavior.alwaysShow,
-          destinations: [
-            for (final d in destinations)
-              NavigationDestination(
-                icon: Icon(d.icon),
-                selectedIcon: Icon(d.selectedIcon),
-                label: d.label,
-              ),
-          ],
+        // Viền trên 1px tách thanh dưới khỏi nội dung, thay cho bóng đổ.
+        bottomNavigationBar: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(color: CalmColors.of(context).cardBorder)),
+          ),
+          child: NavigationBar(
+            selectedIndex: index < 0 ? 0 : index,
+            onDestinationSelected: (i) => _onSelect(context, destinations[i]),
+            // Quá 5 đích đến thì nhãn luôn hiện sẽ bị cắt trên máy 360px; chỉ
+            // hiện nhãn của mục đang chọn giữ được chữ đọc được.
+            labelBehavior: destinations.length > 5
+                ? NavigationDestinationLabelBehavior.onlyShowSelected
+                : NavigationDestinationLabelBehavior.alwaysShow,
+            destinations: [
+              for (final d in destinations)
+                NavigationDestination(
+                  icon: Icon(d.icon),
+                  selectedIcon: Icon(d.selectedIcon),
+                  label: d.label,
+                ),
+            ],
+          ),
         ),
       );
     }

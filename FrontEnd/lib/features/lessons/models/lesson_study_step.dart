@@ -49,14 +49,27 @@ String _videoStepTitle(List<LessonVideo> videos, int index) {
 }
 
 /// Ước lượng số phút của một bài, để người học biết trước mình cần bao lâu.
-int estimateStudyMinutes(LessonDetail detail) {
-  final lesson = detail.lesson;
+int estimateStudyMinutes(LessonDetail detail) => _estimateMinutes(
+      lesson: detail.lesson,
+      words: detail.words.length,
+      kanjisAndGrammars: detail.kanjis.length + detail.grammars.length,
+    );
+
+/// Cùng ước lượng, tính từ bản tóm tắt của danh sách bài (Trang chủ chưa tải
+/// chi tiết bài): đếm theo mã từ / kanji / ngữ pháp gắn với bài.
+int estimateLessonMinutes(Lesson lesson) => _estimateMinutes(
+      lesson: lesson,
+      words: lesson.vocabularies.length,
+      kanjisAndGrammars: lesson.kanjis.length + lesson.grammars.length,
+    );
+
+int _estimateMinutes({required Lesson lesson, required int words, required int kanjisAndGrammars}) {
   // Video có thời lượng thật thì dùng, video cũ chưa có thì ước 90 giây.
   final videoSeconds = lesson.videos.fold<int>(0, (sum, video) => sum + (video.duration?.inSeconds ?? 90));
   final seconds = videoSeconds +
       lesson.dialogue.length * 20 +
-      detail.words.length * 25 +
-      (detail.kanjis.length + detail.grammars.length) * 60 +
-      (detail.words.length >= quickQuizMinWords ? 90 : 0);
+      words * 25 +
+      kanjisAndGrammars * 60 +
+      (words >= quickQuizMinWords ? 90 : 0);
   return (seconds / 60).ceil().clamp(1, 120);
 }

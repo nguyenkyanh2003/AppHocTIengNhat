@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app_tokens.dart';
+import 'calm_colors.dart';
 import 'app_typography.dart';
 
 /// Theme của ứng dụng, lắp từ token trong [AppColors], [AppSpacing], [AppRadius]
@@ -51,6 +52,7 @@ class AppTheme {
         textSecondary: AppColors.textSecondary,
         appBarBackground: AppColors.surface,
         appBarForeground: AppColors.textPrimary,
+        calm: CalmColors.light,
       );
 
   static ThemeData get darkTheme => _build(
@@ -63,6 +65,7 @@ class AppTheme {
         textSecondary: AppColors.darkTextSecondary,
         appBarBackground: AppColors.darkSurface,
         appBarForeground: AppColors.darkTextPrimary,
+        calm: CalmColors.dark,
       );
 
   /// Một định nghĩa duy nhất cho cả hai chế độ: chỉ bảng màu đổi, còn cỡ chữ,
@@ -77,9 +80,42 @@ class AppTheme {
     required Color textSecondary,
     required Color appBarBackground,
     required Color appBarForeground,
+    required CalmColors calm,
   }) {
+    // Thanh điều hướng chính theo bảng màu dịu: nền thẻ, mục đang chọn là
+    // viên thuốc tím nhạt, chữ Be Vietnam Pro. Dùng chung cho thanh dưới
+    // (điện thoại) và rail (màn rộng) để hai kiểu không lệch nhau.
+    WidgetStateProperty<T> bySelection<T>(T selected, T other) =>
+        WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.selected) ? selected : other);
+    final navLabel = bySelection(
+      AppTypography.ui(size: AppTypography.caption, weight: FontWeight.w600, color: calm.accent),
+      AppTypography.ui(size: AppTypography.caption, weight: FontWeight.w500, color: calm.navInactive),
+    );
+
     return ThemeData(
       useMaterial3: true,
+      extensions: [calm],
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: calm.card,
+        surfaceTintColor: Colors.transparent,
+        elevation: AppElevation.none,
+        indicatorColor: calm.accentSoft,
+        indicatorShape: const StadiumBorder(),
+        labelTextStyle: navLabel,
+        iconTheme: bySelection(
+          IconThemeData(size: 24, color: calm.accent),
+          IconThemeData(size: 24, color: calm.navInactive),
+        ),
+      ),
+      navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: calm.card,
+        indicatorColor: calm.accentSoft,
+        indicatorShape: const StadiumBorder(),
+        selectedIconTheme: IconThemeData(size: 24, color: calm.accent),
+        unselectedIconTheme: IconThemeData(size: 24, color: calm.navInactive),
+        selectedLabelTextStyle: navLabel.resolve({WidgetState.selected}),
+        unselectedLabelTextStyle: navLabel.resolve({}),
+      ),
       brightness: brightness,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,

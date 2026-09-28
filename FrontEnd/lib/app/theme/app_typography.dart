@@ -61,6 +61,31 @@ abstract final class AppTypography {
             weight.value >= FontWeight.w600.value ? FontWeight.w700 : FontWeight.w500,
       );
 
+  /// Be Vietnam Pro — chữ giao diện của bảng màu dịu (Trang chủ, thanh điều
+  /// hướng). Vẽ riêng cho tiếng Việt nên dấu đặt gọn, không đè dòng trên; nét
+  /// hiện đại, bớt "đồ chơi" hơn Nunito + Baloo. Chỉ nạp bốn độ đậm 400–700.
+  ///
+  /// Không có chữ Nhật, nên cũng dự phòng bằng Zen Maru Gothic như [_latin].
+  static TextStyle ui({
+    required double size,
+    FontWeight weight = FontWeight.w400,
+    Color? color,
+    double? height,
+    double? letterSpacing,
+  }) {
+    final style = GoogleFonts.beVietnamPro(
+      fontSize: size,
+      fontWeight: weight,
+      color: color,
+      height: height,
+      letterSpacing: letterSpacing,
+    );
+    return style.copyWith(fontFamilyFallback: [
+      ...?style.fontFamilyFallback,
+      _japanese(weight).fontFamily!,
+    ]);
+  }
+
   /// Baloo 2 — chữ mập, bo tròn, dành riêng cho tiêu đề lớn/hero (màn chào,
   /// thẻ "Tiếp tục học"). Không dùng cho `textTheme` chung vì quá đậm nét cho
   /// văn bản thường.

@@ -36,6 +36,7 @@ class AppScaffold extends StatefulWidget {
     this.leading,
     this.automaticallyImplyLeading = true,
     this.backgroundColor,
+    this.appBar,
   });
 
   final String title;
@@ -53,6 +54,11 @@ class AppScaffold extends StatefulWidget {
   final Widget? leading;
   final bool automaticallyImplyLeading;
   final Color? backgroundColor;
+
+  /// Thanh trên cùng tự dựng, thay cho `AppBar` chuẩn (Trang chủ có logo, chấm
+  /// thông báo). Có giá trị thì [title], [actions], [onRefresh], [leading],
+  /// [bottom] không được dùng.
+  final PreferredSizeWidget? appBar;
 
   @override
   State<AppScaffold> createState() => _AppScaffoldState();
@@ -85,7 +91,7 @@ class _AppScaffoldState extends State<AppScaffold> {
 
     return Scaffold(
       backgroundColor: widget.backgroundColor,
-      appBar: AppBar(
+      appBar: widget.appBar ?? AppBar(
         title: Text(widget.title),
         leading: widget.leading,
         automaticallyImplyLeading: widget.automaticallyImplyLeading,

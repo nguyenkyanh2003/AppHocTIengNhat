@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+import '../features/home/providers/home_provider.dart';
 import '../features/achievements/providers/achievement_provider.dart';
 import '../features/admin/providers/admin_provider.dart';
 import '../features/auth/providers/auth_provider.dart';
@@ -30,6 +31,7 @@ List<SingleChildWidget> createAppProviders() => [
       ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
       ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => LocaleProvider()),
+      ChangeNotifierProvider(create: (_) => HomeProvider()),
       ChangeNotifierProvider(create: (_) => LessonProvider()),
       ChangeNotifierProvider(create: (_) => LessonProgressProvider()),
       ChangeNotifierProvider(create: (_) => VocabularyProvider()),
