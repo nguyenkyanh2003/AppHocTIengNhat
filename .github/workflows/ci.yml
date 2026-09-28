@@ -41,9 +41,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Ghim đúng bản Flutter dùng khi phát triển (và sinh ra pubspec.lock).
+      # Chỉ ghi `channel: stable` thì CI luôn lấy bản mới nhất; bản 2026 kéo
+      # `intl` 0.20 qua flutter_localizations trong khi pubspec cần ^0.19.0, nên
+      # `flutter pub get` hỏng và job Flutter chưa từng chạy tới bước test.
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.29.3
           cache: true
 
       - name: Install dependencies
