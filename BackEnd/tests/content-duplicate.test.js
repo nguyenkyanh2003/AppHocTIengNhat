@@ -1,10 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import Exercise from '../model/Exercise.js';
 import Grammar from '../model/Grammar.js';
-import Lesson from '../model/Lesson.js';
-import * as exerciseController from '../src/modules/exercise/exercise.controller.js';
 import { createOrReviveGrammar } from '../src/modules/grammar/grammar-natural-key.js';
 import * as grammarController from '../src/modules/grammar/grammar.controller.js';
 import { isDuplicateKeyError } from '../src/shared/db/duplicate-key.js';
@@ -160,32 +157,4 @@ test('lỗi khác của ngữ pháp vẫn là 500', async (t) => {
   await grammarController.postRoot({ body: grammarBody }, res);
 
   assert.equal(res.statusCode, 500);
-});
-
-test('thêm bài tập trùng tên trong cùng bài học trả 409', async (t) => {
-  stub(t, Lesson, 'findById', async () => ({ _id: ID }));
-  stub(t, Exercise, 'create', async () => {
-    throw duplicateKey();
-  });
-  const res = fakeRes();
-
-  await exerciseController.createExercise(
-    { params: { lessonID: ID }, body: { title: 'Ôn tập', level: 'N5' } },
-    res,
-  );
-
-  assert.equal(res.statusCode, 409);
-  assert.equal(res.body.code, 'DUPLICATE_EXERCISE');
-});
-
-test('đổi tên bài tập trùng bài khác trả 409', async (t) => {
-  stub(t, Exercise, 'findByIdAndUpdate', async () => {
-    throw duplicateKey();
-  });
-  const res = fakeRes();
-
-  await exerciseController.updateExercise({ params: { id: ID }, body: { title: 'Ôn tập' } }, res);
-
-  assert.equal(res.statusCode, 409);
-  assert.equal(res.body.code, 'DUPLICATE_EXERCISE');
 });
