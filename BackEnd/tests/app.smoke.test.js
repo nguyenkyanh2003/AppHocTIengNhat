@@ -52,6 +52,10 @@ const REMOVED_ROUTES = [
   ['get', '/api/exercise/check-answers/507f1f77bcf86cd799439011'],
   ['post', '/api/exercise/upload/507f1f77bcf86cd799439011'],
   ['post', '/api/exercise/questions/507f1f77bcf86cd799439011'],
+  // progress
+  ['get', '/api/progress/study-time'],
+  ['delete', '/api/progress/admin/bulk/delete'],
+  ['post', '/api/progress/lesson/507f1f77bcf86cd799439011/update'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {
