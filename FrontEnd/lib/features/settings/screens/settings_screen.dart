@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../profile/providers/user_provider.dart';
-import '../../auth/providers/auth_provider.dart';
 import '../../streaks/widgets/streak_settings_sheet.dart';
 import '../../../app/localization/locale_provider.dart';
 import '../services/settings_service.dart';
@@ -87,7 +85,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
     final userProvider = Provider.of<UserProvider>(context);
     final l10n = AppLocalizations.of(context);
 
@@ -190,13 +187,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: l10n.aboutApp,
               onTap: () {
                 _showAboutDialog();
-              },
-            ),
-            _buildMenuTile(
-              icon: Icons.logout,
-              title: l10n.logout,
-              onTap: () {
-                _showLogoutDialog(context, authProvider);
               },
             ),
 
@@ -367,30 +357,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('Đóng'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showLogoutDialog(BuildContext context, AuthProvider authProvider) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Đăng xuất'),
-        content: const Text('Bạn có chắc chắn muốn đăng xuất?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          TextButton(
-            onPressed: () {
-              authProvider.logout();
-              Navigator.pop(context);
-              context.go('/login');
-            },
-            child: const Text('Đăng xuất', style: TextStyle(color: AppColors.error)),
           ),
         ],
       ),

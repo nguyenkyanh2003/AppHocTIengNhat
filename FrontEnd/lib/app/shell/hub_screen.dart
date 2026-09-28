@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../shared/widgets/content_pane.dart';
+import '../../shared/widgets/hub_tile.dart';
 import '../theme/app_tokens.dart';
 import 'app_navigation.dart';
 
@@ -21,6 +22,7 @@ class HubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final destination = AppNavigation.destinations(context)
         .firstWhere((d) => d.path == destinationPath);
+    final footer = destination.footer;
 
     return Scaffold(
       appBar: AppBar(title: Text(destination.label)),
@@ -34,20 +36,40 @@ class HubScreen extends StatelessWidget {
             );
             final usable = constraints.maxWidth - padding.horizontal;
             final columns = usable ~/ 280 < 1 ? 1 : usable ~/ 280;
+            final grid = SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: columns,
+              mainAxisSpacing: AppSpacing.md,
+              crossAxisSpacing: AppSpacing.md,
+              // Chiều cao cố định thay cho tỉ lệ: tỉ lệ làm ô cao vống lên
+              // khi cột rộng ra, còn nội dung ô thì không đổi.
+              mainAxisExtent: _tileExtent(context),
+            );
 
-            return GridView.builder(
-              padding: padding,
-              itemCount: destination.entries.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: columns,
-                mainAxisSpacing: AppSpacing.md,
-                crossAxisSpacing: AppSpacing.md,
-                // Chiều cao cố định thay cho tỉ lệ: tỉ lệ làm ô cao vống lên
-                // khi cột rộng ra, còn nội dung ô thì không đổi.
-                mainAxisExtent: _tileExtent(context),
-              ),
-              itemBuilder: (context, i) =>
-                  _HubTile(entry: destination.entries[i]),
+            return CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding: footer == null
+                      ? padding
+                      : padding.copyWith(bottom: 0),
+                  sliver: SliverGrid(
+                    gridDelegate: grid,
+                    delegate: SliverChildBuilderDelegate(
+                      (context, i) => _EntryTile(entry: destination.entries[i]),
+                      childCount: destination.entries.length,
+                    ),
+                  ),
+                ),
+                // Ô hành động (Đăng xuất) tách khỏi các mục điều hướng bằng một
+                // khoảng lớn, nhưng vẫn đúng kích thước một ô của lưới.
+                if (footer != null)
+                  SliverPadding(
+                    padding: padding.copyWith(top: AppSpacing.xl),
+                    sliver: SliverGrid(
+                      gridDelegate: grid,
+                      delegate: SliverChildListDelegate([footer(context)]),
+                    ),
+                  ),
+              ],
             );
           },
         ),
@@ -70,69 +92,21 @@ double _tileExtent(BuildContext context) {
   return content + AppSpacing.card.vertical + AppSpacing.sm;
 }
 
-class _HubTile extends StatelessWidget {
-  const _HubTile({required this.entry});
+/// Ô dẫn tới trang của một mục con.
+class _EntryTile extends StatelessWidget {
+  const _EntryTile({required this.entry});
 
   final AppNavEntry entry;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.zero,
-      child: InkWell(
-        onTap: () => context.go(entry.path),
-        child: Padding(
-          padding: AppSpacing.card,
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: entry.color.withValues(alpha: 0.12),
-                  borderRadius: AppRadius.mdAll,
-                ),
-                child: Icon(entry.icon, color: entry.color),
-              ),
-              AppGap.md,
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // `Flexible` để khi người dùng phóng to cỡ chữ hệ thống,
-                    // khối chữ bớt dòng thay vì đội cao hơn ô thẻ và tràn.
-                    Flexible(
-                      child: Text(
-                        entry.label,
-                        style: theme.textTheme.titleMedium,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    if (entry.subtitle != null)
-                      Flexible(
-                        child: Text(
-                          entry.subtitle!,
-                          style: theme.textTheme.bodySmall,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              if (entry.trailing case final trailing?) ...[
-                AppGap.sm,
-                trailing(context),
-              ],
-            ],
-          ),
-        ),
-      ),
+    return HubTile(
+      label: entry.label,
+      subtitle: entry.subtitle,
+      icon: entry.icon,
+      color: entry.color,
+      onTap: () => context.go(entry.path),
+      trailing: entry.trailing?.call(context),
     );
   }
 }

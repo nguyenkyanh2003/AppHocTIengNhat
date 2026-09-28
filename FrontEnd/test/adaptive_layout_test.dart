@@ -97,6 +97,37 @@ void main() {
     test('không nhận nhầm đường dẫn chỉ trùng tiền tố chuỗi', () {
       expect(AppNavigation.indexOfLocation(destinations, '/homework'), -1);
     });
+
+    test('mục con của trang hub tô sáng đích đến chứa nó', () {
+      const withEntries = [
+        AppDestination(
+          path: '/home',
+          label: 'Trang chủ',
+          icon: Icons.home,
+          selectedIcon: Icons.home,
+        ),
+        AppDestination(
+          path: '/account',
+          label: 'Tài khoản',
+          icon: Icons.person,
+          selectedIcon: Icons.person,
+          entries: [
+            AppNavEntry(
+              path: '/profile',
+              label: 'Hồ sơ',
+              icon: Icons.badge,
+              color: AppColors.primary,
+            ),
+          ],
+        ),
+      ];
+
+      // `/profile` không nằm dưới `/account`, nên trước đây thanh dưới rơi về
+      // ô đầu tiên và tô sáng nhầm Trang chủ.
+      expect(AppNavigation.indexOfLocation(withEntries, '/profile'), 1);
+      expect(AppNavigation.indexOfLocation(withEntries, '/profile/edit'), 1);
+      expect(AppNavigation.indexOfLocation(withEntries, '/profiles'), -1);
+    });
   });
 
   group('AppScrollBehavior', () {

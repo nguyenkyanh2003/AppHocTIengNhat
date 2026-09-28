@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../features/auth/widgets/logout_tile.dart';
 import '../../features/srs/widgets/srs_due_badge.dart';
 import '../localization/app_localizations.dart';
 import '../theme/app_tokens.dart';
@@ -40,6 +41,7 @@ class AppDestination {
     required this.selectedIcon,
     this.entries = const [],
     this.adminOnly = false,
+    this.footer,
   });
 
   final String path;
@@ -48,6 +50,12 @@ class AppDestination {
   final IconData selectedIcon;
   final List<AppNavEntry> entries;
   final bool adminOnly;
+
+  /// Ô hành động đặt sau mọi mục của trang hub (ví dụ Đăng xuất).
+  ///
+  /// Tách khỏi [entries] vì nó là một thao tác, không phải trang để điều hướng
+  /// tới: không có đường dẫn, không tô sáng thanh điều hướng.
+  final WidgetBuilder? footer;
 
   bool get isHub => entries.isNotEmpty;
 }
@@ -192,6 +200,7 @@ abstract final class AppNavigation {
         label: l10n.account,
         icon: Icons.person_outline,
         selectedIcon: Icons.person,
+        footer: (_) => const LogoutTile(),
         entries: const [
           AppNavEntry(
             path: '/profile',
@@ -337,6 +346,10 @@ abstract final class AppNavigation {
 
   /// Chỉ số đích đến đang mở, suy từ URL hiện tại.
   ///
+  /// Trang của một mục con (`/profile` trong hub Tài khoản) tô sáng đích đến
+  /// chứa mục đó: đường dẫn mục con không nằm dưới đường dẫn hub, nên chỉ so
+  /// tiền tố hub thì thanh dưới rơi về ô đầu tiên và tô sáng nhầm Trang chủ.
+  ///
   /// Trả `-1` khi trang hiện tại không thuộc đích đến nào, để shell không tô
   /// sáng nhầm mục.
   static int indexOfLocation(
@@ -346,13 +359,20 @@ abstract final class AppNavigation {
     var best = -1;
     var bestLength = 0;
     for (var i = 0; i < destinations.length; i++) {
-      final path = destinations[i].path;
-      final matches = location == path || location.startsWith('$path/');
-      if (matches && path.length > bestLength) {
-        best = i;
-        bestLength = path.length;
+      final destination = destinations[i];
+      for (final path in [
+        destination.path,
+        for (final entry in destination.entries) entry.path,
+      ]) {
+        if (_isUnder(location, path) && path.length > bestLength) {
+          best = i;
+          bestLength = path.length;
+        }
       }
     }
     return best;
   }
+
+  static bool _isUnder(String location, String path) =>
+      location == path || location.startsWith('$path/');
 }
