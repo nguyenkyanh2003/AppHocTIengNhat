@@ -56,6 +56,10 @@ const REMOVED_ROUTES = [
   ['get', '/api/progress/study-time'],
   ['delete', '/api/progress/admin/bulk/delete'],
   ['post', '/api/progress/lesson/507f1f77bcf86cd799439011/update'],
+  // transactions
+  ['get', '/api/transactions/my-transactions'],
+  ['post', '/api/transactions/admin/507f1f77bcf86cd799439011/refund'],
+  ['get', '/api/transactions/admin/stats/overview'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {

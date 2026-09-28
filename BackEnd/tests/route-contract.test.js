@@ -27,7 +27,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 205;
+const expectedCount = 194;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -46,7 +46,8 @@ const expectedCount = 205;
 // 2026-09-28: đợt 0 one-style — gỡ 21 route jlpt không có consumer (spec one-style §6.1).
 // 2026-09-28: đợt 0 one-style — gỡ 10 route exercise không có consumer (spec one-style §6.1).
 // 2026-09-28: đợt 0 one-style — gỡ 12 route progress không có consumer (spec one-style §6.1).
-const expectedSignatureHash = '604e9434e939771ddaa19846b3aadb7a5c17067260c31fa4592e8f3f4ef856ca';
+// 2026-09-28: đợt 0 one-style — gỡ 11 route transactions không có consumer (spec one-style §6.1).
+const expectedSignatureHash = '3dd6b3c5dfe5e6d5052586291a6893e2215a369b5ed476827845d25906f82ba9';
 
 const collectSignatures = async () => {
   const signatures = [];
