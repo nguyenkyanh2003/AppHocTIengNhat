@@ -201,8 +201,8 @@ còn trong hai danh sách miễn; ba lệnh kiểm tra xanh.
 **Khi gặp phức tạp ngoài dự kiến** (cần đổi model, migrate dữ liệu, đổi hành vi người dùng
 thấy được ngoài việc sửa lỗi field): dừng và hỏi, không tự mở rộng phạm vi.
 
-**Nhánh:** làm trên `refactor/one-style`; merge vào `main` khi chủ dự án quyết định. Phần home
-đang sửa dở trên `main` phải được commit trước đợt 0 vì nó đụng `app_providers.dart`.
+**Nhánh:** làm trên `refactor/one-style` (tách từ `main` tại `247423a`, cây làm việc sạch);
+merge vào `main` khi chủ dự án quyết định.
 
 ## 6. Đợt 0 — xoá code không ai dùng
 
@@ -290,7 +290,8 @@ hệ quả bắt buộc của việc repository phải khớp model.
 - `docs/architecture/conventions.md` — thêm quy tắc response xoá, thao tác ghi ở provider,
   `api_envelope.dart`, `shared/http/schemas.js`, hai architecture test, service nhận
   `ApiClient` qua constructor.
-- `CLAUDE.md` — số route, danh sách module, bỏ các "bẫy" không còn đúng.
+- `CLAUDE.md` — số route, danh sách module, bỏ các "bẫy" không còn đúng. File này không nằm
+  trong git (commit `6831420`), nên sửa tại chỗ và không có commit.
 - `docs/architecture/out-of-scope.md` và `redesign-roadmap.md` — ghi rằng Tier B và phần
   đóng băng đã được chuyển khuôn theo spec này.
 - `docs/architecture/project-structure.md` — thêm các file dùng chung mới.
@@ -304,7 +305,6 @@ hệ quả bắt buộc của việc repository phải khớp model.
 | Xoá nhầm route đang dùng | Kiểm tra tay từng route (§6.3); diff của `route-contract.test.js` được đọc lại trước commit |
 | Bản lưu ngoại tuyến dạng JSON cũ | Đổi `storageKey` sang `v2` ở đợt 6, trước khi merge |
 | Transaction cần replica set | Test không chạm MongoDB; chạy thử dùng DB phát triển trên Atlas như hiện nay |
-| Xung đột với phần home đang sửa dở | Commit phần đó trước đợt 0 |
 
 ## 11. Đo kết quả
 
