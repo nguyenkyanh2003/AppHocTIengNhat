@@ -201,8 +201,9 @@ còn trong hai danh sách miễn; ba lệnh kiểm tra xanh.
 **Khi gặp phức tạp ngoài dự kiến** (cần đổi model, migrate dữ liệu, đổi hành vi người dùng
 thấy được ngoài việc sửa lỗi field): dừng và hỏi, không tự mở rộng phạm vi.
 
-**Nhánh:** làm trên `refactor/one-style` (tách từ `main` tại `247423a`, cây làm việc sạch);
-merge vào `main` khi chủ dự án quyết định.
+**Nhánh:** commit và push thẳng lên `main`, không tạo nhánh riêng (quyết định của chủ dự án
+ngày 2026-09-29, sau khi đợt 0 được gộp vào `main`). Mỗi commit vẫn phải tự xanh vì không còn
+nhánh nào che chắn.
 
 ## 6. Đợt 0 — xoá code không ai dùng
 
