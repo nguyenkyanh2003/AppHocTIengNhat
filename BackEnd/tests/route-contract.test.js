@@ -9,7 +9,6 @@ const routeMounts = new Map([
   ['../src/modules/flashcards/flashcard.routes.js', '/api/flashcard'],
   ['../src/modules/grammar/grammar.routes.js', '/api/grammar'],
   ['../src/modules/study-groups/group.routes.js', '/api/group'],
-  ['../src/modules/chat/group-chat.routes.js', '/api/group-chat'],
   ['../src/modules/jlpt/jlpt.routes.js', '/api/jlpt'],
   ['../src/modules/kanji/kanji.routes.js', '/api/kanji'],
   ['../src/modules/lessons/lesson.routes.js', '/api/lesson'],
@@ -28,7 +27,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 257;
+const expectedCount = 248;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -43,7 +42,8 @@ const expectedCount = 257;
 //   +1 route `GET /api/streak/days` (lịch học theo khoảng ngày, spec streak §4.3).
 // 2026-09-25: +2 route Phần B `GET /api/streak/settings` và `PUT /api/streak/settings`
 //   (mục tiêu ngày và nhắc học, spec streak §5.1, §5.3). Không route nào ghi XP.
-const expectedSignatureHash = '141cc9f0228b58871049fb8afb2f754cad77ec56b60e6a5deedbc9c1a0956463';
+// 2026-09-28: đợt 0 one-style — gỡ 9 route chat không có consumer (spec one-style §6.1).
+const expectedSignatureHash = '5ba4c30391ee023160f3e431db859bf049800090a8927c0c171f3a1cc8f31518';
 
 const collectSignatures = async () => {
   const signatures = [];

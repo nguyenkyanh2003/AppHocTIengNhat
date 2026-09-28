@@ -33,3 +33,23 @@ test('cac duong tu cap thuong da bien mat khoi app that', async () => {
     assert.deepEqual(response.body, { message: 'API không tồn tại' });
   }
 });
+
+/**
+ * Route không màn hình nào gọi, đã gỡ ở đợt 0 (spec one-style §6.1).
+ *
+ * Mỗi path được chọn sao cho **không** khớp route tham số nào còn lại, nên phải
+ * ra đúng 404 của notFoundHandler — không tới middleware auth hay handler nào.
+ */
+const REMOVED_ROUTES = [
+  // chat
+  ['post', '/api/group-chat/507f1f77bcf86cd799439011'],
+  ['get', '/api/group-chat/507f1f77bcf86cd799439011'],
+];
+
+test('route không còn consumer đã bị gỡ khỏi app thật', async () => {
+  for (const [method, path] of REMOVED_ROUTES) {
+    const response = await request(app)[method](path).send({});
+    assert.equal(response.status, 404, `${method.toUpperCase()} ${path} phải 404`);
+    assert.deepEqual(response.body, { message: 'API không tồn tại' });
+  }
+});

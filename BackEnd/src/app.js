@@ -11,7 +11,6 @@ import LessonRoutes from './modules/lessons/lesson.routes.js';
 import ExerciseRoutes from './modules/exercise/exercise.routes.js';
 import ProgressRoutes from './modules/progress/progress.routes.js';
 import GroupRoutes from './modules/study-groups/group.routes.js';
-import GroupChatRoutes from './modules/chat/group-chat.routes.js';
 import JLPTRoutes from './modules/jlpt/jlpt.routes.js';
 import GrammarRoutes from './modules/grammar/grammar.routes.js';
 import NotificationRoutes from './modules/notifications/notification.routes.js';
@@ -57,7 +56,6 @@ app.use('/api/lesson', LessonRoutes);
 app.use('/api/exercise', ExerciseRoutes);
 app.use('/api/progress', ProgressRoutes);
 app.use('/api/group', GroupRoutes);
-app.use('/api/group-chat', GroupChatRoutes);
 app.use('/api/jlpt', JLPTRoutes);
 app.use('/api/grammar', GrammarRoutes);
 app.use('/api/notifications', NotificationRoutes);
@@ -84,7 +82,6 @@ app.get('/', (req, res) => {
       '/api/exercise',
       '/api/progress',
       '/api/group',
-      '/api/group-chat',
       '/api/jlpt',
       '/api/grammar',
       '/api/notifications',
