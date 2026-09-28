@@ -206,8 +206,9 @@ merge vào `main` khi chủ dự án quyết định.
 
 ## 6. Đợt 0 — xoá code không ai dùng
 
-Hai commit: một cho backend (route, handler, helper chỉ phục vụ chúng, test liên quan,
-`route-contract.test.js` 257 → 153 route kèm hash mới), một cho Flutter. **Không xoá model hay
+Mỗi nhóm module một commit backend (route, handler, helper chỉ phục vụ chúng, test liên quan,
+`route-contract.test.js` cập nhật trong cùng commit), cuối cùng 257 → 153 route; một commit cho
+Flutter. Chia nhỏ để mỗi commit tự xanh và đọc lại được. **Không xoá model hay
 collection nào**, không đụng dữ liệu MongoDB. Seed script đọc thẳng model nên không phụ thuộc
 các route bị xoá.
 
