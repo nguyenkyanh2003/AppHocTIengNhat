@@ -20,7 +20,7 @@ Base URL mặc định: `http://localhost:3000/api`.
 | `/jlpt` | Đề thi, phiên làm bài và chấm điểm JLPT |
 | `/srs`, `/flashcard` | Ôn tập lặp lại ngắt quãng và bộ thẻ |
 | `/progress`, `/streak`, `/achievement` | Dashboard, XP, streak và thành tích |
-| `/group`, `/group-chat` | Nhóm học tập và tin nhắn |
+| `/group` | Nhóm học tập |
 | `/notebook`, `/news`, `/notifications` | Ghi chú, tin tức và thông báo |
 | `/report`, `/transactions` | Báo cáo và yêu cầu giao dịch |
 
