@@ -44,6 +44,10 @@ const REMOVED_ROUTES = [
   // chat
   ['post', '/api/group-chat/507f1f77bcf86cd799439011'],
   ['get', '/api/group-chat/507f1f77bcf86cd799439011'],
+  // jlpt
+  ['get', '/api/jlpt/admin/all'],
+  ['get', '/api/jlpt/history/me'],
+  ['post', '/api/jlpt/submit/507f1f77bcf86cd799439011'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {

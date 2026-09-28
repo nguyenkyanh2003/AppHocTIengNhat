@@ -3,12 +3,10 @@ import test from 'node:test';
 
 import Exercise from '../model/Exercise.js';
 import Grammar from '../model/Grammar.js';
-import JLPT from '../model/JLPT.js';
 import Lesson from '../model/Lesson.js';
 import * as exerciseController from '../src/modules/exercise/exercise.controller.js';
 import { createOrReviveGrammar } from '../src/modules/grammar/grammar-natural-key.js';
 import * as grammarController from '../src/modules/grammar/grammar.controller.js';
-import * as jlptController from '../src/modules/jlpt/jlpt.controller.js';
 import { isDuplicateKeyError } from '../src/shared/db/duplicate-key.js';
 
 const ID = '507f1f77bcf86cd799439011';
@@ -190,26 +188,4 @@ test('đổi tên bài tập trùng bài khác trả 409', async (t) => {
 
   assert.equal(res.statusCode, 409);
   assert.equal(res.body.code, 'DUPLICATE_EXERCISE');
-});
-
-test('tạo và đổi tên đề JLPT trùng tên trả 409', async (t) => {
-  stub(t, JLPT, 'create', async () => {
-    throw duplicateKey();
-  });
-  stub(t, JLPT, 'findByIdAndUpdate', async () => {
-    throw duplicateKey();
-  });
-
-  const created = fakeRes();
-  await jlptController.createExam(
-    { body: { title: 'Đề mẫu', level: 'N4' }, user: { _id: ID } },
-    created,
-  );
-  assert.equal(created.statusCode, 409);
-  assert.equal(created.body.code, 'DUPLICATE_EXAM');
-
-  const updated = fakeRes();
-  await jlptController.updateExam({ params: { id: ID }, body: { title: 'Đề mẫu' } }, updated);
-  assert.equal(updated.statusCode, 409);
-  assert.equal(updated.body.code, 'DUPLICATE_EXAM');
 });
