@@ -77,8 +77,6 @@ class GrammarProvider with ChangeNotifier {
       final grammar = await _grammarService.getGrammarDetail(grammarId);
       if (grammar != null) {
         _selectedGrammar = grammar;
-        // Tăng view count
-        await _grammarService.incrementGrammarView(grammarId);
       } else {
         _error = 'Không tìm thấy ngữ pháp';
       }
@@ -175,34 +173,6 @@ class GrammarProvider with ChangeNotifier {
         level: level ?? _selectedLevel,
         search: search ?? _searchQuery,
       );
-    }
-  }
-
-  /// Yêu thích ngữ pháp
-  Future<bool> favoriteGrammar(String grammarId) async {
-    try {
-      final result = await _grammarService.favoriteGrammar(grammarId);
-      if (result) {
-        notifyListeners();
-      }
-      return result;
-    } catch (e) {
-      debugPrint('Error favoriting grammar: $e');
-      return false;
-    }
-  }
-
-  /// Bỏ yêu thích
-  Future<bool> unfavoriteGrammar(String grammarId) async {
-    try {
-      final result = await _grammarService.unfavoriteGrammar(grammarId);
-      if (result) {
-        notifyListeners();
-      }
-      return result;
-    } catch (e) {
-      debugPrint('Error unfavoriting grammar: $e');
-      return false;
     }
   }
 

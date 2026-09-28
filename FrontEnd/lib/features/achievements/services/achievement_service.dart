@@ -57,15 +57,4 @@ class AchievementService {
       return null;
     }
   }
-
-  // Create achievement (admin)
-  Future<Achievement?> createAchievement(Map<String, dynamic> data) async {
-    try {
-      final response = await _apiClient.post('/achievement/create', data);
-      return Achievement.fromJson(response);
-    } catch (e) {
-      debugPrint('Error creating achievement: $e');
-      return null;
-    }
-  }
 }

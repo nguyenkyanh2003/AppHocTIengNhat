@@ -95,39 +95,6 @@ class GrammarService {
     }
   }
 
-  /// Tăng view count cho ngữ pháp
-  Future<bool> incrementGrammarView(String grammarId) async {
-    try {
-      await _apiClient.post('/grammar/$grammarId/view', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error incrementing view: $e');
-      return false;
-    }
-  }
-
-  /// Yêu thích ngữ pháp
-  Future<bool> favoriteGrammar(String grammarId) async {
-    try {
-      await _apiClient.post('/grammar/$grammarId/favorite', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error favoriting grammar: $e');
-      return false;
-    }
-  }
-
-  /// Bỏ yêu thích ngữ pháp
-  Future<bool> unfavoriteGrammar(String grammarId) async {
-    try {
-      await _apiClient.delete('/grammar/$grammarId/favorite');
-      return true;
-    } catch (e) {
-      debugPrint('Error unfavoriting grammar: $e');
-      return false;
-    }
-  }
-
   String _buildQueryString(Map<String, dynamic> params) {
     final queryParts = <String>[];
     params.forEach((key, value) {
