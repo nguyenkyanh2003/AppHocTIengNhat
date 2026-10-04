@@ -3,6 +3,7 @@ import Exercise from '../../../model/Exercise.js';
 import ExerciseResult from '../../../model/ExerciseResult.js';
 import mongoose from 'mongoose';
 
+
 // USER ROUTES
 
 // Lấy danh sách bài tập theo cấp độ
