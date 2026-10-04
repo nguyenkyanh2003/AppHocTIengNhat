@@ -378,20 +378,3 @@ FrontEnd/
 │   └── shared/             widget dùng chung nhiều feature
 ├── test/                   widget và unit test
 └── integration_test/       luồng điều hướng trên trình duyệt
-
-docs/
-├── architecture/           cấu trúc dự án, quy ước code, mô hình dữ liệu
-├── api/                    tổng quan REST API
-└── testing/                báo cáo kiểm thử
-```
-
-## Tài liệu
-
-| Tài liệu | Nội dung |
-| --- | --- |
-| [system-overview.md](docs/architecture/system-overview.md) | Kiến trúc hệ thống và luồng dữ liệu |
-| [project-structure.md](docs/architecture/project-structure.md) | Cấu trúc thư mục và quy tắc đặt file |
-| [conventions.md](docs/architecture/conventions.md) | Quy ước code bắt buộc cho cả hai phía |
-| [data-model.md](docs/architecture/data-model.md) | Mô hình dữ liệu và quan hệ giữa collection |
-| [API_OVERVIEW.md](docs/api/API_OVERVIEW.md) | Nhóm endpoint, xác thực, response contract |
-| [TEST_REPORT.md](docs/testing/TEST_REPORT.md) | Báo cáo kiểm thử |
