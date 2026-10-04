@@ -25,3 +25,5 @@ npm-debug.log*
 Thumbs.db
 CLAUDE.md
 .claude
+docs/
+.superpowers
