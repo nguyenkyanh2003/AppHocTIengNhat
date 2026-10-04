@@ -13,7 +13,7 @@ void main() {
   /// đúng con số mới, đừng để nguyên.
   const maxHardcodedFontSize = 43;
 
-  /// Module đang đóng băng theo redesign-roadmap.md — chưa dọn, không chặn.
+  /// Module đang đóng băng — chưa dọn, không chặn.
   const frozenDirs = ['lib/features/study_groups', 'lib/features/chat'];
 
   /// Sáu màn của luồng demo đã dọn sạch — không được để lọt `fontSize` mới vào.

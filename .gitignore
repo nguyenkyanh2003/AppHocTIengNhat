@@ -23,7 +23,8 @@ npm-debug.log*
 .idea/
 .DS_Store
 Thumbs.db
+
 CLAUDE.md
 .claude
-docs/
 .superpowers
+docs/
