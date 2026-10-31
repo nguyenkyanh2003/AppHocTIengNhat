@@ -1,32 +1,4 @@
-/**
- * Chép dữ liệu streak cũ (`xp_history`, `reward_keys`, `activity_dates`, huy
- * hiệu đã có) sang nhật ký `ActivityEvent` và lịch `StreakDay` — spec streak
- * §4.1 bước 5–8. Quyết định chép gì nằm ở `streak-legacy.js`; file này chỉ
- * đọc, ghi và đối chiếu.
- *
- * Mặc định là **chạy thử**: in kế hoạch và số liệu, không ghi gì. Ghi thật cần
- * `--apply` cùng một bản sao lưu đã khôi phục thử thành công.
- *
- * Chạy lại an toàn: event và ngày đã có thì bỏ qua (khoá tự nhiên), trường tóm
- * tắt chỉ được điền khi còn trống, và `total_xp` không bao giờ bị sửa.
- *
- *   node scripts/audit-user-streak.js                       # 1. xem dữ liệu và múi giờ gợi ý
- *   node scripts/backup-collections.js                      # 2. sao lưu
- *   node scripts/restore-collections.js --dir backups/<t> --target-db AppHocTiengNhat_restore_check
- *   node scripts/migrate-streak-legacy.js --legacy-tz Asia/Ho_Chi_Minh              # 3. chạy thử
- *   node scripts/migrate-streak-legacy.js --legacy-tz Asia/Ho_Chi_Minh --apply --backup backups/<t>
- *   node scripts/migrate-streak-legacy.js --legacy-tz Asia/Ho_Chi_Minh --apply --backup backups/<t> --drop-legacy-arrays
- *
- * Cờ:
- *   --legacy-tz <IANA>     Múi giờ máy chủ đã ghi `activity_dates`. Thiếu cờ này thì
- *                          bỏ qua phần ngày và `last_activity_day` — không đoán.
- *   --cutover YYYY-MM-DD   Ngày bắt đầu luật mới (mặc định 2026-09-20).
- *   --apply                Ghi thật. Cần --backup.
- *   --backup <thư mục>     Bản sao lưu của `backup-collections.js` đã khôi phục thử.
- *   --drop-legacy-arrays   Sau khi đối chiếu đạt, gỡ ba mảng cũ khỏi `UserStreak`.
- *   --remove-orphans       Gỡ tóm tắt streak (và nhật ký, lịch) của tài khoản đã bị xoá —
- *                          chúng hiện thành dòng "user: null" trên bảng xếp hạng.
- */
+
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 

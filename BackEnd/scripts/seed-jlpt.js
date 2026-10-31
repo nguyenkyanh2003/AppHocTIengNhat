@@ -1,15 +1,4 @@
-/**
- * Nạp đề JLPT N4 rút gọn — upsert theo `title`, không xoá gì.
- *
- * Bản cũ gọi `JLPT.deleteMany({})`: xoá luôn cả đề N3 nhập bằng script khác,
- * và mỗi lần chạy đề có `_id` mới nên `LearningHistory.exam` của mọi lượt thi
- * trỏ vào đề không còn tồn tại. Đề đã có mà khác nội dung chỉ bị ghi đè khi
- * chạy `--overwrite`; đáp án chấm theo **vị trí** câu, nên ghi đè làm đổi thứ tự
- * câu sẽ lệch với bài làm đã lưu.
- *
- *   node scripts/seed-jlpt.js --dry-run
- *   node scripts/seed-jlpt.js [--overwrite]
- */
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import JLPT from '../model/JLPT.js';

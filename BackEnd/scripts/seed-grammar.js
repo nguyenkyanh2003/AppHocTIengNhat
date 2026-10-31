@@ -1,10 +1,4 @@
-/**
- * Nạp 16 mẫu ngữ pháp — upsert theo khoá tự nhiên `(title, level)`, không xoá
- * gì. Xem `content-upsert.js` về lý do và cách xử lý xung đột.
- *
- *   node scripts/seed-grammar.js --dry-run
- *   node scripts/seed-grammar.js [--overwrite]
- */
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Grammar from '../model/Grammar.js';

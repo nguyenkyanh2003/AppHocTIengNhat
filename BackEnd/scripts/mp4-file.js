@@ -1,18 +1,5 @@
 import { createHash } from 'node:crypto';
 
-/**
- * Đọc và tối ưu file MP4 cho việc phát trên web, không cần ffmpeg.
- *
- * Trình phát chỉ bắt đầu được khi đã có hộp `moov` (mục lục của video: thời
- * lượng, vị trí từng khung hình). File quay/xuất thông thường đặt `moov` ở
- * **cuối**, nên trình duyệt phải tải phần đầu, phát hiện thiếu mục lục, rồi xin
- * thêm phần cuối file mới phát được — người học thấy vòng xoay lâu hơn hẳn.
- * [faststart] chuyển `moov` lên trước dữ liệu hình (`mdat`), giống
- * `ffmpeg -movflags +faststart`, để khung hình đầu hiện ngay.
- *
- * Toàn bộ là hàm thuần trên `Buffer`: test dựng file MP4 giả trong bộ nhớ.
- */
-
 /** Hộp chứa hộp con trên đường từ `moov` tới bảng vị trí khối dữ liệu. */
 const CONTAINERS = new Set(['moov', 'trak', 'mdia', 'minf', 'stbl']);
 

@@ -1,23 +1,6 @@
 import { loadVideoKeyPhrases } from './lesson-video-phrases.js';
 import { SITUATIONAL_LESSONS } from './situational-lessons.js';
 
-/**
- * Bài tập mẫu dựng **tự động** từ bảng từ vựng của bộ bài chủ đề.
- *
- * Không có câu tiếng Nhật nào được soạn mới ở đây: đề và đáp án đều lấy nguyên
- * từ `situational-lessons.js`, nên bài tập đúng đến đâu là do bảng từ đó đúng
- * đến đó (bảng từ còn chờ người biết tiếng Nhật rà, xem đầu file đó).
- *
- * Mỗi bài học sinh ba bài tập trắc nghiệm 4 đáp án, theo ba dạng quen thuộc của
- * các app học tiếng Nhật: nghĩa của từ, cách đọc chữ Hán, và hiểu câu trong hội
- * thoại của bài. Bài có video lấy câu hội thoại từ các mẫu câu trong kịch bản
- * video (`data/lesson-videos/`); bài chưa có video dùng hội thoại soạn sẵn. Khớp model `Exercise` hiện tại (2–4 đáp án, một đáp án đúng).
- * Đáp án nhiễu lấy **trong cùng bài**, chọn theo vị trí chứ không `Math.random`,
- * để chạy lại seed luôn ra đúng cùng nội dung và upsert không báo khác nhau giả.
- *
- * Dữ liệu thuần, không chạm DB — `seed-exercises.js` lo phần ghi.
- */
-
 const CHOICES = 4;
 
 /**

@@ -1,13 +1,6 @@
 import { LEGACY_XP_TYPE } from '../src/modules/streaks/streak.repository.js';
 import { dayKey, isDayKey } from '../src/modules/streaks/streak-rules.js';
 
-/**
- * Logic thuần của audit và migration dữ liệu streak cũ (spec streak §4.1).
- *
- * Không chạm DB: `audit-user-streak.js` và `migrate-streak-legacy.js` đọc dữ
- * liệu thô rồi đưa vào đây, nên mọi quyết định — chép dòng nào, khoá gì, ngày
- * nào, sửa trường nào — đều test được bằng fixture.
- */
 
 /** Đóng dấu vào mọi bản ghi migration tạo ra, để phân biệt và chạy lại an toàn. */
 export const MIGRATION_VERSION = 'streak-legacy-migration@2026-09-23';

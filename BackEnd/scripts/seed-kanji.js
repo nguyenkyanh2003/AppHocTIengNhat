@@ -1,14 +1,4 @@
-/**
- * Nạp 20 Kanji mẫu có âm Hán-Việt — upsert theo `character` (unique index),
- * không xoá gì. Xem `content-upsert.js` về lý do và cách xử lý xung đột.
- *
- * Không gán `lessonId`: bản cũ gán bài theo vòng `index % số bài`, tức gắn chữ
- * vào một bài ngẫu nhiên không liên quan. Liên kết bài học đi qua trang quản
- * trị hoặc `sync-lesson-relations.js`, và upsert không đụng liên kết đã có.
- *
- *   node scripts/seed-kanji.js --dry-run
- *   node scripts/seed-kanji.js [--overwrite]
- */
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Kanji from '../model/Kanji.js';

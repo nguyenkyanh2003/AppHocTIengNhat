@@ -2,15 +2,6 @@ import { createHash } from 'node:crypto';
 
 import mongoose from 'mongoose';
 
-/**
- * Định dạng file sao lưu: mảng EJSON **canonical**, sắp theo `_id`.
- *
- * Không dùng `JSON.stringify` như bản sao lưu bài học cũ: JSON thường biến
- * ObjectId và Date thành chuỗi, nên khôi phục ra dữ liệu **khác kiểu** — một
- * `user` kiểu chuỗi không khớp `user` kiểu ObjectId ở bất kỳ truy vấn nào. EJSON
- * canonical giữ đúng kiểu BSON, và vì sắp theo `_id` nên cùng dữ liệu luôn ra
- * cùng một checksum — đó là cách so bản sao lưu với bản khôi phục.
- */
 const { EJSON } = mongoose.mongo.BSON;
 
 const byId = (a, b) => String(a._id).localeCompare(String(b._id));

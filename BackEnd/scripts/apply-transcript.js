@@ -7,23 +7,6 @@ import { allManifestNames, manifestsByLesson, parseLevel, parseManifestName } fr
 import { transcriptSkeleton } from './lesson-video-staging.js';
 import { applyTranscripts, parseTranscriptText } from './transcript-text.js';
 
-/**
- * Đưa lời thoại gõ tay từ `data/lesson-videos/<bài>.txt` vào file mô tả
- * `data/lesson-videos/<bài>.json`.
- *
- * Bài chưa có file `.txt` thì lệnh này **tạo khung** đủ tiêu đề từng cảnh rồi
- * dừng lại — gõ câu thoại vào đó xong chạy lại là ghi vào file mô tả.
- *
- * Không ghi DB — chạy `import-lesson-videos.js --all` sau đó. Định dạng file
- * văn bản mô tả trong `transcript-text.js`; mẫu đầy đủ ở
- * `data/lesson-videos/n5-01-greeting.txt`.
- *
- *   node scripts/apply-transcript.js --all                 # mọi bài, mọi trình độ
- *   node scripts/apply-transcript.js --lesson 9            # đọc n5-09-*.txt vào n5-09-*.json
- *   node scripts/apply-transcript.js --level N4 --lesson 9 # n4-09-*
- *   node scripts/apply-transcript.js --lesson 9 --dry-run
- */
-
 const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
 const MANIFEST_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');
 

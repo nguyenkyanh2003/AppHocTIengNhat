@@ -12,26 +12,6 @@ import {
 
 dotenv.config();
 
-/**
- * Gắn nhãn chia bộ (`topic`, `word_type`, `difficulty`) cho từ vựng đã có.
- *
- * Chỉ **cập nhật** từ đã tồn tại, khớp theo khoá tự nhiên `(word, hiragana)`
- * — không tạo từ mới, không xoá gì, không đổi `_id`, nên tiến độ SRS giữ
- * nguyên. Từ có trong file mà không có trong DB được báo ra, không tự thêm:
- * file nhãn không có nghĩa, nhập từ là việc của `import-vocabulary.js`.
- *
- * Cách dùng:
- *
- *   node scripts/apply-vocabulary-tags.js --dry-run
- *   node scripts/apply-vocabulary-tags.js
- *   node scripts/apply-vocabulary-tags.js --file data/vocabulary-tags.json --overwrite
- *
- * Cờ:
- *   --file <path>  Mặc định `data/vocabulary-tags.json`.
- *   --dry-run      Báo cáo, không ghi.
- *   --overwrite    Cho phép ghi đè nhãn đã khác trong DB (mặc định: báo xung đột).
- */
-
 const DEFAULT_FILE = 'data/vocabulary-tags.json';
 const LOG_LIMIT = 30;
 

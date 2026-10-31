@@ -1,22 +1,6 @@
 import { POLICY_VERSION, xpFor } from '../src/modules/streaks/streak-policy.js';
 import { addDays, daysBetween } from '../src/modules/streaks/streak-rules.js';
 
-/**
- * Lịch sử học dựng sẵn cho tài khoản demo — dữ liệu thuần, `seed-demo.js` lo
- * phần ghi.
- *
- * Mục đích là để màn streak, heatmap, lịch sử XP, bảng xếp hạng và huy hiệu có
- * nội dung như khi mở một app học thật sau vài tuần sử dụng. Ba nguyên tắc:
- *
- * 1. **Mọi event đều có dữ liệu thật đứng sau.** Lượt ôn trỏ vào thẻ SRS có
- *    thật của user; lượt nộp bài đi kèm một `ExerciseResult` với bài làm từng
- *    câu trên bài tập có thật. XP lấy từ `streak-policy`, không tự đặt số.
- * 2. **Tất định.** Mỗi tài khoản có hạt giống riêng (theo username), nên chạy
- *    lại cho đúng cùng một lịch sử; khoá event gắn với ngày nên không nhân bản.
- * 3. **Không đè hoạt động thật.** Hôm nay để trống cho người demo tự học; ngày
- *    đã có hoạt động thật thì runner bỏ qua.
- */
-
 /** Hạt giống 32-bit từ một chuỗi (FNV-1a). */
 const hashOf = (text) => {
   let hash = 0x811c9dc5;

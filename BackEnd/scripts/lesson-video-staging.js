@@ -1,15 +1,3 @@
-/**
- * Đọc thư mục video gốc của một chủ đề và lên kế hoạch đưa vào app.
- *
- * Video gốc được đặt tên theo đúng tên cảnh trên trang nguồn:
- *   `10－1．Em muốn mở tài khoản..mp4`   → cảnh 1 của bài 10
- *   `10. Ôn tập.mp4`                     → video ôn tập của bài 10
- * Dấu gạch và dấu chấm nhận cả bản ASCII lẫn bản toàn độ rộng (－ ．).
- *
- * Hàm thuần, không đọc đĩa — `stage-lesson-videos.js` lo phần file. Mọi bất
- * thường làm **cả thư mục** bị từ chối: đưa nửa số cảnh vào app, hoặc đoán
- * file nào mới là cảnh đúng, đều tệ hơn là báo rõ để tải lại.
- */
 
 export const VIDEO_SOURCE = '文部科学省「つながるひろがる にほんごでのくらし」';
 

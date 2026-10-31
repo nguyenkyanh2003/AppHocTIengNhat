@@ -1,24 +1,4 @@
-/**
- * Nạp bộ dữ liệu demo: tài khoản, thẻ SRS, lịch sử học 20 ngày, bạn học cho
- * bảng xếp hạng và huy hiệu đã đạt theo lịch sử đó.
- *
- * Script **không** gọi `deleteMany({})` trên cả collection. Nó chỉ đụng vào
- * đúng những bản ghi của bộ demo, tra theo khoá tự nhiên (`TenDangNhap`,
- * `word + hiragana`, khoá event theo ngày). Lý do: script được chạy trên cùng
- * database đang dùng để phát triển, xoá sạch collection sẽ cuốn theo cả dữ liệu
- * không liên quan.
- *
- * Chạy trước: `seed-situational-lessons.js` (bài và từ), `seed-exercises.js`
- * (bài tập mà lịch sử nộp bài trỏ tới), `seedAchievements.js` (định nghĩa huy
- * hiệu). Chạy lại nhiều lần cho ra cùng một kết quả; chạy vào ngày khác thì
- * lịch sử nối thêm đúng những ngày còn thiếu.
- *
- *   node scripts/seed-demo.js               # toàn bộ bộ demo
- *   node scripts/seed-demo.js --bulk=40     # thêm 40 thẻ N5 đến hạn để thử ôn nhiều đợt
- *   node scripts/seed-demo.js --no-history  # bỏ lịch sử học và bạn học
- *   node scripts/seed-demo.js --no-progress # bỏ thẻ SRS mẫu của học viên
- *   node scripts/seed-demo.js --reset       # xoá tài khoản demo và mọi dữ liệu của họ
- */
+
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';

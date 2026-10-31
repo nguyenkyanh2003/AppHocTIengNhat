@@ -1,36 +1,5 @@
 import { parseTimecode } from '../src/modules/lessons/lesson-video.review.js';
 
-/**
- * Đọc nội dung học theo video từ một file văn bản gõ tay: lời thoại chạy theo
- * video (phần "Kịch bản"), câu then chốt (phần "Mẫu câu") và bảng từ vựng.
- *
- * Lời thoại chạy theo video cần **mốc thời gian của từng câu**, mà mốc đó chỉ
- * có được khi ngồi xem video. Vì phải gõ tay, định dạng ở đây là văn bản thuần
- * thay vì JSON: không dấu ngoặc, không dấu phẩy cuối dòng, sai ở đâu báo đúng
- * số dòng đó.
- *
- *   # dòng ghi chú
- *   ## scene-1.mp4
- *   00:05  | アンジェラ / Anjera / Angela | すみません。       | Sumimasen.             | Xin lỗi, cho tôi hỏi.
- *   *00:07 | アンジェラ / Anjera / Angela | 牛乳はどこですか。 | Gyuunyuu wa doko desu ka. | Sữa ở đâu ạ?
- *   ### từ vựng
- *   牛乳 | ぎゅうにゅう | gyuunyuu | sữa
- *
- * Một dòng là một câu thoại, năm ô ngăn bằng `|`:
- *   1. `mốc bắt đầu` hoặc `bắt đầu-kết thúc` (`mm:ss`, `mm:ss:ff`); thêm `*`
- *      ở đầu để đánh dấu câu then chốt của cảnh;
- *   2. người nói — `tiếng Nhật`, `tiếng Nhật / tiếng Việt`, hoặc đủ ba dạng
- *      `tiếng Nhật / roma-ji / tiếng Việt`; để trống nếu không cần;
- *   3. câu tiếng Nhật (bắt buộc);
- *   4. roma-ji — để trống thì app không hiện lớp roma-ji của câu đó;
- *   5. nghĩa tiếng Việt (bắt buộc).
- *
- * `## <tên file>` mở đầu một cảnh, khớp tên file video trong
- * `uploads/lesson-videos/<bài>/`. Sau `### từ vựng`, mỗi dòng là một từ:
- * `mặt chữ | cách đọc | roma-ji | nghĩa` cho tới cảnh kế tiếp.
- *
- * Hàm thuần, không đọc đĩa — `apply-transcript.js` lo phần file.
- */
 
 const FIELDS = 5;
 const WORD_FIELDS = 4;

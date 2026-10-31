@@ -1,31 +1,3 @@
-/**
- * Bộ bài học theo chủ đề, tổ chức giống cách Tsunagaru (tsunagarujp.mext.go.jp)
- * trình bày: mỗi bài là một cảnh đời sống, có mục tiêu "làm được gì", một đoạn
- * hội thoại của cảnh đó và bảng từ vựng đi kèm. Cùng một chủ đề có thể có bài ở
- * nhiều cấp độ (ví dụ đi khám bệnh N4 chỉ nói triệu chứng, N3 kể bệnh sử).
- *
- * Phân bố: N5 12 bài · N4 19 · N3 4. Không có bài N2, N1: bài tình huống đi theo
- * video Tsunagaru, vốn chỉ có ba cấp tương đương N5–N3; người học N2, N1 luyện
- * đọc hiểu, ngữ pháp và đề JLPT ở các mục khác của app.
- *
- * N5 gồm đúng 12 bài theo thứ tự 12 chủ đề cấp 1 của Tsunagaru, N4 gồm đúng 19
- * bài theo 19 chủ đề cấp 2; bài nào cũng gắn video của chủ đề đó
- * (`data/lesson-videos/n5-*`, `n4-*`) — không có bài N5, N4 nào thiếu video,
- * để cả trình độ học theo cùng một kiểu. Từ vựng của bài N4 lấy từ bảng từ của
- * chính các cảnh video.
- *
- * Bài có video **không** có `dialogue` soạn sẵn: lời thoại của bài là kịch bản
- * chạy theo video. Hai đoạn hội thoại khác nhau cho cùng một tình huống chỉ
- * làm người học rối. `dialogue` ở đây dành cho bài chưa có video.
- *
- * ⚠️ Nội dung tiếng Nhật ở đây do Claude soạn và CHƯA được người biết tiếng Nhật
- * rà soát. Phải rà lại trước khi dùng trong bản bảo vệ hoặc demo chính thức.
- *
- * `title` là khoá tự nhiên để upsert: đổi tiêu đề một bài đã có sẽ tạo bài mới
- * và làm mất tiến độ học gắn với `_id` cũ.
- *
- * Dữ liệu thuần, không chạm DB — `seed-situational-lessons.js` lo phần ghi.
- */
 
 const turn = (speaker, textJa, reading, textVi) => ({
   speaker,

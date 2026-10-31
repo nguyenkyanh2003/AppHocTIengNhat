@@ -1,25 +1,3 @@
-/**
- * Đọc tài liệu lời thoại dạng Markdown (mỗi video một bảng) thành các câu
- * thoại theo bài và theo file video.
- *
- * Khuôn tài liệu:
- *
- *   ## Bài 8 – Đi tàu điện          (hoặc `## Tình huống 8 – …`)
- *   ### 8. Ôn tập · …          → summary.mp4
- *   ### 8-1 · …                → scene-1.mp4
- *   | Thời gian | Người nói | Lời thoại |
- *   |:---:|:---:|---|
- *   | **00:05** | 男性客       | 静岡に行きたいです。 |     ← tiếng Nhật
- *   | | Dansee-kyaku | Shizuoka ni ikitai desu. |           ← roma-ji
- *   | | Khách nam    | Tôi muốn đi Shizuoka.   |             ← tiếng Việt
- *
- * Mỗi câu là ba hàng liền nhau: hàng có mốc thời gian (tiếng Nhật), rồi hai
- * hàng không mốc (roma-ji, tiếng Việt), cột người nói cũng theo ba dạng đó.
- * Người nói viết nghiêng (`*Chủ đề*`) là nhãn chứ không phải người — thẻ tiêu
- * đề trên màn hình — nên chỉ đứng ở lớp tiếng Việt.
- *
- * Hàm thuần, không đọc đĩa — `import-transcript-markdown.js` lo phần file.
- */
 
 const LESSON_HEADING = /^##\s+(?:Bài|Tình huống)\s+(\d+)\b/;
 const VIDEO_HEADING = /^###\s+(\d+)(?:-(\d+))?\.?\s/;

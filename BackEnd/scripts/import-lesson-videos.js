@@ -11,31 +11,7 @@ import { contentHash, faststart, mp4Duration } from './mp4-file.js';
 
 dotenv.config({ quiet: true });
 
-/**
- * Gắn video + lời thoại vào bài học có sẵn.
- *
- * Mỗi file JSON trong `data/lesson-videos/` mô tả video của **một** bài, tìm
- * theo `lesson.title` (khoá tự nhiên của bài, giống seed bài học). Chỉ ghi
- * mảng `videos`, không đụng phần còn lại của bài.
- *
- * File video nằm trong `uploads/` (đã `.gitignore`). Trước khi ghi DB, mỗi file
- * được kiểm và chuẩn bị để phát mượt trên web:
- *   - phải tồn tại và là MP4 đọc được;
- *   - không được trùng nội dung với video khác — bắt lỗi chép nhầm một file
- *     thành nhiều cảnh;
- *   - được dời mục lục lên đầu file (faststart) để khung hình đầu hiện ngay;
- *   - thời lượng được đọc từ file và lưu vào `duration_seconds`.
- *
- * Cách dùng:
- *   node scripts/import-lesson-videos.js --all --dry-run
- *   node scripts/import-lesson-videos.js --all
- *   node scripts/import-lesson-videos.js --file data/lesson-videos/n5-01-greeting.json
- *
- * Cờ:
- *   --all          Nhập mọi file trong data/lesson-videos/.
- *   --file <path>  Chỉ nhập một file.
- *   --dry-run      Kiểm và báo cáo, không sửa file video, không ghi DB.
- */
+
 
 const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
 const DATA_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');

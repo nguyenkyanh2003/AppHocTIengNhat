@@ -1,13 +1,4 @@
-/**
- * Nạp bài tập mẫu cho bộ bài chủ đề — upsert theo `(lesson_id, title)`, không
- * xoá gì, nên kết quả làm bài đã có vẫn trỏ đúng bài tập.
- *
- * Chạy `seed-situational-lessons.js` trước: bài tập gắn vào bài học theo tiêu
- * đề, bài học chưa có thì bài tập của nó bị bỏ qua và được báo ra.
- *
- *   node scripts/seed-exercises.js --dry-run
- *   node scripts/seed-exercises.js [--overwrite]
- */
+
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 

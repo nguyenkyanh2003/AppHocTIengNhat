@@ -5,17 +5,6 @@ import { ACHIEVEMENTS as achievements } from './achievement-catalog.js';
 
 dotenv.config({ quiet: true });
 
-/**
- * Upsert theo `name` (unique index) — **không** xoá rồi tạo lại.
- *
- * Bản cũ gọi `deleteMany({})` trước `insertMany`, nên mỗi lần chạy mọi huy
- * hiệu đổi `_id`: `UserAchievement.achievement` và khoá chống cấp lại
- * `achievement:<user>:<id>` trong nhật ký cùng trỏ vào hư không, và người học
- * nhận lại thưởng cho huy hiệu đã có. Chạy lại bao nhiêu lần `_id` vẫn giữ.
- *
- *   node scripts/seedAchievements.js --dry-run
- *   node scripts/seedAchievements.js
- */
 const dryRun = process.argv.includes('--dry-run');
 
 async function seedAchievements() {

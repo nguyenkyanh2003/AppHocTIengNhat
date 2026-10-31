@@ -1,18 +1,3 @@
-/**
- * Audit **chỉ đọc** collection `srsprogresses` trước khi làm mốc 1.
- *
- * Spec SRS §3.7 yêu cầu chạy bước này trên dữ liệu thật trước khi cutover:
- * schema hiện tại không chứng minh dữ liệu lịch sử sạch, vì import trực tiếp
- * hoặc phiên bản model cũ có thể đã tạo document khác hình dạng.
- *
- * Script đọc qua **native collection** chứ không qua Mongoose model, để nhìn
- * thấy đúng dữ liệu thô — model sẽ che mất trường lạ và tự ép kiểu.
- *
- * Không ghi gì, không in nội dung document (tránh lộ dữ liệu cá nhân); chỉ in
- * tên database, collection, thời điểm và số lượng theo từng nhóm.
- *
- *   node scripts/audit-srs-progress.js
- */
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 

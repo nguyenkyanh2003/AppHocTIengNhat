@@ -1,19 +1,4 @@
-/**
- * Khôi phục một bản sao lưu của `backup-collections.js`, rồi so số bản ghi và
- * checksum với manifest.
- *
- * Hai công dụng:
- *
- * - **Khôi phục thử** (bắt buộc trước migration): vào một database khác, ví dụ
- *   `AppHocTiengNhat_restore_check`. Thành công thì manifest được đánh dấu
- *   `restore_checked_at`, và migration mới chấp nhận bản sao lưu này.
- * - **Đường lui** sau migration hỏng: vào chính database gốc, kèm `--drop`.
- *
- * Không bao giờ ghi đè collection đang có dữ liệu nếu thiếu `--drop`.
- *
- *   node scripts/restore-collections.js --dir backups/<thời điểm> --target-db AppHocTiengNhat_restore_check
- *   node scripts/restore-collections.js --dir backups/<thời điểm> --target-db AppHocTiengNhat --drop
- */
+
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 

@@ -1,15 +1,4 @@
-/**
- * Rà trùng, tạo và xác minh unique index khoá tự nhiên của nội dung học
- * (checklist P0 0.1). Mặc định **chỉ đọc**.
- *
- *   node scripts/ensure-content-indexes.js           # rà trùng + báo index đang có
- *   node scripts/ensure-content-indexes.js --apply   # tạo index còn thiếu rồi đọc lại xác minh
- *   node scripts/ensure-content-indexes.js --smoke   # chứng minh index chặn trùng thật, trên DB tạm riêng
- *
- * Không tạo index khi còn dữ liệu trùng: MongoDB sẽ từ chối, còn `autoIndex`
- * của Mongoose lúc khởi động server thì **nuốt lỗi đó im lặng** — app chạy tiếp
- * mà không có ràng buộc nào. Script này là chỗ lỗi đó hiện ra.
- */
+
 import 'dotenv/config';
 import mongoose from 'mongoose';
 

@@ -1,22 +1,4 @@
 import { isDeepStrictEqual } from 'node:util';
-
-/**
- * Nhập nội dung học (Kanji, ngữ pháp, đề JLPT, bài tập mẫu) **không xoá gì bao giờ**.
- *
- * Các seed cũ gọi `deleteMany({})` rồi `insertMany`, nên mỗi lần chạy mọi
- * `_id` đổi: `SRSProgress.item_id`, `LessonProgress.learned_*_ids`,
- * `ExerciseResult.exercise_id` và `LearningHistory.exam` cùng trỏ vào hư
- * không. Ở đây bản ghi được nhận ra bằng **khoá tự nhiên** của nó, nên chạy
- * lại bao nhiêu lần `_id` vẫn thế — cùng khuôn với `import-vocabulary.js`:
- *
- * - chưa có → tạo;
- * - đã có và giống hệt → không làm gì;
- * - đã có nhưng khác → **báo xung đột, không ghi**, trừ khi chạy `--overwrite`.
- *
- * `planUpserts` là hàm thuần để test không cần MongoDB; `applyPlan` là nơi
- * duy nhất ghi.
- */
-
 /** Bỏ `_id` của subdocument và đổi ObjectId/Date về chuỗi để so nội dung. */
 const comparable = (value) => {
   if (Array.isArray(value)) return value.map(comparable);

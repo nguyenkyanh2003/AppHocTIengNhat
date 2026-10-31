@@ -1,14 +1,3 @@
-/**
- * Danh mục huy hiệu — dữ liệu thuần, `seedAchievements.js` lo phần ghi.
- *
- * Bố cục theo cách các app học ngôn ngữ phổ biến làm (Duolingo, Migii, Mazii):
- * mỗi nhóm có một huy hiệu **bước đầu** đạt được ngay buổi học đầu tiên, rồi các
- * bậc tăng dần, độ hiếm tăng theo bậc. Mọi tiêu chí đều là số server tự đếm được
- * (`achievement-rules.js`) — không có huy hiệu nào dựa vào lời khai của client.
- *
- * `name` là khoá upsert: đổi tên một huy hiệu đã có là tạo huy hiệu mới và mất
- * liên kết với người đã đạt nó. Tên tiếng Anh cũ được giữ nguyên vì lý do đó.
- */
 
 const ICONS = Object.freeze({
   streak: '🔥',

@@ -2,15 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-/**
- * Nơi đặt và cách đặt tên file mô tả video của bài học, dùng chung cho các
- * script stage / nhập lời thoại / nhập DB.
- *
- * Tên file là `<trình độ>-<số bài 2 chữ số>-<tên ngắn>.json`, ví dụ
- * `n5-10-bank.json`, `n4-16-job-hunting.json`: số bài chỉ duy nhất trong một
- * trình độ, nên mọi lệnh làm việc theo số bài đều phải biết trình độ.
- */
-
 export const MANIFEST_DIR = fileURLToPath(new URL('../data/lesson-videos/', import.meta.url));
 
 export const LEVELS = Object.freeze(['N5', 'N4', 'N3', 'N2', 'N1']);

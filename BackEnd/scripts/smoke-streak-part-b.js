@@ -1,16 +1,4 @@
-/**
- * Smoke test streak Phần B trên **MongoDB thật** (spec streak §5): băng bảo vệ
- * được tặng rồi tiêu đúng một lần qua transaction thật, dự báo khi đọc khớp
- * với thứ thực sự được ghi, và cài đặt mục tiêu chịu được hai lần lưu đồng
- * thời — những thứ repository giả trong test đơn vị không chứng minh được.
- *
- * Chạy trên database **riêng** `<DB_NAME>_smoke_streak` cùng cluster (cần
- * replica set để có transaction — Atlas có sẵn). Database đó bị xoá lúc bắt
- * đầu và lúc kết thúc; dữ liệu thật không bị đụng tới.
- *
- *   node scripts/smoke-streak-part-b.js          # chạy rồi dọn
- *   node scripts/smoke-streak-part-b.js --keep   # giữ database smoke để xem lại
- */
+
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 

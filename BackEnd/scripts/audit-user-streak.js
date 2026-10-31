@@ -1,13 +1,4 @@
-/**
- * Audit **chỉ đọc** dữ liệu streak cũ trước migration (spec streak §4.1 bước
- * 1–2), cùng khuôn với `audit-srs-progress.js`.
- *
- * Đọc qua native collection để thấy đúng dữ liệu thô — model sẽ che trường lạ
- * và tự ép kiểu. Không ghi gì, không in nội dung document; chỉ in database,
- * collection, thời điểm và số lượng theo nhóm.
- *
- *   node scripts/audit-user-streak.js
- */
+
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 

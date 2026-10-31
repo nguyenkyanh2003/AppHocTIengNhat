@@ -1,14 +1,3 @@
-/**
- * Nhập đề thi JLPT N3 tháng 7/2024 — upsert theo `title`, không xoá gì.
- *
- * Bản cũ `deleteOne` rồi tạo lại đề ở mỗi lần chạy, nên `_id` của đề đổi và
- * lịch sử thi (`LearningHistory.exam`) mất liên kết. Đề đã có mà khác nội dung
- * chỉ được ghi đè khi chạy `--overwrite`; đáp án chấm theo **vị trí** câu, nên
- * ghi đè làm đổi thứ tự câu sẽ lệch với bài làm đã lưu.
- *
- *   node scripts/import-jlpt-n3-2024-07.js --dry-run
- *   node scripts/import-jlpt-n3-2024-07.js [--overwrite]
- */
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";

@@ -7,21 +7,6 @@ import { mergeManifest, planLessonFolder, transcriptSkeleton } from './lesson-vi
 import { contentHash, faststart, mp4Duration } from './mp4-file.js';
 import { parseTranscriptText } from './transcript-text.js';
 
-/**
- * Đưa video gốc (`data/Video_baihoc/<trình độ>/<số bài>. <chủ đề>/`) vào app:
- * chép sang `uploads/lesson-videos/<tên file mô tả>/scene-<n>.mp4` +
- * `summary.mp4`, tối ưu faststart, và cập nhật danh sách cảnh trong
- * `data/lesson-videos/<trình độ>-<số bài>-*.json`.
- *
- * Không ghi DB — chạy `import-lesson-videos.js --all` sau đó. Thư mục nào có
- * bất thường (tên sai mẫu, file đánh số bài khác, hai file giống hệt nhau)
- * được báo rõ và giữ nguyên hiện trạng; các thư mục khác vẫn được đưa vào.
- *
- *   node scripts/stage-lesson-videos.js --level N4 --dry-run
- *   node scripts/stage-lesson-videos.js --level N4 [--from data/Video_baihoc/N4]
- *
- * Không có `--level` thì là N5.
- */
 
 const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
 const MANIFEST_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');

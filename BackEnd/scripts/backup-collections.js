@@ -1,16 +1,4 @@
-/**
- * Sao lưu collection ra `backups/<thời điểm>/` trước migration (spec streak
- * §4.1 bước 3). Chỉ đọc database.
- *
- * Mỗi collection thành một file EJSON canonical kèm số bản ghi và checksum
- * trong `manifest.json`. File được đọc lại ngay sau khi ghi và so checksum;
- * bước "khôi phục thử" là `restore-collections.js` vào một database khác.
- *
- *   node scripts/backup-collections.js                        # bộ collection của migration streak
- *   node scripts/backup-collections.js --collections users,userstreaks
- *
- * `backups/` nằm trong `.gitignore`: bản sao lưu chứa dữ liệu người dùng.
- */
+
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 

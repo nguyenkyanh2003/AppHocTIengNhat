@@ -1,16 +1,5 @@
 import { isDeepStrictEqual } from 'node:util';
 
-/**
- * Khoá tự nhiên của nội dung học — đúng khoá mà các script nhập dùng để nhận
- * ra "bản ghi này đã có": `seed-grammar.js` (`level:title`),
- * `seed-exercises.js` (`lesson_id:title`), `seed-jlpt.js` và
- * `import-jlpt-n3-2024-07.js` (`title`).
- *
- * Model khai báo unique index trên đúng các khoá này; `ensure-content-indexes.js`
- * rà trùng rồi tạo và xác minh chúng trên DB thật. Test giữ ba nơi khớp nhau:
- * lệch một chỗ thì script nhập coi hai bản là một trong khi DB coi là hai, hoặc
- * ngược lại.
- */
 export const NATURAL_KEYS = Object.freeze([
   Object.freeze({
     label: 'Ngữ pháp',

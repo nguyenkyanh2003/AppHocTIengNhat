@@ -6,17 +6,7 @@ import { parseManifestName } from './lesson-video-manifests.js';
 
 const DATA_DIR = fileURLToPath(new URL('../data/lesson-videos/', import.meta.url));
 
-/**
- * Câu then chốt ("Mẫu câu") trong kịch bản video của từng bài, theo tiêu đề
- * bài — nguồn câu hỏi cho bài tập hội thoại của bài có video, thay cho hội
- * thoại soạn sẵn.
- *
- * Đọc thẳng `data/lesson-videos/*.json` (đã commit cùng repo). Câu lặp lại
- * giữa cảnh và video ôn tập chỉ lấy một lần. Người nói là nhãn (thẻ chủ đề,
- * không có tên tiếng Nhật) thì bỏ, để câu hỏi không mở đầu bằng "Chủ đề:".
- *
- * @returns {Map<string, { speaker: string | null, text_ja: string, reading: string | null, text_vi: string }[]>}
- */
+
 export const loadVideoKeyPhrases = (dir = DATA_DIR) => {
   const byLesson = new Map();
   const names = fs.readdirSync(dir).filter((name) => parseManifestName(name)).sort();

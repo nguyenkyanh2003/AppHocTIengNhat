@@ -6,23 +6,6 @@ import { manifestsByLesson, parseLevel } from './lesson-video-manifests.js';
 import { parseTranscriptMarkdown, spreadTimecodes } from './transcript-markdown.js';
 import { parseTranscriptText } from './transcript-text.js';
 
-/**
- * Nhập tài liệu lời thoại dạng Markdown (mỗi video một bảng Nhật / roma-ji /
- * Việt) thành file lời thoại `data/lesson-videos/<bài>.txt`.
- *
- * File `.txt` vẫn là nguồn sự thật: sau khi nhập, đánh dấu câu then chốt
- * (`*`) và thêm bảng từ vựng ngay trong đó, rồi chạy tiếp
- * `apply-transcript.js` và `import-lesson-videos.js` như mọi khi.
- *
- *   node scripts/import-transcript-markdown.js [--level N4] --file <tài liệu.md> [--file …] --dry-run
- *   node scripts/import-transcript-markdown.js [--level N4] --file <tài liệu.md> [--overwrite]
- *
- * Không có `--level` thì là N5. `--skip 11-S` bỏ qua một video của tài liệu
- * (`S` là video ôn tập), dùng khi đoạn lời thoại đó không khớp video thật.
- *
- * File `.txt` đã có câu thoại hay từ vựng thì không bị đè, trừ khi thêm
- * `--overwrite` — trong đó có thể là công đánh dấu và soạn từ vựng.
- */
 
 const BACKEND_DIR = fileURLToPath(new URL('..', import.meta.url));
 const MANIFEST_DIR = path.join(BACKEND_DIR, 'data', 'lesson-videos');

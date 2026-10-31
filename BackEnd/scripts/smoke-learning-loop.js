@@ -1,15 +1,4 @@
-/**
- * Smoke test vòng học trên **MongoDB thật** (spec SRS §7, spec streak §7): thứ
- * mà test đơn vị với repository giả không chứng minh được — transaction,
- * unique index, CAS dưới hai request đồng thời, rollback.
- *
- * Chạy trên một database **riêng** `<DB_NAME>_smoke` cùng cluster (cần replica
- * set để có transaction — Atlas có sẵn). Database đó bị xoá lúc bắt đầu và lúc
- * kết thúc; dữ liệu thật không bị đụng tới.
- *
- *   node scripts/smoke-learning-loop.js          # chạy rồi dọn
- *   node scripts/smoke-learning-loop.js --keep   # giữ database smoke để xem lại
- */
+
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 

@@ -11,38 +11,6 @@ import { parseCsv, parseWorkbook } from '../src/modules/vocabulary/vocabulary-im
 
 dotenv.config();
 
-/**
- * Nhập từ vựng từ CSV hoặc Excel — **không xoá gì bao giờ**.
- *
- * Thay cho `seed-vocabulary.js` (đã gỡ), script này khác ở ba điểm, và cả ba đều là
- * lý do nó tồn tại:
- *
- * 1. **Không `deleteMany`.** Seed cũ xoá sạch collection rồi ghi lại, nên mọi
- *    `_id` đổi sau mỗi lần chạy. `SRSProgress.item_id` và
- *    `LessonProgress.learned_vocabulary_ids` trỏ bằng ObjectId trần, nên mỗi
- *    lần seed là một lần người học mất sạch tiến độ. Script này upsert theo
- *    khoá tự nhiên `(word, hiragana)`: chạy lại bao nhiêu lần, `_id` vẫn thế.
- * 2. **Báo lỗi từng dòng.** Seed cũ (và `toVocabularyRows`) lọc bỏ dòng thiếu
- *    cột trong im lặng.
- * 3. **Có `--dry-run`.** Xem trước toàn bộ báo cáo mà không ghi một byte nào.
- *
- * Cách dùng:
- *
- *   node scripts/import-vocabulary.js --file data/n5.csv --dry-run
- *   node scripts/import-vocabulary.js --file data/n5.xlsx --level N5
- *   node scripts/import-vocabulary.js --file data/n5.csv --lesson "Bài 1"
- *
- * Cờ:
- *   --file <path>    Bắt buộc. `.csv`, `.tsv` hoặc `.xlsx`.
- *   --dry-run        Kiểm và báo cáo, không ghi.
- *   --level <N5..N1> Cấp độ mặc định cho dòng không có cột cấp độ.
- *   --lesson <title> Gán mọi dòng vào một document `Lesson` có sẵn (theo
- *                    `title`). Khác với cột "Bài" trong file — cột đó chỉ là
- *                    nhãn của giáo trình, lưu vào `source_lesson`.
- *   --overwrite      Cho phép file ghi đè giá trị đã khác trong DB. Mặc định
- *                    tắt: giá trị khác nhau được báo là xung đột, không ghi.
- *   --max-errors <n> Số lỗi in ra trước khi rút gọn (mặc định 50).
- */
 
 const LOG_LIMIT_DEFAULT = 50;
 

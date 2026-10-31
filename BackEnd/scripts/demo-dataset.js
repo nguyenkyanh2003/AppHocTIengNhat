@@ -1,26 +1,7 @@
-/**
- * Bộ dữ liệu demo dùng để kiểm thử thủ công mốc 1 (SRS + streak).
- *
- * File này **thuần dữ liệu**: không kết nối MongoDB, không đọc biến môi
- * trường, không in ra gì. Nhờ vậy test có thể `import` để đối chiếu mà không
- * cần DB, và `seed-demo.js` là nơi duy nhất chạm vào database.
- *
- * Bộ demo không có bài học hay bài tập riêng: bài học lấy từ bộ chủ đề trong
- * `situational-lessons.js`, bài tập mẫu dựng từ chính bộ đó trong
- * `sample-exercises.js`, và 15 từ vựng dưới đây đều nằm trong hai bài "Tự
- * giới thiệu" và "Sinh hoạt hằng ngày" của bộ đó. Liên kết từ–bài chỉ có một
- * nơi ghi (`seed-situational-lessons.js`) để hai script không giành nhau một
- * mảng `Lesson.vocabularies`.
- */
 
 export const DEMO_TAG = '[demo]';
 
-/**
- * Hai tài khoản kiểm thử.
- *
- * `password` ở đây là mật khẩu thô để đăng nhập lúc kiểm thử; `seed-demo.js`
- * băm bằng bcrypt trước khi ghi, đúng như luồng đăng ký thật.
- */
+
 export const DEMO_USERS = [
   {
     username: 'demo_hocvien',

@@ -1,17 +1,4 @@
-/**
- * Nạp bộ bài học theo chủ đề và từ vựng đi kèm; tuỳ chọn dọn mọi bài không
- * thuộc bộ.
- *
- * Upsert theo khoá tự nhiên (`Lesson.title`, `Vocabulary.word + hiragana`) nên
- * chạy lại nhiều lần cho cùng kết quả. Bài giữ nguyên tiêu đề giữ nguyên `_id`,
- * nên tiến độ học đã gắn với bài đó không mất.
- *
- * Cách chạy:
- *   node scripts/seed-situational-lessons.js --dry-run            # xem trước
- *   node scripts/seed-situational-lessons.js                      # upsert bộ bài
- *   node scripts/seed-situational-lessons.js --replace --dry-run  # xem trước cả phần dọn
- *   node scripts/seed-situational-lessons.js --replace            # upsert rồi dọn bài cũ
- */
+
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
