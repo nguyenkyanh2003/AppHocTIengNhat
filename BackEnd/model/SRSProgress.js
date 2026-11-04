@@ -17,7 +17,11 @@ const SRSProgressSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-// Compound index để tránh duplicate và query nhanh theo user + item
-SRSProgressSchema.index({ user: 1, item_id: 1 }, { unique: true });
+// Một thẻ là một (user, loại, nội dung): từ vựng và Kanji có lịch ôn riêng.
+// DB đang có khoá cũ `(user, item_id)` chuyển bằng `scripts/migrate-srs-card-index.js`.
+SRSProgressSchema.index(
+    { user: 1, item_type: 1, item_id: 1 },
+    { unique: true, name: 'srs_card_key' }
+);
 
 export default mongoose.model('SRSProgress', SRSProgressSchema);

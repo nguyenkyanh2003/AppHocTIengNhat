@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+import Kanji from '../../../model/Kanji.js';
 import SRSProgress from '../../../model/SRSProgress.js';
 import Vocabulary from '../../../model/Vocabulary.js';
 
@@ -14,8 +15,14 @@ import Vocabulary from '../../../model/Vocabulary.js';
  * bằng `_id`, nên không đường nào chạm được thẻ của người khác.
  */
 
-/** Nội dung mặt thẻ — đủ để vẽ, không kéo cả document. */
-const CARD_FIELDS = 'word hiragana meaning hanviet level examples audio_url image_url usage_context';
+/** Nội dung mặt thẻ theo từng loại — đủ để vẽ, không kéo cả document. */
+const CARD_FIELDS = Object.freeze({
+  Vocabulary: 'word hiragana meaning hanviet level examples audio_url image_url usage_context',
+  Kanji: 'character hanviet onyomi kunyomi meaning level examples',
+});
+
+/** Bộ lọc theo loại thẻ; không truyền loại nghĩa là mọi loại. */
+const typeFilter = (itemType) => (itemType ? { item_type: itemType } : {});
 
 const isDuplicateKey = (error) => error?.code === 11000;
 
@@ -28,7 +35,7 @@ const toObjectId = (value) =>
 
 export const createSrsRepository = ({
   SRSProgress: model = SRSProgress,
-  contentModels = { Vocabulary },
+  contentModels = { Vocabulary, Kanji },
 } = {}) => {
   const contentModel = (itemType) => {
     const content = contentModels[itemType];
@@ -85,22 +92,43 @@ export const createSrsRepository = ({
      * `_id` là khoá phụ để hai thẻ cùng hạn luôn ra cùng thứ tự (spec §3.4).
      */
     findDueBatch({ userId, itemType, now, excludeItemIds = [], limit }) {
-      const filter = { user: userId, item_type: itemType, next_review: { $lte: now } };
+      const filter = { user: userId, ...typeFilter(itemType), next_review: { $lte: now } };
       if (excludeItemIds.length > 0) filter.item_id = { $nin: excludeItemIds };
 
       return model.find(filter).sort({ next_review: 1, _id: 1 }).limit(limit).lean();
     },
 
     countDue({ userId, itemType, now }) {
-      return model.countDocuments({ user: userId, item_type: itemType, next_review: { $lte: now } });
+      return model.countDocuments({ user: userId, ...typeFilter(itemType), next_review: { $lte: now } });
+    },
+
+    /** Số thẻ đến hạn của từng loại, dạng `[{ _id: item_type, count }]`. */
+    countDueByType({ userId, now }) {
+      return model.aggregate([
+        { $match: { user: toObjectId(userId), next_review: { $lte: now } } },
+        { $group: { _id: '$item_type', count: { $sum: 1 } } },
+      ]);
     },
 
     /** Số thẻ theo từng hộp, dạng `[{ _id: box, count }]`. */
     countByBox({ userId, itemType }) {
       return model.aggregate([
-        { $match: { user: toObjectId(userId), item_type: itemType } },
+        { $match: { user: toObjectId(userId), ...typeFilter(itemType) } },
         { $group: { _id: '$box', count: { $sum: 1 } } },
       ]);
+    },
+
+    /** Số thẻ một loại của user, đến hạn hay chưa. */
+    countCards({ userId, itemType }) {
+      return model.countDocuments({ user: userId, item_type: itemType });
+    },
+
+    /**
+     * Còn ai đang ôn nội dung này không — mọi user. Dùng để chặn xoá nội dung
+     * khi nó vẫn nằm trong lịch ôn của người học.
+     */
+    async hasCardsForItem({ itemType, itemId }) {
+      return Boolean(await model.exists({ item_id: itemId, item_type: itemType }));
     },
 
     /**
@@ -147,7 +175,7 @@ export const createSrsRepository = ({
     /** Nội dung của nhiều thẻ trong **một** truy vấn, không `findById` trong vòng lặp. */
     async findContentByIds({ itemType, ids }) {
       if (ids.length === 0) return [];
-      return contentModel(itemType).find({ _id: { $in: ids } }).select(CARD_FIELDS).lean();
+      return contentModel(itemType).find({ _id: { $in: ids } }).select(CARD_FIELDS[itemType]).lean();
     },
 
     async contentExists({ itemType, itemId, session }) {

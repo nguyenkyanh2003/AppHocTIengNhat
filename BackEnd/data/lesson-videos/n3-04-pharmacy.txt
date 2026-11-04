@@ -1,0 +1,143 @@
+# Lời thoại Tình huống: Dùng hiệu thuốc
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Nhờ đồng nghiệp giới thiệu bệnh viện
+00:03 | アンジェラ / Anjera / Angela | 鈴木さん、今ちょっといいですか？ | Suzuki-san, ima chotto ii desu ka. | Chị Suzuki, bây giờ chị có rảnh chút không ạ?
+00:07 | 鈴木 / Suzuki / Suzuki | はい、どうしたんですか？ | Hai, doo shitan desu ka. | Vâng, có chuyện gì vậy?
+*00:09 | アンジェラ / Anjera / Angela | 最近頭が痛くて、夜ぐっすり眠れないんですよ。 | Saikin atama ga itakute, yoru gussuri nemurenai n desu yo. | Gần đây em bị đau đầu nên ban đêm không ngủ ngon được.
+00:15 | 鈴木 / Suzuki / Suzuki | いつ頃からですか？ | Itsu goro kara desu ka. | Từ khoảng khi nào vậy?
+00:18 | アンジェラ / Anjera / Angela | もう2、3ヶ月になります。ひどいときは起き上がれないぐらい痛むんですよ。 | Moo ni, san-kagetsu ni narimasu. Hidoi toki wa okiagarenai gurai itamu n desu yo. | Đã được 2, 3 tháng rồi. Lúc nặng thì đau đến mức không dậy nổi.
+00:27 | 鈴木 / Suzuki / Suzuki | そうですか。どこか病院行きましたか？ | Soo desu ka. Dokoka byooin ikimashita ka. | Vậy à. Em đã đi bệnh viện nào chưa?
+00:31 | アンジェラ / Anjera / Angela | 行きたいんですけど… | Ikitai n desu kedo... | Em muốn đi nhưng mà...
+00:35 | アンジェラ / Anjera / Angela | どこの病院に行ったらいいかわからなくて。 | Doko no byooin ni ittara ii ka wakaranakute. | Em không biết nên đến bệnh viện nào.
+00:40 | 鈴木 / Suzuki / Suzuki | そうなんですか。 | Soo nan desu ka. | Vậy à.
+00:42 | 鈴木 / Suzuki / Suzuki | 一度ちゃんとどこかで検査してもらった方がいいんじゃないですか？ | Ichido chanto dokoka de kensa shite moratta hoo ga ii n janai desu ka. | Em nên đi kiểm tra cho đàng hoàng ở đâu đó một lần thì hơn chứ?
+00:48 | アンジェラ / Anjera / Angela | そうですよね。 | Soo desu yo ne. | Đúng vậy nhỉ.
+*00:50 | アンジェラ / Anjera / Angela | 鈴木さん、どこかいい病院、紹介してもらえませんか？ | Suzuki-san, dokoka ii byooin, shookai shite moraemasen ka. | Chị Suzuki, chị có thể giới thiệu giúp em bệnh viện nào tốt không ạ?
+00:56 | 鈴木 / Suzuki / Suzuki | ああ…。 | Aa.... | À...
+00:57 | 鈴木 / Suzuki / Suzuki | うちの母が行っている病院の先生、すごくいいみたいだから、ちょっと遠いけど、一度行ってみますか？ | Uchi no haha ga itte iru byooin no sensee, sugoku ii mitai da kara, chotto tooi kedo, ichido itte mimasu ka. | Bác sĩ ở bệnh viện mẹ chị đang khám nghe nói rất giỏi, tuy hơi xa nhưng em thử đến một lần không?
+01:07 | アンジェラ / Anjera / Angela | ありがとうございます。 | Arigatoo gozaimasu. | Em cảm ơn chị.
+01:08 | 鈴木 / Suzuki / Suzuki | 母に連絡先を聞いてメールしますね。 | Haha ni renrakusaki o kiite meeru shimasu ne. | Chị sẽ hỏi mẹ thông tin liên lạc rồi nhắn tin cho em nhé.
+01:12 | アンジェラ / Anjera / Angela | よろしくお願いします。 | Yoroshiku onegaishimasu. | Nhờ chị giúp em ạ.
+01:14 | アンジェラ / Anjera / Angela | 私、最近全然運動しなくなっちゃったので、それも良くないのかなって思っているんですよ。 | Watashi, saikin zenzen undoo shinaku nacchatta node, sore mo yokunai no ka na tte omotte iru n desu yo. | Dạo này em hoàn toàn không tập thể dục nữa, nên em nghĩ có lẽ điều đó cũng không tốt.
+01:25 | 鈴木 / Suzuki / Suzuki | ああ、そうかもしれませんね。 | Aa, soo kamoshiremasen ne. | À, có thể là vậy nhỉ.
+01:29 | 鈴木 / Suzuki / Suzuki | 私、週に2回、市営プールに行っているんですけど、アンジェラさんもよかったら一緒に行ってみませんか？ | Watashi, shuu ni nikai, shiee puuru ni itte iru n desu kedo, Anjera-san mo yokattara issho ni itte mimasen ka. | Chị mỗi tuần đi bể bơi thành phố 2 lần, nếu được thì Angela cũng đi thử cùng chị nhé?
+01:37 | アンジェラ / Anjera / Angela | いいんですか？ぜひ行ってみたいです。 | Ii n desu ka. Zehi itte mitai desu. | Được ạ? Em rất muốn đi thử.
+01:41 | 鈴木 / Suzuki / Suzuki | じゃあ、今度の金曜日の仕事帰りに一緒に行きましょう。 | Jaa, kondo no kin'yoobi no shigoto-gaeri ni issho ni ikimashoo. | Vậy thì chiều thứ Sáu tới sau giờ làm mình cùng đi nhé.
+01:46 | アンジェラ / Anjera / Angela | ありがとうございます。楽しみにしています。 | Arigatoo gozaimasu. Tanoshimi ni shite imasu. | Em cảm ơn chị. Em rất mong chờ.
+### từ vựng
+頭が痛い | あたまがいたい | atama ga itai | đau đầu
+ぐっすり | ぐっすり | gussuri | (ngủ) say, ngon
+起き上がる | おきあがる | okiagaru | ngồi dậy
+検査 | けんさ | kensa | kiểm tra, xét nghiệm
+紹介 | しょうかい | shookai | giới thiệu
+連絡先 | れんらくさき | renrakusaki | thông tin liên lạc
+市営プール | しえいプール | shiee puuru | bể bơi của thành phố
+
+## summary.mp4
+# Lấy thuốc theo đơn ở hiệu thuốc
+00:05 | 王 / Oo / Vương | すみません。これをお願いします。 | Sumimasen. Kore o onegaishimasu. | Xin lỗi. Nhờ anh giúp cái này ạ.
+00:11 | 薬剤師 / Yakuzaishi / Dược sĩ | はい。 | Hai. | Vâng.
+00:18 | 薬剤師 / Yakuzaishi / Dược sĩ | 王さん、こちらの薬局は初めてですね？ | Oo-san, kochira no yakkyoku wa hajimete desu ne. | Anh Vương, anh mới đến hiệu thuốc này lần đầu nhỉ?
+00:21 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:22 | 薬剤師 / Yakuzaishi / Dược sĩ | すみませんが、保険証を見せていただけますか。 | Sumimasen ga, hokenshoo o misete itadakemasu ka. | Xin lỗi, anh cho tôi xem thẻ bảo hiểm được không ạ?
+00:27 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+00:36 | 薬剤師 / Yakuzaishi / Dược sĩ | こちらもお書きください。 | Kochira mo okaki kudasai. | Anh cũng điền vào phần này giúp tôi nhé.
+00:42 | 王 / Oo / Vương | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+00:53 | 王 / Oo / Vương | これ、お願いします。 | Kore, onegaishimasu. | Cái này, nhờ anh ạ.
+00:56 | 薬剤師 / Yakuzaishi / Dược sĩ | お薬手帳、お持ちですか？ | Okusuri techoo, omochi desu ka. | Anh có mang theo sổ theo dõi thuốc không ạ?
+01:00 | 王 / Oo / Vương | はい、持っています。 | Hai, motte imasu. | Vâng, tôi có mang.
+01:04 | 薬剤師 / Yakuzaishi / Dược sĩ | じゃあ、お預かりしますね。少しお待ちください。 | Jaa, oazukari shimasu ne. Sukoshi omachi kudasai. | Vậy tôi xin giữ lại nhé. Xin anh chờ một chút.
+01:15 | 薬剤師 / Yakuzaishi / Dược sĩ | 王さん。 | Oo-san. | Anh Vương ơi. (gọi khi thuốc đã xong)
+01:20 | 薬剤師 / Yakuzaishi / Dược sĩ | 先に、保険証をお返ししておきますね。 | Saki ni, hokenshoo o okaeshi shite okimasu ne. | Trước tiên tôi xin trả lại thẻ bảo hiểm cho anh nhé.
+01:27 | 薬剤師 / Yakuzaishi / Dược sĩ | 今日はお薬が2種類出ています。こちらは咳を止める薬です。毎食後1錠ずつ飲んでください。 | Kyoo wa okusuri ga nishurui dete imasu. Kochira wa seki o tomeru kusuri desu. Maishokugo ichijoo zutsu nonde kudasai. | Hôm nay có 2 loại thuốc. Đây là thuốc giảm ho. Hãy uống mỗi lần 1 viên sau mỗi bữa ăn.
+01:40 | 王 / Oo / Vương | 食事の後に1錠ずつ飲むんですね。 | Shokuji no ato ni ichijoo zutsu nomu n desu ne. | Uống mỗi lần 1 viên sau bữa ăn nhỉ.
+*01:45 | 王 / Oo / Vương | あの、私、薬を飲むと眠くなることが多いんですけど、この薬はどうですか？ | Ano, watashi, kusuri o nomu to nemuku naru koto ga ooi n desu kedo, kono kusuri wa doo desu ka. | À, tôi uống thuốc thường hay buồn ngủ, loại thuốc này thì thế nào ạ?
+01:57 | 薬剤師 / Yakuzaishi / Dược sĩ | そうですね。 | Soo desu ne. | Để xem nào.
+01:59 | 薬剤師 / Yakuzaishi / Dược sĩ | ここにも書いてありますけど、ちょっと眠くなりやすいですよ。 | Koko ni mo kaite arimasu kedo, chotto nemuku nariyasui desu yo. | Ở đây cũng có ghi, nhưng thuốc này khá dễ gây buồn ngủ đấy.
+02:04 | 王 / Oo / Vương | じゃあ、気をつけた方がいいですね。 | Jaa, ki o tsuketa hoo ga ii desu ne. | Vậy thì tôi nên chú ý nhỉ.
+02:07 | 薬剤師 / Yakuzaishi / Dược sĩ | はい、そうですね。 | Hai, soo desu ne. | Vâng, đúng vậy.
+02:10 | 薬剤師 / Yakuzaishi / Dược sĩ | こちらは、頭が痛いときや熱があるときに飲んでください。 | Kochira wa, atama ga itai toki ya netsu ga aru toki ni nonde kudasai. | Thuốc này anh hãy uống khi đau đầu hoặc khi bị sốt.
+02:17 | 王 / Oo / Vương | えっ、一日何錠飲んでもいいんですか？ | E, ichinichi nanjoo nonde mo ii n desu ka. | Ơ, một ngày uống bao nhiêu viên cũng được ạ?
+02:20 | 薬剤師 / Yakuzaishi / Dược sĩ | いいえ、1日6錠までです。1回2錠までですよ。 | Iie, ichinichi rokujoo made desu. Ikkai nijoo made desu yo. | Không ạ, tối đa 6 viên một ngày. Mỗi lần tối đa 2 viên.
+02:28 | 王 / Oo / Vương | ああ、わかりました。 | Aa, wakarimashita. | À, tôi hiểu rồi.
+02:31 | 薬剤師 / Yakuzaishi / Dược sĩ | 今日は1200円になります。 | Kyoo wa sen nihyaku-en ni narimasu. | Hôm nay là 1200 yên ạ.
+02:34 | 王 / Oo / Vương | あの、この喉飴、喉に良さそうですね。 | Ano, kono nodoame, nodo ni yosasoo desu ne. | À, kẹo ngậm này có vẻ tốt cho cổ họng nhỉ.
+02:41 | 薬剤師 / Yakuzaishi / Dược sĩ | ああ、結構効くみたいですよ。 | Aa, kekkoo kiku mitai desu yo. | À, nghe nói khá hiệu quả đấy.
+02:45 | 王 / Oo / Vương | ああ、そうですか。 | Aa, soo desu ka. | À, vậy ạ.
+02:49 | 王 / Oo / Vương | これも一緒にお願いします。 | Kore mo issho ni onegaishimasu. | Cho tôi cái này luôn nhé.
+02:52 | 薬剤師 / Yakuzaishi / Dược sĩ | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
+02:54 | 薬剤師 / Yakuzaishi / Dược sĩ | 全部で1500円になります。 | Zenbu de sen gohyaku-en ni narimasu. | Tổng cộng là 1500 yên ạ.
+02:58 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
+03:04 | 薬剤師 / Yakuzaishi / Dược sĩ | こちら、領収書になります。 | Kochira, ryooshuusho ni narimasu. | Đây là hóa đơn của anh ạ.
+03:11 | 薬剤師 / Yakuzaishi / Dược sĩ | お薬手帳もお返ししますね。今日のお薬、こちらに貼っておきましたから。 | Okusuri techoo mo okaeshi shimasu ne. Kyoo no okusuri, kochira ni hatte okimashita kara. | Tôi cũng xin trả lại sổ thuốc cho anh nhé. Thuốc hôm nay tôi đã dán vào đây rồi.
+03:22 | 王 / Oo / Vương | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
+03:24 | 薬剤師 / Yakuzaishi / Dược sĩ | お大事に。 | Odaiji ni. | Chúc anh mau khỏe.
+### từ vựng
+薬局 | やっきょく | yakkyoku | hiệu thuốc
+保険証 | ほけんしょう | hokenshoo | thẻ bảo hiểm
+お薬手帳 | おくすりてちょう | okusuri techoo | sổ theo dõi thuốc
+咳 | せき | seki | ho
+毎食後 | まいしょくご | maishokugo | sau mỗi bữa ăn
+喉飴 | のどあめ | nodoame | kẹo ngậm
+領収書 | りょうしゅうしょ | ryooshuusho | hóa đơn
+
+## scene-3.mp4
+# Mua thuốc dán đau lưng
+00:05 | 客 / Kyaku / Khách | あの、すみません。 | Ano, sumimasen. | À, xin lỗi.
+00:07 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | はい。 | Hai. | Vâng.
+*00:08 | 客 / Kyaku / Khách | ちょっと腰が痛くて、何か貼る薬が欲しいんですけど。 | Chotto koshi ga itakute, nanika haru kusuri ga hoshii n desu kedo. | Tôi hơi bị đau lưng, muốn mua loại thuốc dán nào đó ạ.
+00:14 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | ああ、腰痛用のシップですね。医者には行きましたか？ | Aa, yootsuu-yoo no shippu desu ne. Isha ni wa ikimashita ka. | À, miếng dán dành cho đau lưng nhỉ. Anh đã đi khám bác sĩ chưa ạ?
+00:20 | 客 / Kyaku / Khách | 昼間は仕事があるし、土日は病院が休みだし、なかなか医者に行く時間がないんです。 | Hiruma wa shigoto ga aru shi, donichi wa byooin ga yasumi da shi, nakanaka isha ni iku jikan ga nai n desu. | Ban ngày tôi có việc, thứ Bảy Chủ nhật bệnh viện lại nghỉ, nên mãi mà không có thời gian đi khám.
+00:27 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | そうですか。どんな痛みですか？ | Soo desu ka. Donna itami desu ka. | Vậy ạ. Anh đau như thế nào ạ?
+00:31 | 客 / Kyaku / Khách | 長い時間座っていると、このあたりがすごく痛くなってきて… | Nagai jikan suwatte iru to, kono atari ga sugoku itaku natte kite... | Hễ ngồi lâu là chỗ này bắt đầu đau lắm...
+00:39 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | ああ、つらいですね。 | Aa, tsurai desu ne. | À, vất vả quá nhỉ.
+00:53 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | これはよく伸びて貼りやすいですし、しかも剥がれにくいです。 | Kore wa yoku nobite hariyasui desu shi, shikamo hagarenikui desu. | Loại này co giãn tốt, dễ dán, hơn nữa còn khó bong.
+01:01 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | ただ、肌が弱い方でしたら、こちらの方がいいかもしれません。効き目は変わりませんが、肌に優しいタイプです。 | Tadashi, hada ga yowai kata deshitara, kochira no hoo ga ii kamoshiremasen. Kikime wa kawarimasen ga, hada ni yasashii taipu desu. | Tuy nhiên, nếu anh có làn da nhạy cảm thì loại này có lẽ tốt hơn. Hiệu quả không khác nhưng là loại dịu nhẹ với da.
+01:09 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | あと、こちらは消炎鎮痛剤が入っているタイプです。 | Ato, kochira wa shooen chintsuuzai ga haitte iru taipu desu. | Ngoài ra, loại này có chứa thuốc chống viêm giảm đau.
+01:17 | 客 / Kyaku / Khách | 消炎鎮痛剤？ | Shooen chintsuuzai? | Thuốc chống viêm giảm đau ạ?
+01:19 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | はい、他のシップより痛みには効きますよ。 | Hai, hoka no shippu yori itami ni wa kikimasu yo. | Vâng, nó trị đau hiệu quả hơn các loại miếng dán khác.
+01:25 | 客 / Kyaku / Khách | ああ、そうですか。どれがいいかなぁ。 | Aa, soo desu ka. Dore ga ii ka naa. | À, vậy ạ. Không biết loại nào tốt nhỉ.
+01:32 | 客 / Kyaku / Khách | いくらですか？ | Ikura desu ka. | Giá bao nhiêu ạ?
+01:34 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | こちらは10枚入りで780円、こちらは15枚入りで1500円、こちらは5枚入りで1000円です。 | Kochira wa juumai-iri de nanahyaku hachijuu-en, kochira wa juugomai-iri de sen gohyaku-en, kochira wa gomai-iri de sen-en desu. | Loại này 10 miếng giá 780 yên, loại này 15 miếng giá 1500 yên, loại này 5 miếng giá 1000 yên ạ.
+01:48 | 客 / Kyaku / Khách | これが一番安いんですね。 | Kore ga ichiban yasui n desu ne. | Cái này là rẻ nhất nhỉ.
+01:51 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | そうですね、お買い得ですよ。普段だと900円ぐらいしますから。 | Soo desu ne, okaidoku desu yo. Fudan da to kyuuhyaku-en gurai shimasu kara. | Đúng vậy, đáng mua đấy. Bình thường giá khoảng 900 yên mà.
+01:56 | 客 / Kyaku / Khách | そうなんですか。でも… | Soo nan desu ka. Demo... | Vậy ạ. Nhưng mà...
+*02:00 | 客 / Kyaku / Khách | 前にシップでちょっとかぶれちゃったことがあるので、これにします。 | Mae ni shippu de chotto kaburechatta koto ga aru node, kore ni shimasu. | Trước đây tôi từng bị mẩn đỏ nhẹ vì miếng dán, nên tôi chọn cái này.
+02:08 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | はい。 | Hai. | Vâng.
+02:10 | 客 / Kyaku / Khách | これお願いします。 | Kore onegaishimasu. | Cho tôi cái này ạ.
+02:12 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | はい、ありがとうございます。 | Hai, arigatoo gozaimasu. | Vâng, cảm ơn anh.
+02:16 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | 1500円になります。 | Sen gohyaku-en ni narimasu. | Là 1500 yên ạ.
+02:22 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | ちょうどお預かりします。 | Choodo oazukari shimasu. | Tôi nhận đúng số tiền ạ.
+02:30 | 店員 / Ten'in / Nhân viên cửa hàng thuốc | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn anh.
+### từ vựng
+腰 | こし | koshi | lưng (thắt lưng)
+湿布 | しっぷ | shippu | miếng dán giảm đau
+腰痛 | ようつう | yootsuu | đau lưng
+剥がれる | はがれる | hagareru | bị bong ra
+肌 | はだ | hada | da
+効き目 | ききめ | kikime | hiệu quả (của thuốc)
+かぶれる | かぶれる | kabureru | bị mẩn đỏ
+
+## scene-2.mp4
+# Ôn tập: Dùng hiệu thuốc
+00:00 |  /  / Chủ đề | くすりを のむと | kusuri o nomu to | Hễ uống thuốc thì
+00:06 | 王 / Oo / Vương | あの、私、薬を飲むと眠くなることが多いんですけど、この薬はどうですか？ | Ano, watashi, kusuri o nomu to nemuku naru koto ga ooi n desu kedo, kono kusuri wa doo desu ka. | À, tôi hễ uống thuốc là hay buồn ngủ, loại thuốc này thì thế nào ạ?
+00:19 | ナレーター / Nareetaa / Người dẫn | 「薬を飲む」「眠くなることが多い」という2つの文を「と」でつないで、前のことがあれば、いつも後のことが起こるという関係を表しています。 | "Kusuri o nomu" "nemuku naru koto ga ooi" to iu futatsu no bun o "to" de tsunaide, mae no koto ga areba, itsumo ato no koto ga okoru to iu kankee o arawashite imasu. | Hai câu "uống thuốc" và "thường hay buồn ngủ" được nối với nhau bằng "to", thể hiện mối quan hệ nếu có việc trước thì việc sau luôn xảy ra.
+00:39 | ナレーター / Nareetaa / Người dẫn | 会話の中で、薬を買いに来た人は、薬を飲んだ後によく眠くなるので、この薬を飲んでも同じことが起こるのではないかと心配して、薬剤師に質問しているのです。 | Kaiwa no naka de, kusuri o kai ni kita hito wa, kusuri o nonda ato ni yoku nemuku naru node, kono kusuri o nonde mo onaji koto ga okoru no de wa nai ka to shinpai shite, yakuzaishi ni shitsumon shite iru no desu. | Trong hội thoại, người đến mua thuốc thường hay buồn ngủ sau khi uống thuốc, nên lo rằng uống thuốc này cũng sẽ xảy ra như vậy và đã hỏi dược sĩ.
+00:59 | ナレーター / Nareetaa / Người dẫn | 「と」は、動詞のほか、形容詞や名詞の普通形に続けて、その後に来る文で起こることの条件を表します。 | "To" wa, dooshi no hoka, keeyooshi ya meeshi no futsuu-kee ni tsuzukete, sono ato ni kuru bun de okoru koto no jooken o arawashimasu. | "To" đi sau thể thường của động từ, tính từ hay danh từ, thể hiện điều kiện của việc xảy ra ở câu phía sau.
+01:14 | ナレーター / Nareetaa / Người dẫn | 「と」の文に、話し手の意思を表す表現が入ることはありません。 | "To" no bun ni, hanashite no ishi o arawasu hyoogen ga hairu koto wa arimasen. | Trong câu có "to" thì không đưa vào cách diễn đạt thể hiện ý chí của người nói.
+01:28 | 王 / Oo / Vương | あの、私、薬を飲むと眠くなることが多いんですけど、この薬はどうですか？ | Ano, watashi, kusuri o nomu to nemuku naru koto ga ooi n desu kedo, kono kusuri wa doo desu ka. | À, tôi hễ uống thuốc là hay buồn ngủ, loại thuốc này thì thế nào ạ?
+01:41 | ナレーター / Nareetaa / Người dẫn | 「なります」は変化を表す動詞です。 | "Narimasu" wa henka o arawasu dooshi desu. | "Narimasu" là động từ thể hiện sự thay đổi.
+01:48 | ナレーター / Nareetaa / Người dẫn | 会話の中で「眠くなる」と言っていますが、これは眠くない状態から眠い状態に変化するということになります。 | Kaiwa no naka de "nemuku naru" to itte imasu ga, kore wa nemukunai jootai kara nemui jootai ni henka suru to iu koto ni narimasu. | Trong hội thoại có nói "nemuku naru" (trở nên buồn ngủ), tức là thay đổi từ trạng thái không buồn ngủ sang trạng thái buồn ngủ.
+02:04 | ナレーター / Nareetaa / Người dẫn | い形容詞の場合は、「眠い」から「眠く」のように、最後の「い」をとることに気をつけましょう。 | I-keeyooshi no baai wa, "nemui" kara "nemuku" no yoo ni, saigo no "i" o toru koto ni ki o tsukemashoo. | Với tính từ đuôi i, hãy chú ý bỏ "i" ở cuối, như từ "nemui" thành "nemuku".
+02:20 | ナレーター / Nareetaa / Người dẫn | な形容詞や名詞の場合は、「暇になります」「医者になります」のように、「なります」の前に「に」を使います。 | Na-keeyooshi ya meeshi no baai wa, "hima ni narimasu" "isha ni narimasu" no yoo ni, "narimasu" no mae ni "ni" o tsukaimasu. | Với tính từ đuôi na và danh từ thì dùng "ni" trước "narimasu", như "hima ni narimasu" (trở nên rảnh), "isha ni narimasu" (trở thành bác sĩ).
+02:40 |  /  / Chủ đề | かぶれちゃった | kaburechatta | Bị nổi mẩn đỏ mất rồi
+02:46 | 客 / Kyaku / Khách | でも、前にシップでちょっとかぶれちゃったことがあるので、これにします。 | Demo, mae ni shippu de chotto kaburechatta koto ga aru node, kore ni shimasu. | Nhưng trước đây tôi từng bị mẩn đỏ nhẹ vì miếng dán, nên tôi chọn cái này.
+02:56 | ナレーター / Nareetaa / Người dẫn | この動画では、「かぶれちゃった」と言っています。話し言葉でよく使います。 | Kono dooga de wa, "kaburechatta" to itte imasu. Hanashikotoba de yoku tsukaimasu. | Trong video này nói "kaburechatta". Từ này hay dùng trong văn nói.
+03:06 | ナレーター / Nareetaa / Người dẫn | 「かぶれてしまいました」と同じ意味です。 | "Kaburete shimaimashita" to onaji imi desu. | Có nghĩa giống "kabureteshimaimashita".
+03:12 | ナレーター / Nareetaa / Người dẫn | 「動詞のて形＋しまう」は、動詞の行為が完了したことを表しますが、その中に話し手の残念だ、困ったという気持ちを含むことがあります。 | "Dooshi no te-kee + shimau" wa, dooshi no kooi ga kanryoo shita koto o arawashimasu ga, sono naka ni hanashite no zannen da, komatta to iu kimochi o fukumu koto ga arimasu. | "Thể te + shimau" của động từ diễn tả hành động đã hoàn tất, trong đó đôi khi hàm chứa cảm giác tiếc nuối, khó xử của người nói.
+03:33 | ナレーター / Nareetaa / Người dẫn | この会話の中で、薬局にシップを買いに来た人は、以前、シップでかぶれて困った経験があるので、それを「かぶれちゃった」と説明しています。 | Kono kaiwa no naka de, yakkyoku ni shippu o kai ni kita hito wa, izen, shippu de kaburete komatta keeken ga aru node, sore o "kaburechatta" to setsumee shite imasu. | Trong hội thoại này, người đến hiệu thuốc mua miếng dán trước đây từng gặp rắc rối vì bị mẩn đỏ do miếng dán, nên đã giải thích điều đó bằng "kaburechatta".

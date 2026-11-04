@@ -1,0 +1,1569 @@
+{
+  "lesson": {
+    "title": "Tình huống: Làm thủ tục chuyển nơi ở"
+  },
+  "videos": [
+    {
+      "title": "Gọi công ty chuyển nhà xin báo giá",
+      "description": "Hỏi được giá chuyển nhà, trả lời về đồ đạc và hẹn ngày đến xem phòng.",
+      "url": "/uploads/lesson-videos/n3-09-moving/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:06",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お電話ありがとうございます。渡り鳥引越センターでございます。",
+          "romaji": "Odenwa arigatoo gozaimasu. Wataridori Hikkoshi Sentaa de gozaimasu.",
+          "text_vi": "Cảm ơn quý khách đã gọi. Đây là Trung tâm chuyển nhà Wataridori ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "あの、インターネットで見て電話したんですけど、",
+          "romaji": "Ano, intaanetto de mite denwa shita n desu kedo,",
+          "text_vi": "À, tôi xem trên mạng rồi gọi điện,",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "ありがとうございます。",
+          "romaji": "Arigatoo gozaimasu.",
+          "text_vi": "Xin cảm ơn quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "来月の中旬くらいに引っ越しを予定しているんですけど、料金はいくらくらいになるか教えていただけますか？",
+          "romaji": "Raigetsu no chuujun kurai ni hikkoshi o yotee shite iru n desu kedo, ryookin wa ikura kurai ni naru ka oshiete itadakemasu ka.",
+          "text_vi": "Khoảng giữa tháng sau tôi dự định chuyển nhà, anh cho tôi biết phí khoảng bao nhiêu được không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "正確なお見積もりは、お部屋を見せていただいてからになりますが、よろしいですか？",
+          "romaji": "Seekaku na omitsumori wa, oheya o misete itadaite kara ni narimasu ga, yoroshii desu ka.",
+          "text_vi": "Báo giá chính xác thì sau khi chúng tôi xem phòng mới có được, quý khách thấy được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "あ、そうなんですね。",
+          "romaji": "A, soo nan desu ne.",
+          "text_vi": "À, ra vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "見積もりを見てからお願いするかどうか決めてもいいんですよね？",
+          "romaji": "Mitsumori o mite kara onegai-suru ka doo ka kimetemo ii n desu yo ne.",
+          "text_vi": "Sau khi xem báo giá rồi mới quyết định có nhờ hay không cũng được nhỉ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "はい、もちろんです。",
+          "romaji": "Hai, mochiron desu.",
+          "text_vi": "Vâng, tất nhiên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "では、いくつか教えていただけますか。",
+          "romaji": "Dewa, ikutsuka oshiete itadakemasu ka.",
+          "text_vi": "Vậy quý khách cho tôi hỏi vài điều được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お客様、お名前は？",
+          "romaji": "Okyakusama, onamae wa?",
+          "text_vi": "Xin quý khách cho biết tên ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "王浩然です。",
+          "romaji": "Oo Haoran desu.",
+          "text_vi": "Tôi là Vương Hạo Nhiên (Wang Haoran).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "現在のお住まいはどちらですか？",
+          "romaji": "Genzai no osumai wa dochira desu ka.",
+          "text_vi": "Hiện nay quý khách đang ở đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "八重洲市大里です。",
+          "romaji": "Yaesu-shi Oosato desu.",
+          "text_vi": "Tôi ở khu Oosato, thành phố Yaesu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お引っ越し先はどちらになりますか？",
+          "romaji": "Ohikkoshisaki wa dochira ni narimasu ka.",
+          "text_vi": "Nơi chuyển đến của quý khách là ở đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "引っ越し先？どこに引っ越すかっていうことですよね？",
+          "romaji": "Hikkoshisaki? Doko ni hikkosu ka tte iu koto desu yo ne.",
+          "text_vi": "Nơi chuyển đến ạ? Tức là hỏi tôi sẽ chuyển đi đâu đúng không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "板越市です。",
+          "romaji": "Itakoshi-shi desu.",
+          "text_vi": "Thành phố Itakoshi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お引っ越しの日にちはもうお決まりですか？",
+          "romaji": "Ohikkoshi no hinichi wa moo okimari desu ka.",
+          "text_vi": "Quý khách đã quyết định ngày chuyển nhà chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "できれば来月の中旬の日曜日に引っ越しできればいいなと思っているんですけど。",
+          "romaji": "Dekireba raigetsu no chuujun no nichiyoobi ni hikkoshi dekireba ii na to omotte iru n desu kedo.",
+          "text_vi": "Nếu được thì tôi muốn chuyển vào Chủ nhật giữa tháng sau.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "日曜日ですか。土日は料金も高くなりますし、今からですと空きもほとんどありませんが、平日でご検討いただくことは可能でしょうか？",
+          "romaji": "Nichiyoobi desu ka. Donichi wa ryookin mo takaku narimasu shi, ima kara desu to aki mo hotondo arimasen ga, heejitsu de gokentoo itadaku koto wa kanoo deshoo ka.",
+          "text_vi": "Chủ nhật ạ. Thứ Bảy, Chủ nhật phí cũng cao hơn, mà bây giờ thì hầu như không còn lịch trống, quý khách có thể cân nhắc ngày thường được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:47",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "平日ですか？",
+          "romaji": "Heejitsu desu ka.",
+          "text_vi": "Ngày thường ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "月曜日から金曜日までってことですよね？",
+          "romaji": "Getsuyoobi kara kin'yoobi made tte koto desu yo ne.",
+          "text_vi": "Tức là từ thứ Hai đến thứ Sáu đúng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "夕方遅めの時間でも大丈夫ですか？",
+          "romaji": "Yuugata osome no jikan demo daijoobu desu ka.",
+          "text_vi": "Giờ hơi muộn vào buổi chiều tối thì có được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:59",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "はい、大丈夫です。",
+          "romaji": "Hai, daijoobu desu.",
+          "text_vi": "Vâng, được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "わかりました。じゃあ、考えてみます。できるだけ早く決めるようにします。",
+          "romaji": "Wakarimashita. Jaa, kangaete mimasu. Dekiru dake hayaku kimeru yoo ni shimasu.",
+          "text_vi": "Tôi hiểu rồi. Vậy tôi sẽ cân nhắc. Tôi sẽ cố gắng quyết định sớm nhất có thể.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:08",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "よろしくお願いいたします。",
+          "romaji": "Yoroshiku onegai itashimasu.",
+          "text_vi": "Rất mong quý khách ủng hộ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "それでは、お客様のお部屋の状況をいくつかお伺いしてもよろしいですか。",
+          "romaji": "Soredewa, okyakusama no oheya no jookyoo o ikutsuka oukagai shite mo yoroshii desu ka.",
+          "text_vi": "Vậy cho tôi hỏi vài điều về tình trạng phòng của quý khách được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:17",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:19",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お部屋の広さはどのくらいですか？",
+          "romaji": "Oheya no hirosa wa dono kurai desu ka.",
+          "text_vi": "Phòng của quý khách rộng khoảng bao nhiêu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "広さは、どう言ったらいいかよくわからないんですけど、普通のワンルームです。",
+          "romaji": "Hirosa wa, doo ittara ii ka yoku wakaranain desu kedo, futsuu no wan-ruumu desu.",
+          "text_vi": "Về diện tích thì tôi không rõ nói thế nào, nhưng là căn phòng đơn bình thường.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:35",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:36",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お客様、お一人でお住まいですか？",
+          "romaji": "Okyakusama, ohitori de osumai desu ka.",
+          "text_vi": "Quý khách sống một mình phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:40",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、一人です。",
+          "romaji": "Hai, hitori desu.",
+          "text_vi": "Vâng, tôi ở một mình.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "大きな荷物はどんなものがありますか？",
+          "romaji": "Ookina nimotsu wa donna mono ga arimasu ka.",
+          "text_vi": "Đồ đạc lớn thì có những thứ gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "大きな荷物？大きいものといえば、冷蔵庫、洗濯機、ベッドぐらいです。",
+          "romaji": "Ookina nimotsu? Ookii mono to ieba, reezooko, sentakuki, beddo gurai desu.",
+          "text_vi": "Đồ đạc lớn ạ? Nếu nói đồ lớn thì chỉ có tủ lạnh, máy giặt, giường thôi.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "テーブルやタンスはお持ちですか？",
+          "romaji": "Teeburu ya tansu wa omochi desu ka.",
+          "text_vi": "Quý khách có bàn hay tủ quần áo không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:03",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "テーブルは小さいのが一つ、タンスはありません。",
+          "romaji": "Teeburu wa chiisai no ga hitotsu, tansu wa arimasen.",
+          "text_vi": "Bàn thì có một cái nhỏ, tủ quần áo thì không có.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:09",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "承知しました。バイクや自転車はお持ちですか？",
+          "romaji": "Shoochi shimashita. Baiku ya jitensha wa omochi desu ka.",
+          "text_vi": "Tôi hiểu rồi. Quý khách có xe máy hay xe đạp không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:14",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、自転車が1台あります。",
+          "romaji": "Hai, jitensha ga ichidai arimasu.",
+          "text_vi": "Vâng, có một chiếc xe đạp.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:18",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "わかりました。今日のお話を伺うと、お荷物もあまり多くなさそうですので、5万円から8万円ぐらいになるかと思います。一度お見積もりに伺いたいんですが、ご都合はいかがですか？",
+          "romaji": "Wakarimashita. Kyoo no ohanashi o ukagau to, onimotsu mo amari ookunasasoo desu node, goman-en kara hachiman-en gurai ni naru ka to omoimasu. Ichido omitsumori ni ukagaitain desu ga, gotsugoo wa ikaga desu ka.",
+          "text_vi": "Tôi hiểu rồi. Nghe câu chuyện hôm nay thì hành lý có vẻ không nhiều, nên tôi nghĩ khoảng 5 đến 8 vạn yên. Chúng tôi muốn đến xem để báo giá một lần, quý khách tiện lúc nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:38",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "今週の金曜日の6時頃はどうですか？",
+          "romaji": "Konshuu no kin'yoobi no rokuji-goro wa doo desu ka.",
+          "text_vi": "Khoảng 6 giờ chiều thứ Sáu tuần này thì sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:44",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "かしこまりました。では、10日の金曜日の6時頃に、当社の営業の者が伺います。",
+          "romaji": "Kashikomarimashita. Dewa, tooka no kin'yoobi no rokuji-goro ni, toosha no eegyoo no mono ga ukagaimasu.",
+          "text_vi": "Tôi hiểu rồi ạ. Vậy nhân viên kinh doanh của công ty chúng tôi sẽ đến vào khoảng 6 giờ chiều thứ Sáu ngày 10.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:52",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お客様のご住所、お電話番号を教えていただけますか？",
+          "romaji": "Okyakusama no gojuusho, odenwa bangoo o oshiete itadakemasu ka.",
+          "text_vi": "Quý khách cho tôi biết địa chỉ và số điện thoại được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:59",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。住所は八重洲市大里1-1-1、大里アパート103号室です。",
+          "romaji": "Hai. Juusho wa Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu desu.",
+          "text_vi": "Vâng. Địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:10",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "電話番号は080-1234-5678です。",
+          "romaji": "Denwa bangoo wa zero-hachi-zero no ichi-ni-san-yon no go-roku-nana-hachi desu.",
+          "text_vi": "Số điện thoại là 080-1234-5678.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:17",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "復唱いたします。",
+          "romaji": "Fukushoo itashimasu.",
+          "text_vi": "Tôi xin nhắc lại.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:20",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "ご住所は八重洲市大里1-1-1、大里アパート103号室。",
+          "romaji": "Gojuusho wa Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu.",
+          "text_vi": "Địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:30",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お電話番号は080-1234-5678ですね。",
+          "romaji": "Odenwa bangoo wa zero-hachi-zero no ichi-ni-san-yon no go-roku-nana-hachi desu ne.",
+          "text_vi": "Số điện thoại là 080-1234-5678 phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "04:39",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:42",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "お問い合わせありがとうございました。渡り鳥引越センターの山田が承りました。",
+          "romaji": "Otoiawase arigatoo gozaimashita. Wataridori Hikkoshi Sentaa no Yamada ga uketamawarimashita.",
+          "text_vi": "Cảm ơn quý khách đã liên hệ. Tôi là Yamada của Trung tâm chuyển nhà Wataridori, đã tiếp nhận yêu cầu.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:48",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "よろしくお願いいたします。",
+          "romaji": "Yoroshiku onegai itashimasu.",
+          "text_vi": "Mong anh giúp đỡ ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "見積もり",
+          "reading": "みつもり",
+          "romaji": "mitsumori",
+          "meaning": "báo giá"
+        },
+        {
+          "word": "料金",
+          "reading": "りょうきん",
+          "romaji": "ryookin",
+          "meaning": "chi phí"
+        },
+        {
+          "word": "中旬",
+          "reading": "ちゅうじゅん",
+          "romaji": "chuujun",
+          "meaning": "giữa tháng"
+        },
+        {
+          "word": "引っ越し先",
+          "reading": "ひっこしさき",
+          "romaji": "hikkoshisaki",
+          "meaning": "nơi chuyển đến"
+        },
+        {
+          "word": "平日",
+          "reading": "へいじつ",
+          "romaji": "heejitsu",
+          "meaning": "ngày thường"
+        },
+        {
+          "word": "土日",
+          "reading": "どにち",
+          "romaji": "donichi",
+          "meaning": "thứ Bảy và Chủ nhật"
+        },
+        {
+          "word": "復唱",
+          "reading": "ふくしょう",
+          "romaji": "fukushoo",
+          "meaning": "nhắc lại"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi tòa thị chính về thủ tục chuyển đi",
+      "description": "Hỏi được cần nộp giấy gì, nộp khi nào và mang theo những gì.",
+      "url": "/uploads/lesson-videos/n3-09-moving/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:06",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい、八重洲市役所でございます。",
+          "romaji": "Hai, Yaesu shiyakusho de gozaimasu.",
+          "text_vi": "Vâng, Tòa thị chính thành phố Yaesu xin nghe.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "ちょっと教えていただきたいんですが。",
+          "romaji": "Chotto oshiete itadakitain desu ga.",
+          "text_vi": "Tôi muốn nhờ chỉ giúp một chút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい、何でしょうか。",
+          "romaji": "Hai, nan deshoo ka.",
+          "text_vi": "Vâng, chuyện gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "来月、引っ越しをするんですが、どんな手続きが必要でしょうか。",
+          "romaji": "Raigetsu, hikkoshi o suru n desu ga, donna tetsuzuki ga hitsuyoo deshoo ka.",
+          "text_vi": "Tháng sau tôi chuyển nhà, vậy cần làm thủ tục gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "えーと、現在、八重洲市にお住まいなんですね。",
+          "romaji": "Eeto, genzai, Yaesu-shi ni osumai nan desu ne.",
+          "text_vi": "À, hiện giờ anh đang sống ở thành phố Yaesu nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "どちらにお引っ越しなさいますか？",
+          "romaji": "Dochira ni ohikkoshi nasaimasu ka.",
+          "text_vi": "Anh sẽ chuyển đến đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "板越市です。",
+          "romaji": "Itakoshi-shi desu.",
+          "text_vi": "Thành phố Itakoshi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "そうですか。では、転出ですので、転出届を出していただくことになります。",
+          "romaji": "Soo desu ka. Dewa, tenshutsu desu node, tenshutsu-todoke o dashite itadaku koto ni narimasu.",
+          "text_vi": "Vậy ạ. Vì là chuyển đi nơi khác nên anh sẽ phải nộp đơn khai báo chuyển đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "転出届ですね。いつ頃届ければいいですか？",
+          "romaji": "Tenshutsu-todoke desu ne. Itsugoro todokereba ii desu ka.",
+          "text_vi": "Đơn khai báo chuyển đi nhỉ. Tôi nên nộp vào khoảng khi nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "お引っ越しの2週間ぐらい前からお手続きいただけます。",
+          "romaji": "Ohikkoshi no nishuukan gurai mae kara otetsuzuki itadakemasu.",
+          "text_vi": "Anh có thể làm thủ tục từ khoảng 2 tuần trước khi chuyển nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "市役所に行けば用紙がありますか？",
+          "romaji": "Shiyakusho ni ikeba yooshi ga arimasu ka.",
+          "text_vi": "Đến tòa thị chính thì có mẫu đơn không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい、ございます。",
+          "romaji": "Hai, gozaimasu.",
+          "text_vi": "Vâng, có ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:01",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "パスポートとか在留カードとかを持っていけばいいですか？",
+          "romaji": "Pasupooto toka zairyuu kaado toka o motte ikeba ii desu ka.",
+          "text_vi": "Tôi mang hộ chiếu hay thẻ cư trú đi là được ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい、もし国民健康保険にお入りでしたら、保険証もお持ちください。",
+          "romaji": "Hai, moshi kokumin kenkoo hoken ni ohairi deshitara, hokenshoo mo omochi kudasai.",
+          "text_vi": "Vâng, nếu anh có tham gia bảo hiểm y tế quốc dân thì nhớ mang cả thẻ bảo hiểm.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "あ、印鑑登録をしているんですけど、その手続きも必要ですか？",
+          "romaji": "A, inkan tooroku o shite iru n desu kedo, sono tetsuzuki mo hitsuyoo desu ka.",
+          "text_vi": "À, tôi đã đăng ký con dấu, vậy có cần làm thủ tục đó nữa không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "はい、印鑑と印鑑登録カードもお持ちください。",
+          "romaji": "Hai, inkan to inkan tooroku kaado mo omochi kudasai.",
+          "text_vi": "Vâng, anh cũng mang theo con dấu và thẻ đăng ký con dấu nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "いろいろ教えてくださってありがとうございました。",
+          "romaji": "Iroiro oshiete kudasatte arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn anh đã chỉ cho tôi nhiều điều.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "いいえ、どういたしまして。失礼いたします。",
+          "romaji": "Iie, doo itashimashite. Shitsuree itashimasu.",
+          "text_vi": "Không có gì ạ. Xin phép anh.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "転出",
+          "reading": "てんしゅつ",
+          "romaji": "tenshutsu",
+          "meaning": "chuyển đi nơi khác"
+        },
+        {
+          "word": "転出届",
+          "reading": "てんしゅつとどけ",
+          "romaji": "tenshutsu-todoke",
+          "meaning": "đơn khai báo chuyển đi"
+        },
+        {
+          "word": "手続き",
+          "reading": "てつづき",
+          "romaji": "tetsuzuki",
+          "meaning": "thủ tục"
+        },
+        {
+          "word": "用紙",
+          "reading": "ようし",
+          "romaji": "yooshi",
+          "meaning": "mẫu đơn"
+        },
+        {
+          "word": "国民健康保険",
+          "reading": "こくみんけんこうほけん",
+          "romaji": "kokumin kenkoo hoken",
+          "meaning": "bảo hiểm y tế quốc dân"
+        },
+        {
+          "word": "印鑑登録",
+          "reading": "いんかんとうろく",
+          "romaji": "inkan tooroku",
+          "meaning": "đăng ký con dấu"
+        }
+      ]
+    },
+    {
+      "title": "Báo công ty điện lực khi chuyển nhà",
+      "description": "Đọc được mã số khách hàng, báo ngày chuyển và địa chỉ mới.",
+      "url": "/uploads/lesson-videos/n3-09-moving/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:04",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "はい、北部電力です。",
+          "romaji": "Hai, Hokubu Denryoku desu.",
+          "text_vi": "Vâng, Công ty Điện lực Hokubu xin nghe.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "あの、ちょっと教えていただきたいんですが。",
+          "romaji": "Ano, chotto oshiete itadakitain desu ga.",
+          "text_vi": "À, tôi muốn nhờ chỉ giúp một chút ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "はい、何でしょう。",
+          "romaji": "Hai, nan deshoo.",
+          "text_vi": "Vâng, chuyện gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "来週、引っ越しをするんですけど、電気はどうすればいいでしょうか。",
+          "romaji": "Raishuu, hikkoshi o suru n desu kedo, denki wa doo sureba ii deshoo ka.",
+          "text_vi": "Tuần sau tôi chuyển nhà, vậy về điện thì tôi nên làm thế nào ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "お引越しですね。お客様番号はお分かりになりますか？",
+          "romaji": "Ohikkoshi desu ne. Okyakusama bangoo wa owakari ni narimasu ka.",
+          "text_vi": "Anh chuyển nhà ạ. Anh có biết mã số khách hàng không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "ちょっと分からないんですが。",
+          "romaji": "Chotto wakaranain desu ga.",
+          "text_vi": "Tôi không rõ lắm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:33",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "お手元に領収書はお持ちですか？",
+          "romaji": "Otemoto ni ryooshuusho wa omochi desu ka.",
+          "text_vi": "Anh có biên lai ở gần đó không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。ちょっと待ってください。",
+          "romaji": "Hai. Chotto matte kudasai.",
+          "text_vi": "Có ạ. Anh chờ một chút nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "お待たせしました。",
+          "romaji": "Omatase shimashita.",
+          "text_vi": "Xin lỗi để anh chờ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "その右下に、13桁のお客様番号というのがあるんですが。",
+          "romaji": "Sono migishita ni, juusan-keta no okyakusama bangoo to iu no ga aru n desu ga.",
+          "text_vi": "Ở phía dưới bên phải có cái gọi là mã số khách hàng 13 chữ số ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "お客様番号ですね。",
+          "romaji": "Okyakusama bangoo desu ne.",
+          "text_vi": "Mã số khách hàng nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "ああ、ありました。",
+          "romaji": "Aa, arimashita.",
+          "text_vi": "À, có rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "はい、ではその番号を教えていただけますか？",
+          "romaji": "Hai, dewa sono bangoo o oshiete itadakemasu ka.",
+          "text_vi": "Vâng, vậy anh cho tôi biết số đó được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "12345の67890の9の01です。",
+          "romaji": "Ichi-ni-san-yon-go no roku-nana-hachi-kyuu-zero no kyuu no zero-ichi desu.",
+          "text_vi": "Là 12345, 67890, 9, 01 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "12345の67890の9の01ですね。",
+          "romaji": "Ichi-ni-san-yon-go no roku-nana-hachi-kyuu-zero no kyuu no zero-ichi desu ne.",
+          "text_vi": "12345, 67890, 9, 01 nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:35",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "お名前をお願いします。",
+          "romaji": "Onamae o onegai shimasu.",
+          "text_vi": "Xin anh cho biết tên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。王浩然です。",
+          "romaji": "Hai. Oo Haoran desu.",
+          "text_vi": "Vâng. Tôi là Vương Hạo Nhiên (Wang Haoran).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:41",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "王浩然様ですね。",
+          "romaji": "Oo Haoran-sama desu ne.",
+          "text_vi": "Anh Vương Hạo Nhiên nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "現在のご住所を教えていただけますか？",
+          "romaji": "Genzai no gojuusho o oshiete itadakemasu ka.",
+          "text_vi": "Anh cho tôi biết địa chỉ hiện tại được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、八重洲市大里1-1-1、大里アパート103号室です。",
+          "romaji": "Hai, Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu desu.",
+          "text_vi": "Vâng, địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "ありがとうございます。お引越しの日にちはお決まりですか？",
+          "romaji": "Arigatoo gozaimasu. Ohikkoshi no hinichi wa okimari desu ka.",
+          "text_vi": "Cảm ơn anh. Anh đã quyết định ngày chuyển nhà chưa ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、11月26日です。",
+          "romaji": "Hai, juuichigatsu nijuuroku-nichi desu.",
+          "text_vi": "Vâng, ngày 26 tháng 11 ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "来週の11月26日ですね。",
+          "romaji": "Raishuu no juuichigatsu nijuuroku-nichi desu ne.",
+          "text_vi": "Ngày 26 tháng 11 tuần sau nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:12",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:14",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "わかりました。では、引っ越しの際にブレーカーを落としてください。",
+          "romaji": "Wakarimashita. Dewa, hikkoshi no sai ni bureekaa o otoshite kudasai.",
+          "text_vi": "Tôi hiểu rồi. Vậy khi chuyển nhà, anh nhớ gạt cầu dao xuống nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "ブレーカーって何ですか？",
+          "romaji": "Bureekaa tte nan desu ka.",
+          "text_vi": "\"Bureekaa\" là gì vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:26",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "玄関のちょっと上あたりに、レバーがあると思うんですが。",
+          "romaji": "Genkan no chotto ue atari ni, rebaa ga aru to omou n desu ga.",
+          "text_vi": "Ở khoảng phía trên cửa ra vào một chút chắc có một cái cần gạt ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:35",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "ああ、はいはい。わかりました。",
+          "romaji": "Aa, hai hai. Wakarimashita.",
+          "text_vi": "À, vâng vâng. Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:40",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "そのレバーを下に下げてください。",
+          "romaji": "Sono rebaa o shita ni sagete kudasai.",
+          "text_vi": "Anh gạt cần đó xuống dưới nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:45",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "わかりました。自分で下げればいいんですね。",
+          "romaji": "Wakarimashita. Jibun de sagereba ii n desu ne.",
+          "text_vi": "Tôi hiểu rồi. Tự tôi gạt xuống là được nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:49",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:52",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "今月分の請求書はお引っ越し先にお送りいたしますので、新しいご住所を教えていただけますか？",
+          "romaji": "Kongetsubun no seekyuusho wa ohikkoshisaki ni ookuri itashimasu node, atarashii gojuusho o oshiete itadakemasu ka.",
+          "text_vi": "Hóa đơn tháng này sẽ được gửi đến nơi ở mới của anh, nên anh cho tôi biết địa chỉ mới được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:59",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:01",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "板越市横川町1-2-3、南荘205号室です。",
+          "romaji": "Itakoshi-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu.",
+          "text_vi": "Thành phố Itakoshi, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:11",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "復唱いたします。板越市横川町1-2-3、南荘205号室ですね。",
+          "romaji": "Fukushoo itashimasu. Itakoshi-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu ne.",
+          "text_vi": "Tôi xin nhắc lại. Thành phố Itakoshi, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": "北部電力の職員",
+          "speaker_romaji": "Hokubu Denryoku no shokuin",
+          "speaker_vi": "Nhân viên Điện lực Hokubu",
+          "text_ja": "ありがとうございました。お電話ありがとうございました。平林が承りました。失礼いたします。",
+          "romaji": "Arigatoo gozaimashita. Odenwa arigatoo gozaimashita. Hirabayashi ga uketamawarimashita. Shitsuree itashimasu.",
+          "text_vi": "Xin cảm ơn. Cảm ơn anh đã gọi. Tôi là Hirabayashi, đã tiếp nhận. Xin phép ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "電力",
+          "reading": "でんりょく",
+          "romaji": "denryoku",
+          "meaning": "điện lực"
+        },
+        {
+          "word": "お客様番号",
+          "reading": "おきゃくさまばんごう",
+          "romaji": "okyakusama bangoo",
+          "meaning": "mã số khách hàng"
+        },
+        {
+          "word": "領収書",
+          "reading": "りょうしゅうしょ",
+          "romaji": "ryooshuusho",
+          "meaning": "biên lai"
+        },
+        {
+          "word": "桁",
+          "reading": "けた",
+          "romaji": "keta",
+          "meaning": "chữ số"
+        },
+        {
+          "word": "ブレーカー",
+          "reading": "ブレーカー",
+          "romaji": "bureekaa",
+          "meaning": "cầu dao điện"
+        },
+        {
+          "word": "玄関",
+          "reading": "げんかん",
+          "romaji": "genkan",
+          "meaning": "lối vào nhà"
+        },
+        {
+          "word": "請求書",
+          "reading": "せいきゅうしょ",
+          "romaji": "seekyuusho",
+          "meaning": "hóa đơn"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Làm thủ tục chuyển nơi ở",
+      "description": "Ôn lại「〜ていただけますか」,「〜かどうか」và「疑問詞＋〜ばいいですか」.",
+      "url": "/uploads/lesson-videos/n3-09-moving/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "おしえて いただけますか",
+          "romaji": "oshiete itadakemasu ka",
+          "text_vi": "Anh/chị chỉ cho tôi được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "あの、インターネットで見て電話したんですけど、来月の中旬くらいに引っ越しを予定しているんですけど、料金はいくらくらいになるか、教えていただけますか？",
+          "romaji": "Ano, intaanetto de mite denwa shita n desu kedo, raigetsu no chuujun kurai ni hikkoshi o yotee shite iru n desu kedo, ryookin wa ikura kurai ni naru ka, oshiete itadakemasu ka.",
+          "text_vi": "À, tôi xem trên mạng rồi gọi điện, khoảng giữa tháng sau tôi dự định chuyển nhà, anh cho tôi biết phí khoảng bao nhiêu được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞のて形+いただけますか」「いただけませんか」「いただきたいんですが」は、",
+          "romaji": "\"Dooshi no te-kee + itadakemasu ka\", \"itadakemasen ka\", \"itadakitain desu ga\" wa,",
+          "text_vi": "Các mẫu \"dạng te của động từ + itadakemasu ka\", \"itadakemasen ka\", \"itadakitain desu ga\"",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞のて形+ください」と同じ意味です。目上の人や初めて会った人、知らない人などに丁寧にお願いするときに使います。",
+          "romaji": "\"Dooshi no te-kee + kudasai\" to onaji imi desu. Meue no hito ya hajimete atta hito, shiranai hito nado ni teenee ni onegai suru toki ni tsukaimasu.",
+          "text_vi": "có nghĩa giống \"dạng te của động từ + kudasai\". Dùng khi nhờ vả lịch sự với người bề trên, người mới gặp lần đầu hoặc người không quen.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではお客さんが、引っ越し業者に丁寧に問い合わせをしています。",
+          "romaji": "Kono dooga de wa okyakusan ga, hikkoshi-gyoosha ni teenee ni toiawase o shite imasu.",
+          "text_vi": "Trong video này, khách hàng đang hỏi thăm một cách lịch sự với công ty chuyển nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「すみません、ちょっと教えていただけますか？」と話を始めると、相手もいい印象を持つでしょう。",
+          "romaji": "\"Sumimasen, chotto oshiete itadakemasu ka\" to hanashi o hajimeru to, aite mo ii inshoo o motsu deshoo.",
+          "text_vi": "Nếu bắt đầu câu chuyện bằng \"Xin lỗi, anh chỉ giúp tôi một chút được không ạ?\" thì đối phương cũng sẽ có ấn tượng tốt.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他に、「写真を撮っていただけますか」「サイズを取り替えていただけますか？」など、いろいろな場面で使えます。",
+          "romaji": "Hoka ni, \"Shashin o totte itadakemasu ka\", \"Saizu o torikaete itadakemasu ka\" nado, iroiro na bamen de tsukaemasu.",
+          "text_vi": "Ngoài ra còn dùng được trong nhiều tình huống như \"Anh chụp ảnh giúp tôi được không ạ?\", \"Anh đổi giúp tôi cỡ khác được không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "おねがいするか どうか",
+          "romaji": "onegai-suru ka doo ka",
+          "text_vi": "Có nhờ hay không",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "正確なお見積もりは、お部屋を見せていただいてからになりますが、よろしいですか？",
+          "romaji": "Seekaku na omitsumori wa, oheya o misete itadaite kara ni narimasu ga, yoroshii desu ka.",
+          "text_vi": "Báo giá chính xác thì sau khi chúng tôi xem phòng mới có được, quý khách thấy được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "あ、そうなんですね。見積もりを見てからお願いするかどうか決めてもいいんですよね？",
+          "romaji": "A, soo nan desu ne. Mitsumori o mite kara onegai-suru ka doo ka kimetemo ii n desu yo ne.",
+          "text_vi": "À, ra vậy. Sau khi xem báo giá rồi mới quyết định có nhờ hay không cũng được nhỉ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "引っ越し業者",
+          "speaker_romaji": "Hikkoshi gyoosha",
+          "speaker_vi": "Nhân viên công ty chuyển nhà",
+          "text_ja": "はい、もちろんです。",
+          "romaji": "Hai, mochiron desu.",
+          "text_vi": "Vâng, tất nhiên ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「家」＋「決めます」、「時間」＋「決めます」の時は、「家を決めます」「時間を決めます」となります。",
+          "romaji": "\"Ie\" + \"kimemasu\", \"jikan\" + \"kimemasu\" no toki wa, \"ie o kimemasu\", \"jikan o kimemasu\" to narimasu.",
+          "text_vi": "Khi là \"nhà\" + \"quyết định\", \"thời gian\" + \"quyết định\" thì sẽ thành \"quyết định nhà\", \"quyết định thời gian\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しかし、「お願いしますか、しませんか」＋「決めます」は、「お願いするかどうか決めます」、",
+          "romaji": "Shikashi, \"onegai shimasu ka, shimasen ka\" + \"kimemasu\" wa, \"onegai-suru ka doo ka kimemasu\",",
+          "text_vi": "Tuy nhiên, \"nhờ hay không nhờ\" + \"quyết định\" thì sẽ là \"quyết định xem có nhờ hay không\",",
+          "key_phrase": false
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「何時に会いますか」＋「決めます」は、「何時に会うか決めます」のように、疑問文の形を変えなければなりません。",
+          "romaji": "\"Nanji ni aimasu ka\" + \"kimemasu\" wa, \"nanji ni au ka kimemasu\" no yoo ni, gimonbun no katachi o kaenakereba narimasen.",
+          "text_vi": "\"Gặp lúc mấy giờ\" + \"quyết định\" thì sẽ thành \"quyết định xem gặp lúc mấy giờ\"; tức là phải đổi dạng của câu hỏi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「明日行きますか？行きませんか」＋「わかりません」は、「明日行くかどうかわかりません」、",
+          "romaji": "\"Ashita ikimasu ka, ikimasen ka\" + \"wakarimasen\" wa, \"ashita iku ka doo ka wakarimasen\",",
+          "text_vi": "\"Ngày mai đi hay không đi\" + \"không biết\" thì thành \"không biết ngày mai có đi hay không\",",
+          "key_phrase": false
+        },
+        {
+          "start": "03:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「どの店が安いですか？」＋「調べました」は、「どの店が安いか調べました」となります。",
+          "romaji": "\"Dono mise ga yasui desu ka?\" + \"shirabemashita\" wa, \"dono mise ga yasui ka shirabemashita\" to narimasu.",
+          "text_vi": "\"Cửa hàng nào rẻ?\" + \"đã tìm hiểu\" thì thành \"đã tìm hiểu xem cửa hàng nào rẻ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、王さんは見積もりを見るまでは決められないので、",
+          "romaji": "Kono dooga de wa, Oo-san wa mitsumori o miru made wa kimerarenai node,",
+          "text_vi": "Trong video này, vì anh Vương chưa thể quyết định cho đến khi xem báo giá nên",
+          "key_phrase": false
+        },
+        {
+          "start": "03:25",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「見積もりを見てからお願いするかどうか決めてもいいんですよね？」と聞きました。",
+          "romaji": "\"Mitsumori o mite kara onegai-suru ka doo ka kimetemo ii n desu yo ne\" to kikimashita.",
+          "text_vi": "anh hỏi \"Sau khi xem báo giá rồi mới quyết định có nhờ hay không cũng được nhỉ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "文の形は、普通形＋かどうか＋動詞です。",
+          "romaji": "Bun no katachi wa, futsuu-kee + ka doo ka + dooshi desu.",
+          "text_vi": "Cấu trúc câu là: thể thường + ka doo ka + động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "疑問文に疑問詞があるときは、疑問詞＋普通形＋か＋動詞です。",
+          "romaji": "Gimonbun ni gimonshi ga aru toki wa, gimonshi + futsuu-kee + ka + dooshi desu.",
+          "text_vi": "Khi câu hỏi có từ để hỏi thì là: từ để hỏi + thể thường + ka + động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:08",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "いつごろ とどければ、いいですか",
+          "romaji": "itsu goro todokereba, ii desu ka",
+          "text_vi": "Nên nộp (đơn) vào khoảng khi nào thì được ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "04:13",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "では、転出ですので、転出届を出していただくことになります。",
+          "romaji": "Dewa, tenshutsu desu node, tenshutsu-todoke o dashite itadaku koto ni narimasu.",
+          "text_vi": "Vì là chuyển đi nơi khác nên anh sẽ phải nộp đơn khai báo chuyển đi.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:20",
+          "speaker_ja": "王浩然",
+          "speaker_romaji": "Oo Haoran",
+          "speaker_vi": "Haoran (Vương Hạo Nhiên)",
+          "text_ja": "転出届ですね。いつ頃届ければいいですか？",
+          "romaji": "Tenshutsu-todoke desu ne. Itsugoro todokereba ii desu ka.",
+          "text_vi": "Đơn khai báo chuyển đi nhỉ. Tôi nên nộp vào khoảng khi nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "04:27",
+          "speaker_ja": "市役所の職員",
+          "speaker_romaji": "Shiyakusho no shokuin",
+          "speaker_vi": "Nhân viên tòa thị chính",
+          "text_ja": "お引っ越しの2週間ぐらい前からお手続きいただけます。",
+          "romaji": "Ohikkoshi no nishuukan gurai mae kara otetsuzuki itadakemasu.",
+          "text_vi": "Anh có thể làm thủ tục từ khoảng 2 tuần trước khi chuyển nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「疑問詞＋動詞の条件形＋いいですか」は、",
+          "romaji": "\"Gimonshi + dooshi no jooken-kee + ii desu ka\" wa,",
+          "text_vi": "Mẫu \"từ để hỏi + thể điều kiện (ba) của động từ + ii desu ka\"",
+          "key_phrase": false
+        },
+        {
+          "start": "04:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "何かしたいことがあるときや、しなければならないことがあるとき、",
+          "romaji": "Nanika shitai koto ga aru toki ya, shinakereba naranai koto ga aru toki,",
+          "text_vi": "dùng khi có việc muốn làm hoặc có việc phải làm,",
+          "key_phrase": false
+        },
+        {
+          "start": "04:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "どうしたら一番いいか、何が必要かなど、指示や助言を求める表現です。",
+          "romaji": "Doo shitara ichiban ii ka, nani ga hitsuyoo ka nado, shiji ya jogen o motomeru hyoogen desu.",
+          "text_vi": "để xin chỉ dẫn hoặc lời khuyên về việc làm thế nào là tốt nhất, cần những gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では王さんが、役所の人に、自分が出す書類についていつごろ届ければいいですかと指示を求めました。",
+          "romaji": "Kono dooga de wa Oo-san ga, yakusho no hito ni, jibun ga dasu shorui ni tsuite itsu goro todokereba ii desu ka to shiji o motomemashita.",
+          "text_vi": "Trong video này, anh Vương đã hỏi người ở cơ quan hành chính về giấy tờ mình nộp rằng nên nộp vào khoảng khi nào.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

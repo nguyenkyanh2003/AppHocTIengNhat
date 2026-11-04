@@ -10,6 +10,7 @@ import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../core/network/api_client.dart';
 import '../../flashcards/widgets/add_to_flashcard_dialog.dart';
+import '../../srs/models/srs_progress.dart';
 import '../../srs/providers/srs_provider.dart';
 import '../../srs/widgets/srs_confirm_dialog.dart';
 import '../models/vocabulary.dart';
@@ -130,7 +131,11 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
     final messenger = ScaffoldMessenger.of(context);
     setState(() => _resetting = true);
     try {
-      await srs.resetSchedule(itemId: vocabulary.id, expectedNextReview: progress.nextReview);
+      await srs.resetSchedule(
+        itemId: vocabulary.id,
+        itemType: SrsProgress.itemTypeVocabulary,
+        expectedNextReview: progress.nextReview,
+      );
       messenger.showSnackBar(const SnackBar(content: Text('Đã đặt lại lịch ôn, ôn lại sau 24 giờ.')));
     } on ApiException catch (error) {
       messenger.showSnackBar(SnackBar(

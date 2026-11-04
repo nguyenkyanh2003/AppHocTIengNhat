@@ -27,7 +27,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 153;
+const expectedCount = 154;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -50,7 +50,9 @@ const expectedCount = 153;
 // 2026-09-28: đợt 0 one-style — gỡ 21 route notifications/news/notebook/reports không có consumer (spec one-style §6.1).
 // 2026-09-28: đợt 0 one-style — gỡ 10 route study-groups/users/grammar không có consumer (spec one-style §6.1).
 // 2026-09-28: đợt 0 one-style — gỡ 10 route vocabulary/lessons không có consumer (spec one-style §6.1).
-const expectedSignatureHash = 'ca403daf7d140e9664b75f5124bc924dfbcbb131d19f8d78041f5dff8ad4a2fe';
+// 2026-11-04: Kanji SRS đợt 1 — gỡ `POST /api/kanji/learn/:id` (không tạo thẻ nào), thêm
+//   `POST` và `DELETE /api/kanji/:id/mark-learned` (thêm/gỡ thẻ ôn, spec Kanji SRS §2).
+const expectedSignatureHash = 'c7464589994573971475a6be4d771f021ae2a6a6022c0fcee127650567840a5b';
 
 const collectSignatures = async () => {
   const signatures = [];

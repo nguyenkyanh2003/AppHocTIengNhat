@@ -7,8 +7,8 @@ import '../models/srs_progress.dart';
 import '../models/srs_tally.dart';
 import '../services/srs_service.dart';
 
-/// Phiên ôn tập SRS: hàng thẻ đến hạn, lật thẻ, tự đánh giá, bỏ qua, đặt lại,
-/// xoá — và badge số thẻ đến hạn.
+/// Phiên ôn tập SRS: hàng thẻ đến hạn (từ vựng và Kanji, hoặc một loại theo
+/// bộ lọc), lật thẻ, tự đánh giá, bỏ qua, đặt lại, xoá — và badge số thẻ đến hạn.
 ///
 /// Hàng thẻ lấy theo **đợt**: làm hết đợt cục bộ rồi xin đợt kế tiếp kèm danh
 /// sách thẻ đã xử lý trong phiên, để thẻ bỏ qua không chiếm chỗ của thẻ phía
@@ -28,6 +28,7 @@ class SrsProvider extends ChangeNotifier {
   final Set<String> _handled = {};
   SrsTally _tally = const SrsTally();
   int? _dueCount;
+  String? _typeFilter;
 
   bool _revealed = false;
   bool _busy = false;
@@ -54,8 +55,12 @@ class SrsProvider extends ChangeNotifier {
   SrsTally get tally => _tally;
   int get handledCount => _handled.length;
 
-  /// Số từ đến hạn của toàn tài khoản, `null` khi chưa tải được lần nào.
+  /// Số thẻ đến hạn (mọi loại) của toàn tài khoản, `null` khi chưa tải được lần nào.
   int? get dueCount => _dueCount;
+
+  /// Loại thẻ của phiên ([SrsProgress.itemTypeVocabulary] / [SrsProgress.itemTypeKanji]);
+  /// `null` là mọi loại.
+  String? get typeFilter => _typeFilter;
 
   /// Lỗi của thao tác vừa rồi; thẻ vẫn giữ nguyên để [retry].
   String? get actionError => _actionError;
@@ -86,6 +91,14 @@ class SrsProvider extends ChangeNotifier {
     _session = const ViewState.loading();
     _notify();
     await _fetchNextBatch(generation);
+  }
+
+  /// Đổi loại thẻ cần ôn. Thẻ đã xử lý và số liệu thuộc phiên cũ, nên đổi bộ
+  /// lọc là mở phiên mới.
+  Future<void> setTypeFilter(String? itemType) async {
+    if (itemType == _typeFilter) return;
+    _typeFilter = itemType;
+    await startSession();
   }
 
   /// Tải lại đợt thẻ sau khi lấy đợt bị lỗi, giữ nguyên số liệu phiên.
@@ -120,6 +133,7 @@ class SrsProvider extends ChangeNotifier {
   Future<void> answer({required bool remembered}) => _mutate((card) async {
         await _service.review(
           itemId: card.itemId,
+          itemType: card.itemType,
           isCorrect: remembered,
           expectedNextReview: card.progress.nextReview,
         );
@@ -127,24 +141,33 @@ class SrsProvider extends ChangeNotifier {
       });
 
   Future<void> resetCurrent() => _mutate((card) async {
-        await _service.reset(itemId: card.itemId, expectedNextReview: card.progress.nextReview);
+        await _service.reset(
+          itemId: card.itemId,
+          itemType: card.itemType,
+          expectedNextReview: card.progress.nextReview,
+        );
         _tally = _tally.add(reset: 1);
       });
 
   Future<void> removeCurrent() => _mutate((card) async {
-        await _service.remove(itemId: card.itemId);
+        await _service.remove(itemId: card.itemId, itemType: card.itemType);
         _tally = _tally.add(removed: 1);
       });
 
   Future<void> retry() async => _retryAction?.call();
 
-  /// Đặt lại lịch của một từ ngoài phiên ôn (màn chi tiết từ vựng), kể cả khi
-  /// chưa đến hạn. Lỗi được ném lại để màn gọi tự báo.
+  /// Đặt lại lịch của một thẻ ngoài phiên ôn (màn chi tiết), kể cả khi chưa
+  /// đến hạn. Lỗi được ném lại để màn gọi tự báo.
   Future<SrsProgress> resetSchedule({
     required String itemId,
+    required String itemType,
     required DateTime expectedNextReview,
   }) async {
-    final progress = await _service.reset(itemId: itemId, expectedNextReview: expectedNextReview);
+    final progress = await _service.reset(
+      itemId: itemId,
+      itemType: itemType,
+      expectedNextReview: expectedNextReview,
+    );
     await loadDueCount();
     return progress;
   }
@@ -156,6 +179,7 @@ class SrsProvider extends ChangeNotifier {
     _session = const ViewState.idle();
     _stats = const ViewState.idle();
     _dueCount = null;
+    _typeFilter = null;
     _clearCardState();
     _notify();
   }
@@ -212,7 +236,7 @@ class SrsProvider extends ChangeNotifier {
     final current = error.details?['current_progress'];
 
     if (error.statusCode == 404) {
-      _notice = 'Từ này không còn trong lịch ôn.';
+      _notice = 'Thẻ này không còn trong lịch ôn.';
       await _finishCard(card);
     } else if (error.code == 'SRS_NOT_DUE') {
       _notice = 'Thẻ này vừa được ôn ở nơi khác và chưa đến hạn lại.';
@@ -262,6 +286,7 @@ class SrsProvider extends ChangeNotifier {
         : await ViewState.guard(() async => (await _service.fetchDue(
               excludeItemIds: _handled.toList(),
               limit: room < SrsService.defaultLimit ? room : SrsService.defaultLimit,
+              itemType: _typeFilter,
             ))
                 .cards);
     if (generation != _generation || _disposed) return;
@@ -275,10 +300,11 @@ class SrsProvider extends ChangeNotifier {
   Future<void> _loadSummary(int generation) async {
     _stats = const ViewState.loading();
     _notify();
-    final stats = await ViewState.guard(_service.fetchStats);
+    final stats = await ViewState.guard(() => _service.fetchStats(itemType: _typeFilter));
     if (generation != _generation || _disposed) return;
     _stats = stats;
-    if (stats.valueOrNull != null) _dueCount = stats.valueOrNull!.dueCount;
+    // Badge đếm mọi loại: số của phiên đang lọc chỉ thay được khi không lọc.
+    if (stats.valueOrNull != null && _typeFilter == null) _dueCount = stats.valueOrNull!.dueCount;
     _notify();
   }
 }

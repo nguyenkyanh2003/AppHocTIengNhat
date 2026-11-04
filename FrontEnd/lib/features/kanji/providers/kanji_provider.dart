@@ -6,7 +6,6 @@ class KanjiProvider with ChangeNotifier {
   final KanjiService _kanjiService = KanjiService();
 
   List<Kanji> _kanjis = [];
-  Kanji? _selectedKanji;
   bool _isLoading = false;
   String _errorMessage = '';
 
@@ -21,7 +20,6 @@ class KanjiProvider with ChangeNotifier {
 
   // Getters
   List<Kanji> get kanjis => _kanjis;
-  Kanji? get selectedKanji => _selectedKanji;
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
   int get currentPage => _currentPage;
@@ -113,24 +111,6 @@ class KanjiProvider with ChangeNotifier {
     }
   }
 
-  // Tải chi tiết kanji
-  Future<void> loadKanjiDetail(String id) async {
-    _isLoading = true;
-    _errorMessage = '';
-    notifyListeners();
-
-    try {
-      _selectedKanji = await _kanjiService.getKanjiById(id);
-      _errorMessage = '';
-    } catch (e) {
-      _errorMessage = e.toString();
-      _selectedKanji = null;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
   // Tải kanji theo bài học
   Future<void> loadKanjisByLesson(String lessonId) async {
     _isLoading = true;
@@ -179,7 +159,6 @@ class KanjiProvider with ChangeNotifier {
   // Reset
   void reset() {
     _kanjis = [];
-    _selectedKanji = null;
     _isLoading = false;
     _errorMessage = '';
     _currentPage = 1;
@@ -189,19 +168,9 @@ class KanjiProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Đánh dấu đã học kanji
-  Future<void> markAsLearned(String kanjiId) async {
-    try {
-      await _kanjiService.markAsLearned(kanjiId);
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   // Clear all state
   void clear() {
     _kanjis = [];
-    _selectedKanji = null;
     _isLoading = false;
     _errorMessage = '';
     _currentPage = 1;

@@ -6,7 +6,8 @@ import { applyPlan, parseFlags, planUpserts, printPlan } from './content-upsert.
 
 dotenv.config({ quiet: true });
 
-// Dữ liệu mẫu 20 Kanji cơ bản
+// Dữ liệu mẫu 40 Kanji cơ bản. 20 chữ cuối mảng được chọn để mỗi bài N5 có bước
+// Chữ Hán; chạy `link-lesson-kanji.js` sau khi seed để gắn chữ vào bài.
 const kanjiData = [
   // N5 - 10 kanji
   {
@@ -269,6 +270,269 @@ const kanjiData = [
       { word: '環境', hiragana: 'かんきょう', meaning: 'Môi trường' },
       { word: '国境', hiragana: 'こっきょう', meaning: 'Biên giới' },
       { word: '境界', hiragana: 'きょうかい', meaning: 'Ranh giới' },
+    ]
+  },
+
+  // Bước Chữ Hán của các bài N5 — 20 kanji. Mỗi chữ lấy từ chính từ vựng của bài
+  // (ví dụ đầu tiên là từ trong bài), theo thứ tự bài.
+  {
+    character: '店',
+    hanviet: 'Điếm',
+    onyomi: ['テン'],
+    kunyomi: ['みせ'],
+    meaning: 'Cửa hàng, tiệm',
+    level: 'N5',
+    examples: [
+      { word: '店員', hiragana: 'てんいん', meaning: 'Nhân viên cửa hàng' },
+      { word: '店', hiragana: 'みせ', meaning: 'Cửa hàng' },
+      { word: '喫茶店', hiragana: 'きっさてん', meaning: 'Quán cà phê' },
+    ]
+  },
+  {
+    character: '肉',
+    hanviet: 'Nhục',
+    onyomi: ['ニク'],
+    kunyomi: [],
+    meaning: 'Thịt',
+    level: 'N4',
+    examples: [
+      { word: '肉', hiragana: 'にく', meaning: 'Thịt' },
+      { word: '牛肉', hiragana: 'ぎゅうにく', meaning: 'Thịt bò' },
+      { word: '豚肉', hiragana: 'ぶたにく', meaning: 'Thịt lợn' },
+    ]
+  },
+  {
+    character: '安',
+    hanviet: 'An',
+    onyomi: ['アン'],
+    kunyomi: ['やす(い)'],
+    meaning: 'Rẻ; yên ổn',
+    level: 'N5',
+    examples: [
+      { word: '安い', hiragana: 'やすい', meaning: 'Rẻ' },
+      { word: '安心', hiragana: 'あんしん', meaning: 'Yên tâm' },
+      { word: '安全', hiragana: 'あんぜん', meaning: 'An toàn' },
+    ]
+  },
+  {
+    character: '高',
+    hanviet: 'Cao',
+    onyomi: ['コウ'],
+    kunyomi: ['たか(い)'],
+    meaning: 'Cao; đắt',
+    level: 'N5',
+    examples: [
+      { word: '高い', hiragana: 'たかい', meaning: 'Đắt, cao' },
+      { word: '高校', hiragana: 'こうこう', meaning: 'Trường cấp ba' },
+      { word: '最高', hiragana: 'さいこう', meaning: 'Tuyệt nhất' },
+    ]
+  },
+  {
+    character: '動',
+    hanviet: 'Động',
+    onyomi: ['ドウ'],
+    kunyomi: ['うご(く)'],
+    meaning: 'Chuyển động, hoạt động',
+    level: 'N4',
+    examples: [
+      { word: '運動靴', hiragana: 'うんどうぐつ', meaning: 'Giày thể thao' },
+      { word: '動く', hiragana: 'うごく', meaning: 'Chuyển động, chạy (máy)' },
+      { word: '自動', hiragana: 'じどう', meaning: 'Tự động' },
+    ]
+  },
+  {
+    character: '気',
+    hanviet: 'Khí',
+    onyomi: ['キ', 'ケ'],
+    kunyomi: [],
+    meaning: 'Khí, tinh thần, tâm trạng',
+    level: 'N5',
+    examples: [
+      { word: '人気', hiragana: 'にんき', meaning: 'Được yêu thích' },
+      { word: '天気', hiragana: 'てんき', meaning: 'Thời tiết' },
+      { word: '元気', hiragana: 'げんき', meaning: 'Khỏe mạnh' },
+    ]
+  },
+  {
+    character: '白',
+    hanviet: 'Bạch',
+    onyomi: ['ハク'],
+    kunyomi: ['しろ', 'しろ(い)'],
+    meaning: 'Màu trắng',
+    level: 'N5',
+    examples: [
+      { word: '白', hiragana: 'しろ', meaning: 'Màu trắng' },
+      { word: '白い', hiragana: 'しろい', meaning: 'Trắng' },
+      { word: '面白い', hiragana: 'おもしろい', meaning: 'Thú vị' },
+    ]
+  },
+  {
+    character: '大',
+    hanviet: 'Đại',
+    onyomi: ['ダイ', 'タイ'],
+    kunyomi: ['おお(きい)'],
+    meaning: 'To, lớn',
+    level: 'N5',
+    examples: [
+      { word: '大きい', hiragana: 'おおきい', meaning: 'To, lớn' },
+      { word: '大学', hiragana: 'だいがく', meaning: 'Đại học' },
+      { word: '大人', hiragana: 'おとな', meaning: 'Người lớn' },
+    ]
+  },
+  {
+    character: '小',
+    hanviet: 'Tiểu',
+    onyomi: ['ショウ'],
+    kunyomi: ['ちい(さい)', 'こ'],
+    meaning: 'Nhỏ, bé',
+    level: 'N5',
+    examples: [
+      { word: '小さい', hiragana: 'ちいさい', meaning: 'Nhỏ, bé' },
+      { word: '小学校', hiragana: 'しょうがっこう', meaning: 'Trường tiểu học' },
+      { word: '小銭', hiragana: 'こぜに', meaning: 'Tiền lẻ' },
+    ]
+  },
+  {
+    character: '手',
+    hanviet: 'Thủ',
+    onyomi: ['シュ'],
+    kunyomi: ['て'],
+    meaning: 'Tay',
+    level: 'N5',
+    examples: [
+      { word: '切手', hiragana: 'きって', meaning: 'Tem' },
+      { word: '手紙', hiragana: 'てがみ', meaning: 'Thư' },
+      { word: '上手', hiragana: 'じょうず', meaning: 'Giỏi' },
+    ]
+  },
+  {
+    character: '電',
+    hanviet: 'Điện',
+    onyomi: ['デン'],
+    kunyomi: [],
+    meaning: 'Điện',
+    level: 'N5',
+    examples: [
+      { word: '電車', hiragana: 'でんしゃ', meaning: 'Tàu điện' },
+      { word: '電話', hiragana: 'でんわ', meaning: 'Điện thoại' },
+      { word: '電気', hiragana: 'でんき', meaning: 'Điện, đèn điện' },
+    ]
+  },
+  {
+    character: '車',
+    hanviet: 'Xa',
+    onyomi: ['シャ'],
+    kunyomi: ['くるま'],
+    meaning: 'Xe',
+    level: 'N5',
+    examples: [
+      { word: '電車', hiragana: 'でんしゃ', meaning: 'Tàu điện' },
+      { word: '車', hiragana: 'くるま', meaning: 'Xe ô tô' },
+      { word: '自転車', hiragana: 'じてんしゃ', meaning: 'Xe đạp' },
+    ]
+  },
+  {
+    character: '駅',
+    hanviet: 'Dịch',
+    onyomi: ['エキ'],
+    kunyomi: [],
+    meaning: 'Nhà ga',
+    level: 'N5',
+    examples: [
+      { word: '駅', hiragana: 'えき', meaning: 'Nhà ga' },
+      { word: '駅員', hiragana: 'えきいん', meaning: 'Nhân viên nhà ga' },
+      { word: '東京駅', hiragana: 'とうきょうえき', meaning: 'Ga Tokyo' },
+    ]
+  },
+  {
+    character: '右',
+    hanviet: 'Hữu',
+    onyomi: ['ウ', 'ユウ'],
+    kunyomi: ['みぎ'],
+    meaning: 'Bên phải',
+    level: 'N5',
+    examples: [
+      { word: '右', hiragana: 'みぎ', meaning: 'Bên phải' },
+      { word: '右側', hiragana: 'みぎがわ', meaning: 'Phía bên phải' },
+      { word: '左右', hiragana: 'さゆう', meaning: 'Trái phải' },
+    ]
+  },
+  {
+    character: '左',
+    hanviet: 'Tả',
+    onyomi: ['サ'],
+    kunyomi: ['ひだり'],
+    meaning: 'Bên trái',
+    level: 'N5',
+    examples: [
+      { word: '左', hiragana: 'ひだり', meaning: 'Bên trái' },
+      { word: '左側', hiragana: 'ひだりがわ', meaning: 'Phía bên trái' },
+      { word: '左手', hiragana: 'ひだりて', meaning: 'Tay trái' },
+    ]
+  },
+  {
+    character: '月',
+    hanviet: 'Nguyệt',
+    onyomi: ['ゲツ', 'ガツ'],
+    kunyomi: ['つき'],
+    meaning: 'Mặt trăng, tháng',
+    level: 'N5',
+    examples: [
+      { word: '毎月', hiragana: 'まいつき', meaning: 'Hàng tháng' },
+      { word: '今月', hiragana: 'こんげつ', meaning: 'Tháng này' },
+      { word: '月曜日', hiragana: 'げつようび', meaning: 'Thứ hai' },
+    ]
+  },
+  {
+    character: '分',
+    hanviet: 'Phân',
+    onyomi: ['ブン', 'フン', 'ブ'],
+    kunyomi: ['わ(ける)', 'わ(かる)'],
+    meaning: 'Chia; phút; hiểu',
+    level: 'N5',
+    examples: [
+      { word: '分ける', hiragana: 'わける', meaning: 'Chia, phân loại' },
+      { word: '分かる', hiragana: 'わかる', meaning: 'Hiểu' },
+      { word: '五分', hiragana: 'ごふん', meaning: 'Năm phút' },
+    ]
+  },
+  {
+    character: '市',
+    hanviet: 'Thị',
+    onyomi: ['シ'],
+    kunyomi: ['いち'],
+    meaning: 'Thành phố; chợ',
+    level: 'N4',
+    examples: [
+      { word: '市役所', hiragana: 'しやくしょ', meaning: 'Văn phòng hành chính thành phố' },
+      { word: '市内', hiragana: 'しない', meaning: 'Trong thành phố' },
+      { word: '市場', hiragana: 'いちば', meaning: 'Chợ' },
+    ]
+  },
+  {
+    character: '使',
+    hanviet: 'Sử',
+    onyomi: ['シ'],
+    kunyomi: ['つか(う)'],
+    meaning: 'Dùng, sử dụng',
+    level: 'N4',
+    examples: [
+      { word: '使う', hiragana: 'つかう', meaning: 'Dùng, sử dụng' },
+      { word: '使用中', hiragana: 'しようちゅう', meaning: 'Đang sử dụng' },
+      { word: '大使館', hiragana: 'たいしかん', meaning: 'Đại sứ quán' },
+    ]
+  },
+  {
+    character: '入',
+    hanviet: 'Nhập',
+    onyomi: ['ニュウ'],
+    kunyomi: ['い(れる)', 'はい(る)'],
+    meaning: 'Vào, cho vào',
+    level: 'N5',
+    examples: [
+      { word: '入れる', hiragana: 'いれる', meaning: 'Cho vào' },
+      { word: '入る', hiragana: 'はいる', meaning: 'Đi vào' },
+      { word: '入口', hiragana: 'いりぐち', meaning: 'Lối vào' },
     ]
   },
 ];

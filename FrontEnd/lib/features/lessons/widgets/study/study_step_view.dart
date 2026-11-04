@@ -5,6 +5,7 @@ import '../../providers/lesson_study_session.dart';
 import '../lesson_reference_lists.dart';
 import 'study_dialogue_step.dart';
 import 'study_intro_step.dart';
+import 'study_kanji_step.dart';
 import 'study_quiz_step.dart';
 import 'study_video_step.dart';
 import 'study_vocabulary_step.dart';
@@ -32,7 +33,19 @@ class StudyStepView extends StatelessWidget {
           onMarkLearned: session.markLearned,
           onUnmarkLearned: session.unmarkLearned,
         ),
-      StudyStepKind.kanji => LessonKanjiGrid(kanjis: detail.kanjis),
+      StudyStepKind.kanji => StudyKanjiStep(
+          kanjis: detail.kanjis,
+          isLearned: session.isKanjiLearned,
+          isSaving: session.isKanjiSaving,
+          onMarkLearned: session.markKanjiLearned,
+          onUnmarkLearned: session.unmarkKanjiLearned,
+          footer: StudyKanjiReviewOffer(
+            pending: session.kanjiPendingReview,
+            added: session.kanjiAddedToReview,
+            busy: session.isAddingToReview,
+            onAdd: session.addLearnedKanjiToReview,
+          ),
+        ),
       StudyStepKind.grammar => LessonGrammarList(grammars: detail.grammars),
       StudyStepKind.quiz => StudyQuizStep(
           questions: session.quiz,

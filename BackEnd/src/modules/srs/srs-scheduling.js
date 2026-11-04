@@ -7,6 +7,9 @@
 export const MIN_BOX = 1;
 export const MAX_BOX = 5;
 
+/** Loại nội dung có thẻ ôn — khớp enum `item_type` của model. Mọi loại dùng chung một lịch. */
+export const ITEM_TYPES = Object.freeze(['Vocabulary', 'Kanji']);
+
 /** Số ngày chờ trước lần ôn tiếp theo, theo box hiện tại. */
 export const BOX_INTERVAL_IN_DAYS = Object.freeze({
   1: 1,

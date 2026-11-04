@@ -97,7 +97,7 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
               _buildStatCard(
                 '🔤',
                 'Kanji',
-                '${stats.kanjiLearned}',
+                '${stats.kanjiReviewing}',
                 Colors.purple,
               ),
               _buildStatCard(

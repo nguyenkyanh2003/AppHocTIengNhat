@@ -27,11 +27,18 @@ const clone = (value) => (value ? structuredClone(value) : value);
  * CAS so trạng thái đã đọc. Chỉ ghi lại lời gọi thì không kiểm được điều cốt
  * lõi — hai lượt ghi cùng một kỳ ôn chỉ một bên thắng.
  */
-const memoryRepository = ({ rows = [card()], contents = [{ _id: 'v1', word: '学生' }] } = {}) => {
+const memoryRepository = ({
+  rows = [card()],
+  contents = [{ _id: 'v1', word: '学生' }],
+  kanji = [],
+} = {}) => {
   const store = { rows: rows.map(clone) };
   const calls = [];
   const matches = ({ userId, itemId, itemType }) => (row) =>
     row.user === userId && row.item_id === itemId && row.item_type === itemType;
+  /** Không truyền loại nghĩa là mọi loại — đúng như repository thật. */
+  const ofType = (itemType) => (row) => !itemType || row.item_type === itemType;
+  const contentOf = (itemType) => (itemType === 'Kanji' ? kanji : contents);
 
   return {
     store,
@@ -47,18 +54,25 @@ const memoryRepository = ({ rows = [card()], contents = [{ _id: 'v1', word: '学
     async findDueBatch({ userId, itemType, now, excludeItemIds, limit }) {
       calls.push(['findDueBatch', { userId, itemType, now, excludeItemIds, limit }]);
       return store.rows
-        .filter((row) => row.user === userId && row.item_type === itemType && row.next_review <= now)
+        .filter((row) => row.user === userId && ofType(itemType)(row) && row.next_review <= now)
         .filter((row) => !excludeItemIds.includes(row.item_id))
         .sort((a, b) => a.next_review - b.next_review || a._id.localeCompare(b._id))
         .slice(0, limit)
         .map(clone);
     },
     async countDue({ userId, itemType, now }) {
-      return store.rows.filter((r) => r.user === userId && r.item_type === itemType && r.next_review <= now).length;
+      return store.rows.filter((r) => r.user === userId && ofType(itemType)(r) && r.next_review <= now).length;
+    },
+    async countDueByType({ userId, now }) {
+      const counts = new Map();
+      for (const row of store.rows.filter((r) => r.user === userId && r.next_review <= now)) {
+        counts.set(row.item_type, (counts.get(row.item_type) ?? 0) + 1);
+      }
+      return [...counts].map(([type, count]) => ({ _id: type, count }));
     },
     async countByBox({ userId, itemType }) {
       const counts = new Map();
-      for (const row of store.rows.filter((r) => r.user === userId && r.item_type === itemType)) {
+      for (const row of store.rows.filter((r) => r.user === userId && ofType(itemType)(r))) {
         counts.set(row.box, (counts.get(row.box) ?? 0) + 1);
       }
       return [...counts].map(([box, count]) => ({ _id: box, count }));
@@ -90,11 +104,12 @@ const memoryRepository = ({ rows = [card()], contents = [{ _id: 'v1', word: '学
       store.rows.splice(index, 1);
       return 1;
     },
-    async findContentByIds({ ids }) {
-      return contents.filter((item) => ids.includes(item._id));
+    async findContentByIds({ itemType, ids }) {
+      calls.push(['findContentByIds', { itemType, ids }]);
+      return contentOf(itemType).filter((item) => ids.includes(item._id));
     },
-    async contentExists({ itemId }) {
-      return contents.some((item) => item._id === itemId);
+    async contentExists({ itemType, itemId }) {
+      return contentOf(itemType).some((item) => item._id === itemId);
     },
   };
 };
@@ -216,7 +231,105 @@ test('forty due cards come out as two batches of twenty without skipping any', a
   assert.equal(new Set([...skipped, ...second.cards.map((c) => c.item_id)]).size, 40);
   // Bỏ qua hết thì phiên dừng, dù badge vẫn còn đếm 40 thẻ đến hạn.
   assert.deepEqual(third.cards, []);
-  assert.deepEqual(await service.dueCount({ userId: USER, itemType: TYPE }), { item_type: TYPE, total: 40 });
+  assert.deepEqual(await service.dueCount({ userId: USER, itemType: TYPE }), {
+    item_type: TYPE,
+    total: 40,
+    by_type: { Vocabulary: 40, Kanji: 0 },
+  });
+});
+
+const kanjiCard = (overrides = {}) => card({ _id: 'pk1', item_id: 'k1', item_type: 'Kanji', ...overrides });
+
+test('phiên không lọc trộn từ vựng và Kanji, quá hạn lâu nhất trước, mỗi loại hydrate một lần', async () => {
+  const repository = memoryRepository({
+    rows: [
+      card({ next_review: new Date(NOW.getTime() - DAY) }),
+      kanjiCard({ next_review: new Date(NOW.getTime() - 3 * DAY) }),
+      card({ _id: 'p2', item_id: 'v2', next_review: new Date(NOW.getTime() - 2 * DAY) }),
+    ],
+    contents: [{ _id: 'v1', word: '学生' }, { _id: 'v2', word: '先生' }],
+    kanji: [{ _id: 'k1', character: '学' }],
+  });
+  const { service } = build({ repository });
+
+  const batch = await service.dueBatch({ userId: USER, limit: 20 });
+
+  assert.deepEqual(
+    batch.cards.map((c) => [c.item_type, c.item_id, c.item?.word ?? c.item?.character]),
+    [
+      ['Kanji', 'k1', '学'],
+      ['Vocabulary', 'v2', '先生'],
+      ['Vocabulary', 'v1', '学生'],
+    ],
+  );
+  const hydrations = repository.calls.filter(([name]) => name === 'findContentByIds').map(([, args]) => args);
+  assert.deepEqual(hydrations, [
+    { itemType: 'Vocabulary', ids: ['v2', 'v1'] },
+    { itemType: 'Kanji', ids: ['k1'] },
+  ]);
+});
+
+test('lọc theo Kanji chỉ ra thẻ Kanji và chỉ đọc nội dung Kanji', async () => {
+  const repository = memoryRepository({
+    rows: [card(), kanjiCard()],
+    kanji: [{ _id: 'k1', character: '学' }],
+  });
+  const { service } = build({ repository });
+
+  const batch = await service.dueBatch({ userId: USER, itemType: 'Kanji', limit: 20 });
+
+  assert.deepEqual(batch.cards.map((c) => c.item_id), ['k1']);
+  assert.deepEqual(
+    repository.calls.filter(([name]) => name === 'findContentByIds').map(([, args]) => args.itemType),
+    ['Kanji'],
+  );
+});
+
+test('số thẻ đến hạn không lọc cộng mọi loại và chia theo từng loại', async () => {
+  const repository = memoryRepository({
+    rows: [
+      card(),
+      card({ _id: 'p2', item_id: 'v2' }),
+      kanjiCard(),
+      kanjiCard({ _id: 'pk2', item_id: 'k2', next_review: new Date(NOW.getTime() + DAY) }),
+    ],
+  });
+  const { service } = build({ repository });
+
+  assert.deepEqual(await service.dueCount({ userId: USER }), {
+    item_type: null,
+    total: 3,
+    by_type: { Vocabulary: 2, Kanji: 1 },
+  });
+  assert.deepEqual(await service.dueCount({ userId: USER, itemType: 'Kanji' }), {
+    item_type: 'Kanji',
+    total: 1,
+    by_type: { Vocabulary: 2, Kanji: 1 },
+  });
+});
+
+test('thống kê không lọc gộp hộp của mọi loại thẻ', async () => {
+  const repository = memoryRepository({ rows: [card(), kanjiCard({ box: 2 })] });
+  const { service } = build({ repository });
+
+  assert.deepEqual(await service.stats({ userId: USER }), {
+    item_type: null,
+    total_cards: 2,
+    due_count: 2,
+    by_box: { 1: 1, 2: 1, 3: 0, 4: 0, 5: 0 },
+  });
+});
+
+test('ôn một thẻ Kanji dùng chung lịch Leitner và ghi một hoạt động', async () => {
+  const repository = memoryRepository({ rows: [kanjiCard()], kanji: [{ _id: 'k1', character: '学' }] });
+  const { service, streak } = build({ repository });
+
+  const saved = await review(service, { itemId: 'k1', itemType: 'Kanji' });
+
+  assert.equal(saved.item_type, 'Kanji');
+  assert.equal(saved.box, 2);
+  assert.equal(streak.calls.length, 1);
+  assert.equal(streak.calls[0][0].type, 'srs.review');
 });
 
 test('stats list every box from 1 to 5 even when empty', async () => {

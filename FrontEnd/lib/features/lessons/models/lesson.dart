@@ -1,3 +1,4 @@
+import '../../kanji/models/kanji.dart';
 import '../../vocabulary/models/vocabulary.dart';
 import 'dialogue_turn.dart';
 import 'lesson_video.dart';
@@ -191,7 +192,9 @@ class Lesson {
 class LessonDetail {
   final Lesson lesson;
   final List<Map<String, dynamic>> vocabularies;
-  final List<Map<String, dynamic>> kanjis;
+
+  /// Chữ Hán của bài, theo thứ tự bài giới thiệu.
+  final List<Kanji> kanjis;
   final List<Map<String, dynamic>> grammars;
 
   /// Từ vựng của bài ở dạng có kiểu, cho màn học và thẻ từ.
@@ -222,8 +225,7 @@ class LessonDetail {
       vocabularies: safeListConvert(json['tuvungs']).isNotEmpty
           ? safeListConvert(json['tuvungs'])
           : safeListConvert(json['vocabularies']),
-      // Tương tự cho kanjis và grammars
-      kanjis: safeListConvert(json['kanjis']),
+      kanjis: safeListConvert(json['kanjis']).map(Kanji.fromJson).toList(),
       grammars: safeListConvert(json['nguphaps']).isNotEmpty
           ? safeListConvert(json['nguphaps'])
           : safeListConvert(json['grammars']),

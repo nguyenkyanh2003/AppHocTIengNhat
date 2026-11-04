@@ -8,8 +8,8 @@ import { srsService } from './srs.service.js';
 import * as schema from './srs.schema.js';
 
 /**
- * Sáu route SRS (spec SRS §3.3). Định danh trong path là `Vocabulary._id`,
- * không phải `SRSProgress._id`.
+ * Sáu route SRS (spec SRS §3.3). Định danh trong path là ID nội dung
+ * (`Vocabulary._id` hoặc `Kanji._id`), không phải `SRSProgress._id`.
  *
  * Bốn route admin và `/my-cards` của module cũ đã bị bỏ: chưa có consumer và
  * ngoài phạm vi demo. Mở lại cần nghiệp vụ và test quyền riêng.
@@ -36,7 +36,7 @@ export const createSrsRoutes = ({ service = srsService, authenticate = authentic
   router.delete(
     '/items/:itemId',
     authenticate,
-    validate({ params: schema.itemParams, query: schema.itemTypeQuery }),
+    validate({ params: schema.itemParams, query: schema.cardTypeQuery }),
     asyncHandler(controller.deleteItem),
   );
 

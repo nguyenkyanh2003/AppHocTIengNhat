@@ -1,0 +1,1163 @@
+{
+  "lesson": {
+    "title": "Tình huống: Tự đi đến nơi mình muốn"
+  },
+  "videos": [
+    {
+      "title": "Hỏi đường ở quầy tiếp tân",
+      "description": "Hỏi được thời gian đi, chỗ ăn trưa và nhờ người khác vẽ đường ra giấy.",
+      "url": "/uploads/lesson-videos/n3-02-getting-around/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あの、すみません。",
+          "romaji": "Ano, sumimasen.",
+          "text_vi": "À, xin lỗi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "この神社に行きたいんですけど、どのぐらいかかりますか？",
+          "romaji": "Kono jinja ni ikitai n desu kedo, dono gurai kakarimasu ka.",
+          "text_vi": "Tôi muốn đến đền này, mất khoảng bao lâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "歩いていかれますか？",
+          "romaji": "Aruite ikaremasu ka.",
+          "text_vi": "Anh đi bộ ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "いえ、自転車が借りられたので、自転車で行こうと思っています。",
+          "romaji": "Ie, jitensha ga karirareta node, jitensha de ikoo to omotte imasu.",
+          "text_vi": "Không ạ, vì thuê được xe đạp nên tôi định đi bằng xe đạp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "そうですね、自転車で5、6分ですかね。",
+          "romaji": "Soo desu ne, jitensha de go, rokubun desu ka ne.",
+          "text_vi": "Để xem nào, đi xe đạp khoảng 5, 6 phút nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "そうですか。あと、この神社の近くでお昼ご飯食べられるところってありますか？この辺の名物とか。",
+          "romaji": "Soo desu ka. Ato, kono jinja no chikaku de ohirugohan taberareru tokoro tte arimasu ka. Kono hen no meebutsu toka.",
+          "text_vi": "Vậy ạ. Ngoài ra, gần đền này có chỗ nào ăn trưa được không ạ? Chẳng hạn đặc sản quanh đây.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "そうですね。名物じゃないんですけど、おいしいお蕎麦屋さんがありますよ。",
+          "romaji": "Soo desu ne. Meebutsu janai n desu kedo, oishii osobaya-san ga arimasu yo.",
+          "text_vi": "Để xem nào. Không phải đặc sản nhưng có một quán mì soba rất ngon đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "この神社の裏手の…",
+          "romaji": "Kono jinja no urate no...",
+          "text_vi": "Ở phía sau đền này...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "すみません、ここに書いてもらってもいいですか？",
+          "romaji": "Sumimasen, koko ni kaite moratte mo ii desu ka.",
+          "text_vi": "Xin lỗi, chị viết giúp vào đây được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "この神社から、こっちの道を行くと、ここに橋がありますから、この橋を渡ってください。",
+          "romaji": "Kono jinja kara, kocchi no michi o iku to, koko ni hashi ga arimasu kara, kono hashi o watatte kudasai.",
+          "text_vi": "Từ đền này đi theo con đường bên này thì sẽ có một cây cầu ở đây, anh hãy qua cầu này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "ここからこの道で、ここに橋があるんですね。",
+          "romaji": "Koko kara kono michi de, koko ni hashi ga aru n desu ne.",
+          "text_vi": "Từ đây đi theo con đường này, và có cây cầu ở đây nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "あ、そうです、そうです。この橋を渡るとすぐに、お店の看板があります。",
+          "romaji": "A, soo desu, soo desu. Kono hashi o wataru to sugu ni, omise no kanban ga arimasu.",
+          "text_vi": "À, đúng rồi, đúng rồi. Qua cây cầu này là thấy ngay biển hiệu của quán.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "お店の名前は、ぶんか庵というお店です。",
+          "romaji": "Omise no namae wa, Bunka-an to iu omise desu.",
+          "text_vi": "Tên quán là quán \"Bunka-an\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "ぶんか庵…すみません、どんな字を書きますか？",
+          "romaji": "Bunka-an... Sumimasen, donna ji o kakimasu ka.",
+          "text_vi": "Bunka-an... Xin lỗi, chữ đó viết thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "あ、ぶんかはひらがなで、庵はこう書きます。",
+          "romaji": "A, bunka wa hiragana de, an wa koo kakimasu.",
+          "text_vi": "À, \"bunka\" viết bằng hiragana, còn \"an\" thì viết thế này.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "地図では、ここがぶんか庵です。",
+          "romaji": "Chizu de wa, koko ga Bunka-an desu.",
+          "text_vi": "Trên bản đồ thì chỗ này là Bunka-an.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あ、そうですか。ありがとうございます。行ってみます。",
+          "romaji": "A, soo desu ka. Arigatoo gozaimasu. Itte mimasu.",
+          "text_vi": "À, vậy ạ. Cảm ơn chị. Tôi sẽ đi thử.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "受付の女性",
+          "speaker_romaji": "Uketsuke no josee",
+          "speaker_vi": "Nhân viên tiếp tân (nữ)",
+          "text_ja": "はい。いってらっしゃいませ。お気をつけて。",
+          "romaji": "Hai. Itterasshaimase. Oki o tsukete.",
+          "text_vi": "Vâng. Chúc anh đi vui vẻ. Anh đi cẩn thận nhé.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "神社",
+          "reading": "じんじゃ",
+          "romaji": "jinja",
+          "meaning": "đền Thần đạo"
+        },
+        {
+          "word": "名物",
+          "reading": "めいぶつ",
+          "romaji": "meebutsu",
+          "meaning": "đặc sản"
+        },
+        {
+          "word": "蕎麦屋",
+          "reading": "そばや",
+          "romaji": "sobaya",
+          "meaning": "quán mì soba"
+        },
+        {
+          "word": "裏手",
+          "reading": "うらて",
+          "romaji": "urate",
+          "meaning": "phía sau"
+        },
+        {
+          "word": "橋を渡る",
+          "reading": "はしをわたる",
+          "romaji": "hashi o wataru",
+          "meaning": "qua cầu"
+        },
+        {
+          "word": "看板",
+          "reading": "かんばん",
+          "romaji": "kanban",
+          "meaning": "biển hiệu"
+        }
+      ]
+    },
+    {
+      "title": "Chỉ đường khi đi nhờ xe",
+      "description": "Chỉ được đường bằng đặc điểm của biển báo và xin xuống xe ở chỗ phù hợp.",
+      "url": "/uploads/lesson-videos/n3-02-getting-around/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "ビンさん、乗ってく？",
+          "romaji": "Bin-san, notteku?",
+          "text_vi": "Anh Bin, có đi nhờ xe không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "え？いいんですか？遠回りになりませんか？",
+          "romaji": "E? Ii n desu ka. Toomawari ni narimasen ka.",
+          "text_vi": "Hả? Được ạ? Có phải đi đường vòng không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "文化小学校の方だよね？",
+          "romaji": "Bunka Shoogakkoo no hoo da yo ne.",
+          "text_vi": "Là phía trường tiểu học Bunka đúng không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "大丈夫、帰り道だから。",
+          "romaji": "Daijoobu, kaerimichi da kara.",
+          "text_vi": "Không sao, vì là đường về mà.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "どうぞ。",
+          "romaji": "Doozo.",
+          "text_vi": "Mời lên xe.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "すみません、ありがとうございます。",
+          "romaji": "Sumimasen, arigatoo gozaimasu.",
+          "text_vi": "Xin lỗi, cảm ơn anh.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "えっと、この先は？",
+          "romaji": "Etto, kono saki wa?",
+          "text_vi": "À, đoạn phía trước thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "このまままっすぐ100mぐらい行ってください。",
+          "romaji": "Kono mama massugu hyakumeetoru gurai itte kudasai.",
+          "text_vi": "Cứ đi thẳng như thế này khoảng 100 mét.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "100mくらいね。",
+          "romaji": "Hyakumeetoru kurai ne.",
+          "text_vi": "Khoảng 100 mét nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:44",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "その後は？",
+          "romaji": "Sono ato wa?",
+          "text_vi": "Sau đó thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あの、青くて大きい看板で、えっと…",
+          "romaji": "Ano, aokute ookii kanban de, etto...",
+          "text_vi": "À, chỗ có biển hiệu to màu xanh, à...",
+          "key_phrase": true
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "行き先が書いてある標識ね。",
+          "romaji": "Ikisaki ga kaite aru hyooshiki ne.",
+          "text_vi": "Là biển chỉ đường có ghi nơi đến nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "はい、その標識のさっきの信号のところを右に曲がってください。",
+          "romaji": "Hai, sono hyooshiki no sakki no shingoo no tokoro o migi ni magatte kudasai.",
+          "text_vi": "Vâng, đến chỗ đèn tín hiệu ở biển đó thì anh rẽ phải.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "右ね。",
+          "romaji": "Migi ne.",
+          "text_vi": "Rẽ phải nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "この後は？",
+          "romaji": "Kono ato wa?",
+          "text_vi": "Sau đó thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "丸くて赤い標識のところを、左に入ってください。",
+          "romaji": "Marukute akai hyooshiki no tokoro o, hidari ni haitte kudasai.",
+          "text_vi": "Ở chỗ biển báo tròn màu đỏ, hãy rẽ vào bên trái.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "え？あれは進入禁止だから、車は入れないよ。",
+          "romaji": "E? Are wa shinnyuu kinshi da kara, kuruma wa hairenai yo.",
+          "text_vi": "Hả? Cái đó là biển cấm vào nên xe hơi không vào được đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "そうなんですか？僕、いつも歩きだから。",
+          "romaji": "Soo nan desu ka. Boku, itsumo aruki da kara.",
+          "text_vi": "Vậy ạ? Vì tôi lúc nào cũng đi bộ nên...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "じゃあ、その標識の辺で大丈夫です。",
+          "romaji": "Jaa, sono hyooshiki no hen de daijoobu desu.",
+          "text_vi": "Vậy thì dừng ở chỗ gần biển đó là được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:47",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "え？あそこでいいの？",
+          "romaji": "E? Asoko de ii no?",
+          "text_vi": "Hả? Chỗ đó được sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "ええ、あそこから家まで2、3分なんで。",
+          "romaji": "Ee, asoko kara ie made ni, sanpun nan de.",
+          "text_vi": "Vâng, vì từ đó về nhà chỉ mất 2, 3 phút thôi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "うん、わかった。",
+          "romaji": "Un, wakatta.",
+          "text_vi": "Ừ, hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "ありがとうございました。助かりました。",
+          "romaji": "Arigatoo gozaimashita. Tasukarimashita.",
+          "text_vi": "Cảm ơn anh. Anh đã giúp tôi nhiều lắm ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:10",
+          "speaker_ja": "運転手の男性",
+          "speaker_romaji": "Untenshu no dansee",
+          "speaker_vi": "Người đàn ông lái xe",
+          "text_ja": "じゃあ、また明日ね。お疲れ様。",
+          "romaji": "Jaa, mata ashita ne. Otsukaresama.",
+          "text_vi": "Vậy mai gặp lại nhé. Vất vả rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:15",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "はい、お疲れ様でした。",
+          "romaji": "Hai, otsukaresama deshita.",
+          "text_vi": "Vâng, anh vất vả rồi ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "遠回り",
+          "reading": "とおまわり",
+          "romaji": "toomawari",
+          "meaning": "đi đường vòng"
+        },
+        {
+          "word": "帰り道",
+          "reading": "かえりみち",
+          "romaji": "kaerimichi",
+          "meaning": "đường về"
+        },
+        {
+          "word": "標識",
+          "reading": "ひょうしき",
+          "romaji": "hyooshiki",
+          "meaning": "biển báo"
+        },
+        {
+          "word": "行き先",
+          "reading": "いきさき",
+          "romaji": "ikisaki",
+          "meaning": "nơi đến"
+        },
+        {
+          "word": "信号",
+          "reading": "しんごう",
+          "romaji": "shingoo",
+          "meaning": "đèn tín hiệu"
+        },
+        {
+          "word": "進入禁止",
+          "reading": "しんにゅうきんし",
+          "romaji": "shinnyuu kinshi",
+          "meaning": "cấm đi vào"
+        }
+      ]
+    },
+    {
+      "title": "Hàng đặt mua bị giao chậm",
+      "description": "Nói được dự định bị lỡ và đề nghị tự đến trung tâm giao hàng để lấy.",
+      "url": "/uploads/lesson-videos/n3-02-getting-around/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:07",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "もしもし？こちら、ネット通販ぶんかモールの田中と申します。サントスアンジェラ様のお電話でよろしいでしょうか。",
+          "romaji": "Moshi moshi? Kochira, netto tsuuhan Bunka Mooru no Tanaka to mooshimasu. Santosu Anjera-sama no odenwa de yoroshii deshoo ka.",
+          "text_vi": "A lô? Tôi là Tanaka ở cửa hàng bán hàng qua mạng Bunka Mall. Đây có phải số điện thoại của chị Santos Angela không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "いつもありがとうございます。先日ご注文いただいたバッグの件でご連絡させていただきました。今、お時間よろしいでしょうか。",
+          "romaji": "Itsumo arigatoo gozaimasu. Senjitsu gochuumon itadaita baggu no ken de gorenraku sasete itadakimashita. Ima, ojikan yoroshii deshoo ka.",
+          "text_vi": "Cảm ơn chị đã luôn ủng hộ. Tôi liên lạc về chiếc túi chị đã đặt hôm trước. Bây giờ chị có tiện nói chuyện không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:40",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "あの、大変申し訳ありませんが、木曜日着の配送予定だった商品のお届けが、土曜日になってしまいそうなんですが…",
+          "romaji": "Ano, taihen mooshiwake arimasen ga, mokuyoobi-chaku no haisoo yotee datta shoohin no otodoke ga, doyoobi ni natte shimaisoo nan desu ga...",
+          "text_vi": "À, thành thật xin lỗi chị, món hàng dự kiến giao đến vào thứ Năm có vẻ sẽ bị giao muộn đến thứ Bảy ạ...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "え？そうなんですか？どうしよう…",
+          "romaji": "E? Soo nan desu ka. Dooshiyoo...",
+          "text_vi": "Hả? Vậy ạ? Làm sao bây giờ...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "土曜日の友達の結婚式で使うつもりだったんですけど。",
+          "romaji": "Doyoobi no tomodachi no kekkonshiki de tsukau tsumori datta n desu kedo.",
+          "text_vi": "Tôi đã định dùng vào đám cưới của bạn hôm thứ Bảy.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "金曜日までに届けてもらうことってできませんか？",
+          "romaji": "Kin'yoobi made ni todokete morau koto tte dekimasen ka.",
+          "text_vi": "Có thể giao cho tôi trước thứ Sáu được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "そうですね…。金曜日に、星丸運輸中央配送センターには届いているんですが…",
+          "romaji": "Soo desu ne.... Kin'yoobi ni, Hoshimaru Un'yu Chuuoo Haisoo Sentaa ni wa todoite iru n desu ga...",
+          "text_vi": "Để xem nào... Vào thứ Sáu thì hàng sẽ đến Trung tâm giao hàng trung tâm của Vận tải Hoshimaru, nhưng mà...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、それって高速バスターミナルの近くですよね？",
+          "romaji": "Aa, sore tte koosoku basu taaminaru no chikaku desu yo ne.",
+          "text_vi": "À, chỗ đó ở gần bến xe buýt đường dài phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "はい、さようでございます。",
+          "romaji": "Hai, sayoo de gozaimasu.",
+          "text_vi": "Vâng, đúng như vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、私が配送センターに取りに行くことってできますか？",
+          "romaji": "Ano, watashi ga haisoo sentaa ni tori ni iku koto tte dekimasu ka.",
+          "text_vi": "À, tôi tự đến trung tâm giao hàng để lấy có được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "はい、それでよろしいでしょうか。",
+          "romaji": "Hai, sore de yoroshii deshoo ka.",
+          "text_vi": "Vâng, như vậy có được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、大丈夫です。",
+          "romaji": "Hai, daijoobu desu.",
+          "text_vi": "Vâng, được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "こちらの不手際で、お手数をおかけして申し訳ありません。",
+          "romaji": "Kochira no futegiwa de, otesuu o okakeshite mooshiwake arimasen.",
+          "text_vi": "Do sơ suất của chúng tôi, thành thật xin lỗi vì đã làm phiền chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "そうしましたら、こちらで連絡しておきますので、配送センターで、ご住所とお名前、今から言う荷物の番号をお伝えいただけますか。",
+          "romaji": "Soo shimashitara, kochira de renraku shite okimasu node, haisoo sentaa de, gojuusho to onamae, ima kara iu nimotsu no bangoo o otsutae itadakemasu ka.",
+          "text_vi": "Vậy thì chúng tôi sẽ liên lạc trước, nên khi đến trung tâm giao hàng, chị vui lòng cho biết địa chỉ, họ tên và số hàng mà tôi sắp đọc nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、わかりました。",
+          "romaji": "Hai, wakarimashita.",
+          "text_vi": "Vâng, tôi hiểu rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "田中",
+          "speaker_romaji": "Tanaka",
+          "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
+          "text_ja": "では、お荷物の番号は…",
+          "romaji": "Dewa, onimotsu no bangoo wa...",
+          "text_vi": "Vậy, số hàng của chị là...",
+          "key_phrase": false
+        },
+        {
+          "start": "02:12",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、ちょっと待ってください。今メモを用意しますので。",
+          "romaji": "A, chotto matte kudasai. Ima memo o yooi shimasu node.",
+          "text_vi": "À, xin chờ một chút. Tôi chuẩn bị giấy ghi chú ngay ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、お願いします。",
+          "romaji": "Hai, onegaishimasu.",
+          "text_vi": "Vâng, anh/chị đọc đi ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "通販",
+          "reading": "つうはん",
+          "romaji": "tsuuhan",
+          "meaning": "bán hàng qua mạng"
+        },
+        {
+          "word": "注文",
+          "reading": "ちゅうもん",
+          "romaji": "chuumon",
+          "meaning": "đặt hàng"
+        },
+        {
+          "word": "配送",
+          "reading": "はいそう",
+          "romaji": "haisoo",
+          "meaning": "giao hàng"
+        },
+        {
+          "word": "届ける",
+          "reading": "とどける",
+          "romaji": "todokeru",
+          "meaning": "giao đến"
+        },
+        {
+          "word": "結婚式",
+          "reading": "けっこんしき",
+          "romaji": "kekkonshiki",
+          "meaning": "đám cưới"
+        },
+        {
+          "word": "不手際",
+          "reading": "ふてぎわ",
+          "romaji": "futegiwa",
+          "meaning": "sơ suất"
+        },
+        {
+          "word": "荷物",
+          "reading": "にもつ",
+          "romaji": "nimotsu",
+          "meaning": "hàng, kiện hàng"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Tự đi đến nơi mình muốn",
+      "description": "Ôn lại「〜つもりでした」,「〜とか」và cách nối hai tính từ「〜くて・〜で」.",
+      "url": "/uploads/lesson-videos/n3-02-getting-around/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "どようびに つかう つもりだった",
+          "romaji": "doyoobi ni tsukau tsumori datta",
+          "text_vi": "Đã định dùng vào thứ Bảy",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "土曜日の友達の結婚式で使うつもりだったんですけど…",
+          "romaji": "Doyoobi no tomodachi no kekkonshiki de tsukau tsumori datta n desu kedo...",
+          "text_vi": "Tôi đã định dùng vào đám cưới của bạn hôm thứ Bảy...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画でアンジェラさんは、荷物の到着が遅れるということを聞いて、「土曜日に使うつもりだったんですけど」と言っています。",
+          "romaji": "Kono dooga de Anjera-san wa, nimotsu no toochaku ga okureru to iu koto o kiite, \"Doyoobi ni tsukau tsumori datta n desu kedo\" to itte imasu.",
+          "text_vi": "Trong video này, chị Angela nghe tin hàng đến muộn và nói \"Tôi đã định dùng vào thứ Bảy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞＋つもりです」は、自分でそうしようと思って予定しているときに使います。",
+          "romaji": "\"Dooshi + tsumori desu\" wa, jibun de soo shiyoo to omotte yotee shite iru toki ni tsukaimasu.",
+          "text_vi": "\"Động từ + tsumori desu\" dùng khi bản thân nghĩ sẽ làm như vậy và đang có dự định.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞＋つもりでした」は、自分でそうしようと思って予定していたことが、実際には実現しなかったときに使います。",
+          "romaji": "\"Dooshi + tsumori deshita\" wa, jibun de soo shiyoo to omotte yotee shite ita koto ga, jissai ni wa jitsugen shinakatta toki ni tsukaimasu.",
+          "text_vi": "\"Động từ + tsumori deshita\" dùng khi điều mà bản thân đã nghĩ và dự định làm thực tế lại không thực hiện được.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:57",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんは、土曜日の友達の結婚式で、注文したバッグを使うことを予定していました。",
+          "romaji": "Anjera-san wa, doyoobi no tomodachi no kekkonshiki de, chuumon shita baggu o tsukau koto o yotee shite imashita.",
+          "text_vi": "Chị Angela đã dự định dùng chiếc túi đã đặt mua trong đám cưới của bạn vào thứ Bảy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "しかし実際にはバッグの到着が遅れて、そのバッグが使えなくなってしまいました。",
+          "romaji": "Shikashi jissai ni wa baggu no toochaku ga okurete, sono baggu ga tsukaenaku natte shimaimashita.",
+          "text_vi": "Nhưng thực tế túi đến muộn nên không thể dùng được chiếc túi đó nữa.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "予定どおりいかず困ったアンジェラさんは、そのことを「土曜日に使うつもりだったんですけど」と相手に伝えました。",
+          "romaji": "Yotee-doori ikazu komatta Anjera-san wa, sono koto o \"Doyoobi ni tsukau tsumori datta n desu kedo\" to aite ni tsutaemashita.",
+          "text_vi": "Chị Angela gặp khó khăn vì mọi việc không như dự định nên đã nói với đối phương \"Tôi đã định dùng vào thứ Bảy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「つもりです」「つもりでした」の前は、動詞の辞書形、ない形です。",
+          "romaji": "\"Tsumori desu\" \"tsumori deshita\" no mae wa, dooshi no jisho-kee, nai-kee desu.",
+          "text_vi": "Trước \"tsumori desu\", \"tsumori deshita\" là thể từ điển hoặc thể nai của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「冬休みに国に帰るつもりだったんですけど、飛行機のチケットが取れませんでした」と言ったり、",
+          "romaji": "Tatoeba, \"Fuyuyasumi ni kuni ni kaeru tsumori datta n desu kedo, hikooki no chiketto ga toremasen deshita\" to ittari,",
+          "text_vi": "Ví dụ, có thể nói \"Tôi đã định về nước vào kỳ nghỉ đông nhưng không đặt được vé máy bay\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「週末は出かけないつもりでしたが、急な仕事で大阪まで行くことになりました」と言ったりすることができます。",
+          "romaji": "\"Shuumatsu wa dekakenai tsumori deshita ga, kyuu na shigoto de Oosaka made iku koto ni narimashita\" to ittari suru koto ga dekimasu.",
+          "text_vi": "hoặc \"Cuối tuần tôi đã định không đi đâu nhưng vì việc đột xuất nên phải đi Osaka\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:05",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "このへんの めいぶつとか…",
+          "romaji": "konohen no meebutsu toka...",
+          "text_vi": "Chẳng hạn đặc sản quanh đây...",
+          "key_phrase": false
+        },
+        {
+          "start": "02:12",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "この辺の名物とか…",
+          "romaji": "Kono hen no meebutsu toka...",
+          "text_vi": "Chẳng hạn đặc sản quanh đây...",
+          "key_phrase": false
+        },
+        {
+          "start": "02:15",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、ビンさんが昼ごはんについて質問をして、「この辺の名物とか」と言っています。",
+          "romaji": "Kono dooga de wa, Bin-san ga hirugohan ni tsuite shitsumon o shite, \"Kono hen no meebutsu toka\" to itte imasu.",
+          "text_vi": "Trong video này, anh Bin hỏi về bữa trưa và nói \"Chẳng hạn đặc sản quanh đây\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「とか」は、例を挙げるときに使います。話し言葉でよく使われます。",
+          "romaji": "\"Toka\" wa, ree o ageru toki ni tsukaimasu. Hanashikotoba de yoku tsukawaremasu.",
+          "text_vi": "\"Toka\" dùng khi nêu ví dụ. Hay được dùng trong văn nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、ビンさんがどんな昼ご飯をイメージしているかを具体的に伝えるために、「この辺の名物とか」と例を挙げました。",
+          "romaji": "Kono dooga de wa, Bin-san ga donna hirugohan o imeeji shite iru ka o gutaiteki ni tsutaeru tame ni, \"Kono hen no meebutsu toka\" to ree o agemashita.",
+          "text_vi": "Trong video này, để truyền đạt cụ thể bữa trưa mà mình hình dung là kiểu gì, anh Bin đã nêu ví dụ \"Chẳng hạn đặc sản quanh đây\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「とか」の前は名詞が多いですが、動詞や形容詞も使うことができます。",
+          "romaji": "\"Toka\" no mae wa meeshi ga ooi desu ga, dooshi ya keeyooshi mo tsukau koto ga dekimasu.",
+          "text_vi": "Trước \"toka\" thường là danh từ, nhưng cũng có thể dùng động từ hoặc tính từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「お土産はチョコレートとかいいんじゃない？」",
+          "romaji": "\"Omiyage wa chokoreeto toka ii n janai?\"",
+          "text_vi": "\"Quà lưu niệm thì sô-cô-la chẳng hạn là được đấy chứ?\"",
+          "key_phrase": false
+        },
+        {
+          "start": "03:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「京都とか日光とか、紅葉がきれいですよ」",
+          "romaji": "\"Kyooto toka Nikkoo toka, kooyoo ga kiree desu yo\"",
+          "text_vi": "\"Như Kyoto hay Nikko chẳng hạn, lá đỏ đẹp lắm đấy\"",
+          "key_phrase": false
+        },
+        {
+          "start": "03:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「帰るときは『失礼します』とか『お先に失礼します』と挨拶しましょう」のように言うことができます。",
+          "romaji": "\"Kaeru toki wa 'Shitsuree shimasu' toka 'Osaki ni shitsuree shimasu' to aisatsu shimashoo\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Khi ra về hãy chào bằng những câu như 'Tôi xin phép' hay 'Tôi xin phép về trước'\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:26",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "あおくて、おおきい かんばん",
+          "romaji": "aokute, ookii kanban",
+          "text_vi": "Biển hiệu to và màu xanh",
+          "key_phrase": false
+        },
+        {
+          "start": "03:34",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "青くて大きい看板で、えっと…",
+          "romaji": "Aokute ookii kanban de, etto...",
+          "text_vi": "Là biển hiệu to màu xanh, à...",
+          "key_phrase": false
+        },
+        {
+          "start": "03:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、ビンさんが目印を説明するとき、「青くて大きい看板」と言っています。",
+          "romaji": "Kono dooga de wa, Bin-san ga mejirushi o setsumee suru toki, \"Aokute ookii kanban\" to itte imasu.",
+          "text_vi": "Trong video này, khi giải thích điểm mốc, anh Bin nói \"biển hiệu to màu xanh\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「青い」「大きい」の2つの形容詞を続けて使っているので、「青い」が「青くて」になっています。",
+          "romaji": "\"Aoi\" \"ookii\" no futatsu no keeyooshi o tsuzukete tsukatte iru node, \"aoi\" ga \"aokute\" ni natte imasu.",
+          "text_vi": "Vì dùng liên tiếp hai tính từ \"aoi\" (xanh) và \"ookii\" (to) nên \"aoi\" trở thành \"aokute\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このように形容詞を続けて使うときは、前の形容詞の形が変わります。",
+          "romaji": "Kono yoo ni keeyooshi o tsuzukete tsukau toki wa, mae no keeyooshi no katachi ga kawarimasu.",
+          "text_vi": "Khi dùng liên tiếp các tính từ như vậy thì dạng của tính từ đứng trước sẽ thay đổi.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "い形容詞は「い」をとって「くて」をつけます。",
+          "romaji": "I-keeyooshi wa \"i\" o totte \"kute\" o tsukemasu.",
+          "text_vi": "Với tính từ đuôi i, bỏ \"i\" rồi thêm \"kute\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「楽しい」「面白い」を続けて使うときは、「楽しくて面白い」となります。",
+          "romaji": "Tatoeba, \"tanoshii\" \"omoshiroi\" o tsuzukete tsukau toki wa, \"tanoshikute omoshiroi\" to narimasu.",
+          "text_vi": "Ví dụ, khi dùng liên tiếp \"tanoshii\" (vui) và \"omoshiroi\" (thú vị) thì thành \"tanoshikute omoshiroi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「夏祭りは楽しくて面白いです」のように言うことができます。",
+          "romaji": "\"Natsumatsuri wa tanoshikute omoshiroi desu\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Lễ hội mùa hè vừa vui vừa thú vị\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "な形容詞は「な」をとって「で」をつけます。",
+          "romaji": "Na-keeyooshi wa \"na\" o totte \"de\" o tsukemasu.",
+          "text_vi": "Với tính từ đuôi na, bỏ \"na\" rồi thêm \"de\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「簡単な」「面白い」を続けて使うときは、「簡単で面白い」となります。",
+          "romaji": "Tatoeba, \"kantan na\" \"omoshiroi\" o tsuzukete tsukau toki wa, \"kantan de omoshiroi\" to narimasu.",
+          "text_vi": "Ví dụ, khi dùng liên tiếp \"kantan na\" (đơn giản) và \"omoshiroi\" (thú vị) thì thành \"kantan de omoshiroi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「このゲームは簡単で面白いです」のように言うことができます。",
+          "romaji": "\"Kono geemu wa kantan de omoshiroi desu\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Trò chơi này đơn giản mà thú vị\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ただし、い形容詞の「いい」は「よくて」になります。",
+          "romaji": "Tadashi, i-keeyooshi no \"ii\" wa \"yokute\" ni narimasu.",
+          "text_vi": "Tuy nhiên, tính từ đuôi i \"ii\" (tốt) sẽ thành \"yokute\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「この自転車、デザインも良くて乗りやすいです」のように言うことができます。",
+          "romaji": "\"Kono jitensha, dezain mo yokute noriyasui desu\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Chiếc xe đạp này thiết kế cũng đẹp mà lại dễ đi\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

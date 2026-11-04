@@ -1,11 +1,14 @@
 import { z } from 'zod';
 
+import { ITEM_TYPES } from './srs-scheduling.js';
+
 /**
- * Schema của sáu route SRS (spec SRS §3.3–3.4, §6).
+ * Schema của sáu route SRS (spec SRS §3.3–3.4, §6; spec Kanji SRS §2).
  *
- * Mốc 1 chỉ nghiệm thu Vocabulary: `item_type` chỉ nhận đúng `Vocabulary`
- * (không truyền thì mặc định giá trị này); `Kanji`, `Grammar` hay sai chữ hoa
- * đều bị từ chối. Mọi object đều `strict`: tham số lạ là 400, không bị lờ đi.
+ * `item_type` nhận đúng `Vocabulary` hoặc `Kanji`; `Grammar` hay sai chữ hoa
+ * đều bị từ chối. Đọc danh sách (đến hạn, đếm, thống kê) bỏ trống loại là mọi
+ * loại; thao tác trên một thẻ bỏ trống vẫn là `Vocabulary` để client cũ chạy
+ * tiếp. Mọi object đều `strict`: tham số lạ là 400, không bị lờ đi.
  */
 
 /** Trần số thẻ loại trừ trong một phiên ôn — giới hạn chọn cho mốc 1 (spec §3.4). */
@@ -13,7 +16,11 @@ export const MAX_EXCLUDED_ITEMS = 200;
 
 const objectId = z.string().regex(/^[a-f0-9]{24}$/i, 'ID không hợp lệ.');
 
-const itemType = z.literal('Vocabulary').default('Vocabulary');
+/** Loại của **một** thẻ. */
+const itemType = z.enum(ITEM_TYPES).default('Vocabulary');
+
+/** Bộ lọc danh sách: không truyền thì không lọc. */
+const itemTypeFilter = z.enum(ITEM_TYPES).optional();
 
 /**
  * Giá trị `next_review` nguyên vẹn của thẻ đang thấy, không phải giờ client
@@ -27,10 +34,13 @@ const excludedItemIds = z
   .transform((value) => [...new Set(value.split(',').map((id) => id.trim()).filter(Boolean))])
   .pipe(z.array(objectId).max(MAX_EXCLUDED_ITEMS));
 
-export const itemTypeQuery = z.strictObject({ item_type: itemType });
+export const itemTypeQuery = z.strictObject({ item_type: itemTypeFilter });
+
+/** Query của lệnh xoá một thẻ. */
+export const cardTypeQuery = z.strictObject({ item_type: itemType });
 
 export const dueQuery = z.strictObject({
-  item_type: itemType,
+  item_type: itemTypeFilter,
   limit: z.coerce.number().int().min(1).max(100).default(20),
   exclude_item_ids: excludedItemIds.optional(),
 });

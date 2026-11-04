@@ -1,0 +1,1129 @@
+{
+  "lesson": {
+    "title": "Tình huống: Thuế và hoạt động khu phố"
+  },
+  "videos": [
+    {
+      "title": "Phiếu khấu trừ thuế và quyết toán thuế",
+      "description": "Hiểu phiếu khấu trừ thuế tại nguồn và biết hỏi về quyết toán thuế ở đâu.",
+      "url": "/uploads/lesson-videos/n3-07-local-community/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "アンジェラさん、お疲れさまでした。",
+          "romaji": "Anjera-san, otsukaresama deshita.",
+          "text_vi": "Chị Angela, vất vả rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "お疲れさまでした。",
+          "romaji": "Otsukaresama deshita.",
+          "text_vi": "Chị vất vả rồi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "今日も忙しかったですね。",
+          "romaji": "Kyoo mo isogashikatta desu ne.",
+          "text_vi": "Hôm nay cũng bận rộn nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "本当ですね。",
+          "romaji": "Hontoo desu ne.",
+          "text_vi": "Đúng thật ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "あ、そうだ。アンジェラさん、ちょっと待っててください。",
+          "romaji": "A, soo da. Anjera-san, chotto matte ite kudasai.",
+          "text_vi": "À, đúng rồi. Chị Angela, chờ tôi một chút nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "はい、これ。源泉徴収票。",
+          "romaji": "Hai, kore. Gensen chooshuuhyoo.",
+          "text_vi": "Đây, cái này. Phiếu khấu trừ thuế tại nguồn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:30",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "え？",
+          "romaji": "E?",
+          "text_vi": "Hả?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "去年働いてもらった分のお給料と、納付済みの税金が書いてあります。",
+          "romaji": "Kyonen hataraite moratta bun no okyuuryoo to, noofuzumi no zeekin ga kaite arimasu.",
+          "text_vi": "Trên đó có ghi tiền lương cho phần chị đã làm năm ngoái và số thuế đã nộp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、そうですか。これ、何かしなきゃいけないんですか？",
+          "romaji": "Aa, soo desu ka. Kore, nanika shinakya ikenai n desu ka.",
+          "text_vi": "À, vậy ạ. Cái này em có phải làm gì không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "アンジェラさん、会社でも働いてますよね？",
+          "romaji": "Anjera-san, kaisha de mo hataraite masu yo ne.",
+          "text_vi": "Chị Angela cũng đang làm ở công ty nữa đúng không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "そしたら多分、確定申告しなきゃなりませんね。",
+          "romaji": "Soshitara tabun, kakutee-shinkoku shinakya narimasen ne.",
+          "text_vi": "Vậy thì có lẽ chị phải làm quyết toán thuế rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "去年はカフェの仕事もたくさん手伝ってもらっちゃったしね。",
+          "romaji": "Kyonen wa kafe no shigoto mo takusan tetsudatte morachatta shi ne.",
+          "text_vi": "Năm ngoái chị cũng đã giúp tôi nhiều việc ở quán cà phê nữa.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "確定申告、やったことないんですけど、どこに問い合わせたらいいですか？",
+          "romaji": "Kakutee-shinkoku, yatta koto nain desu kedo, doko ni toiawasetara ii desu ka.",
+          "text_vi": "Em chưa từng làm quyết toán thuế, em nên hỏi ở đâu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "住んでるところの税務署に問い合わせればわかると思います。",
+          "romaji": "Sunde ru tokoro no zeemusho ni toiawasereba wakaru to omoimasu.",
+          "text_vi": "Nếu hỏi ở cục thuế nơi chị sống thì tôi nghĩ sẽ biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "もっと税金を払うことになりますか？",
+          "romaji": "Motto zeekin o harau koto ni narimasu ka.",
+          "text_vi": "Em sẽ phải nộp thêm thuế ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "還付って言って、払いすぎた税金が戻ってくることもありますよ。",
+          "romaji": "Kanpu tte itte, haraisugita zeekin ga modotte kuru koto mo arimasu yo.",
+          "text_vi": "Có khi gọi là \"kanpu\", tức là số thuế đã nộp thừa được hoàn lại đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
+          "text_ja": "収入によるから何とも言えませんけどね。",
+          "romaji": "Shuunyuu ni yoru kara nantomo iemasen kedo ne.",
+          "text_vi": "Còn tùy thu nhập nên tôi cũng không thể nói chắc được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうなんですね。早速、税務署に聞いてみます。",
+          "romaji": "Soo nan desu ne. Sassoku, zeemusho ni kiite mimasu.",
+          "text_vi": "Ra vậy ạ. Em sẽ hỏi cục thuế ngay.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "源泉徴収票",
+          "reading": "げんせんちょうしゅうひょう",
+          "romaji": "gensen chooshuuhyoo",
+          "meaning": "phiếu khấu trừ thuế tại nguồn"
+        },
+        {
+          "word": "給料",
+          "reading": "きゅうりょう",
+          "romaji": "kyuuryoo",
+          "meaning": "tiền lương"
+        },
+        {
+          "word": "確定申告",
+          "reading": "かくていしんこく",
+          "romaji": "kakutee shinkoku",
+          "meaning": "quyết toán thuế"
+        },
+        {
+          "word": "税務署",
+          "reading": "ぜいむしょ",
+          "romaji": "zeemusho",
+          "meaning": "cục thuế"
+        },
+        {
+          "word": "還付",
+          "reading": "かんぷ",
+          "romaji": "kanpu",
+          "meaning": "hoàn thuế"
+        },
+        {
+          "word": "収入",
+          "reading": "しゅうにゅう",
+          "romaji": "shuunyuu",
+          "meaning": "thu nhập"
+        },
+        {
+          "word": "問い合わせる",
+          "reading": "といあわせる",
+          "romaji": "toiawaseru",
+          "meaning": "hỏi, liên hệ"
+        }
+      ]
+    },
+    {
+      "title": "Thư báo thuế cư trú",
+      "description": "Hỏi được về tờ thông báo thuế cư trú và nơi nộp thuế.",
+      "url": "/uploads/lesson-videos/n3-07-local-community/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "山田さん、ちょっと教えてほしいことがあるんですけど。",
+          "romaji": "Yamada-san, chotto oshiete hoshii koto ga aru n desu kedo.",
+          "text_vi": "Chị Yamada, em có chuyện muốn nhờ chị chỉ giúp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "はい、何ですか？",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Vâng, chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "昨日、友達から相談のメールをもらったんですけど。",
+          "romaji": "Kinoo, tomodachi kara soodan no meeru o moratta n desu kedo.",
+          "text_vi": "Hôm qua em nhận được email nhờ tư vấn từ một người bạn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "友達のところに税金の紙が届いたらしいんですよ。",
+          "romaji": "Tomodachi no tokoro ni zeekin no kami ga todoita rashiin desu yo.",
+          "text_vi": "Hình như chỗ bạn em có gửi đến một tờ giấy về thuế.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "そうなんですね。",
+          "romaji": "Soo nan desu ne.",
+          "text_vi": "Vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "よくわからないから教えてほしいって言われたんですけど、何の税金か私にもよくわからなくて。写真も送ってもらったんですけどね。",
+          "romaji": "Yoku wakaranai kara oshiete hoshii tte iwareta n desu kedo, nan no zeekin ka watashi ni mo yoku wakaranakute. Shashin mo okutte moratta n desu kedo ne.",
+          "text_vi": "Bạn bảo không hiểu nên nhờ em chỉ, nhưng em cũng không biết là thuế gì. Bạn cũng gửi ảnh cho em rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "見てもいいですか？",
+          "romaji": "Mitemo ii desu ka.",
+          "text_vi": "Cho tôi xem được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、これです。",
+          "romaji": "Hai, kore desu.",
+          "text_vi": "Vâng, đây ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "ああ、住民税ですね。",
+          "romaji": "Aa, juuminzee desu ne.",
+          "text_vi": "À, là thuế cư trú nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "住民税ですか？",
+          "romaji": "Juuminzee desu ka.",
+          "text_vi": "Thuế cư trú ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "でも私はこういう紙、見たことがない気がするんですけど、なんで友達のところには郵便で届いたんですか？",
+          "romaji": "Demo watashi wa koo iu kami, mita koto ga nai ki ga suru n desu kedo, nande tomodachi no tokoro ni wa yuubin de todoita n desu ka.",
+          "text_vi": "Nhưng em thấy hình như chưa từng thấy tờ giấy này, sao chỗ bạn em lại được gửi qua bưu điện ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "会社に勤めている人と勤めていない人とでは、払い方が違うんですよ。",
+          "romaji": "Kaisha ni tsutomete iru hito to tsutomete inai hito to de wa, haraikata ga chigaun desu yo.",
+          "text_vi": "Người đi làm công ty và người không đi làm công ty thì cách nộp khác nhau đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "アンジェラさんの場合は、毎月お給料から税金が引かれてるんですよ。お友達は会社員じゃないんじゃないですか？",
+          "romaji": "Anjera-san no baai wa, maitsuki okyuuryoo kara zeekin ga hikarete ru n desu yo. Otomodachi wa kaishain ja nain ja nai desu ka.",
+          "text_vi": "Trường hợp của chị Angela thì thuế được trừ vào lương mỗi tháng đấy. Bạn của chị chắc không phải nhân viên công ty nhỉ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、確かに会社には勤めていません。",
+          "romaji": "Aa, tashika ni kaisha ni wa tsutomete imasen.",
+          "text_vi": "À, đúng là bạn em không làm ở công ty.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "だからですね、きっと。",
+          "romaji": "Dakara desu ne, kitto.",
+          "text_vi": "Chắc là vì vậy đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうなんですね。知りませんでした。",
+          "romaji": "Soo nan desu ne. Shirimasen deshita.",
+          "text_vi": "Ra vậy ạ. Em không biết.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どこで払えばいいんですか？",
+          "romaji": "Doko de haraeba ii n desu ka.",
+          "text_vi": "Nộp ở đâu thì được ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "役所でも払えますけど、銀行やコンビニでも払えると思いますよ。",
+          "romaji": "Yakusho demo haraemasu kedo, ginkoo ya konbini demo haraeru to omoimasu yo.",
+          "text_vi": "Nộp ở cơ quan hành chính cũng được, và tôi nghĩ ở ngân hàng hay cửa hàng tiện lợi cũng nộp được.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わかりました。友達にそう伝えます。ありがとうございます。",
+          "romaji": "Wakarimashita. Tomodachi ni soo tsutaemasu. Arigatoo gozaimasu.",
+          "text_vi": "Em hiểu rồi. Em sẽ nói lại với bạn. Em cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "税金",
+          "reading": "ぜいきん",
+          "romaji": "zeekin",
+          "meaning": "tiền thuế"
+        },
+        {
+          "word": "住民税",
+          "reading": "じゅうみんぜい",
+          "romaji": "juuminzee",
+          "meaning": "thuế cư trú"
+        },
+        {
+          "word": "郵便",
+          "reading": "ゆうびん",
+          "romaji": "yuubin",
+          "meaning": "bưu điện, thư"
+        },
+        {
+          "word": "勤める",
+          "reading": "つとめる",
+          "romaji": "tsutomeru",
+          "meaning": "làm việc (cho công ty)"
+        },
+        {
+          "word": "会社員",
+          "reading": "かいしゃいん",
+          "romaji": "kaishain",
+          "meaning": "nhân viên công ty"
+        },
+        {
+          "word": "役所",
+          "reading": "やくしょ",
+          "romaji": "yakusho",
+          "meaning": "cơ quan hành chính"
+        }
+      ]
+    },
+    {
+      "title": "Làm nhân viên lễ hội mùa hè",
+      "description": "Đăng ký giúp lễ hội khu phố và nói được việc mình làm được, thời gian mình rảnh.",
+      "url": "/uploads/lesson-videos/n3-07-local-community/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:04",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "あ、ビンさん、こんにちは。",
+          "romaji": "A, Bin-san, konnichiwa.",
+          "text_vi": "À, anh Bin, xin chào.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "こんにちは。",
+          "romaji": "Konnichiwa.",
+          "text_vi": "Xin chào.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "何見てるんですか？",
+          "romaji": "Nani miteru n desu ka.",
+          "text_vi": "Anh đang xem gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "この夏祭りのスタッフ、やってみたいなぁと思うんですけど、どんな仕事があるのかなぁと思って。",
+          "romaji": "Kono natsumatsuri no sutaffu, yatte mitai naa to omou n desu kedo, donna shigoto ga aru no kanaa to omotte.",
+          "text_vi": "Tôi đang nghĩ muốn thử làm nhân viên cho lễ hội mùa hè này, nên đang tự hỏi có những việc gì.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "いろいろありますよ。詳しく知りたかったら、町内会長さんに聞いてみたら？",
+          "romaji": "Iroiro arimasu yo. Kuwashiku shiritakattara, choonaikai-choo-san ni kiite mitara.",
+          "text_vi": "Có nhiều việc lắm đấy. Nếu muốn biết chi tiết thì thử hỏi ông hội trưởng tổ dân phố xem?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "わかりました。そうします。",
+          "romaji": "Wakarimashita. Soo shimasu.",
+          "text_vi": "Tôi hiểu rồi. Tôi sẽ làm vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "山田",
+          "speaker_romaji": "Yamada",
+          "speaker_vi": "Yamada",
+          "text_ja": "会長さん、喜ぶと思いますよ。",
+          "romaji": "Kaichoo-san, yorokobu to omoimasu yo.",
+          "text_vi": "Tôi nghĩ ông hội trưởng sẽ vui lắm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "そうですか？じゃあ、今から行ってみます。",
+          "romaji": "Soo desu ka. Jaa, ima kara itte mimasu.",
+          "text_vi": "Vậy ạ? Vậy tôi đến thử ngay bây giờ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "すみません、ビンです。",
+          "romaji": "Sumimasen, Bin desu.",
+          "text_vi": "Xin lỗi, tôi là Bin ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "おー、ビンさん、こんにちは。どうしました？",
+          "romaji": "Oo, Bin-san, konnichiwa. Doo shimashita?",
+          "text_vi": "Ồ, anh Bin, xin chào. Có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あの、突然お邪魔してすみません。夏祭りのスタッフのことでお聞きしたいことがあるんですけど。",
+          "romaji": "Ano, totsuzen ojama shite sumimasen. Natsumatsuri no sutaffu no koto de okiki shitai koto ga aru n desu kedo.",
+          "text_vi": "À, xin lỗi vì đến làm phiền đột ngột. Tôi có điều muốn hỏi về nhân viên lễ hội mùa hè ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "はいはい、夏祭りのスタッフね。",
+          "romaji": "Hai hai, natsumatsuri no sutaffu ne.",
+          "text_vi": "Ừ ừ, nhân viên lễ hội mùa hè nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "興味があるんですけど、やったことがないので、どんなことするのかよくわからなくて。さっき山田さんに聞いてみたら、詳しいことは町内会長さんに聞くといいよって。",
+          "romaji": "Kyoomi ga aru n desu kedo, yatta koto ga nai node, donna koto suru no ka yoku wakaranakute. Sakki Yamada-san ni kiite mitara, kuwashii koto wa choonaikai-choo-san ni kiku to ii yo tte.",
+          "text_vi": "Tôi có hứng thú nhưng chưa từng làm nên không rõ phải làm những gì. Lúc nãy tôi hỏi chị Yamada thì chị bảo chi tiết nên hỏi ông hội trưởng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "それは嬉しいなあ。",
+          "romaji": "Sore wa ureshii naa.",
+          "text_vi": "Vậy thì vui quá.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "いろんな係がありますよ。会場準備の係とか、お店の係とか、放送の係とか。何かやってみたいことはありますか？",
+          "romaji": "Ironna kakari ga arimasu yo. Kaijoo junbi no kakari toka, omise no kakari toka, hoosoo no kakari toka. Nanika yatte mitai koto wa arimasu ka.",
+          "text_vi": "Có nhiều nhóm phụ trách lắm: nhóm chuẩn bị hội trường, nhóm bán hàng, nhóm phát thanh... Anh có muốn thử việc gì không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "そうですね、日本語はあまり得意じゃないので、力仕事なら得意なんですけど。",
+          "romaji": "Soo desu ne, Nihongo wa amari tokui ja nai node, chikara-shigoto nara tokui nan desu kedo.",
+          "text_vi": "Để xem nào, tiếng Nhật tôi không giỏi lắm, nhưng nếu là việc tay chân thì tôi giỏi ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "じゃあ、会場係はどうかな。テントを立てたり、テーブルを運んだり。",
+          "romaji": "Jaa, kaijoo-gakari wa doo ka na. Tento o tatetari, teeburu o hakondari.",
+          "text_vi": "Vậy thì nhóm hội trường thì sao nhỉ. Dựng lều, khiêng bàn...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:59",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "それならできそうです。",
+          "romaji": "Sore nara dekisoo desu.",
+          "text_vi": "Nếu vậy thì có vẻ tôi làm được ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "よかった。じゃあお願いしますね。",
+          "romaji": "Yokatta. Jaa onegaishimasu ne.",
+          "text_vi": "Tốt quá. Vậy nhờ anh nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:05",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あの、それから打ち合わせとかありますか？平日は仕事で帰りが遅いので、週末しか参加できないんですけど。",
+          "romaji": "Ano, sorekara uchiawase toka arimasu ka. Heejitsu wa shigoto de kaeri ga osoi node, shuumatsu shika sanka dekinain desu kedo.",
+          "text_vi": "À, ngoài ra có buổi họp bàn gì không ạ? Ngày thường tôi đi làm về muộn nên chỉ tham gia được vào cuối tuần.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:15",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "ああ、会場係は当日だけだから大丈夫。",
+          "romaji": "Aa, kaijoo-gakari wa toojitsu dake dakara daijoobu.",
+          "text_vi": "À, nhóm hội trường chỉ làm đúng ngày hôm đó thôi nên không sao.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "当日の朝10時に会場に来てもらえますか？",
+          "romaji": "Toojitsu no asa juuji ni kaijoo ni kite moraemasu ka.",
+          "text_vi": "Sáng hôm đó anh đến hội trường lúc 10 giờ được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:26",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "はい、わかりました。ありがとうございます。当日もよろしくお願いします。",
+          "romaji": "Hai, wakarimashita. Arigatoo gozaimasu. Toojitsu mo yoroshiku onegaishimasu.",
+          "text_vi": "Vâng, tôi hiểu rồi. Cảm ơn ông. Hôm đó cũng mong được giúp đỡ ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:33",
+          "speaker_ja": "町内会長",
+          "speaker_romaji": "Choonaikai-choo",
+          "speaker_vi": "Hội trưởng tổ dân phố",
+          "text_ja": "はい、こちらこそよろしくお願いします。",
+          "romaji": "Hai, kochira koso yoroshiku onegaishimasu.",
+          "text_vi": "Vâng, tôi mới là người mong được giúp đỡ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "夏祭り",
+          "reading": "なつまつり",
+          "romaji": "natsumatsuri",
+          "meaning": "lễ hội mùa hè"
+        },
+        {
+          "word": "町内会長",
+          "reading": "ちょうないかいちょう",
+          "romaji": "choonaikaichoo",
+          "meaning": "hội trưởng tổ dân phố"
+        },
+        {
+          "word": "係",
+          "reading": "かかり",
+          "romaji": "kakari",
+          "meaning": "người, nhóm phụ trách"
+        },
+        {
+          "word": "会場",
+          "reading": "かいじょう",
+          "romaji": "kaijoo",
+          "meaning": "hội trường"
+        },
+        {
+          "word": "力仕事",
+          "reading": "ちからしごと",
+          "romaji": "chikara-shigoto",
+          "meaning": "việc tay chân"
+        },
+        {
+          "word": "打ち合わせ",
+          "reading": "うちあわせ",
+          "romaji": "uchiawase",
+          "meaning": "buổi họp bàn"
+        },
+        {
+          "word": "当日",
+          "reading": "とうじつ",
+          "romaji": "toojitsu",
+          "meaning": "ngày hôm đó"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Thuế và hoạt động khu phố",
+      "description": "Ôn lại「〜らしい」,「〜ことになる」và「それなら〜そうです」.",
+      "url": "/uploads/lesson-videos/n3-07-local-community/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "とどいた らしいんですよ",
+          "romaji": "todoita rashiin desu yo",
+          "text_vi": "Hình như đã gửi đến đấy",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "友達のとこに税金の紙が届いたらしいんですよ。",
+          "romaji": "Tomodachi no toko ni zeekin no kami ga todoita rashiin desu yo.",
+          "text_vi": "Hình như chỗ bạn em có gửi đến một tờ giấy về thuế đấy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「らしい」は、話し手が見たり聞いたりした情報をもとに推測したことを第三者に伝えるときに使います。",
+          "romaji": "\"Rashii\" wa, hanashite ga mitari kiitari shita joohoo o moto ni suisoku shita koto o daisansha ni tsutaeru toki ni tsukaimasu.",
+          "text_vi": "\"Rashii\" dùng khi người nói truyền đạt cho người thứ ba điều mình suy đoán dựa trên thông tin đã thấy hoặc nghe.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、あなたは友達の山田さんが、安い引っ越し屋さんを探している、という話をしているのを聞きました。",
+          "romaji": "Tatoeba, anata wa tomodachi no Yamada-san ga, yasui hikkoshi'ya-san o sagashite iru, to iu hanashi o shite iru no o kikimashita.",
+          "text_vi": "Ví dụ, bạn nghe thấy bạn mình là anh Yamada đang nói chuyện là đang tìm công ty chuyển nhà giá rẻ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それであなたは、山田さんは引っ越しをするのだろうと推測しました。",
+          "romaji": "Sorede anata wa, Yamada-san wa hikkoshi o suru no daroo to suisoku shimashita.",
+          "text_vi": "Vì vậy bạn suy đoán rằng anh Yamada chắc là sắp chuyển nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "そして別の友人のマリアさんに、「山田さんは引っ越しをするらしいです」と伝えました。",
+          "romaji": "Soshite betsu no yuujin no Maria-san ni, \"Yamada-san wa hikkoshi o suru rashii desu\" to tsutaemashita.",
+          "text_vi": "Rồi bạn nói với một người bạn khác là chị Maria rằng \"Hình như anh Yamada sắp chuyển nhà\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画ではアンジェラさんが、「友達のとこに税金の紙が届いたらしいんですよ」と言っています。",
+          "romaji": "Dooga de wa Anjera-san ga, \"Tomodachi no toko ni zeekin no kami ga todoita rashiin desu yo\" to itte imasu.",
+          "text_vi": "Trong video, chị Angela nói \"Hình như chỗ bạn em có gửi đến một tờ giấy về thuế đấy ạ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんは、友達のメールから、その友達のところに税金の紙が届いたと推測しました。",
+          "romaji": "Anjera-san wa, tomodachi no meeru kara, sono tomodachi no tokoro ni zeekin no kami ga todoita to suisoku shimashita.",
+          "text_vi": "Chị Angela suy đoán từ email của bạn rằng chỗ người bạn đó có tờ giấy về thuế gửi đến.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "それでそのことを同僚に、「友達のとこに税金の紙が届いたらしいんですよ」と、「らしいです」を使って伝えました。",
+          "romaji": "Sorede sono koto o dooryoo ni, \"Tomodachi no toko ni zeekin no kami ga todoita rashiin desu yo\" to, \"rashii desu\" o tsukatte tsutaemashita.",
+          "text_vi": "Vì vậy chị đã nói với đồng nghiệp rằng \"Hình như chỗ bạn em có gửi đến một tờ giấy về thuế\", dùng mẫu \"rashii desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「らしいです」の前は普通形です。",
+          "romaji": "\"Rashii desu\" no mae wa futsuu-kee desu.",
+          "text_vi": "Trước \"rashii desu\" là thể thường.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ただし、名詞とナ形容詞の「だ」は付きません。",
+          "romaji": "Tadashi, meeshi to na-keeyooshi no \"da\" wa tsukimasen.",
+          "text_vi": "Tuy nhiên, với danh từ và tính từ đuôi na thì không gắn \"da\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「雨だ」「簡単だ」の「だ」は付きません。",
+          "romaji": "Tatoeba, \"ame da\", \"kantan da\" no \"da\" wa tsukimasen.",
+          "text_vi": "Ví dụ, \"da\" trong \"ame da\" (mưa) và \"kantan da\" (đơn giản) không được gắn.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「雨らしいです」「簡単らしいです」となります。",
+          "romaji": "\"Ame rashii desu\", \"kantan rashii desu\" to narimasu.",
+          "text_vi": "Sẽ thành \"ame rashii desu\", \"kantan rashii desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「明日は朝から大雨らしいです」「新しくできたレストラン、おいしいらしいよ」のように言うことができます。",
+          "romaji": "\"Ashita wa asa kara ooame rashii desu\", \"Atarashiku dekita resutoran, oishii rashii yo\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Nghe nói ngày mai từ sáng mưa to\", \"Nhà hàng mới mở nghe nói ngon đấy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:21",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "もっと はらう ことに なりますか",
+          "romaji": "motto harau koto ni narimasu ka",
+          "text_vi": "Có phải trả thêm nữa không?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:29",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "もっと税金を払うことになりますか？",
+          "romaji": "Motto zeekin o harau koto ni narimasu ka.",
+          "text_vi": "Em sẽ phải nộp thêm thuế ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:33",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ことになります」は、ある事態が起こると、必然的にある結果になると言いたいときに使います。",
+          "romaji": "\"Koto ni narimasu\" wa, aru jitai ga okoru to, hitsuzenteki ni aru kekka ni naru to iitai toki ni tsukaimasu.",
+          "text_vi": "\"Koto ni narimasu\" dùng khi muốn nói rằng nếu một tình huống xảy ra thì tất yếu sẽ dẫn đến một kết quả nào đó.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:44",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではアンジェラさんが、「もっと税金を払うことになりますか」と言っています。",
+          "romaji": "Kono dooga de wa Anjera-san ga, \"Motto zeekin o harau koto ni narimasu ka\" to itte imasu.",
+          "text_vi": "Trong video này, chị Angela nói \"Em sẽ phải nộp thêm thuế ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "確定申告をするという事態が起こると、もっと税金を払うという結果になるのかを聞いています。",
+          "romaji": "Kakutee-shinkoku o suru to iu jitai ga okoru to, motto zeekin o harau to iu kekka ni naru no ka o kiite imasu.",
+          "text_vi": "Chị hỏi xem nếu xảy ra việc làm quyết toán thuế thì kết quả có phải là nộp thêm thuế hay không.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ことになります」の前は、動詞の辞書形、ない形です。",
+          "romaji": "\"Koto ni narimasu\" no mae wa, dooshi no jisho-kee, nai-kee desu.",
+          "text_vi": "Trước \"koto ni narimasu\" là dạng từ điển hoặc dạng nai của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:14",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「本当のことを言わないと、部下の信頼を失うことになります」",
+          "romaji": "\"Hontoo no koto o iwanai to, buka no shinrai o ushinau koto ni narimasu\"",
+          "text_vi": "\"Nếu không nói sự thật thì sẽ mất lòng tin của cấp dưới\"",
+          "key_phrase": false
+        },
+        {
+          "start": "03:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「これ以上欠席が続くと、修了証がもらえないことになります」のように言うことができます。",
+          "romaji": "\"Kore ijoo kesseki ga tsuzuku to, shuuryooshoo ga moraenai koto ni narimasu\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Nếu còn vắng mặt thêm nữa thì sẽ không nhận được giấy chứng nhận hoàn thành\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:32",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "それなら、できそうです",
+          "romaji": "sore nara, dekisoo desu",
+          "text_vi": "Nếu vậy thì có vẻ làm được",
+          "key_phrase": false
+        },
+        {
+          "start": "03:40",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "それならできそうです。",
+          "romaji": "Sore nara dekisoo desu.",
+          "text_vi": "Nếu vậy thì có vẻ tôi làm được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではビンさんが、「それならできそうです」と言っています。",
+          "romaji": "Kono dooga de wa Bin-san ga, \"Sore nara dekisoo desu\" to itte imasu.",
+          "text_vi": "Trong video này, anh Bin nói \"Nếu vậy thì có vẻ tôi làm được ạ\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「動詞のます形+そうです」は、ある出来事が起こる可能性が高いと思っているときに使います。",
+          "romaji": "\"Dooshi no masu-kee + soo desu\" wa, aru dekigoto ga okoru kanoosee ga takai to omotte iru toki ni tsukaimasu.",
+          "text_vi": "Mẫu \"dạng masu của động từ + soo desu\" dùng khi cho rằng khả năng một việc nào đó xảy ra là cao.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ビンさんは、会場係の仕事について話を聞きました。",
+          "romaji": "Bin-san wa, kaijoo-gakari no shigoto ni tsuite hanashi o kikimashita.",
+          "text_vi": "Anh Bin đã nghe nói về công việc của nhóm hội trường.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "そしてその仕事ならできる可能性が高いと思ったので、「それならできそうです」と言いました。",
+          "romaji": "Soshite sono shigoto nara dekiru kanoosee ga takai to omotta node, \"Sore nara dekisoo desu\" to iimashita.",
+          "text_vi": "Rồi vì nghĩ rằng nếu là công việc đó thì khả năng làm được là cao nên anh nói \"Nếu vậy thì có vẻ tôi làm được\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「そうです」の前は、動詞のます形です。",
+          "romaji": "\"Soo desu\" no mae wa, dooshi no masu-kee desu.",
+          "text_vi": "Trước \"soo desu\" là dạng masu của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:30",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "一緒に使う動詞は、「食べられます」「寝られます」「わかります」など可能の意味を持つ動詞や、「消えます」「なります」など無意志動詞です。",
+          "romaji": "Issho ni tsukau dooshi wa, \"taberaremasu\", \"neraremasu\", \"wakarimasu\" nado kanoo no imi o motsu dooshi ya, \"kiemasu\", \"narimasu\" nado muishi-dooshi desu.",
+          "text_vi": "Động từ dùng cùng là các động từ mang nghĩa khả năng như \"taberaremasu\" (ăn được), \"neraremasu\" (ngủ được), \"wakarimasu\" (hiểu), hoặc động từ vô ý chí như \"kiemasu\" (biến mất), \"narimasu\" (trở nên).",
+          "key_phrase": false
+        },
+        {
+          "start": "04:50",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のます形の「ます」を消して、「そうです」をつけます。",
+          "romaji": "Dooshi no masu-kee no \"masu\" o keshite, \"soo desu\" o tsukemasu.",
+          "text_vi": "Bỏ \"masu\" của dạng masu rồi gắn \"soo desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:59",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「今夜は涼しいからよく寝られそうです」「明日はいい天気になりそうだ」のように言うことができます。",
+          "romaji": "\"Kon'ya wa suzushii kara yoku neraresoo desu\", \"Ashita wa ii tenki ni narisoo da\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói như \"Tối nay mát nên có vẻ ngủ ngon được\", \"Ngày mai có vẻ trời sẽ đẹp\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

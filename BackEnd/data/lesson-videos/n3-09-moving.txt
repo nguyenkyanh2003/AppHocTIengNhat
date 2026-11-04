@@ -1,0 +1,179 @@
+# Lời thoại Tình huống: Làm thủ tục chuyển nơi ở
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-6-9.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## summary.mp4
+# Gọi công ty chuyển nhà xin báo giá
+00:06 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お電話ありがとうございます。渡り鳥引越センターでございます。 | Odenwa arigatoo gozaimasu. Wataridori Hikkoshi Sentaa de gozaimasu. | Cảm ơn quý khách đã gọi. Đây là Trung tâm chuyển nhà Wataridori ạ.
+00:10 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | あの、インターネットで見て電話したんですけど、 | Ano, intaanetto de mite denwa shita n desu kedo, | À, tôi xem trên mạng rồi gọi điện,
+00:17 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | ありがとうございます。 | Arigatoo gozaimasu. | Xin cảm ơn quý khách.
+*00:19 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 来月の中旬くらいに引っ越しを予定しているんですけど、料金はいくらくらいになるか教えていただけますか？ | Raigetsu no chuujun kurai ni hikkoshi o yotee shite iru n desu kedo, ryookin wa ikura kurai ni naru ka oshiete itadakemasu ka. | Khoảng giữa tháng sau tôi dự định chuyển nhà, anh cho tôi biết phí khoảng bao nhiêu được không ạ?
+00:32 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 正確なお見積もりは、お部屋を見せていただいてからになりますが、よろしいですか？ | Seekaku na omitsumori wa, oheya o misete itadaite kara ni narimasu ga, yoroshii desu ka. | Báo giá chính xác thì sau khi chúng tôi xem phòng mới có được, quý khách thấy được không ạ?
+00:39 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | あ、そうなんですね。 | A, soo nan desu ne. | À, ra vậy.
+*00:43 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 見積もりを見てからお願いするかどうか決めてもいいんですよね？ | Mitsumori o mite kara onegai-suru ka doo ka kimetemo ii n desu yo ne. | Sau khi xem báo giá rồi mới quyết định có nhờ hay không cũng được nhỉ?
+00:50 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | はい、もちろんです。 | Hai, mochiron desu. | Vâng, tất nhiên ạ.
+00:51 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+00:52 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | では、いくつか教えていただけますか。 | Dewa, ikutsuka oshiete itadakemasu ka. | Vậy quý khách cho tôi hỏi vài điều được không ạ?
+00:56 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。 | Hai. | Vâng.
+00:57 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お客様、お名前は？ | Okyakusama, onamae wa? | Xin quý khách cho biết tên ạ?
+01:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 王浩然です。 | Oo Haoran desu. | Tôi là Vương Hạo Nhiên (Wang Haoran).
+01:04 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 現在のお住まいはどちらですか？ | Genzai no osumai wa dochira desu ka. | Hiện nay quý khách đang ở đâu ạ?
+01:07 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 八重洲市大里です。 | Yaesu-shi Oosato desu. | Tôi ở khu Oosato, thành phố Yaesu.
+01:10 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お引っ越し先はどちらになりますか？ | Ohikkoshisaki wa dochira ni narimasu ka. | Nơi chuyển đến của quý khách là ở đâu ạ?
+01:13 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 引っ越し先？どこに引っ越すかっていうことですよね？ | Hikkoshisaki? Doko ni hikkosu ka tte iu koto desu yo ne. | Nơi chuyển đến ạ? Tức là hỏi tôi sẽ chuyển đi đâu đúng không?
+01:17 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | はい。 | Hai. | Vâng.
+01:19 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 板越市です。 | Itakoshi-shi desu. | Thành phố Itakoshi ạ.
+01:21 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お引っ越しの日にちはもうお決まりですか？ | Ohikkoshi no hinichi wa moo okimari desu ka. | Quý khách đã quyết định ngày chuyển nhà chưa ạ?
+01:24 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | できれば来月の中旬の日曜日に引っ越しできればいいなと思っているんですけど。 | Dekireba raigetsu no chuujun no nichiyoobi ni hikkoshi dekireba ii na to omotte iru n desu kedo. | Nếu được thì tôi muốn chuyển vào Chủ nhật giữa tháng sau.
+01:32 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 日曜日ですか。土日は料金も高くなりますし、今からですと空きもほとんどありませんが、平日でご検討いただくことは可能でしょうか？ | Nichiyoobi desu ka. Donichi wa ryookin mo takaku narimasu shi, ima kara desu to aki mo hotondo arimasen ga, heejitsu de gokentoo itadaku koto wa kanoo deshoo ka. | Chủ nhật ạ. Thứ Bảy, Chủ nhật phí cũng cao hơn, mà bây giờ thì hầu như không còn lịch trống, quý khách có thể cân nhắc ngày thường được không ạ?
+01:47 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 平日ですか？ | Heejitsu desu ka. | Ngày thường ạ?
+01:51 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 月曜日から金曜日までってことですよね？ | Getsuyoobi kara kin'yoobi made tte koto desu yo ne. | Tức là từ thứ Hai đến thứ Sáu đúng không ạ?
+01:55 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 夕方遅めの時間でも大丈夫ですか？ | Yuugata osome no jikan demo daijoobu desu ka. | Giờ hơi muộn vào buổi chiều tối thì có được không ạ?
+01:59 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, được ạ.
+02:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | わかりました。じゃあ、考えてみます。できるだけ早く決めるようにします。 | Wakarimashita. Jaa, kangaete mimasu. Dekiru dake hayaku kimeru yoo ni shimasu. | Tôi hiểu rồi. Vậy tôi sẽ cân nhắc. Tôi sẽ cố gắng quyết định sớm nhất có thể.
+02:08 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | よろしくお願いいたします。 | Yoroshiku onegai itashimasu. | Rất mong quý khách ủng hộ ạ.
+02:13 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | それでは、お客様のお部屋の状況をいくつかお伺いしてもよろしいですか。 | Soredewa, okyakusama no oheya no jookyoo o ikutsuka oukagai shite mo yoroshii desu ka. | Vậy cho tôi hỏi vài điều về tình trạng phòng của quý khách được không ạ?
+02:17 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。 | Hai. | Vâng.
+02:19 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お部屋の広さはどのくらいですか？ | Oheya no hirosa wa dono kurai desu ka. | Phòng của quý khách rộng khoảng bao nhiêu ạ?
+02:22 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 広さは、どう言ったらいいかよくわからないんですけど、普通のワンルームです。 | Hirosa wa, doo ittara ii ka yoku wakaranain desu kedo, futsuu no wan-ruumu desu. | Về diện tích thì tôi không rõ nói thế nào, nhưng là căn phòng đơn bình thường.
+02:35 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+02:36 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お客様、お一人でお住まいですか？ | Okyakusama, ohitori de osumai desu ka. | Quý khách sống một mình phải không ạ?
+02:40 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、一人です。 | Hai, hitori desu. | Vâng, tôi ở một mình.
+02:44 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 大きな荷物はどんなものがありますか？ | Ookina nimotsu wa donna mono ga arimasu ka. | Đồ đạc lớn thì có những thứ gì ạ?
+02:50 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 大きな荷物？大きいものといえば、冷蔵庫、洗濯機、ベッドぐらいです。 | Ookina nimotsu? Ookii mono to ieba, reezooko, sentakuki, beddo gurai desu. | Đồ đạc lớn ạ? Nếu nói đồ lớn thì chỉ có tủ lạnh, máy giặt, giường thôi.
+03:00 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | テーブルやタンスはお持ちですか？ | Teeburu ya tansu wa omochi desu ka. | Quý khách có bàn hay tủ quần áo không ạ?
+03:03 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | テーブルは小さいのが一つ、タンスはありません。 | Teeburu wa chiisai no ga hitotsu, tansu wa arimasen. | Bàn thì có một cái nhỏ, tủ quần áo thì không có.
+03:09 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 承知しました。バイクや自転車はお持ちですか？ | Shoochi shimashita. Baiku ya jitensha wa omochi desu ka. | Tôi hiểu rồi. Quý khách có xe máy hay xe đạp không ạ?
+03:14 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、自転車が1台あります。 | Hai, jitensha ga ichidai arimasu. | Vâng, có một chiếc xe đạp.
+03:18 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | わかりました。今日のお話を伺うと、お荷物もあまり多くなさそうですので、5万円から8万円ぐらいになるかと思います。一度お見積もりに伺いたいんですが、ご都合はいかがですか？ | Wakarimashita. Kyoo no ohanashi o ukagau to, onimotsu mo amari ookunasasoo desu node, goman-en kara hachiman-en gurai ni naru ka to omoimasu. Ichido omitsumori ni ukagaitain desu ga, gotsugoo wa ikaga desu ka. | Tôi hiểu rồi. Nghe câu chuyện hôm nay thì hành lý có vẻ không nhiều, nên tôi nghĩ khoảng 5 đến 8 vạn yên. Chúng tôi muốn đến xem để báo giá một lần, quý khách tiện lúc nào ạ?
+03:38 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 今週の金曜日の6時頃はどうですか？ | Konshuu no kin'yoobi no rokuji-goro wa doo desu ka. | Khoảng 6 giờ chiều thứ Sáu tuần này thì sao ạ?
+03:44 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | かしこまりました。では、10日の金曜日の6時頃に、当社の営業の者が伺います。 | Kashikomarimashita. Dewa, tooka no kin'yoobi no rokuji-goro ni, toosha no eegyoo no mono ga ukagaimasu. | Tôi hiểu rồi ạ. Vậy nhân viên kinh doanh của công ty chúng tôi sẽ đến vào khoảng 6 giờ chiều thứ Sáu ngày 10.
+03:52 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お客様のご住所、お電話番号を教えていただけますか？ | Okyakusama no gojuusho, odenwa bangoo o oshiete itadakemasu ka. | Quý khách cho tôi biết địa chỉ và số điện thoại được không ạ?
+03:59 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。住所は八重洲市大里1-1-1、大里アパート103号室です。 | Hai. Juusho wa Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu desu. | Vâng. Địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.
+04:10 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 電話番号は080-1234-5678です。 | Denwa bangoo wa zero-hachi-zero no ichi-ni-san-yon no go-roku-nana-hachi desu. | Số điện thoại là 080-1234-5678.
+04:17 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 復唱いたします。 | Fukushoo itashimasu. | Tôi xin nhắc lại.
+04:20 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | ご住所は八重洲市大里1-1-1、大里アパート103号室。 | Gojuusho wa Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu. | Địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.
+04:30 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お電話番号は080-1234-5678ですね。 | Odenwa bangoo wa zero-hachi-zero no ichi-ni-san-yon no go-roku-nana-hachi desu ne. | Số điện thoại là 080-1234-5678 phải không ạ?
+04:39 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+04:42 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お問い合わせありがとうございました。渡り鳥引越センターの山田が承りました。 | Otoiawase arigatoo gozaimashita. Wataridori Hikkoshi Sentaa no Yamada ga uketamawarimashita. | Cảm ơn quý khách đã liên hệ. Tôi là Yamada của Trung tâm chuyển nhà Wataridori, đã tiếp nhận yêu cầu.
+04:48 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | よろしくお願いいたします。 | Yoroshiku onegai itashimasu. | Mong anh giúp đỡ ạ.
+### từ vựng
+見積もり | みつもり | mitsumori | báo giá
+料金 | りょうきん | ryookin | chi phí
+中旬 | ちゅうじゅん | chuujun | giữa tháng
+引っ越し先 | ひっこしさき | hikkoshisaki | nơi chuyển đến
+平日 | へいじつ | heejitsu | ngày thường
+土日 | どにち | donichi | thứ Bảy và Chủ nhật
+復唱 | ふくしょう | fukushoo | nhắc lại
+
+## scene-1.mp4
+# Hỏi tòa thị chính về thủ tục chuyển đi
+00:06 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、八重洲市役所でございます。 | Hai, Yaesu shiyakusho de gozaimasu. | Vâng, Tòa thị chính thành phố Yaesu xin nghe.
+00:08 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | ちょっと教えていただきたいんですが。 | Chotto oshiete itadakitain desu ga. | Tôi muốn nhờ chỉ giúp một chút ạ.
+00:11 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、何でしょうか。 | Hai, nan deshoo ka. | Vâng, chuyện gì vậy ạ?
+00:14 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 来月、引っ越しをするんですが、どんな手続きが必要でしょうか。 | Raigetsu, hikkoshi o suru n desu ga, donna tetsuzuki ga hitsuyoo deshoo ka. | Tháng sau tôi chuyển nhà, vậy cần làm thủ tục gì ạ?
+00:20 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | えーと、現在、八重洲市にお住まいなんですね。 | Eeto, genzai, Yaesu-shi ni osumai nan desu ne. | À, hiện giờ anh đang sống ở thành phố Yaesu nhỉ.
+00:25 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+00:28 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | どちらにお引っ越しなさいますか？ | Dochira ni ohikkoshi nasaimasu ka. | Anh sẽ chuyển đến đâu ạ?
+00:31 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 板越市です。 | Itakoshi-shi desu. | Thành phố Itakoshi ạ.
+00:33 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | そうですか。では、転出ですので、転出届を出していただくことになります。 | Soo desu ka. Dewa, tenshutsu desu node, tenshutsu-todoke o dashite itadaku koto ni narimasu. | Vậy ạ. Vì là chuyển đi nơi khác nên anh sẽ phải nộp đơn khai báo chuyển đi.
+*00:41 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 転出届ですね。いつ頃届ければいいですか？ | Tenshutsu-todoke desu ne. Itsugoro todokereba ii desu ka. | Đơn khai báo chuyển đi nhỉ. Tôi nên nộp vào khoảng khi nào ạ?
+00:47 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | お引っ越しの2週間ぐらい前からお手続きいただけます。 | Ohikkoshi no nishuukan gurai mae kara otetsuzuki itadakemasu. | Anh có thể làm thủ tục từ khoảng 2 tuần trước khi chuyển nhà.
+00:54 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 市役所に行けば用紙がありますか？ | Shiyakusho ni ikeba yooshi ga arimasu ka. | Đến tòa thị chính thì có mẫu đơn không ạ?
+00:58 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、ございます。 | Hai, gozaimasu. | Vâng, có ạ.
+01:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | パスポートとか在留カードとかを持っていけばいいですか？ | Pasupooto toka zairyuu kaado toka o motte ikeba ii desu ka. | Tôi mang hộ chiếu hay thẻ cư trú đi là được ạ?
+01:07 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、もし国民健康保険にお入りでしたら、保険証もお持ちください。 | Hai, moshi kokumin kenkoo hoken ni ohairi deshitara, hokenshoo mo omochi kudasai. | Vâng, nếu anh có tham gia bảo hiểm y tế quốc dân thì nhớ mang cả thẻ bảo hiểm.
+01:14 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+01:16 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | あ、印鑑登録をしているんですけど、その手続きも必要ですか？ | A, inkan tooroku o shite iru n desu kedo, sono tetsuzuki mo hitsuyoo desu ka. | À, tôi đã đăng ký con dấu, vậy có cần làm thủ tục đó nữa không ạ?
+01:23 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、印鑑と印鑑登録カードもお持ちください。 | Hai, inkan to inkan tooroku kaado mo omochi kudasai. | Vâng, anh cũng mang theo con dấu và thẻ đăng ký con dấu nhé.
+01:29 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | いろいろ教えてくださってありがとうございました。 | Iroiro oshiete kudasatte arigatoo gozaimashita. | Cảm ơn anh đã chỉ cho tôi nhiều điều.
+01:33 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | いいえ、どういたしまして。失礼いたします。 | Iie, doo itashimashite. Shitsuree itashimasu. | Không có gì ạ. Xin phép anh.
+### từ vựng
+転出 | てんしゅつ | tenshutsu | chuyển đi nơi khác
+転出届 | てんしゅつとどけ | tenshutsu-todoke | đơn khai báo chuyển đi
+手続き | てつづき | tetsuzuki | thủ tục
+用紙 | ようし | yooshi | mẫu đơn
+国民健康保険 | こくみんけんこうほけん | kokumin kenkoo hoken | bảo hiểm y tế quốc dân
+印鑑登録 | いんかんとうろく | inkan tooroku | đăng ký con dấu
+
+## scene-3.mp4
+# Báo công ty điện lực khi chuyển nhà
+00:04 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | はい、北部電力です。 | Hai, Hokubu Denryoku desu. | Vâng, Công ty Điện lực Hokubu xin nghe.
+00:08 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | あの、ちょっと教えていただきたいんですが。 | Ano, chotto oshiete itadakitain desu ga. | À, tôi muốn nhờ chỉ giúp một chút ạ.
+00:13 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | はい、何でしょう。 | Hai, nan deshoo. | Vâng, chuyện gì vậy ạ?
+*00:15 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 来週、引っ越しをするんですけど、電気はどうすればいいでしょうか。 | Raishuu, hikkoshi o suru n desu kedo, denki wa doo sureba ii deshoo ka. | Tuần sau tôi chuyển nhà, vậy về điện thì tôi nên làm thế nào ạ?
+00:23 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | お引越しですね。お客様番号はお分かりになりますか？ | Ohikkoshi desu ne. Okyakusama bangoo wa owakari ni narimasu ka. | Anh chuyển nhà ạ. Anh có biết mã số khách hàng không?
+00:28 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | ちょっと分からないんですが。 | Chotto wakaranain desu ga. | Tôi không rõ lắm ạ.
+00:33 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | お手元に領収書はお持ちですか？ | Otemoto ni ryooshuusho wa omochi desu ka. | Anh có biên lai ở gần đó không ạ?
+00:35 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。ちょっと待ってください。 | Hai. Chotto matte kudasai. | Có ạ. Anh chờ một chút nhé.
+00:53 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | お待たせしました。 | Omatase shimashita. | Xin lỗi để anh chờ.
+00:58 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | その右下に、13桁のお客様番号というのがあるんですが。 | Sono migishita ni, juusan-keta no okyakusama bangoo to iu no ga aru n desu ga. | Ở phía dưới bên phải có cái gọi là mã số khách hàng 13 chữ số ạ.
+01:03 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | お客様番号ですね。 | Okyakusama bangoo desu ne. | Mã số khách hàng nhỉ.
+01:07 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | ああ、ありました。 | Aa, arimashita. | À, có rồi ạ.
+01:10 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | はい、ではその番号を教えていただけますか？ | Hai, dewa sono bangoo o oshiete itadakemasu ka. | Vâng, vậy anh cho tôi biết số đó được không ạ?
+01:15 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 12345の67890の9の01です。 | Ichi-ni-san-yon-go no roku-nana-hachi-kyuu-zero no kyuu no zero-ichi desu. | Là 12345, 67890, 9, 01 ạ.
+01:26 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 12345の67890の9の01ですね。 | Ichi-ni-san-yon-go no roku-nana-hachi-kyuu-zero no kyuu no zero-ichi desu ne. | 12345, 67890, 9, 01 nhỉ.
+01:32 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。 | Hai. | Vâng.
+01:35 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | お名前をお願いします。 | Onamae o onegai shimasu. | Xin anh cho biết tên ạ.
+01:37 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。王浩然です。 | Hai. Oo Haoran desu. | Vâng. Tôi là Vương Hạo Nhiên (Wang Haoran).
+01:41 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 王浩然様ですね。 | Oo Haoran-sama desu ne. | Anh Vương Hạo Nhiên nhỉ.
+01:43 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+01:45 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 現在のご住所を教えていただけますか？ | Genzai no gojuusho o oshiete itadakemasu ka. | Anh cho tôi biết địa chỉ hiện tại được không ạ?
+01:49 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、八重洲市大里1-1-1、大里アパート103号室です。 | Hai, Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu desu. | Vâng, địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.
+02:01 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | ありがとうございます。お引越しの日にちはお決まりですか？ | Arigatoo gozaimasu. Ohikkoshi no hinichi wa okimari desu ka. | Cảm ơn anh. Anh đã quyết định ngày chuyển nhà chưa ạ?
+02:04 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、11月26日です。 | Hai, juuichigatsu nijuuroku-nichi desu. | Vâng, ngày 26 tháng 11 ạ.
+02:09 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 来週の11月26日ですね。 | Raishuu no juuichigatsu nijuuroku-nichi desu ne. | Ngày 26 tháng 11 tuần sau nhỉ.
+02:12 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。 | Hai. | Vâng.
+02:14 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | わかりました。では、引っ越しの際にブレーカーを落としてください。 | Wakarimashita. Dewa, hikkoshi no sai ni bureekaa o otoshite kudasai. | Tôi hiểu rồi. Vậy khi chuyển nhà, anh nhớ gạt cầu dao xuống nhé.
+02:21 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | ブレーカーって何ですか？ | Bureekaa tte nan desu ka. | "Bureekaa" là gì vậy ạ?
+02:26 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 玄関のちょっと上あたりに、レバーがあると思うんですが。 | Genkan no chotto ue atari ni, rebaa ga aru to omou n desu ga. | Ở khoảng phía trên cửa ra vào một chút chắc có một cái cần gạt ạ.
+02:35 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | ああ、はいはい。わかりました。 | Aa, hai hai. Wakarimashita. | À, vâng vâng. Tôi hiểu rồi.
+02:40 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | そのレバーを下に下げてください。 | Sono rebaa o shita ni sagete kudasai. | Anh gạt cần đó xuống dưới nhé.
+02:45 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | わかりました。自分で下げればいいんですね。 | Wakarimashita. Jibun de sagereba ii n desu ne. | Tôi hiểu rồi. Tự tôi gạt xuống là được nhỉ.
+02:49 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | はい。 | Hai. | Vâng.
+02:52 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 今月分の請求書はお引っ越し先にお送りいたしますので、新しいご住所を教えていただけますか？ | Kongetsubun no seekyuusho wa ohikkoshisaki ni ookuri itashimasu node, atarashii gojuusho o oshiete itadakemasu ka. | Hóa đơn tháng này sẽ được gửi đến nơi ở mới của anh, nên anh cho tôi biết địa chỉ mới được không ạ?
+02:59 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。 | Hai. | Vâng.
+03:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 板越市横川町1-2-3、南荘205号室です。 | Itakoshi-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu. | Thành phố Itakoshi, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō ạ.
+03:11 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 復唱いたします。板越市横川町1-2-3、南荘205号室ですね。 | Fukushoo itashimasu. Itakoshi-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu ne. | Tôi xin nhắc lại. Thành phố Itakoshi, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō nhỉ.
+03:17 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+03:20 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | ありがとうございました。お電話ありがとうございました。平林が承りました。失礼いたします。 | Arigatoo gozaimashita. Odenwa arigatoo gozaimashita. Hirabayashi ga uketamawarimashita. Shitsuree itashimasu. | Xin cảm ơn. Cảm ơn anh đã gọi. Tôi là Hirabayashi, đã tiếp nhận. Xin phép ạ.
+### từ vựng
+電力 | でんりょく | denryoku | điện lực
+お客様番号 | おきゃくさまばんごう | okyakusama bangoo | mã số khách hàng
+領収書 | りょうしゅうしょ | ryooshuusho | biên lai
+桁 | けた | keta | chữ số
+ブレーカー | ブレーカー | bureekaa | cầu dao điện
+玄関 | げんかん | genkan | lối vào nhà
+請求書 | せいきゅうしょ | seekyuusho | hóa đơn
+
+## scene-2.mp4
+# Ôn tập: Làm thủ tục chuyển nơi ở
+00:00 |  /  / Chủ đề | おしえて いただけますか | oshiete itadakemasu ka | Anh/chị chỉ cho tôi được không ạ?
+00:06 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | あの、インターネットで見て電話したんですけど、来月の中旬くらいに引っ越しを予定しているんですけど、料金はいくらくらいになるか、教えていただけますか？ | Ano, intaanetto de mite denwa shita n desu kedo, raigetsu no chuujun kurai ni hikkoshi o yotee shite iru n desu kedo, ryookin wa ikura kurai ni naru ka, oshiete itadakemasu ka. | À, tôi xem trên mạng rồi gọi điện, khoảng giữa tháng sau tôi dự định chuyển nhà, anh cho tôi biết phí khoảng bao nhiêu được không ạ?
+00:26 | ナレーター / Nareetaa / Người dẫn | 「動詞のて形+いただけますか」「いただけませんか」「いただきたいんですが」は、 | "Dooshi no te-kee + itadakemasu ka", "itadakemasen ka", "itadakitain desu ga" wa, | Các mẫu "dạng te của động từ + itadakemasu ka", "itadakemasen ka", "itadakitain desu ga"
+00:36 | ナレーター / Nareetaa / Người dẫn | 「動詞のて形+ください」と同じ意味です。目上の人や初めて会った人、知らない人などに丁寧にお願いするときに使います。 | "Dooshi no te-kee + kudasai" to onaji imi desu. Meue no hito ya hajimete atta hito, shiranai hito nado ni teenee ni onegai suru toki ni tsukaimasu. | có nghĩa giống "dạng te của động từ + kudasai". Dùng khi nhờ vả lịch sự với người bề trên, người mới gặp lần đầu hoặc người không quen.
+00:54 | ナレーター / Nareetaa / Người dẫn | この動画ではお客さんが、引っ越し業者に丁寧に問い合わせをしています。 | Kono dooga de wa okyakusan ga, hikkoshi-gyoosha ni teenee ni toiawase o shite imasu. | Trong video này, khách hàng đang hỏi thăm một cách lịch sự với công ty chuyển nhà.
+01:03 | ナレーター / Nareetaa / Người dẫn | 「すみません、ちょっと教えていただけますか？」と話を始めると、相手もいい印象を持つでしょう。 | "Sumimasen, chotto oshiete itadakemasu ka" to hanashi o hajimeru to, aite mo ii inshoo o motsu deshoo. | Nếu bắt đầu câu chuyện bằng "Xin lỗi, anh chỉ giúp tôi một chút được không ạ?" thì đối phương cũng sẽ có ấn tượng tốt.
+01:16 | ナレーター / Nareetaa / Người dẫn | 他に、「写真を撮っていただけますか」「サイズを取り替えていただけますか？」など、いろいろな場面で使えます。 | Hoka ni, "Shashin o totte itadakemasu ka", "Saizu o torikaete itadakemasu ka" nado, iroiro na bamen de tsukaemasu. | Ngoài ra còn dùng được trong nhiều tình huống như "Anh chụp ảnh giúp tôi được không ạ?", "Anh đổi giúp tôi cỡ khác được không ạ?".
+01:31 |  /  / Chủ đề | おねがいするか どうか | onegai-suru ka doo ka | Có nhờ hay không
+01:38 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 正確なお見積もりは、お部屋を見せていただいてからになりますが、よろしいですか？ | Seekaku na omitsumori wa, oheya o misete itadaite kara ni narimasu ga, yoroshii desu ka. | Báo giá chính xác thì sau khi chúng tôi xem phòng mới có được, quý khách thấy được không ạ?
+01:44 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | あ、そうなんですね。見積もりを見てからお願いするかどうか決めてもいいんですよね？ | A, soo nan desu ne. Mitsumori o mite kara onegai-suru ka doo ka kimetemo ii n desu yo ne. | À, ra vậy. Sau khi xem báo giá rồi mới quyết định có nhờ hay không cũng được nhỉ?
+01:55 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | はい、もちろんです。 | Hai, mochiron desu. | Vâng, tất nhiên ạ.
+01:57 | ナレーター / Nareetaa / Người dẫn | 「家」＋「決めます」、「時間」＋「決めます」の時は、「家を決めます」「時間を決めます」となります。 | "Ie" + "kimemasu", "jikan" + "kimemasu" no toki wa, "ie o kimemasu", "jikan o kimemasu" to narimasu. | Khi là "nhà" + "quyết định", "thời gian" + "quyết định" thì sẽ thành "quyết định nhà", "quyết định thời gian".
+02:15 | ナレーター / Nareetaa / Người dẫn | しかし、「お願いしますか、しませんか」＋「決めます」は、「お願いするかどうか決めます」、 | Shikashi, "onegai shimasu ka, shimasen ka" + "kimemasu" wa, "onegai-suru ka doo ka kimemasu", | Tuy nhiên, "nhờ hay không nhờ" + "quyết định" thì sẽ là "quyết định xem có nhờ hay không",
+02:31 | ナレーター / Nareetaa / Người dẫn | 「何時に会いますか」＋「決めます」は、「何時に会うか決めます」のように、疑問文の形を変えなければなりません。 | "Nanji ni aimasu ka" + "kimemasu" wa, "nanji ni au ka kimemasu" no yoo ni, gimonbun no katachi o kaenakereba narimasen. | "Gặp lúc mấy giờ" + "quyết định" thì sẽ thành "quyết định xem gặp lúc mấy giờ"; tức là phải đổi dạng của câu hỏi.
+02:48 | ナレーター / Nareetaa / Người dẫn | 「明日行きますか？行きませんか」＋「わかりません」は、「明日行くかどうかわかりません」、 | "Ashita ikimasu ka, ikimasen ka" + "wakarimasen" wa, "ashita iku ka doo ka wakarimasen", | "Ngày mai đi hay không đi" + "không biết" thì thành "không biết ngày mai có đi hay không",
+03:02 | ナレーター / Nareetaa / Người dẫn | 「どの店が安いですか？」＋「調べました」は、「どの店が安いか調べました」となります。 | "Dono mise ga yasui desu ka?" + "shirabemashita" wa, "dono mise ga yasui ka shirabemashita" to narimasu. | "Cửa hàng nào rẻ?" + "đã tìm hiểu" thì thành "đã tìm hiểu xem cửa hàng nào rẻ".
+03:17 | ナレーター / Nareetaa / Người dẫn | この動画では、王さんは見積もりを見るまでは決められないので、 | Kono dooga de wa, Oo-san wa mitsumori o miru made wa kimerarenai node, | Trong video này, vì anh Vương chưa thể quyết định cho đến khi xem báo giá nên
+03:25 | ナレーター / Nareetaa / Người dẫn | 「見積もりを見てからお願いするかどうか決めてもいいんですよね？」と聞きました。 | "Mitsumori o mite kara onegai-suru ka doo ka kimetemo ii n desu yo ne" to kikimashita. | anh hỏi "Sau khi xem báo giá rồi mới quyết định có nhờ hay không cũng được nhỉ?".
+03:36 | ナレーター / Nareetaa / Người dẫn | 文の形は、普通形＋かどうか＋動詞です。 | Bun no katachi wa, futsuu-kee + ka doo ka + dooshi desu. | Cấu trúc câu là: thể thường + ka doo ka + động từ.
+03:49 | ナレーター / Nareetaa / Người dẫn | 疑問文に疑問詞があるときは、疑問詞＋普通形＋か＋動詞です。 | Gimonbun ni gimonshi ga aru toki wa, gimonshi + futsuu-kee + ka + dooshi desu. | Khi câu hỏi có từ để hỏi thì là: từ để hỏi + thể thường + ka + động từ.
+04:08 |  /  / Chủ đề | いつごろ とどければ、いいですか | itsu goro todokereba, ii desu ka | Nên nộp (đơn) vào khoảng khi nào thì được ạ?
+04:13 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | では、転出ですので、転出届を出していただくことになります。 | Dewa, tenshutsu desu node, tenshutsu-todoke o dashite itadaku koto ni narimasu. | Vì là chuyển đi nơi khác nên anh sẽ phải nộp đơn khai báo chuyển đi.
+04:20 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 転出届ですね。いつ頃届ければいいですか？ | Tenshutsu-todoke desu ne. Itsugoro todokereba ii desu ka. | Đơn khai báo chuyển đi nhỉ. Tôi nên nộp vào khoảng khi nào ạ?
+04:27 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | お引っ越しの2週間ぐらい前からお手続きいただけます。 | Ohikkoshi no nishuukan gurai mae kara otetsuzuki itadakemasu. | Anh có thể làm thủ tục từ khoảng 2 tuần trước khi chuyển nhà.
+04:34 | ナレーター / Nareetaa / Người dẫn | 「疑問詞＋動詞の条件形＋いいですか」は、 | "Gimonshi + dooshi no jooken-kee + ii desu ka" wa, | Mẫu "từ để hỏi + thể điều kiện (ba) của động từ + ii desu ka"
+04:45 | ナレーター / Nareetaa / Người dẫn | 何かしたいことがあるときや、しなければならないことがあるとき、 | Nanika shitai koto ga aru toki ya, shinakereba naranai koto ga aru toki, | dùng khi có việc muốn làm hoặc có việc phải làm,
+04:51 | ナレーター / Nareetaa / Người dẫn | どうしたら一番いいか、何が必要かなど、指示や助言を求める表現です。 | Doo shitara ichiban ii ka, nani ga hitsuyoo ka nado, shiji ya jogen o motomeru hyoogen desu. | để xin chỉ dẫn hoặc lời khuyên về việc làm thế nào là tốt nhất, cần những gì.
+05:02 | ナレーター / Nareetaa / Người dẫn | この動画では王さんが、役所の人に、自分が出す書類についていつごろ届ければいいですかと指示を求めました。 | Kono dooga de wa Oo-san ga, yakusho no hito ni, jibun ga dasu shorui ni tsuite itsu goro todokereba ii desu ka to shiji o motomemashita. | Trong video này, anh Vương đã hỏi người ở cơ quan hành chính về giấy tờ mình nộp rằng nên nộp vào khoảng khi nào.

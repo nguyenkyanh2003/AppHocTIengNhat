@@ -47,7 +47,8 @@ class SrsSessionSummary extends StatelessWidget {
         if (tally.isEmpty) ...[
           AppGap.sm,
           Text(
-            'Đánh dấu "Đã học" ở một từ vựng để đưa từ đó vào lịch ôn.',
+            'Đánh dấu "Đã học" ở một từ vựng, hoặc "Thêm vào ôn tập" ở một chữ Kanji, '
+            'để đưa nó vào lịch ôn.',
             style: textTheme.bodySmall,
             textAlign: TextAlign.center,
           ),

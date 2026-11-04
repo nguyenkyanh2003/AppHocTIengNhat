@@ -1,6 +1,7 @@
 class DashboardStats {
   final int vocabularyLearned;
-  final int kanjiLearned;
+  final int kanjiLearned; // Kanji đã học trong bài (tiêu chí huy hiệu)
+  final int kanjiReviewing; // Kanji đang có thẻ ôn — cùng nghĩa với vocabularyLearned
   final int exercisesCompleted;
   final int lessonsCompleted;
   final int totalStudyTime; // in seconds
@@ -11,6 +12,7 @@ class DashboardStats {
   DashboardStats({
     required this.vocabularyLearned,
     required this.kanjiLearned,
+    required this.kanjiReviewing,
     required this.exercisesCompleted,
     required this.lessonsCompleted,
     required this.totalStudyTime,
@@ -23,6 +25,7 @@ class DashboardStats {
     return DashboardStats(
       vocabularyLearned: json['vocabulary_learned'] ?? 0,
       kanjiLearned: json['kanji_learned'] ?? 0,
+      kanjiReviewing: json['kanji_reviewing'] ?? 0,
       exercisesCompleted: json['exercises_completed'] ?? 0,
       lessonsCompleted: json['lessons_completed'] ?? 0,
       totalStudyTime: json['total_study_time'] ?? 0,

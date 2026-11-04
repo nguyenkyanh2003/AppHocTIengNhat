@@ -1,0 +1,123 @@
+# Lời thoại Tình huống: Phòng bệnh và đi nha sĩ
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-6-9.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Ngộ độc thực phẩm là gì
+00:03 | ビン / Bin / Bin | あの… | Ano... | À…
+00:04 | 同僚 / Dooryoo / Đồng nghiệp | はい。 | Hai. | Ừ?
+00:05 | ビン / Bin / Bin | なんでお弁当を冷蔵庫に入れるんですか？ | Nande obentoo o reezooko ni ireru n desu ka. | Tại sao lại cho cơm hộp vào tủ lạnh vậy ạ?
+00:10 | ビン / Bin / Bin | 冷たくなるから、入れない方がいいと思うんですけど。 | Tsumetaku naru kara, irenai hoo ga ii to omou n desu kedo. | Vì cơm sẽ bị nguội lạnh nên tôi nghĩ không nên cho vào.
+00:15 | 同僚 / Dooryoo / Đồng nghiệp | ああ。まだ暑いから、食中毒にならないように入れてるんですよ。 | Aa. Mada atsui kara, shokuchuudoku ni naranai yoo ni irete ru n desu yo. | À. Vì trời vẫn còn nóng nên tôi cho vào để không bị ngộ độc thực phẩm đấy.
+*00:22 | ビン / Bin / Bin | えっと、食中毒って何ですか？ | Etto, shokuchuudoku tte nan desu ka. | Dạ, "shokuchuudoku" là gì vậy ạ?
+00:28 | 同僚 / Dooryoo / Đồng nghiệp | 食中毒は、えっと、菌やウイルスがついた食べ物を食べて、下痢をしたり吐いたりすることですよ。 | Shokuchuudoku wa, etto, kin ya uirusu ga tsuita tabemono o tabete, geri o shitari haitari suru koto desu yo. | Ngộ độc thực phẩm là ăn phải đồ ăn dính vi khuẩn hay vi-rút rồi bị tiêu chảy hoặc nôn mửa đấy.
+00:39 | ビン / Bin / Bin | ああ、そういうことですか。 | Aa, soo iu koto desu ka. | À, ra là vậy ạ.
+00:41 | 同僚 / Dooryoo / Đồng nghiệp | まだ暑いから、食べ物は冷蔵庫に入れた方がいいんじゃないかな。 | Mada atsui kara, tabemono wa reezooko ni ireta hoo ga ii n ja nai ka na. | Vì trời còn nóng nên đồ ăn cho vào tủ lạnh thì tốt hơn đấy.
+00:47 | ビン / Bin / Bin | なるほど。それでみんな入れてるんですね。 | Naruhodo. Sorede minna irete ru n desu ne. | Ra vậy. Thế nên mọi người đều cho vào nhỉ.
+00:51 | 同僚 / Dooryoo / Đồng nghiệp | はい。 | Hai. | Vâng.
+00:53 | ビン / Bin / Bin | でも、日本ではよく、卵をそのまま食べますよね。 | Demo, Nihon de wa yoku, tamago o sonomama tabemasu yo ne. | Nhưng mà ở Nhật hay ăn trứng sống nguyên như vậy nhỉ.
+01:00 | ビン / Bin / Bin | 卵は、食中毒にならないんですか？そのまま… | Tamago wa, shokuchuudoku ni naranai n desu ka. Sonomama... | Trứng thì không bị ngộ độc thực phẩm ạ? Cứ ăn nguyên như vậy...
+01:07 | 同僚 / Dooryoo / Đồng nghiệp | ああ、生卵ね。賞味期限内に食べれば、普通は大丈夫ですよ。 | Aa, nama-tamago ne. Shoomi-kigen-nai ni tabereba, futsuu wa daijoobu desu yo. | À, trứng sống nhỉ. Nếu ăn trong hạn sử dụng thì thường là không sao đâu.
+01:14 | ビン / Bin / Bin | いやぁ、でも生は怖いなぁ。 | Iyaa, demo nama wa kowai naa. | Ôi, nhưng mà đồ sống thì tôi thấy sợ.
+01:20 | 同僚 / Dooryoo / Đồng nghiệp | 私たち、気になるところが違いますね。 | Watashitachi, ki ni naru tokoro ga chigaimasu ne. | Chúng ta để ý đến những chỗ khác nhau nhỉ.
+01:23 | ビン / Bin / Bin | そうですね。 | Soo desu ne. | Đúng vậy nhỉ.
+01:24 | ビン / Bin / Bin | じゃあ、今日は僕も、冷蔵庫にお弁当を入れてみようかな。 | Jaa, kyoo wa boku mo, reezooko ni obentoo o irete miyoo ka na. | Vậy thì hôm nay tôi cũng thử cho cơm hộp vào tủ lạnh xem sao.
+### từ vựng
+お弁当 | おべんとう | obentoo | cơm hộp
+冷蔵庫 | れいぞうこ | reezooko | tủ lạnh
+食中毒 | しょくちゅうどく | shokuchuudoku | ngộ độc thực phẩm
+菌 | きん | kin | vi khuẩn
+下痢 | げり | geri | tiêu chảy
+吐く | はく | haku | nôn
+賞味期限 | しょうみきげん | shoomi kigen | hạn sử dụng
+
+## scene-2.mp4
+# Đi tiêm phòng cúm
+00:03 | 同僚 / Dooryoo / Đồng nghiệp | あー、そろそろインフルエンザの予防接種を受けなきゃ。 | Aa, sorosoro infuruenza no yoboo-sesshu o ukenakya. | À, sắp đến lúc phải đi tiêm phòng cúm rồi.
+00:07 | アンジェラ / Anjera / Angela | え？毎年受けてるんですか？ | E? Maitoshi ukete ru n desu ka. | Hả? Chị năm nào cũng tiêm ạ?
+00:10 | 同僚 / Dooryoo / Đồng nghiệp | うん。 | Un. | Ừ.
+00:12 | 同僚 / Dooryoo / Đồng nghiệp | 私、おととしインフルエンザにかかって、大変だったんですよ。 | Watashi, ototoshi infuruenza ni kakatte, taihen datta n desu yo. | Năm kia tôi bị cúm nên vất vả lắm đấy.
+00:17 | 同僚 / Dooryoo / Đồng nghiệp | アンジェラさんは受けないの？ | Anjera-san wa ukenai no? | Angela không tiêm à?
+00:20 | アンジェラ / Anjera / Angela | そうですね、受けといた方がいいですか？ | Soo desu ne, uketoita hoo ga ii desu ka. | Để xem nào, em nên tiêm trước thì tốt hơn ạ?
+00:25 | 同僚 / Dooryoo / Đồng nghiệp | まあね。 | Maa ne. | Ừ thì.
+*00:27 | アンジェラ / Anjera / Angela | それっていくらぐらいかかりますか？ | Sore tte ikura gurai kakarimasu ka. | Cái đó thì mất khoảng bao nhiêu ạ?
+00:31 | 同僚 / Dooryoo / Đồng nghiệp | 3000円ぐらいだと思うけど、病院によって違うみたい。 | Sanzen-en gurai da to omou kedo, byooin ni yotte chigau mitai. | Tôi nghĩ khoảng 3000 yên, nhưng hình như tùy bệnh viện mà khác nhau.
+00:36 | アンジェラ / Anjera / Angela | そうですか。何かで探せばいいですか？ | Soo desu ka. Nanika de sagaseba ii desu ka. | Vậy ạ. Em nên tìm bằng cách nào đó phải không ạ?
+00:42 | 同僚 / Dooryoo / Đồng nghiệp | ああ、内科とかかなあ。 | Aa, naika toka kanaa. | À, chắc là tìm "khoa nội" hay gì đó nhỉ.
+00:50 | アンジェラ / Anjera / Angela | な、い、か。 | Na, i, ka. | Na, i, ka. (vừa gõ chữ vừa đọc)
+00:56 | 同僚 / Dooryoo / Đồng nghiệp | あと、住んでる場所。 | Ato, sunde ru basho. | Và nơi em đang sống nữa.
+01:00 | アンジェラ / Anjera / Angela | も、み、じ、ちょう。 | Mo, mi, ji, choo. | Mo, mi, ji, chō. (vừa gõ chữ vừa đọc)
+01:12 | 同僚 / Dooryoo / Đồng nghiệp | うん。 | Un. | Ừ.
+01:17 | アンジェラ / Anjera / Angela | い、ん、ふ、る、え、ん、ざ。 | I, n, fu, ru, e, n, za. | I, n, fu, ru, e, n, za. (vừa gõ chữ vừa đọc)
+01:32 | アンジェラ / Anjera / Angela | よ、ぼ、う、せっ、しゅ。 | Yo, bo, u, sesshu. | Yo, bo, u, sesshu. (vừa gõ chữ vừa đọc)
+01:56 | アンジェラ / Anjera / Angela | 桜病院って出ました。 | Sakura byooin tte demashita. | Hiện ra "bệnh viện Sakura" ạ.
+02:00 | 同僚 / Dooryoo / Đồng nghiệp | ここだったら、前に行ったことがあります。 | Koko dattara, mae ni itta koto ga arimasu. | Nếu là chỗ này thì tôi từng đến rồi.
+02:03 | アンジェラ / Anjera / Angela | ああ、だったら安心ですね。 | Aa, dattara anshin desu ne. | À, vậy thì yên tâm nhỉ.
+### từ vựng
+予防接種 | よぼうせっしゅ | yoboo-sesshu | tiêm phòng
+インフルエンザ | インフルエンザ | infuruenza | cúm
+おととし | おととし | ototoshi | năm kia
+内科 | ないか | naika | khoa nội
+探す | さがす | sagasu | tìm
+安心 | あんしん | anshin | yên tâm
+
+## scene-3.mp4
+# Đi khám nha sĩ
+00:02 | 歯医者 / Haisha / Nha sĩ | 今日はどうされましたか？ | Kyoo wa doo saremashita ka. | Hôm nay anh bị sao ạ?
+*00:05 | ビン / Bin / Bin | 冷たいものを食べた時、この辺がちょっとしみてたんです。昨日からズキズキし始めて。 | Tsumetai mono o tabeta toki, kono hen ga chotto shimite ta n desu. Kinoo kara zukizuki-shihajimete. | Khi ăn đồ lạnh thì chỗ này hơi ê buốt. Từ hôm qua bắt đầu nhức nhối.
+00:14 | 歯医者 / Haisha / Nha sĩ | わかりました。じゃあちょっと見てみますね。 | Wakarimashita. Jaa chotto mite mimasu ne. | Tôi hiểu rồi. Vậy tôi xem thử nhé.
+00:31 | 歯医者 / Haisha / Nha sĩ | 大きく口を開けてください。 | Ookiku kuchi o akete kudasai. | Anh há miệng to ra nhé.
+00:39 | 歯医者 / Haisha / Nha sĩ | はい、いいですよ。 | Hai, ii desu yo. | Vâng, được rồi.
+00:43 | 歯医者 / Haisha / Nha sĩ | ゆすいでください。 | Yusuide kudasai. | Anh súc miệng nhé.
+01:00 | 歯医者 / Haisha / Nha sĩ | 虫歯になってますね。治療が必要です。 | Mushiba ni natte masu ne. Chiryoo ga hitsuyoo desu. | Anh bị sâu răng rồi. Cần phải điều trị.
+*01:05 | ビン / Bin / Bin | ああ、やっぱり虫歯ですか？もっと早く来ればよかったです。 | Aa, yappari mushiba desu ka. Motto hayaku kureba yokatta desu. | À, quả nhiên là sâu răng ạ? Giá mà tôi đến sớm hơn.
+01:14 | 歯医者 / Haisha / Nha sĩ | では詳しくご説明しますね。それから治療していきましょう。 | Dewa kuwashiku gosetsumee shimasu ne. Sorekara chiryoo shite ikimashoo. | Vậy tôi sẽ giải thích chi tiết nhé. Sau đó chúng ta điều trị.
+01:22 | ビン / Bin / Bin | はい。 | Hai. | Vâng.
+01:31 | 歯医者 / Haisha / Nha sĩ | 次回以降、型を取って詰め物をしていくんですけど、種類があります。 | Jikai ikoo, kata o totte tsumemono o shite iku n desu kedo, shurui ga arimasu. | Từ lần sau sẽ lấy khuôn rồi trám răng, và có nhiều loại.
+01:37 | ビン / Bin / Bin | こんなに種類があるんですか？ | Konna ni shurui ga aru n desu ka. | Có nhiều loại thế này ạ?
+01:40 | 歯医者 / Haisha / Nha sĩ | 保険適用のものと自費のものがあります。どうしますか？ | Hoken tekiyoo no mono to jihi no mono ga arimasu. Doo shimasu ka. | Có loại được bảo hiểm chi trả và loại tự trả. Anh chọn loại nào?
+01:48 | ビン / Bin / Bin | え？それって、何が違うんですか？ | E? Sore tte, nani ga chigaun desu ka. | Hả? Cái đó thì khác nhau ở điểm nào ạ?
+01:53 | 歯医者 / Haisha / Nha sĩ | 保険適用は保険が使えますけど、自費の方は保険を使わないのでちょっと高くなります。 | Hoken tekiyoo wa hoken ga tsukaemasu kedo, jihi no hoo wa hoken o tsukawanai node chotto takaku narimasu. | Loại bảo hiểm thì dùng được bảo hiểm, còn loại tự trả thì không dùng bảo hiểm nên đắt hơn một chút.
+02:03 | ビン / Bin / Bin | そうですか。 | Soo desu ka. | Vậy ạ.
+02:07 | ビン / Bin / Bin | 今、決めなきゃダメですか？ | Ima, kimenakya dame desu ka. | Bây giờ tôi phải quyết định luôn không ạ?
+02:11 | 歯医者 / Haisha / Nha sĩ | 次回で結構ですよ。 | Jikai de kekkoo desu yo. | Lần sau cũng được ạ.
+02:13 | ビン / Bin / Bin | あ、じゃあ、考えておきます。 | A, jaa, kangaete okimasu. | À, vậy tôi sẽ suy nghĩ ạ.
+### từ vựng
+しみる | しみる | shimiru | ê buốt
+ズキズキする | ズキズキする | zukizuki suru | nhức nhối
+虫歯 | むしば | mushiba | sâu răng
+治療 | ちりょう | chiryoo | điều trị
+詰め物 | つめもの | tsumemono | miếng trám răng
+保険適用 | ほけんてきよう | hoken tekiyoo | được bảo hiểm chi trả
+自費 | じひ | jihi | tự trả tiền
+
+## summary.mp4
+# Ôn tập: Phòng bệnh và đi nha sĩ
+00:00 |  /  / Chủ đề | それって、いくらぐらい かかりますか | "sore" tte, ikura gurai kakarimasu ka | "Cái đó" thì mất khoảng bao nhiêu?
+00:07 | アンジェラ / Anjera / Angela | それっていくらぐらいかかりますか？ | Sore tte ikura gurai kakarimasu ka. | Cái đó thì mất khoảng bao nhiêu ạ?
+00:10 | ナレーター / Nareetaa / Người dẫn | この動画ではアンジェラさんが、「それっていくらぐらいかかりますか？」と言っています。 | Kono dooga de wa Anjera-san ga, "Sore tte ikura gurai kakarimasu ka" to itte imasu. | Trong video này, chị Angela nói "Cái đó thì mất khoảng bao nhiêu?".
+00:20 | ナレーター / Nareetaa / Người dẫn | 「それ」は、会話の中で相手が話した事柄を指して話題にする時に使います。 | "Sore" wa, kaiwa no naka de aite ga hanashita kotogara o sashite wadai ni suru toki ni tsukaimasu. | "Sore" dùng khi nhắc đến chủ đề mà đối phương vừa nói trong cuộc trò chuyện.
+00:31 | ナレーター / Nareetaa / Người dẫn | この動画では、同僚が「ああ、そろそろインフルエンザの予防接種を受けなきゃ」と言いました。 | Kono dooga de wa, dooryoo ga "Aa, sorosoro infuruenza no yoboo-sesshu o ukenakya" to iimashita. | Trong video này, đồng nghiệp nói "À, sắp đến lúc phải đi tiêm phòng cúm rồi".
+00:43 | ナレーター / Nareetaa / Người dẫn | アンジェラさんは、同僚が話したインフルエンザの予防接種を指して「それ」と言いました。 | Anjera-san wa, dooryoo ga hanashita infuruenza no yoboo-sesshu o sashite "sore" to iimashita. | Chị Angela dùng "sore" để chỉ việc tiêm phòng cúm mà đồng nghiệp vừa nói.
+00:54 | ナレーター / Nareetaa / Người dẫn | 例えば、相手が「今度面白そうなイベントがあるよ」と言ったら、 | Tatoeba, aite ga "Kondo omoshirosoo na ibento ga aru yo" to ittara, | Ví dụ, nếu đối phương nói "Sắp tới có sự kiện nghe có vẻ thú vị đấy",
+01:02 | ナレーター / Nareetaa / Người dẫn | 「それって無料ですか？」「それっていつですか？」と聞くことができます。 | "Sore tte muryoo desu ka", "sore tte itsu desu ka" to kiku koto ga dekimasu. | thì có thể hỏi "Cái đó miễn phí không?", "Cái đó khi nào vậy?".
+01:12 | ナレーター / Nareetaa / Người dẫn | また、「希望の大学に合格しました」と聞いたら「それは良かったですね」、 | Mata, "Kiboo no daigaku ni gookaku shimashita" to kiitara "sore wa yokatta desu ne", | Ngoài ra, nếu nghe nói "Tôi đã đậu trường đại học mong muốn" thì đáp "Vậy thì tốt quá nhỉ",
+01:22 | ナレーター / Nareetaa / Người dẫn | 「パスポートをなくしました」と聞いたら「それは大変ですね」のように、相手の発言全体を受けて感想を言うこともできます。 | "Pasupooto o nakushimashita" to kiitara "sore wa taihen desu ne" no yoo ni, aite no hatsugen zentai o ukete kansoo o iu koto mo dekimasu. | còn nếu nghe nói "Tôi làm mất hộ chiếu" thì đáp "Vậy thì nguy rồi nhỉ", tức là cũng có thể nêu cảm tưởng về toàn bộ lời đối phương nói.
+01:36 | ナレーター / Nareetaa / Người dẫn | 会話の中で知らないことが話題に出てきたとき、「それ」を使って話をさらに進めることができます。 | Kaiwa no naka de shiranai koto ga wadai ni dete kita toki, "sore" o tsukatte hanashi o sara ni susumeru koto ga dekimasu. | Khi trong cuộc trò chuyện xuất hiện điều mình chưa biết, có thể dùng "sore" để câu chuyện tiếp tục tiến triển.
+01:48 |  /  / Chủ đề | きのうから ズキズキしはじめて… | kinoo kara zukizuki-shihajimete… | Từ hôm qua bắt đầu nhức nhối…
+01:56 | ビン / Bin / Bin | 昨日からズキズキし始めて… | Kinoo kara zukizuki-shihajimete... | Từ hôm qua bắt đầu nhức nhối…
+02:00 | ナレーター / Nareetaa / Người dẫn | この動画ではビンさんが、「昨日からズキズキし始めて」と言っています。 | Kono dooga de wa Bin-san ga, "Kinoo kara zukizuki-shihajimete" to itte imasu. | Trong video này, anh Bin nói "Từ hôm qua bắt đầu nhức nhối".
+02:10 | ナレーター / Nareetaa / Người dẫn | 「ズキズキし始める」は、痛いという状態が開始したことを示しています。 | "Zukizuki-shihajimeru" wa, itai to iu jootai ga kaishi shita koto o shimeshite imasu. | "Zukizuki-shihajimeru" cho biết trạng thái đau nhức đã bắt đầu.
+02:19 | ナレーター / Nareetaa / Người dẫn | 「ズキズキする」と「始める」という2つの動詞が一緒になって、「ズキズキし始める」という1つの動詞になります。 | "Zukizuki suru" to "hajimeru" to iu futatsu no dooshi ga issho ni natte, "zukizuki-shihajimeru" to iu hitotsu no dooshi ni narimasu. | Hai động từ "zukizuki suru" và "hajimeru" kết hợp lại thành một động từ "zukizuki-shihajimeru".
+02:34 | ナレーター / Nareetaa / Người dẫn | 「始める」の前は動詞のます形です。 | "Hajimeru" no mae wa dooshi no masu-kee desu. | Trước "hajimeru" là dạng masu của động từ.
+02:40 | ナレーター / Nareetaa / Người dẫn | 「日本語を勉強し始める」「雨が降り始める」のように言うこともできます。 | "Nihongo o benkyoo-shihajimeru", "ame ga furihajimeru" no yoo ni iu koto mo dekimasu. | Cũng có thể nói như "bắt đầu học tiếng Nhật", "trời bắt đầu mưa".
+02:50 |  /  / Chủ đề | もっと はやく くれば よかったです | motto hayaku kureba yokatta desu | Giá mà đến sớm hơn thì tốt rồi
+02:57 | ビン / Bin / Bin | もっと早く来ればよかったです。 | Motto hayaku kureba yokatta desu. | Giá mà tôi đến sớm hơn.
+03:01 | ナレーター / Nareetaa / Người dẫn | この動画ではビンさんが、「もっと早く来ればよかったです」と言っています。 | Kono dooga de wa Bin-san ga, "Motto hayaku kureba yokatta desu" to itte imasu. | Trong video này, anh Bin nói "Giá mà tôi đến sớm hơn".
+03:10 | ナレーター / Nareetaa / Người dẫn | 「〜ばよかったです」は、何かをしたことや何かをしなかったことを後悔して残念に思っている気持ちを表します。 | "~ba yokatta desu" wa, nanika o shita koto ya nanika o shinakatta koto o kookai shite zannen ni omotte iru kimochi o arawashimasu. | Mẫu "~ba yokatta desu" diễn tả cảm giác hối tiếc, nuối tiếc về việc đã làm hoặc đã không làm.
+03:24 | ナレーター / Nareetaa / Người dẫn | ビンさんは、歯医者に早く来ませんでした。それで虫歯になってしまいました。 | Bin-san wa, haisha ni hayaku kimasen deshita. Sorede mushiba ni natte shimaimashita. | Anh Bin đã không đến nha sĩ sớm. Vì vậy anh bị sâu răng.
+03:34 | ナレーター / Nareetaa / Người dẫn | 早く来なかったことを後悔しているので、「もっと早く来ればよかったです」と言いました。 | Hayaku konakatta koto o kookai shite iru node, "Motto hayaku kureba yokatta desu" to iimashita. | Vì hối tiếc đã không đến sớm nên anh nói "Giá mà tôi đến sớm hơn".
+03:45 | ナレーター / Nareetaa / Người dẫn | 「よかったです」の前は、動詞の条件形です。 | "Yokatta desu" no mae wa, dooshi no jooken-kee desu. | Trước "yokatta desu" là thể điều kiện (ba) của động từ.
+03:52 | ナレーター / Nareetaa / Người dẫn | 自転車事故で怪我をしてしまった時に、「保険に入っておけばよかった」と言ったり、 | Jitensha jiko de kega o shite shimatta toki ni, "Hoken ni haitte okeba yokatta" to ittari, | Khi bị thương do tai nạn xe đạp, có thể nói "Giá mà tôi đã mua bảo hiểm",
+04:01 | ナレーター / Nareetaa / Người dẫn | セールで使わないものまでたくさん買って帰った後で、「こんなに買わなければよかった」と言ったりすることができます。 | Seeru de tsukawanai mono made takusan katte kaetta ato de, "Konna ni kawanakereba yokatta" to ittari suru koto ga dekimasu. | hoặc sau khi mua về rất nhiều thứ cả những món không dùng đến trong đợt giảm giá, có thể nói "Giá mà tôi đã không mua nhiều thế này".

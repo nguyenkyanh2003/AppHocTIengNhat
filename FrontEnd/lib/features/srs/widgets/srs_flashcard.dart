@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/level_badge.dart';
+import '../../kanji/widgets/kanji_card_faces.dart';
+import '../../vocabulary/models/vocabulary.dart';
 import '../models/srs_card.dart';
 
-/// Hai mặt của một thẻ ôn: mặt trước chỉ có từ, mặt sau có cách đọc, nghĩa,
-/// Hán-Việt và một câu ví dụ.
+/// Hai mặt của một thẻ ôn. Thẻ từ vựng: mặt trước chỉ có từ, mặt sau có cách
+/// đọc, nghĩa, Hán-Việt và một câu ví dụ. Thẻ Kanji: xem [KanjiCardFront].
 ///
 /// Người học tự nhớ đáp án **trước** khi lật — lật là một thao tác riêng, nên
 /// thẻ không bao giờ mở sẵn mặt sau.
@@ -32,11 +34,16 @@ class SrsFlashcard extends StatelessWidget {
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: AnimatedSwitcher(
               duration: AppDurations.normal,
-              child: card.unavailable
-                  ? const _Unavailable(key: ValueKey('unavailable'))
-                  : revealed
-                      ? _Back(key: const ValueKey('back'), card: card)
-                      : _Front(key: const ValueKey('front'), card: card),
+              child: switch (card.item) {
+                _ when card.unavailable => const _Unavailable(key: ValueKey('unavailable')),
+                null => const _Unavailable(key: ValueKey('unavailable')),
+                SrsVocabularyItem(:final vocabulary) => revealed
+                    ? _VocabularyBack(key: const ValueKey('back'), item: vocabulary)
+                    : _VocabularyFront(key: const ValueKey('front'), item: vocabulary),
+                SrsKanjiItem(:final kanji) => revealed
+                    ? KanjiCardBack(key: const ValueKey('back'), kanji: kanji)
+                    : KanjiCardFront(key: const ValueKey('front'), kanji: kanji),
+              },
             ),
           ),
         ),
@@ -45,15 +52,14 @@ class SrsFlashcard extends StatelessWidget {
   }
 }
 
-class _Front extends StatelessWidget {
-  const _Front({super.key, required this.card});
+class _VocabularyFront extends StatelessWidget {
+  const _VocabularyFront({super.key, required this.item});
 
-  final SrsCard card;
+  final Vocabulary item;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final item = card.item!;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -72,15 +78,14 @@ class _Front extends StatelessWidget {
   }
 }
 
-class _Back extends StatelessWidget {
-  const _Back({super.key, required this.card});
+class _VocabularyBack extends StatelessWidget {
+  const _VocabularyBack({super.key, required this.item});
 
-  final SrsCard card;
+  final Vocabulary item;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final item = card.item!;
     final example = item.examples.isEmpty ? null : item.examples.first;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -120,7 +125,7 @@ class _Unavailable extends StatelessWidget {
         Text('Nội dung không còn tồn tại', style: textTheme.titleMedium),
         AppGap.xs,
         Text(
-          'Từ này đã bị xoá khỏi kho. Bỏ qua thẻ hoặc xoá nó khỏi lịch ôn.',
+          'Nội dung này đã bị xoá khỏi kho. Bỏ qua thẻ hoặc xoá nó khỏi lịch ôn.',
           style: textTheme.bodySmall,
           textAlign: TextAlign.center,
         ),

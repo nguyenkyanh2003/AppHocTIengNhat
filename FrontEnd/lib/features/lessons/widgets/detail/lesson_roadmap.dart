@@ -32,7 +32,9 @@ class LessonRoadmap extends StatelessWidget {
       StudyStepKind.vocabulary => progress == null
           ? '${detail.words.length} thẻ từ'
           : '${progress!.completedVocabularies}/${detail.words.length} từ đã nhớ',
-      StudyStepKind.kanji => '${detail.kanjis.length} chữ Hán',
+      StudyStepKind.kanji => progress == null
+          ? '${detail.kanjis.length} thẻ chữ Hán'
+          : '${progress!.completedKanjis}/${detail.kanjis.length} chữ đã nhớ',
       StudyStepKind.grammar => '${detail.grammars.length} mẫu câu',
       StudyStepKind.quiz => '${buildQuickQuiz(detail.words).length} câu chọn nghĩa',
       StudyStepKind.finish => 'Nhận XP, rồi làm bài tập của bài',

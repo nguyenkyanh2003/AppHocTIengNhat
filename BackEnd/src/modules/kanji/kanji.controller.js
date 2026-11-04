@@ -4,6 +4,7 @@ import Kanji from "../../../model/Kanji.js";
 import Lesson from "../../../model/Lesson.js";
 import UserStreak from "../../../model/UserStreak.js";
 import mongoose from "mongoose";
+import { ok } from "../../shared/http/respond.js";
 
 const storage = multer.memoryStorage();
 const spreadsheetFileFilter = (_req, file, callback) => {
@@ -147,55 +148,36 @@ export const getLessonByLessonId = async (req, res) => {
     }
 };
 
-// Lấy chi tiết 1 kanji theo ID
-export const getById = async (req, res) => {
-    try {
-        const { id } = req.params;
+/**
+ * Các route Kanji đã theo khuôn (chi tiết, thêm/gỡ ôn tập, xoá): chỉ map HTTP
+ * sang `kanji.service.js`, lỗi đi qua `asyncHandler`. Các handler phía trên và
+ * phía dưới là bản cũ, chờ đợt refactor module.
+ */
+export const createKanjiController = (service) => ({
+    async getById(req, res) {
+        ok(res, await service.getDetail({ id: req.valid.params.id, userId: req.user._id }));
+    },
 
-        const kanji = await Kanji.findById(id).lean();
-
-        if (!kanji) {
-            return res.status(404).json({ message: "Không tìm thấy Kanji." });
-        }
-
-        res.json({ data: kanji });
-    } catch (error) {
-        console.error("Lỗi khi lấy chi tiết Kanji:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-// Đánh dấu đã học kanji (CHỈ DÙNG TRONG LESSON - KHÔNG CỘNG XP Ở ĐÂY)
-// XP chỉ được cộng qua LessonProgress khi học trong bài học
-export const postLearnById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { lessonId } = req.body; // Bắt buộc phải có lessonId
-        const userId = req.user._id;
-        
-        if (!lessonId) {
-            return res.status(400).json({ 
-                message: "Vui lòng học kanji trong bài học để được cộng điểm." 
-            });
-        }
-        
-        // Kiểm tra kanji có tồn tại không
-        const kanji = await Kanji.findById(id);
-        if (!kanji) {
-            return res.status(404).json({ message: "Không tìm thấy kanji." });
-        }
-        
-        // Chuyển hướng về LessonProgress API
-        return res.json({ 
-            message: "Vui lòng sử dụng API /lesson-progress/lesson/:lessonId/update để cập nhật tiến độ học",
-            redirect: `/lesson-progress/lesson/${lessonId}/update`
+    async markLearned(req, res) {
+        const { progress, created } = await service.markLearned({
+            id: req.valid.params.id,
+            userId: req.user._id,
         });
-        
-    } catch (error) {
-        console.error("Lỗi đánh dấu học kanji:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
+        ok(res, progress, {
+            message: created ? 'Đã thêm chữ này vào lịch ôn tập.' : 'Chữ này đã có trong lịch ôn tập.',
+        });
+    },
+
+    async unmarkLearned(req, res) {
+        await service.unmarkLearned({ id: req.valid.params.id, userId: req.user._id });
+        ok(res, { deleted: true }, { message: 'Đã gỡ chữ này khỏi lịch ôn tập.' });
+    },
+
+    async deleteById(req, res) {
+        await service.remove(req.valid.params.id);
+        ok(res, { deleted: true }, { message: 'Xóa Kanji thành công.' });
+    },
+});
 
 // Thêm Kanji mới
 export const postRoot = async (req, res) => {
@@ -330,33 +312,4 @@ export const putById = async (req, res) => {
     }
 };
 
-// Xóa Kanji
-export const deleteById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        
-        const SRSProgress = (await import("../../../model/SRSProgress.js")).default;
-        const hasRelatedData = await SRSProgress.findOne({ 
-            itemId: id, 
-            itemType: 'kanji' 
-        });
-
-        if (hasRelatedData) {
-            return res.status(400).json({
-                message: "Không thể xóa Kanji này vì có dữ liệu luyện viết liên quan. Hãy xóa dữ liệu liên quan trước trong bảng luyện viết.",
-            });
-        }
-
-        const deletedKanji = await Kanji.findByIdAndDelete(id);
-
-        if (!deletedKanji) {
-            return res.status(404).json({ message: "Không tìm thấy Kanji để xóa." });
-        }
-
-        res.json({ message: "Xóa Kanji thành công." });
-    } catch (error) {
-        console.error("Lỗi khi xóa Kanji:", error);
-        res.status(500).json({ message: "Lỗi máy chủ.", error: error.message });
-    }
-};
 

@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/chunky_card.dart';
+import '../../kanji/models/kanji.dart';
 
 /// Chữ Hán của bài: mỗi ô một chữ, âm Hán-Việt và nghĩa — chỗ người Việt có
-/// lợi thế nhất, nên Hán-Việt đứng ngay dưới chữ.
+/// lợi thế nhất, nên Hán-Việt đứng ngay dưới chữ. Chạm một ô để mở chi tiết
+/// chữ (âm đọc, ví dụ, thêm vào ôn tập).
 class LessonKanjiGrid extends StatelessWidget {
-  const LessonKanjiGrid({super.key, required this.kanjis});
+  const LessonKanjiGrid({super.key, required this.kanjis, this.onOpen});
 
-  final List<Map<String, dynamic>> kanjis;
+  final List<Kanji> kanjis;
+  final ValueChanged<Kanji>? onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +25,14 @@ class LessonKanjiGrid extends StatelessWidget {
           SizedBox(
             width: 140,
             child: ChunkyCard(
+              onTap: onOpen == null ? null : () => onOpen!(kanji),
               child: Column(
                 children: [
-                  Text(kanji['character']?.toString() ?? '', style: AppTypography.japaneseDisplay()),
-                  if (kanji['hanviet'] != null)
-                    Text(kanji['hanviet'].toString().toUpperCase(), style: textTheme.labelLarge?.copyWith(color: AppColors.kanji)),
+                  Text(kanji.character, style: AppTypography.japaneseDisplay()),
+                  if (kanji.hanviet != null)
+                    Text(kanji.hanviet!.toUpperCase(), style: textTheme.labelLarge?.copyWith(color: AppColors.kanji)),
                   Text(
-                    kanji['meaning']?.toString() ?? '',
+                    kanji.meaning ?? '',
                     style: textTheme.bodySmall,
                     textAlign: TextAlign.center,
                     maxLines: 2,

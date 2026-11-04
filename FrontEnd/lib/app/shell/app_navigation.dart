@@ -147,7 +147,7 @@ abstract final class AppNavigation {
           AppNavEntry(
             path: '/srs',
             label: 'Ôn tập hôm nay',
-            subtitle: 'Từ vựng đến hạn ôn',
+            subtitle: 'Từ vựng và Kanji đến hạn ôn',
             icon: Icons.event_repeat,
             color: AppColors.primary,
             trailing: SrsDueBadge.builder,

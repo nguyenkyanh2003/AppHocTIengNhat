@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 import Exercise from '../model/Exercise.js';
 import { loadVideoKeyPhrases } from '../scripts/lesson-video-phrases.js';
-import { buildChoices, SAMPLE_EXERCISES } from '../scripts/sample-exercises.js';
+import { buildChoices, exercisesForLesson, SAMPLE_EXERCISES } from '../scripts/sample-exercises.js';
 import { SITUATIONAL_LESSONS } from '../scripts/situational-lessons.js';
 
 /**
@@ -53,9 +53,19 @@ test('the correct answer is the one in the lesson word list', () => {
   assert.equal(meaning.level, lesson.level);
 });
 
+// Mọi bài trong bộ hiện đều có video, nên dựng một bài có hội thoại soạn sẵn
+// để nhánh này vẫn được kiểm khi sau này thêm bài chưa có video.
 test('lessons without video quiz their authored dialogue', () => {
-  const lesson = SITUATIONAL_LESSONS.find((l) => l.dialogue?.length > 0);
-  const dialogue = exercisesOf(lesson).find((exercise) => exercise.title.startsWith('Hội thoại'));
+  const lesson = {
+    ...SITUATIONAL_LESSONS[0],
+    dialogue: ['Xin chào.', 'Cảm ơn.', 'Xin lỗi.', 'Tạm biệt.'].map((textVi, index) => ({
+      speaker: 'A',
+      text_ja: `文${index}`,
+      reading: `ぶん${index}`,
+      text_vi: textVi,
+    })),
+  };
+  const dialogue = exercisesForLesson(lesson).find((exercise) => exercise.title.startsWith('Hội thoại'));
 
   assert.equal(correct(dialogue.questions[0]), lesson.dialogue[0].text_vi);
   assert.equal(dialogue.type, 'Tổng hợp');

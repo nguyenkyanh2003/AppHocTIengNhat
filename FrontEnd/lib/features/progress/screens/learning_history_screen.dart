@@ -250,8 +250,8 @@ class _LearningHistoryScreenState extends State<LearningHistoryScreen>
           child: _buildProgressCard(
             icon: Icons.draw_outlined,
             title: 'Kanji',
-            value: '${stats?.kanjiLearned ?? 0}',
-            subtitle: 'đã học',
+            value: '${stats?.kanjiReviewing ?? 0}',
+            subtitle: 'đang ôn',
             color: AppColors.error,
           ),
         ),

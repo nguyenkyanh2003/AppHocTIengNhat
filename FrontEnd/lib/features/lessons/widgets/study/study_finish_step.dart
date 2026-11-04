@@ -6,8 +6,8 @@ import '../../../../core/state/view_state.dart';
 import '../../models/lesson_progress.dart';
 import '../lesson_action_button.dart';
 
-/// Kết quả phiên học — XP thật vừa nhận, số từ đã nhớ, điểm kiểm tra — và
-/// hai lối đi tiếp: làm bài tập của bài, hoặc quay về trang bài học.
+/// Kết quả phiên học — XP thật vừa nhận, số từ và chữ Hán đã nhớ, điểm kiểm
+/// tra — và hai lối đi tiếp: làm bài tập của bài, hoặc quay về trang bài học.
 ///
 /// Chỉ ăn mừng sau khi server đã lưu xong; lưu lỗi thì nói rõ và cho thử lại,
 /// không hiện "Chúc mừng" cho một bài chưa được ghi nhận.
@@ -18,6 +18,8 @@ class StudyFinishStep extends StatelessWidget {
     required this.xpEarned,
     required this.learnedWords,
     required this.totalWords,
+    required this.learnedKanji,
+    required this.totalKanji,
     required this.quizCorrect,
     required this.quizTotal,
     required this.onRetry,
@@ -31,6 +33,8 @@ class StudyFinishStep extends StatelessWidget {
   final int? xpEarned;
   final int learnedWords;
   final int totalWords;
+  final int learnedKanji;
+  final int totalKanji;
   final int quizCorrect;
   final int quizTotal;
   final VoidCallback onRetry;
@@ -69,6 +73,8 @@ class StudyFinishStep extends StatelessWidget {
               children: [
                 if (xpEarned != null) _Stat(value: '+$xpEarned', label: 'XP', color: AppColors.xp),
                 if (totalWords > 0) _Stat(value: '$learnedWords/$totalWords', label: 'từ đã nhớ', color: AppColors.success),
+                if (totalKanji > 0)
+                  _Stat(value: '$learnedKanji/$totalKanji', label: 'chữ Hán đã nhớ', color: AppColors.kanji),
                 if (quizTotal > 0) _Stat(value: '$quizCorrect/$quizTotal', label: 'câu đúng', color: AppColors.primary),
               ],
             ),

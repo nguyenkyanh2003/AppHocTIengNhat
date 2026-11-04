@@ -1,0 +1,1173 @@
+{
+  "lesson": {
+    "title": "Tình huống: Tìm thuê căn hộ"
+  },
+  "videos": [
+    {
+      "title": "Đến công ty môi giới tìm phòng",
+      "description": "Điền phiếu nguyện vọng và hỏi các khoản phải trả hằng tháng.",
+      "url": "/uploads/lesson-videos/n3-08-house-hunting/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "いらっしゃいませ。",
+          "romaji": "Irasshaimase.",
+          "text_vi": "Xin chào quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、部屋を探しているんですが。",
+          "romaji": "Ano, heya o sagashite iru n desu ga.",
+          "text_vi": "À, tôi đang tìm phòng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、どうぞおかけください。",
+          "romaji": "Hai, doozo okake kudasai.",
+          "text_vi": "Vâng, mời chị ngồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あ、どうも。",
+          "romaji": "A, doomo.",
+          "text_vi": "À, cảm ơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、来月ぐらいに引っ越したいと思っているんですが。",
+          "romaji": "Ano, raigetsu gurai ni hikkoshitai to omotte iru n desu ga.",
+          "text_vi": "À, tôi định chuyển nhà vào khoảng tháng sau.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "お客様のご希望をもう少し詳しく伺いたいので、お手数ですが、こちらにお答えいただけますか？",
+          "romaji": "Okyakusama no gokiboo o moo sukoshi kuwashiku ukagaitai node, otesuu desu ga, kochira ni okotae itadakemasu ka.",
+          "text_vi": "Chúng tôi muốn biết rõ hơn một chút nguyện vọng của quý khách, phiền chị trả lời vào phần này giúp.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わかりました。",
+          "romaji": "Wakarimashita.",
+          "text_vi": "Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、これ、毎月払うんですか？",
+          "romaji": "Ano, kore, maitsuki harau n desu ka.",
+          "text_vi": "À, cái này phải trả hằng tháng ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:04",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "ああ、管理費・共益費ですね。はい、毎月払いますよ。",
+          "romaji": "Aa, kanrihi, kyooekihi desu ne. Hai, maitsuki haraimasu yo.",
+          "text_vi": "À, là phí quản lý và phí dịch vụ chung. Vâng, trả hằng tháng ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、じゃあ、これチェックしたら、管理費とかも入れて5万円ってことですね。",
+          "romaji": "Aa, jaa, kore chekku-shitara, kanrihi toka mo irete goman-en tte koto desu ne.",
+          "text_vi": "À, vậy nếu đánh dấu cái này thì tính cả phí quản lý, tổng cộng là 5 vạn yên nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:18",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、そうです、そうです。",
+          "romaji": "Hai, soo desu, soo desu.",
+          "text_vi": "Vâng, đúng vậy, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "えっと、ご希望に合いそうな物件をいくつか紹介しますね。",
+          "romaji": "Etto, gokiboo ni aisoo na bukken o ikutsuka shookai shimasu ne.",
+          "text_vi": "À, tôi xin giới thiệu vài căn có vẻ hợp với nguyện vọng của chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "いかがですか？",
+          "romaji": "Ikaga desu ka.",
+          "text_vi": "Chị thấy thế nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "これ、もらって帰って、会社の人に相談してみてもいいですか？",
+          "romaji": "Kore, moratte kaette, kaisha no hito ni soodan shite mite mo ii desu ka.",
+          "text_vi": "Cái này tôi lấy về nhờ người ở công ty tư vấn thử được không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "ああ、いいですよ、もちろん。",
+          "romaji": "Aa, ii desu yo, mochiron.",
+          "text_vi": "À, được chứ, tất nhiên rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございます。今週中にもう一度来ます。よろしくお願いします。",
+          "romaji": "Arigatoo gozaimasu. Konshuuchuu ni moo ichido kimasu. Yoroshiku onegaishimasu.",
+          "text_vi": "Cảm ơn anh. Trong tuần này tôi sẽ đến lại. Mong anh giúp đỡ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、お待ちしております。",
+          "romaji": "Hai, omachi shite orimasu.",
+          "text_vi": "Vâng, chúng tôi xin chờ chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "不動産屋",
+          "reading": "ふどうさんや",
+          "romaji": "fudoosan'ya",
+          "meaning": "công ty môi giới nhà đất"
+        },
+        {
+          "word": "希望",
+          "reading": "きぼう",
+          "romaji": "kiboo",
+          "meaning": "nguyện vọng"
+        },
+        {
+          "word": "管理費",
+          "reading": "かんりひ",
+          "romaji": "kanrihi",
+          "meaning": "phí quản lý"
+        },
+        {
+          "word": "共益費",
+          "reading": "きょうえきひ",
+          "romaji": "kyooekihi",
+          "meaning": "phí dịch vụ chung"
+        },
+        {
+          "word": "物件",
+          "reading": "ぶっけん",
+          "romaji": "bukken",
+          "meaning": "căn nhà cho thuê"
+        },
+        {
+          "word": "相談",
+          "reading": "そうだん",
+          "romaji": "soodan",
+          "meaning": "bàn bạc, tư vấn"
+        }
+      ]
+    },
+    {
+      "title": "Hỏi đồng nghiệp nên ở khu nào",
+      "description": "Nói được điều kiện nơi ở mong muốn và so sánh tiền thuê giữa các khu.",
+      "url": "/uploads/lesson-videos/n3-08-house-hunting/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "実は来月ぐらいに引っ越そうと思っているんです。",
+          "romaji": "Jitsu wa raigetsu gurai ni hikkosoo to omotte iru n desu.",
+          "text_vi": "Thật ra khoảng tháng sau em định chuyển nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "えっ？どうしてですか？",
+          "romaji": "E? Dooshite desu ka.",
+          "text_vi": "Hả? Tại sao vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:08",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "荷物が増えちゃって、今の部屋ちょっと狭いんですよ。",
+          "romaji": "Nimotsu ga fuechatte, ima no heya chotto semain desu yo.",
+          "text_vi": "Đồ đạc tăng lên nên phòng hiện tại hơi chật.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "なるほどね。",
+          "romaji": "Naruhodo ne.",
+          "text_vi": "Ra vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "昨日、不動産屋さんに行って話を聞いてきたんですけど、",
+          "romaji": "Kinoo, fudoosan'ya-san ni itte hanashi o kiite kita n desu kedo,",
+          "text_vi": "Hôm qua em đến công ty bất động sản nghe tư vấn,",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "へー、そうなんですか。",
+          "romaji": "Hee, soo nan desu ka.",
+          "text_vi": "Ồ, vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いろんな物件を紹介されたんですけど、どの辺がいいかとかよく分かんなくて。",
+          "romaji": "Ironna bukken o shookai sareta n desu kedo, dono hen ga ii ka toka yoku wakannakute.",
+          "text_vi": "Em được giới thiệu nhiều căn nhà nhưng không biết khu nào tốt.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:32",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうですよね。",
+          "romaji": "Soo desu yo ne.",
+          "text_vi": "Đúng vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "アンジェラさんは、会社から近い方がいいんですか？",
+          "romaji": "Anjera-san wa, kaisha kara chikai hoo ga ii n desu ka.",
+          "text_vi": "Angela muốn ở gần công ty hơn à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "自転車ですから、そんなに近くじゃなくてもいいです。",
+          "romaji": "Jitensha desu kara, sonna ni chikaku ja nakutemo ii desu.",
+          "text_vi": "Vì đi xe đạp nên không cần gần lắm cũng được.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "どっちかっていうと、買い物とか食事とかに便利な場所の方がいいかなって思っているんですけど。",
+          "romaji": "Docchika tte iu to, kaimono toka shokuji toka ni benri na basho no hoo ga ii ka na tte omotte iru n desu kedo.",
+          "text_vi": "Nếu nói thì em muốn chỗ thuận tiện cho mua sắm, ăn uống hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうですか。じゃあ、清水郵便局のあたりがいいかもしれませんね。駅前の商店街にも近いですから。",
+          "romaji": "Soo desu ka. Jaa, Shimizu yuubinkyoku no atari ga ii kamoshiremasen ne. Ekimae no shootengai ni mo chikai desu kara.",
+          "text_vi": "Vậy à. Vậy khu quanh bưu điện Shimizu có lẽ hợp đấy. Vì gần cả khu phố mua sắm trước nhà ga.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、あの辺りですね。でも、あの辺りは家賃が高そうですよね。",
+          "romaji": "Aa, ano atari desu ne. Demo, ano atari wa yachin ga takasoo desu yo ne.",
+          "text_vi": "À, khu đó nhỉ. Nhưng khu đó chắc tiền nhà đắt nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:19",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ちょっと見てみましょうか。",
+          "romaji": "Chotto mite mimashoo ka.",
+          "text_vi": "Để tôi xem thử nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:29",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "思ったほど高くないですよ。ワンルームなら4万円ぐらいの部屋もありますよ。",
+          "romaji": "Omotta hodo takakunai desu yo. Wan-ruumu nara yonman-en gurai no heya mo arimasu yo.",
+          "text_vi": "Không đắt như nghĩ đâu. Nếu là phòng đơn thì cũng có phòng khoảng 4 vạn yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ、本当ですか？それなら今とあまり変わりませんね。",
+          "romaji": "Hee, hontoo desu ka. Sore nara ima to amari kawarimasen ne.",
+          "text_vi": "Ồ, thật ạ? Vậy thì không khác bây giờ nhiều nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:43",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "早めに不動産屋さんに行って相談してみます。ありがとうございました。",
+          "romaji": "Hayame ni fudoosan'ya-san ni itte soodan shite mimasu. Arigatoo gozaimashita.",
+          "text_vi": "Em sẽ sớm đến công ty bất động sản để bàn thử. Cảm ơn chị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "いいえ、どういたしまして。いい部屋が早く見つかるといいですね。",
+          "romaji": "Iie, doo itashimashite. Ii heya ga hayaku mitsukaru to ii desu ne.",
+          "text_vi": "Không có gì. Mong em sớm tìm được phòng tốt nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:57",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、ありがとうございます。",
+          "romaji": "Hai, arigatoo gozaimasu.",
+          "text_vi": "Vâng, em cảm ơn chị.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "引っ越す",
+          "reading": "ひっこす",
+          "romaji": "hikkosu",
+          "meaning": "chuyển nhà"
+        },
+        {
+          "word": "狭い",
+          "reading": "せまい",
+          "romaji": "semai",
+          "meaning": "chật"
+        },
+        {
+          "word": "便利",
+          "reading": "べんり",
+          "romaji": "benri",
+          "meaning": "tiện lợi"
+        },
+        {
+          "word": "商店街",
+          "reading": "しょうてんがい",
+          "romaji": "shootengai",
+          "meaning": "khu phố mua sắm"
+        },
+        {
+          "word": "家賃",
+          "reading": "やちん",
+          "romaji": "yachin",
+          "meaning": "tiền thuê nhà"
+        },
+        {
+          "word": "ワンルーム",
+          "reading": "ワンルーム",
+          "romaji": "wan-ruumu",
+          "meaning": "phòng đơn"
+        }
+      ]
+    },
+    {
+      "title": "Thủ tục thuê nhà",
+      "description": "Hiểu các bước xét duyệt, giấy tờ cần chuẩn bị và các khoản phí ban đầu.",
+      "url": "/uploads/lesson-videos/n3-08-house-hunting/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "内見お疲れさまでした。いかがでしたか？",
+          "romaji": "Naiken otsukaresama deshita. Ikaga deshita ka.",
+          "text_vi": "Chị đã vất vả đi xem nhà rồi. Chị thấy thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですね、今日のとこに決めます。",
+          "romaji": "Soo desu ne, kyoo no toko ni kimemasu.",
+          "text_vi": "Để xem nào, em quyết định chọn chỗ hôm nay đi xem ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "わかりました。じゃあ、いろいろ手続きがあるのでご説明しますね。こちらへどうぞ。",
+          "romaji": "Wakarimashita. Jaa, iroiro tetsuzuki ga aru node gosetsumee shimasu ne. Kochira e doozo.",
+          "text_vi": "Tôi hiểu rồi. Vậy vì có nhiều thủ tục nên tôi xin giải thích nhé. Mời chị lối này.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:23",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "まず初めに、入居審査というのがありまして、それを通過すると契約となります。",
+          "romaji": "Mazu hajime ni, nyuukyo shinsa to iu no ga arimashite, sore o tsuuka suru to keeyaku to narimasu.",
+          "text_vi": "Trước hết có bước gọi là xét duyệt hồ sơ thuê nhà, nếu qua được thì sẽ ký hợp đồng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "入居審査ですか？どうすればいいですか？",
+          "romaji": "Nyuukyo shinsa desu ka. Doo sureba ii desu ka.",
+          "text_vi": "Xét duyệt hồ sơ thuê nhà ạ? Em phải làm thế nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、最初に、こちらの申込書に必要事項を書いていただいて、審査に回します。",
+          "romaji": "Hai, saisho ni, kochira no mooshikomisho ni hitsuyoo jikoo o kaite itadaite, shinsa ni mawashimasu.",
+          "text_vi": "Vâng, trước tiên chị điền các mục cần thiết vào đơn đăng ký này, rồi chúng tôi sẽ chuyển đi xét duyệt.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "審査に通ったら契約に移りますので、その時点で証明書類をご用意ください。",
+          "romaji": "Shinsa ni toottara keeyaku ni utsurimasu node, sono jiten de shoomee shorui o goyooi kudasai.",
+          "text_vi": "Nếu qua xét duyệt thì sẽ chuyển sang ký hợp đồng, nên lúc đó nhờ chị chuẩn bị các giấy tờ chứng minh.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わかりました。契約するときは、どんなものが必要ですか？",
+          "romaji": "Wakarimashita. Keeyaku-suru toki wa, donna mono ga hitsuyoo desu ka.",
+          "text_vi": "Em hiểu rồi. Khi ký hợp đồng thì cần những gì ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "こちらの紙に必要な書類などが書いてありますので、ご確認ください。",
+          "romaji": "Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai.",
+          "text_vi": "Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。在留カード、住民票、収入証明の書類…",
+          "romaji": "Hai. Zairyuu kaado, juuminhyoo, shuunyuu shoomee no shorui...",
+          "text_vi": "Vâng. Thẻ cư trú, phiếu cư trú, giấy tờ chứng minh thu nhập...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "会社からもらう源泉徴収票とかのことですか？",
+          "romaji": "Kaisha kara morau gensen chooshuuhyoo toka no koto desu ka.",
+          "text_vi": "Là phiếu khấu trừ thuế tại nguồn nhận từ công ty phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:28",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、そうです。",
+          "romaji": "Hai, soo desu.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "いろいろあるんですね。",
+          "romaji": "Iroiro aru n desu ne.",
+          "text_vi": "Có nhiều thứ nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:33",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "それから、印鑑と印鑑証明、それから保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。",
+          "romaji": "Sorekara, inkan to inkan shoomee, sorekara hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga.",
+          "text_vi": "Ngoài ra cần con dấu và giấy chứng nhận con dấu, cùng người bảo lãnh, chị có nhờ ai được không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、保証人は勤務先の社長がなってくれると思います。今もそうなので。",
+          "romaji": "Aa, hoshoonin wa kinmusaki no shachoo ga natte kureru to omoimasu. Ima mo soo nano de.",
+          "text_vi": "À, người bảo lãnh thì em nghĩ giám đốc nơi em làm việc sẽ làm giúp em. Hiện giờ cũng vậy ạ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:58",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "そうですか。わかりました。",
+          "romaji": "Soo desu ka. Wakarimashita.",
+          "text_vi": "Vậy ạ. Tôi hiểu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "あの、全部でいくらぐらいかかりますか？",
+          "romaji": "Ano, zenbu de ikura gurai kakarimasu ka.",
+          "text_vi": "À, tổng cộng hết khoảng bao nhiêu tiền ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "そうですね。月々のお家賃が4万8千円、共益費が2千円で、ちょうど5万円です。",
+          "romaji": "Soo desu ne. Tsukizuki no oyachin ga yonman-hassen-en, kyooekihi ga nisen-en de, choodo goman-en desu.",
+          "text_vi": "Để xem nào. Tiền nhà hằng tháng là 4 vạn 8 nghìn yên, phí dịch vụ chung 2 nghìn yên, vừa đúng 5 vạn yên.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:23",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "2ヶ月分の敷金、1ヶ月分の礼金、今月分と来月分のお家賃、火災保険、",
+          "romaji": "Nikagetsubun no shikikin, ikkagetsubun no reekin, kongetsubun to raigetsubun no oyachin, kasai hoken,",
+          "text_vi": "2 tháng tiền đặt cọc, 1 tháng tiền lễ, tiền nhà tháng này và tháng sau, bảo hiểm hỏa hoạn,",
+          "key_phrase": false
+        },
+        {
+          "start": "02:41",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "それから私どもの手数料として、お家賃の1ヶ月分をいただきます。",
+          "romaji": "Sorekara watakushidomo no tesuuryoo toshite, oyachin no ikkagetsubun o itadakimasu.",
+          "text_vi": "và ngoài ra, chúng tôi thu một tháng tiền nhà làm phí dịch vụ của công ty.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:52",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わあ、結構かかりますね。",
+          "romaji": "Waa, kekkoo kakarimasu ne.",
+          "text_vi": "Ôi, tốn khá nhiều nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:57",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、そうですね。",
+          "romaji": "Hai, soo desu ne.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わかりました。でも、やっと決まってほっとしました。",
+          "romaji": "Wakarimashita. Demo, yatto kimatte hotto shimashita.",
+          "text_vi": "Em hiểu rồi. Nhưng cuối cùng cũng quyết định xong nên em thấy nhẹ nhõm.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:05",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "よかったですね。",
+          "romaji": "Yokatta desu ne.",
+          "text_vi": "Tốt quá nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "内見",
+          "reading": "ないけん",
+          "romaji": "naiken",
+          "meaning": "đi xem nhà"
+        },
+        {
+          "word": "入居審査",
+          "reading": "にゅうきょしんさ",
+          "romaji": "nyuukyo shinsa",
+          "meaning": "xét duyệt hồ sơ thuê nhà"
+        },
+        {
+          "word": "申込書",
+          "reading": "もうしこみしょ",
+          "romaji": "mooshikomisho",
+          "meaning": "đơn đăng ký"
+        },
+        {
+          "word": "住民票",
+          "reading": "じゅうみんひょう",
+          "romaji": "juuminhyoo",
+          "meaning": "phiếu cư trú"
+        },
+        {
+          "word": "保証人",
+          "reading": "ほしょうにん",
+          "romaji": "hoshoonin",
+          "meaning": "người bảo lãnh"
+        },
+        {
+          "word": "敷金",
+          "reading": "しききん",
+          "romaji": "shikikin",
+          "meaning": "tiền đặt cọc"
+        },
+        {
+          "word": "礼金",
+          "reading": "れいきん",
+          "romaji": "reekin",
+          "meaning": "tiền lễ trả cho chủ nhà"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Tìm thuê căn hộ",
+      "description": "Ôn lại「〜たら」,「〜とき」và「〜てくれる」.",
+      "url": "/uploads/lesson-videos/n3-08-house-hunting/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "これ、チェックしたら",
+          "romaji": "kore, chekku-shitara",
+          "text_vi": "Nếu đánh dấu cái này thì",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "じゃあ、これチェックしたら、管理費とかも入れて5万円ってことですね。",
+          "romaji": "Jaa, kore chekku-shitara, kanrihi toka mo irete goman-en tte koto desu ne.",
+          "text_vi": "Vậy là nếu đánh dấu cái này thì tính cả phí quản lý, tổng cộng là 5 vạn yên nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:13",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "はい、そうです、そうです。",
+          "romaji": "Hai, soo desu, soo desu.",
+          "text_vi": "Vâng, đúng vậy, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この表現は、",
+          "romaji": "Kono hyoogen wa,",
+          "text_vi": "Mẫu biểu đạt này,",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞、形容詞、名詞の「た」の形に「ら」をつけて、「Aたら、B」の形で使います。",
+          "romaji": "Dooshi, keeyooshi, meeshi no \"ta\" no katachi ni \"ra\" o tsukete, \"A-tara, B\" no katachi de tsukaimasu.",
+          "text_vi": "dùng dạng \"ta\" của động từ, tính từ, danh từ rồi gắn \"ra\", theo dạng \"A-tara, B\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "もしAが成立した場合にはBになったり、Bしたりするということを表す表現です。",
+          "romaji": "Moshi A ga seeritsu shita baai ni wa B ni nattari, B shitari suru to iu koto o arawasu hyoogen desu.",
+          "text_vi": "Là cách diễn đạt biểu thị rằng nếu A thành lập thì sẽ trở thành B hoặc làm B.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではアンジェラさんが、アンケートの項目にチェックを入れた場合、毎月払う家賃がいくらになるか確認しました。",
+          "romaji": "Kono dooga de wa Anjera-san ga, ankeeto no koomoku ni chekku o ireta baai, maitsuki harau yachin ga ikura ni naru ka kakunin shimashita.",
+          "text_vi": "Trong video này, chị Angela đã xác nhận xem nếu đánh dấu vào các mục của bảng khảo sát thì tiền nhà phải trả hằng tháng sẽ là bao nhiêu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他に、「安かったら」「駅から近かったら」「広かったら」「南向きだったら借りたいです」や「高かったら借りません」などと使うことができます。",
+          "romaji": "Hoka ni, \"yasukattara\", \"eki kara chikakattara\", \"hirokattara\", \"minami-muki dattara karitai desu\" ya \"takakattara karimasen\" nado to tsukau koto ga dekimasu.",
+          "text_vi": "Ngoài ra cũng có thể dùng như \"nếu rẻ\", \"nếu gần nhà ga\", \"nếu rộng\", \"nếu hướng nam thì tôi muốn thuê\" hay \"nếu đắt thì tôi không thuê\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:26",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "けいやくする とき",
+          "romaji": "keeyaku-suru toki",
+          "text_vi": "Khi ký hợp đồng",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わかりました。契約するときは、どんなものが必要ですか？",
+          "romaji": "Wakarimashita. Keeyaku-suru toki wa, donna mono ga hitsuyoo desu ka.",
+          "text_vi": "Em hiểu rồi. Khi ký hợp đồng thì cần những gì ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:39",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "こちらの紙に必要な書類などが書いてありますので、ご確認ください。",
+          "romaji": "Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai.",
+          "text_vi": "Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「普通形+とき」は、",
+          "romaji": "\"Futsuu-kee + toki\" wa,",
+          "text_vi": "\"Thể thường + toki\" là",
+          "key_phrase": false
+        },
+        {
+          "start": "01:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「Aとき、B」の形で、",
+          "romaji": "\"A toki, B\" no katachi de,",
+          "text_vi": "theo dạng \"A toki, B\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:55",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "いつBをするか表す表現です。",
+          "romaji": "Itsu B o suru ka arawasu hyoogen desu.",
+          "text_vi": "cách diễn đạt biểu thị khi nào thì làm B.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、「国へ帰るとき、お土産を買いました」などのように、",
+          "romaji": "Tatoeba, \"Kuni e kaeru toki, omiyage o kaimashita\" nado no yoo ni,",
+          "text_vi": "Ví dụ như \"Khi về nước, tôi đã mua quà\",",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "国へ帰ることよりお土産を買うことの方が先の場合は、「とき」の前に動詞の辞書形を使って、「国へ帰るとき」となります。",
+          "romaji": "Kuni e kaeru koto yori omiyage o kau koto no hoo ga saki no baai wa, \"toki\" no mae ni dooshi no jisho-kee o tsukatte, \"kuni e kaeru toki\" to narimasu.",
+          "text_vi": "trường hợp việc mua quà xảy ra trước việc về nước thì dùng dạng từ điển của động từ trước \"toki\" thành \"kuni e kaeru toki\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:26",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、「国へ帰ったとき、お土産をあげました」のように、",
+          "romaji": "Mata, \"Kuni e kaetta toki, omiyage o agemashita\" no yoo ni,",
+          "text_vi": "Ngoài ra, như \"Khi về nước, tôi đã tặng quà\",",
+          "key_phrase": false
+        },
+        {
+          "start": "02:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "お土産をあげることより国へ帰ることの方が先の場合は、",
+          "romaji": "omiyage o ageru koto yori kuni e kaeru koto no hoo ga saki no baai wa,",
+          "text_vi": "trường hợp việc về nước xảy ra trước việc tặng quà thì",
+          "key_phrase": false
+        },
+        {
+          "start": "02:41",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「とき」の前に動詞のた形を使います。",
+          "romaji": "\"toki\" no mae ni dooshi no ta-kee o tsukaimasu.",
+          "text_vi": "dùng dạng ta của động từ trước \"toki\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:49",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他に、「寝るとき、電気を消しました」",
+          "romaji": "Hoka ni, \"Neru toki, denki o keshimashita\"",
+          "text_vi": "Ngoài ra, \"Khi đi ngủ, tôi đã tắt đèn\"",
+          "key_phrase": false
+        },
+        {
+          "start": "02:56",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「起きたとき、カーテンを開けます」",
+          "romaji": "\"Okita toki, kaaten o akemasu\"",
+          "text_vi": "\"Khi thức dậy, tôi mở rèm\"",
+          "key_phrase": false
+        },
+        {
+          "start": "03:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「初めての場所へ行くとき、地図を見ます」",
+          "romaji": "\"Hajimete no basho e iku toki, chizu o mimasu\"",
+          "text_vi": "\"Khi đến nơi lần đầu, tôi xem bản đồ\"",
+          "key_phrase": false
+        },
+        {
+          "start": "03:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「道に迷ったとき、交番へ行きます」など、いろいろな使い方ができます。",
+          "romaji": "\"Michi ni mayotta toki, kooban e ikimasu\" nado, iroiro na tsukaikata ga dekimasu.",
+          "text_vi": "\"Khi lạc đường, tôi đến đồn cảnh sát\" v.v., có nhiều cách dùng khác nhau.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:17",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "なって くれる",
+          "romaji": "natte kureru",
+          "text_vi": "Làm cho (tôi)",
+          "key_phrase": false
+        },
+        {
+          "start": "03:23",
+          "speaker_ja": "不動産屋の店員",
+          "speaker_romaji": "Fudoosan-ya no ten'in",
+          "speaker_vi": "Nhân viên công ty môi giới nhà",
+          "text_ja": "それから、保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。",
+          "romaji": "Sorekara, hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga.",
+          "text_vi": "Ngoài ra cần có người bảo lãnh, chị có nhờ ai được không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:35",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、保証人は勤務先の社長がなってくれると思います。",
+          "romaji": "Aa, hoshoonin wa kinmusaki no shachoo ga natte kureru to omoimasu.",
+          "text_vi": "À, người bảo lãnh thì em nghĩ giám đốc nơi em làm việc sẽ làm giúp em.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:42",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形+くれるは、他の人の行為が、私や私の家族など、私に近い人にとって、嬉しい、ありがとうと感じられるときに使う表現です。",
+          "romaji": "Dooshi no te-kee + kureru wa, hoka no hito no kooi ga, watashi ya watashi no kazoku nado, watashi ni chikai hito ni totte, ureshii, arigatoo to kanjirareru toki ni tsukau hyoogen desu.",
+          "text_vi": "\"Dạng te của động từ + kureru\" dùng khi hành động của người khác khiến tôi hoặc người gần gũi như gia đình tôi cảm thấy vui, biết ơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "行為をした人が主語になります。",
+          "romaji": "Kooi o shita hito ga shugo ni narimasu.",
+          "text_vi": "Người thực hiện hành động là chủ ngữ.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、主語はアンジェラさんの勤務先の社長です。",
+          "romaji": "Dooga de wa, shugo wa Anjera-san no kinmusaki no shachoo desu.",
+          "text_vi": "Trong video, chủ ngữ là giám đốc nơi chị Angela làm việc.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "社長が保証人になっています。",
+          "romaji": "Shachoo ga hoshoonin ni natte imasu.",
+          "text_vi": "Giám đốc là người bảo lãnh.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "そしてそれをアンジェラさんは「嬉しい、ありがとう」と思っていますから、",
+          "romaji": "Soshite sore o Anjera-san wa \"ureshii, arigatoo\" to omotte imasu kara,",
+          "text_vi": "Và vì chị Angela cảm thấy \"vui, biết ơn\" về việc đó nên",
+          "key_phrase": false
+        },
+        {
+          "start": "04:28",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「保証人は勤務先の社長がなると思います」ではなく、",
+          "romaji": "\"Hoshoonin wa kinmusaki no shachoo ga naru to omoimasu\" dewa naku,",
+          "text_vi": "chị không nói \"Em nghĩ giám đốc nơi làm việc sẽ làm người bảo lãnh\",",
+          "key_phrase": false
+        },
+        {
+          "start": "04:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「勤務先の社長がなってくれると思います」と言いました。",
+          "romaji": "\"Kinmusaki no shachoo ga natte kureru to omoimasu\" to iimashita.",
+          "text_vi": "mà nói \"Em nghĩ giám đốc nơi làm việc sẽ làm giúp em\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他に、「日本人の友達が私に日本語を教えてくれました」",
+          "romaji": "Hoka ni, \"Nihonjin no tomodachi ga watashi ni Nihongo o oshiete kuremashita\"",
+          "text_vi": "Ngoài ra, \"Bạn người Nhật đã dạy tiếng Nhật cho tôi\"",
+          "key_phrase": false
+        },
+        {
+          "start": "04:51",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「誕生日に夫がプレゼントを買ってくれました」などということができます。",
+          "romaji": "\"Tanjoobi ni otto ga purezento o katte kuremashita\" nado to iu koto ga dekimasu.",
+          "text_vi": "\"Chồng tôi đã mua quà tặng tôi vào ngày sinh nhật\" v.v.",
+          "key_phrase": false
+        },
+        {
+          "start": "05:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "行為をしてくれた人に直接ありがとうと言いたいときは、",
+          "romaji": "Kooi o shite kureta hito ni chokusetsu arigatoo to iitai toki wa,",
+          "text_vi": "Khi muốn trực tiếp nói cảm ơn người đã làm việc đó cho mình thì",
+          "key_phrase": false
+        },
+        {
+          "start": "05:07",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形+「くれてありがとうございます」といいます。",
+          "romaji": "Dooshi no te-kee + \"kurete arigatoo gozaimasu\" to iimasu.",
+          "text_vi": "nói \"dạng te của động từ + kurete arigatoo gozaimasu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:17",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "目上の人には、動詞のて形+「くださってありがとうございます」というと丁寧です。",
+          "romaji": "Meue no hito ni wa, dooshi no te-kee + \"kudasatte arigatoo gozaimasu\" to iu to teenee desu.",
+          "text_vi": "Với người bề trên thì nói \"dạng te của động từ + kudasatte arigatoo gozaimasu\" sẽ lịch sự.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

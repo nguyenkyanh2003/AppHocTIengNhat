@@ -1,0 +1,1009 @@
+{
+  "lesson": {
+    "title": "Tình huống: Phòng bệnh và đi nha sĩ"
+  },
+  "videos": [
+    {
+      "title": "Ngộ độc thực phẩm là gì",
+      "description": "Hỏi được nghĩa của từ lạ và hiểu cách giữ đồ ăn khi trời còn nóng.",
+      "url": "/uploads/lesson-videos/n3-06-health/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あの…",
+          "romaji": "Ano...",
+          "text_vi": "À…",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "なんでお弁当を冷蔵庫に入れるんですか？",
+          "romaji": "Nande obentoo o reezooko ni ireru n desu ka.",
+          "text_vi": "Tại sao lại cho cơm hộp vào tủ lạnh vậy ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "冷たくなるから、入れない方がいいと思うんですけど。",
+          "romaji": "Tsumetaku naru kara, irenai hoo ga ii to omou n desu kedo.",
+          "text_vi": "Vì cơm sẽ bị nguội lạnh nên tôi nghĩ không nên cho vào.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ。まだ暑いから、食中毒にならないように入れてるんですよ。",
+          "romaji": "Aa. Mada atsui kara, shokuchuudoku ni naranai yoo ni irete ru n desu yo.",
+          "text_vi": "À. Vì trời vẫn còn nóng nên tôi cho vào để không bị ngộ độc thực phẩm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "えっと、食中毒って何ですか？",
+          "romaji": "Etto, shokuchuudoku tte nan desu ka.",
+          "text_vi": "Dạ, \"shokuchuudoku\" là gì vậy ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "食中毒は、えっと、菌やウイルスがついた食べ物を食べて、下痢をしたり吐いたりすることですよ。",
+          "romaji": "Shokuchuudoku wa, etto, kin ya uirusu ga tsuita tabemono o tabete, geri o shitari haitari suru koto desu yo.",
+          "text_vi": "Ngộ độc thực phẩm là ăn phải đồ ăn dính vi khuẩn hay vi-rút rồi bị tiêu chảy hoặc nôn mửa đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "ああ、そういうことですか。",
+          "romaji": "Aa, soo iu koto desu ka.",
+          "text_vi": "À, ra là vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "まだ暑いから、食べ物は冷蔵庫に入れた方がいいんじゃないかな。",
+          "romaji": "Mada atsui kara, tabemono wa reezooko ni ireta hoo ga ii n ja nai ka na.",
+          "text_vi": "Vì trời còn nóng nên đồ ăn cho vào tủ lạnh thì tốt hơn đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:47",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "なるほど。それでみんな入れてるんですね。",
+          "romaji": "Naruhodo. Sorede minna irete ru n desu ne.",
+          "text_vi": "Ra vậy. Thế nên mọi người đều cho vào nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:51",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "でも、日本ではよく、卵をそのまま食べますよね。",
+          "romaji": "Demo, Nihon de wa yoku, tamago o sonomama tabemasu yo ne.",
+          "text_vi": "Nhưng mà ở Nhật hay ăn trứng sống nguyên như vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "卵は、食中毒にならないんですか？そのまま…",
+          "romaji": "Tamago wa, shokuchuudoku ni naranai n desu ka. Sonomama...",
+          "text_vi": "Trứng thì không bị ngộ độc thực phẩm ạ? Cứ ăn nguyên như vậy...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、生卵ね。賞味期限内に食べれば、普通は大丈夫ですよ。",
+          "romaji": "Aa, nama-tamago ne. Shoomi-kigen-nai ni tabereba, futsuu wa daijoobu desu yo.",
+          "text_vi": "À, trứng sống nhỉ. Nếu ăn trong hạn sử dụng thì thường là không sao đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "いやぁ、でも生は怖いなぁ。",
+          "romaji": "Iyaa, demo nama wa kowai naa.",
+          "text_vi": "Ôi, nhưng mà đồ sống thì tôi thấy sợ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "私たち、気になるところが違いますね。",
+          "romaji": "Watashitachi, ki ni naru tokoro ga chigaimasu ne.",
+          "text_vi": "Chúng ta để ý đến những chỗ khác nhau nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Đúng vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:24",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "じゃあ、今日は僕も、冷蔵庫にお弁当を入れてみようかな。",
+          "romaji": "Jaa, kyoo wa boku mo, reezooko ni obentoo o irete miyoo ka na.",
+          "text_vi": "Vậy thì hôm nay tôi cũng thử cho cơm hộp vào tủ lạnh xem sao.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "お弁当",
+          "reading": "おべんとう",
+          "romaji": "obentoo",
+          "meaning": "cơm hộp"
+        },
+        {
+          "word": "冷蔵庫",
+          "reading": "れいぞうこ",
+          "romaji": "reezooko",
+          "meaning": "tủ lạnh"
+        },
+        {
+          "word": "食中毒",
+          "reading": "しょくちゅうどく",
+          "romaji": "shokuchuudoku",
+          "meaning": "ngộ độc thực phẩm"
+        },
+        {
+          "word": "菌",
+          "reading": "きん",
+          "romaji": "kin",
+          "meaning": "vi khuẩn"
+        },
+        {
+          "word": "下痢",
+          "reading": "げり",
+          "romaji": "geri",
+          "meaning": "tiêu chảy"
+        },
+        {
+          "word": "吐く",
+          "reading": "はく",
+          "romaji": "haku",
+          "meaning": "nôn"
+        },
+        {
+          "word": "賞味期限",
+          "reading": "しょうみきげん",
+          "romaji": "shoomi kigen",
+          "meaning": "hạn sử dụng"
+        }
+      ]
+    },
+    {
+      "title": "Đi tiêm phòng cúm",
+      "description": "Hỏi được chi phí tiêm phòng và tra bệnh viện gần nhà.",
+      "url": "/uploads/lesson-videos/n3-06-health/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "あー、そろそろインフルエンザの予防接種を受けなきゃ。",
+          "romaji": "Aa, sorosoro infuruenza no yoboo-sesshu o ukenakya.",
+          "text_vi": "À, sắp đến lúc phải đi tiêm phòng cúm rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "え？毎年受けてるんですか？",
+          "romaji": "E? Maitoshi ukete ru n desu ka.",
+          "text_vi": "Hả? Chị năm nào cũng tiêm ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "うん。",
+          "romaji": "Un.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:12",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "私、おととしインフルエンザにかかって、大変だったんですよ。",
+          "romaji": "Watashi, ototoshi infuruenza ni kakatte, taihen datta n desu yo.",
+          "text_vi": "Năm kia tôi bị cúm nên vất vả lắm đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:17",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "アンジェラさんは受けないの？",
+          "romaji": "Anjera-san wa ukenai no?",
+          "text_vi": "Angela không tiêm à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですね、受けといた方がいいですか？",
+          "romaji": "Soo desu ne, uketoita hoo ga ii desu ka.",
+          "text_vi": "Để xem nào, em nên tiêm trước thì tốt hơn ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:25",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "まあね。",
+          "romaji": "Maa ne.",
+          "text_vi": "Ừ thì.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:27",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "それっていくらぐらいかかりますか？",
+          "romaji": "Sore tte ikura gurai kakarimasu ka.",
+          "text_vi": "Cái đó thì mất khoảng bao nhiêu ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "3000円ぐらいだと思うけど、病院によって違うみたい。",
+          "romaji": "Sanzen-en gurai da to omou kedo, byooin ni yotte chigau mitai.",
+          "text_vi": "Tôi nghĩ khoảng 3000 yên, nhưng hình như tùy bệnh viện mà khác nhau.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですか。何かで探せばいいですか？",
+          "romaji": "Soo desu ka. Nanika de sagaseba ii desu ka.",
+          "text_vi": "Vậy ạ. Em nên tìm bằng cách nào đó phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:42",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ああ、内科とかかなあ。",
+          "romaji": "Aa, naika toka kanaa.",
+          "text_vi": "À, chắc là tìm \"khoa nội\" hay gì đó nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "な、い、か。",
+          "romaji": "Na, i, ka.",
+          "text_vi": "Na, i, ka. (vừa gõ chữ vừa đọc)",
+          "key_phrase": false
+        },
+        {
+          "start": "00:56",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "あと、住んでる場所。",
+          "romaji": "Ato, sunde ru basho.",
+          "text_vi": "Và nơi em đang sống nữa.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "も、み、じ、ちょう。",
+          "romaji": "Mo, mi, ji, choo.",
+          "text_vi": "Mo, mi, ji, chō. (vừa gõ chữ vừa đọc)",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "うん。",
+          "romaji": "Un.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "い、ん、ふ、る、え、ん、ざ。",
+          "romaji": "I, n, fu, ru, e, n, za.",
+          "text_vi": "I, n, fu, ru, e, n, za. (vừa gõ chữ vừa đọc)",
+          "key_phrase": false
+        },
+        {
+          "start": "01:32",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "よ、ぼ、う、せっ、しゅ。",
+          "romaji": "Yo, bo, u, sesshu.",
+          "text_vi": "Yo, bo, u, sesshu. (vừa gõ chữ vừa đọc)",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "桜病院って出ました。",
+          "romaji": "Sakura byooin tte demashita.",
+          "text_vi": "Hiện ra \"bệnh viện Sakura\" ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "同僚",
+          "speaker_romaji": "Dooryoo",
+          "speaker_vi": "Đồng nghiệp",
+          "text_ja": "ここだったら、前に行ったことがあります。",
+          "romaji": "Koko dattara, mae ni itta koto ga arimasu.",
+          "text_vi": "Nếu là chỗ này thì tôi từng đến rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、だったら安心ですね。",
+          "romaji": "Aa, dattara anshin desu ne.",
+          "text_vi": "À, vậy thì yên tâm nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "予防接種",
+          "reading": "よぼうせっしゅ",
+          "romaji": "yoboo-sesshu",
+          "meaning": "tiêm phòng"
+        },
+        {
+          "word": "インフルエンザ",
+          "reading": "インフルエンザ",
+          "romaji": "infuruenza",
+          "meaning": "cúm"
+        },
+        {
+          "word": "おととし",
+          "reading": "おととし",
+          "romaji": "ototoshi",
+          "meaning": "năm kia"
+        },
+        {
+          "word": "内科",
+          "reading": "ないか",
+          "romaji": "naika",
+          "meaning": "khoa nội"
+        },
+        {
+          "word": "探す",
+          "reading": "さがす",
+          "romaji": "sagasu",
+          "meaning": "tìm"
+        },
+        {
+          "word": "安心",
+          "reading": "あんしん",
+          "romaji": "anshin",
+          "meaning": "yên tâm"
+        }
+      ]
+    },
+    {
+      "title": "Đi khám nha sĩ",
+      "description": "Tả được cơn đau răng và hỏi sự khác nhau giữa loại có bảo hiểm và loại tự trả.",
+      "url": "/uploads/lesson-videos/n3-06-health/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:02",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "今日はどうされましたか？",
+          "romaji": "Kyoo wa doo saremashita ka.",
+          "text_vi": "Hôm nay anh bị sao ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "冷たいものを食べた時、この辺がちょっとしみてたんです。昨日からズキズキし始めて。",
+          "romaji": "Tsumetai mono o tabeta toki, kono hen ga chotto shimite ta n desu. Kinoo kara zukizuki-shihajimete.",
+          "text_vi": "Khi ăn đồ lạnh thì chỗ này hơi ê buốt. Từ hôm qua bắt đầu nhức nhối.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:14",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "わかりました。じゃあちょっと見てみますね。",
+          "romaji": "Wakarimashita. Jaa chotto mite mimasu ne.",
+          "text_vi": "Tôi hiểu rồi. Vậy tôi xem thử nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "大きく口を開けてください。",
+          "romaji": "Ookiku kuchi o akete kudasai.",
+          "text_vi": "Anh há miệng to ra nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "はい、いいですよ。",
+          "romaji": "Hai, ii desu yo.",
+          "text_vi": "Vâng, được rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "ゆすいでください。",
+          "romaji": "Yusuide kudasai.",
+          "text_vi": "Anh súc miệng nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:00",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "虫歯になってますね。治療が必要です。",
+          "romaji": "Mushiba ni natte masu ne. Chiryoo ga hitsuyoo desu.",
+          "text_vi": "Anh bị sâu răng rồi. Cần phải điều trị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "ああ、やっぱり虫歯ですか？もっと早く来ればよかったです。",
+          "romaji": "Aa, yappari mushiba desu ka. Motto hayaku kureba yokatta desu.",
+          "text_vi": "À, quả nhiên là sâu răng ạ? Giá mà tôi đến sớm hơn.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:14",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "では詳しくご説明しますね。それから治療していきましょう。",
+          "romaji": "Dewa kuwashiku gosetsumee shimasu ne. Sorekara chiryoo shite ikimashoo.",
+          "text_vi": "Vậy tôi sẽ giải thích chi tiết nhé. Sau đó chúng ta điều trị.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:31",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "次回以降、型を取って詰め物をしていくんですけど、種類があります。",
+          "romaji": "Jikai ikoo, kata o totte tsumemono o shite iku n desu kedo, shurui ga arimasu.",
+          "text_vi": "Từ lần sau sẽ lấy khuôn rồi trám răng, và có nhiều loại.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "こんなに種類があるんですか？",
+          "romaji": "Konna ni shurui ga aru n desu ka.",
+          "text_vi": "Có nhiều loại thế này ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:40",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "保険適用のものと自費のものがあります。どうしますか？",
+          "romaji": "Hoken tekiyoo no mono to jihi no mono ga arimasu. Doo shimasu ka.",
+          "text_vi": "Có loại được bảo hiểm chi trả và loại tự trả. Anh chọn loại nào?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "え？それって、何が違うんですか？",
+          "romaji": "E? Sore tte, nani ga chigaun desu ka.",
+          "text_vi": "Hả? Cái đó thì khác nhau ở điểm nào ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "保険適用は保険が使えますけど、自費の方は保険を使わないのでちょっと高くなります。",
+          "romaji": "Hoken tekiyoo wa hoken ga tsukaemasu kedo, jihi no hoo wa hoken o tsukawanai node chotto takaku narimasu.",
+          "text_vi": "Loại bảo hiểm thì dùng được bảo hiểm, còn loại tự trả thì không dùng bảo hiểm nên đắt hơn một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:03",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:07",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "今、決めなきゃダメですか？",
+          "romaji": "Ima, kimenakya dame desu ka.",
+          "text_vi": "Bây giờ tôi phải quyết định luôn không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:11",
+          "speaker_ja": "歯医者",
+          "speaker_romaji": "Haisha",
+          "speaker_vi": "Nha sĩ",
+          "text_ja": "次回で結構ですよ。",
+          "romaji": "Jikai de kekkoo desu yo.",
+          "text_vi": "Lần sau cũng được ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:13",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "あ、じゃあ、考えておきます。",
+          "romaji": "A, jaa, kangaete okimasu.",
+          "text_vi": "À, vậy tôi sẽ suy nghĩ ạ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "しみる",
+          "reading": "しみる",
+          "romaji": "shimiru",
+          "meaning": "ê buốt"
+        },
+        {
+          "word": "ズキズキする",
+          "reading": "ズキズキする",
+          "romaji": "zukizuki suru",
+          "meaning": "nhức nhối"
+        },
+        {
+          "word": "虫歯",
+          "reading": "むしば",
+          "romaji": "mushiba",
+          "meaning": "sâu răng"
+        },
+        {
+          "word": "治療",
+          "reading": "ちりょう",
+          "romaji": "chiryoo",
+          "meaning": "điều trị"
+        },
+        {
+          "word": "詰め物",
+          "reading": "つめもの",
+          "romaji": "tsumemono",
+          "meaning": "miếng trám răng"
+        },
+        {
+          "word": "保険適用",
+          "reading": "ほけんてきよう",
+          "romaji": "hoken tekiyoo",
+          "meaning": "được bảo hiểm chi trả"
+        },
+        {
+          "word": "自費",
+          "reading": "じひ",
+          "romaji": "jihi",
+          "meaning": "tự trả tiền"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Phòng bệnh và đi nha sĩ",
+      "description": "Ôn lại「それって…」,「〜し始める」và「〜ばよかったです」.",
+      "url": "/uploads/lesson-videos/n3-06-health/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "それって、いくらぐらい かかりますか",
+          "romaji": "\"sore\" tte, ikura gurai kakarimasu ka",
+          "text_vi": "\"Cái đó\" thì mất khoảng bao nhiêu?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "それっていくらぐらいかかりますか？",
+          "romaji": "Sore tte ikura gurai kakarimasu ka.",
+          "text_vi": "Cái đó thì mất khoảng bao nhiêu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではアンジェラさんが、「それっていくらぐらいかかりますか？」と言っています。",
+          "romaji": "Kono dooga de wa Anjera-san ga, \"Sore tte ikura gurai kakarimasu ka\" to itte imasu.",
+          "text_vi": "Trong video này, chị Angela nói \"Cái đó thì mất khoảng bao nhiêu?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:20",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「それ」は、会話の中で相手が話した事柄を指して話題にする時に使います。",
+          "romaji": "\"Sore\" wa, kaiwa no naka de aite ga hanashita kotogara o sashite wadai ni suru toki ni tsukaimasu.",
+          "text_vi": "\"Sore\" dùng khi nhắc đến chủ đề mà đối phương vừa nói trong cuộc trò chuyện.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、同僚が「ああ、そろそろインフルエンザの予防接種を受けなきゃ」と言いました。",
+          "romaji": "Kono dooga de wa, dooryoo ga \"Aa, sorosoro infuruenza no yoboo-sesshu o ukenakya\" to iimashita.",
+          "text_vi": "Trong video này, đồng nghiệp nói \"À, sắp đến lúc phải đi tiêm phòng cúm rồi\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "アンジェラさんは、同僚が話したインフルエンザの予防接種を指して「それ」と言いました。",
+          "romaji": "Anjera-san wa, dooryoo ga hanashita infuruenza no yoboo-sesshu o sashite \"sore\" to iimashita.",
+          "text_vi": "Chị Angela dùng \"sore\" để chỉ việc tiêm phòng cúm mà đồng nghiệp vừa nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:54",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、相手が「今度面白そうなイベントがあるよ」と言ったら、",
+          "romaji": "Tatoeba, aite ga \"Kondo omoshirosoo na ibento ga aru yo\" to ittara,",
+          "text_vi": "Ví dụ, nếu đối phương nói \"Sắp tới có sự kiện nghe có vẻ thú vị đấy\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「それって無料ですか？」「それっていつですか？」と聞くことができます。",
+          "romaji": "\"Sore tte muryoo desu ka\", \"sore tte itsu desu ka\" to kiku koto ga dekimasu.",
+          "text_vi": "thì có thể hỏi \"Cái đó miễn phí không?\", \"Cái đó khi nào vậy?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、「希望の大学に合格しました」と聞いたら「それは良かったですね」、",
+          "romaji": "Mata, \"Kiboo no daigaku ni gookaku shimashita\" to kiitara \"sore wa yokatta desu ne\",",
+          "text_vi": "Ngoài ra, nếu nghe nói \"Tôi đã đậu trường đại học mong muốn\" thì đáp \"Vậy thì tốt quá nhỉ\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「パスポートをなくしました」と聞いたら「それは大変ですね」のように、相手の発言全体を受けて感想を言うこともできます。",
+          "romaji": "\"Pasupooto o nakushimashita\" to kiitara \"sore wa taihen desu ne\" no yoo ni, aite no hatsugen zentai o ukete kansoo o iu koto mo dekimasu.",
+          "text_vi": "còn nếu nghe nói \"Tôi làm mất hộ chiếu\" thì đáp \"Vậy thì nguy rồi nhỉ\", tức là cũng có thể nêu cảm tưởng về toàn bộ lời đối phương nói.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "会話の中で知らないことが話題に出てきたとき、「それ」を使って話をさらに進めることができます。",
+          "romaji": "Kaiwa no naka de shiranai koto ga wadai ni dete kita toki, \"sore\" o tsukatte hanashi o sara ni susumeru koto ga dekimasu.",
+          "text_vi": "Khi trong cuộc trò chuyện xuất hiện điều mình chưa biết, có thể dùng \"sore\" để câu chuyện tiếp tục tiến triển.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "きのうから ズキズキしはじめて…",
+          "romaji": "kinoo kara zukizuki-shihajimete…",
+          "text_vi": "Từ hôm qua bắt đầu nhức nhối…",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "昨日からズキズキし始めて…",
+          "romaji": "Kinoo kara zukizuki-shihajimete...",
+          "text_vi": "Từ hôm qua bắt đầu nhức nhối…",
+          "key_phrase": false
+        },
+        {
+          "start": "02:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではビンさんが、「昨日からズキズキし始めて」と言っています。",
+          "romaji": "Kono dooga de wa Bin-san ga, \"Kinoo kara zukizuki-shihajimete\" to itte imasu.",
+          "text_vi": "Trong video này, anh Bin nói \"Từ hôm qua bắt đầu nhức nhối\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ズキズキし始める」は、痛いという状態が開始したことを示しています。",
+          "romaji": "\"Zukizuki-shihajimeru\" wa, itai to iu jootai ga kaishi shita koto o shimeshite imasu.",
+          "text_vi": "\"Zukizuki-shihajimeru\" cho biết trạng thái đau nhức đã bắt đầu.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:19",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ズキズキする」と「始める」という2つの動詞が一緒になって、「ズキズキし始める」という1つの動詞になります。",
+          "romaji": "\"Zukizuki suru\" to \"hajimeru\" to iu futatsu no dooshi ga issho ni natte, \"zukizuki-shihajimeru\" to iu hitotsu no dooshi ni narimasu.",
+          "text_vi": "Hai động từ \"zukizuki suru\" và \"hajimeru\" kết hợp lại thành một động từ \"zukizuki-shihajimeru\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「始める」の前は動詞のます形です。",
+          "romaji": "\"Hajimeru\" no mae wa dooshi no masu-kee desu.",
+          "text_vi": "Trước \"hajimeru\" là dạng masu của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:40",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「日本語を勉強し始める」「雨が降り始める」のように言うこともできます。",
+          "romaji": "\"Nihongo o benkyoo-shihajimeru\", \"ame ga furihajimeru\" no yoo ni iu koto mo dekimasu.",
+          "text_vi": "Cũng có thể nói như \"bắt đầu học tiếng Nhật\", \"trời bắt đầu mưa\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:50",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "もっと はやく くれば よかったです",
+          "romaji": "motto hayaku kureba yokatta desu",
+          "text_vi": "Giá mà đến sớm hơn thì tốt rồi",
+          "key_phrase": false
+        },
+        {
+          "start": "02:57",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "もっと早く来ればよかったです。",
+          "romaji": "Motto hayaku kureba yokatta desu.",
+          "text_vi": "Giá mà tôi đến sớm hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画ではビンさんが、「もっと早く来ればよかったです」と言っています。",
+          "romaji": "Kono dooga de wa Bin-san ga, \"Motto hayaku kureba yokatta desu\" to itte imasu.",
+          "text_vi": "Trong video này, anh Bin nói \"Giá mà tôi đến sớm hơn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:10",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「〜ばよかったです」は、何かをしたことや何かをしなかったことを後悔して残念に思っている気持ちを表します。",
+          "romaji": "\"~ba yokatta desu\" wa, nanika o shita koto ya nanika o shinakatta koto o kookai shite zannen ni omotte iru kimochi o arawashimasu.",
+          "text_vi": "Mẫu \"~ba yokatta desu\" diễn tả cảm giác hối tiếc, nuối tiếc về việc đã làm hoặc đã không làm.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:24",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "ビンさんは、歯医者に早く来ませんでした。それで虫歯になってしまいました。",
+          "romaji": "Bin-san wa, haisha ni hayaku kimasen deshita. Sorede mushiba ni natte shimaimashita.",
+          "text_vi": "Anh Bin đã không đến nha sĩ sớm. Vì vậy anh bị sâu răng.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:34",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "早く来なかったことを後悔しているので、「もっと早く来ればよかったです」と言いました。",
+          "romaji": "Hayaku konakatta koto o kookai shite iru node, \"Motto hayaku kureba yokatta desu\" to iimashita.",
+          "text_vi": "Vì hối tiếc đã không đến sớm nên anh nói \"Giá mà tôi đến sớm hơn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:45",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「よかったです」の前は、動詞の条件形です。",
+          "romaji": "\"Yokatta desu\" no mae wa, dooshi no jooken-kee desu.",
+          "text_vi": "Trước \"yokatta desu\" là thể điều kiện (ba) của động từ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:52",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "自転車事故で怪我をしてしまった時に、「保険に入っておけばよかった」と言ったり、",
+          "romaji": "Jitensha jiko de kega o shite shimatta toki ni, \"Hoken ni haitte okeba yokatta\" to ittari,",
+          "text_vi": "Khi bị thương do tai nạn xe đạp, có thể nói \"Giá mà tôi đã mua bảo hiểm\",",
+          "key_phrase": false
+        },
+        {
+          "start": "04:01",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "セールで使わないものまでたくさん買って帰った後で、「こんなに買わなければよかった」と言ったりすることができます。",
+          "romaji": "Seeru de tsukawanai mono made takusan katte kaetta ato de, \"Konna ni kawanakereba yokatta\" to ittari suru koto ga dekimasu.",
+          "text_vi": "hoặc sau khi mua về rất nhiều thứ cả những món không dùng đến trong đợt giảm giá, có thể nói \"Giá mà tôi đã không mua nhiều thế này\".",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

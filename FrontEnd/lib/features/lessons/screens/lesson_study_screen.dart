@@ -19,8 +19,8 @@ import '../widgets/study/study_step_view.dart';
 
 /// Phiên học một bài, chế độ tập trung: mỗi bước một việc, một nút đi tiếp.
 ///
-/// Mở đầu → từng cảnh video → hội thoại → thẻ từ vựng → kiểm tra nhanh →
-/// hoàn thành (chỉ gồm phần bài thật sự có). [initialStep] cho phép mở thẳng
+/// Mở đầu → từng cảnh video → hội thoại → thẻ từ vựng → thẻ chữ Hán → kiểm
+/// tra nhanh → hoàn thành (chỉ gồm phần bài thật sự có). [initialStep] cho phép mở thẳng
 /// một bước từ lộ trình ở màn chi tiết.
 class LessonStudyScreen extends StatefulWidget {
   const LessonStudyScreen({super.key, required this.lessonId, this.initialStep = 0});
@@ -118,7 +118,7 @@ class _StudyBodyState extends State<_StudyBody> {
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: const Text('Rời bài học?'),
-        content: const Text('Những từ bạn đã bấm "Đã nhớ" vẫn được lưu. Lần sau bạn có thể học tiếp bài này.'),
+        content: const Text('Những thẻ bạn đã bấm "Đã nhớ" vẫn được lưu. Lần sau bạn có thể học tiếp bài này.'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('Học tiếp')),
           FilledButton(onPressed: () => Navigator.pop(dialogContext, true), child: const Text('Rời bài')),
@@ -182,6 +182,8 @@ class _StudyBodyState extends State<_StudyBody> {
         xpEarned: _xpEarned,
         learnedWords: session.learnedCount,
         totalWords: session.detail.words.length,
+        learnedKanji: session.learnedKanjiCount,
+        totalKanji: session.detail.kanjis.length,
         quizCorrect: session.correctAnswers,
         quizTotal: session.quiz.length,
         onRetry: () async {

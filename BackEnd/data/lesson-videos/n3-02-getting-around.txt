@@ -1,0 +1,138 @@
+# Lời thoại Tình huống: Tự đi đến nơi mình muốn
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Hỏi đường ở quầy tiếp tân
+00:02 | ビン / Bin / Bin | あの、すみません。 | Ano, sumimasen. | À, xin lỗi ạ.
+00:05 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | はい。 | Hai. | Vâng.
+00:07 | ビン / Bin / Bin | この神社に行きたいんですけど、どのぐらいかかりますか？ | Kono jinja ni ikitai n desu kedo, dono gurai kakarimasu ka. | Tôi muốn đến đền này, mất khoảng bao lâu ạ?
+00:13 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | 歩いていかれますか？ | Aruite ikaremasu ka. | Anh đi bộ ạ?
+00:14 | ビン / Bin / Bin | いえ、自転車が借りられたので、自転車で行こうと思っています。 | Ie, jitensha ga karirareta node, jitensha de ikoo to omotte imasu. | Không ạ, vì thuê được xe đạp nên tôi định đi bằng xe đạp.
+00:20 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | そうですね、自転車で5、6分ですかね。 | Soo desu ne, jitensha de go, rokubun desu ka ne. | Để xem nào, đi xe đạp khoảng 5, 6 phút nhỉ.
+*00:26 | ビン / Bin / Bin | そうですか。あと、この神社の近くでお昼ご飯食べられるところってありますか？この辺の名物とか。 | Soo desu ka. Ato, kono jinja no chikaku de ohirugohan taberareru tokoro tte arimasu ka. Kono hen no meebutsu toka. | Vậy ạ. Ngoài ra, gần đền này có chỗ nào ăn trưa được không ạ? Chẳng hạn đặc sản quanh đây.
+00:36 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | そうですね。名物じゃないんですけど、おいしいお蕎麦屋さんがありますよ。 | Soo desu ne. Meebutsu janai n desu kedo, oishii osobaya-san ga arimasu yo. | Để xem nào. Không phải đặc sản nhưng có một quán mì soba rất ngon đấy.
+00:45 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | この神社の裏手の… | Kono jinja no urate no... | Ở phía sau đền này...
+00:48 | ビン / Bin / Bin | すみません、ここに書いてもらってもいいですか？ | Sumimasen, koko ni kaite moratte mo ii desu ka. | Xin lỗi, chị viết giúp vào đây được không ạ?
+00:52 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | はい。 | Hai. | Vâng.
+00:53 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | この神社から、こっちの道を行くと、ここに橋がありますから、この橋を渡ってください。 | Kono jinja kara, kocchi no michi o iku to, koko ni hashi ga arimasu kara, kono hashi o watatte kudasai. | Từ đền này đi theo con đường bên này thì sẽ có một cây cầu ở đây, anh hãy qua cầu này.
+01:05 | ビン / Bin / Bin | ここからこの道で、ここに橋があるんですね。 | Koko kara kono michi de, koko ni hashi ga aru n desu ne. | Từ đây đi theo con đường này, và có cây cầu ở đây nhỉ.
+01:09 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | あ、そうです、そうです。この橋を渡るとすぐに、お店の看板があります。 | A, soo desu, soo desu. Kono hashi o wataru to sugu ni, omise no kanban ga arimasu. | À, đúng rồi, đúng rồi. Qua cây cầu này là thấy ngay biển hiệu của quán.
+01:16 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | お店の名前は、ぶんか庵というお店です。 | Omise no namae wa, Bunka-an to iu omise desu. | Tên quán là quán "Bunka-an".
+01:19 | ビン / Bin / Bin | ぶんか庵…すみません、どんな字を書きますか？ | Bunka-an... Sumimasen, donna ji o kakimasu ka. | Bunka-an... Xin lỗi, chữ đó viết thế nào ạ?
+01:24 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | あ、ぶんかはひらがなで、庵はこう書きます。 | A, bunka wa hiragana de, an wa koo kakimasu. | À, "bunka" viết bằng hiragana, còn "an" thì viết thế này.
+01:38 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | 地図では、ここがぶんか庵です。 | Chizu de wa, koko ga Bunka-an desu. | Trên bản đồ thì chỗ này là Bunka-an.
+01:44 | ビン / Bin / Bin | あ、そうですか。ありがとうございます。行ってみます。 | A, soo desu ka. Arigatoo gozaimasu. Itte mimasu. | À, vậy ạ. Cảm ơn chị. Tôi sẽ đi thử.
+01:48 | 受付の女性 / Uketsuke no josee / Nhân viên tiếp tân (nữ) | はい。いってらっしゃいませ。お気をつけて。 | Hai. Itterasshaimase. Oki o tsukete. | Vâng. Chúc anh đi vui vẻ. Anh đi cẩn thận nhé.
+### từ vựng
+神社 | じんじゃ | jinja | đền Thần đạo
+名物 | めいぶつ | meebutsu | đặc sản
+蕎麦屋 | そばや | sobaya | quán mì soba
+裏手 | うらて | urate | phía sau
+橋を渡る | はしをわたる | hashi o wataru | qua cầu
+看板 | かんばん | kanban | biển hiệu
+
+## scene-2.mp4
+# Chỉ đường khi đi nhờ xe
+00:02 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | ビンさん、乗ってく？ | Bin-san, notteku? | Anh Bin, có đi nhờ xe không?
+00:05 | ビン / Bin / Bin | え？いいんですか？遠回りになりませんか？ | E? Ii n desu ka. Toomawari ni narimasen ka. | Hả? Được ạ? Có phải đi đường vòng không ạ?
+00:11 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 文化小学校の方だよね？ | Bunka Shoogakkoo no hoo da yo ne. | Là phía trường tiểu học Bunka đúng không?
+00:14 | ビン / Bin / Bin | はい、そうです。 | Hai, soo desu. | Vâng, đúng ạ.
+00:16 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 大丈夫、帰り道だから。 | Daijoobu, kaerimichi da kara. | Không sao, vì là đường về mà.
+00:17 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | どうぞ。 | Doozo. | Mời lên xe.
+00:19 | ビン / Bin / Bin | すみません、ありがとうございます。 | Sumimasen, arigatoo gozaimasu. | Xin lỗi, cảm ơn anh.
+00:31 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | えっと、この先は？ | Etto, kono saki wa? | À, đoạn phía trước thì sao?
+00:35 | ビン / Bin / Bin | このまままっすぐ100mぐらい行ってください。 | Kono mama massugu hyakumeetoru gurai itte kudasai. | Cứ đi thẳng như thế này khoảng 100 mét.
+00:40 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 100mくらいね。 | Hyakumeetoru kurai ne. | Khoảng 100 mét nhỉ.
+00:42 | ビン / Bin / Bin | はい。 | Hai. | Vâng.
+00:44 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | その後は？ | Sono ato wa? | Sau đó thì sao?
+*00:46 | ビン / Bin / Bin | あの、青くて大きい看板で、えっと… | Ano, aokute ookii kanban de, etto... | À, chỗ có biển hiệu to màu xanh, à...
+00:54 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 行き先が書いてある標識ね。 | Ikisaki ga kaite aru hyooshiki ne. | Là biển chỉ đường có ghi nơi đến nhỉ.
+01:00 | ビン / Bin / Bin | はい、その標識のさっきの信号のところを右に曲がってください。 | Hai, sono hyooshiki no sakki no shingoo no tokoro o migi ni magatte kudasai. | Vâng, đến chỗ đèn tín hiệu ở biển đó thì anh rẽ phải.
+01:11 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 右ね。 | Migi ne. | Rẽ phải nhỉ.
+01:22 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | この後は？ | Kono ato wa? | Sau đó thì sao?
+*01:26 | ビン / Bin / Bin | 丸くて赤い標識のところを、左に入ってください。 | Marukute akai hyooshiki no tokoro o, hidari ni haitte kudasai. | Ở chỗ biển báo tròn màu đỏ, hãy rẽ vào bên trái.
+01:32 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | え？あれは進入禁止だから、車は入れないよ。 | E? Are wa shinnyuu kinshi da kara, kuruma wa hairenai yo. | Hả? Cái đó là biển cấm vào nên xe hơi không vào được đâu.
+01:38 | ビン / Bin / Bin | そうなんですか？僕、いつも歩きだから。 | Soo nan desu ka. Boku, itsumo aruki da kara. | Vậy ạ? Vì tôi lúc nào cũng đi bộ nên...
+01:43 | ビン / Bin / Bin | じゃあ、その標識の辺で大丈夫です。 | Jaa, sono hyooshiki no hen de daijoobu desu. | Vậy thì dừng ở chỗ gần biển đó là được ạ.
+01:47 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | え？あそこでいいの？ | E? Asoko de ii no? | Hả? Chỗ đó được sao?
+01:50 | ビン / Bin / Bin | ええ、あそこから家まで2、3分なんで。 | Ee, asoko kara ie made ni, sanpun nan de. | Vâng, vì từ đó về nhà chỉ mất 2, 3 phút thôi ạ.
+01:55 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | うん、わかった。 | Un, wakatta. | Ừ, hiểu rồi.
+02:04 | ビン / Bin / Bin | ありがとうございました。助かりました。 | Arigatoo gozaimashita. Tasukarimashita. | Cảm ơn anh. Anh đã giúp tôi nhiều lắm ạ.
+02:10 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | じゃあ、また明日ね。お疲れ様。 | Jaa, mata ashita ne. Otsukaresama. | Vậy mai gặp lại nhé. Vất vả rồi.
+02:15 | ビン / Bin / Bin | はい、お疲れ様でした。 | Hai, otsukaresama deshita. | Vâng, anh vất vả rồi ạ.
+### từ vựng
+遠回り | とおまわり | toomawari | đi đường vòng
+帰り道 | かえりみち | kaerimichi | đường về
+標識 | ひょうしき | hyooshiki | biển báo
+行き先 | いきさき | ikisaki | nơi đến
+信号 | しんごう | shingoo | đèn tín hiệu
+進入禁止 | しんにゅうきんし | shinnyuu kinshi | cấm đi vào
+
+## scene-3.mp4
+# Hàng đặt mua bị giao chậm
+00:07 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | もしもし？こちら、ネット通販ぶんかモールの田中と申します。サントスアンジェラ様のお電話でよろしいでしょうか。 | Moshi moshi? Kochira, netto tsuuhan Bunka Mooru no Tanaka to mooshimasu. Santosu Anjera-sama no odenwa de yoroshii deshoo ka. | A lô? Tôi là Tanaka ở cửa hàng bán hàng qua mạng Bunka Mall. Đây có phải số điện thoại của chị Santos Angela không ạ?
+00:19 | アンジェラ / Anjera / Angela | はい、そうです。 | Hai, soo desu. | Vâng, đúng rồi ạ.
+00:23 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | いつもありがとうございます。先日ご注文いただいたバッグの件でご連絡させていただきました。今、お時間よろしいでしょうか。 | Itsumo arigatoo gozaimasu. Senjitsu gochuumon itadaita baggu no ken de gorenraku sasete itadakimashita. Ima, ojikan yoroshii deshoo ka. | Cảm ơn chị đã luôn ủng hộ. Tôi liên lạc về chiếc túi chị đã đặt hôm trước. Bây giờ chị có tiện nói chuyện không ạ?
+00:37 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:40 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | あの、大変申し訳ありませんが、木曜日着の配送予定だった商品のお届けが、土曜日になってしまいそうなんですが… | Ano, taihen mooshiwake arimasen ga, mokuyoobi-chaku no haisoo yotee datta shoohin no otodoke ga, doyoobi ni natte shimaisoo nan desu ga... | À, thành thật xin lỗi chị, món hàng dự kiến giao đến vào thứ Năm có vẻ sẽ bị giao muộn đến thứ Bảy ạ...
+00:49 | アンジェラ / Anjera / Angela | え？そうなんですか？どうしよう… | E? Soo nan desu ka. Dooshiyoo... | Hả? Vậy ạ? Làm sao bây giờ...
+*00:56 | アンジェラ / Anjera / Angela | 土曜日の友達の結婚式で使うつもりだったんですけど。 | Doyoobi no tomodachi no kekkonshiki de tsukau tsumori datta n desu kedo. | Tôi đã định dùng vào đám cưới của bạn hôm thứ Bảy.
+01:03 | アンジェラ / Anjera / Angela | 金曜日までに届けてもらうことってできませんか？ | Kin'yoobi made ni todokete morau koto tte dekimasen ka. | Có thể giao cho tôi trước thứ Sáu được không ạ?
+01:10 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | そうですね…。金曜日に、星丸運輸中央配送センターには届いているんですが… | Soo desu ne.... Kin'yoobi ni, Hoshimaru Un'yu Chuuoo Haisoo Sentaa ni wa todoite iru n desu ga... | Để xem nào... Vào thứ Sáu thì hàng sẽ đến Trung tâm giao hàng trung tâm của Vận tải Hoshimaru, nhưng mà...
+01:22 | アンジェラ / Anjera / Angela | ああ、それって高速バスターミナルの近くですよね？ | Aa, sore tte koosoku basu taaminaru no chikaku desu yo ne. | À, chỗ đó ở gần bến xe buýt đường dài phải không ạ?
+01:28 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | はい、さようでございます。 | Hai, sayoo de gozaimasu. | Vâng, đúng như vậy ạ.
+01:32 | アンジェラ / Anjera / Angela | あの、私が配送センターに取りに行くことってできますか？ | Ano, watashi ga haisoo sentaa ni tori ni iku koto tte dekimasu ka. | À, tôi tự đến trung tâm giao hàng để lấy có được không ạ?
+01:38 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | はい、それでよろしいでしょうか。 | Hai, sore de yoroshii deshoo ka. | Vâng, như vậy có được không ạ?
+01:42 | アンジェラ / Anjera / Angela | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, được ạ.
+01:44 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | こちらの不手際で、お手数をおかけして申し訳ありません。 | Kochira no futegiwa de, otesuu o okakeshite mooshiwake arimasen. | Do sơ suất của chúng tôi, thành thật xin lỗi vì đã làm phiền chị.
+01:50 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | そうしましたら、こちらで連絡しておきますので、配送センターで、ご住所とお名前、今から言う荷物の番号をお伝えいただけますか。 | Soo shimashitara, kochira de renraku shite okimasu node, haisoo sentaa de, gojuusho to onamae, ima kara iu nimotsu no bangoo o otsutae itadakemasu ka. | Vậy thì chúng tôi sẽ liên lạc trước, nên khi đến trung tâm giao hàng, chị vui lòng cho biết địa chỉ, họ tên và số hàng mà tôi sắp đọc nhé.
+02:06 | アンジェラ / Anjera / Angela | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi ạ.
+02:09 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | では、お荷物の番号は… | Dewa, onimotsu no bangoo wa... | Vậy, số hàng của chị là...
+02:12 | アンジェラ / Anjera / Angela | あ、ちょっと待ってください。今メモを用意しますので。 | A, chotto matte kudasai. Ima memo o yooi shimasu node. | À, xin chờ một chút. Tôi chuẩn bị giấy ghi chú ngay ạ.
+02:24 | アンジェラ / Anjera / Angela | はい、お願いします。 | Hai, onegaishimasu. | Vâng, anh/chị đọc đi ạ.
+### từ vựng
+通販 | つうはん | tsuuhan | bán hàng qua mạng
+注文 | ちゅうもん | chuumon | đặt hàng
+配送 | はいそう | haisoo | giao hàng
+届ける | とどける | todokeru | giao đến
+結婚式 | けっこんしき | kekkonshiki | đám cưới
+不手際 | ふてぎわ | futegiwa | sơ suất
+荷物 | にもつ | nimotsu | hàng, kiện hàng
+
+## summary.mp4
+# Ôn tập: Tự đi đến nơi mình muốn
+00:00 |  /  / Chủ đề | どようびに つかう つもりだった | doyoobi ni tsukau tsumori datta | Đã định dùng vào thứ Bảy
+00:07 | アンジェラ / Anjera / Angela | 土曜日の友達の結婚式で使うつもりだったんですけど… | Doyoobi no tomodachi no kekkonshiki de tsukau tsumori datta n desu kedo... | Tôi đã định dùng vào đám cưới của bạn hôm thứ Bảy...
+00:14 | ナレーター / Nareetaa / Người dẫn | この動画でアンジェラさんは、荷物の到着が遅れるということを聞いて、「土曜日に使うつもりだったんですけど」と言っています。 | Kono dooga de Anjera-san wa, nimotsu no toochaku ga okureru to iu koto o kiite, "Doyoobi ni tsukau tsumori datta n desu kedo" to itte imasu. | Trong video này, chị Angela nghe tin hàng đến muộn và nói "Tôi đã định dùng vào thứ Bảy".
+00:28 | ナレーター / Nareetaa / Người dẫn | 「動詞＋つもりです」は、自分でそうしようと思って予定しているときに使います。 | "Dooshi + tsumori desu" wa, jibun de soo shiyoo to omotte yotee shite iru toki ni tsukaimasu. | "Động từ + tsumori desu" dùng khi bản thân nghĩ sẽ làm như vậy và đang có dự định.
+00:41 | ナレーター / Nareetaa / Người dẫn | 「動詞＋つもりでした」は、自分でそうしようと思って予定していたことが、実際には実現しなかったときに使います。 | "Dooshi + tsumori deshita" wa, jibun de soo shiyoo to omotte yotee shite ita koto ga, jissai ni wa jitsugen shinakatta toki ni tsukaimasu. | "Động từ + tsumori deshita" dùng khi điều mà bản thân đã nghĩ và dự định làm thực tế lại không thực hiện được.
+00:57 | ナレーター / Nareetaa / Người dẫn | アンジェラさんは、土曜日の友達の結婚式で、注文したバッグを使うことを予定していました。 | Anjera-san wa, doyoobi no tomodachi no kekkonshiki de, chuumon shita baggu o tsukau koto o yotee shite imashita. | Chị Angela đã dự định dùng chiếc túi đã đặt mua trong đám cưới của bạn vào thứ Bảy.
+01:08 | ナレーター / Nareetaa / Người dẫn | しかし実際にはバッグの到着が遅れて、そのバッグが使えなくなってしまいました。 | Shikashi jissai ni wa baggu no toochaku ga okurete, sono baggu ga tsukaenaku natte shimaimashita. | Nhưng thực tế túi đến muộn nên không thể dùng được chiếc túi đó nữa.
+01:18 | ナレーター / Nareetaa / Người dẫn | 予定どおりいかず困ったアンジェラさんは、そのことを「土曜日に使うつもりだったんですけど」と相手に伝えました。 | Yotee-doori ikazu komatta Anjera-san wa, sono koto o "Doyoobi ni tsukau tsumori datta n desu kedo" to aite ni tsutaemashita. | Chị Angela gặp khó khăn vì mọi việc không như dự định nên đã nói với đối phương "Tôi đã định dùng vào thứ Bảy".
+01:32 | ナレーター / Nareetaa / Người dẫn | 「つもりです」「つもりでした」の前は、動詞の辞書形、ない形です。 | "Tsumori desu" "tsumori deshita" no mae wa, dooshi no jisho-kee, nai-kee desu. | Trước "tsumori desu", "tsumori deshita" là thể từ điển hoặc thể nai của động từ.
+01:42 | ナレーター / Nareetaa / Người dẫn | 例えば、「冬休みに国に帰るつもりだったんですけど、飛行機のチケットが取れませんでした」と言ったり、 | Tatoeba, "Fuyuyasumi ni kuni ni kaeru tsumori datta n desu kedo, hikooki no chiketto ga toremasen deshita" to ittari, | Ví dụ, có thể nói "Tôi đã định về nước vào kỳ nghỉ đông nhưng không đặt được vé máy bay",
+01:53 | ナレーター / Nareetaa / Người dẫn | 「週末は出かけないつもりでしたが、急な仕事で大阪まで行くことになりました」と言ったりすることができます。 | "Shuumatsu wa dekakenai tsumori deshita ga, kyuu na shigoto de Oosaka made iku koto ni narimashita" to ittari suru koto ga dekimasu. | hoặc "Cuối tuần tôi đã định không đi đâu nhưng vì việc đột xuất nên phải đi Osaka".
+02:05 |  /  / Chủ đề | このへんの めいぶつとか… | konohen no meebutsu toka... | Chẳng hạn đặc sản quanh đây...
+02:12 | ビン / Bin / Bin | この辺の名物とか… | Kono hen no meebutsu toka... | Chẳng hạn đặc sản quanh đây...
+02:15 | ナレーター / Nareetaa / Người dẫn | この動画では、ビンさんが昼ごはんについて質問をして、「この辺の名物とか」と言っています。 | Kono dooga de wa, Bin-san ga hirugohan ni tsuite shitsumon o shite, "Kono hen no meebutsu toka" to itte imasu. | Trong video này, anh Bin hỏi về bữa trưa và nói "Chẳng hạn đặc sản quanh đây".
+02:28 | ナレーター / Nareetaa / Người dẫn | 「とか」は、例を挙げるときに使います。話し言葉でよく使われます。 | "Toka" wa, ree o ageru toki ni tsukaimasu. Hanashikotoba de yoku tsukawaremasu. | "Toka" dùng khi nêu ví dụ. Hay được dùng trong văn nói.
+02:39 | ナレーター / Nareetaa / Người dẫn | この動画では、ビンさんがどんな昼ご飯をイメージしているかを具体的に伝えるために、「この辺の名物とか」と例を挙げました。 | Kono dooga de wa, Bin-san ga donna hirugohan o imeeji shite iru ka o gutaiteki ni tsutaeru tame ni, "Kono hen no meebutsu toka" to ree o agemashita. | Trong video này, để truyền đạt cụ thể bữa trưa mà mình hình dung là kiểu gì, anh Bin đã nêu ví dụ "Chẳng hạn đặc sản quanh đây".
+02:55 | ナレーター / Nareetaa / Người dẫn | 「とか」の前は名詞が多いですが、動詞や形容詞も使うことができます。 | "Toka" no mae wa meeshi ga ooi desu ga, dooshi ya keeyooshi mo tsukau koto ga dekimasu. | Trước "toka" thường là danh từ, nhưng cũng có thể dùng động từ hoặc tính từ.
+03:04 | ナレーター / Nareetaa / Người dẫn | 「お土産はチョコレートとかいいんじゃない？」 | "Omiyage wa chokoreeto toka ii n janai?" | "Quà lưu niệm thì sô-cô-la chẳng hạn là được đấy chứ?"
+03:10 | ナレーター / Nareetaa / Người dẫn | 「京都とか日光とか、紅葉がきれいですよ」 | "Kyooto toka Nikkoo toka, kooyoo ga kiree desu yo" | "Như Kyoto hay Nikko chẳng hạn, lá đỏ đẹp lắm đấy"
+03:16 | ナレーター / Nareetaa / Người dẫn | 「帰るときは『失礼します』とか『お先に失礼します』と挨拶しましょう」のように言うことができます。 | "Kaeru toki wa 'Shitsuree shimasu' toka 'Osaki ni shitsuree shimasu' to aisatsu shimashoo" no yoo ni iu koto ga dekimasu. | Có thể nói như "Khi ra về hãy chào bằng những câu như 'Tôi xin phép' hay 'Tôi xin phép về trước'".
+03:26 |  /  / Chủ đề | あおくて、おおきい かんばん | aokute, ookii kanban | Biển hiệu to và màu xanh
+03:34 | ビン / Bin / Bin | 青くて大きい看板で、えっと… | Aokute ookii kanban de, etto... | Là biển hiệu to màu xanh, à...
+03:45 | ナレーター / Nareetaa / Người dẫn | この動画では、ビンさんが目印を説明するとき、「青くて大きい看板」と言っています。 | Kono dooga de wa, Bin-san ga mejirushi o setsumee suru toki, "Aokute ookii kanban" to itte imasu. | Trong video này, khi giải thích điểm mốc, anh Bin nói "biển hiệu to màu xanh".
+03:58 | ナレーター / Nareetaa / Người dẫn | 「青い」「大きい」の2つの形容詞を続けて使っているので、「青い」が「青くて」になっています。 | "Aoi" "ookii" no futatsu no keeyooshi o tsuzukete tsukatte iru node, "aoi" ga "aokute" ni natte imasu. | Vì dùng liên tiếp hai tính từ "aoi" (xanh) và "ookii" (to) nên "aoi" trở thành "aokute".
+04:11 | ナレーター / Nareetaa / Người dẫn | このように形容詞を続けて使うときは、前の形容詞の形が変わります。 | Kono yoo ni keeyooshi o tsuzukete tsukau toki wa, mae no keeyooshi no katachi ga kawarimasu. | Khi dùng liên tiếp các tính từ như vậy thì dạng của tính từ đứng trước sẽ thay đổi.
+04:21 | ナレーター / Nareetaa / Người dẫn | い形容詞は「い」をとって「くて」をつけます。 | I-keeyooshi wa "i" o totte "kute" o tsukemasu. | Với tính từ đuôi i, bỏ "i" rồi thêm "kute".
+04:29 | ナレーター / Nareetaa / Người dẫn | 例えば、「楽しい」「面白い」を続けて使うときは、「楽しくて面白い」となります。 | Tatoeba, "tanoshii" "omoshiroi" o tsuzukete tsukau toki wa, "tanoshikute omoshiroi" to narimasu. | Ví dụ, khi dùng liên tiếp "tanoshii" (vui) và "omoshiroi" (thú vị) thì thành "tanoshikute omoshiroi".
+04:42 | ナレーター / Nareetaa / Người dẫn | 「夏祭りは楽しくて面白いです」のように言うことができます。 | "Natsumatsuri wa tanoshikute omoshiroi desu" no yoo ni iu koto ga dekimasu. | Có thể nói như "Lễ hội mùa hè vừa vui vừa thú vị".
+04:51 | ナレーター / Nareetaa / Người dẫn | な形容詞は「な」をとって「で」をつけます。 | Na-keeyooshi wa "na" o totte "de" o tsukemasu. | Với tính từ đuôi na, bỏ "na" rồi thêm "de".
+04:59 | ナレーター / Nareetaa / Người dẫn | 例えば、「簡単な」「面白い」を続けて使うときは、「簡単で面白い」となります。 | Tatoeba, "kantan na" "omoshiroi" o tsuzukete tsukau toki wa, "kantan de omoshiroi" to narimasu. | Ví dụ, khi dùng liên tiếp "kantan na" (đơn giản) và "omoshiroi" (thú vị) thì thành "kantan de omoshiroi".
+05:11 | ナレーター / Nareetaa / Người dẫn | 「このゲームは簡単で面白いです」のように言うことができます。 | "Kono geemu wa kantan de omoshiroi desu" no yoo ni iu koto ga dekimasu. | Có thể nói như "Trò chơi này đơn giản mà thú vị".
+05:20 | ナレーター / Nareetaa / Người dẫn | ただし、い形容詞の「いい」は「よくて」になります。 | Tadashi, i-keeyooshi no "ii" wa "yokute" ni narimasu. | Tuy nhiên, tính từ đuôi i "ii" (tốt) sẽ thành "yokute".
+05:29 | ナレーター / Nareetaa / Người dẫn | 「この自転車、デザインも良くて乗りやすいです」のように言うことができます。 | "Kono jitensha, dezain mo yokute noriyasui desu" no yoo ni iu koto ga dekimasu. | Có thể nói như "Chiếc xe đạp này thiết kế cũng đẹp mà lại dễ đi".

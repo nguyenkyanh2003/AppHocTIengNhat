@@ -1,0 +1,133 @@
+# Lời thoại Tình huống: Chào hỏi ở nơi làm việc
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## summary.mp4
+# Tự giới thiệu hợp với từng hoàn cảnh
+00:01 | ナレーター / Nareetaa / Người dẫn | 自己紹介は、職場や学校、ご近所など、新しい人間関係を作り始めるときの第一歩です。 | Jiko-shookai wa, shokuba ya gakkoo, gokinjo nado, atarashii ningen-kankee o tsukuri hajimeru toki no daiippo desu. | Tự giới thiệu là bước đầu tiên khi bắt đầu xây dựng các mối quan hệ mới ở nơi làm việc, trường học, hàng xóm...
+00:15 | ナレーター / Nareetaa / Người dẫn | 相手や場所が変わると、自己紹介の仕方も変わります。 | Aite ya basho ga kawaru to, jiko-shookai no shikata mo kawarimasu. | Khi đối tượng hay địa điểm thay đổi thì cách tự giới thiệu cũng thay đổi.
+00:24 | ナレーター / Nareetaa / Người dẫn | その場に合った適切な自己紹介を心がけましょう。 | Sono ba ni atta tekisetsu na jiko-shookai o kokorogakemashoo. | Hãy cố gắng tự giới thiệu cho phù hợp với hoàn cảnh.
+00:31 | ナレーター / Nareetaa / Người dẫn | 例えば、仕事で取引先に自己紹介をするときは、このような感じになります。 | Tatoeba, shigoto de torihikisaki ni jiko-shookai o suru toki wa, kono yoo na kanji ni narimasu. | Ví dụ, khi tự giới thiệu với đối tác trong công việc thì sẽ như thế này.
+00:41 | ビン / Bin / Bin | 綱広産業のビンです。営業を担当しています。どうぞよろしくお願いします。 | Tsunahiro Sangyoo no Bin desu. Eegyoo o tantoo shite imasu. Doozo yoroshiku onegaishimasu. | Tôi là Bin ở Công ty Sản nghiệp Tsunahiro. Tôi phụ trách kinh doanh. Rất mong được giúp đỡ.
+00:49 | 山田 / Yamada / Yamada | 初めまして。綱広社 広報課の山田です。よろしくお願いします。 | Hajimemashite. Tsunahiro-sha Kooho-ka no Yamada desu. Yoroshiku onegaishimasu. | Rất hân hạnh. Tôi là Yamada ở phòng Quan hệ công chúng của công ty Tsunahiro. Mong được giúp đỡ.
+00:56 | 山田 / Yamada / Yamada | 頂戴します。 | Choodai shimasu. | Tôi xin nhận ạ. (nhận danh thiếp)
+00:58 | ナレーター / Nareetaa / Người dẫn | 職場などでの自己紹介では、家族構成や趣味、特技などの個人的な話題については、言わないことが多いです。 | Shokuba nado de no jiko-shookai de wa, kazoku koosee ya shumi, tokugi nado no kojinteki na wadai ni tsuite wa, iwanai koto ga ooi desu. | Khi tự giới thiệu ở nơi làm việc, người ta thường không nói về những chủ đề cá nhân như thành phần gia đình, sở thích, sở trường.
+01:13 | ナレーター / Nareetaa / Người dẫn | 一方、例えば引っ越して初めて近所の人に自己紹介をするときはどうでしょう？ | Ippoo, tatoeba hikkoshite hajimete kinjo no hito ni jiko-shookai o suru toki wa doo deshoo. | Mặt khác, ví dụ khi mới chuyển nhà và tự giới thiệu với hàng xóm lần đầu thì sao nhỉ?
+01:24 | 田中 / Tanaka / Tanaka | 初めまして。隣に引っ越してきた田中と申します。よろしくお願いします。 | Hajimemashite. Tonari ni hikkoshite kita Tanaka to mooshimasu. Yoroshiku onegaishimasu. | Rất hân hạnh. Tôi là Tanaka, người mới chuyển đến ở bên cạnh. Mong được giúp đỡ.
+01:32 | ビン / Bin / Bin | はじめまして、ビンです。よろしくお願いします。 | Hajimemashite, Bin desu. Yoroshiku onegaishimasu. | Rất hân hạnh, tôi là Bin. Mong được giúp đỡ.
+01:37 | 田中 / Tanaka / Tanaka | これ、私の地元のお菓子です。よかったら召し上がってください。 | Kore, watashi no jimoto no okashi desu. Yokattara meshiagatte kudasai. | Đây là bánh kẹo đặc sản quê tôi. Nếu được thì mời anh dùng.
+01:47 | ビン / Bin / Bin | ありがとうございます。へえ、北海道の出身なんですね。以前、一度旅行したことがあります。 | Arigatoo gozaimasu. Hee, Hokkaidoo no shusshin nan desu ne. Izen, ichido ryokoo shita koto ga arimasu. | Cảm ơn anh. Ồ, anh quê ở Hokkaido nhỉ. Trước đây tôi từng đến đó du lịch một lần.
+01:57 | ビン / Bin / Bin | いいところですよね。 | Ii tokoro desu yo ne. | Là nơi tuyệt vời nhỉ.
+01:59 | 田中 / Tanaka / Tanaka | そうですか。ありがとうございます。 | Soo desu ka. Arigatoo gozaimasu. | Vậy sao. Cảm ơn anh.
+02:02 | 田中 / Tanaka / Tanaka | これからよろしくお願いします。 | Kore kara yoroshiku onegaishimasu. | Từ nay mong được anh giúp đỡ.
+02:06 | ナレーター / Nareetaa / Người dẫn | このように、近所の人に自己紹介をするときは、名前の他に出身地や前に住んでいたところの話など、個人的なことを言う場合もあります。 | Kono yoo ni, kinjo no hito ni jiko-shookai o suru toki wa, namae no hoka ni shusshinchi ya mae ni sunde ita tokoro no hanashi nado, kojinteki na koto o yuu baai mo arimasu. | Như vậy, khi tự giới thiệu với hàng xóm, ngoài tên ra đôi khi còn nói những chuyện cá nhân như quê quán hay nơi từng sống trước đây.
+02:24 | ナレーター / Nareetaa / Người dẫn | ただし最近は、あまり個人的なことは話さず、名前だけを話すこともあります。 | Tadashi saikin wa, amari kojinteki na koto wa hanasazu, namae dake o hanasu koto mo arimasu. | Tuy nhiên gần đây cũng có khi người ta không nói nhiều chuyện cá nhân mà chỉ nói tên.
+02:36 | ナレーター / Nareetaa / Người dẫn | 自己紹介は、相手や場所などの状況によって、伝えるべき内容や伝え方が変わります。 | Jiko-shookai wa, aite ya basho nado no jookyoo ni yotte, tsutaeru beki naiyoo ya tsutaekata ga kawarimasu. | Tùy theo tình huống như đối tượng, địa điểm mà nội dung cần truyền đạt và cách truyền đạt trong lời tự giới thiệu sẽ thay đổi.
+02:49 | ナレーター / Nareetaa / Người dẫn | 場面に合った自己紹介をして、より良い人間関係を築いていきましょう。 | Bamen ni atta jiko-shookai o shite, yori yoi ningen-kankee o kizuite ikimashoo. | Hãy tự giới thiệu phù hợp với từng hoàn cảnh để xây dựng những mối quan hệ tốt đẹp hơn nhé.
+### từ vựng
+自己紹介 | じこしょうかい | jiko-shookai | tự giới thiệu
+取引先 | とりひきさき | torihikisaki | đối tác
+営業 | えいぎょう | eegyoo | kinh doanh
+担当 | たんとう | tantoo | phụ trách
+地元 | じもと | jimoto | quê nhà
+出身 | しゅっしん | shusshin | quê quán
+人間関係 | にんげんかんけい | ningen-kankee | quan hệ giữa người với người
+
+## scene-2.mp4
+# Tập tự giới thiệu với bạn
+00:00 | 友達 / Tomodachi / Bạn | ねえ、そういえば、就職先が決まったんだって？ | Nee, soo ieba, shuushokusaki ga kimattan datte? | Này, nói mới nhớ, nghe nói cậu đã có nơi làm việc rồi hả?
+*00:07 | ビン / Bin / Bin | うん。来週から出勤。今は色々準備しているところ。 | Un. Raishuu kara shukkin. Ima wa iroiro junbi shite iru tokoro. | Ừ. Từ tuần sau đi làm. Bây giờ mình đang chuẩn bị đủ thứ.
+00:12 | 友達 / Tomodachi / Bạn | へえー、すごい！おめでとう！よかったね。 | Hee, sugoi! Omedetoo! Yokatta ne. | Ồ, giỏi quá! Chúc mừng nhé! Tốt quá rồi.
+00:18 | ビン / Bin / Bin | ありがとう、ありがとう。 | Arigatoo, arigatoo. | Cảm ơn, cảm ơn.
+*00:19 | ビン / Bin / Bin | そういえば、明日、自己紹介するように言われていて。 | Soo ieba, ashita, jiko-shookai suru yoo ni iwarete ite. | Nói mới nhớ, mình được dặn là ngày mai phải tự giới thiệu.
+00:25 | 友達 / Tomodachi / Bạn | ああ、朝礼の時間？ | Aa, chooree no jikan? | À, trong giờ họp đầu giờ sáng à?
+00:28 | ビン / Bin / Bin | うん。みんなの前で。ちょっと気が重いんだよね。 | Un. Minna no mae de. Chotto ki ga omoi n da yo ne. | Ừ. Trước mặt mọi người. Mình hơi thấy nặng nề trong lòng.
+00:35 | 友達 / Tomodachi / Bạn | 緊張するよね。人前で話すのって。 | Kinchoo suru yo ne. Hitomae de hanasu no tte. | Hồi hộp nhỉ. Nói trước mặt mọi người ấy.
+00:39 | ビン / Bin / Bin | 苦手なんだよね。 | Nigate nan da yo ne. | Mình không giỏi việc đó.
+00:41 | 友達 / Tomodachi / Bạn | そっか。じゃあ、ちょっと練習してみる？ | Sokka. Jaa, chotto renshuu shite miru? | Vậy à. Thế thì luyện thử một chút nhé?
+00:47 | ビン / Bin / Bin | え？ | E? | Hả?
+00:53 | ビン / Bin / Bin | 初めまして。ビンと申します。ベトナムのハノイから来ました。26歳です。 | Hajimemashite. Bin to mooshimasu. Betonamu no Hanoi kara kimashita. Nijuurokusai desu. | Rất hân hạnh. Tôi tên là Bin. Tôi đến từ Hà Nội, Việt Nam. Tôi 26 tuổi.
+01:02 | ビン / Bin / Bin | 家族はベトナムのホーチミンに住んでいます。今、私は文化市南町に住んでいます。趣味は読書です。よろしくお願いします。 | Kazoku wa Betonamu no Hoochimin ni sunde imasu. Ima watashi wa Bunka-shi Minami-machi ni sunde imasu. Shumi wa dokusho desu. Yoroshiku onegaishimasu. | Gia đình tôi sống ở thành phố Hồ Chí Minh, Việt Nam. Hiện tôi sống ở khu Minami-machi, thành phố Bunka. Sở thích của tôi là đọc sách. Mong mọi người giúp đỡ.
+01:19 | ビン / Bin / Bin | どう？ | Doo? | Thế nào?
+01:22 | 友達 / Tomodachi / Bạn | 職場で話すなら、もうちょっとシンプルでもいいんじゃない？ | Shokuba de hanasu nara, moo chotto shinpuru demo ii n janai? | Nếu nói ở chỗ làm thì đơn giản hơn một chút cũng được đấy chứ?
+01:27 | ビン / Bin / Bin | そうかな？ | Soo ka na? | Thế à?
+01:30 | 友達 / Tomodachi / Bạn | 国籍ぐらいだったらいいけど、年齢や家族のこととかは言わなくてもいいかな。 | Kokuseki gurai dattara ii kedo, nenree ya kazoku no koto toka wa iwanakute mo ii ka na. | Nếu là quốc tịch thì được, còn tuổi tác hay chuyện gia đình thì không cần nói cũng được.
+01:37 | ビン / Bin / Bin | え？じゃあ、何を話すの？ | E? Jaa, nani o hanasu no? | Hả? Vậy thì nói gì đây?
+01:43 | 友達 / Tomodachi / Bạn | 名前と、国と、これからの意気込みとか。 | Namae to, kuni to, korekara no ikigomi toka. | Tên, đất nước, và quyết tâm từ nay về sau chẳng hạn.
+01:53 | 友達 / Tomodachi / Bạn | 「一生懸命頑張ります」とか、「ご指導をよろしくお願いします」とか。 | "Isshookenmee ganbarimasu" toka, "goshidoo o yoroshiku onegaishimasu" toka. | Chẳng hạn như "Tôi sẽ cố gắng hết sức", "Mong được chỉ bảo".
+01:59 | 友達 / Tomodachi / Bạn | ちょっと待って、書いとくね。 | Chotto matte, kaitoku ne. | Đợi chút, mình ghi ra cho nhé.
+02:20 | ビン / Bin / Bin | じゃあ、もう一回やってみるね。 | Jaa, moo ikkai yatte miru ne. | Vậy mình thử làm lại một lần nữa nhé.
+02:26 | ビン / Bin / Bin | 初めまして。 | Hajimemashite. | Rất hân hạnh.
+### từ vựng
+就職先 | しゅうしょくさき | shuushokusaki | nơi làm việc mới
+出勤 | しゅっきん | shukkin | đi làm
+朝礼 | ちょうれい | chooree | họp đầu giờ sáng
+気が重い | きがおもい | ki ga omoi | nặng nề trong lòng
+人前 | ひとまえ | hitomae | trước mặt mọi người
+国籍 | こくせき | kokuseki | quốc tịch
+意気込み | いきごみ | ikigomi | quyết tâm
+
+## scene-1.mp4
+# Giới thiệu nhân viên mới trong buổi họp sáng
+00:01 | 社員一同 / Shain ichidoo / Mọi người | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng.
+00:03 | 社員一同 / Shain ichidoo / Mọi người | おはようございます。 | Ohayoo gozaimasu. | Chào buổi sáng.
+00:05 | リーダー / Riidaa / Trưởng nhóm | 今日はまず、新入社員を紹介します。本日から入社のビンさんです。 | Kyoo wa mazu, shinnyuu-shain o shookai shimasu. Honjitsu kara nyuusha no Bin-san desu. | Hôm nay trước tiên tôi xin giới thiệu nhân viên mới. Đây là anh Bin, bắt đầu vào công ty từ hôm nay.
+00:14 | リーダー / Riidaa / Trưởng nhóm | ビンさん、一言お願いします。 | Bin-san, hitokoto onegaishimasu. | Anh Bin, xin anh nói đôi lời.
+*00:22 | ビン / Bin / Bin | 今日からお世話になります。ビンと申します。ベトナムの出身です。頑張りますので、ご指導よろしくお願いします。 | Kyoo kara osewa ni narimasu. Bin to mooshimasu. Betonamu no shusshin desu. Ganbarimasu node, goshidoo yoroshiku onegaishimasu. | Từ hôm nay xin được mọi người giúp đỡ. Tôi tên là Bin, quê ở Việt Nam. Tôi sẽ cố gắng, mong mọi người chỉ bảo.
+00:37 | リーダー / Riidaa / Trưởng nhóm | ありがとう。みんなでフォローするから、何でも相談してください。 | Arigatoo. Minna de foroo suru kara, nandemo soodan shite kudasai. | Cảm ơn anh. Mọi người sẽ cùng hỗ trợ nên có gì cứ trao đổi nhé.
+*00:43 | ビン / Bin / Bin | はい。分からないことがあったら、早めにうかがうようにします。 | Hai. Wakaranai koto ga attara, hayame ni ukagau yoo ni shimasu. | Vâng. Nếu có điều gì không hiểu, tôi sẽ cố gắng hỏi sớm ạ.
+00:49 | リーダー / Riidaa / Trưởng nhóm | じゃあ、戻っていいですよ。 | Jaa, modotte ii desu yo. | Vậy anh có thể về chỗ được rồi.
+00:56 | リーダー / Riidaa / Trưởng nhóm | 事故に気をつけて。本日も安全第一で頑張りましょう。 | Jiko ni ki o tsukete. Honjitsu mo anzen daiichi de ganbarimashoo. | Hãy chú ý tránh tai nạn. Hôm nay cũng cùng cố gắng với phương châm an toàn là trên hết nhé.
+01:01 | 社員一同 / Shain ichidoo / Mọi người | よろしくお願いします。 | Yoroshiku onegaishimasu. | Xin nhờ mọi người giúp đỡ.
+01:03 | 社員一同 / Shain ichidoo / Mọi người | よろしくお願いします。 | Yoroshiku onegaishimasu. | Xin nhờ mọi người giúp đỡ.
+01:08 | 山田 / Yamada / Yamada | ビンさん、よろしくお願いします。 | Bin-san, yoroshiku onegaishimasu. | Anh Bin, mong anh giúp đỡ.
+01:11 | ビン / Bin / Bin | よろしくお願いします。えっと、お名前は… | Yoroshiku onegaishimasu. Etto, onamae wa... | Xin nhờ chị giúp đỡ. À, tên chị là...
+01:16 | 山田 / Yamada / Yamada | 山田です。よろしくお願いします。 | Yamada desu. Yoroshiku onegaishimasu. | Tôi là Yamada. Mong anh giúp đỡ.
+01:21 | ビン / Bin / Bin | 山田さんですね。これからよろしくお願いします。 | Yamada-san desu ne. Kore kara yoroshiku onegaishimasu. | Chị Yamada nhỉ. Từ nay xin chị giúp đỡ.
+01:27 | 山田 / Yamada / Yamada | 初日なのに落ち着いていましたね。 | Shonichi na no ni ochitsuite imashita ne. | Mới ngày đầu mà anh trông bình tĩnh quá nhỉ.
+01:31 | ビン / Bin / Bin | いえいえ、内心ドキドキしていました。 | Ie ie, naishin dokidoki shite imashita. | Không đâu, trong lòng tôi hồi hộp lắm.
+01:35 | 山田 / Yamada / Yamada | え？そうなんですか？全然そんな風に見えませんでしたよ。 | E? Soo nan desu ka. Zenzen sonna fuu ni miemasen deshita yo. | Hả? Vậy ạ? Trông chẳng giống chút nào đâu.
+01:42 | ビン / Bin / Bin | 人前で話すのは苦手で。 | Hitomae de hanasu no wa nigate de. | Tôi không giỏi nói trước mặt mọi người.
+01:46 | 山田 / Yamada / Yamada | あ、私も苦手だから、気持ちわかります。 | A, watashi mo nigate da kara, kimochi wakarimasu. | À, tôi cũng không giỏi nên hiểu cảm giác của anh.
+01:51 | 山田 / Yamada / Yamada | 何かわからないことがあったら、いつでも聞いてくださいね。 | Nanika wakaranai koto ga attara, itsu demo kiite kudasai ne. | Nếu có điều gì không hiểu thì cứ hỏi tôi bất cứ lúc nào nhé.
+01:56 | ビン / Bin / Bin | はい、ありがとうございます。 | Hai, arigatoo gozaimasu. | Vâng, cảm ơn chị.
+01:59 | 山田 / Yamada / Yamada | 頑張っていきましょうね。 | Ganbatte ikimashoo ne. | Cùng cố gắng nhé.
+02:02 | ビン / Bin / Bin | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+### từ vựng
+新入社員 | しんにゅうしゃいん | shinnyuu-shain | nhân viên mới
+入社 | にゅうしゃ | nyuusha | vào công ty
+お世話になります | おせわになります | osewa ni narimasu | mong được giúp đỡ
+指導 | しどう | shidoo | chỉ bảo, hướng dẫn
+安全第一 | あんぜんだいいち | anzen daiichi | an toàn là trên hết
+内心 | ないしん | naishin | trong lòng
+苦手 | にがて | nigate | không giỏi, ngại
+
+## scene-3.mp4
+# Ôn tập: Chào hỏi ở nơi làm việc
+00:00 |  /  / Chủ đề | いろいろ じゅんびしている ところ | iroiro junbi-shite iru tokoro | Đang chuẩn bị đủ thứ
+00:09 | ビン / Bin / Bin | 来週から出勤。今は色々準備しているところ。 | Raishuu kara shukkin. Ima wa iroiro junbi shite iru tokoro. | Từ tuần sau đi làm. Bây giờ mình đang chuẩn bị đủ thứ.
+00:14 | ナレーター / Nareetaa / Người dẫn | この動画では、就職先の決まったビンさんが「来週から出勤だから、今はいろいろ準備しているところ」と言っています。 | Kono dooga de wa, shuushokusaki no kimatta Bin-san ga "Raishuu kara shukkin da kara, ima wa iroiro junbi shite iru tokoro" to itte imasu. | Trong video này, anh Bin đã có nơi làm việc nói rằng "Vì tuần sau đi làm nên bây giờ đang chuẩn bị đủ thứ".
+00:29 | ナレーター / Nareetaa / Người dẫn | 「ているところです」は、今、その動作をしている段階にあるということを伝えるときに使います。 | "Te iru tokoro desu" wa, ima, sono doosa o shite iru dankai ni aru to iu koto o tsutaeru toki ni tsukaimasu. | "Te iru tokoro desu" dùng khi muốn nói rằng hiện tại đang ở giai đoạn đang thực hiện hành động đó.
+00:41 | ナレーター / Nareetaa / Người dẫn | この動画では、ビンさんは、入社に向けて、今いろいろ準備をしている段階にある、ということを伝えています。 | Kono dooga de wa, Bin-san wa, nyuusha ni mukete, ima iroiro junbi o shite iru dankai ni aru, to iu koto o tsutaete imasu. | Trong video này, anh Bin đang nói rằng để hướng tới việc vào công ty, hiện anh đang ở giai đoạn chuẩn bị đủ thứ.
+00:55 | ナレーター / Nareetaa / Người dẫn | 「ところです」の前は、動詞の「て形＋いる」です。 | "Tokoro desu" no mae wa, dooshi no "te-kee + iru" desu. | Trước "tokoro desu" là "thể te + iru" của động từ.
+01:04 | ナレーター / Nareetaa / Người dẫn | 例えば、「約束の時間に遅れて、今そちらに向かっているところです」と相手に連絡したり、 | Tatoeba, "Yakusoku no jikan ni okurete, ima sochira ni mukatte iru tokoro desu" to aite ni renraku shitari, | Ví dụ, có thể liên lạc với đối phương rằng "Tôi bị trễ giờ hẹn, hiện đang trên đường đến chỗ anh",
+01:15 | ナレーター / Nareetaa / Người dẫn | 「資料は今、最終確認をしているところなので、もう少しお待ちください」と伝えたりすることができます。 | "Shiryoo wa ima, saishuu kakunin o shite iru tokoro na node, moo sukoshi omachi kudasai" to tsutaetari suru koto ga dekimasu. | hoặc nói "Tài liệu hiện đang trong lúc kiểm tra lần cuối nên xin chờ thêm một chút".
+01:29 |  /  / Chủ đề | じこしょうかいするように いわれていて | jikoshookai-suru yooni iwarete ite | Được dặn là phải tự giới thiệu
+01:35 | ビン / Bin / Bin | 明日、自己紹介するように言われていて。 | Ashita, jiko-shookai suru yoo ni iwarete ite. | Ngày mai mình được dặn là phải tự giới thiệu.
+01:41 | ナレーター / Nareetaa / Người dẫn | この動画ではビンさんが「自己紹介するように言われていて」と言っています。 | Kono dooga de wa Bin-san ga "Jiko-shookai suru yoo ni iwarete ite" to itte imasu. | Trong video này, anh Bin nói "Tôi được dặn là phải tự giới thiệu".
+01:51 | ナレーター / Nareetaa / Người dẫn | 会社の人に「自己紹介してください」と言われた、という意味です。 | Kaisha no hito ni "Jiko-shookai shite kudasai" to iwareta, to iu imi desu. | Nghĩa là được người ở công ty nói "Hãy tự giới thiệu".
+01:59 | ナレーター / Nareetaa / Người dẫn | 「ように言います」は、誰かに指示したり、お願いしたり、注意したりした内容を伝えるときに使います。 | "Yoo ni iimasu" wa, dareka ni shiji shitari, onegai shitari, chuui shitari shita naiyoo o tsutaeru toki ni tsukaimasu. | "Yoo ni iimasu" dùng khi truyền đạt nội dung đã chỉ thị, nhờ vả hoặc nhắc nhở ai đó.
+02:13 | ナレーター / Nareetaa / Người dẫn | 「ように言う」の前は、動詞の辞書形、ない形です。 | "Yoo ni yuu" no mae wa, dooshi no jisho-kee, nai-kee desu. | Trước "yoo ni yuu" là thể từ điển hoặc thể nai của động từ.
+02:22 | ナレーター / Nareetaa / Người dẫn | 例えば、部長があなたに「来週出張してください」と言いました。 | Tatoeba, buchoo ga anata ni "Raishuu shucchoo shite kudasai" to iimashita. | Ví dụ, trưởng phòng nói với bạn "Tuần sau hãy đi công tác".
+02:30 | ナレーター / Nareetaa / Người dẫn | あなたは来週食事の約束をしていた友人に、「来週出張するように言われたので、食事に行けなくなりました」と連絡しました。 | Anata wa raishuu shokuji no yakusoku o shite ita yuujin ni, "Raishuu shucchoo suru yoo ni iwareta node, shokuji ni ikenaku narimashita" to renraku shimashita. | Bạn liên lạc với người bạn đã hẹn ăn cơm tuần sau rằng "Vì được dặn tuần sau phải đi công tác nên mình không đi ăn được nữa".
+02:44 | ナレーター / Nareetaa / Người dẫn | 「子供に悪い言葉を使わないように言っています」「無駄遣いしないように言っています」ということもできます。 | "Kodomo ni warui kotoba o tsukawanai yoo ni itte imasu" "muda-zukai shinai yoo ni itte imasu" to iu koto mo dekimasu. | Cũng có thể nói "Tôi dặn con đừng dùng từ xấu", "Tôi dặn đừng tiêu xài lãng phí".
+02:56 |  /  / Chủ đề | はやめに うかがうように します | hayame ni ukagau yooni shimasu | Tôi sẽ cố gắng hỏi sớm
+03:04 | ビン / Bin / Bin | わからないことがあったら、早めに伺うようにします。 | Wakaranai koto ga attara, hayame ni ukagau yoo ni shimasu. | Nếu có điều gì không hiểu, tôi sẽ cố gắng hỏi sớm.
+03:10 | ナレーター / Nareetaa / Người dẫn | この動画で、ビンさんは「早めに伺うようにします」と言っています。 | Kono dooga de, Bin-san wa "Hayame ni ukagau yoo ni shimasu" to itte imasu. | Trong video này, anh Bin nói "Tôi sẽ cố gắng hỏi sớm".
+03:19 | ナレーター / Nareetaa / Người dẫn | 「ようにする」は、その動作をする、またはしないことを努力する、気をつける、心がける、と言いたいときに使います。 | "Yoo ni suru" wa, sono doosa o suru, mata wa shinai koto o doryoku suru, ki o tsukeru, kokorogakeru, to iitai toki ni tsukaimasu. | "Yoo ni suru" dùng khi muốn nói là cố gắng, chú ý, để tâm làm hoặc không làm hành động đó.
+03:35 | ナレーター / Nareetaa / Người dẫn | ビンさんは上司から「何でも相談してください」と言われて、「わからないことがあったら、早めに伺うようにします」と伝えました。 | Bin-san wa jooshi kara "Nandemo soodan shite kudasai" to iwarete, "Wakaranai koto ga attara, hayame ni ukagau yoo ni shimasu" to tsutaemashita. | Anh Bin được cấp trên nói "Có gì cứ trao đổi nhé", và anh đáp "Nếu có điều gì không hiểu, tôi sẽ cố gắng hỏi sớm".
+03:49 | ナレーター / Nareetaa / Người dẫn | わからないことを早めに聞くことを心がける、という意味です。 | Wakaranai koto o hayame ni kiku koto o kokorogakeru, to iu imi desu. | Nghĩa là để tâm hỏi sớm những điều không hiểu.
+03:58 | ナレーター / Nareetaa / Người dẫn | 「ようにする」の前は、動詞の辞書形、ない形です。 | "Yoo ni suru" no mae wa, dooshi no jisho-kee, nai-kee desu. | Trước "yoo ni suru" là thể từ điển hoặc thể nai của động từ.
+04:07 | ナレーター / Nareetaa / Người dẫn | 例えば、「健康のために野菜を食べるようにします」、 | Tatoeba, "Kenkoo no tame ni yasai o taberu yoo ni shimasu", | Ví dụ, "Vì sức khỏe nên tôi sẽ cố gắng ăn rau",
+04:14 | ナレーター / Nareetaa / Người dẫn | 「次からは、遅れないようにします」ということができます。 | "Tsugi kara wa, okurenai yoo ni shimasu" to iu koto ga dekimasu. | hoặc "Từ lần sau tôi sẽ cố gắng không đến muộn".

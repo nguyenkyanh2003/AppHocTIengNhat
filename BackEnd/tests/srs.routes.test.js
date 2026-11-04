@@ -38,7 +38,7 @@ const recorder = (result) => {
   return fn;
 };
 
-test('GET /due trả đợt thẻ kèm limit, user lấy từ phiên đăng nhập', async () => {
+test('GET /due trả đợt thẻ kèm limit, user lấy từ phiên đăng nhập, không lọc thì lấy mọi loại', async () => {
   const dueBatch = recorder({ cards: [{ item_id: ITEM }], limit: 20 });
   const response = await request(buildApp({ dueBatch })).get('/api/srs/due');
 
@@ -46,10 +46,19 @@ test('GET /due trả đợt thẻ kèm limit, user lấy từ phiên đăng nh�
   assert.deepEqual(response.body, { data: [{ item_id: ITEM }], limit: 20 });
   assert.deepEqual(dueBatch.calls[0], {
     userId: 'user-1',
-    itemType: 'Vocabulary',
+    itemType: undefined,
     limit: 20,
     excludeItemIds: undefined,
   });
+});
+
+test('GET /due lọc được theo từng loại thẻ Vocabulary hoặc Kanji', async () => {
+  const dueBatch = recorder({ cards: [], limit: 20 });
+  const app = buildApp({ dueBatch });
+
+  assert.equal((await request(app).get('/api/srs/due?item_type=Kanji')).status, 200);
+  assert.equal((await request(app).get('/api/srs/due?item_type=Vocabulary')).status, 200);
+  assert.deepEqual(dueBatch.calls.map((call) => call.itemType), ['Kanji', 'Vocabulary']);
 });
 
 test('GET /due tách và loại trùng danh sách loại trừ', async () => {
@@ -68,9 +77,9 @@ test('GET /due từ chối loại thẻ ngoài phạm vi, tham số lạ và gi�
   const tooMany = Array.from({ length: 201 }, (_, i) => i.toString(16).padStart(24, '0')).join(',');
 
   for (const query of [
-    'item_type=Kanji',
     'item_type=Grammar',
     'item_type=vocabulary',
+    'item_type=kanji',
     'limit=0',
     'limit=101',
     'page=2',
@@ -81,18 +90,19 @@ test('GET /due từ chối loại thẻ ngoài phạm vi, tham số lạ và gi�
   }
 });
 
-test('GET /due/count và /stats bọc kết quả trong data', async () => {
-  const app = buildApp({
-    dueCount: recorder({ item_type: 'Vocabulary', total: 4 }),
-    stats: recorder({ item_type: 'Vocabulary', total_cards: 4, due_count: 1, by_box: { 1: 4 } }),
-  });
+test('GET /due/count và /stats bọc kết quả trong data, không lọc thì tính mọi loại', async () => {
+  const dueCount = recorder({ item_type: null, total: 4, by_type: { Vocabulary: 3, Kanji: 1 } });
+  const stats = recorder({ item_type: null, total_cards: 4, due_count: 1, by_box: { 1: 4 } });
+  const app = buildApp({ dueCount, stats });
 
   assert.deepEqual((await request(app).get('/api/srs/due/count')).body, {
-    data: { item_type: 'Vocabulary', total: 4 },
+    data: { item_type: null, total: 4, by_type: { Vocabulary: 3, Kanji: 1 } },
   });
-  const stats = await request(app).get('/api/srs/stats');
-  assert.equal(stats.status, 200);
-  assert.equal(stats.body.data.total_cards, 4);
+  const statsResponse = await request(app).get('/api/srs/stats?item_type=Kanji');
+  assert.equal(statsResponse.status, 200);
+  assert.equal(statsResponse.body.data.total_cards, 4);
+  assert.deepEqual(dueCount.calls[0], { userId: 'user-1', itemType: undefined });
+  assert.deepEqual(stats.calls[0], { userId: 'user-1', itemType: 'Kanji' });
 });
 
 test('POST /review chuyển boolean và mốc hạn ôn đã parse cho service', async () => {
@@ -146,7 +156,25 @@ test('xung đột trả 409 kèm mã và tiến độ hiện tại', async () =>
   assert.deepEqual(response.body.details, { current_progress: current });
 });
 
-test('POST /items/:itemId/reset và DELETE /items/:itemId dùng ID từ vựng trong path', async () => {
+test('thao tác trên một thẻ Kanji mang đúng item_type của thẻ', async () => {
+  const review = recorder({ _id: 'p1', box: 2 });
+  const reset = recorder({ _id: 'p1', box: 1 });
+  const remove = recorder({ deleted: true });
+  const app = buildApp({ review, reset, remove });
+
+  await request(app)
+    .post('/api/srs/review')
+    .send({ item_id: ITEM, item_type: 'Kanji', is_correct: true, expected_next_review: DUE });
+  await request(app).post(`/api/srs/items/${ITEM}/reset`).send({ item_type: 'Kanji', expected_next_review: DUE });
+  const deleted = await request(app).delete(`/api/srs/items/${ITEM}?item_type=Kanji`);
+
+  assert.equal(deleted.status, 200);
+  assert.equal(review.calls[0].itemType, 'Kanji');
+  assert.equal(reset.calls[0].itemType, 'Kanji');
+  assert.deepEqual(remove.calls[0], { userId: 'user-1', itemId: ITEM, itemType: 'Kanji' });
+});
+
+test('POST /items/:itemId/reset và DELETE /items/:itemId dùng ID nội dung trong path, mặc định Vocabulary', async () => {
   const reset = recorder({ _id: 'p1', box: 1 });
   const remove = recorder({ deleted: true });
   const app = buildApp({ reset, remove });
@@ -163,7 +191,7 @@ test('POST /items/:itemId/reset và DELETE /items/:itemId dùng ID từ vựng t
   assert.deepEqual(remove.calls[0], { userId: 'user-1', itemId: ITEM, itemType: 'Vocabulary' });
 
   assert.equal((await request(app).post('/api/srs/items/abc/reset').send({ expected_next_review: DUE })).status, 400);
-  assert.equal((await request(app).delete(`/api/srs/items/${ITEM}?item_type=Kanji`)).status, 400);
+  assert.equal((await request(app).delete(`/api/srs/items/${ITEM}?item_type=Grammar`)).status, 400);
 });
 
 test('các route cũ của module SRS đã bị bỏ', async () => {

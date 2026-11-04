@@ -149,3 +149,64 @@ test('delete only touches the current user card', async () => {
   assert.equal(await repositoryWith(model).deleteProgress({ userId: 'u1', itemId: 'v1', itemType: 'Vocabulary' }), 1);
   assert.deepEqual(model.calls[0], ['deleteOne', { user: 'u1', item_id: 'v1', item_type: 'Vocabulary' }]);
 });
+
+test('due batch without a type filter reads every card type, still most overdue first', async () => {
+  const model = fakeModel();
+  const now = new Date('2026-09-20T00:00:00Z');
+
+  await repositoryWith(model).findDueBatch({ userId: 'u1', now, limit: 20 });
+
+  assert.deepEqual(model.calls, [
+    ['find', { user: 'u1', next_review: { $lte: now } }],
+    ['sort', { next_review: 1, _id: 1 }],
+    ['limit', 20],
+  ]);
+});
+
+test('due counts per type cast the user id and group by item_type', async () => {
+  const model = fakeModel();
+  const now = new Date('2026-09-20T00:00:00Z');
+
+  await repositoryWith(model).countDueByType({ userId: USER_ID, now });
+
+  const [[, pipeline]] = model.calls;
+  assert.ok(pipeline[0].$match.user instanceof mongoose.Types.ObjectId);
+  assert.deepEqual(pipeline[0].$match.next_review, { $lte: now });
+  assert.deepEqual(pipeline.slice(1), [{ $group: { _id: '$item_type', count: { $sum: 1 } } }]);
+});
+
+test('kanji card content is read from the Kanji model with the fields a card face needs', async () => {
+  const vocabulary = fakeModel();
+  const kanji = fakeModel({ result: [{ _id: 'k1' }] });
+  const repository = createSrsRepository({
+    SRSProgress: fakeModel(),
+    contentModels: { Vocabulary: vocabulary, Kanji: kanji },
+  });
+
+  await repository.findContentByIds({ itemType: 'Kanji', ids: ['k1'] });
+
+  assert.equal(vocabulary.calls.length, 0);
+  assert.deepEqual(kanji.calls, [
+    ['find', { _id: { $in: ['k1'] } }],
+    ['select', 'character hanviet onyomi kunyomi meaning level examples'],
+  ]);
+});
+
+test('checking whether anyone still reviews an item looks across all users, by type', async () => {
+  const calls = [];
+  const model = {
+    exists: async (filter) => (calls.push(filter), filter.item_id === 'k1' ? { _id: 'p1' } : null),
+  };
+  const repository = repositoryWith(model);
+
+  assert.equal(await repository.hasCardsForItem({ itemType: 'Kanji', itemId: 'k1' }), true);
+  assert.equal(await repository.hasCardsForItem({ itemType: 'Kanji', itemId: 'k2' }), false);
+  assert.deepEqual(calls[0], { item_id: 'k1', item_type: 'Kanji' });
+});
+
+test('card count of one type belongs to the current user', async () => {
+  const model = fakeModel();
+
+  assert.equal(await repositoryWith(model).countCards({ userId: 'u1', itemType: 'Kanji' }), 3);
+  assert.deepEqual(model.calls[0], ['countDocuments', { user: 'u1', item_type: 'Kanji' }]);
+});

@@ -1,0 +1,135 @@
+# Lời thoại Tình huống: Thuế và hoạt động khu phố
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-6-9.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Phiếu khấu trừ thuế và quyết toán thuế
+00:02 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | アンジェラさん、お疲れさまでした。 | Anjera-san, otsukaresama deshita. | Chị Angela, vất vả rồi.
+00:05 | アンジェラ / Anjera / Angela | お疲れさまでした。 | Otsukaresama deshita. | Chị vất vả rồi ạ.
+00:06 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 今日も忙しかったですね。 | Kyoo mo isogashikatta desu ne. | Hôm nay cũng bận rộn nhỉ.
+00:09 | アンジェラ / Anjera / Angela | 本当ですね。 | Hontoo desu ne. | Đúng thật ạ.
+00:11 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | あ、そうだ。アンジェラさん、ちょっと待っててください。 | A, soo da. Anjera-san, chotto matte ite kudasai. | À, đúng rồi. Chị Angela, chờ tôi một chút nhé.
+00:17 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:26 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | はい、これ。源泉徴収票。 | Hai, kore. Gensen chooshuuhyoo. | Đây, cái này. Phiếu khấu trừ thuế tại nguồn.
+00:30 | アンジェラ / Anjera / Angela | え？ | E? | Hả?
+00:32 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 去年働いてもらった分のお給料と、納付済みの税金が書いてあります。 | Kyonen hataraite moratta bun no okyuuryoo to, noofuzumi no zeekin ga kaite arimasu. | Trên đó có ghi tiền lương cho phần chị đã làm năm ngoái và số thuế đã nộp.
+00:39 | アンジェラ / Anjera / Angela | ああ、そうですか。これ、何かしなきゃいけないんですか？ | Aa, soo desu ka. Kore, nanika shinakya ikenai n desu ka. | À, vậy ạ. Cái này em có phải làm gì không ạ?
+00:46 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | アンジェラさん、会社でも働いてますよね？ | Anjera-san, kaisha de mo hataraite masu yo ne. | Chị Angela cũng đang làm ở công ty nữa đúng không?
+00:51 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:52 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | そしたら多分、確定申告しなきゃなりませんね。 | Soshitara tabun, kakutee-shinkoku shinakya narimasen ne. | Vậy thì có lẽ chị phải làm quyết toán thuế rồi.
+00:56 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 去年はカフェの仕事もたくさん手伝ってもらっちゃったしね。 | Kyonen wa kafe no shigoto mo takusan tetsudatte morachatta shi ne. | Năm ngoái chị cũng đã giúp tôi nhiều việc ở quán cà phê nữa.
+*01:02 | アンジェラ / Anjera / Angela | 確定申告、やったことないんですけど、どこに問い合わせたらいいですか？ | Kakutee-shinkoku, yatta koto nain desu kedo, doko ni toiawasetara ii desu ka. | Em chưa từng làm quyết toán thuế, em nên hỏi ở đâu ạ?
+01:11 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 住んでるところの税務署に問い合わせればわかると思います。 | Sunde ru tokoro no zeemusho ni toiawasereba wakaru to omoimasu. | Nếu hỏi ở cục thuế nơi chị sống thì tôi nghĩ sẽ biết.
+*01:17 | アンジェラ / Anjera / Angela | もっと税金を払うことになりますか？ | Motto zeekin o harau koto ni narimasu ka. | Em sẽ phải nộp thêm thuế ạ?
+01:21 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 還付って言って、払いすぎた税金が戻ってくることもありますよ。 | Kanpu tte itte, haraisugita zeekin ga modotte kuru koto mo arimasu yo. | Có khi gọi là "kanpu", tức là số thuế đã nộp thừa được hoàn lại đấy.
+01:30 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 収入によるから何とも言えませんけどね。 | Shuunyuu ni yoru kara nantomo iemasen kedo ne. | Còn tùy thu nhập nên tôi cũng không thể nói chắc được.
+01:34 | アンジェラ / Anjera / Angela | そうなんですね。早速、税務署に聞いてみます。 | Soo nan desu ne. Sassoku, zeemusho ni kiite mimasu. | Ra vậy ạ. Em sẽ hỏi cục thuế ngay.
+### từ vựng
+源泉徴収票 | げんせんちょうしゅうひょう | gensen chooshuuhyoo | phiếu khấu trừ thuế tại nguồn
+給料 | きゅうりょう | kyuuryoo | tiền lương
+確定申告 | かくていしんこく | kakutee shinkoku | quyết toán thuế
+税務署 | ぜいむしょ | zeemusho | cục thuế
+還付 | かんぷ | kanpu | hoàn thuế
+収入 | しゅうにゅう | shuunyuu | thu nhập
+問い合わせる | といあわせる | toiawaseru | hỏi, liên hệ
+
+## scene-2.mp4
+# Thư báo thuế cư trú
+00:03 | アンジェラ / Anjera / Angela | 山田さん、ちょっと教えてほしいことがあるんですけど。 | Yamada-san, chotto oshiete hoshii koto ga aru n desu kedo. | Chị Yamada, em có chuyện muốn nhờ chị chỉ giúp.
+00:07 | 山田 / Yamada / Yamada | はい、何ですか？ | Hai, nan desu ka. | Vâng, chuyện gì vậy?
+00:09 | アンジェラ / Anjera / Angela | 昨日、友達から相談のメールをもらったんですけど。 | Kinoo, tomodachi kara soodan no meeru o moratta n desu kedo. | Hôm qua em nhận được email nhờ tư vấn từ một người bạn.
+00:14 | 山田 / Yamada / Yamada | はい。 | Hai. | Vâng.
+*00:16 | アンジェラ / Anjera / Angela | 友達のところに税金の紙が届いたらしいんですよ。 | Tomodachi no tokoro ni zeekin no kami ga todoita rashiin desu yo. | Hình như chỗ bạn em có gửi đến một tờ giấy về thuế.
+00:21 | 山田 / Yamada / Yamada | そうなんですね。 | Soo nan desu ne. | Vậy à.
+00:24 | アンジェラ / Anjera / Angela | よくわからないから教えてほしいって言われたんですけど、何の税金か私にもよくわからなくて。写真も送ってもらったんですけどね。 | Yoku wakaranai kara oshiete hoshii tte iwareta n desu kedo, nan no zeekin ka watashi ni mo yoku wakaranakute. Shashin mo okutte moratta n desu kedo ne. | Bạn bảo không hiểu nên nhờ em chỉ, nhưng em cũng không biết là thuế gì. Bạn cũng gửi ảnh cho em rồi.
+00:36 | 山田 / Yamada / Yamada | 見てもいいですか？ | Mitemo ii desu ka. | Cho tôi xem được không?
+00:39 | アンジェラ / Anjera / Angela | はい、これです。 | Hai, kore desu. | Vâng, đây ạ.
+00:46 | 山田 / Yamada / Yamada | ああ、住民税ですね。 | Aa, juuminzee desu ne. | À, là thuế cư trú nhỉ.
+00:49 | アンジェラ / Anjera / Angela | 住民税ですか？ | Juuminzee desu ka. | Thuế cư trú ạ?
+00:52 | アンジェラ / Anjera / Angela | でも私はこういう紙、見たことがない気がするんですけど、なんで友達のところには郵便で届いたんですか？ | Demo watashi wa koo iu kami, mita koto ga nai ki ga suru n desu kedo, nande tomodachi no tokoro ni wa yuubin de todoita n desu ka. | Nhưng em thấy hình như chưa từng thấy tờ giấy này, sao chỗ bạn em lại được gửi qua bưu điện ạ?
+01:04 | 山田 / Yamada / Yamada | 会社に勤めている人と勤めていない人とでは、払い方が違うんですよ。 | Kaisha ni tsutomete iru hito to tsutomete inai hito to de wa, haraikata ga chigaun desu yo. | Người đi làm công ty và người không đi làm công ty thì cách nộp khác nhau đấy.
+01:12 | 山田 / Yamada / Yamada | アンジェラさんの場合は、毎月お給料から税金が引かれてるんですよ。お友達は会社員じゃないんじゃないですか？ | Anjera-san no baai wa, maitsuki okyuuryoo kara zeekin ga hikarete ru n desu yo. Otomodachi wa kaishain ja nain ja nai desu ka. | Trường hợp của chị Angela thì thuế được trừ vào lương mỗi tháng đấy. Bạn của chị chắc không phải nhân viên công ty nhỉ?
+01:25 | アンジェラ / Anjera / Angela | ああ、確かに会社には勤めていません。 | Aa, tashika ni kaisha ni wa tsutomete imasen. | À, đúng là bạn em không làm ở công ty.
+01:30 | 山田 / Yamada / Yamada | だからですね、きっと。 | Dakara desu ne, kitto. | Chắc là vì vậy đấy.
+01:33 | アンジェラ / Anjera / Angela | そうなんですね。知りませんでした。 | Soo nan desu ne. Shirimasen deshita. | Ra vậy ạ. Em không biết.
+*01:36 | アンジェラ / Anjera / Angela | どこで払えばいいんですか？ | Doko de haraeba ii n desu ka. | Nộp ở đâu thì được ạ?
+01:39 | 山田 / Yamada / Yamada | 役所でも払えますけど、銀行やコンビニでも払えると思いますよ。 | Yakusho demo haraemasu kedo, ginkoo ya konbini demo haraeru to omoimasu yo. | Nộp ở cơ quan hành chính cũng được, và tôi nghĩ ở ngân hàng hay cửa hàng tiện lợi cũng nộp được.
+01:46 | アンジェラ / Anjera / Angela | わかりました。友達にそう伝えます。ありがとうございます。 | Wakarimashita. Tomodachi ni soo tsutaemasu. Arigatoo gozaimasu. | Em hiểu rồi. Em sẽ nói lại với bạn. Em cảm ơn chị.
+### từ vựng
+税金 | ぜいきん | zeekin | tiền thuế
+住民税 | じゅうみんぜい | juuminzee | thuế cư trú
+郵便 | ゆうびん | yuubin | bưu điện, thư
+勤める | つとめる | tsutomeru | làm việc (cho công ty)
+会社員 | かいしゃいん | kaishain | nhân viên công ty
+役所 | やくしょ | yakusho | cơ quan hành chính
+
+## scene-3.mp4
+# Làm nhân viên lễ hội mùa hè
+00:04 | 山田 / Yamada / Yamada | あ、ビンさん、こんにちは。 | A, Bin-san, konnichiwa. | À, anh Bin, xin chào.
+00:06 | ビン / Bin / Bin | こんにちは。 | Konnichiwa. | Xin chào.
+00:09 | 山田 / Yamada / Yamada | 何見てるんですか？ | Nani miteru n desu ka. | Anh đang xem gì vậy?
+00:11 | ビン / Bin / Bin | この夏祭りのスタッフ、やってみたいなぁと思うんですけど、どんな仕事があるのかなぁと思って。 | Kono natsumatsuri no sutaffu, yatte mitai naa to omou n desu kedo, donna shigoto ga aru no kanaa to omotte. | Tôi đang nghĩ muốn thử làm nhân viên cho lễ hội mùa hè này, nên đang tự hỏi có những việc gì.
+00:20 | 山田 / Yamada / Yamada | いろいろありますよ。詳しく知りたかったら、町内会長さんに聞いてみたら？ | Iroiro arimasu yo. Kuwashiku shiritakattara, choonaikai-choo-san ni kiite mitara. | Có nhiều việc lắm đấy. Nếu muốn biết chi tiết thì thử hỏi ông hội trưởng tổ dân phố xem?
+00:28 | ビン / Bin / Bin | わかりました。そうします。 | Wakarimashita. Soo shimasu. | Tôi hiểu rồi. Tôi sẽ làm vậy.
+00:32 | 山田 / Yamada / Yamada | 会長さん、喜ぶと思いますよ。 | Kaichoo-san, yorokobu to omoimasu yo. | Tôi nghĩ ông hội trưởng sẽ vui lắm đấy.
+00:36 | ビン / Bin / Bin | そうですか？じゃあ、今から行ってみます。 | Soo desu ka. Jaa, ima kara itte mimasu. | Vậy ạ? Vậy tôi đến thử ngay bây giờ.
+00:51 | ビン / Bin / Bin | すみません、ビンです。 | Sumimasen, Bin desu. | Xin lỗi, tôi là Bin ạ.
+00:56 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | おー、ビンさん、こんにちは。どうしました？ | Oo, Bin-san, konnichiwa. Doo shimashita? | Ồ, anh Bin, xin chào. Có chuyện gì vậy?
+01:02 | ビン / Bin / Bin | あの、突然お邪魔してすみません。夏祭りのスタッフのことでお聞きしたいことがあるんですけど。 | Ano, totsuzen ojama shite sumimasen. Natsumatsuri no sutaffu no koto de okiki shitai koto ga aru n desu kedo. | À, xin lỗi vì đến làm phiền đột ngột. Tôi có điều muốn hỏi về nhân viên lễ hội mùa hè ạ.
+01:11 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | はいはい、夏祭りのスタッフね。 | Hai hai, natsumatsuri no sutaffu ne. | Ừ ừ, nhân viên lễ hội mùa hè nhỉ.
+01:14 | ビン / Bin / Bin | 興味があるんですけど、やったことがないので、どんなことするのかよくわからなくて。さっき山田さんに聞いてみたら、詳しいことは町内会長さんに聞くといいよって。 | Kyoomi ga aru n desu kedo, yatta koto ga nai node, donna koto suru no ka yoku wakaranakute. Sakki Yamada-san ni kiite mitara, kuwashii koto wa choonaikai-choo-san ni kiku to ii yo tte. | Tôi có hứng thú nhưng chưa từng làm nên không rõ phải làm những gì. Lúc nãy tôi hỏi chị Yamada thì chị bảo chi tiết nên hỏi ông hội trưởng.
+01:28 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | それは嬉しいなあ。 | Sore wa ureshii naa. | Vậy thì vui quá.
+01:31 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | いろんな係がありますよ。会場準備の係とか、お店の係とか、放送の係とか。何かやってみたいことはありますか？ | Ironna kakari ga arimasu yo. Kaijoo junbi no kakari toka, omise no kakari toka, hoosoo no kakari toka. Nanika yatte mitai koto wa arimasu ka. | Có nhiều nhóm phụ trách lắm: nhóm chuẩn bị hội trường, nhóm bán hàng, nhóm phát thanh... Anh có muốn thử việc gì không?
+01:43 | ビン / Bin / Bin | そうですね、日本語はあまり得意じゃないので、力仕事なら得意なんですけど。 | Soo desu ne, Nihongo wa amari tokui ja nai node, chikara-shigoto nara tokui nan desu kedo. | Để xem nào, tiếng Nhật tôi không giỏi lắm, nhưng nếu là việc tay chân thì tôi giỏi ạ.
+01:51 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | じゃあ、会場係はどうかな。テントを立てたり、テーブルを運んだり。 | Jaa, kaijoo-gakari wa doo ka na. Tento o tatetari, teeburu o hakondari. | Vậy thì nhóm hội trường thì sao nhỉ. Dựng lều, khiêng bàn...
+*01:59 | ビン / Bin / Bin | それならできそうです。 | Sore nara dekisoo desu. | Nếu vậy thì có vẻ tôi làm được ạ.
+02:01 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | よかった。じゃあお願いしますね。 | Yokatta. Jaa onegaishimasu ne. | Tốt quá. Vậy nhờ anh nhé.
+02:05 | ビン / Bin / Bin | あの、それから打ち合わせとかありますか？平日は仕事で帰りが遅いので、週末しか参加できないんですけど。 | Ano, sorekara uchiawase toka arimasu ka. Heejitsu wa shigoto de kaeri ga osoi node, shuumatsu shika sanka dekinain desu kedo. | À, ngoài ra có buổi họp bàn gì không ạ? Ngày thường tôi đi làm về muộn nên chỉ tham gia được vào cuối tuần.
+02:15 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | ああ、会場係は当日だけだから大丈夫。 | Aa, kaijoo-gakari wa toojitsu dake dakara daijoobu. | À, nhóm hội trường chỉ làm đúng ngày hôm đó thôi nên không sao.
+02:21 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | 当日の朝10時に会場に来てもらえますか？ | Toojitsu no asa juuji ni kaijoo ni kite moraemasu ka. | Sáng hôm đó anh đến hội trường lúc 10 giờ được không?
+02:26 | ビン / Bin / Bin | はい、わかりました。ありがとうございます。当日もよろしくお願いします。 | Hai, wakarimashita. Arigatoo gozaimasu. Toojitsu mo yoroshiku onegaishimasu. | Vâng, tôi hiểu rồi. Cảm ơn ông. Hôm đó cũng mong được giúp đỡ ạ.
+02:33 | 町内会長 / Choonaikai-choo / Hội trưởng tổ dân phố | はい、こちらこそよろしくお願いします。 | Hai, kochira koso yoroshiku onegaishimasu. | Vâng, tôi mới là người mong được giúp đỡ.
+### từ vựng
+夏祭り | なつまつり | natsumatsuri | lễ hội mùa hè
+町内会長 | ちょうないかいちょう | choonaikaichoo | hội trưởng tổ dân phố
+係 | かかり | kakari | người, nhóm phụ trách
+会場 | かいじょう | kaijoo | hội trường
+力仕事 | ちからしごと | chikara-shigoto | việc tay chân
+打ち合わせ | うちあわせ | uchiawase | buổi họp bàn
+当日 | とうじつ | toojitsu | ngày hôm đó
+
+## summary.mp4
+# Ôn tập: Thuế và hoạt động khu phố
+00:00 |  /  / Chủ đề | とどいた らしいんですよ | todoita rashiin desu yo | Hình như đã gửi đến đấy
+00:06 | アンジェラ / Anjera / Angela | 友達のとこに税金の紙が届いたらしいんですよ。 | Tomodachi no toko ni zeekin no kami ga todoita rashiin desu yo. | Hình như chỗ bạn em có gửi đến một tờ giấy về thuế đấy ạ.
+00:12 | ナレーター / Nareetaa / Người dẫn | 「らしい」は、話し手が見たり聞いたりした情報をもとに推測したことを第三者に伝えるときに使います。 | "Rashii" wa, hanashite ga mitari kiitari shita joohoo o moto ni suisoku shita koto o daisansha ni tsutaeru toki ni tsukaimasu. | "Rashii" dùng khi người nói truyền đạt cho người thứ ba điều mình suy đoán dựa trên thông tin đã thấy hoặc nghe.
+00:24 | ナレーター / Nareetaa / Người dẫn | 例えば、あなたは友達の山田さんが、安い引っ越し屋さんを探している、という話をしているのを聞きました。 | Tatoeba, anata wa tomodachi no Yamada-san ga, yasui hikkoshi'ya-san o sagashite iru, to iu hanashi o shite iru no o kikimashita. | Ví dụ, bạn nghe thấy bạn mình là anh Yamada đang nói chuyện là đang tìm công ty chuyển nhà giá rẻ.
+00:37 | ナレーター / Nareetaa / Người dẫn | それであなたは、山田さんは引っ越しをするのだろうと推測しました。 | Sorede anata wa, Yamada-san wa hikkoshi o suru no daroo to suisoku shimashita. | Vì vậy bạn suy đoán rằng anh Yamada chắc là sắp chuyển nhà.
+00:46 | ナレーター / Nareetaa / Người dẫn | そして別の友人のマリアさんに、「山田さんは引っ越しをするらしいです」と伝えました。 | Soshite betsu no yuujin no Maria-san ni, "Yamada-san wa hikkoshi o suru rashii desu" to tsutaemashita. | Rồi bạn nói với một người bạn khác là chị Maria rằng "Hình như anh Yamada sắp chuyển nhà".
+00:58 | ナレーター / Nareetaa / Người dẫn | 動画ではアンジェラさんが、「友達のとこに税金の紙が届いたらしいんですよ」と言っています。 | Dooga de wa Anjera-san ga, "Tomodachi no toko ni zeekin no kami ga todoita rashiin desu yo" to itte imasu. | Trong video, chị Angela nói "Hình như chỗ bạn em có gửi đến một tờ giấy về thuế đấy ạ".
+01:09 | ナレーター / Nareetaa / Người dẫn | アンジェラさんは、友達のメールから、その友達のところに税金の紙が届いたと推測しました。 | Anjera-san wa, tomodachi no meeru kara, sono tomodachi no tokoro ni zeekin no kami ga todoita to suisoku shimashita. | Chị Angela suy đoán từ email của bạn rằng chỗ người bạn đó có tờ giấy về thuế gửi đến.
+01:21 | ナレーター / Nareetaa / Người dẫn | それでそのことを同僚に、「友達のとこに税金の紙が届いたらしいんですよ」と、「らしいです」を使って伝えました。 | Sorede sono koto o dooryoo ni, "Tomodachi no toko ni zeekin no kami ga todoita rashiin desu yo" to, "rashii desu" o tsukatte tsutaemashita. | Vì vậy chị đã nói với đồng nghiệp rằng "Hình như chỗ bạn em có gửi đến một tờ giấy về thuế", dùng mẫu "rashii desu".
+01:37 | ナレーター / Nareetaa / Người dẫn | 「らしいです」の前は普通形です。 | "Rashii desu" no mae wa futsuu-kee desu. | Trước "rashii desu" là thể thường.
+01:43 | ナレーター / Nareetaa / Người dẫn | ただし、名詞とナ形容詞の「だ」は付きません。 | Tadashi, meeshi to na-keeyooshi no "da" wa tsukimasen. | Tuy nhiên, với danh từ và tính từ đuôi na thì không gắn "da".
+01:51 | ナレーター / Nareetaa / Người dẫn | 例えば、「雨だ」「簡単だ」の「だ」は付きません。 | Tatoeba, "ame da", "kantan da" no "da" wa tsukimasen. | Ví dụ, "da" trong "ame da" (mưa) và "kantan da" (đơn giản) không được gắn.
+01:59 | ナレーター / Nareetaa / Người dẫn | 「雨らしいです」「簡単らしいです」となります。 | "Ame rashii desu", "kantan rashii desu" to narimasu. | Sẽ thành "ame rashii desu", "kantan rashii desu".
+02:07 | ナレーター / Nareetaa / Người dẫn | 「明日は朝から大雨らしいです」「新しくできたレストラン、おいしいらしいよ」のように言うことができます。 | "Ashita wa asa kara ooame rashii desu", "Atarashiku dekita resutoran, oishii rashii yo" no yoo ni iu koto ga dekimasu. | Có thể nói như "Nghe nói ngày mai từ sáng mưa to", "Nhà hàng mới mở nghe nói ngon đấy".
+02:21 |  /  / Chủ đề | もっと はらう ことに なりますか | motto harau koto ni narimasu ka | Có phải trả thêm nữa không?
+02:29 | アンジェラ / Anjera / Angela | もっと税金を払うことになりますか？ | Motto zeekin o harau koto ni narimasu ka. | Em sẽ phải nộp thêm thuế ạ?
+02:33 | ナレーター / Nareetaa / Người dẫn | 「ことになります」は、ある事態が起こると、必然的にある結果になると言いたいときに使います。 | "Koto ni narimasu" wa, aru jitai ga okoru to, hitsuzenteki ni aru kekka ni naru to iitai toki ni tsukaimasu. | "Koto ni narimasu" dùng khi muốn nói rằng nếu một tình huống xảy ra thì tất yếu sẽ dẫn đến một kết quả nào đó.
+02:44 | ナレーター / Nareetaa / Người dẫn | この動画ではアンジェラさんが、「もっと税金を払うことになりますか」と言っています。 | Kono dooga de wa Anjera-san ga, "Motto zeekin o harau koto ni narimasu ka" to itte imasu. | Trong video này, chị Angela nói "Em sẽ phải nộp thêm thuế ạ?".
+02:54 | ナレーター / Nareetaa / Người dẫn | 確定申告をするという事態が起こると、もっと税金を払うという結果になるのかを聞いています。 | Kakutee-shinkoku o suru to iu jitai ga okoru to, motto zeekin o harau to iu kekka ni naru no ka o kiite imasu. | Chị hỏi xem nếu xảy ra việc làm quyết toán thuế thì kết quả có phải là nộp thêm thuế hay không.
+03:05 | ナレーター / Nareetaa / Người dẫn | 「ことになります」の前は、動詞の辞書形、ない形です。 | "Koto ni narimasu" no mae wa, dooshi no jisho-kee, nai-kee desu. | Trước "koto ni narimasu" là dạng từ điển hoặc dạng nai của động từ.
+03:14 | ナレーター / Nareetaa / Người dẫn | 「本当のことを言わないと、部下の信頼を失うことになります」 | "Hontoo no koto o iwanai to, buka no shinrai o ushinau koto ni narimasu" | "Nếu không nói sự thật thì sẽ mất lòng tin của cấp dưới"
+03:21 | ナレーター / Nareetaa / Người dẫn | 「これ以上欠席が続くと、修了証がもらえないことになります」のように言うことができます。 | "Kore ijoo kesseki ga tsuzuku to, shuuryooshoo ga moraenai koto ni narimasu" no yoo ni iu koto ga dekimasu. | Có thể nói như "Nếu còn vắng mặt thêm nữa thì sẽ không nhận được giấy chứng nhận hoàn thành".
+03:32 |  /  / Chủ đề | それなら、できそうです | sore nara, dekisoo desu | Nếu vậy thì có vẻ làm được
+03:40 | ビン / Bin / Bin | それならできそうです。 | Sore nara dekisoo desu. | Nếu vậy thì có vẻ tôi làm được ạ.
+03:43 | ナレーター / Nareetaa / Người dẫn | この動画ではビンさんが、「それならできそうです」と言っています。 | Kono dooga de wa Bin-san ga, "Sore nara dekisoo desu" to itte imasu. | Trong video này, anh Bin nói "Nếu vậy thì có vẻ tôi làm được ạ".
+03:51 | ナレーター / Nareetaa / Người dẫn | 「動詞のます形+そうです」は、ある出来事が起こる可能性が高いと思っているときに使います。 | "Dooshi no masu-kee + soo desu" wa, aru dekigoto ga okoru kanoosee ga takai to omotte iru toki ni tsukaimasu. | Mẫu "dạng masu của động từ + soo desu" dùng khi cho rằng khả năng một việc nào đó xảy ra là cao.
+04:05 | ナレーター / Nareetaa / Người dẫn | ビンさんは、会場係の仕事について話を聞きました。 | Bin-san wa, kaijoo-gakari no shigoto ni tsuite hanashi o kikimashita. | Anh Bin đã nghe nói về công việc của nhóm hội trường.
+04:11 | ナレーター / Nareetaa / Người dẫn | そしてその仕事ならできる可能性が高いと思ったので、「それならできそうです」と言いました。 | Soshite sono shigoto nara dekiru kanoosee ga takai to omotta node, "Sore nara dekisoo desu" to iimashita. | Rồi vì nghĩ rằng nếu là công việc đó thì khả năng làm được là cao nên anh nói "Nếu vậy thì có vẻ tôi làm được".
+04:23 | ナレーター / Nareetaa / Người dẫn | 「そうです」の前は、動詞のます形です。 | "Soo desu" no mae wa, dooshi no masu-kee desu. | Trước "soo desu" là dạng masu của động từ.
+04:30 | ナレーター / Nareetaa / Người dẫn | 一緒に使う動詞は、「食べられます」「寝られます」「わかります」など可能の意味を持つ動詞や、「消えます」「なります」など無意志動詞です。 | Issho ni tsukau dooshi wa, "taberaremasu", "neraremasu", "wakarimasu" nado kanoo no imi o motsu dooshi ya, "kiemasu", "narimasu" nado muishi-dooshi desu. | Động từ dùng cùng là các động từ mang nghĩa khả năng như "taberaremasu" (ăn được), "neraremasu" (ngủ được), "wakarimasu" (hiểu), hoặc động từ vô ý chí như "kiemasu" (biến mất), "narimasu" (trở nên).
+04:50 | ナレーター / Nareetaa / Người dẫn | 動詞のます形の「ます」を消して、「そうです」をつけます。 | Dooshi no masu-kee no "masu" o keshite, "soo desu" o tsukemasu. | Bỏ "masu" của dạng masu rồi gắn "soo desu".
+04:59 | ナレーター / Nareetaa / Người dẫn | 「今夜は涼しいからよく寝られそうです」「明日はいい天気になりそうだ」のように言うことができます。 | "Kon'ya wa suzushii kara yoku neraresoo desu", "Ashita wa ii tenki ni narisoo da" no yoo ni iu koto ga dekimasu. | Có thể nói như "Tối nay mát nên có vẻ ngủ ngon được", "Ngày mai có vẻ trời sẽ đẹp".

@@ -1,8 +1,11 @@
 import '../../../core/network/api_client.dart';
+import '../../srs/models/srs_progress.dart';
 import '../models/kanji.dart';
 
 class KanjiService {
-  final ApiClient _apiClient = ApiClient();
+  KanjiService({ApiClient? client}) : _apiClient = client ?? ApiClient();
+
+  final ApiClient _apiClient;
 
   // Lấy danh sách kanji với phân trang
   Future<Map<String, dynamic>> getKanjis({
@@ -77,17 +80,26 @@ class KanjiService {
     }
   }
 
-  // Lấy chi tiết kanji
+  /// Chi tiết một chữ kèm thẻ ôn của người đang xem.
+  ///
+  /// Không đặt `cache`: trạng thái "đã thêm vào ôn tập" đổi sau mỗi lần bấm,
+  /// bản lưu ngoại tuyến sẽ hiện trạng thái cũ (giống chi tiết từ vựng). Lỗi
+  /// giữ nguyên [ApiException] để provider báo đúng câu của server.
   Future<Kanji> getKanjiById(String id) async {
-    try {
-      final dynamic response = await _apiClient.get('/kanji/$id', cache: true);
-      if (response is Map<String, dynamic> && response['data'] != null) {
-        return Kanji.fromJson(response['data']);
-      }
-      throw Exception('Dữ liệu không hợp lệ');
-    } catch (e) {
-      throw Exception('Không thể tải chi tiết Kanji: $e');
-    }
+    final response = await _apiClient.get('/kanji/$id');
+    return Kanji.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+  }
+
+  /// Thêm chữ vào lịch ôn: tạo thẻ hộp 1, hoặc trả thẻ đã có (bấm hai lần
+  /// vẫn một thẻ). Không cộng XP — XP đến từ các lượt ôn.
+  Future<SrsProgress> addToReview(String id) async {
+    final response = await _apiClient.post('/kanji/$id/mark-learned', const {});
+    return SrsProgress.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+  }
+
+  /// Gỡ chữ khỏi lịch ôn cùng toàn bộ tiến độ ôn của nó.
+  Future<void> removeFromReview(String id) async {
+    await _apiClient.delete('/kanji/$id/mark-learned');
   }
 
   // Lấy kanji theo bài học
@@ -126,16 +138,6 @@ class KanjiService {
       return [];
     } catch (e) {
       throw Exception('Không thể tải Kanji ngẫu nhiên: $e');
-    }
-  }
-
-  // Đánh dấu đã học kanji
-  Future<Map<String, dynamic>> markAsLearned(String kanjiId) async {
-    try {
-      final response = await _apiClient.post('/kanji/learn/$kanjiId', {});
-      return response;
-    } catch (e) {
-      throw Exception('Không thể đánh dấu đã học: $e');
     }
   }
 }

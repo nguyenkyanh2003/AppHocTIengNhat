@@ -1,4 +1,4 @@
-/// Tiến độ ôn một từ, đúng như server trả (spec SRS §3.3).
+/// Tiến độ ôn một thẻ (từ vựng hoặc Kanji), đúng như server trả (spec SRS §3.3).
 ///
 /// Client không tự tính lịch: [nextReview] là giá trị nguyên vẹn của server,
 /// và được gửi lại nguyên vẹn làm `expected_next_review` khi trả lời hay đặt
@@ -22,8 +22,9 @@ class SrsProgress {
         streak: json['streak'] as int? ?? 0,
       );
 
-  /// Mốc 1 chỉ nghiệm thu từ vựng; server từ chối mọi loại khác.
+  /// Hai loại thẻ server nhận (spec Kanji SRS §2); mọi loại dùng chung lịch.
   static const itemTypeVocabulary = 'Vocabulary';
+  static const itemTypeKanji = 'Kanji';
 
   static const int maxBox = 5;
 

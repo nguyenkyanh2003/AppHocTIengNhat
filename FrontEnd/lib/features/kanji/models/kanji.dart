@@ -1,3 +1,5 @@
+import '../../srs/models/srs_progress.dart';
+
 class Kanji {
   final String id;
   final String character; // Chữ Hán: 学
@@ -11,6 +13,9 @@ class Kanji {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
+  /// Thẻ ôn của người đang xem; chỉ chi tiết Kanji mới trả, danh sách thì `null`.
+  final SrsProgress? srsProgress;
+
   Kanji({
     required this.id,
     required this.character,
@@ -23,7 +28,10 @@ class Kanji {
     this.examples = const [],
     this.createdAt,
     this.updatedAt,
+    this.srsProgress,
   });
+
+  bool get isInReview => srsProgress != null;
 
   factory Kanji.fromJson(Map<String, dynamic> json) {
     return Kanji(
@@ -49,8 +57,28 @@ class Kanji {
           json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
       updatedAt:
           json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+      srsProgress: json['srs_progress'] is Map
+          ? SrsProgress.fromJson(Map<String, dynamic>.from(json['srs_progress']))
+          : null,
     );
   }
+
+  /// Bản sao với thẻ ôn mới — `null` nghĩa là vừa gỡ khỏi lịch ôn, điều
+  /// [copyWith] không diễn đạt được.
+  Kanji withSrsProgress(SrsProgress? progress) => Kanji(
+        id: id,
+        character: character,
+        hanviet: hanviet,
+        onyomi: onyomi,
+        kunyomi: kunyomi,
+        meaning: meaning,
+        level: level,
+        strokeOrderSvg: strokeOrderSvg,
+        examples: examples,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+        srsProgress: progress,
+      );
 
   Map<String, dynamic> toJson() {
     return {
@@ -93,6 +121,7 @@ class Kanji {
       examples: examples ?? this.examples,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      srsProgress: srsProgress,
     );
   }
 }

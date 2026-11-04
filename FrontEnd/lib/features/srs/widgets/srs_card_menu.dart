@@ -29,7 +29,7 @@ class SrsCardMenu extends StatelessWidget {
         if (await confirmSrsAction(
           context,
           title: 'Đặt lại lịch ôn?',
-          message: 'Thẻ về hộp 1 và sẽ đến hạn lại sau 24 giờ. Từ vẫn được giữ là đã học.',
+          message: 'Thẻ về hộp 1 và sẽ đến hạn lại sau 24 giờ. Thẻ vẫn nằm trong lịch ôn.',
           confirmLabel: 'Đặt lại',
         )) {
           onReset();
@@ -39,7 +39,7 @@ class SrsCardMenu extends StatelessWidget {
             await confirmSrsAction(
               context,
               title: 'Xoá khỏi lịch ôn?',
-              message: 'Tiến độ ôn của từ này bị xoá và từ trở về trạng thái chưa học.',
+              message: 'Thẻ bị gỡ khỏi lịch ôn cùng toàn bộ tiến độ ôn của nó.',
               confirmLabel: 'Xoá',
             )) {
           onRemove();

@@ -14,8 +14,8 @@ import { SITUATIONS } from '../src/modules/lessons/situation-catalog.js';
 const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
 const KANJI = /[一-鿿]/;
 
-test('đúng 35 bài, chia N5 12 · N4 19 · N3 4, không có bài N2, N1', () => {
-  assert.equal(SITUATIONAL_LESSONS.length, 35);
+test('đúng 40 bài, chia N5 12 · N4 19 · N3 9, không có bài N2, N1', () => {
+  assert.equal(SITUATIONAL_LESSONS.length, 40);
 
   const byLevel = Object.fromEntries(
     LEVELS.map((level) => [
@@ -23,7 +23,7 @@ test('đúng 35 bài, chia N5 12 · N4 19 · N3 4, không có bài N2, N1', () =
       SITUATIONAL_LESSONS.filter((lesson) => lesson.level === level).length,
     ]),
   );
-  assert.deepEqual(byLevel, { N5: 12, N4: 19, N3: 4, N2: 0, N1: 0 });
+  assert.deepEqual(byLevel, { N5: 12, N4: 19, N3: 9, N2: 0, N1: 0 });
 });
 
 test('tiêu đề là duy nhất — đây là khoá upsert và khoá giữ lại khi --replace', () => {
@@ -58,7 +58,7 @@ const VIDEO_LESSONS = (() => {
 
 test('bài có video không có hội thoại soạn sẵn — lời thoại là kịch bản video', () => {
   const withVideo = SITUATIONAL_LESSONS.filter((lesson) => VIDEO_LESSONS.has(lesson.title));
-  assert.equal(withVideo.length, 31);
+  assert.equal(withVideo.length, 40);
   for (const lesson of withVideo) {
     assert.ok(!(lesson.dialogue?.length > 0), `${lesson.title} vừa có video vừa có hội thoại riêng`);
   }
@@ -110,7 +110,7 @@ test('mỗi bài có ít nhất 8 từ vựng đủ trường, không trùng tro
   }
 });
 
-for (const [level, count] of [['N5', 12], ['N4', 19]]) {
+for (const [level, count] of [['N5', 12], ['N4', 19], ['N3', 9]]) {
   test(`${level} gồm đúng ${count} bài theo thứ tự chủ đề video, bài nào cũng có file video riêng`, () => {
     const dataDir = new URL('../data/lesson-videos/', import.meta.url);
     const videoLessons = new Map(

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../providers/srs_provider.dart';
 
-/// Số từ vựng đến hạn ôn, cho mục "Ôn tập hôm nay" ở trang hub.
+/// Số thẻ (từ vựng và Kanji) đến hạn ôn, cho mục "Ôn tập hôm nay" ở trang hub.
 ///
 /// Tự làm mới mỗi lần hiện ra (vào hub), không đặt số liệu động vào metadata
 /// điều hướng — số liệu nằm ở [SrsProvider].

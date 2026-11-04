@@ -3,7 +3,7 @@ import { ApiError } from '../../shared/http/api-error.js';
 import { streakService } from '../streaks/streak.service.js';
 import { toSrsProgressDto } from './srs.dto.js';
 import { srsRepository } from './srs.repository.js';
-import { applyAnswer, initialProgress, MAX_BOX, MIN_BOX } from './srs-scheduling.js';
+import { applyAnswer, initialProgress, ITEM_TYPES, MAX_BOX, MIN_BOX } from './srs-scheduling.js';
 
 /**
  * Vòng ôn tập SRS: lấy đợt thẻ đến hạn, trả lời, đặt lại lịch, xoá tiến độ.
@@ -16,7 +16,7 @@ import { applyAnswer, initialProgress, MAX_BOX, MIN_BOX } from './srs-scheduling
 /** Ném trong transaction để rollback khi thua CAS; phân loại sau khi đã thoát ra. */
 class ScheduleChanged extends Error {}
 
-const notFound = () => ApiError.notFound('Không tìm thấy tiến độ ôn tập của từ này.');
+const notFound = () => ApiError.notFound('Không tìm thấy tiến độ ôn tập của thẻ này.');
 
 const conflict = (code, message, progress) =>
   ApiError.conflict(message, { code, details: { current_progress: toSrsProgressDto(progress) } });
@@ -47,9 +47,26 @@ export const createSrsService = ({
     throw changed(current);
   };
 
+  /**
+   * Nội dung của một đợt thẻ, khoá theo `loại:id`: mỗi loại có trong đợt đọc
+   * đúng **một** truy vấn, không đọc từng thẻ.
+   */
+  const contentsFor = async (progresses) => {
+    const contents = new Map();
+    for (const type of ITEM_TYPES) {
+      const ids = progresses.filter((progress) => progress.item_type === type).map((progress) => progress.item_id);
+      if (ids.length === 0) continue;
+      for (const item of await repository.findContentByIds({ itemType: type, ids })) {
+        contents.set(`${type}:${item._id}`, item);
+      }
+    }
+    return contents;
+  };
+
   return {
     /**
-     * Một đợt thẻ đến hạn kèm nội dung để vẽ hai mặt.
+     * Một đợt thẻ đến hạn kèm nội dung để vẽ hai mặt. Không lọc loại thì trộn
+     * mọi loại, quá hạn lâu nhất trước.
      *
      * Thẻ mà nội dung đã bị xoá vẫn được trả về với `item: null, unavailable:
      * true` để người học chọn bỏ qua hoặc xoá — GET không âm thầm xoá gì.
@@ -62,22 +79,27 @@ export const createSrsService = ({
         excludeItemIds,
         limit,
       });
-      const contents = await repository.findContentByIds({
-        itemType,
-        ids: progresses.map((progress) => progress.item_id),
-      });
-      const contentById = new Map(contents.map((item) => [String(item._id), item]));
+      const contents = await contentsFor(progresses);
 
       const cards = progresses.map((progress) => {
-        const item = contentById.get(String(progress.item_id)) ?? null;
+        const item = contents.get(`${progress.item_type}:${progress.item_id}`) ?? null;
         return { ...toSrsProgressDto(progress), item, unavailable: item === null };
       });
       return { cards, limit };
     },
 
-    /** Tổng thẻ đến hạn của user — độc lập với đợt đang ôn và tập loại trừ. */
+    /**
+     * Tổng thẻ đến hạn của user — độc lập với đợt đang ôn và tập loại trừ.
+     * `by_type` luôn đủ mọi loại để badge và bộ lọc đọc cùng một lần gọi.
+     */
     async dueCount({ userId, itemType }) {
-      return { item_type: itemType, total: await repository.countDue({ userId, itemType, now: clock() }) };
+      const byType = Object.fromEntries(ITEM_TYPES.map((type) => [type, 0]));
+      for (const { _id: type, count } of await repository.countDueByType({ userId, now: clock() })) {
+        if (type in byType) byType[type] = count;
+      }
+      const total = itemType ? byType[itemType] : Object.values(byType).reduce((sum, count) => sum + count, 0);
+
+      return { item_type: itemType ?? null, total, by_type: byType };
     },
 
     async stats({ userId, itemType }) {
@@ -94,7 +116,7 @@ export const createSrsService = ({
       }
 
       return {
-        item_type: itemType,
+        item_type: itemType ?? null,
         total_cards: Object.values(byBox).reduce((sum, count) => sum + count, 0),
         due_count: dueCount,
         by_box: byBox,

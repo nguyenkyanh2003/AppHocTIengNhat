@@ -14,8 +14,10 @@ import '../widgets/srs_card_menu.dart';
 import '../widgets/srs_confirm_dialog.dart';
 import '../widgets/srs_flashcard.dart';
 import '../widgets/srs_session_summary.dart';
+import '../widgets/srs_type_filter.dart';
 
-/// Ôn tập hôm nay: từng thẻ từ vựng đến hạn, tự nhớ → lật → "Nhớ"/"Chưa nhớ".
+/// Ôn tập hôm nay: từng thẻ đến hạn (từ vựng và Kanji, lọc được theo loại),
+/// tự nhớ → lật → "Nhớ"/"Chưa nhớ".
 ///
 /// Tải đợt đầu dùng [AsyncView]; lỗi của một thao tác trên thẻ hiện ngay dưới
 /// thẻ kèm nút thử lại, không thay cả phiên bằng màn lỗi và làm mất thẻ đang ôn.
@@ -53,7 +55,7 @@ class _SrsReviewScreenState extends State<SrsReviewScreen> {
     final confirmed = await confirmSrsAction(
       context,
       title: 'Xoá khỏi lịch ôn?',
-      message: 'Tiến độ ôn của từ này bị xoá và từ trở về trạng thái chưa học.',
+      message: 'Thẻ bị gỡ khỏi lịch ôn cùng toàn bộ tiến độ ôn của nó.',
       confirmLabel: 'Xoá',
     );
     if (confirmed && mounted) await _run((provider) => provider.removeCurrent());
@@ -75,27 +77,41 @@ class _SrsReviewScreenState extends State<SrsReviewScreen> {
             onRemove: () => _run((provider) => provider.removeCurrent()),
           ),
       ],
-      body: AsyncView<List<SrsCard>>(
-        state: provider.sessionState,
-        onRetry: provider.reloadBatch,
-        builder: (context, cards) => SingleChildScrollView(
-          child: ContentPane(
-            child: cards.isEmpty
-                ? SrsSessionSummary(
-                    tally: provider.tally,
-                    stats: provider.statsState,
-                    onRestart: provider.startSession,
-                    onDone: () => context.go('/review'),
-                  )
-                : _ReviewPane(
-                    card: cards.first,
-                    queued: cards.length,
-                    provider: provider,
-                    onRun: _run,
-                    onRemove: _remove,
-                  ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: AppSpacing.md),
+            child: SrsTypeFilter(
+              selected: provider.typeFilter,
+              enabled: !provider.isBusy,
+              onChanged: provider.setTypeFilter,
+            ),
           ),
-        ),
+          Expanded(
+            child: AsyncView<List<SrsCard>>(
+              state: provider.sessionState,
+              onRetry: provider.reloadBatch,
+              builder: (context, cards) => SingleChildScrollView(
+                child: ContentPane(
+                  child: cards.isEmpty
+                      ? SrsSessionSummary(
+                          tally: provider.tally,
+                          stats: provider.statsState,
+                          onRestart: provider.startSession,
+                          onDone: () => context.go('/review'),
+                        )
+                      : _ReviewPane(
+                          card: cards.first,
+                          queued: cards.length,
+                          provider: provider,
+                          onRun: _run,
+                          onRemove: _remove,
+                        ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

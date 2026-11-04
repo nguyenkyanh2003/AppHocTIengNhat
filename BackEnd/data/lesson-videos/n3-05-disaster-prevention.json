@@ -1,0 +1,1089 @@
+{
+  "lesson": {
+    "title": "Tình huống: Phòng chống thiên tai"
+  },
+  "videos": [
+    {
+      "title": "Bão sắp đến",
+      "description": "Khuyên được người khác hủy kế hoạch khi có bão và cài ứng dụng phòng chống thiên tai.",
+      "url": "/uploads/lesson-videos/n3-05-disaster-prevention/scene-1.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "台風が近づいているみたいですね。",
+          "romaji": "Taifuu ga chikazuite iru mitai desu ne.",
+          "text_vi": "Hình như bão đang đến gần nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ええ、そうみたいですね。",
+          "romaji": "Ee, soo mitai desu ne.",
+          "text_vi": "Vâng, hình như vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "さっき天気予報で、今年一番大きな台風だって言ってましたよ。",
+          "romaji": "Sakki tenki yohoo de, kotoshi ichiban ookina taifuu datte itte mashita yo.",
+          "text_vi": "Lúc nãy dự báo thời tiết nói đây là cơn bão lớn nhất năm nay đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "この辺りも大雨になるみたいですよ。",
+          "romaji": "Kono atari mo ooame ni naru mitai desu yo.",
+          "text_vi": "Khu vực này hình như cũng sẽ có mưa lớn đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさん、天気予報をよく見るんですか？",
+          "romaji": "Anjera-san, tenki yohoo o yoku miru n desu ka.",
+          "text_vi": "Angela hay xem dự báo thời tiết à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい、日本の天気予報はとっても詳しいですから。",
+          "romaji": "Hai, Nihon no tenki yohoo wa tottemo kuwashii desu kara.",
+          "text_vi": "Vâng, vì dự báo thời tiết của Nhật rất chi tiết ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "私、明日友達と映画を見に行くんですけど、大丈夫かな？",
+          "romaji": "Watashi, ashita tomodachi to eega o mi ni iku n desu kedo, daijoobu ka na.",
+          "text_vi": "Ngày mai tôi định đi xem phim với bạn, không biết có ổn không nhỉ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:34",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "え？電車で行くんですか？",
+          "romaji": "E? Densha de iku n desu ka.",
+          "text_vi": "Hả? Chị đi bằng tàu điện à?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:36",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい、そのつもりですけど…",
+          "romaji": "Hai, sono tsumori desu kedo...",
+          "text_vi": "Vâng, tôi định thế nhưng...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "台風が直撃するみたいですから、やめといた方がいいんじゃありませんか？",
+          "romaji": "Taifuu ga chokugeki suru mitai desu kara, yametoita hoo ga ii n ja arimasen ka.",
+          "text_vi": "Hình như bão sẽ đổ bộ trực tiếp nên chị bỏ đi thì tốt hơn đấy chứ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy à.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "バスも電車も止まってしまうかもしれませんよ。",
+          "romaji": "Basu mo densha mo tomatte shimau kamoshiremasen yo.",
+          "text_vi": "Xe buýt và tàu điện cũng có thể sẽ ngừng chạy đấy.",
+          "key_phrase": true
+        },
+        {
+          "start": "00:52",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですね。家に帰れなくなったら大変ですね。",
+          "romaji": "Soo desu ne. Ie ni kaerenaku nattara taihen desu ne.",
+          "text_vi": "Đúng nhỉ. Nếu không về nhà được thì phiền lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "やっぱり明日はやめた方が良さそうですよ。",
+          "romaji": "Yappari ashita wa yameta hoo ga yosasoo desu yo.",
+          "text_vi": "Quả nhiên ngày mai bỏ đi thì có vẻ tốt hơn đấy.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、本当ですね。",
+          "romaji": "Aa, hontoo desu ne.",
+          "text_vi": "À, đúng thật nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:12",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "これは、アプリですか？",
+          "romaji": "Kore wa, apuri desu ka.",
+          "text_vi": "Cái này là ứng dụng à?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:15",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。防災情報がすぐ分かるように入れてあるんですよ。",
+          "romaji": "Hai. Boosai joohoo ga sugu wakaru yoo ni irete aru n desu yo.",
+          "text_vi": "Vâng. Em cài vào để biết ngay thông tin phòng chống thiên tai ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "へえ〜。",
+          "romaji": "Hee~.",
+          "text_vi": "Ồ~.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "大雨とか洪水の警報が出たときも、すぐにメールが来るから便利ですよ。",
+          "romaji": "Ooame toka koozui no keehoo ga deta toki mo, sugu ni meeru ga kuru kara benri desu yo.",
+          "text_vi": "Khi có cảnh báo mưa lớn hay lũ lụt thì sẽ có email gửi đến ngay nên rất tiện ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "うーん、いいですね。",
+          "romaji": "Uun, ii desu ne.",
+          "text_vi": "Ừm, hay nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:34",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "やり方を教えてもらえますか？",
+          "romaji": "Yarikata o oshiete moraemasu ka.",
+          "text_vi": "Em chỉ cho chị cách làm được không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ええ、いいですよ。一緒にやってみましょう。",
+          "romaji": "Ee, ii desu yo. Issho ni yatte mimashoo.",
+          "text_vi": "Vâng, được ạ. Mình cùng làm thử nhé.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "台風",
+          "reading": "たいふう",
+          "romaji": "taifuu",
+          "meaning": "bão"
+        },
+        {
+          "word": "天気予報",
+          "reading": "てんきよほう",
+          "romaji": "tenki yohoo",
+          "meaning": "dự báo thời tiết"
+        },
+        {
+          "word": "大雨",
+          "reading": "おおあめ",
+          "romaji": "ooame",
+          "meaning": "mưa lớn"
+        },
+        {
+          "word": "直撃",
+          "reading": "ちょくげき",
+          "romaji": "chokugeki",
+          "meaning": "đổ bộ trực tiếp"
+        },
+        {
+          "word": "防災",
+          "reading": "ぼうさい",
+          "romaji": "boosai",
+          "meaning": "phòng chống thiên tai"
+        },
+        {
+          "word": "洪水",
+          "reading": "こうずい",
+          "romaji": "koozui",
+          "meaning": "lũ lụt"
+        },
+        {
+          "word": "警報",
+          "reading": "けいほう",
+          "romaji": "keehoo",
+          "meaning": "cảnh báo"
+        }
+      ]
+    },
+    {
+      "title": "Tìm hiểu nơi lánh nạn",
+      "description": "Hỏi lại nghĩa của từ mới và biết cách tìm nơi lánh nạn gần nhà.",
+      "url": "/uploads/lesson-videos/n3-05-disaster-prevention/scene-2.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "最近、台風とか地震とか多いですね。",
+          "romaji": "Saikin, taifuu toka jishin toka ooi desu ne.",
+          "text_vi": "Dạo này bão với động đất nhiều nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:03",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Vâng, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "この間の台風のときは、どうしたらいいかわからなくて、とっても怖かったです。",
+          "romaji": "Kono aida no taifuu no toki wa, dooshitara ii ka wakaranakute, tottemo kowakatta desu.",
+          "text_vi": "Lần bão hôm trước em không biết phải làm sao nên sợ lắm.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:15",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、この間の台風は、一晩中、雨と風がすごかったですよね。",
+          "romaji": "Aa, kono aida no taifuu wa, hitobanjuu, ame to kaze ga sugokatta desu yo ne.",
+          "text_vi": "À, cơn bão hôm trước mưa và gió dữ dội suốt cả đêm nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "本当に。災害ニュースを聞くたびに、心配になっちゃいます。",
+          "romaji": "Hontoo ni. Saigai nyuusu o kiku tabi ni, shinpai ni nacchaimasu.",
+          "text_vi": "Thật vậy. Mỗi lần nghe tin thiên tai em lại lo lắng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:29",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですよね。",
+          "romaji": "Soo desu yo ne.",
+          "text_vi": "Đúng nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:31",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさんは、自分の家の近くの避難場所を知っていますか？",
+          "romaji": "Anjera-san wa, jibun no ie no chikaku no hinan basho o shitte imasu ka.",
+          "text_vi": "Angela có biết nơi lánh nạn gần nhà mình không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "避難場所って、地震のときとかにみんなが逃げる場所のことですか？",
+          "romaji": "Hinan basho tte, jishin no toki toka ni minna ga nigeru basho no koto desu ka.",
+          "text_vi": "\"Hinan basho\" là nơi mọi người chạy đến lánh nạn khi có động đất, phải không ạ?",
+          "key_phrase": true
+        },
+        {
+          "start": "00:43",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうです、そうです。普段からいろいろ防災のことは知っておいた方がいいですよ。",
+          "romaji": "Soo desu, soo desu. Fudan kara iroiro boosai no koto wa shitte oita hoo ga ii desu yo.",
+          "text_vi": "Đúng vậy, đúng vậy. Bình thường em nên biết nhiều về phòng chống thiên tai thì tốt hơn đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:50",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "やっぱりそうですよね。",
+          "romaji": "Yappari soo desu yo ne.",
+          "text_vi": "Quả nhiên là vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:55",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "実はこの公園も避難場所なんですよ。",
+          "romaji": "Jitsu wa kono kooen mo hinan basho nan desu yo.",
+          "text_vi": "Thật ra công viên này cũng là nơi lánh nạn đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "へえ、そうなんですか。",
+          "romaji": "Hee, soo nan desu ka.",
+          "text_vi": "Ồ, vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:02",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ほら、あそこの看板が見えますか？",
+          "romaji": "Hora, asoko no kanban ga miemasu ka.",
+          "text_vi": "Này, em có thấy tấm biển đằng kia không?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:07",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "行ってみますか？",
+          "romaji": "Itte mimasu ka.",
+          "text_vi": "Mình đi xem thử nhé?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:20",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "わー、いろいろあるんですね。",
+          "romaji": "Waa, iroiro aru n desu ne.",
+          "text_vi": "Ôi, có nhiều thứ quá nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ほら、これが避難場所のマークですよ。覚えておいた方がいいですよ。",
+          "romaji": "Hora, kore ga hinan basho no maaku desu yo. Oboete oita hoo ga ii desu yo.",
+          "text_vi": "Này, đây là biểu tượng của nơi lánh nạn đấy. Em nên nhớ lấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "自分の家の近くの避難場所がどこか、どうやったらわかりますか？",
+          "romaji": "Jibun no ie no chikaku no hinan basho ga doko ka, dooyattara wakarimasu ka.",
+          "text_vi": "Làm thế nào để biết nơi lánh nạn gần nhà mình ở đâu ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:37",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "インターネットでも調べられるし、市役所に行けば地図ももらえると思いますよ。",
+          "romaji": "Intaanetto demo shirabereru shi, shiyakusho ni ikeba chizu mo moraeru to omoimasu yo.",
+          "text_vi": "Có thể tra trên Internet, và nếu đến tòa thị chính chắc cũng nhận được bản đồ đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:46",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "そうですか。鈴木さんと話して、ちょっと安心しました。",
+          "romaji": "Soo desu ka. Suzuki-san to hanashite, chotto anshin shimashita.",
+          "text_vi": "Vậy ạ. Nói chuyện với chị Suzuki em thấy yên tâm hơn một chút.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:50",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですか？よかったです。",
+          "romaji": "Soo desu ka. Yokatta desu.",
+          "text_vi": "Vậy à? Thế thì tốt quá.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "地震",
+          "reading": "じしん",
+          "romaji": "jishin",
+          "meaning": "động đất"
+        },
+        {
+          "word": "災害",
+          "reading": "さいがい",
+          "romaji": "saigai",
+          "meaning": "thiên tai"
+        },
+        {
+          "word": "避難場所",
+          "reading": "ひなんばしょ",
+          "romaji": "hinan basho",
+          "meaning": "nơi lánh nạn"
+        },
+        {
+          "word": "逃げる",
+          "reading": "にげる",
+          "romaji": "nigeru",
+          "meaning": "chạy trốn"
+        },
+        {
+          "word": "一晩中",
+          "reading": "ひとばんじゅう",
+          "romaji": "hitobanjuu",
+          "meaning": "suốt cả đêm"
+        },
+        {
+          "word": "市役所",
+          "reading": "しやくしょ",
+          "romaji": "shiyakusho",
+          "meaning": "tòa thị chính"
+        }
+      ]
+    },
+    {
+      "title": "Động đất ở nơi làm việc",
+      "description": "Biết phải làm gì khi có động đất và bàn cách giữ kệ không bị đổ.",
+      "url": "/uploads/lesson-videos/n3-05-disaster-prevention/scene-3.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:01",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "おいしいですね。",
+          "romaji": "Oishii desu ne.",
+          "text_vi": "Ngon nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:04",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "あっ！地震が来ますよ！早く机の下に潜らなくちゃ！",
+          "romaji": "A! Jishin ga kimasu yo! Hayaku tsukue no shita ni moguranakucha!",
+          "text_vi": "A! Động đất đến kìa! Phải mau chui xuống gầm bàn!",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Vâng.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:16",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "頭をもっと中に入れて、机の足をしっかり持って。",
+          "romaji": "Atama o motto naka ni irete, tsukue no ashi o shikkari motte.",
+          "text_vi": "Đưa đầu vào trong hơn nữa, giữ chắc chân bàn.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:24",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "ドアは？",
+          "romaji": "Doa wa?",
+          "text_vi": "Cửa thì sao?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:26",
+          "speaker_ja": "眼鏡の男性",
+          "speaker_romaji": "Megane no dansee",
+          "speaker_vi": "Người đàn ông đeo kính",
+          "text_ja": "もう開けました！",
+          "romaji": "Moo akemashita!",
+          "text_vi": "Mở rồi!",
+          "key_phrase": false
+        },
+        {
+          "start": "00:41",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "もう出てもよさそうですね。",
+          "romaji": "Moo detemo yosasoo desu ne.",
+          "text_vi": "Hình như ra ngoài được rồi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:45",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "もう大丈夫そうですね。",
+          "romaji": "Moo daijoobusoo desu ne.",
+          "text_vi": "Hình như đã ổn rồi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:59",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "今の地震、結構大きかったですね。",
+          "romaji": "Ima no jishin, kekkoo ookikatta desu ne.",
+          "text_vi": "Trận động đất vừa rồi khá lớn nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:03",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Đúng vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:05",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "怖かったですね。",
+          "romaji": "Kowakatta desu ne.",
+          "text_vi": "Đáng sợ thật nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:08",
+          "speaker_ja": "眼鏡の男性",
+          "speaker_romaji": "Megane no dansee",
+          "speaker_vi": "Người đàn ông đeo kính",
+          "text_ja": "ああ、落ちちゃいましたね。",
+          "romaji": "Aa, ochichaimashita ne.",
+          "text_vi": "A, rơi xuống rồi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:13",
+          "speaker_ja": "眼鏡の男性",
+          "speaker_romaji": "Megane no dansee",
+          "speaker_vi": "Người đàn ông đeo kính",
+          "text_ja": "こんな箱が落ちてきて、",
+          "romaji": "Konna hako ga ochite kite,",
+          "text_vi": "Cái hộp thế này mà rơi xuống,",
+          "key_phrase": false
+        },
+        {
+          "start": "01:16",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "頭に当たっていたら大変なことになっていましたね。",
+          "romaji": "Atama ni atatte itara taihen na koto ni natte imashita ne.",
+          "text_vi": "Nếu trúng đầu thì đã nguy to rồi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "本当ですね。",
+          "romaji": "Hontoo desu ne.",
+          "text_vi": "Đúng thật.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "また大きい地震が来たら大変ですから、今のうちに何か対策を考えておかないといけませんね。",
+          "romaji": "Mata ookii jishin ga kitara taihen desu kara, ima no uchi ni nanika taisaku o kangaete okanai to ikemasen ne.",
+          "text_vi": "Nếu lại có động đất lớn thì nguy lắm, nên bây giờ phải nghĩ sẵn biện pháp đối phó nhỉ.",
+          "key_phrase": true
+        },
+        {
+          "start": "01:45",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:49",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "揺れても棚が倒れてこないように、棚と天井の間に突っ張り棒を入れるとか、何か工夫をした方がいいですね。",
+          "romaji": "Yurete mo tana ga taorete konai yoo ni, tana to tenjoo no aida ni tsuppari-boo o ireru toka, nanika kufuu o shita hoo ga ii desu ne.",
+          "text_vi": "Để dù rung lắc thì kệ cũng không đổ, nên có chút sáng tạo, chẳng hạn đặt thanh chống vào giữa kệ và trần nhà.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "眼鏡の男性",
+          "speaker_romaji": "Megane no dansee",
+          "speaker_vi": "Người đàn ông đeo kính",
+          "text_ja": "ああ、でも大きめの箱を入れるとかでもいいんじゃないですか。",
+          "romaji": "Aa, demo ookime no hako o ireru toka demo ii n ja nai desu ka.",
+          "text_vi": "À, nhưng đặt một cái hộp lớn vào đó cũng được chứ nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:10",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ああ、そういえば私も何かで、そんなの見たことがあります。",
+          "romaji": "Aa, soo ieba watashi mo nanika de, sonna no mita koto ga arimasu.",
+          "text_vi": "À, nói mới nhớ, tôi cũng từng thấy cái đó ở đâu rồi.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:31",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ちょっと隙間が空いちゃいますけど、大丈夫ですか？",
+          "romaji": "Chotto sukima ga aichaimasu kedo, daijoobu desu ka.",
+          "text_vi": "Sẽ hơi có khe hở, nhưng có sao không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "02:36",
+          "speaker_ja": "眼鏡の男性",
+          "speaker_romaji": "Megane no dansee",
+          "speaker_vi": "Người đàn ông đeo kính",
+          "text_ja": "そのくらいだったら、平気ですよ。",
+          "romaji": "Sono kurai dattara, heeki desu yo.",
+          "text_vi": "Cỡ đó thì không sao đâu.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:39",
+          "speaker_ja": "男性",
+          "speaker_romaji": "Dansee",
+          "speaker_vi": "Người đàn ông còn lại",
+          "text_ja": "ちょっと工夫すれば、結構簡単に対策ができますね。",
+          "romaji": "Chotto kufuu sureba, kekkoo kantan ni taisaku ga dekimasu ne.",
+          "text_vi": "Chỉ cần chút sáng tạo là có thể đối phó khá dễ dàng nhỉ.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "scene",
+      "vocabulary": [
+        {
+          "word": "潜る",
+          "reading": "もぐる",
+          "romaji": "moguru",
+          "meaning": "chui xuống"
+        },
+        {
+          "word": "揺れる",
+          "reading": "ゆれる",
+          "romaji": "yureru",
+          "meaning": "rung lắc"
+        },
+        {
+          "word": "棚",
+          "reading": "たな",
+          "romaji": "tana",
+          "meaning": "kệ, giá"
+        },
+        {
+          "word": "倒れる",
+          "reading": "たおれる",
+          "romaji": "taoreru",
+          "meaning": "đổ"
+        },
+        {
+          "word": "天井",
+          "reading": "てんじょう",
+          "romaji": "tenjoo",
+          "meaning": "trần nhà"
+        },
+        {
+          "word": "突っ張り棒",
+          "reading": "つっぱりぼう",
+          "romaji": "tsuppari-boo",
+          "meaning": "thanh chống"
+        },
+        {
+          "word": "対策",
+          "reading": "たいさく",
+          "romaji": "taisaku",
+          "meaning": "biện pháp đối phó"
+        }
+      ]
+    },
+    {
+      "title": "Ôn tập: Phòng chống thiên tai",
+      "description": "Ôn lại「AってBのことですか」,「〜たほうがよさそうです」và「〜てしまうかもしれません」.",
+      "url": "/uploads/lesson-videos/n3-05-disaster-prevention/summary.mp4",
+      "source": "文部科学省「つながるひろがる にほんごでのくらし」",
+      "transcript": [
+        {
+          "start": "00:00",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "Aって、Bのことですか",
+          "romaji": "\"A\" tte, \"B\" no koto desu ka",
+          "text_vi": "\"A\" nghĩa là \"B\" phải không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:06",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "アンジェラさんは、自分の家の近くの避難場所を知っていますか？",
+          "romaji": "Anjera-san wa, jibun no ie no chikaku no hinan basho o shitte imasu ka.",
+          "text_vi": "Chị Angela có biết nơi lánh nạn gần nhà mình không?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "避難場所って、地震のときとかにみんなが逃げる場所のことですか？",
+          "romaji": "Hinan basho tte, jishin no toki toka ni minna ga nigeru basho no koto desu ka.",
+          "text_vi": "\"Hinan basho\" là nơi mọi người chạy đến lánh nạn khi có động đất, phải không ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:19",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうです、そうです。",
+          "romaji": "Soo desu, soo desu.",
+          "text_vi": "Đúng vậy, đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:21",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「AってBのことですか」は、人から聞いた新しい言葉の意味が、自分が予想している意味と同じかどうか確認するときに使います。",
+          "romaji": "\"A tte B no koto desu ka\" wa, hito kara kiita atarashii kotoba no imi ga, jibun ga yosoo shite iru imi to onaji ka dooka kakunin suru toki ni tsukaimasu.",
+          "text_vi": "Mẫu \"A tte B no koto desu ka\" dùng khi muốn xác nhận xem nghĩa của từ mới nghe từ người khác có giống với nghĩa mình đoán hay không.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画では、アンジェラさんは「避難場所」という言葉を初めて聞きました。",
+          "romaji": "Dooga de wa, Anjera-san wa \"hinan basho\" to iu kotoba o hajimete kikimashita.",
+          "text_vi": "Trong video, chị Angela lần đầu nghe từ \"hinan basho\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:48",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "避難場所が、自分の想像している、地震のときにみんなが逃げる場所かどうか確認したかったので、会社の同僚に「避難場所って、地震のときとかにみんなが逃げる場所のことですか？」と聞いています。",
+          "romaji": "Hinan basho ga, jibun no soozoo shite iru, jishin no toki ni minna ga nigeru basho ka dooka kakunin shitakatta node, kaisha no dooryoo ni \"Hinan basho tte, jishin no toki toka ni minna ga nigeru basho no koto desu ka\" to kiite imasu.",
+          "text_vi": "Vì muốn xác nhận xem \"hinan basho\" có phải là nơi mọi người chạy đến khi có động đất như mình tưởng tượng không, chị đã hỏi đồng nghiệp ở công ty \"Hinan basho là nơi mọi người chạy đến lánh nạn khi có động đất phải không ạ?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この表現は、「110番って、警察を呼ぶ電話番号のことですか？」と確認したり、",
+          "romaji": "Kono hyoogen wa, \"Hyaku-too-ban tte, keesatsu o yobu denwa bangoo no koto desu ka\" to kakunin shitari,",
+          "text_vi": "Mẫu này còn có thể dùng để xác nhận như \"110 là số điện thoại để gọi cảnh sát phải không?\",",
+          "key_phrase": false
+        },
+        {
+          "start": "01:23",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「図書館って、英語のライブラリーのことですか」と、外国語を使って意味を確認したりするときにも使えます。",
+          "romaji": "\"Toshokan tte, eego no raiburarii no koto desu ka\" to, gaikokugo o tsukatte imi o kakunin shitari suru toki ni mo tsukaemasu.",
+          "text_vi": "hoặc dùng ngoại ngữ để xác nhận nghĩa như \"Toshokan là 'library' trong tiếng Anh phải không?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "01:36",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "やめた ほうが よさそうです",
+          "romaji": "yameta hoo ga yosasoo desu",
+          "text_vi": "Hình như bỏ đi thì tốt hơn",
+          "key_phrase": false
+        },
+        {
+          "start": "01:44",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "やっぱり明日はやめたほうが良さそうですよ。",
+          "romaji": "Yappari ashita wa yameta hoo ga yosasoo desu yo.",
+          "text_vi": "Quả nhiên ngày mai bỏ đi thì có vẻ tốt hơn đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:48",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "ああ、本当ですね。",
+          "romaji": "Aa, hontoo desu ne.",
+          "text_vi": "À, đúng thật nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞をた形にして「ほうがいいです」をつけると、少し強くアドバイスをすることができます。",
+          "romaji": "Dooshi o ta-kee ni shite \"hoo ga ii desu\" o tsukeru to, sukoshi tsuyoku adobaisu o suru koto ga dekimasu.",
+          "text_vi": "Chia động từ sang thể ta rồi thêm \"hoo ga ii desu\" thì có thể khuyên nhủ hơi mạnh hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:05",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "例えば、あなたが風邪をひいている友人を見て、「休む」と「休まない」という2つの選択を考え、休むのがいいと思ったら、「休んだ方がいいです」ということができます。",
+          "romaji": "Tatoeba, anata ga kaze o hiite iru yuujin o mite, \"yasumu\" to \"yasumanai\" to iu futatsu no sentaku o kangae, yasumu no ga ii to omottara, \"yasunda hoo ga ii desu\" to iu koto ga dekimasu.",
+          "text_vi": "Ví dụ, khi bạn thấy một người bạn bị cảm, cân nhắc hai lựa chọn \"nghỉ\" và \"không nghỉ\", nếu thấy nghỉ thì tốt hơn thì có thể nói \"Nghỉ thì tốt hơn\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:29",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "さらに、「方がいいです」ではなく「ほうがよさそうです」を使うと、やさしい雰囲気になります。",
+          "romaji": "Sarani, \"hoo ga ii desu\" dewa naku \"hoo ga yosasoo desu\" o tsukau to, yasashii fun'iki ni narimasu.",
+          "text_vi": "Hơn nữa, nếu dùng \"hoo ga yosasoo desu\" thay vì \"hoo ga ii desu\" thì sẽ tạo cảm giác nhẹ nhàng hơn.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:43",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動画ではアンジェラさんが同僚に「やっぱり明日はやめたほうがよさそうですよ」と言って、やめることを優しく勧めています。",
+          "romaji": "Dooga de wa Anjera-san ga dooryoo ni \"Yappari ashita wa yameta hoo ga yosasoo desu yo\" to itte, yameru koto o yasashiku susumete imasu.",
+          "text_vi": "Trong video, chị Angela nói với đồng nghiệp \"Quả nhiên ngày mai bỏ đi thì có vẻ tốt hơn đấy\", khuyên một cách nhẹ nhàng là nên bỏ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この表現は、知らない人や目上の人に使うと失礼に聞こえることが多いので、注意が必要です。",
+          "romaji": "Kono hyoogen wa, shiranai hito ya meue no hito ni tsukau to shitsuree ni kikoeru koto ga ooi node, chuui ga hitsuyoo desu.",
+          "text_vi": "Mẫu này khi dùng với người không quen hoặc người bề trên thường nghe có vẻ bất lịch sự, nên cần chú ý.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:15",
+          "speaker_ja": null,
+          "speaker_romaji": null,
+          "speaker_vi": "Chủ đề",
+          "text_ja": "とまって しまうかもしれません",
+          "romaji": "tomatte shimau kamoshiremasen",
+          "text_vi": "Có thể sẽ ngừng chạy mất",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "台風が直撃するみたいですから、やめといた方がいいんじゃありませんか？",
+          "romaji": "Taifuu ga chokugeki suru mitai desu kara, yametoita hoo ga ii n ja arimasen ka.",
+          "text_vi": "Hình như bão sẽ đổ bộ trực tiếp, nên bỏ đi thì tốt hơn đấy chứ?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:27",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "そうですか。",
+          "romaji": "Soo desu ka.",
+          "text_vi": "Vậy ạ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:29",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "バスも電車も止まってしまうかもしれませんよ。",
+          "romaji": "Basu mo densha mo tomatte shimau kamoshiremasen yo.",
+          "text_vi": "Xe buýt và tàu điện cũng có thể sẽ ngừng chạy đấy.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:36",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "動詞のて形に「しまうかもしれません」をつける表現は、悪いことを予測して、相手に忠告するときに使います。",
+          "romaji": "Dooshi no te-kee ni \"shimau kamoshiremasen\" o tsukeru hyoogen wa, warui koto o yosoku shite, aite ni chuukoku suru toki ni tsukaimasu.",
+          "text_vi": "Cách nói thêm \"shimau kamoshiremasen\" vào thể te của động từ dùng khi dự đoán điều xấu và khuyên nhủ, cảnh báo đối phương.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:53",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "この動画では、「電車もバスも止まってしまうかもしれませんよ」と言っています。",
+          "romaji": "Kono dooga de wa, \"Densha mo basu mo tomatte shimau kamoshiremasen yo\" to itte imasu.",
+          "text_vi": "Trong video này nói \"Tàu điện và xe buýt cũng có thể sẽ ngừng chạy đấy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:04",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "電車もバスも止まるという悪いことを予測して、外出をやめるように忠告しています。",
+          "romaji": "Densha mo basu mo tomaru to iu warui koto o yosoku shite, gaishutsu o yameru yoo ni chuukoku shite imasu.",
+          "text_vi": "Dự đoán điều xấu là tàu điện và xe buýt đều dừng, và khuyên đừng ra ngoài.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:16",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "他にも、「終電に乗り遅れてしまうかもしれませんよ」「予算をオーバーしてしまうかもしれませんよ」ということができます。",
+          "romaji": "Hoka ni mo, \"Shuuden ni noriokurete shimau kamoshiremasen yo\" \"Yosan o oobaa shite shimau kamoshiremasen yo\" to iu koto ga dekimasu.",
+          "text_vi": "Ngoài ra, cũng có thể nói \"Có thể bạn sẽ lỡ chuyến tàu cuối đấy\", \"Có thể sẽ vượt quá ngân sách đấy\".",
+          "key_phrase": false
+        },
+        {
+          "start": "04:31",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "悪い予測を伝えて、対応するように忠告しています。",
+          "romaji": "Warui yosoku o tsutaete, taioo suru yoo ni chuukoku shite imasu.",
+          "text_vi": "Đưa ra dự đoán xấu và khuyên nhủ nên ứng phó.",
+          "key_phrase": false
+        }
+      ],
+      "kind": "review"
+    }
+  ]
+}

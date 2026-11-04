@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:apphoctiengnnhat/app/theme/app_tokens.dart';
+import 'package:apphoctiengnnhat/core/network/api_client.dart';
 import 'package:apphoctiengnnhat/core/state/view_state.dart';
+import 'package:apphoctiengnnhat/features/kanji/services/kanji_service.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson_progress.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson_study_step.dart';
@@ -11,8 +13,11 @@ import 'package:apphoctiengnnhat/features/lessons/providers/lesson_study_session
 import 'package:apphoctiengnnhat/features/lessons/services/lesson_progress_service.dart';
 import 'package:apphoctiengnnhat/features/lessons/widgets/detail/lesson_roadmap.dart';
 import 'package:apphoctiengnnhat/features/lessons/widgets/lesson_content_chips.dart';
+import 'package:apphoctiengnnhat/features/lessons/widgets/study/study_finish_step.dart';
+import 'package:apphoctiengnnhat/features/lessons/widgets/study/study_kanji_step.dart';
 import 'package:apphoctiengnnhat/features/lessons/widgets/study/study_quiz_step.dart';
 import 'package:apphoctiengnnhat/features/lessons/widgets/study/study_vocabulary_step.dart';
+import 'package:apphoctiengnnhat/features/srs/models/srs_progress.dart';
 
 const _words = [
   ('w1', '名前', 'なまえ', 'tên'),
@@ -23,7 +28,12 @@ const _words = [
   ('w6', '友達', 'ともだち', 'bạn bè'),
 ];
 
-LessonDetail _detail({bool videos = true, int words = 6, bool dialogue = true}) => LessonDetail.fromJson({
+const _kanjis = [
+  ('k1', '学', 'Học', 'Học, học tập'),
+  ('k2', '生', 'Sinh', 'Sống, sinh ra'),
+];
+
+LessonDetail _detail({bool videos = true, int words = 6, bool dialogue = true, int kanjis = 0}) => LessonDetail.fromJson({
       '_id': 'l1',
       'title': 'Tình huống: Tự giới thiệu',
       'level': 'N5',
@@ -45,23 +55,44 @@ LessonDetail _detail({bool videos = true, int words = 6, bool dialogue = true}) 
         for (final (id, word, kana, meaning) in _words.take(words))
           {'_id': id, 'word': word, 'hiragana': kana, 'meaning': meaning},
       ],
+      'kanjis': [
+        for (final (id, character, hanviet, meaning) in _kanjis.take(kanjis))
+          {
+            '_id': id,
+            'character': character,
+            'hanviet': hanviet,
+            'meaning': meaning,
+            'onyomi': ['ガク'],
+            'kunyomi': ['まな(ぶ)'],
+          },
+      ],
     });
 
-LessonProgress _progress({bool completed = false, List<String> learned = const []}) => LessonProgress.fromJson({
+LessonProgress _progress({
+  bool completed = false,
+  List<String> learned = const [],
+  List<String> learnedKanji = const [],
+}) =>
+    LessonProgress.fromJson({
       '_id': 'p1',
       'lesson': 'l1',
       'is_completed': completed,
       'completed_vocabularies': learned.length,
       'total_vocabularies': 6,
       'learned_vocabulary_ids': learned,
+      'completed_kanjis': learnedKanji.length,
+      'total_kanjis': 2,
+      'learned_kanji_ids': learnedKanji,
     });
 
 /// Service giả: ghi lại lời gọi, trả `null` (như service thật khi lỗi mạng)
 /// theo cờ để kiểm đường lỗi.
 class _FakeProgressService extends LessonProgressService {
-  _FakeProgressService({this.learned = const []});
+  _FakeProgressService({this.learned = const [], this.learnedKanji = const []});
 
   final List<String> learned;
+  final List<String> learnedKanji;
+  final List<String> itemTypes = [];
   final List<String> updated = [];
   final List<String> unmarked = [];
   int completions = 0;
@@ -69,7 +100,8 @@ class _FakeProgressService extends LessonProgressService {
   bool failComplete = false;
 
   @override
-  Future<LessonProgress?> startLesson(String lessonId) async => _progress(learned: learned);
+  Future<LessonProgress?> startLesson(String lessonId) async =>
+      _progress(learned: learned, learnedKanji: learnedKanji);
 
   @override
   Future<LessonProgress?> updateProgress({
@@ -79,6 +111,7 @@ class _FakeProgressService extends LessonProgressService {
     required bool completed,
   }) async {
     (completed ? updated : unmarked).add(itemId);
+    itemTypes.add(itemType);
     return failUpdates ? null : _progress(learned: [...learned, itemId]);
   }
 
@@ -89,8 +122,49 @@ class _FakeProgressService extends LessonProgressService {
   }
 }
 
+/// Thêm vào ôn tập giả: ghi lại chữ đã gửi, ném lỗi với chữ nằm trong [failing].
+class _FakeKanjiService extends KanjiService {
+  final List<String> added = [];
+  final Set<String> failing = {};
+
+  @override
+  Future<SrsProgress> addToReview(String id) async {
+    if (failing.contains(id)) throw NetworkException('mất mạng');
+    added.add(id);
+    return SrsProgress(
+      id: 'p-$id',
+      itemId: id,
+      itemType: SrsProgress.itemTypeKanji,
+      box: 1,
+      nextReview: DateTime.utc(2026, 11, 5),
+      streak: 0,
+    );
+  }
+}
+
+LessonStudySession _kanjiSession({_FakeProgressService? service, _FakeKanjiService? kanjiService}) =>
+    LessonStudySession(
+      detail: _detail(kanjis: 2),
+      service: service ?? _FakeProgressService(),
+      kanjiService: kanjiService ?? _FakeKanjiService(),
+    );
+
 void main() {
   group('lộ trình học', () {
+    test('bài có chữ Hán thì có bước Chữ Hán ngay sau từ vựng', () {
+      final kinds = buildStudySteps(_detail(kanjis: 2)).map((step) => step.kind).toList();
+      expect(kinds, [
+        StudyStepKind.intro,
+        StudyStepKind.video,
+        StudyStepKind.video,
+        StudyStepKind.dialogue,
+        StudyStepKind.vocabulary,
+        StudyStepKind.kanji,
+        StudyStepKind.quiz,
+        StudyStepKind.finish,
+      ]);
+    });
+
     test('đi từ mở đầu, từng cảnh video, hội thoại, từ vựng, kiểm tra tới hoàn thành', () {
       final kinds = buildStudySteps(_detail()).map((step) => step.kind).toList();
       expect(kinds, [
@@ -215,6 +289,76 @@ void main() {
       expect(session.learnedCount, 0);
     });
 
+    test('mở bài nạp cả những chữ Hán đã nhớ', () async {
+      final session = _kanjiSession(service: _FakeProgressService(learnedKanji: ['k2']));
+      await session.start();
+
+      expect(session.isKanjiLearned(session.detail.kanjis[1]), isTrue);
+      expect(session.isKanjiLearned(session.detail.kanjis[0]), isFalse);
+      expect(session.learnedKanjiCount, 1);
+    });
+
+    test('"Đã nhớ" ở thẻ chữ Hán lưu tiến độ loại kanji, bấm đôi vẫn một lần', () async {
+      final service = _FakeProgressService();
+      final session = _kanjiSession(service: service);
+      final kanji = session.detail.kanjis[0];
+
+      await Future.wait([session.markKanjiLearned(kanji), session.markKanjiLearned(kanji)]);
+
+      expect(service.updated, ['k1']);
+      expect(service.itemTypes, ['kanji']);
+      expect(session.isKanjiLearned(kanji), isTrue);
+      expect(session.learnedCount, 0, reason: 'chữ Hán không tính vào số từ đã nhớ');
+    });
+
+    test('lưu chữ Hán thất bại thì báo đúng chữ; bỏ đánh dấu gửi completed=false', () async {
+      final service = _FakeProgressService(learnedKanji: ['k2'])..failUpdates = true;
+      final session = _kanjiSession(service: service);
+      await session.start();
+
+      await session.markKanjiLearned(session.detail.kanjis[0]);
+      expect(session.isKanjiLearned(session.detail.kanjis[0]), isFalse);
+      expect(session.consumeMessage(), contains('学'));
+
+      service.failUpdates = false;
+      await session.unmarkKanjiLearned(session.detail.kanjis[1]);
+      expect(service.unmarked, ['k2']);
+      expect(session.learnedKanjiCount, 0);
+    });
+
+    test('thêm vào ôn tập chỉ gửi chữ đã nhớ, mỗi chữ một lần', () async {
+      final kanjiService = _FakeKanjiService();
+      final session = _kanjiSession(kanjiService: kanjiService);
+      await session.markKanjiLearned(session.detail.kanjis[0]);
+      expect(session.kanjiPendingReview, 1);
+
+      await session.addLearnedKanjiToReview();
+      await session.addLearnedKanjiToReview();
+
+      expect(kanjiService.added, ['k1']);
+      expect(session.kanjiPendingReview, 0);
+      expect(session.kanjiAddedToReview, 1);
+      expect(session.consumeMessage(), contains('1 chữ'));
+    });
+
+    test('thêm vào ôn tập lỗi thì báo, chữ lỗi còn chờ để bấm lại', () async {
+      final kanjiService = _FakeKanjiService()..failing.add('k2');
+      final session = _kanjiSession(kanjiService: kanjiService);
+      for (final kanji in session.detail.kanjis) {
+        await session.markKanjiLearned(kanji);
+      }
+
+      await session.addLearnedKanjiToReview();
+      expect(kanjiService.added, ['k1']);
+      expect(session.kanjiPendingReview, 1);
+      expect(session.consumeMessage(), contains('生'));
+
+      kanjiService.failing.clear();
+      await session.addLearnedKanjiToReview();
+      expect(kanjiService.added, ['k1', 'k2'], reason: 'lần sau chỉ gửi chữ còn thiếu');
+      expect(session.kanjiPendingReview, 0);
+    });
+
     test('bước kiểm tra chỉ cho đi tiếp khi đã trả lời hết', () async {
       final session = LessonStudySession(detail: _detail(), service: _FakeProgressService(), initialStep: 5);
       expect(session.step.kind, StudyStepKind.quiz);
@@ -324,7 +468,7 @@ void main() {
       )));
 
       Color? segment(int index) =>
-          (tester.widget<AnimatedContainer>(find.byKey(ValueKey('word-progress-$index'))).decoration as BoxDecoration?)
+          (tester.widget<AnimatedContainer>(find.byKey(ValueKey('card-progress-$index'))).decoration as BoxDecoration?)
               ?.color;
 
       // Tới từ cuối cùng (6/6).
@@ -374,6 +518,78 @@ void main() {
       await tester.pumpAndSettle();
       expect(learned, isEmpty);
       expect(find.text('Đã nhớ'), findsOneWidget, reason: 'nút trở lại thành "Đã nhớ"');
+    });
+
+    testWidgets('thẻ chữ Hán ẩn âm và nghĩa cho tới khi lật, "Đã nhớ" chuyển sang chữ kế', (tester) async {
+      final learned = <String>{};
+      final kanjis = _detail(kanjis: 2).kanjis;
+      await tester.pumpWidget(host(StatefulBuilder(
+        builder: (context, setState) => StudyKanjiStep(
+          kanjis: kanjis,
+          isLearned: (kanji) => learned.contains(kanji.id),
+          isSaving: (_) => false,
+          onMarkLearned: (kanji) async => setState(() => learned.add(kanji.id)),
+          onUnmarkLearned: (_) async {},
+        ),
+      )));
+
+      expect(find.text('Chữ 1/2'), findsOneWidget);
+      expect(find.text('Học, học tập'), findsNothing);
+      await tester.tap(find.text('学'));
+      await tester.pumpAndSettle();
+      expect(find.text('Học, học tập'), findsOneWidget);
+      expect(find.text('HỌC'), findsOneWidget);
+
+      await tester.tap(find.text('Đã nhớ'));
+      await tester.pumpAndSettle();
+      expect(learned, {'k1'});
+      expect(find.text('Chữ 2/2'), findsOneWidget);
+    });
+
+    testWidgets('lời mời thêm vào ôn tập theo số chữ đã nhớ', (tester) async {
+      var taps = 0;
+      Future<void> pump({required int pending, required int added}) => tester.pumpWidget(host(StudyKanjiReviewOffer(
+            pending: pending,
+            added: added,
+            busy: false,
+            onAdd: () async => taps++,
+          )));
+
+      await pump(pending: 0, added: 0);
+      expect(find.textContaining('Thêm'), findsNothing, reason: 'chưa nhớ chữ nào thì chưa có gì để thêm');
+      expect(find.textContaining('Đã nhớ'), findsOneWidget, reason: 'chỉ dẫn cách để thêm');
+
+      await pump(pending: 2, added: 0);
+      await tester.tap(find.text('Thêm 2 chữ đã nhớ vào ôn tập'));
+      expect(taps, 1);
+
+      await pump(pending: 0, added: 2);
+      expect(find.text('Đã thêm 2 chữ vào lịch ôn tập'), findsOneWidget);
+    });
+
+    testWidgets('lộ trình đếm chữ Hán đã nhớ, màn kết thúc có số chữ Hán', (tester) async {
+      await tester.pumpWidget(host(LessonRoadmap(
+        detail: _detail(kanjis: 2),
+        progress: _progress(learnedKanji: ['k1']),
+        onOpenStep: (_) {},
+      )));
+      expect(find.text('1/2 chữ đã nhớ'), findsOneWidget);
+
+      await tester.pumpWidget(host(StudyFinishStep(
+        completion: ViewState.data(_progress(completed: true)),
+        xpEarned: 10,
+        learnedWords: 3,
+        totalWords: 6,
+        learnedKanji: 1,
+        totalKanji: 2,
+        quizCorrect: 0,
+        quizTotal: 0,
+        onRetry: () {},
+        onExercises: () {},
+        onDone: () {},
+      )));
+      expect(find.text('1/2'), findsOneWidget);
+      expect(find.text('chữ Hán đã nhớ'), findsOneWidget);
     });
 
     testWidgets('chọn đáp án là biết ngay đúng hay sai', (tester) async {

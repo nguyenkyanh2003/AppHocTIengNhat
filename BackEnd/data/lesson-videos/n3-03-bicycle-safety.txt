@@ -1,0 +1,131 @@
+# Lời thoại Tình huống: An toàn khi đi xe đạp
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-1-5.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Tìm chỗ gửi xe đạp
+00:02 | ビン / Bin / Bin | すみません。ここに自転車止めてもいいですか？ | Sumimasen. Koko ni jitensha tomete mo ii desu ka. | Xin lỗi. Tôi để xe đạp ở đây có được không ạ?
+00:07 | 係の人 / Kakari no hito / Người phụ trách (áo vàng) | あ、ここ、駐輪禁止なんですよ。 | A, koko, chuurin kinshi nan desu yo. | À, chỗ này cấm để xe đạp đấy.
+00:12 | ビン / Bin / Bin | そうなんですか。どこか近くに止められるところありませんか？ | Soo nan desu ka. Dokoka chikaku ni tomerareru tokoro arimasen ka. | Vậy ạ. Gần đây có chỗ nào để xe được không ạ?
+00:19 | 係の人 / Kakari no hito / Người phụ trách (áo vàng) | 駅の裏に駐輪場がありますよ。 | Eki no ura ni chuurinjoo ga arimasu yo. | Phía sau nhà ga có bãi để xe đạp đấy.
+00:23 | ビン / Bin / Bin | そうですか。ありがとうございます。 | Soo desu ka. Arigatoo gozaimasu. | Vậy à. Cảm ơn anh.
+00:36 | ビン / Bin / Bin | あの、すみません。自転車、止めたいんですけど。 | Ano, sumimasen. Jitensha, tometai n desu kedo. | À, xin lỗi. Tôi muốn để xe đạp ạ.
+00:40 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | じゃあ、そこでチケットを買ってください。1回100円です。 | Jaa, soko de chiketto o katte kudasai. Ikkai hyaku-en desu. | Vậy anh mua vé ở đằng kia nhé. Mỗi lần 100 yên.
+*01:01 | ビン / Bin / Bin | あの、すみません。毎日止めるなら、定期券買った方が安いですよね。 | Ano, sumimasen. Mainichi tomeru nara, teekiken katta hoo ga yasui desu yo ne. | À, xin lỗi. Nếu ngày nào cũng để xe thì mua vé tháng sẽ rẻ hơn nhỉ.
+01:08 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | そうですね。1ヶ月、1700円です。 | Soo desu ne. Ikkagetsu, sen nanahyaku-en desu. | Đúng vậy. Một tháng là 1700 yên.
+*01:14 | ビン / Bin / Bin | 毎回100円払うよりは安いですよね。どうしようかな。 | Maikai hyaku-en harau yori wa yasui desu yo ne. Dooshiyoo ka na. | Rẻ hơn so với trả 100 yên mỗi lần nhỉ. Không biết nên làm sao đây.
+01:24 | ビン / Bin / Bin | とりあえず、1ヶ月の定期券を買ってみます。更新もできるんですよね？ | Toriaezu, ikkagetsu no teekiken o katte mimasu. Kooshin mo dekiru n desu yo ne. | Trước mắt tôi sẽ thử mua vé tháng 1 tháng. Gia hạn cũng được đúng không ạ?
+01:30 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | はい。 | Hai. | Vâng.
+01:31 | ビン / Bin / Bin | 定期券の購入って、今日でもできますか？ | Teekiken no koonyuu tte, kyoo demo dekimasu ka. | Hôm nay tôi mua vé tháng được không ạ?
+01:35 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | はい。身分証明書をお持ちでしたら。 | Hai. Mibun shoomeesho o omochi deshitara. | Được ạ. Nếu anh có giấy tờ tùy thân.
+01:40 | ビン / Bin / Bin | 在留カードでいいですか？ | Zairyuu kaado de ii desu ka. | Thẻ cư trú có được không ạ?
+01:42 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | はい。 | Hai. | Được ạ.
+01:45 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | では、こちらの申し込み用紙に記入してください。 | Dewa, kochira no mooshikomi yooshi ni kinyuu shite kudasai. | Vậy anh hãy điền vào mẫu đơn đăng ký này nhé.
+### từ vựng
+駐輪禁止 | ちゅうりんきんし | chuurin kinshi | cấm để xe đạp
+駐輪場 | ちゅうりんじょう | chuurinjoo | bãi để xe đạp
+定期券 | ていきけん | teekiken | vé tháng
+更新 | こうしん | kooshin | gia hạn
+身分証明書 | みぶんしょうめいしょ | mibun shoomeesho | giấy tờ tùy thân
+在留カード | ざいりゅうカード | zairyuu kaado | thẻ cư trú
+申し込み用紙 | もうしこみようし | mooshikomi yooshi | mẫu đơn đăng ký
+
+## scene-2.mp4
+# Gọi 110 báo bị giật túi
+00:19 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 事件ですか？事故ですか？ | Jiken desu ka. Jiko desu ka. | Là vụ án hay tai nạn ạ?
+*00:22 | ビン / Bin / Bin | 事件です。カバンを取られました。 | Jiken desu. Kaban o toraremashita. | Là vụ án ạ. Tôi bị lấy mất cái túi.
+00:26 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | いつですか？ | Itsu desu ka. | Lúc nào vậy?
+00:27 | ビン / Bin / Bin | たった今です。 | Tatta ima desu. | Vừa mới xong ạ.
+00:30 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 場所は？ | Basho wa? | Địa điểm ở đâu?
+00:33 | ビン / Bin / Bin | 北部公園の近くの交差点です。 | Hokubu kooen no chikaku no koosaten desu. | Là ngã tư gần công viên Hokubu ạ.
+00:35 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 何という交差点か分かりますか？ | Nan to iu koosaten ka wakarimasu ka. | Anh có biết đó là ngã tư tên gì không?
+00:40 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 信号機に何て書いてありますか？ | Shingooki ni nante kaite arimasu ka. | Trên đèn tín hiệu có ghi gì không?
+00:44 | ビン / Bin / Bin | はい、北部公園って書いてあります。 | Hai, Hokubu kooen tte kaite arimasu. | Vâng, trên đó ghi là "công viên Hokubu" ạ.
+00:47 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 怪我人はいませんか？ | Keganin wa imasen ka. | Có ai bị thương không?
+00:52 | ビン / Bin / Bin | いません。 | Imasen. | Không còn ở đây nữa ạ.
+00:53 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 犯人を見ましたか？ | Hannin o mimashita ka. | Anh có nhìn thấy thủ phạm không?
+00:56 | ビン / Bin / Bin | はい、白いTシャツを着た男の人です。黒いズボンを履いていたと思うんですけど。 | Hai, shiroi tiishatsu o kita otoko no hito desu. Kuroi zubon o haite ita to omoun desu kedo. | Vâng, là một người đàn ông mặc áo phông trắng. Tôi nghĩ anh ta mặc quần đen.
+01:05 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | どの方向に逃げましたか？ | Dono hookoo ni nigemashita ka. | Hắn chạy về hướng nào?
+01:10 | ビン / Bin / Bin | ちょっと待ってください。 | Chotto matte kudasai. | Xin chờ một chút.
+01:13 | ビン / Bin / Bin | 駅の方に走っていきました。 | Eki no hoo ni hashitte ikimashita. | Anh ta chạy về phía nhà ga.
+01:17 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | どういう状況で取られましたか？ | Doo iu jookyoo de toraremashita ka. | Anh bị lấy mất trong tình huống như thế nào?
+01:23 | ビン / Bin / Bin | えーと、自転車の前のカゴにカバンを入れていたんですけど、自転車で信号を待っていたら、その間に取られちゃいました。 | Eeto, jitensha no mae no kago ni kaban o irete ita n desu kedo, jitensha de shingoo o matte itara, sono aida ni torarechaimashita. | Dạ, tôi để túi trong giỏ xe đạp phía trước, rồi lúc đang đợi đèn giao thông trên xe đạp thì bị lấy mất trong lúc đó.
+01:35 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 中に何が入っていましたか？ | Naka ni nani ga haitte imashita ka. | Bên trong có những gì vậy?
+01:39 | ビン / Bin / Bin | 財布と家の鍵が入っていました。 | Saifu to ie no kagi ga haitte imashita. | Có ví và chìa khóa nhà ạ.
+01:44 | ビン / Bin / Bin | 財布の中には、現金と、在留カードと、キャッシュカードが入っています。 | Saifu no naka ni wa, genkin to, zairyuu kaado to, kyasshu kaado ga haitte imasu. | Trong ví có tiền mặt, thẻ cư trú và thẻ ngân hàng ạ.
+01:56 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | それでは、あなたのお名前と住所と電話番号を教えてください。 | Soredewa, anata no onamae to juusho to denwa bangoo o oshiete kudasai. | Vậy anh cho tôi biết tên, địa chỉ và số điện thoại của anh nhé.
+02:04 | ビン / Bin / Bin | 名前はチャン・バン・ビンです。住所は文化市…（続きは聞き取れない） | Namae wa Chan Ban Bin desu. Juusho wa Bunka-shi... (tsuzuki wa kikitorenai) | Tên tôi là Trần Văn Bin. Địa chỉ ở thành phố Bunka... (phần sau không nghe rõ)
+### từ vựng
+事件 | じけん | jiken | vụ án
+事故 | じこ | jiko | tai nạn
+交差点 | こうさてん | koosaten | ngã tư
+怪我人 | けがにん | keganin | người bị thương
+犯人 | はんにん | hannin | thủ phạm
+財布 | さいふ | saifu | ví
+キャッシュカード | キャッシュカード | kyasshu kaado | thẻ ngân hàng
+
+## scene-3.mp4
+# Mua thêm khóa xe đạp
+00:09 | 女性 / Josee / Người phụ nữ | 最近、このあたり自転車の盗難が多いみたいですよ。 | Saikin, kono atari jitensha no toonan ga ooi mitai desu yo. | Gần đây khu này hình như có nhiều vụ trộm xe đạp đấy.
+*00:14 | アンジェラ / Anjera / Angela | ええ、そうなんですか。私、自転車買ったばかりなんです。 | Ee, soo nan desu ka. Watashi, jitensha katta bakari nan desu. | Ơ, vậy ạ? Tôi vừa mới mua xe đạp thôi.
+00:21 | 女性 / Josee / Người phụ nữ | 鍵、ちゃんとつけておいた方がいいですよ。 | Kagi, chanto tsukete oita hoo ga ii desu yo. | Chị nên khóa xe cẩn thận đấy.
+00:26 | アンジェラ / Anjera / Angela | つけてます。これです。 | Tsukete masu. Kore desu. | Tôi có khóa rồi. Đây ạ.
+00:30 | 女性 / Josee / Người phụ nữ | ああ。もう一つ付けた方が安心かもしれませんよ。 | Aa. Moo hitotsu tsuketa hoo ga anshin kamoshiremasen yo. | À. Có lẽ gắn thêm một cái nữa thì yên tâm hơn đấy.
+00:37 | アンジェラ / Anjera / Angela | え？鍵2つ付けるんですか？ | E? Kagi futatsu tsukeru n desu ka. | Hả? Chị gắn hai cái khóa à?
+00:41 | 女性 / Josee / Người phụ nữ | ほら、私もツーロック、2つつけてますよ。 | Hora, watashi mo tsuu-rokku, futatsu tsukete masu yo. | Này, tôi cũng khóa kép (two-lock), gắn hai cái đấy.
+00:47 | アンジェラ / Anjera / Angela | 2つ付けるのって、めんどくさいですね。 | Futatsu tsukeru no tte, mendokusai desu ne. | Gắn hai cái thì phiền phức nhỉ.
+00:51 | 女性 / Josee / Người phụ nữ | そうでもないですよ。 | Soo demo nai desu yo. | Cũng không hẳn đâu.
+00:54 | 女性 / Josee / Người phụ nữ | ここに、こうやって…。こうするだけです。 | Koko ni, koo yatte.... Koo suru dake desu. | Gắn vào đây, như thế này... Chỉ cần làm vậy thôi.
+01:03 | アンジェラ / Anjera / Angela | 簡単そうですけど、私、めんどくさがりだからな…。 | Kantan soo desu kedo, watashi, mendokusagari da kara na... | Trông có vẻ đơn giản nhưng tôi lại là người lười...
+01:09 | 女性 / Josee / Người phụ nữ | ちょっとやってみます？ | Chotto yatte mimasu? | Chị thử làm xem nhé?
+01:13 | アンジェラ / Anjera / Angela | あ、はい。 | A, hai. | À, vâng.
+01:14 | 女性 / Josee / Người phụ nữ | どうぞ、どうぞ。 | Doozo, doozo. | Mời chị, mời chị.
+01:17 | アンジェラ / Anjera / Angela | これは、こうやってつければいいですか？ | Kore wa, koo yatte tsukereba ii desu ka. | Cái này gắn như thế này là được ạ?
+01:23 | 女性 / Josee / Người phụ nữ | そうそう。 | Soo soo. | Đúng rồi, đúng rồi.
+01:24 | アンジェラ / Anjera / Angela | で、外すときは、ここを回せばいいってことですね。 | De, hazusu toki wa, koko o mawaseba ii tte koto desu ne. | Rồi, khi tháo thì xoay chỗ này là được nhỉ.
+01:30 | 女性 / Josee / Người phụ nữ | はいはい。 | Hai hai. | Đúng đúng.
+01:32 | アンジェラ / Anjera / Angela | 慣れれば、そんなに面倒じゃないかも。 | Narereba, sonna ni mendoo janai kamo. | Quen rồi thì có lẽ cũng không phiền lắm.
+01:36 | アンジェラ / Anjera / Angela | この程度だったら、自転車を盗まれるよりはいいかな。 | Kono teedo dattara, jitensha o nusumareru yori wa ii ka na. | Mức độ này thì còn tốt hơn là bị trộm xe đạp.
+01:57 | アンジェラ / Anjera / Angela | すみません、自転車の鍵を買いたいんですけど。一つは持っているんですが、もう一つ付けようと思っています。 | Sumimasen, jitensha no kagi o kaitai n desu kedo. Hitotsu wa motte iru n desu ga, moo hitotsu tsukeyoo to omotte imasu. | Xin lỗi, tôi muốn mua khóa xe đạp. Tôi đã có một cái nhưng định gắn thêm một cái nữa.
+02:13 | 店員 / Ten'in / Nhân viên cửa hàng | こちらはどうですか？防犯性が高いですよ。 | Kochira wa doo desu ka. Boohansee ga takai desu yo. | Cái này thì sao ạ? Tính chống trộm cao lắm đấy.
+02:21 | アンジェラ / Anjera / Angela | もう少し軽いのありますか？ | Moo sukoshi karui no arimasu ka. | Có cái nào nhẹ hơn một chút không ạ?
+02:28 | 店員 / Ten'in / Nhân viên cửa hàng | こちらはどうですか？ | Kochira wa doo desu ka. | Cái này thì sao ạ?
+02:37 | アンジェラ / Anjera / Angela | いいですね。これください。 | Ii desu ne. Kore kudasai. | Được đấy. Cho tôi cái này.
+### từ vựng
+盗難 | とうなん | toonan | trộm cắp
+鍵 | かぎ | kagi | khóa
+面倒 | めんどう | mendoo | phiền phức
+外す | はずす | hazusu | tháo ra
+盗む | ぬすむ | nusumu | trộm
+防犯 | ぼうはん | boohan | phòng chống trộm cắp
+
+## summary.mp4
+# Ôn tập: An toàn khi đi xe đạp
+00:00 |  /  / Chủ đề | まいにち とめるなら | mainichi tomeru nara | Nếu ngày nào cũng để (xe)
+00:09 | ビン / Bin / Bin | 毎日止めるなら、定期券を買った方が安いですよね。 | Mainichi tomeru nara, teekiken o katta hoo ga yasui desu yo ne. | Nếu ngày nào cũng để xe thì mua vé tháng sẽ rẻ hơn nhỉ.
+00:14 | ナレーター / Nareetaa / Người dẫn | この動画でビンさんは「毎日止めるなら、定期券を買った方が安いですよね」と言っています。 | Kono dooga de Bin-san wa "Mainichi tomeru nara, teekiken o katta hoo ga yasui desu yo ne" to itte imasu. | Trong video này, anh Bin nói "Nếu ngày nào cũng để xe thì mua vé tháng sẽ rẻ hơn nhỉ".
+00:25 | ナレーター / Nareetaa / Người dẫn | 「なら」は、ある事柄を仮定した場合の話し手の判断、意思、希望、評価、命令などを述べるときに使います。 | "Nara" wa, aru kotogara o katee shita baai no hanashite no handan, ishi, kiboo, hyooka, meeree nado o noberu toki ni tsukaimasu. | "Nara" dùng khi nêu phán đoán, ý chí, mong muốn, đánh giá, mệnh lệnh... của người nói trong trường hợp giả định một sự việc nào đó.
+00:39 | ナレーター / Nareetaa / Người dẫn | 「なら」の前は仮定した事柄です。 | "Nara" no mae wa katee shita kotogara desu. | Phía trước "nara" là sự việc được giả định.
+00:45 | ナレーター / Nareetaa / Người dẫn | この動画では、毎日自転車を止めると仮定した場合、定期券を買った方が安いというビンさんの判断を表しています。 | Kono dooga de wa, mainichi jitensha o tomeru to katee shita baai, teekiken o katta hoo ga yasui to iu Bin-san no handan o arawashite imasu. | Trong video này, thể hiện phán đoán của anh Bin rằng nếu giả định ngày nào cũng để xe đạp thì mua vé tháng sẽ rẻ hơn.
+01:00 | ナレーター / Nareetaa / Người dẫn | 「なら」の前は普通形ですが、名詞、な形容詞の場合は、「学生なら」「元気なら」のようになります。 | "Nara" no mae wa futsuu-kee desu ga, meeshi, na-keeyooshi no baai wa, "gakusee nara" "genki nara" no yoo ni narimasu. | Trước "nara" là thể thường, còn với danh từ và tính từ đuôi na thì thành như "gakusee nara" (nếu là học sinh), "genki nara" (nếu khỏe).
+01:16 | ナレーター / Nareetaa / Người dẫn | 「安くなるなら買います」「バスなら30分ぐらいかかりますが、タクシーなら10分ぐらいで行けます」のように言うこともできます。 | "Yasuku naru nara kaimasu" "Basu nara sanjuppun gurai kakarimasu ga, takushii nara juppun gurai de ikemasu" no yoo ni iu koto mo dekimasu. | Cũng có thể nói như "Nếu rẻ hơn thì tôi sẽ mua", "Đi xe buýt thì mất khoảng 30 phút, còn đi taxi thì khoảng 10 phút là tới".
+01:31 |  /  / Chủ đề | まいかい 100えん はらうより | maikai hyaku-en harau yori | Hơn là trả 100 yên mỗi lần
+01:39 | ビン / Bin / Bin | 毎回100円払うよりは、安いですよね。 | Maikai hyaku-en harau yori wa, yasui desu yo ne. | So với việc mỗi lần trả 100 yên thì rẻ hơn nhỉ.
+01:43 | ナレーター / Nareetaa / Người dẫn | この動画でビンさんは「毎回100円払うよりは安いですよね」と言っています。 | Kono dooga de Bin-san wa "Maikai hyaku-en harau yori wa yasui desu yo ne" to itte imasu. | Trong video này, anh Bin nói "So với việc mỗi lần trả 100 yên thì rẻ hơn nhỉ".
+01:53 | ナレーター / Nareetaa / Người dẫn | 「より」は、2つのことを比べて話すときに使います。 | "Yori" wa, futatsu no koto o kurabete hanasu toki ni tsukaimasu. | "Yori" dùng khi so sánh hai việc để nói.
+02:00 | ナレーター / Nareetaa / Người dẫn | 例えば、A町の人口が2万人、B町の人口が1万人の場合、2つの町の人口を比べて、 | Tatoeba, A-machi no jinkoo ga niman-nin, B-machi no jinkoo ga ichiman-nin no baai, futatsu no machi no jinkoo o kurabete, | Ví dụ, nếu dân số thị trấn A là 2 vạn người, thị trấn B là 1 vạn người, so sánh dân số hai thị trấn,
+02:13 | ナレーター / Nareetaa / Người dẫn | 「A町の方がB町より人口が多いです」「A町はB町より人口が多いです」ということができます。 | "A-machi no hoo ga B-machi yori jinkoo ga ooi desu" "A-machi wa B-machi yori jinkoo ga ooi desu" to iu koto ga dekimasu. | có thể nói "Dân số thị trấn A nhiều hơn thị trấn B".
+02:28 | ビン / Bin / Bin | 毎回100円払うよりは、安いですよね。 | Maikai hyaku-en harau yori wa, yasui desu yo ne. | So với việc mỗi lần trả 100 yên thì rẻ hơn nhỉ.
+02:32 | ナレーター / Nareetaa / Người dẫn | この動画では、ビンさんは、毎回100円払うことと、定期券を買うことの2つを比べて話しました。 | Kono dooga de wa, Bin-san wa, maikai hyaku-en harau koto to, teekiken o kau koto no futatsu o kurabete hanashimashita. | Trong video này, anh Bin đã nói so sánh hai việc: trả 100 yên mỗi lần và mua vé tháng.
+02:45 | ナレーター / Nareetaa / Người dẫn | 「定期券を買う方が、毎回100円払うより安いです」という意味で、「毎回100円払うより安いです」と言いました。 | "Teekiken o kau hoo ga, maikai hyaku-en harau yori yasui desu" to iu imi de, "Maikai hyaku-en harau yori yasui desu" to iimashita. | Với ý nghĩa "mua vé tháng thì rẻ hơn trả 100 yên mỗi lần", anh đã nói "Rẻ hơn trả 100 yên mỗi lần".
+03:00 | ナレーター / Nareetaa / Người dẫn | 「より」の前は、名詞や、動詞の辞書形、ない形です。 | "Yori" no mae wa, meeshi ya, dooshi no jisho-kee, nai-kee desu. | Trước "yori" là danh từ, hoặc thể từ điển, thể nai của động từ.
+03:08 | ナレーター / Nareetaa / Người dẫn | 「渋滞しているから、タクシーより自転車の方が早い」「外食するより、家で食べる方が好きだ」のように言うことができます。 | "Juutai shite iru kara, takushii yori jitensha no hoo ga hayai" "Gaishoku suru yori, ie de taberu hoo ga suki da" no yoo ni iu koto ga dekimasu. | Có thể nói như "Vì đang kẹt xe nên xe đạp nhanh hơn taxi", "Tôi thích ăn ở nhà hơn là ăn ngoài".
+03:23 |  /  / Chủ đề | かった ばかりなんです | katta bakari nan desu | Vì tôi vừa mới mua
+03:34 | アンジェラ / Anjera / Angela | 私、自転車買ったばかりなんです。 | Watashi, jitensha katta bakari nan desu. | Tôi vừa mới mua xe đạp thôi.
+03:39 | ナレーター / Nareetaa / Người dẫn | この動画ではアンジェラさんが「自転車買ったばかりなんです」と言っています。 | Kono dooga de wa Anjera-san ga "Jitensha katta bakari nan desu" to itte imasu. | Trong video này, chị Angela nói "Tôi vừa mới mua xe đạp thôi".
+03:49 | ナレーター / Nareetaa / Người dẫn | アンジェラさんは、知り合いから自転車の盗難が多いということを聞いて、自転車を買ってからあまり時間が経っていない新しい自転車だということを伝えました。 | Anjera-san wa, shiriai kara jitensha no toonan ga ooi to iu koto o kiite, jitensha o katte kara amari jikan ga tatte inai atarashii jitensha da to iu koto o tsutaemashita. | Chị Angela nghe người quen nói trộm xe đạp rất nhiều, nên đã nói rằng đây là xe mới, chưa lâu sau khi mua.
+04:06 | ナレーター / Nareetaa / Người dẫn | 「〜たばかりです」は、前の動作が終わって、あまり時間が経っていないということを表すときに使います。 | "~Ta bakari desu" wa, mae no doosa ga owatte, amari jikan ga tatte inai to iu koto o arawasu toki ni tsukaimasu. | "~ta bakari desu" dùng để thể hiện hành động trước đã kết thúc và chưa trải qua nhiều thời gian.
+04:19 | ナレーター / Nareetaa / Người dẫn | 「ばかりです」の前は、動詞のた形です。 | "Bakari desu" no mae wa, dooshi no ta-kee desu. | Trước "bakari desu" là thể ta của động từ.
+04:25 | ナレーター / Nareetaa / Người dẫn | 例えば、自己紹介の場面で、「日本へ来たばかりなので、わからないことがたくさんありますが、いろいろ教えてください」と言ったり、 | Tatoeba, jiko-shookai no bamen de, "Nihon e kita bakari na node, wakaranai koto ga takusan arimasu ga, iroiro oshiete kudasai" to ittari, | Ví dụ, trong lúc tự giới thiệu có thể nói "Vì mới đến Nhật nên có nhiều điều chưa biết, mong mọi người chỉ bảo nhiều",
+04:39 | ナレーター / Nareetaa / Người dẫn | 食事を勧められて、「すみません、今食べたばかりなんです」と自分の事情を説明したりすることもできます。 | Shokuji o susumerarete, "Sumimasen, ima tabeta bakari nan desu" to jibun no jijoo o setsumee shitari suru koto mo dekimasu. | hoặc khi được mời ăn, có thể giải thích hoàn cảnh của mình rằng "Xin lỗi, tôi vừa mới ăn xong".

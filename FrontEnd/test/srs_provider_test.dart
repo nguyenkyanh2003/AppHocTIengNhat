@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
 import 'package:apphoctiengnnhat/core/state/view_state.dart';
+import 'package:apphoctiengnnhat/features/kanji/models/kanji.dart';
 import 'package:apphoctiengnnhat/features/srs/models/srs_card.dart';
 import 'package:apphoctiengnnhat/features/srs/models/srs_progress.dart';
 import 'package:apphoctiengnnhat/features/srs/providers/srs_provider.dart';
@@ -21,8 +22,23 @@ SrsCard _card(String id, {bool unavailable = false, DateTime? nextReview}) => Sr
         nextReview: nextReview ?? _due,
         streak: 0,
       ),
-      item: unavailable ? null : Vocabulary(id: id, word: 'w$id', hiragana: 'k$id', meaning: 'm$id'),
+      item: unavailable
+          ? null
+          : SrsVocabularyItem(Vocabulary(id: id, word: 'w$id', hiragana: 'k$id', meaning: 'm$id')),
       unavailable: unavailable,
+    );
+
+SrsCard _kanjiCard(String id) => SrsCard(
+      progress: SrsProgress(
+        id: 'p-$id',
+        itemId: id,
+        itemType: SrsProgress.itemTypeKanji,
+        box: 1,
+        nextReview: _due,
+        streak: 0,
+      ),
+      item: SrsKanjiItem(Kanji(id: id, character: '学')),
+      unavailable: false,
     );
 
 Map<String, dynamic> _progressJson(String id, DateTime nextReview) => {
@@ -42,7 +58,10 @@ class _FakeSrsService extends SrsService {
   final List<List<SrsCard>> _batches;
   final List<List<String>> dueExclusions = [];
   final List<int> dueLimits = [];
+  final List<String?> dueTypes = [];
+  final List<String?> statsTypes = [];
   final List<(String, bool, DateTime)> reviews = [];
+  final List<String> reviewTypes = [];
   final List<String> resets = [];
   final List<String> removals = [];
   final List<Object> reviewErrors = [];
@@ -51,9 +70,14 @@ class _FakeSrsService extends SrsService {
   Completer<void>? reviewGate;
 
   @override
-  Future<SrsBatch> fetchDue({List<String> excludeItemIds = const [], int limit = SrsService.defaultLimit}) async {
+  Future<SrsBatch> fetchDue({
+    List<String> excludeItemIds = const [],
+    int limit = SrsService.defaultLimit,
+    String? itemType,
+  }) async {
     dueExclusions.add([...excludeItemIds]);
     dueLimits.add(limit);
+    dueTypes.add(itemType);
     if (dueError != null) throw dueError!;
     return SrsBatch(cards: _batches.isEmpty ? const [] : _batches.removeAt(0), limit: limit);
   }
@@ -62,30 +86,38 @@ class _FakeSrsService extends SrsService {
   Future<int> fetchDueCount() async => dueCount;
 
   @override
-  Future<SrsStats> fetchStats() async =>
-      SrsStats(totalCards: 3, dueCount: dueCount, byBox: const {1: 1, 2: 2, 3: 0, 4: 0, 5: 0});
+  Future<SrsStats> fetchStats({String? itemType}) async {
+    statsTypes.add(itemType);
+    return SrsStats(totalCards: 3, dueCount: dueCount, byBox: const {1: 1, 2: 2, 3: 0, 4: 0, 5: 0});
+  }
 
   @override
   Future<SrsProgress> review({
     required String itemId,
+    required String itemType,
     required bool isCorrect,
     required DateTime expectedNextReview,
   }) async {
     reviews.add((itemId, isCorrect, expectedNextReview));
+    reviewTypes.add(itemType);
     await reviewGate?.future;
     if (reviewErrors.isNotEmpty) throw reviewErrors.removeAt(0);
     return SrsProgress.fromJson(_progressJson(itemId, _due.add(const Duration(days: 3))));
   }
 
   @override
-  Future<SrsProgress> reset({required String itemId, required DateTime expectedNextReview}) async {
+  Future<SrsProgress> reset({
+    required String itemId,
+    required String itemType,
+    required DateTime expectedNextReview,
+  }) async {
     resets.add(itemId);
     return SrsProgress.fromJson(_progressJson(itemId, _due.add(const Duration(days: 1))));
   }
 
   @override
-  Future<bool> remove({required String itemId}) async {
-    removals.add(itemId);
+  Future<bool> remove({required String itemId, required String itemType}) async {
+    removals.add('$itemType:$itemId');
     return true;
   }
 }
@@ -238,7 +270,7 @@ void main() {
     await provider.skip();
     await provider.removeCurrent();
 
-    expect(service.removals, ['b']);
+    expect(service.removals, ['Vocabulary:b']);
     expect(service.dueExclusions.last, ['a', 'b']);
     expect(provider.currentCard?.itemId, 'c');
     expect(provider.tally.skipped, 1);
@@ -271,6 +303,48 @@ void main() {
     await provider.startSession();
     expect(service.dueExclusions.last, isEmpty);
     expect(provider.tally.isEmpty, isTrue);
+  });
+
+  test('a session takes every card type unless a filter is chosen', () async {
+    final (provider, service) = await _started([
+      [_kanjiCard('k1'), _card('a')],
+    ]);
+
+    expect(provider.typeFilter, isNull);
+    expect(service.dueTypes.single, isNull);
+    expect(provider.currentCard?.progress.itemType, SrsProgress.itemTypeKanji);
+  });
+
+  test('choosing a filter starts a new session of that type only, summary stats included', () async {
+    final (provider, service) = await _started([
+      [_card('a'), _card('b')],
+      [_kanjiCard('k1')],
+      [],
+    ]);
+    await provider.skip();
+    expect(provider.currentCard?.itemId, 'b');
+
+    await provider.setTypeFilter(SrsProgress.itemTypeKanji);
+    expect(service.dueTypes.last, 'Kanji');
+    expect(service.dueExclusions.last, isEmpty, reason: 'phiên mới quên thẻ đã xử lý');
+    expect(provider.tally.isEmpty, isTrue);
+    expect(provider.currentCard?.itemId, 'k1');
+
+    await provider.skip();
+    expect(service.dueTypes.last, 'Kanji');
+    expect(service.statsTypes.last, 'Kanji');
+  });
+
+  test('every action on a kanji card carries the card type', () async {
+    final (provider, service) = await _started([
+      [_kanjiCard('k1'), _kanjiCard('k2')],
+    ]);
+
+    await provider.answer(remembered: true);
+    await provider.removeCurrent();
+
+    expect(service.reviewTypes, ['Kanji']);
+    expect(service.removals, ['Kanji:k2']);
   });
 
   test('the batch size shrinks to stay within the session limit', () async {

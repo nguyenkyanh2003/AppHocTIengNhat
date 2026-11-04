@@ -1,0 +1,139 @@
+# Lời thoại Tình huống: Tìm thuê căn hộ
+# Nhập từ Loi-thoai-Tsunahiro-N3-tinh-huong-6-9.md bằng scripts/import-transcript-markdown.js.
+# Mỗi dòng một câu: mốc | người nói JA / roma-ji / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt
+# Dấu * trước mốc = câu then chốt (phần "Mẫu câu"). Bảng từ ghi sau "### từ vựng" của từng cảnh.
+
+## scene-1.mp4
+# Đến công ty môi giới tìm phòng
+00:01 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | いらっしゃいませ。 | Irasshaimase. | Xin chào quý khách.
+00:05 | アンジェラ / Anjera / Angela | あの、部屋を探しているんですが。 | Ano, heya o sagashite iru n desu ga. | À, tôi đang tìm phòng ạ.
+00:08 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、どうぞおかけください。 | Hai, doozo okake kudasai. | Vâng, mời chị ngồi.
+00:12 | アンジェラ / Anjera / Angela | あ、どうも。 | A, doomo. | À, cảm ơn.
+00:17 | アンジェラ / Anjera / Angela | あの、来月ぐらいに引っ越したいと思っているんですが。 | Ano, raigetsu gurai ni hikkoshitai to omotte iru n desu ga. | À, tôi định chuyển nhà vào khoảng tháng sau.
+00:23 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | そうですか。 | Soo desu ka. | Vậy à.
+00:25 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | お客様のご希望をもう少し詳しく伺いたいので、お手数ですが、こちらにお答えいただけますか？ | Okyakusama no gokiboo o moo sukoshi kuwashiku ukagaitai node, otesuu desu ga, kochira ni okotae itadakemasu ka. | Chúng tôi muốn biết rõ hơn một chút nguyện vọng của quý khách, phiền chị trả lời vào phần này giúp.
+00:34 | アンジェラ / Anjera / Angela | わかりました。 | Wakarimashita. | Tôi hiểu rồi.
+00:59 | アンジェラ / Anjera / Angela | あの、これ、毎月払うんですか？ | Ano, kore, maitsuki harau n desu ka. | À, cái này phải trả hằng tháng ạ?
+01:04 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | ああ、管理費・共益費ですね。はい、毎月払いますよ。 | Aa, kanrihi, kyooekihi desu ne. Hai, maitsuki haraimasu yo. | À, là phí quản lý và phí dịch vụ chung. Vâng, trả hằng tháng ạ.
+*01:10 | アンジェラ / Anjera / Angela | ああ、じゃあ、これチェックしたら、管理費とかも入れて5万円ってことですね。 | Aa, jaa, kore chekku-shitara, kanrihi toka mo irete goman-en tte koto desu ne. | À, vậy nếu đánh dấu cái này thì tính cả phí quản lý, tổng cộng là 5 vạn yên nhỉ.
+01:18 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、そうです、そうです。 | Hai, soo desu, soo desu. | Vâng, đúng vậy, đúng vậy.
+01:25 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | えっと、ご希望に合いそうな物件をいくつか紹介しますね。 | Etto, gokiboo ni aisoo na bukken o ikutsuka shookai shimasu ne. | À, tôi xin giới thiệu vài căn có vẻ hợp với nguyện vọng của chị.
+01:36 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | いかがですか？ | Ikaga desu ka. | Chị thấy thế nào?
+01:37 | アンジェラ / Anjera / Angela | これ、もらって帰って、会社の人に相談してみてもいいですか？ | Kore, moratte kaette, kaisha no hito ni soodan shite mite mo ii desu ka. | Cái này tôi lấy về nhờ người ở công ty tư vấn thử được không ạ?
+01:44 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | ああ、いいですよ、もちろん。 | Aa, ii desu yo, mochiron. | À, được chứ, tất nhiên rồi.
+01:49 | アンジェラ / Anjera / Angela | ありがとうございます。今週中にもう一度来ます。よろしくお願いします。 | Arigatoo gozaimasu. Konshuuchuu ni moo ichido kimasu. Yoroshiku onegaishimasu. | Cảm ơn anh. Trong tuần này tôi sẽ đến lại. Mong anh giúp đỡ.
+01:57 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、お待ちしております。 | Hai, omachi shite orimasu. | Vâng, chúng tôi xin chờ chị.
+### từ vựng
+不動産屋 | ふどうさんや | fudoosan'ya | công ty môi giới nhà đất
+希望 | きぼう | kiboo | nguyện vọng
+管理費 | かんりひ | kanrihi | phí quản lý
+共益費 | きょうえきひ | kyooekihi | phí dịch vụ chung
+物件 | ぶっけん | bukken | căn nhà cho thuê
+相談 | そうだん | soodan | bàn bạc, tư vấn
+
+## scene-2.mp4
+# Hỏi đồng nghiệp nên ở khu nào
+00:00 | アンジェラ / Anjera / Angela | 実は来月ぐらいに引っ越そうと思っているんです。 | Jitsu wa raigetsu gurai ni hikkosoo to omotte iru n desu. | Thật ra khoảng tháng sau em định chuyển nhà.
+00:05 | 同僚 / Dooryoo / Đồng nghiệp | えっ？どうしてですか？ | E? Dooshite desu ka. | Hả? Tại sao vậy?
+00:08 | アンジェラ / Anjera / Angela | 荷物が増えちゃって、今の部屋ちょっと狭いんですよ。 | Nimotsu ga fuechatte, ima no heya chotto semain desu yo. | Đồ đạc tăng lên nên phòng hiện tại hơi chật.
+00:12 | 同僚 / Dooryoo / Đồng nghiệp | なるほどね。 | Naruhodo ne. | Ra vậy nhỉ.
+00:16 | アンジェラ / Anjera / Angela | 昨日、不動産屋さんに行って話を聞いてきたんですけど、 | Kinoo, fudoosan'ya-san ni itte hanashi o kiite kita n desu kedo, | Hôm qua em đến công ty bất động sản nghe tư vấn,
+00:22 | 同僚 / Dooryoo / Đồng nghiệp | へー、そうなんですか。 | Hee, soo nan desu ka. | Ồ, vậy à.
+00:25 | アンジェラ / Anjera / Angela | いろんな物件を紹介されたんですけど、どの辺がいいかとかよく分かんなくて。 | Ironna bukken o shookai sareta n desu kedo, dono hen ga ii ka toka yoku wakannakute. | Em được giới thiệu nhiều căn nhà nhưng không biết khu nào tốt.
+00:32 | 同僚 / Dooryoo / Đồng nghiệp | そうですよね。 | Soo desu yo ne. | Đúng vậy nhỉ.
+00:35 | 同僚 / Dooryoo / Đồng nghiệp | アンジェラさんは、会社から近い方がいいんですか？ | Anjera-san wa, kaisha kara chikai hoo ga ii n desu ka. | Angela muốn ở gần công ty hơn à?
+00:42 | アンジェラ / Anjera / Angela | 自転車ですから、そんなに近くじゃなくてもいいです。 | Jitensha desu kara, sonna ni chikaku ja nakutemo ii desu. | Vì đi xe đạp nên không cần gần lắm cũng được.
+00:50 | アンジェラ / Anjera / Angela | どっちかっていうと、買い物とか食事とかに便利な場所の方がいいかなって思っているんですけど。 | Docchika tte iu to, kaimono toka shokuji toka ni benri na basho no hoo ga ii ka na tte omotte iru n desu kedo. | Nếu nói thì em muốn chỗ thuận tiện cho mua sắm, ăn uống hơn.
+01:02 | 同僚 / Dooryoo / Đồng nghiệp | そうですか。じゃあ、清水郵便局のあたりがいいかもしれませんね。駅前の商店街にも近いですから。 | Soo desu ka. Jaa, Shimizu yuubinkyoku no atari ga ii kamoshiremasen ne. Ekimae no shootengai ni mo chikai desu kara. | Vậy à. Vậy khu quanh bưu điện Shimizu có lẽ hợp đấy. Vì gần cả khu phố mua sắm trước nhà ga.
+*01:11 | アンジェラ / Anjera / Angela | ああ、あの辺りですね。でも、あの辺りは家賃が高そうですよね。 | Aa, ano atari desu ne. Demo, ano atari wa yachin ga takasoo desu yo ne. | À, khu đó nhỉ. Nhưng khu đó chắc tiền nhà đắt nhỉ.
+01:19 | 同僚 / Dooryoo / Đồng nghiệp | ちょっと見てみましょうか。 | Chotto mite mimashoo ka. | Để tôi xem thử nhé.
+01:29 | 同僚 / Dooryoo / Đồng nghiệp | 思ったほど高くないですよ。ワンルームなら4万円ぐらいの部屋もありますよ。 | Omotta hodo takakunai desu yo. Wan-ruumu nara yonman-en gurai no heya mo arimasu yo. | Không đắt như nghĩ đâu. Nếu là phòng đơn thì cũng có phòng khoảng 4 vạn yên.
+01:37 | アンジェラ / Anjera / Angela | へえ、本当ですか？それなら今とあまり変わりませんね。 | Hee, hontoo desu ka. Sore nara ima to amari kawarimasen ne. | Ồ, thật ạ? Vậy thì không khác bây giờ nhiều nhỉ.
+01:43 | 同僚 / Dooryoo / Đồng nghiệp | そうですか。 | Soo desu ka. | Vậy à.
+01:45 | アンジェラ / Anjera / Angela | 早めに不動産屋さんに行って相談してみます。ありがとうございました。 | Hayame ni fudoosan'ya-san ni itte soodan shite mimasu. Arigatoo gozaimashita. | Em sẽ sớm đến công ty bất động sản để bàn thử. Cảm ơn chị.
+01:52 | 同僚 / Dooryoo / Đồng nghiệp | いいえ、どういたしまして。いい部屋が早く見つかるといいですね。 | Iie, doo itashimashite. Ii heya ga hayaku mitsukaru to ii desu ne. | Không có gì. Mong em sớm tìm được phòng tốt nhé.
+01:57 | アンジェラ / Anjera / Angela | はい、ありがとうございます。 | Hai, arigatoo gozaimasu. | Vâng, em cảm ơn chị.
+### từ vựng
+引っ越す | ひっこす | hikkosu | chuyển nhà
+狭い | せまい | semai | chật
+便利 | べんり | benri | tiện lợi
+商店街 | しょうてんがい | shootengai | khu phố mua sắm
+家賃 | やちん | yachin | tiền thuê nhà
+ワンルーム | ワンルーム | wan-ruumu | phòng đơn
+
+## scene-3.mp4
+# Thủ tục thuê nhà
+00:03 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | 内見お疲れさまでした。いかがでしたか？ | Naiken otsukaresama deshita. Ikaga deshita ka. | Chị đã vất vả đi xem nhà rồi. Chị thấy thế nào ạ?
+00:06 | アンジェラ / Anjera / Angela | そうですね、今日のとこに決めます。 | Soo desu ne, kyoo no toko ni kimemasu. | Để xem nào, em quyết định chọn chỗ hôm nay đi xem ạ.
+00:12 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | わかりました。じゃあ、いろいろ手続きがあるのでご説明しますね。こちらへどうぞ。 | Wakarimashita. Jaa, iroiro tetsuzuki ga aru node gosetsumee shimasu ne. Kochira e doozo. | Tôi hiểu rồi. Vậy vì có nhiều thủ tục nên tôi xin giải thích nhé. Mời chị lối này.
+00:23 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:27 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | まず初めに、入居審査というのがありまして、それを通過すると契約となります。 | Mazu hajime ni, nyuukyo shinsa to iu no ga arimashite, sore o tsuuka suru to keeyaku to narimasu. | Trước hết có bước gọi là xét duyệt hồ sơ thuê nhà, nếu qua được thì sẽ ký hợp đồng.
+00:36 | アンジェラ / Anjera / Angela | 入居審査ですか？どうすればいいですか？ | Nyuukyo shinsa desu ka. Doo sureba ii desu ka. | Xét duyệt hồ sơ thuê nhà ạ? Em phải làm thế nào ạ?
+00:43 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、最初に、こちらの申込書に必要事項を書いていただいて、審査に回します。 | Hai, saisho ni, kochira no mooshikomisho ni hitsuyoo jikoo o kaite itadaite, shinsa ni mawashimasu. | Vâng, trước tiên chị điền các mục cần thiết vào đơn đăng ký này, rồi chúng tôi sẽ chuyển đi xét duyệt.
+00:52 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | 審査に通ったら契約に移りますので、その時点で証明書類をご用意ください。 | Shinsa ni toottara keeyaku ni utsurimasu node, sono jiten de shoomee shorui o goyooi kudasai. | Nếu qua xét duyệt thì sẽ chuyển sang ký hợp đồng, nên lúc đó nhờ chị chuẩn bị các giấy tờ chứng minh.
+*01:00 | アンジェラ / Anjera / Angela | わかりました。契約するときは、どんなものが必要ですか？ | Wakarimashita. Keeyaku-suru toki wa, donna mono ga hitsuyoo desu ka. | Em hiểu rồi. Khi ký hợp đồng thì cần những gì ạ?
+01:07 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | こちらの紙に必要な書類などが書いてありますので、ご確認ください。 | Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai. | Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.
+01:13 | アンジェラ / Anjera / Angela | はい。在留カード、住民票、収入証明の書類… | Hai. Zairyuu kaado, juuminhyoo, shuunyuu shoomee no shorui... | Vâng. Thẻ cư trú, phiếu cư trú, giấy tờ chứng minh thu nhập...
+01:24 | アンジェラ / Anjera / Angela | 会社からもらう源泉徴収票とかのことですか？ | Kaisha kara morau gensen chooshuuhyoo toka no koto desu ka. | Là phiếu khấu trừ thuế tại nguồn nhận từ công ty phải không ạ?
+01:28 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+01:30 | アンジェラ / Anjera / Angela | いろいろあるんですね。 | Iroiro aru n desu ne. | Có nhiều thứ nhỉ.
+01:33 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | それから、印鑑と印鑑証明、それから保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。 | Sorekara, inkan to inkan shoomee, sorekara hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga. | Ngoài ra cần con dấu và giấy chứng nhận con dấu, cùng người bảo lãnh, chị có nhờ ai được không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.
+*01:50 | アンジェラ / Anjera / Angela | ああ、保証人は勤務先の社長がなってくれると思います。今もそうなので。 | Aa, hoshoonin wa kinmusaki no shachoo ga natte kureru to omoimasu. Ima mo soo nano de. | À, người bảo lãnh thì em nghĩ giám đốc nơi em làm việc sẽ làm giúp em. Hiện giờ cũng vậy ạ.
+01:58 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | そうですか。わかりました。 | Soo desu ka. Wakarimashita. | Vậy ạ. Tôi hiểu rồi.
+02:01 | アンジェラ / Anjera / Angela | あの、全部でいくらぐらいかかりますか？ | Ano, zenbu de ikura gurai kakarimasu ka. | À, tổng cộng hết khoảng bao nhiêu tiền ạ?
+02:07 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | そうですね。月々のお家賃が4万8千円、共益費が2千円で、ちょうど5万円です。 | Soo desu ne. Tsukizuki no oyachin ga yonman-hassen-en, kyooekihi ga nisen-en de, choodo goman-en desu. | Để xem nào. Tiền nhà hằng tháng là 4 vạn 8 nghìn yên, phí dịch vụ chung 2 nghìn yên, vừa đúng 5 vạn yên.
+02:23 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | 2ヶ月分の敷金、1ヶ月分の礼金、今月分と来月分のお家賃、火災保険、 | Nikagetsubun no shikikin, ikkagetsubun no reekin, kongetsubun to raigetsubun no oyachin, kasai hoken, | 2 tháng tiền đặt cọc, 1 tháng tiền lễ, tiền nhà tháng này và tháng sau, bảo hiểm hỏa hoạn,
+02:41 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | それから私どもの手数料として、お家賃の1ヶ月分をいただきます。 | Sorekara watakushidomo no tesuuryoo toshite, oyachin no ikkagetsubun o itadakimasu. | và ngoài ra, chúng tôi thu một tháng tiền nhà làm phí dịch vụ của công ty.
+02:52 | アンジェラ / Anjera / Angela | わあ、結構かかりますね。 | Waa, kekkoo kakarimasu ne. | Ôi, tốn khá nhiều nhỉ.
+02:57 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、そうですね。 | Hai, soo desu ne. | Vâng, đúng vậy.
+03:00 | アンジェラ / Anjera / Angela | わかりました。でも、やっと決まってほっとしました。 | Wakarimashita. Demo, yatto kimatte hotto shimashita. | Em hiểu rồi. Nhưng cuối cùng cũng quyết định xong nên em thấy nhẹ nhõm.
+03:05 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | よかったですね。 | Yokatta desu ne. | Tốt quá nhỉ.
+### từ vựng
+内見 | ないけん | naiken | đi xem nhà
+入居審査 | にゅうきょしんさ | nyuukyo shinsa | xét duyệt hồ sơ thuê nhà
+申込書 | もうしこみしょ | mooshikomisho | đơn đăng ký
+住民票 | じゅうみんひょう | juuminhyoo | phiếu cư trú
+保証人 | ほしょうにん | hoshoonin | người bảo lãnh
+敷金 | しききん | shikikin | tiền đặt cọc
+礼金 | れいきん | reekin | tiền lễ trả cho chủ nhà
+
+## summary.mp4
+# Ôn tập: Tìm thuê căn hộ
+00:00 |  /  / Chủ đề | これ、チェックしたら | kore, chekku-shitara | Nếu đánh dấu cái này thì
+00:06 | アンジェラ / Anjera / Angela | じゃあ、これチェックしたら、管理費とかも入れて5万円ってことですね。 | Jaa, kore chekku-shitara, kanrihi toka mo irete goman-en tte koto desu ne. | Vậy là nếu đánh dấu cái này thì tính cả phí quản lý, tổng cộng là 5 vạn yên nhỉ.
+00:13 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、そうです、そうです。 | Hai, soo desu, soo desu. | Vâng, đúng vậy, đúng vậy.
+00:17 | ナレーター / Nareetaa / Người dẫn | この表現は、 | Kono hyoogen wa, | Mẫu biểu đạt này,
+00:19 | ナレーター / Nareetaa / Người dẫn | 動詞、形容詞、名詞の「た」の形に「ら」をつけて、「Aたら、B」の形で使います。 | Dooshi, keeyooshi, meeshi no "ta" no katachi ni "ra" o tsukete, "A-tara, B" no katachi de tsukaimasu. | dùng dạng "ta" của động từ, tính từ, danh từ rồi gắn "ra", theo dạng "A-tara, B".
+00:34 | ナレーター / Nareetaa / Người dẫn | もしAが成立した場合にはBになったり、Bしたりするということを表す表現です。 | Moshi A ga seeritsu shita baai ni wa B ni nattari, B shitari suru to iu koto o arawasu hyoogen desu. | Là cách diễn đạt biểu thị rằng nếu A thành lập thì sẽ trở thành B hoặc làm B.
+00:46 | ナレーター / Nareetaa / Người dẫn | この動画ではアンジェラさんが、アンケートの項目にチェックを入れた場合、毎月払う家賃がいくらになるか確認しました。 | Kono dooga de wa Anjera-san ga, ankeeto no koomoku ni chekku o ireta baai, maitsuki harau yachin ga ikura ni naru ka kakunin shimashita. | Trong video này, chị Angela đã xác nhận xem nếu đánh dấu vào các mục của bảng khảo sát thì tiền nhà phải trả hằng tháng sẽ là bao nhiêu.
+01:03 | ナレーター / Nareetaa / Người dẫn | 他に、「安かったら」「駅から近かったら」「広かったら」「南向きだったら借りたいです」や「高かったら借りません」などと使うことができます。 | Hoka ni, "yasukattara", "eki kara chikakattara", "hirokattara", "minami-muki dattara karitai desu" ya "takakattara karimasen" nado to tsukau koto ga dekimasu. | Ngoài ra cũng có thể dùng như "nếu rẻ", "nếu gần nhà ga", "nếu rộng", "nếu hướng nam thì tôi muốn thuê" hay "nếu đắt thì tôi không thuê".
+01:26 |  /  / Chủ đề | けいやくする とき | keeyaku-suru toki | Khi ký hợp đồng
+01:32 | アンジェラ / Anjera / Angela | わかりました。契約するときは、どんなものが必要ですか？ | Wakarimashita. Keeyaku-suru toki wa, donna mono ga hitsuyoo desu ka. | Em hiểu rồi. Khi ký hợp đồng thì cần những gì ạ?
+01:39 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | こちらの紙に必要な書類などが書いてありますので、ご確認ください。 | Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai. | Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.
+01:47 | ナレーター / Nareetaa / Người dẫn | 「普通形+とき」は、 | "Futsuu-kee + toki" wa, | "Thể thường + toki" là
+01:51 | ナレーター / Nareetaa / Người dẫn | 「Aとき、B」の形で、 | "A toki, B" no katachi de, | theo dạng "A toki, B",
+01:55 | ナレーター / Nareetaa / Người dẫn | いつBをするか表す表現です。 | Itsu B o suru ka arawasu hyoogen desu. | cách diễn đạt biểu thị khi nào thì làm B.
+02:01 | ナレーター / Nareetaa / Người dẫn | 例えば、「国へ帰るとき、お土産を買いました」などのように、 | Tatoeba, "Kuni e kaeru toki, omiyage o kaimashita" nado no yoo ni, | Ví dụ như "Khi về nước, tôi đã mua quà",
+02:09 | ナレーター / Nareetaa / Người dẫn | 国へ帰ることよりお土産を買うことの方が先の場合は、「とき」の前に動詞の辞書形を使って、「国へ帰るとき」となります。 | Kuni e kaeru koto yori omiyage o kau koto no hoo ga saki no baai wa, "toki" no mae ni dooshi no jisho-kee o tsukatte, "kuni e kaeru toki" to narimasu. | trường hợp việc mua quà xảy ra trước việc về nước thì dùng dạng từ điển của động từ trước "toki" thành "kuni e kaeru toki".
+02:26 | ナレーター / Nareetaa / Người dẫn | また、「国へ帰ったとき、お土産をあげました」のように、 | Mata, "Kuni e kaetta toki, omiyage o agemashita" no yoo ni, | Ngoài ra, như "Khi về nước, tôi đã tặng quà",
+02:34 | ナレーター / Nareetaa / Người dẫn | お土産をあげることより国へ帰ることの方が先の場合は、 | omiyage o ageru koto yori kuni e kaeru koto no hoo ga saki no baai wa, | trường hợp việc về nước xảy ra trước việc tặng quà thì
+02:41 | ナレーター / Nareetaa / Người dẫn | 「とき」の前に動詞のた形を使います。 | "toki" no mae ni dooshi no ta-kee o tsukaimasu. | dùng dạng ta của động từ trước "toki".
+02:49 | ナレーター / Nareetaa / Người dẫn | 他に、「寝るとき、電気を消しました」 | Hoka ni, "Neru toki, denki o keshimashita" | Ngoài ra, "Khi đi ngủ, tôi đã tắt đèn"
+02:56 | ナレーター / Nareetaa / Người dẫn | 「起きたとき、カーテンを開けます」 | "Okita toki, kaaten o akemasu" | "Khi thức dậy, tôi mở rèm"
+03:01 | ナレーター / Nareetaa / Người dẫn | 「初めての場所へ行くとき、地図を見ます」 | "Hajimete no basho e iku toki, chizu o mimasu" | "Khi đến nơi lần đầu, tôi xem bản đồ"
+03:07 | ナレーター / Nareetaa / Người dẫn | 「道に迷ったとき、交番へ行きます」など、いろいろな使い方ができます。 | "Michi ni mayotta toki, kooban e ikimasu" nado, iroiro na tsukaikata ga dekimasu. | "Khi lạc đường, tôi đến đồn cảnh sát" v.v., có nhiều cách dùng khác nhau.
+03:17 |  /  / Chủ đề | なって くれる | natte kureru | Làm cho (tôi)
+03:23 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | それから、保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。 | Sorekara, hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga. | Ngoài ra cần có người bảo lãnh, chị có nhờ ai được không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.
+03:35 | アンジェラ / Anjera / Angela | ああ、保証人は勤務先の社長がなってくれると思います。 | Aa, hoshoonin wa kinmusaki no shachoo ga natte kureru to omoimasu. | À, người bảo lãnh thì em nghĩ giám đốc nơi em làm việc sẽ làm giúp em.
+03:42 | ナレーター / Nareetaa / Người dẫn | 動詞のて形+くれるは、他の人の行為が、私や私の家族など、私に近い人にとって、嬉しい、ありがとうと感じられるときに使う表現です。 | Dooshi no te-kee + kureru wa, hoka no hito no kooi ga, watashi ya watashi no kazoku nado, watashi ni chikai hito ni totte, ureshii, arigatoo to kanjirareru toki ni tsukau hyoogen desu. | "Dạng te của động từ + kureru" dùng khi hành động của người khác khiến tôi hoặc người gần gũi như gia đình tôi cảm thấy vui, biết ơn.
+04:03 | ナレーター / Nareetaa / Người dẫn | 行為をした人が主語になります。 | Kooi o shita hito ga shugo ni narimasu. | Người thực hiện hành động là chủ ngữ.
+04:09 | ナレーター / Nareetaa / Người dẫn | 動画では、主語はアンジェラさんの勤務先の社長です。 | Dooga de wa, shugo wa Anjera-san no kinmusaki no shachoo desu. | Trong video, chủ ngữ là giám đốc nơi chị Angela làm việc.
+04:16 | ナレーター / Nareetaa / Người dẫn | 社長が保証人になっています。 | Shachoo ga hoshoonin ni natte imasu. | Giám đốc là người bảo lãnh.
+04:20 | ナレーター / Nareetaa / Người dẫn | そしてそれをアンジェラさんは「嬉しい、ありがとう」と思っていますから、 | Soshite sore o Anjera-san wa "ureshii, arigatoo" to omotte imasu kara, | Và vì chị Angela cảm thấy "vui, biết ơn" về việc đó nên
+04:28 | ナレーター / Nareetaa / Người dẫn | 「保証人は勤務先の社長がなると思います」ではなく、 | "Hoshoonin wa kinmusaki no shachoo ga naru to omoimasu" dewa naku, | chị không nói "Em nghĩ giám đốc nơi làm việc sẽ làm người bảo lãnh",
+04:35 | ナレーター / Nareetaa / Người dẫn | 「勤務先の社長がなってくれると思います」と言いました。 | "Kinmusaki no shachoo ga natte kureru to omoimasu" to iimashita. | mà nói "Em nghĩ giám đốc nơi làm việc sẽ làm giúp em".
+04:43 | ナレーター / Nareetaa / Người dẫn | 他に、「日本人の友達が私に日本語を教えてくれました」 | Hoka ni, "Nihonjin no tomodachi ga watashi ni Nihongo o oshiete kuremashita" | Ngoài ra, "Bạn người Nhật đã dạy tiếng Nhật cho tôi"
+04:51 | ナレーター / Nareetaa / Người dẫn | 「誕生日に夫がプレゼントを買ってくれました」などということができます。 | "Tanjoobi ni otto ga purezento o katte kuremashita" nado to iu koto ga dekimasu. | "Chồng tôi đã mua quà tặng tôi vào ngày sinh nhật" v.v.
+05:01 | ナレーター / Nareetaa / Người dẫn | 行為をしてくれた人に直接ありがとうと言いたいときは、 | Kooi o shite kureta hito ni chokusetsu arigatoo to iitai toki wa, | Khi muốn trực tiếp nói cảm ơn người đã làm việc đó cho mình thì
+05:07 | ナレーター / Nareetaa / Người dẫn | 動詞のて形+「くれてありがとうございます」といいます。 | Dooshi no te-kee + "kurete arigatoo gozaimasu" to iimasu. | nói "dạng te của động từ + kurete arigatoo gozaimasu".
+05:17 | ナレーター / Nareetaa / Người dẫn | 目上の人には、動詞のて形+「くださってありがとうございます」というと丁寧です。 | Meue no hito ni wa, dooshi no te-kee + "kudasatte arigatoo gozaimasu" to iu to teenee desu. | Với người bề trên thì nói "dạng te của động từ + kudasatte arigatoo gozaimasu" sẽ lịch sự.

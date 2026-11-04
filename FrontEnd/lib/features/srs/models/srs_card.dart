@@ -1,5 +1,37 @@
+import '../../kanji/models/kanji.dart';
 import '../../vocabulary/models/vocabulary.dart';
 import 'srs_progress.dart';
+
+/// Nội dung để vẽ hai mặt thẻ — mỗi loại thẻ một kiểu, nên màn ôn `switch`
+/// đủ mọi loại và trình biên dịch báo ngay khi có loại mới.
+sealed class SrsItem {
+  const SrsItem();
+
+  factory SrsItem.fromJson(String itemType, Map<String, dynamic> json) =>
+      itemType == SrsProgress.itemTypeKanji
+          ? SrsKanjiItem(Kanji.fromJson(json))
+          : SrsVocabularyItem(Vocabulary.fromJson(json));
+
+  String? get level;
+}
+
+final class SrsVocabularyItem extends SrsItem {
+  const SrsVocabularyItem(this.vocabulary);
+
+  final Vocabulary vocabulary;
+
+  @override
+  String? get level => vocabulary.level;
+}
+
+final class SrsKanjiItem extends SrsItem {
+  const SrsKanjiItem(this.kanji);
+
+  final Kanji kanji;
+
+  @override
+  String? get level => kanji.level;
+}
 
 /// Một thẻ đến hạn: tiến độ kèm nội dung để vẽ hai mặt.
 ///
@@ -13,21 +45,23 @@ class SrsCard {
   });
 
   factory SrsCard.fromJson(Map<String, dynamic> json) {
+    final progress = SrsProgress.fromJson(json);
     final item = json['item'];
     return SrsCard(
-      progress: SrsProgress.fromJson(json),
+      progress: progress,
       item: item is Map
-          ? Vocabulary.fromJson(Map<String, dynamic>.from(item))
+          ? SrsItem.fromJson(progress.itemType, Map<String, dynamic>.from(item))
           : null,
       unavailable: json['unavailable'] as bool? ?? item == null,
     );
   }
 
   final SrsProgress progress;
-  final Vocabulary? item;
+  final SrsItem? item;
   final bool unavailable;
 
   String get itemId => progress.itemId;
+  String get itemType => progress.itemType;
 
   SrsCard copyWith({SrsProgress? progress, bool? unavailable}) => SrsCard(
         progress: progress ?? this.progress,

@@ -165,7 +165,10 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
           LessonSection(
             icon: Icons.draw_outlined,
             title: 'Chữ Hán',
-            child: LessonKanjiGrid(kanjis: detail.kanjis),
+            child: LessonKanjiGrid(
+              kanjis: detail.kanjis,
+              onOpen: (kanji) => context.push('/kanji/${kanji.id}'),
+            ),
           ),
         if (detail.grammars.isNotEmpty)
           LessonSection(
