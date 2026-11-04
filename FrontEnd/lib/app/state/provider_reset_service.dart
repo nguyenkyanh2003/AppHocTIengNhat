@@ -12,6 +12,7 @@ import '../../features/achievements/providers/achievement_provider.dart';
 import '../../features/progress/providers/progress_provider.dart';
 import '../../features/study_groups/providers/study_group_provider.dart';
 import '../../features/notebook/providers/notebook_provider.dart';
+import '../../features/notifications/providers/notification_provider.dart';
 
 /// Service để reset tất cả providers khi logout
 class ProviderResetService {
@@ -87,6 +88,12 @@ class ProviderResetService {
       context.read<NotebookProvider>().clear();
     } catch (e) {
       debugPrint('Error resetting NotebookProvider: $e');
+    }
+
+    try {
+      context.read<NotificationProvider>().clear();
+    } catch (e) {
+      debugPrint('Error resetting NotificationProvider: $e');
     }
 
     debugPrint('✅ All providers reset successfully');

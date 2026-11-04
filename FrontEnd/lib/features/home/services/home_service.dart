@@ -1,7 +1,6 @@
 import '../../../core/network/api_client.dart';
 import '../../lessons/models/lesson.dart';
 import '../../lessons/services/lesson_service.dart';
-import '../../notifications/services/notification_service.dart';
 import '../../vocabulary/models/vocabulary.dart';
 import '../../vocabulary/services/vocabulary_service.dart';
 import '../models/next_lesson.dart';
@@ -12,16 +11,13 @@ class HomeService {
     ApiClient? apiClient,
     LessonService? lessonService,
     VocabularyService? vocabularyService,
-    NotificationService? notificationService,
   })  : _api = apiClient ?? ApiClient(),
         _lessons = lessonService ?? LessonService(),
-        _vocabulary = vocabularyService ?? VocabularyService(),
-        _notifications = notificationService ?? NotificationService();
+        _vocabulary = vocabularyService ?? VocabularyService();
 
   final ApiClient _api;
   final LessonService _lessons;
   final VocabularyService _vocabulary;
-  final NotificationService _notifications;
 
   /// Bài học tiếp theo. Trình độ lấy theo bài vừa học gần nhất; chưa học bài
   /// nào thì theo [fallbackLevel] (trình độ trong hồ sơ).
@@ -63,8 +59,6 @@ class HomeService {
         level: level, page: index + 1, limit: 1);
     return page.items.isEmpty ? first.items.first : page.items.first;
   }
-
-  Future<int> unreadNotifications() => _notifications.getUnreadCount();
 }
 
 /// Số thứ tự ngày theo lịch (không theo giờ), để từ của ngày đổi đúng lúc nửa

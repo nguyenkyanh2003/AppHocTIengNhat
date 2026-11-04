@@ -1,0 +1,26 @@
+import { z } from 'zod';
+
+import { NOTIFICATION_TYPES } from '../../../model/Notification.js';
+import { paginationQuery } from '../../shared/http/pagination.js';
+
+export const TITLE_MAX = 120;
+export const MESSAGE_MAX = 2000;
+
+const objectId = z.string().regex(/^[a-f0-9]{24}$/i, 'ID không hợp lệ.');
+
+export const listQuery = paginationQuery.extend({
+  status: z.enum(['all', 'read', 'unread']).default('all'),
+});
+
+export const idParams = z.object({ id: objectId });
+
+const content = {
+  title: z.string().trim().min(1, 'Vui lòng nhập tiêu đề.').max(TITLE_MAX),
+  message: z.string().trim().min(1, 'Vui lòng nhập nội dung.').max(MESSAGE_MAX),
+  type: z.enum(NOTIFICATION_TYPES).default('SYSTEM'),
+};
+
+/** `strict`: tên trường cũ (`NguoiHocID`, `TieuDe`...) là 400, không bị lờ đi rồi lưu thiếu. */
+export const sendBody = z.strictObject({ recipient_id: objectId, ...content });
+
+export const broadcastBody = z.strictObject(content);

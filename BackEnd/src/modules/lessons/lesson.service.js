@@ -1,7 +1,6 @@
 import { ApiError } from '../../shared/http/api-error.js';
+import { escapeRegExp } from '../../shared/utils/regexp.js';
 import { lessonRepository } from './lesson.repository.js';
-
-const escapeRegExp = (value) => value.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /**
  * Rule nghiệp vụ của domain bài học. Không biết `req`/`res`, không import model —
@@ -11,10 +10,10 @@ export const createLessonService = ({ lessonRepository: repository }) => ({
   async list({ page, limit, level, type, situation, search }) {
     const filter = {};
     if (level) filter.level = level;
-    if (type) filter.type = { $regex: escapeRegExp(type), $options: 'i' };
+    if (type) filter.type = { $regex: escapeRegExp(type.trim()), $options: 'i' };
     if (situation) filter.situation = situation;
     if (search) {
-      const pattern = { $regex: escapeRegExp(search), $options: 'i' };
+      const pattern = { $regex: escapeRegExp(search.trim()), $options: 'i' };
       filter.$or = [{ title: pattern }, { description: pattern }];
     }
 

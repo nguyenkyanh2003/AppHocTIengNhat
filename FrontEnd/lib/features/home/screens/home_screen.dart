@@ -11,6 +11,7 @@ import '../../../shared/widgets/content_pane.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../news/providers/news_provider.dart';
 import '../../news/widgets/news_carousel_widget.dart';
+import '../../notifications/providers/notification_provider.dart';
 import '../../streaks/providers/streak_provider.dart';
 import '../providers/home_provider.dart';
 import '../widgets/home_app_bar.dart';
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await Future.wait([
       context.read<StreakProvider>().loadStreak(),
       context.read<HomeProvider>().load(userLevel: level),
+      context.read<NotificationProvider>().refreshUnreadCount(),
     ]);
   }
 
@@ -79,7 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppScaffold(
       title: l10n.appName,
       backgroundColor: calm.background,
-      appBar: HomeAppBar(unreadNotifications: home.unreadNotifications),
+      appBar: HomeAppBar(
+          unreadNotifications: context.watch<NotificationProvider>().unreadCount),
       body: RefreshIndicator(
         onRefresh: _refresh,
         color: calm.green,

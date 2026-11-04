@@ -24,6 +24,7 @@ import StreakRoutes from './modules/streaks/streak.routes.js';
 import AchievementRoutes from './modules/achievements/achievement.routes.js';
 import SettingsRoutes from './modules/settings/settings.routes.js';
 import FlashcardRoutes from './modules/flashcards/flashcard.routes.js';
+import SearchRoutes from './modules/search/search.routes.js';
 import timezoneMiddleware from './middleware/timezone.middleware.js';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware.js';
 import { productionResponseSanitizer, securityHeaders } from './middleware/security.middleware.js';
@@ -69,6 +70,7 @@ app.use('/api/streak', StreakRoutes);
 app.use('/api/achievement', AchievementRoutes);
 app.use('/api/settings', SettingsRoutes);
 app.use('/api/flashcard', FlashcardRoutes);
+app.use('/api/search', SearchRoutes);
 
 app.get('/', (req, res) => {
   res.json({
@@ -94,6 +96,7 @@ app.get('/', (req, res) => {
       '/api/achievement',
       '/api/settings',
       '/api/flashcard',
+      '/api/search',
     ],
   });
 });

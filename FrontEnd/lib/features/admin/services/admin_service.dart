@@ -1,4 +1,5 @@
 import '../../../core/network/api_client.dart';
+import '../../notifications/models/notification.dart';
 
 class AdminService {
   /// Nhận client qua constructor để test truyền transport giả.
@@ -346,16 +347,33 @@ class AdminService {
   ) =>
       _client.put('/transactions/admin/$id/status', {'status': status});
 
-  Future<Map<String, dynamic>> sendNotification(
-    String userId,
-    Map<String, dynamic> data,
-  ) =>
-      _client.post('/notifications', {'userId': userId, ...data});
+  /// Gửi thông báo cá nhân cho một người dùng.
+  Future<Map<String, dynamic>> sendNotification({
+    required String recipientId,
+    required String title,
+    required String message,
+    required NotificationType type,
+  }) =>
+      _client.post('/notifications', {
+        'recipient_id': recipientId,
+        'title': title,
+        'message': message,
+        'type': type.key,
+      });
 
-  Future<Map<String, dynamic>> broadcastNotification(
-    Map<String, dynamic> data,
-  ) =>
-      _client.post('/notifications/broadcast/all', data);
+  /// Gửi cho mọi người học; trả số người đã nhận.
+  Future<int> broadcastNotification({
+    required String title,
+    required String message,
+    required NotificationType type,
+  }) async {
+    final response = await _client.post('/notifications/broadcast/all', {
+      'title': title,
+      'message': message,
+      'type': type.key,
+    });
+    return response['data']?['sent'] as int? ?? 0;
+  }
 
   Future<Map<String, dynamic>> getAnalytics({String period = '7d'}) async =>
       _map(

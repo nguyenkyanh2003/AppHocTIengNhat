@@ -1,4 +1,5 @@
 import { ApiError } from '../../shared/http/api-error.js';
+import { escapeRegExp } from '../../shared/utils/regexp.js';
 import { toSrsProgressDto } from '../srs/srs.dto.js';
 import { initialProgress } from '../srs/srs-scheduling.js';
 import { srsRepository } from '../srs/srs.repository.js';
@@ -24,10 +25,8 @@ const SORT_OPTIONS = Object.freeze({
 
 const sortFor = (sortBy) => SORT_OPTIONS[sortBy] ?? SORT_OPTIONS.newest;
 
-const escapeRegExp = (value) => value.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
 const buildKeywordFilter = (keyword) => {
-  const pattern = new RegExp(escapeRegExp(keyword), 'i');
+  const pattern = new RegExp(escapeRegExp(keyword.trim()), 'i');
   return {
     $or: [{ word: pattern }, { hiragana: pattern }, { meaning: pattern }],
   };

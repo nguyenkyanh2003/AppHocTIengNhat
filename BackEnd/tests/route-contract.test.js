@@ -18,6 +18,7 @@ const routeMounts = new Map([
   ['../src/modules/notifications/notification.routes.js', '/api/notifications'],
   ['../src/modules/progress/progress.routes.js', '/api/progress'],
   ['../src/modules/reports/report.routes.js', '/api/report'],
+  ['../src/modules/search/search.routes.js', '/api/search'],
   ['../src/modules/settings/settings.routes.js', '/api/settings'],
   ['../src/modules/srs/srs.routes.js', '/api/srs'],
   ['../src/modules/streaks/streak.routes.js', '/api/streak'],
@@ -27,7 +28,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 154;
+const expectedCount = 155;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -52,7 +53,9 @@ const expectedCount = 154;
 // 2026-09-28: đợt 0 one-style — gỡ 10 route vocabulary/lessons không có consumer (spec one-style §6.1).
 // 2026-11-04: Kanji SRS đợt 1 — gỡ `POST /api/kanji/learn/:id` (không tạo thẻ nào), thêm
 //   `POST` và `DELETE /api/kanji/:id/mark-learned` (thêm/gỡ thẻ ôn, spec Kanji SRS §2).
-const expectedSignatureHash = 'c7464589994573971475a6be4d771f021ae2a6a6022c0fcee127650567840a5b';
+// 2026-11-04: +1 route `GET /api/search` (tìm kiếm chung năm nhóm nội dung, phase-2-plan A5);
+//   Flutter bỏ năm lời gọi danh sách riêng lẻ.
+const expectedSignatureHash = '193b63bdc140169eb4af60cf024e6c918d34447480028b6d2c118ff1e9980d62';
 
 const collectSignatures = async () => {
   const signatures = [];

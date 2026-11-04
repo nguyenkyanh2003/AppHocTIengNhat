@@ -89,6 +89,13 @@ export const convertUserDatesToVietnam = (user) => {
  * @param {Object|Array} data - Object hoặc array cần convert
  * @returns {Object|Array} Data với dates đã convert
  */
+/**
+ * Chuỗi ISO 8601 có múi giờ rõ ràng (`Z` hoặc `±hh:mm`). Nó đã chỉ đúng một
+ * thời điểm; đổi sang "YYYY-MM-DD HH:mm:ss" sẽ làm mất múi giờ, và máy ở múi
+ * giờ khác đọc lệch 7 tiếng.
+ */
+const ISO_WITH_TIMEZONE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})$/i;
+
 export const convertDatesToVietnam = (data) => {
     if (!data) return null;
 
@@ -115,6 +122,7 @@ export const convertDatesToVietnam = (data) => {
     ];
     
     dateFields.forEach(field => {
+        if (typeof obj[field] === 'string' && ISO_WITH_TIMEZONE.test(obj[field])) return;
         if (obj[field] instanceof Date || (obj[field] && typeof obj[field] === 'string' && !isNaN(Date.parse(obj[field])))) {
             obj[field] = formatVietnamTime(obj[field]);
         }

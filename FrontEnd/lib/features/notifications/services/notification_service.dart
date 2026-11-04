@@ -1,59 +1,45 @@
 import '../../../core/network/api_client.dart';
 import '../models/notification.dart';
 
+/// Thông báo cá nhân của người đang đăng nhập. Không đặt `cache`: trạng thái
+/// đọc đổi liên tục, bản lưu ngoại tuyến sẽ hiện sai. Lỗi được ném ra để màn
+/// hình báo lỗi, không biến thành "không có thông báo".
 class NotificationService {
   final ApiClient _apiClient = ApiClient();
 
-  /// Lấy danh sách thông báo
-  Future<Map<String, dynamic>> getNotifications({
+  static const int pageSize = 20;
+
+  Future<NotificationPage> getNotifications({
     int page = 1,
-    int limit = 20,
-    String? status,
+    NotificationFilter status = NotificationFilter.all,
   }) async {
-    final params = <String>[];
-    params.add('page=$page');
-    params.add('limit=$limit');
-
-    if (status != null && status.isNotEmpty) {
-      params.add('status=$status');
-    }
-
-    final queryString = params.join('&');
-    final response = await _apiClient.get('/notifications?$queryString');
-
-    return {
-      'totalItems': response['totalItems'] ?? 0,
-      'totalPages': response['totalPages'] ?? 0,
-      'currentPage': response['currentPage'] ?? page,
-      'data': (response['data'] as List?)
-              ?.map((item) => AppNotification.fromJson(item))
-              .toList() ??
-          [],
-    };
+    final query = Uri(queryParameters: {
+      'page': '$page',
+      'limit': '$pageSize',
+      'status': status.name,
+    }).query;
+    final response = await _apiClient.get('/notifications?$query');
+    return NotificationPage.fromJson(Map<String, dynamic>.from(response as Map));
   }
 
-  /// Đánh dấu thông báo là đã đọc
-  Future<void> markAsRead(String notificationId) async {
-    await _apiClient.put('/notifications/read/$notificationId', {});
+  /// Đánh dấu đã đọc; đọc lại một thông báo đã đọc vẫn thành công.
+  Future<AppNotification> markAsRead(String id) async {
+    final response = await _apiClient.put('/notifications/read/$id', {});
+    return AppNotification.fromJson(Map<String, dynamic>.from(response['data'] as Map));
   }
 
-  /// Xóa thông báo
-  Future<void> deleteNotification(String notificationId) async {
-    await _apiClient.delete('/notifications/$notificationId');
+  /// Số thông báo vừa chuyển sang đã đọc.
+  Future<int> markAllAsRead() async {
+    final response = await _apiClient.put('/notifications/read-all', {});
+    return response['data']['updated'] as int? ?? 0;
   }
 
-  /// Lấy số lượng thông báo chưa đọc
-  Future<int> getUnreadCount() async {
-    try {
-      final response = await _apiClient.get('/notifications/count/unread');
-      return response['unreadCount'] ?? 0;
-    } catch (e) {
-      return 0;
-    }
+  Future<void> deleteNotification(String id) async {
+    await _apiClient.delete('/notifications/$id');
   }
 
-  /// Đánh dấu tất cả thông báo là đã đọc
-  Future<void> markAllAsRead() async {
-    await _apiClient.put('/notifications/read-all', {});
+  Future<int> unreadCount() async {
+    final response = await _apiClient.get('/notifications/count/unread');
+    return response['data']['unread_count'] as int? ?? 0;
   }
 }

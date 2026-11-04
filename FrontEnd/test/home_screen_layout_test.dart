@@ -22,6 +22,8 @@ import 'package:apphoctiengnnhat/features/home/widgets/next_lesson_card.dart';
 import 'package:apphoctiengnnhat/features/home/widgets/word_of_day_card.dart';
 import 'package:apphoctiengnnhat/features/lessons/models/lesson.dart';
 import 'package:apphoctiengnnhat/features/news/providers/news_provider.dart';
+import 'package:apphoctiengnnhat/features/notifications/providers/notification_provider.dart';
+import 'package:apphoctiengnnhat/features/notifications/services/notification_service.dart';
 import 'package:apphoctiengnnhat/features/streaks/providers/streak_provider.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/models/vocabulary.dart';
 import 'package:apphoctiengnnhat/shared/widgets/content_pane.dart';
@@ -36,20 +38,26 @@ MockClient _backend() => MockClient((request) async => http.Response(
 
 /// Dữ liệu Trang chủ giả, không gọi mạng.
 class _FakeHomeService extends HomeService {
-  _FakeHomeService({this.next, this.word, this.unread = 0});
+  _FakeHomeService({this.next, this.word});
 
   final NextLesson? next;
   final Vocabulary? word;
-  final int unread;
 
   @override
   Future<NextLesson?> loadNextLesson({required String fallbackLevel}) async => next;
 
   @override
   Future<Vocabulary?> loadWordOfDay({required String level, required DateTime today}) async => word;
+}
+
+/// Số thông báo chưa đọc giả cho chuông Trang chủ.
+class _FakeNotificationService extends NotificationService {
+  _FakeNotificationService(this.unread);
+
+  final int unread;
 
   @override
-  Future<int> unreadNotifications() async => unread;
+  Future<int> unreadCount() async => unread;
 }
 
 Lesson _lesson({String id = 'l3', int order = 3, String title = 'Tình huống: Chọn cửa hàng phù hợp'}) =>
@@ -74,7 +82,7 @@ Vocabulary _word() => Vocabulary.fromJson({
       ],
     });
 
-Widget _app({required ThemeData theme, HomeService? service}) {
+Widget _app({required ThemeData theme, HomeService? service, int unread = 0}) {
   final router = GoRouter(
     initialLocation: '/home',
     routes: [
@@ -89,6 +97,7 @@ Widget _app({required ThemeData theme, HomeService? service}) {
       ChangeNotifierProvider(create: (_) => StreakProvider()),
       ChangeNotifierProvider(create: (_) => NewsProvider()),
       ChangeNotifierProvider(create: (_) => HomeProvider(service: service)),
+      ChangeNotifierProvider(create: (_) => NotificationProvider(service: _FakeNotificationService(unread))),
     ],
     child: MaterialApp.router(
       theme: theme,
@@ -107,12 +116,12 @@ Widget _app({required ThemeData theme, HomeService? service}) {
 
 /// Dựng màn ở một bề rộng cửa sổ và trả lỗi bố cục đầu tiên gặp phải (tràn
 /// khung là lỗi, không phải cảnh báo).
-Future<Object?> _pumpAt(WidgetTester tester, Size size, ThemeData theme, {HomeService? service}) async {
+Future<Object?> _pumpAt(WidgetTester tester, Size size, ThemeData theme, {HomeService? service, int unread = 0}) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
 
-  await tester.pumpWidget(_app(theme: theme, service: service));
+  await tester.pumpWidget(_app(theme: theme, service: service, unread: unread));
   for (var frame = 0; frame < 8; frame++) {
     await tester.pump(const Duration(milliseconds: 50));
     final error = tester.takeException();
@@ -129,12 +138,14 @@ Future<Object?> _pumpWithData(WidgetTester tester, Size size, ThemeData theme, {
       LessonProgressSummary(lessonId: 'l3', isCompleted: false, lastStudiedAt: DateTime(2026, 9, 27)),
     ]),
     word: _word(),
-    unread: unread,
   );
-  final error = await _pumpAt(tester, size, theme, service: service);
+  final error = await _pumpAt(tester, size, theme, service: service, unread: unread);
   if (error != null) return error;
   final context = tester.element(find.byType(HomeScreen));
-  await context.read<HomeProvider>().load(userLevel: 'N4');
+  await Future.wait([
+    context.read<HomeProvider>().load(userLevel: 'N4'),
+    context.read<NotificationProvider>().refreshUnreadCount(),
+  ]);
   for (var frame = 0; frame < 4; frame++) {
     await tester.pump(const Duration(milliseconds: 50));
     final error = tester.takeException();

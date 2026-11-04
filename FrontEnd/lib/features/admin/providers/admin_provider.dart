@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../core/state/view_state.dart';
+import '../../notifications/models/notification.dart';
 import '../services/admin_service.dart';
 
 class AdminProvider extends ChangeNotifier {
@@ -651,35 +653,28 @@ class AdminProvider extends ChangeNotifier {
 
   // ==================== NOTIFICATIONS ====================
 
-  Future<bool> sendNotificationToUser(
-      String userId, String title, String body) async {
-    try {
-      await _adminService.sendNotification(userId, {
-        'title': title,
-        'body': body,
-        'type': 'admin_message',
-      });
-      return true;
-    } catch (e) {
-      _error = e.toString();
-      notifyListeners();
-      return false;
-    }
-  }
-
-  Future<bool> broadcastNotification(String title, String body) async {
-    try {
-      await _adminService.broadcastNotification({
-        'title': title,
-        'body': body,
-        'type': 'broadcast',
-      });
-      return true;
-    } catch (e) {
-      _error = e.toString();
-      notifyListeners();
-      return false;
-    }
+  /// Gửi thông báo cho [userId], hoặc cho mọi người học khi [userId] là null.
+  ///
+  /// Trả số người đã nhận, hoặc lỗi để form hiện ngay; không đụng `error`
+  /// chung của màn quản trị.
+  Future<({int sent, String? error})> sendNotification({
+    String? userId,
+    required String title,
+    required String message,
+    required NotificationType type,
+  }) async {
+    final result = await ViewState.guard(() async {
+      if (userId == null) {
+        return _adminService.broadcastNotification(title: title, message: message, type: type);
+      }
+      await _adminService.sendNotification(recipientId: userId, title: title, message: message, type: type);
+      return 1;
+    });
+    return switch (result) {
+      ViewData(:final value) => (sent: value, error: null),
+      ViewFailure(:final message) => (sent: 0, error: message),
+      _ => (sent: 0, error: null),
+    };
   }
 
   void clearError() {

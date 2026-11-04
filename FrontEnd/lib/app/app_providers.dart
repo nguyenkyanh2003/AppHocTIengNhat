@@ -17,9 +17,9 @@ import '../features/lessons/providers/lesson_provider.dart';
 import './localization/locale_provider.dart';
 import '../features/news/providers/news_provider.dart';
 import '../features/notebook/providers/notebook_provider.dart';
+import '../features/notifications/providers/notification_provider.dart';
 import '../features/progress/providers/progress_provider.dart';
 import '../features/reports/providers/report_provider.dart';
-import '../features/search/providers/search_provider.dart';
 import '../features/srs/providers/srs_provider.dart';
 import '../features/streaks/providers/streak_provider.dart';
 import '../features/study_groups/providers/study_group_provider.dart';
@@ -50,7 +50,7 @@ List<SingleChildWidget> createAppProviders() => [
       ChangeNotifierProvider(create: (_) => JLPTPracticeProvider()),
       ChangeNotifierProvider(create: (_) => GrammarProvider()),
       ChangeNotifierProvider(create: (_) => ReportProvider()),
-      ChangeNotifierProvider(create: (_) => SearchProvider()),
+      ChangeNotifierProvider(create: (_) => NotificationProvider()),
       ChangeNotifierProvider(create: (_) => FlashcardProvider()),
       ChangeNotifierProvider(create: (_) => AdminProvider()),
     ];

@@ -1,229 +1,123 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/search_result.dart';
 import '../providers/search_provider.dart';
 import '../services/search_service.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
+import '../widgets/search_result_list.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+/// Tìm kiếm chung trên từ vựng, Kanji, bài học, ngữ pháp và tin tức.
+///
+/// Provider tạo cùng màn và huỷ khi rời màn, nên mỗi lần mở là một ô trống và
+/// không còn hẹn giờ hay request nào chạy sau khi rời. [service] chỉ để test
+/// truyền service giả.
+class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key, this.service});
 
-  @override
-  State<SearchScreen> createState() => _SearchScreenState();
-}
-
-class _SearchScreenState extends State<SearchScreen> {
-  late TextEditingController _searchController;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  void _navigateToDetail(BuildContext context, SearchResult result) {
-    switch (result.type) {
-      case 'vocabulary':
-        context.push('/vocabulary/${result.id}');
-        break;
-      case 'kanji':
-        context.push('/kanji/${result.id}');
-        break;
-      case 'grammar':
-        context.push('/grammar/${result.id}');
-        break;
-      // Add other types as needed
-    }
-  }
+  final SearchService? service;
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => SearchProvider(service: service),
+      child: const _SearchView(),
+    );
+  }
+}
+
+class _SearchView extends StatefulWidget {
+  const _SearchView();
+
+  @override
+  State<_SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<_SearchView> {
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _clear(SearchProvider provider) {
+    _controller.clear();
+    provider.clear();
+  }
+
+  static String _detailPath(SearchResult result) => switch (result.type) {
+        SearchResultType.vocabulary => '/vocabulary/${result.id}',
+        SearchResultType.kanji => '/kanji/${result.id}',
+        SearchResultType.lesson => '/lessons/${result.id}',
+        SearchResultType.grammar => '/grammar/${result.id}',
+        SearchResultType.news => '/news/${result.id}',
+      };
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.watch<SearchProvider>();
+
     return AppScaffold(
-      title: 'Tìm Kiếm',
+      title: 'Tìm kiếm',
       body: ContentWidthLimit(
-        child: Consumer<SearchProvider>(
-          builder: (context, provider, _) {
-            return Column(
-              children: [
-                // Search bar
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      hintText: 'Tìm từ vựng, kanji, bài học...',
-                      prefixIcon: const Icon(Icons.search),
-                      suffixIcon: _searchController.text.isNotEmpty
-                          ? IconButton(
-                              icon: const Icon(Icons.clear),
-                              onPressed: () {
-                                _searchController.clear();
-                                provider.clearSearch();
-                              },
-                            )
-                          : null,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    onChanged: (value) {
-                      setState(() {});
-                      provider.search(value);
-                    },
+        child: Column(
+          children: [
+            Padding(
+              padding: AppSpacing.page,
+              child: TextField(
+                controller: _controller,
+                autofocus: true,
+                textInputAction: TextInputAction.search,
+                onChanged: provider.updateQuery,
+                decoration: InputDecoration(
+                  hintText: 'Tìm từ vựng, Kanji, bài học, ngữ pháp, tin tức…',
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _controller,
+                    builder: (context, value, _) => value.text.isEmpty
+                        ? const SizedBox.shrink()
+                        : IconButton(
+                            tooltip: 'Xoá từ khoá',
+                            icon: const Icon(Icons.clear),
+                            onPressed: () => _clear(provider),
+                          ),
                   ),
                 ),
-
-                // Results
-                Expanded(
-                  child: provider.isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : provider.error != null
-                          ? Center(
-                              child: Text(provider.error ?? ''),
-                            )
-                          : provider.searchResults.isEmpty
-                              ? Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.search_off,
-                                        size: 64,
-                                        color: AppColors.textDisabled,
-                                      ),
-                                      const SizedBox(height: 16),
-                                      Text(
-                                        _searchController.text.isEmpty
-                                            ? 'Nhập từ khóa để tìm kiếm'
-                                            : 'Không tìm thấy kết quả',
-                                        style: const TextStyle(
-                                          color: AppColors.textSecondary,
-                                          fontSize: AppTypography.body,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : ListView.builder(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
-                                  itemCount: provider.searchResults.length,
-                                  itemBuilder: (context, index) {
-                                    final result =
-                                        provider.searchResults[index];
-                                    return _buildSearchResultCard(
-                                      context,
-                                      result,
-                                    );
-                                  },
-                                ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchResultCard(BuildContext context, SearchResult result) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: ListTile(
-        onTap: () => _navigateToDetail(context, result),
-        leading: CircleAvatar(
-          backgroundColor: _getTypeColor(result.type),
-          child: Icon(
-            _getTypeIcon(result.type),
-            color: Colors.white,
-            size: 20,
-          ),
-        ),
-        title: Text(
-          result.title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          result.description ?? '',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          decoration: BoxDecoration(
-            color: _getTypeColor(result.type).withValues(alpha: 0.2),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Text(
-            _getTypeLabel(result.type),
-            style: TextStyle(
-              fontSize: AppTypography.caption,
-              color: _getTypeColor(result.type),
-              fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
+            Expanded(child: _results(provider)),
+          ],
         ),
       ),
     );
   }
 
-  String _getTypeLabel(String type) {
-    switch (type) {
-      case 'vocabulary':
-        return 'Từ vựng';
-      case 'kanji':
-        return 'Kanji';
-      case 'lesson':
-        return 'Bài học';
-      case 'grammar':
-        return 'Ngữ pháp';
-      case 'news':
-        return 'Tin tức';
-      default:
-        return type;
+  Widget _results(SearchProvider provider) {
+    if (provider.query.isEmpty) {
+      return const EmptyStateView(
+        title: 'Tìm trong toàn bộ nội dung',
+        message: 'Gõ chữ Nhật, cách đọc hoặc nghĩa tiếng Việt — ví dụ 月, つき, mặt trăng.',
+        icon: Icons.search,
+      );
     }
-  }
 
-  IconData _getTypeIcon(String type) {
-    switch (type) {
-      case 'vocabulary':
-        return Icons.spellcheck;
-      case 'kanji':
-        return Icons.draw_outlined;
-      case 'lesson':
-        return Icons.menu_book;
-      case 'grammar':
-        return Icons.school;
-      case 'news':
-        return Icons.newspaper;
-      default:
-        return Icons.help_outline;
-    }
-  }
-
-  Color _getTypeColor(String type) {
-    switch (type) {
-      case 'vocabulary':
-        return AppColors.primary;
-      case 'kanji':
-        return AppColors.error;
-      case 'lesson':
-        return Colors.purple;
-      case 'grammar':
-        return AppColors.warning;
-      case 'news':
-        return Colors.teal;
-      default:
-        return AppColors.textSecondary;
-    }
+    return AsyncView<List<SearchResult>>(
+      state: provider.results,
+      onRetry: provider.retry,
+      isEmpty: (results) => results.isEmpty,
+      emptyTitle: 'Không tìm thấy kết quả',
+      emptyMessage: 'Không có nội dung nào khớp với “${provider.query}”.',
+      emptyIcon: Icons.search_off,
+      builder: (context, results) => SearchResultList(
+        results: results,
+        onOpen: (result) => context.push(_detailPath(result)),
+      ),
+    );
   }
 }

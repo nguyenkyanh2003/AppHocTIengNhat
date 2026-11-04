@@ -1,310 +1,152 @@
 import 'package:flutter/material.dart';
-import '../services/notification_service.dart';
-import '../models/notification.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
+import 'package:provider/provider.dart';
 
+import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/app_dialog.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/notification.dart';
+import '../providers/notification_provider.dart';
+import '../widgets/notification_tile.dart';
+
+/// Thông báo cá nhân: lọc đã đọc/chưa đọc, chạm để đọc nội dung đầy đủ, xoá
+/// từng thông báo, đánh dấu tất cả đã đọc.
+///
+/// Dùng [NotificationProvider] toàn app, nên chấm trên chuông Trang chủ cập
+/// nhật ngay sau khi đọc hay xoá ở đây.
 class NotificationsScreen extends StatefulWidget {
-  const NotificationsScreen({Key? key}) : super(key: key);
+  const NotificationsScreen({super.key});
 
   @override
   State<NotificationsScreen> createState() => _NotificationsScreenState();
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  final NotificationService _notificationService = NotificationService();
-  List<AppNotification> _notifications = [];
-  bool _isLoading = true;
-  int _currentPage = 1;
-  int _totalPages = 0;
-  String _filterStatus = 'all'; // all, read, unread
-
   @override
   void initState() {
     super.initState();
-    _loadNotifications();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider = context.read<NotificationProvider>();
+      provider.load(filter: NotificationFilter.all);
+      provider.refreshUnreadCount();
+    });
   }
 
-  Future<void> _loadNotifications() async {
-    try {
-      setState(() => _isLoading = true);
-      final result = await _notificationService.getNotifications(
-        page: _currentPage,
-        limit: 20,
-        status: _filterStatus == 'all' ? null : _filterStatus,
-      );
-
-      setState(() {
-        _notifications = result['data'] ?? [];
-        _totalPages = result['totalPages'] ?? 0;
-        _isLoading = false;
-      });
-    } catch (e) {
-      setState(() => _isLoading = false);
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi: ${e.toString()}')),
-        );
-      }
-    }
+  Future<void> _open(NotificationProvider provider, AppNotification notification) {
+    provider.markAsRead(notification);
+    return showAppDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(notification.title),
+        content: SingleChildScrollView(child: SelectableText(notification.message)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(dialogContext), child: const Text('Đóng')),
+        ],
+      ),
+    );
   }
 
-  Future<void> _markAsRead(String notificationId) async {
-    try {
-      await _notificationService.markAsRead(notificationId);
-      _loadNotifications();
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi: ${e.toString()}')),
-        );
-      }
-    }
+  Future<void> _refresh(NotificationProvider provider) =>
+      Future.wait([provider.load(page: provider.currentPage), provider.refreshUnreadCount()]);
+
+  void _showMessage(NotificationProvider provider) {
+    final message = provider.consumeMessage();
+    if (message != null) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
-  Future<void> _deleteNotification(String notificationId) async {
-    try {
-      await _notificationService.deleteNotification(notificationId);
-      _loadNotifications();
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi: ${e.toString()}')),
-        );
-      }
-    }
-  }
+  static String _emptyTitle(NotificationFilter filter) => switch (filter) {
+        NotificationFilter.all => 'Chưa có thông báo nào',
+        NotificationFilter.unread => 'Không có thông báo chưa đọc',
+        NotificationFilter.read => 'Chưa có thông báo đã đọc',
+      };
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<NotificationProvider>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _showMessage(provider);
+    });
+
     return AppScaffold(
       title: 'Thông báo',
+      onRefresh: () => _refresh(provider),
+      actions: [
+        IconButton(
+          tooltip: 'Đánh dấu tất cả đã đọc',
+          icon: const Icon(Icons.done_all),
+          onPressed: provider.unreadCount > 0 && !provider.isMarkingAll ? provider.markAllAsRead : null,
+        ),
+      ],
       body: ContentWidthLimit(
         child: Column(
           children: [
-            // Filter buttons
             Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    _buildFilterButton('Tất cả', 'all'),
-                    const SizedBox(width: 8),
-                    _buildFilterButton('Chưa đọc', 'unread'),
-                    const SizedBox(width: 8),
-                    _buildFilterButton('Đã đọc', 'read'),
-                  ],
+              padding: AppSpacing.page,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: NotificationFilterBar(
+                  selected: provider.filter,
+                  unreadCount: provider.unreadCount,
+                  onSelected: (filter) => provider.load(filter: filter),
                 ),
               ),
             ),
-            // Notifications list
             Expanded(
-              child: _isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : _notifications.isEmpty
-                      ? const Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.notifications_none,
-                                size: 64,
-                                color: AppColors.textDisabled,
-                              ),
-                              SizedBox(height: 16),
-                              Text(
-                                'Không có thông báo',
-                                style: TextStyle(
-                                  fontSize: AppTypography.body,
-                                  color: AppColors.textSecondary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: _notifications.length,
-                          itemBuilder: (context, index) {
-                            final notification = _notifications[index];
-                            return _buildNotificationItem(notification);
-                          },
-                        ),
-            ),
-            // Pagination
-            if (_totalPages > 1)
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: _currentPage > 1
-                          ? () {
-                              setState(() => _currentPage--);
-                              _loadNotifications();
-                            }
-                          : null,
-                      child: const Text('Trước'),
-                    ),
-                    const SizedBox(width: 16),
-                    Text('Trang $_currentPage / $_totalPages'),
-                    const SizedBox(width: 16),
-                    ElevatedButton(
-                      onPressed: _currentPage < _totalPages
-                          ? () {
-                              setState(() => _currentPage++);
-                              _loadNotifications();
-                            }
-                          : null,
-                      child: const Text('Tiếp'),
-                    ),
-                  ],
-                ),
+              child: AsyncView<NotificationPage>(
+                state: provider.page,
+                onRetry: () => provider.load(page: provider.currentPage),
+                isEmpty: (page) => page.items.isEmpty,
+                emptyTitle: _emptyTitle(provider.filter),
+                emptyIcon: Icons.notifications_none,
+                builder: (context, page) => _list(provider, page),
               ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFilterButton(String label, String status) {
-    final isSelected = _filterStatus == status;
-    return FilterChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: (selected) {
-        setState(() {
-          _filterStatus = status;
-          _currentPage = 1;
-        });
-        _loadNotifications();
-      },
-      backgroundColor: AppColors.surfaceVariant,
-      selectedColor: AppColors.primary,
-      labelStyle: TextStyle(
-        color: isSelected ? Colors.white : Colors.black,
-        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-      ),
-    );
-  }
-
-  Widget _buildNotificationItem(AppNotification notification) {
-    final isUnread = notification.trangThai == 'ChuaDoc';
-
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      color: isUnread ? AppColors.primaryLight : Colors.white,
-      child: ListTile(
-        onTap: () {
-          if (isUnread) {
-            _markAsRead(notification.id);
-          }
-        },
-        leading: CircleAvatar(
-          backgroundColor: _getNotificationColor(notification.loai),
-          child: Icon(
-            _getNotificationIcon(notification.loai),
-            color: Colors.white,
-          ),
-        ),
-        title: Text(
-          notification.tieuDe,
-          style: TextStyle(
-            fontWeight: isUnread ? FontWeight.bold : FontWeight.normal,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 4),
-            Text(
-              notification.noiDung,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: AppTypography.caption),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              _formatDate(notification.ngayTao),
-              style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
             ),
           ],
         ),
-        trailing: isUnread
-            ? IconButton(
-                icon: const Icon(Icons.close, size: 20),
-                onPressed: () => _deleteNotification(notification.id),
-              )
-            : null,
       ),
     );
   }
 
-  IconData _getNotificationIcon(String type) {
-    switch (type) {
-      case 'achievement':
-        return Icons.emoji_events;
-      case 'lesson':
-        return Icons.school;
-      case 'exercise':
-        return Icons.assignment;
-      case 'group':
-        return Icons.people;
-      case 'streak':
-        return Icons.local_fire_department;
-      case 'message':
-        return Icons.message;
-      default:
-        return Icons.notifications;
-    }
-  }
-
-  Color _getNotificationColor(String type) {
-    switch (type) {
-      case 'achievement':
-        return Colors.amber;
-      case 'lesson':
-        return AppColors.primary;
-      case 'exercise':
-        return AppColors.success;
-      case 'group':
-        return Colors.purple;
-      case 'streak':
-        return AppColors.warning;
-      case 'message':
-        return Colors.pink;
-      default:
-        return AppColors.textSecondary;
-    }
-  }
-
-  String _formatDate(String? date) {
-    if (date == null) return '';
-    try {
-      final dateTime = DateTime.parse(date);
-      final now = DateTime.now();
-      final difference = now.difference(dateTime);
-
-      if (difference.inMinutes < 1) {
-        return 'Vừa xong';
-      } else if (difference.inMinutes < 60) {
-        return '${difference.inMinutes} phút trước';
-      } else if (difference.inHours < 24) {
-        return '${difference.inHours} giờ trước';
-      } else if (difference.inDays < 7) {
-        return '${difference.inDays} ngày trước';
-      } else {
-        return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
-      }
-    } catch (e) {
-      return '';
-    }
+  Widget _list(NotificationProvider provider, NotificationPage page) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            padding: AppSpacing.pageHorizontal,
+            itemCount: page.items.length,
+            itemBuilder: (context, index) {
+              final notification = page.items[index];
+              return NotificationTile(
+                notification: notification,
+                busy: provider.isBusy(notification.id),
+                onOpen: () => _open(provider, notification),
+                onDelete: () => provider.delete(notification),
+              );
+            },
+          ),
+        ),
+        if (page.totalPages > 1)
+          Padding(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  tooltip: 'Trang trước',
+                  icon: const Icon(Icons.chevron_left),
+                  onPressed: page.page > 1 ? () => provider.load(page: page.page - 1) : null,
+                ),
+                Text('Trang ${page.page} / ${page.totalPages}'),
+                IconButton(
+                  tooltip: 'Trang sau',
+                  icon: const Icon(Icons.chevron_right),
+                  onPressed: page.page < page.totalPages ? () => provider.load(page: page.page + 1) : null,
+                ),
+              ],
+            ),
+          ),
+      ],
+    );
   }
 }

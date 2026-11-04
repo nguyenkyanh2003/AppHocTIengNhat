@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/admin_provider.dart';
+import '../widgets/send_notification_dialog.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
@@ -32,6 +33,11 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
     return AppScaffold(
       title: 'Quản Lý Users',
       actions: [
+        IconButton(
+          tooltip: 'Gửi thông báo cho tất cả',
+          icon: const Icon(Icons.campaign_outlined),
+          onPressed: () => openSendNotificationForm(context),
+        ),
         IconButton(
           icon: const Icon(Icons.refresh),
           onPressed: () => context.read<AdminProvider>().loadUsers(),
@@ -162,6 +168,16 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
               Icon(Icons.visibility, size: 20),
               SizedBox(width: 8),
               Text('Xem chi tiết'),
+            ],
+          ),
+        ),
+        const PopupMenuItem(
+          value: 'notify',
+          child: Row(
+            children: [
+              Icon(Icons.notifications_outlined, size: 20),
+              SizedBox(width: 8),
+              Text('Gửi thông báo'),
             ],
           ),
         ),
@@ -470,6 +486,9 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
     switch (action) {
       case 'view':
         _showUserDetails(user);
+        return;
+      case 'notify':
+        await openSendNotificationForm(context, user: user);
         return;
       case 'promote':
         final isAdmin = user['role'] == 'admin';

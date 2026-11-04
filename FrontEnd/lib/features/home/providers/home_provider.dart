@@ -6,9 +6,9 @@ import '../../vocabulary/models/vocabulary.dart';
 import '../models/next_lesson.dart';
 import '../services/home_service.dart';
 
-/// Trạng thái các khối dữ liệu riêng của Trang chủ: bài học tiếp theo, từ mới
-/// hôm nay và số thông báo chưa đọc. Chuỗi ngày / XP và tin tức đã có provider
-/// riêng (`StreakProvider`, `NewsProvider`).
+/// Trạng thái các khối dữ liệu riêng của Trang chủ: bài học tiếp theo và từ
+/// mới hôm nay. Chuỗi ngày / XP, tin tức và số thông báo chưa đọc đã có
+/// provider riêng (`StreakProvider`, `NewsProvider`, `NotificationProvider`).
 class HomeProvider extends ChangeNotifier {
   HomeProvider({HomeService? service, DateTime Function()? clock})
       : _service = service ?? HomeService(),
@@ -19,14 +19,12 @@ class HomeProvider extends ChangeNotifier {
 
   ViewState<NextLesson?> _nextLesson = const ViewState.idle();
   ViewState<Vocabulary?> _wordOfDay = const ViewState.idle();
-  int _unreadNotifications = 0;
   int _generation = 0;
 
   ViewState<NextLesson?> get nextLesson => _nextLesson;
   ViewState<Vocabulary?> get wordOfDay => _wordOfDay;
-  int get unreadNotifications => _unreadNotifications;
 
-  /// Nạp (lại) cả ba khối song song. Khối nào lỗi thì chỉ khối đó báo lỗi.
+  /// Nạp (lại) cả hai khối song song. Khối nào lỗi thì chỉ khối đó báo lỗi.
   ///
   /// Đang có dữ liệu thì giữ nguyên trong lúc làm mới (kéo xuống để làm mới),
   /// không chớp về trạng thái đang tải.
@@ -43,7 +41,6 @@ class HomeProvider extends ChangeNotifier {
           () => _service.loadNextLesson(fallbackLevel: lessonLevel)),
       ViewState.guard(
           () => _service.loadWordOfDay(level: wordLevel, today: _clock())),
-      _service.unreadNotifications().catchError((_) => _unreadNotifications),
     ]);
     // Đăng xuất / đổi tài khoản trong lúc chờ: kết quả của lần nạp cũ bỏ đi.
     if (generation != _generation) return;
@@ -52,7 +49,6 @@ class HomeProvider extends ChangeNotifier {
         _keepOnFailure(_nextLesson, results[0] as ViewState<NextLesson?>);
     _wordOfDay =
         _keepOnFailure(_wordOfDay, results[1] as ViewState<Vocabulary?>);
-    _unreadNotifications = results[2] as int;
     notifyListeners();
   }
 
@@ -64,7 +60,6 @@ class HomeProvider extends ChangeNotifier {
     _generation++;
     _nextLesson = const ViewState.idle();
     _wordOfDay = const ViewState.idle();
-    _unreadNotifications = 0;
     notifyListeners();
   }
 }

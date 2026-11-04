@@ -9,6 +9,8 @@ import 'package:apphoctiengnnhat/app/shell/hub_screen.dart';
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/features/auth/providers/auth_provider.dart';
 import 'package:apphoctiengnnhat/features/auth/services/auth_service.dart';
+import 'package:apphoctiengnnhat/features/notifications/providers/notification_provider.dart';
+import 'package:apphoctiengnnhat/features/notifications/services/notification_service.dart';
 
 /// Service giả: không chạm mạng, chỉ đếm số lần đăng xuất.
 class _FakeAuthService extends AuthService {
@@ -20,9 +22,15 @@ class _FakeAuthService extends AuthService {
   }
 }
 
+/// Thông báo giả của tài khoản đang đăng nhập.
+class _FakeNotificationService extends NotificationService {
+  @override
+  Future<int> unreadCount() async => 2;
+}
+
 /// Hub Tài khoản thật trong một router tối thiểu, có màn đăng nhập để thấy
 /// được việc chuyển trang sau khi đăng xuất.
-Widget _app(AuthProvider auth) {
+Widget _app(AuthProvider auth, {NotificationProvider? notifications}) {
   final router = GoRouter(
     initialLocation: '/account',
     routes: [
@@ -39,8 +47,12 @@ Widget _app(AuthProvider auth) {
     ],
   );
 
-  return ChangeNotifierProvider<AuthProvider>.value(
-    value: auth,
+  return MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AuthProvider>.value(value: auth),
+      ChangeNotifierProvider<NotificationProvider>.value(
+          value: notifications ?? NotificationProvider(service: _FakeNotificationService())),
+    ],
     child: MaterialApp.router(
       theme: AppTheme.lightTheme,
       localizationsDelegates: const [
@@ -56,13 +68,14 @@ Widget _app(AuthProvider auth) {
   );
 }
 
-Future<void> _openAccountHub(WidgetTester tester, AuthProvider auth) async {
+Future<void> _openAccountHub(WidgetTester tester, AuthProvider auth,
+    {NotificationProvider? notifications}) async {
   // Đủ cao để cả mười mục lẫn ô Đăng xuất cùng nằm trong màn hình.
   tester.view.physicalSize = const Size(420, 1600);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
 
-  await tester.pumpWidget(_app(auth));
+  await tester.pumpWidget(_app(auth, notifications: notifications));
   await tester.pumpAndSettle();
 }
 
@@ -109,5 +122,23 @@ void main() {
 
     expect(service.logoutCalls, 1);
     expect(find.text('Màn đăng nhập'), findsOneWidget);
+  });
+
+  testWidgets('đăng xuất xoá thông báo của tài khoản cũ khỏi bộ nhớ',
+      (tester) async {
+    final notifications =
+        NotificationProvider(service: _FakeNotificationService());
+    await notifications.refreshUnreadCount();
+    expect(notifications.unreadCount, 2);
+    await _openAccountHub(tester, AuthProvider(authService: _FakeAuthService()),
+        notifications: notifications);
+
+    await tester.tap(_logoutTile);
+    await tester.pumpAndSettle();
+    await tester.tap(_confirmButton);
+    await tester.pumpAndSettle();
+
+    expect(notifications.unreadCount, 0);
+    expect(notifications.page.valueOrNull, isNull);
   });
 }
