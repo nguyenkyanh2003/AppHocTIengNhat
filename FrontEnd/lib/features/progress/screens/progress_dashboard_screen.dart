@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../providers/progress_provider.dart';
 import '../../../app/theme/app_tokens.dart';
@@ -29,6 +30,13 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
   Widget build(BuildContext context) {
     return AppScaffold(
       title: 'Tiến độ học tập',
+      actions: [
+        IconButton(
+          tooltip: 'Mục tiêu học tập',
+          icon: const Icon(Icons.flag_outlined),
+          onPressed: () => context.push('/goals'),
+        ),
+      ],
       // `ContentPane` nằm **trong** vùng cuộn nên thanh cuộn ở mép ngoài;
       // không bọc thêm `ContentWidthLimit` vì như vậy là hẹp hai lần.
       body: Consumer<ProgressProvider>(

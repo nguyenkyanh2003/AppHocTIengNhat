@@ -13,7 +13,7 @@ const USER_ID = '64b7f0c2a1b2c3d4e5f60700';
  * thống kê. Bản dashboard cũ tự đếm với `item_type: 'vocabulary'` và trường
  * `status` không tồn tại nên luôn ra 0 — test giữ đúng tên trường của model.
  */
-const fakeModel = ({ rows = [] } = {}) => {
+const fakeModel = ({ rows = [], distinct = [] } = {}) => {
   const calls = [];
   const withSession = (result) => ({
     session: async (arg) => (calls.push(['session', arg]), result),
@@ -22,16 +22,28 @@ const fakeModel = ({ rows = [] } = {}) => {
     calls,
     countDocuments: (filter) => (calls.push(['countDocuments', filter]), withSession(3)),
     aggregate: (pipeline) => (calls.push(['aggregate', pipeline]), withSession(rows)),
+    distinct: (field, filter) => (calls.push(['distinct', field, filter]), withSession(distinct)),
   };
 };
 
-test('từ vựng đã học là số thẻ SRS loại Vocabulary của user', async () => {
-  const srs = fakeModel();
+const id = (suffix) => new mongoose.Types.ObjectId(`64b7f0c2a1b2c3d4e5f607${suffix}`);
 
-  const count = await createAchievementRepository({ SRSProgress: srs }).countLearnedVocabulary({ userId: USER_ID });
+test('từ vựng đã học là hợp của thẻ SRS và "Đã nhớ" trong bài, mỗi từ tính một lần', async () => {
+  const srs = fakeModel({ distinct: [id('01'), id('02')] });
+  const progress = fakeModel({ distinct: [id('02'), id('03'), id('04')] });
 
-  assert.equal(count, 3);
-  assert.deepEqual(srs.calls[0], ['countDocuments', { user: USER_ID, item_type: 'Vocabulary' }]);
+  const count = await createAchievementRepository({ SRSProgress: srs, LessonProgress: progress })
+    .countLearnedVocabulary({ userId: USER_ID, session: 'tx' });
+
+  assert.equal(count, 4);
+  assert.deepEqual(srs.calls, [
+    ['distinct', 'item_id', { user: USER_ID, item_type: 'Vocabulary' }],
+    ['session', 'tx'],
+  ]);
+  assert.deepEqual(progress.calls, [
+    ['distinct', 'learned_vocabulary_ids', { user: USER_ID }],
+    ['session', 'tx'],
+  ]);
   assert.ok(SRSProgress.schema.path('item_type').enumValues.includes('Vocabulary'));
 });
 

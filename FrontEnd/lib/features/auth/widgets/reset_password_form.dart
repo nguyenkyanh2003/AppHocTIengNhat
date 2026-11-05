@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/localization/app_localizations.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../models/password_policy.dart';
 
 /// Form nhập mật khẩu mới của luồng khôi phục mật khẩu.
 ///
@@ -12,10 +14,6 @@ class ResetPasswordForm extends StatefulWidget {
     required this.onSubmit,
     this.errorMessage,
   });
-
-  /// Ngưỡng này phải khớp với rule của backend, nếu không người dùng sẽ nhận
-  /// lỗi 400 sau khi form đã báo hợp lệ.
-  static const int minPasswordLength = 8;
 
   final bool isSubmitting;
   final String? errorMessage;
@@ -61,8 +59,9 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             obscureText: _obscurePassword,
             decoration: InputDecoration(
               labelText: 'Mật khẩu mới',
-              hintText:
-                  'Tối thiểu ${ResetPasswordForm.minPasswordLength} ký tự',
+              // Ngưỡng chung với backend (`PasswordPolicy`), nếu lệch thì
+              // form báo hợp lệ rồi server vẫn trả 400.
+              hintText: AppLocalizations.of(context).passwordMinHint(PasswordPolicy.minLength),
               prefixIcon: const Icon(Icons.lock_outline),
               suffixIcon: IconButton(
                 icon: Icon(
@@ -77,9 +76,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               if (value == null || value.isEmpty) {
                 return 'Vui lòng nhập mật khẩu mới';
               }
-              if (value.length < ResetPasswordForm.minPasswordLength) {
-                return 'Mật khẩu phải có ít nhất '
-                    '${ResetPasswordForm.minPasswordLength} ký tự';
+              if (value.length < PasswordPolicy.minLength) {
+                return AppLocalizations.of(context).passwordMinLength(PasswordPolicy.minLength);
               }
               return null;
             },

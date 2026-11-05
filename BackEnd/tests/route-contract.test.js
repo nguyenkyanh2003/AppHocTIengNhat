@@ -7,6 +7,7 @@ const routeMounts = new Map([
   ['../src/modules/achievements/achievement.routes.js', '/api/achievement'],
   ['../src/modules/exercise/exercise.routes.js', '/api/exercise'],
   ['../src/modules/flashcards/flashcard.routes.js', '/api/flashcard'],
+  ['../src/modules/goals/goal.routes.js', '/api/goal'],
   ['../src/modules/grammar/grammar.routes.js', '/api/grammar'],
   ['../src/modules/study-groups/group.routes.js', '/api/group'],
   ['../src/modules/jlpt/jlpt.routes.js', '/api/jlpt'],
@@ -28,7 +29,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 155;
+const expectedCount = 160;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -55,7 +56,11 @@ const expectedCount = 155;
 //   `POST` và `DELETE /api/kanji/:id/mark-learned` (thêm/gỡ thẻ ôn, spec Kanji SRS §2).
 // 2026-11-04: +1 route `GET /api/search` (tìm kiếm chung năm nhóm nội dung, phase-2-plan A5);
 //   Flutter bỏ năm lời gọi danh sách riêng lẻ.
-const expectedSignatureHash = '193b63bdc140169eb4af60cf024e6c918d34447480028b6d2c118ff1e9980d62';
+// 2026-11-04: +4 route `/api/goal` (GET/POST `/`, PATCH/DELETE `/:id`) — mục tiêu học tập
+//   tích luỹ lưu theo tài khoản, thay màn mẫu chỉ có dữ liệu viết sẵn (phase-2-plan A8).
+// 2026-11-04: +1 route `POST /api/users/refresh-token` — access token còn 15 phút, refresh
+//   token xoay vòng theo phiên; `POST /api/users/logout` giữ nguyên path nhưng giờ thu hồi phiên.
+const expectedSignatureHash = '3db56e9457f9a0452f93235d3a9c2224e502ae717babef354d320e798bc479fb';
 
 const collectSignatures = async () => {
   const signatures = [];

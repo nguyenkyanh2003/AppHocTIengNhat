@@ -48,7 +48,7 @@ const fakeModel = ({ result = null, createError = null, afterCreateError = null 
 const repositoryWith = (model, content = fakeModel()) =>
   createSrsRepository({ SRSProgress: model, contentModels: { Vocabulary: content } });
 
-test('due batch filters by user, type and due time, excluding items before sort and limit', async () => {
+test('due batch filters by user, type and due time, excluding cards by card id before sort and limit', async () => {
   const model = fakeModel();
   const now = new Date('2026-09-20T00:00:00Z');
 
@@ -56,14 +56,14 @@ test('due batch filters by user, type and due time, excluding items before sort 
     userId: 'u1',
     itemType: 'Vocabulary',
     now,
-    excludeItemIds: ['a', 'b'],
+    excludeCardIds: ['a', 'b'],
     limit: 20,
   });
 
   assert.deepEqual(model.calls, [
     [
       'find',
-      { user: 'u1', item_type: 'Vocabulary', next_review: { $lte: now }, item_id: { $nin: ['a', 'b'] } },
+      { user: 'u1', item_type: 'Vocabulary', next_review: { $lte: now }, _id: { $nin: ['a', 'b'] } },
     ],
     ['sort', { next_review: 1, _id: 1 }],
     ['limit', 20],

@@ -114,6 +114,7 @@ test('đăng nhập thành công giữ nguyên vỏ response cũ', async () => {
     login: async () => ({
       user: { _id: USER_ID, TenDangNhap: 'victim' },
       token: 'jwt-token',
+      refreshToken: 'refresh-token',
       streak: { current: 1 },
     }),
   });
@@ -126,8 +127,52 @@ test('đăng nhập thành công giữ nguyên vỏ response cũ', async () => {
   assert.equal(response.status, 200);
   assert.equal(response.body.message, 'Đăng nhập thành công');
   assert.equal(response.body.token, 'jwt-token');
+  assert.equal(response.body.refreshToken, 'refresh-token');
   assert.equal(response.body.user.TenDangNhap, 'victim');
   assert.deepEqual(response.body.streak, { current: 1 });
+});
+
+test('làm mới phiên trả cặp token mới ở mức trên cùng như đăng nhập', async () => {
+  const service = recordingService({
+    refresh: async (args) => {
+      service.calls.push(['refresh', args]);
+      return { token: 'access-moi', refreshToken: 'refresh-moi' };
+    },
+  });
+  const app = buildApp(service);
+
+  const response = await request(app).post('/api/users/refresh-token').send({ refreshToken: 'refresh-cu' });
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, { token: 'access-moi', refreshToken: 'refresh-moi' });
+  assert.deepEqual(service.calls, [['refresh', { refreshToken: 'refresh-cu' }]]);
+
+  for (const body of [{}, { refreshToken: '' }, { refreshToken: ['a', 'b'] }, { refreshToken: { $ne: null } }]) {
+    assert.equal((await request(app).post('/api/users/refresh-token').send(body)).status, 400, JSON.stringify(body));
+  }
+});
+
+test('đăng xuất không cần access token còn hạn; gửi kèm token nào thì service nhận token đó', async () => {
+  const service = recordingService({
+    logout: async (args) => {
+      service.calls.push(['logout', args]);
+      return { message: 'Đăng xuất thành công' };
+    },
+  });
+  const app = buildApp(service);
+
+  const withoutHeader = await request(app).post('/api/users/logout').send({ refreshToken: 'refresh-cu' });
+  const withHeader = await request(app)
+    .post('/api/users/logout')
+    .set('Authorization', 'Bearer access-cu')
+    .send({});
+
+  assert.equal(withoutHeader.status, 200);
+  assert.equal(withHeader.status, 200);
+  assert.deepEqual(service.calls, [
+    ['logout', { refreshToken: 'refresh-cu', accessToken: undefined }],
+    ['logout', { refreshToken: undefined, accessToken: 'access-cu' }],
+  ]);
 });
 
 test('đặt lại mật khẩu yêu cầu token và mật khẩu tối thiểu 8 ký tự', async () => {

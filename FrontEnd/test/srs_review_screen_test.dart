@@ -52,7 +52,7 @@ class _FakeSrsService extends SrsService {
 
   @override
   Future<SrsBatch> fetchDue({
-    List<String> excludeItemIds = const [],
+    List<String> excludeCardIds = const [],
     int limit = SrsService.defaultLimit,
     String? itemType,
   }) async {

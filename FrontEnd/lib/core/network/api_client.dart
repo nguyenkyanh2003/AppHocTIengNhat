@@ -14,7 +14,12 @@ class ApiClient {
   static const _requestTimeout = Duration(seconds: 20);
   static const _uploadTimeout = Duration(seconds: 60);
   static const _tokenKey = 'auth_token';
+  static const _refreshKey = 'refresh_token';
   static const _secureStorage = FlutterSecureStorage();
+
+  /// Route xác thực tự xử lý 401 của chính chúng (sai mật khẩu, refresh token
+  /// hỏng): không bao giờ kích hoạt làm mới phiên.
+  static const _authEndpoints = {'/users/login', '/users/refresh-token', '/users/logout'};
 
   final OfflineCache _cache = OfflineCache();
 
@@ -47,6 +52,7 @@ class ApiClient {
   }
 
   static String? _token;
+  static String? _refreshToken;
   static final ApiClient _instance = ApiClient._internal();
 
   factory ApiClient() => _instance;
@@ -54,6 +60,7 @@ class ApiClient {
 
   Future<void> init() async {
     _token = await _secureStorage.read(key: _tokenKey);
+    _refreshToken = await _secureStorage.read(key: _refreshKey);
     if (_token == null) {
       final prefs = await SharedPreferences.getInstance();
       final legacyToken = prefs.getString(_tokenKey);
@@ -69,12 +76,241 @@ class ApiClient {
     await _secureStorage.write(key: _tokenKey, value: token);
   }
 
+  /// Lưu cặp token của phiên **mới** (vừa đăng nhập). Mọi request và phản hồi
+  /// của phiên trước đó từ đây bị bỏ.
+  Future<void> setSession(String accessToken, String? refreshToken) {
+    _beginNewSession();
+    return _storeTokens(accessToken, refreshToken);
+  }
+
+  Future<void> _storeTokens(String accessToken, String? refreshToken) async {
+    _token = accessToken;
+    _refreshToken = refreshToken;
+    await _secureStorage.write(key: _tokenKey, value: accessToken);
+    if (refreshToken == null) {
+      await _secureStorage.delete(key: _refreshKey);
+    } else {
+      await _secureStorage.write(key: _refreshKey, value: refreshToken);
+    }
+  }
+
+  /// Xoá cả access token lẫn refresh token (đăng xuất, phiên kết thúc).
+  ///
+  /// Kho lưu chỉ bị xoá khi còn là của phiên này: trên web các tab dùng chung
+  /// kho, và tab khác có thể đã đăng nhập một phiên khác vào đó.
   Future<void> removeToken() async {
+    final ownToken = _token;
+    _beginNewSession();
     _token = null;
+    _refreshToken = null;
+
+    final stored = await _secureStorage.read(key: _tokenKey);
+    if (stored != null && !_isSameSession(stored, ownToken)) return;
     await _secureStorage.delete(key: _tokenKey);
+    await _secureStorage.delete(key: _refreshKey);
+  }
+
+  /// Nội dung của access token, `null` khi không đọc được. Chỉ dùng để so các
+  /// token với nhau nên không cần kiểm chữ ký.
+  static Map<dynamic, dynamic>? _claimsOf(String? accessToken) {
+    final parts = accessToken?.split('.');
+    if (parts == null || parts.length != 3) return null;
+    try {
+      final payload = json.decode(utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))));
+      return payload is Map ? payload : null;
+    } on FormatException {
+      return null;
+    }
+  }
+
+  /// Mã phiên `sid`: do server cấp và thuộc đúng một tài khoản, nên cùng `sid`
+  /// cũng là cùng tài khoản.
+  static String? _sessionIdOf(String accessToken) {
+    final sid = _claimsOf(accessToken)?['sid'];
+    return sid is String && sid.isNotEmpty ? sid : null;
+  }
+
+  /// Số lần phiên đã xoay refresh token khi cấp [accessToken]. Hai cặp token cùng
+  /// phiên thì cặp có số lớn hơn là cặp mới hơn.
+  static int _rotationOf(String? accessToken) {
+    final rotation = _claimsOf(accessToken)?['rotation'];
+    return rotation is int ? rotation : 0;
+  }
+
+  static bool _isSameSession(String? first, String? second) {
+    if (first == null || second == null) return false;
+    if (first == second) return true;
+    final sessionId = _sessionIdOf(first);
+    return sessionId != null && sessionId == _sessionIdOf(second);
+  }
+
+  /// Kho lưu giờ thuộc phiên khác (tab khác đã đăng xuất hoặc đăng nhập lại):
+  /// tab này không được dùng cũng không được ghi đè kho đó. Huỷ yêu cầu đang
+  /// chạy và báo phiên kết thúc để tab về màn đăng nhập; [removeToken] và
+  /// [clearAllData] sẽ không đụng tới dữ liệu của phiên kia.
+  Never _abandonToOtherTab() {
+    _notifySessionExpired();
+    throw SessionChangedException();
+  }
+
+  /// Báo [onSessionExpired], mỗi phiên một lần.
+  void _notifySessionExpired() {
+    if (_token == null || _expiredSessionNumber == _sessionNumber) return;
+    _expiredSessionNumber = _sessionNumber;
+    onSessionExpired?.call();
   }
 
   String? getToken() => _token;
+
+  String? getRefreshToken() => _refreshToken;
+
+  /// Số thứ tự phiên đăng nhập: tăng khi đăng nhập hoặc đăng xuất, giữ nguyên
+  /// khi làm mới token. Request nào bắt đầu ở số cũ thì phản hồi của nó bị bỏ —
+  /// không thì request của tài khoản A có thể bị gửi lại bằng token của B, trả
+  /// dữ liệu của A cho màn hình của B, hay đăng xuất nhầm B.
+  int _sessionNumber = 0;
+
+  /// Phiên đã báo [onSessionExpired]: mỗi phiên chỉ báo một lần.
+  int? _expiredSessionNumber;
+
+  /// Lần làm mới đang chạy của phiên hiện tại; mọi request hết hạn cùng lúc chờ
+  /// chung lần này. Phiên mới không chờ lần làm mới của phiên cũ.
+  Future<bool>? _refreshing;
+
+  void _beginNewSession() {
+    _sessionNumber++;
+    _refreshing = null;
+  }
+
+  void _requireSameSession(int sessionNumber) {
+    if (sessionNumber != _sessionNumber) throw SessionChangedException();
+  }
+
+  /// Access token hết hạn (401 + [sessionExpiredCode]) trên một request có
+  /// gửi token: đổi refresh token lấy cặp mới. `true` nghĩa là nên gửi lại
+  /// request; `false` là phiên đã kết thúc thật.
+  Future<bool> _renewedAfter(http.Response response, String endpoint, String? usedToken) async {
+    if (response.statusCode != 401 || usedToken == null || _authEndpoints.contains(endpoint)) {
+      return false;
+    }
+    if (_codeOf(response) != sessionExpiredCode) return false;
+    // Request khác của phiên này đã làm mới trong lúc request này đang đi: chỉ
+    // cần gửi lại. Đổi phiên thì caller đã chặn trước khi tới đây.
+    if (_token != null && _token != usedToken) return true;
+    return _sharedRefresh();
+  }
+
+  Future<bool> _sharedRefresh() {
+    final running = _refreshing;
+    if (running != null) return running;
+
+    late final Future<bool> started;
+    started = _refreshSession(_sessionNumber).whenComplete(() {
+      if (identical(_refreshing, started)) _refreshing = null;
+    });
+    return _refreshing = started;
+  }
+
+  String? _codeOf(http.Response response) {
+    try {
+      final data = json.decode(response.body);
+      return data is Map ? data['code']?.toString() : null;
+    } on FormatException {
+      return null;
+    }
+  }
+
+  /// Gọi `POST /users/refresh-token`.
+  ///
+  /// `false` **chỉ** khi server xác nhận phiên đã kết thúc (401 kèm
+  /// [sessionExpiredCode]). Mất mạng, máy chủ lỗi hay phản hồi hỏng đều là lỗi
+  /// tạm thời: ném lỗi cho request đang chờ, giữ nguyên phiên để lần sau thử lại.
+  Future<bool> _refreshSession(int sessionNumber) async {
+    // Trên web các tab dùng chung kho lưu. Kho khác token đang giữ: nếu cùng
+    // phiên thì tab kia vừa làm mới, dùng luôn cặp đó. Khác phiên thì tab kia đã
+    // đổi tài khoản; gửi lại yêu cầu bằng token đó là ghi vào tài khoản khác.
+    // Kho cũ hơn cặp đang giữ (hai tab ghi sát nhau) thì làm mới bằng cặp đang giữ.
+    final stored = await _secureStorage.read(key: _refreshKey);
+    _requireSameSession(sessionNumber);
+    if (stored != null && stored != _refreshToken) {
+      final storedAccess = await _secureStorage.read(key: _tokenKey);
+      _requireSameSession(sessionNumber);
+      if (!_isSameSession(storedAccess, _token)) _abandonToOtherTab();
+      if (_rotationOf(storedAccess) >= _rotationOf(_token)) {
+        _refreshToken = stored;
+        _token = storedAccess;
+        return true;
+      }
+    }
+
+    final refreshToken = _refreshToken;
+    if (refreshToken == null) return false;
+
+    final http.Response response;
+    try {
+      response = await http
+          .post(
+            Uri.parse('$baseUrl/users/refresh-token'),
+            headers: const {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: json.encode({'refreshToken': refreshToken}),
+          )
+          .timeout(_requestTimeout);
+    } on TimeoutException {
+      throw NetworkException('Yêu cầu quá thời gian. Vui lòng thử lại.');
+    } catch (error) {
+      throw NetworkException('Không thể kết nối đến máy chủ: $error');
+    }
+
+    // Phản hồi về muộn sau khi đã đăng xuất hoặc đổi tài khoản: không được ghi
+    // đè token của phiên hiện tại.
+    _requireSameSession(sessionNumber);
+
+    if (response.statusCode == 401 && _codeOf(response) == sessionExpiredCode) return false;
+
+    final tokens = response.statusCode == 200 ? _tokensIn(response) : null;
+    if (tokens == null) {
+      throw ServerException(
+        'Chưa làm mới được phiên đăng nhập. Vui lòng thử lại.',
+        statusCode: response.statusCode,
+        code: _codeOf(response),
+      );
+    }
+
+    // Trong lúc chờ phản hồi, tab khác có thể đã đăng xuất hoặc đăng nhập phiên
+    // khác: không ghi đè kho của họ, không làm token đã đăng xuất sống lại.
+    final storedNow = await _secureStorage.read(key: _refreshKey);
+    _requireSameSession(sessionNumber);
+    if (storedNow != refreshToken) {
+      final storedAccess = await _secureStorage.read(key: _tokenKey);
+      _requireSameSession(sessionNumber);
+      if (!_isSameSession(storedAccess, _token)) _abandonToOtherTab();
+      // Hai tab cùng gửi một token thì server cấp lần lượt, còn phản hồi có thể về
+      // ngược thứ tự. Cặp trong phản hồi này đã bị thay trên server: ghi vào kho
+      // thì lần làm mới sau bị coi là dùng lại token cũ và mất cả phiên.
+      if (_rotationOf(storedAccess) > _rotationOf(tokens.access)) {
+        _refreshToken = storedNow;
+        _token = storedAccess;
+        return true;
+      }
+    }
+
+    await _storeTokens(tokens.access, tokens.refresh);
+    return true;
+  }
+
+  /// Cặp token trong phản hồi làm mới; `null` khi nội dung không đúng dạng.
+  ({String access, String refresh})? _tokensIn(http.Response response) {
+    try {
+      final data = json.decode(response.body);
+      if (data is! Map) return null;
+      final access = data['token'];
+      final refresh = data['refreshToken'];
+      if (access is! String || access.isEmpty || refresh is! String || refresh.isEmpty) return null;
+      return (access: access, refresh: refresh);
+    } on FormatException {
+      return null;
+    }
+  }
 
   /// Gọi khi backend báo token đang giữ không còn dùng được (mã
   /// [sessionExpiredCode]). `AuthProvider` đăng ký hàm này để tự dọn phiên và
@@ -84,7 +320,11 @@ class ApiClient {
 
   static const sessionExpiredCode = 'SESSION_EXPIRED';
 
+  /// Dọn dữ liệu cục bộ, gọi **sau** [removeToken]. Khi đó token còn trong kho
+  /// là của phiên khác ở tab khác, nên dữ liệu dùng chung là của phiên đó: giữ nguyên.
   Future<void> clearAllData() async {
+    if (await _secureStorage.read(key: _tokenKey) != null) return;
+
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys().where((key) =>
         key.startsWith('user_data_') ||
@@ -108,6 +348,8 @@ class ApiClient {
       final response = await _jsonRequest('GET', endpoint);
       if (cache) await _cache.write(endpoint, response);
       return response;
+    } on SessionChangedException {
+      rethrow;
     } catch (_) {
       if (!cache || !await _cache.isEnabled()) rethrow;
       final cached = await _cache.read(endpoint);
@@ -195,10 +437,30 @@ class ApiClient {
     String endpoint, {
     Map<String, dynamic>? body,
   }) async {
+    final sessionNumber = _sessionNumber;
+    final usedToken = _token;
+    final response = await _sendJson(method, endpoint, body);
+    _requireSameSession(sessionNumber);
+    // Access token hết hạn: làm mới phiên rồi gửi lại **một** lần.
+    if (await _renewedAfter(response, endpoint, usedToken)) {
+      _requireSameSession(sessionNumber);
+      final retried = await _sendJson(method, endpoint, body);
+      _requireSameSession(sessionNumber);
+      return _handleResponse(retried);
+    }
+    _requireSameSession(sessionNumber);
+    return _handleResponse(response);
+  }
+
+  Future<http.Response> _sendJson(
+    String method,
+    String endpoint,
+    Map<String, dynamic>? body,
+  ) async {
     try {
       final url = Uri.parse('$baseUrl$endpoint');
       final encodedBody = body == null ? null : json.encode(body);
-      final response = switch (method) {
+      return switch (method) {
         'GET' =>
           await http.get(url, headers: _headers).timeout(_requestTimeout),
         'POST' => await http
@@ -215,8 +477,7 @@ class ApiClient {
             .timeout(_requestTimeout),
         _ => throw ArgumentError('HTTP method không được hỗ trợ: $method'),
       };
-      return _handleResponse(response);
-    } on ApiException {
+    } on ArgumentError {
       rethrow;
     } on TimeoutException {
       throw NetworkException('Yêu cầu quá thời gian. Vui lòng thử lại.');
@@ -265,6 +526,30 @@ class ApiClient {
     List<int> fileBytes,
     String fileName,
   ) async {
+    // Dựng lại request mỗi lần gửi: một MultipartRequest chỉ gửi được một lần.
+    Future<http.Response> send() => _sendMultipart(
+        method, endpoint, fields, fileFieldName, fileBytes, fileName);
+
+    final sessionNumber = _sessionNumber;
+    final usedToken = _token;
+    var response = await send();
+    _requireSameSession(sessionNumber);
+    if (await _renewedAfter(response, endpoint, usedToken)) {
+      _requireSameSession(sessionNumber);
+      response = await send();
+    }
+    _requireSameSession(sessionNumber);
+    return Map<String, dynamic>.from(_handleResponse(response));
+  }
+
+  Future<http.Response> _sendMultipart(
+    String method,
+    String endpoint,
+    Map<String, String> fields,
+    String fileFieldName,
+    List<int> fileBytes,
+    String fileName,
+  ) async {
     try {
       final request =
           http.MultipartRequest(method, Uri.parse('$baseUrl$endpoint'));
@@ -277,10 +562,7 @@ class ApiClient {
         contentType: _mediaTypeFor(fileName),
       ));
       final streamed = await request.send().timeout(_uploadTimeout);
-      final response = await http.Response.fromStream(streamed);
-      return Map<String, dynamic>.from(_handleResponse(response));
-    } on ApiException {
-      rethrow;
+      return await http.Response.fromStream(streamed);
     } on TimeoutException {
       throw NetworkException('Tải tệp quá thời gian. Vui lòng thử lại.');
     } catch (error) {
@@ -331,7 +613,7 @@ class ApiClient {
         ? body['details'] as Map<String, dynamic>
         : null;
 
-    if (code == sessionExpiredCode && _token != null) onSessionExpired?.call();
+    if (code == sessionExpiredCode) _notifySessionExpired();
 
     if (status == 401 || status == 403) {
       throw UnauthorizedException(message ?? 'Phiên đăng nhập không hợp lệ.',
@@ -386,4 +668,10 @@ class ServerException extends ApiException {
 class NetworkException extends ApiException {
   NetworkException(super.message,
       {super.statusCode, super.code, super.details});
+}
+
+/// Phản hồi thuộc phiên đăng nhập đã kết thúc (đã đăng xuất hoặc đổi tài khoản
+/// trong lúc request đang đi) nên bị bỏ. Không phải lỗi của server.
+class SessionChangedException extends ApiException {
+  SessionChangedException() : super('Phiên đăng nhập đã thay đổi.');
 }

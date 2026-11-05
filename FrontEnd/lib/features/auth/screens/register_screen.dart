@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../../app/localization/app_localizations.dart';
+import '../models/password_policy.dart';
 import '../providers/auth_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -203,6 +205,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
                       labelText: 'Mật khẩu',
+                      helperText: AppLocalizations.of(context)
+                          .passwordMinHint(PasswordPolicy.minLength),
                       prefixIcon: const Icon(Icons.lock),
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
@@ -222,8 +226,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Vui lòng nhập mật khẩu';
                       }
-                      if (value.length < 6) {
-                        return 'Mật khẩu phải có ít nhất 6 ký tự';
+                      if (value.length < PasswordPolicy.minLength) {
+                        return AppLocalizations.of(context)
+                            .passwordMinLength(PasswordPolicy.minLength);
                       }
                       return null;
                     },

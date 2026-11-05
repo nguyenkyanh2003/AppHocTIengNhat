@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../../app/localization/app_localizations.dart';
+import '../models/password_policy.dart';
 import '../providers/auth_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -25,6 +27,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   bool _obscureNewPassword = true;
   bool _obscureConfirmPassword = true;
   String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    // Bảng "Yêu cầu mật khẩu" đọc cả ba ô: gõ ở ô nào cũng vẽ lại để dấu tích
+    // cập nhật ngay, không đợi bấm nút.
+    for (final controller in [_oldPasswordController, _newPasswordController, _confirmPasswordController]) {
+      controller.addListener(_refreshRequirements);
+    }
+  }
+
+  void _refreshRequirements() => setState(() {});
 
   @override
   void dispose() {
@@ -204,7 +218,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         obscureText: _obscureNewPassword,
                         decoration: InputDecoration(
                           labelText: 'Mật khẩu mới',
-                          hintText: 'Nhập mật khẩu mới (tối thiểu 8 ký tự)',
+                          hintText: 'Nhập mật khẩu mới',
                           prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
                             icon: Icon(
@@ -226,8 +240,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           if (value == null || value.isEmpty) {
                             return 'Vui lòng nhập mật khẩu mới';
                           }
-                          if (value.length < 8) {
-                            return 'Mật khẩu phải có ít nhất 8 ký tự';
+                          if (value.length < PasswordPolicy.minLength) {
+                            return AppLocalizations.of(context)
+                                .passwordMinLength(PasswordPolicy.minLength);
                           }
                           if (value == _oldPasswordController.text) {
                             return 'Mật khẩu mới phải khác mật khẩu hiện tại';
@@ -293,8 +308,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             ),
                             const SizedBox(height: 8),
                             _buildPasswordRequirement(
-                              'Tối thiểu 8 ký tự',
-                              _newPasswordController.text.length >= 6,
+                              AppLocalizations.of(context)
+                                  .passwordMinHint(PasswordPolicy.minLength),
+                              _newPasswordController.text.length >=
+                                  PasswordPolicy.minLength,
                             ),
                             _buildPasswordRequirement(
                               'Khác mật khẩu hiện tại',

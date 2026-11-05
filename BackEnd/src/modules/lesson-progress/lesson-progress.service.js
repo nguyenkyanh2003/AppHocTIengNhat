@@ -1,6 +1,7 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { unitOfWork as defaultUnitOfWork } from '../../shared/db/unit-of-work.js';
 import { getVietnamTime } from '../../shared/utils/timezone.js';
+import { goalService } from '../goals/goal.service.js';
 import { streakService } from '../streaks/streak.service.js';
 import { lessonProgressRepository } from './lesson-progress.repository.js';
 
@@ -49,6 +50,7 @@ const rewardStateBefore = (progress) => {
 export const createLessonProgressService = ({
   repository = lessonProgressRepository,
   streak = streakService,
+  goals = goalService,
   unitOfWork = defaultUnitOfWork,
   now = getVietnamTime,
 } = {}) => {
@@ -200,6 +202,11 @@ export const createLessonProgressService = ({
           becameCompleted: before.is_completed !== true,
           session,
         });
+
+        // Xét mục tiêu độc lập với thưởng XP: hoàn thành lại một bài đã nhận
+        // thưởng không ghi hoạt động nào, nhưng vẫn có thể làm tăng số đã học
+        // (bài vừa được thêm chữ mới) và chạm mốc của mục tiêu.
+        await goals.recordReached({ userId, at, session });
 
         return { ...progress, completion_reward_state: 'granted' };
       });

@@ -48,8 +48,11 @@ export const createUserRoutes = ({
     validate({ body: schema.loginBody }),
     asyncHandler(auth.login),
   );
-  router.post("/logout", authenticate, controller.postLogout);
-  router.post("/register", controller.postRegister);
+  // Access token chỉ sống 15 phút: client đổi refresh token lấy cặp mới. Không
+  // qua `authenticate` — chính access token hết hạn là lý do gọi route này.
+  router.post("/refresh-token", validate({ body: schema.refreshBody }), asyncHandler(auth.refresh));
+  router.post("/logout", validate({ body: schema.logoutBody }), asyncHandler(auth.logout));
+  router.post("/register", validate({ body: schema.registerBody }), controller.postRegister);
   router.post(
     "/forgot-password",
     authRateLimiter('forgot-password'),

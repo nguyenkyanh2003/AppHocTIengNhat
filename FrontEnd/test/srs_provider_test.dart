@@ -30,7 +30,7 @@ SrsCard _card(String id, {bool unavailable = false, DateTime? nextReview}) => Sr
 
 SrsCard _kanjiCard(String id) => SrsCard(
       progress: SrsProgress(
-        id: 'p-$id',
+        id: 'p-kanji-$id',
         itemId: id,
         itemType: SrsProgress.itemTypeKanji,
         box: 1,
@@ -71,11 +71,11 @@ class _FakeSrsService extends SrsService {
 
   @override
   Future<SrsBatch> fetchDue({
-    List<String> excludeItemIds = const [],
+    List<String> excludeCardIds = const [],
     int limit = SrsService.defaultLimit,
     String? itemType,
   }) async {
-    dueExclusions.add([...excludeItemIds]);
+    dueExclusions.add([...excludeCardIds]);
     dueLimits.add(limit);
     dueTypes.add(itemType);
     if (dueError != null) throw dueError!;
@@ -271,10 +271,26 @@ void main() {
     await provider.removeCurrent();
 
     expect(service.removals, ['Vocabulary:b']);
-    expect(service.dueExclusions.last, ['a', 'b']);
+    expect(service.dueExclusions.last, ['p-a', 'p-b']);
     expect(provider.currentCard?.itemId, 'c');
     expect(provider.tally.skipped, 1);
     expect(provider.tally.removed, 1);
+  });
+
+  test('a word and a kanji with the same item id stay two separate cards', () async {
+    final (provider, service) = await _started([
+      [_card('trung'), _kanjiCard('trung')],
+    ]);
+
+    await provider.skip();
+
+    expect(provider.currentCard?.progress.itemType, SrsProgress.itemTypeKanji);
+    expect(provider.handledCount, 1);
+
+    await provider.skip();
+
+    expect(service.dueExclusions.last, ['p-trung', 'p-kanji-trung']);
+    expect(provider.handledCount, 2);
   });
 
   test('when every remaining card was skipped the session ends even if cards are still due', () async {
@@ -286,7 +302,7 @@ void main() {
 
     expect(provider.isFinished, isTrue);
     expect(provider.dueCount, 7);
-    expect(service.dueExclusions.last, ['a']);
+    expect(service.dueExclusions.last, ['p-a']);
   });
 
   test('reset counts separately and a new session forgets the exclusions', () async {

@@ -4,8 +4,18 @@ const objectId = z
   .string()
   .regex(/^[0-9a-fA-F]{24}$/, 'Định danh không hợp lệ.');
 
-/** Ngưỡng 8 ký tự giữ đúng rule mà controller cũ đang kiểm tra thủ công. */
-const newPassword = z.string().min(8, 'Mật khẩu phải có ít nhất 8 ký tự.');
+/**
+ * Độ dài tối thiểu của mật khẩu — **một** ngưỡng cho đăng ký, đặt lại và đổi
+ * mật khẩu; Flutter giữ cùng số trong `PasswordPolicy.minLength`. Đăng nhập
+ * không kiểm độ dài: tài khoản cũ đặt mật khẩu ngắn hơn vẫn phải vào được.
+ */
+export const PASSWORD_MIN_LENGTH = 8;
+
+const newPassword = z
+  .string()
+  .min(PASSWORD_MIN_LENGTH, `Mật khẩu phải có ít nhất ${PASSWORD_MIN_LENGTH} ký tự.`);
+
+const required = (message) => z.string().trim().min(1, message);
 
 /**
  * Đăng nhập chỉ nhận chuỗi.
@@ -32,6 +42,27 @@ export const forgotPasswordBody = z.object({
   // chối địa chỉ hợp lệ mà người dùng dán kèm dấu cách.
   email: z.string().trim().pipe(z.email('Email không hợp lệ.')),
 });
+
+/**
+ * Đăng ký: mọi trường là chuỗi — cùng lý do với [loginBody], `username` hay
+ * `email` dạng object toán tử không được chạm tới truy vấn kiểm tra trùng.
+ * Email về chữ thường như model lưu, để kiểm tra trùng không lọt chữ hoa.
+ */
+export const registerBody = z.object({
+  username: required('Vui lòng nhập tên đăng nhập.'),
+  hoTen: required('Vui lòng nhập họ tên.'),
+  email: z.string().trim().toLowerCase().pipe(z.email('Email không hợp lệ.')),
+  password: newPassword,
+  trinhDo: z.enum(['N5', 'N4', 'N3', 'N2', 'N1']).optional(),
+});
+
+/** Refresh token là chuỗi ngẫu nhiên base64url; mảng hay object toán tử bị chặn ở đây. */
+const refreshToken = z.string().min(1, 'Thiếu refresh token.').max(200);
+
+export const refreshBody = z.object({ refreshToken });
+
+/** Đăng xuất không bắt buộc refresh token: client chỉ còn access token vẫn đăng xuất được. */
+export const logoutBody = z.object({ refreshToken: refreshToken.optional() });
 
 export const resetPasswordBody = z.object({
   token: z.string().min(1, 'Thiếu token đặt lại mật khẩu.'),

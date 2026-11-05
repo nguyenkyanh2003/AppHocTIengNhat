@@ -3,8 +3,8 @@ import User from "../../../model/User.js";
 import { getVietnamTime, convertUserDatesToVietnam } from "../../shared/utils/timezone.js";
 
 /**
- * Bốn luồng xác thực (đăng nhập, quên mật khẩu, đặt lại mật khẩu, đổi mật khẩu)
- * đã chuyển sang `user-auth.controller.js` + `user-auth.service.js` +
+ * Các luồng xác thực (đăng nhập, làm mới phiên, đăng xuất, quên/đặt lại/đổi mật
+ * khẩu) đã chuyển sang `user-auth.controller.js` + `user-auth.service.js` +
  * `user.repository.js` theo khuôn mẫu bốn tầng. Phần còn lại của module vẫn
  * giữ nguyên kiểu cũ và sẽ được chuyển trong đợt riêng.
  */
@@ -19,21 +19,10 @@ const withoutPassword = (user) => {
   return userObject;
 };
 
-// API Đăng xuất
-export const postLogout = (req, res) => {
-  res.json({ message: "Đăng xuất thành công" });
-};
-
-// API Đăng ký
+// API Đăng ký — trường bắt buộc, kiểu dữ liệu và độ dài mật khẩu đã qua `registerBody`.
 export const postRegister = async (req, res) => {
   try {
-    const { username, hoTen, password, email, trinhDo } = req.body;
-    if (!username || !hoTen || !password || !email) {
-      return res.status(400).json({ message: "Vui lòng nhập đầy đủ thông tin bắt buộc." });
-    }
-    if (password.length < 8) {
-      return res.status(400).json({ message: 'Mật khẩu phải có ít nhất 8 ký tự.' });
-    }
+    const { username, hoTen, password, email, trinhDo } = req.valid.body;
 
     const existingUser = await User.findOne({ TenDangNhap: username });
     if (existingUser) {

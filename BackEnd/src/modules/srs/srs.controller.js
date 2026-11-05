@@ -10,8 +10,8 @@ import { ok } from '../../shared/http/respond.js';
  */
 export const createSrsController = (service) => ({
   async getDue(req, res) {
-    const { item_type: itemType, limit, exclude_item_ids: excludeItemIds } = req.valid.query;
-    const batch = await service.dueBatch({ userId: req.user._id, itemType, limit, excludeItemIds });
+    const { item_type: itemType, limit, exclude_card_ids: excludeCardIds } = req.valid.query;
+    const batch = await service.dueBatch({ userId: req.user._id, itemType, limit, excludeCardIds });
     ok(res, batch.cards, { limit: batch.limit });
   },
 

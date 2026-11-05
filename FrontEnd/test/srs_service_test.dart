@@ -19,9 +19,9 @@ final kanjiProgressJson = <String, dynamic>{...progressJson, 'item_id': 'k1', 'i
 
 void main() {
   test('query deduplicates exclusions, omits empty exclusions and only filters when asked', () {
-    final query = SrsService.buildDueQuery(excludeItemIds: ['a1', 'b2', 'a1']);
-    expect(query, {'limit': '20', 'exclude_item_ids': 'a1,b2'});
-    expect(SrsService.buildDueQuery().containsKey('exclude_item_ids'), isFalse);
+    final query = SrsService.buildDueQuery(excludeCardIds: ['a1', 'b2', 'a1']);
+    expect(query, {'limit': '20', 'exclude_card_ids': 'a1,b2'});
+    expect(SrsService.buildDueQuery().containsKey('exclude_card_ids'), isFalse);
     expect(SrsService.buildDueQuery(itemType: SrsProgress.itemTypeKanji)['item_type'], 'Kanji');
   });
 
@@ -68,7 +68,7 @@ void main() {
     final requests = <http.Request>[];
     await http.runWithClient(() async {
       final service = SrsService();
-      final batch = await service.fetchDue(excludeItemIds: ['v3', 'v4']);
+      final batch = await service.fetchDue(excludeCardIds: ['p3', 'p4']);
       expect(batch.cards.single.progress.itemId, 'v1');
       expect(batch.limit, 20);
       expect(await service.fetchDueCount(), 42);
@@ -92,7 +92,7 @@ void main() {
       'GET /api/srs/due', 'GET /api/srs/due/count', 'GET /api/srs/stats',
       'POST /api/srs/review', 'POST /api/srs/items/k1/reset', 'DELETE /api/srs/items/k1',
     ]);
-    expect(requests.first.url.queryParameters['exclude_item_ids'], 'v3,v4');
+    expect(requests.first.url.queryParameters['exclude_card_ids'], 'p3,p4');
     expect(requests.first.url.queryParameters.containsKey('item_type'), isFalse);
     expect(jsonDecode(requests[3].body)['is_correct'], isTrue);
     expect(jsonDecode(requests[3].body)['item_type'], 'Kanji');

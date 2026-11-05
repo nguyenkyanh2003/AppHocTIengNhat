@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../../model/User.js';
 import env from '../config/env.js';
+import { authSessionRepository } from '../modules/users/auth-session.repository.js';
 
 const JWT_SECRET = env.jwtSecret;
 
@@ -27,6 +28,16 @@ const BYPASS_USER = {
 const findUserByIdWithVersion = (id) =>
     User.findById(id).select('-MatKhau +tokenVersion').lean();
 
+/**
+ * Phiên còn dùng được: tồn tại, chưa thu hồi (đăng xuất, đổi mật khẩu, phát hiện
+ * token bị dùng lại), chưa hết hạn và đúng là của người trong token.
+ */
+const isLiveSession = (session, userId, now) =>
+    Boolean(session)
+    && !session.revoked_at
+    && new Date(session.expires_at) > now
+    && String(session.user) === String(userId);
+
 /** Document tạo trước khi có `tokenVersion` được coi như version 0. */
 const versionOf = (value) => value ?? 0;
 
@@ -49,8 +60,10 @@ const rejectSession = (res, message) =>
  */
 export const createAuthenticateUser = ({
     findUserById = findUserByIdWithVersion,
+    findSession = (id) => authSessionRepository.findById(id),
     jwtSecret = JWT_SECRET,
     bypassAuth = BYPASS_AUTH,
+    now = () => new Date(),
 } = {}) => async (req, res, next) => {
     //  Tắt auth tạm thời khi test
     if (bypassAuth) {
@@ -89,7 +102,16 @@ export const createAuthenticateUser = ({
             return rejectSession(res, 'Loại token không hợp lệ.');
         }
 
-        const user = await findUserById(decoded.id || decoded.userId);
+        // Access token phải gắn với một phiên còn sống. Đăng xuất thu hồi phiên,
+        // nên token của thiết bị vừa đăng xuất bị từ chối ngay chứ không đợi tới
+        // lúc hết hạn. Token kiểu cũ (24 giờ, không có `sid`) không thu hồi riêng
+        // được nên cũng bị từ chối: người dùng đăng nhập lại một lần.
+        const userId = decoded.id || decoded.userId;
+        if (!decoded.sid || !isLiveSession(await findSession(decoded.sid), userId, now())) {
+            return rejectSession(res, 'Phiên đăng nhập đã kết thúc. Vui lòng đăng nhập lại.');
+        }
+
+        const user = await findUserById(userId);
 
         if (!user) {
             return rejectSession(res, 'Người dùng không tồn tại hoặc đã bị xóa.');

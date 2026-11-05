@@ -48,7 +48,7 @@ test('GET /due trả đợt thẻ kèm limit, user lấy từ phiên đăng nh�
     userId: 'user-1',
     itemType: undefined,
     limit: 20,
-    excludeItemIds: undefined,
+    excludeCardIds: undefined,
   });
 });
 
@@ -64,12 +64,12 @@ test('GET /due lọc được theo từng loại thẻ Vocabulary hoặc Kanji',
 test('GET /due tách và loại trùng danh sách loại trừ', async () => {
   const dueBatch = recorder({ cards: [], limit: 5 });
   const response = await request(buildApp({ dueBatch })).get(
-    `/api/srs/due?limit=5&exclude_item_ids=${ITEM},${OTHER_ITEM},${ITEM}`,
+    `/api/srs/due?limit=5&exclude_card_ids=${ITEM},${OTHER_ITEM},${ITEM}`,
   );
 
   assert.equal(response.status, 200);
   assert.deepEqual(response.body, { data: [], limit: 5 });
-  assert.deepEqual(dueBatch.calls[0].excludeItemIds, [ITEM, OTHER_ITEM]);
+  assert.deepEqual(dueBatch.calls[0].excludeCardIds, [ITEM, OTHER_ITEM]);
 });
 
 test('GET /due từ chối loại thẻ ngoài phạm vi, tham số lạ và giới hạn sai', async () => {
@@ -83,8 +83,9 @@ test('GET /due từ chối loại thẻ ngoài phạm vi, tham số lạ và gi�
     'limit=0',
     'limit=101',
     'page=2',
-    'exclude_item_ids=abc',
-    `exclude_item_ids=${tooMany}`,
+    'exclude_card_ids=abc',
+    `exclude_card_ids=${tooMany}`,
+    `exclude_item_ids=${ITEM}`,
   ]) {
     assert.equal((await request(app).get(`/api/srs/due?${query}`)).status, 400, query);
   }

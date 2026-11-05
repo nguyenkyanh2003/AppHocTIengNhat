@@ -18,9 +18,12 @@ class AuthService {
       });
 
       if (response is Map<String, dynamic>) {
-        // Lưu token
+        // Access token sống 15 phút; refresh token để tự đổi cặp mới khi hết hạn.
         if (response['token'] != null) {
-          await _client.setToken(response['token']);
+          await _client.setSession(
+            response['token'] as String,
+            response['refreshToken'] as String?,
+          );
         }
         return response;
       }
@@ -76,10 +79,14 @@ class AuthService {
     }
   }
 
-  /// Đăng xuất
+  /// Đăng xuất: gửi refresh token (và access token trong header) để server
+  /// đóng đúng phiên của thiết bị này. Lỗi mạng không chặn việc dọn phiên cục bộ.
   Future<void> logout() async {
     try {
-      await _client.post('/users/logout', {});
+      final refreshToken = _client.getRefreshToken();
+      await _client.post('/users/logout', {
+        if (refreshToken != null) 'refreshToken': refreshToken,
+      });
     } catch (e) {
       // Ignore error khi logout
     } finally {

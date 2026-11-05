@@ -137,14 +137,25 @@ const fakeStreak = () => {
 const SESSION = 'session-1';
 const fakeUnitOfWork = { run: (fn) => fn({ session: SESSION }) };
 
-const buildService = (repository, streak = fakeStreak()) => {
+/** Bộ xét mục tiêu giả: ghi lại lời gọi, không chạm MongoDB. */
+const fakeGoals = () => ({
+  calls: [],
+  async recordReached(args) {
+    this.calls.push(args);
+    return [];
+  },
+});
+
+const buildService = (repository, streak = fakeStreak(), goals = fakeGoals()) => {
   const service = createLessonProgressService({
     repository,
     streak,
+    goals,
     unitOfWork: fakeUnitOfWork,
     now: () => new Date('2026-01-01T00:00:00.000Z'),
   });
   service.streak = streak;
+  service.goals = goals;
   return service;
 };
 
@@ -251,6 +262,34 @@ test('bản ghi cũ đã hoàn thành được chuẩn hóa nhưng không nhận
 
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
   assert.equal(totalXp(service), 0);
+});
+
+test('hoàn thành lại bài đã nhận thưởng vẫn xét mục tiêu trong cùng transaction, không cộng XP', async () => {
+  // Bài vừa được thêm chữ mới: hoàn thành lại làm tăng số đã học dù không còn
+  // thưởng và không có hoạt động nào được ghi, nên phải tự xét mục tiêu.
+  const repository = fakeRepository({
+    seed: new LessonProgress({ user: USER_ID, lesson: LESSON_ID, is_completed: true, completion_reward_state: 'granted' }),
+  });
+  const service = buildService(repository);
+
+  await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
+
+  assert.equal(service.streak.calls.length, 0);
+  assert.deepEqual(service.goals.calls, [
+    { userId: USER_ID, at: new Date('2026-01-01T00:00:00.000Z'), session: SESSION },
+  ]);
+});
+
+test('bản ghi hoàn thành từ trước khi có khoá thưởng cũng được xét mục tiêu khi hoàn thành lại', async () => {
+  const repository = fakeRepository({
+    seed: new LessonProgress({ user: USER_ID, lesson: LESSON_ID, is_completed: true }),
+  });
+  const service = buildService(repository);
+
+  await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
+
+  assert.equal(totalXp(service), 0);
+  assert.equal(service.goals.calls.length, 1);
 });
 
 test('học nốt mục cuối cùng cũng nhận thưởng hoàn thành, và complete sau đó không cộng thêm', async () => {

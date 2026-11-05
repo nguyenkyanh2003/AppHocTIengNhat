@@ -376,16 +376,13 @@ class AuthProvider extends ChangeNotifier {
 
   /// Xử lý error message
   String _getErrorMessage(dynamic error) {
-    final errorString = error.toString();
+    // Thông điệp của backend đã viết cho người dùng đọc — kể cả thông báo chung
+    // "Tên đăng nhập hoặc mật khẩu không đúng.": hiện nguyên văn. Đoán lại ở đây
+    // từng biến mọi lỗi 401 thành "sai mật khẩu", lộ luôn là tên đăng nhập đúng.
+    if (error is ApiException) return error.message;
 
-    // Lấy message từ backend (loại bỏ prefix "Exception: ")
-    if (errorString.contains('Tên đăng nhập không tồn tại')) {
-      return 'Mật khẩu của bạn không chính xác';
-    } else if (errorString.contains('Mật khẩu không chính xác')) {
-      return 'Mật khẩu của bạn không chính xác';
-    } else if (errorString.contains('401')) {
-      return 'Mật khẩu của bạn không chính xác';
-    } else if (errorString.contains('400')) {
+    final errorString = error.toString();
+    if (errorString.contains('400')) {
       return 'Thông tin không hợp lệ';
     } else if (errorString.contains('409')) {
       return 'Tên đăng nhập hoặc email đã tồn tại';

@@ -133,7 +133,8 @@ class AppLocalizations {
       'new_password': 'Mật khẩu mới',
       'confirm_new_password': 'Xác nhận mật khẩu mới',
       'password_changed': 'Đổi mật khẩu thành công!',
-      'password_min_length': 'Mật khẩu phải có ít nhất 6 ký tự',
+      'password_min_length': 'Mật khẩu phải có ít nhất {min} ký tự',
+      'password_min_hint': 'Tối thiểu {min} ký tự',
       'passwords_not_match': 'Mật khẩu xác nhận không khớp',
       'old_password_incorrect': 'Mật khẩu cũ không chính xác',
       'select_language': 'Chọn ngôn ngữ',
@@ -363,7 +364,8 @@ class AppLocalizations {
       'new_password': 'New Password',
       'confirm_new_password': 'Confirm New Password',
       'password_changed': 'Password changed successfully!',
-      'password_min_length': 'Password must be at least 6 characters',
+      'password_min_length': 'Password must be at least {min} characters',
+      'password_min_hint': 'At least {min} characters',
       'passwords_not_match': 'Passwords do not match',
       'old_password_incorrect': 'Current password is incorrect',
       'select_language': 'Select Language',
@@ -593,7 +595,8 @@ class AppLocalizations {
       'new_password': '新しいパスワード',
       'confirm_new_password': '新しいパスワードの確認',
       'password_changed': 'パスワードが変更されました！',
-      'password_min_length': 'パスワードは6文字以上必要です',
+      'password_min_length': 'パスワードは{min}文字以上必要です',
+      'password_min_hint': '{min}文字以上',
       'passwords_not_match': 'パスワードが一致しません',
       'old_password_incorrect': '現在のパスワードが正しくありません',
       'select_language': '言語を選択',
@@ -927,7 +930,10 @@ class AppLocalizations {
   String get newPassword => translate('new_password');
   String get confirmNewPassword => translate('confirm_new_password');
   String get passwordChanged => translate('password_changed');
-  String get passwordMinLength => translate('password_min_length');
+  /// Số ký tự truyền vào từ `PasswordPolicy.minLength` thay vì viết cứng trong
+  /// bản dịch, để ba ngôn ngữ không lệch ngưỡng của form và backend.
+  String passwordMinLength(int min) => translate('password_min_length').replaceAll('{min}', '$min');
+  String passwordMinHint(int min) => translate('password_min_hint').replaceAll('{min}', '$min');
   String get passwordsNotMatch => translate('passwords_not_match');
   String get oldPasswordIncorrect => translate('old_password_incorrect');
   String get selectLanguage => translate('select_language');

@@ -55,10 +55,14 @@ const fakeSrsRepository = (overrides = {}) => ({
   ...overrides,
 });
 
-const buildService = ({ repository, srs, importer } = {}) =>
+/** Không có mục tiêu học tập nào để xét — test không chạm MongoDB. */
+const NO_GOALS = Object.freeze({ recordReached: async () => [] });
+
+const buildService = ({ repository, srs, importer, goals } = {}) =>
   createVocabularyService({
     vocabularyRepository: repository ?? fakeVocabularyRepository(),
     srsRepository: srs ?? fakeSrsRepository(),
+    goals: goals ?? NO_GOALS,
     ...(importer ? { importer } : {}),
   });
 
@@ -262,6 +266,23 @@ test('đánh dấu đã học lần nữa giữ nguyên lịch đã có', async 
   assert.equal(result.created, false);
   assert.equal(result.progress.box, 2);
   assert.equal(result.message, 'Từ vựng đã được đánh dấu là đã học.');
+});
+
+test('đánh dấu đã học xét mục tiêu ngay lúc đó; đánh dấu lại từ đã học thì không', async () => {
+  // Nút "Đã học" ở màn Từ vựng không đi qua đường ghi hoạt động học, nên phải
+  // tự xét mục tiêu — không thì mục tiêu từ vựng ghi hoàn thành trễ.
+  const calls = [];
+  const goals = { recordReached: async (args) => { calls.push(args); return []; } };
+  let created = true;
+  const srs = fakeSrsRepository({
+    ensureProgress: async () => ({ progress: { _id: 'p1', box: 1 }, created }),
+  });
+
+  await buildService({ srs, goals }).markLearned({ id: 'v1', userId: 'u1' });
+  created = false;
+  await buildService({ srs, goals }).markLearned({ id: 'v1', userId: 'u1' });
+
+  assert.deepEqual(calls, [{ userId: 'u1' }]);
 });
 
 test('bỏ đánh dấu khi chưa có tiến độ trả về lỗi 404', async () => {

@@ -84,8 +84,20 @@ export const createAchievementRepository = ({
       );
     },
 
-    countLearnedVocabulary({ userId, session }) {
-      return srsModel.countDocuments({ user: userId, item_type: 'Vocabulary' }).session(session);
+    /**
+     * Từ đã học = từ có thẻ ôn **hoặc** đã bấm "Đã nhớ" trong một bài, mỗi từ
+     * tính một lần. Chỉ đếm thẻ ôn thì học theo bài không bao giờ làm tăng số
+     * này. Hai truy vấn chạy lần lượt: chạy song song trong cùng transaction
+     * là cách driver MongoDB khuyên tránh.
+     */
+    async countLearnedVocabulary({ userId, session }) {
+      const inReview = await srsModel
+        .distinct('item_id', { user: userId, item_type: 'Vocabulary' })
+        .session(session);
+      const inLessons = await lessonProgressModel
+        .distinct('learned_vocabulary_ids', { user: userId })
+        .session(session);
+      return new Set([...inReview, ...inLessons].map(String)).size;
     },
 
     countLearnedKanji: ({ userId, session }) =>

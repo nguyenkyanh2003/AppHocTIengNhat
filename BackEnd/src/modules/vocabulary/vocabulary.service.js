@@ -1,5 +1,6 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { escapeRegExp } from '../../shared/utils/regexp.js';
+import { goalService } from '../goals/goal.service.js';
 import { toSrsProgressDto } from '../srs/srs.dto.js';
 import { initialProgress } from '../srs/srs-scheduling.js';
 import { srsRepository } from '../srs/srs.repository.js';
@@ -42,6 +43,7 @@ export const createVocabularyService = ({
   vocabularyRepository: repository,
   srsRepository: srs,
   importer = { readWorkbookRows, toVocabularyRows },
+  goals = goalService,
 }) => {
   /** Giới hạn danh sách theo trạng thái đã học của user, trước khi phân trang. */
   const applyStudyStatus = async (filter, { userId, studyStatus }) => {
@@ -226,6 +228,9 @@ export const createVocabularyService = ({
         itemType: ITEM_TYPE,
         initial: initialProgress(),
       });
+      // Nút này không đi qua đường ghi hoạt động học (`recordActivity`), nên tự
+      // xét mục tiêu: thêm một từ có thể vừa chạm mốc "Đạt N từ vựng".
+      if (created) await goals.recordReached({ userId });
 
       return {
         progress,

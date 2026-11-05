@@ -1,5 +1,6 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { achievementService } from '../achievements/achievement.service.js';
+import { goalService } from '../goals/goal.service.js';
 import { streakRepository } from './streak.repository.js';
 import { applyActivity, dayKey, MAX_FREEZES, projectStreak } from './streak-rules.js';
 import * as defaultPolicy from './streak-policy.js';
@@ -32,6 +33,7 @@ export const createStreakService = ({
   rules = { applyActivity, dayKey, projectStreak },
   policy = defaultPolicy,
   achievements = achievementService,
+  goals = goalService,
 } = {}) => {
   /**
    * Chạy CAS tới khi thắng, đọc lại trạng thái sau mỗi lần thua.
@@ -200,6 +202,194 @@ export const createStreakService = ({
     return awarded;
   };
 
+  /** Ghi một hoạt động: event, chuỗi ngày, XP, quà mốc và huy hiệu — xem `recordActivity`. */
+  const recordOnce = async (
+    { userId, type, sourceId, occurrenceKey, context },
+    { session, now },
+  ) => {
+    if (!occurrenceKey) {
+      throw ApiError.badRequest('Hoạt động phải có định danh lần xảy ra.', {
+        code: 'MISSING_OCCURRENCE_KEY',
+        details: { type },
+      });
+    }
+
+    // Ném trước khi ghi bất cứ thứ gì: loại lạ là lỗi lập trình ở caller,
+    // và một event mang loại không có trong bảng chính sách sẽ không bao giờ
+    // đọc lại được cho đúng.
+    const xp = policy.xpFor(type, context?.outcome);
+    const countsAsStudy = policy.countsAsStudy(type);
+    const todayKey = rules.dayKey(now);
+
+    // Tra khoá **trước** khi ghi. Không phải để tối ưu: lệnh ghi đụng unique
+    // index sẽ huỷ cả transaction, kéo theo phần nghiệp vụ mà caller vừa ghi
+    // trong cùng session. Hai request song song vẫn có thể cùng vượt qua chỗ
+    // này — bên thua nhận lỗi transient từ `insertEvent` và cả transaction
+    // của nó chạy lại, lần đó thì thấy khoá đã có.
+    const recorded = await repository.findEventByKey({
+      userId,
+      eventKey: occurrenceKey,
+      session,
+    });
+    if (recorded) {
+      const latest = await repository.findByUser({ userId, session });
+      return {
+        currentStreak: latest?.current_streak ?? 0,
+        isNewDay: false,
+        xpAwarded: 0,
+        duplicate: true,
+        milestonesReached: [],
+        achievementsAwarded: [],
+        freezesGifted: [],
+      };
+    }
+
+    const event = await repository.insertEvent({
+      userId,
+      eventKey: occurrenceKey,
+      type,
+      sourceId,
+      occurredAt: now,
+      dayKey: todayKey,
+      xpDelta: xp,
+      reason: type,
+      countsAsStudy,
+      policyVersion: policy.POLICY_VERSION,
+      receipt: context?.receipt,
+      session,
+    });
+
+    // Hoạt động không phải học và không có XP (đăng nhập, mở bài, bỏ qua):
+    // đã vào nhật ký để không phát lại, và dừng ở đó. Đây là chỗ sửa lỗi
+    // "đăng nhập cũng nối chuỗi" — nó không còn đi qua nhánh nào chạm tới
+    // `current_streak` nữa.
+    if (!countsAsStudy && xp === 0) {
+      const summary = await repository.ensureSummary({ userId, session });
+      return {
+        currentStreak: summary?.current_streak ?? 0,
+        isNewDay: false,
+        xpAwarded: 0,
+        duplicate: false,
+        milestonesReached: [],
+        achievementsAwarded: [],
+        freezesGifted: [],
+      };
+    }
+
+    // Event có XP nhưng không phải hoạt động học: chỉ cộng XP, không đụng
+    // tới chuỗi ngày.
+    if (!countsAsStudy) {
+      const { summary } = await casWithRetry({
+        userId,
+        session,
+        buildWrite: () => ({ inc: { total_xp: xp } }),
+      });
+      return {
+        currentStreak: summary.current_streak ?? 0,
+        isNewDay: false,
+        xpAwarded: xp,
+        duplicate: false,
+        milestonesReached: [],
+        achievementsAwarded: [],
+        freezesGifted: [],
+      };
+    }
+
+    let previousStreak = 0;
+    const { summary, write } = await casWithRetry({
+      userId,
+      session,
+      buildWrite: (current) => {
+        previousStreak = current.current_streak ?? 0;
+        const next = rules.applyActivity(
+          {
+            currentStreak: previousStreak,
+            longestStreak: current.longest_streak ?? 0,
+            lastActivityDay: current.last_activity_day ?? null,
+            freezesAvailable: current.freezes_available ?? 0,
+          },
+          todayKey,
+        );
+
+        const patch = {
+          current_streak: next.currentStreak,
+          longest_streak: next.longestStreak,
+          last_activity_day: next.lastActivityDay,
+          policy_version: policy.POLICY_VERSION,
+        };
+        // Chỉ đặt mốc bắt đầu theo dõi đúng một lần. Đẩy nó lên ngày hôm nay
+        // ở mỗi lần học sẽ xoá mất ranh giới giữa "chưa từng theo dõi" và
+        // "đã nghỉ", và khoảng trống trước mốc không được coi là nghỉ học
+        // (spec §3.2).
+        if (!current.tracking_started_day) patch.tracking_started_day = todayKey;
+        // Băng chỉ bị tiêu ở đây — tức chỉ khi người học thật sự học, không
+        // phải lúc mở app. Bỏ trống nhánh này nghĩa là `frozenDays` được ghi
+        // vào lịch mà kho băng không bao giờ vơi — băng vô hạn.
+        if (next.freezesUsed > 0) {
+          patch.freezes_available = (current.freezes_available ?? 0) - next.freezesUsed;
+        }
+
+        const inc = { total_xp: xp };
+        // Ngày học chỉ được đếm ở đúng lần ghi làm ngày đó thành ngày mới.
+        // Hoạt động thứ hai trong ngày có `isNewDay === false`.
+        if (next.isNewDay) inc.total_active_days = 1;
+
+        return { patch, inc, next };
+      },
+    });
+
+    const next = write.next;
+
+    await repository.upsertDay({
+      userId,
+      dayKey: todayKey,
+      status: 'studied',
+      incDirectXp: xp,
+      incReviewCount: type === 'srs.review' ? 1 : 0,
+      incCorrect: type === 'srs.review' && context?.outcome?.remembered === true ? 1 : 0,
+      incWrong: type === 'srs.review' && context?.outcome?.remembered === false ? 1 : 0,
+      session,
+    });
+
+    // Ngày được băng che: chỉ đánh dấu lịch, không XP, không phải ngày học.
+    for (const frozenDay of next.frozenDays) {
+      await repository.upsertDay({ userId, dayKey: frozenDay, status: 'frozen', session });
+    }
+
+    const crossed = policy.milestonesCrossed(previousStreak, next.currentStreak);
+    const milestonesReached = await markMilestones({
+      userId,
+      milestones: crossed,
+      occurredAt: now,
+      todayKey,
+      session,
+    });
+    const freezesGifted = await giftFreezes({
+      userId,
+      milestones: crossed,
+      occurredAt: now,
+      todayKey,
+      session,
+    });
+    const achievementsAwarded = await awardAchievements({
+      userId,
+      snapshot: { currentStreak: summary.current_streak ?? 0, totalXp: summary.total_xp ?? 0 },
+      occurredAt: now,
+      todayKey,
+      session,
+    });
+
+    return {
+      currentStreak: summary.current_streak ?? next.currentStreak,
+      isNewDay: next.isNewDay,
+      xpAwarded: xp,
+      duplicate: false,
+      milestonesReached,
+      achievementsAwarded,
+      freezesGifted,
+    };
+  };
+
   return {
     /**
      * Ghi nhận một hoạt động đã hoàn thành.
@@ -217,192 +407,15 @@ export const createStreakService = ({
      *
      * Trình tự đúng spec §3.1: **ghi event trước**, rồi mới cập nhật tóm tắt
      * và ngày. Chính lần insert event là câu trả lời cho "đã ghi chưa".
+     *
+     * Sau đó xét mục tiêu học tập trong **cùng** transaction, kể cả khi hoạt
+     * động bị trùng: bỏ "Đã nhớ" rồi bấm lại không thêm XP nhưng vẫn có thể
+     * làm số đã học chạm mốc. Mục tiêu nhờ vậy ghi hoàn thành đúng lúc học.
      */
-    async recordActivity(
-      { userId, type, sourceId, occurrenceKey, context },
-      { session, now = new Date() } = {},
-    ) {
-      if (!occurrenceKey) {
-        throw ApiError.badRequest('Hoạt động phải có định danh lần xảy ra.', {
-          code: 'MISSING_OCCURRENCE_KEY',
-          details: { type },
-        });
-      }
-
-      // Ném trước khi ghi bất cứ thứ gì: loại lạ là lỗi lập trình ở caller,
-      // và một event mang loại không có trong bảng chính sách sẽ không bao giờ
-      // đọc lại được cho đúng.
-      const xp = policy.xpFor(type, context?.outcome);
-      const countsAsStudy = policy.countsAsStudy(type);
-      const todayKey = rules.dayKey(now);
-
-      // Tra khoá **trước** khi ghi. Không phải để tối ưu: lệnh ghi đụng unique
-      // index sẽ huỷ cả transaction, kéo theo phần nghiệp vụ mà caller vừa ghi
-      // trong cùng session. Hai request song song vẫn có thể cùng vượt qua chỗ
-      // này — bên thua nhận lỗi transient từ `insertEvent` và cả transaction
-      // của nó chạy lại, lần đó thì thấy khoá đã có.
-      const recorded = await repository.findEventByKey({
-        userId,
-        eventKey: occurrenceKey,
-        session,
-      });
-      if (recorded) {
-        const latest = await repository.findByUser({ userId, session });
-        return {
-          currentStreak: latest?.current_streak ?? 0,
-          isNewDay: false,
-          xpAwarded: 0,
-          duplicate: true,
-          milestonesReached: [],
-          achievementsAwarded: [],
-          freezesGifted: [],
-        };
-      }
-
-      const event = await repository.insertEvent({
-        userId,
-        eventKey: occurrenceKey,
-        type,
-        sourceId,
-        occurredAt: now,
-        dayKey: todayKey,
-        xpDelta: xp,
-        reason: type,
-        countsAsStudy,
-        policyVersion: policy.POLICY_VERSION,
-        receipt: context?.receipt,
-        session,
-      });
-
-      // Hoạt động không phải học và không có XP (đăng nhập, mở bài, bỏ qua):
-      // đã vào nhật ký để không phát lại, và dừng ở đó. Đây là chỗ sửa lỗi
-      // "đăng nhập cũng nối chuỗi" — nó không còn đi qua nhánh nào chạm tới
-      // `current_streak` nữa.
-      if (!countsAsStudy && xp === 0) {
-        const summary = await repository.ensureSummary({ userId, session });
-        return {
-          currentStreak: summary?.current_streak ?? 0,
-          isNewDay: false,
-          xpAwarded: 0,
-          duplicate: false,
-          milestonesReached: [],
-          achievementsAwarded: [],
-          freezesGifted: [],
-        };
-      }
-
-      // Event có XP nhưng không phải hoạt động học: chỉ cộng XP, không đụng
-      // tới chuỗi ngày.
-      if (!countsAsStudy) {
-        const { summary } = await casWithRetry({
-          userId,
-          session,
-          buildWrite: () => ({ inc: { total_xp: xp } }),
-        });
-        return {
-          currentStreak: summary.current_streak ?? 0,
-          isNewDay: false,
-          xpAwarded: xp,
-          duplicate: false,
-          milestonesReached: [],
-          achievementsAwarded: [],
-          freezesGifted: [],
-        };
-      }
-
-      let previousStreak = 0;
-      const { summary, write } = await casWithRetry({
-        userId,
-        session,
-        buildWrite: (current) => {
-          previousStreak = current.current_streak ?? 0;
-          const next = rules.applyActivity(
-            {
-              currentStreak: previousStreak,
-              longestStreak: current.longest_streak ?? 0,
-              lastActivityDay: current.last_activity_day ?? null,
-              freezesAvailable: current.freezes_available ?? 0,
-            },
-            todayKey,
-          );
-
-          const patch = {
-            current_streak: next.currentStreak,
-            longest_streak: next.longestStreak,
-            last_activity_day: next.lastActivityDay,
-            policy_version: policy.POLICY_VERSION,
-          };
-          // Chỉ đặt mốc bắt đầu theo dõi đúng một lần. Đẩy nó lên ngày hôm nay
-          // ở mỗi lần học sẽ xoá mất ranh giới giữa "chưa từng theo dõi" và
-          // "đã nghỉ", và khoảng trống trước mốc không được coi là nghỉ học
-          // (spec §3.2).
-          if (!current.tracking_started_day) patch.tracking_started_day = todayKey;
-          // Băng chỉ bị tiêu ở đây — tức chỉ khi người học thật sự học, không
-          // phải lúc mở app. Bỏ trống nhánh này nghĩa là `frozenDays` được ghi
-          // vào lịch mà kho băng không bao giờ vơi — băng vô hạn.
-          if (next.freezesUsed > 0) {
-            patch.freezes_available = (current.freezes_available ?? 0) - next.freezesUsed;
-          }
-
-          const inc = { total_xp: xp };
-          // Ngày học chỉ được đếm ở đúng lần ghi làm ngày đó thành ngày mới.
-          // Hoạt động thứ hai trong ngày có `isNewDay === false`.
-          if (next.isNewDay) inc.total_active_days = 1;
-
-          return { patch, inc, next };
-        },
-      });
-
-      const next = write.next;
-
-      await repository.upsertDay({
-        userId,
-        dayKey: todayKey,
-        status: 'studied',
-        incDirectXp: xp,
-        incReviewCount: type === 'srs.review' ? 1 : 0,
-        incCorrect: type === 'srs.review' && context?.outcome?.remembered === true ? 1 : 0,
-        incWrong: type === 'srs.review' && context?.outcome?.remembered === false ? 1 : 0,
-        session,
-      });
-
-      // Ngày được băng che: chỉ đánh dấu lịch, không XP, không phải ngày học.
-      for (const frozenDay of next.frozenDays) {
-        await repository.upsertDay({ userId, dayKey: frozenDay, status: 'frozen', session });
-      }
-
-      const crossed = policy.milestonesCrossed(previousStreak, next.currentStreak);
-      const milestonesReached = await markMilestones({
-        userId,
-        milestones: crossed,
-        occurredAt: now,
-        todayKey,
-        session,
-      });
-      const freezesGifted = await giftFreezes({
-        userId,
-        milestones: crossed,
-        occurredAt: now,
-        todayKey,
-        session,
-      });
-      const achievementsAwarded = await awardAchievements({
-        userId,
-        snapshot: { currentStreak: summary.current_streak ?? 0, totalXp: summary.total_xp ?? 0 },
-        occurredAt: now,
-        todayKey,
-        session,
-      });
-
-      return {
-        currentStreak: summary.current_streak ?? next.currentStreak,
-        isNewDay: next.isNewDay,
-        xpAwarded: xp,
-        duplicate: false,
-        milestonesReached,
-        achievementsAwarded,
-        freezesGifted,
-      };
+    async recordActivity(activity, { session, now = new Date() } = {}) {
+      const result = await recordOnce(activity, { session, now });
+      await goals.recordReached({ userId: activity.userId, at: now, session });
+      return result;
     },
 
     /**

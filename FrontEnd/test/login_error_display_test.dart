@@ -15,7 +15,7 @@ import 'package:apphoctiengnnhat/features/auth/screens/login_screen.dart';
 /// Backend giả từ chối mọi lần đăng nhập, đúng hình dạng phản hồi 401 thật.
 MockClient _rejectsLogin() => MockClient(
       (request) async => http.Response(
-        jsonEncode({'message': 'Mật khẩu không chính xác'}),
+        jsonEncode({'message': 'Tên đăng nhập hoặc mật khẩu không đúng.', 'code': 'INVALID_CREDENTIALS'}),
         401,
         headers: {'content-type': 'application/json; charset=utf-8'},
       ),
@@ -94,6 +94,19 @@ void main() {
         isNot(background),
         reason: 'chữ trùng màu nền thì khối lỗi trông như một mảng đỏ rỗng',
       );
+    }, _rejectsLogin);
+  });
+
+  testWidgets('sai tên hay sai mật khẩu đều hiện đúng thông báo chung của server', (tester) async {
+    // Không tự đổi thành "sai mật khẩu": câu đó lộ ra là tên đăng nhập có thật.
+    await http.runWithClient(() async {
+      await _submitWrongPassword(tester);
+
+      expect(
+        find.descendant(of: _errorBanner(), matching: find.text('Tên đăng nhập hoặc mật khẩu không đúng.')),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Mật khẩu của bạn'), findsNothing);
     }, _rejectsLogin);
   });
 }

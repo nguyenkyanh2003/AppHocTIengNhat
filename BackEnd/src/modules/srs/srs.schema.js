@@ -12,7 +12,7 @@ import { ITEM_TYPES } from './srs-scheduling.js';
  */
 
 /** Trần số thẻ loại trừ trong một phiên ôn — giới hạn chọn cho mốc 1 (spec §3.4). */
-export const MAX_EXCLUDED_ITEMS = 200;
+export const MAX_EXCLUDED_CARDS = 200;
 
 const objectId = z.string().regex(/^[a-f0-9]{24}$/i, 'ID không hợp lệ.');
 
@@ -29,10 +29,10 @@ const itemTypeFilter = z.enum(ITEM_TYPES).optional();
  */
 const expectedNextReview = z.iso.datetime().transform((value) => new Date(value));
 
-const excludedItemIds = z
+const excludedCardIds = z
   .string()
   .transform((value) => [...new Set(value.split(',').map((id) => id.trim()).filter(Boolean))])
-  .pipe(z.array(objectId).max(MAX_EXCLUDED_ITEMS));
+  .pipe(z.array(objectId).max(MAX_EXCLUDED_CARDS));
 
 export const itemTypeQuery = z.strictObject({ item_type: itemTypeFilter });
 
@@ -42,7 +42,7 @@ export const cardTypeQuery = z.strictObject({ item_type: itemType });
 export const dueQuery = z.strictObject({
   item_type: itemTypeFilter,
   limit: z.coerce.number().int().min(1).max(100).default(20),
-  exclude_item_ids: excludedItemIds.optional(),
+  exclude_card_ids: excludedCardIds.optional(),
 });
 
 export const reviewBody = z.strictObject({

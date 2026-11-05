@@ -20,15 +20,15 @@ class SrsService {
   /// Query của `GET /srs/due`: loại trùng danh sách loại trừ, bỏ hẳn tham số
   /// khi rỗng. Không có [itemType] thì server trả mọi loại thẻ.
   static Map<String, String> buildDueQuery({
-    List<String> excludeItemIds = const [],
+    List<String> excludeCardIds = const [],
     int limit = defaultLimit,
     String? itemType,
   }) {
-    final excluded = excludeItemIds.toSet();
+    final excluded = excludeCardIds.toSet();
     return {
       if (itemType != null) 'item_type': itemType,
       'limit': '$limit',
-      if (excluded.isNotEmpty) 'exclude_item_ids': excluded.join(','),
+      if (excluded.isNotEmpty) 'exclude_card_ids': excluded.join(','),
     };
   }
 
@@ -47,11 +47,11 @@ class SrsService {
       };
 
   Future<SrsBatch> fetchDue({
-    List<String> excludeItemIds = const [],
+    List<String> excludeCardIds = const [],
     int limit = defaultLimit,
     String? itemType,
   }) async {
-    final query = buildDueQuery(excludeItemIds: excludeItemIds, limit: limit, itemType: itemType);
+    final query = buildDueQuery(excludeCardIds: excludeCardIds, limit: limit, itemType: itemType);
     final response = await _client.get('/srs/due?${Uri(queryParameters: query).query}');
     return SrsBatch(
       cards: (response['data'] as List? ?? const [])

@@ -71,12 +71,12 @@ export const createSrsService = ({
      * Thẻ mà nội dung đã bị xoá vẫn được trả về với `item: null, unavailable:
      * true` để người học chọn bỏ qua hoặc xoá — GET không âm thầm xoá gì.
      */
-    async dueBatch({ userId, itemType, limit, excludeItemIds = [] }) {
+    async dueBatch({ userId, itemType, limit, excludeCardIds = [] }) {
       const progresses = await repository.findDueBatch({
         userId,
         itemType,
         now: clock(),
-        excludeItemIds,
+        excludeCardIds,
         limit,
       });
       const contents = await contentsFor(progresses);

@@ -89,11 +89,12 @@ export const createSrsRepository = ({
      *
      * Loại trừ nằm **trong** truy vấn, trước sort/limit: lọc ở client sau khi
      * nhận thì N thẻ vừa bỏ qua có thể chiếm hết đợt và chặn mọi thẻ phía sau.
+     * Loại theo `_id` của thẻ: `item_id` chỉ là duy nhất trong từng loại thẻ.
      * `_id` là khoá phụ để hai thẻ cùng hạn luôn ra cùng thứ tự (spec §3.4).
      */
-    findDueBatch({ userId, itemType, now, excludeItemIds = [], limit }) {
+    findDueBatch({ userId, itemType, now, excludeCardIds = [], limit }) {
       const filter = { user: userId, ...typeFilter(itemType), next_review: { $lte: now } };
-      if (excludeItemIds.length > 0) filter.item_id = { $nin: excludeItemIds };
+      if (excludeCardIds.length > 0) filter._id = { $nin: excludeCardIds };
 
       return model.find(filter).sort({ next_review: 1, _id: 1 }).limit(limit).lean();
     },

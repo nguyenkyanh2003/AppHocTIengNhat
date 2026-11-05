@@ -277,12 +277,11 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
           ),
+          // Chỉ bắt buộc nhập, không kiểm độ dài: tài khoản cũ đặt mật khẩu
+          // ngắn hơn quy định hiện tại vẫn phải đăng nhập được; đúng sai do server.
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Vui lòng nhập mật khẩu';
-            }
-            if (value.length < 6) {
-              return 'Mật khẩu phải có ít nhất 6 ký tự';
             }
             return null;
           },

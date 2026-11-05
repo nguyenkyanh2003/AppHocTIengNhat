@@ -25,6 +25,7 @@ class SrsProvider extends ChangeNotifier {
 
   ViewState<List<SrsCard>> _session = const ViewState.idle();
   ViewState<SrsStats> _stats = const ViewState.idle();
+  /// `_id` của các thẻ đã xử lý: một từ vựng và một Kanji có thể trùng `itemId`.
   final Set<String> _handled = {};
   SrsTally _tally = const SrsTally();
   int? _dueCount;
@@ -268,12 +269,12 @@ class SrsProvider extends ChangeNotifier {
   /// Thẻ đã xử lý xong: ghi vào danh sách loại trừ, sang thẻ kế, hết đợt thì
   /// xin đợt mới.
   Future<void> _finishCard(SrsCard card) async {
-    _handled.add(card.itemId);
+    _handled.add(card.progress.id);
     _revealed = false;
     _actionError = null;
     _retryAction = null;
 
-    final remaining = [...?_session.valueOrNull]..removeWhere((c) => c.itemId == card.itemId);
+    final remaining = [...?_session.valueOrNull]..removeWhere((c) => c.progress.id == card.progress.id);
     _session = ViewState.data(remaining);
     _notify();
     if (remaining.isEmpty) await _fetchNextBatch(_generation);
@@ -284,7 +285,7 @@ class SrsProvider extends ChangeNotifier {
     final result = room <= 0
         ? const ViewData<List<SrsCard>>([])
         : await ViewState.guard(() async => (await _service.fetchDue(
-              excludeItemIds: _handled.toList(),
+              excludeCardIds: _handled.toList(),
               limit: room < SrsService.defaultLimit ? room : SrsService.defaultLimit,
               itemType: _typeFilter,
             ))

@@ -51,11 +51,11 @@ const memoryRepository = ({
       calls.push(['findProgress', args]);
       return clone(store.rows.find(matches(args)) ?? null);
     },
-    async findDueBatch({ userId, itemType, now, excludeItemIds, limit }) {
-      calls.push(['findDueBatch', { userId, itemType, now, excludeItemIds, limit }]);
+    async findDueBatch({ userId, itemType, now, excludeCardIds, limit }) {
+      calls.push(['findDueBatch', { userId, itemType, now, excludeCardIds, limit }]);
       return store.rows
         .filter((row) => row.user === userId && ofType(itemType)(row) && row.next_review <= now)
-        .filter((row) => !excludeItemIds.includes(row.item_id))
+        .filter((row) => !excludeCardIds.includes(row._id))
         .sort((a, b) => a.next_review - b.next_review || a._id.localeCompare(b._id))
         .slice(0, limit)
         .map(clone);
@@ -217,18 +217,18 @@ test('forty due cards come out as two batches of twenty without skipping any', a
 
   const first = await service.dueBatch({ userId: USER, itemType: TYPE, limit: 20 });
   // Bỏ qua cả đợt đầu (không ghi gì vào DB) vẫn tới được 20 thẻ phía sau.
-  const skipped = first.cards.map((c) => c.item_id);
-  const second = await service.dueBatch({ userId: USER, itemType: TYPE, limit: 20, excludeItemIds: skipped });
+  const skipped = first.cards.map((c) => c._id);
+  const second = await service.dueBatch({ userId: USER, itemType: TYPE, limit: 20, excludeCardIds: skipped });
   const third = await service.dueBatch({
     userId: USER,
     itemType: TYPE,
     limit: 20,
-    excludeItemIds: [...skipped, ...second.cards.map((c) => c.item_id)],
+    excludeCardIds: [...skipped, ...second.cards.map((c) => c._id)],
   });
 
   assert.equal(first.cards.length, 20);
   assert.equal(second.cards.length, 20);
-  assert.equal(new Set([...skipped, ...second.cards.map((c) => c.item_id)]).size, 40);
+  assert.equal(new Set([...skipped, ...second.cards.map((c) => c._id)]).size, 40);
   // Bỏ qua hết thì phiên dừng, dù badge vẫn còn đếm 40 thẻ đến hạn.
   assert.deepEqual(third.cards, []);
   assert.deepEqual(await service.dueCount({ userId: USER, itemType: TYPE }), {
@@ -236,6 +236,21 @@ test('forty due cards come out as two batches of twenty without skipping any', a
     total: 40,
     by_type: { Vocabulary: 40, Kanji: 0 },
   });
+});
+
+test('từ vựng và Kanji trùng item_id là hai thẻ: loại trừ thẻ này không làm mất thẻ kia', async () => {
+  const rows = [card({ item_id: 'trung' }), kanjiCard({ item_id: 'trung' })];
+  const { service } = build({
+    repository: memoryRepository({
+      rows,
+      contents: [{ _id: 'trung', word: '学生' }],
+      kanji: [{ _id: 'trung', character: '学' }],
+    }),
+  });
+
+  const { cards } = await service.dueBatch({ userId: USER, limit: 20, excludeCardIds: ['p1'] });
+
+  assert.deepEqual(cards.map((c) => [c._id, c.item_type]), [['pk1', 'Kanji']]);
 });
 
 const kanjiCard = (overrides = {}) => card({ _id: 'pk1', item_id: 'k1', item_type: 'Kanji', ...overrides });
