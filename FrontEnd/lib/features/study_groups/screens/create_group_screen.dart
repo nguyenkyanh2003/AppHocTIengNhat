@@ -67,13 +67,21 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _selectedLevel,
+                isExpanded: true,
                 decoration: const InputDecoration(
                   labelText: 'Cấp độ',
                   prefixIcon: Icon(Icons.school),
                   border: OutlineInputBorder(),
                 ),
                 items: const [
-                  DropdownMenuItem(value: 'ALL', child: Text('Tất cả cấp độ')),
+                  DropdownMenuItem(
+                    value: 'ALL',
+                    child: Text(
+                      'Tất cả cấp độ',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   DropdownMenuItem(value: 'N5', child: Text('JLPT N5')),
                   DropdownMenuItem(value: 'N4', child: Text('JLPT N4')),
                   DropdownMenuItem(value: 'N3', child: Text('JLPT N3')),

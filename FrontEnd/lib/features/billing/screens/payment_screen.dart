@@ -6,6 +6,10 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
+import '../models/payment_plan.dart';
+import '../widgets/payment_plan_card.dart';
+import '../widgets/payment_faq_item.dart';
+import '../../../core/state/view_state.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -18,52 +22,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String _selectedPlan = 'basic';
   bool _isSubmitting = false;
   final TransactionService _transactionService = TransactionService();
-  final List<PaymentPlan> _plans = [
-    PaymentPlan(
-      id: 'basic',
-      name: 'Gói Cơ Bản',
-      price: 'Miễn phí',
-      amount: 0,
-      icon: '🎓',
-      features: [
-        'Học 5 bài miễn phí',
-        'Từ vựng cơ bản',
-        'Các bài tập giới hạn',
-        'Xem tin tức',
-      ],
-    ),
-    PaymentPlan(
-      id: 'pro',
-      name: 'Gói Pro',
-      price: '79,000đ/tháng',
-      amount: 79000,
-      icon: '⭐',
-      features: [
-        'Truy cập không giới hạn',
-        'Tất cả bài học & kanji',
-        'Bài tập nâng cao',
-        'Luyện thi JLPT đầy đủ',
-        'Xóa quảng cáo',
-        'Hỗ trợ ưu tiên',
-      ],
-      recommended: true,
-    ),
-    PaymentPlan(
-      id: 'premium',
-      name: 'Gói Premium',
-      price: '199,000đ/năm',
-      amount: 199000,
-      icon: '💎',
-      features: [
-        'Tất cả tính năng Pro',
-        'Giảm giá 50% so với tháng',
-        'Lịch sử chi tiết',
-        'Export dữ liệu',
-        'Hỗ trợ 24/7',
-      ],
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -79,23 +37,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
               Container(
                 padding: const EdgeInsets.all(24),
                 color: AppColors.primary.withValues(alpha: 0.1),
-                child: const Column(
+                child: Column(
                   children: [
-                    Icon(Icons.workspace_premium, size: 64, color: AppColors.primary),
-                    SizedBox(height: 16),
-                    Text(
+                    Icon(Icons.workspace_premium,
+                        size: 64, color: context.colors.primary),
+                    const SizedBox(height: 16),
+                    const Text(
                       'Chọn Gói Phù Hợp',
                       style: TextStyle(
                         fontSize: AppTypography.headline,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Mở khóa tất cả tính năng học tập',
                       style: TextStyle(
                         fontSize: AppTypography.body,
-                        color: AppColors.textSecondary,
+                        color: context.colors.textSecondary,
                       ),
                     ),
                   ],
@@ -106,118 +65,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  children: _plans.map((plan) {
+                  children: paymentPlans.map((plan) {
                     final isSelected = _selectedPlan == plan.id;
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() => _selectedPlan = plan.id);
-                      },
-                      child: Card(
-                        margin: const EdgeInsets.only(bottom: 16),
-                        elevation: isSelected ? 8 : 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(
-                            color:
-                                isSelected ? AppColors.primary : Colors.transparent,
-                            width: 2,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            gradient: isSelected
-                                ? LinearGradient(
-                                    colors: [
-                                      AppColors.primary.withValues(alpha: 0.1),
-                                      Colors.transparent
-                                    ],
-                                  )
-                                : null,
-                          ),
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    plan.icon,
-                                    style: const TextStyle(fontSize: AppTypography.display),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          plan.name,
-                                          style: const TextStyle(
-                                            fontSize: AppTypography.title,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          plan.price,
-                                          style: const TextStyle(
-                                            fontSize: AppTypography.subtitle,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.primary,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  if (plan.recommended)
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 6,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.warning
-                                            .withValues(alpha: 0.2),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: const Text(
-                                        'Được Khuyến Nghị',
-                                        style: TextStyle(
-                                          fontSize: AppTypography.caption,
-                                          color: AppColors.warning,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              ...plan.features.map((feature) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.check_circle,
-                                        size: 20,
-                                        color: AppColors.success,
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Expanded(
-                                        child: Text(
-                                          feature,
-                                          style: const TextStyle(fontSize: AppTypography.bodySmall),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+                    return PaymentPlanCard(
+                        plan: plan,
+                        isSelected: isSelected,
+                        selectPlan: _selectPlan);
                   }).toList(),
                 ),
               ),
@@ -231,10 +84,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(Icons.info, color: AppColors.primary),
-                      SizedBox(width: 12),
+                      Icon(Icons.info, color: context.colors.primary),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,13 +96,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               'Gói Hiện Tại',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.primary,
+                                color: context.colors.primary,
                               ),
                             ),
                             Text(
                               'Bạn đang sử dụng: Gói Cơ Bản (Miễn phí)',
                               style: TextStyle(
-                                  fontSize: AppTypography.caption, color: AppColors.textSecondary),
+                                  fontSize: AppTypography.caption,
+                                  color: context.colors.textSecondary),
                             ),
                           ],
                         ),
@@ -282,31 +136,31 @@ class _PaymentScreenState extends State<PaymentScreen> {
               const SizedBox(height: 24),
 
               // FAQ
-              Padding(
-                padding: const EdgeInsets.all(16),
+              const Padding(
+                padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Câu Hỏi Thường Gặp',
                       style: TextStyle(
                         fontSize: AppTypography.subtitle,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    _buildFaqItem(
-                      'Yêu cầu được xử lý như thế nào?',
-                      'Yêu cầu sẽ ở trạng thái chờ cho đến khi quản trị viên xác nhận.',
-                    ),
-                    _buildFaqItem(
-                      'Tôi có thể kiểm tra ở đâu?',
-                      'Bạn có thể xem trạng thái trong phần lịch sử giao dịch.',
-                    ),
-                    _buildFaqItem(
-                      'Ứng dụng đã thanh toán tự động chưa?',
-                      'Chưa. Phiên bản đồ án hiện tạo yêu cầu để quản trị viên duyệt, không tự động thu tiền.',
-                    ),
+                    SizedBox(height: 12),
+                    PaymentFaqItem(
+                        question: 'Yêu cầu được xử lý như thế nào?',
+                        answer:
+                            'Yêu cầu sẽ ở trạng thái chờ cho đến khi quản trị viên xác nhận.'),
+                    PaymentFaqItem(
+                        question: 'Tôi có thể kiểm tra ở đâu?',
+                        answer:
+                            'Bạn có thể xem trạng thái trong phần lịch sử giao dịch.'),
+                    PaymentFaqItem(
+                        question: 'Ứng dụng đã thanh toán tự động chưa?',
+                        answer:
+                            'Chưa. Phiên bản đồ án hiện tạo yêu cầu để quản trị viên duyệt, không tự động thu tiền.'),
                   ],
                 ),
               ),
@@ -318,28 +172,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 
-  Widget _buildFaqItem(String question, String answer) {
-    return Column(
-      children: [
-        ExpansionTile(
-          title: Text(
-            question,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(answer),
-            ),
-          ],
-        ),
-        const Divider(),
-      ],
-    );
-  }
-
   void _showPaymentConfirmation() {
-    final selectedPlan = _plans.firstWhere((plan) => plan.id == _selectedPlan);
+    final selectedPlan =
+        paymentPlans.firstWhere((plan) => plan.id == _selectedPlan);
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -386,15 +221,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
           content: Text(
             'Đã tạo yêu cầu đăng ký. Quản trị viên sẽ xác nhận sau khi nhận thanh toán.',
           ),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
     } catch (error) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Không thể tạo yêu cầu: $error'),
-          backgroundColor: AppColors.error,
+          content: Text('Không thể tạo yêu cầu: ${userMessageOf(error)}'),
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     } finally {
@@ -414,24 +249,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
         return '';
     }
   }
-}
 
-class PaymentPlan {
-  final String id;
-  final String name;
-  final String price;
-  final int amount;
-  final String icon;
-  final List<String> features;
-  final bool recommended;
-
-  PaymentPlan({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.amount,
-    required this.icon,
-    required this.features,
-    this.recommended = false,
-  });
+  void _selectPlan(String planId) => setState(() => _selectedPlan = planId);
 }

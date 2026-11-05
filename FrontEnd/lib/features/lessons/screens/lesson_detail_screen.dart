@@ -65,17 +65,25 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: const Text('Học lại từ đầu?'),
-        content: const Text('Dấu "đã nhớ" của các từ trong bài sẽ được xoá. XP đã nhận vẫn giữ nguyên.'),
+        content: const Text(
+            'Dấu "đã nhớ" của các từ trong bài sẽ được xoá. XP đã nhận vẫn giữ nguyên.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('Huỷ')),
-          FilledButton(onPressed: () => Navigator.pop(dialogContext, true), child: const Text('Đặt lại tiến độ')),
+          TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: const Text('Huỷ')),
+          FilledButton(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: const Text('Đặt lại tiến độ')),
         ],
       ),
     );
     if (confirmed != true || !mounted) return;
     final messenger = ScaffoldMessenger.of(context);
     final ok = await progress.resetProgress(widget.lessonId);
-    messenger.showSnackBar(SnackBar(content: Text(ok ? 'Đã đặt lại tiến độ bài học.' : 'Chưa đặt lại được. Vui lòng thử lại.')));
+    messenger.showSnackBar(SnackBar(
+        content: Text(ok
+            ? 'Đã đặt lại tiến độ bài học.'
+            : 'Chưa đặt lại được. Vui lòng thử lại.')));
   }
 
   @override
@@ -95,10 +103,13 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
             tooltip: 'Tuỳ chọn',
             itemBuilder: (context) => [
               if (progress != null)
-                PopupMenuItem(onTap: () => _confirmReset(progressProvider), child: const Text('Đặt lại tiến độ')),
+                PopupMenuItem(
+                    onTap: () => _confirmReset(progressProvider),
+                    child: const Text('Đặt lại tiến độ')),
               if (canEditTranscript)
                 PopupMenuItem(
-                  onTap: () => context.push('/admin/lessons/${widget.lessonId}/transcript'),
+                  onTap: () => context
+                      .push('/admin/lessons/${widget.lessonId}/transcript'),
                   child: const Text('Soạn lời thoại video'),
                 ),
             ],
@@ -115,7 +126,9 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  child: ContentPane(child: _content(detail, progress)),
+                  child: ContentPane(
+                    child: _content(detail, progress, progressProvider.error),
+                  ),
                 ),
               ),
               _actionBar(progress),
@@ -126,12 +139,27 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
     );
   }
 
-  Widget _content(LessonDetail detail, LessonProgress? progress) {
+  Widget _content(
+    LessonDetail detail,
+    LessonProgress? progress,
+    String? progressError,
+  ) {
     final lesson = detail.lesson;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         LessonHero(detail: detail, progress: progress),
+        // Tiến độ chưa tải được thì nói rõ, đừng để người học tưởng mình chưa học gì.
+        if (progress == null && progressError != null) ...[
+          AppGap.lg,
+          ErrorStateView(
+            message: progressError,
+            compact: true,
+            onRetry: () => context
+                .read<LessonProgressProvider>()
+                .loadProgress(widget.lessonId),
+          ),
+        ],
         if (lesson.canDoGoals.isNotEmpty) ...[
           AppGap.xl,
           LessonGoalsCard(goals: lesson.canDoGoals),
@@ -140,7 +168,8 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
           icon: Icons.route_outlined,
           title: 'Lộ trình bài học',
           caption: 'Chạm một bước để mở thẳng bước đó.',
-          child: LessonRoadmap(detail: detail, progress: progress, onOpenStep: _study),
+          child: LessonRoadmap(
+              detail: detail, progress: progress, onOpenStep: _study),
         ),
         if (lesson.videos.isNotEmpty)
           LessonSection(
@@ -184,7 +213,10 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
   Widget _actionBar(LessonProgress? progress) {
     final (label, icon) = switch (progress) {
       LessonProgress(isCompleted: true) => ('Học lại bài này', Icons.replay),
-      LessonProgress(completedVocabularies: > 0) => ('Học tiếp', Icons.play_arrow_rounded),
+      LessonProgress(completedVocabularies: > 0) => (
+          'Học tiếp',
+          Icons.play_arrow_rounded
+        ),
       _ => ('Bắt đầu học', Icons.play_arrow_rounded),
     };
     return Material(

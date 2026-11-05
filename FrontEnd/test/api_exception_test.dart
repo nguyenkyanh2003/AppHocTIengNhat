@@ -9,6 +9,23 @@ import 'package:apphoctiengnnhat/core/network/api_client.dart';
 const _json = {'content-type': 'application/json; charset=utf-8'};
 
 void main() {
+  test('mất kết nối: thông báo không lộ tên exception và địa chỉ máy chủ', () async {
+    await http.runWithClient(() async {
+      await expectLater(
+        ApiClient().get('/test-network'),
+        throwsA(isA<NetworkException>().having(
+          (e) => e.message,
+          'message',
+          allOf(
+            contains('Không thể kết nối'),
+            isNot(contains('ClientException')),
+            isNot(contains('http')),
+          ),
+        )),
+      );
+    }, () => MockClient((request) async => throw http.ClientException('Failed to fetch', request.url)));
+  });
+
   test('message-only constructors remain compatible', () {
     final error = ApiException('Lỗi');
     expect(error.message, 'Lỗi');

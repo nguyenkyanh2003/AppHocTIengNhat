@@ -5,6 +5,12 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/grammar_detail_section.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/grammar.dart';
+import '../../../shared/widgets/level_badge.dart';
+import '../../../app/theme/app_theme.dart';
 
 class GrammarDetailScreen extends StatefulWidget {
   final String grammarId;
@@ -33,34 +39,19 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
       body: ContentWidthLimit(
         child: Consumer<GrammarProvider>(
           builder: (context, provider, _) {
-            if (provider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (provider.error != null) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.error_outline,
-                        size: 64, color: AppColors.error),
-                    const SizedBox(height: 16),
-                    Text(provider.error ?? ''),
-                    const SizedBox(height: 24),
-                    ElevatedButton(
-                      onPressed: () {
-                        provider.loadGrammarDetail(widget.grammarId);
-                      },
-                      child: const Text('Thử lại'),
-                    ),
-                  ],
-                ),
-              );
-            }
-
             final grammar = provider.selectedGrammar;
-            if (grammar == null) {
-              return const Center(child: Text('Không tìm thấy dữ liệu'));
+            if (provider.isLoading ||
+                provider.error != null ||
+                grammar == null) {
+              return AsyncView<Grammar>(
+                state: ViewState.detail(
+                  isLoading: provider.isLoading,
+                  error: provider.error,
+                  value: grammar,
+                ),
+                onRetry: () => provider.loadGrammarDetail(widget.grammarId),
+                builder: (context, _) => const SizedBox.shrink(),
+              );
             }
 
             return SingleChildScrollView(
@@ -69,40 +60,19 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                 children: [
                   // Header
                   Container(
+                    width: double.infinity,
                     padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          _getLevelColor(grammar.level),
-                          _getLevelColor(grammar.level).withValues(alpha: 0.7),
-                        ],
-                      ),
-                    ),
+                    color: AppTheme.getJlptLevelColor(grammar.level)
+                        .withValues(alpha: 0.12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            grammar.level,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        LevelBadge(grammar.level),
                         const SizedBox(height: 16),
                         Text(
                           grammar.title,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: context.colors.textPrimary,
                             fontSize: AppTypography.headline,
                             fontWeight: FontWeight.bold,
                           ),
@@ -110,8 +80,8 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                         const SizedBox(height: 8),
                         Text(
                           'Pattern: ${grammar.pattern}',
-                          style: const TextStyle(
-                            color: Colors.white70,
+                          style: TextStyle(
+                            color: context.colors.textSecondary,
                             fontSize: AppTypography.bodySmall,
                           ),
                         ),
@@ -126,11 +96,10 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Meaning section
-                        _buildSection(
-                          'Ý Nghĩa',
-                          grammar.meaning,
-                          Icons.description,
-                        ),
+                        GrammarDetailSection(
+                            title: 'Ý Nghĩa',
+                            content: grammar.meaning,
+                            icon: Icons.description),
                         const SizedBox(height: 24),
 
                         // Explanation section
@@ -139,11 +108,10 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildSection(
-                                'Giải Thích',
-                                grammar.explanation!,
-                                Icons.info,
-                              ),
+                              GrammarDetailSection(
+                                  title: 'Giải Thích',
+                                  content: grammar.explanation!,
+                                  icon: Icons.info),
                               const SizedBox(height: 24),
                             ],
                           ),
@@ -153,19 +121,22 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildSectionTitle('Ví Dụ', Icons.lightbulb),
+                              const GrammarSectionTitle(
+                                  title: 'Ví Dụ', icon: Icons.lightbulb),
                               const SizedBox(height: 12),
                               ...grammar.examples.asMap().entries.map((entry) {
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 12),
                                   child: Container(
+                                    width: double.infinity,
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: AppColors.surfaceVariant,
+                                      color: context.colors.surfaceVariant,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border(
                                         left: BorderSide(
-                                          color: _getLevelColor(grammar.level),
+                                          color: AppTheme.getJlptLevelColor(
+                                              grammar.level),
                                           width: 4,
                                         ),
                                       ),
@@ -176,10 +147,10 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                                       children: [
                                         Text(
                                           'Ví dụ ${entry.key + 1}:',
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: AppTypography.caption,
-                                            color: AppColors.textSecondary,
+                                            color: context.colors.textSecondary,
                                           ),
                                         ),
                                         const SizedBox(height: 6),
@@ -228,97 +199,39 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
     );
   }
 
-  Widget _buildSectionTitle(String title, IconData icon) {
-    return Row(
-      children: [
-        Icon(icon, color: AppColors.primary, size: 20),
-        const SizedBox(width: 8),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: AppTypography.subtitle,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSection(String title, String content, IconData icon) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(title, icon),
-        const SizedBox(height: 12),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: AppColors.primary.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.2),
-            ),
-          ),
-          child: Text(
-            content,
-            style: const TextStyle(
-              fontSize: AppTypography.bodySmall,
-              height: 1.6,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildStatCard(String label, String value, IconData icon) {
-    return Card(
-      elevation: 0,
-      color: AppColors.surfaceVariant,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 12,
-        ),
-        child: Column(
-          children: [
-            Icon(icon, color: AppColors.primary, size: 24),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              style: const TextStyle(
-                fontSize: AppTypography.body,
-                fontWeight: FontWeight.bold,
+    return Expanded(
+      child: Card(
+        elevation: 0,
+        color: context.colors.surfaceVariant,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 12,
+          ),
+          child: Column(
+            children: [
+              Icon(icon, color: context.colors.primary, size: 24),
+              const SizedBox(height: 8),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: AppTypography.body,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: AppTypography.caption,
-                color: AppColors.textSecondary,
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: AppTypography.caption,
+                  color: context.colors.textSecondary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  Color _getLevelColor(String level) {
-    switch (level) {
-      case 'N5':
-        return AppColors.success;
-      case 'N4':
-        return AppColors.primary;
-      case 'N3':
-        return AppColors.warning;
-      case 'N2':
-        return AppColors.error;
-      case 'N1':
-        return Colors.purple;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

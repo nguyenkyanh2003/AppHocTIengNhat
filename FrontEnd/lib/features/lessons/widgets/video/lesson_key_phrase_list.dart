@@ -34,10 +34,10 @@ class LessonKeyPhraseList extends StatelessWidget {
         final phrase = phrases[index];
         final active = identical(phrase, playing);
         return Material(
-          color: active ? AppColors.primaryLight : AppColors.surface,
+          color: active ? context.colors.primarySoft : context.colors.surface,
           shape: RoundedRectangleBorder(
             borderRadius: AppRadius.mdAll,
-            side: BorderSide(color: active ? AppColors.primary : AppColors.border),
+            side: BorderSide(color: active ? context.colors.primary : context.colors.border),
           ),
           child: InkWell(
             onTap: () => onPlay(phrase),
@@ -49,7 +49,7 @@ class LessonKeyPhraseList extends StatelessWidget {
                 children: [
                   Icon(
                     active ? Icons.graphic_eq_rounded : Icons.play_circle_outline_rounded,
-                    color: AppColors.primary,
+                    color: context.colors.primary,
                     semanticLabel: 'Nghe lại câu này',
                   ),
                   AppGap.sm,

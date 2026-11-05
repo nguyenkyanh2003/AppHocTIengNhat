@@ -89,7 +89,7 @@ class _Back extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(word.word, style: AppTypography.japaneseDisplay(size: AppTypography.display)),
-        Text(word.hiragana, style: AppTypography.japaneseReading(color: AppColors.primary)),
+        Text(word.hiragana, style: AppTypography.japaneseReading(color: context.colors.primary)),
         if (word.hanviet?.isNotEmpty ?? false) Text(word.hanviet!.toUpperCase(), style: textTheme.labelLarge),
         AppGap.md,
         Text(word.meaning, style: textTheme.headlineSmall, textAlign: TextAlign.center),

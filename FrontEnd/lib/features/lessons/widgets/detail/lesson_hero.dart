@@ -42,22 +42,33 @@ class LessonHero extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(situationIcon(situation), size: 16, color: AppColors.lesson),
+                        Icon(situationIcon(situation),
+                            size: 16,
+                            color: context.colors.readable(AppColors.lesson)),
                         AppGap.xs,
-                        Text(situationLabel(situation), style: textTheme.labelLarge?.copyWith(color: AppColors.lesson)),
+                        Flexible(
+                            child: Text(situationLabel(situation),
+                                style: textTheme.labelLarge?.copyWith(
+                                    color: context.colors
+                                        .readable(AppColors.lesson)))),
                       ],
                     ),
-                  Text('Khoảng ${estimateStudyMinutes(detail)} phút', style: textTheme.bodySmall),
+                  Text('Khoảng ${estimateStudyMinutes(detail)} phút',
+                      style: textTheme.bodySmall),
                 ],
               ),
               AppGap.sm,
               Text(
                 lesson.displayTitle,
-                style: AppTypography.heroDisplay(size: AppTypography.display, color: AppColors.textPrimary),
+                style: AppTypography.heroDisplay(
+                    size: AppTypography.display,
+                    color: context.colors.textPrimary),
               ),
               if (lesson.description != null) ...[
                 AppGap.sm,
-                Text(lesson.description!, style: textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary)),
+                Text(lesson.description!,
+                    style: textTheme.bodyLarge
+                        ?.copyWith(color: context.colors.textSecondary)),
               ],
               AppGap.lg,
               LessonContentChips(detail: detail),
@@ -65,7 +76,8 @@ class LessonHero extends StatelessWidget {
           ),
         ),
         AppGap.lg,
-        _ProgressRing(value: percent, completed: progress?.isCompleted ?? false),
+        _ProgressRing(
+            value: percent, completed: progress?.isCompleted ?? false),
       ],
     );
   }
@@ -90,14 +102,18 @@ class _ProgressRing extends StatelessWidget {
             CircularProgressIndicator(
               value: completed ? 1 : value,
               strokeWidth: 8,
-              backgroundColor: AppColors.surfaceVariant,
-              color: color,
+              backgroundColor: context.colors.surfaceVariant,
+              color: context.colors.readable(color),
             ),
             Center(
               child: completed
-                  ? const Icon(Icons.check_rounded, size: 40, color: AppColors.success)
+                  ? Icon(Icons.check_rounded,
+                      size: 40,
+                      color: context.colors.readable(AppColors.success))
                   : Text('${(value * 100).round()}%',
-                      style: AppTypography.heroDisplay(size: AppTypography.subtitle, color: color)),
+                      style: AppTypography.heroDisplay(
+                          size: AppTypography.subtitle,
+                          color: context.colors.readable(color))),
             ),
           ],
         ),

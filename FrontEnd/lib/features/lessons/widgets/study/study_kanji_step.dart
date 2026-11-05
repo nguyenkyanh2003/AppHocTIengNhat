@@ -74,10 +74,13 @@ class StudyKanjiReviewOffer extends StatelessWidget {
 
     if (pending > 0) {
       return FilledButton.tonalIcon(
-        style: FilledButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: AppSpacing.md)),
+        style: FilledButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: AppSpacing.md)),
         onPressed: busy ? null : onAdd,
         icon: busy
-            ? const SizedBox.square(dimension: AppSpacing.lg, child: CircularProgressIndicator(strokeWidth: 2))
+            ? const SizedBox.square(
+                dimension: AppSpacing.lg,
+                child: CircularProgressIndicator(strokeWidth: 2))
             : const Icon(Icons.event_repeat),
         label: Text('Thêm $pending chữ đã nhớ vào ôn tập'),
       );
@@ -87,9 +90,12 @@ class StudyKanjiReviewOffer extends StatelessWidget {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.check_circle, color: AppColors.success),
+          Icon(Icons.check_circle,
+              color: context.colors.readable(AppColors.success)),
           AppGap.sm,
-          Flexible(child: Text('Đã thêm $added chữ vào lịch ôn tập', style: textTheme.bodyMedium)),
+          Flexible(
+              child: Text('Đã thêm $added chữ vào lịch ôn tập',
+                  style: textTheme.bodyMedium)),
         ],
       );
     }

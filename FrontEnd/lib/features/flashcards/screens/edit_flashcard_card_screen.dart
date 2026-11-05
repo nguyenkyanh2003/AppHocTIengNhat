@@ -7,6 +7,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/flashcard_preview_card.dart';
 
 class EditFlashcardCardScreen extends StatefulWidget {
   final String deckId;
@@ -97,7 +98,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
           content: Text(widget.card == null
               ? 'Thêm thẻ thành công!'
               : 'Cập nhật thẻ thành công!'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
       Navigator.pop(context);
@@ -105,7 +106,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.error,
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     }
@@ -127,20 +128,21 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryLight,
+                  color: context.colors.primarySoft,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.primaryLight),
+                  border: Border.all(color: context.colors.primarySoft),
                 ),
-                child: const Row(
+                child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: AppColors.primaryDark),
-                    SizedBox(width: 12),
+                    Icon(Icons.info_outline,
+                        color: context.colors.primaryStrong),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         'Tạo thẻ flashcard giống Quizlet: Mặt trước thường là từ/câu hỏi, mặt sau là nghĩa/đáp án.',
                         style: TextStyle(
                           fontSize: AppTypography.caption,
-                          color: AppColors.primaryDark,
+                          color: context.colors.primaryStrong,
                         ),
                       ),
                     ),
@@ -239,69 +241,11 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
               const SizedBox(height: 24),
 
               // Preview card
-              Card(
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Xem trước:',
-                        style: TextStyle(
-                          fontSize: AppTypography.bodySmall,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textSecondary,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      const Text(
-                        'Mặt trước:',
-                        style: TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
-                      ),
-                      Text(
-                        _frontController.text.isEmpty
-                            ? '(Trống)'
-                            : _frontController.text,
-                        style: const TextStyle(
-                          fontSize: AppTypography.title,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      if (_frontSubtextController.text.isNotEmpty) ...[
-                        const SizedBox(height: 4),
-                        Text(
-                          _frontSubtextController.text,
-                          style:
-                              const TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textSecondary),
-                        ),
-                      ],
-                      const Divider(height: 24),
-                      const Text(
-                        'Mặt sau:',
-                        style: TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
-                      ),
-                      Text(
-                        _backController.text.isEmpty
-                            ? '(Trống)'
-                            : _backController.text,
-                        style: const TextStyle(
-                          fontSize: AppTypography.subtitle,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      if (_backSubtextController.text.isNotEmpty) ...[
-                        const SizedBox(height: 4),
-                        Text(
-                          _backSubtextController.text,
-                          style:
-                              const TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textSecondary),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
+              FlashcardPreviewCard(
+                  frontController: _frontController,
+                  backController: _backController,
+                  frontSubtextController: _frontSubtextController,
+                  backSubtextController: _backSubtextController),
               const SizedBox(height: 24),
 
               // Save button

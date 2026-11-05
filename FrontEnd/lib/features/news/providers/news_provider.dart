@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../models/news.dart';
 import '../services/news_service.dart';
+import '../../../core/state/view_state.dart';
 
 class NewsProvider extends ChangeNotifier {
   final NewsService _service = NewsService();
@@ -76,7 +77,7 @@ class NewsProvider extends ChangeNotifier {
       _searchQuery = search;
       _currentPage++;
     } catch (e) {
-      _error = 'Lỗi tải tin tức: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
     } finally {
       _isLoading = false;
@@ -97,7 +98,7 @@ class NewsProvider extends ChangeNotifier {
       // Load tin tức liên quan
       _relatedNews = await _service.getRelatedNews(newsId);
     } catch (e) {
-      _error = 'Lỗi tải chi tiết tin tức: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
     } finally {
       _isLoadingDetail = false;

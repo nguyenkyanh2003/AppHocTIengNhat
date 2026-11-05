@@ -13,13 +13,22 @@ class ApiClient {
   static const _configuredBaseUrl = String.fromEnvironment('API_BASE_URL');
   static const _requestTimeout = Duration(seconds: 20);
   static const _uploadTimeout = Duration(seconds: 60);
+
+  /// Chi tiết kỹ thuật (tên exception, địa chỉ máy chủ) chỉ ghi log, không lên giao diện.
+  static const _unreachableMessage =
+      'Không thể kết nối đến máy chủ. Kiểm tra mạng rồi thử lại.';
+
   static const _tokenKey = 'auth_token';
   static const _refreshKey = 'refresh_token';
   static const _secureStorage = FlutterSecureStorage();
 
   /// Route xác thực tự xử lý 401 của chính chúng (sai mật khẩu, refresh token
   /// hỏng): không bao giờ kích hoạt làm mới phiên.
-  static const _authEndpoints = {'/users/login', '/users/refresh-token', '/users/logout'};
+  static const _authEndpoints = {
+    '/users/login',
+    '/users/refresh-token',
+    '/users/logout'
+  };
 
   final OfflineCache _cache = OfflineCache();
 
@@ -116,7 +125,8 @@ class ApiClient {
     final parts = accessToken?.split('.');
     if (parts == null || parts.length != 3) return null;
     try {
-      final payload = json.decode(utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))));
+      final payload = json
+          .decode(utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))));
       return payload is Map ? payload : null;
     } on FormatException {
       return null;
@@ -189,8 +199,11 @@ class ApiClient {
   /// Access token hết hạn (401 + [sessionExpiredCode]) trên một request có
   /// gửi token: đổi refresh token lấy cặp mới. `true` nghĩa là nên gửi lại
   /// request; `false` là phiên đã kết thúc thật.
-  Future<bool> _renewedAfter(http.Response response, String endpoint, String? usedToken) async {
-    if (response.statusCode != 401 || usedToken == null || _authEndpoints.contains(endpoint)) {
+  Future<bool> _renewedAfter(
+      http.Response response, String endpoint, String? usedToken) async {
+    if (response.statusCode != 401 ||
+        usedToken == null ||
+        _authEndpoints.contains(endpoint)) {
       return false;
     }
     if (_codeOf(response) != sessionExpiredCode) return false;
@@ -251,21 +264,27 @@ class ApiClient {
       response = await http
           .post(
             Uri.parse('$baseUrl/users/refresh-token'),
-            headers: const {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            headers: const {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
             body: json.encode({'refreshToken': refreshToken}),
           )
           .timeout(_requestTimeout);
     } on TimeoutException {
       throw NetworkException('Yêu cầu quá thời gian. Vui lòng thử lại.');
     } catch (error) {
-      throw NetworkException('Không thể kết nối đến máy chủ: $error');
+      debugPrint('Lỗi kết nối: $error');
+      throw NetworkException(_unreachableMessage);
     }
 
     // Phản hồi về muộn sau khi đã đăng xuất hoặc đổi tài khoản: không được ghi
     // đè token của phiên hiện tại.
     _requireSameSession(sessionNumber);
 
-    if (response.statusCode == 401 && _codeOf(response) == sessionExpiredCode) return false;
+    if (response.statusCode == 401 && _codeOf(response) == sessionExpiredCode) {
+      return false;
+    }
 
     final tokens = response.statusCode == 200 ? _tokensIn(response) : null;
     if (tokens == null) {
@@ -305,7 +324,12 @@ class ApiClient {
       if (data is! Map) return null;
       final access = data['token'];
       final refresh = data['refreshToken'];
-      if (access is! String || access.isEmpty || refresh is! String || refresh.isEmpty) return null;
+      if (access is! String ||
+          access.isEmpty ||
+          refresh is! String ||
+          refresh.isEmpty) {
+        return null;
+      }
       return (access: access, refresh: refresh);
     } on FormatException {
       return null;
@@ -482,7 +506,8 @@ class ApiClient {
     } on TimeoutException {
       throw NetworkException('Yêu cầu quá thời gian. Vui lòng thử lại.');
     } catch (error) {
-      throw NetworkException('Không thể kết nối đến máy chủ: $error');
+      debugPrint('Lỗi kết nối: $error');
+      throw NetworkException(_unreachableMessage);
     }
   }
 
@@ -566,7 +591,9 @@ class ApiClient {
     } on TimeoutException {
       throw NetworkException('Tải tệp quá thời gian. Vui lòng thử lại.');
     } catch (error) {
-      throw NetworkException('Không thể tải tệp: $error');
+      debugPrint('Lỗi tải tệp: $error');
+      throw NetworkException(
+          'Không thể tải tệp lên. Kiểm tra mạng rồi thử lại.');
     }
   }
 

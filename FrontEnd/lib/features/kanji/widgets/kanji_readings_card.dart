@@ -16,7 +16,7 @@ class KanjiReadingsCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.colors.surface,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -29,27 +29,36 @@ class KanjiReadingsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.volume_up_outlined, color: Color(0xFFFF6B6B), size: 20),
-              SizedBox(width: 8),
-              Text(
-                'Cách đọc',
-                style: TextStyle(
-                  fontSize: AppTypography.body,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2C3E50),
+              const Icon(Icons.volume_up_outlined,
+                  color: AppColors.kanjiCoral, size: 20),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Cách đọc',
+                  style: TextStyle(
+                    fontSize: AppTypography.body,
+                    fontWeight: FontWeight.bold,
+                    color: context.colors.textPrimary,
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
           if (kanji.onyomi.isNotEmpty) ...[
-            _ReadingRow(label: 'Âm Hán', value: kanji.onyomi.join('、'), color: AppColors.primary),
+            _ReadingRow(
+                label: 'Âm Hán',
+                value: kanji.onyomi.join('、'),
+                color: AppColors.primary),
             const SizedBox(height: 12),
           ],
           if (kanji.kunyomi.isNotEmpty)
-            _ReadingRow(label: 'Âm Kun', value: kanji.kunyomi.join('、'), color: AppColors.success),
+            _ReadingRow(
+                label: 'Âm Kun',
+                value: kanji.kunyomi.join('、'),
+                color: AppColors.success),
         ],
       ),
     );
@@ -57,7 +66,8 @@ class KanjiReadingsCard extends StatelessWidget {
 }
 
 class _ReadingRow extends StatelessWidget {
-  const _ReadingRow({required this.label, required this.value, required this.color});
+  const _ReadingRow(
+      {required this.label, required this.value, required this.color});
 
   final String label;
   final String value;
@@ -79,7 +89,7 @@ class _ReadingRow extends StatelessWidget {
             style: TextStyle(
               fontSize: AppTypography.bodySmall,
               fontWeight: FontWeight.bold,
-              color: color,
+              color: context.colors.readable(color),
             ),
           ),
         ),
@@ -87,9 +97,9 @@ class _ReadingRow extends StatelessWidget {
         Expanded(
           child: Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppTypography.subtitle,
-              color: Color(0xFF2C3E50),
+              color: context.colors.textPrimary,
             ),
           ),
         ),

@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
 import '../models/grammar.dart';
 
@@ -15,84 +13,59 @@ class GrammarService {
     String? lessonId,
     String? sortBy,
   }) async {
-    try {
-      final params = {
-        'page': page,
-        'limit': limit,
-        if (level != null) 'level': level,
-        if (search != null) 'search': search,
-        if (lessonId != null) 'lessonID': lessonId,
-        if (sortBy != null) 'sortBy': sortBy,
-      };
+    final params = {
+      'page': page,
+      'limit': limit,
+      if (level != null) 'level': level,
+      if (search != null) 'search': search,
+      if (lessonId != null) 'lessonID': lessonId,
+      if (sortBy != null) 'sortBy': sortBy,
+    };
 
-      final response = await _apiClient.get(
-        '/grammar?${_buildQueryString(params)}',
-        cache: true,
-      );
-      return response;
-    } catch (e) {
-      debugPrint('Error fetching grammars: $e');
-      return null;
-    }
+    final response = await _apiClient.get(
+      '/grammar?${_buildQueryString(params)}',
+      cache: true,
+    );
+    return response;
   }
 
   /// Lấy chi tiết một ngữ pháp
   Future<Grammar?> getGrammarDetail(String grammarId) async {
-    try {
-      final response = await _apiClient.get('/grammar/$grammarId', cache: true);
-      return Grammar.fromJson(response);
-    } catch (e) {
-      debugPrint('Error fetching grammar detail: $e');
-      return null;
-    }
+    final response = await _apiClient.get('/grammar/$grammarId', cache: true);
+    return Grammar.fromJson(response);
   }
 
   /// Lấy ngữ pháp theo cấp độ JLPT
   Future<Map<String, dynamic>?> getGrammarsByLevel(String level) async {
-    try {
-      final response = await _apiClient.get(
-        '/grammar?level=$level',
-        cache: true,
-      );
-      return response;
-    } catch (e) {
-      debugPrint('Error fetching grammars by level: $e');
-      return null;
-    }
+    final response = await _apiClient.get(
+      '/grammar?level=$level',
+      cache: true,
+    );
+    return response;
   }
 
   /// Lấy ngữ pháp theo bài học
   Future<List<Grammar>?> getGrammarsByLesson(String lessonId) async {
-    try {
-      final response = await _apiClient.get(
-        '/grammar?lessonID=$lessonId',
-        cache: true,
-      );
+    final response = await _apiClient.get(
+      '/grammar?lessonID=$lessonId',
+      cache: true,
+    );
 
-      if (response != null && response is Map) {
-        final data = response['data'] as List?;
-        if (data != null) {
-          return data.map((item) => Grammar.fromJson(item)).toList();
-        }
+    if (response != null && response is Map) {
+      final data = response['data'] as List?;
+      if (data != null) {
+        return data.map((item) => Grammar.fromJson(item)).toList();
       }
-      return null;
-    } catch (e) {
-      debugPrint('Error fetching grammars by lesson: $e');
-      return null;
     }
+    return null;
   }
 
   /// Tìm kiếm ngữ pháp
   Future<Map<String, dynamic>?> searchGrammars(String query) async {
-    try {
-      final response = await _apiClient.get(
-        '/grammar?search=$query',
-      );
-      return response;
-    } catch (e) {
-      debugPrint('Error searching grammars: $e');
-      return null;
-    }
+    final response = await _apiClient.get(
+      '/grammar?search=$query',
+    );
+    return response;
   }
 
   String _buildQueryString(Map<String, dynamic> params) {

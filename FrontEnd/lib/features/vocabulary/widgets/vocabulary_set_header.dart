@@ -43,7 +43,7 @@ class VocabularySetHeader extends StatelessWidget {
               const Spacer(),
               Text(
                 '${set.learnedCount}/${set.wordCount}',
-                style: textTheme.titleLarge?.copyWith(color: barColor),
+                style: textTheme.titleLarge?.copyWith(color: context.colors.readable(barColor)),
               ),
             ],
           ),
@@ -62,8 +62,8 @@ class VocabularySetHeader extends StatelessWidget {
             child: LinearProgressIndicator(
               value: set.progress,
               minHeight: AppSpacing.md,
-              color: barColor,
-              backgroundColor: AppColors.surfaceVariant,
+              color: context.colors.readable(barColor),
+              backgroundColor: context.colors.surfaceVariant,
             ),
           ),
           AppGap.xl,
@@ -94,7 +94,7 @@ class VocabularySetHeader extends StatelessWidget {
                 TextButton.icon(
                   onPressed: isMarking ? null : onUnmarkAll,
                   style: TextButton.styleFrom(
-                    foregroundColor: AppColors.textSecondary,
+                    foregroundColor: context.colors.textSecondary,
                   ),
                   icon: const Icon(Icons.undo_rounded),
                   label: const Text('Bỏ đánh dấu cả bộ'),

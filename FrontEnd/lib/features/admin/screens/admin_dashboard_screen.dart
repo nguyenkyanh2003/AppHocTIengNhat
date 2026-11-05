@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../providers/admin_provider.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
+
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/admin_dashboard_summary.dart';
+import '../providers/admin_provider.dart';
+import '../widgets/admin_dashboard_widgets.dart';
+import '../../../shared/widgets/responsive_grid.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
-  const AdminDashboardScreen({Key? key}) : super(key: key);
+  const AdminDashboardScreen({super.key});
 
   @override
   State<AdminDashboardScreen> createState() => _AdminDashboardScreenState();
@@ -19,400 +25,159 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AdminProvider>().loadDashboardStats();
+      if (mounted) context.read<AdminProvider>().loadDashboardStats();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<AdminProvider>();
+
     return AppScaffold(
-      title: '🔐 Admin Dashboard',
+      title: 'Bảng điều khiển',
       actions: [
         IconButton(
+          tooltip: 'Tải lại',
           icon: const Icon(Icons.refresh),
-          onPressed: () {
-            context.read<AdminProvider>().loadDashboardStats();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Đang làm mới dữ liệu...')),
-            );
-          },
+          onPressed: provider.loadDashboardStats,
         ),
       ],
-      body: ContentWidthLimit(
-        child: Consumer<AdminProvider>(
-          builder: (context, adminProvider, child) {
-            if (adminProvider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            final stats = adminProvider.dashboardStats;
-
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  // Stats Overview
-                  Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [AppColors.primaryDark, AppColors.primary],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Tổng Quan Hệ Thống',
-                          style: TextStyle(
-                            fontSize: AppTypography.headline,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Cập nhật: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
-                          style: const TextStyle(
-                            fontSize: AppTypography.bodySmall,
-                            color: Colors.white70,
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _buildStatCard(
-                                '👥',
-                                '${stats['totalUsers'] ?? 15234}',
-                                'Users',
-                                Colors.white,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: _buildStatCard(
-                                '📚',
-                                '${stats['totalContent'] ?? 2450}',
-                                'Content',
-                                Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _buildStatCard(
-                                '📝',
-                                '${stats['pendingReports'] ?? 342}',
-                                'Reports',
-                                Colors.white,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: _buildStatCard(
-                                '🔥',
-                                '${stats['uptime'] ?? '89.5%'}',
-                                'Uptime',
-                                Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Quick Actions
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Quản Lý Nhanh',
-                          style: TextStyle(
-                            fontSize: AppTypography.title,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        GridView.count(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 12,
-                          childAspectRatio: 1.3,
-                          children: [
-                            _buildActionCard(
-                              context,
-                              '👥 Users',
-                              'Quản lý người dùng',
-                              AppColors.primary,
-                              Icons.people,
-                              () => context.push('/admin/users'),
-                            ),
-                            _buildActionCard(
-                              context,
-                              '📚 Content',
-                              'Quản lý nội dung',
-                              AppColors.success,
-                              Icons.book,
-                              () => context.push('/admin/content'),
-                            ),
-                            _buildActionCard(
-                              context,
-                              '📝 Reports',
-                              'Xử lý báo cáo',
-                              AppColors.warning,
-                              Icons.report,
-                              () => context.push('/admin/reports'),
-                            ),
-                            _buildActionCard(
-                              context,
-                              '🏆 Achievements',
-                              'Quản lý thành tích',
-                              Colors.purple,
-                              Icons.emoji_events,
-                              () => context.push('/admin/achievements'),
-                            ),
-                            _buildActionCard(
-                              context,
-                              '💳 Transactions',
-                              'Quản lý giao dịch',
-                              Colors.teal,
-                              Icons.payment,
-                              () => context.push('/admin/transactions'),
-                            ),
-                            _buildActionCard(
-                              context,
-                              '📊 Analytics',
-                              'Thống kê hệ thống',
-                              AppColors.error,
-                              Icons.analytics,
-                              () => context.push('/admin/analytics'),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 32),
-
-                        // Recent Activities
-                        const Text(
-                          'Hoạt Động Gần Đây',
-                          style: TextStyle(
-                            fontSize: AppTypography.title,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        _buildActivityItem(
-                          '👤 User mới đăng ký',
-                          'nguyenvana@example.com',
-                          '2 phút trước',
-                          AppColors.primary,
-                        ),
-                        _buildActivityItem(
-                          '📝 Report mới',
-                          'Bug trong bài học N5',
-                          '15 phút trước',
-                          AppColors.warning,
-                        ),
-                        _buildActivityItem(
-                          '💳 Thanh toán thành công',
-                          'Premium - 199,000đ',
-                          '1 giờ trước',
-                          AppColors.success,
-                        ),
-                        _buildActivityItem(
-                          '🏆 Achievement mới được tạo',
-                          'Học 100 từ vựng liên tiếp',
-                          '3 giờ trước',
-                          Colors.purple,
-                        ),
-                        _buildActivityItem(
-                          '⚠️ Content được báo cáo',
-                          'Từ vựng N4 - ID: 12345',
-                          '5 giờ trước',
-                          AppColors.error,
-                        ),
-
-                        const SizedBox(height: 32),
-
-                        // System Status
-                        const Text(
-                          'Trạng Thái Hệ Thống',
-                          style: TextStyle(
-                            fontSize: AppTypography.title,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        _buildSystemStatus(
-                            'Database', 'Hoạt động bình thường', true),
-                        _buildSystemStatus(
-                            'API Server', 'Hoạt động bình thường', true),
-                        _buildSystemStatus('Storage', '85% sử dụng', true),
-                        _buildSystemStatus(
-                            'CDN', 'Hoạt động bình thường', true),
-
-                        const SizedBox(height: 32),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
+      body: AsyncView<Map<String, dynamic>>(
+        state: ViewState.fromLegacy(
+          isLoading: provider.isLoadingStats,
+          error: provider.error,
+          value:
+              provider.dashboardStats.isEmpty ? null : provider.dashboardStats,
         ),
+        onRetry: provider.loadDashboardStats,
+        builder: (context, stats) {
+          final summary = AdminDashboardSummary.fromStats(stats);
+          return RefreshIndicator(
+            onRefresh: provider.loadDashboardStats,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: ContentPane(
+                maxWidth: AppContentWidth.dashboard,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _Overview(summary: summary),
+                    const _Heading('Quản lý nhanh'),
+                    const _QuickActions(),
+                    const _Heading('Hoạt động gần đây'),
+                    if (summary.activities.isEmpty)
+                      Text(
+                        'Chưa có hoạt động nào.',
+                        style: TextStyle(color: context.colors.textSecondary),
+                      )
+                    else
+                      for (final activity in summary.activities)
+                        AdminActivityTile(activity: activity),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
+}
 
-  Widget _buildStatCard(String icon, String value, String label, Color color) {
+class _Overview extends StatelessWidget {
+  const _Overview({required this.summary});
+
+  final AdminDashboardSummary summary;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppSpacing.xl),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        borderRadius: BorderRadius.circular(16),
+        gradient: const LinearGradient(
+          colors: [AppColors.primaryDark, AppColors.primary],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ResponsiveGrid(
         children: [
-          Text(
-            icon,
-            style: const TextStyle(fontSize: AppTypography.headline),
+          AdminStatTile(
+            icon: Icons.people,
+            value: '${summary.totalUsers}',
+            label: 'Người dùng',
           ),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: AppTypography.headline,
-              fontWeight: FontWeight.bold,
-              color: color.withValues(alpha: 0.9),
-            ),
+          AdminStatTile(
+            icon: Icons.school,
+            value: '${summary.totalLessons}',
+            label: 'Bài học',
           ),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: AppTypography.caption,
-              color: color.withValues(alpha: 0.7),
-            ),
+          AdminStatTile(
+            icon: Icons.flag,
+            value: '${summary.pendingReports}',
+            label: 'Báo cáo chờ xử lý',
+          ),
+          AdminStatTile(
+            icon: Icons.bolt,
+            value: '${summary.activeToday}',
+            label: 'Hoạt động hôm nay',
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildActionCard(
-    BuildContext context,
-    String title,
-    String subtitle,
-    Color color,
-    IconData icon,
-    VoidCallback onTap,
-  ) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            gradient: LinearGradient(
-              colors: [
-                color.withValues(alpha: 0.1),
-                color.withValues(alpha: 0.05)
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, size: 32, color: color),
-              const SizedBox(height: 12),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: AppTypography.body,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  fontSize: AppTypography.caption,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+class _QuickActions extends StatelessWidget {
+  const _QuickActions();
+
+  @override
+  Widget build(BuildContext context) {
+    AdminActionCard tile(String title, String subtitle, Color color,
+            IconData icon, String path) =>
+        AdminActionCard(
+          title: title,
+          subtitle: subtitle,
+          color: color,
+          icon: icon,
+          onTap: () => context.push(path),
+        );
+
+    return ResponsiveGrid(
+      minTileWidth: 170,
+      children: [
+        tile('Người dùng', 'Tài khoản và phân quyền', AppColors.primary,
+            Icons.people, '/admin/users'),
+        tile('Nội dung', 'Bài học, từ vựng, kanji', AppColors.success,
+            Icons.library_books, '/admin/content'),
+        tile('Báo cáo', 'Phản hồi từ người học', AppColors.warning, Icons.flag,
+            '/admin/reports'),
+        tile('Thành tích', 'Huy hiệu và điều kiện', Colors.purple,
+            Icons.emoji_events, '/admin/achievements'),
+        tile('Giao dịch', 'Lịch sử thanh toán', AppColors.info,
+            Icons.receipt_long, '/admin/transactions'),
+        tile('Thống kê', 'Hoạt động hệ thống', AppColors.error, Icons.analytics,
+            '/admin/analytics'),
+      ],
     );
   }
+}
 
-  Widget _buildActivityItem(
-    String title,
-    String subtitle,
-    String time,
-    Color color,
-  ) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: color.withValues(alpha: 0.2),
-          child: Icon(Icons.notification_important, color: color, size: 20),
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(subtitle),
-        trailing: Text(
-          time,
-          style: const TextStyle(
-            fontSize: AppTypography.caption,
-            color: AppColors.textSecondary,
-          ),
-        ),
-      ),
-    );
-  }
+class _Heading extends StatelessWidget {
+  const _Heading(this.text);
 
-  Widget _buildSystemStatus(String name, String status, bool isHealthy) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: ListTile(
-        leading: Icon(
-          isHealthy ? Icons.check_circle : Icons.error,
-          color: isHealthy ? AppColors.success : AppColors.error,
-        ),
-        title: Text(name),
-        subtitle: Text(status),
-        trailing: Container(
-          width: 8,
-          height: 8,
-          decoration: BoxDecoration(
-            color: isHealthy ? AppColors.success : AppColors.error,
-            shape: BoxShape.circle,
-          ),
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.xl, bottom: AppSpacing.md),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: AppTypography.title,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

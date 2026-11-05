@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 import '../models/kanji.dart';
 
@@ -17,7 +18,7 @@ class KanjiMeaningCard extends StatelessWidget {
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.colors.surface,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -35,10 +36,10 @@ class KanjiMeaningCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               kanji.hanviet!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppTypography.headline,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF2C3E50),
+                color: context.colors.textPrimary,
               ),
             ),
             const SizedBox(height: 16),
@@ -48,9 +49,9 @@ class KanjiMeaningCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               kanji.meaning!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppTypography.subtitle,
-                color: Color(0xFF2C3E50),
+                color: context.colors.textPrimary,
               ),
             ),
           ],
@@ -74,14 +75,14 @@ class _Label extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: const Color(0xFFFF6B6B), size: 20),
+        Icon(icon, color: AppColors.kanjiCoral, size: 20),
         const SizedBox(width: 8),
         Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: AppTypography.bodySmall,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF6C757D),
+            color: context.colors.textSecondary,
           ),
         ),
       ],

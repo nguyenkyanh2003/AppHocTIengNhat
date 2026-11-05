@@ -12,6 +12,8 @@ import '../widgets/streak_hero_card.dart';
 import '../widgets/streak_settings_sheet.dart';
 import '../widgets/xp_history_card.dart';
 import '../widgets/xp_level_card.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../models/user_streak.dart';
 
 /// Chuỗi ngày, mục tiêu hôm nay, băng bảo vệ, cấp độ và lịch sử XP.
 class StreakScreen extends StatefulWidget {
@@ -34,7 +36,8 @@ class _StreakScreenState extends State<StreakScreen> {
 
   Future<void> _loadData() async {
     final streak = context.read<StreakProvider>();
-    await Future.wait([streak.loadStreak(), streak.loadXPHistory(), streak.loadSettings()]);
+    await Future.wait(
+        [streak.loadStreak(), streak.loadXPHistory(), streak.loadSettings()]);
   }
 
   @override
@@ -97,7 +100,13 @@ class _StreakScreenState extends State<StreakScreen> {
                   AppGap.md,
                   XpLevelCard(streak: streak),
                   AppGap.md,
-                  XpHistoryCard(history: provider.xpHistory),
+                  AsyncView<List<XPHistory>>(
+                    state: provider.xpHistoryState,
+                    compact: true,
+                    onRetry: provider.loadXPHistory,
+                    builder: (context, history) =>
+                        XpHistoryCard(history: history),
+                  ),
                 ],
               );
             },
@@ -113,19 +122,22 @@ class _LoadError extends StatelessWidget {
 
   final Future<void> Function() onRetry;
 
+  /// Vẫn cuộn được để kéo xuống tải lại như khi có dữ liệu.
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const AlwaysScrollableScrollPhysics(),
-      padding: AppSpacing.page,
-      children: [
-        AppGap.xl,
-        const Icon(Icons.cloud_off_outlined, size: 48, color: AppColors.textDisabled),
-        AppGap.md,
-        const Text('Không tải được dữ liệu chuỗi ngày.', textAlign: TextAlign.center),
-        AppGap.md,
-        Center(child: FilledButton(onPressed: onRetry, child: const Text('Thử lại'))),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) => SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight),
+          child: Center(
+            child: ErrorStateView(
+              message: 'Không tải được dữ liệu chuỗi ngày.',
+              onRetry: onRetry,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

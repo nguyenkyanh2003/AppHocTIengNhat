@@ -31,7 +31,7 @@ class DetailSection extends StatelessWidget {
         borderRadius: AppRadius.lgAll,
         boxShadow: [
           BoxShadow(
-            color: AppColors.textPrimary.withValues(alpha: 0.06),
+            color: context.colors.textPrimary.withValues(alpha: 0.06),
             blurRadius: AppSpacing.xl,
             offset: const Offset(0, AppSpacing.sm),
           ),
@@ -45,7 +45,7 @@ class DetailSection extends StatelessWidget {
             Row(
               children: [
                 if (icon != null) ...[
-                  Icon(icon, size: AppSpacing.xl, color: AppColors.primary),
+                  Icon(icon, size: AppSpacing.xl, color: context.colors.primary),
                   AppGap.sm,
                 ],
                 Expanded(

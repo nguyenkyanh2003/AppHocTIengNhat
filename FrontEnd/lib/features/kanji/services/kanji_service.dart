@@ -13,71 +13,59 @@ class KanjiService {
     int limit = 20,
     String? level,
   }) async {
-    try {
-      List<String> params = [];
-      params.add('page=$page');
-      params.add('limit=$limit');
-      if (level != null && level.isNotEmpty) {
-        params.add('capDo=$level'); // Backend sử dụng capDo
-      }
-
-      String queryString = params.join('&');
-      final dynamic response =
-          await _apiClient.get('/kanji?$queryString', cache: true);
-
-      if (response is Map<String, dynamic>) {
-        return {
-          'kanjis': (response['data'] as List)
-              .map((json) => Kanji.fromJson(json))
-              .toList(),
-          'total': response['totalItems'] ?? 0,
-          'page': response['currentPage'] ?? page,
-          'totalPages': response['totalPages'] ?? 1,
-        };
-      }
-
-      return {
-        'kanjis': [],
-        'total': 0,
-        'page': page,
-        'totalPages': 1,
-      };
-    } catch (e) {
-      throw Exception('Không thể tải danh sách Kanji: $e');
+    List<String> params = [];
+    params.add('page=$page');
+    params.add('limit=$limit');
+    if (level != null && level.isNotEmpty) {
+      params.add('capDo=$level'); // Backend sử dụng capDo
     }
+
+    String queryString = params.join('&');
+    final dynamic response =
+        await _apiClient.get('/kanji?$queryString', cache: true);
+
+    if (response is Map<String, dynamic>) {
+      return {
+        'kanjis': (response['data'] as List)
+            .map((json) => Kanji.fromJson(json))
+            .toList(),
+        'total': response['totalItems'] ?? 0,
+        'page': response['currentPage'] ?? page,
+        'totalPages': response['totalPages'] ?? 1,
+      };
+    }
+
+    return {
+      'kanjis': [],
+      'total': 0,
+      'page': page,
+      'totalPages': 1,
+    };
   }
 
   // Tìm kiếm kanji
   Future<List<Kanji>> searchKanjis(String query) async {
-    try {
-      final dynamic response =
-          await _apiClient.get('/kanji/search?keyword=$query', cache: true);
-      // Backend trả về array trực tiếp, không có 'data' wrapper
-      if (response is List) {
-        return response
-            .map((json) => Kanji.fromJson(json as Map<String, dynamic>))
-            .toList();
-      }
-      return [];
-    } catch (e) {
-      throw Exception('Không thể tìm kiếm Kanji: $e');
+    final dynamic response =
+        await _apiClient.get('/kanji/search?keyword=$query', cache: true);
+    // Backend trả về array trực tiếp, không có 'data' wrapper
+    if (response is List) {
+      return response
+          .map((json) => Kanji.fromJson(json as Map<String, dynamic>))
+          .toList();
     }
+    return [];
   }
 
   // Lấy kanji theo level
   Future<List<Kanji>> getKanjisByLevel(String level) async {
-    try {
-      final dynamic response =
-          await _apiClient.get('/kanji/level/$level', cache: true);
-      if (response is Map<String, dynamic> && response['data'] != null) {
-        return (response['data'] as List)
-            .map((json) => Kanji.fromJson(json))
-            .toList();
-      }
-      return [];
-    } catch (e) {
-      throw Exception('Không thể tải Kanji theo cấp độ: $e');
+    final dynamic response =
+        await _apiClient.get('/kanji/level/$level', cache: true);
+    if (response is Map<String, dynamic> && response['data'] != null) {
+      return (response['data'] as List)
+          .map((json) => Kanji.fromJson(json))
+          .toList();
     }
+    return [];
   }
 
   /// Chi tiết một chữ kèm thẻ ôn của người đang xem.
@@ -94,7 +82,8 @@ class KanjiService {
   /// vẫn một thẻ). Không cộng XP — XP đến từ các lượt ôn.
   Future<SrsProgress> addToReview(String id) async {
     final response = await _apiClient.post('/kanji/$id/mark-learned', const {});
-    return SrsProgress.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+    return SrsProgress.fromJson(
+        Map<String, dynamic>.from(response['data'] as Map));
   }
 
   /// Gỡ chữ khỏi lịch ôn cùng toàn bộ tiến độ ôn của nó.
@@ -104,40 +93,31 @@ class KanjiService {
 
   // Lấy kanji theo bài học
   Future<List<Kanji>> getKanjisByLesson(String lessonId) async {
-    try {
-      final dynamic response =
-          await _apiClient.get('/kanji/lesson/$lessonId', cache: true);
-      if (response is Map<String, dynamic> && response['data'] != null) {
-        return (response['data'] as List)
-            .map((json) => Kanji.fromJson(json))
-            .toList();
-      }
-      return [];
-    } catch (e) {
-      throw Exception('Không thể tải Kanji theo bài học: $e');
+    final dynamic response =
+        await _apiClient.get('/kanji/lesson/$lessonId', cache: true);
+    if (response is Map<String, dynamic> && response['data'] != null) {
+      return (response['data'] as List)
+          .map((json) => Kanji.fromJson(json))
+          .toList();
     }
+    return [];
   }
 
   // Lấy kanji ngẫu nhiên để luyện tập
   Future<List<Kanji>> getRandomKanjis({int count = 10, String? level}) async {
-    try {
-      List<String> params = [];
-      params.add('count=$count');
-      if (level != null && level.isNotEmpty) {
-        params.add('level=$level');
-      }
-
-      String queryString = params.join('&');
-      final dynamic response =
-          await _apiClient.get('/kanji/random?$queryString');
-      if (response is Map<String, dynamic> && response['data'] != null) {
-        return (response['data'] as List)
-            .map((json) => Kanji.fromJson(json))
-            .toList();
-      }
-      return [];
-    } catch (e) {
-      throw Exception('Không thể tải Kanji ngẫu nhiên: $e');
+    List<String> params = [];
+    params.add('count=$count');
+    if (level != null && level.isNotEmpty) {
+      params.add('level=$level');
     }
+
+    String queryString = params.join('&');
+    final dynamic response = await _apiClient.get('/kanji/random?$queryString');
+    if (response is Map<String, dynamic> && response['data'] != null) {
+      return (response['data'] as List)
+          .map((json) => Kanji.fromJson(json))
+          .toList();
+    }
+    return [];
   }
 }

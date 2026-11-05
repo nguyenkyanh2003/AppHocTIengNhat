@@ -42,7 +42,7 @@ class _SectionHeader extends StatelessWidget {
       padding: const EdgeInsets.only(top: AppSpacing.lg, bottom: AppSpacing.xs),
       child: Row(
         children: [
-          Icon(type.icon, size: 18, color: type.color),
+          Icon(type.icon, size: 18, color: context.colors.readable(type.color)),
           const SizedBox(width: AppSpacing.sm),
           Text(type.label, style: Theme.of(context).textTheme.titleSmall),
         ],
@@ -73,7 +73,7 @@ class SearchResultTile extends StatelessWidget {
         onTap: onTap,
         leading: CircleAvatar(
           backgroundColor: result.type.color.withValues(alpha: 0.15),
-          child: Icon(result.type.icon, color: result.type.color, size: 20),
+          child: Icon(result.type.icon, color: context.colors.readable(result.type.color), size: 20),
         ),
         title: Text(result.title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: details.isEmpty ? null : Text(details, maxLines: 2, overflow: TextOverflow.ellipsis),

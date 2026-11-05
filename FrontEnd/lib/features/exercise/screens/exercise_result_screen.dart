@@ -3,10 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/exercise_provider.dart';
 import '../../../app/theme/app_tokens.dart';
-import '../models/exercise.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
+import '../widgets/exercise_result_card.dart';
+import '../widgets/exercise_answer_review.dart';
+import '../widgets/exercise_result_unavailable.dart';
 
 /// Kết quả một lần làm bài.
 ///
@@ -64,7 +66,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
           return AppScaffold(
             title: 'Kết quả',
             body: ContentWidthLimit(
-              child: _ResultUnavailable(onRetry: _ensureLoaded),
+              child: ExerciseResultUnavailable(onRetry: _ensureLoaded),
             ),
           );
         }
@@ -83,7 +85,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                   end: Alignment.bottomCenter,
                   colors: [
                     isPassed ? AppColors.success : AppColors.error,
-                    Colors.white,
+                    context.colors.background,
                   ],
                 ),
               ),
@@ -96,15 +98,15 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                         padding: const EdgeInsets.all(20),
                         child: Column(
                           children: [
-                            _buildResultCard(
-                              isPassed,
-                              score,
-                              correctCount,
-                              totalQuestions,
-                              result.timeSpent,
-                            ),
+                            ExerciseResultCard(
+                                isPassed: isPassed,
+                                score: score,
+                                correctCount: correctCount,
+                                totalQuestions: totalQuestions,
+                                timeSpent: result.timeSpent),
                             const SizedBox(height: 24),
-                            _buildAnswerReview(exercise, result),
+                            ExerciseAnswerReview(
+                                exercise: exercise, result: result),
                             const SizedBox(height: 24),
                             _buildActionButtons(context),
                           ],
@@ -127,382 +129,19 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.close, color: Colors.black87),
+            icon: Icon(Icons.close, color: context.colors.textPrimary),
             onPressed: () {
               context.go('/home');
             },
           ),
-          const Text(
+          Text(
             'Kết quả làm bài',
             style: TextStyle(
               fontSize: AppTypography.title,
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              color: context.colors.textPrimary,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildResultCard(
-    bool isPassed,
-    double score,
-    int correctCount,
-    int totalQuestions,
-    int timeSpent,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: isPassed
-              ? [AppColors.success, AppColors.success]
-              : [AppColors.error, AppColors.error],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color:
-                (isPassed ? AppColors.success : AppColors.error).withValues(alpha: 0.3),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(
-            isPassed ? Icons.emoji_events : Icons.refresh,
-            color: Colors.white,
-            size: 80,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            isPassed ? 'Chúc mừng! Bạn đã đạt' : 'Chưa đạt',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: AppTypography.headline,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '${score.toStringAsFixed(0)} điểm',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildStatItem(
-                  Icons.check_circle,
-                  'Đúng',
-                  '$correctCount',
-                ),
-                Container(width: 1, height: 40, color: Colors.white30),
-                _buildStatItem(
-                  Icons.cancel,
-                  'Sai',
-                  '${totalQuestions - correctCount}',
-                ),
-                Container(width: 1, height: 40, color: Colors.white30),
-                _buildStatItem(
-                  Icons.timer,
-                  'Thời gian',
-                  _formatTime(timeSpent),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatItem(IconData icon, String label, String value) {
-    return Column(
-      children: [
-        Icon(icon, color: Colors.white, size: 24),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: AppTypography.subtitle,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white70,
-            fontSize: AppTypography.caption,
-          ),
-        ),
-      ],
-    );
-  }
-
-  String _formatTime(int seconds) {
-    final minutes = seconds ~/ 60;
-    final secs = seconds % 60;
-    return '$minutes:${secs.toString().padLeft(2, '0')}';
-  }
-
-  Widget _buildAnswerReview(Exercise exercise, ExerciseResult result) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.textSecondary.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              Icon(Icons.article, color: AppColors.primary),
-              SizedBox(width: 8),
-              Text(
-                'Chi tiết đáp án',
-                style: TextStyle(
-                  fontSize: AppTypography.subtitle,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          ...exercise.questions.asMap().entries.map((entry) {
-            final index = entry.key;
-            final question = entry.value;
-            final userAnswer = result.answers.firstWhere(
-              (ua) => ua.questionId == question.id,
-              orElse: () => UserAnswer(
-                questionId: question.id,
-                answerId: '',
-                isCorrect: false,
-              ),
-            );
-
-            return _buildQuestionReview(
-              index + 1,
-              question,
-              userAnswer,
-            );
-          }).toList(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuestionReview(
-    int number,
-    Question question,
-    UserAnswer userAnswer,
-  ) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: userAnswer.isCorrect ? AppColors.success : AppColors.error,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: userAnswer.isCorrect
-              ? AppColors.success
-              : AppColors.error,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  color: userAnswer.isCorrect ? AppColors.success : AppColors.error,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    '$number',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  question.content,
-                  style: const TextStyle(
-                    fontSize: AppTypography.body,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Icon(
-                userAnswer.isCorrect ? Icons.check_circle : Icons.cancel,
-                color: userAnswer.isCorrect ? AppColors.success : AppColors.error,
-                size: 28,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          ...question.answers.map((answer) {
-            final isUserAnswer = answer.id == userAnswer.answerId;
-            final isCorrectAnswer =
-                answer.id == (userAnswer.correctAnswerId ?? '');
-
-            return Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: isCorrectAnswer
-                    ? AppColors.success
-                    : (isUserAnswer && !isCorrectAnswer)
-                        ? AppColors.error
-                        : Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: isCorrectAnswer
-                      ? AppColors.success
-                      : (isUserAnswer && !isCorrectAnswer)
-                          ? AppColors.error
-                          : AppColors.border,
-                  width: isCorrectAnswer || isUserAnswer ? 2 : 1,
-                ),
-              ),
-              child: Row(
-                children: [
-                  // Show check mark for correct answer, X mark for wrong selected answer
-                  if (isCorrectAnswer)
-                    Container(
-                      width: 24,
-                      height: 24,
-                      decoration: const BoxDecoration(
-                        color: AppColors.success,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.check,
-                          color: Colors.white, size: 16),
-                    )
-                  else if (isUserAnswer && !isCorrectAnswer)
-                    Container(
-                      width: 24,
-                      height: 24,
-                      decoration: const BoxDecoration(
-                        color: AppColors.error,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.close,
-                          color: Colors.white, size: 16),
-                    )
-                  else
-                    const SizedBox(width: 24),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      answer.content,
-                      style: TextStyle(
-                        fontSize: AppTypography.bodySmall,
-                        fontWeight: isCorrectAnswer || isUserAnswer
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: isCorrectAnswer
-                            ? AppColors.success
-                            : (isUserAnswer && !isCorrectAnswer)
-                                ? AppColors.error
-                                : Colors.black87,
-                      ),
-                    ),
-                  ),
-                  // Add label for correct/wrong answer
-                  if (isCorrectAnswer)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: AppColors.success,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Text(
-                        'Đúng',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: AppTypography.caption,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  else if (isUserAnswer && !isCorrectAnswer)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: AppColors.error,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Text(
-                        'Sai',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: AppTypography.caption,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            );
-          }).toList(),
-          if (question.explanation != null && question.explanation!.isNotEmpty)
-            Container(
-              margin: const EdgeInsets.only(top: 8),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: AppColors.primaryLight,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(Icons.lightbulb, color: AppColors.primaryDark, size: 20),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      question.explanation!,
-                      style: const TextStyle(
-                        fontSize: AppTypography.caption,
-                        color: AppColors.primaryDark,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
         ],
       ),
     );
@@ -543,8 +182,8 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
             icon: const Icon(Icons.list),
             label: const Text('Danh sách bài tập'),
             style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.primary,
-              side: const BorderSide(color: AppColors.primary, width: 2),
+              foregroundColor: context.colors.primary,
+              side: BorderSide(color: context.colors.primary, width: 2),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -552,61 +191,6 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
           ),
         ),
       ],
-    );
-  }
-}
-
-/// Trạng thái khi không lấy được kết quả — thay cho một dòng chữ cụt.
-class _ResultUnavailable extends StatelessWidget {
-  const _ResultUnavailable({required this.onRetry});
-
-  final Future<void> Function() onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ContentPane(
-        maxWidth: AppContentWidth.form,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Icons.assignment_late_outlined,
-              size: 64,
-              color: AppColors.textSecondary,
-            ),
-            AppGap.lg,
-            Text(
-              'Không mở được kết quả này',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppGap.sm,
-            const Text(
-              'Kết quả có thể đã bị xoá, hoặc không thuộc về tài khoản này.',
-              textAlign: TextAlign.center,
-            ),
-            AppGap.xl,
-            Wrap(
-              spacing: AppSpacing.md,
-              runSpacing: AppSpacing.sm,
-              alignment: WrapAlignment.center,
-              children: [
-                OutlinedButton.icon(
-                  onPressed: onRetry,
-                  icon: const Icon(Icons.refresh),
-                  label: const Text('Thử lại'),
-                ),
-                FilledButton.icon(
-                  onPressed: () => context.go('/exercise-history'),
-                  icon: const Icon(Icons.history),
-                  label: const Text('Lịch sử làm bài'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

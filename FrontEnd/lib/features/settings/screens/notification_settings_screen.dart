@@ -5,6 +5,8 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({super.key});
@@ -22,6 +24,7 @@ class _NotificationSettingsScreenState
   bool _vibrateEnabled = true;
   bool _loading = true;
   bool _saving = false;
+  String? _loadError;
 
   @override
   void initState() {
@@ -30,6 +33,10 @@ class _NotificationSettingsScreenState
   }
 
   Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _loadError = null;
+    });
     try {
       final settings = await _service.getSettings();
       if (!mounted) return;
@@ -39,7 +46,7 @@ class _NotificationSettingsScreenState
         _vibrateEnabled = settings['vibrateEnabled'] ?? true;
       });
     } catch (error) {
-      if (mounted) _message('Không thể tải cài đặt: $error', false);
+      if (mounted) setState(() => _loadError = userMessageOf(error));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -57,7 +64,9 @@ class _NotificationSettingsScreenState
       });
       if (mounted) _message('Đã lưu cài đặt thông báo.', true);
     } catch (error) {
-      if (mounted) _message('Không thể lưu cài đặt: $error', false);
+      if (mounted) {
+        _message('Không thể lưu cài đặt: ${userMessageOf(error)}', false);
+      }
     } finally {
       if (mounted) setState(() => _saving = false);
     }
@@ -68,8 +77,16 @@ class _NotificationSettingsScreenState
     return AppScaffold(
       title: 'Cài đặt thông báo',
       body: ContentWidthLimit(
-        child: _loading
-            ? const Center(child: CircularProgressIndicator())
+        child: _loading || _loadError != null
+            ? AsyncView<bool>(
+                state: ViewState.detail(
+                  isLoading: _loading,
+                  error: _loadError,
+                  value: true,
+                ),
+                onRetry: _load,
+                builder: (context, _) => const SizedBox.shrink(),
+              )
             : ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
@@ -86,8 +103,9 @@ class _NotificationSettingsScreenState
                               ? Icons.notifications_active
                               : Icons.notifications_off_outlined,
                           size: 52,
-                          color:
-                              _notificationsEnabled ? AppColors.primary : AppColors.textSecondary,
+                          color: _notificationsEnabled
+                              ? context.colors.primary
+                              : context.colors.textSecondary,
                         ),
                         const SizedBox(height: 12),
                         Text(
@@ -155,10 +173,10 @@ class _NotificationSettingsScreenState
                     label: Text(_saving ? 'Đang lưu...' : 'Lưu cài đặt'),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     'Ứng dụng chỉ hiển thị các tùy chọn đã được backend lưu và hỗ trợ. Lịch yên tĩnh, SMS và email định kỳ không nằm trong phạm vi phiên bản này.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.textSecondary),
+                    style: TextStyle(color: context.colors.textSecondary),
                   ),
                 ],
               ),
@@ -170,7 +188,8 @@ class _NotificationSettingsScreenState
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(text),
-        backgroundColor: success ? AppColors.success : AppColors.error,
+        backgroundColor:
+            success ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

@@ -29,7 +29,7 @@ class StudyIntroStep extends StatelessWidget {
           CircleAvatar(
             radius: 36,
             backgroundColor: AppColors.lesson.withValues(alpha: 0.12),
-            child: Icon(situationIcon(situation), size: 36, color: AppColors.lesson),
+            child: Icon(situationIcon(situation), size: 36, color: context.colors.readable(AppColors.lesson)),
           ),
         AppGap.lg,
         Wrap(
@@ -43,11 +43,11 @@ class StudyIntroStep extends StatelessWidget {
         AppGap.sm,
         Text(
           lesson.displayTitle,
-          style: AppTypography.heroDisplay(size: AppTypography.display, color: AppColors.textPrimary),
+          style: AppTypography.heroDisplay(size: AppTypography.display, color: context.colors.textPrimary),
         ),
         if (lesson.description != null) ...[
           AppGap.sm,
-          Text(lesson.description!, style: textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary)),
+          Text(lesson.description!, style: textTheme.bodyLarge?.copyWith(color: context.colors.textSecondary)),
         ],
         AppGap.lg,
         LessonContentChips(detail: detail),

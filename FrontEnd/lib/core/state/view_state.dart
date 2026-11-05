@@ -1,5 +1,13 @@
 import '../network/api_client.dart';
 
+/// Câu báo lỗi cho người dùng từ một exception bất kỳ.
+///
+/// Lỗi của `ApiClient` đã là câu đọc được; lỗi khác (đọc sai JSON, lỗi lập trình)
+/// là chi tiết kỹ thuật nên không đưa lên giao diện.
+String userMessageOf(Object error) => error is ApiException
+    ? error.message
+    : 'Đã có lỗi xảy ra. Vui lòng thử lại.';
+
 /// Trạng thái của một dữ liệu bất đồng bộ trên màn hình.
 ///
 /// Thay cho bộ ba `_isLoading` / `_error` / `_data` mà mỗi provider tự quản.
@@ -13,6 +21,38 @@ sealed class ViewState<T> {
   const factory ViewState.loading() = ViewLoading<T>;
   const factory ViewState.data(T value) = ViewData<T>;
   const factory ViewState.failure(String message) = ViewFailure<T>;
+
+  /// Cầu nối cho provider còn giữ bộ ba `isLoading` / `error` / dữ liệu, để màn
+  /// hình vẫn đi qua `AsyncView`.
+  ///
+  /// Đã có nội dung thì giữ nguyên nội dung kể cả khi đang tải lại hoặc lần tải
+  /// lại lỗi: mất mạng một lần không được xoá trắng màn hình.
+  factory ViewState.fromLegacy({
+    required bool isLoading,
+    required String? error,
+    required T? value,
+    bool isEmpty = false,
+  }) {
+    if (value != null && !isEmpty) return ViewData<T>(value);
+    if (isLoading) return ViewLoading<T>();
+    if (error != null) return ViewFailure<T>(error);
+    return value != null ? ViewData<T>(value) : ViewIdle<T>();
+  }
+
+  /// Như [ViewState.fromLegacy] nhưng cho màn chi tiết: đang tải hoặc lỗi thì không
+  /// giữ bản cũ, vì bản cũ có thể là của mục khác.
+  ///
+  /// Chưa có gì mà cũng không lỗi là "chưa tải xong" (hiện vòng xoay), nên provider
+  /// phải đặt `error` khi server không trả về mục đó.
+  factory ViewState.detail({
+    required bool isLoading,
+    required String? error,
+    required T? value,
+  }) {
+    if (isLoading) return ViewLoading<T>();
+    if (error != null) return ViewFailure<T>(error);
+    return value != null ? ViewData<T>(value) : ViewIdle<T>();
+  }
 
   bool get isLoading => this is ViewLoading<T>;
   bool get hasData => this is ViewData<T>;
@@ -34,10 +74,8 @@ sealed class ViewState<T> {
   static Future<ViewState<T>> guard<T>(Future<T> Function() task) async {
     try {
       return ViewData<T>(await task());
-    } on ApiException catch (error) {
-      return ViewFailure<T>(error.message);
-    } catch (_) {
-      return ViewFailure<T>('Đã có lỗi xảy ra. Vui lòng thử lại.');
+    } catch (error) {
+      return ViewFailure<T>(userMessageOf(error));
     }
   }
 }

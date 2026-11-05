@@ -40,6 +40,7 @@ class AppDestination {
     required this.icon,
     required this.selectedIcon,
     this.entries = const [],
+    this.relatedPaths = const [],
     this.adminOnly = false,
     this.footer,
   });
@@ -49,6 +50,10 @@ class AppDestination {
   final IconData icon;
   final IconData selectedIcon;
   final List<AppNavEntry> entries;
+
+  /// Màn con không nằm trong [entries] nhưng vẫn thuộc đích đến này, để thanh điều
+  /// hướng tô sáng đúng mục khi đang ở đó.
+  final List<String> relatedPaths;
   final bool adminOnly;
 
   /// Ô hành động đặt sau mọi mục của trang hub (ví dụ Đăng xuất).
@@ -79,6 +84,7 @@ abstract final class AppNavigation {
         label: l10n.lessons,
         icon: Icons.school_outlined,
         selectedIcon: Icons.school,
+        relatedPaths: const ['/exercise-history', '/jlpt-practice'],
         entries: const [
           AppNavEntry(
             path: '/lessons',
@@ -143,6 +149,7 @@ abstract final class AppNavigation {
         label: l10n.review,
         icon: Icons.style_outlined,
         selectedIcon: Icons.style,
+        relatedPaths: const ['/leaderboard', '/friend-leaderboard'],
         entries: const [
           AppNavEntry(
             path: '/srs',
@@ -194,6 +201,7 @@ abstract final class AppNavigation {
         label: l10n.progress,
         icon: Icons.insights_outlined,
         selectedIcon: Icons.insights,
+        relatedPaths: const ['/learning-history', '/statistics', '/goals'],
       ),
       AppDestination(
         path: '/account',
@@ -214,7 +222,7 @@ abstract final class AppNavigation {
             label: 'Cài đặt',
             subtitle: 'Ngôn ngữ, giao diện',
             icon: Icons.settings_outlined,
-            color: AppColors.textSecondary,
+            color: AppColors.neutral,
           ),
           AppNavEntry(
             path: '/notifications',
@@ -235,7 +243,7 @@ abstract final class AppNavigation {
             label: 'Ngoại tuyến',
             subtitle: 'Dữ liệu đã tải sẵn',
             icon: Icons.cloud_off_outlined,
-            color: AppColors.textSecondary,
+            color: AppColors.neutral,
           ),
           AppNavEntry(
             path: '/export',
@@ -263,14 +271,14 @@ abstract final class AppNavigation {
             label: 'Trợ giúp',
             subtitle: 'Câu hỏi thường gặp',
             icon: Icons.help_outline,
-            color: AppColors.textSecondary,
+            color: AppColors.neutral,
           ),
           AppNavEntry(
             path: '/change-password',
             label: 'Đổi mật khẩu',
             subtitle: 'Bảo mật tài khoản',
             icon: Icons.lock_outline,
-            color: AppColors.textSecondary,
+            color: AppColors.neutral,
           ),
         ],
       ),
@@ -363,6 +371,7 @@ abstract final class AppNavigation {
       for (final path in [
         destination.path,
         for (final entry in destination.entries) entry.path,
+        ...destination.relatedPaths,
       ]) {
         if (_isUnder(location, path) && path.length > bestLength) {
           best = i;

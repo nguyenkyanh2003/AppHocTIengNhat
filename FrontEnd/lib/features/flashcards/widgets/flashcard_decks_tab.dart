@@ -89,7 +89,7 @@ class _DeckCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.style, color: AppColors.vocabulary),
+              Icon(Icons.style, color: context.colors.primary),
               const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
@@ -127,14 +127,16 @@ class _DeckCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.play_circle_outline,
                 size: 16,
-                color: AppColors.textSecondary,
+                color: context.colors.textSecondary,
               ),
               const SizedBox(width: AppSpacing.xs),
-              Text('Đã học ${deck.studyCount} lần',
-                  style: textTheme.labelMedium),
+              Expanded(
+                child: Text('Đã học ${deck.studyCount} lần',
+                    style: textTheme.labelMedium),
+              ),
             ],
           ),
         ],

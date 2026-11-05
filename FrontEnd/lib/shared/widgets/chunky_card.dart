@@ -59,8 +59,8 @@ class _ChunkyCardState extends State<ChunkyCard> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final neutral = widget.color == null;
     final baseColor = widget.color ??
-        (isDark ? AppColors.darkSurface : AppColors.surface);
-    final borderColor = isDark ? AppColors.darkBorder : AppColors.border;
+        (isDark ? AppColors.darkSurface : context.colors.surface);
+    final borderColor = isDark ? AppColors.darkBorder : context.colors.border;
 
     // Thẻ trung tính trên nền sáng: mép trùng màu viền cho ra nét "đồ chơi"
     // của mockup. Nền tối nuốt mép nhạt, nên ở đó mép phải thẫm hẳn xuống.

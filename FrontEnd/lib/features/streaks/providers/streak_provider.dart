@@ -8,24 +8,41 @@ import '../models/user_streak.dart';
 import '../services/streak_service.dart';
 
 class StreakProvider with ChangeNotifier {
-  StreakProvider({StreakService? service}) : _streakService = service ?? StreakService();
+  StreakProvider({StreakService? service})
+      : _streakService = service ?? StreakService();
 
   final StreakService _streakService;
 
   UserStreak? _currentStreak;
-  List<XPHistory> _xpHistory = [];
+  ViewState<List<XPHistory>> _xpHistoryState = const ViewState.idle();
   List<LeaderboardEntry> _leaderboard = [];
   int? _userRank;
   bool _isLoading = false;
   String? _error;
+  bool _isLoadingLeaderboard = false;
+  String? _leaderboardError;
   ViewState<StreakSettings> _settings = const ViewState.idle();
 
   UserStreak? get currentStreak => _currentStreak;
-  List<XPHistory> get xpHistory => _xpHistory;
+  List<XPHistory> get xpHistory => _xpHistoryState.valueOrNull ?? const [];
+
+  /// Lịch sử XP kèm trạng thái, cho màn phải phân biệt rỗng với lỗi.
+  ViewState<List<XPHistory>> get xpHistoryState => _xpHistoryState;
   List<LeaderboardEntry> get leaderboard => _leaderboard;
   int? get userRank => _userRank;
   bool get isLoading => _isLoading;
   String? get error => _error;
+
+  /// Tóm tắt streak kèm trạng thái, cho khối phải phân biệt "chưa tải được" với số 0.
+  ViewState<UserStreak> get streakState => ViewState.fromLegacy(
+        isLoading: _isLoading,
+        error: _error,
+        value: _currentStreak,
+      );
+
+  /// Bảng xếp hạng có trạng thái riêng: lỗi của nó không được làm hỏng màn chuỗi ngày.
+  bool get isLoadingLeaderboard => _isLoadingLeaderboard;
+  String? get leaderboardError => _leaderboardError;
 
   /// Cài đặt mục tiêu ngày và nhắc học.
   ViewState<StreakSettings> get settings => _settings;
@@ -43,7 +60,7 @@ class StreakProvider with ChangeNotifier {
       _currentStreak = await _streakService.getMyStreak();
       return true;
     } catch (e) {
-      _error = 'Không thể tải dữ liệu streak';
+      _error = userMessageOf(e);
       debugPrint('Lỗi khi tải streak: $e');
       return false;
     } finally {
@@ -91,20 +108,21 @@ class StreakProvider with ChangeNotifier {
   // Không còn `addXP`: XP chỉ đến từ server sau khi chấm bài. Muốn số liệu
   // mới nhất thì gọi `loadStreak()`.
 
-  // Tải lịch sử XP
+  /// Tải lịch sử XP. Lần tải lại hỏng giữ bản đang có.
   Future<void> loadXPHistory() async {
-    try {
-      _xpHistory = await _streakService.getXPHistory();
+    if (!_xpHistoryState.hasData) {
+      _xpHistoryState = const ViewState.loading();
       notifyListeners();
-    } catch (e) {
-      debugPrint('Lỗi khi tải lịch sử XP: $e');
     }
+    final result = await ViewState.guard(_streakService.getXPHistory);
+    if (result.hasData || !_xpHistoryState.hasData) _xpHistoryState = result;
+    notifyListeners();
   }
 
   // Tải bảng xếp hạng
   Future<void> loadLeaderboard({String period = 'all', int limit = 50}) async {
-    _isLoading = true;
-    _error = null;
+    _isLoadingLeaderboard = true;
+    _leaderboardError = null;
     notifyListeners();
 
     try {
@@ -122,13 +140,12 @@ class StreakProvider with ChangeNotifier {
         }
 
         _userRank = result['user_rank'];
-        _error = null;
       }
     } catch (e) {
-      _error = 'Không thể tải bảng xếp hạng';
+      _leaderboardError = userMessageOf(e);
       debugPrint('Lỗi khi tải bảng xếp hạng: $e');
     } finally {
-      _isLoading = false;
+      _isLoadingLeaderboard = false;
       notifyListeners();
     }
   }
@@ -144,11 +161,13 @@ class StreakProvider with ChangeNotifier {
   /// Xoá mọi trạng thái, dùng khi đăng xuất.
   void clear() {
     _currentStreak = null;
-    _xpHistory = [];
+    _xpHistoryState = const ViewState.idle();
     _leaderboard = [];
     _userRank = null;
     _isLoading = false;
     _error = null;
+    _isLoadingLeaderboard = false;
+    _leaderboardError = null;
     _settings = const ViewState.idle();
     notifyListeners();
   }

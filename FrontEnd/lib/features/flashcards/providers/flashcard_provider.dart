@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/flashcard_deck.dart';
 import '../services/flashcard_service.dart';
+import '../../../core/state/view_state.dart';
 
 class FlashcardProvider extends ChangeNotifier {
   final FlashcardService _flashcardService = FlashcardService();
@@ -59,7 +60,7 @@ class FlashcardProvider extends ChangeNotifier {
       _currentPage = result['currentPage'] as int;
       _error = null;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       _decks = [];
     } finally {
       _isLoading = false;
@@ -78,7 +79,7 @@ class FlashcardProvider extends ChangeNotifier {
       _error = null;
       return _selectedDeck;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       _selectedDeck = null;
       return null;
     } finally {
@@ -115,7 +116,7 @@ class FlashcardProvider extends ChangeNotifier {
       _error = null;
       return newDeck;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       return null;
     } finally {
       _isLoading = false;
@@ -162,7 +163,7 @@ class FlashcardProvider extends ChangeNotifier {
       _error = null;
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       return false;
     } finally {
       _isLoading = false;
@@ -190,7 +191,7 @@ class FlashcardProvider extends ChangeNotifier {
       _error = null;
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       return false;
     } finally {
       _isLoading = false;
@@ -233,7 +234,7 @@ class FlashcardProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -276,7 +277,7 @@ class FlashcardProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -307,7 +308,7 @@ class FlashcardProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }

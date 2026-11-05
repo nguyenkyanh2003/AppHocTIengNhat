@@ -18,6 +18,13 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>Học Tiếng Nhật</title>
+  <script>
+    // Màn chờ theo đúng giao diện đã chọn, để không loé sang chế độ kia trước khi Flutter chạy.
+    try {
+      var savedTheme = JSON.parse(localStorage.getItem('flutter.theme_mode'));
+      if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme;
+    } catch (error) {}
+  </script>
   <link rel="manifest" href="manifest.json">
 
   <style>
@@ -36,6 +43,10 @@
     @media (prefers-color-scheme: dark) {
       html, body { background-color: #121212; }
     }
+
+    /* Lựa chọn trong Cài đặt thắng cài đặt hệ thống (xem đoạn script bên dưới). */
+    html[data-theme="light"], html[data-theme="light"] body { background-color: #F5F5F5; }
+    html[data-theme="dark"], html[data-theme="dark"] body { background-color: #121212; }
 
     #boot {
       position: fixed;

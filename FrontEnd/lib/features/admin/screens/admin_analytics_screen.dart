@@ -6,6 +6,11 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/admin_analytics_chart.dart';
+import '../widgets/admin_level_distribution.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/responsive_grid.dart';
 
 class AdminAnalyticsScreen extends StatefulWidget {
   const AdminAnalyticsScreen({super.key});
@@ -41,11 +46,16 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
         child: Consumer<AdminProvider>(
           builder: (context, provider, _) {
             final analytics = provider.analytics ?? const <String, dynamic>{};
-            if (provider.isLoadingAnalytics && analytics.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (provider.error != null && analytics.isEmpty) {
-              return _errorState(provider.error!);
+            if (analytics.isEmpty) {
+              return AsyncView<Map<String, dynamic>>(
+                state: ViewState.detail(
+                  isLoading: provider.isLoadingAnalytics,
+                  error: provider.error,
+                  value: provider.analytics,
+                ),
+                onRetry: _loadAnalytics,
+                builder: (context, _) => const SizedBox.shrink(),
+              );
             }
             final labels = _strings(analytics['labels']);
             return RefreshIndicator(
@@ -57,35 +67,32 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
                   const SizedBox(height: 20),
                   _metrics(analytics['metrics']),
                   const SizedBox(height: 20),
-                  _chart(
-                    'Người dùng hoạt động',
-                    Icons.people,
-                    AppColors.primary,
-                    labels,
-                    _numbers(analytics['daily_active_users']),
-                  ),
-                  _chart(
-                    'Đăng ký mới',
-                    Icons.person_add,
-                    AppColors.success,
-                    labels,
-                    _numbers(analytics['new_registrations']),
-                  ),
-                  _chart(
-                    'Bài học hoàn thành',
-                    Icons.school,
-                    AppColors.warning,
-                    labels,
-                    _numbers(analytics['lessons_completed']),
-                  ),
-                  _chart(
-                    'Thời gian học (phút)',
-                    Icons.timer,
-                    Colors.purple,
-                    labels,
-                    _numbers(analytics['total_study_time']),
-                  ),
-                  _levelDistribution(analytics['level_distribution']),
+                  AdminAnalyticsChart(
+                      title: 'Người dùng hoạt động',
+                      icon: Icons.people,
+                      color: AppColors.primary,
+                      labels: labels,
+                      values: _numbers(analytics['daily_active_users'])),
+                  AdminAnalyticsChart(
+                      title: 'Đăng ký mới',
+                      icon: Icons.person_add,
+                      color: AppColors.success,
+                      labels: labels,
+                      values: _numbers(analytics['new_registrations'])),
+                  AdminAnalyticsChart(
+                      title: 'Bài học hoàn thành',
+                      icon: Icons.school,
+                      color: AppColors.warning,
+                      labels: labels,
+                      values: _numbers(analytics['lessons_completed'])),
+                  AdminAnalyticsChart(
+                      title: 'Thời gian học (phút)',
+                      icon: Icons.timer,
+                      color: Colors.purple,
+                      labels: labels,
+                      values: _numbers(analytics['total_study_time'])),
+                  AdminLevelDistribution(
+                      rawDistribution: analytics['level_distribution']),
                 ],
               ),
             );
@@ -117,13 +124,8 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
     final values = rawMetrics is Map
         ? Map<String, dynamic>.from(rawMetrics)
         : <String, dynamic>{};
-    return GridView.count(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
-      crossAxisSpacing: 12,
-      childAspectRatio: 1.55,
+    return ResponsiveGrid(
+      minTileWidth: 150,
       children: [
         _metric('Tổng người dùng', values['total_users'], Icons.people,
             AppColors.primary),
@@ -155,157 +157,17 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
           padding: const EdgeInsets.all(14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(icon, color: color),
+              Icon(icon, color: context.colors.readable(color)),
+              const SizedBox(height: AppSpacing.sm),
               Text(
                 '${value ?? 0}',
-                style:
-                    const TextStyle(fontSize: AppTypography.headline, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: AppTypography.headline,
+                    fontWeight: FontWeight.bold),
               ),
-              Text(label, style: const TextStyle(fontSize: AppTypography.caption)),
-            ],
-          ),
-        ),
-      );
-
-  Widget _chart(
-    String title,
-    IconData icon,
-    Color color,
-    List<String> labels,
-    List<num> values,
-  ) {
-    final count = values.length < labels.length ? values.length : labels.length;
-    final maxValue = values.isEmpty
-        ? 1.0
-        : values
-            .fold<num>(0, (max, value) => value > max ? value : max)
-            .toDouble();
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(icon, color: color),
-                const SizedBox(width: 8),
-                Text(title,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
-            const SizedBox(height: 16),
-            if (count == 0)
-              const SizedBox(
-                height: 80,
-                child:
-                    Center(child: Text('Chưa có dữ liệu trong giai đoạn này.')),
-              )
-            else
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                reverse: true,
-                child: SizedBox(
-                  width: count * 46.0,
-                  height: 155,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: List.generate(count, (index) {
-                      final normalized =
-                          maxValue == 0 ? 0.0 : values[index] / maxValue;
-                      return SizedBox(
-                        width: 46,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text('${values[index].round()}',
-                                style: const TextStyle(fontSize: AppTypography.caption)),
-                            const SizedBox(height: 4),
-                            Container(
-                              width: 24,
-                              height: 8 + normalized * 95,
-                              decoration: BoxDecoration(
-                                color: color.withValues(alpha: 0.8),
-                                borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(4),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              _shortDate(labels[index]),
-                              style: const TextStyle(fontSize: AppTypography.caption),
-                            ),
-                          ],
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _levelDistribution(dynamic rawDistribution) {
-    final distribution = rawDistribution is Map
-        ? Map<String, dynamic>.from(rawDistribution)
-        : <String, dynamic>{};
-    final total = distribution.values.fold<num>(
-      0,
-      (sum, value) => sum + ((value as num?) ?? 0),
-    );
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Phân bố trình độ',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 14),
-            if (distribution.isEmpty)
-              const Text('Chưa có dữ liệu trình độ.')
-            else
-              ...distribution.entries.map((entry) {
-                final count = (entry.value as num?) ?? 0;
-                final ratio = total == 0 ? 0.0 : count / total;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 36, child: Text(entry.key)),
-                      Expanded(child: LinearProgressIndicator(value: ratio)),
-                      const SizedBox(width: 10),
-                      Text('${count.round()} (${(ratio * 100).round()}%)'),
-                    ],
-                  ),
-                );
-              }),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _errorState(String message) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.cloud_off, size: 48, color: AppColors.error),
-              const SizedBox(height: 12),
-              Text(message, textAlign: TextAlign.center),
-              TextButton(
-                  onPressed: _loadAnalytics, child: const Text('Thử lại')),
+              Text(label,
+                  style: const TextStyle(fontSize: AppTypography.caption)),
             ],
           ),
         ),
@@ -319,9 +181,4 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
           .map((item) => item is num ? item : num.tryParse('$item') ?? 0)
           .toList()
       : const [];
-
-  String _shortDate(String value) {
-    final date = DateTime.tryParse(value);
-    return date == null ? value : '${date.day}/${date.month}';
-  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
 import 'package:apphoctiengnnhat/features/admin/services/admin_service.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/excel_import_options_dialog.dart';
+import 'package:apphoctiengnnhat/core/network/api_client.dart';
 
 const _lessonId = '507f1f77bcf86cd799439011';
 final _bytes = <int>[1, 2, 3];
@@ -150,7 +151,7 @@ void main() {
 
     test('lỗi API được giữ lại để màn hình hiển thị', () async {
       final service = _FakeAdminService()
-        ..importError = Exception('Dữ liệu gửi lên không hợp lệ.');
+        ..importError = BadRequestException('Dữ liệu gửi lên không hợp lệ.');
       final provider = AdminProvider(adminService: service);
 
       final ok = await provider.importExcel(

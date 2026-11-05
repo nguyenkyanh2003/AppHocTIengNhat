@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+export 'app_theme_colors.dart';
+
 /// Design token của ứng dụng.
 ///
 /// Mọi màu, khoảng cách, bo góc và thời lượng animation đều lấy từ đây. Screen
@@ -19,6 +21,12 @@ abstract final class AppColors {
   static const Color error = Color(0xFFEF4444);
   static const Color warning = Color(0xFFF59E0B);
   static const Color success = Color(0xFF10B981);
+
+  /// Nền đặc mang chữ trắng: bản gốc chỉ đạt 2,5:1 (success), 2,2:1 (warning),
+  /// 3,8:1 (error). Ba bản này đạt từ 4,5:1 trở lên ở cả hai chế độ.
+  static const Color successStrong = Color(0xFF047857);
+  static const Color warningStrong = Color(0xFFB45309);
+  static const Color errorStrong = Color(0xFFDC2626);
   static const Color info = Color(0xFF0EA5E9);
 
   // Bề mặt - chế độ sáng. Thang trung tính ngả xanh để hoà với primary, thay vì
@@ -36,13 +44,22 @@ abstract final class AppColors {
   // Bề mặt - chế độ tối
   static const Color darkBackground = Color(0xFF0F172A);
   static const Color darkSurface = Color(0xFF1E293B);
-  static const Color darkSurfaceVariant = Color(0xFF334155);
+  // Sáng hơn thẻ nhưng còn đủ tối để chữ phụ trên ô nhập liệu đạt 4.5:1.
+  static const Color darkSurfaceVariant = Color(0xFF2A3950);
   static const Color darkBorder = Color(0xFF334155);
 
   // Chữ - chế độ tối
   static const Color darkTextPrimary = Color(0xFFF1F5F9);
   static const Color darkTextSecondary = Color(0xFF94A3B8);
-  static const Color darkTextDisabled = Color(0xFF64748B);
+  static const Color darkTextDisabled = Color(0xFF7C8BA1);
+
+  // Thương hiệu - chế độ tối. `primary` quá tối để làm chữ hay icon trên nền tối
+  // (2.3:1), nên ở đó dùng bản sáng hơn; làm nền nút có chữ trắng thì vẫn giữ.
+  static const Color darkPrimary = Color(0xFFA5B4FC);
+  static const Color darkPrimaryStrong = Color(0xFFC7D2FE);
+  static const Color darkPrimarySoft = Color(0xFF2E2A5C);
+  static const Color darkOnPrimary = Color(0xFF1E1B4B);
+  static const Color darkError = Color(0xFFFCA5A5);
 
   // Màu nhận diện từng mảng nội dung. Cùng một mức bão hoà nên các thẻ đứng
   // cạnh nhau không chọi, khác hẳn bảng Material gốc mỗi màu một cường độ.
@@ -70,6 +87,63 @@ abstract final class AppColors {
   /// Hành động chính của Trang chủ ("Tiếp tục học"). Xanh lá đứng tách khỏi tím
   /// thương hiệu, nên mắt tìm ra ngay việc cần làm tiếp thay vì phải đọc hết.
   static const Color heroAction = Color(0xFF58CC02);
+
+  /// Xám đậm cố định: nền đặc có chữ trắng và màu mặc định của nhãn trạng thái.
+  /// Làm chữ thì đi qua `context.colors.readable`.
+  static const Color neutral = Color(0xFF475569);
+
+  /// Mực đậm cố định, dùng trên nền rực không đổi theo chế độ (cam chuỗi ngày, xanh
+  /// băng) và làm nền khung video.
+  static const Color ink = Color(0xFF0F172A);
+
+  /// Màu riêng của các màn Kanji.
+  static const Color kanjiCoral = Color(0xFFFF6B6B);
+  static const Color kanjiCoralEnd = Color(0xFFFF8E53);
+
+  /// Độ hiếm của huy hiệu; nền đặc có chữ trắng ở cả hai chế độ.
+  static const Color rarityLegendary = Color(0xFFF59E0B);
+  static const Color rarityLegendaryEnd = Color(0xFFD97706);
+  static const Color rarityEpic = Color(0xFF8B5CF6);
+  static const Color rarityEpicEnd = Color(0xFF6D28D9);
+  static const Color rarityRare = Color(0xFF4F46E5);
+  static const Color rarityRareEnd = Color(0xFF4338CA);
+  static const Color rarityCommon = Color(0xFF64748B);
+  static const Color rarityCommonEnd = Color(0xFF475569);
+
+  /// Huy chương ba hạng đầu bảng xếp hạng.
+  static const Color medalGold = Color(0xFFFFD700);
+  static const Color medalGoldEnd = Color(0xFFFFAA00);
+  static const Color medalSilver = Color(0xFFC0C0C0);
+  static const Color medalSilverEnd = Color(0xFF999999);
+  static const Color medalBronze = Color(0xFFCD7F32);
+  static const Color medalBronzeEnd = Color(0xFF8B4513);
+
+  /// Nền đặc của khối chuỗi ngày ở Lịch sử học và nút đăng nhập.
+  static const Color historyHeroStart = Color(0xFF667EEA);
+  static const Color historyHeroEnd = Color(0xFF764BA2);
+  static const Color authButtonEnd = Color(0xFF1565C0);
+
+  /// Bốn mức của lịch hoạt động, ít tới nhiều. Chế độ sáng đậm dần so với ô trống
+  /// sáng màu; chế độ tối sáng dần so với ô trống tối màu.
+  static const List<Color> heatmapLight = [
+    Color(0xFFA7E3BE),
+    Color(0xFF5CC98E),
+    Color(0xFF2A9D66),
+    Color(0xFF14663F),
+  ];
+  static const List<Color> heatmapDark = [
+    Color(0xFF2E7D5B),
+    Color(0xFF34A36F),
+    Color(0xFF4CC98A),
+    Color(0xFF86EFAC),
+  ];
+
+  /// Chữ hoặc icon đặt trên nền đặc [fill]: trắng khi đủ tương phản, không thì
+  /// chữ tối. Màu lục, vàng, cam với chữ trắng chỉ đạt khoảng 2:1.
+  static Color onFill(Color fill) {
+    final light = fill.computeLuminance();
+    return 1.05 / (light + 0.05) >= 4.5 ? Colors.white : ink;
+  }
 
   /// Màu cấp độ JLPT, từ dễ (N5) đến khó (N1).
   static const Map<String, Color> jlptLevels = {

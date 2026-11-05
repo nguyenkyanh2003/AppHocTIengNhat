@@ -12,38 +12,33 @@ class LessonService {
     String? situation,
     String? search,
   }) async {
-    try {
-      final queryParams = {
-        'page': page.toString(),
-        'limit': limit.toString(),
-      };
+    final queryParams = {
+      'page': page.toString(),
+      'limit': limit.toString(),
+    };
 
-      if (level != null && level.isNotEmpty) {
-        queryParams['level'] = level;
-      }
-
-      if (situation != null && situation.isNotEmpty) {
-        queryParams['situation'] = situation;
-      }
-
-      if (search != null && search.isNotEmpty) {
-        queryParams['search'] = search;
-      }
-
-      final endpoint = '/lesson?${Uri(queryParameters: queryParams).query}';
-      final data = await _apiClient.get(endpoint, cache: true);
-
-      return {
-        'totalItems': data['totalItems'] ?? 0,
-        'totalPages': data['totalPages'] ?? 0,
-        'currentPage': data['currentPage'] ?? 1,
-        'lessons': (data['data'] as List)
-            .map((json) => Lesson.fromJson(json))
-            .toList(),
-      };
-    } catch (e) {
-      throw Exception('Lỗi khi tải bài học: $e');
+    if (level != null && level.isNotEmpty) {
+      queryParams['level'] = level;
     }
+
+    if (situation != null && situation.isNotEmpty) {
+      queryParams['situation'] = situation;
+    }
+
+    if (search != null && search.isNotEmpty) {
+      queryParams['search'] = search;
+    }
+
+    final endpoint = '/lesson?${Uri(queryParameters: queryParams).query}';
+    final data = await _apiClient.get(endpoint, cache: true);
+
+    return {
+      'totalItems': data['totalItems'] ?? 0,
+      'totalPages': data['totalPages'] ?? 0,
+      'currentPage': data['currentPage'] ?? 1,
+      'lessons':
+          (data['data'] as List).map((json) => Lesson.fromJson(json)).toList(),
+    };
   }
 
   /// Danh sách tình huống đang có bài học, dùng để dựng bộ lọc.
@@ -53,47 +48,27 @@ class LessonService {
   /// Có [level] thì chỉ trả chủ đề có bài ở cấp đó, để dải chip đổi theo cấp
   /// độ đang lọc.
   Future<List<String>> getSituations({String? level}) async {
-    try {
-      final query = level == null
-          ? ''
-          : '?${Uri(queryParameters: {'level': level}).query}';
-      final data =
-          await _apiClient.get('/lesson/situations$query', cache: true);
-      return (data['data'] as List).map((item) => item.toString()).toList();
-    } catch (e) {
-      throw Exception('Lỗi khi tải danh sách tình huống: $e');
-    }
+    final query =
+        level == null ? '' : '?${Uri(queryParameters: {'level': level}).query}';
+    final data = await _apiClient.get('/lesson/situations$query', cache: true);
+    return (data['data'] as List).map((item) => item.toString()).toList();
   }
 
   // Lấy chi tiết bài học theo ID
   Future<LessonDetail> getLessonDetail(String id) async {
-    try {
-      final data = await _apiClient.get('/lesson/$id', cache: true);
-      return LessonDetail.fromJson(data);
-    } catch (e) {
-      throw Exception('Lỗi khi tải chi tiết bài học: $e');
-    }
+    final data = await _apiClient.get('/lesson/$id', cache: true);
+    return LessonDetail.fromJson(data);
   }
 
   // Lấy bài học theo level
   Future<List<Lesson>> getLessonsByLevel(String level) async {
-    try {
-      final data = await _apiClient.get('/lesson/level/$level', cache: true);
-      return (data['data'] as List)
-          .map((json) => Lesson.fromJson(json))
-          .toList();
-    } catch (e) {
-      throw Exception('Lỗi khi tải bài học: $e');
-    }
+    final data = await _apiClient.get('/lesson/level/$level', cache: true);
+    return (data['data'] as List).map((json) => Lesson.fromJson(json)).toList();
   }
 
   // Lấy thống kê bài học
   Future<Map<String, dynamic>> getLessonStats() async {
-    try {
-      return await _apiClient.get('/lesson/stats/overview');
-    } catch (e) {
-      throw Exception('Lỗi khi tải thống kê: $e');
-    }
+    return await _apiClient.get('/lesson/stats/overview');
   }
 
   // Tạo bài học mới (Admin only)
@@ -103,17 +78,13 @@ class LessonService {
     required String description,
     String? contentHtml,
   }) async {
-    try {
-      final data = await _apiClient.post('/lesson', {
-        'title': title,
-        'level': level,
-        'description': description,
-        'content_html': contentHtml ?? '',
-      });
-      return Lesson.fromJson(data['data']);
-    } catch (e) {
-      throw Exception('Lỗi khi tạo bài học: $e');
-    }
+    final data = await _apiClient.post('/lesson', {
+      'title': title,
+      'level': level,
+      'description': description,
+      'content_html': contentHtml ?? '',
+    });
+    return Lesson.fromJson(data['data']);
   }
 
   // Cập nhật bài học (Admin only)
@@ -124,36 +95,24 @@ class LessonService {
     String? description,
     String? contentHtml,
   }) async {
-    try {
-      final body = <String, dynamic>{};
-      if (title != null) body['title'] = title;
-      if (level != null) body['level'] = level;
-      if (description != null) body['description'] = description;
-      if (contentHtml != null) body['content_html'] = contentHtml;
+    final body = <String, dynamic>{};
+    if (title != null) body['title'] = title;
+    if (level != null) body['level'] = level;
+    if (description != null) body['description'] = description;
+    if (contentHtml != null) body['content_html'] = contentHtml;
 
-      final data = await _apiClient.put('/lesson/$id', body);
-      return Lesson.fromJson(data['data']);
-    } catch (e) {
-      throw Exception('Lỗi khi cập nhật bài học: $e');
-    }
+    final data = await _apiClient.put('/lesson/$id', body);
+    return Lesson.fromJson(data['data']);
   }
 
   // Xóa bài học (Admin only)
   Future<void> deleteLesson(String id) async {
-    try {
-      await _apiClient.delete('/lesson/$id');
-    } catch (e) {
-      throw Exception('Lỗi khi xóa bài học: $e');
-    }
+    await _apiClient.delete('/lesson/$id');
   }
 
   // Sao chép bài học (Admin only)
   Future<Lesson> duplicateLesson(String id) async {
-    try {
-      final data = await _apiClient.post('/lesson/$id/duplicate', {});
-      return Lesson.fromJson(data['data']);
-    } catch (e) {
-      throw Exception('Lỗi khi sao chép bài học: $e');
-    }
+    final data = await _apiClient.post('/lesson/$id/duplicate', {});
+    return Lesson.fromJson(data['data']);
   }
 }

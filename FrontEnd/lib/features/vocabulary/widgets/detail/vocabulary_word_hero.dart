@@ -52,14 +52,16 @@ class VocabularyWordHero extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppTypography.japaneseDisplay(
               size: AppTypography.wordHero,
-              color: AppColors.textPrimary,
+              color: context.colors.textPrimary,
             ),
           ),
           if (reading.isNotEmpty && reading != vocabulary.word)
             Text(
               reading,
               textAlign: TextAlign.center,
-              style: AppTypography.japaneseReading().copyWith(
+              style: AppTypography.japaneseReading(
+                      color: context.colors.textSecondary)
+                  .copyWith(
                 fontSize: AppTypography.subtitle,
               ),
             ),
@@ -69,7 +71,7 @@ class VocabularyWordHero extends StatelessWidget {
               hanviet.toUpperCase(),
               textAlign: TextAlign.center,
               style: textTheme.labelLarge?.copyWith(
-                color: AppColors.primary,
+                color: context.colors.primary,
                 letterSpacing: 2,
               ),
             ),
@@ -111,8 +113,8 @@ class _SpeakButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           shape: const CircleBorder(),
           padding: const EdgeInsets.all(AppSpacing.lg),
-          backgroundColor: AppColors.primaryLight,
-          foregroundColor: AppColors.primary,
+          backgroundColor: context.colors.primarySoft,
+          foregroundColor: context.colors.primary,
         ),
         child: const Icon(Icons.volume_up_rounded, size: AppSpacing.xxl),
       ),
@@ -142,7 +144,8 @@ class _LearnedButton extends StatelessWidget {
         ? FilledButton.icon(
             onPressed: onTap,
             style: FilledButton.styleFrom(
-              backgroundColor: AppColors.success,
+              foregroundColor: Colors.white,
+              backgroundColor: AppColors.successStrong,
               padding: padding,
             ),
             icon: const Icon(Icons.check_circle_rounded),
@@ -151,8 +154,8 @@ class _LearnedButton extends StatelessWidget {
         : OutlinedButton.icon(
             onPressed: onTap,
             style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.textSecondary,
-              side: const BorderSide(color: AppColors.border, width: 1.5),
+              foregroundColor: context.colors.textSecondary,
+              side: BorderSide(color: context.colors.border, width: 1.5),
               padding: padding,
             ),
             icon: const Icon(Icons.radio_button_unchecked_rounded),

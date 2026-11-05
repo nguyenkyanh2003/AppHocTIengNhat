@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/notebook_provider.dart';
-import '../models/notebook.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
+import '../widgets/notebook_note_card.dart';
+import '../widgets/notebook_pagination.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/notebook.dart';
 
 class NotebookListScreen extends StatefulWidget {
   const NotebookListScreen({Key? key}) : super(key: key);
@@ -51,69 +53,37 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
       body: ContentWidthLimit(
         child: Consumer<NotebookProvider>(
           builder: (context, provider, child) {
-            if (provider.isLoading && provider.notes.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (provider.error != null) {
-              return Center(
+            return AsyncView<List<Notebook>>(
+              state: ViewState.fromLegacy(
+                isLoading: provider.isLoading,
+                error: provider.error,
+                value: provider.notes,
+                isEmpty: provider.notes.isEmpty,
+              ),
+              onRetry: () => provider.loadNotes(refresh: true),
+              isEmpty: (notes) => notes.isEmpty,
+              emptyTitle: 'Chưa có ghi chú nào',
+              emptyMessage: 'Nhấn + để tạo ghi chú mới',
+              emptyIcon: Icons.note_add,
+              builder: (context, notes) => RefreshIndicator(
+                onRefresh: () => provider.loadNotes(refresh: true),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.error_outline,
-                        size: 64, color: AppColors.error),
-                    const SizedBox(height: 16),
-                    Text(provider.error!),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => provider.loadNotes(refresh: true),
-                      child: const Text('Thử lại'),
+                    if (provider.selectedType != null ||
+                        provider.searchQuery.isNotEmpty)
+                      _buildFilterChips(provider),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: notes.length,
+                        padding: const EdgeInsets.all(16),
+                        itemBuilder: (context, index) => NotebookNoteCard(
+                            note: notes[index], getTypeLabel: _getTypeLabel),
+                      ),
                     ),
+                    if (provider.totalPages > 1)
+                      NotebookPagination(provider: provider),
                   ],
                 ),
-              );
-            }
-
-            if (provider.notes.isEmpty) {
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.note_add, size: 80, color: AppColors.textDisabled),
-                    SizedBox(height: 16),
-                    Text(
-                      'Chưa có ghi chú nào',
-                      style: TextStyle(fontSize: AppTypography.subtitle, color: AppColors.textSecondary),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Nhấn + để tạo ghi chú mới',
-                      style: TextStyle(color: AppColors.textDisabled),
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            return RefreshIndicator(
-              onRefresh: () => provider.loadNotes(refresh: true),
-              child: Column(
-                children: [
-                  if (provider.selectedType != null ||
-                      provider.searchQuery.isNotEmpty)
-                    _buildFilterChips(provider),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: provider.notes.length,
-                      padding: const EdgeInsets.all(16),
-                      itemBuilder: (context, index) {
-                        final note = provider.notes[index];
-                        return _buildNoteCard(note);
-                      },
-                    ),
-                  ),
-                  if (provider.totalPages > 1) _buildPagination(provider),
-                ],
               ),
             );
           },
@@ -148,117 +118,6 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
               onDeleted: () => provider.filterByType(null),
               deleteIcon: const Icon(Icons.close, size: 18),
             ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNoteCard(Notebook note) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: InkWell(
-        onTap: () => _navigateToDetail(note.id),
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: _getTypeColor(note.type).withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      _getTypeLabel(note.type),
-                      style: TextStyle(
-                        fontSize: AppTypography.caption,
-                        color: _getTypeColor(note.type),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    _formatDate(note.updatedAt),
-                    style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Text(
-                note.title,
-                style: const TextStyle(
-                  fontSize: AppTypography.body,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                note.content,
-                style: const TextStyle(fontSize: AppTypography.bodySmall, color: AppColors.textSecondary),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-              if (note.tags.isNotEmpty) ...[
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 6,
-                  children: note.tags.take(3).map<Widget>((tag) {
-                    return Chip(
-                      label: Text(tag.toString()),
-                      visualDensity: VisualDensity.compact,
-                      labelStyle: const TextStyle(fontSize: AppTypography.caption),
-                    );
-                  }).toList(),
-                ),
-              ],
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPagination(NotebookProvider provider) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 4,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ElevatedButton.icon(
-            onPressed: provider.hasPrevPage ? provider.previousPage : null,
-            icon: const Icon(Icons.chevron_left),
-            label: const Text('Trước'),
-          ),
-          Text(
-            'Trang ${provider.currentPage}/${provider.totalPages}',
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
-          ElevatedButton.icon(
-            onPressed: provider.hasNextPage ? provider.nextPage : null,
-            icon: const Icon(Icons.chevron_right),
-            label: const Text('Sau'),
-            style: ElevatedButton.styleFrom(
-              iconColor: Colors.white,
-            ),
-          ),
         ],
       ),
     );
@@ -340,10 +199,6 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
     });
   }
 
-  void _navigateToDetail(String noteId) {
-    context.push('/notebook/$noteId');
-  }
-
   String _getTypeLabel(String type) {
     switch (type) {
       case 'vocabulary':
@@ -354,34 +209,6 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
         return 'Kanji';
       default:
         return 'Chung';
-    }
-  }
-
-  Color _getTypeColor(String type) {
-    switch (type) {
-      case 'vocabulary':
-        return AppTheme.vocabularyColor;
-      case 'grammar':
-        return AppTheme.grammarColor;
-      case 'kanji':
-        return AppTheme.kanjiColor;
-      default:
-        return AppTheme.notebookColor;
-    }
-  }
-
-  String _formatDate(DateTime date) {
-    final now = DateTime.now();
-    final diff = now.difference(date);
-
-    if (diff.inDays == 0) {
-      return 'Hôm nay';
-    } else if (diff.inDays == 1) {
-      return 'Hôm qua';
-    } else if (diff.inDays < 7) {
-      return '${diff.inDays} ngày trước';
-    } else {
-      return '${date.day}/${date.month}/${date.year}';
     }
   }
 }

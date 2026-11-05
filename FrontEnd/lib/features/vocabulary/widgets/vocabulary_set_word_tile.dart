@@ -57,7 +57,7 @@ class VocabularySetWordTile extends StatelessWidget {
                     Text(
                       reading,
                       style: textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: context.colors.textSecondary,
                       ),
                     ),
                   if (hanviet != null && hanviet.isNotEmpty) ...[
@@ -65,7 +65,7 @@ class VocabularySetWordTile extends StatelessWidget {
                     Text(
                       hanviet.toUpperCase(),
                       style: textTheme.labelMedium?.copyWith(
-                        color: AppColors.vocabulary,
+                        color: context.colors.primary,
                         letterSpacing: 1,
                       ),
                     ),
@@ -85,15 +85,15 @@ class VocabularySetWordTile extends StatelessWidget {
                     learned
                         ? Icons.check_circle_rounded
                         : Icons.radio_button_unchecked_rounded,
-                    color: learned ? AppColors.success : AppColors.textDisabled,
+                    color: learned ? AppColors.success : context.colors.textDisabled,
                   ),
                 ),
                 IconButton(
                   onPressed: onAddToFlashcard,
                   tooltip: 'Thêm vào bộ thẻ của tôi',
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.bookmark_add_outlined,
-                    color: AppColors.vocabulary,
+                    color: context.colors.primary,
                   ),
                 ),
               ],
@@ -118,13 +118,13 @@ class _IndexBadge extends StatelessWidget {
     return CircleAvatar(
       radius: AppSpacing.lg,
       backgroundColor: color.withValues(alpha: 0.12),
-      foregroundColor: color,
+      foregroundColor: context.colors.readable(color),
       child: Text(
         '$index',
         style: Theme.of(context)
             .textTheme
             .labelLarge
-            ?.copyWith(color: color, fontWeight: FontWeight.w700),
+            ?.copyWith(color: context.colors.readable(color), fontWeight: FontWeight.w700),
       ),
     );
   }

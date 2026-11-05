@@ -28,18 +28,35 @@ class DailyGoalCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Icon(Icons.flag_outlined, color: color),
-                AppGap.sm,
-                Expanded(child: Text('Mục tiêu hôm nay', style: theme.textTheme.titleMedium)),
-                TextButton(onPressed: onEdit, child: const Text('Đổi mục tiêu')),
-              ],
+            // Hẹp hoặc chữ lớn thì nút xuống dòng thay vì đẩy tiêu đề tràn ra ngoài.
+            SizedBox(
+              width: double.infinity,
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.flag_outlined,
+                          color: context.colors.readable(color)),
+                      AppGap.sm,
+                      Flexible(
+                          child: Text('Mục tiêu hôm nay',
+                              style: theme.textTheme.titleMedium)),
+                    ],
+                  ),
+                  TextButton(
+                      onPressed: onEdit, child: const Text('Đổi mục tiêu')),
+                ],
+              ),
             ),
             AppGap.sm,
             Text(
               '${goal.todayXp}/${goal.targetXp} XP',
-              style: AppTypography.heroDisplay(size: AppTypography.title, color: color),
+              style: AppTypography.heroDisplay(
+                  size: AppTypography.title,
+                  color: context.colors.readable(color)),
             ),
             AppGap.sm,
             ClipRRect(
@@ -47,7 +64,7 @@ class DailyGoalCard extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: goal.ratio,
                 minHeight: AppSpacing.sm,
-                color: color,
+                color: context.colors.readable(color),
                 backgroundColor: color.withValues(alpha: 0.15),
                 semanticsLabel: 'Tiến độ mục tiêu hôm nay',
               ),

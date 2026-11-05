@@ -68,7 +68,7 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, size: 20, color: AppColors.lesson),
+        Icon(icon, size: 20, color: context.colors.readable(AppColors.lesson)),
         const SizedBox(width: AppSpacing.sm),
         Text(
           label,
@@ -99,7 +99,7 @@ class _TurnBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final bubbleColor = alignLeft
-        ? AppColors.surfaceVariant
+        ? context.colors.surfaceVariant
         : AppColors.primary.withValues(alpha: 0.12);
 
     return Row(
@@ -114,7 +114,7 @@ class _TurnBubble extends StatelessWidget {
               Text(
                 turn.speaker,
                 style: textTheme.labelMedium
-                    ?.copyWith(color: AppColors.textSecondary),
+                    ?.copyWith(color: context.colors.textSecondary),
               ),
               const SizedBox(height: AppSpacing.xs),
               Container(
@@ -144,8 +144,8 @@ class _TurnBubble extends StatelessWidget {
                             onPressed: onSpeak,
                             tooltip: 'Nghe câu này',
                             visualDensity: VisualDensity.compact,
-                            icon: const Icon(Icons.volume_up_outlined,
-                                size: 20, color: AppColors.primary),
+                            icon: Icon(Icons.volume_up_outlined,
+                                size: 20, color: context.colors.primary),
                           ),
                       ],
                     ),
@@ -155,7 +155,7 @@ class _TurnBubble extends StatelessWidget {
                       Text(
                         turn.reading,
                         style: textTheme.bodySmall
-                            ?.copyWith(color: AppColors.textSecondary),
+                            ?.copyWith(color: context.colors.textSecondary),
                       ),
                     ],
                     if (showTranslation && turn.textVi.isNotEmpty) ...[
@@ -163,7 +163,7 @@ class _TurnBubble extends StatelessWidget {
                       Text(
                         turn.textVi,
                         style: textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondary,
+                          color: context.colors.textSecondary,
                           fontStyle: FontStyle.italic,
                         ),
                       ),

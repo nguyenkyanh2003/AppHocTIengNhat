@@ -7,8 +7,8 @@ import 'app_typography.dart';
 /// Theme của ứng dụng, lắp từ token trong [AppColors], [AppSpacing], [AppRadius]
 /// và thang chữ trong [AppTypography].
 ///
-/// Các hằng số màu ở đây là alias giữ lại cho code cũ; code mới dùng thẳng
-/// `AppColors` hoặc `Theme.of(context)`.
+/// Các hằng số màu ở đây là alias giữ lại cho code cũ; code mới đọc màu theo chế
+/// độ sáng / tối từ `context.colors`.
 class AppTheme {
   // Màu sắc chính
   static const Color primaryColor = AppColors.primary;
@@ -52,7 +52,9 @@ class AppTheme {
         textSecondary: AppColors.textSecondary,
         appBarBackground: AppColors.surface,
         appBarForeground: AppColors.textPrimary,
+        snackBarBackground: AppColors.textPrimary,
         calm: CalmColors.light,
+        colors: AppThemeColors.light,
       );
 
   static ThemeData get darkTheme => _build(
@@ -65,7 +67,9 @@ class AppTheme {
         textSecondary: AppColors.darkTextSecondary,
         appBarBackground: AppColors.darkSurface,
         appBarForeground: AppColors.darkTextPrimary,
+        snackBarBackground: AppColors.darkSurfaceVariant,
         calm: CalmColors.dark,
+        colors: AppThemeColors.dark,
       );
 
   /// Một định nghĩa duy nhất cho cả hai chế độ: chỉ bảng màu đổi, còn cỡ chữ,
@@ -80,7 +84,9 @@ class AppTheme {
     required Color textSecondary,
     required Color appBarBackground,
     required Color appBarForeground,
+    required Color snackBarBackground,
     required CalmColors calm,
+    required AppThemeColors colors,
   }) {
     // Thanh điều hướng chính theo bảng màu dịu: nền thẻ, mục đang chọn là
     // viên thuốc tím nhạt, chữ Be Vietnam Pro. Dùng chung cho thanh dưới
@@ -94,7 +100,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
-      extensions: [calm],
+      extensions: [calm, colors],
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: calm.card,
         surfaceTintColor: Colors.transparent,
@@ -119,9 +125,10 @@ class AppTheme {
       brightness: brightness,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
-        primary: AppColors.primary,
+        primary: colors.primary,
+        onPrimary: colors.isDark ? AppColors.darkOnPrimary : Colors.white,
         secondary: AppColors.secondary,
-        error: AppColors.error,
+        error: colors.error,
         surface: surface,
         brightness: brightness,
       ),
@@ -174,7 +181,7 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: colors.primary,
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
             vertical: AppSpacing.sm,
@@ -184,8 +191,8 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primary,
-          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          foregroundColor: colors.primary,
+          side: BorderSide(color: colors.primary, width: 1.5),
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.xl,
             vertical: AppSpacing.md,
@@ -209,28 +216,27 @@ class AppTheme {
           borderRadius: AppRadius.mdAll,
           borderSide: BorderSide.none,
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: AppRadius.mdAll,
-          borderSide: BorderSide(color: AppColors.primary, width: 2),
+          borderSide: BorderSide(color: colors.primary, width: 2),
         ),
-        errorBorder: const OutlineInputBorder(
+        errorBorder: OutlineInputBorder(
           borderRadius: AppRadius.mdAll,
-          borderSide: BorderSide(color: AppColors.error, width: 1.5),
+          borderSide: BorderSide(color: colors.error, width: 1.5),
         ),
-        focusedErrorBorder: const OutlineInputBorder(
+        focusedErrorBorder: OutlineInputBorder(
           borderRadius: AppRadius.mdAll,
-          borderSide: BorderSide(color: AppColors.error, width: 2),
+          borderSide: BorderSide(color: colors.error, width: 2),
         ),
         labelStyle: TextStyle(fontSize: 14, color: textSecondary),
-        floatingLabelStyle:
-            const TextStyle(fontSize: 16, color: AppColors.primary),
+        floatingLabelStyle: TextStyle(fontSize: 16, color: colors.primary),
         hintStyle: TextStyle(fontSize: 14, color: textSecondary),
         prefixIconColor: textSecondary,
         suffixIconColor: textSecondary,
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: surface,
-        selectedItemColor: AppColors.primary,
+        selectedItemColor: colors.primary,
         unselectedItemColor: textSecondary,
         selectedLabelStyle: const TextStyle(
           fontSize: AppTypography.caption,
@@ -250,14 +256,16 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: surfaceVariant,
-        selectedColor: AppColors.primary.withValues(alpha: 0.2),
+        selectedColor: colors.primary.withValues(alpha: 0.2),
         disabledColor: border,
         labelStyle:
             TextStyle(fontSize: AppTypography.caption, color: textPrimary),
-        secondaryLabelStyle: const TextStyle(
+        // Nền chip đang chọn là màu nhạt, chữ trắng trên đó gần như không đọc được.
+        secondaryLabelStyle: TextStyle(
           fontSize: AppTypography.caption,
-          color: Colors.white,
+          color: colors.primaryStrong,
         ),
+        checkmarkColor: colors.primaryStrong,
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.md,
           vertical: AppSpacing.sm,
@@ -284,12 +292,11 @@ class AppTheme {
         ),
         minLeadingWidth: 40,
       ),
-      progressIndicatorTheme:
-          const ProgressIndicatorThemeData(color: AppColors.primary),
-      snackBarTheme: const SnackBarThemeData(
-        backgroundColor: AppColors.textPrimary,
-        contentTextStyle: TextStyle(fontSize: 14, color: Colors.white),
-        shape: RoundedRectangleBorder(borderRadius: AppRadius.smAll),
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: colors.primary),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: snackBarBackground,
+        contentTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+        shape: const RoundedRectangleBorder(borderRadius: AppRadius.smAll),
         behavior: SnackBarBehavior.floating,
       ),
     );

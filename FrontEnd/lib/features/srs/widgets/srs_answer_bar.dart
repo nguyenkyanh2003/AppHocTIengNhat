@@ -44,7 +44,9 @@ class SrsAnswerBar extends StatelessWidget {
           label: const Text('Bỏ qua'),
         ),
         right: FilledButton.icon(
-          style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+          style: FilledButton.styleFrom(
+              backgroundColor: AppColors.errorStrong,
+              foregroundColor: Colors.white),
           onPressed: onRemove,
           icon: const Icon(Icons.delete_outline),
           label: const Text('Xoá khỏi lịch ôn'),
@@ -62,20 +64,23 @@ class SrsAnswerBar extends StatelessWidget {
             label: const Text('Lật thẻ'),
           ),
           AppGap.sm,
-          TextButton(onPressed: onSkip, child: const Text('Bỏ qua trong phiên này')),
+          TextButton(
+              onPressed: onSkip, child: const Text('Bỏ qua trong phiên này')),
         ],
       );
     }
 
     return _Pair(
       left: OutlinedButton.icon(
-        style: OutlinedButton.styleFrom(foregroundColor: AppColors.error),
+        style: OutlinedButton.styleFrom(foregroundColor: context.colors.error),
         onPressed: () => onAnswer(false),
         icon: const Icon(Icons.close),
         label: const Text('Chưa nhớ'),
       ),
       right: FilledButton.icon(
-        style: FilledButton.styleFrom(backgroundColor: AppColors.success),
+        style: FilledButton.styleFrom(
+            backgroundColor: AppColors.successStrong,
+            foregroundColor: Colors.white),
         onPressed: () => onAnswer(true),
         icon: const Icon(Icons.check),
         label: const Text('Nhớ'),

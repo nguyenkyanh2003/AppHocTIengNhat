@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -15,6 +16,7 @@ import '../features/kanji/providers/kanji_provider.dart';
 import '../features/lessons/providers/lesson_progress_provider.dart';
 import '../features/lessons/providers/lesson_provider.dart';
 import './localization/locale_provider.dart';
+import './theme/theme_provider.dart';
 import '../features/news/providers/news_provider.dart';
 import '../features/notebook/providers/notebook_provider.dart';
 import '../features/notifications/providers/notification_provider.dart';
@@ -27,10 +29,11 @@ import '../features/profile/providers/user_provider.dart';
 import '../features/vocabulary/providers/vocabulary_provider.dart';
 import '../features/vocabulary/providers/vocabulary_set_provider.dart';
 
-List<SingleChildWidget> createAppProviders() => [
+List<SingleChildWidget> createAppProviders({ThemeMode initialThemeMode = ThemeMode.system}) => [
       ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
       ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => LocaleProvider()),
+      ChangeNotifierProvider(create: (_) => ThemeProvider(initialThemeMode)),
       ChangeNotifierProvider(create: (_) => HomeProvider()),
       ChangeNotifierProvider(create: (_) => LessonProvider()),
       ChangeNotifierProvider(create: (_) => LessonProgressProvider()),

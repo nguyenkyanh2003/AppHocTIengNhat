@@ -11,6 +11,7 @@ import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 import '../providers/export_provider.dart';
 import '../services/export_service.dart';
+import '../../../core/state/view_state.dart';
 
 /// Xuất dữ liệu học tập ra tệp JSON/CSV. Việc gom dữ liệu — kể cả đọc hết mọi
 /// trang lịch sử XP và lịch học — nằm ở [ExportService]; màn này chỉ chọn loại,
@@ -86,18 +87,18 @@ class _ExportViewState extends State<_ExportView> {
                 color: AppColors.primary.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Column(
+              child: Column(
                 children: [
-                  Icon(Icons.download, size: 52, color: AppColors.primary),
-                  SizedBox(height: 12),
-                  Text(
+                  Icon(Icons.download, size: 52, color: context.colors.primary),
+                  const SizedBox(height: 12),
+                  const Text(
                     'Sao lưu dữ liệu học tập',
                     style: TextStyle(
                         fontSize: AppTypography.title,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 6),
-                  Text(
+                  const SizedBox(height: 6),
+                  const Text(
                     'Dữ liệu được lấy trực tiếp từ tài khoản tại thời điểm xuất.',
                     textAlign: TextAlign.center,
                   ),
@@ -180,10 +181,10 @@ class _ExportViewState extends State<_ExportView> {
               label: const Text('Sao chép JSON'),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'CSV dùng hai cột “section” và “data”; dữ liệu lồng nhau được giữ dưới dạng JSON để không bị mất trường.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: context.colors.textSecondary),
             ),
           ],
         ),
@@ -201,7 +202,7 @@ class _ExportViewState extends State<_ExportView> {
     } on ExportCancelled {
       if (mounted) _message('Đã huỷ xuất dữ liệu.', false);
     } catch (error) {
-      if (mounted) _message('$failure: $error', false);
+      if (mounted) _message('$failure: ${userMessageOf(error)}', false);
     }
   }
 
@@ -261,7 +262,8 @@ class _ExportViewState extends State<_ExportView> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: success ? AppColors.success : AppColors.error,
+        backgroundColor:
+            success ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

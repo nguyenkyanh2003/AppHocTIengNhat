@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/news_provider.dart';
-import '../models/news.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/news_list_card.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/news.dart';
 
 class NewsListScreen extends StatefulWidget {
   const NewsListScreen({Key? key}) : super(key: key);
@@ -101,55 +102,50 @@ class _NewsListScreenState extends State<NewsListScreen> {
                       ? provider.bookmarkedNews
                       : provider.newsList;
 
-                  if (provider.isLoading && newsList.isEmpty) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  if (newsList.isEmpty) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.newspaper,
-                              size: 64, color: AppColors.textDisabled),
-                          const SizedBox(height: 16),
-                          Text(
-                            _showBookmarks
-                                ? 'Chưa có tin tức yêu thích'
-                                : 'Không có tin tức nào',
-                            style: const TextStyle(
-                                fontSize: AppTypography.body, color: AppColors.textSecondary),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-
-                  return RefreshIndicator(
-                    onRefresh: () => provider.loadNews(
+                  return AsyncView<List<News>>(
+                    state: ViewState.fromLegacy(
+                      isLoading: provider.isLoading,
+                      error: _showBookmarks ? null : provider.error,
+                      value: newsList,
+                      isEmpty: newsList.isEmpty,
+                    ),
+                    onRetry: () => provider.loadNews(
                       refresh: true,
                       level: _selectedLevel,
                       search: _searchController.text.isNotEmpty
                           ? _searchController.text
                           : null,
                     ),
-                    child: ListView.builder(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.all(8),
-                      itemCount: newsList.length + (provider.isLoading ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (index == newsList.length) {
-                          return const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(16),
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
-                        }
-
-                        final news = newsList[index];
-                        return _buildNewsCard(context, news, provider);
-                      },
+                    isEmpty: (items) => items.isEmpty,
+                    emptyTitle: _showBookmarks
+                        ? 'Chưa có tin tức yêu thích'
+                        : 'Không có tin tức nào',
+                    emptyIcon: Icons.newspaper,
+                    builder: (context, items) => RefreshIndicator(
+                      onRefresh: () => provider.loadNews(
+                        refresh: true,
+                        level: _selectedLevel,
+                        search: _searchController.text.isNotEmpty
+                            ? _searchController.text
+                            : null,
+                      ),
+                      child: ListView.builder(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: items.length + (provider.isLoading ? 1 : 0),
+                        itemBuilder: (context, index) {
+                          if (index == items.length) {
+                            return const Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(16),
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
+                          return NewsListCard(
+                              news: items[index], provider: provider);
+                        },
+                      ),
                     ),
                   );
                 },
@@ -184,7 +180,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
             borderSide: BorderSide.none,
           ),
           filled: true,
-          fillColor: AppColors.surfaceVariant,
+          fillColor: context.colors.surfaceVariant,
         ),
       ),
     );
@@ -212,161 +208,11 @@ class _NewsListScreenState extends State<NewsListScreen> {
         label: Text(label),
         selected: isSelected,
         onSelected: (_) => _onLevelChanged(level),
-        backgroundColor: AppColors.surfaceVariant,
+        backgroundColor: context.colors.surfaceVariant,
         selectedColor: AppColors.primary,
         labelStyle: TextStyle(
-          color: isSelected ? Colors.white : Colors.black,
+          color: isSelected ? Colors.white : context.colors.textPrimary,
           fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNewsCard(
-      BuildContext context, News news, NewsProvider provider) {
-    return GestureDetector(
-      onTap: () {
-        context.push('/news/${news.id}');
-      },
-      child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Image with consistent aspect ratio
-            if (news.imageUrl != null)
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-                child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Image.network(
-                    news.imageUrl!,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: AppColors.border,
-                        child: const Icon(Icons.image, size: 48),
-                      );
-                    },
-                  ),
-                ),
-              ),
-
-            // Content
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title
-                  Text(
-                    news.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: AppTypography.body,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-
-                  // Description
-                  Text(
-                    news.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: AppTypography.caption,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Footer: Level, Views, Time, Bookmark
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          if (news.level != null) ...[
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
-                                color: news.level == 'N5'
-                                    ? AppColors.success
-                                    : news.level == 'N4'
-                                        ? Colors.lightGreen
-                                        : news.level == 'N3'
-                                            ? Colors.amber
-                                            : news.level == 'N2'
-                                                ? AppColors.warning
-                                                : AppColors.error,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Text(
-                                news.level!,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: AppTypography.caption,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                          ],
-                          const Icon(Icons.visibility,
-                              size: 14, color: AppColors.textSecondary),
-                          const SizedBox(width: 4),
-                          Text(
-                            '${news.views}',
-                            style: const TextStyle(
-                              fontSize: AppTypography.caption,
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            news.timeAgo,
-                            style: const TextStyle(
-                              fontSize: AppTypography.caption,
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          provider.isBookmarked(news.id)
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: provider.isBookmarked(news.id)
-                              ? AppColors.error
-                              : AppColors.textSecondary,
-                          size: 20,
-                        ),
-                        onPressed: () {
-                          provider.toggleBookmark(news.id);
-                        },
-                        constraints: const BoxConstraints(),
-                        padding: EdgeInsets.zero,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
         ),
       ),
     );

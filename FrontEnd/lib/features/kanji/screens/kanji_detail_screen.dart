@@ -84,11 +84,11 @@ class _KanjiDetailView extends StatelessWidget {
                 ),
                 sliver: SliverToBoxAdapter(
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [Color(0xFFF8F9FA), Color(0xFFE9ECEF)],
+                        colors: [context.colors.surface, context.colors.surfaceVariant],
                       ),
                     ),
                     child: Column(

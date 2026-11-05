@@ -174,7 +174,7 @@ class _StreakSettingsSheetState extends State<StreakSettingsSheet> {
           ],
           if (_error != null) ...[
             AppGap.md,
-            Text(_error!, style: theme.textTheme.bodyMedium?.copyWith(color: AppColors.error)),
+            Text(_error!, style: theme.textTheme.bodyMedium?.copyWith(color: context.colors.error)),
           ],
           AppGap.lg,
           SizedBox(

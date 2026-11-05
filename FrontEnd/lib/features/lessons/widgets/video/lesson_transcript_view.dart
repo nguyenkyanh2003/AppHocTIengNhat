@@ -130,7 +130,7 @@ class _LessonTranscriptViewState extends State<LessonTranscriptView> {
     if (widget.lines.isEmpty) {
       return Text(
         'Video này chưa có lời thoại.',
-        style: textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+        style: textTheme.bodyMedium?.copyWith(color: context.colors.textSecondary),
       );
     }
 
@@ -233,7 +233,7 @@ class TranscriptLayerRow extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final style = switch (layer) {
       TranscriptLayer.japanese =>
-        AppTypography.japaneseReading(color: AppColors.textPrimary).copyWith(fontSize: AppTypography.body),
+        AppTypography.japaneseReading(color: context.colors.textPrimary).copyWith(fontSize: AppTypography.body),
       TranscriptLayer.romaji => textTheme.bodySmall,
       TranscriptLayer.vietnamese => textTheme.bodyMedium,
     };
@@ -246,7 +246,7 @@ class TranscriptLayerRow extends StatelessWidget {
             width: speakerWidth,
             child: Text(
               speaker ?? '',
-              style: textTheme.labelMedium?.copyWith(color: AppColors.textSecondary),
+              style: textTheme.labelMedium?.copyWith(color: context.colors.textSecondary),
             ),
           ),
           AppGap.sm,
@@ -333,7 +333,7 @@ class _TranscriptRow extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Material(
-      color: isActive ? AppColors.primaryLight : Colors.transparent,
+      color: isActive ? context.colors.primarySoft : Colors.transparent,
       borderRadius: AppRadius.mdAll,
       child: InkWell(
         onTap: onTap,
@@ -348,7 +348,7 @@ class _TranscriptRow extends StatelessWidget {
                 child: Text(
                   line.label,
                   style: textTheme.labelMedium?.copyWith(
-                    color: isActive ? AppColors.primary : AppColors.textDisabled,
+                    color: isActive ? context.colors.primary : context.colors.textDisabled,
                   ),
                 ),
               ),

@@ -82,7 +82,7 @@ class _StatusPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 AppGap.xl,
-                Icon(icon, size: 64, color: color),
+                Icon(icon, size: 64, color: context.colors.readable(color)),
                 AppGap.lg,
                 Text(
                   title,

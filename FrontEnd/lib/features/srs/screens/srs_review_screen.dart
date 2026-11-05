@@ -58,7 +58,9 @@ class _SrsReviewScreenState extends State<SrsReviewScreen> {
       message: 'Thẻ bị gỡ khỏi lịch ôn cùng toàn bộ tiến độ ôn của nó.',
       confirmLabel: 'Xoá',
     );
-    if (confirmed && mounted) await _run((provider) => provider.removeCurrent());
+    if (confirmed && mounted) {
+      await _run((provider) => provider.removeCurrent());
+    }
   }
 
   @override
@@ -129,7 +131,8 @@ class _ReviewPane extends StatelessWidget {
   final SrsCard card;
   final int queued;
   final SrsProvider provider;
-  final Future<void> Function(Future<void> Function(SrsProvider provider) action) onRun;
+  final Future<void> Function(
+      Future<void> Function(SrsProvider provider) action) onRun;
   final VoidCallback onRemove;
 
   @override
@@ -147,10 +150,17 @@ class _ReviewPane extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         AppGap.md,
-        SrsFlashcard(card: card, revealed: provider.isRevealed, onReveal: provider.reveal),
+        SrsFlashcard(
+            card: card,
+            revealed: provider.isRevealed,
+            onReveal: provider.reveal),
         if (provider.actionError case final message?) ...[
           AppGap.md,
-          _ActionError(message: message, onRetry: () => onRun((provider) => provider.retry())),
+          ErrorStateView(
+            message: message,
+            compact: true,
+            onRetry: () async => onRun((provider) => provider.retry()),
+          ),
         ],
         AppGap.lg,
         SrsAnswerBar(
@@ -158,37 +168,12 @@ class _ReviewPane extends StatelessWidget {
           unavailable: card.unavailable,
           busy: provider.isBusy,
           onReveal: provider.reveal,
-          onAnswer: (remembered) => onRun((provider) => provider.answer(remembered: remembered)),
+          onAnswer: (remembered) =>
+              onRun((provider) => provider.answer(remembered: remembered)),
           onSkip: () => onRun((provider) => provider.skip()),
           onRemove: onRemove,
         ),
       ],
-    );
-  }
-}
-
-class _ActionError extends StatelessWidget {
-  const _ActionError({required this.message, required this.onRetry});
-
-  final String message;
-  final VoidCallback onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: AppSpacing.card,
-      decoration: BoxDecoration(
-        color: AppColors.error.withValues(alpha: 0.08),
-        borderRadius: AppRadius.mdAll,
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.error_outline, color: AppColors.error),
-          AppGap.md,
-          Expanded(child: Text(message)),
-          TextButton(onPressed: onRetry, child: const Text('Thử lại')),
-        ],
-      ),
     );
   }
 }

@@ -101,7 +101,7 @@ class _LessonVideoPlayerState extends State<LessonVideoPlayer> {
           child: AspectRatio(
             aspectRatio: isReady ? controller.value.aspectRatio : 16 / 9,
             child: ColoredBox(
-              color: AppColors.textPrimary,
+              color: AppColors.ink,
               child: switch ((widget.errorMessage, isReady)) {
                 (final String message, _) => _VideoError(
                     message: message,
@@ -188,7 +188,7 @@ class LessonVideoPoster extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 16 / 9,
         child: Material(
-          color: AppColors.textPrimary,
+          color: AppColors.ink,
           child: InkWell(
             onTap: onPlay,
             child: Semantics(

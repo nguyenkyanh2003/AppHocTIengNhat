@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
 import '../models/achievement.dart';
 
@@ -8,39 +6,24 @@ class AchievementService {
 
   // Get all achievements
   Future<List<Achievement>> getAllAchievements() async {
-    try {
-      final response = await _apiClient.get('/achievement/all');
-      if (response != null && response is List) {
-        return response.map((item) => Achievement.fromJson(item)).toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Error fetching achievements: $e');
-      return [];
+    final response = await _apiClient.get('/achievement/all');
+    if (response != null && response is List) {
+      return response.map((item) => Achievement.fromJson(item)).toList();
     }
+    return [];
   }
 
   // Get user's achievements with progress
   Future<Map<String, dynamic>?> getMyAchievements() async {
-    try {
-      final response = await _apiClient.get('/achievement/my-achievements');
-      return response;
-    } catch (e) {
-      debugPrint('Error fetching user achievements: $e');
-      return null;
-    }
+    final response = await _apiClient.get('/achievement/my-achievements');
+    return response;
   }
 
   // Get achievements by category
   Future<Map<String, dynamic>?> getAchievementsByCategory(
       String category) async {
-    try {
-      final response = await _apiClient.get('/achievement/category/$category');
-      return response;
-    } catch (e) {
-      debugPrint('Error fetching category achievements: $e');
-      return null;
-    }
+    final response = await _apiClient.get('/achievement/category/$category');
+    return response;
   }
 
   // Update achievement progress
@@ -49,12 +32,7 @@ class AchievementService {
 
   // Get achievement statistics
   Future<Map<String, dynamic>?> getStats() async {
-    try {
-      final response = await _apiClient.get('/achievement/stats');
-      return response;
-    } catch (e) {
-      debugPrint('Error fetching achievement stats: $e');
-      return null;
-    }
+    final response = await _apiClient.get('/achievement/stats');
+    return response;
   }
 }

@@ -64,7 +64,7 @@ class VocabularySetCard extends StatelessWidget {
             CircleAvatar(
               radius: AppSpacing.xl,
               backgroundColor: levelColor.withValues(alpha: 0.15),
-              foregroundColor: levelColor,
+              foregroundColor: context.colors.readable(levelColor),
               child: Icon(set.isCompleted ? Icons.check_rounded : _icon),
             ),
             AppGap.lg,
@@ -92,14 +92,14 @@ class VocabularySetCard extends StatelessWidget {
                       color: set.isCompleted
                           ? AppColors.success
                           : AppColors.accent,
-                      backgroundColor: AppColors.surfaceVariant,
+                      backgroundColor: context.colors.surfaceVariant,
                     ),
                   ),
                 ],
               ),
             ),
             AppGap.sm,
-            const Icon(Icons.chevron_right, color: AppColors.textDisabled),
+            Icon(Icons.chevron_right, color: context.colors.textDisabled),
           ],
         ),
       ),

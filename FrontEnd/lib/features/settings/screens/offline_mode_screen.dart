@@ -5,6 +5,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../core/state/view_state.dart';
 
 class OfflineModeScreen extends StatefulWidget {
   const OfflineModeScreen({super.key});
@@ -66,7 +67,9 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                           Icon(
                             _enabled ? Icons.wifi_off : Icons.wifi,
                             size: 42,
-                            color: _enabled ? AppColors.warning : AppColors.success,
+                            color: _enabled
+                                ? AppColors.warning
+                                : AppColors.success,
                           ),
                           const SizedBox(width: 16),
                           Expanded(
@@ -99,7 +102,9 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                   const SizedBox(height: 20),
                   const Text(
                     'Dữ liệu đã tải',
-                    style: TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: AppTypography.subtitle,
+                        fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Card(
@@ -134,17 +139,18 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
                   const SizedBox(height: 10),
                   TextButton.icon(
                     onPressed: _busy || _cachedItems == 0 ? null : _clearCache,
-                    icon: const Icon(Icons.delete_outline, color: AppColors.error),
-                    label: const Text(
+                    icon:
+                        Icon(Icons.delete_outline, color: context.colors.error),
+                    label: Text(
                       'Xóa dữ liệu đã tải',
-                      style: TextStyle(color: AppColors.error),
+                      style: TextStyle(color: context.colors.error),
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     'Cache chỉ lưu nội dung học tập như bài học, từ vựng, Kanji và ngữ pháp. Dữ liệu đăng nhập không được lưu trong cache này.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.textSecondary),
+                    style: TextStyle(color: context.colors.textSecondary),
                   ),
                 ],
               ),
@@ -222,7 +228,7 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
     } catch (error) {
       if (mounted) {
         setState(() => _busy = false);
-        _message('Không thể tải dữ liệu: $error', false);
+        _message('Không thể tải dữ liệu: ${userMessageOf(error)}', false);
       }
     }
   }
@@ -282,7 +288,8 @@ class _OfflineModeScreenState extends State<OfflineModeScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: success ? AppColors.success : AppColors.error,
+        backgroundColor:
+            success ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

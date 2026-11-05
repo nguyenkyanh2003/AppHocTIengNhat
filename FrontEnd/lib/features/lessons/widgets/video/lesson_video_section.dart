@@ -327,7 +327,7 @@ class _VideoGoal extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Icon(Icons.flag_outlined, size: 20, color: AppColors.primary),
+        Icon(Icons.flag_outlined, size: 20, color: context.colors.primary),
         AppGap.sm,
         Expanded(
           child: Text(text, style: Theme.of(context).textTheme.titleSmall),
@@ -344,8 +344,8 @@ class _NoTranscriptNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.subtitles_off_outlined,
-            size: 16, color: AppColors.textSecondary),
+        Icon(Icons.subtitles_off_outlined,
+            size: 16, color: context.colors.textSecondary),
         AppGap.xs,
         Expanded(
           child: Text(
@@ -353,7 +353,7 @@ class _NoTranscriptNote extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodySmall
-                ?.copyWith(color: AppColors.textSecondary),
+                ?.copyWith(color: context.colors.textSecondary),
           ),
         ),
       ],

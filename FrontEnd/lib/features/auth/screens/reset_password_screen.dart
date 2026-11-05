@@ -155,7 +155,7 @@ class _StatusPanel extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 64, color: color),
+        Icon(icon, size: 64, color: context.colors.readable(color)),
         const SizedBox(height: AppSpacing.lg),
         Text(title, style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(height: AppSpacing.sm),

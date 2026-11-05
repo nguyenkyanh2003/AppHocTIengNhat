@@ -89,7 +89,7 @@ class _Reading extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
             decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: AppRadius.smAll),
-            child: Text(label, style: textTheme.labelMedium?.copyWith(color: color)),
+            child: Text(label, style: textTheme.labelMedium?.copyWith(color: context.colors.readable(color))),
           ),
           AppGap.sm,
           Flexible(child: Text(value, style: textTheme.titleMedium)),

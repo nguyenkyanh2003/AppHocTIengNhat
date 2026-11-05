@@ -34,7 +34,7 @@ class VocabularyExampleList extends StatelessWidget {
           ? Text(
               'Chưa có câu ví dụ cho từ này.',
               style: textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondary,
+                color: context.colors.textSecondary,
               ),
             )
           : Column(
@@ -68,7 +68,7 @@ class _ExampleRow extends StatelessWidget {
         IconButton(
           onPressed: onSpeak,
           tooltip: 'Nghe câu này',
-          color: AppColors.primary,
+          color: context.colors.primary,
           icon: const Icon(Icons.volume_up_outlined),
         ),
         AppGap.sm,
@@ -79,7 +79,7 @@ class _ExampleRow extends StatelessWidget {
               Text(
                 example.sentence,
                 style: AppTypography.japaneseReading(
-                  color: AppColors.textPrimary,
+                  color: context.colors.textPrimary,
                 ).copyWith(fontSize: AppTypography.subtitle),
               ),
               if (example.meaning.isNotEmpty) ...[
@@ -87,7 +87,7 @@ class _ExampleRow extends StatelessWidget {
                 Text(
                   example.meaning,
                   style: textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: context.colors.textSecondary,
                   ),
                 ),
               ],

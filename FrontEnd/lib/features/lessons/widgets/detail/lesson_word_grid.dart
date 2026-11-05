@@ -27,7 +27,8 @@ class LessonWordGrid extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final columns = (constraints.maxWidth / _tileWidth).floor().clamp(1, 4);
-        final width = (constraints.maxWidth - AppSpacing.md * (columns - 1)) / columns;
+        final width =
+            (constraints.maxWidth - AppSpacing.md * (columns - 1)) / columns;
         return Wrap(
           spacing: AppSpacing.md,
           runSpacing: AppSpacing.md,
@@ -43,14 +44,22 @@ class LessonWordGrid extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(word.word, style: AppTypography.japaneseBody()),
-                            Text(word.hiragana, style: textTheme.bodySmall?.copyWith(color: AppColors.primary)),
-                            Text(word.meaning, style: textTheme.bodyMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+                            Text(word.word,
+                                style: AppTypography.japaneseBody()),
+                            Text(word.hiragana,
+                                style: textTheme.bodySmall
+                                    ?.copyWith(color: context.colors.primary)),
+                            Text(word.meaning,
+                                style: textTheme.bodyMedium,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis),
                           ],
                         ),
                       ),
                       if (learnedIds.contains(word.id))
-                        const Icon(Icons.check_circle, size: 20, color: AppColors.success),
+                        Icon(Icons.check_circle,
+                            size: 20,
+                            color: context.colors.readable(AppColors.success)),
                     ],
                   ),
                 ),

@@ -27,7 +27,7 @@ class TimingLineList extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: AppSpacing.xs),
             padding: const EdgeInsets.all(AppSpacing.md),
             decoration: BoxDecoration(
-              color: index == starts.length ? AppColors.primaryLight : Colors.transparent,
+              color: index == starts.length ? context.colors.primarySoft : Colors.transparent,
               borderRadius: AppRadius.mdAll,
             ),
             child: Row(
@@ -38,7 +38,7 @@ class TimingLineList extends StatelessWidget {
                   child: Text(
                     index < starts.length ? formatTimecode(starts[index]) : '—',
                     style: textTheme.labelMedium?.copyWith(
-                      color: index < starts.length ? AppColors.primary : AppColors.textDisabled,
+                      color: index < starts.length ? context.colors.primary : context.colors.textDisabled,
                     ),
                   ),
                 ),
@@ -49,7 +49,7 @@ class TimingLineList extends StatelessWidget {
                       if (lines[index].speaker.isNotEmpty) Text(lines[index].speaker, style: textTheme.labelSmall),
                       Text(
                         lines[index].textJa,
-                        style: AppTypography.japaneseReading(color: AppColors.textPrimary)
+                        style: AppTypography.japaneseReading(color: context.colors.textPrimary)
                             .copyWith(fontSize: AppTypography.body),
                       ),
                       Text(lines[index].textVi, style: textTheme.bodySmall),

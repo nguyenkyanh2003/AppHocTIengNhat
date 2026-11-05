@@ -24,11 +24,15 @@ class LessonGoalsCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.emoji_events_outlined, size: 20, color: AppColors.success),
+              Icon(Icons.emoji_events_outlined,
+                  size: 20, color: context.colors.readable(AppColors.success)),
               AppGap.sm,
-              Text(
-                'Sau bài này bạn làm được',
-                style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              Expanded(
+                child: Text(
+                  'Sau bài này bạn làm được',
+                  style: textTheme.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
@@ -39,7 +43,9 @@ class LessonGoalsCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.check_circle_outline, size: 18, color: AppColors.success),
+                  Icon(Icons.check_circle_outline,
+                      size: 18,
+                      color: context.colors.readable(AppColors.success)),
                   AppGap.sm,
                   Expanded(child: Text(goal, style: textTheme.bodyMedium)),
                 ],

@@ -18,7 +18,9 @@ class AsyncView<T> extends StatelessWidget {
     this.emptyTitle = 'Chưa có dữ liệu',
     this.emptyMessage,
     this.emptyIcon = Icons.inbox_outlined,
+    this.emptyAction,
     this.loading,
+    this.compact = false,
   });
 
   final ViewState<T> state;
@@ -33,21 +35,37 @@ class AsyncView<T> extends StatelessWidget {
   final String emptyTitle;
   final String? emptyMessage;
   final IconData emptyIcon;
+
+  /// Nút gợi ý việc làm tiếp ở trạng thái rỗng.
+  final Widget? emptyAction;
   final Widget? loading;
+
+  /// Một khối trong trang cuộn, không phải cả màn: tải và lỗi gọn lại để các khối
+  /// khác vẫn dùng được. Mỗi khối theo dõi dữ liệu riêng, nên một API hỏng không
+  /// làm khối khác hiện số 0 hay "chưa có dữ liệu".
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
     return switch (state) {
-      ViewIdle<T>() ||
-      ViewLoading<T>() =>
-        loading ?? const Center(child: CircularProgressIndicator()),
-      ViewFailure<T>(:final message) =>
-        ErrorStateView(message: message, onRetry: onRetry),
+      ViewIdle<T>() || ViewLoading<T>() => loading ??
+          (compact
+              ? const Padding(
+                  padding: EdgeInsets.all(AppSpacing.lg),
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              : const Center(child: CircularProgressIndicator())),
+      ViewFailure<T>(:final message) => ErrorStateView(
+          message: message,
+          onRetry: onRetry,
+          compact: compact,
+        ),
       ViewData<T>(:final value) => isEmpty?.call(value) ?? false
           ? EmptyStateView(
               title: emptyTitle,
               message: emptyMessage,
               icon: emptyIcon,
+              action: emptyAction,
             )
           : builder(context, value),
     };
@@ -79,7 +97,7 @@ class EmptyStateView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 56, color: AppColors.textDisabled),
+            Icon(icon, size: 56, color: context.colors.textDisabled),
             AppGap.lg,
             Text(
               title,
@@ -104,14 +122,41 @@ class EmptyStateView extends StatelessWidget {
 
 /// Trạng thái lỗi dùng chung, luôn kèm lối thoát cho người dùng.
 class ErrorStateView extends StatelessWidget {
-  const ErrorStateView({super.key, required this.message, this.onRetry});
+  const ErrorStateView({
+    super.key,
+    required this.message,
+    this.onRetry,
+    this.compact = false,
+  });
 
   final String message;
   final Future<void> Function()? onRetry;
 
+  /// Xem [AsyncView.compact].
+  final bool compact;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
+    if (compact) {
+      return Container(
+        padding: AppSpacing.card,
+        decoration: BoxDecoration(
+          color: AppColors.error.withValues(alpha: 0.08),
+          borderRadius: AppRadius.mdAll,
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.error_outline, color: context.colors.error),
+            AppGap.md,
+            Expanded(child: Text(message, style: textTheme.bodyMedium)),
+            if (onRetry != null)
+              TextButton(onPressed: onRetry, child: const Text('Thử lại')),
+          ],
+        ),
+      );
+    }
 
     return Center(
       child: Padding(
@@ -119,7 +164,7 @@ class ErrorStateView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.error_outline, size: 56, color: AppColors.error),
+            Icon(Icons.error_outline, size: 56, color: context.colors.error),
             AppGap.lg,
             Text(
               message,

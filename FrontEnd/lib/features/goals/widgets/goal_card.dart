@@ -114,7 +114,7 @@ class _Status extends StatelessWidget {
       );
     }
     if (goal.isOverdue(now)) {
-      return Text('Quá hạn', style: style?.copyWith(color: AppColors.error, fontWeight: FontWeight.bold));
+      return Text('Quá hạn', style: style?.copyWith(color: context.colors.error, fontWeight: FontWeight.bold));
     }
     if (deadline == null) return const SizedBox.shrink();
 

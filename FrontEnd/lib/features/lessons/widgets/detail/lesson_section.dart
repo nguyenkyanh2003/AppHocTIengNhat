@@ -27,7 +27,7 @@ class LessonSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: AppColors.lesson),
+              Icon(icon, color: context.colors.readable(AppColors.lesson)),
               AppGap.sm,
               Expanded(
                 child: Text(title, style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),

@@ -103,7 +103,7 @@ class AdminProvider extends ChangeNotifier {
     try {
       _dashboardStats = await _adminService.getDashboardStats();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       debugPrint('Error loading dashboard stats: $e');
     } finally {
       _isLoadingStats = false;
@@ -126,7 +126,7 @@ class AdminProvider extends ChangeNotifier {
       );
       _userStats = await _adminService.getUserStats();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       debugPrint('Error loading users: $e');
     } finally {
       _isLoadingUsers = false;
@@ -140,7 +140,7 @@ class AdminProvider extends ChangeNotifier {
       await loadUsers();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -152,7 +152,7 @@ class AdminProvider extends ChangeNotifier {
       await loadUsers();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -164,7 +164,7 @@ class AdminProvider extends ChangeNotifier {
       await loadUsers();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -176,7 +176,7 @@ class AdminProvider extends ChangeNotifier {
       await loadUsers();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -188,7 +188,7 @@ class AdminProvider extends ChangeNotifier {
       await loadUsers();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -198,12 +198,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadVocabulary({String? level}) async {
     _isLoadingContent = true;
+    _error = null;
     notifyListeners();
 
     try {
       _vocabulary = await _adminService.getVocabulary(level: level);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -216,7 +217,7 @@ class AdminProvider extends ChangeNotifier {
       await loadVocabulary();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -228,7 +229,7 @@ class AdminProvider extends ChangeNotifier {
       await loadVocabulary();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -240,7 +241,7 @@ class AdminProvider extends ChangeNotifier {
       await loadVocabulary();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -248,12 +249,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadKanji({String? level}) async {
     _isLoadingContent = true;
+    _error = null;
     notifyListeners();
 
     try {
       _kanji = await _adminService.getKanji(level: level);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -266,7 +268,7 @@ class AdminProvider extends ChangeNotifier {
       await loadKanji();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -278,7 +280,7 @@ class AdminProvider extends ChangeNotifier {
       await loadKanji();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -290,7 +292,7 @@ class AdminProvider extends ChangeNotifier {
       await loadKanji();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -298,12 +300,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadGrammar({String? level}) async {
     _isLoadingContent = true;
+    _error = null;
     notifyListeners();
 
     try {
       _grammar = await _adminService.getGrammar(level: level);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -316,7 +319,7 @@ class AdminProvider extends ChangeNotifier {
       await loadGrammar();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -328,7 +331,7 @@ class AdminProvider extends ChangeNotifier {
       await loadGrammar();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -340,7 +343,7 @@ class AdminProvider extends ChangeNotifier {
       await loadGrammar();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -348,12 +351,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadLessons({String? level}) async {
     _isLoadingContent = true;
+    _error = null;
     notifyListeners();
 
     try {
       _lessons = await _adminService.getLessons(level: level);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -366,7 +370,7 @@ class AdminProvider extends ChangeNotifier {
       await loadLessons();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -378,7 +382,7 @@ class AdminProvider extends ChangeNotifier {
       await loadLessons();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -390,7 +394,7 @@ class AdminProvider extends ChangeNotifier {
       await loadLessons();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -431,7 +435,7 @@ class AdminProvider extends ChangeNotifier {
       }
       return imported;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       return imported;
     } finally {
       _isLoadingContent = false;
@@ -479,7 +483,7 @@ class AdminProvider extends ChangeNotifier {
       await _reloadContent(contentType);
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     } finally {
@@ -516,7 +520,7 @@ class AdminProvider extends ChangeNotifier {
       _reports = await _adminService.getReports(status: status, type: type);
       _reportStats = await _adminService.getReportStats();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       debugPrint('Error loading reports: $e');
     } finally {
       _isLoadingReports = false;
@@ -531,7 +535,7 @@ class AdminProvider extends ChangeNotifier {
       await loadReports();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -543,7 +547,7 @@ class AdminProvider extends ChangeNotifier {
       await loadReports();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -559,7 +563,7 @@ class AdminProvider extends ChangeNotifier {
     try {
       _achievements = await _adminService.getAchievements();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       debugPrint('Error loading achievements: $e');
     } finally {
       _isLoadingAchievements = false;
@@ -573,7 +577,7 @@ class AdminProvider extends ChangeNotifier {
       await loadAchievements();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -585,7 +589,7 @@ class AdminProvider extends ChangeNotifier {
       await loadAchievements();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -597,7 +601,7 @@ class AdminProvider extends ChangeNotifier {
       await loadAchievements();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -613,7 +617,7 @@ class AdminProvider extends ChangeNotifier {
     try {
       _transactions = await _adminService.getTransactions(status: status);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       debugPrint('Error loading transactions: $e');
     } finally {
       _isLoadingTransactions = false;
@@ -627,7 +631,7 @@ class AdminProvider extends ChangeNotifier {
       await loadTransactions();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -643,7 +647,7 @@ class AdminProvider extends ChangeNotifier {
     try {
       _analytics = await _adminService.getAnalytics(period: period);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       debugPrint('Error loading analytics: $e');
     } finally {
       _isLoadingAnalytics = false;
@@ -665,9 +669,11 @@ class AdminProvider extends ChangeNotifier {
   }) async {
     final result = await ViewState.guard(() async {
       if (userId == null) {
-        return _adminService.broadcastNotification(title: title, message: message, type: type);
+        return _adminService.broadcastNotification(
+            title: title, message: message, type: type);
       }
-      await _adminService.sendNotification(recipientId: userId, title: title, message: message, type: type);
+      await _adminService.sendNotification(
+          recipientId: userId, title: title, message: message, type: type);
       return 1;
     });
     return switch (result) {

@@ -48,7 +48,7 @@ class StudyFinishStep extends StatelessWidget {
     return switch (completion) {
       ViewFailure(:final message) => Column(
           children: [
-            const Icon(Icons.cloud_off, size: 56, color: AppColors.error),
+            Icon(Icons.cloud_off, size: 56, color: context.colors.error),
             AppGap.lg,
             Text(message, style: textTheme.bodyLarge, textAlign: TextAlign.center),
             AppGap.xl,
@@ -63,7 +63,7 @@ class StudyFinishStep extends StatelessWidget {
             Text(
               'Hoàn thành bài học!',
               textAlign: TextAlign.center,
-              style: AppTypography.heroDisplay(size: AppTypography.display, color: AppColors.textPrimary),
+              style: AppTypography.heroDisplay(size: AppTypography.display, color: context.colors.textPrimary),
             ),
             AppGap.xl,
             Wrap(
@@ -118,7 +118,7 @@ class _Stat extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(value, style: AppTypography.heroDisplay(size: AppTypography.headline, color: AppColors.textPrimary)),
+          Text(value, style: AppTypography.heroDisplay(size: AppTypography.headline, color: context.colors.textPrimary)),
           Text(label, style: Theme.of(context).textTheme.labelLarge),
         ],
       ),

@@ -53,7 +53,7 @@ class FreezeCard extends StatelessWidget {
                           child: Icon(
                             Icons.ac_unit,
                             size: 20,
-                            color: slot < streak.freezesAvailable ? AppColors.freeze : AppColors.border,
+                            color: slot < streak.freezesAvailable ? AppColors.freeze : context.colors.border,
                           ),
                         ),
                     ],

@@ -203,7 +203,7 @@ class _GoalFormDialogState extends State<GoalFormDialog> {
                 ),
                 if (_error != null) ...[
                   AppGap.sm,
-                  Text(_error!, style: const TextStyle(color: AppColors.error)),
+                  Text(_error!, style: TextStyle(color: context.colors.error)),
                 ],
               ],
             ),

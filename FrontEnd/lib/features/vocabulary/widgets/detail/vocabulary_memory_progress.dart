@@ -56,7 +56,7 @@ class VocabularyMemoryProgress extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: index < box
                           ? AppColors.success
-                          : AppColors.surfaceVariant,
+                          : context.colors.surfaceVariant,
                       borderRadius: AppRadius.pillAll,
                     ),
                   ),

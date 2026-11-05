@@ -92,10 +92,12 @@ class _StudyCardDeckState<T> extends State<StudyCardDeck<T>> {
       children: [
         Row(
           children: [
-            Text('$unit ${_index + 1}/${widget.items.length}', style: textTheme.titleSmall),
+            Text('$unit ${_index + 1}/${widget.items.length}',
+                style: textTheme.titleSmall),
             const Spacer(),
             Text('Đã nhớ $learnedCount/${widget.items.length}',
-                style: textTheme.labelLarge?.copyWith(color: AppColors.success)),
+                style:
+                    textTheme.labelLarge?.copyWith(color: AppColors.success)),
           ],
         ),
         AppGap.sm,
@@ -119,8 +121,12 @@ class _StudyCardDeckState<T> extends State<StudyCardDeck<T>> {
                   child: AnimatedSwitcher(
                     duration: AppDurations.normal,
                     child: _flipped
-                        ? KeyedSubtree(key: const ValueKey('back'), child: widget.back(item))
-                        : KeyedSubtree(key: const ValueKey('front'), child: widget.front(item)),
+                        ? KeyedSubtree(
+                            key: const ValueKey('back'),
+                            child: widget.back(item))
+                        : KeyedSubtree(
+                            key: const ValueKey('front'),
+                            child: widget.front(item)),
                   ),
                 ),
               ),
@@ -135,12 +141,14 @@ class _StudyCardDeckState<T> extends State<StudyCardDeck<T>> {
                   ),
                 ),
               if (learned)
-                const Positioned(
+                Positioned(
                   top: 0,
                   left: 0,
                   child: Chip(
-                    avatar: Icon(Icons.check_circle, size: 18, color: AppColors.success),
-                    label: Text('Đã nhớ'),
+                    avatar: Icon(Icons.check_circle,
+                        size: 18,
+                        color: context.colors.readable(AppColors.success)),
+                    label: const Text('Đã nhớ'),
                   ),
                 ),
             ],
@@ -159,16 +167,21 @@ class _StudyCardDeckState<T> extends State<StudyCardDeck<T>> {
               child: learned
                   ? OutlinedButton.icon(
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSpacing.md),
                       ),
-                      onPressed: widget.isSaving(item) ? null : () => widget.onUnmarkLearned(item),
+                      onPressed: widget.isSaving(item)
+                          ? null
+                          : () => widget.onUnmarkLearned(item),
                       icon: const Icon(Icons.undo),
                       label: const Text('Bỏ đánh dấu đã nhớ'),
                     )
                   : FilledButton.icon(
                       style: FilledButton.styleFrom(
-                        backgroundColor: AppColors.success,
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                        backgroundColor: AppColors.successStrong,
+                        foregroundColor: Colors.white,
+                        padding:
+                            const EdgeInsets.symmetric(vertical: AppSpacing.md),
                       ),
                       onPressed: widget.isSaving(item) ? null : _remember,
                       icon: const Icon(Icons.check),
@@ -177,7 +190,9 @@ class _StudyCardDeckState<T> extends State<StudyCardDeck<T>> {
             ),
             AppGap.md,
             IconButton.outlined(
-              onPressed: _index < widget.items.length - 1 ? () => _goTo(_index + 1) : null,
+              onPressed: _index < widget.items.length - 1
+                  ? () => _goTo(_index + 1)
+                  : null,
               tooltip: '$unit sau',
               icon: const Icon(Icons.chevron_right),
             ),
@@ -192,7 +207,8 @@ class _StudyCardDeckState<T> extends State<StudyCardDeck<T>> {
 /// ô của thẻ đã nhớ thì tô xanh — một thanh cho biết cả đang ở đâu lẫn đã nhớ
 /// những thẻ nào.
 class _DeckProgress extends StatelessWidget {
-  const _DeckProgress({required this.unit, required this.current, required this.learned});
+  const _DeckProgress(
+      {required this.unit, required this.current, required this.learned});
 
   final String unit;
   final int current;
@@ -202,7 +218,8 @@ class _DeckProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     final learnedCount = learned.where((value) => value).length;
     return Semantics(
-      label: '$unit ${current + 1} trên ${learned.length}, đã nhớ $learnedCount',
+      label:
+          '$unit ${current + 1} trên ${learned.length}, đã nhớ $learnedCount',
       child: ExcludeSemantics(
         child: Row(
           children: [
@@ -219,7 +236,7 @@ class _DeckProgress extends StatelessWidget {
                         ? AppColors.success
                         : index <= current
                             ? AppColors.primary
-                            : AppColors.surfaceVariant,
+                            : context.colors.surfaceVariant,
                   ),
                 ),
               ),

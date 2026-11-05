@@ -6,6 +6,9 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/achievement_card.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
 
 class AchievementScreen extends StatefulWidget {
   const AchievementScreen({Key? key}) : super(key: key);
@@ -44,7 +47,9 @@ class _AchievementScreenState extends State<AchievementScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: _categories.length, vsync: this);
-    _loadData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _loadData();
+    });
   }
 
   Future<void> _loadData() async {
@@ -75,22 +80,34 @@ class _AchievementScreenState extends State<AchievementScreen>
       body: ContentWidthLimit(
         child: Consumer<AchievementProvider>(
           builder: (context, provider, child) {
-            if (provider.isLoading && provider.earnedAchievements.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            return Column(
-              children: [
-                _buildStatsHeader(provider),
-                Expanded(
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: _categories.map((category) {
-                      return _buildAchievementList(provider, category);
-                    }).toList(),
+            final all = [
+              ...provider.earnedAchievements,
+              ...provider.lockedAchievements,
+            ];
+            return AsyncView<List<UserAchievement>>(
+              state: ViewState.fromLegacy(
+                isLoading: provider.isLoading,
+                error: provider.error,
+                value: all,
+                isEmpty: all.isEmpty,
+              ),
+              onRetry: _loadData,
+              isEmpty: (items) => items.isEmpty,
+              emptyTitle: 'Chưa có thành tích nào',
+              emptyIcon: Icons.emoji_events_outlined,
+              builder: (context, _) => Column(
+                children: [
+                  _buildStatsHeader(provider),
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: _categories.map((category) {
+                        return _buildAchievementList(provider, category);
+                      }).toList(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),
@@ -103,8 +120,8 @@ class _AchievementScreenState extends State<AchievementScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
-        border: const Border(
-          bottom: BorderSide(color: AppColors.border),
+        border: Border(
+          bottom: BorderSide(color: context.colors.border),
         ),
       ),
       child: Row(
@@ -131,25 +148,27 @@ class _AchievementScreenState extends State<AchievementScreen>
   }
 
   Widget _buildStatItem(String icon, String value, String label) {
-    return Column(
-      children: [
-        Text(icon, style: const TextStyle(fontSize: AppTypography.headline)),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: AppTypography.title,
-            fontWeight: FontWeight.bold,
+    return Expanded(
+      child: Column(
+        children: [
+          Text(icon, style: const TextStyle(fontSize: AppTypography.headline)),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: AppTypography.title,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: AppTypography.caption,
-            color: AppColors.textSecondary,
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: AppTypography.caption,
+              color: context.colors.textSecondary,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -166,24 +185,9 @@ class _AchievementScreenState extends State<AchievementScreen>
     }
 
     if (achievements.isEmpty) {
-      return const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '🏆',
-              style: TextStyle(fontSize: 64),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Chưa có thành tích nào',
-              style: TextStyle(
-                fontSize: AppTypography.body,
-                color: AppColors.textSecondary,
-              ),
-            ),
-          ],
-        ),
+      return const EmptyStateView(
+        title: 'Chưa có thành tích nào',
+        icon: Icons.emoji_events_outlined,
       );
     }
 
@@ -201,186 +205,9 @@ class _AchievementScreenState extends State<AchievementScreen>
         padding: const EdgeInsets.all(16),
         itemCount: achievements.length,
         itemBuilder: (context, index) {
-          return _buildAchievementCard(achievements[index]);
+          return AchievementCard(userAchievement: achievements[index]);
         },
       ),
     );
-  }
-
-  Widget _buildAchievementCard(UserAchievement userAchievement) {
-    final achievement = userAchievement.achievement;
-    final isLocked = userAchievement.isLocked || !userAchievement.isCompleted;
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      elevation: userAchievement.isCompleted ? 4 : 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          gradient: userAchievement.isCompleted
-              ? LinearGradient(
-                  colors: _getRarityGradient(achievement.rarity),
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )
-              : null,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: userAchievement.isCompleted
-                      ? Colors.white.withValues(alpha: 0.2)
-                      : AppColors.surfaceVariant,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Text(
-                    isLocked ? '🔒' : achievement.icon,
-                    style: const TextStyle(fontSize: AppTypography.display),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      achievement.nameVi,
-                      style: TextStyle(
-                        fontSize: AppTypography.body,
-                        fontWeight: FontWeight.bold,
-                        color: userAchievement.isCompleted
-                            ? Colors.white
-                            : Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      achievement.descriptionVi,
-                      style: TextStyle(
-                        fontSize: AppTypography.caption,
-                        color: userAchievement.isCompleted
-                            ? Colors.white70
-                            : AppColors.textSecondary,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    if (!userAchievement.isCompleted) ...[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: LinearProgressIndicator(
-                          value: userAchievement.progressPercentage,
-                          backgroundColor: AppColors.border,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Theme.of(context).primaryColor,
-                          ),
-                          minHeight: 6,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '${userAchievement.progress}/${achievement.requirementValue}',
-                        style: const TextStyle(
-                          fontSize: AppTypography.caption,
-                          color: AppColors.textSecondary,
-                        ),
-                      ),
-                    ] else ...[
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.check_circle,
-                            color: Colors.white,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            'Hoàn thành • +${achievement.xpReward} XP',
-                            style: const TextStyle(
-                              fontSize: AppTypography.caption,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-              if (!isLocked)
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: userAchievement.isCompleted
-                        ? Colors.white.withValues(alpha: 0.2)
-                        : _getRarityColor(achievement.rarity),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    _getRarityText(achievement.rarity),
-                    style: TextStyle(
-                      fontSize: AppTypography.caption,
-                      fontWeight: FontWeight.bold,
-                      color: userAchievement.isCompleted
-                          ? Colors.white
-                          : Colors.white,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  List<Color> _getRarityGradient(String rarity) {
-    switch (rarity) {
-      case 'legendary':
-        return [const Color(0xFFF59E0B), const Color(0xFFD97706)];
-      case 'epic':
-        return [const Color(0xFF8B5CF6), const Color(0xFF6D28D9)];
-      case 'rare':
-        return [const Color(0xFF4F46E5), const Color(0xFF4338CA)];
-      default:
-        return [const Color(0xFF64748B), const Color(0xFF475569)];
-    }
-  }
-
-  Color _getRarityColor(String rarity) {
-    switch (rarity) {
-      case 'legendary':
-        return const Color(0xFFF59E0B);
-      case 'epic':
-        return const Color(0xFF8B5CF6);
-      case 'rare':
-        return const Color(0xFF4F46E5);
-      default:
-        return const Color(0xFF64748B);
-    }
-  }
-
-  String _getRarityText(String rarity) {
-    switch (rarity) {
-      case 'legendary':
-        return 'HUYỀN THOẠI';
-      case 'epic':
-        return 'SỬ THI';
-      case 'rare':
-        return 'HIẾM';
-      default:
-        return 'THƯỜNG';
-    }
   }
 }

@@ -33,7 +33,7 @@ class LessonActionButton extends StatelessWidget {
       enabled: enabled,
       label: label,
       child: ChunkyCard(
-        color: enabled ? AppColors.heroAction : AppColors.textDisabled,
+        color: enabled ? AppColors.heroAction : context.colors.textDisabled,
         borderRadius: AppRadius.lgAll,
         padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg, horizontal: AppSpacing.xl),
         onTap: enabled ? onPressed : null,

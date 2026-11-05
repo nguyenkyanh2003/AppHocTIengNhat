@@ -46,58 +46,43 @@ class StudyGroupService {
     String? level,
     bool? isPrivate,
   }) async {
-    try {
-      String queryString = '?page=$page&limit=$limit';
-      if (search != null && search.isNotEmpty) queryString += '&search=$search';
-      if (level != null) queryString += '&level=$level';
-      if (isPrivate != null) queryString += '&is_private=$isPrivate';
+    String queryString = '?page=$page&limit=$limit';
+    if (search != null && search.isNotEmpty) queryString += '&search=$search';
+    if (level != null) queryString += '&level=$level';
+    if (isPrivate != null) queryString += '&is_private=$isPrivate';
 
-      final response = await _apiClient.get('/group$queryString');
+    final response = await _apiClient.get('/group$queryString');
 
-      if (response != null && response['data'] != null) {
-        return (response['data'] as List)
-            .map((json) => StudyGroup.fromJson(json))
-            .toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Error getting groups: $e');
-      return [];
+    if (response != null && response['data'] != null) {
+      return (response['data'] as List)
+          .map((json) => StudyGroup.fromJson(json))
+          .toList();
     }
+    return [];
   }
 
   // Lấy nhóm của tôi
   Future<List<StudyGroup>> getMyGroups() async {
-    try {
-      final response = await _apiClient.get('/group/me');
+    final response = await _apiClient.get('/group/me');
 
-      if (response != null && response['data'] != null) {
-        return (response['data'] as List)
-            .map((json) => StudyGroup.fromJson(json))
-            .toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Error getting my groups: $e');
-      return [];
+    if (response != null && response['data'] != null) {
+      return (response['data'] as List)
+          .map((json) => StudyGroup.fromJson(json))
+          .toList();
     }
+    return [];
   }
 
   // Lấy chi tiết nhóm
   Future<StudyGroup?> getGroupDetail(String groupId) async {
-    try {
-      final response = await _apiClient.get('/group/$groupId');
+    final response = await _apiClient.get('/group/$groupId');
 
-      if (response != null && response['data'] != null) {
-        debugPrint('Group response: ${response['data']}');
-        debugPrint('Members: ${response['data']['members']}');
-        return StudyGroup.fromJson(response['data']);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Error getting group detail: $e');
-      return null;
+    if (response != null && response['data'] != null) {
+      debugPrint('Group response: ${response['data']}');
+      debugPrint('Members: ${response['data']['members']}');
+      return StudyGroup.fromJson(response['data']);
     }
+    return null;
   }
 
   // Cập nhật thông tin nhóm
@@ -212,17 +197,12 @@ class StudyGroupService {
 
   // Lấy thống kê nhóm
   Future<GroupStats?> getGroupStats(String groupId) async {
-    try {
-      final response = await _apiClient.get('/group/$groupId/stats');
+    final response = await _apiClient.get('/group/$groupId/stats');
 
-      if (response != null && response['data'] != null) {
-        return GroupStats.fromJson(response['data']);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Error getting group stats: $e');
-      return null;
+    if (response != null && response['data'] != null) {
+      return GroupStats.fromJson(response['data']);
     }
+    return null;
   }
 
   // Xóa nhóm (creator only)

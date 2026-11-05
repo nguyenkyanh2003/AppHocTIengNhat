@@ -1,116 +1,98 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../../core/state/view_state.dart';
 import '../models/dashboard.dart';
 import '../services/progress_service.dart';
 
+/// Số liệu học tập dùng chung cho màn Tiến độ, Lịch sử học và Thống kê chi tiết.
 class ProgressProvider with ChangeNotifier {
-  final ProgressService _progressService = ProgressService();
+  ProgressProvider({ProgressService? service})
+      : _service = service ?? ProgressService();
 
-  DashboardStats? _stats;
-  List<TimelineData> _timeline = [];
-  List<HeatmapData> _heatmap = [];
-  DashboardBreakdown? _breakdown;
+  final ProgressService _service;
 
-  bool _isLoading = false;
-  String? _error;
+  ViewState<ProgressDashboard> _dashboard = const ViewState.idle();
   String _selectedPeriod = 'week';
+  bool _isChangingPeriod = false;
 
-  DashboardStats? get stats => _stats;
-  List<TimelineData> get timeline => _timeline;
-  List<HeatmapData> get heatmap => _heatmap;
-  DashboardBreakdown? get breakdown => _breakdown;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
+  /// Lượt đổi kỳ mới nhất: phản hồi của lượt cũ về muộn không được đè lên.
+  int _periodRequest = 0;
+
+  ViewState<ProgressDashboard> get dashboard => _dashboard;
   String get selectedPeriod => _selectedPeriod;
+  bool get isChangingPeriod => _isChangingPeriod;
+  bool get isLoading => _dashboard.isLoading;
 
-  // Load tất cả dữ liệu dashboard
+  DashboardStats? get stats => _dashboard.valueOrNull?.stats;
+  List<TimelineData> get timeline =>
+      _dashboard.valueOrNull?.timeline ?? const [];
+  List<HeatmapData> get heatmap => _dashboard.valueOrNull?.heatmap ?? const [];
+  DashboardBreakdown? get breakdown => _dashboard.valueOrNull?.breakdown;
+
+  /// Tải cả bốn phần cùng lúc. Lần tải lại hỏng thì giữ số liệu đang có: mất mạng
+  /// một lần không được xoá trắng màn hình.
   Future<void> loadDashboardData() async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+    if (!_dashboard.hasData) {
+      _dashboard = const ViewState.loading();
+      notifyListeners();
+    }
 
-    try {
-      await Future.wait([
-        loadStats(),
-        loadTimeline(),
-        loadHeatmap(),
-        loadBreakdown(),
+    final period = _selectedPeriod;
+    final result = await ViewState.guard(() async {
+      final parts = await Future.wait<Object?>([
+        _service.getDashboardStats(),
+        _service.getTimeline(period: period),
+        _service.getHeatmap(),
+        _service.getBreakdown(),
       ]);
-      _error = null;
-    } catch (e) {
-      _error = 'Không thể tải dữ liệu dashboard';
-      debugPrint('Lỗi khi tải dashboard: $e');
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
+      return ProgressDashboard(
+        stats: parts[0] as DashboardStats,
+        timeline: parts[1] as List<TimelineData>,
+        heatmap: parts[2] as List<HeatmapData>,
+        breakdown: parts[3] as DashboardBreakdown,
+      );
+    });
 
-  // Load thống kê tổng quan
-  Future<void> loadStats() async {
-    try {
-      _stats = await _progressService.getDashboardStats();
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Lỗi khi tải stats: $e');
-    }
-  }
-
-  // Load timeline
-  Future<void> loadTimeline({String? period}) async {
-    if (period != null) {
-      _selectedPeriod = period;
-    }
-
-    try {
-      _timeline = await _progressService.getTimeline(period: _selectedPeriod);
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Lỗi khi tải timeline: $e');
-    }
-  }
-
-  // Load heatmap
-  Future<void> loadHeatmap({int? year}) async {
-    try {
-      _heatmap = await _progressService.getHeatmap(year: year);
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Lỗi khi tải heatmap: $e');
-    }
-  }
-
-  // Load breakdown
-  Future<void> loadBreakdown() async {
-    try {
-      _breakdown = await _progressService.getBreakdown();
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Lỗi khi tải breakdown: $e');
-    }
-  }
-
-  // Change period và reload timeline
-  Future<void> changePeriod(String period) async {
-    if (_selectedPeriod != period) {
-      _selectedPeriod = period;
-      await loadTimeline(period: period);
-    }
-  }
-
-  void clearError() {
-    _error = null;
+    if (result.hasData || !_dashboard.hasData) _dashboard = result;
     notifyListeners();
   }
 
-  // Clear all state
+  /// Đổi kỳ của biểu đồ. Trả `null` khi đổi được, ngược lại là câu báo lỗi; khi
+  /// lỗi thì kỳ và số liệu cũ giữ nguyên để nút chọn không nói dối.
+  Future<String?> changePeriod(String period) async {
+    if (period == _selectedPeriod) return null;
+
+    final request = ++_periodRequest;
+    final previous = _selectedPeriod;
+    _selectedPeriod = period;
+    _isChangingPeriod = true;
+    notifyListeners();
+
+    final result =
+        await ViewState.guard(() => _service.getTimeline(period: period));
+    if (request != _periodRequest) return null;
+
+    _isChangingPeriod = false;
+    final current = _dashboard.valueOrNull;
+    if (result is ViewData<List<TimelineData>>) {
+      if (current != null) {
+        _dashboard = ViewState.data(current.withTimeline(result.value));
+      }
+      notifyListeners();
+      return null;
+    }
+
+    _selectedPeriod = previous;
+    notifyListeners();
+    return result.errorOrNull;
+  }
+
+  /// Xoá mọi trạng thái, dùng khi đăng xuất.
   void clear() {
-    _stats = null;
-    _timeline = [];
-    _heatmap = [];
-    _breakdown = null;
-    _isLoading = false;
-    _error = null;
+    _periodRequest += 1;
+    _dashboard = const ViewState.idle();
     _selectedPeriod = 'week';
+    _isChangingPeriod = false;
     notifyListeners();
   }
 }

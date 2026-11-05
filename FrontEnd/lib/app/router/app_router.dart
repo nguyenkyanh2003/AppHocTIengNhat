@@ -24,6 +24,7 @@ import '../../features/flashcards/models/flashcard_deck.dart';
 import '../../features/flashcards/screens/create_flashcard_deck_screen.dart';
 import '../../features/flashcards/screens/edit_flashcard_card_screen.dart';
 import '../../features/flashcards/screens/flashcard_deck_detail_screen.dart';
+import '../../features/flashcards/screens/flashcard_deck_list_screen.dart';
 import '../../features/flashcards/screens/flashcard_study_screen.dart';
 import '../../features/goals/screens/learning_goals_screen.dart';
 import '../../features/grammar/screens/grammar_detail_screen.dart';
@@ -284,7 +285,8 @@ abstract final class AppRouter {
           // `?step=` mở thẳng một bước từ lộ trình ở màn chi tiết bài.
           builder: (context, state) => LessonStudyScreen(
             lessonId: state.pathParameters['id']!,
-            initialStep: int.tryParse(state.uri.queryParameters['step'] ?? '') ?? 0,
+            initialStep:
+                int.tryParse(state.uri.queryParameters['step'] ?? '') ?? 0,
           ),
         ),
         GoRoute(
@@ -324,7 +326,8 @@ abstract final class AppRouter {
         // --- Mọi trang còn lại nằm trong shell điều hướng ---
         ShellRoute(
           // Nhắc học chỉ chạy trong vùng đã đăng nhập, cùng vòng đời với shell.
-          builder: (context, state, child) => StreakReminderHost(child: AppShell(child: child)),
+          builder: (context, state, child) =>
+              StreakReminderHost(child: AppShell(child: child)),
           routes: [
             GoRoute(
               path: '/home',
@@ -459,8 +462,7 @@ abstract final class AppRouter {
             // Ôn tập
             GoRoute(
               path: '/flashcards',
-              builder: (context, state) =>
-                  const HubScreen(destinationPath: '/review'),
+              builder: (context, state) => const FlashcardDeckListScreen(),
               routes: [
                 GoRoute(
                   path: 'new',

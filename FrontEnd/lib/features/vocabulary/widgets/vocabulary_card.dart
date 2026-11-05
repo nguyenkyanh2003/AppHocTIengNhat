@@ -48,10 +48,10 @@ class VocabularyCard extends StatelessWidget {
                     ],
                     if (vocabulary.isLearned) ...[
                       const SizedBox(width: AppSpacing.sm),
-                      const Icon(
+                      Icon(
                         Icons.check_circle,
                         size: 16,
-                        color: AppColors.success,
+                        color: context.colors.readable(AppColors.success),
                       ),
                     ],
                   ],
@@ -71,14 +71,14 @@ class VocabularyCard extends StatelessWidget {
           if (vocabulary.audioUrl != null && onPlayAudio != null)
             IconButton(
               icon: const Icon(Icons.volume_up_outlined),
-              color: AppColors.vocabulary,
+              color: context.colors.primary,
               tooltip: 'Phát âm',
               onPressed: onPlayAudio,
             ),
           if (onAddToFlashcard != null)
             IconButton(
               icon: const Icon(Icons.add_card),
-              color: AppColors.vocabulary,
+              color: context.colors.primary,
               tooltip: 'Thêm vào Flashcard',
               onPressed: onAddToFlashcard,
             ),

@@ -43,7 +43,7 @@ class _HoverLiftState extends State<HoverLift> {
     final interactive = widget.onTap != null;
     final hovered = interactive && _hovered;
     final base = widget.color ?? theme.colorScheme.surfaceContainerLowest;
-    final hover = widget.hoverColor ?? AppColors.primaryLight;
+    final hover = widget.hoverColor ?? context.colors.primarySoft;
 
     Widget tile = MouseRegion(
       cursor: interactive ? SystemMouseCursors.click : MouseCursor.defer,
@@ -58,7 +58,7 @@ class _HoverLiftState extends State<HoverLift> {
           color: hovered ? hover : base,
           borderRadius: widget.borderRadius,
           border: Border.all(
-            color: hovered ? theme.colorScheme.primary : AppColors.border,
+            color: hovered ? theme.colorScheme.primary : context.colors.border,
           ),
           boxShadow: hovered
               ? [

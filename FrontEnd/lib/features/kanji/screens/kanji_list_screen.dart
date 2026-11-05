@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/kanji_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/kanji_list_card.dart';
+import '../widgets/kanji_pagination.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/kanji.dart';
 
 class KanjiListScreen extends StatefulWidget {
   const KanjiListScreen({Key? key}) : super(key: key);
@@ -54,7 +57,7 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.colors.surface,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -68,11 +71,12 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
           controller: _searchController,
           decoration: InputDecoration(
             hintText: 'Tìm kiếm Kanji...',
-            hintStyle: const TextStyle(color: AppColors.textDisabled),
-            prefixIcon: const Icon(Icons.search, color: Color(0xFF6C757D)),
+            hintStyle: TextStyle(color: context.colors.textDisabled),
+            prefixIcon: Icon(Icons.search, color: context.colors.textSecondary),
             suffixIcon: _searchController.text.isNotEmpty
                 ? IconButton(
-                    icon: const Icon(Icons.clear, color: Color(0xFF6C757D)),
+                    icon:
+                        Icon(Icons.clear, color: context.colors.textSecondary),
                     onPressed: () {
                       _searchController.clear();
                       context.read<KanjiProvider>().loadKanjis(refresh: true);
@@ -122,16 +126,17 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
                       level == 'Tất cả' ? null : level,
                     );
               },
-              backgroundColor: Colors.white,
-              selectedColor: const Color(0xFFFF6B6B).withValues(alpha: 0.2),
+              backgroundColor: context.colors.surface,
+              selectedColor: AppColors.kanjiCoral.withValues(alpha: 0.2),
               labelStyle: TextStyle(
                 color: isSelected
-                    ? const Color(0xFFFF6B6B)
-                    : const Color(0xFF6C757D),
+                    ? AppColors.kanjiCoral
+                    : context.colors.textSecondary,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
               side: BorderSide(
-                color: isSelected ? const Color(0xFFFF6B6B) : AppColors.border,
+                color:
+                    isSelected ? AppColors.kanjiCoral : context.colors.border,
                 width: isSelected ? 2 : 1,
               ),
               shape: RoundedRectangleBorder(
@@ -146,317 +151,31 @@ class _KanjiListScreenState extends State<KanjiListScreen> {
 
   Widget _buildKanjiList() {
     return Consumer<KanjiProvider>(
-      builder: (context, provider, child) {
-        if (provider.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFFF6B6B)),
-            ),
-          );
-        }
-
-        if (provider.errorMessage.isNotEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.error_outline,
-                  size: 64,
-                  color: AppColors.error,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  provider.errorMessage,
-                  style: const TextStyle(color: Color(0xFF6C757D)),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () => provider.loadKanjis(refresh: true),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFF6B6B),
-                  ),
-                  child: const Text('Thử lại'),
-                ),
-              ],
-            ),
-          );
-        }
-
-        if (provider.kanjis.isEmpty) {
-          return const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.search_off,
-                  size: 64,
-                  color: AppColors.border,
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Không tìm thấy Kanji nào',
-                  style: TextStyle(
-                    fontSize: AppTypography.body,
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-
-        return Column(
+      builder: (context, provider, child) => AsyncView<List<Kanji>>(
+        state: ViewState.fromLegacy(
+          isLoading: provider.isLoading,
+          error: provider.errorMessage.isEmpty ? null : provider.errorMessage,
+          value: provider.kanjis,
+          isEmpty: provider.kanjis.isEmpty,
+        ),
+        onRetry: () => provider.loadKanjis(refresh: true),
+        isEmpty: (kanjis) => kanjis.isEmpty,
+        emptyTitle: 'Không tìm thấy Kanji nào',
+        emptyIcon: Icons.search_off,
+        builder: (context, kanjis) => Column(
           children: [
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.all(20),
-                itemCount: provider.kanjis.length,
-                itemBuilder: (context, index) {
-                  return _buildKanjiCard(provider.kanjis[index]);
-                },
+                itemCount: kanjis.length,
+                itemBuilder: (context, index) =>
+                    KanjiListCard(kanji: kanjis[index]),
               ),
             ),
-            _buildPagination(provider),
+            KanjiPagination(provider: provider),
           ],
-        );
-      },
-    );
-  }
-
-  Widget _buildKanjiCard(kanji) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(15),
-          onTap: () {
-            context.push('/kanji/${kanji.id}');
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                // Kanji character với gradient background
-                Container(
-                  width: 70,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
-                    ),
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFFFF6B6B).withValues(alpha: 0.3),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      kanji.character,
-                      style: const TextStyle(
-                        fontSize: AppTypography.display,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                // Thông tin
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (kanji.hanviet != null)
-                        Text(
-                          kanji.hanviet!,
-                          style: const TextStyle(
-                            fontSize: AppTypography.subtitle,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2C3E50),
-                          ),
-                        ),
-                      const SizedBox(height: 4),
-                      if (kanji.meaning != null)
-                        Text(
-                          kanji.meaning!,
-                          style: const TextStyle(
-                            fontSize: AppTypography.bodySmall,
-                            color: Color(0xFF6C757D),
-                          ),
-                        ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          if (kanji.onyomi.isNotEmpty)
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.primary.withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Text(
-                                  'Âm Hán: ${kanji.onyomi.join(", ")}',
-                                  style: const TextStyle(
-                                    fontSize: AppTypography.caption,
-                                    color: AppColors.primary,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                          if (kanji.onyomi.isNotEmpty &&
-                              kanji.kunyomi.isNotEmpty)
-                            const SizedBox(width: 8),
-                          if (kanji.kunyomi.isNotEmpty)
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.success.withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Text(
-                                  'Âm Kun: ${kanji.kunyomi.join(", ")}',
-                                  style: const TextStyle(
-                                    fontSize: AppTypography.caption,
-                                    color: AppColors.success,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                // Level badge
-                if (kanji.level != null)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _getLevelColor(kanji.level!),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      kanji.level!,
-                      style: const TextStyle(
-                        fontSize: AppTypography.caption,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
         ),
       ),
     );
-  }
-
-  Widget _buildPagination(KanjiProvider provider) {
-    if (provider.totalPages <= 1) return const SizedBox.shrink();
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ElevatedButton.icon(
-            onPressed:
-                provider.hasPreviousPage ? () => provider.previousPage() : null,
-            icon: const Icon(Icons.chevron_left),
-            label: const Text('Trước'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFFF6B6B),
-              foregroundColor: Colors.white,
-              disabledBackgroundColor: AppColors.border,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-          Text(
-            'Trang ${provider.currentPage}/${provider.totalPages}',
-            style: const TextStyle(
-              fontSize: AppTypography.bodySmall,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2C3E50),
-            ),
-          ),
-          ElevatedButton.icon(
-            onPressed: provider.hasNextPage ? () => provider.nextPage() : null,
-            icon: const Icon(Icons.chevron_right),
-            label: const Text('Sau'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFFF6B6B),
-              foregroundColor: Colors.white,
-              disabledBackgroundColor: AppColors.border,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Color _getLevelColor(String level) {
-    switch (level) {
-      case 'N5':
-        return AppColors.success;
-      case 'N4':
-        return AppColors.primary;
-      case 'N3':
-        return AppColors.warning;
-      case 'N2':
-        return Colors.deepOrange;
-      case 'N1':
-        return AppColors.error;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

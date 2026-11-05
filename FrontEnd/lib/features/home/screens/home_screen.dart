@@ -82,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
       title: l10n.appName,
       backgroundColor: calm.background,
       appBar: HomeAppBar(
-          unreadNotifications: context.watch<NotificationProvider>().unreadCount),
+          unreadNotifications:
+              context.watch<NotificationProvider>().unreadCount),
       body: RefreshIndicator(
         onRefresh: _refresh,
         color: calm.green,
@@ -101,8 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   HomeGreeting(name: name, now: DateTime.now()),
                   const SizedBox(height: HomeLayout.block),
                   HomeStatCards(
-                      streakDays: streak?.currentStreak ?? 0,
-                      totalXp: streak?.totalXP ?? 0),
+                      streakDays: streak?.currentStreak,
+                      totalXp: streak?.totalXP),
                   const SizedBox(height: HomeLayout.block),
                   NextLessonCard(state: home.nextLesson),
                   const SizedBox(height: HomeLayout.section),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../app/theme/app_tokens.dart';
 import 'dart:math' as math;
 import '../../../app/theme/app_typography.dart';
 
@@ -21,8 +22,8 @@ class FlashcardWidget extends StatefulWidget {
     this.backSubtext,
     this.onFlip,
     this.showBack = false,
-    this.frontColor = const Color(0xFF4F46E5),
-    this.backColor = const Color(0xFF10B981),
+    this.frontColor = AppColors.primary,
+    this.backColor = AppColors.successStrong,
   }) : super(key: key);
 
   @override

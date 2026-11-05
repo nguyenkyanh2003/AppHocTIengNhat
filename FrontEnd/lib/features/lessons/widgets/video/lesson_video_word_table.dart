@@ -15,7 +15,7 @@ class LessonVideoWordTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final japanese = AppTypography.japaneseReading(color: AppColors.textPrimary).copyWith(fontSize: AppTypography.body);
+    final japanese = AppTypography.japaneseReading(color: context.colors.textPrimary).copyWith(fontSize: AppTypography.body);
 
     TableRow row(List<Widget> cells, {Color? color}) => TableRow(
           decoration: BoxDecoration(color: color),
@@ -32,7 +32,7 @@ class LessonVideoWordTable extends StatelessWidget {
       child: ClipRRect(
         borderRadius: AppRadius.mdAll,
         child: Table(
-          border: const TableBorder(horizontalInside: BorderSide(color: AppColors.border)),
+          border: TableBorder(horizontalInside: BorderSide(color: context.colors.border)),
           columnWidths: const {
             0: FlexColumnWidth(3),
             1: FlexColumnWidth(3),
@@ -43,7 +43,7 @@ class LessonVideoWordTable extends StatelessWidget {
           children: [
             row(
               [for (final header in _headers) Text(header, style: textTheme.labelLarge)],
-              color: AppColors.primaryLight,
+              color: context.colors.primarySoft,
             ),
             for (final word in words)
               row([

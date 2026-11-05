@@ -26,7 +26,7 @@ class StudyVideoStep extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(_hint, style: textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary)),
+        Text(_hint, style: textTheme.bodyMedium?.copyWith(color: context.colors.textSecondary)),
         AppGap.lg,
         LessonVideoSection(key: ValueKey(video.url), videos: [video]),
       ],

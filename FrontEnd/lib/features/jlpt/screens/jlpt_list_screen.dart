@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/jlpt_provider.dart';
-import '../../../app/theme/app_theme.dart';
 import '../models/jlpt_models.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/level_badge.dart';
+import '../../../app/theme/app_tokens.dart';
 
 class JLPTListScreen extends StatefulWidget {
   const JLPTListScreen({super.key});
@@ -41,23 +44,31 @@ class _JLPTListScreenState extends State<JLPTListScreen> {
       body: ContentWidthLimit(
         child: Consumer<JLPTProvider>(
           builder: (context, provider, _) {
-            if (provider.isLoading && provider.exams.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
             return Column(
               children: [
                 _buildLevelChips(),
                 Expanded(
-                  child: RefreshIndicator(
-                    onRefresh: () =>
+                  child: AsyncView<List<JLPTExamBrief>>(
+                    state: ViewState.fromLegacy(
+                      isLoading: provider.isLoading,
+                      error: provider.error,
+                      value: provider.exams,
+                      isEmpty: provider.exams.isEmpty,
+                    ),
+                    onRetry: () =>
                         provider.loadExams(refresh: true, level: _level),
-                    child: ListView.builder(
-                      itemCount: provider.exams.length,
-                      itemBuilder: (context, index) {
-                        final exam = provider.exams[index];
-                        return _ExamCard(exam: exam);
-                      },
+                    isEmpty: (exams) => exams.isEmpty,
+                    emptyTitle: 'Chưa có đề thi nào',
+                    emptyMessage: 'Thử chọn cấp độ khác.',
+                    emptyIcon: Icons.assignment_outlined,
+                    builder: (context, exams) => RefreshIndicator(
+                      onRefresh: () =>
+                          provider.loadExams(refresh: true, level: _level),
+                      child: ListView.builder(
+                        itemCount: exams.length,
+                        itemBuilder: (context, index) =>
+                            _ExamCard(exam: exams[index]),
+                      ),
                     ),
                   ),
                 ),
@@ -115,22 +126,21 @@ class _ExamCard extends StatelessWidget {
           children: [
             if (exam.description != null) Text(exam.description!),
             const SizedBox(height: 4),
-            Text('Level: ${exam.level} | Thời gian: ${exam.timeLimit}p'),
+            Wrap(
+              spacing: AppSpacing.sm,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                LevelBadge(exam.level, compact: true),
+                Text('Thời gian: ${exam.timeLimit} phút'),
+              ],
+            ),
             Text('Số câu: ${exam.totalQuestions} | Điểm: ${exam.totalScore}'),
             if (exam.lastResult != null)
               Text(
                   'Điểm gần nhất: ${exam.lastResult!.score} (${exam.lastResult!.isPassed ? 'Đỗ' : 'Trượt'})'),
           ],
         ),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.arrow_forward_ios, size: 16),
-            Text(exam.level,
-                style:
-                    TextStyle(color: AppTheme.getJlptLevelColor(exam.level))),
-          ],
-        ),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
         onTap: () {
           context.push(
             Uri(

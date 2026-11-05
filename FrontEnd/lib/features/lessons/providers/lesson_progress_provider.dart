@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/lesson_progress.dart';
 import '../services/lesson_progress_service.dart';
+import '../../../core/state/view_state.dart';
 
 class LessonProgressProvider extends ChangeNotifier {
   final LessonProgressService _progressService = LessonProgressService();
@@ -35,7 +36,7 @@ class LessonProgressProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       _isLoading = false;
       notifyListeners();
     }
@@ -53,7 +54,7 @@ class LessonProgressProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       _isLoading = false;
       notifyListeners();
     }
@@ -72,7 +73,7 @@ class LessonProgressProvider extends ChangeNotifier {
       }
       return false;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -102,7 +103,7 @@ class LessonProgressProvider extends ChangeNotifier {
       }
       return false;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -121,7 +122,7 @@ class LessonProgressProvider extends ChangeNotifier {
       }
       return false;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -139,7 +140,7 @@ class LessonProgressProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -152,7 +153,7 @@ class LessonProgressProvider extends ChangeNotifier {
       _stats = await _progressService.getOverallStats();
       notifyListeners();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
     }
   }

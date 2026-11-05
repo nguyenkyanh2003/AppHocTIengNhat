@@ -137,7 +137,7 @@ class _SendNotificationDialogState extends State<SendNotificationDialog> {
                 ),
                 if (_error != null) ...[
                   AppGap.md,
-                  Text(_error!, style: const TextStyle(color: AppColors.error)),
+                  Text(_error!, style: TextStyle(color: context.colors.error)),
                 ],
               ],
             ),

@@ -9,6 +9,8 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
+import '../../../core/state/view_state.dart';
+import '../widgets/password_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -25,8 +27,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _phoneController = TextEditingController();
-  bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
   bool _isLoading = false;
 
   @override
@@ -63,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đăng ký thành công!'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
 
@@ -73,8 +73,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Đăng ký thất bại: ${e.toString()}'),
-          backgroundColor: AppColors.error,
+          content: Text('Đăng ký thất bại: ${userMessageOf(e)}'),
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     } finally {
@@ -102,10 +102,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   const SizedBox(height: 32),
                   // Logo hoặc tiêu đề
-                  const Icon(
+                  Icon(
                     Icons.person_add,
                     size: 80,
-                    color: AppColors.primary,
+                    color: context.colors.primary,
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -200,28 +200,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 16),
 
                   // Password field
-                  TextFormField(
+                  PasswordFormField(
                     controller: _passwordController,
-                    obscureText: !_isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Mật khẩu',
-                      helperText: AppLocalizations.of(context)
-                          .passwordMinHint(PasswordPolicy.minLength),
-                      prefixIcon: const Icon(Icons.lock),
-                      border: const OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
-                      ),
-                    ),
+                    labelText: 'Mật khẩu',
+                    helperText: AppLocalizations.of(context)
+                        .passwordMinHint(PasswordPolicy.minLength),
+                    prefixIcon: Icons.lock,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Vui lòng nhập mật khẩu';
@@ -236,27 +220,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 16),
 
                   // Confirm password field
-                  TextFormField(
+                  PasswordFormField(
                     controller: _confirmPasswordController,
-                    obscureText: !_isConfirmPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Xác nhận mật khẩu',
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      border: const OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isConfirmPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isConfirmPasswordVisible =
-                                !_isConfirmPasswordVisible;
-                          });
-                        },
-                      ),
-                    ),
+                    labelText: 'Xác nhận mật khẩu',
+                    prefixIcon: Icons.lock_outline,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Vui lòng xác nhận mật khẩu';
@@ -291,8 +258,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 16),
 
                   // Login link
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       const Text('Đã có tài khoản?'),
                       TextButton(

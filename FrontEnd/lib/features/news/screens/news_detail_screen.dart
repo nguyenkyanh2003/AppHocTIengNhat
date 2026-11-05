@@ -5,6 +5,11 @@ import '../providers/news_provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
+import '../widgets/related_news_list.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/news.dart';
+import '../../../shared/widgets/level_badge.dart';
 
 class NewsDetailScreen extends StatefulWidget {
   final String newsId;
@@ -30,17 +35,21 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
     return Scaffold(
       body: Consumer<NewsProvider>(
         builder: (context, provider, _) {
-          if (provider.isLoadingDetail) {
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
-          }
-
           final news = provider.selectedNews;
-          if (news == null) {
+          if (provider.isLoadingDetail ||
+              provider.error != null ||
+              news == null) {
             return Scaffold(
               appBar: AppBar(title: const Text('Chi tiết tin tức')),
-              body: const Center(child: Text('Không tìm thấy tin tức')),
+              body: AsyncView<News>(
+                state: ViewState.detail(
+                  isLoading: provider.isLoadingDetail,
+                  error: provider.error,
+                  value: news,
+                ),
+                onRetry: () => provider.loadNewsDetail(widget.newsId),
+                builder: (context, _) => const SizedBox.shrink(),
+              ),
             );
           }
 
@@ -57,7 +66,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: provider.isBookmarked(news.id)
-                          ? AppColors.error
+                          ? context.colors.error
                           : Colors.white,
                     ),
                     onPressed: () {
@@ -82,13 +91,13 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Container(
-                              color: AppColors.border,
+                              color: context.colors.border,
                               child: const Icon(Icons.image, size: 64),
                             );
                           },
                         )
                       : Container(
-                          color: AppColors.border,
+                          color: context.colors.border,
                           child: const Icon(Icons.image, size: 64),
                         ),
                 ),
@@ -106,7 +115,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                   ),
                   sliver: SliverToBoxAdapter(
                     child: Container(
-                      color: Colors.white,
+                      color: context.colors.surface,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -127,46 +136,35 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                                 const SizedBox(height: 12),
 
                                 // Info Bar
-                                Row(
+                                Wrap(
+                                  spacing: 12,
+                                  runSpacing: 8,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
                                   children: [
-                                    if (news.level != null) ...[
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 5,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: _getLevelColor(news.level),
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                        child: Text(
-                                          news.level!,
-                                          style: const TextStyle(
-                                            color: Colors.white,
+                                    if (news.level != null)
+                                      LevelBadge(news.level!),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.visibility_outlined,
+                                            size: 16,
+                                            color:
+                                                context.colors.textSecondary),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          '${news.views} lượt xem',
+                                          style: TextStyle(
                                             fontSize: AppTypography.caption,
-                                            fontWeight: FontWeight.bold,
+                                            color: context.colors.textSecondary,
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 12),
-                                    ],
-                                    const Icon(Icons.visibility_outlined,
-                                        size: 16, color: AppColors.textSecondary),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      '${news.views} lượt xem',
-                                      style: const TextStyle(
-                                        fontSize: AppTypography.caption,
-                                        color: AppColors.textSecondary,
-                                      ),
+                                      ],
                                     ),
-                                    const Spacer(),
                                     Text(
                                       news.timeAgo,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: AppTypography.caption,
-                                        color: AppColors.textSecondary,
+                                        color: context.colors.textSecondary,
                                       ),
                                     ),
                                   ],
@@ -177,9 +175,9 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                                 if (news.source != null)
                                   Text(
                                     'Nguồn: ${news.source}',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: AppTypography.caption,
-                                      color: AppColors.textSecondary,
+                                      color: context.colors.textSecondary,
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
@@ -227,7 +225,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                               ),
                             ),
                             const SizedBox(height: 12),
-                            _buildRelatedNewsList(context, provider),
+                            RelatedNewsList(provider: provider),
                             const SizedBox(height: 24),
                           ],
                         ],
@@ -241,92 +239,5 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
         },
       ),
     );
-  }
-
-  Widget _buildRelatedNewsList(BuildContext context, NewsProvider provider) {
-    return SizedBox(
-      height: 220,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: provider.relatedNews.length,
-        itemBuilder: (context, index) {
-          final news = provider.relatedNews[index];
-          return GestureDetector(
-            onTap: () {
-              provider.loadNewsDetail(news.id);
-            },
-            child: Container(
-              width: 160,
-              margin: const EdgeInsets.only(right: 12),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.surfaceVariant,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (news.imageUrl != null)
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
-                      ),
-                      child: Image.network(
-                        news.imageUrl!,
-                        height: 100,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          news.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: AppTypography.caption,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          news.timeAgo,
-                          style: const TextStyle(
-                            fontSize: AppTypography.caption,
-                            color: AppColors.textSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Color _getLevelColor(String? level) {
-    switch (level) {
-      case 'N5':
-        return AppColors.success;
-      case 'N4':
-        return Colors.lightGreen;
-      case 'N3':
-        return Colors.amber;
-      case 'N2':
-        return AppColors.warning;
-      case 'N1':
-        return AppColors.error;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

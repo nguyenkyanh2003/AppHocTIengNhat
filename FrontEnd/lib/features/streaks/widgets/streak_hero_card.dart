@@ -48,12 +48,12 @@ class StreakHeroCard extends StatelessWidget {
                         '${streak.currentStreak} ngày liên tiếp',
                         style: AppTypography.heroDisplay(
                           size: AppTypography.headline,
-                          color: AppColors.textPrimary,
+                          color: AppColors.ink,
                         ),
                       ),
                       Text(
                         'Kỷ lục ${streak.longestStreak} ngày · Đã học ${streak.totalActiveDays} ngày',
-                        style: textTheme.bodyMedium?.copyWith(color: AppColors.textPrimary),
+                        style: textTheme.bodyMedium?.copyWith(color: AppColors.ink),
                       ),
                     ],
                   ),
@@ -65,13 +65,13 @@ class StreakHeroCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(AppSpacing.md),
               decoration: BoxDecoration(
-                color: AppColors.surface.withValues(alpha: 0.35),
+                color: Colors.white.withValues(alpha: 0.35),
                 borderRadius: AppRadius.mdAll,
               ),
               child: Text(
                 streakStatusMessage(streak),
                 style: textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textPrimary,
+                  color: AppColors.ink,
                   fontWeight: FontWeight.w600,
                 ),
               ),

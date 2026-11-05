@@ -31,7 +31,7 @@ class VocabularyRelatedWords extends StatelessWidget {
           ? Text(
               'Chưa tìm thấy từ liên quan.',
               style: textTheme.bodyMedium?.copyWith(
-                color: AppColors.textSecondary,
+                color: context.colors.textSecondary,
               ),
             )
           : LayoutBuilder(
@@ -84,7 +84,7 @@ class _RelatedTile extends StatelessWidget {
               Text(
                 word.word,
                 style: AppTypography.japaneseReading(
-                  color: AppColors.textPrimary,
+                  color: context.colors.textPrimary,
                 ).copyWith(
                   fontSize: AppTypography.subtitle,
                   fontWeight: FontWeight.w600,
@@ -94,7 +94,7 @@ class _RelatedTile extends StatelessWidget {
               if (showReading)
                 Text(
                   word.hiragana,
-                  style: AppTypography.japaneseReading(),
+                  style: AppTypography.japaneseReading(color: context.colors.textSecondary),
                   overflow: TextOverflow.ellipsis,
                 ),
               Text(

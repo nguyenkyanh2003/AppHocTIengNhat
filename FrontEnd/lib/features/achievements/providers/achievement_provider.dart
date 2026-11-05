@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/state/view_state.dart';
 import '../models/achievement.dart';
 import '../services/achievement_service.dart';
 
@@ -12,12 +13,23 @@ class AchievementProvider with ChangeNotifier {
   bool _isLoading = false;
   String? _error;
 
+  /// Đã tải được danh sách của người dùng ít nhất một lần.
+  bool _mineLoaded = false;
+
   List<Achievement> get allAchievements => _allAchievements;
   List<UserAchievement> get earnedAchievements => _earnedAchievements;
   List<UserAchievement> get lockedAchievements => _lockedAchievements;
   Map<String, dynamic> get stats => _stats;
   bool get isLoading => _isLoading;
   String? get error => _error;
+
+  /// Thành tích đã đạt kèm trạng thái. Chưa tải được thì là lỗi, không phải rỗng:
+  /// khối hiển thị không được kết luận "chưa mở khoá" khi chỉ là mất kết nối.
+  ViewState<List<UserAchievement>> get earnedState => ViewState.fromLegacy(
+        isLoading: _isLoading,
+        error: _error,
+        value: _mineLoaded ? _earnedAchievements : null,
+      );
 
   int get totalAchievements => _allAchievements.length;
   int get completedAchievements =>
@@ -38,7 +50,7 @@ class AchievementProvider with ChangeNotifier {
       _allAchievements = await _achievementService.getAllAchievements();
       _error = null;
     } catch (e) {
-      _error = 'Không thể tải danh sách achievement';
+      _error = userMessageOf(e);
       debugPrint('Error loading achievements: $e');
     } finally {
       _isLoading = false;
@@ -68,10 +80,11 @@ class AchievementProvider with ChangeNotifier {
               locked.map((item) => UserAchievement.fromJson(item)).toList();
         }
 
+        _mineLoaded = true;
         _error = null;
       }
     } catch (e) {
-      _error = 'Không thể tải achievement của bạn';
+      _error = userMessageOf(e);
       debugPrint('Error loading user achievements: $e');
     } finally {
       _isLoading = false;
@@ -167,6 +180,7 @@ class AchievementProvider with ChangeNotifier {
 
   // Clear all state
   void clear() {
+    _mineLoaded = false;
     _allAchievements = [];
     _earnedAchievements = [];
     _lockedAchievements = [];

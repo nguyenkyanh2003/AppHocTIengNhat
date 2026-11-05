@@ -92,7 +92,7 @@ class _VocabularyBack extends StatelessWidget {
       children: [
         Text(item.word, style: textTheme.headlineMedium, textAlign: TextAlign.center),
         AppGap.xs,
-        Text(item.hiragana, style: textTheme.titleMedium?.copyWith(color: AppColors.primary)),
+        Text(item.hiragana, style: textTheme.titleMedium?.copyWith(color: context.colors.primary)),
         if (item.hanviet?.isNotEmpty ?? false) ...[
           AppGap.xs,
           Text(item.hanviet!.toUpperCase(), style: textTheme.labelLarge),
@@ -120,7 +120,7 @@ class _Unavailable extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Icon(Icons.link_off, size: 48, color: AppColors.textDisabled),
+        Icon(Icons.link_off, size: 48, color: context.colors.textDisabled),
         AppGap.md,
         Text('Nội dung không còn tồn tại', style: textTheme.titleMedium),
         AppGap.xs,

@@ -84,14 +84,14 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đã thêm vào bộ flashcard!'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.error,
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     }
@@ -103,7 +103,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Vui lòng nhập tên bộ thẻ'),
-          backgroundColor: AppColors.warning,
+          backgroundColor: AppColors.warningStrong,
         ),
       );
       return;
@@ -136,7 +136,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Đã tạo bộ "$title" và thêm thẻ!'),
-            backgroundColor: AppColors.success,
+            backgroundColor: AppColors.successStrong,
           ),
         );
       }
@@ -146,7 +146,7 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(provider.error ?? 'Có lỗi xảy ra'),
-            backgroundColor: AppColors.error,
+            backgroundColor: AppColors.errorStrong,
           ),
         );
       }
@@ -156,9 +156,9 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      decoration: BoxDecoration(
+        color: context.colors.surface,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       constraints: BoxConstraints(
         maxHeight: MediaQuery.of(context).size.height * 0.7,
@@ -172,19 +172,19 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: AppColors.border,
+              color: context.colors.border,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
 
           // Title
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Icon(Icons.style, color: AppTheme.primaryColor),
-                SizedBox(width: 12),
-                Text(
+                Icon(Icons.style, color: context.colors.primary),
+                const SizedBox(width: 12),
+                const Text(
                   'Thêm vào Flashcard',
                   style: TextStyle(
                     fontSize: AppTypography.title,
@@ -202,9 +202,9 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppColors.surfaceVariant,
+              color: context.colors.surfaceVariant,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.border),
+              border: Border.all(color: context.colors.border),
             ),
             child: Row(
               children: [
@@ -222,15 +222,15 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
                       if (widget.frontSubtext != null)
                         Text(
                           widget.frontSubtext!,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: AppTypography.bodySmall,
-                            color: AppColors.textSecondary,
+                            color: context.colors.textSecondary,
                           ),
                         ),
                     ],
                   ),
                 ),
-                const Icon(Icons.arrow_forward, color: AppColors.textDisabled),
+                Icon(Icons.arrow_forward, color: context.colors.textDisabled),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -304,11 +304,12 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.folder_open, size: 48, color: AppColors.textDisabled),
+                Icon(Icons.folder_open,
+                    size: 48, color: context.colors.textDisabled),
                 const SizedBox(height: 12),
-                const Text(
+                Text(
                   'Chưa có bộ flashcard nào',
-                  style: TextStyle(color: AppColors.textSecondary),
+                  style: TextStyle(color: context.colors.textSecondary),
                 ),
                 const SizedBox(height: 8),
                 TextButton(
@@ -337,9 +338,9 @@ class _AddToFlashcardDialogState extends State<AddToFlashcardDialog> {
               child: ListTile(
                 leading: CircleAvatar(
                   backgroundColor: AppTheme.primaryColor.withValues(alpha: 0.2),
-                  child: const Icon(
+                  child: Icon(
                     Icons.style,
-                    color: AppTheme.primaryColor,
+                    color: context.colors.primary,
                   ),
                 ),
                 title: Text(

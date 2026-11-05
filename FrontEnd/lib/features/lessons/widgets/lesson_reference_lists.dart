@@ -69,12 +69,12 @@ class LessonGrammarList extends StatelessWidget {
                   Text(grammar['title']?.toString() ?? grammar['pattern']?.toString() ?? '',
                       style: AppTypography.japaneseBody()),
                   if (grammar['structure'] != null)
-                    Text(grammar['structure'].toString(), style: textTheme.bodyMedium?.copyWith(color: AppColors.primary)),
+                    Text(grammar['structure'].toString(), style: textTheme.bodyMedium?.copyWith(color: context.colors.primary)),
                   AppGap.xs,
                   Text(grammar['meaning']?.toString() ?? '', style: textTheme.bodyLarge),
                   for (final example in (grammar['examples'] as List? ?? const []).take(1).whereType<Map>()) ...[
                     AppGap.sm,
-                    Text(example['sentence']?.toString() ?? '', style: AppTypography.japaneseReading(color: AppColors.textPrimary)),
+                    Text(example['sentence']?.toString() ?? '', style: AppTypography.japaneseReading(color: context.colors.textPrimary)),
                     Text(example['meaning']?.toString() ?? '', style: textTheme.bodySmall),
                   ],
                 ],

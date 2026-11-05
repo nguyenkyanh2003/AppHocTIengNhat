@@ -97,13 +97,17 @@ class StudyGroup {
   factory StudyGroup.fromJson(Map<String, dynamic> json) {
     final creatorData = json['creator_id'];
 
-    final avatarUrl = ApiClient.resolveAssetUrl(json['avatar']);
+    // Model backend gán sẵn ảnh mẫu này cho nhóm chưa có ảnh.
+    final resolvedAvatar = ApiClient.resolveAssetUrl(json['avatar']);
+    final avatarUrl = resolvedAvatar?.contains('via.placeholder.com') == true
+        ? null
+        : resolvedAvatar;
 
     return StudyGroup(
       id: json['_id'] ?? json['id'],
       name: json['name'] ?? '',
       description: json['description'],
-      avatar: avatarUrl ?? 'https://via.placeholder.com/150',
+      avatar: avatarUrl,
       level: json['level'] ?? 'ALL',
       creatorId:
           creatorData is Map ? creatorData['_id'] : creatorData.toString(),

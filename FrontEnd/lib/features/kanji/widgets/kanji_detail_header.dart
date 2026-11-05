@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../app/theme/app_tokens.dart';
 
 import '../../../app/theme/app_typography.dart';
 import '../models/kanji.dart';
@@ -14,7 +15,7 @@ class KanjiDetailHeader extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 250,
       pinned: true,
-      backgroundColor: const Color(0xFFFF6B6B),
+      backgroundColor: AppColors.kanjiCoral,
       leading: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -32,43 +33,46 @@ class KanjiDetailHeader extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
+              colors: [AppColors.kanjiCoral, AppColors.kanjiCoralEnd],
             ),
           ),
           child: SafeArea(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20),
-                  Text(
-                    kanji.character,
-                    style: AppTypography.japaneseDisplay(
-                      color: Colors.white,
-                      size: 100,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      kanji.character,
+                      style: AppTypography.japaneseDisplay(
+                        color: Colors.white,
+                        size: 100,
+                      ),
                     ),
-                  ),
-                  if (kanji.level != null)
-                    Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        kanji.level!,
-                        style: const TextStyle(
-                          fontSize: AppTypography.body,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                    if (kanji.level != null)
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          kanji.level!,
+                          style: const TextStyle(
+                            fontSize: AppTypography.body,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

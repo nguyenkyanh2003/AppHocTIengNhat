@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'app_tokens.dart';
 
 /// Thang chữ dùng chung cho cả chế độ sáng và tối.
 ///
@@ -199,10 +198,10 @@ abstract final class AppTypography {
       );
 
   /// Cách đọc (hiragana) đi kèm chữ Nhật — nhỏ và nhạt hơn câu chính.
-  static TextStyle japaneseReading({Color? color}) => GoogleFonts.zenMaruGothic(
+  static TextStyle japaneseReading({required Color color}) => GoogleFonts.zenMaruGothic(
         fontSize: bodySmall,
         fontWeight: FontWeight.w500,
         height: 1.5,
-        color: color ?? AppColors.textSecondary,
+        color: color,
       );
 }

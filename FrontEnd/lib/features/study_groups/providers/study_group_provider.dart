@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../models/study_group.dart';
 import '../services/study_group_service.dart';
+import '../../../core/state/view_state.dart';
 
 class StudyGroupProvider extends ChangeNotifier {
   final StudyGroupService _service = StudyGroupService();
@@ -64,7 +65,7 @@ class StudyGroupProvider extends ChangeNotifier {
         _currentPage++;
       }
     } catch (e) {
-      _error = 'Lỗi khi tải danh sách nhóm: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
     } finally {
       _isLoading = false;
@@ -81,7 +82,7 @@ class StudyGroupProvider extends ChangeNotifier {
     try {
       _myGroups = await _service.getMyGroups();
     } catch (e) {
-      _error = 'Lỗi khi tải nhóm của bạn: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
     } finally {
       _isLoading = false;
@@ -99,9 +100,11 @@ class StudyGroupProvider extends ChangeNotifier {
       _currentGroup = await _service.getGroupDetail(groupId);
       if (_currentGroup != null) {
         await loadGroupStats(groupId);
+      } else {
+        _error = 'Không tìm thấy nhóm';
       }
     } catch (e) {
-      _error = 'Lỗi khi tải thông tin nhóm: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
     } finally {
       _isLoading = false;
@@ -149,7 +152,7 @@ class StudyGroupProvider extends ChangeNotifier {
 
       return newGroup;
     } catch (e) {
-      _error = 'Lỗi khi tạo nhóm: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return null;
     } finally {
@@ -197,7 +200,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return false;
     } catch (e) {
-      _error = 'Lỗi khi cập nhật nhóm: $e';
+      _error = userMessageOf(e);
       return false;
     } finally {
       _isLoading = false;
@@ -230,7 +233,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return false;
     } catch (e) {
-      _error = 'Lỗi khi upload avatar: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     } finally {
@@ -253,7 +256,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = 'Lỗi khi tham gia nhóm: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     } finally {
@@ -278,7 +281,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = 'Lỗi khi rời nhóm: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     } finally {
@@ -296,7 +299,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = 'Lỗi khi kick thành viên: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     }
@@ -311,7 +314,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = 'Lỗi khi promote thành viên: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     }
@@ -326,7 +329,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = 'Lỗi khi demote thành viên: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     }
@@ -349,7 +352,7 @@ class StudyGroupProvider extends ChangeNotifier {
       }
       return success;
     } catch (e) {
-      _error = 'Lỗi khi xóa nhóm: $e';
+      _error = userMessageOf(e);
       debugPrint(_error);
       return false;
     } finally {

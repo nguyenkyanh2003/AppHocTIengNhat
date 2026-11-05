@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/grammar.dart';
 import '../services/grammar_service.dart';
+import '../../../core/state/view_state.dart';
 
 class GrammarProvider with ChangeNotifier {
   final GrammarService _grammarService = GrammarService();
@@ -59,7 +60,7 @@ class GrammarProvider with ChangeNotifier {
         _error = 'Không thể tải dữ liệu';
       }
     } catch (e) {
-      _error = 'Lỗi: $e';
+      _error = userMessageOf(e);
       debugPrint('Error loading grammars: $e');
     } finally {
       _isLoading = false;
@@ -81,7 +82,7 @@ class GrammarProvider with ChangeNotifier {
         _error = 'Không tìm thấy ngữ pháp';
       }
     } catch (e) {
-      _error = 'Lỗi: $e';
+      _error = userMessageOf(e);
       debugPrint('Error loading grammar detail: $e');
     } finally {
       _isLoading = false;
@@ -107,7 +108,7 @@ class GrammarProvider with ChangeNotifier {
         _error = 'Không thể tải dữ liệu';
       }
     } catch (e) {
-      _error = 'Lỗi: $e';
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -137,7 +138,7 @@ class GrammarProvider with ChangeNotifier {
         }
       }
     } catch (e) {
-      _error = 'Lỗi tìm kiếm: $e';
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();

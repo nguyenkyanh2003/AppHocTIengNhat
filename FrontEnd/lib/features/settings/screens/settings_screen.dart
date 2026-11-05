@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../profile/providers/user_provider.dart';
 import '../../streaks/widgets/streak_settings_sheet.dart';
 import '../../../app/localization/locale_provider.dart';
+import '../../../app/theme/theme_provider.dart';
 import '../services/settings_service.dart';
 import '../../../app/localization/app_localizations.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
+import '../widgets/settings_info_dialogs.dart';
+import '../widgets/settings_tiles.dart';
+import '../../../core/state/view_state.dart';
+import '../../auth/providers/auth_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -23,8 +27,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _soundEnabled = true;
   bool _vibrateEnabled = true;
   String _selectedLanguage = 'vi';
-  String _selectedTheme = 'light';
   bool _isLoading = false;
+
+  /// Chưa đọc được cài đặt thật thì không cho lưu: lưu lúc này sẽ ghi đè bằng giá
+  /// trị mặc định trên màn hình.
+  bool _loaded = false;
 
   @override
   void initState() {
@@ -35,21 +42,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> _loadSettings() async {
     try {
       final response = await _settingsService.getSettings();
-      if (response.isNotEmpty) {
+      if (mounted) setState(() => _loaded = true);
+      if (response.isNotEmpty && mounted) {
         setState(() {
           _notificationsEnabled = response['notificationsEnabled'] ?? true;
           _soundEnabled = response['soundEnabled'] ?? true;
           _vibrateEnabled = response['vibrateEnabled'] ?? true;
           _selectedLanguage = response['language'] ?? 'vi';
-          _selectedTheme = response['theme'] ?? 'light';
         });
       }
     } catch (e) {
       debugPrint('Lỗi khi tải cài đặt: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Không tải được cài đặt: ${userMessageOf(e)}'),
+            action: SnackBarAction(label: 'Thử lại', onPressed: _loadSettings),
+          ),
+        );
+      }
     }
   }
 
   Future<void> _saveSettings() async {
+    if (!_loaded) return;
     setState(() => _isLoading = true);
     try {
       await _settingsService.saveSettings({
@@ -57,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         'soundEnabled': _soundEnabled,
         'vibrateEnabled': _vibrateEnabled,
         'language': _selectedLanguage,
-        'theme': _selectedTheme,
+        'theme': ThemeProvider.valueOf(context.read<ThemeProvider>().mode),
       });
 
       if (mounted) {
@@ -65,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(l10n.settingsSaved),
-            backgroundColor: AppColors.success,
+            backgroundColor: AppColors.successStrong,
           ),
         );
       }
@@ -73,8 +89,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Lỗi: ${e.toString()}'),
-            backgroundColor: AppColors.error,
+            content: Text(userMessageOf(e)),
+            backgroundColor: AppColors.errorStrong,
           ),
         );
       }
@@ -85,7 +101,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
+    final user = context.watch<AuthProvider>().user;
+    final themeProvider = context.watch<ThemeProvider>();
     final l10n = AppLocalizations.of(context);
 
     return AppScaffold(
@@ -96,43 +113,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
           padding: padding,
           children: [
             // Phần thông tin tài khoản
-            _buildSectionHeader(l10n.accountInfo),
-            _buildUserInfoTile(userProvider),
+            SettingsSectionHeader(title: l10n.accountInfo),
+            SettingsUserInfoTile(user: user),
 
             // Phần thông báo
-            _buildSectionHeader(l10n.notifications),
-            _buildMenuTile(
-              icon: Icons.local_fire_department_outlined,
-              title: l10n.dailyGoalAndReminder,
-              onTap: () => showStreakSettingsSheet(context),
-            ),
-            _buildSwitchTile(
-              title: l10n.enableNotifications,
-              subtitle: l10n.receiveNotifications,
-              value: _notificationsEnabled,
-              onChanged: (value) {
-                setState(() => _notificationsEnabled = value);
-              },
-            ),
-            _buildSwitchTile(
-              title: l10n.sound,
-              subtitle: l10n.playSoundNotification,
-              value: _soundEnabled,
-              onChanged: (value) {
-                setState(() => _soundEnabled = value);
-              },
-            ),
-            _buildSwitchTile(
-              title: l10n.vibrate,
-              subtitle: l10n.vibrateNotification,
-              value: _vibrateEnabled,
-              onChanged: (value) {
-                setState(() => _vibrateEnabled = value);
-              },
-            ),
+            SettingsSectionHeader(title: l10n.notifications),
+            SettingsMenuTile(
+                icon: Icons.local_fire_department_outlined,
+                title: l10n.dailyGoalAndReminder,
+                onTap: () => showStreakSettingsSheet(context)),
+            SettingsSwitchTile(
+                title: l10n.enableNotifications,
+                subtitle: l10n.receiveNotifications,
+                value: _notificationsEnabled,
+                onChanged: (value) {
+                  setState(() => _notificationsEnabled = value);
+                }),
+            SettingsSwitchTile(
+                title: l10n.sound,
+                subtitle: l10n.playSoundNotification,
+                value: _soundEnabled,
+                onChanged: (value) {
+                  setState(() => _soundEnabled = value);
+                }),
+            SettingsSwitchTile(
+                title: l10n.vibrate,
+                subtitle: l10n.vibrateNotification,
+                value: _vibrateEnabled,
+                onChanged: (value) {
+                  setState(() => _vibrateEnabled = value);
+                }),
 
             // Phần ngôn ngữ & giao diện
-            _buildSectionHeader(l10n.languageInterface),
+            SettingsSectionHeader(title: l10n.languageInterface),
             _buildDropdownTile(
               title: l10n.language,
               value: _selectedLanguage,
@@ -153,48 +166,49 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 }
               },
             ),
-            _buildDropdownTile(
+            // Đổi ngay và lưu trên máy, không chờ nút Lưu: mất mạng không được
+            // làm hỏng việc đổi giao diện.
+            _buildDropdownTile<ThemeMode>(
               title: l10n.interface,
-              value: _selectedTheme,
+              value: themeProvider.mode,
               items: [
-                DropdownMenuItem(value: 'light', child: Text(l10n.light)),
-                DropdownMenuItem(value: 'dark', child: Text(l10n.dark)),
-                DropdownMenuItem(value: 'auto', child: Text(l10n.auto)),
+                DropdownMenuItem(
+                    value: ThemeMode.light, child: Text(l10n.light)),
+                DropdownMenuItem(value: ThemeMode.dark, child: Text(l10n.dark)),
+                DropdownMenuItem(
+                    value: ThemeMode.system, child: Text(l10n.auto)),
               ],
               onChanged: (value) {
-                if (value != null) setState(() => _selectedTheme = value);
+                if (value != null) themeProvider.setMode(value);
               },
             ),
 
             // Phần khác
-            _buildSectionHeader(l10n.other),
-            _buildMenuTile(
-              icon: Icons.help_outline,
-              title: l10n.helpFeedback,
-              onTap: () {
-                _showHelpDialog();
-              },
-            ),
-            _buildMenuTile(
-              icon: Icons.privacy_tip_outlined,
-              title: l10n.privacyPolicy,
-              onTap: () {
-                _showPrivacyDialog();
-              },
-            ),
-            _buildMenuTile(
-              icon: Icons.info_outline,
-              title: l10n.aboutApp,
-              onTap: () {
-                _showAboutDialog();
-              },
-            ),
+            SettingsSectionHeader(title: l10n.other),
+            SettingsMenuTile(
+                icon: Icons.help_outline,
+                title: l10n.helpFeedback,
+                onTap: () {
+                  showSettingsHelpDialog(context);
+                }),
+            SettingsMenuTile(
+                icon: Icons.privacy_tip_outlined,
+                title: l10n.privacyPolicy,
+                onTap: () {
+                  showSettingsPrivacyDialog(context);
+                }),
+            SettingsMenuTile(
+                icon: Icons.info_outline,
+                title: l10n.aboutApp,
+                onTap: () {
+                  showSettingsAboutDialog(context);
+                }),
 
             // Nút lưu
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
-                onPressed: _isLoading ? null : _saveSettings,
+                onPressed: _isLoading || !_loaded ? null : _saveSettings,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   padding: const EdgeInsets.symmetric(vertical: 12),
@@ -214,8 +228,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       )
                     : Text(
                         l10n.saveSettings,
-                        style:
-                            const TextStyle(fontSize: AppTypography.body, color: Colors.white),
+                        style: const TextStyle(
+                            fontSize: AppTypography.body, color: Colors.white),
                       ),
               ),
             ),
@@ -225,140 +239,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildSectionHeader(String title) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: AppTypography.bodySmall,
-          fontWeight: FontWeight.bold,
-          color: AppColors.textSecondary,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildUserInfoTile(UserProvider userProvider) {
-    final user = userProvider.user;
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundImage:
-            user?.avatar != null ? NetworkImage(user!.avatar!) : null,
-        child: user?.avatar == null ? const Icon(Icons.person) : null,
-      ),
-      title: Text(user?.fullName ?? 'Người dùng'),
-      subtitle: Text(user?.email ?? ''),
-    );
-  }
-
-  Widget _buildSwitchTile({
+  Widget _buildDropdownTile<T>({
     required String title,
-    required String subtitle,
-    required bool value,
-    required Function(bool) onChanged,
+    required T value,
+    required List<DropdownMenuItem<T>> items,
+    required ValueChanged<T?> onChanged,
   }) {
     return ListTile(
       title: Text(title),
-      subtitle: Text(subtitle),
-      trailing: Switch(
-        value: value,
-        onChanged: onChanged,
-        activeColor: AppColors.primary,
-      ),
-    );
-  }
-
-  Widget _buildDropdownTile({
-    required String title,
-    required String value,
-    required List<DropdownMenuItem<String>> items,
-    required Function(String?) onChanged,
-  }) {
-    return ListTile(
-      title: Text(title),
-      trailing: DropdownButton<String>(
+      trailing: DropdownButton<T>(
         value: value,
         items: items,
         onChanged: onChanged,
-      ),
-    );
-  }
-
-  Widget _buildMenuTile({
-    required IconData icon,
-    required String title,
-    required VoidCallback onTap,
-  }) {
-    return ListTile(
-      leading: Icon(icon, color: AppColors.primary),
-      title: Text(title),
-      trailing: const Icon(Icons.chevron_right),
-      onTap: onTap,
-    );
-  }
-
-  void _showHelpDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Trợ giúp & Phản hồi'),
-        content: const Text(
-          'Để được hỗ trợ, vui lòng liên hệ:\n\n'
-          'Email: support@apphoctiengnhat.com\n'
-          'Điện thoại: 1900-xxxx\n\n'
-          'Hoặc gửi phản hồi qua ứng dụng.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Đóng'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showPrivacyDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Chính sách riêng tư'),
-        content: const SingleChildScrollView(
-          child: Text(
-            'Chúng tôi cam kết bảo vệ dữ liệu cá nhân của bạn.\n\n'
-            '1. Dữ liệu của bạn được mã hóa và bảo vệ\n'
-            '2. Chúng tôi không bao giờ chia sẻ thông tin cá nhân\n'
-            '3. Bạn có quyền truy cập, chỉnh sửa dữ liệu của mình\n\n'
-            'Xem chi tiết tại website của chúng tôi.',
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Đóng'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showAboutDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Về ứng dụng'),
-        content: const Text(
-          'App Học Tiếng Nhật\n'
-          'Phiên bản: 1.0.0\n\n'
-          'Giúp bạn học tiếng Nhật một cách hiệu quả và vui vẻ.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Đóng'),
-          ),
-        ],
       ),
     );
   }

@@ -29,11 +29,11 @@ class Grammar {
     return Grammar(
       id: json['_id'] ?? json['id'] ?? '',
       title: json['title'] ?? json['tieu_de'] ?? '',
-      pattern: json['pattern'] ?? json['co_cau'] ?? '',
+      pattern: json['structure'] ?? json['pattern'] ?? json['co_cau'] ?? '',
       meaning: json['meaning'] ?? json['y_nghia'] ?? '',
-      explanation: json['explanation'] ?? json['giai_thich'],
-      examples: json['examples'] != null
-          ? List<String>.from(json['examples'])
+      explanation: json['usage'] ?? json['explanation'] ?? json['giai_thich'],
+      examples: json['examples'] is List
+          ? _examplesFrom(json['examples'] as List)
           : json['example'] != null
               ? [json['example']]
               : [],
@@ -46,6 +46,17 @@ class Grammar {
       isActive: json['is_active'] ?? json['hoat_dong'] ?? true,
     );
   }
+
+  /// API trả ví dụ dạng `{ sentence, meaning }`; dữ liệu cũ có thể là chuỗi.
+  static List<String> _examplesFrom(List<dynamic> raw) => raw
+      .map((example) => example is Map
+          ? [example['sentence'], example['meaning']]
+              .whereType<String>()
+              .where((part) => part.trim().isNotEmpty)
+              .join('\n')
+          : example.toString())
+      .where((example) => example.trim().isNotEmpty)
+      .toList();
 
   Map<String, dynamic> toJson() {
     return {

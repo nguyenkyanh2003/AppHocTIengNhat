@@ -44,7 +44,7 @@ class StudyProgressHeader extends StatelessWidget {
                           duration: reduceMotion ? Duration.zero : AppDurations.normal,
                           height: AppSpacing.md,
                           decoration: BoxDecoration(
-                            color: i <= index ? AppColors.heroAction : AppColors.surfaceVariant,
+                            color: i <= index ? AppColors.heroAction : context.colors.surfaceVariant,
                             borderRadius: AppRadius.pillAll,
                           ),
                         ),
@@ -59,12 +59,12 @@ class StudyProgressHeader extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(studyStepIcon(step.kind), size: 18, color: AppColors.primary),
+              Icon(studyStepIcon(step.kind), size: 18, color: context.colors.primary),
               AppGap.sm,
               Flexible(
                 child: Text(
                   step.title,
-                  style: textTheme.titleSmall?.copyWith(color: AppColors.primary, fontWeight: FontWeight.w700),
+                  style: textTheme.titleSmall?.copyWith(color: context.colors.primary, fontWeight: FontWeight.w700),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

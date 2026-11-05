@@ -10,8 +10,12 @@ class HomeStatCards extends StatelessWidget {
   const HomeStatCards(
       {super.key, required this.streakDays, required this.totalXp});
 
-  final int streakDays;
-  final int totalXp;
+  /// `null` khi chưa có số: hiện dấu gạch chứ không hiện 0, vì 0 là một kết luận.
+  final int? streakDays;
+  final int? totalXp;
+
+  static String _valueOf(int? value, String unit) =>
+      value == null ? '—' : '${formatThousands(value)} $unit';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class HomeStatCards extends StatelessWidget {
           Expanded(
             child: _StatCard(
               icon: Icons.local_fire_department_outlined,
-              value: '${formatThousands(streakDays)} ${l10n.days}',
+              value: _valueOf(streakDays, l10n.days),
               label: l10n.streakRun,
               background: calm.streakCard,
               iconBackground: calm.streakIconBg,
@@ -40,7 +44,7 @@ class HomeStatCards extends StatelessWidget {
           Expanded(
             child: _StatCard(
               icon: Icons.star_outline_rounded,
-              value: '${formatThousands(totalXp)} ${l10n.xp}',
+              value: _valueOf(totalXp, l10n.xp),
               label: l10n.experience,
               background: calm.xpCard,
               iconBackground: calm.xpIconBg,

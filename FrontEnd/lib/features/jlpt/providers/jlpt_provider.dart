@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import '../models/jlpt_models.dart';
 import '../services/jlpt_service.dart';
+import '../../../core/state/view_state.dart';
 
 class JLPTProvider with ChangeNotifier {
   final JLPTService _service = JLPTService();
 
   List<JLPTExamBrief> _exams = [];
   bool _isLoading = false;
+  String? _error;
   int _currentPage = 1;
   int _totalPages = 1;
   String? _level;
@@ -15,6 +17,7 @@ class JLPTProvider with ChangeNotifier {
 
   List<JLPTExamBrief> get exams => _exams;
   bool get isLoading => _isLoading;
+  String? get error => _error;
   int get currentPage => _currentPage;
   int get totalPages => _totalPages;
   String? get level => _level;
@@ -29,6 +32,7 @@ class JLPTProvider with ChangeNotifier {
     int page = 1,
   }) async {
     _isLoading = true;
+    _error = null;
     if (refresh) _exams = [];
     notifyListeners();
 
@@ -52,6 +56,7 @@ class JLPTProvider with ChangeNotifier {
         _exams = [..._exams, ...data];
       }
     } catch (e) {
+      _error = userMessageOf(e);
       debugPrint('Error load exams: $e');
     } finally {
       _isLoading = false;

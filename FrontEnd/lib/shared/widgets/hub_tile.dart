@@ -50,7 +50,7 @@ class HubTile extends StatelessWidget {
                   color: color.withValues(alpha: 0.12),
                   borderRadius: AppRadius.mdAll,
                 ),
-                child: Icon(icon, color: color),
+                child: Icon(icon, color: context.colors.readable(color)),
               ),
               AppGap.md,
               Expanded(
@@ -65,7 +65,7 @@ class HubTile extends StatelessWidget {
                       child: Text(
                         label,
                         style: theme.textTheme.titleMedium
-                            ?.copyWith(color: labelColor),
+                            ?.copyWith(color: labelColor == null ? null : context.colors.readable(labelColor!)),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

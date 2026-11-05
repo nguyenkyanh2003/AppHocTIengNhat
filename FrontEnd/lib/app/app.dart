@@ -10,14 +10,18 @@ import './localization/locale_provider.dart';
 import './router/app_router.dart';
 import './theme/app_scroll_behavior.dart';
 import './theme/app_theme.dart';
+import './theme/theme_provider.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, this.initialThemeMode = ThemeMode.system});
+
+  /// Lựa chọn giao diện đã lưu, đọc trước `runApp` (xem [ThemeProvider.loadSaved]).
+  final ThemeMode initialThemeMode;
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: createAppProviders(),
+      providers: createAppProviders(initialThemeMode: initialThemeMode),
       child: const _AppView(),
     );
   }
@@ -55,12 +59,13 @@ class _AppViewState extends State<_AppView> {
   @override
   Widget build(BuildContext context) {
     final localeProvider = context.watch<LocaleProvider>();
+    final themeMode = context.select<ThemeProvider, ThemeMode>((theme) => theme.mode);
 
     return MaterialApp.router(
       title: 'App Học Tiếng Nhật',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: themeMode,
       debugShowCheckedModeBanner: false,
       scrollBehavior: const AppScrollBehavior(),
       locale: localeProvider.locale,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/notebook.dart';
 import '../services/notebook_service.dart';
+import '../../../core/state/view_state.dart';
 
 class NotebookProvider extends ChangeNotifier {
   final NotebookService _notebookService = NotebookService();
@@ -57,7 +58,7 @@ class NotebookProvider extends ChangeNotifier {
       _totalItems = result['totalItems'];
       _currentPage = result['currentPage'];
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -85,7 +86,7 @@ class NotebookProvider extends ChangeNotifier {
     try {
       _selectedNote = await _notebookService.getNoteById(id);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -117,7 +118,7 @@ class NotebookProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -152,7 +153,7 @@ class NotebookProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -172,7 +173,7 @@ class NotebookProvider extends ChangeNotifier {
       notifyListeners();
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return false;
     }
@@ -187,7 +188,7 @@ class NotebookProvider extends ChangeNotifier {
       notifyListeners();
       return deletedCount;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
       return 0;
     }

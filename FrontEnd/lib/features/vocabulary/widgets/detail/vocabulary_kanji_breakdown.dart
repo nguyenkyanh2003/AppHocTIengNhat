@@ -46,7 +46,7 @@ class VocabularyKanjiBreakdown extends StatelessWidget {
                     Text(
                       part.character,
                       style: AppTypography.japaneseDisplay(
-                        color: AppColors.primary,
+                        color: context.colors.primary,
                       ),
                     ),
                     Text(

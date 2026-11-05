@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
-import '../providers/progress_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
+import '../../../shared/widgets/hub_tile.dart';
+import '../models/dashboard.dart';
+import '../providers/progress_provider.dart';
+import '../widgets/progress_breakdown_charts.dart';
+import '../widgets/progress_heatmap_calendar.dart';
+import '../widgets/progress_stats_overview.dart';
+import '../widgets/progress_timeline_chart.dart';
+import '../../../shared/widgets/responsive_grid.dart';
 
 class ProgressDashboardScreen extends StatefulWidget {
-  const ProgressDashboardScreen({Key? key}) : super(key: key);
+  const ProgressDashboardScreen({super.key});
 
   @override
   State<ProgressDashboardScreen> createState() =>
@@ -22,12 +28,14 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ProgressProvider>(context, listen: false).loadDashboardData();
+      if (mounted) context.read<ProgressProvider>().loadDashboardData();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<ProgressProvider>();
+
     return AppScaffold(
       title: 'Tiến độ học tập',
       actions: [
@@ -39,691 +47,62 @@ class _ProgressDashboardScreenState extends State<ProgressDashboardScreen> {
       ],
       // `ContentPane` nằm **trong** vùng cuộn nên thanh cuộn ở mép ngoài;
       // không bọc thêm `ContentWidthLimit` vì như vậy là hẹp hai lần.
-      body: Consumer<ProgressProvider>(
-        builder: (context, provider, child) {
-          if (provider.isLoading && provider.stats == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          return RefreshIndicator(
-            onRefresh: provider.loadDashboardData,
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: ContentPane(
-                maxWidth: AppContentWidth.dashboard,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildStatsOverview(provider),
-                    const SizedBox(height: AppSpacing.xl),
-                    _buildTimelineChart(provider),
-                    const SizedBox(height: AppSpacing.xl),
-                    _buildBreakdownCharts(provider),
-                    const SizedBox(height: AppSpacing.xl),
-                    _buildHeatmapCalendar(provider),
-                    const SizedBox(height: AppSpacing.lg),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildStatsOverview(ProgressProvider provider) {
-    final stats = provider.stats;
-    if (stats == null) return const SizedBox.shrink();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Thống kê tổng quan',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        const SizedBox(height: 12),
-        LayoutBuilder(
-          builder: (context, constraints) => GridView.count(
-            // Số cột tính từ chỗ trống thật của vùng nội dung; bề rộng cửa sổ
-            // không trừ rail nên dùng nó sẽ ra thừa một cột trên desktop.
-            crossAxisCount: (constraints.maxWidth ~/ 220).clamp(2, 4),
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: AppSpacing.md,
-            crossAxisSpacing: AppSpacing.md,
-            // Chiều cao cố định: tỉ lệ làm thẻ cao vống lên khi cột rộng ra.
-            childAspectRatio: 1.6,
-            children: [
-              _buildStatCard(
-                '📚',
-                'Từ vựng',
-                '${stats.vocabularyLearned}',
-                AppColors.primary,
-              ),
-              _buildStatCard(
-                '🔤',
-                'Kanji',
-                '${stats.kanjiReviewing}',
-                Colors.purple,
-              ),
-              _buildStatCard(
-                '✏️',
-                'Bài tập',
-                '${stats.exercisesCompleted}',
-                AppColors.success,
-              ),
-              _buildStatCard(
-                '📖',
-                'Bài học',
-                '${stats.lessonsCompleted}',
-                AppColors.warning,
-              ),
-              _buildStatCard(
-                '⏱️',
-                'Thời gian',
-                stats.formattedStudyTime,
-                AppColors.error,
-              ),
-              _buildStatCard(
-                '🔥',
-                'Streak',
-                '${stats.currentStreak} ngày',
-                Colors.deepOrange,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildStatCard(String emoji, String label, String value, Color color) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          gradient: LinearGradient(
-            colors: [
-              color.withValues(alpha: 0.1),
-              color.withValues(alpha: 0.05)
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: AppTypography.title)),
-            const SizedBox(height: 3),
-            Flexible(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  value,
-                  style: TextStyle(
-                    fontSize: AppTypography.body,
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                ),
-              ),
-            ),
-            const SizedBox(height: 2),
-            Flexible(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: AppTypography.caption,
-                    color: AppColors.textSecondary,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTimelineChart(ProgressProvider provider) {
-    final timeline = provider.timeline;
-    if (timeline.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Biểu đồ học tập',
-              style: TextStyle(
-                fontSize: AppTypography.title,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            _buildPeriodSelector(provider),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Card(
-          elevation: 2,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: SizedBox(
-              height: 250,
-              child: LineChart(
-                LineChartData(
-                  gridData: const FlGridData(show: true),
-                  titlesData: FlTitlesData(
-                    leftTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 40,
-                        getTitlesWidget: (value, meta) {
-                          return Text(
-                            value.toInt().toString(),
-                            style: const TextStyle(fontSize: AppTypography.caption),
-                          );
-                        },
-                      ),
-                    ),
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 30,
-                        getTitlesWidget: (value, meta) {
-                          if (value.toInt() >= timeline.length) {
-                            return const SizedBox.shrink();
-                          }
-                          final date = timeline[value.toInt()].dateTime;
-                          return Text(
-                            DateFormat('dd/MM').format(date),
-                            style: const TextStyle(fontSize: AppTypography.caption),
-                          );
-                        },
-                      ),
-                    ),
-                    rightTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    topTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                  ),
-                  borderData: FlBorderData(show: true),
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: timeline
-                          .asMap()
-                          .entries
-                          .map((e) => FlSpot(
-                                e.key.toDouble(),
-                                e.value.exercises.toDouble(),
-                              ))
-                          .toList(),
-                      isCurved: true,
-                      color: AppColors.primary,
-                      barWidth: 3,
-                      dotData: const FlDotData(show: true),
-                      belowBarData: BarAreaData(
-                        show: true,
-                        color: AppColors.primary.withValues(alpha: 0.1),
-                      ),
-                    ),
-                    LineChartBarData(
-                      spots: timeline
-                          .asMap()
-                          .entries
-                          .map((e) => FlSpot(
-                                e.key.toDouble(),
-                                e.value.lessons.toDouble(),
-                              ))
-                          .toList(),
-                      isCurved: true,
-                      color: AppColors.warning,
-                      barWidth: 3,
-                      dotData: const FlDotData(show: true),
-                      belowBarData: BarAreaData(
-                        show: true,
-                        color: AppColors.warning.withValues(alpha: 0.1),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildLegendItem(AppColors.primary, 'Bài tập'),
-            const SizedBox(width: 24),
-            _buildLegendItem(AppColors.warning, 'Bài học'),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPeriodSelector(ProgressProvider provider) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceVariant,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: DropdownButton<String>(
-        value: provider.selectedPeriod,
-        underline: const SizedBox.shrink(),
-        items: const [
-          DropdownMenuItem(value: 'week', child: Text('Tuần')),
-          DropdownMenuItem(value: 'month', child: Text('Tháng')),
-          DropdownMenuItem(value: 'year', child: Text('Năm')),
-        ],
-        onChanged: (value) {
-          if (value != null) {
-            provider.changePeriod(value);
-          }
-        },
-      ),
-    );
-  }
-
-  Widget _buildLegendItem(Color color, String label) {
-    return Row(
-      children: [
-        Container(
-          width: 16,
-          height: 16,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(4),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Text(
-          label,
-          style: const TextStyle(fontSize: AppTypography.caption),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBreakdownCharts(ProgressProvider provider) {
-    final breakdown = provider.breakdown;
-    final isLoading = provider.isLoading;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Phân tích chi tiết',
-          style: TextStyle(
-            fontSize: AppTypography.title,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 12),
-
-        // Show loading state
-        if (isLoading && breakdown == null) ...[
-          const Card(
-            elevation: 2,
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: Center(child: CircularProgressIndicator()),
-            ),
-          ),
-        ]
-
-        // Show empty state when no data
-        else if (breakdown == null ||
-            (breakdown.lessonsByLevel.isEmpty &&
-                breakdown.exercisesByType.isEmpty)) ...[
-          const Card(
-            elevation: 2,
-            child: Padding(
-              padding: EdgeInsets.all(32),
+      body: AsyncView<ProgressDashboard>(
+        state: provider.dashboard,
+        onRetry: provider.loadDashboardData,
+        builder: (context, _) => RefreshIndicator(
+          onRefresh: provider.loadDashboardData,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: ContentPane(
+              maxWidth: AppContentWidth.dashboard,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.analytics_outlined,
-                      size: 64, color: AppColors.textDisabled),
-                  SizedBox(height: 16),
-                  Text(
-                    'Chưa có dữ liệu phân tích',
-                    style: TextStyle(
-                      fontSize: AppTypography.body,
-                      color: AppColors.textSecondary,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Bắt đầu học bài và làm bài tập để xem phân tích chi tiết',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.textDisabled),
-                  ),
+                  const _ProgressLinks(),
+                  const SizedBox(height: AppSpacing.xl),
+                  ProgressStatsOverview(provider: provider),
+                  const SizedBox(height: AppSpacing.xl),
+                  ProgressTimelineChart(provider: provider),
+                  const SizedBox(height: AppSpacing.xl),
+                  ProgressBreakdownCharts(provider: provider),
+                  const SizedBox(height: AppSpacing.xl),
+                  ProgressHeatmapCalendar(provider: provider),
+                  const SizedBox(height: AppSpacing.lg),
                 ],
               ),
             ),
           ),
-        ]
-
-        // Show breakdown data
-        else ...[
-          if (breakdown.lessonsByLevel.isNotEmpty) ...[
-            Card(
-              elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Bài học theo cấp độ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 12),
-                    ...breakdown.lessonsByLevel.map((level) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(level.level),
-                                Text(
-                                  '${level.completed}/${level.total}',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 4),
-                            LinearProgressIndicator(
-                              value: level.completionRate / 100,
-                              backgroundColor: AppColors.surfaceVariant,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                _getLevelColor(level.level),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-          ],
-          if (breakdown.exercisesByType.isNotEmpty)
-            Card(
-              elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Bài tập theo loại',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 12),
-                    ...breakdown.exercisesByType.map((type) {
-                      return ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: CircleAvatar(
-                          backgroundColor: _getTypeColor(type.type),
-                          child: Text(
-                            type.count.toString(),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        title: Text(type.type),
-                        subtitle: Text(
-                          'Điểm TB: ${type.averageScore.toStringAsFixed(1)}',
-                        ),
-                        trailing: Text(
-                          '${type.passRate.toStringAsFixed(0)}%',
-                          style: TextStyle(
-                            color: type.passRate >= 70
-                                ? AppColors.success
-                                : AppColors.warning,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ],
-                ),
-              ),
-            ),
-        ], // Close the else block for breakdown data
-      ],
-    );
-  }
-
-  Widget _buildHeatmapCalendar(ProgressProvider provider) {
-    final heatmap = provider.heatmap;
-    final isLoading = provider.isLoading;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Lịch học tập',
-          style: TextStyle(
-            fontSize: AppTypography.title,
-            fontWeight: FontWeight.bold,
-          ),
         ),
-        const SizedBox(height: 12),
-
-        // Show loading state
-        if (isLoading && heatmap.isEmpty) ...[
-          const Card(
-            elevation: 2,
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: Center(child: CircularProgressIndicator()),
-            ),
-          ),
-        ]
-
-        // Show empty state
-        else if (heatmap.isEmpty) ...[
-          const Card(
-            elevation: 2,
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: Column(
-                children: [
-                  Icon(Icons.calendar_month_outlined,
-                      size: 64, color: AppColors.textDisabled),
-                  SizedBox(height: 16),
-                  Text(
-                    'Chưa có lịch sử học tập',
-                    style: TextStyle(
-                      fontSize: AppTypography.body,
-                      color: AppColors.textSecondary,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Học tập đều đặn để xây dựng lịch sử của bạn',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.textDisabled),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ]
-
-        // Show heatmap data
-        else ...[
-          Card(
-            elevation: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  _buildHeatmapGrid(heatmap),
-                  const SizedBox(height: 12),
-                  _buildHeatmapLegend(),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ],
-    );
-  }
-
-  Widget _buildHeatmapGrid(List heatmap) {
-    // Group by week
-    final now = DateTime.now();
-    final startOfYear = DateTime(now.year, 1, 1);
-    final daysInYear =
-        DateTime(now.year, 12, 31).difference(startOfYear).inDays + 1;
-
-    // Create map for quick lookup
-    final heatmapMap = {for (var h in heatmap) h.date: h};
-
-    return SizedBox(
-      height: 120,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: (daysInYear / 7).ceil(),
-        itemBuilder: (context, weekIndex) {
-          return Column(
-            children: List.generate(7, (dayIndex) {
-              final dayOffset = weekIndex * 7 + dayIndex;
-              if (dayOffset >= daysInYear) {
-                return const SizedBox(width: 12, height: 12);
-              }
-
-              final date = startOfYear.add(Duration(days: dayOffset));
-              final dateStr = DateFormat('yyyy-MM-dd').format(date);
-              final data = heatmapMap[dateStr];
-              final intensity = data?.intensity ?? 0;
-
-              return Padding(
-                padding: const EdgeInsets.all(1),
-                child: Tooltip(
-                  message: data != null
-                      ? '${DateFormat('dd/MM/yyyy').format(date)}\n${data.count} hoạt động'
-                      : DateFormat('dd/MM/yyyy').format(date),
-                  child: Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: _getHeatmapColor(intensity),
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                  ),
-                ),
-              );
-            }),
-          );
-        },
       ),
     );
   }
+}
 
-  Widget _buildHeatmapLegend() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+/// Lối vào hai màn xem sâu hơn từ trang Tiến độ.
+class _ProgressLinks extends StatelessWidget {
+  const _ProgressLinks();
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveGrid(
+      minTileWidth: 280,
       children: [
-        const Text('Ít', style: TextStyle(fontSize: AppTypography.caption)),
-        const SizedBox(width: 8),
-        ...List.generate(5, (index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
-            child: Container(
-              width: 12,
-              height: 12,
-              decoration: BoxDecoration(
-                color: _getHeatmapColor(index),
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          );
-        }),
-        const SizedBox(width: 8),
-        const Text('Nhiều', style: TextStyle(fontSize: AppTypography.caption)),
+        HubTile(
+          label: 'Lịch sử học',
+          subtitle: 'Hoạt động và XP theo ngày',
+          icon: Icons.history,
+          color: AppColors.primary,
+          onTap: () => context.push('/learning-history'),
+        ),
+        HubTile(
+          label: 'Thống kê chi tiết',
+          subtitle: 'Số liệu theo kỳ và cấp độ',
+          icon: Icons.bar_chart,
+          color: AppColors.progress,
+          onTap: () => context.push('/statistics'),
+        ),
       ],
     );
-  }
-
-  Color _getHeatmapColor(int intensity) {
-    switch (intensity) {
-      case 0:
-        return AppColors.surfaceVariant;
-      case 1:
-        return AppColors.success;
-      case 2:
-        return AppColors.success;
-      case 3:
-        return AppColors.success;
-      case 4:
-        return AppColors.success;
-      default:
-        return AppColors.surfaceVariant;
-    }
-  }
-
-  Color _getLevelColor(String level) {
-    switch (level) {
-      case 'N1':
-        return AppColors.error;
-      case 'N2':
-        return AppColors.warning;
-      case 'N3':
-        return Colors.yellow[700]!;
-      case 'N4':
-        return AppColors.success;
-      case 'N5':
-        return AppColors.primary;
-      default:
-        return AppColors.textSecondary;
-    }
-  }
-
-  Color _getTypeColor(String type) {
-    switch (type) {
-      case 'Từ vựng':
-        return AppColors.primary;
-      case 'Ngữ pháp':
-        return Colors.purple;
-      case 'Kanji':
-        return AppColors.warning;
-      case 'Tổng hợp':
-        return AppColors.success;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

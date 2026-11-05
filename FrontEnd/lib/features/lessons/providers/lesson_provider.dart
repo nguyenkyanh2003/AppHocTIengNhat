@@ -54,6 +54,7 @@ class LessonProvider with ChangeNotifier {
     final detail = _currentLessonDetail;
     return detail == null ? const ViewState.loading() : ViewState.data(detail);
   }
+
   Map<String, dynamic>? get stats => _stats;
   bool get isLoading => _isLoading;
   String? get error => _error;
@@ -149,7 +150,7 @@ class LessonProvider with ChangeNotifier {
       _currentLessonDetail = detail;
     } catch (e) {
       if (generation != _detailGeneration) return;
-      if (cached == null) _error = e.toString();
+      if (cached == null) _error = userMessageOf(e);
     }
 
     _isLoading = false;
@@ -169,7 +170,7 @@ class LessonProvider with ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       _isLoading = false;
       notifyListeners();
     }
@@ -181,7 +182,7 @@ class LessonProvider with ChangeNotifier {
       _stats = await _lessonService.getLessonStats();
       notifyListeners();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       notifyListeners();
     }
   }

@@ -7,6 +7,9 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/notebook.dart';
 
 class NotebookDetailScreen extends StatefulWidget {
   final String noteId;
@@ -44,32 +47,17 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
       body: ContentWidthLimit(
         child: Consumer<NotebookProvider>(
           builder: (context, provider, child) {
-            if (provider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (provider.error != null) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.error_outline,
-                        size: 64, color: AppColors.error),
-                    const SizedBox(height: 16),
-                    Text(provider.error!),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => provider.loadNoteDetail(widget.noteId),
-                      child: const Text('Thử lại'),
-                    ),
-                  ],
-                ),
-              );
-            }
-
             final note = provider.selectedNote;
-            if (note == null) {
-              return const Center(child: Text('Không tìm thấy ghi chú'));
+            if (provider.isLoading || provider.error != null || note == null) {
+              return AsyncView<Notebook>(
+                state: ViewState.detail(
+                  isLoading: provider.isLoading,
+                  error: provider.error,
+                  value: note,
+                ),
+                onRetry: () => provider.loadNoteDetail(widget.noteId),
+                builder: (context, _) => const SizedBox.shrink(),
+              );
             }
 
             return SingleChildScrollView(
@@ -88,7 +76,8 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                     child: Text(
                       _getTypeLabel(note.type),
                       style: TextStyle(
-                        color: _getTypeColor(note.type),
+                        color:
+                            context.colors.readable(_getTypeColor(note.type)),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -108,12 +97,16 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                   // Date
                   Row(
                     children: [
-                      const Icon(Icons.access_time,
-                          size: 16, color: AppColors.textSecondary),
+                      Icon(Icons.access_time,
+                          size: 16, color: context.colors.textSecondary),
                       const SizedBox(width: 4),
-                      Text(
-                        'Cập nhật: ${_formatDateTime(note.updatedAt)}',
-                        style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
+                      Expanded(
+                        child: Text(
+                          'Cập nhật: ${_formatDateTime(note.updatedAt)}',
+                          style: TextStyle(
+                              fontSize: AppTypography.caption,
+                              color: context.colors.textSecondary),
+                        ),
                       ),
                     ],
                   ),
@@ -124,12 +117,13 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppColors.surfaceVariant,
+                      color: context.colors.surfaceVariant,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       note.content,
-                      style: const TextStyle(fontSize: AppTypography.body, height: 1.5),
+                      style: const TextStyle(
+                          fontSize: AppTypography.body, height: 1.5),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -188,7 +182,8 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
               Navigator.pop(context);
               await _deleteNote();
             },
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.errorStrong),
             child: const Text('Xóa'),
           ),
         ],
@@ -206,7 +201,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Đã xóa ghi chú'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
       Navigator.pop(context);
@@ -214,7 +209,7 @@ class _NotebookDetailScreenState extends State<NotebookDetailScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.error,
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     }

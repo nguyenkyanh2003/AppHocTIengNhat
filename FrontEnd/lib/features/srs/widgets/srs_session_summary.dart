@@ -36,7 +36,7 @@ class SrsSessionSummary extends StatelessWidget {
         Icon(
           tally.isEmpty ? Icons.event_available : Icons.celebration_outlined,
           size: 56,
-          color: AppColors.success,
+          color: context.colors.readable(AppColors.success),
         ),
         AppGap.md,
         Text(
@@ -59,11 +59,28 @@ class SrsSessionSummary extends StatelessWidget {
             spacing: AppSpacing.sm,
             runSpacing: AppSpacing.sm,
             children: [
-              _Count(label: 'Nhớ', value: tally.remembered, color: AppColors.success),
-              _Count(label: 'Chưa nhớ', value: tally.forgotten, color: AppColors.error),
-              _Count(label: 'Bỏ qua', value: tally.skipped, color: AppColors.textSecondary),
-              if (tally.reset > 0) _Count(label: 'Đặt lại', value: tally.reset, color: AppColors.info),
-              if (tally.removed > 0) _Count(label: 'Đã xoá', value: tally.removed, color: AppColors.warning),
+              _Count(
+                  label: 'Nhớ',
+                  value: tally.remembered,
+                  color: AppColors.success),
+              _Count(
+                  label: 'Chưa nhớ',
+                  value: tally.forgotten,
+                  color: AppColors.error),
+              _Count(
+                  label: 'Bỏ qua',
+                  value: tally.skipped,
+                  color: context.colors.textSecondary),
+              if (tally.reset > 0)
+                _Count(
+                    label: 'Đặt lại',
+                    value: tally.reset,
+                    color: AppColors.info),
+              if (tally.removed > 0)
+                _Count(
+                    label: 'Đã xoá',
+                    value: tally.removed,
+                    color: AppColors.warning),
             ],
           ),
         ],
@@ -72,7 +89,10 @@ class SrsSessionSummary extends StatelessWidget {
           Text('Thẻ theo hộp', style: textTheme.titleSmall),
           AppGap.sm,
           for (var box = 1; box <= SrsProgress.maxBox; box++)
-            _BoxRow(box: box, count: value.byBox[box] ?? 0, total: value.totalCards),
+            _BoxRow(
+                box: box,
+                count: value.byBox[box] ?? 0,
+                total: value.totalCards),
         ],
         AppGap.xl,
         if (remaining > 0) ...[
@@ -109,7 +129,10 @@ class _Count extends StatelessWidget {
         backgroundColor: color,
         child: Text(
           '$value',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(color: Colors.white),
+          style: Theme.of(context)
+              .textTheme
+              .labelSmall
+              ?.copyWith(color: Colors.white),
         ),
       ),
       label: Text(label),
@@ -131,19 +154,23 @@ class _BoxRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
       child: Row(
         children: [
-          SizedBox(width: 64, child: Text('Hộp $box', style: textTheme.bodySmall)),
+          SizedBox(
+              width: 64, child: Text('Hộp $box', style: textTheme.bodySmall)),
           Expanded(
             child: ClipRRect(
               borderRadius: AppRadius.pillAll,
               child: LinearProgressIndicator(
                 value: total == 0 ? 0 : count / total,
                 minHeight: AppSpacing.sm,
-                backgroundColor: AppColors.surfaceVariant,
+                backgroundColor: context.colors.surfaceVariant,
                 color: AppColors.success,
               ),
             ),
           ),
-          SizedBox(width: 40, child: Text('$count', textAlign: TextAlign.end, style: textTheme.bodySmall)),
+          SizedBox(
+              width: 40,
+              child: Text('$count',
+                  textAlign: TextAlign.end, style: textTheme.bodySmall)),
         ],
       ),
     );

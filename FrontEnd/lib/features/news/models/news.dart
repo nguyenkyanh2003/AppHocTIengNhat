@@ -87,21 +87,4 @@ class News {
       return '${(difference.inDays / 30).floor()} tháng trước';
     }
   }
-
-  String get levelColor {
-    switch (level?.toUpperCase()) {
-      case 'N5':
-        return '#4CAF50';
-      case 'N4':
-        return '#8BC34A';
-      case 'N3':
-        return '#FFC107';
-      case 'N2':
-        return '#FF9800';
-      case 'N1':
-        return '#F44336';
-      default:
-        return '#9E9E9E';
-    }
-  }
 }

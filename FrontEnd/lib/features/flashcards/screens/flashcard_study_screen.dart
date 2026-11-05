@@ -6,10 +6,11 @@ import '../../vocabulary/providers/vocabulary_provider.dart';
 import '../../vocabulary/models/vocabulary.dart';
 import '../models/flashcard_deck.dart';
 import '../widgets/flashcard_widget.dart';
-import '../../../app/theme/app_theme.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../widgets/flashcard_completion_card.dart';
+import '../widgets/flashcard_study_controls.dart';
 
 class FlashcardStudyScreen extends StatefulWidget {
   final String? level;
@@ -150,7 +151,8 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.inbox_rounded, size: 56, color: AppColors.textDisabled),
+                Icon(Icons.inbox_rounded,
+                    size: 56, color: context.colors.textDisabled),
                 const SizedBox(height: 16),
                 Text(
                   'Không có từ vựng để học',
@@ -169,12 +171,12 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
     }
 
     return Scaffold(
-      backgroundColor: AppColors.surfaceVariant,
+      backgroundColor: context.colors.surfaceVariant,
       appBar: AppBar(
         title: const Text('Học Flashcard'),
         elevation: 0,
-        backgroundColor: AppColors.surfaceVariant,
-        foregroundColor: Colors.black,
+        backgroundColor: context.colors.surfaceVariant,
+        foregroundColor: context.colors.textPrimary,
         actions: [
           Center(
             child: Padding(
@@ -206,7 +208,8 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
                     },
                     itemBuilder: (context, index) {
                       if (index == _studyList.length) {
-                        return _buildCompletionCard();
+                        return FlashcardCompletionCard(
+                            restartStudy: _restartStudy);
                       }
 
                       final item = _studyList[index];
@@ -242,7 +245,13 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
                     },
                   ),
                 ),
-                _buildNavigationControls(),
+                FlashcardNavigationControls(
+                    currentIndex: _currentIndex,
+                    studyList: _studyList,
+                    canGoBack: _canGoBack,
+                    canGoForward: _canGoForward,
+                    goToPrevious: _goToPrevious,
+                    goToNext: _goToNext),
                 const SizedBox(height: AppSpacing.xxl),
               ],
             ),
@@ -263,93 +272,9 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
         child: LinearProgressIndicator(
           value: progress,
           minHeight: 10,
-          backgroundColor: AppColors.border,
-          valueColor: const AlwaysStoppedAnimation<Color>(
-            AppTheme.primaryColor,
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Điều khiển chuyển thẻ: bấm được bằng chuột, tới được bằng Tab.
-  Widget _buildNavigationControls() {
-    final total = _studyList.length;
-    final position = _currentIndex >= total ? total : _currentIndex + 1;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.lg,
-        vertical: AppSpacing.sm,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          OutlinedButton.icon(
-            onPressed: _canGoBack ? _goToPrevious : null,
-            icon: const Icon(Icons.chevron_left),
-            label: const Text('Thẻ trước'),
-          ),
-          Flexible(
-            child: Text(
-              _currentIndex >= total ? 'Đã hết thẻ' : '$position / $total',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-          ),
-          FilledButton.icon(
-            onPressed: _canGoForward ? _goToNext : null,
-            icon: const Icon(Icons.chevron_right),
-            label: const Text('Thẻ sau'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCompletionCard() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        elevation: 4,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.check_circle_outline_rounded,
-                  color: AppColors.success, size: 80),
-              const SizedBox(height: 24),
-              Text(
-                'Hoàn thành!',
-                style: Theme.of(context).textTheme.displayMedium,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Bạn đã học hết bộ từ này.',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.refresh),
-                label: const Text('Học lại từ đầu'),
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-                onPressed: _restartStudy,
-              ),
-              const SizedBox(height: 16),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Thoát'),
-              ),
-            ],
+          backgroundColor: context.colors.border,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            context.colors.primary,
           ),
         ),
       ),

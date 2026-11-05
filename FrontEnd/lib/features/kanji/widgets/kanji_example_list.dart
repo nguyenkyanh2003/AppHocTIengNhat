@@ -16,7 +16,7 @@ class KanjiExampleList extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.colors.surface,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -29,16 +29,16 @@ class KanjiExampleList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.lightbulb_outline, color: Color(0xFFFF6B6B), size: 20),
-              SizedBox(width: 8),
+              const Icon(Icons.lightbulb_outline, color: AppColors.kanjiCoral, size: 20),
+              const SizedBox(width: 8),
               Text(
                 'Ví dụ',
                 style: TextStyle(
                   fontSize: AppTypography.body,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF2C3E50),
+                  color: context.colors.textPrimary,
                 ),
               ),
             ],
@@ -71,13 +71,13 @@ class _ExampleTile extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            const Color(0xFFFF6B6B).withValues(alpha: 0.05),
-            const Color(0xFFFF8E53).withValues(alpha: 0.05),
+            AppColors.kanjiCoral.withValues(alpha: 0.05),
+            AppColors.kanjiCoralEnd.withValues(alpha: 0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: const Color(0xFFFF6B6B).withValues(alpha: 0.2),
+          color: AppColors.kanjiCoral.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -91,7 +91,7 @@ class _ExampleTile extends StatelessWidget {
                 height: 28,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFFF6B6B), Color(0xFFFF8E53)],
+                    colors: [AppColors.kanjiCoral, AppColors.kanjiCoralEnd],
                   ),
                   borderRadius: BorderRadius.circular(14),
                 ),
@@ -110,10 +110,10 @@ class _ExampleTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   example.word,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppTypography.subtitle,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF2C3E50),
+                    color: context.colors.textPrimary,
                   ),
                 ),
               ),
@@ -122,17 +122,17 @@ class _ExampleTile extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             example.hiragana,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppTypography.bodySmall,
-              color: AppColors.textSecondary,
+              color: context.colors.textSecondary,
             ),
           ),
           const SizedBox(height: 4),
           Text(
             example.meaning,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppTypography.bodySmall,
-              color: Color(0xFF6C757D),
+              color: context.colors.textSecondary,
             ),
           ),
         ],

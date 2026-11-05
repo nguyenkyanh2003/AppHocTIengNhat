@@ -6,6 +6,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
+import '../../../core/state/view_state.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Email đặt lại mật khẩu đã được gửi!'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
     } catch (e) {
@@ -68,8 +69,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Lỗi: ${e.toString()}'),
-          backgroundColor: AppColors.error,
+          content: Text(userMessageOf(e)),
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     }
@@ -94,7 +95,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ),
         ),
       ),
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: context.colors.background,
     );
   }
 
@@ -113,10 +114,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               color: AppTheme.primaryColor.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
-            child: const Icon(
+            child: Icon(
               Icons.lock_reset,
               size: 40,
-              color: AppTheme.primaryColor,
+              color: context.colors.primary,
             ),
           ),
 
@@ -127,7 +128,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             'Đặt lại mật khẩu',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryColor,
+                  color: context.colors.primary,
                 ),
             textAlign: TextAlign.center,
           ),
@@ -138,7 +139,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           Text(
             'Nhập email của bạn để nhận liên kết đặt lại mật khẩu',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.textSecondaryColor,
+                  color: context.colors.textSecondary,
                 ),
             textAlign: TextAlign.center,
           ),
@@ -197,8 +198,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           const SizedBox(height: 16),
 
           // Quay lại đăng nhập
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               const Text('Nhớ mật khẩu?'),
               TextButton(
@@ -225,10 +227,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             color: AppColors.success.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
-          child: const Icon(
+          child: Icon(
             Icons.check_circle_outline,
             size: 60,
-            color: AppColors.success,
+            color: context.colors.readable(AppColors.success),
           ),
         ),
 
@@ -249,7 +251,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         Text(
           'Chúng tôi đã gửi liên kết đặt lại mật khẩu đến email của bạn.',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: context.colors.textSecondary,
               ),
           textAlign: TextAlign.center,
         ),
@@ -260,7 +262,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           _emailController.text,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: AppTheme.primaryColor,
+                color: context.colors.primary,
               ),
           textAlign: TextAlign.center,
         ),

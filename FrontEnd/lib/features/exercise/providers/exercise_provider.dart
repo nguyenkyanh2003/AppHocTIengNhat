@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/exercise.dart';
 import '../services/exercise_service.dart';
+import '../../../core/state/view_state.dart';
 
 class ExerciseProvider extends ChangeNotifier {
   final ExerciseService _exerciseService = ExerciseService();
@@ -30,7 +31,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _exercises = await _exerciseService.getAllExercises();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -46,7 +47,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _exercises = await _exerciseService.getExercisesByLesson(lessonId);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -62,7 +63,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _exercises = await _exerciseService.getExercisesByLevel(level);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -78,7 +79,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _exercises = await _exerciseService.getExercisesByType(type);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -94,7 +95,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _currentExercise = await _exerciseService.getExerciseById(id);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -121,7 +122,7 @@ class ExerciseProvider extends ChangeNotifier {
       );
       return true;
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
       return false;
     } finally {
       _isLoading = false;
@@ -138,7 +139,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _history = await _exerciseService.getUserExerciseHistory();
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -154,7 +155,7 @@ class ExerciseProvider extends ChangeNotifier {
     try {
       _currentResult = await _exerciseService.getResultById(resultId);
     } catch (e) {
-      _error = e.toString();
+      _error = userMessageOf(e);
     } finally {
       _isLoading = false;
       notifyListeners();

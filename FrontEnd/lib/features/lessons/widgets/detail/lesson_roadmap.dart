@@ -28,7 +28,8 @@ class LessonRoadmap extends StatelessWidget {
     return switch (step.kind) {
       StudyStepKind.intro => 'Mục tiêu và nội dung bài',
       StudyStepKind.video => 'Video có lời thoại tiếng Nhật – tiếng Việt',
-      StudyStepKind.dialogue => '${lesson.dialogue.length} câu thoại, bấm để nghe',
+      StudyStepKind.dialogue =>
+        '${lesson.dialogue.length} câu thoại, bấm để nghe',
       StudyStepKind.vocabulary => progress == null
           ? '${detail.words.length} thẻ từ'
           : '${progress!.completedVocabularies}/${detail.words.length} từ đã nhớ',
@@ -36,7 +37,8 @@ class LessonRoadmap extends StatelessWidget {
           ? '${detail.kanjis.length} thẻ chữ Hán'
           : '${progress!.completedKanjis}/${detail.kanjis.length} chữ đã nhớ',
       StudyStepKind.grammar => '${detail.grammars.length} mẫu câu',
-      StudyStepKind.quiz => '${buildQuickQuiz(detail.words).length} câu chọn nghĩa',
+      StudyStepKind.quiz =>
+        '${buildQuickQuiz(detail.words).length} câu chọn nghĩa',
       StudyStepKind.finish => 'Nhận XP, rồi làm bài tập của bài',
     };
   }
@@ -59,7 +61,9 @@ class LessonRoadmap extends StatelessWidget {
                     : _NodeState.upcoming,
             isLast: i == steps.length - 1,
             // Bước cuối là kết quả của cả phiên, không mở riêng được.
-            onTap: steps[i].kind == StudyStepKind.finish ? null : () => onOpenStep(i),
+            onTap: steps[i].kind == StudyStepKind.finish
+                ? null
+                : () => onOpenStep(i),
           ),
       ],
     );
@@ -89,9 +93,12 @@ class _RoadmapNode extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final (Color fill, Color foreground) = switch (state) {
-      _NodeState.done => (AppColors.success, Colors.white),
+      _NodeState.done => (AppColors.successStrong, Colors.white),
       _NodeState.current => (AppColors.primary, Colors.white),
-      _NodeState.upcoming => (AppColors.surfaceVariant, AppColors.textSecondary),
+      _NodeState.upcoming => (
+          context.colors.surfaceVariant,
+          context.colors.textSecondary
+        ),
     };
 
     return InkWell(
@@ -112,17 +119,28 @@ class _RoadmapNode extends StatelessWidget {
                       color: fill,
                       shape: BoxShape.circle,
                       // Mép đặc ở đáy như các khối "chunky" khác của app.
-                      boxShadow: [BoxShadow(color: Color.lerp(fill, Colors.black, 0.2)!, offset: const Offset(0, 4))],
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.lerp(fill, Colors.black, 0.2)!,
+                            offset: const Offset(0, 4))
+                      ],
                     ),
-                    child: Icon(state == _NodeState.done ? Icons.check_rounded : studyStepIcon(step.kind), color: foreground),
+                    child: Icon(
+                        state == _NodeState.done
+                            ? Icons.check_rounded
+                            : studyStepIcon(step.kind),
+                        color: foreground),
                   ),
                   if (!isLast)
                     Expanded(
                       child: Container(
                         width: 4,
-                        margin: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
+                        margin:
+                            const EdgeInsets.symmetric(vertical: AppSpacing.xs),
                         decoration: BoxDecoration(
-                          color: state == _NodeState.done ? AppColors.success : AppColors.border,
+                          color: state == _NodeState.done
+                              ? AppColors.success
+                              : context.colors.border,
                           borderRadius: AppRadius.pillAll,
                         ),
                       ),
@@ -133,17 +151,21 @@ class _RoadmapNode extends StatelessWidget {
             AppGap.md,
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(top: AppSpacing.sm, bottom: AppSpacing.lg),
+                padding: const EdgeInsets.only(
+                    top: AppSpacing.sm, bottom: AppSpacing.lg),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(step.title, style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                    Text(step.title,
+                        style: textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w700)),
                     Text(subtitle, style: textTheme.bodySmall),
                   ],
                 ),
               ),
             ),
-            if (onTap != null) const Icon(Icons.chevron_right, color: AppColors.textDisabled),
+            if (onTap != null)
+              Icon(Icons.chevron_right, color: context.colors.textDisabled),
           ],
         ),
       ),

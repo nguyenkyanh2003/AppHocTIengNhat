@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/report_service.dart';
+import '../../../core/state/view_state.dart';
 
 class ReportProvider with ChangeNotifier {
   final ReportService _reportService = ReportService();
@@ -49,7 +50,7 @@ class ReportProvider with ChangeNotifier {
         return false;
       }
     } catch (e) {
-      _error = 'Lỗi: $e';
+      _error = userMessageOf(e);
       debugPrint('Error creating report: $e');
       notifyListeners();
       return false;
@@ -82,7 +83,7 @@ class ReportProvider with ChangeNotifier {
         _error = 'Không thể tải dữ liệu';
       }
     } catch (e) {
-      _error = 'Lỗi: $e';
+      _error = userMessageOf(e);
       debugPrint('Error loading reports: $e');
     } finally {
       _isLoading = false;

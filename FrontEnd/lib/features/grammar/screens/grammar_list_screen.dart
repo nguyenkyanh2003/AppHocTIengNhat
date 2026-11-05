@@ -6,6 +6,10 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/grammar.dart';
+import '../../../shared/widgets/level_badge.dart';
 
 class GrammarListScreen extends StatefulWidget {
   final String? level;
@@ -38,12 +42,12 @@ class _GrammarListScreenState extends State<GrammarListScreen> {
     super.dispose();
   }
 
-  void _loadGrammars() {
+  Future<void> _loadGrammars() async {
     final provider = Provider.of<GrammarProvider>(context, listen: false);
     if (_searchController.text.isNotEmpty) {
-      provider.searchGrammars(_searchController.text);
+      await provider.searchGrammars(_searchController.text);
     } else {
-      provider.loadGrammars(
+      await provider.loadGrammars(
         level: _selectedLevel,
         sortBy: _selectedSort,
       );
@@ -142,51 +146,28 @@ class _GrammarListScreenState extends State<GrammarListScreen> {
 
                 // Content
                 Expanded(
-                  child: provider.isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : provider.error != null
-                          ? Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.error_outline,
-                                      size: 64, color: AppColors.error),
-                                  const SizedBox(height: 16),
-                                  Text(provider.error ?? ''),
-                                  const SizedBox(height: 24),
-                                  ElevatedButton(
-                                    onPressed: _loadGrammars,
-                                    child: const Text('Thử lại'),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : provider.grammars.isEmpty
-                              ? const Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.inbox,
-                                          size: 64, color: AppColors.textSecondary),
-                                      SizedBox(height: 16),
-                                      Text('Không tìm thấy ngữ pháp'),
-                                    ],
-                                  ),
-                                )
-                              : ListView.builder(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
-                                  itemCount: provider.grammars.length,
-                                  itemBuilder: (context, index) {
-                                    final grammar = provider.grammars[index];
-                                    return GrammarCard(
-                                      grammar: grammar,
-                                      onTap: () {
-                                        context.push('/grammar/${grammar.id}');
-                                      },
-                                    );
-                                  },
-                                ),
+                  child: AsyncView<List<Grammar>>(
+                    state: ViewState.fromLegacy(
+                      isLoading: provider.isLoading,
+                      error: provider.error,
+                      value: provider.grammars,
+                      isEmpty: provider.grammars.isEmpty,
+                    ),
+                    onRetry: _loadGrammars,
+                    isEmpty: (grammars) => grammars.isEmpty,
+                    emptyTitle: 'Không tìm thấy ngữ pháp',
+                    builder: (context, grammars) => ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: grammars.length,
+                      itemBuilder: (context, index) {
+                        final grammar = grammars[index];
+                        return GrammarCard(
+                          grammar: grammar,
+                          onTap: () => context.push('/grammar/${grammar.id}'),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ],
             );
@@ -213,24 +194,7 @@ class GrammarCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: ListTile(
         onTap: onTap,
-        leading: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: _getLevelColor(grammar.level),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Center(
-            child: Text(
-              grammar.level,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: AppTypography.bodySmall,
-              ),
-            ),
-          ),
-        ),
+        leading: LevelBadge(grammar.level),
         title: Text(
           grammar.title ?? grammar.pattern ?? '',
           style: const TextStyle(fontWeight: FontWeight.bold),
@@ -240,34 +204,21 @@ class GrammarCard extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.visibility_outlined, size: 18, color: AppColors.textSecondary),
+            Icon(Icons.visibility_outlined,
+                size: 18, color: context.colors.textSecondary),
+            AppGap.xs,
             Text(
               '${grammar.viewCount ?? 0}',
-              style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.textSecondary),
+              style: TextStyle(
+                  fontSize: AppTypography.caption,
+                  color: context.colors.textSecondary),
             ),
           ],
         ),
       ),
     );
-  }
-
-  Color _getLevelColor(String level) {
-    switch (level) {
-      case 'N5':
-        return AppColors.success;
-      case 'N4':
-        return AppColors.primary;
-      case 'N3':
-        return AppColors.warning;
-      case 'N2':
-        return AppColors.error;
-      case 'N1':
-        return Colors.purple;
-      default:
-        return AppColors.textSecondary;
-    }
   }
 }

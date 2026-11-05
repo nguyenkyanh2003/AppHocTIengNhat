@@ -73,7 +73,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Tạo bộ thẻ thành công!'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
       Navigator.pop(context, result);
@@ -81,7 +81,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.error,
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     }
@@ -137,6 +137,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
               // Category
               DropdownButtonFormField<String>(
                 value: _selectedCategory,
+                isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Danh mục',
                   border: OutlineInputBorder(
@@ -147,7 +148,11 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
                 items: _categories.map((category) {
                   return DropdownMenuItem(
                     value: category,
-                    child: Text(_getCategoryName(category)),
+                    child: Text(
+                      _getCategoryName(category),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   );
                 }).toList(),
                 onChanged: (value) {
@@ -159,6 +164,7 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
               // Level
               DropdownButtonFormField<String>(
                 value: _selectedLevel,
+                isExpanded: true,
                 decoration: InputDecoration(
                   labelText: 'Cấp độ (tùy chọn)',
                   border: OutlineInputBorder(
@@ -168,7 +174,13 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
                 ),
                 items: [
                   const DropdownMenuItem(
-                      value: null, child: Text('Không chọn')),
+                    value: null,
+                    child: Text(
+                      'Không chọn',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   ..._levels.map((level) {
                     return DropdownMenuItem(
                       value: level,
@@ -194,7 +206,9 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
                   },
                   secondary: Icon(
                     _isPublic ? Icons.public : Icons.lock,
-                    color: _isPublic ? AppColors.success : AppColors.textSecondary,
+                    color: _isPublic
+                        ? AppColors.success
+                        : context.colors.textSecondary,
                   ),
                 ),
               ),
@@ -204,20 +218,21 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryLight,
+                  color: context.colors.primarySoft,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.primaryLight),
+                  border: Border.all(color: context.colors.primarySoft),
                 ),
-                child: const Row(
+                child: Row(
                   children: [
-                    Icon(Icons.info_outline, color: AppColors.primaryDark),
-                    SizedBox(width: 12),
+                    Icon(Icons.info_outline,
+                        color: context.colors.primaryStrong),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         'Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.',
                         style: TextStyle(
                           fontSize: AppTypography.caption,
-                          color: AppColors.primaryDark,
+                          color: context.colors.primaryStrong,
                         ),
                       ),
                     ),

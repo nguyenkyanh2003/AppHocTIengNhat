@@ -6,6 +6,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../widgets/notebook_tag_editor.dart';
 
 class NotebookFormScreen extends StatefulWidget {
   final String? noteId;
@@ -137,56 +138,12 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
                       ),
                       const SizedBox(height: 24),
 
-                      // Tags
-                      const Text(
-                        'Thẻ',
-                        style: TextStyle(
-                          fontSize: AppTypography.body,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      NotebookTagEditor(
+                        controller: _tagController,
+                        tags: _tags,
+                        onAdd: _addTag,
+                        onRemove: _removeTag,
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: _tagController,
-                              decoration: const InputDecoration(
-                                hintText: 'Nhập thẻ...',
-                                border: OutlineInputBorder(),
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 12,
-                                ),
-                              ),
-                              textInputAction: TextInputAction.done,
-                              onSubmitted: _addTag,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          IconButton(
-                            onPressed: () => _addTag(_tagController.text),
-                            icon: const Icon(Icons.add),
-                            style: IconButton.styleFrom(
-                              backgroundColor: AppTheme.primaryColor,
-                              foregroundColor: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      if (_tags.isNotEmpty)
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: _tags.map((tag) {
-                            return Chip(
-                              label: Text(tag),
-                              onDeleted: () => _removeTag(tag),
-                              deleteIcon: const Icon(Icons.close, size: 18),
-                            );
-                          }).toList(),
-                        ),
                     ],
                   ),
                 ),
@@ -236,7 +193,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
         const SnackBar(
           content: Text('Thẻ này đã tồn tại'),
           duration: Duration(seconds: 1),
-          backgroundColor: AppColors.warning,
+          backgroundColor: AppColors.warningStrong,
         ),
       );
       return;
@@ -294,7 +251,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
           content: Text(widget.noteId == null
               ? 'Tạo ghi chú thành công'
               : 'Cập nhật ghi chú thành công'),
-          backgroundColor: AppColors.success,
+          backgroundColor: AppColors.successStrong,
         ),
       );
       Navigator.pop(context, true); // Trả về true để refresh list
@@ -302,7 +259,7 @@ class _NotebookFormScreenState extends State<NotebookFormScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.error,
+          backgroundColor: AppColors.errorStrong,
         ),
       );
     }

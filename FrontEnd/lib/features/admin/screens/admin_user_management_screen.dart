@@ -7,6 +7,13 @@ import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
 import '../../../app/theme/app_typography.dart';
+import '../widgets/admin_user_style.dart';
+import '../widgets/admin_user_actions.dart';
+import '../widgets/admin_user_actions_menu.dart';
+import '../widgets/admin_user_status_badge.dart';
+import '../widgets/admin_user_card.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
 
 class AdminUserManagementScreen extends StatefulWidget {
   const AdminUserManagementScreen({Key? key}) : super(key: key);
@@ -74,7 +81,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                 // Search & Filter
                 Container(
                   padding: const EdgeInsets.all(16),
-                  color: AppColors.surfaceVariant,
+                  color: context.colors.surfaceVariant,
                   child: Column(
                     children: [
                       TextField(
@@ -83,7 +90,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                           hintText: 'Tìm kiếm user...',
                           prefixIcon: const Icon(Icons.search),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: context.colors.surface,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
@@ -111,7 +118,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  color: AppColors.primaryLight,
+                  color: context.colors.primarySoft,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -131,90 +138,33 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
 
                 // Users List
                 Expanded(
-                  child: adminProvider.isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : filteredUsers.isEmpty
-                          ? const Center(child: Text('Không có users nào'))
-                          : AdaptiveTable<Map<String, dynamic>>(
-                              padding: const EdgeInsets.all(AppSpacing.lg),
-                              items: filteredUsers,
-                              rowKey: (user) =>
-                                  ValueKey(user['_id'] ?? user['id']),
-                              columns: _userColumns(),
-                              cardBuilder: (context, user) =>
-                                  _buildUserCard(user),
-                              onRowTap: _showUserDetails,
-                            ),
+                  child: AsyncView<List<Map<String, dynamic>>>(
+                    state: ViewState.fromLegacy(
+                      isLoading: adminProvider.isLoadingUsers,
+                      error: allUsers.isEmpty ? adminProvider.error : null,
+                      value: filteredUsers,
+                      isEmpty: filteredUsers.isEmpty,
+                    ),
+                    onRetry: () => adminProvider.loadUsers(),
+                    isEmpty: (users) => users.isEmpty,
+                    emptyTitle: 'Không có người dùng nào',
+                    emptyIcon: Icons.people_outline,
+                    builder: (context, filteredUsers) =>
+                        AdaptiveTable<Map<String, dynamic>>(
+                      padding: const EdgeInsets.all(AppSpacing.lg),
+                      items: filteredUsers,
+                      rowKey: (user) => ValueKey(user['_id'] ?? user['id']),
+                      columns: _userColumns(),
+                      cardBuilder: (context, user) => AdminUserCard(user: user),
+                      onRowTap: (user) => showAdminUserDetails(context, user),
+                    ),
+                  ),
                 ),
               ],
             );
           },
         ),
       ),
-    );
-  }
-
-  /// Menu thao tác của một người dùng.
-  ///
-  /// Dùng chung cho thẻ ở màn hẹp và ô "Thao tác" của bảng ở màn rộng, để hai
-  /// bố cục không bao giờ lệch nhau về những việc admin làm được.
-  Widget _buildUserActionsMenu(Map<String, dynamic> user) {
-    return PopupMenuButton(
-      itemBuilder: (context) => [
-        const PopupMenuItem(
-          value: 'view',
-          child: Row(
-            children: [
-              Icon(Icons.visibility, size: 20),
-              SizedBox(width: 8),
-              Text('Xem chi tiết'),
-            ],
-          ),
-        ),
-        const PopupMenuItem(
-          value: 'notify',
-          child: Row(
-            children: [
-              Icon(Icons.notifications_outlined, size: 20),
-              SizedBox(width: 8),
-              Text('Gửi thông báo'),
-            ],
-          ),
-        ),
-        PopupMenuItem(
-          value: 'promote',
-          child: Row(
-            children: [
-              const Icon(Icons.admin_panel_settings, size: 20),
-              const SizedBox(width: 8),
-              Text(
-                user['role'] == 'admin' ? 'Hạ quyền User' : 'Nâng quyền Admin',
-              ),
-            ],
-          ),
-        ),
-        const PopupMenuItem(
-          value: 'ban',
-          child: Row(
-            children: [
-              Icon(Icons.block, size: 20, color: AppColors.error),
-              SizedBox(width: 8),
-              Text('Khóa/Mở khóa', style: TextStyle(color: AppColors.error)),
-            ],
-          ),
-        ),
-        const PopupMenuItem(
-          value: 'delete',
-          child: Row(
-            children: [
-              Icon(Icons.delete, size: 20, color: AppColors.error),
-              SizedBox(width: 8),
-              Text('Xóa User', style: TextStyle(color: AppColors.error)),
-            ],
-          ),
-        ),
-      ],
-      onSelected: (value) => _handleUserAction(value.toString(), user),
     );
   }
 
@@ -233,10 +183,11 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
             children: [
               CircleAvatar(
                 radius: 14,
-                backgroundColor: _getRoleColor(user['role']),
+                backgroundColor: adminUserRoleColor(user['role']),
                 child: Text(
                   name.isEmpty ? '?' : name.characters.first.toUpperCase(),
-                  style: const TextStyle(color: Colors.white, fontSize: AppTypography.caption),
+                  style: const TextStyle(
+                      color: Colors.white, fontSize: AppTypography.caption),
                 ),
               ),
               const SizedBox(width: AppSpacing.sm),
@@ -268,13 +219,13 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
       AdaptiveColumn(
         label: 'Trạng thái',
         width: 120,
-        cell: (context, user) => _buildStatusBadge(user['status']),
+        cell: (context, user) => AdminUserStatusBadge(status: user['status']),
       ),
       AdaptiveColumn(
         label: 'Thao tác',
         width: 72,
         alignEnd: true,
-        cell: (context, user) => _buildUserActionsMenu(user),
+        cell: (context, user) => AdminUserActionsMenu(user: user),
       ),
     ];
   }
@@ -291,7 +242,7 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
         },
         selectedColor: AppColors.primary,
         labelStyle: TextStyle(
-          color: isSelected ? Colors.white : Colors.black,
+          color: isSelected ? Colors.white : context.colors.textPrimary,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
       ),
@@ -299,268 +250,23 @@ class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
   }
 
   Widget _buildStatItem(String value, String label) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: AppTypography.subtitle,
-            fontWeight: FontWeight.bold,
-            color: AppColors.primary,
-          ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: AppTypography.caption,
-            color: AppColors.textSecondary,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildUserCard(Map<String, dynamic> user) {
-    final displayName = user['name']?.toString().trim() ?? '';
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ExpansionTile(
-        leading: CircleAvatar(
-          backgroundColor: _getRoleColor(user['role']),
-          child: Text(
-            displayName.isEmpty
-                ? '?'
-                : displayName.characters.first.toUpperCase(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        title: Row(
-          children: [
-            Text(
-              displayName.isEmpty ? 'Chưa đặt tên' : displayName,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(width: 8),
-            _buildStatusBadge(user['status']),
-            if (user['role'] == 'admin') ...[
-              const SizedBox(width: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Text(
-                  'ADMIN',
-                  style: TextStyle(
-                    fontSize: AppTypography.caption,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ],
-        ),
-        subtitle: Text(user['email']),
-        trailing: _buildUserActionsMenu(user),
+    return Expanded(
+      child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildInfoItem(
-                        '📅 Tham gia',
-                        user['joinDate'],
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildInfoItem(
-                        '🕐 Hoạt động',
-                        user['lastActive'],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildInfoItem(
-                        '✨ Total XP',
-                        user['totalXP'].toString(),
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildInfoItem(
-                        '🔥 Streak',
-                        '${user['streak']} days',
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: AppTypography.subtitle,
+              fontWeight: FontWeight.bold,
+              color: context.colors.primary,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatusBadge(String status) {
-    Color color;
-    String text;
-    switch (status) {
-      case 'active':
-        color = AppColors.success;
-        text = 'Active';
-        break;
-      case 'banned':
-        color = AppColors.error;
-        text = 'Banned';
-        break;
-      default:
-        color = AppColors.textSecondary;
-        text = status;
-    }
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.2),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: AppTypography.caption,
-          fontWeight: FontWeight.bold,
-          color: color,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInfoItem(String label, String value) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: AppTypography.caption,
-            color: AppColors.textSecondary,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: AppTypography.bodySmall,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Color _getRoleColor(String role) {
-    switch (role) {
-      case 'admin':
-        return AppColors.error;
-      default:
-        return AppColors.primary;
-    }
-  }
-
-  void _handleUserAction(String action, Map<String, dynamic> user) async {
-    final adminProvider = context.read<AdminProvider>();
-    String message = '';
-
-    switch (action) {
-      case 'view':
-        _showUserDetails(user);
-        return;
-      case 'notify':
-        await openSendNotificationForm(context, user: user);
-        return;
-      case 'promote':
-        final isAdmin = user['role'] == 'admin';
-        final success = isAdmin
-            ? await adminProvider.demoteToUser(user['id'] ?? user['_id'])
-            : await adminProvider.promoteToAdmin(user['id'] ?? user['_id']);
-        message = success
-            ? isAdmin
-                ? 'Đã hạ quyền ${user['name']} xuống User'
-                : 'Đã nâng quyền ${user['name']} lên Admin'
-            : 'Không thể cập nhật quyền ${user['name']}';
-        break;
-      case 'ban':
-        final isBanned = user['status'] == 'banned';
-        final success = isBanned
-            ? await adminProvider.unbanUser(user['id'] ?? user['_id'])
-            : await adminProvider.banUser(user['id'] ?? user['_id']);
-        message = success
-            ? isBanned
-                ? 'Đã mở khóa ${user['name']}'
-                : 'Đã khóa ${user['name']}'
-            : 'Không thể cập nhật ${user['name']}';
-        break;
-      case 'delete':
-        final success =
-            await adminProvider.deleteUser(user['id'] ?? user['_id']);
-        message =
-            success ? 'Đã xóa ${user['name']}' : 'Lỗi khi xóa ${user['name']}';
-        break;
-    }
-
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message)),
-      );
-    }
-  }
-
-  void _showUserDetails(Map<String, dynamic> user) {
-    showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(user['name']?.toString() ?? 'Chi tiết người dùng'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.email_outlined),
-              title: const Text('Email'),
-              subtitle: Text(user['email']?.toString() ?? 'Chưa cập nhật'),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: AppTypography.caption,
+              color: context.colors.textSecondary,
             ),
-            ListTile(
-              leading: const Icon(Icons.badge_outlined),
-              title: const Text('Vai trò'),
-              subtitle: Text(user['role']?.toString() ?? 'user'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.verified_user_outlined),
-              title: const Text('Trạng thái'),
-              subtitle: Text(user['status']?.toString() ?? 'unknown'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.star_outline),
-              title: const Text('Tổng XP'),
-              subtitle: Text(user['totalXP']?.toString() ?? '0'),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Đóng'),
           ),
         ],
       ),

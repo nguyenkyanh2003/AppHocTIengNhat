@@ -115,7 +115,7 @@ class _TranscriptTimingEditorState extends State<TranscriptTimingEditor> {
         AppGap.xs,
         Text(
           'người nói JA / VI | câu tiếng Nhật | roma-ji | nghĩa tiếng Việt',
-          style: textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+          style: textTheme.bodySmall?.copyWith(color: context.colors.textSecondary),
         ),
         AppGap.sm,
         TextField(
@@ -129,7 +129,7 @@ class _TranscriptTimingEditorState extends State<TranscriptTimingEditor> {
         ),
         for (final error in _session.errors) ...[
           AppGap.xs,
-          Text(error, style: textTheme.bodySmall?.copyWith(color: AppColors.error)),
+          Text(error, style: textTheme.bodySmall?.copyWith(color: context.colors.error)),
         ],
         AppGap.md,
         FilledButton.icon(
@@ -170,7 +170,7 @@ class _TranscriptTimingEditorState extends State<TranscriptTimingEditor> {
               AppGap.xs,
               Text(
                 'Space: đánh dấu · Backspace: hoàn tác · P: phát/tạm dừng · ←: lùi 3 giây',
-                style: textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+                style: textTheme.bodySmall?.copyWith(color: context.colors.textSecondary),
               ),
               AppGap.md,
               Wrap(

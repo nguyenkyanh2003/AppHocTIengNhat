@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
 import '../models/streak_settings.dart';
 import '../models/user_streak.dart';
@@ -25,7 +23,8 @@ class StreakService {
   /// Cài đặt mục tiêu ngày và nhắc học.
   Future<StreakSettings> getSettings() async {
     final response = await _apiClient.get('/streak/settings');
-    return StreakSettings.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+    return StreakSettings.fromJson(
+        Map<String, dynamic>.from(response['data'] as Map));
   }
 
   /// Lưu những trường đã đổi; trường `null` giữ nguyên trên server.
@@ -39,7 +38,8 @@ class StreakService {
       if (reminderEnabled != null) 'reminder_enabled': reminderEnabled,
       if (reminderTime != null) 'reminder_time': reminderTime,
     });
-    return StreakSettings.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+    return StreakSettings.fromJson(
+        Map<String, dynamic>.from(response['data'] as Map));
   }
 
   // `POST /streak/add-xp` đã bị gỡ khỏi server: client không tự cộng XP
@@ -47,21 +47,17 @@ class StreakService {
 
   // Lấy lịch sử XP
   Future<List<XPHistory>> getXPHistory() async {
-    try {
-      final response = await _apiClient.get('/streak/xp-history');
-      if (response != null && response is List) {
-        return response.map((item) => XPHistory.fromJson(item)).toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Lỗi khi lấy lịch sử XP: $e');
-      return [];
+    final response = await _apiClient.get('/streak/xp-history');
+    if (response != null && response is List) {
+      return response.map((item) => XPHistory.fromJson(item)).toList();
     }
+    return [];
   }
 
   /// Một trang lịch sử XP, mới nhất trước. Lỗi được ném lên: người gọi (xuất
   /// dữ liệu) không được coi một trang lỗi là "hết lịch sử".
-  Future<XpHistoryPage> getXpHistoryPage({String? cursor, int limit = maxPageSize}) async {
+  Future<XpHistoryPage> getXpHistoryPage(
+      {String? cursor, int limit = maxPageSize}) async {
     final query = Uri(queryParameters: {
       'mode': 'page',
       'limit': '$limit',
@@ -106,14 +102,9 @@ class StreakService {
     String period = 'all',
     int limit = 50,
   }) async {
-    try {
-      final response = await _apiClient.get(
-        '/streak/leaderboard?period=$period&limit=$limit',
-      );
-      return response;
-    } catch (e) {
-      debugPrint('Lỗi khi lấy bảng xếp hạng: $e');
-      return null;
-    }
+    final response = await _apiClient.get(
+      '/streak/leaderboard?period=$period&limit=$limit',
+    );
+    return response;
   }
 }

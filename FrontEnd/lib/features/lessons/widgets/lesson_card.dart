@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/theme/app_theme.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../models/lesson.dart';
 import '../models/situation_labels.dart';
+import '../../../shared/widgets/level_badge.dart';
 
 /// Thẻ một bài học trong danh sách: cấp độ, chủ đề, tên, mô tả và khối lượng.
 class LessonCard extends StatelessWidget {
@@ -28,20 +28,7 @@ class LessonCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.md,
-                  vertical: AppSpacing.xs,
-                ),
-                decoration: BoxDecoration(
-                  color: AppTheme.getJlptLevelColor(lesson.level),
-                  borderRadius: AppRadius.smAll,
-                ),
-                child: Text(
-                  lesson.level,
-                  style: textTheme.labelMedium?.copyWith(color: Colors.white),
-                ),
-              ),
+              LevelBadge(lesson.level),
               AppGap.lg,
               Expanded(
                 child: Column(
@@ -51,12 +38,14 @@ class LessonCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(situationIcon(lesson.situation!),
-                              size: 14, color: AppColors.primary),
+                              size: 14, color: context.colors.primary),
                           AppGap.xs,
-                          Text(
-                            situationLabel(lesson.situation!),
-                            style: textTheme.labelMedium
-                                ?.copyWith(color: AppColors.primary),
+                          Flexible(
+                            child: Text(
+                              situationLabel(lesson.situation!),
+                              style: textTheme.labelMedium
+                                  ?.copyWith(color: context.colors.primary),
+                            ),
                           ),
                         ],
                       ),
@@ -68,7 +57,7 @@ class LessonCard extends StatelessWidget {
                       Text(
                         lesson.description!,
                         style: textTheme.bodyMedium
-                            ?.copyWith(color: AppColors.textSecondary),
+                            ?.copyWith(color: context.colors.textSecondary),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -100,7 +89,7 @@ class LessonCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: AppColors.textDisabled),
+              Icon(Icons.chevron_right, color: context.colors.textDisabled),
             ],
           ),
         ),
@@ -121,9 +110,11 @@ class _LessonMeta extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 16, color: AppColors.textSecondary),
+        Icon(icon, size: 16, color: context.colors.textSecondary),
         AppGap.xs,
-        Text(label, style: Theme.of(context).textTheme.bodySmall),
+        Flexible(
+          child: Text(label, style: Theme.of(context).textTheme.bodySmall),
+        ),
       ],
     );
   }

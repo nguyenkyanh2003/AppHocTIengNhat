@@ -42,7 +42,9 @@ class LogoutTile extends StatelessWidget {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(dialogContext, true),
-            style: FilledButton.styleFrom(backgroundColor: AppColors.error),
+            style: FilledButton.styleFrom(
+                backgroundColor: AppColors.errorStrong,
+                foregroundColor: Colors.white),
             child: const Text('Đăng xuất'),
           ),
         ],

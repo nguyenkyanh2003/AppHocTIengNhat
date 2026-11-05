@@ -120,23 +120,6 @@ class Lesson {
     };
   }
 
-  String getLevelColor() {
-    switch (level) {
-      case 'N1':
-        return '#D32F2F'; // Red
-      case 'N2':
-        return '#F57C00'; // Orange
-      case 'N3':
-        return '#FBC02D'; // Yellow
-      case 'N4':
-        return '#388E3C'; // Green
-      case 'N5':
-        return '#1976D2'; // Blue
-      default:
-        return '#757575'; // Grey
-    }
-  }
-
   String getLevelName() {
     switch (level) {
       case 'N1':

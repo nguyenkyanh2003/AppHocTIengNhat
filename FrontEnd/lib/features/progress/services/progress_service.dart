@@ -1,69 +1,41 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
 import '../models/dashboard.dart';
 
+/// Lỗi được ném lên chứ không đổi thành rỗng: màn hình cần phân biệt "chưa có dữ
+/// liệu" với "không tải được".
 class ProgressService {
-  final ApiClient _apiClient = ApiClient();
+  ProgressService({ApiClient? client}) : _apiClient = client ?? ApiClient();
 
-  // Lấy thống kê tổng quan
-  Future<DashboardStats?> getDashboardStats() async {
-    try {
-      final response = await _apiClient.get('/progress/dashboard/stats');
-      if (response != null) {
-        return DashboardStats.fromJson(response);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Lỗi khi lấy dashboard stats: $e');
-      return null;
-    }
+  final ApiClient _apiClient;
+
+  Future<DashboardStats> getDashboardStats() async {
+    final response = await _apiClient.get('/progress/dashboard/stats');
+    return DashboardStats.fromJson(Map<String, dynamic>.from(response as Map));
   }
 
-  // Lấy timeline data
   Future<List<TimelineData>> getTimeline({String period = 'week'}) async {
-    try {
-      final response = await _apiClient.get(
-        '/progress/dashboard/timeline?period=$period',
-      );
-      if (response != null && response is List) {
-        return response.map((item) => TimelineData.fromJson(item)).toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Lỗi khi lấy timeline: $e');
-      return [];
-    }
+    final response =
+        await _apiClient.get('/progress/dashboard/timeline?period=$period');
+    return _listOf(response, TimelineData.fromJson);
   }
 
-  // Lấy heatmap data
   Future<List<HeatmapData>> getHeatmap({int? year}) async {
-    try {
-      final yearParam = year ?? DateTime.now().year;
-      final response = await _apiClient.get(
-        '/progress/dashboard/heatmap?year=$yearParam',
-      );
-      if (response != null && response is List) {
-        return response.map((item) => HeatmapData.fromJson(item)).toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Lỗi khi lấy heatmap: $e');
-      return [];
-    }
+    final yearParam = year ?? DateTime.now().year;
+    final response =
+        await _apiClient.get('/progress/dashboard/heatmap?year=$yearParam');
+    return _listOf(response, HeatmapData.fromJson);
   }
 
-  // Lấy breakdown data
-  Future<DashboardBreakdown?> getBreakdown() async {
-    try {
-      final response = await _apiClient.get('/progress/dashboard/breakdown');
-      if (response != null) {
-        return DashboardBreakdown.fromJson(response);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Lỗi khi lấy breakdown: $e');
-      return null;
-    }
+  Future<DashboardBreakdown> getBreakdown() async {
+    final response = await _apiClient.get('/progress/dashboard/breakdown');
+    return DashboardBreakdown.fromJson(
+        Map<String, dynamic>.from(response as Map));
+  }
+
+  List<T> _listOf<T>(dynamic response, T Function(Map<String, dynamic>) parse) {
+    if (response is! List) return const [];
+    return response
+        .map((item) => parse(Map<String, dynamic>.from(item as Map)))
+        .toList();
   }
 }

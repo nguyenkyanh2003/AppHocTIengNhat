@@ -29,13 +29,13 @@ class NotificationTile extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
-      color: unread ? Theme.of(context).colorScheme.primaryContainer : null,
+      color: unread ? context.colors.primarySoft : null,
       child: ListTile(
         key: ValueKey('notification-${notification.id}'),
         onTap: onOpen,
         leading: CircleAvatar(
           backgroundColor: type.color.withValues(alpha: 0.15),
-          child: Icon(type.icon, color: type.color, size: 20),
+          child: Icon(type.icon, color: context.colors.readable(type.color), size: 20),
         ),
         title: Text(
           notification.title,

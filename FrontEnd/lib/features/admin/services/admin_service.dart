@@ -42,11 +42,13 @@ class AdminService {
       _client.get('/users/admin/stats'),
       _client.get('/lesson/stats/overview'),
       _client.get('/report/admin/stats'),
+      _client.get('/progress/admin/analytics?period=7d'),
     ]);
     return {
       'users': _map(results[0]),
       'lessons': _map(results[1]),
       'reports': _map(results[2]),
+      'analytics': _map(results[3]),
     };
   }
 

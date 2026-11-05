@@ -1,413 +1,202 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../providers/progress_provider.dart';
-import '../../streaks/providers/streak_provider.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
+
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../streaks/providers/streak_provider.dart';
+import '../models/dashboard.dart';
+import '../models/timeline_chart.dart';
+import '../providers/progress_provider.dart';
+import '../widgets/progress_activity_chart.dart';
+import '../widgets/progress_level_breakdown.dart';
+import '../widgets/progress_period_selector.dart';
+import '../widgets/progress_stat_tile.dart';
+import '../../../shared/widgets/responsive_grid.dart';
+import '../../streaks/models/user_streak.dart';
 
 class UserStatisticsScreen extends StatefulWidget {
-  const UserStatisticsScreen({Key? key}) : super(key: key);
+  const UserStatisticsScreen({super.key});
 
   @override
   State<UserStatisticsScreen> createState() => _UserStatisticsScreenState();
 }
 
 class _UserStatisticsScreenState extends State<UserStatisticsScreen> {
-  String _selectedPeriod = 'week'; // week, month, year
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadData();
+      if (mounted) _loadData();
     });
   }
 
   Future<void> _loadData() async {
-    final streakProvider = Provider.of<StreakProvider>(context, listen: false);
-    final progressProvider =
-        Provider.of<ProgressProvider>(context, listen: false);
-
     await Future.wait([
-      streakProvider.loadStreak(),
-      progressProvider.loadDashboardData(),
+      context.read<StreakProvider>().loadStreak(),
+      context.read<ProgressProvider>().loadDashboardData(),
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
+    final progress = context.watch<ProgressProvider>();
+    final streak = context.watch<StreakProvider>();
+
     return AppScaffold(
-      title: 'Thống Kê Chi Tiết',
-      body: ContentWidthLimit(
-        child: Consumer2<ProgressProvider, StreakProvider>(
-          builder: (context, progressProvider, streakProvider, _) {
-            if (progressProvider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
+      title: 'Thống kê chi tiết',
+      body: AsyncView<ProgressDashboard>(
+        state: progress.dashboard,
+        onRetry: _loadData,
+        builder: (context, dashboard) {
+          final period = TimelineSummary.of(dashboard.timeline);
+          final stats = dashboard.stats;
 
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Period selector
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
+          return RefreshIndicator(
+            onRefresh: _loadData,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: ContentPane(
+                maxWidth: AppContentWidth.dashboard,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const _Heading('Trong kỳ'),
+                    ProgressPeriodSelector(provider: progress),
+                    AppGap.md,
+                    ResponsiveGrid(
                       children: [
-                        Expanded(
-                          child: _buildPeriodButton('week', '1 Tuần'),
+                        ProgressStatTile(
+                          icon: Icons.star,
+                          label: 'XP nhận được',
+                          value: '${period.xp}',
+                          color: AppColors.warning,
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: _buildPeriodButton('month', '1 Tháng'),
+                        ProgressStatTile(
+                          icon: Icons.menu_book,
+                          label: 'Bài học đã học',
+                          value: '${period.lessons}',
+                          color: AppColors.success,
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: _buildPeriodButton('year', '1 Năm'),
+                        ProgressStatTile(
+                          icon: Icons.quiz,
+                          label: 'Bài tập đã nộp',
+                          value: '${period.exercises}',
+                          color: AppColors.primary,
+                        ),
+                        ProgressStatTile(
+                          icon: Icons.timer,
+                          label: 'Thời gian làm bài',
+                          value: formatStudySeconds(period.seconds),
+                          color: Colors.purple,
                         ),
                       ],
                     ),
-                  ),
-
-                  // Key statistics
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Thống Kê Chính',
-                          style: TextStyle(
-                            fontSize: AppTypography.subtitle,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    AppGap.lg,
+                    Card(
+                      child: Padding(
+                        padding: AppSpacing.card,
+                        child: ProgressActivityChart(
+                          timeline: dashboard.timeline,
+                          period: progress.selectedPeriod,
                         ),
-                        const SizedBox(height: 12),
-                        GridView.count(
-                          crossAxisCount: 2,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 12,
-                          children: [
-                            _buildStatCard(
-                              'Tổng Thời Gian Học',
-                              '240h',
-                              Icons.timer,
-                              AppColors.primary,
-                            ),
-                            _buildStatCard(
-                              'Bài Học Hoàn Thành',
-                              '45',
-                              Icons.menu_book,
-                              AppColors.success,
-                            ),
-                            _buildStatCard(
-                              'Từ Vựng Học',
-                              '1,250',
-                              Icons.spellcheck,
-                              AppColors.warning,
-                            ),
-                            _buildStatCard(
-                              'Kanji Học',
-                              '340',
-                              Icons.draw_outlined,
-                              AppColors.error,
-                            ),
-                          ],
+                      ),
+                    ),
+                    const _Heading('Tổng cộng'),
+                    ResponsiveGrid(
+                      children: [
+                        ProgressStatTile(
+                          icon: Icons.menu_book,
+                          label: 'Bài học hoàn thành',
+                          value: '${stats.lessonsCompleted}',
+                          color: AppColors.success,
+                        ),
+                        ProgressStatTile(
+                          icon: Icons.spellcheck,
+                          label: 'Từ vựng đã học',
+                          value: '${stats.vocabularyLearned}',
+                          color: AppColors.warning,
+                        ),
+                        ProgressStatTile(
+                          icon: Icons.draw_outlined,
+                          label: 'Kanji đã học',
+                          value: '${stats.kanjiLearned}',
+                          color: AppColors.error,
+                        ),
+                        ProgressStatTile(
+                          icon: Icons.access_time,
+                          label: 'Thời gian làm bài',
+                          value: stats.formattedStudyTime,
+                          color: Colors.purple,
                         ),
                       ],
                     ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Streak info
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Chuỗi Học',
-                          style: TextStyle(
-                            fontSize: AppTypography.subtitle,
-                            fontWeight: FontWeight.bold,
+                    const _Heading('Chuỗi học'),
+                    AsyncView<UserStreak>(
+                      state: streak.streakState,
+                      compact: true,
+                      onRetry: streak.loadStreak,
+                      builder: (context, value) => ResponsiveGrid(
+                        children: [
+                          ProgressStatTile(
+                            icon: Icons.local_fire_department,
+                            label: 'Chuỗi hiện tại',
+                            value: '${value.currentStreak} ngày',
+                            color: AppColors.error,
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        const Icon(
-                                          Icons.local_fire_department,
-                                          size: 32,
-                                          color: AppColors.error,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        const Text(
-                                          'Streak Hiện Tại',
-                                          style: TextStyle(
-                                              fontSize: AppTypography.caption, color: AppColors.textSecondary),
-                                        ),
-                                        Text(
-                                          '${streakProvider.currentStreak?.currentStreak ?? 0}',
-                                          style: const TextStyle(
-                                            fontSize: AppTypography.headline,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const Text('ngày'),
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        const Icon(
-                                          Icons.trending_up,
-                                          size: 32,
-                                          color: AppColors.primary,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        const Text(
-                                          'Streak Dài Nhất',
-                                          style: TextStyle(
-                                              fontSize: AppTypography.caption, color: AppColors.textSecondary),
-                                        ),
-                                        Text(
-                                          '${streakProvider.currentStreak?.longestStreak ?? 0}',
-                                          style: const TextStyle(
-                                            fontSize: AppTypography.headline,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const Text('ngày'),
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          size: 32,
-                                          color: Colors.amber,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        const Text(
-                                          'Tổng XP',
-                                          style: TextStyle(
-                                              fontSize: AppTypography.caption, color: AppColors.textSecondary),
-                                        ),
-                                        Text(
-                                          '${streakProvider.currentStreak?.totalXP ?? 0}',
-                                          style: const TextStyle(
-                                            fontSize: AppTypography.headline,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const Text('điểm'),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                          ProgressStatTile(
+                            icon: Icons.trending_up,
+                            label: 'Chuỗi dài nhất',
+                            value: '${value.longestStreak} ngày',
+                            color: AppColors.primary,
                           ),
-                        ),
-                      ],
+                          ProgressStatTile(
+                            icon: Icons.star,
+                            label: 'Tổng XP',
+                            value: '${value.totalXP}',
+                            color: AppColors.warning,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Learning breakdown
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Phân Tích Chi Tiết',
-                          style: TextStyle(
-                            fontSize: AppTypography.subtitle,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                _buildProgressItem(
-                                  'N5 Hoàn Thành',
-                                  75,
-                                  AppColors.success,
-                                ),
-                                const SizedBox(height: 12),
-                                _buildProgressItem(
-                                  'N4 Hoàn Thành',
-                                  45,
-                                  AppColors.primary,
-                                ),
-                                const SizedBox(height: 12),
-                                _buildProgressItem(
-                                  'N3 Hoàn Thành',
-                                  20,
-                                  AppColors.warning,
-                                ),
-                                const SizedBox(height: 12),
-                                _buildProgressItem(
-                                  'Bài Tập Đúng',
-                                  68,
-                                  Colors.purple,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                    const _Heading('Phân tích chi tiết'),
+                    ProgressLevelBreakdown(breakdown: dashboard.breakdown),
+                    AppGap.xl,
+                    OutlinedButton.icon(
+                      onPressed: () => context.push('/export'),
+                      icon: const Icon(Icons.download),
+                      label: const Text('Xuất dữ liệu học tập'),
                     ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Export & Share
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Tính năng sắp có...')),
-                              );
-                            },
-                            icon: const Icon(Icons.download),
-                            label: const Text('Xuất PDF'),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Tính năng sắp có...')),
-                              );
-                            },
-                            icon: const Icon(Icons.share),
-                            label: const Text('Chia Sẻ'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 24),
-                ],
+                  ],
+                ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
+}
 
-  Widget _buildPeriodButton(String period, String label) {
-    final isSelected = _selectedPeriod == period;
-    return ElevatedButton(
-      onPressed: () {
-        setState(() => _selectedPeriod = period);
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? AppColors.primary : AppColors.border,
-        foregroundColor: isSelected ? Colors.white : Colors.black,
-      ),
-      child: Text(label),
-    );
-  }
+class _Heading extends StatelessWidget {
+  const _Heading(this.text);
 
-  Widget _buildStatCard(
-    String label,
-    String value,
-    IconData icon,
-    Color color,
-  ) {
-    return Card(
-      elevation: 0,
-      color: color.withValues(alpha: 0.1),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: color, size: 32),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: AppTypography.title,
-                fontWeight: FontWeight.bold,
-                color: color,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: AppTypography.caption,
-                color: AppColors.textSecondary,
-              ),
-            ),
-          ],
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.xl, bottom: AppSpacing.md),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: AppTypography.subtitle,
+          fontWeight: FontWeight.bold,
         ),
       ),
-    );
-  }
-
-  Widget _buildProgressItem(String label, int percentage, Color color) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              label,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              '$percentage%',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: color,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: LinearProgressIndicator(
-            value: percentage / 100,
-            minHeight: 8,
-            backgroundColor: AppColors.surfaceVariant,
-            valueColor: AlwaysStoppedAnimation<Color>(color),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -4,12 +4,14 @@ import '../../../core/utils/attempt_id.dart';
 import 'package:flutter/foundation.dart';
 import '../models/jlpt_models.dart';
 import '../services/jlpt_service.dart';
+import '../../../core/state/view_state.dart';
 
 class JLPTExamProvider with ChangeNotifier {
   final JLPTService _service = JLPTService();
 
   JLPTExamDetail? _exam;
   bool _loading = false;
+  String? _error;
   bool _submitting = false;
   final Map<String, int> _answers =
       {}; // key: section-index, value: choice index
@@ -25,6 +27,7 @@ class JLPTExamProvider with ChangeNotifier {
 
   JLPTExamDetail? get exam => _exam;
   bool get isLoading => _loading;
+  String? get error => _error;
   bool get isSubmitting => _submitting;
   bool get hasSubmitted => _result != null;
   int get secondsLeft => _secondsLeft;
@@ -35,6 +38,7 @@ class JLPTExamProvider with ChangeNotifier {
 
   Future<void> loadExam(String id) async {
     _loading = true;
+    _error = null;
     _exam = null;
     _attemptId = newAttemptId();
     _answers.clear();
@@ -49,6 +53,7 @@ class JLPTExamProvider with ChangeNotifier {
       _secondsLeft = data.timeLimit * 60;
       _startTimer();
     } catch (e) {
+      _error = userMessageOf(e);
       debugPrint('Error load exam: $e');
     } finally {
       _loading = false;

@@ -28,7 +28,7 @@ class StudyQuizStep extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text('Chọn nghĩa đúng của mỗi từ. Đã trả lời $answered/${questions.length} câu.',
-            style: textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary)),
+            style: textTheme.bodyMedium?.copyWith(color: context.colors.textSecondary)),
         AppGap.lg,
         for (var q = 0; q < questions.length; q++) ...[
           _QuestionCard(
@@ -67,10 +67,10 @@ class _QuestionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Câu $number', style: textTheme.labelLarge?.copyWith(color: AppColors.textSecondary)),
+          Text('Câu $number', style: textTheme.labelLarge?.copyWith(color: context.colors.textSecondary)),
           AppGap.xs,
           Text(question.word.word, style: AppTypography.japaneseDisplay(size: AppTypography.headline)),
-          Text(question.word.hiragana, style: AppTypography.japaneseReading()),
+          Text(question.word.hiragana, style: AppTypography.japaneseReading(color: context.colors.textSecondary)),
           AppGap.md,
           for (var i = 0; i < question.choices.length; i++)
             Padding(
@@ -91,7 +91,7 @@ class _QuestionCard extends StatelessWidget {
             Text(
               question.isCorrect(chosen!) ? 'Chính xác!' : 'Chưa đúng — nghĩa đúng được tô xanh.',
               style: textTheme.titleSmall?.copyWith(
-                color: question.isCorrect(chosen!) ? AppColors.success : AppColors.error,
+                color: question.isCorrect(chosen!) ? AppColors.success : context.colors.error,
               ),
             ),
         ],
@@ -113,9 +113,9 @@ class _Choice extends StatelessWidget {
   Widget build(BuildContext context) {
     final (Color border, Color fill, IconData? icon) = switch (state) {
       _ChoiceState.correct => (AppColors.success, AppColors.success.withValues(alpha: 0.12), Icons.check_circle),
-      _ChoiceState.wrong => (AppColors.error, AppColors.error.withValues(alpha: 0.1), Icons.cancel),
-      _ChoiceState.dimmed => (AppColors.border, AppColors.surface, null),
-      _ChoiceState.open => (AppColors.border, AppColors.surface, null),
+      _ChoiceState.wrong => (context.colors.error, AppColors.error.withValues(alpha: 0.1), Icons.cancel),
+      _ChoiceState.dimmed => (context.colors.border, context.colors.surface, null),
+      _ChoiceState.open => (context.colors.border, context.colors.surface, null),
     };
 
     return Material(
@@ -132,7 +132,7 @@ class _Choice extends StatelessWidget {
                 child: Text(
                   label,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: state == _ChoiceState.dimmed ? AppColors.textDisabled : AppColors.textPrimary,
+                        color: state == _ChoiceState.dimmed ? context.colors.textDisabled : context.colors.textPrimary,
                       ),
                 ),
               ),

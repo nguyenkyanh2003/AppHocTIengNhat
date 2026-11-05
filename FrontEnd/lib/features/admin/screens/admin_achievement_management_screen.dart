@@ -6,6 +6,10 @@ import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
 import '../../../app/theme/app_typography.dart';
+import '../widgets/admin_achievement_dialogs.dart';
+import '../widgets/admin_achievement_card.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
 
 class AdminAchievementManagementScreen extends StatefulWidget {
   const AdminAchievementManagementScreen({Key? key}) : super(key: key);
@@ -53,12 +57,12 @@ class _AdminAchievementManagementScreenState
                 // Stats Bar
                 Container(
                   padding: const EdgeInsets.all(16),
-                  color: AppColors.surfaceVariant,
+                  color: context.colors.surfaceVariant,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildStatCard(
-                          '${allAchievements.length}', 'Tổng', AppColors.primary),
+                      _buildStatCard('${allAchievements.length}', 'Tổng',
+                          AppColors.primary),
                       _buildStatCard(
                         _getTotalUnlocked(allAchievements).toString(),
                         'Đã mở khóa',
@@ -80,8 +84,10 @@ class _AdminAchievementManagementScreenState
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        _buildRarityChip('Tất cả', 'all', AppColors.textSecondary),
-                        _buildRarityChip('Common', 'common', AppColors.textSecondary),
+                        _buildRarityChip(
+                            'Tất cả', 'all', context.colors.textSecondary),
+                        _buildRarityChip(
+                            'Common', 'common', context.colors.textSecondary),
                         _buildRarityChip('Rare', 'rare', AppColors.primary),
                         _buildRarityChip('Epic', 'epic', Colors.purple),
                         _buildRarityChip(
@@ -93,19 +99,30 @@ class _AdminAchievementManagementScreenState
 
                 // Achievements List
                 Expanded(
-                  child: adminProvider.isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : filteredAchievements.isEmpty
-                          ? const Center(
-                              child: Text('Không có achievements nào'))
-                          : AdaptiveTable<Map<String, dynamic>>(
-                              padding: const EdgeInsets.all(AppSpacing.lg),
-                              items: filteredAchievements,
-                              rowKey: (a) => ValueKey(a['_id'] ?? a['id']),
-                              columns: _achievementColumns(),
-                              cardBuilder: (context, achievement) =>
-                                  _buildAchievementCard(achievement),
-                            ),
+                  child: AsyncView<List<Map<String, dynamic>>>(
+                    state: ViewState.fromLegacy(
+                      isLoading: adminProvider.isLoadingAchievements,
+                      error:
+                          allAchievements.isEmpty ? adminProvider.error : null,
+                      value: filteredAchievements,
+                      isEmpty: filteredAchievements.isEmpty,
+                    ),
+                    onRetry: () => adminProvider.loadAchievements(),
+                    isEmpty: (items) => items.isEmpty,
+                    emptyTitle: 'Không có thành tích nào',
+                    emptyIcon: Icons.emoji_events_outlined,
+                    builder: (context, filteredAchievements) =>
+                        AdaptiveTable<Map<String, dynamic>>(
+                      padding: const EdgeInsets.all(AppSpacing.lg),
+                      items: filteredAchievements,
+                      rowKey: (a) => ValueKey(a['_id'] ?? a['id']),
+                      columns: _achievementColumns(),
+                      cardBuilder: (context, achievement) =>
+                          AdminAchievementCard(
+                              achievement: achievement,
+                              duplicateAchievement: _duplicateAchievement),
+                    ),
+                  ),
                 ),
               ],
             );
@@ -113,7 +130,7 @@ class _AdminAchievementManagementScreenState
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _showAddDialog,
+        onPressed: () => showAchievementAddDialog(context),
         icon: const Icon(Icons.add),
         label: const Text('Thêm Achievement'),
       ),
@@ -121,25 +138,27 @@ class _AdminAchievementManagementScreenState
   }
 
   Widget _buildStatCard(String value, String label, Color color) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: AppTypography.headline,
-            fontWeight: FontWeight.bold,
-            color: color,
+    return Expanded(
+      child: Column(
+        children: [
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: AppTypography.headline,
+              fontWeight: FontWeight.bold,
+              color: context.colors.readable(color),
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: AppTypography.caption,
-            color: AppColors.textSecondary,
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: AppTypography.caption,
+              color: context.colors.textSecondary,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -156,231 +175,11 @@ class _AdminAchievementManagementScreenState
         selectedColor: color.withValues(alpha: 0.3),
         backgroundColor: color.withValues(alpha: 0.1),
         labelStyle: TextStyle(
-          color: color,
+          color: context.colors.readable(color),
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
       ),
     );
-  }
-
-  Widget _buildAchievementCard(Map<String, dynamic> achievement) {
-    final rarityColor = _getRarityColor(achievement['rarity']);
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      elevation: 2,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              rarityColor.withValues(alpha: 0.1),
-              rarityColor.withValues(alpha: 0.05),
-            ],
-          ),
-        ),
-        child: ExpansionTile(
-          leading: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: rarityColor.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: rarityColor, width: 2),
-            ),
-            child: Center(
-              child: Text(
-                achievement['icon'],
-                style: const TextStyle(fontSize: AppTypography.display),
-              ),
-            ),
-          ),
-          title: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  achievement['name'],
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: AppTypography.body,
-                  ),
-                ),
-              ),
-              _buildRarityBadge(achievement['rarity']),
-            ],
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(achievement['description']),
-              const SizedBox(height: 4),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.purple.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      '⭐ ${achievement['xp']} XP',
-                      style: const TextStyle(
-                        fontSize: AppTypography.caption,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.purple,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '${achievement['unlocked']} người đã mở',
-                    style: const TextStyle(
-                      fontSize: AppTypography.caption,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Điều kiện mở khóa:',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: AppTypography.bodySmall,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryLight,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: AppColors.primaryLight),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.check_circle,
-                            color: AppColors.primary, size: 20),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(achievement['condition']),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Action Buttons
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _showEditDialog(achievement),
-                          icon: const Icon(Icons.edit, size: 18),
-                          label: const Text('Chỉnh sửa'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _duplicateAchievement(achievement),
-                          icon: const Icon(Icons.copy, size: 18),
-                          label: const Text('Nhân bản'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.success,
-                            foregroundColor: Colors.white,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      IconButton(
-                        onPressed: () => _deleteAchievement(achievement),
-                        icon: const Icon(Icons.delete, color: AppColors.error),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRarityBadge(String rarity) {
-    final color = _getRarityColor(rarity);
-    final label = _getRarityLabel(rarity);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: 0.5),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: AppTypography.caption,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-
-  Color _getRarityColor(String rarity) {
-    switch (rarity) {
-      case 'common':
-        return AppColors.textSecondary;
-      case 'rare':
-        return AppColors.primary;
-      case 'epic':
-        return Colors.purple;
-      case 'legendary':
-        return AppColors.warning;
-      default:
-        return AppColors.textSecondary;
-    }
-  }
-
-  String _getRarityLabel(String rarity) {
-    switch (rarity) {
-      case 'common':
-        return 'COMMON';
-      case 'rare':
-        return 'RARE';
-      case 'epic':
-        return 'EPIC';
-      case 'legendary':
-        return 'LEGENDARY';
-      default:
-        return rarity.toUpperCase();
-    }
   }
 
   int _getTotalUnlocked(List<Map<String, dynamic>> achievements) {
@@ -431,9 +230,9 @@ class _AdminAchievementManagementScreenState
         alignEnd: true,
         cell: (context, a) => PopupMenuButton<String>(
           onSelected: (action) {
-            if (action == 'edit') _showEditDialog(a);
+            if (action == 'edit') showAchievementEditDialog(context, a);
             if (action == 'duplicate') _duplicateAchievement(a);
-            if (action == 'delete') _deleteAchievement(a);
+            if (action == 'delete') confirmDeleteAchievement(context, a);
           },
           itemBuilder: (context) => const [
             PopupMenuItem(value: 'edit', child: Text('Sửa')),
@@ -445,265 +244,9 @@ class _AdminAchievementManagementScreenState
     ];
   }
 
-  void _showAddDialog() {
-    final nameController = TextEditingController();
-    final descController = TextEditingController();
-    final iconController = TextEditingController();
-    final xpController = TextEditingController();
-    final conditionController = TextEditingController();
-    String selectedRarity = 'common';
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Thêm Achievement Mới'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                autofocus: true,
-                controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Tên achievement',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: descController,
-                decoration: const InputDecoration(
-                  labelText: 'Mô tả',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: iconController,
-                decoration: const InputDecoration(
-                  labelText: 'Icon (emoji)',
-                  border: OutlineInputBorder(),
-                  hintText: '🎯',
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: xpController,
-                decoration: const InputDecoration(
-                  labelText: 'XP thưởng',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                value: selectedRarity,
-                decoration: const InputDecoration(
-                  labelText: 'Độ hiếm',
-                  border: OutlineInputBorder(),
-                ),
-                items: ['common', 'rare', 'epic', 'legendary']
-                    .map((rarity) => DropdownMenuItem(
-                          value: rarity,
-                          child: Text(_getRarityLabel(rarity)),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  selectedRarity = value!;
-                },
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: conditionController,
-                decoration: const InputDecoration(
-                  labelText: 'Số lượng cần đạt',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final adminProvider = context.read<AdminProvider>();
-              final success = await adminProvider.createAchievement({
-                'name': nameController.text,
-                'description': descController.text,
-                'icon': iconController.text,
-                'xp': int.tryParse(xpController.text) ?? 0,
-                'rarity': selectedRarity,
-                'condition': conditionController.text,
-              });
-
-              if (mounted && context.mounted) {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(this.context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                        success ? 'Đã thêm achievement mới!' : 'Lỗi khi thêm!'),
-                    backgroundColor: success ? AppColors.success : AppColors.error,
-                  ),
-                );
-              }
-            },
-            child: const Text('Thêm'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showEditDialog(Map<String, dynamic> achievement) {
-    final nameController = TextEditingController(text: achievement['name']);
-    final descController =
-        TextEditingController(text: achievement['description']);
-    final iconController = TextEditingController(text: achievement['icon']);
-    final xpController =
-        TextEditingController(text: '${achievement['xp'] ?? 0}');
-    final conditionController =
-        TextEditingController(text: '${achievement['condition'] ?? 1}');
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Chỉnh Sửa Achievement'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                autofocus: true,
-                controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Tên achievement',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: descController,
-                decoration: const InputDecoration(
-                  labelText: 'Mô tả',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: iconController,
-                decoration: const InputDecoration(
-                  labelText: 'Icon (emoji)',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: xpController,
-                decoration: const InputDecoration(
-                  labelText: 'XP thưởng',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: conditionController,
-                decoration: const InputDecoration(
-                  labelText: 'Số lượng cần đạt',
-                  border: OutlineInputBorder(),
-                ),
-                keyboardType: TextInputType.number,
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final adminProvider = context.read<AdminProvider>();
-              final id = achievement['id'] ?? achievement['_id'];
-              final success = await adminProvider.updateAchievement(id, {
-                'name': nameController.text,
-                'description': descController.text,
-                'icon': iconController.text,
-                'xp': int.tryParse(xpController.text) ?? 0,
-                'condition': conditionController.text,
-                'category': achievement['category'],
-                'requirement_type': achievement['requirement_type'],
-                'rarity': achievement['rarity'],
-              });
-
-              if (mounted && context.mounted) {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(this.context).showSnackBar(
-                  SnackBar(
-                    content:
-                        Text(success ? 'Đã cập nhật!' : 'Lỗi khi cập nhật!'),
-                    backgroundColor: success ? AppColors.success : AppColors.error,
-                  ),
-                );
-              }
-            },
-            child: const Text('Lưu'),
-          ),
-        ],
-      ),
-    );
-  }
-
   void _duplicateAchievement(Map<String, dynamic> achievement) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Đã nhân bản achievement!')),
-    );
-  }
-
-  void _deleteAchievement(Map<String, dynamic> achievement) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Xác nhận xóa'),
-        content: Text(
-          'Bạn có chắc muốn xóa achievement "${achievement['name']}"?\n\n'
-          '${achievement['unlocked'] ?? 0} người dùng đã mở khóa achievement này.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              final adminProvider = context.read<AdminProvider>();
-              final id = achievement['id'] ?? achievement['_id'];
-              final success = await adminProvider.deleteAchievement(id);
-
-              if (mounted && context.mounted) {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(this.context).showSnackBar(
-                  SnackBar(
-                    content:
-                        Text(success ? 'Đã xóa achievement!' : 'Lỗi khi xóa!'),
-                    backgroundColor: success ? AppColors.success : AppColors.error,
-                  ),
-                );
-              }
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
-            child: const Text('Xóa'),
-          ),
-        ],
-      ),
     );
   }
 }

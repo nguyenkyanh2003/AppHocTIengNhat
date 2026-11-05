@@ -8,14 +8,9 @@ class LessonProgressService {
 
   /// Lấy tiến độ học của user cho một lesson
   Future<LessonProgress?> getProgress(String lessonId) async {
-    try {
-      final data = await _apiClient.get('/lesson-progress/lesson/$lessonId');
-      if (data == null || data.isEmpty) return null;
-      return LessonProgress.fromJson(data);
-    } catch (e) {
-      debugPrint('Error getting lesson progress: $e');
-      return null;
-    }
+    final data = await _apiClient.get('/lesson-progress/lesson/$lessonId');
+    if (data == null || data.isEmpty) return null;
+    return LessonProgress.fromJson(data);
   }
 
   /// Lấy tất cả tiến độ của user

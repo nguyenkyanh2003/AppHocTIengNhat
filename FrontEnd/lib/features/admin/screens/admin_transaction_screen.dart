@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/admin_provider.dart';
+import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
 import '../../../app/theme/app_typography.dart';
+import '../widgets/admin_transaction_format.dart';
+import '../widgets/admin_transaction_card.dart';
 
 class AdminTransactionScreen extends StatefulWidget {
   const AdminTransactionScreen({super.key});
@@ -41,9 +45,6 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
         child: Consumer<AdminProvider>(
           builder: (context, provider, _) {
             final transactions = provider.transactions;
-            if (provider.isLoadingTransactions && transactions.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
             // Phần tổng quan và bộ lọc không cuộn cùng danh sách nữa: khi
             // danh sách chuyển sang dạng bảng, header cột phải dính lại chứ
             // không trôi mất theo nội dung.
@@ -59,28 +60,32 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
                     ],
                   ),
                 ),
-                if (provider.error != null && transactions.isEmpty)
-                  Padding(
-                    padding: const EdgeInsets.all(AppSpacing.lg),
-                    child: _buildError(provider.error!),
-                  )
-                else if (transactions.isEmpty)
-                  const Expanded(
-                    child: Center(child: Text('Chưa có giao dịch nào.')),
-                  )
-                else
-                  Expanded(
-                    child: AdaptiveTable<Map<String, dynamic>>(
+                Expanded(
+                  child: AsyncView<List<Map<String, dynamic>>>(
+                    state: ViewState.fromLegacy(
+                      isLoading: provider.isLoadingTransactions,
+                      error: provider.error,
+                      value: transactions,
+                      isEmpty: transactions.isEmpty,
+                    ),
+                    onRetry: () => _loadForStatus(_selectedStatus),
+                    isEmpty: (items) => items.isEmpty,
+                    emptyTitle: 'Chưa có giao dịch nào',
+                    emptyIcon: Icons.receipt_long_outlined,
+                    builder: (context, items) =>
+                        AdaptiveTable<Map<String, dynamic>>(
                       padding: const EdgeInsets.symmetric(
                         horizontal: AppSpacing.lg,
                       ),
-                      items: transactions,
+                      items: items,
                       onRefresh: () => _loadForStatus(_selectedStatus),
                       rowKey: (tx) => ValueKey(tx['_id'] ?? tx['id']),
                       columns: _transactionColumns(),
-                      cardBuilder: (context, tx) => _buildTransactionCard(tx),
+                      cardBuilder: (context, tx) => AdminTransactionCard(
+                          transaction: tx, updateStatus: _updateStatus),
                     ),
                   ),
+                ),
               ],
             );
           },
@@ -161,7 +166,8 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
           children: [
             Expanded(child: _stat('Đang hiển thị', '${transactions.length}')),
             Expanded(child: _stat('Chờ duyệt', '$pending')),
-            Expanded(child: _stat('Đã thu', _formatCurrency(revenue))),
+            Expanded(
+                child: _stat('Đã thu', formatTransactionCurrency(revenue))),
           ],
         ),
       ),
@@ -173,10 +179,15 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
           Text(
             value,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: AppTypography.body, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                fontSize: AppTypography.body,
+                fontWeight: FontWeight.bold,
+                color: AppColors.ink),
           ),
           const SizedBox(height: 4),
-          Text(label, style: const TextStyle(fontSize: AppTypography.caption)),
+          Text(label,
+              style: const TextStyle(
+                  fontSize: AppTypography.caption, color: AppColors.ink)),
         ],
       );
 
@@ -210,166 +221,6 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
     );
   }
 
-  Widget _buildError(String message) => Padding(
-        padding: const EdgeInsets.only(top: 60),
-        child: Column(
-          children: [
-            const Icon(Icons.cloud_off, size: 48, color: AppColors.error),
-            const SizedBox(height: 12),
-            Text(message, textAlign: TextAlign.center),
-            TextButton(
-              onPressed: () => _loadForStatus(_selectedStatus),
-              child: const Text('Thử lại'),
-            ),
-          ],
-        ),
-      );
-
-  Widget _buildTransactionCard(Map<String, dynamic> transaction) {
-    final user = transaction['user'] is Map
-        ? Map<String, dynamic>.from(transaction['user'])
-        : <String, dynamic>{};
-    final status = transaction['status']?.toString() ?? 'pending';
-    final name = user['HoTen'] ?? user['TenDangNhap'] ?? 'Người dùng';
-    final id = transaction['_id']?.toString() ?? '';
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ExpansionTile(
-        leading: CircleAvatar(
-            child: Text(_paymentIcon(transaction['payment_method']))),
-        title: Row(
-          children: [
-            Expanded(
-              child: Text(name.toString(),
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            _statusBadge(status),
-          ],
-        ),
-        subtitle: Text(
-          '${transaction['package_id'] ?? transaction['type'] ?? 'Giao dịch'} • ${_formatCurrency(transaction['amount'] as num? ?? 0)}',
-        ),
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-            child: Column(
-              children: [
-                _detail('Email', user['Email']?.toString() ?? '—'),
-                _detail('Phương thức',
-                    transaction['payment_method']?.toString() ?? 'NONE'),
-                _detail('Thời gian', _formatDate(transaction['createdAt'])),
-                _detail('Mã giao dịch', id.isEmpty ? '—' : id),
-                if (status == 'pending' || status == 'processing') ...[
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FilledButton.icon(
-                          onPressed: id.isEmpty
-                              ? null
-                              : () => _updateStatus(id, 'completed'),
-                          icon: const Icon(Icons.check),
-                          label: const Text('Xác nhận'),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: id.isEmpty
-                              ? null
-                              : () => _updateStatus(id, 'failed'),
-                          icon: const Icon(Icons.close),
-                          label: const Text('Từ chối'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-                if (status == 'completed') ...[
-                  const SizedBox(height: 12),
-                  OutlinedButton.icon(
-                    onPressed:
-                        id.isEmpty ? null : () => _updateStatus(id, 'refunded'),
-                    icon: const Icon(Icons.undo),
-                    label: const Text('Đánh dấu hoàn tiền'),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _detail(String label, String value) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(width: 110, child: Text(label)),
-            Expanded(
-              child: Text(value,
-                  style: const TextStyle(fontWeight: FontWeight.w500)),
-            ),
-          ],
-        ),
-      );
-
-  Widget _statusBadge(String status) {
-    final color = switch (status) {
-      'completed' => AppColors.success,
-      'pending' => AppColors.warning,
-      'processing' => AppColors.primary,
-      'failed' => AppColors.error,
-      'refunded' => Colors.purple,
-      _ => AppColors.textSecondary,
-    };
-    const labels = {
-      'completed': 'Hoàn thành',
-      'pending': 'Chờ xử lý',
-      'processing': 'Đang xử lý',
-      'failed': 'Thất bại',
-      'refunded': 'Hoàn tiền',
-      'cancelled': 'Đã hủy',
-    };
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        labels[status] ?? status,
-        style:
-            TextStyle(color: color, fontSize: AppTypography.caption, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-
-  String _formatCurrency(num amount) {
-    final value = amount.round().toString().replaceAllMapped(
-          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-          (match) => '${match[1]}.',
-        );
-    return '$value đ';
-  }
-
-  String _formatDate(dynamic value) {
-    final date = DateTime.tryParse(value?.toString() ?? '')?.toLocal();
-    if (date == null) return '—';
-    return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year} '
-        '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
-  }
-
-  String _paymentIcon(dynamic method) => switch (method?.toString()) {
-        'MOMO' => 'M',
-        'VNPAY' => 'V',
-        'BANK' => 'B',
-        'CARD' => 'C',
-        _ => '₫',
-      };
-
   Future<void> _loadForStatus(String status) =>
       context.read<AdminProvider>().loadTransactions(
             status: status == 'all' ? null : status,
@@ -387,7 +238,8 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
       SnackBar(
         content:
             Text(success ? 'Đã cập nhật giao dịch.' : 'Cập nhật thất bại.'),
-        backgroundColor: success ? AppColors.success : AppColors.error,
+        backgroundColor:
+            success ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

@@ -1,7 +1,8 @@
 class DashboardStats {
   final int vocabularyLearned;
   final int kanjiLearned; // Kanji đã học trong bài (tiêu chí huy hiệu)
-  final int kanjiReviewing; // Kanji đang có thẻ ôn — cùng nghĩa với vocabularyLearned
+  final int
+      kanjiReviewing; // Kanji đang có thẻ ôn — cùng nghĩa với vocabularyLearned
   final int exercisesCompleted;
   final int lessonsCompleted;
   final int totalStudyTime; // in seconds
@@ -35,15 +36,37 @@ class DashboardStats {
     );
   }
 
-  // Format study time to hours and minutes
-  String get formattedStudyTime {
-    final hours = totalStudyTime ~/ 3600;
-    final minutes = (totalStudyTime % 3600) ~/ 60;
-    if (hours > 0) {
-      return '$hours giờ $minutes phút';
-    }
-    return '$minutes phút';
-  }
+  String get formattedStudyTime => formatStudySeconds(totalStudyTime);
+}
+
+/// Thời lượng đọc được từ số giây: `1 giờ 30 phút`, `45 phút`.
+String formatStudySeconds(int seconds) {
+  final hours = seconds ~/ 3600;
+  final minutes = (seconds % 3600) ~/ 60;
+  if (hours > 0) return '$hours giờ $minutes phút';
+  return '$minutes phút';
+}
+
+/// Toàn bộ số liệu của các màn tiến độ, tải cùng một lượt.
+class ProgressDashboard {
+  const ProgressDashboard({
+    required this.stats,
+    required this.timeline,
+    required this.heatmap,
+    required this.breakdown,
+  });
+
+  final DashboardStats stats;
+  final List<TimelineData> timeline;
+  final List<HeatmapData> heatmap;
+  final DashboardBreakdown breakdown;
+
+  ProgressDashboard withTimeline(List<TimelineData> value) => ProgressDashboard(
+        stats: stats,
+        timeline: value,
+        heatmap: heatmap,
+        breakdown: breakdown,
+      );
 }
 
 class TimelineData {

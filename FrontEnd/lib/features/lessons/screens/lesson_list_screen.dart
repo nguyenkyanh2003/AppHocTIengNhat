@@ -10,6 +10,9 @@ import '../providers/lesson_provider.dart';
 import '../widgets/lesson_card.dart';
 import '../widgets/lesson_level_bar.dart';
 import '../widgets/lesson_situation_bar.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../core/state/view_state.dart';
+import '../models/lesson.dart';
 
 /// Danh sách bài học, lọc theo trình độ JLPT rồi theo chủ đề.
 class LessonListScreen extends StatefulWidget {
@@ -106,52 +109,41 @@ class _LessonListScreenState extends State<LessonListScreen> {
     );
   }
 
-  /// Chỉ thay danh sách bằng vòng xoay khi chưa có gì để hiện. Đang có bài thì
-  /// giữ nguyên trên màn, thanh tải mảnh phía trên đã báo là đang nạp.
   Widget _buildList(LessonProvider provider) {
-    if (provider.listError != null) {
-      return _CenteredMessage(
-        icon: Icons.error_outline,
-        color: AppColors.error,
-        message: provider.listError!,
-        action: ElevatedButton(
-          onPressed: () => provider.loadLessons(refresh: true),
-          child: const Text('Thử lại'),
-        ),
-      );
-    }
-
-    if (provider.lessons.isEmpty) {
-      if (provider.isListLoading) {
-        return const Center(child: CircularProgressIndicator());
-      }
-      return _CenteredMessage(
-        icon: Icons.book_outlined,
-        color: AppColors.textDisabled,
-        message: _emptyMessage(provider),
-        action: provider.selectedLevel == null
-            ? null
-            : TextButton(
-                onPressed: () => provider.filterByLevel(null),
-                child: const Text('Xem mọi trình độ'),
-              ),
-      );
-    }
-
-    return RefreshIndicator(
-      onRefresh: () => provider.loadLessons(refresh: true),
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              padding: AppSpacing.page,
-              itemCount: provider.lessons.length,
-              itemBuilder: (context, index) =>
-                  LessonCard(lesson: provider.lessons[index]),
+    return AsyncView<List<Lesson>>(
+      state: ViewState.fromLegacy(
+        isLoading: provider.isListLoading,
+        error: provider.listError,
+        value: provider.lessons,
+        // Lỗi tải (đổi bộ lọc, chuyển trang) thì báo lỗi thay vì giữ danh sách cũ:
+        // danh sách cũ không còn khớp bộ lọc đang chọn.
+        isEmpty: provider.lessons.isEmpty || provider.listError != null,
+      ),
+      onRetry: () => provider.loadLessons(refresh: true),
+      isEmpty: (lessons) => lessons.isEmpty,
+      emptyTitle: _emptyMessage(provider),
+      emptyIcon: Icons.book_outlined,
+      emptyAction: provider.selectedLevel == null
+          ? null
+          : TextButton(
+              onPressed: () => provider.filterByLevel(null),
+              child: const Text('Xem mọi trình độ'),
             ),
-          ),
-          _buildPagination(provider),
-        ],
+      builder: (context, lessons) => RefreshIndicator(
+        onRefresh: () => provider.loadLessons(refresh: true),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                padding: AppSpacing.page,
+                itemCount: lessons.length,
+                itemBuilder: (context, index) =>
+                    LessonCard(lesson: lessons[index]),
+              ),
+            ),
+            _buildPagination(provider),
+          ],
+        ),
       ),
     );
   }
@@ -171,9 +163,9 @@ class _LessonListScreenState extends State<LessonListScreen> {
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-      decoration: const BoxDecoration(
-        color: AppColors.surface,
-        border: Border(top: BorderSide(color: AppColors.border)),
+      decoration: BoxDecoration(
+        color: context.colors.surface,
+        border: Border(top: BorderSide(color: context.colors.border)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -195,43 +187,6 @@ class _LessonListScreenState extends State<LessonListScreen> {
             icon: const Icon(Icons.chevron_right),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Biểu tượng, lời nhắn và một nút tuỳ chọn ở giữa vùng danh sách.
-class _CenteredMessage extends StatelessWidget {
-  const _CenteredMessage({
-    required this.icon,
-    required this.color,
-    required this.message,
-    this.action,
-  });
-
-  final IconData icon;
-  final Color color;
-  final String message;
-  final Widget? action;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: AppSpacing.page,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 56, color: color),
-            AppGap.lg,
-            Text(
-              message,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            if (action != null) ...[AppGap.md, action!],
-          ],
-        ),
       ),
     );
   }

@@ -61,7 +61,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               labelText: 'Mật khẩu mới',
               // Ngưỡng chung với backend (`PasswordPolicy`), nếu lệch thì
               // form báo hợp lệ rồi server vẫn trả 400.
-              hintText: AppLocalizations.of(context).passwordMinHint(PasswordPolicy.minLength),
+              hintText: AppLocalizations.of(context)
+                  .passwordMinHint(PasswordPolicy.minLength),
               prefixIcon: const Icon(Icons.lock_outline),
               suffixIcon: IconButton(
                 icon: Icon(
@@ -77,7 +78,8 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 return 'Vui lòng nhập mật khẩu mới';
               }
               if (value.length < PasswordPolicy.minLength) {
-                return AppLocalizations.of(context).passwordMinLength(PasswordPolicy.minLength);
+                return AppLocalizations.of(context)
+                    .passwordMinLength(PasswordPolicy.minLength);
               }
               return null;
             },
@@ -140,9 +142,11 @@ class _ErrorBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(Icons.error_outline, color: color),
+          Icon(Icons.error_outline, color: context.colors.readable(color)),
           const SizedBox(width: AppSpacing.md),
-          Expanded(child: Text(message, style: TextStyle(color: color))),
+          Expanded(
+              child: Text(message,
+                  style: TextStyle(color: context.colors.readable(color)))),
         ],
       ),
     );

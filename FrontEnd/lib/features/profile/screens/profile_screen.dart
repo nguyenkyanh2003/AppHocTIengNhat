@@ -7,6 +7,9 @@ import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../widgets/edit_profile_dialog.dart';
+import '../widgets/profile_avatar_section.dart';
+import '../../../core/state/view_state.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -30,7 +33,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       actions: [
         IconButton(
           icon: const Icon(Icons.edit),
-          onPressed: () => _showEditProfileDialog(user),
+          onPressed:
+              user == null ? null : () => showEditProfileDialog(context, user),
           tooltip: 'Chỉnh sửa thông tin',
         ),
       ],
@@ -55,7 +59,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     children: [
                       // Avatar Section
-                      _buildAvatarSection(user),
+                      ProfileAvatarSection(
+                          user: user,
+                          selectedImageBytes: _selectedImageBytes,
+                          isUploading: _isUploading,
+                          pickAndUploadAvatar: _pickAndUploadAvatar),
                       const SizedBox(height: 24),
 
                       // Info Cards
@@ -121,79 +129,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildAvatarSection(user) {
-    return Center(
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.2),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                ),
-              ],
-            ),
-            child: CircleAvatar(
-              radius: 70,
-              backgroundImage: _selectedImageBytes != null
-                  ? MemoryImage(_selectedImageBytes!)
-                  : (user.avatar != null ? NetworkImage(user.avatar!) : null)
-                      as ImageProvider?,
-              backgroundColor: AppColors.primaryLight,
-              child: (_selectedImageBytes == null && user.avatar == null)
-                  ? Text(
-                      user.username.substring(0, 1).toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: AppTypography.display,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.primary,
-                      ),
-                    )
-                  : null,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: GestureDetector(
-              onTap: _isUploading ? null : _pickAndUploadAvatar,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 3),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.3),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: _isUploading
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      )
-                    : const Icon(Icons.camera_alt,
-                        color: Colors.white, size: 24),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildInfoCard(
       {required String title, required List<Widget> children}) {
     return Card(
@@ -206,10 +141,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppTypography.subtitle,
                 fontWeight: FontWeight.w600,
-                color: AppColors.primary,
+                color: context.colors.primary,
               ),
             ),
             const SizedBox(height: 16),
@@ -228,10 +163,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppColors.primaryLight,
+              color: context.colors.primarySoft,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, size: 20, color: AppColors.primary),
+            child: Icon(icon, size: 20, color: context.colors.primary),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -240,9 +175,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppTypography.caption,
-                    color: AppColors.textSecondary,
+                    color: context.colors.textSecondary,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -289,7 +224,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Đã cập nhật ảnh đại diện thành công!'),
-                backgroundColor: AppColors.success,
+                backgroundColor: AppColors.successStrong,
               ),
             );
           } else {
@@ -297,7 +232,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SnackBar(
                 content: Text(
                     'Lỗi: ${authProvider.error ?? "Không thể cập nhật ảnh"}'),
-                backgroundColor: AppColors.error,
+                backgroundColor: AppColors.errorStrong,
               ),
             );
           }
@@ -306,188 +241,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi khi chọn ảnh: $e')),
+          SnackBar(content: Text('Lỗi khi chọn ảnh: ${userMessageOf(e)}')),
         );
         setState(() => _isUploading = false);
       }
     }
-  }
-
-  void _showEditProfileDialog(user) {
-    final fullNameController =
-        TextEditingController(text: user?.fullName ?? '');
-    final phoneController = TextEditingController(text: user?.phone ?? '');
-    String selectedGender = user?.gender ?? 'Nam';
-    String selectedLevel = user?.currentLevel ?? 'N5';
-    DateTime? selectedDate = user?.dateOfBirth;
-
-    showDialog(
-      context: context,
-      builder: (dialogContext) => StatefulBuilder(
-        builder: (dialogContext, setDialogState) => AlertDialog(
-          title: const Row(
-            children: [
-              Icon(Icons.edit, color: AppColors.primary),
-              SizedBox(width: AppSpacing.sm),
-              Text('Chỉnh sửa thông tin'),
-            ],
-          ),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  autofocus: true,
-                  controller: fullNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Họ tên',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.person),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: phoneController,
-                  decoration: InputDecoration(
-                    labelText: 'Số điện thoại',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.phone),
-                  ),
-                  keyboardType: TextInputType.phone,
-                ),
-                const SizedBox(height: 16),
-                InkWell(
-                  onTap: () async {
-                    final DateTime? picked = await showDatePicker(
-                      context: dialogContext,
-                      initialDate: selectedDate ?? DateTime.now(),
-                      firstDate: DateTime(1950),
-                      lastDate: DateTime.now(),
-                    );
-                    if (!dialogContext.mounted) return;
-                    if (picked != null) {
-                      setDialogState(() => selectedDate = picked);
-                    }
-                  },
-                  child: InputDecorator(
-                    decoration: InputDecoration(
-                      labelText: 'Ngày sinh',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      prefixIcon: const Icon(Icons.cake),
-                    ),
-                    child: Text(
-                      selectedDate != null
-                          ? '${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}'
-                          : 'Chọn ngày sinh',
-                      style: TextStyle(
-                        color:
-                            selectedDate != null ? Colors.black : AppColors.textSecondary,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<String>(
-                  value: selectedGender,
-                  decoration: InputDecoration(
-                    labelText: 'Giới tính',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.wc),
-                  ),
-                  items: const [
-                    DropdownMenuItem(value: 'Nam', child: Text('Nam')),
-                    DropdownMenuItem(value: 'Nữ', child: Text('Nữ')),
-                    DropdownMenuItem(value: 'Khác', child: Text('Khác')),
-                  ],
-                  onChanged: (value) {
-                    if (value != null) {
-                      setDialogState(() => selectedGender = value);
-                    }
-                  },
-                ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<String>(
-                  value: selectedLevel,
-                  decoration: InputDecoration(
-                    labelText: 'Trình độ',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    prefixIcon: const Icon(Icons.school),
-                  ),
-                  items: ['N5', 'N4', 'N3', 'N2', 'N1']
-                      .map((level) => DropdownMenuItem(
-                            value: level,
-                            child: Text('JLPT $level'),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    if (value != null) {
-                      setDialogState(() => selectedLevel = value);
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('Hủy'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                final authProvider = context.read<AuthProvider>();
-
-                final success = await authProvider.updateProfile(
-                  fullName: fullNameController.text.trim().isEmpty
-                      ? null
-                      : fullNameController.text.trim(),
-                  phoneNumber: phoneController.text.trim().isEmpty
-                      ? null
-                      : phoneController.text.trim(),
-                  gender: selectedGender,
-                  currentLevel: int.tryParse(
-                      selectedLevel.substring(1)), // Keep as int for provider
-                  dateOfBirth: selectedDate,
-                );
-
-                if (!mounted || !dialogContext.mounted) return;
-                Navigator.pop(dialogContext);
-
-                if (success) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Đã cập nhật thông tin thành công!'),
-                      backgroundColor: AppColors.success,
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                          'Lỗi: ${authProvider.error ?? "Không thể cập nhật"}'),
-                      backgroundColor: AppColors.error,
-                    ),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-              ),
-              child: const Text('Lưu'),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
