@@ -1,38 +1,14 @@
 import '../../../core/network/api_client.dart';
 import '../models/achievement.dart';
 
+/// Tiến độ huy hiệu do server tự đếm: client không gửi lên điều gì.
 class AchievementService {
-  final ApiClient _apiClient = ApiClient();
+  AchievementService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  // Get all achievements
-  Future<List<Achievement>> getAllAchievements() async {
-    final response = await _apiClient.get('/achievement/all');
-    if (response != null && response is List) {
-      return response.map((item) => Achievement.fromJson(item)).toList();
-    }
-    return [];
-  }
+  final ApiClient _client;
 
-  // Get user's achievements with progress
-  Future<Map<String, dynamic>?> getMyAchievements() async {
-    final response = await _apiClient.get('/achievement/my-achievements');
-    return response;
-  }
-
-  // Get achievements by category
-  Future<Map<String, dynamic>?> getAchievementsByCategory(
-      String category) async {
-    final response = await _apiClient.get('/achievement/category/$category');
-    return response;
-  }
-
-  // Update achievement progress
-  // `POST /achievement/update-progress` đã bị gỡ khỏi server: tiến độ thành
-  // tích do server tự xác minh, không nhận lời khai từ client.
-
-  // Get achievement statistics
-  Future<Map<String, dynamic>?> getStats() async {
-    final response = await _apiClient.get('/achievement/stats');
-    return response;
+  Future<MyAchievements> getMyAchievements() async {
+    final response = await _client.get('/achievement/my-achievements');
+    return MyAchievements.fromJson(Map<String, dynamic>.from(response as Map));
   }
 }

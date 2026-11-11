@@ -28,7 +28,11 @@ class _FakeNotificationService extends NotificationService {
   bool failMutation = false;
 
   @override
-  Future<NotificationPage> getNotifications({int page = 1, NotificationFilter status = NotificationFilter.all}) async {
+  Future<NotificationPage> getNotifications({
+    int page = 1,
+    NotificationFilter status = NotificationFilter.all,
+    NotificationType? type,
+  }) async {
     calls.add('list $page ${status.name}');
     await gates[status]?.future;
     if (failList) throw ApiException('Mất kết nối máy chủ');

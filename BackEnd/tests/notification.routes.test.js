@@ -67,9 +67,36 @@ test('GET / lọc chưa đọc; bộ lọc lạ hoặc limit vượt trần là 
   assert.deepEqual(response.body.data, []);
   assert.equal(calls[0][1].status, 'unread');
 
-  for (const query of ['status=ChuaDoc', 'limit=1000']) {
+  for (const query of ['status=ChuaDoc', 'limit=1000', 'type=achievement']) {
     assert.equal((await request(app).get(`/api/notifications?${query}`)).status, 400, query);
   }
+});
+
+test('GET / lọc theo loại; không gửi loại thì không lọc', async () => {
+  const { calls, service } = recording({ list: { items: [], page: 1, limit: 5, total: 0 } });
+  const app = buildApp(service);
+
+  assert.equal((await request(app).get('/api/notifications?status=unread&type=ACHIEVEMENT&limit=5')).status, 200);
+  assert.equal((await request(app).get('/api/notifications')).status, 200);
+
+  assert.deepEqual(calls[0][1], { userId: 'user-1', page: 1, limit: 5, status: 'unread', type: 'ACHIEVEMENT' });
+  assert.equal('type' in calls[1][1], false);
+});
+
+test('admin không gửi được thông báo huy hiệu giả — loại đó chỉ hệ thống tạo', async () => {
+  const { calls, service } = recording({ sendToUser: DTO, broadcast: 2 });
+  const app = buildApp(service);
+
+  const one = await request(app)
+    .post('/api/notifications')
+    .send({ recipient_id: ID, title: 'Huy hiệu', message: 'X', type: 'ACHIEVEMENT' });
+  const all = await request(app)
+    .post('/api/notifications/broadcast/all')
+    .send({ title: 'Huy hiệu', message: 'X', type: 'ACHIEVEMENT' });
+
+  assert.equal(one.status, 400);
+  assert.equal(all.status, 400);
+  assert.deepEqual(calls, []);
 });
 
 test('GET /count/unread trả { data: { unread_count } }', async () => {

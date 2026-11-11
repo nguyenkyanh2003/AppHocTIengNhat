@@ -16,7 +16,7 @@ import { countedMetricsFor, isUnlocked, progressOf } from './achievement-rules.j
 const METRIC_COUNTERS = Object.freeze({
   learnedVocabulary: (repository, args) => repository.countLearnedVocabulary(args),
   learnedKanji: (repository, args) => repository.countLearnedKanji(args),
-  learnedGrammar: (repository, args) => repository.countLearnedGrammar(args),
+  passedPatternExercises: (repository, args) => repository.countPassedPatternExercises(args),
   completedLessons: (repository, args) => repository.countCompletedLessons(args),
   exerciseSubmissions: (repository, args) => repository.countExerciseSubmissions(args),
 });
@@ -83,6 +83,11 @@ export const createAchievementService = ({
           id: String(definition._id),
           xpReward: definition.xp_reward,
           progress: progressOf(definition, metrics),
+          // Phần người học được báo khi nhận (thông báo huy hiệu): tên và tiêu chí tiếng Việt.
+          name: definition.name_vi || definition.name,
+          description: definition.description_vi || definition.description,
+          icon: definition.icon,
+          rarity: definition.rarity ?? 'common',
         }));
     },
 
@@ -96,11 +101,13 @@ export const createAchievementService = ({
 
     /** Huy hiệu đã có và huy hiệu còn khoá kèm tiến độ server tự đếm. */
     async myAchievements(userId) {
-      const [definitions, earned, snapshot] = await Promise.all([
+      const [definitions, rows, snapshot] = await Promise.all([
         repository.findActive(),
         repository.findUserAchievements({ userId }),
         streakSnapshot(userId),
       ]);
+      // Dòng chưa hoàn thành là tiến độ client từng khai, không phải huy hiệu đã đạt.
+      const earned = rows.filter((row) => row.is_completed);
       const earnedIds = new Set(earned.map((row) => String(row.achievement._id)));
       const locked = definitions.filter((definition) => !earnedIds.has(String(definition._id)));
       const metrics = await gatherMetrics({ userId, achievements: locked, snapshot });
@@ -109,7 +116,8 @@ export const createAchievementService = ({
         earned,
         locked: locked.map((definition) => toLocked(definition, metrics)),
         total: definitions.length,
-        completed: earned.filter((row) => row.is_completed).length,
+        // Huy hiệu đã ngừng vẫn được giữ trong `earned` nhưng không tính vào tỉ lệ.
+        completed: definitions.length - locked.length,
       };
     },
 
@@ -123,23 +131,32 @@ export const createAchievementService = ({
     },
 
     async stats(userId) {
-      const [total, completed, byCategory, earnedByCategory] = await Promise.all([
+      const [total, byCategory, earnedByCategory] = await Promise.all([
         repository.countActive(),
-        repository.findCompletedAchievementIds({ userId }),
         repository.countActiveByCategory(),
         repository.countCompletedByCategory(userId),
       ]);
+      const earned = earnedByCategory.reduce((sum, { count }) => sum + count, 0);
       return {
         total_achievements: total,
-        earned_achievements: completed.size,
-        completion_rate: total > 0 ? ((completed.size / total) * 100).toFixed(1) : 0,
+        earned_achievements: earned,
+        completion_rate: total > 0 ? Number(((earned / total) * 100).toFixed(1)) : 0,
         by_category: byCategory,
         earned_by_category: earnedByCategory,
       };
     },
 
-    listAll() {
-      return repository.findAll();
+    /** Mọi định nghĩa kèm số người đã mở, để admin biết xoá hay sửa sẽ ảnh hưởng ai. */
+    async listAll() {
+      const [definitions, unlockedCounts] = await Promise.all([
+        repository.findAll(),
+        repository.countCompletedByAchievement(),
+      ]);
+      const unlockedById = new Map(unlockedCounts.map(({ _id, count }) => [String(_id), count]));
+      return definitions.map((definition) => ({
+        ...definition,
+        unlocked: unlockedById.get(String(definition._id)) ?? 0,
+      }));
     },
 
     create(payload) {

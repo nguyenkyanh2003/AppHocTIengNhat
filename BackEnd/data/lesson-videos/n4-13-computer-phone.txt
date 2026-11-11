@@ -34,15 +34,15 @@
 *00:01 | 王 / Oo / Vương | 佐藤さん、すみません。来週のミーティングのこと、皆さんにお知らせのメールを書いたんですが、ちょっと見ていただけますか。 | Satoo-san, sumimasen. Raishuu no miitingu no koto, minasan ni oshirase no meeru o kaitan desu ga, chotto mite itadakemasu ka. | Anh Satō ơi, xin lỗi. Tôi đã viết email thông báo cho mọi người về cuộc họp tuần sau, anh xem giúp tôi được không?
 00:12 | 佐藤 / Satoo / Satō | いいですよ。 | Ii desu yo. | Được chứ.
 00:22 | 佐藤 / Satoo / Satō | いいですねー。これでOKです。 | Ii desu nee. Kore de OK desu. | Được đấy. Như vậy là ổn rồi.
-00:26 | 王 / Oo / Vương | ありがとう。じゃあこれ、私にもBCCで送っておいてくれますか。 | Arigatoo. Jaa kore, watashi ni mo BCC de okutte oite kuremasu ka. | Cảm ơn anh. Vậy anh gửi BCC cho tôi luôn nhé.
-00:34 | 佐藤 / Satoo / Satō | BCC？ | BCC? | BCC ạ?
+00:26 | 佐藤 / Satoo / Satō | ありがとう。じゃあこれ、私にもBCCで送っておいてくれますか。 | Arigatoo. Jaa kore, watashi ni mo BCC de okutte oite kuremasu ka. | Cảm ơn anh. Vậy anh gửi BCC cho tôi luôn nhé.
+00:34 | 王 / Oo / Vương | BCC？ | BCC? | BCC ạ?
 *00:37 | 王 / Oo / Vương | すみません、BCCとCCで、どう違いますか。 | Sumimasen, BCC to CC de, doo chigaimasu ka. | Xin lỗi, BCC với CC khác nhau thế nào ạ?
 00:44 | 佐藤 / Satoo / Satō | BCCのメールアドレスは、受信した人には見えないんですよ。 | BCC no meeru adoresu wa, jushin shita hito ni wa mienain desu yo. | Địa chỉ email trong BCC thì người nhận không thấy được đâu.
 00:49 | 王 / Oo / Vương | あー、なるほど。 | Aa, naruhodo. | À, ra vậy.
-00:56 | 佐藤 / Satoo / Satō | あのー、ここはどうしますか。 | Anoo, koko wa doo shimasu ka. | À, còn chỗ này thì làm sao ạ?
-00:59 | 王 / Oo / Vương | ああ、件名ですね。 | Aa, kenmee desu ne. | À, tiêu đề đó phải không.
-*01:06 | 王 / Oo / Vương | 件名は「来週のミーティングのお知らせ」にしといてください。 | Kenmee wa "Raishuu no miitingu no oshirase" ni shitoite kudasai. | Tiêu đề thì để là "Thông báo cuộc họp tuần sau" giúp tôi nhé.
-01:09 | 佐藤 / Satoo / Satō | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
+00:56 | 王 / Oo / Vương | あのー、ここはどうしますか。 | Anoo, koko wa doo shimasu ka. | À, còn chỗ này thì làm sao ạ?
+00:59 | 佐藤 / Satoo / Satō | ああ、件名ですね。 | Aa, kenmee desu ne. | À, tiêu đề đó phải không.
+*01:03 | 佐藤 / Satoo / Satō | 件名は「来週のミーティングのお知らせ」にしといてください。 | Kenmee wa "Raishuu no miitingu no oshirase" ni shitoite kudasai. | Tiêu đề thì để là "Thông báo cuộc họp tuần sau" giúp tôi nhé.
+01:09 | 王 / Oo / Vương | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
 01:16 | 佐藤 / Satoo / Satō | 大丈夫そうですね。 | Daijoobu soo desu ne. | Có vẻ ổn rồi đó.
 *01:19 | 王 / Oo / Vương | じゃあ、これで送っておきます。 | Jaa, kore de okutte okimasu. | Vậy tôi gửi trước như thế này nhé.
 01:21 | 佐藤 / Satoo / Satō | よろしくお願いします。 | Yoroshiku onegaishimasu. | Nhờ anh giúp đỡ.
@@ -65,7 +65,7 @@
 00:28 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | では、定期券のご利用区間はどちらからどちらまでですか。 | Dewa, teekiken no goriyoo kukan wa dochira kara dochira made desu ka. | Vậy chặng sử dụng của thẻ đi lại tháng là từ đâu đến đâu ạ?
 *00:33 | 王 / Oo / Vương | 潮来から成田までです。 | Itako kara Narita made desu. | Từ Itako đến Narita ạ.
 00:37 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | 登録しているお名前を教えてください。 | Tooroku shite iru onamae o oshiete kudasai. | Xin cho tôi biết tên đã đăng ký ạ.
-00:40 | 王 / Oo / Vương | 王です。 | Oo desu. | Tôi tên là Vương ạ.
+00:40 | 王 / Oo / Vương | オウ・ハオランです。 | Oo Haoran desu. | Tôi là Vương Hạo Nhiên ạ.
 00:43 | センター職員 / Sentaa shokuin / Nhân viên trung tâm | 承知いたしました。お調べいたしますので、少々お待ちください。 | Shoochi itashimashita. Oshirabe itashimasu node, shooshoo omachi kudasai. | Vâng, tôi đã rõ. Tôi sẽ kiểm tra nên xin anh chờ một chút ạ.
 00:49 | 王 / Oo / Vương | ありがとうございます。よろしくお願いします。 | Arigatoo gozaimasu. Yoroshiku onegaishimasu. | Cảm ơn chị. Nhờ chị giúp đỡ ạ.
 ### từ vựng

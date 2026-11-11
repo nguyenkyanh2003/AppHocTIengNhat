@@ -63,6 +63,61 @@ test('kanji đã học đếm ID khác nhau qua mọi bài, ép user sang Object
   ]);
 });
 
+test('bài mẫu câu đã đạt: mỗi bài một lần, chỉ tính bài đạt và đúng loại', async () => {
+  const passed = [id('01'), id('02')];
+  const results = fakeModel({ distinct: passed });
+  const exercises = fakeModel();
+
+  const count = await createAchievementRepository({
+    ExerciseResult: results,
+    Exercise: exercises,
+  }).countPassedPatternExercises({ userId: USER_ID, session: 'session' });
+
+  // `fakeModel.countDocuments` trả 3: đếm phải lấy từ bảng bài tập, sau khi lọc loại.
+  assert.equal(count, 3);
+  assert.deepEqual(results.calls[0], ['distinct', 'exercise_id', { user_id: USER_ID, is_passed: true }]);
+  assert.deepEqual(results.calls[1], ['session', 'session']);
+  assert.deepEqual(exercises.calls[0], [
+    'countDocuments',
+    { _id: { $in: passed }, type: { $in: ['Ngữ pháp', 'Tổng hợp'] } },
+  ]);
+  assert.deepEqual(exercises.calls[1], ['session', 'session']);
+});
+
+test('chưa đạt bài nào thì đếm ra 0 và không cần đọc bảng bài tập', async () => {
+  const exercises = fakeModel();
+
+  const count = await createAchievementRepository({
+    ExerciseResult: fakeModel({ distinct: [] }),
+    Exercise: exercises,
+  }).countPassedPatternExercises({ userId: USER_ID });
+
+  assert.equal(count, 0);
+  assert.deepEqual(exercises.calls, []);
+});
+
+test('đếm số người đã mở chỉ tính dòng đã hoàn thành', async () => {
+  const pipelines = [];
+  const userAchievement = { aggregate: async (pipeline) => (pipelines.push(pipeline), [{ _id: 'a1', count: 2 }]) };
+
+  const rows = await createAchievementRepository({ UserAchievement: userAchievement }).countCompletedByAchievement();
+
+  assert.deepEqual(rows, [{ _id: 'a1', count: 2 }]);
+  assert.deepEqual(pipelines[0][0], { $match: { is_completed: true } });
+});
+
+test('huy hiệu đã đạt theo nhóm chỉ tính định nghĩa đang bật', async () => {
+  const pipelines = [];
+  const repository = createAchievementRepository({
+    Achievement: { collection: { name: 'achievements' } },
+    UserAchievement: { aggregate: async (pipeline) => (pipelines.push(pipeline), []) },
+  });
+
+  await repository.countCompletedByCategory(USER_ID);
+
+  assert.ok(pipelines[0].some((stage) => stage.$match?.['definition.is_active'] === true));
+});
+
 test('chưa đánh dấu kanji nào thì đếm ra 0', async () => {
   const progress = fakeModel({ rows: [] });
 

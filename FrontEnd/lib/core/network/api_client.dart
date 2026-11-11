@@ -344,6 +344,46 @@ class ApiClient {
 
   static const sessionExpiredCode = 'SESSION_EXPIRED';
 
+  final _writeListeners = <void Function(String method, String endpoint)>[];
+
+  /// Nghe mọi lệnh ghi (POST/PUT/PATCH/DELETE) **thành công**, kèm phương thức
+  /// và endpoint. Dành cho việc cần biết "vừa có thay đổi" mà không phải sửa
+  /// từng service — hiện là báo huy hiệu vừa nhận (`AchievementAnnouncer`).
+  void addWriteListener(void Function(String method, String endpoint) listener) =>
+      _writeListeners.add(listener);
+
+  void removeWriteListener(void Function(String method, String endpoint) listener) =>
+      _writeListeners.remove(listener);
+
+  /// Một người nghe hỏng không được làm lệnh ghi đã thành công trông như thất bại:
+  /// lỗi được báo qua [FlutterError] thay vì ném về cho caller.
+  void _notifyWrite(String method, String endpoint) {
+    for (final listener in List.of(_writeListeners)) {
+      try {
+        listener(method, endpoint);
+      } catch (error, stack) {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: error,
+          stack: stack,
+          library: 'api_client',
+          context: ErrorDescription('khi báo lệnh ghi $method $endpoint'),
+        ));
+      }
+    }
+  }
+
+  Future<Map<String, dynamic>> _write(
+    String method,
+    String endpoint, [
+    Map<String, dynamic>? body,
+  ]) async {
+    final response = Map<String, dynamic>.from(
+      await _jsonRequest(method, endpoint, body: body),
+    );
+    _notifyWrite(method, endpoint);
+    return response;
+  }
+
   /// Dọn dữ liệu cục bộ, gọi **sau** [removeToken]. Khi đó token còn trong kho
   /// là của phiên khác ở tab khác, nên dữ liệu dùng chung là của phiên đó: giữ nguyên.
   Future<void> clearAllData() async {
@@ -427,34 +467,26 @@ class ApiClient {
   Future<Map<String, dynamic>> post(
     String endpoint,
     Map<String, dynamic> data,
-  ) async =>
-      Map<String, dynamic>.from(
-        await _jsonRequest('POST', endpoint, body: data),
-      );
+  ) =>
+      _write('POST', endpoint, data);
 
   Future<Map<String, dynamic>> put(
     String endpoint,
     Map<String, dynamic> data,
-  ) async =>
-      Map<String, dynamic>.from(
-        await _jsonRequest('PUT', endpoint, body: data),
-      );
+  ) =>
+      _write('PUT', endpoint, data);
 
   Future<Map<String, dynamic>> patch(
     String endpoint,
     Map<String, dynamic> data,
-  ) async =>
-      Map<String, dynamic>.from(
-        await _jsonRequest('PATCH', endpoint, body: data),
-      );
+  ) =>
+      _write('PATCH', endpoint, data);
 
   Future<Map<String, dynamic>> delete(
     String endpoint, [
     Map<String, dynamic>? body,
-  ]) async =>
-      Map<String, dynamic>.from(
-        await _jsonRequest('DELETE', endpoint, body: body),
-      );
+  ]) =>
+      _write('DELETE', endpoint, body);
 
   Future<dynamic> _jsonRequest(
     String method,

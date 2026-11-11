@@ -29,7 +29,7 @@ Tシャツ | ティーシャツ | tii shatsu | áo phông
 00:05 | 店員 / Ten'in / Nhân viên | いかがですか。 | Ikaga desu ka. | Chị thấy thế nào ạ?
 00:07 | アンジェラ / Anjera / Angela | このTシャツ、いいデザインですね。 | Kono T-shatsu, ii dezain desu ne. | Cái áo phông này thiết kế đẹp nhỉ.
 00:11 | 店員 / Ten'in / Nhân viên | はい。人気がありますよ。 | Hai. Ninki ga arimasu yo. | Vâng. Mẫu này được ưa chuộng lắm ạ.
-00:17 | アンジェラ / Anjera / Angela | ああ、サイズもちょうどいいですね。 | Aa, saizu mo choodo ii desu ne. | À, cỡ cũng vừa luôn.
+00:17 | 店員 / Ten'in / Nhân viên | ああ、サイズもちょうどいいですね。 | Aa, saizu mo choodo ii desu ne. | À, cỡ cũng vừa vặn nhỉ.
 *00:21 | アンジェラ / Anjera / Angela | えーと、5,000円ですか。 | Eeto, gosen-en desu ka. | Ừm, 5.000 yên phải không ạ?
 *00:25 | 店員 / Ten'in / Nhân viên | 税込みで5,500円です。 | Zeekomi de gosen gohyaku-en desu. | Tính cả thuế là 5.500 yên ạ.
 00:29 | アンジェラ / Anjera / Angela | 5,500円？ | Gosen gohyaku-en? | 5.500 yên ạ?

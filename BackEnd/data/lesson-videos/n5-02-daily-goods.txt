@@ -50,7 +50,7 @@
 00:35 | 店員 / Ten'in / Nhân viên | 1,748円になります。 | Sen nanahyaku yonjuuhachi-en ni narimasu. | Của quý khách hết 1.748 yên ạ.
 00:45 | 店員 / Ten'in / Nhân viên | 2,000円お預かりします。 | Nisen-en oazukari shimasu. | Tôi nhận của quý khách 2.000 yên.
 00:51 | 店員 / Ten'in / Nhân viên | 252円のお返しになります。 | Nihyaku gojuuni-en no okaeshi ni narimasu. | Tôi gửi lại quý khách 252 yên tiền thừa ạ.
-01:03 | アンジェラ / Anjera / Angela | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+01:03 | 店員 / Ten'in / Nhân viên | ありがとうございます。 | Arigatoo gozaimasu. | Xin cảm ơn quý khách.
 ### từ vựng
 袋 | ふくろ | fukuro | túi đựng
 結構です | けっこうです | kekkoo desu | không cần ạ

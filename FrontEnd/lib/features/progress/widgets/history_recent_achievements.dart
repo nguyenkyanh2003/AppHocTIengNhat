@@ -38,13 +38,12 @@ class HistoryRecentAchievements extends StatelessWidget {
                 ),
               ],
             ),
-            AsyncView<List<UserAchievement>>(
-              state: provider.earnedState,
+            AsyncView<MyAchievements>(
+              state: provider.mine,
               compact: true,
               onRetry: provider.loadMyAchievements,
-              builder: (context, earned) {
-                final recent = earned.where((item) => item.isCompleted).toList()
-                  ..sort((a, b) => b.earnedAt.compareTo(a.earnedAt));
+              builder: (context, mine) {
+                final recent = mine.recentlyEarned;
                 if (recent.isEmpty) {
                   return Padding(
                     padding:
@@ -79,11 +78,8 @@ class _AchievementRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final achievement = item.achievement;
-    final title =
-        achievement.nameVi.isNotEmpty ? achievement.nameVi : achievement.name;
-    final description = achievement.descriptionVi.isNotEmpty
-        ? achievement.descriptionVi
-        : achievement.description;
+    final title = achievement.displayName;
+    final description = achievement.displayDescription;
 
     return Padding(
       padding: const EdgeInsets.only(top: AppSpacing.sm),

@@ -388,6 +388,16 @@
         },
         {
           "start": "00:54",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "「ちいさい」っていう漢字があるんですけど…。",
+          "romaji": "\"Chiisai\" tte iu kanji ga arun desu kedo...",
+          "text_vi": "Có chữ Hán \"chiisai\" (nhỏ)...",
+          "key_phrase": false
+        },
+        {
+          "start": "00:58",
           "speaker_ja": "運転手の男性",
           "speaker_romaji": "Untenshu no dansee",
           "speaker_vi": "Người đàn ông lái xe",
@@ -575,12 +585,22 @@
       "transcript": [
         {
           "start": "00:07",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "もしもし？",
+          "romaji": "Moshi moshi?",
+          "text_vi": "A lô?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:09",
           "speaker_ja": "田中",
           "speaker_romaji": "Tanaka",
           "speaker_vi": "Tanaka (cửa hàng bán hàng qua mạng)",
-          "text_ja": "もしもし？こちら、ネット通販ぶんかモールの田中と申します。サントスアンジェラ様のお電話でよろしいでしょうか。",
-          "romaji": "Moshi moshi? Kochira, netto tsuuhan Bunka Mooru no Tanaka to mooshimasu. Santosu Anjera-sama no odenwa de yoroshii deshoo ka.",
-          "text_vi": "A lô? Tôi là Tanaka ở cửa hàng bán hàng qua mạng Bunka Mall. Đây có phải số điện thoại của chị Santos Angela không ạ?",
+          "text_ja": "こちら、ネット通販ぶんかモールの田中と申します。サントスアンジェラ様のお電話でよろしいでしょうか。",
+          "romaji": "Kochira, netto tsuuhan Bunka Mooru no Tanaka to mooshimasu. Santosu Anjera-sama no odenwa de yoroshii deshoo ka.",
+          "text_vi": "Tôi là Tanaka ở cửa hàng bán hàng qua mạng Bunka Mall. Đây có phải số điện thoại của chị Santos Angela không ạ?",
           "key_phrase": false
         },
         {
@@ -1047,6 +1067,16 @@
           "key_phrase": false
         },
         {
+          "start": "03:40",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "「ちいさい」っていう漢字があるんですけど…。",
+          "romaji": "\"Chiisai\" tte iu kanji ga arun desu kedo...",
+          "text_vi": "Có chữ Hán \"chiisai\" (nhỏ)...",
+          "key_phrase": false
+        },
+        {
           "start": "03:45",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
@@ -1141,9 +1171,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "ただし、い形容詞の「いい」は「よくて」になります。",
-          "romaji": "Tadashi, i-keeyooshi no \"ii\" wa \"yokute\" ni narimasu.",
-          "text_vi": "Tuy nhiên, tính từ đuôi i \"ii\" (tốt) sẽ thành \"yokute\".",
+          "text_ja": "ただし、「い形容詞」の「いい」は例外で、「よくて」になります。",
+          "romaji": "Tadashi, \"i-keeyooshi\" no \"ii\" wa reegai de, \"yokute\" ni narimasu.",
+          "text_vi": "Tuy nhiên, \"ii\" (tốt) của tính từ đuôi i là ngoại lệ, sẽ thành \"yokute\".",
           "key_phrase": false
         },
         {

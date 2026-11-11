@@ -514,7 +514,7 @@
           "key_phrase": false
         },
         {
-          "start": "00:23",
+          "start": "00:16",
           "speaker_ja": "アンジェラ",
           "speaker_romaji": "Anjera",
           "speaker_vi": "Angela",
@@ -578,9 +578,9 @@
           "speaker_ja": "不動産屋の店員",
           "speaker_romaji": "Fudoosan-ya no ten'in",
           "speaker_vi": "Nhân viên công ty môi giới nhà",
-          "text_ja": "こちらの紙に必要な書類などが書いてありますので、ご確認ください。",
-          "romaji": "Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai.",
-          "text_vi": "Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.",
+          "text_ja": "えー、こちらの方に、必要な書類などが書いてありますので、ご確認ください。",
+          "romaji": "Ee, kochira no hoo ni, hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai.",
+          "text_vi": "À, ở đây có ghi các giấy tờ cần thiết, chị vui lòng xem giúp ạ.",
           "key_phrase": false
         },
         {
@@ -625,12 +625,22 @@
         },
         {
           "start": "01:33",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "それから…印鑑と印鑑証明…。",
+          "romaji": "Sorekara... inkan to inkan shoomee...",
+          "text_vi": "Tiếp theo là... con dấu và giấy chứng nhận con dấu...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:38",
           "speaker_ja": "不動産屋の店員",
           "speaker_romaji": "Fudoosan-ya no ten'in",
           "speaker_vi": "Nhân viên công ty môi giới nhà",
-          "text_ja": "それから、印鑑と印鑑証明、それから保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。",
-          "romaji": "Sorekara, inkan to inkan shoomee, sorekara hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga.",
-          "text_vi": "Ngoài ra cần con dấu và giấy chứng nhận con dấu, cùng người bảo lãnh, chị có nhờ ai được không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.",
+          "text_ja": "それから、保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。",
+          "romaji": "Sorekara, hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga.",
+          "text_vi": "Ngoài ra cần có người bảo lãnh, chị có nhờ được ai không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.",
           "key_phrase": false
         },
         {
@@ -891,9 +901,9 @@
           "speaker_ja": "不動産屋の店員",
           "speaker_romaji": "Fudoosan-ya no ten'in",
           "speaker_vi": "Nhân viên công ty môi giới nhà",
-          "text_ja": "こちらの紙に必要な書類などが書いてありますので、ご確認ください。",
-          "romaji": "Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai.",
-          "text_vi": "Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.",
+          "text_ja": "えー、こちらの方に、必要な書類などが書いてありますので、ご確認ください。",
+          "romaji": "Ee, kochira no hoo ni, hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai.",
+          "text_vi": "À, ở đây có ghi các giấy tờ cần thiết, chị vui lòng xem giúp ạ.",
           "key_phrase": false
         },
         {

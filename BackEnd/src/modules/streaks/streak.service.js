@@ -1,6 +1,7 @@
 import { ApiError } from '../../shared/http/api-error.js';
 import { achievementService } from '../achievements/achievement.service.js';
 import { goalService } from '../goals/goal.service.js';
+import { notificationService } from '../notifications/notification.service.js';
 import { streakRepository } from './streak.repository.js';
 import { applyActivity, dayKey, MAX_FREEZES, projectStreak } from './streak-rules.js';
 import * as defaultPolicy from './streak-policy.js';
@@ -34,6 +35,7 @@ export const createStreakService = ({
   policy = defaultPolicy,
   achievements = achievementService,
   goals = goalService,
+  notifications = notificationService,
 } = {}) => {
   /**
    * Chạy CAS tới khi thắng, đọc lại trạng thái sau mỗi lần thua.
@@ -169,12 +171,16 @@ export const createStreakService = ({
    * **trước** thưởng: XP của huy hiệu vừa cấp không kéo theo huy hiệu XP khác
    * trong cùng lần ghi. Khoá `achievement:<user>:<huy hiệu>` giữ mỗi huy hiệu
    * một lần trong đời tài khoản; XP lấy từ cấu hình Achievement qua policy.
+   *
+   * Thông báo cho người học ghi trong cùng transaction, sau khi đã cấp: lỗi ghi
+   * thông báo huỷ cả lần cấp, vì cấp mà không báo thì khoá một lần ở trên làm
+   * huy hiệu đó không bao giờ được báo nữa.
    */
   const awardAchievements = async ({ userId, snapshot, occurredAt, todayKey, session }) => {
     const unlocked = await achievements.findUnlocked({ userId, snapshot, session });
     const awarded = [];
 
-    for (const { id, xpReward, progress } of unlocked) {
+    for (const { id, xpReward, progress, name, description, icon, rarity } of unlocked) {
       const eventKey = `achievement:${userId}:${id}`;
       if (await repository.findEventByKey({ userId, eventKey, session })) continue;
 
@@ -196,6 +202,12 @@ export const createStreakService = ({
         await casWithRetry({ userId, session, buildWrite: () => ({ inc: { total_xp: xp } }) });
       }
       await achievements.markCompleted({ userId, achievementId: id, progress, earnedAt: occurredAt, session });
+      await notifications.achievementUnlocked({
+        userId,
+        achievement: { id, name, description, icon, rarity },
+        xp,
+        session,
+      });
       awarded.push({ id, xp });
     }
 

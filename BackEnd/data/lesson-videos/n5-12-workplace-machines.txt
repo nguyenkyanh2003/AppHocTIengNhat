@@ -20,7 +20,8 @@
 01:08 | 橋本 / Hashimoto / Hashimoto | これですよ。 | Kore desu yo. | Đây này.
 01:11 | プトリ / Putori / Putri | あ、ありがとうございます。 | A, arigatoo gozaimasu. | À, em cảm ơn anh.
 01:16 | プトリ / Putori / Putri | 取扱説明書… | Toriatsukai-setsumeesho… | Sách hướng dẫn sử dụng…
-01:26 | プトリ / Putori / Putri | スイッチを…電…電源プラグ… | Suicchi o… den… dengen-puragu… | Công tắc… ổ… phích cắm điện…
+01:24 | プトリ / Putori / Putri | スイッチを…電…。 | Suicchi o... den... | Công tắc... ổ...
+01:30 | 橋本 / Hashimoto / Hashimoto | ああ、電源プラグ。 | Aa, dengen-puragu. | À, phích cắm điện.
 01:36 | プトリ / Putori / Putri | これですか。 | Kore desu ka. | Là cái này ạ?
 01:38 | 橋本 / Hashimoto / Hashimoto | そうそう。 | Soo soo. | Đúng rồi, đúng rồi.
 ### từ vựng
@@ -33,6 +34,7 @@
 
 ## scene-2.mp4
 # Xin phép dùng máy photocopy
+00:03 | 上司 / Jooshi / Cấp trên | プトリさん。 | Putori-san. | Putri ơi.
 00:03 | 上司 / Jooshi / Cấp trên | 悪いんだけど、これ、事務所で50部コピーしてきてくれる？ | Warui n da kedo, kore, jimusho de gojuu-bu kopii shite kite kureru? | Phiền em chút, em đi photo cái này 50 bản ở văn phòng giúp chị được không?
 00:08 | プトリ / Putori / Putri | わかりました。事務所でコピーですね。 | Wakarimashita. Jimusho de kopii desu ne. | Vâng ạ. Photo ở văn phòng phải không ạ.
 00:22 | プトリ / Putori / Putri | 失礼します。 | Shitsuree shimasu. | Em xin phép.

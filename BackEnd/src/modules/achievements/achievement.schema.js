@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { isConsistentRequirement } from './achievement-rules.js';
+
 const CATEGORIES = ['vocabulary', 'grammar', 'kanji', 'lesson', 'streak', 'xp', 'practice'];
 const REQUIREMENT_TYPES = ['count', 'streak', 'xp', 'completion'];
 const RARITIES = ['common', 'rare', 'epic', 'legendary'];
@@ -28,11 +30,22 @@ const definition = {
   is_active: z.boolean(),
 };
 
-export const createBody = z.object({
-  ...definition,
-  xp_reward: definition.xp_reward.default(100),
-  rarity: definition.rarity.default('common'),
-  is_active: definition.is_active.default(true),
-});
+/** Sửa riêng lẻ một trong hai trường thì không có gì để đối chiếu nên cho qua. */
+const hasConsistentRequirement = (body) =>
+  body.category === undefined || body.requirement_type === undefined || isConsistentRequirement(body);
 
-export const updateBody = z.object(definition).partial();
+const INCONSISTENT_REQUIREMENT = {
+  message: 'Tiêu chí không khớp với nhóm huy hiệu.',
+  path: ['requirement_type'],
+};
+
+export const createBody = z
+  .object({
+    ...definition,
+    xp_reward: definition.xp_reward.default(100),
+    rarity: definition.rarity.default('common'),
+    is_active: definition.is_active.default(true),
+  })
+  .refine(hasConsistentRequirement, INCONSISTENT_REQUIREMENT);
+
+export const updateBody = z.object(definition).partial().refine(hasConsistentRequirement, INCONSISTENT_REQUIREMENT);

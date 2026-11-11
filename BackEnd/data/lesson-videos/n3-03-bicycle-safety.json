@@ -94,9 +94,19 @@
           "speaker_ja": "駐輪場の係員",
           "speaker_romaji": "Chuurinjoo no kakariin",
           "speaker_vi": "Nhân viên bãi xe",
-          "text_ja": "そうですね。1ヶ月、1700円です。",
-          "romaji": "Soo desu ne. Ikkagetsu, sen nanahyaku-en desu.",
-          "text_vi": "Đúng vậy. Một tháng là 1700 yên.",
+          "text_ja": "そうですね。",
+          "romaji": "Soo desu ne.",
+          "text_vi": "Đúng vậy.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:10",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "1ヶ月、1700円…。",
+          "romaji": "Ikkagetsu, sen nanahyaku-en...",
+          "text_vi": "Một tháng 1700 yên…",
           "key_phrase": false
         },
         {
@@ -273,13 +283,13 @@
           "key_phrase": false
         },
         {
-          "start": "00:30",
+          "start": "00:29",
           "speaker_ja": "警察",
           "speaker_romaji": "Keesatsu",
           "speaker_vi": "Cảnh sát (tổng đài 110)",
-          "text_ja": "場所は？",
-          "romaji": "Basho wa?",
-          "text_vi": "Địa điểm ở đâu?",
+          "text_ja": "場所はどこですか。",
+          "romaji": "Basho wa doko desu ka.",
+          "text_vi": "Địa điểm ở đâu ạ?",
           "key_phrase": false
         },
         {
@@ -457,9 +467,9 @@
           "speaker_ja": "ビン",
           "speaker_romaji": "Bin",
           "speaker_vi": "Bin",
-          "text_ja": "名前はチャン・バン・ビンです。住所は文化市…（続きは聞き取れない）",
-          "romaji": "Namae wa Chan Ban Bin desu. Juusho wa Bunka-shi... (tsuzuki wa kikitorenai)",
-          "text_vi": "Tên tôi là Trần Văn Bin. Địa chỉ ở thành phố Bunka... (phần sau không nghe rõ)",
+          "text_ja": "名前は、チャン・バン・ビンです。住所は…。",
+          "romaji": "Namae wa, Chan Ban Bin desu. Juusho wa...",
+          "text_vi": "Tên tôi là Trần Văn Bin. Địa chỉ là...",
           "key_phrase": false
         }
       ],

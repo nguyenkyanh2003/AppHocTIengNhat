@@ -132,6 +132,7 @@ void main() {
     await _fill(tester);
     await tester.tap(find.byType(DropdownButtonFormField<NotificationType>));
     await tester.pumpAndSettle();
+    expect(find.text('Thành tích'), findsNothing, reason: 'admin không gửi được thông báo huy hiệu');
     await tester.tap(find.text('Kỳ thi').last);
     await tester.pumpAndSettle();
     await tester.tap(find.text('Gửi'));

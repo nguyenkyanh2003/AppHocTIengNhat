@@ -48,7 +48,8 @@
 00:42 | ビン / Bin / Bin | はい。 | Hai. | Vâng.
 00:44 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | その後は？ | Sono ato wa? | Sau đó thì sao?
 *00:46 | ビン / Bin / Bin | あの、青くて大きい看板で、えっと… | Ano, aokute ookii kanban de, etto... | À, chỗ có biển hiệu to màu xanh, à...
-00:54 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 行き先が書いてある標識ね。 | Ikisaki ga kaite aru hyooshiki ne. | Là biển chỉ đường có ghi nơi đến nhỉ.
+00:54 | ビン / Bin / Bin | 「ちいさい」っていう漢字があるんですけど…。 | "Chiisai" tte iu kanji ga arun desu kedo... | Có chữ Hán "chiisai" (nhỏ)...
+00:58 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 行き先が書いてある標識ね。 | Ikisaki ga kaite aru hyooshiki ne. | Là biển chỉ đường có ghi nơi đến nhỉ.
 01:00 | ビン / Bin / Bin | はい、その標識のさっきの信号のところを右に曲がってください。 | Hai, sono hyooshiki no sakki no shingoo no tokoro o migi ni magatte kudasai. | Vâng, đến chỗ đèn tín hiệu ở biển đó thì anh rẽ phải.
 01:11 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | 右ね。 | Migi ne. | Rẽ phải nhỉ.
 01:22 | 運転手の男性 / Untenshu no dansee / Người đàn ông lái xe | この後は？ | Kono ato wa? | Sau đó thì sao?
@@ -72,7 +73,8 @@
 
 ## scene-3.mp4
 # Hàng đặt mua bị giao chậm
-00:07 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | もしもし？こちら、ネット通販ぶんかモールの田中と申します。サントスアンジェラ様のお電話でよろしいでしょうか。 | Moshi moshi? Kochira, netto tsuuhan Bunka Mooru no Tanaka to mooshimasu. Santosu Anjera-sama no odenwa de yoroshii deshoo ka. | A lô? Tôi là Tanaka ở cửa hàng bán hàng qua mạng Bunka Mall. Đây có phải số điện thoại của chị Santos Angela không ạ?
+00:07 | アンジェラ / Anjera / Angela | もしもし？ | Moshi moshi? | A lô?
+00:09 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | こちら、ネット通販ぶんかモールの田中と申します。サントスアンジェラ様のお電話でよろしいでしょうか。 | Kochira, netto tsuuhan Bunka Mooru no Tanaka to mooshimasu. Santosu Anjera-sama no odenwa de yoroshii deshoo ka. | Tôi là Tanaka ở cửa hàng bán hàng qua mạng Bunka Mall. Đây có phải số điện thoại của chị Santos Angela không ạ?
 00:19 | アンジェラ / Anjera / Angela | はい、そうです。 | Hai, soo desu. | Vâng, đúng rồi ạ.
 00:23 | 田中 / Tanaka / Tanaka (cửa hàng bán hàng qua mạng) | いつもありがとうございます。先日ご注文いただいたバッグの件でご連絡させていただきました。今、お時間よろしいでしょうか。 | Itsumo arigatoo gozaimasu. Senjitsu gochuumon itadaita baggu no ken de gorenraku sasete itadakimashita. Ima, ojikan yoroshii deshoo ka. | Cảm ơn chị đã luôn ủng hộ. Tôi liên lạc về chiếc túi chị đã đặt hôm trước. Bây giờ chị có tiện nói chuyện không ạ?
 00:37 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
@@ -125,6 +127,7 @@
 03:16 | ナレーター / Nareetaa / Người dẫn | 「帰るときは『失礼します』とか『お先に失礼します』と挨拶しましょう」のように言うことができます。 | "Kaeru toki wa 'Shitsuree shimasu' toka 'Osaki ni shitsuree shimasu' to aisatsu shimashoo" no yoo ni iu koto ga dekimasu. | Có thể nói như "Khi ra về hãy chào bằng những câu như 'Tôi xin phép' hay 'Tôi xin phép về trước'".
 03:26 |  /  / Chủ đề | あおくて、おおきい かんばん | aokute, ookii kanban | Biển hiệu to và màu xanh
 03:34 | ビン / Bin / Bin | 青くて大きい看板で、えっと… | Aokute ookii kanban de, etto... | Là biển hiệu to màu xanh, à...
+03:40 | ビン / Bin / Bin | 「ちいさい」っていう漢字があるんですけど…。 | "Chiisai" tte iu kanji ga arun desu kedo... | Có chữ Hán "chiisai" (nhỏ)...
 03:45 | ナレーター / Nareetaa / Người dẫn | この動画では、ビンさんが目印を説明するとき、「青くて大きい看板」と言っています。 | Kono dooga de wa, Bin-san ga mejirushi o setsumee suru toki, "Aokute ookii kanban" to itte imasu. | Trong video này, khi giải thích điểm mốc, anh Bin nói "biển hiệu to màu xanh".
 03:58 | ナレーター / Nareetaa / Người dẫn | 「青い」「大きい」の2つの形容詞を続けて使っているので、「青い」が「青くて」になっています。 | "Aoi" "ookii" no futatsu no keeyooshi o tsuzukete tsukatte iru node, "aoi" ga "aokute" ni natte imasu. | Vì dùng liên tiếp hai tính từ "aoi" (xanh) và "ookii" (to) nên "aoi" trở thành "aokute".
 04:11 | ナレーター / Nareetaa / Người dẫn | このように形容詞を続けて使うときは、前の形容詞の形が変わります。 | Kono yoo ni keeyooshi o tsuzukete tsukau toki wa, mae no keeyooshi no katachi ga kawarimasu. | Khi dùng liên tiếp các tính từ như vậy thì dạng của tính từ đứng trước sẽ thay đổi.
@@ -134,5 +137,5 @@
 04:51 | ナレーター / Nareetaa / Người dẫn | な形容詞は「な」をとって「で」をつけます。 | Na-keeyooshi wa "na" o totte "de" o tsukemasu. | Với tính từ đuôi na, bỏ "na" rồi thêm "de".
 04:59 | ナレーター / Nareetaa / Người dẫn | 例えば、「簡単な」「面白い」を続けて使うときは、「簡単で面白い」となります。 | Tatoeba, "kantan na" "omoshiroi" o tsuzukete tsukau toki wa, "kantan de omoshiroi" to narimasu. | Ví dụ, khi dùng liên tiếp "kantan na" (đơn giản) và "omoshiroi" (thú vị) thì thành "kantan de omoshiroi".
 05:11 | ナレーター / Nareetaa / Người dẫn | 「このゲームは簡単で面白いです」のように言うことができます。 | "Kono geemu wa kantan de omoshiroi desu" no yoo ni iu koto ga dekimasu. | Có thể nói như "Trò chơi này đơn giản mà thú vị".
-05:20 | ナレーター / Nareetaa / Người dẫn | ただし、い形容詞の「いい」は「よくて」になります。 | Tadashi, i-keeyooshi no "ii" wa "yokute" ni narimasu. | Tuy nhiên, tính từ đuôi i "ii" (tốt) sẽ thành "yokute".
+05:20 | ナレーター / Nareetaa / Người dẫn | ただし、「い形容詞」の「いい」は例外で、「よくて」になります。 | Tadashi, "i-keeyooshi" no "ii" wa reegai de, "yokute" ni narimasu. | Tuy nhiên, "ii" (tốt) của tính từ đuôi i là ngoại lệ, sẽ thành "yokute".
 05:29 | ナレーター / Nareetaa / Người dẫn | 「この自転車、デザインも良くて乗りやすいです」のように言うことができます。 | "Kono jitensha, dezain mo yokute noriyasui desu" no yoo ni iu koto ga dekimasu. | Có thể nói như "Chiếc xe đạp này thiết kế cũng đẹp mà lại dễ đi".

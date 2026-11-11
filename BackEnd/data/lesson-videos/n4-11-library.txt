@@ -6,35 +6,38 @@
 ## scene-3.mp4
 # Làm thẻ thư viện lần đầu
 *00:01 | 客 / Kyaku / Khách | すみません、初めて来たんですけど。 | Sumimasen, hajimete kitan desu kedo. | Xin lỗi, tôi lần đầu đến đây ạ.
-00:05 | 図書館員 / Toshokan-in / Nhân viên thư viện | こちらへどうぞ。お住まいは市内ですか。 | Kochira e doozo. Osumai wa shinai desu ka. | Mời anh lại đây. Anh có sống trong thành phố này không ạ?
+00:05 | 図書館員 / Toshokan-in / Nhân viên thư viện | こちらへどうぞ。お住まいは市内ですか。 | Kochira e doozo. Osumai wa shinai desu ka. | Mời chị lại đây. Chị có sống trong thành phố này không ạ?
 00:11 | 客 / Kyaku / Khách | あ、はい。 | A, hai. | À, vâng.
-00:13 | 図書館員 / Toshokan-in / Nhân viên thư viện | じゃあ、こちらの用紙にご記入ください。 | Jaa, kochira no yooshi ni gokinyuu kudasai. | Vậy anh điền vào tờ giấy này giúp tôi.
-*00:20 | 客 / Kyaku / Khách | すみません、ここ、ちょっとわからないんですけど。どこですか。 | Sumimasen, koko, chotto wakaranain desu kedo. Doko desu ka. | Xin lỗi, chỗ này tôi không hiểu lắm. Là chỗ nào ạ?
-00:27 | 図書館員 / Toshokan-in / Nhân viên thư viện | ここです。Tは大正、Sは昭和、Hは平成、Rは令和、わからなければ西暦でもいいですよ。 | Koko desu. Tii wa Taishoo, Esu wa Shoowa, Eechi wa Heesee, Aaru wa Reewa, wakaranakereba seereki demo ii desu yo. | Là chỗ này. T là Taishō, S là Shōwa, H là Heisei, R là Reiwa, nếu không rõ thì ghi theo năm dương lịch cũng được.
+00:13 | 図書館員 / Toshokan-in / Nhân viên thư viện | じゃあ、こちらの用紙にご記入ください。 | Jaa, kochira no yooshi ni gokinyuu kudasai. | Vậy chị điền vào tờ giấy này giúp tôi.
+*00:20 | 客 / Kyaku / Khách | すみません、ここ、ちょっとわからないんですけど。 | Sumimasen, koko, chotto wakaranain desu kedo. | Xin lỗi, chỗ này tôi không hiểu lắm.
+00:25 | 図書館員 / Toshokan-in / Nhân viên thư viện | どこですか。 | Doko desu ka. | Chỗ nào ạ?
+00:27 | 客 / Kyaku / Khách | ここです。 | Koko desu. | Chỗ này ạ.
+00:28 | 図書館員 / Toshokan-in / Nhân viên thư viện | ああ、Tは大正、Sは昭和、Hは平成、Rは令和、わからなければ西暦でもいいですよ。 | Aa, Tii wa Taishoo, Esu wa Shoowa, Eechi wa Heesee, Aaru wa Reewa, wakaranakereba seereki demo ii desu yo. | À, T là Taishō, S là Shōwa, H là Heisei, R là Reiwa, nếu không rõ thì ghi theo năm dương lịch cũng được.
+00:42 | 客 / Kyaku / Khách | せいれき…。 | Seereki... | "Seereki" (dương lịch)...
 00:55 | 客 / Kyaku / Khách | これでいいですか。 | Kore de ii desu ka. | Như thế này được không ạ?
-01:00 | 図書館員 / Toshokan-in / Nhân viên thư viện | はい、結構ですよ。こちらはお客様の携帯電話番号ですか。 | Hai, kekkoo desu yo. Kochira wa okyakusama no keetai denwa bangoo desu ka. | Vâng, được rồi ạ. Chỗ này là số điện thoại di động của anh phải không ạ?
+01:00 | 図書館員 / Toshokan-in / Nhân viên thư viện | はい、結構ですよ。こちらはお客様の携帯電話番号ですか。 | Hai, kekkoo desu yo. Kochira wa okyakusama no keetai denwa bangoo desu ka. | Vâng, được rồi ạ. Chỗ này là số điện thoại di động của chị phải không ạ?
 01:06 | 客 / Kyaku / Khách | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
-01:08 | 図書館員 / Toshokan-in / Nhân viên thư viện | 今日は住所が確認できるものをお持ちですか。 | Kyoo wa juusho ga kakunin dekiru mono o omochi desu ka. | Hôm nay anh có mang theo giấy tờ xác nhận địa chỉ không ạ?
-*01:12 | 客 / Kyaku / Khách | はい。マイナンバーカードでもいいですか。 | Hai. Mai nanbaa kaado demo ii desu ka. | Vâng. Thẻ số cá nhân (My Number) cũng được không ạ?
+01:08 | 図書館員 / Toshokan-in / Nhân viên thư viện | 今日は住所が確認できるものをお持ちですか。 | Kyoo wa juusho ga kakunin dekiru mono o omochi desu ka. | Hôm nay chị có mang theo giấy tờ xác nhận địa chỉ không ạ?
+*01:12 | 客 / Kyaku / Khách | はい、在留カードでもいいですか。 | Hai, zairyuu kaado demo ii desu ka. | Vâng. Thẻ cư trú có được không ạ?
 01:16 | 図書館員 / Toshokan-in / Nhân viên thư viện | ちょっとお預かりします。 | Chotto oazukari shimasu. | Tôi xin mượn xem một chút.
-01:25 | 客 / Kyaku / Khách | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn anh.
-01:28 | 図書館員 / Toshokan-in / Nhân viên thư viện | では、ただいま貸し出しカードを作りますので、しばらくお待ちください。 | Dewa, tadaima kashidashi kaado o tsukurimasu node, shibaraku omachi kudasai. | Vậy bây giờ tôi sẽ làm thẻ mượn sách, anh vui lòng chờ một chút.
+01:25 | 図書館員 / Toshokan-in / Nhân viên thư viện | ありがとうございます。 | Arigatoo gozaimasu. | Cảm ơn chị.
+01:28 | 図書館員 / Toshokan-in / Nhân viên thư viện | では、ただいま貸し出しカードを作りますので、しばらくお待ちください。 | Dewa, tadaima kashidashi kaado o tsukurimasu node, shibaraku omachi kudasai. | Vậy bây giờ tôi sẽ làm thẻ mượn sách, chị vui lòng chờ một chút.
 01:37 | 客 / Kyaku / Khách | わかりました。 | Wakarimashita. | Tôi hiểu rồi ạ.
 ### từ vựng
 市内 | しない | shinai | trong thành phố
 西暦 | せいれき | seereki | năm dương lịch
 携帯電話 | けいたいでんわ | keetai-denwa | điện thoại di động
 住所 | じゅうしょ | juusho | địa chỉ
-マイナンバーカード | マイナンバーカード | mai nanbaa kaado | thẻ mã số cá nhân
+在留カード | ざいりゅうカード | zairyuu kaado | thẻ cư trú
 記入 | きにゅう | kinyuu | điền vào
 
 ## scene-1.mp4
 # Nhận thẻ và hỏi số sách được mượn
-00:00 | 図書館員 / Toshokan-in / Nhân viên thư viện | こちらが貸し出しカードになります。お名前、こちらで間違いないですか。 | Kochira ga kashidashi kaado ni narimasu. Onamae, kochira de machigai nai desu ka. | Đây là thẻ mượn sách của anh/chị. Tên ở đây có đúng không ạ?
+00:00 | 図書館員 / Toshokan-in / Nhân viên thư viện | こちらが貸し出しカードになります。お名前、こちらで間違いないですか。 | Kochira ga kashidashi kaado ni narimasu. Onamae, kochira de machigai nai desu ka. | Đây là thẻ mượn sách của chị. Tên ở đây có đúng không ạ?
 00:08 | 客 / Kyaku / Khách | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, đúng rồi ạ.
 *00:10 | 図書館員 / Toshokan-in / Nhân viên thư viện | 本を借りるときは必ず持ってきてくださいね。 | Hon o kariru toki wa kanarazu motte kite kudasai ne. | Khi mượn sách thì nhớ mang theo thẻ này nhé.
 00:13 | 客 / Kyaku / Khách | わかりました。 | Wakarimashita. | Vâng, tôi hiểu rồi.
-00:15 | 図書館員 / Toshokan-in / Nhân viên thư viện | それから、これが図書館の利用案内です。後でよく読んでおいてください。 | Sorekara, kore ga toshokan no riyoo annai desu. Ato de yoku yonde oite kudasai. | Ngoài ra, đây là hướng dẫn sử dụng thư viện. Anh/chị hãy đọc kỹ sau nhé.
+00:15 | 図書館員 / Toshokan-in / Nhân viên thư viện | それから、これが図書館の利用案内です。後でよく読んでおいてください。 | Sorekara, kore ga toshokan no riyoo annai desu. Ato de yoku yonde oite kudasai. | Ngoài ra, đây là hướng dẫn sử dụng thư viện. Chị hãy đọc kỹ sau nhé.
 00:25 | 客 / Kyaku / Khách | はい、わかりました。 | Hai, wakarimashita. | Vâng, tôi hiểu rồi.
 *00:27 | 客 / Kyaku / Khách | あの、本は何冊借りられますか。 | Ano, hon wa nansatsu kariraremasu ka. | À, tôi có thể mượn bao nhiêu cuốn sách ạ?
 00:32 | 図書館員 / Toshokan-in / Nhân viên thư viện | 一人6冊までです。 | Hitori roku-satsu made desu. | Mỗi người được mượn tối đa 6 cuốn.
@@ -63,9 +66,9 @@
 00:41 | 客 / Kyaku / Khách | すみません、こっちは大丈夫ですよね。 | Sumimasen, kocchi wa daijoobu desu yo ne. | Xin lỗi, còn cuốn này thì được đúng không ạ?
 00:46 | 図書館員 / Toshokan-in / Nhân viên thư viện | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, được ạ.
 00:48 | 客 / Kyaku / Khách | じゃあ、この2冊お願いします。 | Jaa, kono ni-satsu onegaishimasu. | Vậy cho tôi mượn 2 cuốn này ạ.
-01:02 | 図書館員 / Toshokan-in / Nhân viên thư viện | では、9月20日までにご返却ください。 | Dewa, kugatsu hatsuka made ni gohenkyaku kudasai. | Vậy anh/chị hãy trả sách trước ngày 20 tháng 9 nhé.
+01:02 | 図書館員 / Toshokan-in / Nhân viên thư viện | では、9月20日までにご返却ください。 | Dewa, kugatsu hatsuka made ni gohenkyaku kudasai. | Vậy chị hãy trả sách trước ngày 20 tháng 9 nhé.
 *01:06 | 客 / Kyaku / Khách | あの、夜遅い時間でもお返しできますか。 | Ano, yoru osoi jikan demo okaeshi dekimasu ka. | À, tối muộn tôi có trả được không ạ?
-01:10 | 図書館員 / Toshokan-in / Nhân viên thư viện | はい。ボックスに入れてください。何時でも大丈夫ですよ。 | Hai. Bokkusu ni irete kudasai. Nanji demo daijoobu desu yo. | Vâng. Chị bỏ vào hộp trả sách là được. Giờ nào cũng được ạ.
+01:10 | 図書館員 / Toshokan-in / Nhân viên thư viện | はい、返却ボックスに入れてください。何時でも大丈夫ですよ。 | Hai, henkyaku bokkusu ni irete kudasai. Nanji demo daijoobu desu yo. | Vâng. Chị bỏ vào hộp trả sách là được. Giờ nào cũng được ạ.
 01:16 | 客 / Kyaku / Khách | はい、ありがとうございます。 | Hai, arigatoo gozaimasu. | Vâng, cảm ơn chị.
 ### từ vựng
 辞書 | じしょ | jisho | từ điển
@@ -76,3 +79,27 @@
 
 ## summary.mp4
 # Ôn tập: Ở thư viện
+00:00 |  /  / Chủ đề | もって ます | motte masu | Có mang theo
+00:06 | 図書館員 / Toshokan-in / Nhân viên thư viện | 貸出カード、お持ちですか。 | Kashidashi kaado, omochi desu ka. | Chị có thẻ thư viện không ạ?
+*00:08 | 客 / Kyaku / Khách | はい、持ってます。 | Hai, mottemasu. | Vâng, tôi có mang theo.
+00:11 | ナレーター / Nareetaa / Người dẫn | 動詞のて形の後に、「います」をつける文型は、その動作が継続していることを表します。 | Dooshi no te-kee no ato ni, "imasu" o tsukeru bunkee wa, sono doosa ga keezoku shite iru koto o arawashimasu. | Mẫu câu thêm "imasu" vào sau thể te của động từ diễn tả hành động đó đang tiếp diễn.
+00:23 | ナレーター / Nareetaa / Người dẫn | 「持つ」のて形は、「持って」です。 | "Motsu" no te-kee wa, "motte" desu. | Thể te của "motsu" (cầm, mang) là "motte".
+00:28 | ナレーター / Nareetaa / Người dẫn | 「持っています」は、「持つ」という動作が続いていますから、「所有」の意味になります。 | "Motte imasu" wa, "motsu" to iu doosa ga tsuzuite imasu kara, "shoyuu" no imi ni narimasu. | "Motte imasu" là hành động "motsu" đang tiếp diễn, nên mang nghĩa "sở hữu, đang có".
+00:39 | ナレーター / Nareetaa / Người dẫn | 「持っています」の「い」は言わないことも多いです。 | "Motte imasu" no "i" wa iwanai koto mo ooi desu. | Chữ "i" trong "motte imasu" thường được lược đi khi nói.
+00:47 | ナレーター / Nareetaa / Người dẫn | この動画の中でも「持ってます」と言っています。 | Kono dooga no naka demo "mottemasu" to itte imasu. | Trong video này, nhân vật cũng nói là "mottemasu".
+00:53 | ナレーター / Nareetaa / Người dẫn | 例えばコンビニで、店員に「ポイントカードはありますか？」と聞かれたり、薬局で「お薬手帳はお持ちですか？」と言われたりしたら、「持っています」とか「持っていません」と答えることができます。 | Tatoeba konbini de, ten'in ni "Pointo kaado wa arimasu ka?" to kikaretari, yakkyoku de "Okusuri techoo wa omochi desu ka?" to iwaretari shitara, "Motte imasu" toka "Motte imasen" to kotaeru koto ga dekimasu. | Ví dụ, khi nhân viên cửa hàng tiện lợi hỏi "Anh chị có thẻ tích điểm không?", hay ở hiệu thuốc được hỏi "Anh chị có mang sổ thuốc không?", thì có thể trả lời "Motte imasu" (có) hoặc "Motte imasen" (không có).
+01:20 |  /  / Chủ đề | すみません | sumimasen | Xin lỗi
+*01:25 | 客 / Kyaku / Khách | すみません、これお願いします。 | Sumimasen, kore onegaishimasu. | Xin lỗi, cho tôi mượn cái này với.
+01:28 | 図書館員 / Toshokan-in / Nhân viên thư viện | はい、貸出カード、お持ちですか。 | Hai, kashidashi kaado, omochi desu ka. | Vâng, chị có thẻ thư viện không ạ?
+01:32 | ナレーター / Nareetaa / Người dẫn | 「すみません」は、何か悪いことをして、相手に謝るときに使います。 | "Sumimasen" wa, nanika warui koto o shite, aite ni ayamaru toki ni tsukaimasu. | "Sumimasen" dùng khi mình làm điều gì không phải và muốn xin lỗi đối phương.
+01:41 | ナレーター / Nareetaa / Người dẫn | 「すみません」には別の使い方もあります。それは、人を呼ぶ時です。 | "Sumimasen" ni wa betsu no tsukaikata mo arimasu. Sore wa, hito o yobu toki desu. | "Sumimasen" còn có một cách dùng khác, đó là khi gọi người khác.
+01:53 | ナレーター / Nareetaa / Người dẫn | この動画では、図書館の人を呼ぶ時に、「すみません、これお願いします」と言っています。 | Kono dooga de wa, toshokan no hito o yobu toki ni, "Sumimasen, kore onegaishimasu" to itte imasu. | Trong video này, khi gọi nhân viên thư viện, nhân vật đã nói "Sumimasen, kore onegaishimasu".
+02:04 | ナレーター / Nareetaa / Người dẫn | レストランや店でも、「すみません」と、店員を呼ぶことができます。 | Resutoran ya mise demo, "sumimasen" to, ten'in o yobu koto ga dekimasu. | Ở nhà hàng hay cửa hàng cũng có thể gọi nhân viên bằng "sumimasen".
+02:14 | ナレーター / Nareetaa / Người dẫn | 知らない人に話しかけるときにも使うことができます。 | Shiranai hito ni hanashikakeru toki ni mo tsukau koto ga dekimasu. | Cũng có thể dùng khi bắt chuyện với người lạ.
+02:21 |  /  / Chủ đề | だいじょうぶですよね | daijoobu desu yo ne | Không sao phải không ạ
+02:27 | 図書館員 / Toshokan-in / Nhân viên thư viện | ここにこのシールが貼ってある本は、貸し出しできないんです。 | Koko ni kono shiiru ga hatte aru hon wa, kashidashi dekinain desu. | Sách nào có dán nhãn này ở đây thì không cho mượn được ạ.
+02:32 | 客 / Kyaku / Khách | え、そうなんですか！ すみません。 | E, soo nan desu ka! Sumimasen. | Ơ, vậy ạ! Xin lỗi.
+*02:35 | 客 / Kyaku / Khách | こっちは大丈夫ですよね。 | Kocchi wa daijoobu desu yo ne. | Còn mấy cuốn này thì không sao phải không ạ?
+02:39 | ナレーター / Nareetaa / Người dẫn | この動画の中では、「こっちは大丈夫ですよね」と言っています。 | Kono dooga no naka de wa, "Kocchi wa daijoobu desu yo ne" to itte imasu. | Trong video này, nhân vật nói "Kocchi wa daijoobu desu yo ne".
+02:47 | ナレーター / Nareetaa / Người dẫn | ここでは、初めて図書館を利用する人が、シールを貼ってない本は貸し出しできると予想し、そのことを確かめています。 | Koko de wa, hajimete toshokan o riyoo suru hito ga, shiiru o hattenai hon wa kashidashi dekiru to yosoo shi, sono koto o tashikamete imasu. | Ở đây, người lần đầu dùng thư viện đoán rằng sách không dán nhãn thì mượn được, và đang xác nhận lại điều đó.
+03:00 | ナレーター / Nareetaa / Người dẫn | 文末の「～よね」は、自分の予想が合っているかどうか、相手に確認するときに使います。 | Bunmatsu no "~yo ne" wa, jibun no yosoo ga atte iru ka dooka, aite ni kakunin suru toki ni tsukaimasu. | "~yo ne" ở cuối câu dùng khi muốn xác nhận với đối phương xem dự đoán của mình có đúng không.

@@ -19,11 +19,11 @@
 00:57 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お客様、お名前は？ | Okyakusama, onamae wa? | Xin quý khách cho biết tên ạ?
 01:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 王浩然です。 | Oo Haoran desu. | Tôi là Vương Hạo Nhiên (Wang Haoran).
 01:04 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 現在のお住まいはどちらですか？ | Genzai no osumai wa dochira desu ka. | Hiện nay quý khách đang ở đâu ạ?
-01:07 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 八重洲市大里です。 | Yaesu-shi Oosato desu. | Tôi ở khu Oosato, thành phố Yaesu.
+01:07 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 焼津市大里です。 | Yaizu-shi Oozato desu. | Tôi ở khu Oozato, thành phố Yaizu.
 01:10 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お引っ越し先はどちらになりますか？ | Ohikkoshisaki wa dochira ni narimasu ka. | Nơi chuyển đến của quý khách là ở đâu ạ?
 01:13 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 引っ越し先？どこに引っ越すかっていうことですよね？ | Hikkoshisaki? Doko ni hikkosu ka tte iu koto desu yo ne. | Nơi chuyển đến ạ? Tức là hỏi tôi sẽ chuyển đi đâu đúng không?
 01:17 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | はい。 | Hai. | Vâng.
-01:19 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 板越市です。 | Itakoshi-shi desu. | Thành phố Itakoshi ạ.
+01:19 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 潮来市です。 | Itako-shi desu. | Thành phố Itako ạ.
 01:21 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お引っ越しの日にちはもうお決まりですか？ | Ohikkoshi no hinichi wa moo okimari desu ka. | Quý khách đã quyết định ngày chuyển nhà chưa ạ?
 01:24 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | できれば来月の中旬の日曜日に引っ越しできればいいなと思っているんですけど。 | Dekireba raigetsu no chuujun no nichiyoobi ni hikkoshi dekireba ii na to omotte iru n desu kedo. | Nếu được thì tôi muốn chuyển vào Chủ nhật giữa tháng sau.
 01:32 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 日曜日ですか。土日は料金も高くなりますし、今からですと空きもほとんどありませんが、平日でご検討いただくことは可能でしょうか？ | Nichiyoobi desu ka. Donichi wa ryookin mo takaku narimasu shi, ima kara desu to aki mo hotondo arimasen ga, heejitsu de gokentoo itadaku koto wa kanoo deshoo ka. | Chủ nhật ạ. Thứ Bảy, Chủ nhật phí cũng cao hơn, mà bây giờ thì hầu như không còn lịch trống, quý khách có thể cân nhắc ngày thường được không ạ?
@@ -50,10 +50,10 @@
 03:38 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 今週の金曜日の6時頃はどうですか？ | Konshuu no kin'yoobi no rokuji-goro wa doo desu ka. | Khoảng 6 giờ chiều thứ Sáu tuần này thì sao ạ?
 03:44 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | かしこまりました。では、10日の金曜日の6時頃に、当社の営業の者が伺います。 | Kashikomarimashita. Dewa, tooka no kin'yoobi no rokuji-goro ni, toosha no eegyoo no mono ga ukagaimasu. | Tôi hiểu rồi ạ. Vậy nhân viên kinh doanh của công ty chúng tôi sẽ đến vào khoảng 6 giờ chiều thứ Sáu ngày 10.
 03:52 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お客様のご住所、お電話番号を教えていただけますか？ | Okyakusama no gojuusho, odenwa bangoo o oshiete itadakemasu ka. | Quý khách cho tôi biết địa chỉ và số điện thoại được không ạ?
-03:59 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。住所は八重洲市大里1-1-1、大里アパート103号室です。 | Hai. Juusho wa Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu desu. | Vâng. Địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.
+03:59 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。住所は焼津市大里1-1-1、大里アパート103号室です。 | Hai. Juusho wa Yaizu-shi Oozato ichi no ichi no ichi, Oozato apaato hyaku-san-goo-shitsu desu. | Vâng. Địa chỉ là thành phố Yaizu, Oozato 1-1-1, căn hộ 103 chung cư Oozato.
 04:10 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 電話番号は080-1234-5678です。 | Denwa bangoo wa zero-hachi-zero no ichi-ni-san-yon no go-roku-nana-hachi desu. | Số điện thoại là 080-1234-5678.
 04:17 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | 復唱いたします。 | Fukushoo itashimasu. | Tôi xin nhắc lại.
-04:20 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | ご住所は八重洲市大里1-1-1、大里アパート103号室。 | Gojuusho wa Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu. | Địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.
+04:20 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | ご住所は焼津市大里1-1-1、大里アパート103号室。 | Gojuusho wa Yaizu-shi Oozato ichi no ichi no ichi, Oozato apaato hyaku-san-goo-shitsu. | Địa chỉ là thành phố Yaizu, Oozato 1-1-1, căn hộ 103 chung cư Oozato.
 04:30 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お電話番号は080-1234-5678ですね。 | Odenwa bangoo wa zero-hachi-zero no ichi-ni-san-yon no go-roku-nana-hachi desu ne. | Số điện thoại là 080-1234-5678 phải không ạ?
 04:39 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
 04:42 | 引っ越し業者 / Hikkoshi gyoosha / Nhân viên công ty chuyển nhà | お問い合わせありがとうございました。渡り鳥引越センターの山田が承りました。 | Otoiawase arigatoo gozaimashita. Wataridori Hikkoshi Sentaa no Yamada ga uketamawarimashita. | Cảm ơn quý khách đã liên hệ. Tôi là Yamada của Trung tâm chuyển nhà Wataridori, đã tiếp nhận yêu cầu.
@@ -69,14 +69,14 @@
 
 ## scene-1.mp4
 # Hỏi tòa thị chính về thủ tục chuyển đi
-00:06 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、八重洲市役所でございます。 | Hai, Yaesu shiyakusho de gozaimasu. | Vâng, Tòa thị chính thành phố Yaesu xin nghe.
+00:06 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、焼津市役所でございます。 | Hai, Yaizu shiyakusho de gozaimasu. | Vâng, Tòa thị chính thành phố Yaizu xin nghe.
 00:08 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | ちょっと教えていただきたいんですが。 | Chotto oshiete itadakitain desu ga. | Tôi muốn nhờ chỉ giúp một chút ạ.
 00:11 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | はい、何でしょうか。 | Hai, nan deshoo ka. | Vâng, chuyện gì vậy ạ?
 00:14 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 来月、引っ越しをするんですが、どんな手続きが必要でしょうか。 | Raigetsu, hikkoshi o suru n desu ga, donna tetsuzuki ga hitsuyoo deshoo ka. | Tháng sau tôi chuyển nhà, vậy cần làm thủ tục gì ạ?
-00:20 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | えーと、現在、八重洲市にお住まいなんですね。 | Eeto, genzai, Yaesu-shi ni osumai nan desu ne. | À, hiện giờ anh đang sống ở thành phố Yaesu nhỉ.
+00:20 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | えーと、現在、焼津市にお住まいなんですね。 | Eeto, genzai, Yaizu-shi ni osumai nan desu ne. | À, hiện giờ anh đang sống ở thành phố Yaizu nhỉ.
 00:25 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
 00:28 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | どちらにお引っ越しなさいますか？ | Dochira ni ohikkoshi nasaimasu ka. | Anh sẽ chuyển đến đâu ạ?
-00:31 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 板越市です。 | Itakoshi-shi desu. | Thành phố Itakoshi ạ.
+00:31 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 潮来市です。 | Itako-shi desu. | Thành phố Itako ạ.
 00:33 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | そうですか。では、転出ですので、転出届を出していただくことになります。 | Soo desu ka. Dewa, tenshutsu desu node, tenshutsu-todoke o dashite itadaku koto ni narimasu. | Vậy ạ. Vì là chuyển đi nơi khác nên anh sẽ phải nộp đơn khai báo chuyển đi.
 *00:41 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 転出届ですね。いつ頃届ければいいですか？ | Tenshutsu-todoke desu ne. Itsugoro todokereba ii desu ka. | Đơn khai báo chuyển đi nhỉ. Tôi nên nộp vào khoảng khi nào ạ?
 00:47 | 市役所の職員 / Shiyakusho no shokuin / Nhân viên tòa thị chính | お引っ越しの2週間ぐらい前からお手続きいただけます。 | Ohikkoshi no nishuukan gurai mae kara otetsuzuki itadakemasu. | Anh có thể làm thủ tục từ khoảng 2 tuần trước khi chuyển nhà.
@@ -120,7 +120,7 @@
 01:41 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 王浩然様ですね。 | Oo Haoran-sama desu ne. | Anh Vương Hạo Nhiên nhỉ.
 01:43 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
 01:45 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 現在のご住所を教えていただけますか？ | Genzai no gojuusho o oshiete itadakemasu ka. | Anh cho tôi biết địa chỉ hiện tại được không ạ?
-01:49 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、八重洲市大里1-1-1、大里アパート103号室です。 | Hai, Yaesu-shi Oosato ichi no ichi no ichi, Oosato apaato hyaku-san-goo-shitsu desu. | Vâng, địa chỉ là thành phố Yaesu, Oosato 1-1-1, căn hộ 103 chung cư Oosato.
+01:49 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、焼津市大里1-1-1、大里アパート103号室です。 | Hai, Yaizu-shi Oozato ichi no ichi no ichi, Oozato apaato hyaku-san-goo-shitsu desu. | Vâng, địa chỉ là thành phố Yaizu, Oozato 1-1-1, căn hộ 103 chung cư Oozato.
 02:01 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | ありがとうございます。お引越しの日にちはお決まりですか？ | Arigatoo gozaimasu. Ohikkoshi no hinichi wa okimari desu ka. | Cảm ơn anh. Anh đã quyết định ngày chuyển nhà chưa ạ?
 02:04 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、11月26日です。 | Hai, juuichigatsu nijuuroku-nichi desu. | Vâng, ngày 26 tháng 11 ạ.
 02:09 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 来週の11月26日ですね。 | Raishuu no juuichigatsu nijuuroku-nichi desu ne. | Ngày 26 tháng 11 tuần sau nhỉ.
@@ -134,8 +134,8 @@
 02:49 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | はい。 | Hai. | Vâng.
 02:52 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 今月分の請求書はお引っ越し先にお送りいたしますので、新しいご住所を教えていただけますか？ | Kongetsubun no seekyuusho wa ohikkoshisaki ni ookuri itashimasu node, atarashii gojuusho o oshiete itadakemasu ka. | Hóa đơn tháng này sẽ được gửi đến nơi ở mới của anh, nên anh cho tôi biết địa chỉ mới được không ạ?
 02:59 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい。 | Hai. | Vâng.
-03:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 板越市横川町1-2-3、南荘205号室です。 | Itakoshi-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu. | Thành phố Itakoshi, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō ạ.
-03:11 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 復唱いたします。板越市横川町1-2-3、南荘205号室ですね。 | Fukushoo itashimasu. Itakoshi-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu ne. | Tôi xin nhắc lại. Thành phố Itakoshi, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō nhỉ.
+03:01 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | 潮来市横川町1-2-3、南荘205号室です。 | Itako-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu. | Thành phố Itako, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō ạ.
+03:11 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | 復唱いたします。潮来市横川町1-2-3、南荘205号室ですね。 | Fukushoo itashimasu. Itako-shi Yokokawa-choo ichi no ni no san, Minami-soo nihyaku-go-goo-shitsu desu ne. | Tôi xin nhắc lại. Thành phố Itako, Yokokawa-chō 1-2-3, căn hộ 205 Minami-sō nhỉ.
 03:17 | 王浩然 / Oo Haoran / Haoran (Vương Hạo Nhiên) | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
 03:20 | 北部電力の職員 / Hokubu Denryoku no shokuin / Nhân viên Điện lực Hokubu | ありがとうございました。お電話ありがとうございました。平林が承りました。失礼いたします。 | Arigatoo gozaimashita. Odenwa arigatoo gozaimashita. Hirabayashi ga uketamawarimashita. Shitsuree itashimasu. | Xin cảm ơn. Cảm ơn anh đã gọi. Tôi là Hirabayashi, đã tiếp nhận. Xin phép ạ.
 ### từ vựng

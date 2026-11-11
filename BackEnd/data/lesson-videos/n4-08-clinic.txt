@@ -26,7 +26,7 @@
 01:31 | 受付 / Uketsuke / Lễ tân | ここはアレルギー…例えば、薬を飲むと喉がかゆくなるとか。 | Koko wa arerugii… tatoeba, kusuri o nomu to nodo ga kayuku naru toka. | Chỗ này là dị ứng… ví dụ như uống thuốc thì bị ngứa họng chẳng hạn.
 01:38 | 王 / Oo / Vương | ああ、わかりました。 | Aa, wakarimashita. | À, tôi hiểu rồi.
 01:47 | 王 / Oo / Vương | お願いします。 | Onegaishimasu. | Nhờ chị ạ.
-01:48 | 受付 / Uketsuke / Lễ tân | はい、お預かりします。では、座ってお待ちください。 | Hai, oazukari shimasu. Dewa, suwatte omachi kudasai. | Vâng, tôi xin nhận. Mời anh ngồi đợi.
+01:48 | 受付 / Uketsuke / Lễ tân | はい、お預かりします。では、席に座って、お待ちください。 | Hai, oazukari shimasu. Dewa, seki ni suwatte, omachi kudasai. | Vâng, tôi xin nhận. Mời anh ngồi vào ghế đợi.
 ### từ vựng
 初診 | しょしん | shoshin | khám lần đầu
 保険証 | ほけんしょう | hokenshoo | thẻ bảo hiểm

@@ -1,5 +1,6 @@
 import '../../../core/network/api_client.dart';
 import '../../notifications/models/notification.dart';
+import '../models/admin_achievement.dart';
 
 class AdminService {
   /// Nhận client qua constructor để test truyền transport giả.
@@ -281,49 +282,21 @@ class AdminService {
     await _client.delete('/report/admin/$reportId');
   }
 
-  Future<List<dynamic>> getAchievements() async {
+  Future<List<AdminAchievement>> getAchievements() async {
     final response = await _client.get('/achievement/admin/all');
-    return _list(response, const ['data', 'achievements']).map((item) {
-      final achievement = Map<String, dynamic>.from(item as Map);
-      achievement['xp'] = achievement['xp_reward'] ?? 0;
-      achievement['condition'] = achievement['requirement_value'] ?? 0;
-      achievement['unlocked'] = achievement['unlocked'] ?? 0;
-      return achievement;
-    }).toList();
+    return _list(response, const ['data', 'achievements'])
+        .map((item) =>
+            AdminAchievement.fromJson(Map<String, dynamic>.from(item as Map)))
+        .toList();
   }
 
-  Map<String, dynamic> _achievementPayload(Map<String, dynamic> data) {
-    final name = data['name']?.toString().trim() ?? '';
-    final description = data['description']?.toString().trim() ?? '';
-    return {
-      'name': name,
-      'name_vi': data['name_vi'] ?? name,
-      'description': description,
-      'description_vi': data['description_vi'] ?? description,
-      'icon': data['icon']?.toString().trim().isNotEmpty == true
-          ? data['icon']
-          : '🏆',
-      'category': data['category'] ?? 'practice',
-      'requirement_type': data['requirement_type'] ?? 'count',
-      'requirement_value': data['requirement_value'] ??
-          int.tryParse(data['condition']?.toString() ?? '') ??
-          1,
-      'xp_reward': data['xp_reward'] ?? data['xp'] ?? 100,
-      'rarity': data['rarity'] ?? 'common',
-      if (data.containsKey('is_active')) 'is_active': data['is_active'],
-    };
+  Future<void> createAchievement(AchievementDraft draft) async {
+    await _client.post('/achievement/admin', draft.toJson());
   }
 
-  Future<Map<String, dynamic>> createAchievement(
-    Map<String, dynamic> data,
-  ) =>
-      _client.post('/achievement/admin', _achievementPayload(data));
-
-  Future<Map<String, dynamic>> updateAchievement(
-    String id,
-    Map<String, dynamic> data,
-  ) =>
-      _client.put('/achievement/admin/$id', _achievementPayload(data));
+  Future<void> updateAchievement(String id, AchievementDraft draft) async {
+    await _client.put('/achievement/admin/$id', draft.toJson());
+  }
 
   Future<void> deleteAchievement(String id) async {
     await _client.delete('/achievement/admin/$id');

@@ -11,6 +11,7 @@ import '../../../shared/widgets/content_pane.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../news/providers/news_provider.dart';
 import '../../news/widgets/news_carousel_widget.dart';
+import '../../notifications/providers/achievement_announcer.dart';
 import '../../notifications/providers/notification_provider.dart';
 import '../../streaks/providers/streak_provider.dart';
 import '../providers/home_provider.dart';
@@ -57,6 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
       context.read<StreakProvider>().loadStreak(),
       context.read<HomeProvider>().load(userLevel: level),
       context.read<NotificationProvider>().refreshUnreadCount(),
+      // Huy hiệu nhận lúc app đang đóng (vd. tắt app ngay sau khi nộp bài).
+      context.read<AchievementAnnouncer>().check(),
     ]);
   }
 

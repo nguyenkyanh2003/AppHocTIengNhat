@@ -19,6 +19,7 @@ import './localization/locale_provider.dart';
 import './theme/theme_provider.dart';
 import '../features/news/providers/news_provider.dart';
 import '../features/notebook/providers/notebook_provider.dart';
+import '../features/notifications/providers/achievement_announcer.dart';
 import '../features/notifications/providers/notification_provider.dart';
 import '../features/progress/providers/progress_provider.dart';
 import '../features/reports/providers/report_provider.dart';
@@ -54,6 +55,8 @@ List<SingleChildWidget> createAppProviders({ThemeMode initialThemeMode = ThemeMo
       ChangeNotifierProvider(create: (_) => GrammarProvider()),
       ChangeNotifierProvider(create: (_) => ReportProvider()),
       ChangeNotifierProvider(create: (_) => NotificationProvider()),
+      // Không lười: phải nghe lệnh ghi ngay từ đầu, kể cả khi chưa màn nào đọc tới.
+      ChangeNotifierProvider(create: (_) => AchievementAnnouncer(), lazy: false),
       ChangeNotifierProvider(create: (_) => FlashcardProvider()),
       ChangeNotifierProvider(create: (_) => AdminProvider()),
     ];

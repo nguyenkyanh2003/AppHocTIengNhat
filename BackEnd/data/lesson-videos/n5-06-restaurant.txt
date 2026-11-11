@@ -50,7 +50,7 @@
 00:38 | 店員 / Ten'in / Nhân viên | お飲み物はどうなさいますか。 | Onomimono wa doo nasaimasu ka. | Quý khách dùng đồ uống gì ạ?
 *00:40 | 女性客 / Josee-kyaku / Khách nữ | ドリンクバー2つお願いします。 | Dorinku-baa futatsu onegaishimasu. | Cho hai suất quầy nước tự chọn.
 00:44 | 店員 / Ten'in / Nhân viên | ご注文は以上でよろしいですか。 | Gochuumon wa ijoo de yoroshii desu ka. | Quý khách gọi như vậy là đủ chưa ạ?
-00:46 | 男性客 / Dansee-kyaku / Khách nam | はい。 | Hai. | Vâng.
+00:46 | 女性客 / Josee-kyaku / Khách nữ | はい。 | Hai. | Vâng.
 00:59 | 男性客 / Dansee-kyaku / Khách nam | すみません。 | Sumimasen. | Xin lỗi.
 01:04 | 店員 / Ten'in / Nhân viên | お待たせいたしました。 | Omatase itashimashita. | Để quý khách đợi lâu ạ.
 01:06 | 男性客 / Dansee-kyaku / Khách nam | メニュー、お願いします。 | Menyuu, onegaishimasu. | Cho tôi xin thực đơn.

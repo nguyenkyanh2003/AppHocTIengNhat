@@ -78,8 +78,9 @@
 00:04 | 佐藤 / Satoo / Satō | いいえ、これは保険です。 | Iie, kore wa hoken desu. | Không, cái này là bảo hiểm.
 00:08 | 佐藤 / Satoo / Satō | いろいろな保険がありますけど、これは健康保険です。 | Iroiro na hoken ga arimasu kedo, kore wa kenkoo-hoken desu. | Có nhiều loại bảo hiểm, cái này là bảo hiểm y tế.
 00:13 | 王 / Oo / Vương | ああ、健康保険はわかります。この間、保険証をもらいました。 | Aa, kenkoo-hoken wa wakarimasu. Kono aida, hokenshoo o moraimashita. | À, bảo hiểm y tế thì tôi biết. Hôm trước tôi đã nhận thẻ bảo hiểm.
-00:20 | 佐藤 / Satoo / Satō | ああ、そうですか。保険証があれば、病院で払うお金が少なくなりますね。 | Aa, soo desu ka. Hokenshoo ga areba, byooin de harau okane ga sukunaku narimasu ne. | À, vậy à. Có thẻ bảo hiểm thì tiền trả ở bệnh viện sẽ ít đi.
-00:29 | 王 / Oo / Vương | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
+00:20 | 佐藤 / Satoo / Satō | ああ、そうですか。 | Aa, soo desu ka. | À, vậy à.
+00:22 | 王 / Oo / Vương | 保険証があれば、病院で払うお金が少なくなりますね。 | Hokenshoo ga areba, byooin de harau okane ga sukunaku narimasu ne. | Có thẻ bảo hiểm thì tiền trả ở bệnh viện sẽ ít đi nhỉ.
+00:28 | 佐藤 / Satoo / Satō | はい、そうです。 | Hai, soo desu. | Ừ, đúng vậy.
 00:31 | 佐藤 / Satoo / Satō | 30%だけ払えばいいんですよ。 | Sanjuppaasento dake haraeba iin desu yo. | Chỉ cần trả 30% thôi.
 00:35 | 王 / Oo / Vương | これは何ですか。 | Kore wa nan desu ka. | Cái này là gì ạ?
 00:37 | 佐藤 / Satoo / Satō | これは年金です。 | Kore wa nenkin desu. | Cái này là lương hưu (niên kim).

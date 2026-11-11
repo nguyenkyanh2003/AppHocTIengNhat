@@ -83,6 +83,40 @@ void main() {
   });
 
   test('loại lạ hiểu là thông báo hệ thống', () {
-    expect(AppNotification.fromJson({..._dto, 'type': 'ACHIEVEMENT'}).type, NotificationType.system);
+    expect(AppNotification.fromJson({..._dto, 'type': 'PROMOTION'}).type, NotificationType.system);
+  });
+
+  test('thông báo huy hiệu đọc được loại và dữ liệu huy hiệu kèm theo', () {
+    final badge = AppNotification.fromJson({
+      ..._dto,
+      'type': 'ACHIEVEMENT',
+      'data': {'achievement_id': 'a1', 'name': 'Bước Đầu Tiên', 'icon': '🔥', 'rarity': 'rare', 'xp': 100},
+    });
+
+    expect(badge.type, NotificationType.achievement);
+    expect(badge.badgeName, 'Bước Đầu Tiên');
+    expect(badge.badgeIcon, '🔥');
+    expect(AppNotification.fromJson(_dto).badgeIcon, isNull);
+    expect(AppNotification.fromJson({..._dto, 'data': null}).data, isEmpty);
+  });
+
+  test('lọc danh sách theo loại khi cần, không gửi loại thì không lọc', () async {
+    final requests = <http.Request>[];
+    await http.runWithClient(() async {
+      final service = NotificationService();
+      await service.getNotifications(status: NotificationFilter.unread, type: NotificationType.achievement);
+      await service.getNotifications();
+    }, () => MockClient((request) async {
+      requests.add(request);
+      return _json({'data': [], 'page': 1, 'limit': 20, 'total': 0, 'totalPages': 0});
+    }));
+
+    expect(requests[0].url.queryParameters, {'page': '1', 'limit': '20', 'status': 'unread', 'type': 'ACHIEVEMENT'});
+    expect(requests[1].url.queryParameters.containsKey('type'), isFalse);
+  });
+
+  test('admin chỉ chọn được loại gửi tay — thông báo huy hiệu chỉ server tạo', () {
+    expect(NotificationType.sendable, [NotificationType.system, NotificationType.lesson, NotificationType.exam]);
+    expect(NotificationType.sendable, isNot(contains(NotificationType.achievement)));
   });
 }

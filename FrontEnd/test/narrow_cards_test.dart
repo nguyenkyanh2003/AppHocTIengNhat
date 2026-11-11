@@ -30,8 +30,6 @@ void main() {
       tester,
       AchievementCard(
         userAchievement: UserAchievement(
-          id: 'u1',
-          userId: 'x',
           earnedAt: DateTime(2026, 11, 5),
           progress: 1,
           isCompleted: true,

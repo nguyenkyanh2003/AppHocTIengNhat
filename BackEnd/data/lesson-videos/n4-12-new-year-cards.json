@@ -10,6 +10,16 @@
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
         {
+          "start": "00:01",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "３番でお待ちのお客さま…。",
+          "romaji": "Sanban de omachi no okyakusama...",
+          "text_vi": "Xin mời quý khách số 3...",
+          "key_phrase": false
+        },
+        {
           "start": "00:07",
           "speaker_ja": "客",
           "speaker_romaji": "Kyaku",
@@ -94,9 +104,19 @@
           "speaker_ja": "客",
           "speaker_romaji": "Kyaku",
           "speaker_vi": "Khách",
-          "text_ja": "じゃあ、よろしくお願いします。ありがとうございました。",
-          "romaji": "Jaa, yoroshiku onegaishimasu. Arigatoo gozaimashita.",
-          "text_vi": "Vậy nhờ chị giúp tôi nhé. Cảm ơn chị.",
+          "text_ja": "じゃあ、よろしくお願いします。",
+          "romaji": "Jaa, yoroshiku onegaishimasu.",
+          "text_vi": "Vậy nhờ chị giúp tôi nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:17",
+          "speaker_ja": "郵便局員",
+          "speaker_romaji": "Yuubinkyoku-in",
+          "speaker_vi": "Nhân viên bưu điện",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Xin cảm ơn quý khách.",
           "key_phrase": false
         }
       ],
@@ -208,12 +228,12 @@
         },
         {
           "start": "00:45",
-          "speaker_ja": "佐藤",
-          "speaker_romaji": "Satoo",
-          "speaker_vi": "Satō",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
           "text_ja": "元気ですか。",
           "romaji": "Genki desu ka.",
-          "text_vi": "(Ví dụ) Anh/chị có khỏe không?",
+          "text_vi": "Anh/chị có khỏe không?",
           "key_phrase": false
         },
         {
@@ -241,9 +261,9 @@
           "speaker_ja": "王",
           "speaker_romaji": "Oo",
           "speaker_vi": "Vương",
-          "text_ja": "私は今、動画が忙しいです。大丈夫ですか。",
-          "romaji": "Watashi wa ima, dooga ga isogashii desu. Daijoobu desu ka.",
-          "text_vi": "Tôi dạo này bận xem/làm video. Như vậy được không ạ?",
+          "text_ja": "「元気ですか。私は今、仕事が忙しいです。」…大丈夫ですか。",
+          "romaji": "\"Genki desu ka. Watashi wa ima, shigoto ga isogashii desu.\" ... Daijoobu desu ka.",
+          "text_vi": "\"Anh có khỏe không? Dạo này công việc của tôi bận lắm.\" ... Viết vậy có được không ạ?",
           "key_phrase": false
         },
         {
@@ -374,6 +394,16 @@
           "key_phrase": false
         },
         {
+          "start": "00:26",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "100-8959",
+          "romaji": "Ichi-zero-zero no hachi-kyuu-go-kyuu",
+          "text_vi": "100-8959",
+          "key_phrase": false
+        },
+        {
           "start": "00:35",
           "speaker_ja": "友人",
           "speaker_romaji": "Yuujin",
@@ -418,9 +448,9 @@
           "speaker_ja": "王",
           "speaker_romaji": "Oo",
           "speaker_vi": "Vương",
-          "text_ja": "東京都…かすみ…マンション205号室。",
-          "romaji": "Tookyoo-to... Kasumi... Manshon nihyaku-go-goo-shitsu.",
-          "text_vi": "Tokyo-to... Kasumi... Chung cư phòng 205.",
+          "text_ja": "東京都千代田区霞が関３の２の２　カスミガーデンマンション205号室。",
+          "romaji": "Tookyoo-to Chiyoda-ku Kasumigaseki san no ni no ni, Kasumi Gaaden Manshon nihyaku-go-goo-shitsu.",
+          "text_vi": "Tokyo, quận Chiyoda, Kasumigaseki 3-2-2, chung cư Kasumi Garden, phòng 205.",
           "key_phrase": false
         },
         {
@@ -622,12 +652,12 @@
         },
         {
           "start": "00:06",
-          "speaker_ja": "郵便局員",
-          "speaker_romaji": "Yuubinkyoku-in",
-          "speaker_vi": "Nhân viên bưu điện",
-          "text_ja": "どうしても明日までに届けたいんですか。",
-          "romaji": "Dooshitemo ashita made ni todoketain desu ka.",
-          "text_vi": "Anh nhất định muốn gửi đến trước ngày mai à?",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "どうしても明日までに届けたいんですけど、どうしたらいいですか。",
+          "romaji": "Dooshitemo ashita made ni todoketain desu kedo, doo shitara ii desu ka.",
+          "text_vi": "Tôi nhất định muốn gửi đến trước ngày mai, phải làm thế nào ạ?",
           "key_phrase": true
         },
         {
@@ -715,9 +745,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "動詞のマス形＋「たら」＋「いいですか」は、書き方がわからなくてアドバイスが欲しいときに使います。",
-          "romaji": "Dooshi no masu-kee + \"tara\" + \"ii desu ka\" wa, kakikata ga wakaranakute adobaisu ga hoshii toki ni tsukaimasu.",
-          "text_vi": "Mẫu thể masu của động từ + \"tara\" + \"ii desu ka\" dùng khi không biết cách làm và muốn xin lời khuyên.",
+          "text_ja": "「動詞た形＋らいいですか」は、書き方がわからなくてアドバイスがほしいときに使います。",
+          "romaji": "\"Dooshi ta-kee + ra ii desu ka\" wa, kakikata ga wakaranakute adobaisu ga hoshii toki ni tsukaimasu.",
+          "text_vi": "\"Thể ta của động từ + ra ii desu ka\" dùng khi không biết cách viết và muốn xin lời khuyên.",
           "key_phrase": false
         },
         {
@@ -775,9 +805,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "動詞のて形＋「もらえますか」「もらえませんか」は、依頼をするときに使います。",
-          "romaji": "Dooshi no te-kee + \"moraemasu ka\" \"moraemasen ka\" wa, irai o suru toki ni tsukaimasu.",
-          "text_vi": "Mẫu thể te của động từ + \"moraemasu ka\"/\"moraemasen ka\" dùng khi nhờ vả ai đó.",
+          "text_ja": "「動詞のて形＋もらえますか／もらえませんか」は「動詞のて形＋ください」と同じように使えます。",
+          "romaji": "\"Dooshi no te-kee + moraemasu ka / moraemasen ka\" wa \"dooshi no te-kee + kudasai\" to onaji yoo ni tsukaemasu.",
+          "text_vi": "\"Thể te của động từ + moraemasu ka / moraemasen ka\" dùng giống như \"thể te của động từ + kudasai\".",
           "key_phrase": false
         },
         {

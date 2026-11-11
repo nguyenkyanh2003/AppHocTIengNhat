@@ -368,12 +368,12 @@
         },
         {
           "start": "01:03",
-          "speaker_ja": "アンジェラ",
-          "speaker_romaji": "Anjera",
-          "speaker_vi": "Angela",
+          "speaker_ja": "店員",
+          "speaker_romaji": "Ten'in",
+          "speaker_vi": "Nhân viên",
           "text_ja": "ありがとうございます。",
           "romaji": "Arigatoo gozaimasu.",
-          "text_vi": "Cảm ơn chị.",
+          "text_vi": "Xin cảm ơn quý khách.",
           "key_phrase": false
         }
       ],

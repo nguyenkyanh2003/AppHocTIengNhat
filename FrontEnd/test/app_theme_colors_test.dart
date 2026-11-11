@@ -192,6 +192,16 @@ void main() {
           snackBar.backgroundColor!, 'chữ snackbar');
     });
 
+    test('nút hành động trên snackbar ("Xem", "Thử lại") đọc được ở cả hai chế độ', () {
+      // Mặc định lấy `inversePrimary`, vốn dành cho nền sáng: trên nền snackbar
+      // tối của chế độ tối nó gần như chìm.
+      for (final (name, mode) in [('tối', AppTheme.darkTheme), ('sáng', AppTheme.lightTheme)]) {
+        final snackBar = mode.snackBarTheme;
+        _expectReadable(snackBar.actionTextColor!, snackBar.backgroundColor!,
+            'nút snackbar chế độ $name');
+      }
+    });
+
     test('thanh dưới cũ và vòng tiến độ dùng màu nhấn sáng', () {
       _expectReadable(theme.bottomNavigationBarTheme.selectedItemColor!,
           surface, 'mục đang chọn');

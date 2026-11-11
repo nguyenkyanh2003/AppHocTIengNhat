@@ -419,7 +419,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "自己紹介などで、名前を言うとき、名前の後に、「です」をつけます。",
-          "romaji": null,
+          "romaji": "Jiko-shookai nado de, namae o iu toki, namae no ato ni, \"desu\" o tsukemasu.",
           "text_vi": "Khi nói tên để tự giới thiệu bản thân phải thêm từ “desu” vào sau tên.",
           "key_phrase": false
         },
@@ -430,7 +430,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "動画では、「オウ・ハオランです。」と言いました。",
-          "romaji": null,
+          "romaji": "Dooga de wa, \"Oo Haoran desu\" to iimashita.",
           "text_vi": "Nhân vật trong video đã nói là “Oo Haoran desu. (Tôi là Ou Haoran.)”.",
           "key_phrase": false
         },
@@ -441,7 +441,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "AさんがBさんに自分の名前を言うときは、「Aです」と言います。",
-          "romaji": null,
+          "romaji": "A-san ga B-san ni jibun no namae o iu toki wa, \"A desu\" to iimasu.",
           "text_vi": "Khi A nói tên của mình với B, A sẽ nói là “A desu.(Tôi là A.)”.",
           "key_phrase": false
         },
@@ -452,7 +452,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "ほかの人の紹介をするときは、その人の名前の後に、「さん」をつけます。",
-          "romaji": null,
+          "romaji": "Hoka no hito no shookai o suru toki wa, sono hito no namae no ato ni, \"san\" o tsukemasu.",
           "text_vi": "Khi giới thiệu người khác phải thêm từ “san” vào sau tên của người đó.",
           "key_phrase": false
         },
@@ -485,7 +485,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "相手の言ったことを確認したいとき、文の最後に「ね」をつけます。",
-          "romaji": null,
+          "romaji": "Aite no itta koto o kakunin shitai toki, bun no saigo ni \"ne\" o tsukemasu.",
           "text_vi": "Khi muốn xác nhận lại nội dung mà đối phương đã nói phải thêm từ “ne” vào cuối câu.",
           "key_phrase": false
         },
@@ -496,7 +496,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「トイレはどこですか。」",
-          "romaji": null,
+          "romaji": "\"Toire wa doko desu ka.\"",
           "text_vi": "“Toire wa doko desu ka. (Nhà vệ sinh ở đâu ạ?)”",
           "key_phrase": false
         },
@@ -507,7 +507,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「あそこです。」",
-          "romaji": null,
+          "romaji": "\"Asoko desu.\"",
           "text_vi": "“Asoko desu. (Ở đằng kia.)”",
           "key_phrase": false
         },
@@ -518,7 +518,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「あそこですね。」",
-          "romaji": null,
+          "romaji": "\"Asoko desu ne.\"",
           "text_vi": "“Asoko desu ne. (Ở đằng kia phải không ạ.)”",
           "key_phrase": false
         },
@@ -529,7 +529,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "動画の会話では、「佐藤」はほかの人の名前なので「佐藤ですね」ではなく、「佐藤さんですね」と名前に「さん」をつけて言いました。",
-          "romaji": null,
+          "romaji": "Dooga no kaiwa de wa, \"Satoo\" wa hoka no hito no namae na node \"Satoo desu ne\" de wa naku, \"Satoo-san desu ne\" to namae ni \"san\" o tsukete iimashita.",
           "text_vi": "Trong mẫu hội thoại trên video, “Satoo” là tên của người khác nên nhân vật trong video không nói là “Satoo desu ne. (Sato phải không ạ.)” mà đã thêm từ “san” vào sau tên và nói là “Satoo- san desu ne. (Anh Sato phải không ạ.)”.",
           "key_phrase": false
         },
@@ -540,7 +540,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「ね」は、「いい天気ですね。」とか「おいしいですね」のように、相手の共感を求める場合にも使います。",
-          "romaji": null,
+          "romaji": "\"Ne\" wa, \"Ii tenki desu ne\" toka \"Oishii desu ne\" no yoo ni, aite no kyookan o motomeru baai ni mo tsukaimasu.",
           "text_vi": "Từ “ne” còn được sử dụng khi muốn thu hút sự đồng cảm của đối phương chẳng hạn như \"Ii tenki desu ne. (Thời tiết đẹp nhỉ.)” hoặc “Oishii desu ne. (Ngon nhỉ.)”.",
           "key_phrase": false
         },
@@ -584,7 +584,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "自己紹介などで、出身地を言うとき「から来ました」を使います。",
-          "romaji": null,
+          "romaji": "Jiko-shookai nado de, shusshinchi o iu toki \"kara kimashita\" o tsukaimasu.",
           "text_vi": "Khi nói về nơi xuất thân để tự giới thiệu bản thân, sử dụng mẫu câu “kara kimashita (Tôi đến từ)”.",
           "key_phrase": false
         },
@@ -595,7 +595,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「場所」の後に助詞の「から」をつけて、出発点、出発した場所を表します。",
-          "romaji": null,
+          "romaji": "\"Basho\" no ato ni joshi no \"kara\" o tsukete, shuppatsuten, shuppatsu shita basho o arawashimasu.",
           "text_vi": "Thêm trợ từ “kara” vào sau từ chỉ địa điểm để thể hiện điểm xuất phát, nơi đã xuất phát.",
           "key_phrase": false
         },
@@ -606,7 +606,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「来ました」は、「来ます」の過去形です。",
-          "romaji": null,
+          "romaji": "\"Kimashita\" wa, \"kimasu\" no kakokee desu.",
           "text_vi": "Từ “kimashita” là thể quá khứ của từ “kimasu (đến)”.",
           "key_phrase": false
         },
@@ -617,7 +617,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "動画では、オウさんが「中国から来ました」と言いました。",
-          "romaji": null,
+          "romaji": "Dooga de wa, Oo-san ga \"Chuugoku kara kimashita\" to iimashita.",
           "text_vi": "Trong video anh Ou đã nói là “Chuugoku kara kimashita. (Tôi đến từ Trung Quốc.)”.",
           "key_phrase": false
         },
@@ -628,7 +628,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "ブラジル出身の場合は「ブラジルから来ました」と言います。",
-          "romaji": null,
+          "romaji": "Burajiru shusshin no baai wa \"Burajiru kara kimashita\" to iimasu.",
           "text_vi": "Trường hợp xuất thân từ Brazil sẽ nói là “Burajiru kara kimashita. (Tôi đến từ Brazil.)”.",
           "key_phrase": false
         },
@@ -639,7 +639,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「から」は場所だけでなく「9時から勉強します」のように時間と一緒に使うこともできます。",
-          "romaji": null,
+          "romaji": "\"Kara\" wa basho dake de naku \"Kuji kara benkyoo shimasu\" no yoo ni jikan to issho ni tsukau koto mo dekimasu.",
           "text_vi": "Từ “kara (từ)” không chỉ thể hiện địa điểm mà còn có thể sử dụng với thời gian chẳng hạn như “Ku-ji kara benkyoo-shimasu. (Tôi học từ 9 giờ).”.",
           "key_phrase": false
         },
@@ -650,7 +650,7 @@
           "speaker_romaji": "Nareeshon",
           "speaker_vi": "Người dẫn",
           "text_ja": "「9時」が始まりの時間です。",
-          "romaji": null,
+          "romaji": "\"Kuji\" ga hajimari no jikan desu.",
           "text_vi": "“Kuji (9 giờ)” là giờ bắt đầu.",
           "key_phrase": false
         }

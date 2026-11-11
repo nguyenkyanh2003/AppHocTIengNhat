@@ -505,10 +505,29 @@ const unlockingAchievements = (unlocked) => ({
   },
 });
 
+/** Cổng thông báo giả: ghi lại thông báo huy hiệu đã gửi, không chạm MongoDB. */
+const recordingNotifications = () => ({
+  sent: [],
+  async achievementUnlocked(args) {
+    this.sent.push(args);
+  },
+});
+
+const FIRST_STEP = Object.freeze({
+  id: 'a1',
+  xpReward: 100,
+  progress: 7,
+  name: 'Bước Đầu Tiên',
+  description: 'Học 7 ngày liên tiếp',
+  icon: '🔥',
+  rarity: 'rare',
+});
+
 test('an achievement the activity unlocks is awarded once, with its configured XP', async () => {
   const repository = fakeRepository();
   const achievements = unlockingAchievements([{ id: 'a1', xpReward: 100, progress: 5 }]);
-  const service = createStreakService({ goals: NO_GOALS, achievements, repository });
+  const notifications = recordingNotifications();
+  const service = createStreakService({ goals: NO_GOALS, achievements, notifications, repository });
 
   const result = await service.recordActivity(activity(), { session: 'sess', now: NOW });
 
@@ -528,7 +547,8 @@ test('an achievement the activity unlocks is awarded once, with its configured X
 test('achievements are judged on the snapshot before any reward XP', async () => {
   const repository = fakeRepository({ summary: { total_xp: 480 } });
   const achievements = unlockingAchievements([{ id: 'xp-500', xpReward: 100, progress: 500 }]);
-  const service = createStreakService({ goals: NO_GOALS, achievements, repository });
+  const notifications = recordingNotifications();
+  const service = createStreakService({ goals: NO_GOALS, achievements, notifications, repository });
 
   await service.recordActivity(activity(), { session: 'sess', now: NOW });
 
@@ -542,25 +562,63 @@ test('an achievement already recorded is not awarded again', async () => {
   const repository = fakeRepository();
   repository.events.push({ eventKey: 'achievement:u1:a1', type: 'achievement.unlock' });
   const achievements = unlockingAchievements([{ id: 'a1', xpReward: 100, progress: 5 }]);
-  const service = createStreakService({ goals: NO_GOALS, achievements, repository });
+  const notifications = recordingNotifications();
+  const service = createStreakService({ goals: NO_GOALS, achievements, notifications, repository });
 
   const result = await service.recordActivity(activity(), { now: NOW });
 
   assert.deepEqual(result.achievementsAwarded, []);
   assert.equal(repository.state.total_xp, 20);
   assert.deepEqual(achievements.completed, []);
+  assert.deepEqual(notifications.sent, [], 'huy hiệu đã có thì không báo lại');
+});
+
+test('a newly awarded badge is announced to the learner in the same transaction', async () => {
+  const repository = fakeRepository();
+  const notifications = recordingNotifications();
+  const service = createStreakService({
+    goals: NO_GOALS,
+    achievements: unlockingAchievements([FIRST_STEP]),
+    notifications,
+    repository,
+  });
+
+  await service.recordActivity(activity(), { session: 'sess', now: NOW });
+
+  assert.deepEqual(notifications.sent, [{
+    userId: 'u1',
+    achievement: { id: 'a1', name: 'Bước Đầu Tiên', description: 'Học 7 ngày liên tiếp', icon: '🔥', rarity: 'rare' },
+    xp: 100,
+    session: 'sess',
+  }]);
+});
+
+test('a badge notification that cannot be written fails the whole award, not silently', async () => {
+  // Nuốt lỗi ở đây sẽ để lại huy hiệu đã cấp mà người học không bao giờ được báo,
+  // và khoá cấp một lần làm nó không bao giờ được báo lại.
+  const failure = new Error('ghi thông báo hỏng');
+  const service = createStreakService({
+    goals: NO_GOALS,
+    achievements: unlockingAchievements([FIRST_STEP]),
+    notifications: { achievementUnlocked: async () => { throw failure; } },
+    repository: fakeRepository(),
+  });
+
+  await assert.rejects(() => service.recordActivity(activity(), { session: 'sess', now: NOW }), failure);
 });
 
 test('earned achievements can be awarded outside a study activity, on the live streak', async () => {
   const repository = fakeRepository({
     summary: { current_streak: 13, last_activity_day: '2026-09-10', total_xp: 300 },
   });
-  const achievements = unlockingAchievements([{ id: 'streak-7', xpReward: 100, progress: 7 }]);
-  const service = createStreakService({ goals: NO_GOALS, achievements, repository });
+  const achievements = unlockingAchievements([{ ...FIRST_STEP, id: 'streak-7' }]);
+  const notifications = recordingNotifications();
+  const service = createStreakService({ goals: NO_GOALS, achievements, notifications, repository });
 
   const awarded = await service.awardEarnedAchievements('u1', { session: 'sess', now: NOW });
 
   assert.deepEqual(awarded, [{ id: 'streak-7', xp: 100 }]);
+  assert.deepEqual(notifications.sent.map((sent) => [sent.achievement.id, sent.session]), [['streak-7', 'sess']]);
   assert.deepEqual(achievements.lookups[0].snapshot, { currentStreak: 13, totalXp: 300 });
   assert.equal(repository.state.total_xp, 400);
   // Không phải hoạt động học: không có ngày học nào được ghi.
@@ -577,11 +635,13 @@ test('a lapsed streak counts as zero when awarding outside a study activity', as
 
 test('actions that are not study never trigger an achievement check', async () => {
   const achievements = unlockingAchievements([{ id: 'a1', xpReward: 100, progress: 5 }]);
-  const service = createStreakService({ goals: NO_GOALS, achievements, repository: fakeRepository() });
+  const notifications = recordingNotifications();
+  const service = createStreakService({ goals: NO_GOALS, achievements, notifications, repository: fakeRepository() });
 
   await service.recordActivity(activity({ type: 'login', occurrenceKey: 'login:1' }), { now: NOW });
 
   assert.deepEqual(achievements.lookups, []);
+  assert.deepEqual(notifications.sent, []);
 });
 
 // --- đường đọc -------------------------------------------------------------

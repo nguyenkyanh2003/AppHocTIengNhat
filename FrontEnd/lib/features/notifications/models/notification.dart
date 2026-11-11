@@ -2,13 +2,19 @@
 enum NotificationType {
   system('SYSTEM', 'Hệ thống'),
   lesson('LESSON', 'Bài học'),
-  exam('EXAM', 'Kỳ thi');
+  exam('EXAM', 'Kỳ thi'),
+
+  /// Server tự tạo khi cấp huy hiệu; admin không gửi được loại này.
+  achievement('ACHIEVEMENT', 'Thành tích');
 
   const NotificationType(this.key, this.label);
 
   /// Giá trị `type` gửi và nhận từ API.
   final String key;
   final String label;
+
+  /// Loại admin được chọn khi gửi tay (backend chặn các loại còn lại).
+  static const sendable = [system, lesson, exam];
 
   /// Loại app chưa biết (server mới hơn app) hiện như thông báo hệ thống.
   static NotificationType fromKey(Object? key) =>
@@ -36,10 +42,12 @@ class AppNotification {
     required this.isRead,
     required this.createdAt,
     this.readAt,
+    this.data = const {},
   });
 
   factory AppNotification.fromJson(Map<String, dynamic> json) {
     final readAt = json['read_at'] as String?;
+    final data = json['data'];
     return AppNotification(
       id: json['id'] as String? ?? '',
       title: json['title'] as String? ?? '',
@@ -48,6 +56,7 @@ class AppNotification {
       isRead: json['is_read'] as bool? ?? false,
       readAt: readAt == null ? null : DateTime.parse(readAt),
       createdAt: DateTime.parse(json['created_at'] as String),
+      data: data is Map ? Map<String, dynamic>.from(data) : const {},
     );
   }
 
@@ -58,6 +67,20 @@ class AppNotification {
   final bool isRead;
   final DateTime? readAt;
   final DateTime createdAt;
+
+  /// Dữ liệu kèm theo; thông báo huy hiệu có `achievement_id`, `name`, `icon`, `rarity`, `xp`.
+  final Map<String, dynamic> data;
+
+  /// Tên huy hiệu, chỉ có ở thông báo huy hiệu.
+  String? get badgeName => _text('name');
+
+  /// Biểu tượng (emoji) của huy hiệu, chỉ có ở thông báo huy hiệu.
+  String? get badgeIcon => _text('icon');
+
+  String? _text(String key) {
+    final value = data[key];
+    return value is String && value.isNotEmpty ? value : null;
+  }
 }
 
 /// Một trang thông báo trả về từ API.

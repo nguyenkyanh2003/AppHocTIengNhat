@@ -816,7 +816,7 @@
           "key_phrase": false
         },
         {
-          "start": "01:09",
+          "start": "01:12",
           "speaker_ja": "店員",
           "speaker_romaji": "Ten'in",
           "speaker_vi": "Nhân viên cửa hàng thuốc",
@@ -1083,9 +1083,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「と」の文に、話し手の意思を表す表現が入ることはありません。",
-          "romaji": "\"To\" no bun ni, hanashite no ishi o arawasu hyoogen ga hairu koto wa arimasen.",
-          "text_vi": "Trong câu có \"to\" thì không đưa vào cách diễn đạt thể hiện ý chí của người nói.",
+          "text_ja": "後の文に話し手の意志を表す表現が入ることはありません。",
+          "romaji": "Ato no bun ni hanashite no ishi o arawasu hyoogen ga hairu koto wa arimasen.",
+          "text_vi": "Vế sau không chứa cách nói thể hiện ý chí của người nói.",
           "key_phrase": false
         },
         {

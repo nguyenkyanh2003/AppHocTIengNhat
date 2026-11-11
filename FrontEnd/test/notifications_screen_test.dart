@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
@@ -25,7 +26,11 @@ class _FakeNotificationService extends NotificationService {
   bool failList = false;
 
   @override
-  Future<NotificationPage> getNotifications({int page = 1, NotificationFilter status = NotificationFilter.all}) async {
+  Future<NotificationPage> getNotifications({
+    int page = 1,
+    NotificationFilter status = NotificationFilter.all,
+    NotificationType? type,
+  }) async {
     if (failList) throw ApiException('Mất kết nối máy chủ');
     final items = rows.where((row) => switch (status) {
           NotificationFilter.all => true,
@@ -94,6 +99,42 @@ void main() {
 
     expect(find.descendant(of: find.byType(AlertDialog), matching: find.text(longMessage)), findsOneWidget);
     expect(provider.unreadCount, 0);
+    expect(service.rows.single.isRead, isTrue);
+  });
+
+  testWidgets('thông báo huy hiệu có biểu tượng huy hiệu và nút mở màn Thành tích', (tester) async {
+    final service = _FakeNotificationService([
+      AppNotification(
+        id: 'b1',
+        title: 'Huy hiệu mới: Bước Đầu Tiên',
+        message: 'Bạn đã hoàn thành "Học 7 ngày liên tiếp" và được cộng 100 XP.',
+        type: NotificationType.achievement,
+        isRead: false,
+        createdAt: DateTime.now().toUtc(),
+        data: const {'name': 'Bước Đầu Tiên', 'icon': '🔥'},
+      ),
+    ]);
+    final provider = NotificationProvider(service: service);
+    final router = GoRouter(routes: [
+      GoRoute(path: '/', builder: (context, state) => const NotificationsScreen()),
+      GoRoute(path: '/achievements', builder: (context, state) => const Text('Màn Thành tích')),
+    ]);
+    await tester.pumpWidget(ChangeNotifierProvider.value(
+      value: provider,
+      child: MaterialApp.router(theme: AppTheme.lightTheme, routerConfig: router),
+    ));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Thành tích · Vừa xong'), findsOneWidget);
+    expect(find.text('🔥'), findsOneWidget);
+
+    await tester.tap(find.text('Huy hiệu mới: Bước Đầu Tiên'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Xem thành tích'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Màn Thành tích'), findsOneWidget);
+    expect(find.byType(AlertDialog), findsNothing);
     expect(service.rows.single.isRead, isTrue);
   });
 

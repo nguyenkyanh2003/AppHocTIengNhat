@@ -49,7 +49,7 @@
 *01:01 | 高橋 / Takahashi / Takahashi | 大体2か月に1回くらい当番が回ってきます。 | Daitai nikagetsu ni ikkai kurai tooban ga mawatte kimasu. | Khoảng 2 tháng lại đến lượt một lần.
 01:07 | アンジェラ / Anjera / Angela | ああ、そうですか。 | Aa, soo desu ka. | À, vậy ạ.
 01:12 | 高橋 / Takahashi / Takahashi | これが申込書です。 | Kore ga mooshikomisho desu. | Đây là đơn đăng ký.
-01:16 | アンジェラ / Anjera / Angela | ありがとうございます。じゃあ、家に帰って、後でお金と一緒に持ってきます。 | Arigatoo gozaimasu. Jaa, ie ni kaette, ato de okane to issho ni motte kimasu. | Cháu cảm ơn bác. Vậy cháu về nhà rồi lát nữa mang đến cùng với tiền.
+01:16 | アンジェラ / Anjera / Angela | ありがとうございます。じゃ、うちで書いて、あとでお金といっしょに持ってきます。 | Arigatoo gozaimasu. Ja, uchi de kaite, ato de okane to issho ni motte kimasu. | Cháu cảm ơn bác. Vậy cháu về nhà viết, lát nữa mang sang cùng với tiền ạ.
 01:23 | 高橋 / Takahashi / Takahashi | はい、いいですよ。お願いします。 | Hai, ii desu yo. Onegaishimasu. | Ừ, được rồi. Nhờ cháu nhé.
 01:26 | アンジェラ / Anjera / Angela | 失礼します。 | Shitsuree shimasu. | Cháu xin phép ạ.
 ### từ vựng
@@ -119,5 +119,7 @@
 *02:46 | アンジェラ / Anjera / Angela | ちょっと教えてほしいんですけど。 | Chotto oshiete hoshiin desu kedo. | Em muốn nhờ chị chỉ giúp một chút.
 02:50 | ナレーター / Nareetaa / Người dẫn | 動詞のて形に「ほしいんですけど」をつけると、相手への希望やお願いを表すことができます。 | Dooshi no te-kee ni "hoshiin desu kedo" o tsukeru to, aite e no kiboo ya onegai o arawasu koto ga dekimasu. | Thêm "hoshiin desu kedo" vào thể te của động từ để bày tỏ mong muốn hay lời nhờ vả với người kia.
 03:04 | ナレーター / Nareetaa / Người dẫn | この動画では、アンジェラさんが鈴木さんに、最初に「教えてほしいんですけど」と言って相談を始めました。 | Kono dooga de wa, Anjera-san ga Suzuki-san ni, saisho ni "Oshiete hoshiin desu kedo" to itte soodan o hajimemashita. | Trong video, chị Angela mở đầu bằng câu "Em muốn nhờ chị chỉ giúp" rồi mới bắt đầu hỏi chị Suzuki.
-03:18 | ナレーター / Nareetaa / Người dẫn | いきなり質問するより、相手も答えやすいです。 | Ikinari shitsumon suru yori, aite mo kotaeyasui desu. | So với hỏi ngay lập tức, như vậy người kia cũng dễ trả lời hơn.
+03:18 | 鈴木 / Suzuki / Suzuki | はい、何ですか。 | Hai, nan desu ka. | Ừ, có chuyện gì vậy?
+03:20 | アンジェラ / Anjera / Angela | 明日、わたし、ゴミ置き場の掃除当番なんですけど…。 | Ashita, watashi, gomi okiba no sooji tooban nan desu kedo... | Ngày mai đến phiên tôi dọn bãi rác...
+03:22 | ナレーター / Nareetaa / Người dẫn | いきなり質問するより、相手も答えやすいです。 | Ikinari shitsumon suru yori, aite mo kotaeyasui desu. | So với hỏi ngay lập tức, như vậy người kia cũng dễ trả lời hơn.
 03:28 | ナレーター / Nareetaa / Người dẫn | 「教えてほしいんですけど」は、「教えてもらいたいんですけど」と言うこともできます。 | "Oshiete hoshiin desu kedo" wa, "Oshiete moraitain desu kedo" to iu koto mo dekimasu. | "Oshiete hoshiin desu kedo" cũng có thể nói là "Oshiete moraitain desu kedo".

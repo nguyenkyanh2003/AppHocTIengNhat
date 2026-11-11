@@ -364,9 +364,9 @@
         },
         {
           "start": "00:46",
-          "speaker_ja": "男性客",
-          "speaker_romaji": "Dansee-kyaku",
-          "speaker_vi": "Khách nam",
+          "speaker_ja": "女性客",
+          "speaker_romaji": "Josee-kyaku",
+          "speaker_vi": "Khách nữ",
           "text_ja": "はい。",
           "romaji": "Hai.",
           "text_vi": "Vâng.",

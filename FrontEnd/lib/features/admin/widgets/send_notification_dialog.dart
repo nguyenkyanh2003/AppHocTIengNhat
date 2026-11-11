@@ -130,7 +130,7 @@ class _SendNotificationDialogState extends State<SendNotificationDialog> {
                   value: _type,
                   decoration: const InputDecoration(labelText: 'Loại'),
                   items: [
-                    for (final type in NotificationType.values)
+                    for (final type in NotificationType.sendable)
                       DropdownMenuItem(value: type, child: Text(type.label)),
                   ],
                   onChanged: _sending ? null : (type) => setState(() => _type = type ?? _type),

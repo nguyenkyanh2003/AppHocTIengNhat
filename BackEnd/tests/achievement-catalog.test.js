@@ -3,12 +3,13 @@ import test from 'node:test';
 
 import Achievement from '../model/Achievement.js';
 import { ACHIEVEMENTS } from '../scripts/achievement-catalog.js';
-import { metricOf } from '../src/modules/achievements/achievement-rules.js';
+import { isConsistentRequirement, metricOf } from '../src/modules/achievements/achievement-rules.js';
 import { STREAK_MILESTONES } from '../src/modules/streaks/streak-policy.js';
 
 test('every badge has a criterion the server can verify on its own', () => {
   for (const badge of ACHIEVEMENTS) {
     assert.notEqual(metricOf(badge), null, badge.name);
+    assert.ok(isConsistentRequirement(badge), badge.name);
     assert.equal(new Achievement(badge).validateSync(), undefined, badge.name);
   }
 });
@@ -24,6 +25,15 @@ test('each category is a ladder that starts easy and only goes up', () => {
     const goals = badges.map((badge) => badge.requirement_value);
     assert.deepEqual(goals, [...goals].sort((a, b) => a - b), category);
     assert.equal(badges[0].rarity, 'common', `${category} bắt đầu bằng huy hiệu phổ thông`);
+  }
+});
+
+test('grammar badges describe what the server counts: passed pattern exercises', () => {
+  const grammar = ACHIEVEMENTS.filter((badge) => badge.category === 'grammar');
+
+  assert.deepEqual(grammar.map((badge) => badge.requirement_value), [5, 10, 20, 40]);
+  for (const badge of grammar) {
+    assert.ok(badge.description_vi.includes(`${badge.requirement_value} bài tập Hội thoại`), badge.name);
   }
 });
 

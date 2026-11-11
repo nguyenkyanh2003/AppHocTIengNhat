@@ -307,9 +307,9 @@
           "speaker_ja": "ビン",
           "speaker_romaji": "Bin",
           "speaker_vi": "Bin",
-          "text_ja": "そういえば、明日、自己紹介するように言われていて。",
-          "romaji": "Soo ieba, ashita, jiko-shookai suru yoo ni iwarete ite.",
-          "text_vi": "Nói mới nhớ, mình được dặn là ngày mai phải tự giới thiệu.",
+          "text_ja": "そういえば、初日に自己紹介するように言われていて…。",
+          "romaji": "Soo ieba, shonichi ni jiko-shookai suru yoo ni iwarete ite...",
+          "text_vi": "Nói mới nhớ, mình được dặn là phải tự giới thiệu vào ngày đầu đi làm...",
           "key_phrase": true
         },
         {
@@ -337,19 +337,19 @@
           "speaker_ja": "友達",
           "speaker_romaji": "Tomodachi",
           "speaker_vi": "Bạn",
-          "text_ja": "緊張するよね。人前で話すのって。",
-          "romaji": "Kinchoo suru yo ne. Hitomae de hanasu no tte.",
-          "text_vi": "Hồi hộp nhỉ. Nói trước mặt mọi người ấy.",
+          "text_ja": "緊張するよね。",
+          "romaji": "Kinchoo suru yo ne.",
+          "text_vi": "Hồi hộp nhỉ.",
           "key_phrase": false
         },
         {
-          "start": "00:39",
+          "start": "00:37",
           "speaker_ja": "ビン",
           "speaker_romaji": "Bin",
           "speaker_vi": "Bin",
-          "text_ja": "苦手なんだよね。",
-          "romaji": "Nigate nan da yo ne.",
-          "text_vi": "Mình không giỏi việc đó.",
+          "text_ja": "人前で話すのって苦手なんだよね。",
+          "romaji": "Hitomae de hanasu no tte nigate nan da yo ne.",
+          "text_vi": "Mình không giỏi nói trước mặt mọi người.",
           "key_phrase": false
         },
         {
@@ -453,6 +453,16 @@
           "key_phrase": false
         },
         {
+          "start": "01:49",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "意気込み。",
+          "romaji": "Ikigomi.",
+          "text_vi": "Quyết tâm à?",
+          "key_phrase": false
+        },
+        {
           "start": "01:53",
           "speaker_ja": "友達",
           "speaker_romaji": "Tomodachi",
@@ -464,12 +474,22 @@
         },
         {
           "start": "01:59",
-          "speaker_ja": "友達",
-          "speaker_romaji": "Tomodachi",
-          "speaker_vi": "Bạn",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
           "text_ja": "ちょっと待って、書いとくね。",
           "romaji": "Chotto matte, kaitoku ne.",
-          "text_vi": "Đợi chút, mình ghi ra cho nhé.",
+          "text_vi": "Đợi chút, để mình ghi lại nhé.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:04",
+          "speaker_ja": "ビン",
+          "speaker_romaji": "Bin",
+          "speaker_vi": "Bin",
+          "text_ja": "えっと、ご、し、ど、う、よ、ろ、し、く、お、ね、が、い、し、ま、す…。",
+          "romaji": "Etto, go, shi, do, u, yo, ro, shi, ku, o, ne, ga, i, shi, ma, su...",
+          "text_vi": "Ừm, go, shi, do, u, yo, ro, shi, ku, o, ne, ga, i, shi, ma, su... (vừa đọc vừa ghi)",
           "key_phrase": false
         },
         {
@@ -547,9 +567,9 @@
       "transcript": [
         {
           "start": "00:01",
-          "speaker_ja": "社員一同",
-          "speaker_romaji": "Shain ichidoo",
-          "speaker_vi": "Mọi người",
+          "speaker_ja": "リーダー",
+          "speaker_romaji": "Riidaa",
+          "speaker_vi": "Trưởng nhóm",
           "text_ja": "おはようございます。",
           "romaji": "Ohayoo gozaimasu.",
           "text_vi": "Chào buổi sáng.",
@@ -637,9 +657,9 @@
         },
         {
           "start": "01:01",
-          "speaker_ja": "社員一同",
-          "speaker_romaji": "Shain ichidoo",
-          "speaker_vi": "Mọi người",
+          "speaker_ja": "リーダー",
+          "speaker_romaji": "Riidaa",
+          "speaker_vi": "Trưởng nhóm",
           "text_ja": "よろしくお願いします。",
           "romaji": "Yoroshiku onegaishimasu.",
           "text_vi": "Xin nhờ mọi người giúp đỡ.",
@@ -933,9 +953,9 @@
           "speaker_ja": "ビン",
           "speaker_romaji": "Bin",
           "speaker_vi": "Bin",
-          "text_ja": "明日、自己紹介するように言われていて。",
-          "romaji": "Ashita, jiko-shookai suru yoo ni iwarete ite.",
-          "text_vi": "Ngày mai mình được dặn là phải tự giới thiệu.",
+          "text_ja": "初日に自己紹介するように言われていて…。",
+          "romaji": "Shonichi ni jiko-shookai suru yoo ni iwarete ite...",
+          "text_vi": "Mình được dặn là phải tự giới thiệu vào ngày đầu đi làm...",
           "key_phrase": false
         },
         {

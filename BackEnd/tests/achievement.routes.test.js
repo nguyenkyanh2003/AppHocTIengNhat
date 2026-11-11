@@ -82,6 +82,37 @@ test('admin create validates the definition and applies defaults', async () => {
   }
 });
 
+test('a badge cannot mix a category with a criterion from another one', async () => {
+  const app = buildApp({
+    create: async (payload) => ({ _id: ID, ...payload }),
+    update: async (id, updates) => ({ _id: id, ...updates }),
+  });
+
+  for (const bad of [
+    { category: 'kanji', requirement_type: 'xp' },
+    { category: 'vocabulary', requirement_type: 'streak' },
+    { category: 'streak', requirement_type: 'count' },
+    { category: 'xp', requirement_type: 'count' },
+  ]) {
+    const created = await request(app).post('/api/achievement/admin').send({ ...validDefinition, ...bad });
+    assert.equal(created.status, 400, JSON.stringify(bad));
+    assert.equal((await request(app).put(`/api/achievement/admin/${ID}`).send(bad)).status, 400, JSON.stringify(bad));
+  }
+
+  for (const good of [
+    { category: 'streak', requirement_type: 'streak' },
+    { category: 'xp', requirement_type: 'xp' },
+    { category: 'lesson', requirement_type: 'completion' },
+    { category: 'kanji', requirement_type: 'count' },
+  ]) {
+    const created = await request(app).post('/api/achievement/admin').send({ ...validDefinition, ...good });
+    assert.equal(created.status, 201, JSON.stringify(good));
+  }
+
+  // Sửa riêng lẻ một trường thì không có gì để đối chiếu.
+  assert.equal((await request(app).put(`/api/achievement/admin/${ID}`).send({ xp_reward: 5 })).status, 200);
+});
+
 test('admin update and delete take a valid id and return the old envelopes', async () => {
   const app = buildApp({
     update: async (id, updates) => ({ _id: id, ...updates }),

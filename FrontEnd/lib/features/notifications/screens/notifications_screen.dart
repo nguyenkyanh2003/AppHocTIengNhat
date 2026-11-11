@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
@@ -35,6 +36,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   Future<void> _open(NotificationProvider provider, AppNotification notification) {
     provider.markAsRead(notification);
+    final isBadge = notification.type == NotificationType.achievement;
     return showAppDialog<void>(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -42,6 +44,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         content: SingleChildScrollView(child: SelectableText(notification.message)),
         actions: [
           TextButton(onPressed: () => Navigator.pop(dialogContext), child: const Text('Đóng')),
+          if (isBadge)
+            FilledButton(
+              onPressed: () {
+                Navigator.pop(dialogContext);
+                context.push('/achievements');
+              },
+              child: const Text('Xem thành tích'),
+            ),
         ],
       ),
     );

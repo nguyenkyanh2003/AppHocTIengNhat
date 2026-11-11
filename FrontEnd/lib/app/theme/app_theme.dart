@@ -296,6 +296,9 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         backgroundColor: snackBarBackground,
         contentTextStyle: const TextStyle(fontSize: 14, color: Colors.white),
+        // Nền snackbar tối ở cả hai chế độ, nên nút hành động dùng tím sáng cho
+        // cả hai; mặc định `inversePrimary` của chế độ tối chìm vào nền.
+        actionTextColor: AppColors.darkPrimary,
         shape: const RoundedRectangleBorder(borderRadius: AppRadius.smAll),
         behavior: SnackBarBehavior.floating,
       ),

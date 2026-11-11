@@ -1,192 +1,47 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
 import '../../../core/state/view_state.dart';
 import '../models/achievement.dart';
 import '../services/achievement_service.dart';
 
+/// Huy hiệu của người học, dùng cho màn Thành tích và khối "Thành tích gần đây".
 class AchievementProvider with ChangeNotifier {
-  final AchievementService _achievementService = AchievementService();
+  AchievementProvider({AchievementService? service})
+      : _service = service ?? AchievementService();
 
-  List<Achievement> _allAchievements = [];
-  List<UserAchievement> _earnedAchievements = [];
-  List<UserAchievement> _lockedAchievements = [];
-  Map<String, dynamic> _stats = {};
-  bool _isLoading = false;
-  String? _error;
+  final AchievementService _service;
 
-  /// Đã tải được danh sách của người dùng ít nhất một lần.
-  bool _mineLoaded = false;
+  ViewState<MyAchievements> _mine = const ViewState.idle();
 
-  List<Achievement> get allAchievements => _allAchievements;
-  List<UserAchievement> get earnedAchievements => _earnedAchievements;
-  List<UserAchievement> get lockedAchievements => _lockedAchievements;
-  Map<String, dynamic> get stats => _stats;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
+  /// Lượt tải mới nhất: phản hồi về muộn của lượt cũ, hay của tài khoản vừa đăng
+  /// xuất, không được ghi đè.
+  int _request = 0;
 
-  /// Thành tích đã đạt kèm trạng thái. Chưa tải được thì là lỗi, không phải rỗng:
-  /// khối hiển thị không được kết luận "chưa mở khoá" khi chỉ là mất kết nối.
-  ViewState<List<UserAchievement>> get earnedState => ViewState.fromLegacy(
-        isLoading: _isLoading,
-        error: _error,
-        value: _mineLoaded ? _earnedAchievements : null,
-      );
+  ViewState<MyAchievements> get mine => _mine;
 
-  int get totalAchievements => _allAchievements.length;
-  int get completedAchievements =>
-      _earnedAchievements.where((a) => a.isCompleted).length;
-
-  double get completionRate {
-    if (totalAchievements == 0) return 0.0;
-    return completedAchievements / totalAchievements;
-  }
-
-  // Load all achievements
-  Future<void> loadAllAchievements() async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _allAchievements = await _achievementService.getAllAchievements();
-      _error = null;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error loading achievements: $e');
-    } finally {
-      _isLoading = false;
+  /// Trả về câu báo lỗi nếu tải hỏng. Đã có dữ liệu thì giữ nguyên để màn hình báo
+  /// nhẹ: mất mạng một lần không được xoá trắng danh sách.
+  Future<String?> loadMyAchievements() async {
+    final request = ++_request;
+    final hadData = _mine.hasData;
+    if (!hadData) {
+      _mine = const ViewState.loading();
       notifyListeners();
     }
-  }
 
-  // Load user's achievements
-  Future<void> loadMyAchievements() async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+    final result = await ViewState.guard(_service.getMyAchievements);
+    if (request != _request) return null;
 
-    try {
-      final result = await _achievementService.getMyAchievements();
-
-      if (result != null) {
-        final earned = result['earned'] as List?;
-        if (earned != null) {
-          _earnedAchievements =
-              earned.map((item) => UserAchievement.fromJson(item)).toList();
-        }
-
-        final locked = result['locked'] as List?;
-        if (locked != null) {
-          _lockedAchievements =
-              locked.map((item) => UserAchievement.fromJson(item)).toList();
-        }
-
-        _mineLoaded = true;
-        _error = null;
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error loading user achievements: $e');
-    } finally {
-      _isLoading = false;
+    if (!hadData || result.hasData) {
+      _mine = result;
       notifyListeners();
     }
+    return result.errorOrNull;
   }
 
-  // Load achievements by category
-  Future<Map<String, dynamic>?> loadAchievementsByCategory(
-      String category) async {
-    try {
-      return await _achievementService.getAchievementsByCategory(category);
-    } catch (e) {
-      debugPrint('Error loading category achievements: $e');
-      return null;
-    }
-  }
-
-  // Update achievement progress
-  // Không còn `updateProgress`: xem giải thích ở service.
-
-  // Load achievement statistics
-  Future<void> loadStats() async {
-    try {
-      final result = await _achievementService.getStats();
-      if (result != null) {
-        _stats = result;
-        notifyListeners();
-      }
-    } catch (e) {
-      debugPrint('Error loading achievement stats: $e');
-    }
-  }
-
-  // Get achievements by category (from loaded data)
-  List<UserAchievement> getAchievementsByCategory(String category) {
-    return [..._earnedAchievements, ..._lockedAchievements]
-        .where((ua) => ua.achievement.category == category)
-        .toList();
-  }
-
-  // Check if achievement is earned
-  bool isAchievementEarned(String achievementId) {
-    return _earnedAchievements
-        .any((ua) => ua.achievement.id == achievementId && ua.isCompleted);
-  }
-
-  // Get achievement progress
-  int? getAchievementProgress(String achievementId) {
-    final achievement =
-        [..._earnedAchievements, ..._lockedAchievements].firstWhere(
-      (ua) => ua.achievement.id == achievementId,
-      orElse: () => UserAchievement(
-        id: '',
-        userId: '',
-        achievement: Achievement(
-          id: '',
-          name: '',
-          nameVi: '',
-          description: '',
-          descriptionVi: '',
-          icon: '',
-          category: 'practice',
-          requirementType: 'count',
-          requirementValue: 0,
-          xpReward: 0,
-          rarity: 'common',
-          isActive: true,
-        ),
-        earnedAt: DateTime.now(),
-        progress: 0,
-        isCompleted: false,
-      ),
-    );
-
-    return achievement.progress;
-  }
-
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
-
-  void reset() {
-    _allAchievements = [];
-    _earnedAchievements = [];
-    _lockedAchievements = [];
-    _stats = {};
-    _isLoading = false;
-    _error = null;
-    notifyListeners();
-  }
-
-  // Clear all state
   void clear() {
-    _mineLoaded = false;
-    _allAchievements = [];
-    _earnedAchievements = [];
-    _lockedAchievements = [];
-    _stats = {};
-    _isLoading = false;
-    _error = null;
+    _request++;
+    _mine = const ViewState.idle();
     notifyListeners();
   }
 }

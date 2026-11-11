@@ -18,7 +18,9 @@ const memoryRepository = ({ users = [A, B, ADMIN], learners = [A, B] } = {}) => 
   let sequence = 0;
   const owned = (row, { id, recipient }) => same(row._id, id) && same(row.recipient, recipient);
   const matches = (row, filter) =>
-    same(row.recipient, filter.recipient) && (filter.is_read === undefined || row.is_read === filter.is_read);
+    same(row.recipient, filter.recipient) &&
+    (filter.is_read === undefined || row.is_read === filter.is_read) &&
+    (filter.type === undefined || row.type === filter.type);
   const insert = (doc) => {
     sequence += 1;
     const row = { _id: `n${sequence}`, data: {}, is_read: false, read_at: null, sender: null, createdAt: new Date(Date.UTC(2026, 10, 1, 0, sequence)), ...doc };
@@ -52,7 +54,11 @@ const memoryRepository = ({ users = [A, B, ADMIN], learners = [A, B] } = {}) => 
       rows.splice(index, 1);
       return 1;
     },
-    create: async (doc) => insert(doc),
+    sessions: [],
+    async create(doc, { session } = {}) {
+      this.sessions.push(session);
+      return insert(doc);
+    },
     insertMany: async (docs) => docs.map(insert).length,
     userExists: async (id) => users.some((user) => same(user, id)),
     findBroadcastRecipientIds: async () => learners,
@@ -186,4 +192,66 @@ test('thông báo trả về đúng hình dạng hợp đồng', async () => {
     read_at: null,
     created_at: '2026-11-01T00:01:00.000Z',
   });
+});
+
+// --- thông báo huy hiệu ------------------------------------------------------
+
+const BADGE = Object.freeze({
+  id: 'ach-10-words',
+  name: 'Những Từ Đầu Tiên',
+  description: 'Học 10 từ vựng',
+  icon: '📚',
+  rarity: 'common',
+});
+
+test('nhận huy hiệu tạo một thông báo hệ thống cho đúng người, trong session của lần cấp', async () => {
+  const { service, repository } = setup();
+
+  const created = await service.achievementUnlocked({ userId: A, achievement: BADGE, xp: 50, session: 'sess' });
+
+  assert.deepEqual(created, {
+    id: 'n1',
+    title: 'Huy hiệu mới: Những Từ Đầu Tiên',
+    message: 'Bạn đã hoàn thành "Học 10 từ vựng" và được cộng 50 XP.',
+    type: 'ACHIEVEMENT',
+    data: { achievement_id: 'ach-10-words', name: 'Những Từ Đầu Tiên', icon: '📚', rarity: 'common', xp: 50 },
+    is_read: false,
+    read_at: null,
+    created_at: '2026-11-01T00:01:00.000Z',
+  });
+  assert.equal(repository.rows[0].recipient, A);
+  assert.equal(repository.rows[0].sender, null, 'thông báo hệ thống không có người gửi');
+  assert.deepEqual(repository.sessions, ['sess']);
+  assert.equal(await service.countUnread(A), 1);
+  assert.equal(await service.countUnread(B), 0);
+});
+
+test('huy hiệu không thưởng XP thì không nhắc XP; thiếu mô tả vẫn có nội dung', async () => {
+  const { service } = setup();
+
+  const noXp = await service.achievementUnlocked({ userId: A, achievement: BADGE, xp: 0 });
+  const noDescription = await service.achievementUnlocked({
+    userId: A,
+    achievement: { ...BADGE, description: '  ' },
+    xp: 30,
+  });
+
+  assert.equal(noXp.message, 'Bạn đã hoàn thành "Học 10 từ vựng".');
+  assert.equal(noDescription.message, 'Chúc mừng bạn đã nhận huy hiệu "Những Từ Đầu Tiên" và được cộng 30 XP.');
+});
+
+test('lọc danh sách theo loại, kết hợp được với trạng thái đọc', async () => {
+  const { service } = setup();
+  await send(service, A, 'Bảo trì');
+  const badge = await service.achievementUnlocked({ userId: A, achievement: BADGE, xp: 50 });
+  await service.achievementUnlocked({ userId: B, achievement: BADGE, xp: 50 });
+
+  const unreadBadges = await service.list({ userId: A, page: 1, limit: 20, status: 'unread', type: 'ACHIEVEMENT' });
+  assert.deepEqual(unreadBadges.items.map((item) => item.id), [badge.id]);
+  assert.equal(unreadBadges.total, 1);
+
+  await service.markRead({ id: badge.id, userId: A });
+  const after = await service.list({ userId: A, page: 1, limit: 20, status: 'unread', type: 'ACHIEVEMENT' });
+  assert.deepEqual(after.items, []);
+  assert.deepEqual(await titlesOf(service, A), ['Huy hiệu mới: Những Từ Đầu Tiên', 'Bảo trì']);
 });

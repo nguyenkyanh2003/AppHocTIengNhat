@@ -17,6 +17,15 @@ export const toNotificationDto = (notification) => ({
 
 const notFound = () => ApiError.notFound('Không tìm thấy thông báo.');
 
+/** Nội dung thông báo nhận huy hiệu: mô tả là tiêu chí vừa đạt, kèm XP nếu có. */
+const achievementMessage = ({ name, description }, xp) => {
+  const reward = xp > 0 ? ` và được cộng ${xp} XP` : '';
+  const criterion = description?.trim();
+  return criterion
+    ? `Bạn đã hoàn thành "${criterion}"${reward}.`
+    : `Chúc mừng bạn đã nhận huy hiệu "${name}"${reward}.`;
+};
+
 /**
  * Thông báo cá nhân. Mọi thao tác của người dùng chỉ chạm bản ghi có
  * `recipient` là chính họ: thông báo của người khác trả 404 như không tồn tại.
@@ -28,8 +37,8 @@ export const createNotificationService = ({
   notificationRepository: repository,
   clock = () => new Date(),
 }) => ({
-  async list({ userId, page, limit, status }) {
-    const filter = { recipient: userId, ...READ_FILTER[status] };
+  async list({ userId, page, limit, status, type }) {
+    const filter = { recipient: userId, ...READ_FILTER[status], ...(type ? { type } : {}) };
     const [items, total] = await Promise.all([
       repository.findPage({ filter, skip: (page - 1) * limit, limit }),
       repository.count(filter),
@@ -65,6 +74,32 @@ export const createNotificationService = ({
       throw ApiError.notFound('Không tìm thấy người nhận.');
     }
     const notification = await repository.create({ recipient: recipientId, sender: senderId, title, message, type });
+    return toNotificationDto(notification);
+  },
+
+  /**
+   * Báo người học vừa nhận một huy hiệu. Cổng ghi streak gọi trong **cùng
+   * transaction** cấp huy hiệu (`session`): huy hiệu và thông báo cùng được ghi
+   * hoặc cùng huỷ, và khoá cấp một lần của huy hiệu giữ thông báo chỉ một lần.
+   */
+  async achievementUnlocked({ userId, achievement, xp, session }) {
+    const notification = await repository.create(
+      {
+        recipient: userId,
+        sender: null,
+        type: 'ACHIEVEMENT',
+        title: `Huy hiệu mới: ${achievement.name}`,
+        message: achievementMessage(achievement, xp),
+        data: {
+          achievement_id: achievement.id,
+          name: achievement.name,
+          icon: achievement.icon,
+          rarity: achievement.rarity,
+          xp,
+        },
+      },
+      { session },
+    );
     return toNotificationDto(notification);
   },
 

@@ -184,9 +184,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "少しだけ頭を下げ、相手に敬意を伝えます。会釈もお辞儀の一つです。",
-          "romaji": "Sukoshi dake atama o sage, aite ni keei o tsutaemasu. Eshaku mo ojigi no hitotsu desu.",
-          "text_vi": "Chỉ cúi đầu một chút để bày tỏ sự kính trọng. Gật đầu chào (eshaku) cũng là một kiểu cúi chào.",
+          "text_ja": "少しだけ頭を下げ、相手に軽く敬意を伝えます。「会釈」もお辞儀の一つです。",
+          "romaji": "Sukoshi dake atama o sage, aite ni karuku keei o tsutaemasu. \"Eshaku\" mo ojigi no hitotsu desu.",
+          "text_vi": "Cúi đầu một chút để bày tỏ nhẹ nhàng sự kính trọng với đối phương. \"Eshaku\" (gật đầu chào) cũng là một kiểu cúi chào.",
           "key_phrase": false
         },
         {
@@ -973,9 +973,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「ている」は、動詞のて形に「いる」をつけた表現です。",
-          "romaji": "\"Te iru\" wa, dooshi no te-kee ni \"iru\" o tsuketa hyoogen desu.",
-          "text_vi": "\"Te iru\" là thể te của động từ thêm \"iru\".",
+          "text_ja": "「売っています」は、「売っている」、動詞の「て形」に「いる」をつけた表現です。",
+          "romaji": "\"Utte imasu\" wa, \"utte iru\", dooshi no \"te-kee\" ni \"iru\" o tsuketa hyoogen desu.",
+          "text_vi": "\"Utte imasu\" là \"utte iru\", tức thể te của động từ thêm \"iru\".",
           "key_phrase": false
         },
         {

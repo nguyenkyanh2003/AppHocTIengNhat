@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import 'admin_achievement_style.dart';
+import '../../achievements/models/achievement_labels.dart';
+import '../../achievements/widgets/achievement_rarity.dart';
+import '../models/admin_achievement.dart';
 import 'admin_achievement_dialogs.dart';
 
 /// Thẻ một thành tích ở màn quản trị khổ hẹp.
 class AdminAchievementCard extends StatelessWidget {
-  const AdminAchievementCard({
-    super.key,
-    required this.achievement,
-    required this.duplicateAchievement,
-  });
+  const AdminAchievementCard({super.key, required this.achievement});
 
-  final Map<String, dynamic> achievement;
-  final void Function(Map<String, dynamic> achievement) duplicateAchievement;
+  final AdminAchievement achievement;
 
   @override
   Widget build(BuildContext context) {
-    final rarityColor = achievementRarityColor(achievement['rarity']);
+    final definition = achievement.definition;
+    final rarityColor = achievementRarityFill(definition.rarity).first;
+    final caption = TextStyle(
+      fontSize: AppTypography.caption,
+      color: context.colors.textSecondary,
+    );
 
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
       elevation: 2,
       child: Container(
         decoration: BoxDecoration(
@@ -36,133 +39,93 @@ class AdminAchievementCard extends StatelessWidget {
         ),
         child: ExpansionTile(
           leading: Container(
-            width: 60,
-            height: 60,
+            width: 56,
+            height: 56,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               color: rarityColor.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: rarityColor, width: 2),
             ),
-            child: Center(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
               child: Text(
-                achievement['icon'],
+                definition.icon,
                 style: const TextStyle(fontSize: AppTypography.display),
               ),
             ),
           ),
           title: Wrap(
-            spacing: 8,
-            runSpacing: 4,
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.xs,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Text(
-                achievement['name'],
+                definition.displayName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: AppTypography.body,
                 ),
               ),
-              _buildRarityBadge(achievement['rarity']),
+              AchievementRarityChip(definition.rarity),
             ],
           ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(achievement['description']),
-              const SizedBox(height: 4),
-              Wrap(
-                spacing: 8,
-                runSpacing: 4,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.purple.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      '⭐ ${achievement['xp']} XP',
-                      style: TextStyle(
-                        fontSize: AppTypography.caption,
-                        fontWeight: FontWeight.bold,
-                        color: context.colors.readable(Colors.purple),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: AppSpacing.xs),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(definition.displayDescription),
+                AppGap.xs,
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  runSpacing: AppSpacing.xs,
+                  children: [
+                    Text('+${definition.xpReward} XP', style: caption),
+                    Text('${achievement.unlocked} người đã mở', style: caption),
+                    if (!definition.isActive)
+                      Text(
+                        'Đang ẩn',
+                        style: caption.copyWith(fontWeight: FontWeight.bold),
                       ),
-                    ),
-                  ),
-                  Text(
-                    '${achievement['unlocked']} người đã mở',
-                    style: TextStyle(
-                      fontSize: AppTypography.caption,
-                      color: context.colors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: AppSpacing.page,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Điều kiện mở khóa:',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: AppTypography.bodySmall,
-                    ),
+                  Text(
+                    '${achievementCriterionLabels[definition.category] ?? 'Cần đạt'}: '
+                    '${definition.requirementValue}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: context.colors.primarySoft,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: context.colors.primarySoft),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.check_circle,
-                            color: context.colors.primary, size: 20),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text('Cần đạt: ${achievement['condition']}'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Action Buttons
+                  AppGap.lg,
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () =>
-                            showAchievementEditDialog(context, achievement),
+                        onPressed: () => showAchievementFormDialog(
+                          context,
+                          initial: definition,
+                        ),
                         icon: const Icon(Icons.edit, size: 18),
                         label: const Text('Chỉnh sửa'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                        ),
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () => duplicateAchievement(achievement),
+                      OutlinedButton.icon(
+                        onPressed: () => showAchievementFormDialog(
+                          context,
+                          initial: definition,
+                          asCopy: true,
+                        ),
                         icon: const Icon(Icons.copy, size: 18),
                         label: const Text('Nhân bản'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.successStrong,
-                          foregroundColor: Colors.white,
-                        ),
                       ),
                       IconButton(
                         tooltip: 'Xóa',
@@ -176,34 +139,6 @@ class AdminAchievementCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRarityBadge(String rarity) {
-    final color = achievementRarityColor(rarity);
-    final label = achievementRarityLabel(rarity);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: 0.5),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: AppTypography.caption,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
         ),
       ),
     );

@@ -24,7 +24,7 @@ test('thiếu người nhận, tiêu đề hoặc nội dung thì không lưu đ
 });
 
 test('loại thông báo dùng chung với Flutter; bỏ target_level kiểu phát theo cấp độ', () => {
-  assert.deepEqual(Notification.schema.path('type').enumValues, ['SYSTEM', 'LESSON', 'EXAM']);
+  assert.deepEqual(Notification.schema.path('type').enumValues, ['SYSTEM', 'LESSON', 'EXAM', 'ACHIEVEMENT']);
   assert.equal(Notification.schema.path('target_level'), undefined);
   assert.equal(Notification.schema.path('recipient').options.ref, 'User');
 });

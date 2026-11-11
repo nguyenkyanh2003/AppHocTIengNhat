@@ -561,6 +561,36 @@
           "key_phrase": false
         },
         {
+          "start": "00:06",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "警察です。",
+          "romaji": "Keesatsu desu.",
+          "text_vi": "Cảnh sát đây.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:07",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "事件ですか、事故ですか。",
+          "romaji": "Jiken desu ka, jiko desu ka.",
+          "text_vi": "Vụ án hay tai nạn?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:10",
+          "speaker_ja": "王",
+          "speaker_romaji": "Oo",
+          "speaker_vi": "Vương",
+          "text_ja": "事故です。",
+          "romaji": "Jiko desu.",
+          "text_vi": "Tai nạn ạ.",
+          "key_phrase": false
+        },
+        {
           "start": "00:10",
           "speaker_ja": "王",
           "speaker_romaji": "Oo",
@@ -688,6 +718,16 @@
           "text_ja": "にほんごが あまり できません",
           "romaji": "nihongo ga amari dekimasen",
           "text_vi": "Tôi không giỏi tiếng Nhật lắm",
+          "key_phrase": false
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "警察",
+          "speaker_romaji": "Keesatsu",
+          "speaker_vi": "Cảnh sát",
+          "text_ja": "どのような状況でしたか。",
+          "romaji": "Dono yoo na jookyoo deshita ka.",
+          "text_vi": "Tình hình lúc đó thế nào?",
           "key_phrase": false
         },
         {

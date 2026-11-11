@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/state/view_state.dart';
 import '../../notifications/models/notification.dart';
+import '../models/admin_achievement.dart';
 import '../services/admin_service.dart';
 
 class AdminProvider extends ChangeNotifier {
@@ -32,7 +33,7 @@ class AdminProvider extends ChangeNotifier {
   Map<String, dynamic>? _reportStats;
 
   // Achievements
-  List<dynamic> _achievements = [];
+  List<AdminAchievement> _achievements = [];
   bool _isLoadingAchievements = false;
 
   // Transactions
@@ -80,8 +81,7 @@ class AdminProvider extends ChangeNotifier {
   bool get isLoadingReports => _isLoadingReports;
   Map<String, dynamic>? get reportStats => _reportStats;
 
-  List<Map<String, dynamic>> get achievements =>
-      _achievements.map((e) => Map<String, dynamic>.from(e)).toList();
+  List<AdminAchievement> get achievements => _achievements;
   bool get isLoadingAchievements => _isLoadingAchievements;
 
   List<Map<String, dynamic>> get transactions =>
@@ -571,40 +571,25 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> createAchievement(Map<String, dynamic> data) async {
-    try {
-      await _adminService.createAchievement(data);
-      await loadAchievements();
-      return true;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
+  /// Ba thao tác dưới đây trả về câu báo lỗi, `null` là thành công: hộp thoại
+  /// hiện lỗi tại chỗ, còn danh sách đang có không bị thay bằng màn lỗi.
+  Future<String?> createAchievement(AchievementDraft draft) =>
+      _changeAchievements(() => _adminService.createAchievement(draft));
 
-  Future<bool> updateAchievement(String id, Map<String, dynamic> data) async {
-    try {
-      await _adminService.updateAchievement(id, data);
-      await loadAchievements();
-      return true;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
+  Future<String?> updateAchievement(String id, AchievementDraft draft) =>
+      _changeAchievements(() => _adminService.updateAchievement(id, draft));
 
-  Future<bool> deleteAchievement(String id) async {
+  Future<String?> deleteAchievement(String id) =>
+      _changeAchievements(() => _adminService.deleteAchievement(id));
+
+  Future<String?> _changeAchievements(Future<void> Function() change) async {
     try {
-      await _adminService.deleteAchievement(id);
-      await loadAchievements();
-      return true;
+      await change();
     } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
+      return userMessageOf(e);
     }
+    await loadAchievements();
+    return null;
   }
 
   // ==================== TRANSACTIONS ====================

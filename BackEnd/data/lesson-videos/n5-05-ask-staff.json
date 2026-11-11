@@ -583,23 +583,23 @@
           "key_phrase": false
         },
         {
-          "start": "02:32",
-          "speaker_ja": "アンジェラ",
-          "speaker_romaji": "Anjera",
-          "speaker_vi": "Angela",
-          "text_ja": "ありがとうございました。",
-          "romaji": "Arigatoo gozaimashita.",
-          "text_vi": "Cảm ơn chị.",
-          "key_phrase": false
-        },
-        {
-          "start": "02:32:15",
+          "start": "02:33",
           "speaker_ja": "店員",
           "speaker_romaji": "Ten'in",
           "speaker_vi": "Nhân viên",
           "text_ja": "ありがとうございました。",
           "romaji": "Arigatoo gozaimashita.",
           "text_vi": "Cảm ơn quý khách.",
+          "key_phrase": false
+        },
+        {
+          "start": "02:34",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "ありがとうございました。",
+          "romaji": "Arigatoo gozaimashita.",
+          "text_vi": "Cảm ơn chị.",
           "key_phrase": false
         }
       ],

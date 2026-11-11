@@ -224,9 +224,9 @@
           "speaker_ja": "受付",
           "speaker_romaji": "Uketsuke",
           "speaker_vi": "Lễ tân",
-          "text_ja": "はい、お預かりします。では、座ってお待ちください。",
-          "romaji": "Hai, oazukari shimasu. Dewa, suwatte omachi kudasai.",
-          "text_vi": "Vâng, tôi xin nhận. Mời anh ngồi đợi.",
+          "text_ja": "はい、お預かりします。では、席に座って、お待ちください。",
+          "romaji": "Hai, oazukari shimasu. Dewa, seki ni suwatte, omachi kudasai.",
+          "text_vi": "Vâng, tôi xin nhận. Mời anh ngồi vào ghế đợi.",
           "key_phrase": false
         }
       ],

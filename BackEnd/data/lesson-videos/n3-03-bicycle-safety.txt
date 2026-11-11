@@ -13,7 +13,8 @@
 00:36 | ビン / Bin / Bin | あの、すみません。自転車、止めたいんですけど。 | Ano, sumimasen. Jitensha, tometai n desu kedo. | À, xin lỗi. Tôi muốn để xe đạp ạ.
 00:40 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | じゃあ、そこでチケットを買ってください。1回100円です。 | Jaa, soko de chiketto o katte kudasai. Ikkai hyaku-en desu. | Vậy anh mua vé ở đằng kia nhé. Mỗi lần 100 yên.
 *01:01 | ビン / Bin / Bin | あの、すみません。毎日止めるなら、定期券買った方が安いですよね。 | Ano, sumimasen. Mainichi tomeru nara, teekiken katta hoo ga yasui desu yo ne. | À, xin lỗi. Nếu ngày nào cũng để xe thì mua vé tháng sẽ rẻ hơn nhỉ.
-01:08 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | そうですね。1ヶ月、1700円です。 | Soo desu ne. Ikkagetsu, sen nanahyaku-en desu. | Đúng vậy. Một tháng là 1700 yên.
+01:08 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | そうですね。 | Soo desu ne. | Đúng vậy.
+01:10 | ビン / Bin / Bin | 1ヶ月、1700円…。 | Ikkagetsu, sen nanahyaku-en... | Một tháng 1700 yên…
 *01:14 | ビン / Bin / Bin | 毎回100円払うよりは安いですよね。どうしようかな。 | Maikai hyaku-en harau yori wa yasui desu yo ne. Dooshiyoo ka na. | Rẻ hơn so với trả 100 yên mỗi lần nhỉ. Không biết nên làm sao đây.
 01:24 | ビン / Bin / Bin | とりあえず、1ヶ月の定期券を買ってみます。更新もできるんですよね？ | Toriaezu, ikkagetsu no teekiken o katte mimasu. Kooshin mo dekiru n desu yo ne. | Trước mắt tôi sẽ thử mua vé tháng 1 tháng. Gia hạn cũng được đúng không ạ?
 01:30 | 駐輪場の係員 / Chuurinjoo no kakariin / Nhân viên bãi xe | はい。 | Hai. | Vâng.
@@ -37,7 +38,7 @@
 *00:22 | ビン / Bin / Bin | 事件です。カバンを取られました。 | Jiken desu. Kaban o toraremashita. | Là vụ án ạ. Tôi bị lấy mất cái túi.
 00:26 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | いつですか？ | Itsu desu ka. | Lúc nào vậy?
 00:27 | ビン / Bin / Bin | たった今です。 | Tatta ima desu. | Vừa mới xong ạ.
-00:30 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 場所は？ | Basho wa? | Địa điểm ở đâu?
+00:29 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 場所はどこですか。 | Basho wa doko desu ka. | Địa điểm ở đâu ạ?
 00:33 | ビン / Bin / Bin | 北部公園の近くの交差点です。 | Hokubu kooen no chikaku no koosaten desu. | Là ngã tư gần công viên Hokubu ạ.
 00:35 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 何という交差点か分かりますか？ | Nan to iu koosaten ka wakarimasu ka. | Anh có biết đó là ngã tư tên gì không?
 00:40 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | 信号機に何て書いてありますか？ | Shingooki ni nante kaite arimasu ka. | Trên đèn tín hiệu có ghi gì không?
@@ -55,7 +56,7 @@
 01:39 | ビン / Bin / Bin | 財布と家の鍵が入っていました。 | Saifu to ie no kagi ga haitte imashita. | Có ví và chìa khóa nhà ạ.
 01:44 | ビン / Bin / Bin | 財布の中には、現金と、在留カードと、キャッシュカードが入っています。 | Saifu no naka ni wa, genkin to, zairyuu kaado to, kyasshu kaado ga haitte imasu. | Trong ví có tiền mặt, thẻ cư trú và thẻ ngân hàng ạ.
 01:56 | 警察 / Keesatsu / Cảnh sát (tổng đài 110) | それでは、あなたのお名前と住所と電話番号を教えてください。 | Soredewa, anata no onamae to juusho to denwa bangoo o oshiete kudasai. | Vậy anh cho tôi biết tên, địa chỉ và số điện thoại của anh nhé.
-02:04 | ビン / Bin / Bin | 名前はチャン・バン・ビンです。住所は文化市…（続きは聞き取れない） | Namae wa Chan Ban Bin desu. Juusho wa Bunka-shi... (tsuzuki wa kikitorenai) | Tên tôi là Trần Văn Bin. Địa chỉ ở thành phố Bunka... (phần sau không nghe rõ)
+02:04 | ビン / Bin / Bin | 名前は、チャン・バン・ビンです。住所は…。 | Namae wa, Chan Ban Bin desu. Juusho wa... | Tên tôi là Trần Văn Bin. Địa chỉ là...
 ### từ vựng
 事件 | じけん | jiken | vụ án
 事故 | じこ | jiko | tai nạn

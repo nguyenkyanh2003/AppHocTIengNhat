@@ -57,12 +57,16 @@ const fakeSrsRepository = (overrides = {}) => ({
 
 /** Không có mục tiêu học tập nào để xét — test không chạm MongoDB. */
 const NO_GOALS = Object.freeze({ recordReached: async () => [] });
+const NO_BADGES = Object.freeze({ awardEarnedAchievements: async () => [] });
+const DIRECT_UNIT_OF_WORK = Object.freeze({ run: (fn) => fn({ session: 'session' }) });
 
-const buildService = ({ repository, srs, importer, goals } = {}) =>
+const buildService = ({ repository, srs, importer, goals, streak, unitOfWork } = {}) =>
   createVocabularyService({
     vocabularyRepository: repository ?? fakeVocabularyRepository(),
     srsRepository: srs ?? fakeSrsRepository(),
     goals: goals ?? NO_GOALS,
+    streak: streak ?? NO_BADGES,
+    unitOfWork: unitOfWork ?? DIRECT_UNIT_OF_WORK,
     ...(importer ? { importer } : {}),
   });
 
@@ -283,6 +287,28 @@ test('đánh dấu đã học xét mục tiêu ngay lúc đó; đánh dấu lạ
   await buildService({ srs, goals }).markLearned({ id: 'v1', userId: 'u1' });
 
   assert.deepEqual(calls, [{ userId: 'u1' }]);
+});
+
+test('đánh dấu đã học xét huy hiệu trong một transaction; đánh dấu lại từ đã học thì không', async () => {
+  // Nút này không đi qua `recordActivity`: không tự xét thì huy hiệu từ vựng
+  // đứng ở 10/10 mà vẫn khoá tới khi có một hoạt động học khác.
+  const calls = [];
+  const streak = {
+    awardEarnedAchievements: async (userId, options) => {
+      calls.push([userId, options]);
+      return [];
+    },
+  };
+  let created = true;
+  const srs = fakeSrsRepository({
+    ensureProgress: async () => ({ progress: { _id: 'p1', box: 1 }, created }),
+  });
+
+  await buildService({ srs, streak }).markLearned({ id: 'v1', userId: 'u1' });
+  created = false;
+  await buildService({ srs, streak }).markLearned({ id: 'v1', userId: 'u1' });
+
+  assert.deepEqual(calls, [['u1', { session: 'session' }]]);
 });
 
 test('bỏ đánh dấu khi chưa có tiến độ trả về lỗi 404', async () => {

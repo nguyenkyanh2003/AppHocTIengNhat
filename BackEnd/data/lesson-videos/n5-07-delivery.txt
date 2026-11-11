@@ -31,7 +31,7 @@
 # Nhận bưu kiện giao tận nhà
 00:07 | アンジェラ / Anjera / Angela | はーい。 | Haai. | Vâng, ra ngay.
 00:09 | 配達員 / Haitatsuin / Người giao hàng | 星丸運送です。 | Hoshimaru-unsoo desu. | Chuyển phát Hoshimaru đây ạ.
-00:19 | 配達員 / Haitatsuin / Người giao hàng | どうも。 | Doomo. | Chào chị.
+00:19 | アンジェラ / Anjera / Angela | あ、どうも。 | A, doomo. | À, chào anh.
 00:22 | 配達員 / Haitatsuin / Người giao hàng | お荷物です。 | Onimotsu desu. | Bưu kiện của chị đây ạ.
 *00:24 | 配達員 / Haitatsuin / Người giao hàng | ここに、はんこお願いします。 | Koko ni, hanko onegaishimasu. | Chị đóng dấu vào đây giúp tôi.
 *00:27 | アンジェラ / Anjera / Angela | あ、サインでもいいですか。 | A, sain demo ii desu ka. | À, ký tên có được không ạ?

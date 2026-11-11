@@ -1,6 +1,13 @@
 import mongoose from 'mongoose';
 
-export const NOTIFICATION_TYPES = ['SYSTEM', 'LESSON', 'EXAM'];
+/** Loại admin được chọn khi gửi tay. */
+export const SENDABLE_NOTIFICATION_TYPES = ['SYSTEM', 'LESSON', 'EXAM'];
+
+/**
+ * Mọi loại có thể nằm trong DB. `ACHIEVEMENT` chỉ do server tạo khi cấp huy
+ * hiệu (cùng transaction), admin không gửi được để không có huy hiệu giả.
+ */
+export const NOTIFICATION_TYPES = [...SENDABLE_NOTIFICATION_TYPES, 'ACHIEVEMENT'];
 
 /**
  * Thông báo cá nhân: mỗi bản ghi thuộc đúng một người nhận, nên trạng thái đọc
@@ -17,7 +24,7 @@ const NotificationSchema = new mongoose.Schema({
     is_read: { type: Boolean, default: false },
     read_at: { type: Date, default: null },
 
-    // Admin đã gửi; `null` dành cho thông báo hệ thống tự tạo (đợt sau).
+    // Admin đã gửi; `null` cho thông báo hệ thống tự tạo (vd. nhận huy hiệu).
     sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
 }, { timestamps: true });
 

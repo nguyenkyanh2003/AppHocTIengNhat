@@ -1,8 +1,11 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/app/theme/app_tokens.dart';
+import 'package:apphoctiengnnhat/features/achievements/widgets/achievement_rarity.dart';
 import 'package:apphoctiengnnhat/features/progress/models/dashboard.dart';
 import 'package:apphoctiengnnhat/features/progress/widgets/progress_heatmap_calendar.dart';
 import 'package:apphoctiengnnhat/shared/widgets/level_badge.dart';
@@ -74,6 +77,48 @@ void main() {
       expect(_contrast(colors.readable(hue, on: tint), tint),
           greaterThanOrEqualTo(4.5));
     });
+  });
+
+  group('độ hiếm của huy hiệu', () {
+    double contrast(Color a, Color b) {
+      final light = a.computeLuminance();
+      final dark = b.computeLuminance();
+      return (math.max(light, dark) + 0.05) / (math.min(light, dark) + 0.05);
+    }
+
+    const rarities = ['common', 'rare', 'epic', 'legendary'];
+
+    test('chữ trắng đọc được trên mọi điểm của nền thẻ đã đạt', () {
+      for (final rarity in rarities) {
+        for (final fill in achievementRarityFill(rarity)) {
+          expect(contrast(Colors.white, fill), greaterThanOrEqualTo(4.5),
+              reason: rarity);
+        }
+      }
+    });
+
+    for (final (name, theme) in [
+      ('sáng', AppTheme.lightTheme),
+      ('tối', AppTheme.darkTheme),
+    ]) {
+      testWidgets('chế độ $name: nhãn độ hiếm đọc được', (tester) async {
+        for (final rarity in rarities) {
+          for (final onFill in [false, true]) {
+            await tester.pumpWidget(MaterialApp(
+              theme: theme,
+              home:
+                  Scaffold(body: AchievementRarityChip(rarity, onFill: onFill)),
+            ));
+            final text = tester.widget<Text>(find.byType(Text));
+            final box = tester.widget<Container>(find.byType(Container).last);
+            final background = (box.decoration! as BoxDecoration).color!;
+            expect(contrast(text.style!.color!, background),
+                greaterThanOrEqualTo(4.5),
+                reason: '$rarity onFill=$onFill');
+          }
+        }
+      });
+    }
   });
 
   group('nền đặc mang chữ trắng', () {

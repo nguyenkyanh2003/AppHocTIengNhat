@@ -72,8 +72,8 @@
 02:05 | 店員 / Ten'in / Nhân viên | 少々お待ちください。 | Shooshoo omachi kudasai. | Xin quý khách chờ một chút.
 02:19 | 店員 / Ten'in / Nhân viên | では、お客様、こちらご確認ください。 | Dewa, okyakusama, kochira gokakunin kudasai. | Vậy, thưa quý khách, xin kiểm tra lại giúp ạ.
 02:24 | アンジェラ / Anjera / Angela | はい、大丈夫です。 | Hai, daijoobu desu. | Vâng, được rồi ạ.
-02:32 | アンジェラ / Anjera / Angela | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn chị.
-02:32:15 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+02:33 | 店員 / Ten'in / Nhân viên | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn quý khách.
+02:34 | アンジェラ / Anjera / Angela | ありがとうございました。 | Arigatoo gozaimashita. | Cảm ơn chị.
 ### từ vựng
 ズボン | ズボン | zubon | quần dài
 先週 | せんしゅう | senshuu | tuần trước

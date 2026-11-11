@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 import '../models/notification.dart';
 
 /// Một thông báo trong danh sách: chưa đọc thì nền nhấn và tiêu đề đậm. Nút
@@ -26,6 +27,7 @@ class NotificationTile extends StatelessWidget {
     final unread = !notification.isRead;
     final textTheme = Theme.of(context).textTheme;
     final type = notification.type;
+    final badgeIcon = notification.badgeIcon;
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
@@ -35,7 +37,10 @@ class NotificationTile extends StatelessWidget {
         onTap: onOpen,
         leading: CircleAvatar(
           backgroundColor: type.color.withValues(alpha: 0.15),
-          child: Icon(type.icon, color: context.colors.readable(type.color), size: 20),
+          // Thông báo huy hiệu hiện đúng biểu tượng của huy hiệu đó.
+          child: badgeIcon != null
+              ? ExcludeSemantics(child: Text(badgeIcon, style: const TextStyle(fontSize: AppTypography.title)))
+              : Icon(type.icon, color: context.colors.readable(type.color), size: 20),
         ),
         title: Text(
           notification.title,
@@ -112,11 +117,13 @@ extension on NotificationType {
         NotificationType.system => Icons.campaign_outlined,
         NotificationType.lesson => Icons.menu_book,
         NotificationType.exam => Icons.assignment_outlined,
+        NotificationType.achievement => Icons.emoji_events_outlined,
       };
 
   Color get color => switch (this) {
         NotificationType.system => AppColors.info,
         NotificationType.lesson => AppColors.lesson,
         NotificationType.exam => AppColors.jlpt,
+        NotificationType.achievement => AppColors.accent,
       };
 }

@@ -101,9 +101,9 @@ abstract final class AppColors {
   static const Color kanjiCoralEnd = Color(0xFFFF8E53);
 
   /// Độ hiếm của huy hiệu; nền đặc có chữ trắng ở cả hai chế độ.
-  static const Color rarityLegendary = Color(0xFFF59E0B);
-  static const Color rarityLegendaryEnd = Color(0xFFD97706);
-  static const Color rarityEpic = Color(0xFF8B5CF6);
+  static const Color rarityLegendary = Color(0xFFB45309);
+  static const Color rarityLegendaryEnd = Color(0xFF92400E);
+  static const Color rarityEpic = Color(0xFF7C3AED);
   static const Color rarityEpicEnd = Color(0xFF6D28D9);
   static const Color rarityRare = Color(0xFF4F46E5);
   static const Color rarityRareEnd = Color(0xFF4338CA);

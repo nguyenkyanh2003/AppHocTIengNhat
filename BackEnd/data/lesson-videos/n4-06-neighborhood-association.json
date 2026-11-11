@@ -397,9 +397,9 @@
           "speaker_ja": "アンジェラ",
           "speaker_romaji": "Anjera",
           "speaker_vi": "Angela",
-          "text_ja": "ありがとうございます。じゃあ、家に帰って、後でお金と一緒に持ってきます。",
-          "romaji": "Arigatoo gozaimasu. Jaa, ie ni kaette, ato de okane to issho ni motte kimasu.",
-          "text_vi": "Cháu cảm ơn bác. Vậy cháu về nhà rồi lát nữa mang đến cùng với tiền.",
+          "text_ja": "ありがとうございます。じゃ、うちで書いて、あとでお金といっしょに持ってきます。",
+          "romaji": "Arigatoo gozaimasu. Ja, uchi de kaite, ato de okane to issho ni motte kimasu.",
+          "text_vi": "Cháu cảm ơn bác. Vậy cháu về nhà viết, lát nữa mang sang cùng với tiền ạ.",
           "key_phrase": false
         },
         {
@@ -988,6 +988,26 @@
         },
         {
           "start": "03:18",
+          "speaker_ja": "鈴木",
+          "speaker_romaji": "Suzuki",
+          "speaker_vi": "Suzuki",
+          "text_ja": "はい、何ですか。",
+          "romaji": "Hai, nan desu ka.",
+          "text_vi": "Ừ, có chuyện gì vậy?",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
+          "text_ja": "明日、わたし、ゴミ置き場の掃除当番なんですけど…。",
+          "romaji": "Ashita, watashi, gomi okiba no sooji tooban nan desu kedo...",
+          "text_vi": "Ngày mai đến phiên tôi dọn bãi rác...",
+          "key_phrase": false
+        },
+        {
+          "start": "03:22",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
+import 'package:apphoctiengnnhat/features/admin/models/admin_achievement.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_achievement_card.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_report_card.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_user_card.dart';
@@ -54,20 +55,23 @@ void main() {
   testWidgets('thẻ thành tích: điều kiện là số vẫn hiện được', (tester) async {
     await _pumpExpanded(
       tester,
-      AdminAchievementCard(duplicateAchievement: (_) {}, achievement: const {
-        '_id': 'a1',
-        'icon': '📝',
-        'name': 'Một thành tích có tên khá dài để thử bố cục',
-        'description': 'Học năm điểm ngữ pháp',
-        'rarity': 'legendary',
-        'xp': 50,
-        'unlocked': 0,
-        'condition': 5,
-      }),
+      AdminAchievementCard(
+        achievement: AdminAchievement.fromJson(const {
+          '_id': 'a1',
+          'icon': '📝',
+          'name_vi': 'Một thành tích có tên khá dài để thử bố cục',
+          'description_vi': 'Học năm điểm ngữ pháp',
+          'category': 'grammar',
+          'rarity': 'legendary',
+          'xp_reward': 50,
+          'unlocked': 0,
+          'requirement_value': 5,
+        }),
+      ),
       'Một thành tích',
     );
 
-    expect(find.text('Cần đạt: 5'), findsOneWidget);
+    expect(find.text('Số bài tập mẫu câu đã đạt: 5'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

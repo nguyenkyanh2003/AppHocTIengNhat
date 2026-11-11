@@ -7,8 +7,8 @@
 # Phiếu khấu trừ thuế và quyết toán thuế
 00:02 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | アンジェラさん、お疲れさまでした。 | Anjera-san, otsukaresama deshita. | Chị Angela, vất vả rồi.
 00:05 | アンジェラ / Anjera / Angela | お疲れさまでした。 | Otsukaresama deshita. | Chị vất vả rồi ạ.
-00:06 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 今日も忙しかったですね。 | Kyoo mo isogashikatta desu ne. | Hôm nay cũng bận rộn nhỉ.
-00:09 | アンジェラ / Anjera / Angela | 本当ですね。 | Hontoo desu ne. | Đúng thật ạ.
+00:06 | アンジェラ / Anjera / Angela | 今日も忙しかったですね。 | Kyoo mo isogashikatta desu ne. | Hôm nay cũng bận rộn nhỉ.
+00:09 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | 本当ですね。 | Hontoo desu ne. | Đúng thật.
 00:11 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | あ、そうだ。アンジェラさん、ちょっと待っててください。 | A, soo da. Anjera-san, chotto matte ite kudasai. | À, đúng rồi. Chị Angela, chờ tôi một chút nhé.
 00:17 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
 00:26 | カフェのオーナー / Kafe no oonaa / Chủ quán cà phê | はい、これ。源泉徴収票。 | Hai, kore. Gensen chooshuuhyoo. | Đây, cái này. Phiếu khấu trừ thuế tại nguồn.

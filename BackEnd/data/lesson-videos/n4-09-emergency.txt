@@ -76,6 +76,9 @@
 ## summary.mp4
 # Ôn tập: Nhờ giúp đỡ khi khẩn cấp
 00:00 |  /  / Chủ đề | はねられました | haneraremashita | Bị (xe) đâm
+00:06 | 警察 / Keesatsu / Cảnh sát | 警察です。 | Keesatsu desu. | Cảnh sát đây.
+00:07 | 警察 / Keesatsu / Cảnh sát | 事件ですか、事故ですか。 | Jiken desu ka, jiko desu ka. | Vụ án hay tai nạn?
+00:10 | 王 / Oo / Vương | 事故です。 | Jiko desu. | Tai nạn ạ.
 *00:10 | 王 / Oo / Vương | 友達が車にはねられました。 | Tomodachi ga kuruma ni haneraremashita. | Bạn tôi bị ô tô đâm.
 00:16 | ナレーター / Nareetaa / Người dẫn | この動画では、「友達が車にはねられました」と言っています。 | Kono dooga de wa, "Tomodachi ga kuruma ni haneraremashita" to itte imasu. | Trong video, nhân vật nói "Bạn tôi bị ô tô đâm".
 00:24 | ナレーター / Nareetaa / Người dẫn | 「はねられました」は、受け身の表現です。 | "Haneraremashita" wa, ukemi no hyoogen desu. | "Haneraremashita" là cách nói bị động.
@@ -89,6 +92,7 @@
 01:48 | ナレーター / Nareetaa / Người dẫn | 私が被害に遭ったときは、私を主語にして、「私がAさんに殴られました」となります。 | Watashi ga higai ni atta toki wa, watashi o shugo ni shite, "Watashi ga A-san ni naguraremashita" to narimasu. | Khi tôi là người bị hại thì lấy tôi làm chủ ngữ: "Tôi bị anh A đánh".
 02:02 | ナレーター / Nareetaa / Người dẫn | 「私」が主語のときは、「私」を言わないで、「Aさんに殴られました」と言うことが多いです。 | "Watashi" ga shugo no toki wa, "watashi" o iwanaide, "A-san ni naguraremashita" to iu koto ga ooi desu. | Khi chủ ngữ là "tôi" thì thường không nói "tôi" mà chỉ nói "Bị anh A đánh".
 02:17 |  /  / Chủ đề | にほんごが あまり できません | nihongo ga amari dekimasen | Tôi không giỏi tiếng Nhật lắm
+02:22 | 警察 / Keesatsu / Cảnh sát | どのような状況でしたか。 | Dono yoo na jookyoo deshita ka. | Tình hình lúc đó thế nào?
 *02:25 | 王 / Oo / Vương | すみません。私は外国人です。日本語があまりできません。 | Sumimasen. Watashi wa gaikokujin desu. Nihongo ga amari dekimasen. | Xin lỗi. Tôi là người nước ngoài. Tôi không giỏi tiếng Nhật lắm.
 02:32 | ナレーター / Nareetaa / Người dẫn | 名詞に「ができます」をつけると可能を表します。「できません」と言うと不可能を表します。 | Meeshi ni "ga dekimasu" o tsukeru to kanoo o arawashimasu. "Dekimasen" to iu to fukanoo o arawashimasu. | Thêm "ga dekimasu" sau danh từ để diễn tả khả năng. Nói "dekimasen" thì diễn tả không thể.
 02:48 | ナレーター / Nareetaa / Người dẫn | この動画では、「日本語があまりできません」と言っています。 | Kono dooga de wa, "Nihongo ga amari dekimasen" to itte imasu. | Trong video, nhân vật nói "Tôi không giỏi tiếng Nhật lắm".

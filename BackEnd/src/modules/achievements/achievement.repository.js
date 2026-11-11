@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 import Achievement from '../../../model/Achievement.js';
+import Exercise from '../../../model/Exercise.js';
 import ExerciseResult from '../../../model/ExerciseResult.js';
 import LessonProgress from '../../../model/LessonProgress.js';
 import SRSProgress from '../../../model/SRSProgress.js';
@@ -17,6 +18,9 @@ import UserAchievement from '../../../model/UserAchievement.js';
 
 const SORT = { category: 1, requirement_value: 1 };
 
+/** Loại bài tập kiểm tra mẫu câu; bài "Hội thoại" của mỗi bài học thuộc loại `Tổng hợp`. */
+const PATTERN_EXERCISE_TYPES = Object.freeze(['Ngữ pháp', 'Tổng hợp']);
+
 /** `aggregate` không ép kiểu `user` như `find`; so chuỗi với ObjectId ra 0 dòng. */
 const toObjectId = (value) =>
   value instanceof mongoose.Types.ObjectId ? value : new mongoose.Types.ObjectId(String(value));
@@ -26,6 +30,7 @@ export const createAchievementRepository = ({
   UserAchievement: userAchievementModel = UserAchievement,
   LessonProgress: lessonProgressModel = LessonProgress,
   ExerciseResult: exerciseResultModel = ExerciseResult,
+  Exercise: exerciseModel = Exercise,
   SRSProgress: srsModel = SRSProgress,
 } = {}) => {
   /** Số mục khác nhau user đã học qua mọi bài, ví dụ `learned_kanji_ids`. */
@@ -103,8 +108,16 @@ export const createAchievementRepository = ({
     countLearnedKanji: ({ userId, session }) =>
       countDistinctLessonItems({ userId, field: 'learned_kanji_ids', session }),
 
-    countLearnedGrammar: ({ userId, session }) =>
-      countDistinctLessonItems({ userId, field: 'learned_grammar_ids', session }),
+    /** Số bài tập mẫu câu đã đạt, mỗi bài tính một lần dù làm lại bao nhiêu lần. */
+    async countPassedPatternExercises({ userId, session }) {
+      const passed = await exerciseResultModel
+        .distinct('exercise_id', { user_id: userId, is_passed: true })
+        .session(session);
+      if (passed.length === 0) return 0;
+      return exerciseModel
+        .countDocuments({ _id: { $in: passed }, type: { $in: PATTERN_EXERCISE_TYPES } })
+        .session(session);
+    },
 
     countCompletedLessons({ userId, session }) {
       return lessonProgressModel.countDocuments({ user: userId, is_completed: true }).session(session);
@@ -137,7 +150,16 @@ export const createAchievementRepository = ({
           },
         },
         { $unwind: '$definition' },
+        { $match: { 'definition.is_active': true } },
         { $group: { _id: '$definition.category', count: { $sum: 1 } } },
+      ]);
+    },
+
+    /** Mỗi huy hiệu có bao nhiêu người đã mở, cho màn quản trị. */
+    countCompletedByAchievement() {
+      return userAchievementModel.aggregate([
+        { $match: { is_completed: true } },
+        { $group: { _id: '$achievement', count: { $sum: 1 } } },
       ]);
     },
 

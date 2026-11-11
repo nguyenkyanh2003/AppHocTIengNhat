@@ -17,8 +17,8 @@
 00:47 | ビン / Bin / Bin | なるほど。それでみんな入れてるんですね。 | Naruhodo. Sorede minna irete ru n desu ne. | Ra vậy. Thế nên mọi người đều cho vào nhỉ.
 00:51 | 同僚 / Dooryoo / Đồng nghiệp | はい。 | Hai. | Vâng.
 00:53 | ビン / Bin / Bin | でも、日本ではよく、卵をそのまま食べますよね。 | Demo, Nihon de wa yoku, tamago o sonomama tabemasu yo ne. | Nhưng mà ở Nhật hay ăn trứng sống nguyên như vậy nhỉ.
-01:00 | ビン / Bin / Bin | 卵は、食中毒にならないんですか？そのまま… | Tamago wa, shokuchuudoku ni naranai n desu ka. Sonomama... | Trứng thì không bị ngộ độc thực phẩm ạ? Cứ ăn nguyên như vậy...
-01:07 | 同僚 / Dooryoo / Đồng nghiệp | ああ、生卵ね。賞味期限内に食べれば、普通は大丈夫ですよ。 | Aa, nama-tamago ne. Shoomi-kigen-nai ni tabereba, futsuu wa daijoobu desu yo. | À, trứng sống nhỉ. Nếu ăn trong hạn sử dụng thì thường là không sao đâu.
+01:00 | ビン / Bin / Bin | 卵は、食中毒にならないんですか？ | Tamago wa, shokuchuudoku ni naranai n desu ka. | Trứng thì không bị ngộ độc thực phẩm ạ?
+01:04 | 同僚 / Dooryoo / Đồng nghiệp | そのまま？ああ、生卵ね。賞味期限内に食べれば、普通は大丈夫ですよ。 | Sonomama? Aa, nama-tamago ne. Shoomi-kigen-nai ni tabereba, futsuu wa daijoobu desu yo. | Ăn nguyên như vậy à? À, trứng sống nhỉ. Nếu ăn trong hạn sử dụng thì thường là không sao đâu.
 01:14 | ビン / Bin / Bin | いやぁ、でも生は怖いなぁ。 | Iyaa, demo nama wa kowai naa. | Ôi, nhưng mà đồ sống thì tôi thấy sợ.
 01:20 | 同僚 / Dooryoo / Đồng nghiệp | 私たち、気になるところが違いますね。 | Watashitachi, ki ni naru tokoro ga chigaimasu ne. | Chúng ta để ý đến những chỗ khác nhau nhỉ.
 01:23 | ビン / Bin / Bin | そうですね。 | Soo desu ne. | Đúng vậy nhỉ.
@@ -49,11 +49,11 @@
 00:56 | 同僚 / Dooryoo / Đồng nghiệp | あと、住んでる場所。 | Ato, sunde ru basho. | Và nơi em đang sống nữa.
 01:00 | アンジェラ / Anjera / Angela | も、み、じ、ちょう。 | Mo, mi, ji, choo. | Mo, mi, ji, chō. (vừa gõ chữ vừa đọc)
 01:12 | 同僚 / Dooryoo / Đồng nghiệp | うん。 | Un. | Ừ.
-01:17 | アンジェラ / Anjera / Angela | い、ん、ふ、る、え、ん、ざ。 | I, n, fu, ru, e, n, za. | I, n, fu, ru, e, n, za. (vừa gõ chữ vừa đọc)
+01:17 | アンジェラ / Anjera / Angela | イ、ン、フ、ル、エ、ン、ザ。 | I, n, fu, ru, e, n, za. | I, n, fu, ru, e, n, za. (vừa gõ chữ vừa đọc)
 01:32 | アンジェラ / Anjera / Angela | よ、ぼ、う、せっ、しゅ。 | Yo, bo, u, sesshu. | Yo, bo, u, sesshu. (vừa gõ chữ vừa đọc)
 01:56 | アンジェラ / Anjera / Angela | 桜病院って出ました。 | Sakura byooin tte demashita. | Hiện ra "bệnh viện Sakura" ạ.
-02:00 | 同僚 / Dooryoo / Đồng nghiệp | ここだったら、前に行ったことがあります。 | Koko dattara, mae ni itta koto ga arimasu. | Nếu là chỗ này thì tôi từng đến rồi.
-02:03 | アンジェラ / Anjera / Angela | ああ、だったら安心ですね。 | Aa, dattara anshin desu ne. | À, vậy thì yên tâm nhỉ.
+02:00 | アンジェラ / Anjera / Angela | ここだったら、前に行ったことがあります。 | Koko dattara, mae ni itta koto ga arimasu. | Chỗ này thì trước đây em từng đến rồi.
+02:03 | 同僚 / Dooryoo / Đồng nghiệp | ああ、だったら安心ですね。 | Aa, dattara anshin desu ne. | À, vậy thì yên tâm nhỉ.
 ### từ vựng
 予防接種 | よぼうせっしゅ | yoboo-sesshu | tiêm phòng
 インフルエンザ | インフルエンザ | infuruenza | cúm
@@ -73,7 +73,7 @@
 01:00 | 歯医者 / Haisha / Nha sĩ | 虫歯になってますね。治療が必要です。 | Mushiba ni natte masu ne. Chiryoo ga hitsuyoo desu. | Anh bị sâu răng rồi. Cần phải điều trị.
 *01:05 | ビン / Bin / Bin | ああ、やっぱり虫歯ですか？もっと早く来ればよかったです。 | Aa, yappari mushiba desu ka. Motto hayaku kureba yokatta desu. | À, quả nhiên là sâu răng ạ? Giá mà tôi đến sớm hơn.
 01:14 | 歯医者 / Haisha / Nha sĩ | では詳しくご説明しますね。それから治療していきましょう。 | Dewa kuwashiku gosetsumee shimasu ne. Sorekara chiryoo shite ikimashoo. | Vậy tôi sẽ giải thích chi tiết nhé. Sau đó chúng ta điều trị.
-01:22 | ビン / Bin / Bin | はい。 | Hai. | Vâng.
+01:22 | 歯医者 / Haisha / Nha sĩ | はい、いいですよ。 | Hai, ii desu yo. | Vâng, được rồi.
 01:31 | 歯医者 / Haisha / Nha sĩ | 次回以降、型を取って詰め物をしていくんですけど、種類があります。 | Jikai ikoo, kata o totte tsumemono o shite iku n desu kedo, shurui ga arimasu. | Từ lần sau sẽ lấy khuôn rồi trám răng, và có nhiều loại.
 01:37 | ビン / Bin / Bin | こんなに種類があるんですか？ | Konna ni shurui ga aru n desu ka. | Có nhiều loại thế này ạ?
 01:40 | 歯医者 / Haisha / Nha sĩ | 保険適用のものと自費のものがあります。どうしますか？ | Hoken tekiyoo no mono to jihi no mono ga arimasu. Doo shimasu ka. | Có loại được bảo hiểm chi trả và loại tự trả. Anh chọn loại nào?

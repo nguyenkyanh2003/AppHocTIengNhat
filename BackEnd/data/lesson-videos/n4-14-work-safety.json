@@ -20,13 +20,13 @@
           "key_phrase": true
         },
         {
-          "start": "00:12",
+          "start": "00:10",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
-          "text_ja": "指差…？何ですか。",
-          "romaji": "Shisa...? Nan desu ka.",
-          "text_vi": "Chỉ tay...? Là gì vậy ạ?",
+          "text_ja": "え？ゆびさ、ゆびさ、何ですか。",
+          "romaji": "E? Yubisa, yubisa, nan desu ka.",
+          "text_vi": "Ơ? \"Yubisa\", \"yubisa\" là gì ạ?",
           "key_phrase": false
         },
         {
@@ -80,7 +80,7 @@
           "key_phrase": true
         },
         {
-          "start": "00:52",
+          "start": "00:57",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
@@ -100,7 +100,7 @@
           "key_phrase": false
         },
         {
-          "start": "01:05",
+          "start": "01:09",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
@@ -114,17 +114,37 @@
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
           "speaker_vi": "Đàn anh",
-          "text_ja": "最後は前方。",
-          "romaji": "Saigo wa zenpoo.",
-          "text_vi": "Cuối cùng là phía trước.",
+          "text_ja": "最後は、「前方、よし」。",
+          "romaji": "Saigo wa, \"zenpoo, yoshi\".",
+          "text_vi": "Cuối cùng là \"zenpoo, yoshi\" (phía trước, được).",
           "key_phrase": false
         },
         {
-          "start": "01:15",
+          "start": "01:17",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
-          "text_ja": "前方、よし。",
+          "text_ja": "えっ、ぜん、ぜんぽ…。",
+          "romaji": "E, zen, zenpo...",
+          "text_vi": "Ơ, zen, zenpo...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:21",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "ぜんぽう。",
+          "romaji": "Zenpoo.",
+          "text_vi": "\"Zenpoo\" (phía trước).",
+          "key_phrase": false
+        },
+        {
+          "start": "01:25",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "ぜんぽう、よし。",
           "romaji": "Zenpoo, yoshi.",
           "text_vi": "Phía trước, được.",
           "key_phrase": false
@@ -181,12 +201,22 @@
         },
         {
           "start": "01:55",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn anh",
+          "text_ja": "分かった？",
+          "romaji": "Wakatta?",
+          "text_vi": "Hiểu chưa?",
+          "key_phrase": false
+        },
+        {
+          "start": "01:56",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
-          "text_ja": "わかった、はい。ありがとうございました。",
-          "romaji": "Wakatta, hai. Arigatoo gozaimashita.",
-          "text_vi": "Em hiểu rồi ạ. Cảm ơn anh.",
+          "text_ja": "はい。ありがとうございました。",
+          "romaji": "Hai. Arigatoo gozaimashita.",
+          "text_vi": "Rồi ạ. Em cảm ơn anh.",
           "key_phrase": false
         }
       ],
@@ -248,9 +278,9 @@
         },
         {
           "start": "00:03",
-          "speaker_ja": "ミゲル",
-          "speaker_romaji": "Migeru",
-          "speaker_vi": "Miguel",
+          "speaker_ja": "全員",
+          "speaker_romaji": "Zen'in",
+          "speaker_vi": "Mọi người",
           "text_ja": "おはようございます。",
           "romaji": "Ohayoo gozaimasu.",
           "text_vi": "Chào buổi sáng ạ.",
@@ -291,9 +321,39 @@
           "speaker_ja": "大城",
           "speaker_romaji": "Ooshiro",
           "speaker_vi": "Ōshiro",
-          "text_ja": "この掲示、全員で復唱してください。「換気注意」「換気注意」「火気厳禁」「火気厳禁」。",
-          "romaji": "Kono keeji, zenin de fukushoo shite kudasai. \"Kanki chuui\" \"kanki chuui\" \"kaki genkin\" \"kaki genkin\".",
-          "text_vi": "Bảng thông báo này, tất cả mọi người hãy đọc theo. \"Chú ý thông gió\" \"Chú ý thông gió\" \"Cấm lửa\" \"Cấm lửa\".",
+          "text_ja": "この掲示、全員で復唱してください。「換気注意」。",
+          "romaji": "Kono keeji, zen'in de fukushoo shite kudasai. \"Kanki chuui\".",
+          "text_vi": "Mọi người hãy cùng đọc to bảng thông báo này. \"Chú ý thông gió\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:35",
+          "speaker_ja": "全員",
+          "speaker_romaji": "Zen'in",
+          "speaker_vi": "Mọi người",
+          "text_ja": "「換気注意」。",
+          "romaji": "\"Kanki chuui\".",
+          "text_vi": "\"Chú ý thông gió\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:37",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "「火気厳禁」。",
+          "romaji": "\"Kaki genkin\".",
+          "text_vi": "\"Cấm lửa\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:39",
+          "speaker_ja": "全員",
+          "speaker_romaji": "Zen'in",
+          "speaker_vi": "Mọi người",
+          "text_ja": "「火気厳禁」。",
+          "romaji": "\"Kaki genkin\".",
+          "text_vi": "\"Cấm lửa\".",
           "key_phrase": false
         },
         {
@@ -311,9 +371,9 @@
           "speaker_ja": "大城",
           "speaker_romaji": "Ooshiro",
           "speaker_vi": "Ōshiro",
-          "text_ja": "それから、来週水曜日は定例ミーティングです。今後安全についての研修も行う予定です。",
-          "romaji": "Sorekara, raishuu suiyoobi wa teeree miitingu desu. Kongo anzen ni tsuite no kenshuu mo okonau yotee desu.",
-          "text_vi": "Ngoài ra, thứ Tư tuần sau là buổi họp định kỳ. Sắp tới cũng sẽ có buổi tập huấn về an toàn.",
+          "text_ja": "それから、来週水曜日は定例ミーティングです。安全についての研修も行う予定です。",
+          "romaji": "Sorekara, raishuu suiyoobi wa teeree miitingu desu. Anzen ni tsuite no kenshuu mo okonau yotee desu.",
+          "text_vi": "Ngoài ra, thứ Tư tuần sau là buổi họp định kỳ. Sẽ có cả buổi tập huấn về an toàn.",
           "key_phrase": false
         },
         {
@@ -334,6 +394,16 @@
           "text_ja": "本日も安全第一で頑張りましょう。よろしくお願いします。",
           "romaji": "Honjitsu mo anzen daiichi de ganbarimashoo. Yoroshiku onegaishimasu.",
           "text_vi": "Hôm nay cũng hãy cố gắng đặt an toàn lên hàng đầu nhé. Mong mọi người hợp tác.",
+          "key_phrase": false
+        },
+        {
+          "start": "01:11",
+          "speaker_ja": "全員",
+          "speaker_romaji": "Zen'in",
+          "speaker_vi": "Mọi người",
+          "text_ja": "よろしくお願いします。",
+          "romaji": "Yoroshiku onegaishimasu.",
+          "text_vi": "Xin nhờ anh ạ.",
           "key_phrase": false
         },
         {
@@ -407,6 +477,16 @@
           "key_phrase": false
         },
         {
+          "start": "01:46",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "はいはい…。",
+          "romaji": "Hai hai...",
+          "text_vi": "Ừ, ừ...",
+          "key_phrase": false
+        },
+        {
           "start": "01:48",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
@@ -415,6 +495,16 @@
           "romaji": "Dekireba, sono shiryoo o honyaku shite moraitain desu ga.",
           "text_vi": "Nếu được thì em muốn nhờ ai đó dịch giúp tài liệu đó ạ.",
           "key_phrase": true
+        },
+        {
+          "start": "01:52",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "ああ、はいはい。",
+          "romaji": "Aa, hai hai.",
+          "text_vi": "À, ừ ừ.",
+          "key_phrase": false
         },
         {
           "start": "01:56",
@@ -557,7 +647,7 @@
           "start": "00:28",
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
-          "speaker_vi": "Đàn anh",
+          "speaker_vi": "Đàn chị",
           "text_ja": "そうだね。ミゲルさんは何がダメだと思う？",
           "romaji": "Soo da ne. Migeru-san wa nani ga dame da to omou?",
           "text_vi": "Đúng rồi. Anh Miguel nghĩ điều gì không ổn?",
@@ -577,27 +667,37 @@
           "start": "00:44",
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
-          "speaker_vi": "Đàn anh",
+          "speaker_vi": "Đàn chị",
           "text_ja": "ね。一酸化炭素中毒になっちゃうよね。",
           "romaji": "Ne. Issankatanso chuudoku ni nacchau yo ne.",
           "text_vi": "Đúng không. Sẽ bị ngộ độc khí carbon monoxide đó.",
           "key_phrase": false
         },
         {
-          "start": "00:50",
+          "start": "00:49",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
-          "text_ja": "一酸化炭素中毒ですか。",
-          "romaji": "Issankatanso chuudoku desu ka.",
-          "text_vi": "Ngộ độc khí carbon monoxide ạ?",
+          "text_ja": "いっさん、いっさんかですか。",
+          "romaji": "Issan, issanka desu ka.",
+          "text_vi": "\"Issan\", \"issanka\" ạ?",
+          "key_phrase": false
+        },
+        {
+          "start": "00:53",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn chị",
+          "text_ja": "いっさんかたんそちゅうどく。",
+          "romaji": "Issanka-tanso-chuudoku.",
+          "text_vi": "\"Issanka-tanso-chuudoku\" (ngộ độc khí CO).",
           "key_phrase": false
         },
         {
           "start": "00:57",
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
-          "speaker_vi": "Đàn anh",
+          "speaker_vi": "Đàn chị",
           "text_ja": "一酸化炭素っていうガスが出て、中毒になること。",
           "romaji": "Issankatanso tte iu gasu ga dete, chuudoku ni naru koto.",
           "text_vi": "Là khi khí gọi là carbon monoxide thoát ra và gây ngộ độc đó.",
@@ -617,9 +717,9 @@
           "start": "01:07",
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
-          "speaker_vi": "Đàn anh",
-          "text_ja": "例えば、このみたいな体に悪い煙をたくさん吸って、吐き気がしたり苦しくなったり、すごく具合が悪くなること。",
-          "romaji": "Tatoeba, kono mitai na karada ni warui kemuri o takusan sutte, hakike ga shitari kurushiku nattari, sugoku guai ga waruku naru koto.",
+          "speaker_vi": "Đàn chị",
+          "text_ja": "例えば、この絵みたいな体に悪い煙をたくさん吸って、吐き気がしたり苦しくなったり、すごく具合が悪くなること。",
+          "romaji": "Tatoeba, kono e mitai na karada ni warui kemuri o takusan sutte, hakike ga shitari kurushiku nattari, sugoku guai ga waruku naru koto.",
           "text_vi": "Ví dụ như hít nhiều khói độc hại cho cơ thể như thế này, bị buồn nôn, khó thở, người rất khó chịu.",
           "key_phrase": false
         },
@@ -630,14 +730,14 @@
           "speaker_vi": "Miguel",
           "text_ja": "あ、わかりました。ありがとうございます。",
           "romaji": "A, wakarimashita. Arigatoo gozaimasu.",
-          "text_vi": "À, em hiểu rồi ạ. Cảm ơn anh.",
+          "text_vi": "À, em hiểu rồi ạ. Cảm ơn chị.",
           "key_phrase": false
         },
         {
           "start": "01:30",
-          "speaker_ja": "大城",
-          "speaker_romaji": "Ooshiro",
-          "speaker_vi": "Ōshiro",
+          "speaker_ja": "先輩",
+          "speaker_romaji": "Senpai",
+          "speaker_vi": "Đàn chị",
           "text_ja": "こういうところでは絶対換気が必要だよね。空気を入れ替えること。",
           "romaji": "Koo iu tokoro de wa zettai kanki ga hitsuyoo da yo ne. Kuuki o irekaeru koto.",
           "text_vi": "Ở những nơi như thế này thì nhất định cần thông gió nhỉ. Tức là thay đổi không khí.",
@@ -655,19 +755,19 @@
         },
         {
           "start": "01:45",
-          "speaker_ja": "大城",
-          "speaker_romaji": "Ooshiro",
-          "speaker_vi": "Ōshiro",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
           "text_ja": "まず一つは、換気をしていないから一酸化炭素中毒になるかもしれない。これでいいですか。",
           "romaji": "Mazu hitotsu wa, kanki o shite inai kara issankatanso chuudoku ni naru kamoshirenai. Kore de ii desu ka.",
           "text_vi": "Trước tiên, một điều là vì không thông gió nên có thể bị ngộ độc khí CO. Như vậy được không ạ?",
           "key_phrase": false
         },
         {
-          "start": "01:56",
+          "start": "01:59",
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
-          "speaker_vi": "Đàn anh",
+          "speaker_vi": "Đàn chị",
           "text_ja": "いいね。",
           "romaji": "Ii ne.",
           "text_vi": "Được đó.",
@@ -677,7 +777,7 @@
           "start": "02:02",
           "speaker_ja": "先輩",
           "speaker_romaji": "Senpai",
-          "speaker_vi": "Đàn anh",
+          "speaker_vi": "Đàn chị",
           "text_ja": "そうだ、発表はミゲルさん、お願いできる？",
           "romaji": "Soo da, happyoo wa Migeru-san, onegai dekiru?",
           "text_vi": "À đúng rồi, phần thuyết trình nhờ anh Miguel được không?",
@@ -771,17 +871,27 @@
           "key_phrase": false
         },
         {
-          "start": "00:08",
+          "start": "00:06",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
-          "text_ja": "そうですね。窓が開いてないですね。",
-          "romaji": "Soo desu ne. Mado ga aitenai desu ne.",
-          "text_vi": "Đúng vậy nhỉ. Cửa sổ chưa mở.",
+          "text_ja": "う～ん、そうですね。",
+          "romaji": "Uun, soo desu ne.",
+          "text_vi": "Ừm, đúng vậy nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:11",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "窓が開いてないですね。",
+          "romaji": "Mado ga aitenai desu ne.",
+          "text_vi": "Cửa sổ đang không mở nhỉ.",
           "key_phrase": true
         },
         {
-          "start": "00:14",
+          "start": "00:13",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
@@ -795,9 +905,9 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "この動画でミゲルさんは「窓が開いてないです」と言いました。",
-          "romaji": "Kono dooga de Migeru-san wa \"Mado ga aitenai desu\" to iimashita.",
-          "text_vi": "Trong video này, anh Miguel đã nói \"Cửa sổ chưa mở\".",
+          "text_ja": "この動画でミゲルさんは、「窓が開いてないです。」と言いました。",
+          "romaji": "Kono dooga de Migeru-san wa, \"Mado ga aitenai desu\" to iimashita.",
+          "text_vi": "Trong video này, anh Miguel đã nói \"Mado ga aitenai desu\" (cửa sổ chưa mở).",
           "key_phrase": false
         },
         {
@@ -805,9 +915,19 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「開いていないです」の「て」がい抜きされて「開いてないです」となっています。「していません」も「していないです」も同じ意味です。",
-          "romaji": "\"Aite inai desu\" no \"i\" ga inuki sarete \"aitenai desu\" to natte imasu. \"Shite imasen\" mo \"shite inai desu\" mo onaji imi desu.",
-          "text_vi": "Chữ \"i\" trong \"aite inai desu\" bị lược bỏ (i-nuki) thành \"aitenai desu\". \"Shite imasen\" và \"shite inai desu\" cũng cùng một nghĩa.",
+          "text_ja": "「あいていないです」の「い」が省略されて、「あいてないです」となっています。",
+          "romaji": "\"Aite inai desu\" no \"i\" ga shooryaku sarete, \"aitenai desu\" to natte imasu.",
+          "text_vi": "Chữ \"i\" trong \"aite inai desu\" được lược bỏ, thành \"aitenai desu\".",
+          "key_phrase": false
+        },
+        {
+          "start": "00:46",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「あいていないです」は、「あいていません」と同じ意味です。",
+          "romaji": "\"Aite inai desu\" wa, \"aite imasen\" to onaji imi desu.",
+          "text_vi": "\"Aite inai desu\" có cùng nghĩa với \"aite imasen\" (không mở).",
           "key_phrase": false
         },
         {
@@ -815,49 +935,99 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「開いている」→「開いてる」、「していない」→「してない」「開いてない」のように言うことができます。",
-          "romaji": "\"Aite iru\" → \"aiteru\", \"shite inai\" → \"shitenai\", \"aitenai\" no yoo ni iu koto ga dekimasu.",
-          "text_vi": "Có thể nói tương tự như \"aite iru\" → \"aiteru\", \"shite inai\" → \"shitenai\", \"aitenai\".",
+          "text_ja": "「あいている」は「あいてる」、「あいています」は「あいてます」、「あいていた」は「あいてた」、「あいていない」は「あいてない」のように言うことができます。",
+          "romaji": "\"Aite iru\" wa \"aiteru\", \"aite imasu\" wa \"aitemasu\", \"aite ita\" wa \"aiteta\", \"aite inai\" wa \"aitenai\" no yoo ni iu koto ga dekimasu.",
+          "text_vi": "Có thể nói \"aite iru\" thành \"aiteru\", \"aite imasu\" thành \"aitemasu\", \"aite ita\" thành \"aiteta\", \"aite inai\" thành \"aitenai\".",
           "key_phrase": false
         },
         {
-          "start": "01:25",
+          "start": "01:24",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "話し言葉では、音が変わることもあります。例えば、「開けておいてください」が「開けといてください」ということがあります。",
-          "romaji": "Hanashi kotoba de wa, oto ga kawaru koto mo arimasu. Tatoeba, \"akete oite kudasai\" ga \"aketoite kudasai\" to iu koto ga arimasu.",
-          "text_vi": "Trong văn nói, âm cũng có thể biến đổi. Ví dụ, \"akete oite kudasai\" (hãy để mở sẵn) có khi thành \"aketoite kudasai\".",
+          "text_ja": "また、話し言葉では、音が変わることもあります。",
+          "romaji": "Mata, hanashi kotoba de wa, oto ga kawaru koto mo arimasu.",
+          "text_vi": "Ngoài ra, trong văn nói, âm cũng có thể bị biến đổi.",
           "key_phrase": false
         },
         {
-          "start": "01:50",
+          "start": "01:32",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「て＋おいて」が短くなって「といて」となります。「読んでおいてください」も「読んどいてください」となります。",
-          "romaji": "\"Te + oite\" ga mijikaku natte \"toite\" to narimasu. \"Yonde oite kudasai\" mo \"yondoite kudasai\" to narimasu.",
-          "text_vi": "\"Te + oite\" rút ngắn thành \"toite\". \"Yonde oite kudasai\" (đọc trước giúp nhé) cũng thành \"yondoite kudasai\".",
+          "text_ja": "たとえば、「開けておいてください」を「開けといてください」と言うことがあります。",
+          "romaji": "Tatoeba, \"Akete oite kudasai\" o \"Aketoite kudasai\" to iu koto ga arimasu.",
+          "text_vi": "Ví dụ, có khi nói \"aketoite kudasai\" thay cho \"akete oite kudasai\" (hãy mở sẵn ra).",
           "key_phrase": false
         },
         {
-          "start": "02:10",
+          "start": "01:44",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "他にも、「食べなければなりません」が「早く食べなきゃなりません」ということもあります。「なければ」が短くなって「なきゃ」となります。",
-          "romaji": "Hoka ni mo, \"tabenakereba narimasen\" ga \"hayaku tabenakya narimasen\" to iu koto mo arimasu. \"Nakereba\" ga mijikaku natte \"nakya\" to narimasu.",
-          "text_vi": "Ngoài ra, \"tabenakereba narimasen\" (phải ăn) cũng có khi thành \"hayaku tabenakya narimasen\". \"Nakereba\" rút ngắn thành \"nakya\".",
+          "text_ja": "「あけておいて」の「てお」が「と」と短くなって、「あけといて」となります。",
+          "romaji": "\"Akete oite\" no \"teo\" ga \"to\" to mijikaku natte, \"aketoite\" to narimasu.",
+          "text_vi": "Phần \"teo\" trong \"akete oite\" rút gọn thành \"to\", trở thành \"aketoite\".",
           "key_phrase": false
         },
         {
-          "start": "02:36",
+          "start": "01:57",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "動画の中では「一酸化炭素中毒になっちゃうよね」と言っています。「しまう」が短くなって「ちゃう」「じゃう」となります。",
-          "romaji": "Dooga no naka de wa \"Issankatanso chuudoku ni nacchau yo ne\" to itte imasu. \"Shimau\" ga mijikaku natte \"chau\", \"jau\" to narimasu.",
-          "text_vi": "Trong video có câu \"sẽ bị ngộ độc khí CO đó nhỉ\". \"Shimau\" rút ngắn thành \"chau\"/\"jau\".",
+          "text_ja": "「よんでおいてください」の「よんでおいて」は、「よんどいて」となります。",
+          "romaji": "\"Yonde oite kudasai\" no \"yonde oite\" wa, \"yondoite\" to narimasu.",
+          "text_vi": "Phần \"yonde oite\" trong \"yonde oite kudasai\" (hãy đọc trước) trở thành \"yondoite\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:09",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「早く食べなければなりません」を、「早く食べなきゃなりません」と言うこともあります。",
+          "romaji": "\"Hayaku tabenakereba narimasen\" o, \"hayaku tabenakya narimasen\" to iu koto mo arimasu.",
+          "text_vi": "Cũng có khi nói \"hayaku tabenakya narimasen\" thay cho \"hayaku tabenakereba narimasen\" (phải ăn nhanh).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:22",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「たべなければ」の「ければ」が「きゃ」と短くなって、「たべなきゃ」となります。",
+          "romaji": "\"Tabenakereba\" no \"kereba\" ga \"kya\" to mijikaku natte, \"tabenakya\" to narimasu.",
+          "text_vi": "Phần \"kereba\" trong \"tabenakereba\" rút gọn thành \"kya\", trở thành \"tabenakya\".",
+          "key_phrase": false
+        },
+        {
+          "start": "02:35",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "また、動画の中では、先輩社員が「一酸化炭素中毒になっちゃうよね。」と言っています。",
+          "romaji": "Mata, dooga no naka de wa, senpai shain ga \"Issankatanso chuudoku ni nacchau yo ne\" to itte imasu.",
+          "text_vi": "Ngoài ra, trong video, anh đàn anh nói \"Issankatanso chuudoku ni nacchau yo ne\" (sẽ bị ngộ độc khí CO đấy).",
+          "key_phrase": false
+        },
+        {
+          "start": "02:47",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「なってしまう」の「てしまう」が「ちゃう」と短くなって、「なっちゃう」となります。",
+          "romaji": "\"Natte shimau\" no \"te shimau\" ga \"chau\" to mijikaku natte, \"nacchau\" to narimasu.",
+          "text_vi": "Phần \"te shimau\" trong \"natte shimau\" rút gọn thành \"chau\", trở thành \"nacchau\".",
+          "key_phrase": false
+        },
+        {
+          "start": "03:00",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「ころんでしまう」は「ころんじゃう」となります。",
+          "romaji": "\"Koronde shimau\" wa \"koronjau\" to narimasu.",
+          "text_vi": "\"Koronde shimau\" (lỡ bị ngã) sẽ thành \"koronjau\".",
           "key_phrase": false
         },
         {
@@ -871,13 +1041,33 @@
           "key_phrase": false
         },
         {
-          "start": "03:18",
+          "start": "03:17",
           "speaker_ja": "ミゲル",
           "speaker_romaji": "Migeru",
           "speaker_vi": "Miguel",
-          "text_ja": "大城さん、来週のミーティングのことでお願いがあるんですが。",
-          "romaji": "Ooshiro-san, raishuu no miitingu no koto de onegai ga arun desu ga.",
-          "text_vi": "Anh Ōshiro ơi, tôi có việc muốn nhờ về cuộc họp tuần sau.",
+          "text_ja": "あのう、大城さん。",
+          "romaji": "Anoo, Ooshiro-san.",
+          "text_vi": "Dạ, anh Ōshiro.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:19",
+          "speaker_ja": "大城",
+          "speaker_romaji": "Ooshiro",
+          "speaker_vi": "Ōshiro",
+          "text_ja": "はい。",
+          "romaji": "Hai.",
+          "text_vi": "Ừ.",
+          "key_phrase": false
+        },
+        {
+          "start": "03:20",
+          "speaker_ja": "ミゲル",
+          "speaker_romaji": "Migeru",
+          "speaker_vi": "Miguel",
+          "text_ja": "来週のミーティングのことで、お願いがあるんですが…。",
+          "romaji": "Raishuu no miitingu no koto de, onegai ga arun desu ga...",
+          "text_vi": "Em có việc muốn nhờ anh về cuộc họp tuần sau ạ.",
           "key_phrase": true
         },
         {
@@ -885,19 +1075,19 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "この動画でミゲルさんは「お願いがあるんですが」と言いました。",
-          "romaji": "Kono dooga de Migeru-san wa \"Onegai ga arun desu ga\" to iimashita.",
-          "text_vi": "Trong video này, anh Miguel đã nói \"Tôi có việc muốn nhờ\".",
+          "text_ja": "この動画でミゲルさんは、「お願いがあるんですが…。」と言いました。",
+          "romaji": "Kono dooga de Migeru-san wa, \"Onegai ga arun desu ga...\" to iimashita.",
+          "text_vi": "Trong video này, anh Miguel đã nói \"Onegai ga arun desu ga...\" (em có việc muốn nhờ...).",
           "key_phrase": false
         },
         {
-          "start": "03:39",
+          "start": "03:34",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「お願いがあるんですが」の「の」が省略されて「お願いがあるんですが」となっています。",
-          "romaji": "\"Onegai ga aru no desu ga\" no \"no\" ga shooryaku sarete \"onegai ga arun desu ga\" to natte imasu.",
-          "text_vi": "\"No\" trong \"onegai ga aru no desu ga\" bị lược bỏ thành \"onegai ga arun desu ga\".",
+          "text_ja": "「お願いがあるんですが…。」は「お願いがあるのですが」の「の」が「ん」に変わっています。",
+          "romaji": "\"Onegai ga arun desu ga...\" wa \"onegai ga aru no desu ga\" no \"no\" ga \"n\" ni kawatte imasu.",
+          "text_vi": "Trong \"onegai ga arun desu ga...\", chữ \"no\" của \"onegai ga aru no desu ga\" đã đổi thành \"n\".",
           "key_phrase": false
         },
         {
@@ -905,39 +1095,59 @@
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "話し言葉では、このように音が変わることがよくあります。意味は同じですが、音が変わるとカジュアルな感じになります。",
-          "romaji": "Hanashi kotoba de wa, kono yoo ni oto ga kawaru koto ga yoku arimasu. Imi wa onaji desu ga, oto ga kawaru to kajuaru na kanji ni narimasu.",
-          "text_vi": "Trong văn nói, âm thường biến đổi như vậy. Nghĩa vẫn giống nhau, nhưng khi âm biến đổi thì nghe có cảm giác thân mật, tự nhiên hơn.",
+          "text_ja": "話し言葉では、このように、音が変わることがよくあります。",
+          "romaji": "Hanashi kotoba de wa, kono yoo ni, oto ga kawaru koto ga yoku arimasu.",
+          "text_vi": "Trong văn nói, âm thường biến đổi như vậy.",
           "key_phrase": false
         },
         {
-          "start": "04:08",
+          "start": "03:59",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "他にも「わからない」→「わかんない」、「信じられない」→「信じらんない」のように音が変わることもあります。",
-          "romaji": "Hoka ni mo \"wakaranai\" → \"wakannai\", \"shinjirarenai\" → \"shinjirannai\" no yoo ni oto ga kawaru koto mo arimasu.",
-          "text_vi": "Ngoài ra cũng có thể biến âm như \"wakaranai\" → \"wakannai\", \"shinjirarenai\" → \"shinjirannai\".",
+          "text_ja": "意味は同じですが、音が変わると、カジュアルな感じになります。",
+          "romaji": "Imi wa onaji desu ga, oto ga kawaru to, kajuaru na kanji ni narimasu.",
+          "text_vi": "Nghĩa vẫn như nhau, nhưng khi âm biến đổi thì nghe thân mật, tự nhiên hơn.",
           "key_phrase": false
         },
         {
-          "start": "04:26",
+          "start": "04:07",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "話し言葉では、文末が省略されることもあります。「雨が降るかもしれない」の「しれない」が省略されて「雨が降るかも」となります。",
-          "romaji": "Hanashi kotoba de wa, bunmatsu ga shooryaku sareru koto mo arimasu. \"Ame ga furu kamo shirenai\" no \"shirenai\" ga shooryaku sarete \"ame ga furu kamo\" to narimasu.",
-          "text_vi": "Trong văn nói, cuối câu cũng có thể bị lược bỏ. \"Shirenai\" trong \"ame ga furu kamo shirenai\" (có lẽ trời sẽ mưa) bị lược thành \"ame ga furu kamo\".",
+          "text_ja": "ほかにも、「わからない」が「わかんない」、「しんじられない」が「しんじらんない」と音が変わることもあります。",
+          "romaji": "Hoka ni mo, \"wakaranai\" ga \"wakannai\", \"shinjirarenai\" ga \"shinjirannai\" to oto ga kawaru koto mo arimasu.",
+          "text_vi": "Ngoài ra, âm cũng có thể biến đổi như \"wakaranai\" (không hiểu) thành \"wakannai\", \"shinjirarenai\" (không thể tin được) thành \"shinjirannai\".",
           "key_phrase": false
         },
         {
-          "start": "04:47",
+          "start": "04:24",
           "speaker_ja": "ナレーター",
           "speaker_romaji": "Nareetaa",
           "speaker_vi": "Người dẫn",
-          "text_ja": "「具合が悪いなら早く帰ったらどうですか」も、省略されて「具合が悪いなら早く帰ったら」となったりします。このように文末を省略した話し方は、親しい人同士のやりとりの中でよく使います。",
-          "romaji": "\"Guai ga warui nara hayaku kaettara doo desu ka\" mo, shooryaku sarete \"Guai ga warui nara hayaku kaettara\" to nattari shimasu. Kono yoo ni bunmatsu o shooryaku shita hanashikata wa, shitashii hito dooshi no yaritori no naka de yoku tsukaimasu.",
-          "text_vi": "Câu \"guai ga warui nara hayaku kaettara doo desu ka\" (nếu khó ở thì về sớm thế nào) cũng có khi bị lược thành \"guai ga warui nara hayaku kaettara\". Cách nói lược bỏ cuối câu như vậy thường dùng giữa những người thân thiết.",
+          "text_ja": "また、話し言葉では、文末が省略されることもあります。",
+          "romaji": "Mata, hanashi kotoba de wa, bunmatsu ga shooryaku sareru koto mo arimasu.",
+          "text_vi": "Ngoài ra, trong văn nói, phần cuối câu cũng có khi bị lược bỏ.",
+          "key_phrase": false
+        },
+        {
+          "start": "04:32",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "「あした、雨が降るかもしれない」の文末の「しれない」が省略されて、「あした、雨が降るかも」と言ったり、「具合が悪いなら、早く帰ったらどうですか。」の「どうですか」が省略されて、「具合が悪いなら、早く帰ったら？」と言ったりします。",
+          "romaji": "\"Ashita, ame ga furu kamoshirenai\" no bunmatsu no \"shirenai\" ga shooryaku sarete, \"ashita, ame ga furu kamo\" to ittari, \"Guai ga warui nara, hayaku kaettara doo desu ka\" no \"doo desu ka\" ga shooryaku sarete, \"Guai ga warui nara, hayaku kaettara?\" to ittari shimasu.",
+          "text_vi": "Phần \"shirenai\" ở cuối câu \"Ashita, ame ga furu kamoshirenai\" (ngày mai có thể trời mưa) được lược thành \"ashita, ame ga furu kamo\"; hay phần \"doo desu ka\" trong \"Guai ga warui nara, hayaku kaettara doo desu ka\" (nếu không khỏe thì về sớm đi chứ?) được lược thành \"Guai ga warui nara, hayaku kaettara?\".",
+          "key_phrase": false
+        },
+        {
+          "start": "05:03",
+          "speaker_ja": "ナレーター",
+          "speaker_romaji": "Nareetaa",
+          "speaker_vi": "Người dẫn",
+          "text_ja": "このように、文末を省略した話し方は、親しい人同士のやりとりの中でよく使います。",
+          "romaji": "Kono yoo ni, bunmatsu o shooryaku shita hanashikata wa, shitashii hito dooshi no yaritori no naka de yoku tsukaimasu.",
+          "text_vi": "Cách nói lược bỏ phần cuối câu như vậy thường được dùng khi trò chuyện giữa những người thân thiết.",
           "key_phrase": false
         }
       ],

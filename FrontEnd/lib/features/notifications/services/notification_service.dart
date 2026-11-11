@@ -9,14 +9,17 @@ class NotificationService {
 
   static const int pageSize = 20;
 
+  /// [type] bỏ trống là mọi loại.
   Future<NotificationPage> getNotifications({
     int page = 1,
     NotificationFilter status = NotificationFilter.all,
+    NotificationType? type,
   }) async {
     final query = Uri(queryParameters: {
       'page': '$page',
       'limit': '$pageSize',
       'status': status.name,
+      if (type != null) 'type': type.key,
     }).query;
     final response = await _apiClient.get('/notifications?$query');
     return NotificationPage.fromJson(Map<String, dynamic>.from(response as Map));

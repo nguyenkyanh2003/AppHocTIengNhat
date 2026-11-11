@@ -5,8 +5,8 @@
 
 ## scene-1.mp4
 # Bão sắp đến
-00:01 | 鈴木 / Suzuki / Suzuki | 台風が近づいているみたいですね。 | Taifuu ga chikazuite iru mitai desu ne. | Hình như bão đang đến gần nhỉ.
-00:05 | アンジェラ / Anjera / Angela | ええ、そうみたいですね。 | Ee, soo mitai desu ne. | Vâng, hình như vậy nhỉ.
+00:01 | アンジェラ / Anjera / Angela | 台風が近づいているみたいですね。 | Taifuu ga chikazuite iru mitai desu ne. | Hình như bão đang đến gần nhỉ.
+00:05 | 鈴木 / Suzuki / Suzuki | ええ、そうみたいですね。 | Ee, soo mitai desu ne. | Vâng, hình như vậy nhỉ.
 00:07 | アンジェラ / Anjera / Angela | さっき天気予報で、今年一番大きな台風だって言ってましたよ。 | Sakki tenki yohoo de, kotoshi ichiban ookina taifuu datte itte mashita yo. | Lúc nãy dự báo thời tiết nói đây là cơn bão lớn nhất năm nay đấy.
 00:15 | アンジェラ / Anjera / Angela | この辺りも大雨になるみたいですよ。 | Kono atari mo ooame ni naru mitai desu yo. | Khu vực này hình như cũng sẽ có mưa lớn đấy.
 00:19 | 鈴木 / Suzuki / Suzuki | アンジェラさん、天気予報をよく見るんですか？ | Anjera-san, tenki yohoo o yoku miru n desu ka. | Angela hay xem dự báo thời tiết à?
@@ -38,8 +38,8 @@
 
 ## scene-2.mp4
 # Tìm hiểu nơi lánh nạn
-00:00 | 鈴木 / Suzuki / Suzuki | 最近、台風とか地震とか多いですね。 | Saikin, taifuu toka jishin toka ooi desu ne. | Dạo này bão với động đất nhiều nhỉ.
-00:03 | アンジェラ / Anjera / Angela | そうですね。 | Soo desu ne. | Vâng, đúng vậy.
+00:00 | アンジェラ / Anjera / Angela | 最近、台風とか地震とか多いですね。 | Saikin, taifuu toka jishin toka ooi desu ne. | Dạo này bão với động đất nhiều nhỉ.
+00:03 | 鈴木 / Suzuki / Suzuki | そうですね。 | Soo desu ne. | Vâng, đúng vậy.
 00:05 | アンジェラ / Anjera / Angela | この間の台風のときは、どうしたらいいかわからなくて、とっても怖かったです。 | Kono aida no taifuu no toki wa, dooshitara ii ka wakaranakute, tottemo kowakatta desu. | Lần bão hôm trước em không biết phải làm sao nên sợ lắm.
 00:15 | 鈴木 / Suzuki / Suzuki | ああ、この間の台風は、一晩中、雨と風がすごかったですよね。 | Aa, kono aida no taifuu wa, hitobanjuu, ame to kaze ga sugokatta desu yo ne. | À, cơn bão hôm trước mưa và gió dữ dội suốt cả đêm nhỉ.
 00:22 | アンジェラ / Anjera / Angela | 本当に。災害ニュースを聞くたびに、心配になっちゃいます。 | Hontoo ni. Saigai nyuusu o kiku tabi ni, shinpai ni nacchaimasu. | Thật vậy. Mỗi lần nghe tin thiên tai em lại lo lắng.
@@ -72,26 +72,26 @@
 00:01 | 男性 / Dansee / Người đàn ông còn lại | おいしいですね。 | Oishii desu ne. | Ngon nhỉ.
 00:04 | 男性 / Dansee / Người đàn ông còn lại | あっ！地震が来ますよ！早く机の下に潜らなくちゃ！ | A! Jishin ga kimasu yo! Hayaku tsukue no shita ni moguranakucha! | A! Động đất đến kìa! Phải mau chui xuống gầm bàn!
 00:11 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
-00:16 | 男性 / Dansee / Người đàn ông còn lại | 頭をもっと中に入れて、机の足をしっかり持って。 | Atama o motto naka ni irete, tsukue no ashi o shikkari motte. | Đưa đầu vào trong hơn nữa, giữ chắc chân bàn.
+00:16 | 男性 / Dansee / Người đàn ông còn lại | あ、頭をもっと中に入れて…。机の脚をしっかりにぎって…。 | A, atama o motto naka ni irete... Tsukue no ashi o shikkari nigitte... | À, đưa đầu vào trong hơn nữa... Nắm chắc chân bàn...
 00:24 | 男性 / Dansee / Người đàn ông còn lại | ドアは？ | Doa wa? | Cửa thì sao?
 00:26 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | もう開けました！ | Moo akemashita! | Mở rồi!
-00:41 | 男性 / Dansee / Người đàn ông còn lại | もう出てもよさそうですね。 | Moo detemo yosasoo desu ne. | Hình như ra ngoài được rồi nhỉ.
-00:45 | アンジェラ / Anjera / Angela | もう大丈夫そうですね。 | Moo daijoobusoo desu ne. | Hình như đã ổn rồi nhỉ.
+00:41 | アンジェラ / Anjera / Angela | もう出てもよさそうですね。 | Moo detemo yosasoo desu ne. | Hình như ra ngoài được rồi nhỉ.
+00:45 | 男性 / Dansee / Người đàn ông còn lại | もう大丈夫そうですね。 | Moo daijoobusoo desu ne. | Hình như đã ổn rồi nhỉ.
 00:59 | アンジェラ / Anjera / Angela | 今の地震、結構大きかったですね。 | Ima no jishin, kekkoo ookikatta desu ne. | Trận động đất vừa rồi khá lớn nhỉ.
 01:03 | 男性 / Dansee / Người đàn ông còn lại | そうですね。 | Soo desu ne. | Đúng vậy nhỉ.
 01:05 | アンジェラ / Anjera / Angela | 怖かったですね。 | Kowakatta desu ne. | Đáng sợ thật nhỉ.
-01:08 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | ああ、落ちちゃいましたね。 | Aa, ochichaimashita ne. | A, rơi xuống rồi nhỉ.
-01:13 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | こんな箱が落ちてきて、 | Konna hako ga ochite kite, | Cái hộp thế này mà rơi xuống,
+01:08 | アンジェラ / Anjera / Angela | ああ、落ちちゃいましたね。 | Aa, ochichaimashita ne. | A, rơi xuống rồi nhỉ.
+01:13 | 男性 / Dansee / Người đàn ông còn lại | こんな箱が落ちてきて、 | Konna hako ga ochite kite, | Cái hộp thế này mà rơi xuống,
 01:16 | 男性 / Dansee / Người đàn ông còn lại | 頭に当たっていたら大変なことになっていましたね。 | Atama ni atatte itara taihen na koto ni natte imashita ne. | Nếu trúng đầu thì đã nguy to rồi nhỉ.
 01:21 | アンジェラ / Anjera / Angela | 本当ですね。 | Hontoo desu ne. | Đúng thật.
-*01:36 | アンジェラ / Anjera / Angela | また大きい地震が来たら大変ですから、今のうちに何か対策を考えておかないといけませんね。 | Mata ookii jishin ga kitara taihen desu kara, ima no uchi ni nanika taisaku o kangaete okanai to ikemasen ne. | Nếu lại có động đất lớn thì nguy lắm, nên bây giờ phải nghĩ sẵn biện pháp đối phó nhỉ.
-01:45 | 男性 / Dansee / Người đàn ông còn lại | そうですね。 | Soo desu ne. | Đúng vậy.
+*01:36 | 男性 / Dansee / Người đàn ông còn lại | また大きい地震が来たら大変ですから、今のうちに何か対策を考えておかないといけませんね。 | Mata ookii jishin ga kitara taihen desu kara, ima no uchi ni nanika taisaku o kangaete okanai to ikemasen ne. | Nếu lại có động đất lớn thì nguy lắm, nên bây giờ phải nghĩ sẵn biện pháp đối phó nhỉ.
+01:45 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | そうですね。 | Soo desu ne. | Đúng vậy.
 01:49 | 男性 / Dansee / Người đàn ông còn lại | 揺れても棚が倒れてこないように、棚と天井の間に突っ張り棒を入れるとか、何か工夫をした方がいいですね。 | Yurete mo tana ga taorete konai yoo ni, tana to tenjoo no aida ni tsuppari-boo o ireru toka, nanika kufuu o shita hoo ga ii desu ne. | Để dù rung lắc thì kệ cũng không đổ, nên có chút sáng tạo, chẳng hạn đặt thanh chống vào giữa kệ và trần nhà.
 02:04 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | ああ、でも大きめの箱を入れるとかでもいいんじゃないですか。 | Aa, demo ookime no hako o ireru toka demo ii n ja nai desu ka. | À, nhưng đặt một cái hộp lớn vào đó cũng được chứ nhỉ.
-02:10 | アンジェラ / Anjera / Angela | ああ、そういえば私も何かで、そんなの見たことがあります。 | Aa, soo ieba watashi mo nanika de, sonna no mita koto ga arimasu. | À, nói mới nhớ, tôi cũng từng thấy cái đó ở đâu rồi.
-02:31 | アンジェラ / Anjera / Angela | ちょっと隙間が空いちゃいますけど、大丈夫ですか？ | Chotto sukima ga aichaimasu kedo, daijoobu desu ka. | Sẽ hơi có khe hở, nhưng có sao không ạ?
-02:36 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | そのくらいだったら、平気ですよ。 | Sono kurai dattara, heeki desu yo. | Cỡ đó thì không sao đâu.
-02:39 | 男性 / Dansee / Người đàn ông còn lại | ちょっと工夫すれば、結構簡単に対策ができますね。 | Chotto kufuu sureba, kekkoo kantan ni taisaku ga dekimasu ne. | Chỉ cần chút sáng tạo là có thể đối phó khá dễ dàng nhỉ.
+02:08 | 男性 / Dansee / Người đàn ông còn lại | ああ、そういえば私も何かで、そんなの見たことがあります。 | Aa, soo ieba watashi mo nanika de, sonna no mita koto ga arimasu. | À, nói mới nhớ, tôi cũng từng thấy cái đó ở đâu rồi.
+02:31 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | ちょっと隙間が空いちゃいますけど、大丈夫ですか？ | Chotto sukima ga aichaimasu kedo, daijoobu desu ka. | Sẽ hơi hở một chút, có sao không?
+02:35 | 男性 / Dansee / Người đàn ông còn lại | そのくらいだったら、平気ですよ。 | Sono kurai dattara, heeki desu yo. | Cỡ đó thì không sao đâu.
+02:39 | 眼鏡の男性 / Megane no dansee / Người đàn ông đeo kính | ちょっと工夫すれば、結構簡単に対策ができますね。 | Chotto kufuu sureba, kekkoo kantan ni taisaku ga dekimasu ne. | Chỉ cần chút sáng tạo là có thể đối phó khá dễ dàng nhỉ.
 ### từ vựng
 潜る | もぐる | moguru | chui xuống
 揺れる | ゆれる | yureru | rung lắc

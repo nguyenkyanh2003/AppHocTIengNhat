@@ -161,13 +161,23 @@
           "key_phrase": false
         },
         {
-          "start": "01:26",
+          "start": "01:24",
           "speaker_ja": "プトリ",
           "speaker_romaji": "Putori",
           "speaker_vi": "Putri",
-          "text_ja": "スイッチを…電…電源プラグ…",
-          "romaji": "Suicchi o… den… dengen-puragu…",
-          "text_vi": "Công tắc… ổ… phích cắm điện…",
+          "text_ja": "スイッチを…電…。",
+          "romaji": "Suicchi o... den...",
+          "text_vi": "Công tắc... ổ...",
+          "key_phrase": false
+        },
+        {
+          "start": "01:30",
+          "speaker_ja": "橋本",
+          "speaker_romaji": "Hashimoto",
+          "speaker_vi": "Hashimoto",
+          "text_ja": "ああ、電源プラグ。",
+          "romaji": "Aa, dengen-puragu.",
+          "text_vi": "À, phích cắm điện.",
           "key_phrase": false
         },
         {
@@ -237,6 +247,16 @@
       "kind": "scene",
       "source": "文部科学省「つながるひろがる にほんごでのくらし」",
       "transcript": [
+        {
+          "start": "00:03",
+          "speaker_ja": "上司",
+          "speaker_romaji": "Jooshi",
+          "speaker_vi": "Cấp trên",
+          "text_ja": "プトリさん。",
+          "romaji": "Putori-san.",
+          "text_vi": "Putri ơi.",
+          "key_phrase": false
+        },
         {
           "start": "00:03",
           "speaker_ja": "上司",

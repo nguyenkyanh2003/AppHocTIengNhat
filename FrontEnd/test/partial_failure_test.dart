@@ -18,6 +18,7 @@ import 'package:apphoctiengnnhat/features/home/widgets/home_stat_cards.dart';
 import 'package:apphoctiengnnhat/features/lessons/screens/lesson_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/progress/screens/learning_history_screen.dart';
 import 'package:apphoctiengnnhat/features/progress/screens/user_statistics_screen.dart';
+import 'package:apphoctiengnnhat/features/progress/widgets/history_streak_card.dart';
 import 'package:apphoctiengnnhat/features/streaks/screens/streak_screen.dart';
 import 'package:apphoctiengnnhat/shared/widgets/async_view.dart';
 
@@ -186,7 +187,8 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text('Ngày liên tiếp'), findsOneWidget);
-        expect(find.text('11'), findsOneWidget);
+        // Tìm trong thẻ chuỗi ngày: lịch tuần bên dưới có thể cũng có ngày 11.
+        expect(find.descendant(of: find.byType(HistoryStreakCard), matching: find.text('11')), findsOneWidget);
       }, backend.client);
     });
 

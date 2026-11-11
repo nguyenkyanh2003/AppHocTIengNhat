@@ -16,7 +16,7 @@
 00:45 | 王 / Oo / Vương | あ、はい。 | A, hai. | À, vâng.
 00:47 | 店員 / Ten'in / Nhân viên | それでは、お名前とご連絡先をお願いします。 | Soredewa, onamae to gorenrakusaki o onegaishimasu. | Vậy xin quý khách cho biết tên và số liên lạc.
 00:52 | 王 / Oo / Vương | 王ハオランです。電話番号は000-1234-5678です。 | Oo Haoran desu. Denwa-bangoo wa zero-zero-zero no ichi-ni-san-yon no go-roku-nana-hachi desu. | Tôi là Vương Hạo Nhiên (Ō Haoran). Số điện thoại là 000-1234-5678.
-01:03 | 店員 / Ten'in / Nhân viên | かしこまりました。確認いたします。 | Kashikomarimashita. Kakunin itashimasu. | Vâng ạ. Tôi xin xác nhận lại.
+01:03 | 店員 / Ten'in / Nhân viên | かしこまりました。復唱いたします。 | Kashikomarimashita. Fukushoo itashimasu. | Vâng ạ. Tôi xin nhắc lại.
 01:06 | 店員 / Ten'in / Nhân viên | 王ハオラン様で、お電話番号は000-1234-5678ですね。 | Oo Haoran-sama de, odenwa-bangoo wa zero-zero-zero no ichi-ni-san-yon no go-roku-nana-hachi desu ne. | Quý khách Ō Haoran, số điện thoại 000-1234-5678 phải không ạ?
 01:18 | 王 / Oo / Vương | はい。 | Hai. | Vâng.
 01:20 | 店員 / Ten'in / Nhân viên | カウンター席のご用意でよろしいでしょうか。 | Kauntaa-seki no goyooi de yoroshii deshoo ka. | Chúng tôi chuẩn bị chỗ ngồi quầy được không ạ?

@@ -124,9 +124,9 @@
           "speaker_ja": "店員",
           "speaker_romaji": "Ten'in",
           "speaker_vi": "Nhân viên",
-          "text_ja": "かしこまりました。確認いたします。",
-          "romaji": "Kashikomarimashita. Kakunin itashimasu.",
-          "text_vi": "Vâng ạ. Tôi xin xác nhận lại.",
+          "text_ja": "かしこまりました。復唱いたします。",
+          "romaji": "Kashikomarimashita. Fukushoo itashimasu.",
+          "text_vi": "Vâng ạ. Tôi xin nhắc lại.",
           "key_phrase": false
         },
         {

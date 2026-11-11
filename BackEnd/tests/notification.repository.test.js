@@ -24,7 +24,10 @@ const fakeModel = (calls, results = {}) => {
     updateMany: async (...args) => { calls.push(['updateMany', ...args]); return results.updateMany; },
     deleteOne: async (filter) => { calls.push(['deleteOne', filter]); return results.deleteOne; },
     insertMany: async (docs) => { calls.push(['insertMany', docs]); return docs; },
-    create: async (doc) => { calls.push(['create', doc]); return { toObject: () => ({ _id: 'n1', ...doc }) }; },
+    create: async (docs, options) => {
+      calls.push(['create', docs, options]);
+      return docs.map((doc) => ({ toObject: () => ({ _id: 'n1', ...doc }) }));
+    },
     exists: async (filter) => { calls.push(['exists', filter]); return results.exists; },
   };
 };
@@ -72,6 +75,20 @@ test('đọc tất cả, xoá và tìm đều lọc theo người nhận', async
     ['updateMany', { recipient: 'a', is_read: false }, { $set: { is_read: true, read_at: READ_AT } }],
     ['deleteOne', { _id: 'n1', recipient: 'a' }],
     ['findOne', { _id: 'n1', recipient: 'a' }],
+  ]);
+});
+
+test('tạo thông báo ghi trong session được truyền vào — cùng transaction với việc cấp huy hiệu', async () => {
+  const calls = [];
+  const repository = createNotificationRepository({ Notification: fakeModel(calls), User: {} });
+
+  const created = await repository.create({ recipient: 'a', title: 'T', message: 'M' }, { session: 'sess' });
+  await repository.create({ recipient: 'b', title: 'T', message: 'M' });
+
+  assert.deepEqual(created, { _id: 'n1', recipient: 'a', title: 'T', message: 'M' });
+  assert.deepEqual(calls, [
+    ['create', [{ recipient: 'a', title: 'T', message: 'M' }], { session: 'sess' }],
+    ['create', [{ recipient: 'b', title: 'T', message: 'M' }], { session: undefined }],
   ]);
 });
 

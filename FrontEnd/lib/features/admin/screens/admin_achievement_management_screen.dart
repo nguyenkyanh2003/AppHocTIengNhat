@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/admin_provider.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
+
 import '../../../app/theme/app_tokens.dart';
-import '../../../shared/widgets/adaptive_table.dart';
-import '../../../app/theme/app_typography.dart';
-import '../widgets/admin_achievement_dialogs.dart';
-import '../widgets/admin_achievement_card.dart';
-import '../../../shared/widgets/async_view.dart';
 import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/adaptive_table.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../achievements/models/achievement_labels.dart';
+import '../../achievements/widgets/achievement_rarity.dart';
+import '../models/admin_achievement.dart';
+import '../providers/admin_provider.dart';
+import '../widgets/admin_achievement_card.dart';
+import '../widgets/admin_achievement_dialogs.dart';
+import '../widgets/admin_achievement_summary.dart';
 
 class AdminAchievementManagementScreen extends StatefulWidget {
-  const AdminAchievementManagementScreen({Key? key}) : super(key: key);
+  const AdminAchievementManagementScreen({super.key});
 
   @override
   State<AdminAchievementManagementScreen> createState() =>
@@ -21,7 +25,8 @@ class AdminAchievementManagementScreen extends StatefulWidget {
 
 class _AdminAchievementManagementScreenState
     extends State<AdminAchievementManagementScreen> {
-  String _selectedRarity = 'all';
+  /// `null` là tất cả độ hiếm.
+  String? _selectedRarity;
 
   @override
   void initState() {
@@ -34,9 +39,10 @@ class _AdminAchievementManagementScreenState
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      title: 'Quản Lý Achievements',
+      title: 'Quản lý thành tích',
       actions: [
         IconButton(
+          tooltip: 'Tải lại',
           icon: const Icon(Icons.refresh),
           onPressed: () => context.read<AdminProvider>().loadAchievements(),
         ),
@@ -44,83 +50,43 @@ class _AdminAchievementManagementScreenState
       body: ContentWidthLimit(
         child: Consumer<AdminProvider>(
           builder: (context, adminProvider, child) {
-            final allAchievements = adminProvider.achievements;
-
-            final filteredAchievements = _selectedRarity == 'all'
-                ? allAchievements
-                : allAchievements
-                    .where((a) => a['rarity'] == _selectedRarity)
+            final all = adminProvider.achievements;
+            final shown = _selectedRarity == null
+                ? all
+                : all
+                    .where((a) => a.definition.rarity == _selectedRarity)
                     .toList();
 
             return Column(
               children: [
-                // Stats Bar
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  color: context.colors.surfaceVariant,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildStatCard('${allAchievements.length}', 'Tổng',
-                          AppColors.primary),
-                      _buildStatCard(
-                        _getTotalUnlocked(allAchievements).toString(),
-                        'Đã mở khóa',
-                        AppColors.success,
-                      ),
-                      _buildStatCard(
-                        _getTotalXP(allAchievements).toString(),
-                        'XP thưởng',
-                        Colors.purple,
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Rarity Filter
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        _buildRarityChip(
-                            'Tất cả', 'all', context.colors.textSecondary),
-                        _buildRarityChip(
-                            'Common', 'common', context.colors.textSecondary),
-                        _buildRarityChip('Rare', 'rare', AppColors.primary),
-                        _buildRarityChip('Epic', 'epic', Colors.purple),
-                        _buildRarityChip(
-                            'Legendary', 'legendary', AppColors.warning),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Achievements List
+                AdminAchievementSummary(achievements: all),
+                _rarityFilter(),
                 Expanded(
-                  child: AsyncView<List<Map<String, dynamic>>>(
+                  child: AsyncView<List<AdminAchievement>>(
                     state: ViewState.fromLegacy(
                       isLoading: adminProvider.isLoadingAchievements,
-                      error:
-                          allAchievements.isEmpty ? adminProvider.error : null,
-                      value: filteredAchievements,
-                      isEmpty: filteredAchievements.isEmpty,
+                      error: all.isEmpty ? adminProvider.error : null,
+                      value: shown,
+                      isEmpty: shown.isEmpty,
                     ),
                     onRetry: () => adminProvider.loadAchievements(),
                     isEmpty: (items) => items.isEmpty,
                     emptyTitle: 'Không có thành tích nào',
                     emptyIcon: Icons.emoji_events_outlined,
-                    builder: (context, filteredAchievements) =>
-                        AdaptiveTable<Map<String, dynamic>>(
-                      padding: const EdgeInsets.all(AppSpacing.lg),
-                      items: filteredAchievements,
-                      rowKey: (a) => ValueKey(a['_id'] ?? a['id']),
-                      columns: _achievementColumns(),
+                    builder: (context, items) =>
+                        AdaptiveTable<AdminAchievement>(
+                      // Chừa chỗ để nút thêm không che dòng cuối.
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.lg,
+                        AppSpacing.lg,
+                        AppSpacing.lg,
+                        AppSpacing.xxl * 3,
+                      ),
+                      items: items,
+                      rowKey: (a) => ValueKey(a.definition.id),
+                      columns: _columns(),
                       cardBuilder: (context, achievement) =>
-                          AdminAchievementCard(
-                              achievement: achievement,
-                              duplicateAchievement: _duplicateAchievement),
+                          AdminAchievementCard(achievement: achievement),
                     ),
                   ),
                 ),
@@ -130,99 +96,83 @@ class _AdminAchievementManagementScreenState
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => showAchievementAddDialog(context),
+        onPressed: () => showAchievementFormDialog(context),
         icon: const Icon(Icons.add),
-        label: const Text('Thêm Achievement'),
+        label: const Text('Thêm thành tích'),
       ),
     );
   }
 
-  Widget _buildStatCard(String value, String label, Color color) {
-    return Expanded(
-      child: Column(
+  Widget _rarityFilter() {
+    Widget chip(String label, String? rarity) => Padding(
+          padding: const EdgeInsets.only(right: AppSpacing.sm),
+          child: FilterChip(
+            label: Text(label),
+            selected: _selectedRarity == rarity,
+            onSelected: (_) => setState(() => _selectedRarity = rarity),
+          ),
+        );
+
+    return SingleChildScrollView(
+      padding: AppSpacing.page,
+      scrollDirection: Axis.horizontal,
+      child: Row(
         children: [
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: AppTypography.headline,
-              fontWeight: FontWeight.bold,
-              color: context.colors.readable(color),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: AppTypography.caption,
-              color: context.colors.textSecondary,
-            ),
-          ),
+          chip('Tất cả', null),
+          for (final MapEntry(:key, :value) in achievementRarityLabels.entries)
+            chip(value, key),
         ],
       ),
     );
   }
 
-  Widget _buildRarityChip(String label, String value, Color color) {
-    final isSelected = _selectedRarity == value;
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: FilterChip(
-        label: Text(label),
-        selected: isSelected,
-        onSelected: (selected) {
-          setState(() => _selectedRarity = value);
-        },
-        selectedColor: color.withValues(alpha: 0.3),
-        backgroundColor: color.withValues(alpha: 0.1),
-        labelStyle: TextStyle(
-          color: context.colors.readable(color),
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-    );
-  }
-
-  int _getTotalUnlocked(List<Map<String, dynamic>> achievements) {
-    return achievements.fold<int>(
-      0,
-      (sum, item) => sum + ((item['unlocked'] ?? 0) as int),
-    );
-  }
-
-  int _getTotalXP(List<Map<String, dynamic>> achievements) {
-    return achievements.fold<int>(
-      0,
-      (sum, item) => sum + ((item['xp'] ?? 0) as int),
-    );
-  }
-
-  /// Cot bang thanh tich tren vung rong; cung du lieu voi the o man hep.
-  List<AdaptiveColumn<Map<String, dynamic>>> _achievementColumns() {
+  /// Cột bảng thành tích trên vùng rộng; cùng dữ liệu với thẻ ở màn hẹp.
+  List<AdaptiveColumn<AdminAchievement>> _columns() {
     return [
       AdaptiveColumn(
         label: 'Huy hiệu',
         minWidth: 220,
         cell: (context, a) => Text(
-          (a['name'] ?? '').toString(),
+          a.definition.isActive
+              ? a.definition.displayName
+              : '${a.definition.displayName} (đang ẩn)',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
       ),
       AdaptiveColumn(
         label: 'Nhóm',
-        width: 140,
-        cell: (context, a) => Text((a['category'] ?? '').toString()),
+        width: 120,
+        cell: (context, a) => Text(
+          achievementCategoryLabels[a.definition.category] ??
+              a.definition.category,
+        ),
       ),
       AdaptiveColumn(
         label: 'Độ hiếm',
         width: 120,
-        cell: (context, a) => Text((a['rarity'] ?? '').toString()),
+        cell: (context, a) => Align(
+          alignment: Alignment.centerLeft,
+          child: AchievementRarityChip(a.definition.rarity),
+        ),
+      ),
+      AdaptiveColumn(
+        label: 'Cần đạt',
+        width: 80,
+        alignEnd: true,
+        cell: (context, a) => Text('${a.definition.requirementValue}'),
       ),
       AdaptiveColumn(
         label: 'XP',
-        width: 80,
+        width: 72,
         alignEnd: true,
-        cell: (context, a) => Text((a['xp'] ?? 0).toString()),
+        cell: (context, a) => Text('${a.definition.xpReward}'),
+      ),
+      AdaptiveColumn(
+        label: 'Đã mở',
+        width: 72,
+        alignEnd: true,
+        cell: (context, a) => Text('${a.unlocked}'),
       ),
       AdaptiveColumn(
         label: 'Thao tác',
@@ -230,8 +180,16 @@ class _AdminAchievementManagementScreenState
         alignEnd: true,
         cell: (context, a) => PopupMenuButton<String>(
           onSelected: (action) {
-            if (action == 'edit') showAchievementEditDialog(context, a);
-            if (action == 'duplicate') _duplicateAchievement(a);
+            if (action == 'edit') {
+              showAchievementFormDialog(context, initial: a.definition);
+            }
+            if (action == 'duplicate') {
+              showAchievementFormDialog(
+                context,
+                initial: a.definition,
+                asCopy: true,
+              );
+            }
             if (action == 'delete') confirmDeleteAchievement(context, a);
           },
           itemBuilder: (context) => const [
@@ -242,11 +200,5 @@ class _AdminAchievementManagementScreenState
         ),
       ),
     ];
-  }
-
-  void _duplicateAchievement(Map<String, dynamic> achievement) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Đã nhân bản achievement!')),
-    );
   }
 }

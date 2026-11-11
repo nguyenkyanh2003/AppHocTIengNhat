@@ -66,18 +66,19 @@
 00:03 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | 内見お疲れさまでした。いかがでしたか？ | Naiken otsukaresama deshita. Ikaga deshita ka. | Chị đã vất vả đi xem nhà rồi. Chị thấy thế nào ạ?
 00:06 | アンジェラ / Anjera / Angela | そうですね、今日のとこに決めます。 | Soo desu ne, kyoo no toko ni kimemasu. | Để xem nào, em quyết định chọn chỗ hôm nay đi xem ạ.
 00:12 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | わかりました。じゃあ、いろいろ手続きがあるのでご説明しますね。こちらへどうぞ。 | Wakarimashita. Jaa, iroiro tetsuzuki ga aru node gosetsumee shimasu ne. Kochira e doozo. | Tôi hiểu rồi. Vậy vì có nhiều thủ tục nên tôi xin giải thích nhé. Mời chị lối này.
-00:23 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
+00:16 | アンジェラ / Anjera / Angela | はい。 | Hai. | Vâng.
 00:27 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | まず初めに、入居審査というのがありまして、それを通過すると契約となります。 | Mazu hajime ni, nyuukyo shinsa to iu no ga arimashite, sore o tsuuka suru to keeyaku to narimasu. | Trước hết có bước gọi là xét duyệt hồ sơ thuê nhà, nếu qua được thì sẽ ký hợp đồng.
 00:36 | アンジェラ / Anjera / Angela | 入居審査ですか？どうすればいいですか？ | Nyuukyo shinsa desu ka. Doo sureba ii desu ka. | Xét duyệt hồ sơ thuê nhà ạ? Em phải làm thế nào ạ?
 00:43 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、最初に、こちらの申込書に必要事項を書いていただいて、審査に回します。 | Hai, saisho ni, kochira no mooshikomisho ni hitsuyoo jikoo o kaite itadaite, shinsa ni mawashimasu. | Vâng, trước tiên chị điền các mục cần thiết vào đơn đăng ký này, rồi chúng tôi sẽ chuyển đi xét duyệt.
 00:52 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | 審査に通ったら契約に移りますので、その時点で証明書類をご用意ください。 | Shinsa ni toottara keeyaku ni utsurimasu node, sono jiten de shoomee shorui o goyooi kudasai. | Nếu qua xét duyệt thì sẽ chuyển sang ký hợp đồng, nên lúc đó nhờ chị chuẩn bị các giấy tờ chứng minh.
 *01:00 | アンジェラ / Anjera / Angela | わかりました。契約するときは、どんなものが必要ですか？ | Wakarimashita. Keeyaku-suru toki wa, donna mono ga hitsuyoo desu ka. | Em hiểu rồi. Khi ký hợp đồng thì cần những gì ạ?
-01:07 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | こちらの紙に必要な書類などが書いてありますので、ご確認ください。 | Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai. | Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.
+01:07 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | えー、こちらの方に、必要な書類などが書いてありますので、ご確認ください。 | Ee, kochira no hoo ni, hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai. | À, ở đây có ghi các giấy tờ cần thiết, chị vui lòng xem giúp ạ.
 01:13 | アンジェラ / Anjera / Angela | はい。在留カード、住民票、収入証明の書類… | Hai. Zairyuu kaado, juuminhyoo, shuunyuu shoomee no shorui... | Vâng. Thẻ cư trú, phiếu cư trú, giấy tờ chứng minh thu nhập...
 01:24 | アンジェラ / Anjera / Angela | 会社からもらう源泉徴収票とかのことですか？ | Kaisha kara morau gensen chooshuuhyoo toka no koto desu ka. | Là phiếu khấu trừ thuế tại nguồn nhận từ công ty phải không ạ?
 01:28 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | はい、そうです。 | Hai, soo desu. | Vâng, đúng vậy.
 01:30 | アンジェラ / Anjera / Angela | いろいろあるんですね。 | Iroiro aru n desu ne. | Có nhiều thứ nhỉ.
-01:33 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | それから、印鑑と印鑑証明、それから保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。 | Sorekara, inkan to inkan shoomee, sorekara hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga. | Ngoài ra cần con dấu và giấy chứng nhận con dấu, cùng người bảo lãnh, chị có nhờ ai được không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.
+01:33 | アンジェラ / Anjera / Angela | それから…印鑑と印鑑証明…。 | Sorekara... inkan to inkan shoomee... | Tiếp theo là... con dấu và giấy chứng nhận con dấu...
+01:38 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | それから、保証人が必要になりますけど、どなたかお願いできますか？最近は機関保証という制度もありますが。 | Sorekara, hoshoonin ga hitsuyoo ni narimasu kedo, donata ka onegai dekimasu ka. Saikin wa kikan hoshoo to iu seedo mo arimasu ga. | Ngoài ra cần có người bảo lãnh, chị có nhờ được ai không ạ? Gần đây cũng có chế độ bảo lãnh qua tổ chức.
 *01:50 | アンジェラ / Anjera / Angela | ああ、保証人は勤務先の社長がなってくれると思います。今もそうなので。 | Aa, hoshoonin wa kinmusaki no shachoo ga natte kureru to omoimasu. Ima mo soo nano de. | À, người bảo lãnh thì em nghĩ giám đốc nơi em làm việc sẽ làm giúp em. Hiện giờ cũng vậy ạ.
 01:58 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | そうですか。わかりました。 | Soo desu ka. Wakarimashita. | Vậy ạ. Tôi hiểu rồi.
 02:01 | アンジェラ / Anjera / Angela | あの、全部でいくらぐらいかかりますか？ | Ano, zenbu de ikura gurai kakarimasu ka. | À, tổng cộng hết khoảng bao nhiêu tiền ạ?
@@ -109,7 +110,7 @@
 01:03 | ナレーター / Nareetaa / Người dẫn | 他に、「安かったら」「駅から近かったら」「広かったら」「南向きだったら借りたいです」や「高かったら借りません」などと使うことができます。 | Hoka ni, "yasukattara", "eki kara chikakattara", "hirokattara", "minami-muki dattara karitai desu" ya "takakattara karimasen" nado to tsukau koto ga dekimasu. | Ngoài ra cũng có thể dùng như "nếu rẻ", "nếu gần nhà ga", "nếu rộng", "nếu hướng nam thì tôi muốn thuê" hay "nếu đắt thì tôi không thuê".
 01:26 |  /  / Chủ đề | けいやくする とき | keeyaku-suru toki | Khi ký hợp đồng
 01:32 | アンジェラ / Anjera / Angela | わかりました。契約するときは、どんなものが必要ですか？ | Wakarimashita. Keeyaku-suru toki wa, donna mono ga hitsuyoo desu ka. | Em hiểu rồi. Khi ký hợp đồng thì cần những gì ạ?
-01:39 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | こちらの紙に必要な書類などが書いてありますので、ご確認ください。 | Kochira no kami ni hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai. | Trên tờ giấy này có ghi các giấy tờ cần thiết, nhờ chị xem lại.
+01:39 | 不動産屋の店員 / Fudoosan-ya no ten'in / Nhân viên công ty môi giới nhà | えー、こちらの方に、必要な書類などが書いてありますので、ご確認ください。 | Ee, kochira no hoo ni, hitsuyoo na shorui nado ga kaite arimasu node, gokakunin kudasai. | À, ở đây có ghi các giấy tờ cần thiết, chị vui lòng xem giúp ạ.
 01:47 | ナレーター / Nareetaa / Người dẫn | 「普通形+とき」は、 | "Futsuu-kee + toki" wa, | "Thể thường + toki" là
 01:51 | ナレーター / Nareetaa / Người dẫn | 「Aとき、B」の形で、 | "A toki, B" no katachi de, | theo dạng "A toki, B",
 01:55 | ナレーター / Nareetaa / Người dẫn | いつBをするか表す表現です。 | Itsu B o suru ka arawasu hyoogen desu. | cách diễn đạt biểu thị khi nào thì làm B.

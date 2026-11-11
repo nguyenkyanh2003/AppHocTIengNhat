@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../features/auth/providers/auth_provider.dart';
+import '../features/notifications/widgets/achievement_toast_host.dart';
 import './app_providers.dart';
 import './localization/app_localizations.dart';
 import './localization/locale_provider.dart';
@@ -81,6 +82,11 @@ class _AppViewState extends State<_AppView> {
         Locale('ja', 'JP'),
       ],
       routerConfig: _router,
+      // Báo huy hiệu vừa nhận ở mọi màn, kể cả màn học toàn màn hình.
+      builder: (context, child) => AchievementToastHost(
+        onOpenAchievements: () => _router.push('/achievements'),
+        child: child ?? const SizedBox.shrink(),
+      ),
     );
   }
 }

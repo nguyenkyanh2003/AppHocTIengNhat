@@ -45,8 +45,10 @@ export const createNotificationRepository = ({ Notification: model, User: userMo
     return result.deletedCount;
   },
 
-  async create(doc) {
-    const created = await model.create(doc);
+  /** `session` để ghi cùng transaction với việc gây ra thông báo (vd. cấp huy hiệu). */
+  async create(doc, { session } = {}) {
+    // Dạng mảng là dạng duy nhất của `Model.create` nhận được `session`.
+    const [created] = await model.create([doc], { session });
     return created.toObject();
   },
 

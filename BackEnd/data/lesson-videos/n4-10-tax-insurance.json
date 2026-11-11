@@ -638,19 +638,29 @@
           "speaker_ja": "佐藤",
           "speaker_romaji": "Satoo",
           "speaker_vi": "Satō",
-          "text_ja": "ああ、そうですか。保険証があれば、病院で払うお金が少なくなりますね。",
-          "romaji": "Aa, soo desu ka. Hokenshoo ga areba, byooin de harau okane ga sukunaku narimasu ne.",
-          "text_vi": "À, vậy à. Có thẻ bảo hiểm thì tiền trả ở bệnh viện sẽ ít đi.",
+          "text_ja": "ああ、そうですか。",
+          "romaji": "Aa, soo desu ka.",
+          "text_vi": "À, vậy à.",
           "key_phrase": false
         },
         {
-          "start": "00:29",
+          "start": "00:22",
           "speaker_ja": "王",
           "speaker_romaji": "Oo",
           "speaker_vi": "Vương",
+          "text_ja": "保険証があれば、病院で払うお金が少なくなりますね。",
+          "romaji": "Hokenshoo ga areba, byooin de harau okane ga sukunaku narimasu ne.",
+          "text_vi": "Có thẻ bảo hiểm thì tiền trả ở bệnh viện sẽ ít đi nhỉ.",
+          "key_phrase": false
+        },
+        {
+          "start": "00:28",
+          "speaker_ja": "佐藤",
+          "speaker_romaji": "Satoo",
+          "speaker_vi": "Satō",
           "text_ja": "はい、そうです。",
           "romaji": "Hai, soo desu.",
-          "text_vi": "Vâng, đúng vậy.",
+          "text_vi": "Ừ, đúng vậy.",
           "key_phrase": false
         },
         {

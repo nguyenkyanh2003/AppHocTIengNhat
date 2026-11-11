@@ -62,12 +62,12 @@ export const ACHIEVEMENTS = Object.freeze([
     ['Kanji Master', 'Bậc Thầy Kanji', 500, 2000, 'Learn 500 kanji characters', 'Học 500 chữ Kanji'],
   ]),
 
-  // Mẫu ngữ pháp học trong bài.
+  // Bài tập mẫu câu đã đạt: mỗi bài học có một bài "Hội thoại".
   ...ladder('grammar', 'count', [
-    ['Grammar First Steps', 'Làm Quen Ngữ Pháp', 5, 50, 'Learn 5 grammar points', 'Học 5 mẫu ngữ pháp'],
-    ['Grammar Novice', 'Người Mới Học Ngữ Pháp', 20, 150, 'Learn 20 grammar points', 'Học 20 mẫu ngữ pháp'],
-    ['Grammar Expert', 'Chuyên Gia Ngữ Pháp', 50, 400, 'Learn 50 grammar points', 'Học 50 mẫu ngữ pháp'],
-    ['Grammar Master', 'Bậc Thầy Ngữ Pháp', 100, 1200, 'Learn 100 grammar points', 'Học 100 mẫu ngữ pháp'],
+    ['Grammar First Steps', 'Làm Quen Ngữ Pháp', 5, 50, 'Pass 5 dialogue pattern exercises', 'Làm đạt 5 bài tập Hội thoại về mẫu câu'],
+    ['Grammar Novice', 'Người Mới Học Ngữ Pháp', 10, 150, 'Pass 10 dialogue pattern exercises', 'Làm đạt 10 bài tập Hội thoại về mẫu câu'],
+    ['Grammar Expert', 'Chuyên Gia Ngữ Pháp', 20, 400, 'Pass 20 dialogue pattern exercises', 'Làm đạt 20 bài tập Hội thoại về mẫu câu'],
+    ['Grammar Master', 'Bậc Thầy Ngữ Pháp', 40, 1200, 'Pass 40 dialogue pattern exercises', 'Làm đạt 40 bài tập Hội thoại về mẫu câu'],
   ]),
 
   // Bài học hoàn thành.

@@ -31,9 +31,9 @@
         },
         {
           "start": "00:06",
-          "speaker_ja": "カフェのオーナー",
-          "speaker_romaji": "Kafe no oonaa",
-          "speaker_vi": "Chủ quán cà phê",
+          "speaker_ja": "アンジェラ",
+          "speaker_romaji": "Anjera",
+          "speaker_vi": "Angela",
           "text_ja": "今日も忙しかったですね。",
           "romaji": "Kyoo mo isogashikatta desu ne.",
           "text_vi": "Hôm nay cũng bận rộn nhỉ.",
@@ -41,12 +41,12 @@
         },
         {
           "start": "00:09",
-          "speaker_ja": "アンジェラ",
-          "speaker_romaji": "Anjera",
-          "speaker_vi": "Angela",
+          "speaker_ja": "カフェのオーナー",
+          "speaker_romaji": "Kafe no oonaa",
+          "speaker_vi": "Chủ quán cà phê",
           "text_ja": "本当ですね。",
           "romaji": "Hontoo desu ne.",
-          "text_vi": "Đúng thật ạ.",
+          "text_vi": "Đúng thật.",
           "key_phrase": false
         },
         {
