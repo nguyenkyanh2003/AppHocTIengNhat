@@ -1,5 +1,12 @@
 
-const word = (w, hiragana, meaning) => ({ word: w, hiragana, meaning });
+/**
+ * Một từ của bài. `link` là khoá của từ **giáo trình** mà từ này chính là nó,
+ * chỉ khác chú thích ([な], 「お」, dấu 。): bài học liên kết tới bản giáo trình
+ * thay vì sinh một bản sao trong kho. Bài tập vẫn dùng mặt chữ, cách đọc riêng
+ * của bài — câu hỏi "cách đọc của 便利" không nên có đáp án "べんり[な]".
+ */
+const word = (w, hiragana, meaning, link) => ({ word: w, hiragana, meaning, ...(link && { link }) });
+const sameAs = (w, hiragana) => ({ word: w, hiragana });
 
 export const SITUATIONAL_LESSONS = [
   // ───────────────────────────── N5 ─────────────────────────────
@@ -17,8 +24,8 @@ export const SITUATIONAL_LESSONS = [
     ],
     vocabularies: [
       word('名前', 'なまえ', 'tên'),
-      word('国', 'くに', 'đất nước'),
-      word('仕事', 'しごと', 'công việc'),
+      word('国', 'くに', 'đất nước', sameAs('「お」国', '「お」くに')),
+      word('仕事', 'しごと', 'công việc', sameAs('仕事', '[お]しごと')),
       word('会社員', 'かいしゃいん', 'nhân viên công ty'),
       word('学生', 'がくせい', 'học sinh, sinh viên'),
       word('先生', 'せんせい', 'giáo viên'),
@@ -314,7 +321,7 @@ export const SITUATIONAL_LESSONS = [
     ],
     vocabularies: [
       word('挨拶', 'あいさつ', 'lời chào'),
-      word('おめでとうございます', 'おめでとうございます', 'chúc mừng'),
+      word('おめでとうございます', 'おめでとうございます', 'chúc mừng', sameAs('おめでとうございます。', 'おめでとうございます。')),
       word('結婚式', 'けっこんしき', 'đám cưới'),
       word('お辞儀', 'おじぎ', 'cúi chào'),
       word('葬式', 'そうしき', 'đám tang'),
@@ -323,7 +330,7 @@ export const SITUATIONAL_LESSONS = [
       word('ご愁傷様です', 'ごしゅうしょうさまです', 'xin chia buồn'),
       word('同期', 'どうき', 'người vào công ty cùng đợt'),
       word('職場', 'しょくば', 'nơi làm việc'),
-      word('見舞い', 'みまい', 'việc đi thăm người ốm'),
+      word('見舞い', 'みまい', 'việc đi thăm người ốm', sameAs('見舞い', '[お]みまい')),
       word('のし袋', 'のしぶくろ', 'phong bì mừng'),
     ],
   },
@@ -342,7 +349,7 @@ export const SITUATIONAL_LESSONS = [
     vocabularies: [
       word('デパート', 'デパート', 'cửa hàng bách hóa'),
       word('電気料金', 'でんきりょうきん', 'tiền điện'),
-      word('弁当', 'べんとう', 'cơm hộp'),
+      word('弁当', 'べんとう', 'cơm hộp', sameAs('「お」弁当', '「お」べんとう')),
       word('贈り物', 'おくりもの', 'quà tặng'),
       word('払う', 'はらう', 'trả tiền'),
       word('温める', 'あたためる', 'hâm nóng'),
@@ -372,7 +379,7 @@ export const SITUATIONAL_LESSONS = [
       word('証明写真', 'しょうめいしゃしん', 'ảnh thẻ'),
       word('何名様', 'なんめいさま', 'mấy vị khách'),
       word('おすすめ', 'おすすめ', 'được giới thiệu'),
-      word('必要', 'ひつよう', 'cần thiết'),
+      word('必要', 'ひつよう', 'cần thiết', sameAs('必要', 'ひつよう[な]')),
       word('連絡先', 'れんらくさき', 'thông tin liên lạc'),
       word('ランチ', 'ランチ', 'bữa trưa'),
       word('撮る', 'とる', 'chụp (ảnh)'),
@@ -479,7 +486,7 @@ export const SITUATIONAL_LESSONS = [
       word('生活', 'せいかつ', 'cuộc sống'),
       word('夏祭り', 'なつまつり', 'lễ hội mùa hè'),
       word('売る', 'うる', 'bán'),
-      word('暇', 'ひま', 'rảnh rỗi'),
+      word('暇', 'ひま', 'rảnh rỗi', sameAs('暇', 'ひま[な]')),
       word('お好み焼き', 'おこのみやき', 'bánh xèo Nhật'),
       word('申し込み', 'もうしこみ', 'đăng ký'),
       word('図書館', 'としょかん', 'thư viện'),
@@ -667,7 +674,7 @@ export const SITUATIONAL_LESSONS = [
       word('指差呼称', 'しさこしょう', 'chỉ tay hô to'),
       word('スプレー缶', 'スプレーかん', 'bình xịt'),
       word('定例', 'ていれい', 'định kỳ'),
-      word('安全', 'あんぜん', 'an toàn'),
+      word('安全', 'あんぜん', 'an toàn', sameAs('安全', 'あんぜん[な]')),
       word('換気', 'かんき', 'thông gió'),
       word('危険予知', 'きけんよち', 'dự đoán nguy hiểm'),
       word('確認', 'かくにん', 'xác nhận'),
@@ -774,7 +781,7 @@ export const SITUATIONAL_LESSONS = [
     vocabularies: [
       word('資材課', 'しざいか', 'phòng vật tư'),
       word('うどん屋', 'うどんや', 'quán udon'),
-      word('便利', 'べんり', 'tiện lợi'),
+      word('便利', 'べんり', 'tiện lợi', sameAs('便利', 'べんり[な]')),
       word('総務課', 'そうむか', 'phòng tổng vụ'),
       word('工事中', 'こうじちゅう', 'đang thi công'),
       word('入社', 'にゅうしゃ', 'vào công ty'),
@@ -801,7 +808,7 @@ export const SITUATIONAL_LESSONS = [
     vocabularies: [
       word('保育園', 'ほいくえん', 'nhà trẻ'),
       word('両親', 'りょうしん', 'bố mẹ'),
-      word('おかげさまで', 'おかげさまで', 'nhờ anh chị (mà…)'),
+      word('おかげさまで', 'おかげさまで', 'nhờ anh chị (mà…)', sameAs('おかげさまで。', 'おかげさまで。')),
       word('熱を出す', 'ねつをだす', 'bị sốt'),
       word('有給', 'ゆうきゅう', 'nghỉ phép có lương'),
       word('久しぶり', 'ひさしぶり', 'lâu lắm rồi'),
@@ -835,7 +842,7 @@ export const SITUATIONAL_LESSONS = [
       word('出勤', 'しゅっきん', 'đi làm'),
       word('朝礼', 'ちょうれい', 'họp đầu giờ sáng'),
       word('指導', 'しどう', 'chỉ bảo, hướng dẫn'),
-      word('苦手', 'にがて', 'không giỏi, ngại'),
+      word('苦手', 'にがて', 'không giỏi, ngại', sameAs('苦手な', 'にがてな')),
       word('意気込み', 'いきごみ', 'quyết tâm'),
       word('人前', 'ひとまえ', 'trước mặt mọi người'),
     ],

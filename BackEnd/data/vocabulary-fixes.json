@@ -1,0 +1,2138 @@
+[
+  {
+    "source": "N5:454",
+    "action": "add",
+    "word": "夫",
+    "hiragana": "おっと",
+    "meaning": "Chồng (dùng khi nói về chồng mình)",
+    "level": "N5",
+    "hanviet": "PHU"
+  },
+  {
+    "source": "N5:456",
+    "action": "add",
+    "word": "妻",
+    "hiragana": "つま",
+    "meaning": "Vợ (dùng khi nói về vợ mình)",
+    "level": "N5",
+    "hanviet": "THÊ"
+  },
+  {
+    "source": "N5:456",
+    "action": "add",
+    "word": "家内",
+    "hiragana": "かない",
+    "meaning": "Vợ (dùng khi nói về vợ mình)",
+    "level": "N5",
+    "hanviet": "GIA NỘI"
+  },
+  {
+    "source": "N5:466",
+    "action": "add",
+    "word": "残念です",
+    "hiragana": "ざんねんです[ね]",
+    "meaning": "Thật đáng tiếc nhỉ./ buồn nhỉ.",
+    "level": "N5"
+  },
+  {
+    "source": "N5:516",
+    "action": "add",
+    "word": "~段目",
+    "hiragana": "~だんめ",
+    "meaning": "Giá thứ -, tầng thứ - (「だん」 được dùng cho giá sách v.v.)",
+    "level": "N5",
+    "hanviet": "ĐOẠN MỤC"
+  },
+  {
+    "source": "N5:538",
+    "action": "add",
+    "word": "~人",
+    "hiragana": "~にん",
+    "meaning": "- Người",
+    "level": "N5",
+    "hanviet": "NHÂN"
+  },
+  {
+    "source": "N5:539",
+    "action": "add",
+    "word": "~台",
+    "hiragana": "~だい",
+    "meaning": "- Cái (dùng để đếm máy móc, xe cộ v.v.)",
+    "level": "N5",
+    "hanviet": "ĐÀI"
+  },
+  {
+    "source": "N5:540",
+    "action": "add",
+    "word": "~枚",
+    "hiragana": "~まい",
+    "meaning": "- Tờ, tấm (dùng để đếm những vật mỏng như giấy, con tem v.v.)",
+    "level": "N5",
+    "hanviet": "MAI"
+  },
+  {
+    "source": "N5:541",
+    "action": "add",
+    "word": "~回",
+    "hiragana": "~かい",
+    "meaning": "- Lần",
+    "level": "N5",
+    "hanviet": "HỒI"
+  },
+  {
+    "source": "N5:561",
+    "action": "add",
+    "word": "~時間",
+    "hiragana": "~じかん",
+    "meaning": "- Tiếng",
+    "level": "N5",
+    "hanviet": "THỜI GIAN"
+  },
+  {
+    "source": "N5:562",
+    "action": "add",
+    "word": "~週間",
+    "hiragana": "~しゅうかん",
+    "meaning": "- Tuần",
+    "level": "N5",
+    "hanviet": "CHU GIAN"
+  },
+  {
+    "source": "N5:563",
+    "action": "add",
+    "word": "~か月",
+    "hiragana": "~かげつ",
+    "meaning": "- Tháng",
+    "level": "N5",
+    "hanviet": "NGUYỆT"
+  },
+  {
+    "source": "N5:564",
+    "action": "add",
+    "word": "~年",
+    "hiragana": "~ねん",
+    "meaning": "- Năm",
+    "level": "N5",
+    "hanviet": "NIÊN"
+  },
+  {
+    "source": "N5:574",
+    "action": "add",
+    "word": "行っていらっしゃい",
+    "hiragana": "いっていらっしゃい",
+    "meaning": "Anh/chị đi nhé. (nguyên nghĩa: anh/chị đi rồi lại về nhé.)",
+    "level": "N5"
+  },
+  {
+    "source": "N5:575",
+    "action": "add",
+    "word": "行ってまいります",
+    "hiragana": "いってまいります",
+    "meaning": "Tôi đi đây. (nguyên nghĩa: tôi đi rồi sẽ về.)",
+    "level": "N5"
+  },
+  {
+    "source": "N4:2",
+    "action": "add",
+    "word": "診ます",
+    "hiragana": "みます",
+    "meaning": "Khám (bệnh)",
+    "level": "N4",
+    "hanviet": "CHẨN",
+    "source_lesson": "Bài 26"
+  },
+  {
+    "source": "N4:3",
+    "action": "add",
+    "word": "探します",
+    "hiragana": "さがします",
+    "meaning": "Tìm, tìm kiếm (thứ mình muốn có)",
+    "level": "N4",
+    "hanviet": "THÁM",
+    "source_lesson": "Bài 26"
+  },
+  {
+    "source": "N4:3",
+    "action": "add",
+    "word": "捜します",
+    "hiragana": "さがします",
+    "meaning": "Tìm, tìm kiếm (thứ bị mất)",
+    "level": "N4",
+    "hanviet": "SƯU",
+    "source_lesson": "Bài 26"
+  },
+  {
+    "source": "N4:303",
+    "action": "add",
+    "word": "治ります",
+    "hiragana": "[びょうきが~]なおります",
+    "meaning": "Khỏi [bệnh]",
+    "level": "N4",
+    "hanviet": "BỆNH KHÍ TRỊ",
+    "source_lesson": "Bài 32"
+  },
+  {
+    "source": "N4:303",
+    "action": "add",
+    "word": "直ります",
+    "hiragana": "なおります",
+    "meaning": "Được sửa, chữa xong (đồ hỏng)",
+    "level": "N4",
+    "hanviet": "TRỰC",
+    "source_lesson": "Bài 32"
+  },
+  {
+    "source": "N4:443",
+    "action": "add",
+    "word": "~分",
+    "hiragana": "~ぶん",
+    "meaning": "- Suất, phần (dành cho - người)",
+    "level": "N4",
+    "hanviet": "PHÂN",
+    "source_lesson": "Bài 34"
+  },
+  {
+    "source": "N4:635",
+    "action": "add",
+    "word": "~という本",
+    "hiragana": "~というほん",
+    "meaning": "Quyển sách có tên là ~",
+    "level": "N4",
+    "hanviet": "BẢN",
+    "source_lesson": "Bài 38"
+  },
+  {
+    "source": "N4:641",
+    "action": "add",
+    "word": "5年生",
+    "hiragana": "ごねんせい",
+    "meaning": "Học sinh năm thứ 5",
+    "level": "N4",
+    "hanviet": "NIÊN SINH",
+    "source_lesson": "Bài 38"
+  },
+  {
+    "source": "N4:698",
+    "action": "add",
+    "word": "測ります",
+    "hiragana": "はかります",
+    "meaning": "Đo (chiều dài, nhiệt độ…)",
+    "level": "N4",
+    "hanviet": "TRẮC",
+    "source_lesson": "Bài 40"
+  },
+  {
+    "source": "N4:698",
+    "action": "add",
+    "word": "量ります",
+    "hiragana": "はかります",
+    "meaning": "Cân (trọng lượng)",
+    "level": "N4",
+    "hanviet": "LƯỢNG",
+    "source_lesson": "Bài 40"
+  },
+  {
+    "source": "N4:1030",
+    "action": "add",
+    "word": "降ろします",
+    "hiragana": "おろします",
+    "meaning": "Cho (người) xuống (xe)",
+    "level": "N4",
+    "hanviet": "GIÁNG",
+    "source_lesson": "Bài 48"
+  },
+  {
+    "source": "N4:1030",
+    "action": "add",
+    "word": "下ろします",
+    "hiragana": "おろします",
+    "meaning": "Hạ xuống, rút (tiền)",
+    "level": "N4",
+    "hanviet": "HẠ",
+    "source_lesson": "Bài 48"
+  },
+  {
+    "source": "N3:392",
+    "action": "add",
+    "word": "回り",
+    "hiragana": "まわり",
+    "meaning": "Vòng quanh, sự quay",
+    "level": "N3",
+    "hanviet": "HỒI"
+  },
+  {
+    "source": "N3:438",
+    "action": "add",
+    "word": "替わる",
+    "hiragana": "かわる",
+    "meaning": "Được thay (bằng cái mới), đổi",
+    "level": "N3",
+    "hanviet": "THẾ"
+  },
+  {
+    "source": "N3:438",
+    "action": "add",
+    "word": "代わる",
+    "hiragana": "かわる",
+    "meaning": "Thay thế, thay cho (người, vai trò)",
+    "level": "N3",
+    "hanviet": "ĐẠI"
+  },
+  {
+    "source": "N3:438",
+    "action": "add",
+    "word": "換わる",
+    "hiragana": "かわる",
+    "meaning": "Được đổi, được hoán đổi",
+    "level": "N3",
+    "hanviet": "HOÁN"
+  },
+  {
+    "source": "N3:439",
+    "action": "add",
+    "word": "替える",
+    "hiragana": "かえる",
+    "meaning": "Thay (bằng cái mới), đổi",
+    "level": "N3",
+    "hanviet": "THẾ"
+  },
+  {
+    "source": "N3:439",
+    "action": "add",
+    "word": "代える",
+    "hiragana": "かえる",
+    "meaning": "Thay thế (người, vật khác vào vị trí)",
+    "level": "N3",
+    "hanviet": "ĐẠI"
+  },
+  {
+    "source": "N3:439",
+    "action": "add",
+    "word": "換える",
+    "hiragana": "かえる",
+    "meaning": "Đổi, hoán đổi (lấy cái khác)",
+    "level": "N3",
+    "hanviet": "HOÁN"
+  },
+  {
+    "source": "N3:520",
+    "action": "add",
+    "word": "アイデア",
+    "hiragana": "アイデア",
+    "meaning": "Ý tưởng",
+    "level": "N3"
+  },
+  {
+    "source": "N3:520",
+    "action": "add",
+    "word": "アイディア",
+    "hiragana": "アイディア",
+    "meaning": "Ý tưởng",
+    "level": "N3"
+  },
+  {
+    "source": "N3:563",
+    "action": "add",
+    "word": "固い",
+    "hiragana": "かたい",
+    "meaning": "Cứng, chắc, chặt (quyết tâm, nút buộc)",
+    "level": "N3",
+    "hanviet": "CỐ"
+  },
+  {
+    "source": "N3:753",
+    "action": "add",
+    "word": "済ませる",
+    "hiragana": "すませる",
+    "meaning": "Làm xong, hoàn tất",
+    "level": "N3",
+    "hanviet": "TẾ"
+  },
+  {
+    "source": "N3:753",
+    "action": "add",
+    "word": "済ます",
+    "hiragana": "すます",
+    "meaning": "Làm xong, hoàn tất",
+    "level": "N3",
+    "hanviet": "TẾ"
+  },
+  {
+    "source": "N2:132",
+    "action": "add",
+    "word": "測る",
+    "hiragana": "はかる",
+    "meaning": "Đo (chiều dài, độ sâu, nhiệt độ)",
+    "level": "N2",
+    "hanviet": "TRẮC"
+  },
+  {
+    "source": "N2:132",
+    "action": "add",
+    "word": "計る",
+    "hiragana": "はかる",
+    "meaning": "Đo, tính (thời gian, số lượng)",
+    "level": "N2",
+    "hanviet": "KẾ"
+  },
+  {
+    "source": "N2:132",
+    "action": "add",
+    "word": "量る",
+    "hiragana": "はかる",
+    "meaning": "Cân, đo (trọng lượng, dung tích)",
+    "level": "N2",
+    "hanviet": "LƯỢNG"
+  },
+  {
+    "source": "N2:200",
+    "action": "add",
+    "word": "戦う",
+    "hiragana": "たたかう",
+    "meaning": "Chiến đấu, thi đấu",
+    "level": "N2",
+    "hanviet": "CHIẾN"
+  },
+  {
+    "source": "N2:200",
+    "action": "add",
+    "word": "闘う",
+    "hiragana": "たたかう",
+    "meaning": "Đấu tranh (với bệnh tật, khó khăn)",
+    "level": "N2",
+    "hanviet": "ĐẤU"
+  },
+  {
+    "source": "N2:211",
+    "action": "add",
+    "word": "発つ",
+    "hiragana": "たつ",
+    "meaning": "Khởi hành, rời khỏi (nơi nào đó)",
+    "level": "N2",
+    "hanviet": "PHÁT"
+  },
+  {
+    "source": "N2:262",
+    "action": "add",
+    "word": "荒い",
+    "hiragana": "あらい",
+    "meaning": "Thô bạo, dữ dội (sóng, tính khí)",
+    "level": "N2",
+    "hanviet": "HOANG"
+  },
+  {
+    "source": "N2:262",
+    "action": "add",
+    "word": "粗い",
+    "hiragana": "あらい",
+    "meaning": "Thô, không mịn, sơ sài",
+    "level": "N2",
+    "hanviet": "THÔ"
+  },
+  {
+    "source": "N2:557",
+    "action": "add",
+    "word": "にこにこ",
+    "hiragana": "にこにこ",
+    "meaning": "Tươi cười, cười tủm tỉm",
+    "level": "N2"
+  },
+  {
+    "source": "N2:557",
+    "action": "add",
+    "word": "にっこり",
+    "hiragana": "にっこり",
+    "meaning": "Mỉm cười (một cái)",
+    "level": "N2"
+  },
+  {
+    "source": "N2:558",
+    "action": "add",
+    "word": "にやにや",
+    "hiragana": "にやにや",
+    "meaning": "Cười nhăn nhở, cười khẩy",
+    "level": "N2"
+  },
+  {
+    "source": "N2:558",
+    "action": "add",
+    "word": "にやりと",
+    "hiragana": "にやりと",
+    "meaning": "Cười nhếch mép (một cái)",
+    "level": "N2"
+  },
+  {
+    "source": "N2:559",
+    "action": "add",
+    "word": "どきどき",
+    "hiragana": "どきどき",
+    "meaning": "Hồi hộp, tim đập thình thịch",
+    "level": "N2"
+  },
+  {
+    "source": "N2:559",
+    "action": "add",
+    "word": "どきりと",
+    "hiragana": "どきりと",
+    "meaning": "Giật mình, thót tim",
+    "level": "N2"
+  },
+  {
+    "source": "N2:599",
+    "action": "add",
+    "word": "制作",
+    "hiragana": "せいさく",
+    "meaning": "Sáng tác, sản xuất (tác phẩm nghệ thuật, phim)",
+    "level": "N2",
+    "hanviet": "CHẾ TÁC"
+  },
+  {
+    "source": "N2:599",
+    "action": "add",
+    "word": "製作",
+    "hiragana": "せいさく",
+    "meaning": "Chế tạo, sản xuất (hàng hoá, máy móc)",
+    "level": "N2",
+    "hanviet": "CHẾ TÁC"
+  },
+  {
+    "source": "N2:699",
+    "action": "add",
+    "word": "捕る",
+    "hiragana": "とる",
+    "meaning": "Bắt (động vật, cá)",
+    "level": "N2",
+    "hanviet": "BỘ"
+  },
+  {
+    "source": "N2:699",
+    "action": "add",
+    "word": "採る",
+    "hiragana": "とる",
+    "meaning": "Hái, thu hoạch; tuyển dụng, áp dụng",
+    "level": "N2",
+    "hanviet": "THÁI"
+  },
+  {
+    "source": "N2:699",
+    "action": "add",
+    "word": "執る",
+    "hiragana": "とる",
+    "meaning": "Đảm nhiệm, nắm (công việc); cầm (bút)",
+    "level": "N2",
+    "hanviet": "CHẤP"
+  },
+  {
+    "source": "N2:766",
+    "action": "add",
+    "word": "偏る",
+    "hiragana": "かたよる",
+    "meaning": "Lệch, nghiêng về một phía, thiên lệch",
+    "level": "N2",
+    "hanviet": "THIÊN"
+  },
+  {
+    "source": "N2:766",
+    "action": "add",
+    "word": "片寄る",
+    "hiragana": "かたよる",
+    "meaning": "Dồn về một phía, lệch",
+    "level": "N2",
+    "hanviet": "PHIẾN KÍ"
+  },
+  {
+    "source": "N2:783",
+    "action": "add",
+    "word": "整える",
+    "hiragana": "ととのえる",
+    "meaning": "Sắp xếp gọn gàng, chỉnh đốn",
+    "level": "N2",
+    "hanviet": "CHỈNH"
+  },
+  {
+    "source": "N2:783",
+    "action": "add",
+    "word": "調える",
+    "hiragana": "ととのえる",
+    "meaning": "Chuẩn bị đầy đủ, sắm sửa",
+    "level": "N2",
+    "hanviet": "ĐIỀU"
+  },
+  {
+    "source": "N2:1037",
+    "action": "add",
+    "word": "収まる",
+    "hiragana": "おさまる",
+    "meaning": "Được chứa vừa, được thu xếp ổn thoả",
+    "level": "N2",
+    "hanviet": "THU"
+  },
+  {
+    "source": "N2:1037",
+    "action": "add",
+    "word": "納まる",
+    "hiragana": "おさまる",
+    "meaning": "Được nộp, được giao",
+    "level": "N2",
+    "hanviet": "NẠP"
+  },
+  {
+    "source": "N2:1037",
+    "action": "add",
+    "word": "治まる",
+    "hiragana": "おさまる",
+    "meaning": "Lắng xuống, dịu đi, được bình định",
+    "level": "N2",
+    "hanviet": "TRỊ"
+  },
+  {
+    "source": "N2:1038",
+    "action": "add",
+    "word": "治める",
+    "hiragana": "おさめる",
+    "meaning": "Cai trị, bình định",
+    "level": "N2",
+    "hanviet": "TRỊ"
+  },
+  {
+    "source": "N2:1038",
+    "action": "add",
+    "word": "収める",
+    "hiragana": "おさめる",
+    "meaning": "Thu được, đạt được (thành quả); cất giữ",
+    "level": "N2",
+    "hanviet": "THU"
+  },
+  {
+    "source": "N2:1038",
+    "action": "add",
+    "word": "納める",
+    "hiragana": "おさめる",
+    "meaning": "Nộp (thuế, tiền), giao (hàng)",
+    "level": "N2",
+    "hanviet": "NẠP"
+  },
+  {
+    "source": "N2:1039",
+    "action": "add",
+    "word": "沿う",
+    "hiragana": "そう",
+    "meaning": "Men theo, dọc theo; theo đúng (mong muốn)",
+    "level": "N2",
+    "hanviet": "DUYÊN"
+  },
+  {
+    "source": "N2:1039",
+    "action": "add",
+    "word": "添う",
+    "hiragana": "そう",
+    "meaning": "Đi kèm, ở bên cạnh",
+    "level": "N2",
+    "hanviet": "THIÊM"
+  },
+  {
+    "source": "N2:1146",
+    "action": "add",
+    "word": "できれば",
+    "hiragana": "できれば",
+    "meaning": "Nếu có thể",
+    "level": "N2"
+  },
+  {
+    "source": "N2:1146",
+    "action": "add",
+    "word": "できたら",
+    "hiragana": "できたら",
+    "meaning": "Nếu có thể (thân mật hơn できれば)",
+    "level": "N2"
+  },
+  {
+    "source": "N1:138",
+    "action": "add",
+    "word": "断つ",
+    "hiragana": "たつ",
+    "meaning": "Cắt đứt (quan hệ, nguồn cung); từ bỏ (rượu, thuốc lá)",
+    "level": "N1",
+    "hanviet": "ĐOẠN"
+  },
+  {
+    "source": "N1:138",
+    "action": "add",
+    "word": "絶つ",
+    "hiragana": "たつ",
+    "meaning": "Chấm dứt, đoạn tuyệt (liên lạc, sự sống)",
+    "level": "N1",
+    "hanviet": "TUYỆT"
+  },
+  {
+    "source": "N1:187",
+    "action": "add",
+    "word": "懸ける",
+    "hiragana": "かける",
+    "meaning": "Treo (giải thưởng); đặt cược (tính mạng, danh dự)",
+    "level": "N1",
+    "hanviet": "HUYỀN"
+  },
+  {
+    "source": "N1:187",
+    "action": "add",
+    "word": "賭ける",
+    "hiragana": "かける",
+    "meaning": "Cá cược, đánh cược",
+    "level": "N1",
+    "hanviet": "ĐỔ"
+  },
+  {
+    "source": "N1:243",
+    "action": "add",
+    "word": "温和な",
+    "hiragana": "おんわな",
+    "meaning": "Ôn hoà (tính cách, khí hậu)",
+    "level": "N1",
+    "hanviet": "ÔN HÒA"
+  },
+  {
+    "source": "N1:243",
+    "action": "add",
+    "word": "穏和な",
+    "hiragana": "おんわな",
+    "meaning": "Ôn hoà, điềm đạm",
+    "level": "N1",
+    "hanviet": "ỔN HÒA"
+  },
+  {
+    "source": "N1:539",
+    "action": "add",
+    "word": "早急に",
+    "hiragana": "そうきゅうに",
+    "meaning": "Khẩn cấp, gấp rút",
+    "level": "N1",
+    "hanviet": "TẢO CẤP"
+  },
+  {
+    "source": "N1:539",
+    "action": "add",
+    "word": "早急に",
+    "hiragana": "さっきゅうに",
+    "meaning": "Khẩn cấp, gấp rút",
+    "level": "N1",
+    "hanviet": "TẢO CẤP"
+  },
+  {
+    "source": "N1:545",
+    "action": "add",
+    "word": "じきに",
+    "hiragana": "じきに",
+    "meaning": "Sắp, chẳng mấy chốc",
+    "level": "N1"
+  },
+  {
+    "source": "N1:545",
+    "action": "add",
+    "word": "もうじき",
+    "hiragana": "もうじき",
+    "meaning": "Sắp sửa, sắp",
+    "level": "N1"
+  },
+  {
+    "source": "N1:759",
+    "action": "add",
+    "word": "はみ出る",
+    "hiragana": "はみでる",
+    "meaning": "Lòi ra, thò ra",
+    "level": "N1",
+    "hanviet": "XUẤT"
+  },
+  {
+    "source": "N1:759",
+    "action": "add",
+    "word": "はみ出す",
+    "hiragana": "はみだす",
+    "meaning": "Làm lòi ra, vượt ra ngoài",
+    "level": "N1",
+    "hanviet": "XUẤT"
+  },
+  {
+    "source": "N1:967",
+    "action": "add",
+    "word": "行き違い",
+    "hiragana": "いきちがい",
+    "meaning": "Lỡ nhau, hiểu lầm",
+    "level": "N1",
+    "hanviet": "HÀNH VI"
+  },
+  {
+    "source": "N1:967",
+    "action": "add",
+    "word": "行き違い",
+    "hiragana": "ゆきちがい",
+    "meaning": "Lỡ nhau, hiểu lầm",
+    "level": "N1",
+    "hanviet": "HÀNH VI"
+  },
+  {
+    "source": "N1:1001",
+    "action": "add",
+    "word": "共存",
+    "hiragana": "きょうぞん",
+    "meaning": "Cùng tồn tại",
+    "level": "N1",
+    "hanviet": "CỘNG TỒN"
+  },
+  {
+    "source": "N1:1001",
+    "action": "add",
+    "word": "共存",
+    "hiragana": "きょうそん",
+    "meaning": "Cùng tồn tại",
+    "level": "N1",
+    "hanviet": "CỘNG TỒN"
+  },
+  {
+    "source": "N1:1007",
+    "action": "add",
+    "word": "情緒",
+    "hiragana": "じょうちょ",
+    "meaning": "Cảm xúc, tình cảm; không khí, nét đặc trưng",
+    "level": "N1",
+    "hanviet": "TÌNH TỰ"
+  },
+  {
+    "source": "N1:1007",
+    "action": "add",
+    "word": "情緒",
+    "hiragana": "じょうしょ",
+    "meaning": "Cảm xúc, tình cảm; không khí, nét đặc trưng",
+    "level": "N1",
+    "hanviet": "TÌNH TỰ"
+  },
+  {
+    "source": "N5:199",
+    "action": "set-meaning",
+    "word": "そちら",
+    "hiragana": "そちら",
+    "from": "Phía đó, đằng đó, chỗ đó, đó (cách nói lịch sự của「そこ」)",
+    "to": "Phía đó, đằng đó, chỗ đó, đó (cách nói lịch sự của「そこ」); ông/bà, phía ông/bà (người nghe)"
+  },
+  {
+    "source": "N5:464",
+    "action": "set-meaning",
+    "word": "~から",
+    "hiragana": "~から",
+    "from": "~ Từ",
+    "to": "~ Từ; vì ~"
+  },
+  {
+    "source": "N5:612",
+    "action": "set-meaning",
+    "word": "どちら",
+    "hiragana": "どちら",
+    "from": "Phía nào, đằng nào, chỗ nào, đâu (cách nói lịch sự của「どこ」)",
+    "to": "Phía nào, đằng nào, chỗ nào, đâu (cách nói lịch sự của「どこ」); cái nào (trong hai cái)"
+  },
+  {
+    "source": "N5:655",
+    "action": "set-meaning",
+    "word": "そうですね",
+    "hiragana": "そうですね",
+    "from": "Thế à./ Để tôi xem. (cách nói trong lúc suy nghĩ câu trả lời)",
+    "to": "Thế à./ Để tôi xem. (cách nói trong lúc suy nghĩ câu trả lời); đúng thế."
+  },
+  {
+    "source": "N5:675",
+    "action": "set-meaning",
+    "word": "教えます",
+    "hiragana": "おしえます",
+    "from": "Dạy",
+    "to": "Dạy; nói, cho biết [địa chỉ]"
+  },
+  {
+    "source": "N5:803",
+    "action": "set-meaning",
+    "word": "先生",
+    "hiragana": "せんせい",
+    "from": "Thầy/ cô (không dùng khi nói về nghề nghiệp giáo viên của mình)",
+    "to": "Thầy/ cô (không dùng khi nói về nghề nghiệp giáo viên của mình); bác sĩ (cách gọi bác sĩ)"
+  },
+  {
+    "source": "N5:854",
+    "action": "set-meaning",
+    "word": "お茶",
+    "hiragana": "おちゃ",
+    "from": "Trà (nói chung)",
+    "to": "Trà (nói chung); trà đạo"
+  },
+  {
+    "source": "N5:942",
+    "action": "set-meaning",
+    "word": "よく",
+    "hiragana": "よく",
+    "from": "Tốt, rõ (chỉ mức độ)",
+    "to": "Tốt, rõ (chỉ mức độ); thường, hay"
+  },
+  {
+    "source": "N5:944",
+    "action": "set-meaning",
+    "word": "こちら",
+    "hiragana": "こちら",
+    "from": "Phía này, đằng này, chỗ này, đây (cách nói lịch sự của「ここ」)",
+    "to": "Phía này, đằng này, chỗ này, đây (cách nói lịch sự của「ここ」); cái này (cách nói lịch sự của「これ」)"
+  },
+  {
+    "source": "N4:609",
+    "action": "set-meaning",
+    "word": "亡くなります",
+    "hiragana": "なくなります",
+    "from": "Chết, mất",
+    "to": "Chết, mất, qua đời (cách nói gián tiếp của しにます)"
+  },
+  {
+    "source": "N4:761",
+    "action": "set-meaning",
+    "word": "やります",
+    "hiragana": "やります",
+    "from": "Làm",
+    "to": "Làm; cho, tặng (dùng với người dưới hoặc bằng vai)"
+  },
+  {
+    "source": "N4:861, N4:928",
+    "action": "set-meaning",
+    "word": "また",
+    "hiragana": "また",
+    "from": "Lại (~đến)",
+    "to": "Lại (~đến); và, thêm nữa"
+  },
+  {
+    "source": "N4:905",
+    "action": "set-meaning",
+    "word": "薄い",
+    "hiragana": "うすい",
+    "from": "Mỏng",
+    "to": "Mỏng; nhạt"
+  },
+  {
+    "source": "N4:1067, N4:1111",
+    "action": "set-meaning",
+    "word": "いらっしゃいます",
+    "hiragana": "いらっしゃいます",
+    "from": "Thể kính trọng của「います」",
+    "to": "Ở, có, đi, đến (tôn kính ngữ của います, いきます và きます)"
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc); viết hoa như bản N5 bị xoá",
+    "action": "set-meaning",
+    "word": "喉",
+    "hiragana": "のど",
+    "from": "họng",
+    "to": "Họng"
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "set-meaning",
+    "word": "「お」国",
+    "hiragana": "「お」くに",
+    "from": "Đất nước (của anh/chị)",
+    "to": "Đất nước (「お」国: đất nước của anh/chị)"
+  },
+  {
+    "source": "Hai dòng giáo trình cùng cấp chỉ khác cách ghi chú thích (「な」 và [な])",
+    "action": "set-meaning",
+    "word": "いろいろ",
+    "hiragana": "いろいろ[な]",
+    "from": "Nhiều, đa dạng",
+    "to": "Nhiều thứ, đa dạng"
+  },
+  {
+    "source": "Hai dòng giáo trình cùng cấp chỉ khác cách ghi chú thích (「な」 và [な])",
+    "action": "set-meaning",
+    "word": "嫌",
+    "hiragana": "いや[な]",
+    "from": "Ngán, không thích",
+    "to": "Chán, ghét, không thích, không chấp nhận được"
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "set-meaning",
+    "word": "苦手な",
+    "hiragana": "にがてな",
+    "from": "Yếu kém",
+    "to": "Yếu kém, không giỏi, ngại"
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~; trùng N4:732",
+    "action": "rename",
+    "from": {
+      "word": "ーグラム",
+      "hiragana": "ーグラム"
+    },
+    "to": {
+      "word": "~グラム",
+      "hiragana": "~グラム"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~; trùng N4:596, N4:1051",
+    "action": "rename",
+    "from": {
+      "word": "一世紀",
+      "hiragana": "ーせいき"
+    },
+    "to": {
+      "word": "~世紀",
+      "hiragana": "~せいき"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "一冊",
+      "hiragana": "ーさつ"
+    },
+    "to": {
+      "word": "~冊",
+      "hiragana": "~さつ"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "一号室",
+      "hiragana": "ーごうしつ"
+    },
+    "to": {
+      "word": "~号室",
+      "hiragana": "~ごうしつ"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "一号",
+      "hiragana": "ーごう"
+    },
+    "to": {
+      "word": "~号",
+      "hiragana": "~ごう"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~; N4:446",
+    "action": "rename",
+    "from": {
+      "word": "一個",
+      "hiragana": "ーこ"
+    },
+    "to": {
+      "word": "~個",
+      "hiragana": "~こ"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "一本",
+      "hiragana": "ーほん(ーぽん、ーぼん)"
+    },
+    "to": {
+      "word": "~本",
+      "hiragana": "~ほん(~ぽん、~ぼん)"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "一杯",
+      "hiragana": "ーはい(ーぱい、ーばい)"
+    },
+    "to": {
+      "word": "~杯",
+      "hiragana": "~はい(~ぱい、~ばい)"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "ーキロ",
+      "hiragana": "ーキロ"
+    },
+    "to": {
+      "word": "~キロ",
+      "hiragana": "~キロ"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "ーセンチ",
+      "hiragana": "ーセンチ"
+    },
+    "to": {
+      "word": "~センチ",
+      "hiragana": "~センチ"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "ーミリ",
+      "hiragana": "ーミリ"
+    },
+    "to": {
+      "word": "~ミリ",
+      "hiragana": "~ミリ"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~",
+    "action": "rename",
+    "from": {
+      "word": "一倍",
+      "hiragana": "ーばい"
+    },
+    "to": {
+      "word": "~倍",
+      "hiragana": "~ばい"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~; thiếu chữ 位",
+    "action": "rename",
+    "from": {
+      "word": "ーい",
+      "hiragana": "ーい"
+    },
+    "to": {
+      "word": "~位",
+      "hiragana": "~い"
+    }
+  },
+  {
+    "source": "Gạch đầu dòng bị nhập thành ー/一 thay cho ~; trùng N4:1124",
+    "action": "rename",
+    "from": {
+      "word": "一年一組",
+      "hiragana": "ーねんーくみ"
+    },
+    "to": {
+      "word": "~年~組",
+      "hiragana": "~ねん~くみ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "1つ-",
+      "hiragana": "ひとつ"
+    },
+    "to": {
+      "word": "1つ",
+      "hiragana": "ひとつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "2つ-",
+      "hiragana": "ふたつ"
+    },
+    "to": {
+      "word": "2つ",
+      "hiragana": "ふたつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "3つ-",
+      "hiragana": "みっつ"
+    },
+    "to": {
+      "word": "3つ",
+      "hiragana": "みっつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "4つ-",
+      "hiragana": "よっつ"
+    },
+    "to": {
+      "word": "4つ",
+      "hiragana": "よっつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "5つ-",
+      "hiragana": "いつつ"
+    },
+    "to": {
+      "word": "5つ",
+      "hiragana": "いつつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "6つ-",
+      "hiragana": "むっつ"
+    },
+    "to": {
+      "word": "6つ",
+      "hiragana": "むっつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "7つ-",
+      "hiragana": "ななつ"
+    },
+    "to": {
+      "word": "7つ",
+      "hiragana": "ななつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "8つ-",
+      "hiragana": "やっつ"
+    },
+    "to": {
+      "word": "8つ",
+      "hiragana": "やっつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "9つ-",
+      "hiragana": "ここのつ"
+    },
+    "to": {
+      "word": "9つ",
+      "hiragana": "ここのつ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc); 10 đọc とお, không có つ",
+    "action": "rename",
+    "from": {
+      "word": "10つ-",
+      "hiragana": "とお"
+    },
+    "to": {
+      "word": "10",
+      "hiragana": "とお"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "~頃-",
+      "hiragana": "~ごろ"
+    },
+    "to": {
+      "word": "~頃",
+      "hiragana": "~ごろ"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "ゆっくり-",
+      "hiragana": "ゆっくり"
+    },
+    "to": {
+      "word": "ゆっくり",
+      "hiragana": "ゆっくり"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc); ghi rõ cách dùng để khác あります \"có (sở hữu)\"",
+    "action": "rename",
+    "from": {
+      "word": "あります-",
+      "hiragana": "あります"
+    },
+    "to": {
+      "word": "あります",
+      "hiragana": "[おまつりが~]あります"
+    }
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc)",
+    "action": "rename",
+    "from": {
+      "word": "つまみ-",
+      "hiragana": "つまみ"
+    },
+    "to": {
+      "word": "つまみ",
+      "hiragana": "つまみ"
+    }
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "国",
+    "hiragana": "くに",
+    "meaning": "đất nước",
+    "into": {
+      "word": "「お」国",
+      "hiragana": "「お」くに"
+    },
+    "reason": "Cùng một từ với 「お」国 (「お」くに, N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "弁当",
+    "hiragana": "べんとう",
+    "meaning": "cơm hộp",
+    "into": {
+      "word": "「お」弁当",
+      "hiragana": "「お」べんとう"
+    },
+    "reason": "Cùng một từ với 「お」弁当 (「お」べんとう, N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "おかげさまで",
+    "hiragana": "おかげさまで",
+    "meaning": "nhờ anh chị (mà…)",
+    "into": {
+      "word": "おかげさまで。",
+      "hiragana": "おかげさまで。"
+    },
+    "reason": "Cùng một từ với おかげさまで。 (おかげさまで。, N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "おめでとうございます",
+    "hiragana": "おめでとうございます",
+    "meaning": "chúc mừng",
+    "into": {
+      "word": "おめでとうございます。",
+      "hiragana": "おめでとうございます。"
+    },
+    "reason": "Cùng một từ với おめでとうございます。 (おめでとうございます。, N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "暇",
+    "hiragana": "ひま",
+    "meaning": "rảnh rỗi",
+    "into": {
+      "word": "暇",
+      "hiragana": "ひま[な]"
+    },
+    "reason": "Cùng một từ với 暇 (ひま[な], N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "便利",
+    "hiragana": "べんり",
+    "meaning": "tiện lợi",
+    "into": {
+      "word": "便利",
+      "hiragana": "べんり[な]"
+    },
+    "reason": "Cùng một từ với 便利 (べんり[な], N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "仕事",
+    "hiragana": "しごと",
+    "meaning": "công việc",
+    "into": {
+      "word": "仕事",
+      "hiragana": "[お]しごと"
+    },
+    "reason": "Cùng một từ với 仕事 ([お]しごと, N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。); 以内 luôn đi sau số lượng nên giữ dạng ~以内",
+    "action": "merge",
+    "word": "以内",
+    "hiragana": "いない",
+    "meaning": "trong vòng",
+    "into": {
+      "word": "~以内",
+      "hiragana": "~いない"
+    },
+    "reason": "Cùng một từ với ~以内 (~いない, N4); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "必要",
+    "hiragana": "ひつよう",
+    "meaning": "cần thiết",
+    "into": {
+      "word": "必要",
+      "hiragana": "ひつよう[な]"
+    },
+    "reason": "Cùng một từ với 必要 (ひつよう[な], N4); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "見舞い",
+    "hiragana": "みまい",
+    "meaning": "việc đi thăm người ốm",
+    "into": {
+      "word": "見舞い",
+      "hiragana": "[お]みまい"
+    },
+    "reason": "Cùng một từ với 見舞い ([お]みまい, N4); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "苦手",
+    "hiragana": "にがて",
+    "meaning": "không giỏi, ngại",
+    "into": {
+      "word": "苦手な",
+      "hiragana": "にがてな"
+    },
+    "reason": "Cùng một từ với 苦手な (にがてな, N3); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Từ của bài học tình huống trùng từ giáo trình (khác chú thích [な], 「お」, dấu 。)",
+    "action": "merge",
+    "word": "安全",
+    "hiragana": "あんぜん",
+    "meaning": "An toàn",
+    "into": {
+      "word": "安全",
+      "hiragana": "あんぜん[な]"
+    },
+    "reason": "Cùng một từ với 安全 (あんぜん[な], N4); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Hai dòng giáo trình cùng cấp chỉ khác cách ghi chú thích (「な」 và [な])",
+    "action": "merge",
+    "word": "いろいろ「な」",
+    "hiragana": "いろいろ「な」",
+    "meaning": "Nhiều thứ",
+    "into": {
+      "word": "いろいろ",
+      "hiragana": "いろいろ[な]"
+    },
+    "reason": "Cùng một từ với いろいろ (いろいろ[な], N5); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Hai dòng giáo trình cùng cấp chỉ khác cách ghi chú thích (「な」 và [な])",
+    "action": "merge",
+    "word": "嫌",
+    "hiragana": "いや「な」",
+    "meaning": "Chán, ghét, không chấp nhận được",
+    "into": {
+      "word": "嫌",
+      "hiragana": "いや[な]"
+    },
+    "reason": "Cùng một từ với 嫌 (いや[な], N4); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Hai dòng giáo trình cùng cấp chỉ khác cách ghi chú thích (「な」 và [な])",
+    "action": "merge",
+    "word": "必要",
+    "hiragana": "ひつよう「な」",
+    "meaning": "Cần thiết",
+    "into": {
+      "word": "必要",
+      "hiragana": "ひつよう[な]"
+    },
+    "reason": "Cùng một từ với 必要 (ひつよう[な], N4); chuyển bài học và tiến độ sang bản đó."
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc); bản sao của お持ちです",
+    "action": "remove",
+    "word": "おもちです-",
+    "hiragana": "おもちです",
+    "meaning": "Có (cách nói tôn kính ngữ của もっています)",
+    "keep": {
+      "word": "お持ちです",
+      "hiragana": "おもちです"
+    },
+    "reason": "Bản sao của お持ちです (おもちです), cùng nghĩa; không thẻ ôn, bài học hay sổ tay nào trỏ tới."
+  },
+  {
+    "source": "Dấu - thừa ở cuối từ (định dạng ô của file gốc); bản sao của 喉 (N4)",
+    "action": "remove",
+    "word": "喉-",
+    "hiragana": "のど",
+    "meaning": "Họng",
+    "keep": {
+      "word": "喉",
+      "hiragana": "のど"
+    },
+    "reason": "Bản sao của 喉 (のど), cùng nghĩa; không thẻ ôn, bài học hay sổ tay nào trỏ tới."
+  },
+  {
+    "source": "N5:454",
+    "action": "skip",
+    "word": "主人",
+    "hiragana": "しゅじん",
+    "reason": "Đã có ở N2 với nghĩa \"Chồng, chủ tiệm\"."
+  },
+  {
+    "source": "N4:2",
+    "action": "skip",
+    "word": "見ます",
+    "hiragana": "みます",
+    "reason": "Đã có ở N5 (Xem, nhìn, trông); dòng này chỉ thêm 診ます."
+  },
+  {
+    "source": "N3:392",
+    "action": "skip",
+    "word": "周り",
+    "hiragana": "まわり",
+    "reason": "Đã có ở N4 (Xung quanh); dòng này chỉ thêm 回り."
+  },
+  {
+    "source": "N3:563",
+    "action": "skip",
+    "word": "硬い",
+    "hiragana": "かたい",
+    "reason": "Đã có ở N4 (Cứng); dòng này chỉ thêm 固い."
+  },
+  {
+    "source": "N2:211",
+    "action": "skip",
+    "word": "立つ",
+    "hiragana": "たつ",
+    "reason": "Đã có ở N3 (Đứng); nghĩa \"khởi hành\" của dòng này thuộc 発つ."
+  },
+  {
+    "source": "N5:321",
+    "action": "skip",
+    "word": "メキシコ",
+    "hiragana": "メキシコ",
+    "reason": "Trùng dòng 60 của file gốc; từ đã có ở N5 (\"Mexico\")."
+  },
+  {
+    "source": "N5:467",
+    "action": "skip",
+    "word": "すみません",
+    "hiragana": "すみません",
+    "reason": "Trùng dòng 142 của file gốc; từ đã có ở N5 (\"Xin lỗi\")."
+  },
+  {
+    "source": "N5:524",
+    "action": "skip",
+    "word": "休みます",
+    "hiragana": "やすみます",
+    "reason": "Trùng dòng 154 của file gốc; từ đã có ở N5 (\"Nghỉ, nghỉ ngơi\")."
+  },
+  {
+    "source": "N5:576",
+    "action": "skip",
+    "word": "それから",
+    "hiragana": "それから",
+    "reason": "Trùng dòng 315 của file gốc; từ đã có ở N5 (\"Sau đó, tiếp theo\")."
+  },
+  {
+    "source": "N5:968",
+    "action": "skip",
+    "word": "~屋",
+    "hiragana": "~や",
+    "reason": "Trùng dòng 500 của file gốc; từ đã có ở N5 (\"Hiệu ~, cửa hàng ~\")."
+  },
+  {
+    "source": "N4:118",
+    "action": "skip",
+    "word": "形",
+    "hiragana": "かたち",
+    "reason": "Trùng dòng 90 của file gốc; từ đã có ở N4 (\"Hình, dạng\")."
+  },
+  {
+    "source": "N4:136",
+    "action": "skip",
+    "word": "自分",
+    "hiragana": "じぶん",
+    "reason": "Trùng dòng 99 của file gốc; từ đã có ở N4 (\"Bản thân, mình\")."
+  },
+  {
+    "source": "N4:137",
+    "action": "skip",
+    "word": "将来",
+    "hiragana": "しょうらい",
+    "reason": "Trùng dòng 100 của file gốc; từ đã có ở N4 (\"Tương lai\")."
+  },
+  {
+    "source": "N4:183",
+    "action": "skip",
+    "word": "ポケット",
+    "hiragana": "ポケット",
+    "reason": "Trùng dòng 93 của file gốc; từ đã có ở N4 (\"Túi áo, túi quần (Pocket)\")."
+  },
+  {
+    "source": "N4:217",
+    "action": "skip",
+    "word": "お知らせ",
+    "hiragana": "おしらせ",
+    "reason": "Trùng dòng 145 của file gốc; từ đã có ở N4 (\"Thông báo\")."
+  },
+  {
+    "source": "N4:228",
+    "action": "skip",
+    "word": "壁",
+    "hiragana": "かべ",
+    "reason": "Trùng dòng 189 của file gốc; từ đã có ở N4 (\"Bức tường\")."
+  },
+  {
+    "source": "N4:284",
+    "action": "skip",
+    "word": "嫌",
+    "hiragana": "いや[な]",
+    "reason": "Trùng dòng 249 của file gốc; từ đã có ở N4 (\"Ngán, không thích\")."
+  },
+  {
+    "source": "N4:287",
+    "action": "skip",
+    "word": "自由に",
+    "hiragana": "じゆうに",
+    "reason": "Trùng dòng 96 của file gốc; từ đã có ở N4 (\"Tự do, tùy thích\")."
+  },
+  {
+    "source": "N4:321",
+    "action": "skip",
+    "word": "西",
+    "hiragana": "にし",
+    "reason": "Trùng dòng 194 của file gốc; từ đã có ở N4 (\"Tây, phía tây\")."
+  },
+  {
+    "source": "N4:374",
+    "action": "skip",
+    "word": "無料",
+    "hiragana": "むりょう",
+    "reason": "Trùng dòng 149 của file gốc; từ đã có ở N4 (\"Miễn phí\")."
+  },
+  {
+    "source": "N4:395",
+    "action": "skip",
+    "word": "例えば",
+    "hiragana": "たとえば",
+    "reason": "Trùng dòng 94 của file gốc; từ đã có ở N4 (\"Ví dụ (như)\")."
+  },
+  {
+    "source": "N4:458",
+    "action": "skip",
+    "word": "困ります",
+    "hiragana": "こまります",
+    "reason": "Trùng dòng 344 của file gốc; từ đã có ở N4 (\"Rắc rối, khó xử, có vấn đề\")."
+  },
+  {
+    "source": "N4:468",
+    "action": "skip",
+    "word": "村",
+    "hiragana": "むら",
+    "reason": "Trùng dòng 282 của file gốc; từ đã có ở N4 (\"Làng\")."
+  },
+  {
+    "source": "N4:519",
+    "action": "skip",
+    "word": "健康",
+    "hiragana": "けんこう",
+    "reason": "Trùng dòng 347 của file gốc; từ đã có ở N4 (\"Sức khỏe, khỏe mạnh, an khang\")."
+  },
+  {
+    "source": "N4:529",
+    "action": "skip",
+    "word": "できるだけ",
+    "hiragana": "できるだけ",
+    "reason": "Trùng dòng 392 của file gốc; từ đã có ở N4 (\"Cố gắng, trong khả năng có thể\")."
+  },
+  {
+    "source": "N4:550",
+    "action": "skip",
+    "word": "飛びます",
+    "hiragana": "とびます",
+    "reason": "Trùng dòng 98 của file gốc; từ đã có ở N4 (\"Bay\")."
+  },
+  {
+    "source": "N4:552",
+    "action": "skip",
+    "word": "宇宙",
+    "hiragana": "うちゅう",
+    "reason": "Trùng dòng 44 của file gốc; từ đã có ở N4 (\"Vũ trụ\")."
+  },
+  {
+    "source": "N4:553",
+    "action": "skip",
+    "word": "地球",
+    "hiragana": "ちきゅう",
+    "reason": "Trùng dòng 247 của file gốc; từ đã có ở N4 (\"Trái đất\")."
+  },
+  {
+    "source": "N4:582",
+    "action": "skip",
+    "word": "漫画",
+    "hiragana": "まんが",
+    "reason": "Trùng dòng 88 của file gốc; từ đã có ở N4 (\"Truyện tranh\")."
+  },
+  {
+    "source": "N4:583",
+    "action": "skip",
+    "word": "世界中",
+    "hiragana": "せかいじゅう",
+    "reason": "Trùng dòng 288 của file gốc; từ đã có ở N4 (\"Khắp thế giới\")."
+  },
+  {
+    "source": "N4:594",
+    "action": "skip",
+    "word": "利用します",
+    "hiragana": "りようします",
+    "reason": "Trùng dòng 404 của file gốc; từ đã có ở N4 (\"Sử dụng, lợi dụng, tận dụng, dùng\")."
+  },
+  {
+    "source": "N4:608",
+    "action": "skip",
+    "word": "運びます",
+    "hiragana": "はこびます",
+    "reason": "Trùng dòng 549 của file gốc; từ đã có ở N4 (\"Mang, chở, vận chuyển\")."
+  },
+  {
+    "source": "N4:622",
+    "action": "skip",
+    "word": "駅前",
+    "hiragana": "えきまえ",
+    "reason": "Trùng dòng 192 của file gốc; từ đã có ở N4 (\"Khu vực trước nhà ga\")."
+  },
+  {
+    "source": "N4:647",
+    "action": "skip",
+    "word": "大好き",
+    "hiragana": "だいすき「な」",
+    "reason": "Trùng dòng 87 của file gốc; từ đã có ở N4 (\"Rất thích\")."
+  },
+  {
+    "source": "N4:651",
+    "action": "skip",
+    "word": "不思議",
+    "hiragana": "ふしぎ「な」",
+    "reason": "Trùng dòng 92 của file gốc; từ đã có ở N4 (\"Bí ẩn, kỳ thú\")."
+  },
+  {
+    "source": "N4:664",
+    "action": "skip",
+    "word": "けんかします",
+    "hiragana": "けんかします",
+    "reason": "Trùng dòng 650 của file gốc; từ đã có ở N4 (\"Cãi nhau\")."
+  },
+  {
+    "source": "N4:669",
+    "action": "skip",
+    "word": "うれしい",
+    "hiragana": "うれしい",
+    "reason": "Trùng dòng 248 của file gốc; từ đã có ở N4 (\"Vui\")."
+  },
+  {
+    "source": "N4:672",
+    "action": "skip",
+    "word": "地震",
+    "hiragana": "じしん",
+    "reason": "Trùng dòng 188 của file gốc; từ đã có ở N4 (\"Động đất\")."
+  },
+  {
+    "source": "N4:706",
+    "action": "skip",
+    "word": "宇宙",
+    "hiragana": "うちゅう",
+    "reason": "Trùng dòng 44 của file gốc; từ đã có ở N4 (\"Vũ trụ\")."
+  },
+  {
+    "source": "N4:707",
+    "action": "skip",
+    "word": "地球",
+    "hiragana": "ちきゅう",
+    "reason": "Trùng dòng 247 của file gốc; từ đã có ở N4 (\"Trái đất\")."
+  },
+  {
+    "source": "N4:754",
+    "action": "skip",
+    "word": "一生懸命",
+    "hiragana": "いっしょうけんめい",
+    "reason": "Trùng dòng 603 của file gốc; từ đã có ở N4 (\"(Cố gắng) hết sức, chăm chỉ, miệt mài\")."
+  },
+  {
+    "source": "N4:808",
+    "action": "skip",
+    "word": "すると",
+    "hiragana": "すると",
+    "reason": "Trùng dòng 250 của file gốc; từ đã có ở N4 (\"Sau đó, tiếp đó, rồi, khi ~ như vậy thì\")."
+  },
+  {
+    "source": "N4:820",
+    "action": "skip",
+    "word": "子どもたち",
+    "hiragana": "こどもたち",
+    "reason": "Trùng dòng 86 của file gốc; từ đã có ở N4 (\"Trẻ em, trẻ con, con cái\")."
+  },
+  {
+    "source": "N4:823",
+    "action": "skip",
+    "word": "歴史",
+    "hiragana": "れきし",
+    "reason": "Trùng dòng 543 của file gốc; từ đã có ở N4 (\"Lịch sử\")."
+  },
+  {
+    "source": "N4:830",
+    "action": "skip",
+    "word": "安全",
+    "hiragana": "あんぜん[な]",
+    "reason": "Trùng dòng 551 của file gốc; từ đã có ở N4 (\"An toàn\")."
+  },
+  {
+    "source": "N4:841",
+    "action": "skip",
+    "word": "材料",
+    "hiragana": "ざいりょう",
+    "reason": "Trùng dòng 442 của file gốc; từ đã có ở N4 (\"Nguyên liệu\")."
+  },
+  {
+    "source": "N4:846",
+    "action": "skip",
+    "word": "ある",
+    "hiragana": "ある~",
+    "reason": "Trùng dòng 246 của file gốc; từ đã có ở N4 (\"Có ~, một ~\")."
+  },
+  {
+    "source": "N4:847",
+    "action": "skip",
+    "word": "一生懸命",
+    "hiragana": "いっしょうけんめい",
+    "reason": "Trùng dòng 603 của file gốc; từ đã có ở N4 (\"(Cố gắng) hết sức, chăm chỉ, miệt mài\")."
+  },
+  {
+    "source": "N4:856",
+    "action": "skip",
+    "word": "なべ",
+    "hiragana": "なべ",
+    "reason": "Trùng dòng 450 của file gốc; từ đã có ở N4 (\"Cái chảo, cái nồi\")."
+  },
+  {
+    "source": "N4:857",
+    "action": "skip",
+    "word": "どんぶり",
+    "hiragana": "どんぶり",
+    "reason": "Trùng dòng 455 của file gốc; từ đã có ở N4 (\"Cái bát\")."
+  },
+  {
+    "source": "N4:864",
+    "action": "skip",
+    "word": "今では",
+    "hiragana": "いまでは",
+    "reason": "Trùng dòng 695 của file gốc; từ đã có ở N4 (\"Bây giờ (thì)\")."
+  },
+  {
+    "source": "N4:931",
+    "action": "skip",
+    "word": "例えば",
+    "hiragana": "たとえば",
+    "reason": "Trùng dòng 94 của file gốc; từ đã có ở N4 (\"Ví dụ (như)\")."
+  },
+  {
+    "source": "N4:952",
+    "action": "skip",
+    "word": "急に",
+    "hiragana": "きゅうに",
+    "reason": "Trùng dòng 752 của file gốc; từ đã có ở N4 (\"Gấp, đột nhiên\")."
+  },
+  {
+    "source": "N4:962",
+    "action": "skip",
+    "word": "眠ります",
+    "hiragana": "ねむります",
+    "reason": "Trùng dòng 599 của file gốc; từ đã có ở N4 (\"Ngủ\")."
+  },
+  {
+    "source": "N4:963",
+    "action": "skip",
+    "word": "目が覚めます",
+    "hiragana": "めがさめます",
+    "reason": "Trùng dòng 251 của file gốc; từ đã có ở N4 (\"Tỉnh giấc, mở mắt\")."
+  },
+  {
+    "source": "N4:973",
+    "action": "skip",
+    "word": "留守",
+    "hiragana": "るす",
+    "reason": "Trùng dòng 399 của file gốc; từ đã có ở N4 (\"Vắng nhà\")."
+  },
+  {
+    "source": "N4:1008",
+    "action": "skip",
+    "word": "怖い",
+    "hiragana": "こわい",
+    "reason": "Trùng dòng 45 của file gốc; từ đã có ở N4 (\"Sợ\")."
+  },
+  {
+    "source": "N4:1027",
+    "action": "skip",
+    "word": "恋人",
+    "hiragana": "こいびと",
+    "reason": "Trùng dòng 349 của file gốc; từ đã có ở N4 (\"Người yêu\")."
+  },
+  {
+    "source": "N4:1032",
+    "action": "skip",
+    "word": "世話をします",
+    "hiragana": "せわをします",
+    "reason": "Trùng dòng 645 của file gốc; từ đã có ở N4 (\"Chăm sóc, giúp đỡ\")."
+  },
+  {
+    "source": "N4:1041",
+    "action": "skip",
+    "word": "自由に",
+    "hiragana": "じゆうに",
+    "reason": "Trùng dòng 96 của file gốc; từ đã có ở N4 (\"Tự do, tùy thích\")."
+  },
+  {
+    "source": "N4:1057",
+    "action": "skip",
+    "word": "美しい",
+    "hiragana": "うつくしい",
+    "reason": "Trùng dòng 290 của file gốc; từ đã có ở N4 (\"Đẹp\")."
+  },
+  {
+    "source": "N4:1106",
+    "action": "skip",
+    "word": "勤めます",
+    "hiragana": "[かいしゃに~]つとめます",
+    "reason": "Trùng dòng 1062 của file gốc; từ đã có ở N4 (\"Làm việc ở [công ty]\")."
+  },
+  {
+    "source": "N4:1107",
+    "action": "skip",
+    "word": "休みます",
+    "hiragana": "やすみます",
+    "reason": "Trùng dòng 1063 của file gốc; từ đã có ở N5 (\"Nghỉ, nghỉ ngơi\")."
+  },
+  {
+    "source": "N4:1108",
+    "action": "skip",
+    "word": "掛けます",
+    "hiragana": "[いすに~]かけます",
+    "reason": "Trùng dòng 1064 của file gốc; từ đã có ở N4 (\"Ngồi [ghế]\")."
+  },
+  {
+    "source": "N4:1109",
+    "action": "skip",
+    "word": "過ごします",
+    "hiragana": "すごします",
+    "reason": "Trùng dòng 1065 của file gốc; từ đã có ở N4 (\"Tiêu thời gian, trải qua\")."
+  },
+  {
+    "source": "N4:1110",
+    "action": "skip",
+    "word": "寄ります",
+    "hiragana": "[ぎんこうに~]よります",
+    "reason": "Trùng dòng 1066 của file gốc; từ đã có ở N4 (\"Ghé qua [ngân hàng]\")."
+  },
+  {
+    "source": "N4:1112",
+    "action": "skip",
+    "word": "召し上がります",
+    "hiragana": "めしあがります",
+    "reason": "Trùng dòng 1068 của file gốc; từ đã có ở N4 (\"Ăn, uống (tôn kính ngữ của たべます và のみます)\")."
+  },
+  {
+    "source": "N4:1113",
+    "action": "skip",
+    "word": "おっしゃいます",
+    "hiragana": "おっしゃいます",
+    "reason": "Trùng dòng 1069 của file gốc; từ đã có ở N4 (\"Nói (tôn kính ngữ của いいます)\")."
+  },
+  {
+    "source": "N4:1114",
+    "action": "skip",
+    "word": "なさいます",
+    "hiragana": "なさいます",
+    "reason": "Trùng dòng 1070 của file gốc; từ đã có ở N4 (\"Làm (tôn kính ngữ của します)\")."
+  },
+  {
+    "source": "N4:1115",
+    "action": "skip",
+    "word": "ご覧になります",
+    "hiragana": "ごらんになります",
+    "reason": "Trùng dòng 1071 của file gốc; từ đã có ở N4 (\"Xem, nhìn (tôn kính ngữ của みます)\")."
+  },
+  {
+    "source": "N4:1116",
+    "action": "skip",
+    "word": "ご存じです",
+    "hiragana": "ごぞんじです",
+    "reason": "Trùng dòng 1072 của file gốc; từ đã có ở N4 (\"Biết (tôn kính ngữ của しっています)\")."
+  },
+  {
+    "source": "N4:1117",
+    "action": "skip",
+    "word": "あいさつ",
+    "hiragana": "あいさつ",
+    "reason": "Trùng dòng 1073 của file gốc; từ đã có ở N4 (\"Chào hỏi (~をします : chào hỏi)\")."
+  },
+  {
+    "source": "N4:1118",
+    "action": "skip",
+    "word": "灰皿",
+    "hiragana": "はいざら",
+    "reason": "Trùng dòng 1074 của file gốc; từ đã có ở N4 (\"Cái gạt tàn\")."
+  },
+  {
+    "source": "N4:1119",
+    "action": "skip",
+    "word": "貿易",
+    "hiragana": "ぼうえき",
+    "reason": "Trùng dòng 1078 của file gốc; từ đã có ở N4 (\"Thương mại quốc tế, mậu dịch\")."
+  },
+  {
+    "source": "N4:1120",
+    "action": "skip",
+    "word": "帰りに",
+    "hiragana": "かえりに",
+    "reason": "Trùng dòng 1080 của file gốc; từ đã có ở N4 (\"Trên đường về\")."
+  },
+  {
+    "source": "N4:1121",
+    "action": "skip",
+    "word": "たまに",
+    "hiragana": "たまに",
+    "reason": "Trùng dòng 1081 của file gốc; từ đã có ở N4 (\"Thỉnh thoảng (tần suất nhỏ hơn ときどき)\")."
+  },
+  {
+    "source": "N4:1122",
+    "action": "skip",
+    "word": "ちっとも",
+    "hiragana": "ちっとも",
+    "reason": "Trùng dòng 1082 của file gốc; từ đã có ở N4 (\"Chẳng ~ tí nào, không hề\")."
+  },
+  {
+    "source": "N4:1123",
+    "action": "skip",
+    "word": "遠慮なく",
+    "hiragana": "えんりょなく",
+    "reason": "Trùng dòng 1083 của file gốc; từ đã có ở N4 (\"Không giữ ý, không làm khách, đừng ngại ngùng\")."
+  },
+  {
+    "source": "N4:1125",
+    "action": "skip",
+    "word": "では",
+    "hiragana": "では",
+    "reason": "Trùng dòng 1085 của file gốc; từ đã có ở N4 (\"Thế thì, vậy thì (thể lịch sự của じゃ)\")."
+  },
+  {
+    "source": "N4:1126",
+    "action": "skip",
+    "word": "出します",
+    "hiragana": "「ねつ」だします",
+    "reason": "Trùng dòng 1086 của file gốc; từ đã có ở N4 (\"Bị [sốt]\")."
+  },
+  {
+    "source": "N4:1127",
+    "action": "skip",
+    "word": "よろしくお伝えください。",
+    "hiragana": "よろしくおつたえください",
+    "reason": "Trùng dòng 1087 của file gốc; từ đã có ở N4 (\"Cho tôi gởi lời hỏi thăm./ hãy nhắn lại với ~.\")."
+  },
+  {
+    "source": "N4:1128",
+    "action": "skip",
+    "word": "失礼いたします。",
+    "hiragana": "しつれいいたします",
+    "reason": "Trùng dòng 1088 của file gốc; từ đã có ở N4 (\"Xin phép anh/chị (khiêm nhường ngữ của しつれいします)\")."
+  },
+  {
+    "source": "N4:1129",
+    "action": "skip",
+    "word": "ひまわり小学校",
+    "hiragana": "ひまわりしょうがっこう",
+    "reason": "Trùng dòng 1089 của file gốc; từ đã có ở N4 (\"Tên một trường tiểu học (giả tưởng)\")."
+  },
+  {
+    "source": "N4:1130",
+    "action": "skip",
+    "word": "受賞します",
+    "hiragana": "じゅしょうします",
+    "reason": "Trùng dòng 1093 của file gốc; từ đã có ở N4 (\"Nhận giải thưởng, được giải thưởng\")."
+  },
+  {
+    "source": "N4:1131",
+    "action": "skip",
+    "word": "世界的に",
+    "hiragana": "せかいてきに",
+    "reason": "Trùng dòng 1094 của file gốc; từ đã có ở N4 (\"Tầm cỡ thế giới, mang tính thế giới\")."
+  },
+  {
+    "source": "N4:1132",
+    "action": "skip",
+    "word": "でいらっしゃいます",
+    "hiragana": "~でいらっしゃいます",
+    "reason": "Trùng dòng 1096 của file gốc; từ đã có ở N4 (\"Là ~(tôn kính ngữ của です)\")."
+  },
+  {
+    "source": "N4:1133",
+    "action": "skip",
+    "word": "障害",
+    "hiragana": "しょうがい",
+    "reason": "Trùng dòng 1098 của file gốc; từ đã có ở N4 (\"Khuyết tật, tàn tật\")."
+  },
+  {
+    "source": "N4:1135",
+    "action": "skip",
+    "word": "作曲",
+    "hiragana": "さっきょく",
+    "reason": "Trùng dòng 1100 của file gốc; từ đã có ở N4 (\"Sáng tác nhạc\")."
+  },
+  {
+    "source": "N4:1136",
+    "action": "skip",
+    "word": "活動",
+    "hiragana": "かつどう",
+    "reason": "Trùng dòng 1101 của file gốc; từ đã có ở N4 (\"Hoạt động\")."
+  },
+  {
+    "source": "N4:1137",
+    "action": "skip",
+    "word": "それでは",
+    "hiragana": "それでは",
+    "reason": "Trùng dòng 1102 của file gốc; từ đã có ở N4 (\"Bây giờ thì, đến đây\")."
+  },
+  {
+    "source": "N1:399",
+    "action": "skip",
+    "word": "言いつける",
+    "hiragana": "いいつける",
+    "reason": "Trùng dòng 125 của file gốc; từ đã có ở N1 (\"Ra lệnh, báo cáo\")."
+  }
+]

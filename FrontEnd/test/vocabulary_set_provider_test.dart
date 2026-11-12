@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/models/vocabulary.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/models/vocabulary_set.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/providers/vocabulary_set_provider.dart';
+import 'package:apphoctiengnnhat/features/vocabulary/screens/vocabulary_set_screen.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/services/vocabulary_service.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/widgets/vocabulary_sets_tab.dart';
 
@@ -58,6 +60,16 @@ class _FakeService extends VocabularyService {
   Future<void> unmarkAsLearned(String vocabularyId) async {
     unmarked.add(vocabularyId);
   }
+}
+
+/// Service giả trả đúng bộ theo mã, để thấy màn có tải lại bộ mới hay không.
+class _SetsById extends VocabularyService {
+  _SetsById(this.sets);
+
+  final Map<String, VocabularySetDetail> sets;
+
+  @override
+  Future<VocabularySetDetail> getSet(String setId) async => sets[setId]!;
 }
 
 void main() {
@@ -178,6 +190,36 @@ void main() {
       await expectLater(provider.markCurrentSetLearned(), throwsA(anything));
       expect(provider.isMarking, isFalse);
     });
+  });
+
+  testWidgets('đổi sang bộ khác ngay trên địa chỉ (web) thì tải bộ mới, không giữ bộ cũ',
+      (tester) async {
+    final service = _SetsById({
+      'N5.food.1': VocabularySetDetail(set: _set('N5.food.1'), words: [_word('a')]),
+      'N5.food.2': VocabularySetDetail(set: _set('N5.food.2'), words: [_word('b')]),
+    });
+    final router = GoRouter(
+      initialLocation: '/vocabulary/sets/N5.food.1',
+      routes: [
+        GoRoute(
+          path: '/vocabulary/sets/:setId',
+          builder: (context, state) => VocabularySetScreen(setId: state.pathParameters['setId']!),
+        ),
+      ],
+    );
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (_) => VocabularySetProvider(service: service),
+      child: MaterialApp.router(routerConfig: router),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text('từ a'), findsOneWidget);
+
+    // Sửa URL trên trình duyệt: cùng route, chỉ khác tham số, nên màn được dùng lại.
+    router.go('/vocabulary/sets/N5.food.2');
+    await tester.pumpAndSettle();
+
+    expect(find.text('từ a'), findsNothing);
+    expect(find.text('từ b'), findsOneWidget);
   });
 
   testWidgets('tab bộ từ vựng hiện tiêu đề mức độ khó và thẻ bộ',

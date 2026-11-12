@@ -28,18 +28,30 @@ final _word = Vocabulary.fromJson({
   ],
 });
 
+final _other = Vocabulary.fromJson({
+  '_id': 'v2',
+  'word': '午前',
+  'hiragana': 'ごぜん',
+  'meaning': 'Buổi sáng',
+  'level': 'N5',
+  'isLearned': false,
+});
+
 class _FakeService extends VocabularyService {
   final List<String> marked = [];
 
   @override
-  Future<Vocabulary> getVocabularyById(String id) async => marked.contains(id)
-      ? _word.copyWith(isLearned: true, reviewBox: 1)
-      : _word;
+  Future<Vocabulary> getVocabularyById(String id) async {
+    final word = id == 'v2' ? _other : _word;
+    return marked.contains(id) ? word.copyWith(isLearned: true, reviewBox: 1) : word;
+  }
 
   @override
   Future<void> markAsLearned(String vocabularyId) async =>
       marked.add(vocabularyId);
 }
+
+late GoRouter _router;
 
 Future<_FakeService> _pump(WidgetTester tester, Size size) async {
   tester.view.physicalSize = size;
@@ -47,7 +59,7 @@ Future<_FakeService> _pump(WidgetTester tester, Size size) async {
   addTearDown(tester.view.reset);
 
   final service = _FakeService();
-  final router = GoRouter(
+  final router = _router = GoRouter(
     initialLocation: '/vocabulary/v1',
     routes: [
       GoRoute(
@@ -106,5 +118,18 @@ void main() {
     expect(service.marked, ['v1']);
     expect(find.text('Đã học · đang trong lịch ôn tập'), findsOneWidget);
     expect(find.text('Hộp 1/5'), findsOneWidget);
+  });
+
+  testWidgets('đổi sang từ khác ngay trên địa chỉ (web) thì tải từ mới, không giữ từ cũ',
+      (tester) async {
+    await _pump(tester, const Size(1400, 1200));
+    expect(find.text('名前'), findsOneWidget);
+
+    // Sửa URL trên trình duyệt: cùng route, chỉ khác tham số, nên màn được dùng lại.
+    _router.go('/vocabulary/v2');
+    await tester.pumpAndSettle();
+
+    expect(find.text('名前'), findsNothing);
+    expect(find.text('午前'), findsOneWidget);
   });
 }

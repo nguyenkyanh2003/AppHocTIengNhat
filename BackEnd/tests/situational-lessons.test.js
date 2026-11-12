@@ -129,3 +129,26 @@ for (const [level, count] of [['N5', 12], ['N4', 19], ['N3', 9]]) {
     }
   });
 }
+
+test('từ của bài trùng một từ giáo trình đã gộp thì trỏ thẳng tới bản giáo trình (`link`)', () => {
+  // Thiếu `link`, chạy lại seed sẽ tạo lại đúng bản sao vừa gộp: seed tìm từ theo
+  // (word, hiragana) của bài, mà bản sao chỉ khác bản giáo trình ở chú thích [な], 「お」, dấu 。.
+  const fixes = JSON.parse(fs.readFileSync(new URL('../data/vocabulary-fixes.json', import.meta.url), 'utf8'));
+  const mergedInto = new Map(
+    fixes.filter((fix) => fix.action === 'merge').map((fix) => [`${fix.word}|${fix.hiragana}`, fix.into]),
+  );
+
+  let linked = 0;
+  for (const lesson of SITUATIONAL_LESSONS) {
+    for (const row of lesson.vocabularies) {
+      const into = mergedInto.get(`${row.word}|${row.hiragana}`);
+      if (into) {
+        assert.deepEqual(row.link, into, `${lesson.title}: ${row.word} phải trỏ tới ${into.word} (${into.hiragana})`);
+        linked += 1;
+      } else if (row.link) {
+        assert.ok(row.link.word && row.link.hiragana, `${lesson.title}: ${row.word} có link thiếu khoá`);
+      }
+    }
+  }
+  assert.ok(linked > 0, 'file sửa có dòng gộp từ bài học mà seed không trỏ tới');
+});

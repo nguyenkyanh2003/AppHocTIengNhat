@@ -48,9 +48,12 @@ const upsertLesson = async ({ vocabularies, dialogue = [], ...rest }) => {
  * Từ đã có (ví dụ đã nhập từ bộ N5 trước đó) **không** bị đổi `lesson`: đổi sẽ
  * cướp từ khỏi bài học đang sở hữu nó và làm hỏng tiến độ/thống kê của bài đó.
  * Liên kết với bài chủ đề đi qua mảng `Lesson.vocabularies` thay vì ghi đè.
+ *
+ * Từ có `link` (cùng một từ giáo trình, chỉ khác chú thích) được tìm theo khoá
+ * giáo trình, để bài trỏ tới bản đó thay vì sinh lại bản sao đã gộp.
  */
 const upsertVocabulary = async (row, lessonId, level) => {
-  const key = { word: row.word, hiragana: row.hiragana };
+  const key = row.link ?? { word: row.word, hiragana: row.hiragana };
   const existing = await Vocabulary.findOne(key).lean();
 
   if (dryRun) return { id: existing?._id ?? null, created: !existing };

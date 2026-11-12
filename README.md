@@ -148,7 +148,16 @@ Các seeder trên upsert theo khoá tự nhiên (tiêu đề bài, mặt chữ K
 chạy lại không nhân bản dữ liệu và không đổi `_id` — tiến độ học, lịch ôn và lịch sử thi vẫn
 trỏ đúng. Bản ghi đã có mà khác nội dung được báo là xung đột và giữ nguyên, trừ khi chạy lại
 với `--overwrite`; thêm `--dry-run` để xem trước mà không ghi. Kho từ vựng lớn nhập bằng
-`node scripts/import-vocabulary.js --file <csv|xlsx>`, cũng upsert theo `(word, hiragana)`.
+`node scripts/import-vocabulary.js --file <csv|xlsx>`, cũng upsert theo `(word, hiragana)`. Sau khi
+nhập, chạy theo thứ tự:
+
+```powershell
+node scripts/apply-vocabulary-fixes.js   # sửa các dòng công cụ nhập đã từ chối (data/vocabulary-fixes.json)
+node scripts/apply-vocabulary-tags.js    # gắn nhãn chia bộ học (data/vocabulary-tags.json)
+```
+
+Cả hai chạy lại không ghi gì thêm; `apply-vocabulary-fixes.js` dừng, không ghi dòng nào, nếu DB khác
+lúc soát (nghĩa đã bị sửa tay, khoá mới đã là từ khác).
 
 MongoDB tạo database lười nên database chỉ xuất hiện sau khi seeder đầu tiên ghi document.
 

@@ -28,6 +28,19 @@ class _VocabularySetScreenState extends State<VocabularySetScreen> {
   @override
   void initState() {
     super.initState();
+    _loadAfterFrame();
+  }
+
+  /// Cùng route chỉ đổi mã bộ (sửa địa chỉ trên web) thì màn được dùng lại,
+  /// `initState` không chạy lần nữa: phải tự tải bộ mới.
+  @override
+  void didUpdateWidget(covariant VocabularySetScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.setId != widget.setId) _loadAfterFrame();
+  }
+
+  /// Tải sau khung hình: đang dựng cây thì provider chưa được phép báo thay đổi.
+  void _loadAfterFrame() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _load();
     });
