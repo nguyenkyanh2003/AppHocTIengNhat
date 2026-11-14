@@ -1,96 +1,33 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/notebook.dart';
 
+/// Sổ tay của người đang đăng nhập; server chỉ trả và chỉ sửa ghi chú của chính họ.
 class NotebookService {
-  final ApiClient _apiClient = ApiClient();
+  NotebookService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  /// Lấy danh sách ghi chú
-  Future<Map<String, dynamic>> getNotes({
-    int page = 1,
-    int limit = 20,
-    String? type,
-    String? search,
-  }) async {
-    final params = <String>[];
-    params.add('page=$page');
-    params.add('limit=$limit');
+  final ApiClient _client;
 
-    if (type != null && type.isNotEmpty) {
-      params.add('type=$type');
-    }
+  static const pageSize = 20;
 
-    if (search != null && search.isNotEmpty) {
-      params.add('search=$search');
-    }
-
-    final queryString = params.join('&');
-    final response = await _apiClient.get('/notebook?$queryString');
-
-    return {
-      'totalItems': response['totalItems'] ?? 0,
-      'totalPages': response['totalPages'] ?? 0,
-      'currentPage': response['currentPage'] ?? page,
-      'data': (response['data'] as List?)
-              ?.map((item) => Notebook.fromJson(item))
-              .toList() ??
-          [],
-    };
+  /// Mới tạo trước; [search] khớp nguyên văn trong tiêu đề hoặc nội dung.
+  Future<Paged<Notebook>> list({int page = 1, int limit = pageSize, NoteType? type, String? search}) async {
+    final query = Uri(queryParameters: {
+      'page': '$page',
+      'limit': '$limit',
+      if (type != null) 'type': type.name,
+      if (search != null) 'search': search,
+    }).query;
+    return Paged.fromJson(await _client.get('/notebook?$query'), Notebook.fromJson);
   }
 
-  /// Lấy chi tiết ghi chú
-  Future<Notebook> getNoteById(String id) async {
-    final response = await _apiClient.get('/notebook/$id');
-    return Notebook.fromJson(response['data']);
-  }
+  Future<Notebook> detail(String id) async => objectOf(await _client.get('/notebook/$id'), Notebook.fromJson);
 
-  /// Tạo ghi chú mới
-  Future<Notebook> createNote(Map<String, dynamic> data) async {
-    final response = await _apiClient.post('/notebook', data);
-    return Notebook.fromJson(response['data']);
-  }
+  Future<Notebook> create(NotebookDraft draft) async =>
+      objectOf(await _client.post('/notebook', draft.toJson()), Notebook.fromJson);
 
-  /// Cập nhật ghi chú
-  Future<Notebook> updateNote(String id, Map<String, dynamic> data) async {
-    final response = await _apiClient.put('/notebook/$id', data);
-    return Notebook.fromJson(response['data']);
-  }
+  Future<Notebook> update(String id, NotebookDraft draft) async =>
+      objectOf(await _client.put('/notebook/$id', draft.toJson()), Notebook.fromJson);
 
-  /// Xóa ghi chú
-  Future<void> deleteNote(String id) async {
-    await _apiClient.delete('/notebook/$id');
-  }
-
-  /// Xóa nhiều ghi chú
-  Future<int> deleteMultipleNotes(List<String> ids) async {
-    final response = await _apiClient.delete('/notebook', {'ids': ids});
-    return response['deletedCount'] ?? 0;
-  }
-
-  /// Lấy ghi chú theo item liên quan
-  Future<List<Notebook>> getNotesByRelatedItem(
-    String itemType,
-    String itemId,
-  ) async {
-    final response =
-        await _apiClient.get('/notebook/related/$itemType/$itemId');
-    return (response['data'] as List?)
-            ?.map((item) => Notebook.fromJson(item))
-            .toList() ??
-        [];
-  }
-
-  /// Lấy danh sách tags
-  Future<List<String>> getAllTags() async {
-    final response = await _apiClient.get('/notebook/tags/all');
-    return (response['data'] as List?)
-            ?.map((item) => item.toString())
-            .toList() ??
-        [];
-  }
-
-  /// Lấy thống kê ghi chú
-  Future<Map<String, dynamic>> getStats() async {
-    final response = await _apiClient.get('/notebook/stats/me');
-    return response;
-  }
+  Future<void> delete(String id) => _client.delete('/notebook/$id');
 }

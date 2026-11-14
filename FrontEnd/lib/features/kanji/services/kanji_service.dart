@@ -1,123 +1,42 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../../srs/models/srs_progress.dart';
 import '../models/kanji.dart';
 
 class KanjiService {
-  KanjiService({ApiClient? client}) : _apiClient = client ?? ApiClient();
+  KanjiService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  final ApiClient _apiClient;
+  final ApiClient _client;
 
-  // Lấy danh sách kanji với phân trang
-  Future<Map<String, dynamic>> getKanjis({
-    int page = 1,
-    int limit = 20,
-    String? level,
-  }) async {
-    List<String> params = [];
-    params.add('page=$page');
-    params.add('limit=$limit');
-    if (level != null && level.isNotEmpty) {
-      params.add('capDo=$level'); // Backend sử dụng capDo
-    }
+  static const pageSize = 20;
 
-    String queryString = params.join('&');
-    final dynamic response =
-        await _apiClient.get('/kanji?$queryString', cache: true);
-
-    if (response is Map<String, dynamic>) {
-      return {
-        'kanjis': (response['data'] as List)
-            .map((json) => Kanji.fromJson(json))
-            .toList(),
-        'total': response['totalItems'] ?? 0,
-        'page': response['currentPage'] ?? page,
-        'totalPages': response['totalPages'] ?? 1,
-      };
-    }
-
-    return {
-      'kanjis': [],
-      'total': 0,
-      'page': page,
-      'totalPages': 1,
-    };
+  /// Kho Kanji theo thứ tự giáo trình; lưu ngoại tuyến được vì không phụ thuộc người xem.
+  Future<Paged<Kanji>> list({int page = 1, int limit = pageSize, String? level}) async {
+    final query = Uri(queryParameters: {
+      'page': '$page',
+      'limit': '$limit',
+      if (level != null) 'level': level,
+    }).query;
+    return Paged.fromJson(await _client.get('/kanji?$query', cache: true), Kanji.fromJson);
   }
 
-  // Tìm kiếm kanji
-  Future<List<Kanji>> searchKanjis(String query) async {
-    final dynamic response =
-        await _apiClient.get('/kanji/search?keyword=$query', cache: true);
-    // Backend trả về array trực tiếp, không có 'data' wrapper
-    if (response is List) {
-      return response
-          .map((json) => Kanji.fromJson(json as Map<String, dynamic>))
-          .toList();
-    }
-    return [];
-  }
-
-  // Lấy kanji theo level
-  Future<List<Kanji>> getKanjisByLevel(String level) async {
-    final dynamic response =
-        await _apiClient.get('/kanji/level/$level', cache: true);
-    if (response is Map<String, dynamic> && response['data'] != null) {
-      return (response['data'] as List)
-          .map((json) => Kanji.fromJson(json))
-          .toList();
-    }
-    return [];
+  /// Tối đa 50 chữ khớp [keyword] trên chữ, Hán Việt, âm On/Kun hoặc nghĩa.
+  Future<List<Kanji>> search(String keyword, {String? level}) async {
+    final query = Uri(queryParameters: {'keyword': keyword, if (level != null) 'level': level}).query;
+    return listOf(await _client.get('/kanji/search?$query'), Kanji.fromJson);
   }
 
   /// Chi tiết một chữ kèm thẻ ôn của người đang xem.
   ///
   /// Không đặt `cache`: trạng thái "đã thêm vào ôn tập" đổi sau mỗi lần bấm,
-  /// bản lưu ngoại tuyến sẽ hiện trạng thái cũ (giống chi tiết từ vựng). Lỗi
-  /// giữ nguyên [ApiException] để provider báo đúng câu của server.
-  Future<Kanji> getKanjiById(String id) async {
-    final response = await _apiClient.get('/kanji/$id');
-    return Kanji.fromJson(Map<String, dynamic>.from(response['data'] as Map));
-  }
+  /// bản lưu ngoại tuyến sẽ hiện trạng thái cũ (giống chi tiết từ vựng).
+  Future<Kanji> detail(String id) async => objectOf(await _client.get('/kanji/$id'), Kanji.fromJson);
 
   /// Thêm chữ vào lịch ôn: tạo thẻ hộp 1, hoặc trả thẻ đã có (bấm hai lần
   /// vẫn một thẻ). Không cộng XP — XP đến từ các lượt ôn.
-  Future<SrsProgress> addToReview(String id) async {
-    final response = await _apiClient.post('/kanji/$id/mark-learned', const {});
-    return SrsProgress.fromJson(
-        Map<String, dynamic>.from(response['data'] as Map));
-  }
+  Future<SrsProgress> addToReview(String id) async =>
+      objectOf(await _client.post('/kanji/$id/mark-learned', const {}), SrsProgress.fromJson);
 
   /// Gỡ chữ khỏi lịch ôn cùng toàn bộ tiến độ ôn của nó.
-  Future<void> removeFromReview(String id) async {
-    await _apiClient.delete('/kanji/$id/mark-learned');
-  }
-
-  // Lấy kanji theo bài học
-  Future<List<Kanji>> getKanjisByLesson(String lessonId) async {
-    final dynamic response =
-        await _apiClient.get('/kanji/lesson/$lessonId', cache: true);
-    if (response is Map<String, dynamic> && response['data'] != null) {
-      return (response['data'] as List)
-          .map((json) => Kanji.fromJson(json))
-          .toList();
-    }
-    return [];
-  }
-
-  // Lấy kanji ngẫu nhiên để luyện tập
-  Future<List<Kanji>> getRandomKanjis({int count = 10, String? level}) async {
-    List<String> params = [];
-    params.add('count=$count');
-    if (level != null && level.isNotEmpty) {
-      params.add('level=$level');
-    }
-
-    String queryString = params.join('&');
-    final dynamic response = await _apiClient.get('/kanji/random?$queryString');
-    if (response is Map<String, dynamic> && response['data'] != null) {
-      return (response['data'] as List)
-          .map((json) => Kanji.fromJson(json))
-          .toList();
-    }
-    return [];
-  }
+  Future<void> removeFromReview(String id) => _client.delete('/kanji/$id/mark-learned');
 }

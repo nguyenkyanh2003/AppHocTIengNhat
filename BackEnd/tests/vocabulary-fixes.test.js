@@ -57,6 +57,16 @@ const merge = (over = {}) => ({
   ...over,
 });
 
+const setHanviet = (over = {}) => ({
+  source: 'soát Hán Việt',
+  action: 'set-hanviet',
+  word: '韓国',
+  hiragana: 'かんこく',
+  from: 'QUỐC',
+  to: 'HÀN QUỐC',
+  ...over,
+});
+
 const skip = (over = {}) => ({
   source: 'N5:454',
   action: 'skip',
@@ -221,6 +231,74 @@ test('đổi khoá giữ nguyên bản ghi (cùng _id) để không mất tiến
   assert.equal(planFixes(fixes, existing(newDoc)).outcomes[0].status, 'done');
   assert.equal(planFixes(fixes, existing(oldDoc, { ...newDoc, _id: 'v4' })).outcomes[0].status, 'conflict');
   assert.equal(planFixes(fixes, existing()).outcomes[0].status, 'missing');
+});
+
+test('sửa Hán Việt chỉ ghi khi DB đúng là bản cũ đã soát; bản mới trống thì bỏ hẳn trường', () => {
+  const doc = (hanviet) => existing({ _id: 'v5', word: '韓国', hiragana: 'かんこく', meaning: 'Hàn Quốc', hanviet });
+  const fixes = reviewed([setHanviet()]);
+
+  assert.deepEqual(planFixes(fixes, doc('QUỐC')).operations, [{
+    updateOne: { filter: { _id: 'v5', hanviet: 'QUỐC' }, update: { $set: { hanviet: 'HÀN QUỐC' } } },
+  }]);
+  assert.equal(planFixes(fixes, doc('HÀN QUỐC')).outcomes[0].status, 'done');
+  assert.equal(planFixes(fixes, doc('HÀN')).outcomes[0].status, 'conflict');
+
+  // Từ viết toàn kana không có âm Hán Việt: file gốc ghi nhầm thì bỏ trường đi.
+  const cleared = reviewed([setHanviet({ word: 'やります', hiragana: 'やります', from: 'THAM GIA', to: '' })]);
+  const kana = (hanviet) => existing({ _id: 'v6', word: 'やります', hiragana: 'やります', meaning: 'Làm', hanviet });
+  assert.deepEqual(planFixes(cleared, kana('THAM GIA')).operations, [{
+    updateOne: { filter: { _id: 'v6', hanviet: 'THAM GIA' }, update: { $unset: { hanviet: '' } } },
+  }]);
+  assert.equal(planFixes(cleared, kana(undefined)).outcomes[0].status, 'done');
+
+  // Điền Hán Việt còn thiếu: điều kiện là trường đang trống.
+  const filled = reviewed([setHanviet({ word: '鍵', hiragana: 'かぎ', from: '', to: 'KIỆN' })]);
+  const key = existing({ _id: 'v8', word: '鍵', hiragana: 'かぎ', meaning: 'Chìa khóa' });
+  assert.deepEqual(planFixes(filled, key).operations, [{
+    updateOne: { filter: { _id: 'v8', hanviet: { $in: [null, ''] } }, update: { $set: { hanviet: 'KIỆN' } } },
+  }]);
+});
+
+test('sửa nghĩa và sửa Hán Việt cùng một từ được, hai dòng sửa cùng một trường thì không', () => {
+  assert.deepEqual(reviewFixes([setHanviet(), setMeaning({ word: '韓国', hiragana: 'かんこく' })]).errors, []);
+  const { errors } = reviewFixes([setHanviet(), setHanviet({ source: 'lần hai', to: 'HÀN' }), setHanviet({ to: 'QUỐC' })]);
+  assert.match(errors[0].messages.join(' '), /Trùng/);
+  assert.match(errors[1].messages.join(' '), /giống hệt/);
+});
+
+const split = (over = {}) => rename({
+  source: 'ô nhiều dạng viết từ lần nhập cũ',
+  from: { word: '暑い、熱い', hiragana: 'あつい', meaning: 'Nóng' },
+  to: { word: '暑い', hiragana: 'あつい', meaning: 'Nóng (thời tiết)', hanviet: 'THỬ' },
+  ...over,
+});
+
+test('tách ô nhiều dạng viết đã lỡ vào DB: đổi khoá kèm nghĩa và Hán Việt của dạng giữ lại', () => {
+  const fixes = reviewed([split()]);
+  const oldDoc = { _id: 'v7', word: '暑い、熱い', hiragana: 'あつい', meaning: 'Nóng', hanviet: 'THỬ NHIỆT', level: 'N5' };
+
+  const plan = planFixes(fixes, existing(oldDoc));
+  assert.equal(plan.outcomes[0].status, 'apply');
+  assert.deepEqual(plan.operations, [{
+    updateOne: {
+      filter: { _id: 'v7', word: '暑い、熱い', hiragana: 'あつい', meaning: 'Nóng' },
+      update: { $set: { word: '暑い', hiragana: 'あつい', meaning: 'Nóng (thời tiết)', hanviet: 'THỬ' } },
+    },
+  }]);
+
+  assert.equal(planFixes(fixes, existing({ ...oldDoc, meaning: 'Nóng bức' })).outcomes[0].status, 'conflict');
+  const renamed = { ...oldDoc, word: '暑い', meaning: 'Nóng (thời tiết)', hanviet: 'THỬ' };
+  assert.equal(planFixes(fixes, existing(renamed)).outcomes[0].status, 'done');
+});
+
+test('đổi nghĩa khi đổi khoá phải kèm nghĩa cũ; khoá mới phải nhập lại được bằng công cụ nhập', () => {
+  const { errors } = reviewFixes([
+    split({ from: { word: '暑い、熱い', hiragana: 'あつい' } }),
+    split({ source: 'khoá mới vẫn nhiều dạng', to: { word: '早く、速く', hiragana: 'はやく' } }),
+  ]);
+  assert.equal(errors.length, 2);
+  assert.match(errors[0].messages.join(' '), /nghĩa cũ/);
+  assert.match(errors[1].messages.join(' '), /nhiều dạng/);
 });
 
 test('xoá bản sao chỉ khi bản giữ lại còn đó và nghĩa đúng như lúc soát', () => {

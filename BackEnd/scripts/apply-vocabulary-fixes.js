@@ -62,7 +62,7 @@ const describe = (fix) => {
 
 const loadExisting = async (fixes) => {
   const docs = await Vocabulary.find({ $or: keysToLoad(fixes) })
-    .select('word hiragana meaning level lesson')
+    .select('word hiragana meaning hanviet level lesson')
     .lean();
   return new Map(docs.map((doc) => [tagKey(doc), doc]));
 };

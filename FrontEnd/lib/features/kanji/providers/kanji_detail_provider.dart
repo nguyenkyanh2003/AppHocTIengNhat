@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../core/network/api_client.dart';
 import '../../../core/state/view_state.dart';
 import '../models/kanji.dart';
 import '../services/kanji_service.dart';
@@ -25,7 +24,7 @@ class KanjiDetailProvider extends ChangeNotifier {
   Future<void> load(String id) async {
     _detail = const ViewState.loading();
     _notify();
-    _detail = await ViewState.guard(() => _service.getKanjiById(id));
+    _detail = await ViewState.guard(() => _service.detail(id));
     _notify();
   }
 
@@ -37,22 +36,15 @@ class KanjiDetailProvider extends ChangeNotifier {
 
     _saving = true;
     _notify();
-    try {
-      if (current.isInReview) {
-        await _service.removeFromReview(current.id);
-        _detail = ViewState.data(current.withSrsProgress(null));
-      } else {
-        _detail = ViewState.data(current.withSrsProgress(await _service.addToReview(current.id)));
-      }
-      return null;
-    } on ApiException catch (error) {
-      return error.message;
-    } catch (_) {
-      return 'Đã có lỗi xảy ra. Vui lòng thử lại.';
-    } finally {
-      _saving = false;
-      _notify();
-    }
+    final result = await ViewState.guard(() async {
+      if (!current.isInReview) return current.withSrsProgress(await _service.addToReview(current.id));
+      await _service.removeFromReview(current.id);
+      return current.withSrsProgress(null);
+    });
+    if (result.hasData) _detail = result;
+    _saving = false;
+    _notify();
+    return result.errorOrNull;
   }
 
   @override

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
 import '../../../app/localization/app_localizations.dart';
-import '../models/password_policy.dart';
-import '../providers/auth_provider.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/password_policy.dart';
+import '../providers/auth_provider.dart';
 import '../widgets/password_form_field.dart';
 
+/// Đăng ký tài khoản. Số điện thoại, địa chỉ… điền sau ở trang hồ sơ: API đăng
+/// ký chỉ nhận tên đăng nhập, họ tên, email và mật khẩu.
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -26,8 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  final _phoneController = TextEditingController();
   bool _isLoading = false;
+
+  static final _email = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   @override
   void dispose() {
@@ -40,54 +42,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future<void> _handleRegister() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
 
-    setState(() {
-      _isLoading = true;
-    });
+    setState(() => _isLoading = true);
+    final auth = context.read<AuthProvider>();
+    // `register` không ném: thất bại (trùng tên, mất mạng…) trả `false` kèm `auth.error`.
+    final registered = await auth.register(
+      _usernameController.text,
+      _fullNameController.text,
+      _emailController.text,
+      _passwordController.text,
+    );
+    if (!mounted) return;
+    setState(() => _isLoading = false);
 
-    try {
-      final authProvider = Provider.of<AuthProvider>(context, listen: false);
-
-      await authProvider.register(
-        _usernameController.text,
-        _fullNameController.text,
-        _emailController.text,
-        _passwordController.text,
-      );
-
-      if (!mounted) return;
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Đăng ký thành công!'),
-          backgroundColor: AppColors.successStrong,
-        ),
-      );
-
-      context.go('/login');
-    } catch (e) {
-      if (!mounted) return;
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Đăng ký thất bại: ${userMessageOf(e)}'),
-          backgroundColor: AppColors.errorStrong,
-        ),
-      );
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(registered ? 'Đăng ký thành công!' : 'Đăng ký thất bại: ${auth.error ?? 'vui lòng thử lại.'}'),
+        backgroundColor: registered ? AppColors.successStrong : AppColors.errorStrong,
+      ),
+    );
+    if (registered) context.go('/login');
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    const gap = SizedBox(height: AppSpacing.lg);
     return AppScaffold(
       title: 'Đăng ký',
       body: SafeArea(
@@ -100,22 +81,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 32),
-                  // Logo hoặc tiêu đề
-                  Icon(
-                    Icons.person_add,
-                    size: 80,
-                    color: context.colors.primary,
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AppSpacing.xxl),
+                  Icon(Icons.person_add, size: 80, color: context.colors.primary),
+                  gap,
                   Text(
                     'Tạo tài khoản mới',
                     style: Theme.of(context).textTheme.headlineSmall,
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 32),
-
-                  // Username field
+                  const SizedBox(height: AppSpacing.xxl),
                   TextFormField(
                     controller: _usernameController,
                     decoration: const InputDecoration(
@@ -124,17 +98,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng nhập tên người dùng';
-                      }
-                      if (value.length < 3) {
-                        return 'Tên người dùng phải có ít nhất 3 ký tự';
-                      }
+                      if (value == null || value.isEmpty) return 'Vui lòng nhập tên người dùng';
+                      if (value.length < 3) return 'Tên người dùng phải có ít nhất 3 ký tự';
                       return null;
                     },
                   ),
-                  const SizedBox(height: 16),
-
+                  gap,
                   TextFormField(
                     controller: _fullNameController,
                     decoration: const InputDecoration(
@@ -142,17 +111,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       prefixIcon: Icon(Icons.badge_outlined),
                       border: OutlineInputBorder(),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng nhập họ và tên';
-                      }
-                      return null;
-                    },
+                    validator: (value) => value == null || value.isEmpty ? 'Vui lòng nhập họ và tên' : null,
                     textCapitalization: TextCapitalization.words,
                   ),
-                  const SizedBox(height: 16),
-
-                  // Email field
+                  gap,
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -162,113 +124,53 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng nhập email';
-                      }
-                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                          .hasMatch(value)) {
-                        return 'Email không hợp lệ';
-                      }
+                      if (value == null || value.isEmpty) return 'Vui lòng nhập email';
+                      if (!_email.hasMatch(value)) return 'Email không hợp lệ';
                       return null;
                     },
                   ),
-                  // Số điện thoại
-                  const SizedBox(height: 16),
-
-                  TextFormField(
-                    controller: _phoneController,
-                    keyboardType: TextInputType
-                        .phone, // Chỉ định kiểu bàn phím số điện thoại
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(11),
-                    ],
-                    decoration: const InputDecoration(
-                      labelText: 'Số điện thoại',
-                      prefixIcon: Icon(Icons.phone),
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value != null && value.isNotEmpty) {
-                        if (value.length < 9 || value.length > 11) {
-                          return 'Số điện thoại không hợp lệ';
-                        }
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Password field
+                  gap,
                   PasswordFormField(
                     controller: _passwordController,
                     labelText: 'Mật khẩu',
-                    helperText: AppLocalizations.of(context)
-                        .passwordMinHint(PasswordPolicy.minLength),
+                    helperText: l10n.passwordMinHint(PasswordPolicy.minLength),
                     prefixIcon: Icons.lock,
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng nhập mật khẩu';
-                      }
+                      if (value == null || value.isEmpty) return 'Vui lòng nhập mật khẩu';
                       if (value.length < PasswordPolicy.minLength) {
-                        return AppLocalizations.of(context)
-                            .passwordMinLength(PasswordPolicy.minLength);
+                        return l10n.passwordMinLength(PasswordPolicy.minLength);
                       }
                       return null;
                     },
                   ),
-                  const SizedBox(height: 16),
-
-                  // Confirm password field
+                  gap,
                   PasswordFormField(
                     controller: _confirmPasswordController,
                     labelText: 'Xác nhận mật khẩu',
                     prefixIcon: Icons.lock_outline,
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Vui lòng xác nhận mật khẩu';
-                      }
-                      if (value != _passwordController.text) {
-                        return 'Mật khẩu không khớp';
-                      }
+                      if (value == null || value.isEmpty) return 'Vui lòng xác nhận mật khẩu';
+                      if (value != _passwordController.text) return 'Mật khẩu không khớp';
                       return null;
                     },
                   ),
-                  const SizedBox(height: 24),
-
-                  // Register button
+                  const SizedBox(height: AppSpacing.xl),
                   ElevatedButton(
                     onPressed: _isLoading ? null : _handleRegister,
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
                     ),
                     child: _isLoading
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                            ),
-                          )
-                        : const Text(
-                            'Đăng ký',
-                            style: TextStyle(fontSize: AppTypography.body),
-                          ),
+                        ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                        : const Text('Đăng ký', style: TextStyle(fontSize: AppTypography.body)),
                   ),
-                  const SizedBox(height: 16),
-
-                  // Login link
+                  gap,
                   Wrap(
                     alignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       const Text('Đã có tài khoản?'),
-                      TextButton(
-                        onPressed: () {
-                          context.go('/login');
-                        },
-                        child: const Text('Đăng nhập'),
-                      ),
+                      TextButton(onPressed: () => context.go('/login'), child: const Text('Đăng nhập')),
                     ],
                   ),
                 ],

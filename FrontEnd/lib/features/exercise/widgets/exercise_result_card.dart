@@ -96,26 +96,29 @@ class ExerciseResultCard extends StatelessWidget {
   }
 
   Widget _buildStatItem(IconData icon, String label, String value) {
-    return Column(
-      children: [
-        Icon(icon, color: Colors.white, size: 24),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: AppTypography.subtitle,
-            fontWeight: FontWeight.bold,
+    return Expanded(
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.white, size: 24),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: AppTypography.subtitle,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white70,
-            fontSize: AppTypography.caption,
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: AppTypography.caption,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

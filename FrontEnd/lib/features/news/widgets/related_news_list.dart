@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import '../providers/news_provider.dart';
+import '../models/news.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 
 /// Danh sách tin liên quan cuối bài.
 class RelatedNewsList extends StatelessWidget {
-  const RelatedNewsList({
-    super.key,
-    required this.provider,
-  });
+  const RelatedNewsList({super.key, required this.items, required this.onOpen});
 
-  final NewsProvider provider;
+  final List<News> items;
+  final ValueChanged<News> onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +20,11 @@ class RelatedNewsList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: provider.relatedNews.length,
+        itemCount: items.length,
         itemBuilder: (context, index) {
-          final news = provider.relatedNews[index];
+          final news = items[index];
           return GestureDetector(
-            onTap: () {
-              provider.loadNewsDetail(news.id);
-            },
+            onTap: () => onOpen(news),
             child: Container(
               width: 160,
               margin: const EdgeInsets.only(right: 12),

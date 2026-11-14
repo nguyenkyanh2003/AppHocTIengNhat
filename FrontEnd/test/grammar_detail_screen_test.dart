@@ -11,7 +11,7 @@ import 'package:apphoctiengnnhat/features/grammar/providers/grammar_provider.dar
 import 'package:apphoctiengnnhat/features/grammar/screens/grammar_detail_screen.dart';
 
 final _client = MockClient((request) async => http.Response(
-      jsonEncode({
+      jsonEncode({'data': {
         '_id': 'g1',
         'title': 'が (ga)',
         'structure': 'Danh từ + が',
@@ -21,7 +21,7 @@ final _client = MockClient((request) async => http.Response(
         'examples': [
           {'sentence': '誰が来ましたか。', 'meaning': 'Ai đã đến?'},
         ],
-      }),
+      }}),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
     ));

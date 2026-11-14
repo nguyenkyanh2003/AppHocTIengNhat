@@ -64,7 +64,7 @@ class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
                   child: AsyncView<List<Map<String, dynamic>>>(
                     state: ViewState.fromLegacy(
                       isLoading: provider.isLoadingTransactions,
-                      error: provider.error,
+                      error: provider.loadErrorOf(AdminSection.transactions),
                       value: transactions,
                       isEmpty: transactions.isEmpty,
                     ),

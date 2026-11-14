@@ -2,11 +2,10 @@ import { z } from 'zod';
 
 import { NOTIFICATION_TYPES, SENDABLE_NOTIFICATION_TYPES } from '../../../model/Notification.js';
 import { paginationQuery } from '../../shared/http/pagination.js';
+import { objectId } from '../../shared/http/schemas.js';
 
 export const TITLE_MAX = 120;
 export const MESSAGE_MAX = 2000;
-
-const objectId = z.string().regex(/^[a-f0-9]{24}$/i, 'ID không hợp lệ.');
 
 export const listQuery = paginationQuery.extend({
   status: z.enum(['all', 'read', 'unread']).default('all'),

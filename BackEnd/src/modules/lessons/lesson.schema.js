@@ -1,23 +1,13 @@
 import { z } from 'zod';
 
 import { paginationQuery } from '../../shared/http/pagination.js';
+import { JLPT_LEVELS, jlptLevel, objectId, optionalQuery } from '../../shared/http/schemas.js';
 import { SITUATIONS } from './situation-catalog.js';
 
-export const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'];
+export const LEVELS = JLPT_LEVELS;
 
-const objectId = z
-  .string()
-  .regex(/^[0-9a-fA-F]{24}$/, 'Định danh không hợp lệ.');
-
-const level = z.enum(LEVELS);
+const level = jlptLevel;
 const situation = z.enum(SITUATIONS);
-
-/** Query rỗng (`?level=`) được coi như không truyền — cùng quy ước với vocabulary.schema.js. */
-const optional = (schema) =>
-  z.preprocess(
-    (value) => (value === '' || value === null ? undefined : value),
-    schema.optional(),
-  );
 
 /**
  * `lessonInput()` cũ trong controller chấp nhận cả tên field tiếng Việt di sản
@@ -38,14 +28,14 @@ const normalizeLessonBody = (body) => {
 };
 
 export const listQuery = paginationQuery.extend({
-  level: optional(level),
-  type: optional(z.string().trim().min(1)),
-  situation: optional(situation),
-  search: optional(z.string().trim().min(1)),
+  level: optionalQuery(level),
+  type: optionalQuery(z.string().trim().min(1)),
+  situation: optionalQuery(situation),
+  search: optionalQuery(z.string().trim().min(1)),
 });
 
 export const situationsQuery = z.object({
-  level: optional(level),
+  level: optionalQuery(level),
 });
 
 export const idParams = z.object({ id: objectId });

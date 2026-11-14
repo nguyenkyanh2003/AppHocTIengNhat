@@ -39,6 +39,13 @@ void _bridgeTests() {
     });
   });
 
+  test('map đổi dữ liệu bên trong, giữ nguyên trạng thái tải và lỗi', () {
+    expect(const ViewState<int>.data(2).map((value) => '$value').valueOrNull, '2');
+    expect(const ViewState<int>.failure('Hỏng').map((value) => '$value').errorOrNull, 'Hỏng');
+    expect(const ViewState<int>.loading().map((value) => '$value'), isA<ViewLoading<String>>());
+    expect(const ViewState<int>.idle().map((value) => '$value'), isA<ViewIdle<String>>());
+  });
+
   group('userMessageOf', () {
     test('lỗi API giữ câu của server, lỗi khác không lộ chi tiết', () {
       expect(userMessageOf(ApiException('Không có quyền')), 'Không có quyền');

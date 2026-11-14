@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/flashcard_provider.dart';
-import '../../../app/theme/app_theme.dart';
+
+import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
+import '../providers/flashcard_provider.dart';
+import '../widgets/flashcard_form_parts.dart';
 
 class CreateFlashcardDeckScreen extends StatefulWidget {
-  const CreateFlashcardDeckScreen({Key? key}) : super(key: key);
+  const CreateFlashcardDeckScreen({super.key});
+
+  /// Danh mục bộ thẻ và tên hiển thị.
+  static const categories = {
+    'vocabulary': 'Từ vựng',
+    'kanji': 'Kanji',
+    'grammar': 'Ngữ pháp',
+    'custom': 'Tùy chỉnh',
+    'other': 'Khác',
+  };
+
+  static const levels = ['N5', 'N4', 'N3', 'N2', 'N1', 'beginner', 'intermediate', 'advanced', 'other'];
 
   @override
-  State<CreateFlashcardDeckScreen> createState() =>
-      _CreateFlashcardDeckScreenState();
+  State<CreateFlashcardDeckScreen> createState() => _CreateFlashcardDeckScreenState();
 }
 
 class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
@@ -25,25 +35,6 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
   bool _isPublic = false;
   bool _isLoading = false;
 
-  final List<String> _categories = [
-    'vocabulary',
-    'kanji',
-    'grammar',
-    'custom',
-    'other'
-  ];
-  final List<String> _levels = [
-    'N5',
-    'N4',
-    'N3',
-    'N2',
-    'N1',
-    'beginner',
-    'intermediate',
-    'advanced',
-    'other'
-  ];
-
   @override
   void dispose() {
     _titleController.dispose();
@@ -55,244 +46,109 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-
     final provider = context.read<FlashcardProvider>();
+    final description = _descriptionController.text.trim();
     final result = await provider.createDeck(
       title: _titleController.text.trim(),
-      description: _descriptionController.text.trim().isEmpty
-          ? null
-          : _descriptionController.text.trim(),
+      description: description.isEmpty ? null : description,
       isPublic: _isPublic,
       category: _selectedCategory,
       level: _selectedLevel,
     );
-
+    if (!mounted) return;
     setState(() => _isLoading = false);
 
-    if (result != null && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Tạo bộ thẻ thành công!'),
-          backgroundColor: AppColors.successStrong,
-        ),
-      );
-      Navigator.pop(context, result);
-    } else if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.errorStrong,
-        ),
-      );
-    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(result != null ? 'Tạo bộ thẻ thành công!' : provider.error ?? 'Có lỗi xảy ra'),
+        backgroundColor: result != null ? AppColors.successStrong : AppColors.errorStrong,
+      ),
+    );
+    if (result != null) Navigator.pop(context, result);
   }
 
   @override
   Widget build(BuildContext context) {
+    const gap = SizedBox(height: AppSpacing.lg);
     return AppScaffold(
       title: 'Tạo Bộ Thẻ Mới',
       body: ContentWidthLimit(
         child: Form(
           key: _formKey,
           child: ListView(
-            padding: const EdgeInsets.all(16),
+            padding: AppSpacing.page,
             children: [
-              // Title
               TextFormField(
                 controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: 'Tiêu đề *',
-                  hintText: 'Ví dụ: Từ vựng N5 Chủ đề Gia đình',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.title),
+                decoration: flashcardInputDecoration(
+                  label: 'Tiêu đề *',
+                  hint: 'Ví dụ: Từ vựng N5 Chủ đề Gia đình',
+                  icon: Icons.title,
                 ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Vui lòng nhập tiêu đề';
-                  }
-                  return null;
-                },
+                validator: requiredText('Vui lòng nhập tiêu đề'),
                 maxLength: 100,
               ),
-              const SizedBox(height: 16),
-
-              // Description
+              gap,
               TextFormField(
                 controller: _descriptionController,
-                decoration: InputDecoration(
-                  labelText: 'Mô tả (tùy chọn)',
-                  hintText: 'Mô tả ngắn về bộ thẻ này',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.description),
+                decoration: flashcardInputDecoration(
+                  label: 'Mô tả (tùy chọn)',
+                  hint: 'Mô tả ngắn về bộ thẻ này',
+                  icon: Icons.description,
                 ),
                 maxLines: 3,
                 maxLength: 300,
               ),
-              const SizedBox(height: 16),
-
-              // Category
+              gap,
               DropdownButtonFormField<String>(
                 value: _selectedCategory,
                 isExpanded: true,
-                decoration: InputDecoration(
-                  labelText: 'Danh mục',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.category),
-                ),
-                items: _categories.map((category) {
-                  return DropdownMenuItem(
-                    value: category,
-                    child: Text(
-                      _getCategoryName(category),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                decoration: flashcardInputDecoration(label: 'Danh mục', icon: Icons.category),
+                items: [
+                  for (final MapEntry(key: value, value: name) in CreateFlashcardDeckScreen.categories.entries)
+                    DropdownMenuItem(
+                      value: value,
+                      child: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis),
                     ),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() => _selectedCategory = value!);
-                },
+                ],
+                onChanged: (value) => setState(() => _selectedCategory = value!),
               ),
-              const SizedBox(height: 16),
-
-              // Level
+              gap,
               DropdownButtonFormField<String>(
                 value: _selectedLevel,
                 isExpanded: true,
-                decoration: InputDecoration(
-                  labelText: 'Cấp độ (tùy chọn)',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.bar_chart),
-                ),
+                decoration: flashcardInputDecoration(label: 'Cấp độ (tùy chọn)', icon: Icons.bar_chart),
                 items: [
                   const DropdownMenuItem(
                     value: null,
-                    child: Text(
-                      'Không chọn',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    child: Text('Không chọn', maxLines: 1, overflow: TextOverflow.ellipsis),
                   ),
-                  ..._levels.map((level) {
-                    return DropdownMenuItem(
-                      value: level,
-                      child: Text(level),
-                    );
-                  }),
+                  for (final level in CreateFlashcardDeckScreen.levels)
+                    DropdownMenuItem(value: level, child: Text(level)),
                 ],
-                onChanged: (value) {
-                  setState(() => _selectedLevel = value);
-                },
+                onChanged: (value) => setState(() => _selectedLevel = value),
               ),
-              const SizedBox(height: 16),
-
-              // Public switch
+              gap,
               Card(
                 child: SwitchListTile(
                   title: const Text('Công khai'),
-                  subtitle:
-                      const Text('Cho phép người khác xem và học bộ thẻ này'),
+                  subtitle: const Text('Cho phép người khác xem và học bộ thẻ này'),
                   value: _isPublic,
-                  onChanged: (value) {
-                    setState(() => _isPublic = value);
-                  },
+                  onChanged: (value) => setState(() => _isPublic = value),
                   secondary: Icon(
                     _isPublic ? Icons.public : Icons.lock,
-                    color: _isPublic
-                        ? AppColors.success
-                        : context.colors.textSecondary,
+                    color: _isPublic ? AppColors.success : context.colors.textSecondary,
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-
-              // Info card
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: context.colors.primarySoft,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: context.colors.primarySoft),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.info_outline,
-                        color: context.colors.primaryStrong),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.',
-                        style: TextStyle(
-                          fontSize: AppTypography.caption,
-                          color: context.colors.primaryStrong,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // Create button
-              SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _createDeck,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: _isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.white),
-                          ),
-                        )
-                      : const Text(
-                          'Tạo Bộ Thẻ',
-                          style: TextStyle(
-                            fontSize: AppTypography.body,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                ),
-              ),
+              const SizedBox(height: AppSpacing.xl),
+              const FlashcardInfoNote('Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.'),
+              const SizedBox(height: AppSpacing.xl),
+              FlashcardSubmitButton(label: 'Tạo Bộ Thẻ', loading: _isLoading, onPressed: _createDeck),
             ],
           ),
         ),
       ),
     );
-  }
-
-  String _getCategoryName(String category) {
-    switch (category) {
-      case 'vocabulary':
-        return 'Từ vựng';
-      case 'kanji':
-        return 'Kanji';
-      case 'grammar':
-        return 'Ngữ pháp';
-      case 'custom':
-        return 'Tùy chỉnh';
-      case 'other':
-        return 'Khác';
-      default:
-        return category;
-    }
   }
 }

@@ -1,51 +1,49 @@
-class Grammar {
-  final String id;
-  final String title;
-  final String pattern;
-  final String meaning;
-  final String? explanation;
-  final List<String> examples;
-  final String level; // N5, N4, N3, N2, N1
-  final String? lessonId;
-  final int viewCount;
-  final DateTime createdAt;
-  final bool isActive;
+/// Cách sắp xếp danh sách ngữ pháp; `name` là giá trị `sortBy` gửi lên API.
+enum GrammarSort { title, popular, newest }
 
-  Grammar({
+class Grammar {
+  const Grammar({
     required this.id,
     required this.title,
     required this.pattern,
     required this.meaning,
+    required this.level,
     this.explanation,
     this.examples = const [],
-    required this.level,
     this.lessonId,
     this.viewCount = 0,
-    required this.createdAt,
-    this.isActive = true,
   });
 
   factory Grammar.fromJson(Map<String, dynamic> json) {
     return Grammar(
-      id: json['_id'] ?? json['id'] ?? '',
-      title: json['title'] ?? json['tieu_de'] ?? '',
-      pattern: json['structure'] ?? json['pattern'] ?? json['co_cau'] ?? '',
-      meaning: json['meaning'] ?? json['y_nghia'] ?? '',
-      explanation: json['usage'] ?? json['explanation'] ?? json['giai_thich'],
-      examples: json['examples'] is List
-          ? _examplesFrom(json['examples'] as List)
-          : json['example'] != null
-              ? [json['example']]
-              : [],
-      level: json['level'] ?? 'N5',
-      lessonId: json['lesson_id'] ?? json['bai_hoc'],
-      viewCount: json['view_count'] ?? json['luot_xem'] ?? 0,
-      createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
-          : DateTime.now(),
-      isActive: json['is_active'] ?? json['hoat_dong'] ?? true,
+      id: json['_id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      pattern: json['structure'] as String? ?? '',
+      meaning: json['meaning'] as String? ?? '',
+      level: json['level'] as String? ?? 'N5',
+      explanation: json['usage'] as String?,
+      examples: json['examples'] is List ? _examplesFrom(json['examples'] as List) : const [],
+      lessonId: _idOf(json['lesson_id']),
+      viewCount: json['view_count'] as int? ?? 0,
     );
   }
+
+  final String id;
+  final String title;
+
+  /// Cấu trúc câu, trường `structure` của API.
+  final String pattern;
+  final String meaning;
+
+  /// Cách dùng, trường `usage` của API.
+  final String? explanation;
+  final List<String> examples;
+  final String level;
+  final String? lessonId;
+  final int viewCount;
+
+  /// Bài học đến dạng id hoặc object đã populate `{ _id, title, level }`.
+  static String? _idOf(Object? value) => value is Map ? value['_id'] as String? : value as String?;
 
   /// API trả ví dụ dạng `{ sentence, meaning }`; dữ liệu cũ có thể là chuỗi.
   static List<String> _examplesFrom(List<dynamic> raw) => raw
@@ -57,48 +55,4 @@ class Grammar {
           : example.toString())
       .where((example) => example.trim().isNotEmpty)
       .toList();
-
-  Map<String, dynamic> toJson() {
-    return {
-      '_id': id,
-      'title': title,
-      'pattern': pattern,
-      'meaning': meaning,
-      'explanation': explanation,
-      'examples': examples,
-      'level': level,
-      'lesson_id': lessonId,
-      'view_count': viewCount,
-      'createdAt': createdAt.toIso8601String(),
-      'is_active': isActive,
-    };
-  }
-
-  Grammar copyWith({
-    String? id,
-    String? title,
-    String? pattern,
-    String? meaning,
-    String? explanation,
-    List<String>? examples,
-    String? level,
-    String? lessonId,
-    int? viewCount,
-    DateTime? createdAt,
-    bool? isActive,
-  }) {
-    return Grammar(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      pattern: pattern ?? this.pattern,
-      meaning: meaning ?? this.meaning,
-      explanation: explanation ?? this.explanation,
-      examples: examples ?? this.examples,
-      level: level ?? this.level,
-      lessonId: lessonId ?? this.lessonId,
-      viewCount: viewCount ?? this.viewCount,
-      createdAt: createdAt ?? this.createdAt,
-      isActive: isActive ?? this.isActive,
-    );
-  }
 }

@@ -19,7 +19,7 @@ class _FakeNewsProvider extends NewsProvider {
   List<News> get newsList => items;
 
   @override
-  Future<void> loadNews({bool refresh = false, String? level, String? search}) async => loads++;
+  Future<void> load({String? level, String? search}) async => loads++;
 }
 
 News _news(int i, {String? level = 'N4', String? title}) => News(

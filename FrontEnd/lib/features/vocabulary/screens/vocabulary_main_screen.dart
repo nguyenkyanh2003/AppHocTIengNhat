@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../core/audio/audio_service.dart';
+import '../../../shared/widgets/pronounce.dart';
 import '../../flashcards/providers/flashcard_provider.dart';
 import '../../flashcards/widgets/add_to_flashcard_dialog.dart';
 import '../../flashcards/widgets/flashcard_decks_tab.dart';
@@ -85,16 +85,11 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
     );
   }
 
-  Future<void> _play(Vocabulary vocabulary) async {
-    final messenger = ScaffoldMessenger.of(context);
-    try {
-      await AudioService().playAudio(vocabulary.audioUrl!);
-    } catch (_) {
-      messenger.showSnackBar(
-        const SnackBar(content: Text('Không phát được âm thanh.')),
+  Future<void> _play(Vocabulary vocabulary) => pronounce(
+        context,
+        audioUrl: vocabulary.audioUrl,
+        text: vocabulary.hiragana.isNotEmpty ? vocabulary.hiragana : vocabulary.word,
       );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

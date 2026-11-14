@@ -5,8 +5,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
-import '../../../app/theme/app_typography.dart';
-import '../widgets/admin_report_dialogs.dart';
+import '../widgets/admin_report_table.dart';
 import '../widgets/admin_report_card.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../core/state/view_state.dart';
@@ -72,30 +71,7 @@ class _AdminReportManagementScreenState
 
             return Column(
               children: [
-                // Stats Bar
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  color: context.colors.surfaceVariant,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildStatCard(
-                          '${allReports.length}', 'Tổng', AppColors.primary),
-                      _buildStatCard(
-                          '${allReports.where((r) => r['status'] == 'pending').length}',
-                          'Chờ xử lý',
-                          AppColors.warning),
-                      _buildStatCard(
-                          '${allReports.where((r) => r['status'] == 'in_progress').length}',
-                          'Đang xử lý',
-                          Colors.purple),
-                      _buildStatCard(
-                          '${allReports.where((r) => r['status'] == 'resolved').length}',
-                          'Đã xong',
-                          AppColors.success),
-                    ],
-                  ),
-                ),
+                AdminReportStatsBar(reports: allReports),
 
                 // Status Filter
                 Container(
@@ -107,12 +83,9 @@ class _AdminReportManagementScreenState
                       children: [
                         _buildStatusChip(
                             'Tất cả', 'all', context.colors.textSecondary),
-                        _buildStatusChip(
-                            'Chờ xử lý', 'pending', AppColors.warning),
-                        _buildStatusChip(
-                            'Đang xử lý', 'in_progress', Colors.purple),
-                        _buildStatusChip(
-                            'Đã xong', 'resolved', AppColors.success),
+                        _buildStatusChip('Chờ xử lý', 'pending', AdminReportStatusColors.pending),
+                        _buildStatusChip('Đang xử lý', 'in_progress', AdminReportStatusColors.inProgress),
+                        _buildStatusChip('Đã xong', 'resolved', AdminReportStatusColors.resolved),
                       ],
                     ),
                   ),
@@ -123,7 +96,7 @@ class _AdminReportManagementScreenState
                   child: AsyncView<List<Map<String, dynamic>>>(
                     state: ViewState.fromLegacy(
                       isLoading: adminProvider.isLoadingReports,
-                      error: allReports.isEmpty ? adminProvider.error : null,
+                      error: allReports.isEmpty ? adminProvider.loadErrorOf(AdminSection.reports) : null,
                       value: filteredReports,
                       isEmpty: filteredReports.isEmpty,
                     ),
@@ -137,7 +110,7 @@ class _AdminReportManagementScreenState
                       items: filteredReports,
                       rowKey: (report) =>
                           ValueKey(report['_id'] ?? report['id']),
-                      columns: _reportColumns(),
+                      columns: adminReportColumns(),
                       cardBuilder: (context, report) => AdminReportCard(
                           report: report, updateStatus: _updateStatus),
                     ),
@@ -147,31 +120,6 @@ class _AdminReportManagementScreenState
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildStatCard(String value, String label, Color color) {
-    return Expanded(
-      child: Column(
-        children: [
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: AppTypography.headline,
-              fontWeight: FontWeight.bold,
-              color: context.colors.readable(color),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: AppTypography.caption,
-              color: context.colors.textSecondary,
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -196,41 +144,6 @@ class _AdminReportManagementScreenState
         ),
       ),
     );
-  }
-
-  /// Cot bang bao cao tren vung rong; cung du lieu voi the o man hep.
-  List<AdaptiveColumn<Map<String, dynamic>>> _reportColumns() {
-    return [
-      AdaptiveColumn(
-        label: 'Tiêu đề',
-        minWidth: 240,
-        cell: (context, report) => Text(
-          (report['title'] ?? '').toString(),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      AdaptiveColumn(
-        label: 'Loại',
-        width: 130,
-        cell: (context, report) => Text((report['type'] ?? '').toString()),
-      ),
-      AdaptiveColumn(
-        label: 'Trạng thái',
-        width: 130,
-        cell: (context, report) => Text((report['status'] ?? '').toString()),
-      ),
-      AdaptiveColumn(
-        label: 'Thao tác',
-        width: 72,
-        alignEnd: true,
-        cell: (context, report) => IconButton(
-          tooltip: 'Phản hồi',
-          icon: const Icon(Icons.reply),
-          onPressed: () => showAdminReportResponseDialog(context, report),
-        ),
-      ),
-    ];
   }
 
   Future<void> _updateStatus(

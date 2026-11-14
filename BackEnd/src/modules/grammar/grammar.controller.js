@@ -1,207 +1,28 @@
-import Grammar from '../../../model/Grammar.js';
-import mongoose from 'mongoose';
-import { isDuplicateKeyError } from '../../shared/db/duplicate-key.js';
-import { createOrReviveGrammar } from './grammar-natural-key.js';
+import { created, ok, paginated } from '../../shared/http/respond.js';
 
+/** Controller chỉ map HTTP <-> service; lỗi do asyncHandler + errorHandler lo. */
+export const createGrammarController = (service) => ({
+  async list(req, res) {
+    return paginated(res, await service.list(req.valid.query));
+  },
 
-// Lấy danh sách ngữ pháp với phân trang và lọc
-export const getRoot = async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
-        const skip = (page - 1) * limit;
-        
-        const { level, search, lessonID, sortBy } = req.query;
-        
-        const filter = { is_active: true };
-        
-        if (level) filter.level = level;
-        if (lessonID) {
-            if (!mongoose.Types.ObjectId.isValid(lessonID)) {
-                return res.status(400).json({ message: "ID bài học không hợp lệ." });
-            }
-            filter.lesson_id = lessonID;
-        }
-        
-        if (search) {
-            filter.$text = { $search: search };
-        }
+  async detail(req, res) {
+    return ok(res, await service.getDetail(req.valid.params.id));
+  },
 
-        //  Dynamic sorting
-        let sortOptions = { title: 1 };
-        if (sortBy === 'popular') sortOptions = { view_count: -1 };
-        if (sortBy === 'newest') sortOptions = { createdAt: -1 };
+  async create(req, res) {
+    const { grammar, revived } = await service.create(req.valid.body);
+    const message = revived ? 'Đã khôi phục ngữ pháp đã xoá với nội dung mới.' : 'Thêm ngữ pháp thành công.';
+    return created(res, grammar, { message });
+  },
 
-        const [grammars, total] = await Promise.all([
-            Grammar.find(filter)
-                .populate('lesson_id', 'title level')
-                .sort(sortOptions)
-                .limit(limit)
-                .skip(skip)
-                .lean(),
-            Grammar.countDocuments(filter)
-        ]);
+  async update(req, res) {
+    const grammar = await service.update(req.valid.params.id, req.valid.body);
+    return ok(res, grammar, { message: 'Cập nhật ngữ pháp thành công.' });
+  },
 
-        res.json({
-            totalItems: total,
-            totalPages: Math.ceil(total / limit),
-            currentPage: page,
-            data: grammars
-        });
-    } catch (error) {
-        console.error("Lỗi khi lấy danh sách ngữ pháp:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-//  Lấy chi tiết ngữ pháp và tăng view count
-export const getById = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "ID ngữ pháp không hợp lệ." });
-        }
-
-        const grammar = await Grammar.findById(id)
-            .populate('lesson_id', 'title level')
-            .populate('related_grammar', 'title structure level');
-
-        if (!grammar || !grammar.is_active) {
-            return res.status(404).json({ message: "Ngữ pháp không tồn tại." });
-        }
-
-        // Tăng lượt xem
-        await grammar.incrementViewCount();
-
-        res.json(grammar);
-    } catch (error) {
-        console.error("Lỗi khi lấy chi tiết ngữ pháp:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-// Tạo mới ngữ pháp
-export const postRoot = async (req, res) => {
-    try {
-        const { 
-            title, structure, meaning, usage, examples, 
-            level, lessonID, notes, difficulty, relatedGrammar 
-        } = req.body;
-
-        if (!title || !structure || !meaning || !level) {
-            return res.status(400).json({ 
-                message: "Vui lòng điền đầy đủ: Tiêu đề, Cấu trúc, Ý nghĩa, Cấp độ." 
-            });
-        }
-
-        if (lessonID && !mongoose.Types.ObjectId.isValid(lessonID)) {
-            return res.status(400).json({ message: "ID bài học không hợp lệ." });
-        }
-
-        const { grammar, revived } = await createOrReviveGrammar({
-            data: {
-                title,
-                structure,
-                meaning,
-                usage,
-                examples: examples || [],
-                level,
-                lesson_id: lessonID,
-                notes,
-                difficulty: difficulty || 3,
-                related_grammar: relatedGrammar || []
-            }
-        });
-
-        res.status(201).json({
-            message: revived
-                ? "Đã khôi phục ngữ pháp đã xoá với nội dung mới."
-                : "Thêm ngữ pháp thành công.",
-            data: grammar
-        });
-    } catch (error) {
-        if (isDuplicateKeyError(error)) {
-            return res.status(409).json({
-                message: `Cấp ${req.body.level} đã có ngữ pháp "${String(req.body.title).trim()}". Hãy đặt tiêu đề khác.`,
-                code: 'DUPLICATE_GRAMMAR'
-            });
-        }
-        console.error("Lỗi khi tạo ngữ pháp:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-// Cập nhật ngữ pháp
-export const putById = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "ID ngữ pháp không hợp lệ." });
-        }
-
-        const updateData = { ...req.body };
-        if (updateData.lessonID !== undefined) {
-            updateData.lesson_id = updateData.lessonID || null;
-            delete updateData.lessonID;
-        }
-        if (updateData.relatedGrammar !== undefined) {
-            updateData.related_grammar = updateData.relatedGrammar;
-            delete updateData.relatedGrammar;
-        }
-        delete updateData._id;
-        delete updateData.createdAt;
-        delete updateData.updatedAt;
-
-        const updatedGrammar = await Grammar.findByIdAndUpdate(
-            id,
-            updateData,
-            { new: true, runValidators: true }
-        );
-
-        if (!updatedGrammar) {
-            return res.status(404).json({ message: "Ngữ pháp không tồn tại." });
-        }
-
-        res.json({ 
-            message: "Cập nhật ngữ pháp thành công.", 
-            data: updatedGrammar 
-        });
-    } catch (error) {
-        if (isDuplicateKeyError(error)) {
-            return res.status(409).json({
-                message: "Cấp độ này đã có ngữ pháp khác cùng tiêu đề (kể cả bản đã xoá). Hãy đặt tiêu đề khác.",
-                code: 'DUPLICATE_GRAMMAR'
-            });
-        }
-        console.error("Lỗi khi cập nhật ngữ pháp:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
-
-// Xóa ngữ pháp (soft delete)
-export const deleteById = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "ID ngữ pháp không hợp lệ." });
-        }
-
-        const deletedGrammar = await Grammar.findByIdAndUpdate(
-            id,
-            { is_active: false },
-            { new: true }
-        );
-
-        if (!deletedGrammar) {
-            return res.status(404).json({ message: "Ngữ pháp không tồn tại." });
-        }
-
-        res.json({ message: "Xóa ngữ pháp thành công." });
-    } catch (error) {
-        console.error("Lỗi khi xóa ngữ pháp:", error);
-        res.status(500).json({ message: "Lỗi máy chủ", error: error.message });
-    }
-};
+  async remove(req, res) {
+    await service.remove(req.valid.params.id);
+    return ok(res, { deleted: true }, { message: 'Xóa ngữ pháp thành công.' });
+  },
+});

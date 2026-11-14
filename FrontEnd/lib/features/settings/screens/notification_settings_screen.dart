@@ -1,195 +1,134 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../services/settings_service.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/user_settings.dart';
+import '../providers/settings_provider.dart';
 
-class NotificationSettingsScreen extends StatefulWidget {
+class NotificationSettingsScreen extends StatelessWidget {
   const NotificationSettingsScreen({super.key});
 
   @override
-  State<NotificationSettingsScreen> createState() =>
-      _NotificationSettingsScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => SettingsProvider()..load(),
+      child: const _NotificationSettingsView(),
+    );
+  }
 }
 
-class _NotificationSettingsScreenState
-    extends State<NotificationSettingsScreen> {
-  final _service = SettingsService();
-  bool _notificationsEnabled = true;
-  bool _soundEnabled = true;
-  bool _vibrateEnabled = true;
-  bool _loading = true;
-  bool _saving = false;
-  String? _loadError;
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    setState(() {
-      _loading = true;
-      _loadError = null;
-    });
-    try {
-      final settings = await _service.getSettings();
-      if (!mounted) return;
-      setState(() {
-        _notificationsEnabled = settings['notificationsEnabled'] ?? true;
-        _soundEnabled = settings['soundEnabled'] ?? true;
-        _vibrateEnabled = settings['vibrateEnabled'] ?? true;
-      });
-    } catch (error) {
-      if (mounted) setState(() => _loadError = userMessageOf(error));
-    } finally {
-      if (mounted) setState(() => _loading = false);
-    }
-  }
-
-  Future<void> _save() async {
-    setState(() => _saving = true);
-    try {
-      final current = await _service.getSettings();
-      await _service.saveSettings({
-        ...current,
-        'notificationsEnabled': _notificationsEnabled,
-        'soundEnabled': _soundEnabled,
-        'vibrateEnabled': _vibrateEnabled,
-      });
-      if (mounted) _message('Đã lưu cài đặt thông báo.', true);
-    } catch (error) {
-      if (mounted) {
-        _message('Không thể lưu cài đặt: ${userMessageOf(error)}', false);
-      }
-    } finally {
-      if (mounted) setState(() => _saving = false);
-    }
-  }
+class _NotificationSettingsView extends StatelessWidget {
+  const _NotificationSettingsView();
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<SettingsProvider>();
     return AppScaffold(
       title: 'Cài đặt thông báo',
       body: ContentWidthLimit(
-        child: _loading || _loadError != null
-            ? AsyncView<bool>(
-                state: ViewState.detail(
-                  isLoading: _loading,
-                  error: _loadError,
-                  value: true,
-                ),
-                onRetry: _load,
-                builder: (context, _) => const SizedBox.shrink(),
-              )
-            : ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.08),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Column(
-                      children: [
-                        Icon(
-                          _notificationsEnabled
-                              ? Icons.notifications_active
-                              : Icons.notifications_off_outlined,
-                          size: 52,
-                          color: _notificationsEnabled
-                              ? context.colors.primary
-                              : context.colors.textSecondary,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          _notificationsEnabled
-                              ? 'Thông báo đang bật'
-                              : 'Thông báo đang tắt',
-                          style: const TextStyle(
-                            fontSize: AppTypography.title,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Card(
-                    child: Column(
-                      children: [
-                        SwitchListTile(
-                          secondary: const Icon(Icons.notifications_outlined),
-                          title: const Text('Nhận thông báo'),
-                          subtitle: const Text(
-                            'Cho phép ứng dụng hiển thị thông báo trong tài khoản.',
-                          ),
-                          value: _notificationsEnabled,
-                          onChanged: (value) =>
-                              setState(() => _notificationsEnabled = value),
-                        ),
-                        const Divider(height: 1),
-                        SwitchListTile(
-                          secondary: const Icon(Icons.volume_up_outlined),
-                          title: const Text('Âm thanh'),
-                          subtitle:
-                              const Text('Phát âm báo khi có thông báo mới.'),
-                          value: _soundEnabled,
-                          onChanged: _notificationsEnabled
-                              ? (value) => setState(() => _soundEnabled = value)
-                              : null,
-                        ),
-                        const Divider(height: 1),
-                        SwitchListTile(
-                          secondary: const Icon(Icons.vibration),
-                          title: const Text('Rung'),
-                          subtitle:
-                              const Text('Rung thiết bị khi có thông báo mới.'),
-                          value: _vibrateEnabled,
-                          onChanged: _notificationsEnabled
-                              ? (value) =>
-                                  setState(() => _vibrateEnabled = value)
-                              : null,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  FilledButton.icon(
-                    onPressed: _saving ? null : _save,
-                    icon: _saving
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : const Icon(Icons.save_outlined),
-                    label: Text(_saving ? 'Đang lưu...' : 'Lưu cài đặt'),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Ứng dụng chỉ hiển thị các tùy chọn đã được backend lưu và hỗ trợ. Lịch yên tĩnh, SMS và email định kỳ không nằm trong phạm vi phiên bản này.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: context.colors.textSecondary),
-                  ),
-                ],
-              ),
+        child: AsyncView<UserSettings>(
+          state: provider.state,
+          onRetry: provider.load,
+          builder: (context, settings) => _SettingsList(settings: settings),
+        ),
       ),
     );
   }
+}
 
-  void _message(String text, bool success) {
-    ScaffoldMessenger.of(context).showSnackBar(
+class _SettingsList extends StatelessWidget {
+  const _SettingsList({required this.settings});
+
+  final UserSettings settings;
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.watch<SettingsProvider>();
+    final enabled = settings.notificationsEnabled;
+
+    return ListView(
+      padding: AppSpacing.page,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: AppColors.primary.withValues(alpha: 0.08),
+            borderRadius: AppRadius.lgAll,
+          ),
+          child: Column(
+            children: [
+              Icon(
+                enabled ? Icons.notifications_active : Icons.notifications_off_outlined,
+                size: 52,
+                color: enabled ? context.colors.primary : context.colors.textSecondary,
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                enabled ? 'Thông báo đang bật' : 'Thông báo đang tắt',
+                style: const TextStyle(fontSize: AppTypography.title, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        Card(
+          child: Column(
+            children: [
+              SwitchListTile(
+                secondary: const Icon(Icons.notifications_outlined),
+                title: const Text('Nhận thông báo'),
+                subtitle: const Text('Cho phép ứng dụng hiển thị thông báo trong tài khoản.'),
+                value: enabled,
+                onChanged: (value) => provider.update((current) => current.copyWith(notificationsEnabled: value)),
+              ),
+              const Divider(height: 1),
+              SwitchListTile(
+                secondary: const Icon(Icons.volume_up_outlined),
+                title: const Text('Âm thanh'),
+                subtitle: const Text('Phát âm báo khi có thông báo mới.'),
+                value: settings.soundEnabled,
+                onChanged: enabled ? (value) => provider.update((current) => current.copyWith(soundEnabled: value)) : null,
+              ),
+              const Divider(height: 1),
+              SwitchListTile(
+                secondary: const Icon(Icons.vibration),
+                title: const Text('Rung'),
+                subtitle: const Text('Rung thiết bị khi có thông báo mới.'),
+                value: settings.vibrateEnabled,
+                onChanged: enabled ? (value) => provider.update((current) => current.copyWith(vibrateEnabled: value)) : null,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        FilledButton.icon(
+          onPressed: provider.canSave ? () => _save(context) : null,
+          icon: provider.isSaving
+              ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
+              : const Icon(Icons.save_outlined),
+          label: Text(provider.isSaving ? 'Đang lưu...' : 'Lưu cài đặt'),
+        ),
+        const SizedBox(height: AppSpacing.lg),
+        Text(
+          'Ứng dụng chỉ hiển thị các tùy chọn đã được backend lưu và hỗ trợ. Lịch yên tĩnh, SMS và email định kỳ không nằm trong phạm vi phiên bản này.',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: context.colors.textSecondary),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _save(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final error = await context.read<SettingsProvider>().save();
+    messenger.showSnackBar(
       SnackBar(
-        content: Text(text),
-        backgroundColor:
-            success ? AppColors.successStrong : AppColors.errorStrong,
+        content: Text(error == null ? 'Đã lưu cài đặt thông báo.' : 'Không thể lưu cài đặt: $error'),
+        backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

@@ -1,20 +1,19 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/files/file_saver.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import '../providers/export_provider.dart';
-import '../services/export_service.dart';
+import '../../../core/files/file_saver.dart';
 import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/export_document.dart';
+import '../providers/export_provider.dart';
+import '../widgets/export_options.dart';
 
 /// Xuất dữ liệu học tập ra tệp JSON/CSV. Việc gom dữ liệu — kể cả đọc hết mọi
-/// trang lịch sử XP và lịch học — nằm ở [ExportService]; màn này chỉ chọn loại,
+/// trang lịch sử XP và lịch học — nằm ở `ExportService`; màn này chỉ chọn loại,
 /// định dạng và lưu tệp.
 class ExportScreen extends StatelessWidget {
   const ExportScreen({super.key});
@@ -34,135 +33,41 @@ class _ExportView extends StatefulWidget {
 }
 
 class _ExportViewState extends State<_ExportView> {
-  static const _types = <String, (String, String, IconData)>{
-    ExportType.fullStats: (
-      'Thống kê tổng quan',
-      'Tiến độ, phân tích bài học và streak',
-      Icons.analytics_outlined,
-    ),
-    ExportType.lessonProgress: (
-      'Tiến độ bài học',
-      'Toàn bộ tiến độ học tập hiện có',
-      Icons.trending_up,
-    ),
-    ExportType.notebook: (
-      'Ghi chép',
-      'Danh sách ghi chú cá nhân',
-      Icons.note_alt_outlined,
-    ),
-    ExportType.achievements: (
-      'Thành tích',
-      'Thành tích đã mở khóa và đang thực hiện',
-      Icons.emoji_events_outlined,
-    ),
-    ExportType.streaks: (
-      'Streak và XP',
-      'Chuỗi học tập, toàn bộ lịch sử điểm và lịch ngày học',
-      Icons.local_fire_department_outlined,
-    ),
-    ExportType.allData: (
-      'Toàn bộ dữ liệu',
-      'Gộp tất cả nhóm dữ liệu phía trên',
-      Icons.archive_outlined,
-    ),
-  };
-
   String _selectedType = ExportType.allData;
-  String _selectedFormat = 'json';
+  String _selectedFormat = ExportFormat.json;
 
   @override
   Widget build(BuildContext context) {
     final isExporting = context.watch<ExportProvider>().isExporting;
+    const sectionTitle = TextStyle(fontSize: AppTypography.subtitle, fontWeight: FontWeight.bold);
     return AppScaffold(
       title: 'Xuất dữ liệu',
       body: ContentPaneList(
         maxWidth: AppContentWidth.dashboard,
-        padding: const EdgeInsets.all(16),
+        padding: AppSpacing.page,
         builder: (context, padding) => ListView(
           padding: padding,
           children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                children: [
-                  Icon(Icons.download, size: 52, color: context.colors.primary),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Sao lưu dữ liệu học tập',
-                    style: TextStyle(
-                        fontSize: AppTypography.title,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 6),
-                  const Text(
-                    'Dữ liệu được lấy trực tiếp từ tài khoản tại thời điểm xuất.',
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+            const ExportHeader(),
+            const SizedBox(height: AppSpacing.xl),
+            const Text('Chọn loại dữ liệu', style: sectionTitle),
+            const SizedBox(height: AppSpacing.sm),
+            ExportTypePicker(
+              selected: _selectedType,
+              onChanged: isExporting ? null : (type) => setState(() => _selectedType = type),
             ),
-            const SizedBox(height: 24),
-            const Text(
-              'Chọn loại dữ liệu',
-              style: TextStyle(
-                  fontSize: AppTypography.subtitle,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            ..._types.entries.map((entry) {
-              final info = entry.value;
-              return Card(
-                child: RadioListTile<String>(
-                  value: entry.key,
-                  groupValue: _selectedType,
-                  onChanged: isExporting
-                      ? null
-                      : (value) => setState(() => _selectedType = value!),
-                  secondary: Icon(info.$3),
-                  title: Text(info.$1),
-                  subtitle: Text(info.$2),
-                ),
-              );
-            }),
             const SizedBox(height: 20),
-            const Text(
-              'Định dạng tệp',
-              style: TextStyle(
-                  fontSize: AppTypography.subtitle,
-                  fontWeight: FontWeight.bold),
+            const Text('Định dạng tệp', style: sectionTitle),
+            const SizedBox(height: AppSpacing.sm),
+            ExportFormatPicker(
+              selected: _selectedFormat,
+              onChanged: isExporting ? null : (format) => setState(() => _selectedFormat = format),
             ),
-            const SizedBox(height: 8),
-            SegmentedButton<String>(
-              segments: const [
-                ButtonSegment(
-                  value: 'json',
-                  icon: Icon(Icons.data_object),
-                  label: Text('JSON'),
-                ),
-                ButtonSegment(
-                  value: 'csv',
-                  icon: Icon(Icons.table_view),
-                  label: Text('CSV'),
-                ),
-              ],
-              selected: {_selectedFormat},
-              onSelectionChanged: isExporting
-                  ? null
-                  : (values) => setState(() => _selectedFormat = values.single),
-            ),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppSpacing.xl),
             FilledButton.icon(
               onPressed: isExporting ? null : _exportToFile,
               icon: isExporting
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
+                  ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
                   : const Icon(Icons.download),
               label: Text(isExporting ? 'Đang xuất...' : 'Xuất tệp'),
             ),
@@ -180,7 +85,7 @@ class _ExportViewState extends State<_ExportView> {
               icon: const Icon(Icons.content_copy),
               label: const Text('Sao chép JSON'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.lg),
             Text(
               'CSV dùng hai cột “section” và “data”; dữ liệu lồng nhau được giữ dưới dạng JSON để không bị mất trường.',
               textAlign: TextAlign.center,
@@ -194,76 +99,45 @@ class _ExportViewState extends State<_ExportView> {
 
   /// Chạy một lần xuất; huỷ giữa chừng hay lỗi ở bất kỳ trang nào đều không
   /// tạo tệp và không báo thành công một phần.
-  Future<void> _guarded(Future<void> Function(Map<String, dynamic> data) use,
-      String failure) async {
-    final provider = context.read<ExportProvider>();
+  Future<void> _guarded(Future<void> Function(Map<String, dynamic> data) use, String failure) async {
     try {
-      await use(await provider.load(_selectedType));
-    } on ExportCancelled {
-      if (mounted) _message('Đã huỷ xuất dữ liệu.', false);
+      final data = await context.read<ExportProvider>().load(_selectedType);
+      if (data == null) {
+        if (mounted) _message('Đã huỷ xuất dữ liệu.', false);
+        return;
+      }
+      await use(data);
     } catch (error) {
       if (mounted) _message('$failure: ${userMessageOf(error)}', false);
     }
   }
 
   Future<void> _exportToFile() => _guarded((data) async {
-        final content = _selectedFormat == 'json'
-            ? const JsonEncoder.withIndent('  ').convert({
-                'exported_at': DateTime.now().toIso8601String(),
-                'type': _selectedType,
-                'data': data,
-              })
-            : _toCsv(data);
-        final encoded = utf8.encode(content);
-        final bytes = Uint8List.fromList(
-          _selectedFormat == 'csv' ? [0xEF, 0xBB, 0xBF, ...encoded] : encoded,
+        final document = ExportDocument.build(
+          type: _selectedType,
+          format: _selectedFormat,
+          data: data,
+          now: DateTime.now(),
         );
-        final now = DateTime.now();
-        final fileName =
-            '${_selectedType}_${now.year}${_two(now.month)}${_two(now.day)}.$_selectedFormat';
         final saved = await saveBytes(
-          fileName: fileName,
-          bytes: bytes,
-          mimeType: _selectedFormat == 'json'
-              ? 'application/json;charset=utf-8'
-              : 'text/csv;charset=utf-8',
+          fileName: document.fileName,
+          bytes: document.bytes,
+          mimeType: document.mimeType,
         );
-        if (mounted) {
-          _message(
-              saved ? 'Đã xuất tệp $fileName.' : 'Đã hủy xuất tệp.', saved);
-        }
+        if (mounted) _message(saved ? 'Đã xuất tệp ${document.fileName}.' : 'Đã hủy xuất tệp.', saved);
       }, 'Không thể xuất dữ liệu');
 
   Future<void> _copyJson() => _guarded((data) async {
-        final content = const JsonEncoder.withIndent('  ').convert({
-          'exported_at': DateTime.now().toIso8601String(),
-          'type': _selectedType,
-          'data': data,
-        });
+        final content = ExportDocument.jsonOf(_selectedType, data, DateTime.now());
         await Clipboard.setData(ClipboardData(text: content));
         if (mounted) _message('Đã sao chép dữ liệu JSON.', true);
       }, 'Không thể sao chép dữ liệu');
-
-  String _toCsv(Map<String, dynamic> data) {
-    final buffer = StringBuffer()..writeln('"section","data"');
-    for (final entry in data.entries) {
-      buffer.writeln(
-        '${_csvCell(entry.key)},${_csvCell(jsonEncode(entry.value))}',
-      );
-    }
-    return buffer.toString();
-  }
-
-  String _csvCell(String value) => '"${value.replaceAll('"', '""')}"';
-
-  String _two(int value) => value.toString().padLeft(2, '0');
 
   void _message(String message, bool success) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor:
-            success ? AppColors.successStrong : AppColors.errorStrong,
+        backgroundColor: success ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

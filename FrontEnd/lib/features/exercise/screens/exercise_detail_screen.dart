@@ -13,6 +13,7 @@ import '../widgets/exercise_start_view.dart';
 import '../widgets/exercise_progress_bar.dart';
 import '../widgets/exercise_question_card.dart';
 import '../widgets/exercise_bottom_bar.dart';
+import '../widgets/exercise_submit_dialog.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../core/state/view_state.dart';
 
@@ -74,67 +75,40 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
 
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        _secondsElapsed++;
-      });
-
-      // Check time limit
-      final exercise = context.read<ExerciseProvider>().currentExercise;
-      if (exercise != null &&
-          exercise.timeLimit > 0 &&
-          _secondsElapsed >= exercise.timeLimit * 60) {
-        _submitExercise();
-      }
+      setState(() => _secondsElapsed++);
+      final limit = context.read<ExerciseProvider>().currentExercise?.timeLimit ?? 0;
+      if (limit > 0 && _secondsElapsed >= limit * 60) _submitExercise(timeUp: true);
     });
   }
 
-  Future<void> _submitExercise() async {
+  /// Nộp bài. Người học tự bấm nộp khi còn câu bỏ trống thì hỏi lại; hết giờ
+  /// thì nộp luôn — không còn gì để hỏi, và đồng hồ vẫn chạy sẽ mở thêm một hộp
+  /// thoại mỗi giây nếu cứ hỏi.
+  Future<void> _submitExercise({bool timeUp = false}) async {
     if (_isSubmitting) return;
 
     final exercise = context.read<ExerciseProvider>().currentExercise;
     if (exercise == null) return;
 
-    // Check if all questions are answered
-    if (_userAnswers.length < exercise.questions.length) {
-      final shouldContinue = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Chưa hoàn thành'),
-          content: Text(
-            'Bạn mới trả lời ${_userAnswers.length}/${exercise.questions.length} câu.\nBạn có muốn nộp bài không?',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Tiếp tục'),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Nộp bài'),
-            ),
-          ],
-        ),
+    if (timeUp) {
+      _timer?.cancel();
+    } else if (_userAnswers.length < exercise.questions.length) {
+      final submit = await confirmPartialSubmit(
+        context,
+        answered: _userAnswers.length,
+        total: exercise.questions.length,
       );
-
-      if (shouldContinue != true) return;
+      if (!submit || _isSubmitting) return;
     }
 
     if (!mounted) return;
-
-    setState(() {
-      _isSubmitting = true;
-    });
-
+    setState(() => _isSubmitting = true);
     _timer?.cancel();
 
-    // Convert user answers to UserAnswer list
-    final answers = _userAnswers.entries.map((entry) {
-      return UserAnswer(
-        questionId: entry.key,
-        answerId: entry.value,
-        isCorrect: false, // Will be calculated by backend
-      );
-    }).toList();
+    // Đúng sai do server chấm.
+    final answers = _userAnswers.entries
+        .map((entry) => UserAnswer(questionId: entry.key, answerId: entry.value, isCorrect: false))
+        .toList();
 
     final provider = context.read<ExerciseProvider>();
     final success = await provider.submitExercise(

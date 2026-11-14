@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs';
 
+import { ApiError } from '../shared/http/api-error.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -57,7 +59,7 @@ const imageFilter = (req, file, cb) => {
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb(new Error('Chỉ chấp nhận file ảnh (jpeg, jpg, png, gif, webp)'));
+    cb(ApiError.badRequest('Chỉ chấp nhận file ảnh (jpeg, jpg, png, gif, webp).'));
   }
 };
 
@@ -85,7 +87,7 @@ const excelFilter = (req, file, cb) => {
   ].includes(file.mimetype);
 
   if (validExtension && validMime) return cb(null, true);
-  cb(new Error('Chỉ chấp nhận tệp Excel .xls hoặc .xlsx.'));
+  cb(ApiError.badRequest('Chỉ chấp nhận tệp Excel .xls hoặc .xlsx.'));
 };
 
 // Upload file Excel để import nội dung (giữ trong bộ nhớ, không ghi ra đĩa)

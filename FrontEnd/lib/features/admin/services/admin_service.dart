@@ -1,4 +1,5 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../../notifications/models/notification.dart';
 import '../models/admin_achievement.dart';
 
@@ -48,7 +49,7 @@ class AdminService {
     return {
       'users': _map(results[0]),
       'lessons': _map(results[1]),
-      'reports': _map(results[2]),
+      'reports': _map(dataOf(results[2])),
       'analytics': _map(results[3]),
     };
   }
@@ -266,7 +267,7 @@ class AdminService {
   }
 
   Future<Map<String, dynamic>> getReportStats() async =>
-      _map(await _client.get('/report/admin/stats'));
+      _map(dataOf(await _client.get('/report/admin/stats')));
 
   Future<Map<String, dynamic>> respondToReport(
     String reportId,

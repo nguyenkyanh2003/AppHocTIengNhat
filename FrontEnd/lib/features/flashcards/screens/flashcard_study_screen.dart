@@ -1,28 +1,26 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
-import '../../vocabulary/providers/vocabulary_provider.dart';
-import '../../vocabulary/models/vocabulary.dart';
-import '../models/flashcard_deck.dart';
-import '../widgets/flashcard_widget.dart';
+
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../vocabulary/models/vocabulary.dart';
+import '../../vocabulary/providers/vocabulary_provider.dart';
+import '../models/flashcard_deck.dart';
 import '../widgets/flashcard_completion_card.dart';
 import '../widgets/flashcard_study_controls.dart';
+import '../widgets/flashcard_study_parts.dart';
+import '../widgets/flashcard_widget.dart';
 
 class FlashcardStudyScreen extends StatefulWidget {
   final String? level;
   final List<Vocabulary>? vocabularies;
   final FlashcardDeck? flashcardDeck; // Hỗ trợ bộ thẻ tùy chỉnh
 
-  const FlashcardStudyScreen({
-    Key? key,
-    this.level,
-    this.vocabularies,
-    this.flashcardDeck,
-  }) : super(key: key);
+  const FlashcardStudyScreen({super.key, this.level, this.vocabularies, this.flashcardDeck});
 
   @override
   State<FlashcardStudyScreen> createState() => _FlashcardStudyScreenState();
@@ -30,17 +28,18 @@ class FlashcardStudyScreen extends StatefulWidget {
 
 class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
   int _currentIndex = 0;
-  List<dynamic> _studyList = []; // Có thể là Vocabulary hoặc FlashcardCard
+  List<FlashcardFace> _studyList = [];
   bool _isLoading = true;
-  late PageController _pageController;
-  bool _isCustomDeck =
-      false; // Flag để biết đang học bộ thẻ tùy chỉnh hay vocabulary
+  final _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
-    _loadVocabularies();
+    // Sau khung hình đầu: tải theo cấp độ đi qua VocabularyProvider, mà provider
+    // không được báo thay đổi khi cây đang dựng.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _loadCards();
+    });
   }
 
   @override
@@ -53,19 +52,11 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
   bool get _canGoForward => _currentIndex < _studyList.length;
 
   void _goToPrevious() {
-    if (!_canGoBack) return;
-    _pageController.previousPage(
-      duration: AppDurations.normal,
-      curve: Curves.easeOut,
-    );
+    if (_canGoBack) _pageController.previousPage(duration: AppDurations.normal, curve: Curves.easeOut);
   }
 
   void _goToNext() {
-    if (!_canGoForward) return;
-    _pageController.nextPage(
-      duration: AppDurations.normal,
-      curve: Curves.easeOut,
-    );
+    if (_canGoForward) _pageController.nextPage(duration: AppDurations.normal, curve: Curves.easeOut);
   }
 
   /// Mũi tên trái/phải chuyển thẻ.
@@ -87,85 +78,46 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
     return KeyEventResult.ignored;
   }
 
-  Future<void> _loadVocabularies() async {
-    setState(() => _isLoading = true);
-
-    List<dynamic> loadedItems;
-
-    // Nếu có flashcardDeck, sử dụng bộ thẻ tùy chỉnh
-    if (widget.flashcardDeck != null) {
-      loadedItems = List.from(widget.flashcardDeck!.cards);
-      _isCustomDeck = true;
-    }
-    // Nếu có vocabularies, sử dụng danh sách từ vựng có sẵn
-    else if (widget.vocabularies != null) {
-      loadedItems = List.from(widget.vocabularies!);
-      _isCustomDeck = false;
-    }
-    // Nếu không, load từ provider
-    else {
+  /// Bộ thẻ tự tạo, danh sách từ được truyền vào, hoặc từ vựng tải theo cấp độ.
+  Future<void> _loadCards() async {
+    final List<FlashcardFace> cards;
+    final deck = widget.flashcardDeck;
+    final words = widget.vocabularies;
+    if (deck != null) {
+      cards = deck.cards.map(faceOfCard).toList();
+    } else if (words != null) {
+      cards = words.map(faceOfVocabulary).toList();
+    } else {
       final provider = context.read<VocabularyProvider>();
       if (widget.level != null) {
         await provider.filterByLevel(widget.level);
       } else {
         await provider.loadVocabularies();
       }
-      loadedItems = provider.vocabularies;
-      _isCustomDeck = false;
+      cards = provider.vocabularies.map(faceOfVocabulary).toList();
     }
 
-    loadedItems.shuffle(math.Random());
-
+    cards.shuffle(math.Random());
     if (mounted) {
       setState(() {
-        _studyList = loadedItems;
+        _studyList = cards;
         _isLoading = false;
       });
     }
   }
 
   void _restartStudy() {
-    setState(() {
-      _studyList.shuffle(math.Random());
-      _isLoading = false;
-      _pageController.jumpToPage(0);
-    });
+    setState(() => _studyList.shuffle(math.Random()));
+    _pageController.jumpToPage(0);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const AppScaffold(
-        title: 'Học Flashcard',
-        body: ContentWidthLimit(
-          child: Center(child: CircularProgressIndicator()),
-        ),
-      );
-    }
-
-    if (_studyList.isEmpty) {
+    if (_isLoading || _studyList.isEmpty) {
       return AppScaffold(
         title: 'Học Flashcard',
         body: ContentWidthLimit(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.inbox_rounded,
-                    size: 56, color: context.colors.textDisabled),
-                const SizedBox(height: 16),
-                Text(
-                  'Không có từ vựng để học',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Quay lại'),
-                ),
-              ],
-            ),
-          ),
+          child: _isLoading ? const Center(child: CircularProgressIndicator()) : const FlashcardStudyEmpty(),
         ),
       );
     }
@@ -180,7 +132,7 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
         actions: [
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(right: 16),
+              padding: const EdgeInsets.only(right: AppSpacing.lg),
               child: Text(
                 '${_currentIndex + 1}/${_studyList.length}',
                 style: Theme.of(context).textTheme.titleMedium,
@@ -196,85 +148,40 @@ class _FlashcardStudyScreenState extends State<FlashcardStudyScreen> {
             onKeyEvent: _handleKey,
             child: Column(
               children: [
-                _buildProgressBar(),
+                FlashcardStudyProgress(current: _currentIndex, total: _studyList.length),
                 Expanded(
                   child: PageView.builder(
                     controller: _pageController,
                     itemCount: _studyList.length + 1,
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
+                    onPageChanged: (index) => setState(() => _currentIndex = index),
                     itemBuilder: (context, index) {
                       if (index == _studyList.length) {
-                        return FlashcardCompletionCard(
-                            restartStudy: _restartStudy);
+                        return FlashcardCompletionCard(restartStudy: _restartStudy);
                       }
-
-                      final item = _studyList[index];
-
-                      // Nếu là bộ thẻ tùy chỉnh
-                      if (_isCustomDeck && item is FlashcardCard) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: FlashcardWidget(
-                            frontText: item.front,
-                            frontSubtext: item.frontSubtext,
-                            backText: item.back,
-                            backSubtext: item.backSubtext,
-                          ),
-                        );
-                      }
-                      // Nếu là vocabulary
-                      else if (item is Vocabulary) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: FlashcardWidget(
-                            frontText: item.word,
-                            frontSubtext: item.hiragana,
-                            backText: item.meaning,
-                            backSubtext: item.examples.isNotEmpty
-                                ? item.examples.first.sentence
-                                : null,
-                          ),
-                        );
-                      }
-
-                      return const SizedBox.shrink();
+                      final card = _studyList[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
+                        child: FlashcardWidget(
+                          frontText: card.front,
+                          frontSubtext: card.frontSubtext,
+                          backText: card.back,
+                          backSubtext: card.backSubtext,
+                        ),
+                      );
                     },
                   ),
                 ),
                 FlashcardNavigationControls(
-                    currentIndex: _currentIndex,
-                    studyList: _studyList,
-                    canGoBack: _canGoBack,
-                    canGoForward: _canGoForward,
-                    goToPrevious: _goToPrevious,
-                    goToNext: _goToNext),
+                  currentIndex: _currentIndex,
+                  studyList: _studyList,
+                  canGoBack: _canGoBack,
+                  canGoForward: _canGoForward,
+                  goToPrevious: _goToPrevious,
+                  goToNext: _goToNext,
+                ),
                 const SizedBox(height: AppSpacing.xxl),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProgressBar() {
-    final progress =
-        _studyList.isEmpty ? 0.0 : (_currentIndex) / _studyList.length;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: LinearProgressIndicator(
-          value: progress,
-          minHeight: 10,
-          backgroundColor: context.colors.border,
-          valueColor: AlwaysStoppedAnimation<Color>(
-            context.colors.primary,
           ),
         ),
       ),

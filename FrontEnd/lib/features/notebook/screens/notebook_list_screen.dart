@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../providers/notebook_provider.dart';
+
 import '../../../app/theme/app_theme.dart';
+import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../widgets/notebook_note_card.dart';
-import '../widgets/notebook_pagination.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/paged_list_view.dart';
 import '../models/notebook.dart';
+import '../providers/notebook_provider.dart';
+import '../widgets/notebook_note_card.dart';
 
 class NotebookListScreen extends StatefulWidget {
-  const NotebookListScreen({Key? key}) : super(key: key);
+  const NotebookListScreen({super.key});
 
   @override
   State<NotebookListScreen> createState() => _NotebookListScreenState();
 }
 
 class _NotebookListScreenState extends State<NotebookListScreen> {
-  final TextEditingController _searchController = TextEditingController();
-  String? _selectedType;
+  final _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<NotebookProvider>().loadNotes(refresh: true);
+      if (mounted) context.read<NotebookProvider>().loadNotes();
     });
   }
 
@@ -38,177 +38,127 @@ class _NotebookListScreenState extends State<NotebookListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<NotebookProvider>();
+    final filtered = provider.selectedType != null || provider.searchQuery.isNotEmpty;
     return AppScaffold(
       title: 'Sổ tay',
       actions: [
-        IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () => _showSearchDialog(),
-        ),
-        IconButton(
-          icon: const Icon(Icons.filter_list),
-          onPressed: () => _showFilterDialog(),
-        ),
+        IconButton(tooltip: 'Tìm ghi chú', icon: const Icon(Icons.search), onPressed: _showSearchDialog),
+        IconButton(tooltip: 'Lọc theo loại', icon: const Icon(Icons.filter_list), onPressed: _showFilterDialog),
       ],
       body: ContentWidthLimit(
-        child: Consumer<NotebookProvider>(
-          builder: (context, provider, child) {
-            return AsyncView<List<Notebook>>(
-              state: ViewState.fromLegacy(
-                isLoading: provider.isLoading,
-                error: provider.error,
-                value: provider.notes,
-                isEmpty: provider.notes.isEmpty,
-              ),
-              onRetry: () => provider.loadNotes(refresh: true),
-              isEmpty: (notes) => notes.isEmpty,
-              emptyTitle: 'Chưa có ghi chú nào',
-              emptyMessage: 'Nhấn + để tạo ghi chú mới',
-              emptyIcon: Icons.note_add,
-              builder: (context, notes) => RefreshIndicator(
-                onRefresh: () => provider.loadNotes(refresh: true),
-                child: Column(
-                  children: [
-                    if (provider.selectedType != null ||
-                        provider.searchQuery.isNotEmpty)
-                      _buildFilterChips(provider),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: notes.length,
-                        padding: const EdgeInsets.all(16),
-                        itemBuilder: (context, index) => NotebookNoteCard(
-                            note: notes[index], getTypeLabel: _getTypeLabel),
-                      ),
-                    ),
-                    if (provider.totalPages > 1)
-                      NotebookPagination(provider: provider),
-                  ],
+        child: Column(
+          children: [
+            // Bộ lọc nằm ngoài AsyncView: kết quả rỗng vẫn còn chỗ bỏ lọc.
+            if (filtered) _filterChips(provider),
+            Expanded(
+              child: AsyncView<List<Notebook>>(
+                state: provider.notes,
+                onRetry: provider.loadNotes,
+                isEmpty: (notes) => notes.isEmpty,
+                emptyTitle: filtered ? 'Không có ghi chú nào khớp bộ lọc' : 'Chưa có ghi chú nào',
+                emptyMessage: filtered ? 'Thử bỏ bớt bộ lọc ở trên.' : 'Nhấn + để tạo ghi chú mới',
+                emptyIcon: Icons.note_add,
+                builder: (context, notes) => RefreshIndicator(
+                  onRefresh: provider.loadNotes,
+                  child: PagedListView<Notebook>(
+                    items: notes,
+                    padding: AppSpacing.page,
+                    hasMore: provider.hasMore,
+                    isLoadingMore: provider.isLoadingMore,
+                    loadMoreError: provider.loadMoreError,
+                    onLoadMore: provider.loadMore,
+                    itemBuilder: (context, note) => NotebookNoteCard(note: note),
+                  ),
                 ),
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
+      // Lưu xong provider tự tải lại danh sách, nên không cần chờ form đóng.
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _navigateToForm(),
+        tooltip: 'Tạo ghi chú',
+        onPressed: () => context.push('/notebook/new'),
         backgroundColor: AppTheme.notebookColor,
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  Widget _buildFilterChips(NotebookProvider provider) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Wrap(
-        spacing: 8,
-        children: [
-          if (provider.searchQuery.isNotEmpty)
-            Chip(
-              label: Text('Tìm: ${provider.searchQuery}'),
-              onDeleted: () {
-                _searchController.clear();
-                provider.searchNotes('');
-              },
-              deleteIcon: const Icon(Icons.close, size: 18),
-            ),
-          if (provider.selectedType != null)
-            Chip(
-              label: Text(_getTypeLabel(provider.selectedType!)),
-              onDeleted: () => provider.filterByType(null),
-              deleteIcon: const Icon(Icons.close, size: 18),
-            ),
-        ],
-      ),
-    );
-  }
-
-  void _showSearchDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Tìm kiếm ghi chú'),
-        content: TextField(
-          controller: _searchController,
-          decoration: const InputDecoration(
-            hintText: 'Nhập từ khóa...',
-            prefixIcon: Icon(Icons.search),
-          ),
-          autofocus: true,
-          onSubmitted: (value) {
-            Navigator.pop(context);
-            context.read<NotebookProvider>().searchNotes(value);
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context
-                  .read<NotebookProvider>()
-                  .searchNotes(_searchController.text);
-            },
-            child: const Text('Tìm'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFilterDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Lọc theo loại'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
+  Widget _filterChips(NotebookProvider provider) {
+    final type = provider.selectedType;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: AppSpacing.sm),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Wrap(
+          spacing: AppSpacing.sm,
           children: [
-            _buildFilterOption('Tất cả', null),
-            _buildFilterOption('Chung', 'general'),
-            _buildFilterOption('Từ vựng', 'vocabulary'),
-            _buildFilterOption('Ngữ pháp', 'grammar'),
-            _buildFilterOption('Kanji', 'kanji'),
+            if (provider.searchQuery.isNotEmpty)
+              InputChip(
+                label: Text('Tìm: ${provider.searchQuery}'),
+                onDeleted: () {
+                  _searchController.clear();
+                  provider.searchNotes('');
+                },
+              ),
+            if (type != null) InputChip(label: Text(type.label), onDeleted: () => provider.filterByType(null)),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildFilterOption(String label, String? type) {
-    return RadioListTile<String?>(
-      title: Text(label),
-      value: type,
-      groupValue: _selectedType,
-      onChanged: (value) {
-        setState(() => _selectedType = value);
-        Navigator.pop(context);
-        context.read<NotebookProvider>().filterByType(value);
+  void _showSearchDialog() {
+    _searchController.text = context.read<NotebookProvider>().searchQuery;
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        void search() {
+          Navigator.pop(dialogContext);
+          context.read<NotebookProvider>().searchNotes(_searchController.text);
+        }
+
+        return AlertDialog(
+          title: const Text('Tìm kiếm ghi chú'),
+          content: TextField(
+            controller: _searchController,
+            decoration: const InputDecoration(hintText: 'Nhập từ khóa...', prefixIcon: Icon(Icons.search)),
+            autofocus: true,
+            onSubmitted: (_) => search(),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(dialogContext), child: const Text('Hủy')),
+            ElevatedButton(onPressed: search, child: const Text('Tìm')),
+          ],
+        );
       },
     );
   }
 
-  void _navigateToForm({String? noteId}) {
-    final path = noteId == null ? '/notebook/new' : '/notebook/$noteId/edit';
-    context.push(path).then((_) {
-      if (!mounted) return;
-      context.read<NotebookProvider>().loadNotes(refresh: true);
-    });
-  }
+  void _showFilterDialog() {
+    final provider = context.read<NotebookProvider>();
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        Widget option(String label, NoteType? type) => ListTile(
+              title: Text(label),
+              trailing: provider.selectedType == type ? const Icon(Icons.check) : null,
+              onTap: () {
+                Navigator.pop(dialogContext);
+                provider.filterByType(type);
+              },
+            );
 
-  String _getTypeLabel(String type) {
-    switch (type) {
-      case 'vocabulary':
-        return 'Từ vựng';
-      case 'grammar':
-        return 'Ngữ pháp';
-      case 'kanji':
-        return 'Kanji';
-      default:
-        return 'Chung';
-    }
+        return SimpleDialog(
+          title: const Text('Lọc theo loại'),
+          children: [
+            option('Tất cả', null),
+            for (final type in NoteType.values) option(type.label, type),
+          ],
+        );
+      },
+    );
   }
 }

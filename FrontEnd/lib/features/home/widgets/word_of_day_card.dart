@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/localization/app_localizations.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/calm_colors.dart';
-import '../../../core/audio/speech_service.dart';
+import '../../../shared/widgets/pronounce.dart';
 import '../../vocabulary/models/vocabulary.dart';
 import 'home_layout.dart';
 
@@ -17,18 +17,8 @@ class WordOfDayCard extends StatelessWidget {
 
   final Vocabulary word;
 
-  Future<void> _speak(BuildContext context) async {
-    final messenger = ScaffoldMessenger.of(context);
-    try {
-      await SpeechService.instance
-          .speak(word.hiragana.isNotEmpty ? word.hiragana : word.word);
-    } on SpeechUnavailableException catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('$error')));
-    } catch (_) {
-      messenger.showSnackBar(
-          const SnackBar(content: Text('Không phát được âm thanh.')));
-    }
-  }
+  Future<void> _speak(BuildContext context) =>
+      pronounce(context, text: word.hiragana.isNotEmpty ? word.hiragana : word.word);
 
   @override
   Widget build(BuildContext context) {

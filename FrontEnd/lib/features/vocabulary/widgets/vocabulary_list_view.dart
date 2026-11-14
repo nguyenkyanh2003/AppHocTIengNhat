@@ -4,6 +4,7 @@ import '../../../app/theme/app_tokens.dart';
 import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/paged_list_view.dart';
 import '../models/vocabulary.dart';
 import 'vocabulary_card.dart';
 
@@ -37,30 +38,6 @@ class VocabularyListView extends StatelessWidget {
   final void Function(Vocabulary vocabulary)? onAddToFlashcard;
   final void Function(Vocabulary vocabulary)? onPlayAudio;
 
-  Widget _buildFooter(BuildContext context) {
-    if (loadMoreError != null) {
-      return Padding(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        child: Column(
-          children: [
-            Text(loadMoreError!, textAlign: TextAlign.center),
-            const SizedBox(height: AppSpacing.sm),
-            TextButton.icon(
-              onPressed: onLoadMore,
-              icon: const Icon(Icons.refresh),
-              label: const Text('Thử lại'),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return const Padding(
-      padding: EdgeInsets.all(AppSpacing.lg),
-      child: Center(child: CircularProgressIndicator()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return AsyncView<List<Vocabulary>>(
@@ -72,45 +49,26 @@ class VocabularyListView extends StatelessWidget {
       emptyIcon: Icons.search_off,
       builder: (context, items) => RefreshIndicator(
         onRefresh: onRefresh,
-        child: NotificationListener<ScrollNotification>(
-          onNotification: (notification) {
-            if (notification is ScrollEndNotification &&
-                notification.metrics.extentAfter < 200 &&
-                hasNextPage) {
-              onLoadMore();
-            }
-            return false;
-          },
-          // Lề tính theo bề rộng còn lại, bơm thẳng vào `ListView.builder`:
-          // giữ được ảo hoá và giữ thanh cuộn ở mép ngoài.
-          child: ContentPaneList(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
-              vertical: AppSpacing.md,
-            ),
-            builder: (context, padding) => ListView.builder(
-              padding: padding,
-              itemCount: items.length +
-                  (hasNextPage || isLoadingMore || loadMoreError != null
-                      ? 1
-                      : 0),
-              itemBuilder: (context, index) {
-                if (index >= items.length) {
-                  return _buildFooter(context);
-                }
-
-                final vocabulary = items[index];
-                return VocabularyCard(
-                  vocabulary: vocabulary,
-                  onTap: () => onOpen(vocabulary),
-                  onAddToFlashcard: onAddToFlashcard == null
-                      ? null
-                      : () => onAddToFlashcard!(vocabulary),
-                  onPlayAudio: onPlayAudio == null
-                      ? null
-                      : () => onPlayAudio!(vocabulary),
-                );
-              },
+        // Lề tính theo bề rộng còn lại, bơm thẳng vào danh sách: giữ được ảo
+        // hoá và giữ thanh cuộn ở mép ngoài.
+        child: ContentPaneList(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.md,
+          ),
+          builder: (context, padding) => PagedListView<Vocabulary>(
+            items: items,
+            padding: padding,
+            hasMore: hasNextPage,
+            isLoadingMore: isLoadingMore,
+            loadMoreError: loadMoreError,
+            onLoadMore: onLoadMore,
+            loadMoreExtent: 200,
+            itemBuilder: (context, vocabulary) => VocabularyCard(
+              vocabulary: vocabulary,
+              onTap: () => onOpen(vocabulary),
+              onAddToFlashcard: onAddToFlashcard == null ? null : () => onAddToFlashcard!(vocabulary),
+              onPlayAudio: onPlayAudio == null ? null : () => onPlayAudio!(vocabulary),
             ),
           ),
         ),

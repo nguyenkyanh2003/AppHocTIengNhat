@@ -35,7 +35,7 @@ class _FakeKanjiService extends KanjiService {
   }
 
   @override
-  Future<Kanji> getKanjiById(String id) async {
+  Future<Kanji> detail(String id) async {
     calls.add('get $id');
     _maybeThrow();
     return Kanji(id: id, character: '学', srsProgress: inReview ? _progress : null);
@@ -117,7 +117,7 @@ void main() {
     final requests = <String>[];
     await http.runWithClient(() async {
       final service = KanjiService();
-      expect((await service.getKanjiById('k1')).srsProgress, isNull);
+      expect((await service.detail('k1')).srsProgress, isNull);
       expect((await service.addToReview('k1')).itemType, 'Kanji');
       await service.removeFromReview('k1');
     }, () => MockClient((request) async {

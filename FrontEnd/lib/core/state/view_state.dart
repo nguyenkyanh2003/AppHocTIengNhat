@@ -67,6 +67,15 @@ sealed class ViewState<T> {
         _ => null,
       };
 
+  /// Đổi dữ liệu bên trong, giữ nguyên trạng thái chờ/tải/lỗi — vd bóc danh
+  /// sách ra khỏi một trang vừa tải.
+  ViewState<R> map<R>(R Function(T value) transform) => switch (this) {
+        ViewData<T>(:final value) => ViewData<R>(transform(value)),
+        ViewFailure<T>(:final message) => ViewFailure<R>(message),
+        ViewLoading<T>() => ViewLoading<R>(),
+        ViewIdle<T>() => ViewIdle<R>(),
+      };
+
   /// Chạy một tác vụ và bọc kết quả vào [ViewState].
   ///
   /// Đây là nơi duy nhất dịch exception sang thông báo cho người dùng, nên màn

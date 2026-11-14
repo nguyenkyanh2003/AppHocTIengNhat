@@ -142,6 +142,9 @@ const MULTI_FORM = /[、,／/]/u;
 const stripBrackets = (text) =>
   text.replace(/[(（][^)）]*[)）]/gu, '').replace(/\[[^\]]*\]/gu, '');
 
+/** Số dấu ・ ngoài ngoặc. */
+const middleDots = (text) => (stripBrackets(text).match(/・/gu) ?? []).length;
+
 /** `(I)`, `(II)`, `(III)` — cách Minna no Nihongo đánh số nhóm động từ. */
 const VERB_GROUP = /[(（]\s*(I{1,3})\s*[)）]/;
 
@@ -252,11 +255,27 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     if (!hiragana) (fail('hiragana', 'Cột cách đọc là bắt buộc.'), (valid = false));
     if (!meaning) (fail('meaning', 'Cột nghĩa tiếng Việt là bắt buộc.'), (valid = false));
 
+    // Câu chào hỏi, mẫu nối câu của giáo trình (`いいえ、けっこうです`,
+    // `~が、~`) là **một** mục học: viết toàn bằng kana và hai cột giống hệt
+    // nhau, nên dấu 、 trong đó là dấu câu — không còn dạng viết nào khác để
+    // tách. Chỉ dấu 、 được hiểu như vậy; dấu gạch chéo vẫn luôn là dấu ngăn.
+    const isKanaPhrase =
+      rawWord === hiragana &&
+      !/[,／/]/u.test(stripBrackets(rawWord)) &&
+      KANA_ONLY.test(readingCore(rawWord));
+
     // Cột từ mang nhiều dạng viết (`見ます、診ます`, `周り/回り`) nghĩa là
     // **nhiều từ khác nhau** dùng chung ô — ghi nguyên cụm thành một từ khoá
     // là dữ liệu sai, tự tách hộ thì gán nhầm nghĩa chung cho những từ vốn có
     // thể khác nghĩa. Báo để người soạn tự quyết, không đoán.
-    const wordHasMultiForm = MULTI_FORM.test(stripBrackets(rawWord));
+    //
+    // Dấu ・ thì hai vai: ngăn các chữ Hán dùng chung một cách đọc
+    // (`交じる・混じる` đọc まじる), hay nằm trong một cụm (`月・水・金` đọc
+    // げっ・すい・きん, `スパイス・コーナー`). Cụm thì cột cách đọc lặp lại đủ
+    // chừng ấy dấu ・; thiếu là các dạng viết đang dùng chung cách đọc.
+    const wordHasMultiForm =
+      !isKanaPhrase &&
+      (MULTI_FORM.test(stripBrackets(rawWord)) || middleDots(rawWord) > middleDots(hiragana));
     if (wordHasMultiForm) {
       fail('word', 'Ô chứa nhiều dạng viết — tách thành từng dòng riêng.');
       valid = false;
@@ -268,7 +287,8 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
     // mơ hồ như trường hợp trên, nhưng vẫn cần tách thành nhiều dòng vì khoá
     // tự nhiên là `(word, hiragana)`. Thông báo phải nói đúng bản chất, kẻo
     // người sửa tưởng nhầm phải đi tra nghĩa riêng cho từng "từ" như ở trên.
-    const hiraganaHasMultiForm = !wordHasMultiForm && MULTI_FORM.test(stripBrackets(hiragana));
+    const hiraganaHasMultiForm =
+      !isKanaPhrase && !wordHasMultiForm && MULTI_FORM.test(stripBrackets(hiragana));
     if (hiraganaHasMultiForm) {
       fail(
         'hiragana',
@@ -346,4 +366,47 @@ export const reviewRows = (rawRows, { level: defaultLevel = null, columns, start
   });
 
   return { accepted, errors, skipped };
+};
+
+const isEmptyValue = (value) =>
+  value === undefined || value === null || value === '' || (Array.isArray(value) && value.length === 0);
+
+/** Ví dụ so theo câu và nghĩa: `_id` Mongo gắn cho từng ví dụ không phải dữ liệu của file. */
+const exampleText = (examples) =>
+  examples.map(({ sentence, meaning }) => `${sentence ?? ''}|${meaning ?? ''}`).join('\n');
+
+const displayValue = (field, value) =>
+  field === 'examples' ? value.map((example) => example.sentence).join(' / ') : String(value);
+
+/**
+ * So một từ **đã có** trong DB với dữ liệu file, trả về trường cần ghi và xung đột.
+ *
+ * Ba tình huống khác hẳn nhau:
+ * - Ô trong DB đang trống (kể cả danh sách ví dụ rỗng) → điền vào. Đây là
+ *   **bổ sung**, luôn an toàn.
+ * - Giá trị giống hệt → không làm gì, để nhập lại cùng một file báo "không đổi".
+ * - Giá trị khác → **xung đột**, chỉ ghi khi `overwrite`. File N4 chứa 19 từ vốn
+ *   là N5 được dạy lại với nghĩa mới (もう: "Đã, rồi" → "Không ~ nữa"); ghi đè
+ *   lặng lẽ vừa hạ cấp độ xuống sai, vừa xoá mất nghĩa cũ — và không ai biết.
+ */
+export const planWordUpdate = (existing, incoming, { overwrite = false } = {}) => {
+  const fields = {};
+  const conflicts = [];
+  for (const [field, value] of Object.entries(incoming)) {
+    const current = existing[field];
+    if (isEmptyValue(current)) {
+      fields[field] = value;
+      continue;
+    }
+
+    const same =
+      field === 'examples'
+        ? exampleText(current) === exampleText(value)
+        : String(current) === String(value);
+    if (same) continue;
+
+    if (overwrite) fields[field] = value;
+    else conflicts.push({ field, current: displayValue(field, current), incoming: displayValue(field, value) });
+  }
+  return { fields, conflicts };
 };

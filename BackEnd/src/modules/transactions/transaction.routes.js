@@ -1,11 +1,31 @@
 import express from 'express';
-import { authenticateUser, authenticateAdmin } from '../../middleware/auth.middleware.js';
-import * as controller from './transaction.controller.js';
 
-const router = express.Router();
+import { authenticateAdmin, authenticateUser } from '../../middleware/auth.middleware.js';
+import { asyncHandler } from '../../shared/http/async-handler.js';
+import { validate } from '../../shared/http/validate.js';
+import { createTransactionController } from './transaction.controller.js';
+import * as schema from './transaction.schema.js';
+import { transactionService } from './transaction.service.js';
 
-router.post("/create", authenticateUser, controller.postCreate);
-router.get("/admin/all", authenticateAdmin, controller.getAdminAll);
-router.put("/admin/:id/status", authenticateAdmin, controller.putAdminByIdStatus);
+/** Nhận dependency qua tham số để test dựng router với service và auth giả. */
+export const createTransactionRoutes = ({
+  service = transactionService,
+  authenticate = authenticateUser,
+  authorizeAdmin = authenticateAdmin,
+} = {}) => {
+  const controller = createTransactionController(service);
+  const router = express.Router();
 
-export default router;
+  router.post('/create', authenticate, validate({ body: schema.createBody }), asyncHandler(controller.create));
+  router.get('/admin/all', authorizeAdmin, validate({ query: schema.adminQuery }), asyncHandler(controller.listAll));
+  router.put(
+    '/admin/:id/status',
+    authorizeAdmin,
+    validate({ params: schema.idParams, body: schema.statusBody }),
+    asyncHandler(controller.updateStatus),
+  );
+
+  return router;
+};
+
+export default createTransactionRoutes();

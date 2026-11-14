@@ -45,7 +45,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       body: AsyncView<Map<String, dynamic>>(
         state: ViewState.fromLegacy(
           isLoading: provider.isLoadingStats,
-          error: provider.error,
+          error: provider.loadErrorOf(AdminSection.stats),
           value:
               provider.dashboardStats.isEmpty ? null : provider.dashboardStats,
         ),

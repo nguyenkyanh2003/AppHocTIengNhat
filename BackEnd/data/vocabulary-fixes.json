@@ -2134,5 +2134,720 @@
     "word": "言いつける",
     "hiragana": "いいつける",
     "reason": "Trùng dòng 125 của file gốc; từ đã có ở N1 (\"Ra lệnh, báo cáo\")."
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "暑い、熱い",
+      "hiragana": "あつい",
+      "meaning": "Nóng"
+    },
+    "to": {
+      "word": "暑い",
+      "hiragana": "あつい",
+      "meaning": "Nóng (thời tiết)",
+      "hanviet": "THỬ"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "熱い",
+    "hiragana": "あつい",
+    "meaning": "Nóng (đồ vật, đồ ăn, nước)",
+    "hanviet": "NHIỆT",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "早く、速く",
+      "hiragana": "はやく",
+      "meaning": "Sớm, nhanh"
+    },
+    "to": {
+      "word": "早く",
+      "hiragana": "はやく",
+      "meaning": "Sớm",
+      "hanviet": "TẢO"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "速く",
+    "hiragana": "はやく",
+    "meaning": "Nhanh (tốc độ)",
+    "hanviet": "TỐC",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "兄,お兄さん",
+      "hiragana": "あにおにいさん",
+      "meaning": "Anh trai, anh trai (dùng cho người khác)"
+    },
+    "to": {
+      "word": "兄",
+      "hiragana": "あに",
+      "meaning": "Anh trai (của mình)",
+      "hanviet": "HUYNH"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "お兄さん",
+    "hiragana": "おにいさん",
+    "meaning": "Anh trai (của người khác)",
+    "hanviet": "HUYNH",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "姉,お姉さん",
+      "hiragana": "あねおねえさん",
+      "meaning": "Chị gái, chị gái (dùng cho người khác)"
+    },
+    "to": {
+      "word": "姉",
+      "hiragana": "あね",
+      "meaning": "Chị gái (của mình)",
+      "hanviet": "TỈ"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "お姉さん",
+    "hiragana": "おねえさん",
+    "meaning": "Chị gái (của người khác)",
+    "hanviet": "TỈ",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "弟,弟さん",
+      "hiragana": "おとうとおとうとさん",
+      "meaning": "Em trai, em trai (dùng cho người khác)"
+    },
+    "to": {
+      "word": "弟",
+      "hiragana": "おとうと",
+      "meaning": "Em trai (của mình)",
+      "hanviet": "ĐỆ"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "弟さん",
+    "hiragana": "おとうとさん",
+    "meaning": "Em trai (của người khác)",
+    "hanviet": "ĐỆ",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "妹,妹さん",
+      "hiragana": "いもうといもうとさん",
+      "meaning": "Em gái, em gái (dùng cho người khác)"
+    },
+    "to": {
+      "word": "妹",
+      "hiragana": "いもうと",
+      "meaning": "Em gái (của mình)",
+      "hanviet": "MUỘI"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "妹さん",
+    "hiragana": "いもうとさん",
+    "meaning": "Em gái (của người khác)",
+    "hanviet": "MUỘI",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "速い、早い",
+      "hiragana": "はやい",
+      "meaning": "Nhanh, sớm"
+    },
+    "to": {
+      "word": "速い",
+      "hiragana": "はやい",
+      "meaning": "Nhanh (tốc độ)",
+      "hanviet": "TỐC"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "skip",
+    "word": "早い",
+    "hiragana": "はやい",
+    "reason": "Dạng 早い của ô 速い、早い đã có sẵn ở N5 (\"sớm, nhanh\")."
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "温かい、暖かい",
+      "hiragana": "あたたかい",
+      "meaning": "Ấm"
+    },
+    "to": {
+      "word": "温かい",
+      "hiragana": "あたたかい",
+      "meaning": "Ấm (đồ ăn, đồ uống, tấm lòng)",
+      "hanviet": "ÔN"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "暖かい",
+    "hiragana": "あたたかい",
+    "meaning": "Ấm áp (thời tiết, căn phòng)",
+    "hanviet": "NOÃN",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: dấu phẩy trong từ",
+    "action": "rename",
+    "from": {
+      "word": "二、三日",
+      "hiragana": "に、さんにち"
+    },
+    "to": {
+      "word": "二三日",
+      "hiragana": "にさんにち"
+    }
+  },
+  {
+    "source": "nhập cũ N4: mất dấu ~ và 、 ở cột từ",
+    "action": "rename",
+    "from": {
+      "word": "とかとか",
+      "hiragana": "~とか、~とか"
+    },
+    "to": {
+      "word": "~とか、~とか",
+      "hiragana": "~とか、~とか"
+    }
+  },
+  {
+    "source": "nhập cũ N5: gõ nhầm chữ Hán",
+    "action": "merge",
+    "word": "名詞",
+    "hiragana": "めいし",
+    "meaning": "Danh thiếp",
+    "into": {
+      "word": "名刺",
+      "hiragana": "めいし"
+    },
+    "reason": "Danh thiếp là 名刺 (DANH THÍCH), file N5 gõ nhầm thành 名詞 (danh từ) cùng cách đọc; 名刺 đã có ở N3."
+  },
+  {
+    "source": "nhập cũ N5: câu ví dụ dính vào từ",
+    "action": "rename",
+    "from": {
+      "word": "出します手紙を出します",
+      "hiragana": "だしますてがみをだします",
+      "meaning": "Gửi[thư]"
+    },
+    "to": {
+      "word": "出します",
+      "hiragana": "だします[てがみを~]",
+      "meaning": "Gửi [thư]",
+      "hanviet": "XUẤT"
+    }
+  },
+  {
+    "source": "nhập cũ N5: câu ví dụ dính vào từ",
+    "action": "rename",
+    "from": {
+      "word": "散歩します公園を散歩します",
+      "hiragana": "さんぽしますこうえんをさんぽします"
+    },
+    "to": {
+      "word": "散歩します",
+      "hiragana": "さんぽします[こうえんを~]",
+      "hanviet": "TẢN BỘ"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "おじいさん・おじいちゃん",
+      "hiragana": "おじいさん・おじいちゃん",
+      "meaning": "Ông nội, ông ngoại, ông"
+    },
+    "to": {
+      "word": "おじいさん",
+      "hiragana": "おじいさん",
+      "meaning": "Ông (nội, ngoại); ông cụ"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "おじいちゃん",
+    "hiragana": "おじいちゃん",
+    "meaning": "Ông (cách gọi thân mật)",
+    "level": "N5"
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "rename",
+    "from": {
+      "word": "誰何方",
+      "hiragana": "だれどなた",
+      "meaning": "Ai (「どなた」là cách nói lịch sự của「だれ」, vị nào)"
+    },
+    "to": {
+      "word": "誰",
+      "hiragana": "だれ",
+      "meaning": "Ai",
+      "hanviet": "THÙY"
+    }
+  },
+  {
+    "source": "nhập cũ N5: ô nhiều dạng viết",
+    "action": "add",
+    "word": "どなた",
+    "hiragana": "どなた",
+    "meaning": "Vị nào (cách nói lịch sự của だれ)",
+    "level": "N5"
+  },
+  {
+    "source": "N4: chữ 一 thay dấu ~ (sót ở đợt sửa gạch đầu dòng)",
+    "action": "rename",
+    "from": {
+      "word": "一点",
+      "hiragana": "てん"
+    },
+    "to": {
+      "word": "~点",
+      "hiragana": "~てん"
+    }
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "交じる・混じる",
+      "hiragana": "まじる",
+      "meaning": "Giao vào, lẫn vào"
+    },
+    "to": {
+      "word": "交じる",
+      "hiragana": "まじる",
+      "meaning": "Lẫn vào, xen vào (vẫn phân biệt được từng thứ)",
+      "hanviet": "GIAO"
+    }
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "混じる",
+    "hiragana": "まじる",
+    "meaning": "Bị pha lẫn, hoà lẫn vào",
+    "hanviet": "HỖN",
+    "level": "N3"
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "交ざる・混ざる",
+      "hiragana": "まざる",
+      "meaning": "Trộn vào"
+    },
+    "to": {
+      "word": "交ざる",
+      "hiragana": "まざる",
+      "meaning": "Lẫn vào, xen vào (vẫn phân biệt được từng thứ)",
+      "hanviet": "GIAO"
+    }
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "混ざる",
+    "hiragana": "まざる",
+    "meaning": "Được trộn lẫn, hoà lẫn",
+    "hanviet": "HỖN",
+    "level": "N3"
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "交ぜる・混ぜる",
+      "hiragana": "まぜる",
+      "meaning": "Trộn lẫn"
+    },
+    "to": {
+      "word": "交ぜる",
+      "hiragana": "まぜる",
+      "meaning": "Trộn lẫn, xen vào (vẫn phân biệt được từng thứ)",
+      "hanviet": "GIAO"
+    }
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "混ぜる",
+    "hiragana": "まぜる",
+    "meaning": "Trộn, khuấy cho hoà lẫn",
+    "hanviet": "HỖN",
+    "level": "N3"
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "解ける・溶ける",
+      "hiragana": "とける",
+      "meaning": "Giải quyết, tan"
+    },
+    "to": {
+      "word": "解ける",
+      "hiragana": "とける",
+      "meaning": "Được giải (bài toán), được tháo (nút buộc), tan biến (hiểu lầm)",
+      "hanviet": "GIẢI"
+    }
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "溶ける",
+    "hiragana": "とける",
+    "meaning": "Tan, tan chảy (trong nước, do nhiệt)",
+    "hanviet": "DUNG",
+    "level": "N3"
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "解く・溶く",
+      "hiragana": "とく",
+      "meaning": "Giải quyết, tan"
+    },
+    "to": {
+      "word": "解く",
+      "hiragana": "とく",
+      "meaning": "Giải (bài toán), tháo (nút buộc), xoá bỏ (hiểu lầm)",
+      "hanviet": "GIẢI"
+    }
+  },
+  {
+    "source": "N3: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "溶く",
+    "hiragana": "とく",
+    "meaning": "Hoà tan, pha (bột, sơn với nước)",
+    "hanviet": "DUNG",
+    "level": "N3"
+  },
+  {
+    "source": "N2: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "割に・割と・割合",
+      "hiragana": "わりに・わりと・わりあい",
+      "meaning": "Tương đối"
+    },
+    "to": {
+      "word": "割に",
+      "hiragana": "わりに",
+      "meaning": "Tương đối, khá",
+      "hanviet": "CÁT"
+    }
+  },
+  {
+    "source": "N2: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "割と",
+    "hiragana": "わりと",
+    "meaning": "Tương đối, khá",
+    "hanviet": "CÁT",
+    "level": "N2"
+  },
+  {
+    "source": "N2: ô nhiều dạng viết ngăn bằng ・",
+    "action": "skip",
+    "word": "割合",
+    "hiragana": "わりあい",
+    "reason": "Dạng 割合 của ô 割に・割と・割合 đã có ở N3 (\"Tỷ lệ, tương đối\")."
+  },
+  {
+    "source": "N2: ô nhiều dạng viết ngăn bằng ・",
+    "action": "rename",
+    "from": {
+      "word": "万一・万が一",
+      "hiragana": "まんいち・まんがいち",
+      "meaning": "Khẩn cấp, trường hợp xấu"
+    },
+    "to": {
+      "word": "万一",
+      "hiragana": "まんいち",
+      "meaning": "Vạn nhất, lỡ như, nếu chẳng may",
+      "hanviet": "VẠN NHẤT"
+    }
+  },
+  {
+    "source": "N2: ô nhiều dạng viết ngăn bằng ・",
+    "action": "add",
+    "word": "万が一",
+    "hiragana": "まんがいち",
+    "meaning": "Vạn nhất, lỡ như, nếu chẳng may",
+    "hanviet": "VẠN NHẤT",
+    "level": "N2"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "韓国",
+    "hiragana": "かんこく",
+    "from": "QUỐC",
+    "to": "HÀN QUỐC"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "会議室",
+    "hiragana": "かいぎしつ",
+    "from": "HỘI NGHỊ",
+    "to": "HỘI NGHỊ THẤT"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "新大阪",
+    "hiragana": "しんおおさか",
+    "from": "TÂN ĐẠI",
+    "to": "TÂN ĐẠI PHẢN"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "大阪城",
+    "hiragana": "おおさかじょう",
+    "from": "ĐẠI THÀNH",
+    "to": "ĐẠI PHẢN THÀNH"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "大阪城公園",
+    "hiragana": "おおさかじょうこうえん",
+    "from": "ĐẠI THÀNH CÔNG VIÊN",
+    "to": "ĐẠI PHẢN THÀNH CÔNG VIÊN"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "歌舞伎",
+    "hiragana": "かぶき",
+    "from": "CA VŨ",
+    "to": "CA VŨ KỸ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "祇園祭",
+    "hiragana": "ぎおんまつり",
+    "from": "VIÊN TẾ",
+    "to": "KỲ VIÊN TẾ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "喉が渇きました",
+    "hiragana": "のどがかわきました",
+    "from": "KHÁT",
+    "to": "HẦU KHÁT"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "専門",
+    "hiragana": "せんもん",
+    "from": "CHUYÊN",
+    "to": "CHUYÊN MÔN"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "お風呂",
+    "hiragana": "おふろ",
+    "from": "PHONG",
+    "to": "PHONG LỮ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "伊豆",
+    "hiragana": "いず",
+    "from": "ĐẬU",
+    "to": "Y ĐẬU"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "牡牛座",
+    "hiragana": "おうしざ",
+    "from": "NGƯU TỌA",
+    "to": "MẪU NGƯU TỌA"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "握手",
+    "hiragana": "あくしゅ",
+    "from": "ÁC",
+    "to": "ÁC THỦ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "湧き上がる",
+    "hiragana": "わきあがる",
+    "from": "THƯỢNG",
+    "to": "DŨNG THƯỢNG"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "具体的な",
+    "hiragana": "ぐたいてきな",
+    "from": "CỤ THỂ",
+    "to": "CỤ THỂ ĐÍCH"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "単位",
+    "hiragana": "たんい",
+    "from": "ĐƠN",
+    "to": "ĐƠN VỊ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "検索",
+    "hiragana": "けんさく",
+    "from": "SÁCH",
+    "to": "KIỂM SÁCH"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "完璧な",
+    "hiragana": "かんぺきな",
+    "from": "HOÀN",
+    "to": "HOÀN BÍCH"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "卑怯な",
+    "hiragana": "ひきょうな",
+    "from": "TI",
+    "to": "TI KHIẾP"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "削減",
+    "hiragana": "さくげん",
+    "from": "TƯỚC",
+    "to": "TƯỚC GIẢM"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "突き放す",
+    "hiragana": "つきはなす",
+    "from": "ĐỘT",
+    "to": "ĐỘT PHÓNG"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "突き止める",
+    "hiragana": "つきとめる",
+    "from": "ĐỘT",
+    "to": "ĐỘT CHỈ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "歯止め",
+    "hiragana": "はどめ",
+    "from": "XỈ",
+    "to": "XỈ CHỈ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "廃止",
+    "hiragana": "はいし",
+    "from": "PHẾ",
+    "to": "PHẾ CHỈ"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "いい加減な",
+    "hiragana": "いいかげんな",
+    "from": "GIA",
+    "to": "GIA GIẢM"
+  },
+  {
+    "source": "soát Hán Việt toàn kho",
+    "action": "set-hanviet",
+    "word": "やります",
+    "hiragana": "やります",
+    "from": "THAM GIA",
+    "to": ""
+  },
+  {
+    "source": "nhập cũ N5: chữ 杯 bị thay bằng cách đọc",
+    "action": "rename",
+    "from": {
+      "word": "もう一いっぱいいかがですか",
+      "hiragana": "[~、]もういっぱいいかがですか"
+    },
+    "to": {
+      "word": "もう一杯いかがですか",
+      "hiragana": "[~、]もういっぱいいかがですか",
+      "hanviet": "BÔI"
+    }
+  },
+  {
+    "source": "nhập cũ N5: lỗi gõ trong nghĩa",
+    "action": "set-meaning",
+    "word": "スパイス・コーナー",
+    "hiragana": "スパイス・コーナー",
+    "from": "Góc gia vị (sprice corner)",
+    "to": "Góc gia vị (spice corner)"
   }
 ]

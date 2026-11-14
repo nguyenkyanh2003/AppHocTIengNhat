@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../models/notebook.dart';
-import '../../../app/theme/app_theme.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
 
-/// Một ghi chú trong danh sách.
+import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
+import '../models/notebook.dart';
+import 'notebook_type_badge.dart';
+
+/// Một ghi chú trong danh sách; chạm để mở chi tiết.
 class NotebookNoteCard extends StatelessWidget {
-  const NotebookNoteCard({
-    super.key,
-    required this.note,
-    required this.getTypeLabel,
-  });
+  const NotebookNoteCard({super.key, required this.note});
 
   final Notebook note;
-  final String Function(String type) getTypeLabel;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
       child: InkWell(
-        onTap: () => _navigateToDetail(context, note.id),
-        borderRadius: BorderRadius.circular(12),
+        onTap: () => context.push('/notebook/${note.id}'),
+        borderRadius: AppRadius.mdAll,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: AppSpacing.page,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -36,63 +32,40 @@ class NotebookNoteCard extends StatelessWidget {
                   spacing: AppSpacing.sm,
                   runSpacing: AppSpacing.xs,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: _getTypeColor(note.type).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        getTypeLabel(note.type),
-                        style: TextStyle(
-                          fontSize: AppTypography.caption,
-                          color:
-                              context.colors.readable(_getTypeColor(note.type)),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
+                    NotebookTypeBadge(type: note.type),
                     Text(
-                      _formatDate(note.updatedAt),
-                      style: TextStyle(
-                          fontSize: AppTypography.caption,
-                          color: context.colors.textSecondary),
+                      _relativeDate(note.updatedAt),
+                      style: TextStyle(fontSize: AppTypography.caption, color: context.colors.textSecondary),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
               Text(
                 note.title,
-                style: const TextStyle(
-                  fontSize: AppTypography.body,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: const TextStyle(fontSize: AppTypography.body, fontWeight: FontWeight.bold),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AppSpacing.sm),
               Text(
                 note.content,
-                style: TextStyle(
-                    fontSize: AppTypography.bodySmall,
-                    color: context.colors.textSecondary),
+                style: TextStyle(fontSize: AppTypography.bodySmall, color: context.colors.textSecondary),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
               if (note.tags.isNotEmpty) ...[
-                const SizedBox(height: 8),
+                const SizedBox(height: AppSpacing.sm),
                 Wrap(
-                  spacing: 6,
-                  children: note.tags.take(3).map<Widget>((tag) {
-                    return Chip(
-                      label: Text(tag.toString()),
-                      visualDensity: VisualDensity.compact,
-                      labelStyle:
-                          const TextStyle(fontSize: AppTypography.caption),
-                    );
-                  }).toList(),
+                  spacing: AppSpacing.xs,
+                  children: [
+                    for (final tag in note.tags.take(3))
+                      Chip(
+                        label: Text(tag),
+                        visualDensity: VisualDensity.compact,
+                        labelStyle: const TextStyle(fontSize: AppTypography.caption),
+                      ),
+                  ],
                 ),
               ],
             ],
@@ -102,35 +75,13 @@ class NotebookNoteCard extends StatelessWidget {
     );
   }
 
-  void _navigateToDetail(BuildContext context, String noteId) {
-    context.push('/notebook/$noteId');
-  }
-
-  Color _getTypeColor(String type) {
-    switch (type) {
-      case 'vocabulary':
-        return AppTheme.vocabularyColor;
-      case 'grammar':
-        return AppTheme.grammarColor;
-      case 'kanji':
-        return AppTheme.kanjiColor;
-      default:
-        return AppTheme.notebookColor;
-    }
-  }
-
-  String _formatDate(DateTime date) {
-    final now = DateTime.now();
-    final diff = now.difference(date);
-
-    if (diff.inDays == 0) {
-      return 'Hôm nay';
-    } else if (diff.inDays == 1) {
-      return 'Hôm qua';
-    } else if (diff.inDays < 7) {
-      return '${diff.inDays} ngày trước';
-    } else {
-      return '${date.day}/${date.month}/${date.year}';
-    }
+  static String _relativeDate(DateTime date) {
+    final days = DateTime.now().difference(date).inDays;
+    return switch (days) {
+      0 => 'Hôm nay',
+      1 => 'Hôm qua',
+      < 7 => '$days ngày trước',
+      _ => '${date.day}/${date.month}/${date.year}',
+    };
   }
 }

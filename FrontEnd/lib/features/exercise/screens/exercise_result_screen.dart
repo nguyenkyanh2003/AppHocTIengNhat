@@ -134,12 +134,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
               context.go('/home');
             },
           ),
-          Text(
-            'Kết quả làm bài',
-            style: TextStyle(
-              fontSize: AppTypography.title,
-              fontWeight: FontWeight.bold,
-              color: context.colors.textPrimary,
+          Expanded(
+            child: Text(
+              'Kết quả làm bài',
+              style: TextStyle(
+                fontSize: AppTypography.title,
+                fontWeight: FontWeight.bold,
+                color: context.colors.textPrimary,
+              ),
             ),
           ),
         ],

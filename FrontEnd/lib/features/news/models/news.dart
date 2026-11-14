@@ -1,90 +1,52 @@
 import '../../../core/network/api_client.dart';
 
 class News {
-  final String id;
-  final String title;
-  final String description;
-  final String contentHtml;
-  final String? imageUrl;
-  final String? source;
-  final String? level;
-  final String? audioUrl;
-  final int views;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
-
-  News({
+  const News({
     required this.id,
     required this.title,
     required this.description,
     required this.contentHtml,
+    required this.views,
+    required this.createdAt,
     this.imageUrl,
     this.source,
     this.level,
-    this.audioUrl,
-    required this.views,
-    required this.createdAt,
-    this.updatedAt,
   });
 
   factory News.fromJson(Map<String, dynamic> json) {
-    String? normalizeImageUrl(String? raw) {
-      if (raw == null || raw.isEmpty) return null;
-      if (raw.startsWith('http')) return raw;
-      final host = ApiClient.baseUrl.replaceFirst('/api', '');
-      return raw.startsWith('/') ? '$host$raw' : '$host/$raw';
-    }
-
+    final image = json['image_url'] as String?;
     return News(
-      id: json['_id'] ?? json['id'] ?? '',
-      title: json['title'] ?? '',
-      description: json['description'] ?? '',
-      contentHtml: json['content_html'] ?? json['content'] ?? '',
-      imageUrl: normalizeImageUrl(json['image_url'] as String?),
-      source: json['source'],
-      level: json['level'],
-      audioUrl: json['audio_url'],
-      views: json['views'] ?? 0,
-      createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
-          : DateTime.now(),
-      updatedAt:
-          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+      id: json['_id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      contentHtml: json['content_html'] as String? ?? '',
+      imageUrl: image == null || image.isEmpty ? null : ApiClient.resolveAssetUrl(image),
+      source: json['source'] as String?,
+      level: json['level'] as String?,
+      views: json['views'] as int? ?? 0,
+      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? '') ?? DateTime.now(),
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      '_id': id,
-      'title': title,
-      'description': description,
-      'content_html': contentHtml,
-      'image_url': imageUrl,
-      'source': source,
-      'level': level,
-      'audio_url': audioUrl,
-      'views': views,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt?.toIso8601String(),
-    };
-  }
+  final String id;
+  final String title;
+  final String description;
+  final String contentHtml;
+
+  /// Địa chỉ đầy đủ của ảnh bìa (đường dẫn tương đối của server đã được nối host).
+  final String? imageUrl;
+  final String? source;
+  final String? level;
+  final int views;
+  final DateTime createdAt;
 
   String get timeAgo {
-    final now = DateTime.now();
-    final difference = now.difference(createdAt);
-
-    if (difference.inMinutes < 1) {
-      return 'Vừa xong';
-    } else if (difference.inHours < 1) {
-      return '${difference.inMinutes} phút trước';
-    } else if (difference.inDays < 1) {
-      return '${difference.inHours} giờ trước';
-    } else if (difference.inDays < 7) {
-      return '${difference.inDays} ngày trước';
-    } else if (difference.inDays < 30) {
-      return '${(difference.inDays / 7).floor()} tuần trước';
-    } else {
-      return '${(difference.inDays / 30).floor()} tháng trước';
-    }
+    final difference = DateTime.now().difference(createdAt);
+    if (difference.inMinutes < 1) return 'Vừa xong';
+    if (difference.inHours < 1) return '${difference.inMinutes} phút trước';
+    if (difference.inDays < 1) return '${difference.inHours} giờ trước';
+    if (difference.inDays < 7) return '${difference.inDays} ngày trước';
+    if (difference.inDays < 30) return '${(difference.inDays / 7).floor()} tuần trước';
+    return '${(difference.inDays / 30).floor()} tháng trước';
   }
 }

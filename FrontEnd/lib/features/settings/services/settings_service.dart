@@ -1,27 +1,15 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
+import '../models/user_settings.dart';
 
 class SettingsService {
-  final ApiClient _apiClient = ApiClient();
+  SettingsService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  /// Lấy cài đặt của người dùng
-  Future<Map<String, dynamic>> getSettings() async {
-    final response = await _apiClient.get('/settings');
-    return {
-      'notificationsEnabled': response['notificationsEnabled'] ?? true,
-      'soundEnabled': response['soundEnabled'] ?? true,
-      'vibrateEnabled': response['vibrateEnabled'] ?? true,
-      'language': response['language'] ?? 'vi',
-      'theme': response['theme'] ?? 'light',
-    };
-  }
+  final ApiClient _client;
 
-  /// Lưu cài đặt của người dùng
-  Future<void> saveSettings(Map<String, dynamic> settings) async {
-    await _apiClient.post('/settings', settings);
-  }
+  /// Cài đặt của người đang đăng nhập; trường server không trả về lấy mặc định.
+  Future<UserSettings> getSettings() async => objectOf(await _client.get('/settings'), UserSettings.fromJson);
 
-  /// Cập nhật một cài đặt cụ thể
-  Future<void> updateSetting(String setting, dynamic value) async {
-    await _apiClient.patch('/settings/$setting', {'value': value});
-  }
+  /// Lưu đủ năm cài đặt một lần — server từ chối bản thiếu trường.
+  Future<void> saveSettings(UserSettings settings) => _client.post('/settings', settings.toJson());
 }

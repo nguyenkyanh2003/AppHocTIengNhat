@@ -10,13 +10,16 @@ import { tagKey } from './vocabulary-tags.review.js';
  * định đó, kèm `source` trỏ về dòng gốc, và module này kiểm file rồi tính việc
  * cần ghi — hàm thuần, không đụng DB, giống `vocabulary-import.review.js`.
  *
- * Sáu loại sửa:
+ * Bảy loại sửa:
  * - `add`: thêm một từ chưa có. Chuẩn hoá bằng **đúng** luật của công cụ nhập,
  *   để khoá `(word, hiragana)` khớp với các từ đã nhập trước đó.
  * - `set-meaning`: thay nghĩa của một từ đã có, chỉ khi nghĩa trong DB đúng là
  *   nghĩa cũ đã soát (`from`) — ai đó sửa tay sau lúc soát thì không ghi đè.
+ * - `set-hanviet`: như `set-meaning` cho âm Hán Việt. `from` trống là điền chỗ
+ *   còn thiếu; `to` trống là bỏ trường (từ viết toàn kana bị ghi nhầm âm).
  * - `rename`: sửa khoá của một từ đã có **tại chỗ**, giữ `_id` để tiến độ ôn
- *   tập và liên kết bài học bám theo.
+ *   tập và liên kết bài học bám theo. Kèm nghĩa và Hán Việt mới khi tách một ô
+ *   nhiều dạng viết đã lỡ vào DB (dạng còn lại là dòng `add`).
  * - `remove`: xoá một bản sao không ai trỏ tới, chỉ khi bản giữ lại (`keep`)
  *   còn trong DB — không bao giờ xoá bản ghi cuối cùng của một từ. Script kiểm
  *   thêm rằng không có thẻ ôn, bài học hay sổ tay nào trỏ tới bản bị xoá.
@@ -27,7 +30,7 @@ import { tagKey } from './vocabulary-tags.review.js';
  *   rằng từ được viện dẫn thật sự có trong DB.
  */
 
-export const FIX_ACTIONS = Object.freeze(['add', 'set-meaning', 'rename', 'remove', 'merge', 'skip']);
+export const FIX_ACTIONS = Object.freeze(['add', 'set-meaning', 'set-hanviet', 'rename', 'remove', 'merge', 'skip']);
 
 const describe = ({ word, hiragana }) => `${word} (${hiragana})`;
 
@@ -83,13 +86,53 @@ const reviewSetMeaning = (fix, messages) => {
   return { source: fix.source, action: 'set-meaning', ...key, from, to };
 };
 
+const reviewSetHanviet = (fix, messages) => {
+  const key = normalizeKey(fix);
+  requireKey(key, 'từ cần sửa Hán Việt', messages);
+  const from = normalizeVietnamese(fix.from);
+  const to = normalizeVietnamese(fix.to);
+  if (from === to) messages.push('Hán Việt mới giống hệt bản cũ.');
+  return { source: fix.source, action: 'set-hanviet', ...key, from, to };
+};
+
+/**
+ * Khoá mới phải đúng là khoá công cụ nhập tạo ra từ chính nó, để bản xuất
+ * `data/vocabulary/*.csv` nhập lại ra đúng từ này chứ không bị từ chối.
+ */
+const requireImportable = (key, messages) => {
+  const { accepted, errors } = reviewRows([{ TuVung: key.word, Hiragana: key.hiragana, NghiaTV: '-' }]);
+  errors.forEach((error) => messages.push(error.message));
+  const row = accepted[0];
+  if (row && tagKey(row) !== tagKey(key)) {
+    messages.push(`Công cụ nhập sẽ đọc khoá mới thành ${describe(row)}.`);
+  }
+};
+
+/**
+ * `to.meaning`/`to.hanviet` dùng khi tách một ô nhiều dạng viết đã lỡ vào DB
+ * (`暑い、熱い` → `暑い`, dạng còn lại là một dòng `add`): dạng giữ `_id` cần
+ * nghĩa riêng của nó. Đổi nghĩa phải kèm nghĩa cũ (`from.meaning`), như `set-meaning`.
+ */
 const reviewRename = (fix, messages) => {
   const from = normalizeKey(fix.from);
   const to = normalizeKey(fix.to);
   requireKey(from, '`from`', messages);
   requireKey(to, '`to`', messages);
   if (from.word && tagKey(from) === tagKey(to)) messages.push('Khoá mới giống hệt khoá cũ.');
-  return { source: fix.source, action: 'rename', from, to };
+  if (to.word && to.hiragana) requireImportable(to, messages);
+
+  const oldMeaning = normalizeVietnamese(fix.from?.meaning);
+  const meaning = normalizeVietnamese(fix.to?.meaning);
+  const hanviet = normalizeVietnamese(fix.to?.hanviet);
+  if (meaning && !oldMeaning) messages.push('Đổi nghĩa phải kèm nghĩa cũ (`from.meaning`) để đối chiếu.');
+  if (oldMeaning && !meaning) messages.push('Có nghĩa cũ nhưng thiếu nghĩa mới (`to.meaning`).');
+
+  return {
+    source: fix.source,
+    action: 'rename',
+    from: oldMeaning ? { ...from, meaning: oldMeaning } : from,
+    to: { ...to, ...(meaning && { meaning }), ...(hanviet && { hanviet }) },
+  };
 };
 
 /**
@@ -120,6 +163,7 @@ const reviewSkip = (fix, messages) => {
 const REVIEWERS = Object.freeze({
   add: reviewAdd,
   'set-meaning': reviewSetMeaning,
+  'set-hanviet': reviewSetHanviet,
   rename: reviewRename,
   remove: reviewDuplicate('keep'),
   merge: reviewDuplicate('into'),
@@ -136,14 +180,19 @@ const keysOf = (fix) => {
   return [fix];
 };
 
+/** Loại sửa giữ nguyên khoá và sự tồn tại của từ, kèm trường nó ghi (`skip` không ghi gì). */
+const KEEPS_KEY = Object.freeze({ skip: null, 'set-meaning': 'meaning', 'set-hanviet': 'hanviet' });
+
 /**
  * Hai dòng được cùng chạm một khoá khi không dòng nào làm từ đó đổi khoá, biến
- * mất hay mới xuất hiện: `skip` chỉ khẳng định từ đang có, nên đi cùng `skip`
- * khác (nhiều dòng gốc trùng một từ) hay `set-meaning` (nghĩa đổi, từ vẫn đó).
+ * mất hay mới xuất hiện, và không cùng ghi một trường: `skip` chỉ khẳng định từ
+ * đang có, nên đi cùng `skip` khác (nhiều dòng gốc trùng một từ) hay một dòng
+ * sửa trường; sửa nghĩa và sửa Hán Việt của cùng một từ cũng không giẫm nhau.
  */
 const canShareKey = (first, second) => {
-  const actions = [first.action, second.action];
-  return actions.includes('skip') && actions.every((action) => action === 'skip' || action === 'set-meaning');
+  if (!Object.hasOwn(KEEPS_KEY, first.action) || !Object.hasOwn(KEEPS_KEY, second.action)) return false;
+  const [one, other] = [KEEPS_KEY[first.action], KEEPS_KEY[second.action]];
+  return one === null || other === null || one !== other;
 };
 
 /**
@@ -220,18 +269,41 @@ const planSetMeaning = (fix, existing) => {
   };
 };
 
+const planSetHanviet = (fix, existing) => {
+  const current = existing.get(tagKey(fix));
+  if (!current) return { status: 'missing', detail: `Không có ${describe(fix)}.` };
+  const now = current.hanviet ?? '';
+  if (now === fix.to) return { status: 'done' };
+  if (now !== fix.from) {
+    return { status: 'conflict', detail: `Hán Việt hiện tại "${now}" khác bản cũ đã soát "${fix.from}".` };
+  }
+  return {
+    status: 'apply',
+    operation: {
+      updateOne: {
+        filter: { _id: current._id, hanviet: fix.from || { $in: [null, ''] } },
+        update: fix.to ? { $set: { hanviet: fix.to } } : { $unset: { hanviet: '' } },
+      },
+    },
+  };
+};
+
 const planRename = (fix, existing) => {
   const current = existing.get(tagKey(fix.from));
   const target = existing.get(tagKey(fix.to));
   if (!current && target) return { status: 'done' };
   if (!current) return { status: 'missing', detail: `Không có ${describe(fix.from)}.` };
   if (target) return { status: 'conflict', detail: `${describe(fix.to)} đã là một từ khác.` };
+  const { meaning: oldMeaning } = fix.from;
+  if (oldMeaning && current.meaning !== oldMeaning) {
+    return { status: 'conflict', detail: `Nghĩa hiện tại "${current.meaning}" khác lúc soát "${oldMeaning}".` };
+  }
   return {
     status: 'apply',
     operation: {
       updateOne: {
-        filter: { _id: current._id, word: fix.from.word, hiragana: fix.from.hiragana },
-        update: { $set: { word: fix.to.word, hiragana: fix.to.hiragana } },
+        filter: { _id: current._id, word: fix.from.word, hiragana: fix.from.hiragana, ...(oldMeaning && { meaning: oldMeaning }) },
+        update: { $set: { ...fix.to } },
       },
     },
   };
@@ -272,6 +344,7 @@ const planSkip = (fix, existing) =>
 const PLANNERS = Object.freeze({
   add: planAdd,
   'set-meaning': planSetMeaning,
+  'set-hanviet': planSetHanviet,
   rename: planRename,
   remove: planDuplicate,
   merge: planDuplicate,
@@ -282,7 +355,7 @@ const PLANNERS = Object.freeze({
  * Tính việc cần ghi cho các dòng **đã qua `reviewFixes`**.
  *
  * @param existing Map khoá `tagKey` → bản ghi hiện có (`_id`, `word`,
- *   `hiragana`, `meaning`, `level`, `lesson`).
+ *   `hiragana`, `meaning`, `hanviet`, `level`, `lesson`).
  * @returns `operations` — lệnh `bulkWrite` của Vocabulary, riêng gộp là
  *   `{ merge }` vì đụng nhiều collection — và `outcomes`, trạng thái từng dòng:
  *   `apply` (sẽ ghi), `done` (DB đã đúng, chạy lại không ghi gì), `skip`,

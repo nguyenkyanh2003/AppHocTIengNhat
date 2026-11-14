@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../../../app/theme/app_tokens.dart';
-import '../../../core/audio/audio_service.dart';
-import '../../../core/audio/speech_service.dart';
+import '../../../core/network/api_client.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../shared/widgets/content_pane.dart';
-import '../../../core/network/api_client.dart';
+import '../../../shared/widgets/pronounce.dart';
 import '../../flashcards/widgets/add_to_flashcard_dialog.dart';
 import '../../srs/models/srs_progress.dart';
 import '../../srs/providers/srs_provider.dart';
@@ -16,6 +13,7 @@ import '../../srs/widgets/srs_confirm_dialog.dart';
 import '../models/vocabulary.dart';
 import '../providers/vocabulary_provider.dart';
 import '../widgets/detail/vocabulary_example_list.dart';
+import '../widgets/detail/vocabulary_detail_layout.dart';
 import '../widgets/detail/vocabulary_kanji_breakdown.dart';
 import '../widgets/detail/vocabulary_memory_progress.dart';
 import '../widgets/detail/vocabulary_related_words.dart';
@@ -25,15 +23,11 @@ import '../widgets/detail/vocabulary_word_hero.dart';
 ///
 /// Màn rộng chia hai cột: thẻ từ và mức ghi nhớ bên trái (thứ cần nhìn đầu
 /// tiên), phân tích chữ Hán, ví dụ và từ liên quan bên phải. Màn hẹp xếp tất
-/// cả thành một cột theo đúng thứ tự đó.
+/// cả thành một cột theo đúng thứ tự đó (xem [VocabularyDetailLayout]).
 class VocabularyDetailScreen extends StatefulWidget {
   const VocabularyDetailScreen({super.key, required this.vocabularyId});
 
   final String vocabularyId;
-
-  /// Từ bề rộng này (vùng nội dung, không tính thanh điều hướng) thì chia
-  /// hai cột; hẹp hơn thì cột phải bị ép dưới ~480px, đọc câu ví dụ rất chật.
-  static const double twoColumnMinWidth = 840;
 
   @override
   State<VocabularyDetailScreen> createState() => _VocabularyDetailScreenState();
@@ -67,38 +61,6 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
   Future<void> _load({bool silent = false}) => context
       .read<VocabularyProvider>()
       .loadVocabularyDetail(widget.vocabularyId, silent: silent);
-
-  /// File âm thanh thật nếu có, không thì giọng đọc của thiết bị.
-  Future<void> _speakWord(Vocabulary item) async {
-    final messenger = ScaffoldMessenger.of(context);
-    try {
-      if (item.audioUrl != null) {
-        await AudioService().playAudio(item.audioUrl!);
-      } else {
-        await SpeechService.instance.speak(
-          item.hiragana.isNotEmpty ? item.hiragana : item.word,
-        );
-      }
-    } on SpeechUnavailableException catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('$error')));
-    } catch (_) {
-      messenger.showSnackBar(
-        const SnackBar(content: Text('Không phát được âm thanh.')),
-      );
-    }
-  }
-
-  Future<void> _speakExample(VocabExample example) async {
-    try {
-      if (example.audioUrl != null) {
-        await AudioService().playAudio(example.audioUrl!);
-      } else {
-        await SpeechService.instance.speak(example.sentence);
-      }
-    } catch (_) {
-      // Không có giọng đọc tiếng Nhật trên thiết bị: bỏ qua, câu vẫn đọc được.
-    }
-  }
 
   Future<void> _toggleLearned(Vocabulary vocabulary) async {
     final provider = context.read<VocabularyProvider>();
@@ -194,12 +156,16 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
       body: AsyncView<Vocabulary>(
         state: provider.detailState,
         onRetry: _load,
-        builder: (context, item) => _DetailLayout(
+        builder: (context, item) => VocabularyDetailLayout(
           primary: [
             VocabularyWordHero(
               vocabulary: item,
               togglingLearned: _toggling,
-              onSpeak: () => _speakWord(item),
+              onSpeak: () => pronounce(
+                context,
+                audioUrl: item.audioUrl,
+                text: item.hiragana.isNotEmpty ? item.hiragana : item.word,
+              ),
               onToggleLearned: () => _toggleLearned(item),
             ),
             VocabularyMemoryProgress(
@@ -214,9 +180,11 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
                 parts: item.kanjiBreakdown,
                 onOpenKanji: (id) => context.push('/kanji/$id'),
               ),
+            // Không đọc được câu ví dụ thì thôi, không báo: chữ vẫn đọc được.
             VocabularyExampleList(
               examples: item.examples,
-              onSpeak: _speakExample,
+              onSpeak: (example) =>
+                  pronounce(context, audioUrl: example.audioUrl, text: example.sentence, quiet: true),
             ),
             VocabularyRelatedWords(
               words: item.relatedWords,
@@ -225,55 +193,6 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-/// Hai cột trên màn rộng, một cột trên màn hẹp; nội dung luôn giới hạn bề
-/// rộng [AppContentWidth.detail] và nằm giữa trang.
-class _DetailLayout extends StatelessWidget {
-  const _DetailLayout({required this.primary, required this.secondary});
-
-  final List<Widget> primary;
-  final List<Widget> secondary;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final wide =
-            constraints.maxWidth >= VocabularyDetailScreen.twoColumnMinWidth;
-        final padding = EdgeInsets.all(wide ? AppSpacing.xl : AppSpacing.lg);
-
-        if (!wide) {
-          return ListView(
-            padding: ContentPane.paddingFor(
-              constraints.maxWidth,
-              maxWidth: AppContentWidth.reading,
-              base: padding,
-            ),
-            children: [...primary, ...secondary],
-          );
-        }
-
-        return SingleChildScrollView(
-          padding: padding,
-          child: Center(
-            child: ConstrainedBox(
-              constraints:
-                  const BoxConstraints(maxWidth: AppContentWidth.detail),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(flex: 5, child: Column(children: primary)),
-                  AppGap.xl,
-                  Expanded(flex: 7, child: Column(children: secondary)),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

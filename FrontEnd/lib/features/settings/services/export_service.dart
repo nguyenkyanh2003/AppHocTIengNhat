@@ -1,20 +1,12 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../../streaks/models/user_streak.dart';
 import '../../streaks/services/streak_service.dart';
+import '../models/export_document.dart';
 
 /// Người dùng bấm huỷ giữa chừng; không có tệp nào được tạo.
 class ExportCancelled implements Exception {
   const ExportCancelled();
-}
-
-/// Các nhóm dữ liệu xuất được, theo khoá màn xuất dữ liệu dùng.
-abstract final class ExportType {
-  static const fullStats = 'full_stats';
-  static const lessonProgress = 'lesson_progress';
-  static const notebook = 'notebook';
-  static const achievements = 'achievements';
-  static const streaks = 'streaks';
-  static const allData = 'all_data';
 }
 
 /// Gom dữ liệu học tập để xuất ra tệp.
@@ -34,12 +26,13 @@ class ExportService {
   /// Độ dài một khoảng đọc lịch — đúng trần server chấp nhận.
   static const dayWindow = 366;
 
-  Future<Map<String, dynamic>> load(String type, {bool Function()? isCancelled}) async {
+  /// Xuất nguyên JSON server trả, theo từng nhóm — đó chính là nội dung tệp.
+  Future<JsonObject> load(String type, {bool Function()? isCancelled}) async {
     void checkpoint() {
       if (isCancelled?.call() ?? false) throw const ExportCancelled();
     }
 
-    Future<Map<String, dynamic>> streakSection() async {
+    Future<JsonObject> streakSection() async {
       final summary = Map<String, dynamic>.from(await _client.get('/streak/my-streak') as Map);
       checkpoint();
       final history = await _allXpHistory(checkpoint);

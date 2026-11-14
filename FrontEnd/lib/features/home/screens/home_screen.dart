@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _refresh() async {
     if (!mounted) return;
     final news = context.read<NewsProvider>();
-    await Future.wait([_load(), news.loadNews(refresh: true)]);
+    await Future.wait([_load(), news.refresh()]);
   }
 
   @override

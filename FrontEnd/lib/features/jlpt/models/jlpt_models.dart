@@ -95,12 +95,7 @@ class JLPTQuestion {
   });
 
   factory JLPTQuestion.fromJson(Map<String, dynamic> json) {
-    String? normalize(String? raw) {
-      if (raw == null || raw.isEmpty) return null;
-      if (raw.startsWith('http')) return raw;
-      final host = ApiClient.baseUrl.replaceFirst('/api', '');
-      return raw.startsWith('/') ? '$host$raw' : '$host/$raw';
-    }
+    String? normalize(String? raw) => raw == null || raw.isEmpty ? null : ApiClient.resolveAssetUrl(raw);
 
     return JLPTQuestion(
       mondai: json['mondai'] ?? 0,
@@ -134,12 +129,7 @@ class JLPTGroupQuestion {
   });
 
   factory JLPTGroupQuestion.fromJson(Map<String, dynamic> json) {
-    String? normalize(String? raw) {
-      if (raw == null || raw.isEmpty) return null;
-      if (raw.startsWith('http')) return raw;
-      final host = ApiClient.baseUrl.replaceFirst('/api', '');
-      return raw.startsWith('/') ? '$host$raw' : '$host/$raw';
-    }
+    String? normalize(String? raw) => raw == null || raw.isEmpty ? null : ApiClient.resolveAssetUrl(raw);
 
     return JLPTGroupQuestion(
       mondai: json['mondai'] ?? 0,

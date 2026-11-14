@@ -50,7 +50,7 @@ class _AdminAnalyticsScreenState extends State<AdminAnalyticsScreen> {
               return AsyncView<Map<String, dynamic>>(
                 state: ViewState.detail(
                   isLoading: provider.isLoadingAnalytics,
-                  error: provider.error,
+                  error: provider.loadErrorOf(AdminSection.analytics),
                   value: provider.analytics,
                 ),
                 onRetry: _loadAnalytics,

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
 import '../providers/auth_provider.dart';
+import '../widgets/forgot_password_sent.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import '../../../core/state/view_state.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -28,52 +28,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   Future<void> _handleResetPassword() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isLoading = true);
+    final provider = context.read<AuthProvider>();
+    final sent = await provider.forgotPassword(_emailController.text.trim());
+    if (!mounted) return;
 
     setState(() {
-      _isLoading = true;
+      _isLoading = false;
+      _emailSent = sent;
     });
-
-    try {
-      final provider = context.read<AuthProvider>();
-      final success = await provider.forgotPassword(
-        _emailController.text.trim(),
-      );
-
-      if (!mounted) return;
-
-      if (!success) {
-        throw Exception(
-            provider.error ?? 'Không thể gửi yêu cầu đặt lại mật khẩu.');
-      }
-
-      setState(() {
-        _emailSent = true;
-        _isLoading = false;
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Email đặt lại mật khẩu đã được gửi!'),
-          backgroundColor: AppColors.successStrong,
-        ),
-      );
-    } catch (e) {
-      if (!mounted) return;
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(userMessageOf(e)),
-          backgroundColor: AppColors.errorStrong,
-        ),
-      );
-    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(sent
+            ? 'Email đặt lại mật khẩu đã được gửi!'
+            : provider.error ?? 'Không thể gửi yêu cầu đặt lại mật khẩu.'),
+        backgroundColor: sent ? AppColors.successStrong : AppColors.errorStrong,
+      ),
+    );
   }
 
   @override
@@ -90,7 +63,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             child: ContentPane(
               maxWidth: AppContentWidth.form,
               padding: const EdgeInsets.all(AppSpacing.xl),
-              child: _emailSent ? _buildSuccessView() : _buildFormView(),
+              child: _emailSent
+                  ? ForgotPasswordSentView(
+                      email: _emailController.text,
+                      onResend: () => setState(() => _emailSent = false),
+                    )
+                  : _buildFormView(),
             ),
           ),
         ),
@@ -211,88 +189,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildSuccessView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        // Icon thành công
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            color: AppColors.success.withValues(alpha: 0.1),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            Icons.check_circle_outline,
-            size: 60,
-            color: context.colors.readable(AppColors.success),
-          ),
-        ),
-
-        const SizedBox(height: 24),
-
-        // Thông báo
-        Text(
-          'Email đã được gửi!',
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.success,
-              ),
-          textAlign: TextAlign.center,
-        ),
-
-        const SizedBox(height: 16),
-
-        Text(
-          'Chúng tôi đã gửi liên kết đặt lại mật khẩu đến email của bạn.',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: context.colors.textSecondary,
-              ),
-          textAlign: TextAlign.center,
-        ),
-
-        const SizedBox(height: 8),
-
-        Text(
-          _emailController.text,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: context.colors.primary,
-              ),
-          textAlign: TextAlign.center,
-        ),
-
-        const SizedBox(height: 32),
-
-        // Nút quay lại
-        OutlinedButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text(
-            'Quay lại đăng nhập',
-            style: TextStyle(
-              fontSize: AppTypography.body,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-
-        const SizedBox(height: 16),
-
-        // Gửi lại
-        TextButton(
-          onPressed: () {
-            setState(() {
-              _emailSent = false;
-            });
-          },
-          child: const Text('Không nhận được email? Gửi lại'),
-        ),
-      ],
     );
   }
 }

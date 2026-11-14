@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_tokens.dart';
 import '../../../../app/theme/app_typography.dart';
-import '../../../../core/audio/audio_service.dart';
-import '../../../../core/audio/speech_service.dart';
+import '../../../../shared/widgets/pronounce.dart';
 import '../../../vocabulary/models/vocabulary.dart';
 import 'study_card_deck.dart';
 
@@ -26,20 +25,12 @@ class StudyVocabularyStep extends StatelessWidget {
   final Future<void> Function(Vocabulary word) onMarkLearned;
   final Future<void> Function(Vocabulary word) onUnmarkLearned;
 
-  Future<void> _speak(BuildContext context, Vocabulary word) async {
-    final messenger = ScaffoldMessenger.of(context);
-    try {
-      if (word.audioUrl != null) {
-        await AudioService().playAudio(word.audioUrl!);
-      } else {
-        await SpeechService.instance.speak(word.hiragana.isNotEmpty ? word.hiragana : word.word);
-      }
-    } on SpeechUnavailableException catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('$error Thẻ vẫn học được bằng mắt.')));
-    } catch (_) {
-      messenger.showSnackBar(const SnackBar(content: Text('Không phát được âm thanh.')));
-    }
-  }
+  Future<void> _speak(BuildContext context, Vocabulary word) => pronounce(
+        context,
+        audioUrl: word.audioUrl,
+        text: word.hiragana.isNotEmpty ? word.hiragana : word.word,
+        hint: 'Thẻ vẫn học được bằng mắt.',
+      );
 
   @override
   Widget build(BuildContext context) {

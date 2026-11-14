@@ -29,7 +29,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 160;
+const expectedCount = 152;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -60,7 +60,16 @@ const expectedCount = 160;
 //   tích luỹ lưu theo tài khoản, thay màn mẫu chỉ có dữ liệu viết sẵn (phase-2-plan A8).
 // 2026-11-04: +1 route `POST /api/users/refresh-token` — access token còn 15 phút, refresh
 //   token xoay vòng theo phiên; `POST /api/users/logout` giữ nguyên path nhưng giờ thu hồi phiên.
-const expectedSignatureHash = '3db56e9457f9a0452f93235d3a9c2224e502ae717babef354d320e798bc479fb';
+// 2026-11-14: one-style đợt 4 (settings) — gỡ `PATCH /api/settings/:setting`: Flutter chỉ đọc
+//   và lưu đủ năm cài đặt một lần (`GET`/`POST /api/settings`), không màn hình nào sửa lẻ một mục.
+// 2026-11-14: one-style đợt 4 (reports) — gỡ `DELETE /api/report/:id` (người dùng tự huỷ báo cáo):
+//   màn "Báo cáo của tôi" chỉ xem, không có nút huỷ nào gọi tới.
+// 2026-11-14: one-style đợt 4 (notebook) — gỡ `DELETE /api/notebook` (xoá nhiều),
+//   `GET /api/notebook/related/:item_type/:item_id`, `GET /api/notebook/tags/all` và
+//   `GET /api/notebook/stats/me`: chỉ có method service Flutter mà không màn hình nào gọi.
+// 2026-11-14: one-style (kanji) — gỡ `GET /api/kanji/level/:level` và `GET /api/kanji/lesson/:lessonId`:
+//   màn Kanji lọc cấp độ qua `GET /api/kanji?level=`, bài học tự mang danh sách chữ của nó.
+const expectedSignatureHash = '3ab64e18d9819bb5bd9fba34648adf3b3a43e71e1d3737421105f83de565bdad';
 
 const collectSignatures = async () => {
   const signatures = [];

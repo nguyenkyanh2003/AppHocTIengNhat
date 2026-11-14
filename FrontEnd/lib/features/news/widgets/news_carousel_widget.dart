@@ -39,7 +39,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final provider = context.read<NewsProvider>();
-      if (provider.newsList.isEmpty) provider.loadNews();
+      if (provider.newsList.isEmpty && !provider.listState.isLoading) provider.load();
     });
   }
 

@@ -1,20 +1,10 @@
 import { z } from 'zod';
 
 import { paginationQuery } from '../../shared/http/pagination.js';
+import { jlptLevel, objectId, optionalQuery } from '../../shared/http/schemas.js';
 import { SET_ID_PATTERN } from './vocabulary-sets.js';
 
-const objectId = z
-  .string()
-  .regex(/^[0-9a-fA-F]{24}$/, 'Định danh không hợp lệ.');
-
-const level = z.enum(['N5', 'N4', 'N3', 'N2', 'N1']);
-
-/** Query rỗng (`?level=`) được coi như không truyền. */
-const optional = (schema) =>
-  z.preprocess(
-    (value) => (value === '' || value === null ? undefined : value),
-    schema.optional(),
-  );
+const level = jlptLevel;
 
 const example = z.object({
   sentence: z.string().optional(),
@@ -23,14 +13,14 @@ const example = z.object({
 });
 
 export const listQuery = paginationQuery.extend({
-  level: optional(level),
-  studyStatus: optional(z.enum(['learned', 'unlearned'])),
-  sortBy: optional(z.enum(['alphabet', 'difficulty', 'newest'])),
+  level: optionalQuery(level),
+  studyStatus: optionalQuery(z.enum(['learned', 'unlearned'])),
+  sortBy: optionalQuery(z.enum(['alphabet', 'difficulty', 'newest'])),
 });
 
 export const searchQuery = z.object({
   keyword: z.string().trim().min(1, 'Vui lòng nhập từ khóa tìm kiếm.'),
-  level: optional(level),
+  level: optionalQuery(level),
 });
 
 export const idParams = z.object({ id: objectId });

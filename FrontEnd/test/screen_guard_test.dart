@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
-/// Giới hạn cứng trong `docs/architecture/conventions.md`: vượt thì tách phần trình
-/// bày sang `widgets/` trước khi thêm tính năng.
-const _maxScreenLines = 300;
+/// Giới hạn trong `docs/architecture/conventions.md`: màn hình dưới 250 dòng. Chạm
+/// mốc thì tách phần trình bày sang `widgets/` trước khi thêm tính năng.
+const _maxScreenLines = 250;
 
 /// Dấu hiệu của giao diện chưa làm xong: nút không làm gì, thông báo "sắp có", số
 /// liệu mẫu nằm lẫn trong màn hình thật.
@@ -24,12 +24,12 @@ Iterable<File> _dartFiles(String root) => Directory(root)
 String _path(File file) => file.path.replaceAll(r'\', '/');
 
 void main() {
-  test('không màn hình nào dài quá $_maxScreenLines dòng', () {
+  test('mọi màn hình dưới $_maxScreenLines dòng', () {
     final tooLong = <String>[];
     for (final file in _dartFiles('lib/features')) {
       if (!_path(file).contains('/screens/')) continue;
       final lines = file.readAsLinesSync().length;
-      if (lines > _maxScreenLines) tooLong.add('${_path(file)}: $lines dòng');
+      if (lines >= _maxScreenLines) tooLong.add('${_path(file)}: $lines dòng');
     }
 
     expect(tooLong, isEmpty,
@@ -61,5 +61,22 @@ void main() {
     }
 
     expect(found, isEmpty, reason: 'Dùng AsyncView:\n${found.join('\n')}');
+  });
+
+  test('màn hình và widget không tự gọi service hay ApiClient', () {
+    // Gọi dữ liệu đi qua provider; phát âm đi qua `shared/widgets/pronounce.dart`.
+    // Màn hình vẫn được nhận một service để truyền vào provider nó tạo (seam cho test).
+    final direct = RegExp(r'\b[A-Z]\w*Service\(\)|\b[A-Z]\w*Service\.instance\b|\bApiClient\b');
+    final found = <String>[];
+    for (final file in _dartFiles('lib/features')) {
+      final path = _path(file);
+      if (!path.contains('/screens/') && !path.contains('/widgets/')) continue;
+      final lines = file.readAsLinesSync();
+      for (var index = 0; index < lines.length; index++) {
+        if (direct.hasMatch(lines[index])) found.add('$path:${index + 1}: ${lines[index].trim()}');
+      }
+    }
+
+    expect(found, isEmpty, reason: 'Chuyển lời gọi vào provider:\n${found.join('\n')}');
   });
 }

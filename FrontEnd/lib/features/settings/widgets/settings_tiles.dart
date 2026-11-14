@@ -65,7 +65,9 @@ class SettingsSwitchTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final bool value;
-  final Function(bool) onChanged;
+
+  /// `null` thì công tắc mờ đi (chưa tải được cài đặt thật).
+  final ValueChanged<bool>? onChanged;
 
   @override
   Widget build(BuildContext context) {

@@ -1,22 +1,32 @@
-import 'package:flutter/material.dart';
-import '../services/report_service.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../../core/state/paged_list.dart';
 import '../../../core/state/view_state.dart';
+import '../models/report.dart';
+import '../services/report_service.dart';
 
-class ReportProvider with ChangeNotifier {
-  final ReportService _reportService = ReportService();
+/// Gửi báo cáo/góp ý và danh sách "Báo cáo của tôi".
+class ReportProvider extends ChangeNotifier {
+  ReportProvider({ReportService? service}) : _service = service ?? ReportService();
 
-  List<Report> _reports = [];
-  bool _isLoading = false;
-  String? _error;
-  String? _successMessage;
+  final ReportService _service;
+  late final _mine = PagedList<Report>(onChanged: _notify);
+  bool _submitting = false;
+  bool _disposed = false;
 
-  List<Report> get reports => _reports;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
-  String? get successMessage => _successMessage;
+  ViewState<List<Report>> get myReports => _mine.state;
+  bool get hasMore => _mine.hasMore;
+  bool get isLoadingMore => _mine.isLoadingMore;
+  String? get loadMoreError => _mine.loadMoreError;
+  bool get isSubmitting => _submitting;
 
-  /// Gửi báo cáo
-  Future<bool> createReport({
+  Future<void> loadMyReports() => _mine.load((page) => _service.listMine(page: page));
+
+  Future<void> loadMore() => _mine.loadMore();
+
+  /// Gửi một báo cáo; trả `null` khi đã gửi, hoặc câu báo lỗi để màn hiện.
+  /// Danh sách "Báo cáo của tôi" đã mở thì được làm mới để có bài vừa gửi.
+  Future<String?> createReport({
     required String type,
     required String title,
     required String description,
@@ -24,93 +34,31 @@ class ReportProvider with ChangeNotifier {
     String? relatedType,
     String priority = 'medium',
   }) async {
-    _isLoading = true;
-    _error = null;
-    _successMessage = null;
-    notifyListeners();
+    if (_submitting) return 'Báo cáo trước vẫn đang được gửi.';
+    _submitting = true;
+    _notify();
 
-    try {
-      final report = await _reportService.createReport(
-        type: type,
-        title: title,
-        description: description,
-        relatedId: relatedId,
-        relatedType: relatedType,
-        priority: priority,
-      );
-
-      if (report != null) {
-        _successMessage =
-            'Gửi báo cáo thành công! Chúng tôi sẽ xử lý trong thời gian sớm nhất.';
-        notifyListeners();
-        return true;
-      } else {
-        _error = 'Không thể gửi báo cáo';
-        notifyListeners();
-        return false;
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error creating report: $e');
-      notifyListeners();
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+    final result = await ViewState.guard(() => _service.create(
+          type: type,
+          title: title,
+          description: description,
+          relatedId: relatedId,
+          relatedType: relatedType,
+          priority: priority,
+        ));
+    _submitting = false;
+    _notify();
+    if (result.hasData && !_mine.state.isLoading && _mine.state is! ViewIdle) _mine.reload();
+    return result.errorOrNull;
   }
 
-  /// Lấy báo cáo của user
-  Future<void> loadMyReports({
-    int page = 1,
-    int limit = 10,
-    String? status,
-  }) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final reports = await _reportService.getMyReports(
-        page: page,
-        limit: limit,
-        status: status,
-      );
-
-      if (reports != null) {
-        _reports = reports;
-      } else {
-        _error = 'Không thể tải dữ liệu';
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error loading reports: $e');
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  void _notify() {
+    if (!_disposed) notifyListeners();
   }
 
-  /// Xóa báo cáo
-  Future<bool> deleteReport(String reportId) async {
-    try {
-      final success = await _reportService.deleteReport(reportId);
-      if (success) {
-        _reports.removeWhere((r) => r.id == reportId);
-        notifyListeners();
-        return true;
-      }
-      return false;
-    } catch (e) {
-      debugPrint('Error deleting report: $e');
-      return false;
-    }
-  }
-
-  /// Reset messages
-  void clearMessages() {
-    _error = null;
-    _successMessage = null;
-    notifyListeners();
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

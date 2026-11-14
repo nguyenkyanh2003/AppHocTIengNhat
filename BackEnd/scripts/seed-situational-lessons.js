@@ -178,7 +178,6 @@ const run = async () => {
   if (replace) await replaceStaleLessons();
 
   if (dryRun) console.log('\n🔍 --dry-run: không ghi gì vào database.');
-  console.log('\n⚠️  Nội dung tiếng Nhật chưa được người biết tiếng Nhật rà soát.');
 
   await mongoose.connection.close();
 };

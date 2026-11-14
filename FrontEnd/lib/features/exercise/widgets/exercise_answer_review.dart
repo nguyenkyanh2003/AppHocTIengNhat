@@ -36,11 +36,13 @@ class ExerciseAnswerReview extends StatelessWidget {
             children: [
               Icon(Icons.article, color: context.colors.primary),
               const SizedBox(width: 8),
-              const Text(
-                'Chi tiết đáp án',
-                style: TextStyle(
-                  fontSize: AppTypography.subtitle,
-                  fontWeight: FontWeight.bold,
+              const Expanded(
+                child: Text(
+                  'Chi tiết đáp án',
+                  style: TextStyle(
+                    fontSize: AppTypography.subtitle,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

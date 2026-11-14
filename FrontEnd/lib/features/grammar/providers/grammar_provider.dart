@@ -1,192 +1,50 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/grammar.dart';
 import '../services/grammar_service.dart';
-import '../../../core/state/view_state.dart';
 
-class GrammarProvider with ChangeNotifier {
-  final GrammarService _grammarService = GrammarService();
+/// Danh sách và chi tiết ngữ pháp.
+class GrammarProvider extends ChangeNotifier {
+  GrammarProvider({GrammarService? service}) : _service = service ?? GrammarService();
 
-  List<Grammar> _grammars = [];
-  Grammar? _selectedGrammar;
-  bool _isLoading = false;
-  String? _error;
-  int _currentPage = 1;
-  int _totalPages = 1;
-  String? _selectedLevel;
-  String? _searchQuery;
+  final GrammarService _service;
+  late final _list = PagedList<Grammar>(onChanged: _notify);
+  ViewState<Grammar> _detail = const ViewState.idle();
+  int _detailGeneration = 0;
+  bool _disposed = false;
 
-  // Getters
-  List<Grammar> get grammars => _grammars;
-  Grammar? get selectedGrammar => _selectedGrammar;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
-  int get currentPage => _currentPage;
-  int get totalPages => _totalPages;
-  String? get selectedLevel => _selectedLevel;
-  String? get searchQuery => _searchQuery;
+  ViewState<List<Grammar>> get listState => _list.state;
+  ViewState<Grammar> get detailState => _detail;
+  bool get hasMore => _list.hasMore;
+  bool get isLoadingMore => _list.isLoadingMore;
+  String? get loadMoreError => _list.loadMoreError;
 
-  /// Tải danh sách ngữ pháp
-  Future<void> loadGrammars({
-    int page = 1,
-    int limit = 10,
-    String? level,
-    String? search,
-    String? sortBy,
-  }) async {
-    _isLoading = true;
-    _error = null;
-    _currentPage = page;
-    _selectedLevel = level;
-    _searchQuery = search;
-    notifyListeners();
+  Future<void> load({String? level, String? search, GrammarSort sort = GrammarSort.title}) =>
+      _list.load((page) => _service.list(page: page, level: level, search: search, sort: sort));
 
-    try {
-      final response = await _grammarService.getGrammars(
-        page: page,
-        limit: limit,
-        level: level,
-        search: search,
-        sortBy: sortBy,
-      );
+  /// Nối trang kế tiếp; danh sách đang có giữ nguyên trong lúc tải và khi lỗi.
+  Future<void> loadMore() => _list.loadMore();
 
-      if (response != null) {
-        final data = response['data'] as List?;
-        if (data != null) {
-          _grammars = data.map((item) => Grammar.fromJson(item)).toList();
-        }
-        _totalPages = response['totalPages'] ?? 1;
-        _error = null;
-      } else {
-        _error = 'Không thể tải dữ liệu';
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error loading grammars: $e');
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  Future<void> loadDetail(String id) async {
+    final generation = ++_detailGeneration;
+    _detail = const ViewState.loading();
+    _notify();
+
+    final result = await ViewState.guard(() => _service.detail(id));
+    if (generation != _detailGeneration) return;
+    _detail = result;
+    _notify();
   }
 
-  /// Lấy chi tiết ngữ pháp
-  Future<void> loadGrammarDetail(String grammarId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final grammar = await _grammarService.getGrammarDetail(grammarId);
-      if (grammar != null) {
-        _selectedGrammar = grammar;
-      } else {
-        _error = 'Không tìm thấy ngữ pháp';
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error loading grammar detail: $e');
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  void _notify() {
+    if (!_disposed) notifyListeners();
   }
 
-  /// Lấy ngữ pháp theo cấp độ
-  Future<void> loadGrammarsByLevel(String level) async {
-    _isLoading = true;
-    _error = null;
-    _selectedLevel = level;
-    notifyListeners();
-
-    try {
-      final response = await _grammarService.getGrammarsByLevel(level);
-      if (response != null) {
-        final data = response['data'] as List?;
-        if (data != null) {
-          _grammars = data.map((item) => Grammar.fromJson(item)).toList();
-        }
-      } else {
-        _error = 'Không thể tải dữ liệu';
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  /// Tìm kiếm ngữ pháp
-  Future<void> searchGrammars(String query) async {
-    if (query.isEmpty) {
-      _grammars = [];
-      _searchQuery = null;
-      notifyListeners();
-      return;
-    }
-
-    _isLoading = true;
-    _error = null;
-    _searchQuery = query;
-    notifyListeners();
-
-    try {
-      final response = await _grammarService.searchGrammars(query);
-      if (response != null) {
-        final data = response['data'] as List?;
-        if (data != null) {
-          _grammars = data.map((item) => Grammar.fromJson(item)).toList();
-        }
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  /// Chuyển trang
-  Future<void> nextPage({
-    int limit = 10,
-    String? level,
-    String? search,
-  }) async {
-    if (_currentPage < _totalPages) {
-      await loadGrammars(
-        page: _currentPage + 1,
-        limit: limit,
-        level: level ?? _selectedLevel,
-        search: search ?? _searchQuery,
-      );
-    }
-  }
-
-  /// Trang trước
-  Future<void> previousPage({
-    int limit = 10,
-    String? level,
-    String? search,
-  }) async {
-    if (_currentPage > 1) {
-      await loadGrammars(
-        page: _currentPage - 1,
-        limit: limit,
-        level: level ?? _selectedLevel,
-        search: search ?? _searchQuery,
-      );
-    }
-  }
-
-  /// Reset state
-  void reset() {
-    _grammars = [];
-    _selectedGrammar = null;
-    _isLoading = false;
-    _error = null;
-    _currentPage = 1;
-    _totalPages = 1;
-    _selectedLevel = null;
-    _searchQuery = null;
-    notifyListeners();
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

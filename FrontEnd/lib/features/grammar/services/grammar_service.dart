@@ -1,80 +1,34 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/grammar.dart';
 
 class GrammarService {
-  final ApiClient _apiClient = ApiClient();
+  GrammarService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  /// Lấy danh sách ngữ pháp với phân trang và lọc
-  Future<Map<String, dynamic>?> getGrammars({
+  final ApiClient _client;
+
+  static const pageSize = 20;
+
+  /// Một trang ngữ pháp đang hoạt động. Danh sách theo cấp độ được lưu để học
+  /// ngoại tuyến; kết quả tìm kiếm thì không — mỗi từ khoá một mục là tràn bộ đệm.
+  Future<Paged<Grammar>> list({
     int page = 1,
-    int limit = 10,
+    int limit = pageSize,
     String? level,
     String? search,
-    String? lessonId,
-    String? sortBy,
+    GrammarSort sort = GrammarSort.title,
   }) async {
-    final params = {
-      'page': page,
-      'limit': limit,
-      if (level != null) 'level': level,
-      if (search != null) 'search': search,
-      if (lessonId != null) 'lessonID': lessonId,
-      if (sortBy != null) 'sortBy': sortBy,
-    };
-
-    final response = await _apiClient.get(
-      '/grammar?${_buildQueryString(params)}',
-      cache: true,
-    );
-    return response;
+    final query = Uri(queryParameters: {
+      'page': '$page',
+      'limit': '$limit',
+      if (level != null && level.isNotEmpty) 'level': level,
+      if (search != null && search.isNotEmpty) 'search': search,
+      'sortBy': sort.name,
+    }).query;
+    final response = await _client.get('/grammar?$query', cache: search == null || search.isEmpty);
+    return Paged.fromJson(response, Grammar.fromJson);
   }
 
-  /// Lấy chi tiết một ngữ pháp
-  Future<Grammar?> getGrammarDetail(String grammarId) async {
-    final response = await _apiClient.get('/grammar/$grammarId', cache: true);
-    return Grammar.fromJson(response);
-  }
-
-  /// Lấy ngữ pháp theo cấp độ JLPT
-  Future<Map<String, dynamic>?> getGrammarsByLevel(String level) async {
-    final response = await _apiClient.get(
-      '/grammar?level=$level',
-      cache: true,
-    );
-    return response;
-  }
-
-  /// Lấy ngữ pháp theo bài học
-  Future<List<Grammar>?> getGrammarsByLesson(String lessonId) async {
-    final response = await _apiClient.get(
-      '/grammar?lessonID=$lessonId',
-      cache: true,
-    );
-
-    if (response != null && response is Map) {
-      final data = response['data'] as List?;
-      if (data != null) {
-        return data.map((item) => Grammar.fromJson(item)).toList();
-      }
-    }
-    return null;
-  }
-
-  /// Tìm kiếm ngữ pháp
-  Future<Map<String, dynamic>?> searchGrammars(String query) async {
-    final response = await _apiClient.get(
-      '/grammar?search=$query',
-    );
-    return response;
-  }
-
-  String _buildQueryString(Map<String, dynamic> params) {
-    final queryParts = <String>[];
-    params.forEach((key, value) {
-      if (value != null) {
-        queryParts.add('$key=$value');
-      }
-    });
-    return queryParts.join('&');
-  }
+  Future<Grammar> detail(String id) async =>
+      objectOf(await _client.get('/grammar/$id', cache: true), Grammar.fromJson);
 }

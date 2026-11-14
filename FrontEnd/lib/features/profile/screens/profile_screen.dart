@@ -4,11 +4,11 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 import '../../auth/providers/auth_provider.dart';
 import '../../../app/theme/app_tokens.dart';
-import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../widgets/edit_profile_dialog.dart';
 import '../widgets/profile_avatar_section.dart';
+import '../widgets/profile_info_card.dart';
 import '../../../core/state/view_state.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -66,132 +66,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           pickAndUploadAvatar: _pickAndUploadAvatar),
                       const SizedBox(height: 24),
 
-                      // Info Cards
-                      _buildInfoCard(
-                        title: 'Thông tin cơ bản',
-                        children: [
-                          _buildInfoRow(Icons.person, 'Họ tên',
-                              user.fullName ?? 'Chưa cập nhật'),
-                          _buildInfoRow(Icons.alternate_email, 'Tên đăng nhập',
-                              user.username),
-                          _buildInfoRow(Icons.email, 'Email', user.email),
-                          _buildInfoRow(Icons.phone, 'Số điện thoại',
-                              user.phone ?? 'Chưa cập nhật'),
-                          _buildInfoRow(
-                              Icons.cake,
-                              'Ngày sinh',
-                              user.dateOfBirth != null
-                                  ? '${user.dateOfBirth!.day}/${user.dateOfBirth!.month}/${user.dateOfBirth!.year}'
-                                  : 'Chưa cập nhật'),
-                          _buildInfoRow(Icons.wc, 'Giới tính',
-                              user.gender ?? 'Chưa cập nhật'),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-
-                      _buildInfoCard(
-                        title: 'Học tập',
-                        children: [
-                          _buildInfoRow(Icons.school, 'Trình độ',
-                              user.currentLevel ?? 'N5'),
-                          _buildInfoRow(Icons.stars, 'Điểm tích lũy',
-                              '${user.points ?? 0} XP'),
-                          _buildInfoRow(Icons.timer, 'Tổng thời gian học',
-                              '${user.totalStudyTime ?? 0} phút'),
-                          _buildInfoRow(
-                              Icons.local_fire_department,
-                              'Streak hiện tại',
-                              '${user.currentStreak ?? 0} ngày'),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-
-                      _buildInfoCard(
-                        title: 'Tài khoản',
-                        children: [
-                          _buildInfoRow(Icons.verified_user, 'Trạng thái',
-                              user.status ?? 'active'),
-                          _buildInfoRow(Icons.calendar_today, 'Ngày tạo',
-                              '${user.createdAt.day}/${user.createdAt.month}/${user.createdAt.year}'),
-                          _buildInfoRow(
-                              Icons.login,
-                              'Đăng nhập gần nhất',
-                              user.lastLogin != null
-                                  ? '${user.lastLogin!.day}/${user.lastLogin!.month}/${user.lastLogin!.year}'
-                                  : 'Chưa có dữ liệu'),
-                        ],
-                      ),
+                      ProfileInfoCard(title: 'Thông tin cơ bản', rows: [
+                        ProfileInfoRow(Icons.person, 'Họ tên', user.fullName ?? 'Chưa cập nhật'),
+                        ProfileInfoRow(Icons.alternate_email, 'Tên đăng nhập', user.username),
+                        ProfileInfoRow(Icons.email, 'Email', user.email),
+                        ProfileInfoRow(Icons.phone, 'Số điện thoại', user.phone ?? 'Chưa cập nhật'),
+                        ProfileInfoRow(Icons.cake, 'Ngày sinh', profileDate(user.dateOfBirth)),
+                        ProfileInfoRow(Icons.wc, 'Giới tính', user.gender ?? 'Chưa cập nhật'),
+                      ]),
+                      const SizedBox(height: AppSpacing.lg),
+                      ProfileInfoCard(title: 'Học tập', rows: [
+                        ProfileInfoRow(Icons.school, 'Trình độ', user.currentLevel ?? 'N5'),
+                        ProfileInfoRow(Icons.stars, 'Điểm tích lũy', '${user.points ?? 0} XP'),
+                        ProfileInfoRow(Icons.timer, 'Tổng thời gian học', '${user.totalStudyTime ?? 0} phút'),
+                        ProfileInfoRow(Icons.local_fire_department, 'Streak hiện tại', '${user.currentStreak ?? 0} ngày'),
+                      ]),
+                      const SizedBox(height: AppSpacing.lg),
+                      ProfileInfoCard(title: 'Tài khoản', rows: [
+                        ProfileInfoRow(Icons.verified_user, 'Trạng thái', user.status ?? 'active'),
+                        ProfileInfoRow(Icons.calendar_today, 'Ngày tạo', profileDate(user.createdAt)),
+                        ProfileInfoRow(
+                          Icons.login,
+                          'Đăng nhập gần nhất',
+                          profileDate(user.lastLogin, missing: 'Chưa có dữ liệu'),
+                        ),
+                      ]),
                     ],
                   ),
                 ),
               ),
-      ),
-    );
-  }
-
-  Widget _buildInfoCard(
-      {required String title, required List<Widget> children}) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: AppTypography.subtitle,
-                fontWeight: FontWeight.w600,
-                color: context.colors.primary,
-              ),
-            ),
-            const SizedBox(height: 16),
-            ...children,
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInfoRow(IconData icon, String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: context.colors.primarySoft,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(icon, size: 20, color: context.colors.primary),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: AppTypography.caption,
-                    color: context.colors.textSecondary,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontSize: AppTypography.body,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

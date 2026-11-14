@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 import Vocabulary from '../model/Vocabulary.js';
 import Lesson from '../model/Lesson.js';
-import { mapHeaders, reviewRows } from '../src/modules/vocabulary/vocabulary-import.review.js';
+import { mapHeaders, planWordUpdate, reviewRows } from '../src/modules/vocabulary/vocabulary-import.review.js';
 import { parseCsv, parseWorkbook } from '../src/modules/vocabulary/vocabulary-import.file.js';
 
 dotenv.config();
@@ -82,33 +82,9 @@ const upsertWord = async (row, { lessonId, overwrite }) => {
     return { outcome: 'created', conflicts: [] };
   }
 
-  // Từ đã có: ba tình huống khác hẳn nhau.
-  //
-  // - Ô trong DB đang trống → điền vào. Đây là **bổ sung**, luôn an toàn.
-  // - Giá trị giống hệt → không làm gì.
-  // - Giá trị khác → **xung đột**, mặc định không ghi.
-  //
-  // Nhánh thứ ba là lý do cả khối này tồn tại. File N4 chứa 19 từ vốn là N5
-  // được dạy lại với nghĩa mới (もう: "Đã, rồi" → "Không ~ nữa"). Ghi đè lặng
-  // lẽ vừa hạ cấp độ xuống sai, vừa xoá mất nghĩa cũ — và không ai biết.
-  const fields = {};
-  const conflicts = [];
-  for (const [field, value] of Object.entries(incoming)) {
-    const current = existing[field];
-    if (current === undefined || current === null || current === '') {
-      fields[field] = value;
-      continue;
-    }
-
-    const same =
-      field === 'examples' || field === 'lesson'
-        ? JSON.stringify(current) === JSON.stringify(value)
-        : String(current) === String(value);
-    if (same) continue;
-
-    if (overwrite) fields[field] = value;
-    else conflicts.push({ line: row.line, word: row.word, field, current, incoming: value });
-  }
+  const planned = planWordUpdate(existing, incoming, { overwrite });
+  const { fields } = planned;
+  const conflicts = planned.conflicts.map((conflict) => ({ line: row.line, word: row.word, ...conflict }));
 
   if (Object.keys(fields).length === 0) {
     return { outcome: conflicts.length > 0 ? 'conflict' : 'unchanged', conflicts };

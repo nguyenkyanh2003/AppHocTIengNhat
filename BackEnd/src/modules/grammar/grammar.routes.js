@@ -1,13 +1,29 @@
 import express from 'express';
-import { authenticateUser, authenticateAdmin } from '../../middleware/auth.middleware.js';
-import * as controller from './grammar.controller.js';
 
-const router = express.Router();
+import { authenticateAdmin, authenticateUser } from '../../middleware/auth.middleware.js';
+import { asyncHandler } from '../../shared/http/async-handler.js';
+import { validate } from '../../shared/http/validate.js';
+import { createGrammarController } from './grammar.controller.js';
+import * as schema from './grammar.schema.js';
+import { grammarService } from './grammar.service.js';
 
-router.get('/', authenticateUser, controller.getRoot);
-router.get('/:id', authenticateUser, controller.getById);
-router.post('/', authenticateAdmin, controller.postRoot);
-router.put('/:id', authenticateAdmin, controller.putById);
-router.delete('/:id', authenticateAdmin, controller.deleteById);
+/** Nhận dependency qua tham số để test dựng router với service và auth giả. */
+export const createGrammarRoutes = ({
+  service = grammarService,
+  authenticate = authenticateUser,
+  authorizeAdmin = authenticateAdmin,
+} = {}) => {
+  const controller = createGrammarController(service);
+  const byId = validate({ params: schema.idParams });
+  const router = express.Router();
 
-export default router;
+  router.get('/', authenticate, validate({ query: schema.listQuery }), asyncHandler(controller.list));
+  router.get('/:id', authenticate, byId, asyncHandler(controller.detail));
+  router.post('/', authorizeAdmin, validate({ body: schema.createBody }), asyncHandler(controller.create));
+  router.put('/:id', authorizeAdmin, byId, validate({ body: schema.updateBody }), asyncHandler(controller.update));
+  router.delete('/:id', authorizeAdmin, byId, asyncHandler(controller.remove));
+
+  return router;
+};
+
+export default createGrammarRoutes();

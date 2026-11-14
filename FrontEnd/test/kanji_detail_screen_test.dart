@@ -20,7 +20,7 @@ class _FakeKanjiService extends KanjiService {
   bool inReview = false;
 
   @override
-  Future<Kanji> getKanjiById(String id) async => Kanji(
+  Future<Kanji> detail(String id) async => Kanji(
         id: id,
         character: '学',
         hanviet: 'Học',

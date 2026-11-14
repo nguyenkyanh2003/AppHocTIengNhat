@@ -162,11 +162,13 @@ class _FlashcardWidgetState extends State<FlashcardWidget>
               children: [
                 Icon(Icons.touch_app, color: Colors.white, size: 16),
                 SizedBox(width: 8),
-                Text(
-                  'Chạm để lật',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: AppTypography.bodySmall,
+                Flexible(
+                  child: Text(
+                    'Chạm để lật',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: AppTypography.bodySmall,
+                    ),
                   ),
                 ),
               ],

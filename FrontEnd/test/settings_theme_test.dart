@@ -26,7 +26,7 @@ class _SettingsBackend {
           return http.Response(jsonEncode({'message': 'ok'}), 200, headers: _json);
         }
         return http.Response(
-          jsonEncode({'notificationsEnabled': true, 'soundEnabled': true, 'vibrateEnabled': true, 'language': 'vi', 'theme': 'light'}),
+          jsonEncode({'data': {'notificationsEnabled': true, 'soundEnabled': true, 'vibrateEnabled': true, 'language': 'vi', 'theme': 'light'}}),
           200,
           headers: _json,
         );

@@ -120,14 +120,14 @@ class _HelpReportDialogState extends State<_HelpReportDialog> {
     final provider = context.read<ReportProvider>();
     final navigator = Navigator.of(context);
     final messenger = ScaffoldMessenger.of(context);
-    final sent = await provider.createReport(
+    final error = await provider.createReport(
       type: widget.type,
       title: widget.reportTitle,
       description: text,
     );
     if (!mounted) return;
 
-    if (sent) {
+    if (error == null) {
       navigator.pop();
       messenger.showSnackBar(
         SnackBar(
@@ -139,7 +139,7 @@ class _HelpReportDialogState extends State<_HelpReportDialog> {
     }
     setState(() {
       _sending = false;
-      _error = provider.error ?? 'Không gửi được. Vui lòng thử lại.';
+      _error = error;
     });
   }
 

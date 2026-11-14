@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_tokens.dart';
-import '../../../../core/audio/speech_service.dart';
+import '../../../../shared/widgets/pronounce.dart';
 import '../../models/dialogue_turn.dart';
 import '../dialogue_view.dart';
 
@@ -19,16 +19,8 @@ class StudyDialogueStep extends StatefulWidget {
 class _StudyDialogueStepState extends State<StudyDialogueStep> {
   bool _showTranslation = false;
 
-  Future<void> _speak(DialogueTurn turn) async {
-    final messenger = ScaffoldMessenger.of(context);
-    try {
-      await SpeechService.instance.speak(turn.textJa);
-    } on SpeechUnavailableException catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('$error Câu vẫn đọc được bằng mắt.')));
-    } catch (_) {
-      messenger.showSnackBar(const SnackBar(content: Text('Không phát được âm thanh.')));
-    }
-  }
+  Future<void> _speak(DialogueTurn turn) =>
+      pronounce(context, text: turn.textJa, hint: 'Câu vẫn đọc được bằng mắt.');
 
   @override
   Widget build(BuildContext context) {

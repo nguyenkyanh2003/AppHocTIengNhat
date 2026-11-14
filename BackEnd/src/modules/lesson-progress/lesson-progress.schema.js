@@ -1,15 +1,12 @@
 import { z } from 'zod';
-
-const objectId = z
-  .string()
-  .regex(/^[0-9a-fA-F]{24}$/, 'Định danh không hợp lệ.');
+import { jlptLevel, objectId } from '../../shared/http/schemas.js';
 
 export const ITEM_TYPES = ['vocabulary', 'grammar', 'kanji'];
 
 export const lessonIdParams = z.object({ lessonId: objectId });
 
 export const levelParams = z.object({
-  level: z.enum(['N5', 'N4', 'N3', 'N2', 'N1']),
+  level: jlptLevel,
 });
 
 /**

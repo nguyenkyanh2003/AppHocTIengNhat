@@ -5,7 +5,6 @@ import 'package:audioplayers/audioplayers.dart';
 import '../../../core/audio/audio_source_resolver.dart';
 import '../providers/jlpt_exam_provider.dart';
 import '../models/jlpt_models.dart';
-import '../../../core/network/api_client.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
@@ -30,7 +29,10 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
   bool _isLoading = false;
   Duration _duration = Duration.zero;
   Duration _position = Duration.zero;
-  Source? _cachedAudioSource;
+  final Map<String, Source> _sources = {};
+
+  /// File nghe đang nạp trong trình phát; nghe hết thì trình phát nhả nguồn ra.
+  String? _loadedUrl;
 
   @override
   void initState() {
@@ -50,6 +52,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       if (mounted) setState(() => _position = p);
     });
     _audioPlayer.onPlayerComplete.listen((_) {
+      _loadedUrl = null;
       if (mounted) {
         setState(() {
           _isPlaying = false;
@@ -68,36 +71,29 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
     super.dispose();
   }
 
-  String _getFullAudioUrl(String audioPath) {
-    final host = ApiClient.baseUrl.replaceFirst('/api', '');
-    if (audioPath.startsWith('http')) return audioPath;
-    return '$host$audioPath';
-  }
-
-  /// Phát audio của câu hỏi.
+  /// Phát hoặc tạm dừng file nghe [audioUrl] (model đã đổi sang URL tuyệt đối).
   ///
   /// Nguồn phát do adapter theo nền tảng quyết định: trình duyệt phát thẳng từ
   /// URL, nền tảng có hệ thống tệp thì tải về thư mục tạm rồi phát từ tệp. Màn
-  /// hình này không được biết `File` hay `DeviceFileSource` là gì.
-  Future<void> _playAudio(String audioPath, String fileName) async {
+  /// hình này không được biết `File` hay `DeviceFileSource` là gì. Mỗi URL chỉ
+  /// tải một lần; bấm lại sau khi tạm dừng thì nghe tiếp từ chỗ dừng.
+  Future<void> _playAudio(String audioUrl, String fileName) async {
     try {
       if (_isPlaying) {
         await _audioPlayer.pause();
         return;
       }
+      if (_loadedUrl == audioUrl) {
+        await _audioPlayer.resume();
+        return;
+      }
 
       setState(() => _isLoading = true);
-
-      final fullUrl = _getFullAudioUrl(audioPath);
-      debugPrint('Audio URL: $fullUrl');
-
-      _cachedAudioSource ??= await resolveAudioSource(
-        url: fullUrl,
-        fileName: fileName,
-      );
+      final source = _sources[audioUrl] ??= await resolveAudioSource(url: audioUrl, fileName: fileName);
 
       await _audioPlayer.stop();
-      await _audioPlayer.setSource(_cachedAudioSource!);
+      await _audioPlayer.setSource(source);
+      _loadedUrl = audioUrl;
       await _audioPlayer.resume();
     } catch (e) {
       debugPrint('Audio error: $e');

@@ -129,12 +129,16 @@ hai dấu ngoặc nhọn. Không thêm tên database vào path của URI — cod
 
 ### 3. Nạp dữ liệu mẫu
 
-Chạy theo đúng thứ tự — bài học phải có trước vì từ vựng, Kanji và bài tập gắn vào bài:
+Chạy theo đúng thứ tự — kho từ vựng trước, để bài học trỏ vào từ giáo trình đã có thay vì tạo
+bản sao với nghĩa khác; bài học trước nhãn chia bộ, Kanji và bài tập vì chúng gắn vào bài:
 
 ```powershell
-node scripts/seed-situational-lessons.js   # 35 bài theo tình huống (N5 12, N4 19 bài có video; N3 4) + từ vựng
-node scripts/import-lesson-videos.js --all # gắn video cho N5 bài 1–12, xem mục dưới
-node scripts/seed-exercises.js             # 105 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 35 bài
+foreach ($f in 'n5','n4','n3','n2','n1','legacy-lessons') { node scripts/import-vocabulary.js --file "data/vocabulary/$f.csv" }
+node scripts/apply-vocabulary-fixes.js     # kiểm file sửa — kho vừa nhập đã gồm mọi dòng sửa, không còn gì để ghi
+node scripts/seed-situational-lessons.js   # 40 bài theo tình huống (N5 12, N4 19, N3 9), bài nào cũng có video
+node scripts/import-lesson-videos.js --all # gắn 160 video kèm lời thoại của 40 bài, xem mục dưới
+node scripts/apply-vocabulary-tags.js      # gắn nhãn chia bộ học cho mọi từ, gồm cả từ của bài tình huống
+node scripts/seed-exercises.js             # 120 bài tập mẫu: nghĩa từ, cách đọc, hội thoại của 40 bài
 node scripts/seed-kanji.js
 node scripts/seed-grammar.js
 node scripts/sync-lesson-relations.js
@@ -147,27 +151,46 @@ node scripts/seed-study-groups.js          # tuỳ chọn, cần có user trư�
 Các seeder trên upsert theo khoá tự nhiên (tiêu đề bài, mặt chữ Kanji, tên huy hiệu...) nên
 chạy lại không nhân bản dữ liệu và không đổi `_id` — tiến độ học, lịch ôn và lịch sử thi vẫn
 trỏ đúng. Bản ghi đã có mà khác nội dung được báo là xung đột và giữ nguyên, trừ khi chạy lại
-với `--overwrite`; thêm `--dry-run` để xem trước mà không ghi. Kho từ vựng lớn nhập bằng
-`node scripts/import-vocabulary.js --file <csv|xlsx>`, cũng upsert theo `(word, hiragana)`. Sau khi
-nhập, chạy theo thứ tự:
-
-```powershell
-node scripts/apply-vocabulary-fixes.js   # sửa các dòng công cụ nhập đã từ chối (data/vocabulary-fixes.json)
-node scripts/apply-vocabulary-tags.js    # gắn nhãn chia bộ học (data/vocabulary-tags.json)
-```
-
-Cả hai chạy lại không ghi gì thêm; `apply-vocabulary-fixes.js` dừng, không ghi dòng nào, nếu DB khác
-lúc soát (nghĩa đã bị sửa tay, khoá mới đã là từ khác).
+với `--overwrite`; thêm `--dry-run` để xem trước mà không ghi.
 
 MongoDB tạo database lười nên database chỉ xuất hiện sau khi seeder đầu tiên ghi document.
 
+### Kho từ vựng
+
+| File | Nội dung |
+| --- | --- |
+| `data/vocabulary/n5.csv`, `n4.csv` | Từ vựng *Minna no Nihongo* I và II; cột `Bài` là bài trong sách (N4: bài 26–50) |
+| `data/vocabulary/n3.csv`, `n2.csv`, `n1.csv` | Từ vựng *Mimikara Oboeru Goi* (耳から覚える 語彙トレーニング) N3, N2, N1 |
+| `data/vocabulary/legacy-lessons.csv` | 48 từ của các bộ bài chủ đề cũ của app, không thuộc giáo trình; giữ vì đã nằm trong bộ học |
+| `scripts/situational-lessons.js` | Từ riêng của 40 bài tình huống, do `seed-situational-lessons.js` tạo |
+
+Nghĩa tiếng Việt, âm Hán Việt và nhóm động từ đi kèm file gốc của từng giáo trình. Các file CSV là
+bản chụp kho đang chạy (2026-11-12) sau khi soát: mọi sửa đổi so với file gốc — dòng công cụ nhập
+từ chối, ô nhiều dạng viết lọt từ lần nhập cũ, chữ Hán gõ nhầm, Hán Việt thiếu âm — ghi trong
+`data/vocabulary-fixes.json` kèm nguồn và lý do. `tests/vocabulary-data.test.js` giữ các file CSV khớp
+với file sửa và file nhãn (`data/vocabulary-tags.json`), nên kho dựng lại từ repo ra đúng kho đang chạy.
+
+Mỗi file có cột `Từ vựng, Cách đọc, Nghĩa, Hán Việt, Cấp độ, Bài, Tình huống, Ví dụ, Nghĩa ví dụ`
+(UTF-8 có BOM); nhóm động từ ghi cuối cách đọc theo kiểu Minna, vd `おしえます(II)`. Công cụ nhập
+upsert theo `(word, hiragana)`: ô trống trong DB được điền, ô khác DB được báo và giữ nguyên trừ khi
+có `--overwrite`. Vì vậy:
+
+- sửa nghĩa hay Hán Việt: sửa trong CSV rồi nhập lại file đó với `--overwrite`;
+- đổi mặt chữ hay cách đọc (khoá của từ): thêm dòng `rename` vào `vocabulary-fixes.json` rồi chạy
+  `apply-vocabulary-fixes.js` — bản ghi giữ `_id` nên thẻ ôn và liên kết bài học không mất — và sửa
+  luôn dòng đó trong CSV.
+
+`apply-vocabulary-fixes.js` và `apply-vocabulary-tags.js` chạy lại không ghi gì thêm; script sửa dừng,
+không ghi dòng nào, nếu DB khác lúc soát (nghĩa đã bị sửa tay, khoá mới đã là từ khác).
+
 ### Video bài học
 
-N5 bài 1–12 và N4 bài 1–19 đi theo các chủ đề cấp 1 và cấp 2 của *つながるひろがる
+N5 bài 1–12, N4 bài 1–19 và N3 bài 1–9 đi theo các chủ đề cấp 1, 2 và 3 của *つながるひろがる
 にほんごでのくらし* (Bộ Giáo dục Nhật Bản — MEXT); video ghi nguồn theo điều 6 trong quy ước sử dụng
-của trang. Mỗi chủ đề có 3 cảnh và 1 video ôn tập. Video gốc để trong
-`BackEnd/data/Video_baihoc/<N5|N4>/<số bài>. <chủ đề>/`, đặt tên theo mẫu `10－1．Tên cảnh.mp4` và
-`10. Ôn tập.mp4` (không commit vào git). Mỗi bài có một file mô tả `data/lesson-videos/<n5|n4>-<số
+của trang. Mỗi chủ đề có 3 cảnh và 1 video ôn tập (40 bài, 160 video). Lời thoại đã đối chiếu với
+kịch bản chính thức của trang, bản dịch tiếng Việt đã soát. Video gốc để trong
+`BackEnd/data/Video_baihoc/<N5|N4|N3>/<số bài>. <chủ đề>/`, đặt tên theo mẫu `10－1．Tên cảnh.mp4` và
+`10. Ôn tập.mp4` (không commit vào git). Mỗi bài có một file mô tả `data/lesson-videos/<n5|n4|n3>-<số
 bài>-<tên>.json` — tạo file này (chỉ cần `lesson.title`) trước khi stage bài mới.
 
 ```powershell

@@ -68,8 +68,13 @@ const REMOVED_ROUTES = [
   ['delete', '/api/news'],
   // notebook
   ['get', '/api/notebook/admin/all'],
+  ['get', '/api/notebook/tags/all'], // one-style đợt 4
+  ['delete', '/api/notebook'], // one-style đợt 4
   // reports
   ['put', '/api/report/admin/507f1f77bcf86cd799439011/priority'],
+  ['delete', '/api/report/507f1f77bcf86cd799439011'], // one-style đợt 4
+  // settings (one-style đợt 4)
+  ['patch', '/api/settings/theme'],
   // study-groups
   ['get', '/api/group/admin/all'],
   // users
@@ -77,6 +82,9 @@ const REMOVED_ROUTES = [
   ['post', '/api/users/admin/users'],
   // grammar
   ['get', '/api/grammar/popular/N5'],
+  // kanji (one-style)
+  ['get', '/api/kanji/level/N5'],
+  ['get', '/api/kanji/lesson/507f1f77bcf86cd799439011'],
   // vocabulary
   ['get', '/api/vocabulary/random/practice'],
   ['post', '/api/vocabulary/learn/507f1f77bcf86cd799439011'],

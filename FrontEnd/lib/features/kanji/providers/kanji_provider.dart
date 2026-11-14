@@ -1,182 +1,70 @@
 import 'package:flutter/foundation.dart';
+
+import '../../../core/network/api_envelope.dart';
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/kanji.dart';
 import '../services/kanji_service.dart';
 
-class KanjiProvider with ChangeNotifier {
-  final KanjiService _kanjiService = KanjiService();
+/// Danh sách Kanji của màn tra cứu: lọc theo cấp độ, tải thêm khi cuộn, hoặc
+/// kết quả tìm kiếm trong cấp độ đang chọn.
+class KanjiProvider extends ChangeNotifier {
+  KanjiProvider({KanjiService? service}) : _service = service ?? KanjiService();
 
-  List<Kanji> _kanjis = [];
-  bool _isLoading = false;
-  String _errorMessage = '';
+  final KanjiService _service;
+  late final _kanjis = PagedList<Kanji>(onChanged: _notify);
+  String? _level;
+  String _search = '';
+  bool _disposed = false;
 
-  // Phân trang
-  int _currentPage = 1;
-  int _totalPages = 1;
-  int _total = 0;
-  final int _itemsPerPage = 20;
+  ViewState<List<Kanji>> get kanjis => _kanjis.state;
+  bool get hasMore => _kanjis.hasMore;
+  bool get isLoadingMore => _kanjis.isLoadingMore;
+  String? get loadMoreError => _kanjis.loadMoreError;
+  String? get selectedLevel => _level;
+  String get searchQuery => _search;
 
-  // Lọc
-  String? _selectedLevel;
-
-  // Getters
-  List<Kanji> get kanjis => _kanjis;
-  bool get isLoading => _isLoading;
-  String get errorMessage => _errorMessage;
-  int get currentPage => _currentPage;
-  int get totalPages => _totalPages;
-  int get total => _total;
-  int get itemsPerPage => _itemsPerPage;
-  String? get selectedLevel => _selectedLevel;
-
-  bool get hasNextPage => _currentPage < _totalPages;
-  bool get hasPreviousPage => _currentPage > 1;
-
-  // Tải danh sách kanji
-  Future<void> loadKanjis({bool refresh = false}) async {
-    if (refresh) {
-      _currentPage = 1;
-      _kanjis.clear();
-    }
-
-    _isLoading = true;
-    _errorMessage = '';
-    notifyListeners();
-
-    try {
-      final result = await _kanjiService.getKanjis(
-        page: _currentPage,
-        limit: _itemsPerPage,
-        level: _selectedLevel,
-      );
-
-      _kanjis = result['kanjis'] as List<Kanji>;
-      _total = result['total'] as int;
-      _currentPage = result['page'] as int;
-      _totalPages = result['totalPages'] as int;
-      _errorMessage = '';
-    } catch (e) {
-      _errorMessage = e.toString();
-      _kanjis = [];
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  /// Tải lại từ đầu với bộ lọc đang chọn.
+  Future<void> loadKanjis() {
+    final level = _level;
+    final keyword = _search;
+    return _kanjis.load((page) => keyword.isEmpty ? _service.list(page: page, level: level) : _searchPage(keyword, level));
   }
 
-  // Tìm kiếm kanji
-  Future<void> searchKanjis(String query) async {
-    if (query.isEmpty) {
-      await loadKanjis(refresh: true);
-      return;
-    }
+  Future<void> loadMore() => _kanjis.loadMore();
 
-    _isLoading = true;
-    _errorMessage = '';
-    notifyListeners();
-
-    try {
-      _kanjis = await _kanjiService.searchKanjis(query);
-      _currentPage = 1;
-      _totalPages = 1;
-      _total = _kanjis.length;
-      _errorMessage = '';
-    } catch (e) {
-      _errorMessage = e.toString();
-      _kanjis = [];
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  Future<void> filterByLevel(String? level) {
+    _level = level;
+    return loadKanjis();
   }
 
-  // Lọc theo level
-  Future<void> filterByLevel(String? level) async {
-    _selectedLevel = level;
-    await loadKanjis(refresh: true);
+  /// Từ khoá rỗng là quay về danh sách theo cấp độ.
+  Future<void> search(String keyword) {
+    _search = keyword.trim();
+    return loadKanjis();
   }
 
-  // Trang tiếp theo
-  Future<void> nextPage() async {
-    if (hasNextPage) {
-      _currentPage++;
-      await loadKanjis();
-    }
+  /// Kết quả tìm kiếm là một trang duy nhất (server trả tối đa 50 chữ).
+  Future<Paged<Kanji>> _searchPage(String keyword, String? level) async {
+    final items = await _service.search(keyword, level: level);
+    return Paged(items: items, page: 1, limit: items.length, total: items.length, totalPages: 1);
   }
 
-  // Trang trước
-  Future<void> previousPage() async {
-    if (hasPreviousPage) {
-      _currentPage--;
-      await loadKanjis();
-    }
-  }
-
-  // Tải kanji theo bài học
-  Future<void> loadKanjisByLesson(String lessonId) async {
-    _isLoading = true;
-    _errorMessage = '';
-    notifyListeners();
-
-    try {
-      _kanjis = await _kanjiService.getKanjisByLesson(lessonId);
-      _currentPage = 1;
-      _totalPages = 1;
-      _total = _kanjis.length;
-      _errorMessage = '';
-    } catch (e) {
-      _errorMessage = e.toString();
-      _kanjis = [];
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Tải kanji ngẫu nhiên
-  Future<void> loadRandomKanjis({int count = 10}) async {
-    _isLoading = true;
-    _errorMessage = '';
-    notifyListeners();
-
-    try {
-      _kanjis = await _kanjiService.getRandomKanjis(
-        count: count,
-        level: _selectedLevel,
-      );
-      _currentPage = 1;
-      _totalPages = 1;
-      _total = _kanjis.length;
-      _errorMessage = '';
-    } catch (e) {
-      _errorMessage = e.toString();
-      _kanjis = [];
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Reset
-  void reset() {
-    _kanjis = [];
-    _isLoading = false;
-    _errorMessage = '';
-    _currentPage = 1;
-    _totalPages = 1;
-    _total = 0;
-    _selectedLevel = null;
-    notifyListeners();
-  }
-
-  // Clear all state
+  /// Về trạng thái chưa tải (đăng xuất).
   void clear() {
-    _kanjis = [];
-    _isLoading = false;
-    _errorMessage = '';
-    _currentPage = 1;
-    _totalPages = 1;
-    _total = 0;
-    _selectedLevel = null;
-    notifyListeners();
+    _kanjis.clear();
+    _level = null;
+    _search = '';
+    _notify();
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

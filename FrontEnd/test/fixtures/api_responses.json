@@ -9,7 +9,9 @@
   "jlpt": "6a9f7ca4690dffebfc8011bf",
   "group": "6a9f8155f8815303b92a3dd1",
   "note": "6aec5c4d3b8b4c2bcee760fa",
-  "deck": "6aec5c4e3b8b4c2bcee760fe"
+  "deck": "6aec5c4e3b8b4c2bcee760fe",
+  "vocabularySet": "N5.greet.1",
+  "exerciseResult": "6ab80f159935deb4caa0de75"
  },
  "responses": {
   "/achievement/admin/all": {
@@ -783,10 +785,7 @@
     "kanji": 33
    }
   },
-  "/grammar?page=1&limit=10&level=N5&sortBy=popular": {
-   "totalItems": 8,
-   "totalPages": 1,
-   "currentPage": 1,
+  "/grammar?page=1&limit=20&level=N5&sortBy=popular": {
    "data": [
     {
      "_id": "6a9f7c606e79e76a2e67bdb9",
@@ -938,32 +937,38 @@
      "createdAt": "2026-09-08 10:09:20",
      "updatedAt": "2026-09-08 10:09:20"
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 20,
+   "total": 8,
+   "totalPages": 1
   },
   "/grammar/6a9f7c606e79e76a2e67bdb9": {
-   "_id": "6a9f7c606e79e76a2e67bdb9",
-   "title": "が (ga)",
-   "structure": "Danh từ + が + ...",
-   "meaning": "Trợ từ chỉ chủ ngữ",
-   "usage": "Đánh dấu chủ ngữ của câu, nhấn mạnh",
-   "level": "N5",
-   "examples": [
-    {
-     "sentence": "誰が来ましたか。",
-     "meaning": "Ai đã đến?"
-    },
-    {
-     "sentence": "水が欲しいです。",
-     "meaning": "Tôi muốn nước."
-    }
-   ],
-   "related_grammar": [],
-   "is_active": true,
-   "view_count": 23,
-   "difficulty": 3,
-   "__v": 0,
-   "createdAt": "2026-09-08 10:09:20",
-   "updatedAt": "2026-11-05 17:37:35"
+   "data": {
+    "_id": "6a9f7c606e79e76a2e67bdb9",
+    "title": "が (ga)",
+    "structure": "Danh từ + が + ...",
+    "meaning": "Trợ từ chỉ chủ ngữ",
+    "usage": "Đánh dấu chủ ngữ của câu, nhấn mạnh",
+    "level": "N5",
+    "examples": [
+     {
+      "sentence": "誰が来ましたか。",
+      "meaning": "Ai đã đến?"
+     },
+     {
+      "sentence": "水が欲しいです。",
+      "meaning": "Tôi muốn nước."
+     }
+    ],
+    "related_grammar": [],
+    "is_active": true,
+    "view_count": 23,
+    "difficulty": 3,
+    "__v": 0,
+    "createdAt": "2026-09-08 10:09:20",
+    "updatedAt": "2026-11-05 17:37:35"
+   }
   },
   "/group?page=1&limit=20": {
    "totalItems": 2,
@@ -1227,9 +1232,10 @@
    ]
   },
   "/kanji?page=1&limit=20": {
-   "totalItems": 40,
+   "page": 1,
+   "limit": 20,
+   "total": 40,
    "totalPages": 2,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6a9f7c94c3659e2214af4098",
@@ -2243,9 +2249,6 @@
    ]
   },
   "/news?page=1&limit=10": {
-   "totalItems": 10,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6a9f7d1ff8815303b92a3d77",
@@ -2325,7 +2328,11 @@
      "updatedAt": "2026-09-27 21:26:10",
      "views": 790
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 10,
+   "total": 10,
+   "totalPages": 1
   },
   "/news/6a9f7d1ff8815303b92a3d70": {
    "data": {
@@ -2374,9 +2381,10 @@
    ]
   },
   "/notebook?page=1&limit=20": {
-   "totalItems": 1,
+   "page": 1,
+   "limit": 20,
+   "total": 1,
    "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6aec5c4d3b8b4c2bcee760fa",
@@ -2548,9 +2556,6 @@
    }
   ],
   "/report/admin/all?page=1&limit=20": {
-   "totalItems": 1,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6aec5c4f3b8b4c2bcee76110",
@@ -2572,58 +2577,66 @@
      "updatedAt": "2026-11-05 17:37:03",
      "__v": 0
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 20,
+   "total": 1,
+   "totalPages": 1
   },
   "/report/admin/stats": {
-   "total": 1,
-   "byStatus": [
-    {
-     "_id": "pending",
-     "count": 1
-    }
-   ],
-   "byType": [
-    {
-     "_id": "bug",
-     "count": 1
-    }
-   ],
-   "byPriority": [
-    {
-     "_id": "high",
-     "count": 1
-    }
-   ],
-   "recentReports": [
-    {
-     "_id": "6aec5c4f3b8b4c2bcee76110",
-     "user_id": {
-      "_id": "6aec5c4a3b8b4c2bcee760c1",
-      "HoTen": "Nguyễn Thị Người Học",
-      "Email": "nguoi.hoc@example.invalid"
-     },
-     "type": "bug",
-     "related_id": null,
-     "related_type": null,
-     "title": "Báo cáo thử dài để xem bố cục khi tiêu đề khá dài trên màn hẹp",
-     "description": "Mô tả báo cáo để xem hiển thị trong chi tiết.",
-     "priority": "high",
-     "status": "pending",
-     "admin_response": null,
-     "resolved_at": null,
-     "createdAt": "2026-11-05T10:37:03.230Z",
-     "updatedAt": "2026-11-05T10:37:03.230Z",
-     "__v": 0
-    }
-   ],
-   "avgResolutionTimeHours": 0
+   "data": {
+    "total": 1,
+    "byStatus": [
+     {
+      "_id": "pending",
+      "count": 1
+     }
+    ],
+    "byType": [
+     {
+      "_id": "bug",
+      "count": 1
+     }
+    ],
+    "byPriority": [
+     {
+      "_id": "high",
+      "count": 1
+     }
+    ],
+    "recentReports": [
+     {
+      "_id": "6aec5c4f3b8b4c2bcee76110",
+      "user_id": {
+       "_id": "6aec5c4a3b8b4c2bcee760c1",
+       "HoTen": "Nguyễn Thị Người Học",
+       "Email": "nguoi.hoc@example.invalid"
+      },
+      "type": "bug",
+      "related_id": null,
+      "related_type": null,
+      "title": "Báo cáo thử dài để xem bố cục khi tiêu đề khá dài trên màn hẹp",
+      "description": "Mô tả báo cáo để xem hiển thị trong chi tiết.",
+      "priority": "high",
+      "status": "pending",
+      "admin_response": null,
+      "resolved_at": null,
+      "createdAt": "2026-11-05T10:37:03.230Z",
+      "updatedAt": "2026-11-05T10:37:03.230Z",
+      "__v": 0
+     }
+    ],
+    "avgResolutionTimeHours": 0
+   }
   },
   "/settings": {
-   "notificationsEnabled": true,
-   "soundEnabled": true,
-   "vibrateEnabled": true,
-   "language": "vi",
-   "theme": "light"
+   "data": {
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "vibrateEnabled": true,
+    "language": "vi",
+    "theme": "light"
+   }
   },
   "/srs/due?limit=20": {
    "data": [
@@ -2852,10 +2865,11 @@
    }
   ],
   "/transactions/admin/all?page=1&limit=20": {
-   "totalItems": 0,
-   "totalPages": 0,
-   "currentPage": 1,
-   "data": []
+   "data": [],
+   "page": 1,
+   "limit": 20,
+   "total": 0,
+   "totalPages": 0
   },
   "/users/admin/stats": {
    "totalUsers": 8,
@@ -3742,6 +3756,407 @@
     }
    ],
    "total": 59
+  },
+  "/vocabulary/sets/N5.greet.1": {
+   "data": {
+    "id": "N5.greet.1",
+    "level": "N5",
+    "title": "Chào hỏi & giao tiếp",
+    "section": null,
+    "part": 1,
+    "partCount": 5,
+    "wordCount": 17,
+    "learnedCount": 0,
+    "words": [
+     {
+      "_id": "6aa17bebd74d9e1f048ebb9c",
+      "word": "名前",
+      "__v": 0,
+      "examples": [
+       {
+        "sentence": "お名前は何ですか。",
+        "meaning": "Tên bạn là gì?",
+        "_id": "6aa17b91998ffc977f3885db"
+       }
+      ],
+      "hiragana": "なまえ",
+      "level": "N5",
+      "meaning": "Tên",
+      "related_kanjis": [],
+      "usage_context": null,
+      "hanviet": "DANH TIỀN",
+      "topic": "greet",
+      "word_type": "n",
+      "isLearned": false
+     },
+     {
+      "_id": "6aa17bebd74d9e1f048ebba0",
+      "word": "出身",
+      "__v": 0,
+      "examples": [
+       {
+        "sentence": "ベトナムの出身です。",
+        "meaning": "Tôi đến từ Việt Nam.",
+        "_id": "6aa17b91998ffc977f3885e7"
+       }
+      ],
+      "hiragana": "しゅっしん",
+      "level": "N5",
+      "meaning": "Quê quán, xuất thân",
+      "related_kanjis": [],
+      "usage_context": "Nói về nơi sinh ra hoặc nơi tốt nghiệp",
+      "hanviet": "XUẤT THÂN",
+      "topic": "greet",
+      "word_type": "n",
+      "isLearned": false
+     },
+     {
+      "_id": "6aa3b990d74d9e1f048edf99",
+      "word": "はい",
+      "hiragana": "はい",
+      "__v": 0,
+      "examples": [],
+      "level": "N5",
+      "meaning": "Vâng, dạ",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "greet",
+      "word_type": "expr",
+      "isLearned": false
+     },
+     {
+      "_id": "6aa3b990d74d9e1f048edf9a",
+      "hiragana": "いいえ",
+      "word": "いいえ",
+      "__v": 0,
+      "examples": [],
+      "level": "N5",
+      "meaning": "Không",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "greet",
+      "word_type": "expr",
+      "isLearned": false
+     },
+     {
+      "_id": "6aa3b991d74d9e1f048edf9b",
+      "word": "失礼ですが",
+      "hiragana": "しつれいですが",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "THẤT LỄ",
+      "level": "N5",
+      "meaning": "Xin lỗi,...",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "greet",
+      "word_type": "expr",
+      "isLearned": false
+     },
+     {
+      "_id": "6aa3b991d74d9e1f048edf9c",
+      "hiragana": "おなまえは?",
+      "word": "お名前は?",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "DANH TIỀN",
+      "level": "N5",
+      "meaning": "Tên anh/chị là gì?",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "greet",
+      "word_type": "expr",
+      "isLearned": false
+     }
+    ]
+   }
+  },
+  "/exercise/result/6ab80f159935deb4caa0de75": {
+   "_id": "6ab80f159935deb4caa0de75",
+   "user_id": "000000000000000000000001",
+   "exercise_id": {
+    "_id": "6ab388abf610c0926d31528b",
+    "title": "Nghĩa của từ — Đi tàu",
+    "type": "Từ vựng",
+    "level": "N5",
+    "questions": [
+     {
+      "content": "「電車」（でんしゃ）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "tàu điện",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d31528d"
+       },
+       {
+        "content": "nhà ga",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d31528e"
+       },
+       {
+        "content": "vé",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d31528f"
+       },
+       {
+        "content": "cửa soát vé",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d315290"
+       }
+      ],
+      "explanation": "電車（でんしゃ）: tàu điện",
+      "_id": "6ab388abf610c0926d31528c"
+     },
+     {
+      "content": "「駅」（えき）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "vé",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d315292"
+       },
+       {
+        "content": "nhà ga",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d315293"
+       },
+       {
+        "content": "cửa soát vé",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d315294"
+       },
+       {
+        "content": "chuyển tàu",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d315295"
+       }
+      ],
+      "explanation": "駅（えき）: nhà ga",
+      "_id": "6ab388abf610c0926d315291"
+     },
+     {
+      "content": "「切符」（きっぷ）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "cửa soát vé",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d315297"
+       },
+       {
+        "content": "chuyển tàu",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d315298"
+       },
+       {
+        "content": "vé",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d315299"
+       },
+       {
+        "content": "một chiều",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d31529a"
+       }
+      ],
+      "explanation": "切符（きっぷ）: vé",
+      "_id": "6ab388abf610c0926d315296"
+     },
+     {
+      "content": "「改札」（かいさつ）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "chuyển tàu",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d31529c"
+       },
+       {
+        "content": "một chiều",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d31529d"
+       },
+       {
+        "content": "khứ hồi",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d31529e"
+       },
+       {
+        "content": "cửa soát vé",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d31529f"
+       }
+      ],
+      "explanation": "改札（かいさつ）: cửa soát vé",
+      "_id": "6ab388abf610c0926d31529b"
+     },
+     {
+      "content": "「乗り換え」（のりかえ）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "chuyển tàu",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d3152a1"
+       },
+       {
+        "content": "một chiều",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152a2"
+       },
+       {
+        "content": "khứ hồi",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152a3"
+       },
+       {
+        "content": "bảng giờ tàu",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152a4"
+       }
+      ],
+      "explanation": "乗り換え（のりかえ）: chuyển tàu",
+      "_id": "6ab388abf610c0926d3152a0"
+     },
+     {
+      "content": "「片道」（かたみち）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "khứ hồi",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152a6"
+       },
+       {
+        "content": "một chiều",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d3152a7"
+       },
+       {
+        "content": "bảng giờ tàu",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152a8"
+       },
+       {
+        "content": "tàu điện",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152a9"
+       }
+      ],
+      "explanation": "片道（かたみち）: một chiều",
+      "_id": "6ab388abf610c0926d3152a5"
+     },
+     {
+      "content": "「往復」（おうふく）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "bảng giờ tàu",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152ab"
+       },
+       {
+        "content": "tàu điện",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152ac"
+       },
+       {
+        "content": "khứ hồi",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d3152ad"
+       },
+       {
+        "content": "nhà ga",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152ae"
+       }
+      ],
+      "explanation": "往復（おうふく）: khứ hồi",
+      "_id": "6ab388abf610c0926d3152aa"
+     },
+     {
+      "content": "「時刻表」（じこくひょう）nghĩa là gì?",
+      "answers": [
+       {
+        "content": "tàu điện",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152b0"
+       },
+       {
+        "content": "nhà ga",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152b1"
+       },
+       {
+        "content": "vé",
+        "is_correct": false,
+        "_id": "6ab388abf610c0926d3152b2"
+       },
+       {
+        "content": "bảng giờ tàu",
+        "is_correct": true,
+        "_id": "6ab388abf610c0926d3152b3"
+       }
+      ],
+      "explanation": "時刻表（じこくひょう）: bảng giờ tàu",
+      "_id": "6ab388abf610c0926d3152af"
+     }
+    ]
+   },
+   "score": 75,
+   "correct_count": 6,
+   "total_questions": 8,
+   "time_spent": 96,
+   "user_answers": [
+    {
+     "question_id": "6ab388abf610c0926d31528c",
+     "answer_id": "6ab388abf610c0926d31528d",
+     "is_correct": true,
+     "correct_answer_id": "6ab388abf610c0926d31528d"
+    },
+    {
+     "question_id": "6ab388abf610c0926d315291",
+     "answer_id": "6ab388abf610c0926d315293",
+     "is_correct": true,
+     "correct_answer_id": "6ab388abf610c0926d315293"
+    },
+    {
+     "question_id": "6ab388abf610c0926d315296",
+     "answer_id": "6ab388abf610c0926d315299",
+     "is_correct": true,
+     "correct_answer_id": "6ab388abf610c0926d315299"
+    },
+    {
+     "question_id": "6ab388abf610c0926d31529b",
+     "answer_id": "6ab388abf610c0926d31529f",
+     "is_correct": true,
+     "correct_answer_id": "6ab388abf610c0926d31529f"
+    },
+    {
+     "question_id": "6ab388abf610c0926d3152a0",
+     "answer_id": "6ab388abf610c0926d3152a1",
+     "is_correct": true,
+     "correct_answer_id": "6ab388abf610c0926d3152a1"
+    },
+    {
+     "question_id": "6ab388abf610c0926d3152a5",
+     "answer_id": "6ab388abf610c0926d3152a7",
+     "is_correct": true,
+     "correct_answer_id": "6ab388abf610c0926d3152a7"
+    },
+    {
+     "question_id": "6ab388abf610c0926d3152aa",
+     "answer_id": "6ab388abf610c0926d3152ab",
+     "is_correct": false,
+     "correct_answer_id": "6ab388abf610c0926d3152ad"
+    },
+    {
+     "question_id": "6ab388abf610c0926d3152af",
+     "answer_id": "6ab388abf610c0926d3152b0",
+     "is_correct": false,
+     "correct_answer_id": "6ab388abf610c0926d3152b3"
+    }
+   ],
+   "is_passed": true,
+   "completed_at": "2026-09-26T14:01:00.000Z",
+   "__v": 0,
+   "createdAt": "2026-09-26T18:29:41.965Z",
+   "updatedAt": "2026-09-26T18:29:41.965Z"
   }
  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
+import 'package:apphoctiengnnhat/features/settings/models/export_document.dart';
 import 'package:apphoctiengnnhat/features/settings/services/export_service.dart';
 
 http.Response _json(Object body, [int status = 200]) => http.Response(jsonEncode(body), status,

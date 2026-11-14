@@ -4,6 +4,9 @@ import '../../notifications/models/notification.dart';
 import '../models/admin_achievement.dart';
 import '../services/admin_service.dart';
 
+/// Các khu của trang quản trị, mỗi khu một lỗi tải riêng.
+enum AdminSection { stats, users, content, reports, achievements, transactions, analytics }
+
 class AdminProvider extends ChangeNotifier {
   /// Nhận service qua constructor để test truyền bản giả.
   AdminProvider({AdminService? adminService})
@@ -44,8 +47,13 @@ class AdminProvider extends ChangeNotifier {
   Map<String, dynamic>? _analytics;
   bool _isLoadingAnalytics = false;
 
-  // Error
+  /// Lỗi của thao tác ghi gần nhất (khoá, sửa, xoá…), để màn hiện SnackBar.
   String? _error;
+
+  /// Lỗi tải của từng khu. Tách riêng để báo cáo không tải được thì trang tổng
+  /// quan không báo lỗi theo, và một thao tác hỏng không biến danh sách đang
+  /// có thành màn lỗi.
+  final Map<AdminSection, String> _loadErrors = {};
 
   // General loading state
   bool get isLoading =>
@@ -93,17 +101,23 @@ class AdminProvider extends ChangeNotifier {
 
   String? get error => _error;
 
+  String? loadErrorOf(AdminSection section) => _loadErrors[section];
+
+  void clearLoadError(AdminSection section) {
+    if (_loadErrors.remove(section) != null) notifyListeners();
+  }
+
   // ==================== DASHBOARD ====================
 
   Future<void> loadDashboardStats() async {
     _isLoadingStats = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.stats);
     notifyListeners();
 
     try {
       _dashboardStats = await _adminService.getDashboardStats();
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.stats] = userMessageOf(e);
       debugPrint('Error loading dashboard stats: $e');
     } finally {
       _isLoadingStats = false;
@@ -115,7 +129,7 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadUsers({String? search, String? status, String? role}) async {
     _isLoadingUsers = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.users);
     notifyListeners();
 
     try {
@@ -126,7 +140,7 @@ class AdminProvider extends ChangeNotifier {
       );
       _userStats = await _adminService.getUserStats();
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.users] = userMessageOf(e);
       debugPrint('Error loading users: $e');
     } finally {
       _isLoadingUsers = false;
@@ -198,13 +212,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadVocabulary({String? level}) async {
     _isLoadingContent = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.content);
     notifyListeners();
 
     try {
       _vocabulary = await _adminService.getVocabulary(level: level);
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.content] = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -249,13 +263,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadKanji({String? level}) async {
     _isLoadingContent = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.content);
     notifyListeners();
 
     try {
       _kanji = await _adminService.getKanji(level: level);
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.content] = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -300,13 +314,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadGrammar({String? level}) async {
     _isLoadingContent = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.content);
     notifyListeners();
 
     try {
       _grammar = await _adminService.getGrammar(level: level);
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.content] = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -351,13 +365,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadLessons({String? level}) async {
     _isLoadingContent = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.content);
     notifyListeners();
 
     try {
       _lessons = await _adminService.getLessons(level: level);
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.content] = userMessageOf(e);
     } finally {
       _isLoadingContent = false;
       notifyListeners();
@@ -513,14 +527,14 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadReports({String? status, String? type}) async {
     _isLoadingReports = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.reports);
     notifyListeners();
 
     try {
       _reports = await _adminService.getReports(status: status, type: type);
       _reportStats = await _adminService.getReportStats();
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.reports] = userMessageOf(e);
       debugPrint('Error loading reports: $e');
     } finally {
       _isLoadingReports = false;
@@ -557,13 +571,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadAchievements() async {
     _isLoadingAchievements = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.achievements);
     notifyListeners();
 
     try {
       _achievements = await _adminService.getAchievements();
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.achievements] = userMessageOf(e);
       debugPrint('Error loading achievements: $e');
     } finally {
       _isLoadingAchievements = false;
@@ -596,13 +610,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadTransactions({String? status}) async {
     _isLoadingTransactions = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.transactions);
     notifyListeners();
 
     try {
       _transactions = await _adminService.getTransactions(status: status);
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.transactions] = userMessageOf(e);
       debugPrint('Error loading transactions: $e');
     } finally {
       _isLoadingTransactions = false;
@@ -626,13 +640,13 @@ class AdminProvider extends ChangeNotifier {
 
   Future<void> loadAnalytics({String period = '7d'}) async {
     _isLoadingAnalytics = true;
-    _error = null;
+    _loadErrors.remove(AdminSection.analytics);
     notifyListeners();
 
     try {
       _analytics = await _adminService.getAnalytics(period: period);
     } catch (e) {
-      _error = userMessageOf(e);
+      _loadErrors[AdminSection.analytics] = userMessageOf(e);
       debugPrint('Error loading analytics: $e');
     } finally {
       _isLoadingAnalytics = false;
@@ -666,10 +680,5 @@ class AdminProvider extends ChangeNotifier {
       ViewFailure(:final message) => (sent: 0, error: message),
       _ => (sent: 0, error: null),
     };
-  }
-
-  void clearError() {
-    _error = null;
-    notifyListeners();
   }
 }

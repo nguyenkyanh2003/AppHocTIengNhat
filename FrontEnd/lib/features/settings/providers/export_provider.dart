@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../core/network/api_envelope.dart';
 import '../services/export_service.dart';
 
 /// Trạng thái một lần xuất dữ liệu, kèm huỷ giữa chừng.
@@ -27,12 +28,16 @@ class ExportProvider extends ChangeNotifier {
     if (!_disposed) notifyListeners();
   }
 
-  Future<Map<String, dynamic>> load(String type) async {
+  /// Gom dữ liệu loại [type]; trả `null` khi người dùng huỷ giữa chừng. Lỗi ở
+  /// bất kỳ trang nào được ném ra nguyên vẹn — không bao giờ trả dữ liệu thiếu.
+  Future<JsonObject?> load(String type) async {
     final generation = ++_generation;
     _exporting = true;
     _notify();
     try {
       return await _service.load(type, isCancelled: () => generation != _generation || _disposed);
+    } on ExportCancelled {
+      return null;
     } finally {
       if (generation == _generation) {
         _exporting = false;

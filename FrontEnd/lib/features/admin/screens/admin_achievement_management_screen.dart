@@ -65,7 +65,7 @@ class _AdminAchievementManagementScreenState
                   child: AsyncView<List<AdminAchievement>>(
                     state: ViewState.fromLegacy(
                       isLoading: adminProvider.isLoadingAchievements,
-                      error: all.isEmpty ? adminProvider.error : null,
+                      error: all.isEmpty ? adminProvider.loadErrorOf(AdminSection.achievements) : null,
                       value: shown,
                       isEmpty: shown.isEmpty,
                     ),

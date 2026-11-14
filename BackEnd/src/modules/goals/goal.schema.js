@@ -1,11 +1,10 @@
 import { z } from 'zod';
 
 import { DATE_KEY, GOAL_TYPES } from '../../../model/LearningGoal.js';
+import { objectId } from '../../shared/http/schemas.js';
 
 export const TITLE_MAX = 120;
 export const TARGET_MAX = 100000;
-
-const objectId = z.string().regex(/^[a-f0-9]{24}$/i, 'ID không hợp lệ.');
 
 const target = z
   .number({ error: 'Số cần đạt phải là số nguyên dương.' })

@@ -131,6 +131,32 @@ void main() {
     expect(find.text(_tooShort), findsOneWidget);
   });
 
+  testWidgets('đăng ký bị server từ chối thì báo lỗi và ở lại form, không báo thành công', (tester) async {
+    Future<void> fillAndSubmit() async {
+      await tester.enterText(_field('Tên người dùng'), 'nguoi_moi');
+      await tester.enterText(_field('Họ và Tên'), 'Người Mới');
+      await tester.enterText(_field('Email'), 'moi@example.com');
+      await tester.enterText(_field('Mật khẩu'), 'mat-khau-dai');
+      await tester.enterText(_field('Xác nhận mật khẩu'), 'mat-khau-dai');
+      await tester.ensureVisible(find.widgetWithText(ElevatedButton, 'Đăng ký'));
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Đăng ký'));
+      await tester.pumpAndSettle();
+    }
+
+    await http.runWithClient(() async {
+      await _pump(tester, '/register', const RegisterScreen());
+      await fillAndSubmit();
+    }, () => MockClient((request) async => http.Response(
+          jsonEncode({'message': 'Tên đăng nhập đã tồn tại'}),
+          409,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        )));
+
+    expect(find.textContaining('Đăng ký thất bại'), findsOneWidget);
+    expect(find.text('Đăng ký thành công!'), findsNothing);
+    expect(find.byType(RegisterScreen), findsOneWidget, reason: 'không được chuyển sang trang đăng nhập');
+  });
+
   testWidgets('đặt lại mật khẩu: cùng ngưỡng và cùng thông điệp', (tester) async {
     String? submitted;
     await _pump(tester, '/reset', Scaffold(

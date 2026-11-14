@@ -1,3 +1,4 @@
+import '../../../core/network/api_envelope.dart';
 import '../../srs/models/srs_progress.dart';
 
 class Kanji {
@@ -16,7 +17,7 @@ class Kanji {
   /// Thẻ ôn của người đang xem; chỉ chi tiết Kanji mới trả, danh sách thì `null`.
   final SrsProgress? srsProgress;
 
-  Kanji({
+  const Kanji({
     required this.id,
     required this.character,
     this.hanviet,
@@ -33,38 +34,28 @@ class Kanji {
 
   bool get isInReview => srsProgress != null;
 
-  factory Kanji.fromJson(Map<String, dynamic> json) {
+  factory Kanji.fromJson(JsonObject json) {
+    final progress = json['srs_progress'];
     return Kanji(
-      id: json['_id'] ?? '',
-      character: json['character'] ?? '',
-      hanviet: json['hanviet'],
-      onyomi: (json['onyomi'] as List<dynamic>?)
-              ?.map((e) => e.toString())
-              .toList() ??
-          [],
-      kunyomi: (json['kunyomi'] as List<dynamic>?)
-              ?.map((e) => e.toString())
-              .toList() ??
-          [],
-      meaning: json['meaning'],
-      level: json['level'],
-      strokeOrderSvg: json['stroke_order_svg'],
-      examples: (json['examples'] as List<dynamic>?)
-              ?.map((e) => KanjiExample.fromJson(e))
-              .toList() ??
-          [],
-      createdAt:
-          json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
-      updatedAt:
-          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
-      srsProgress: json['srs_progress'] is Map
-          ? SrsProgress.fromJson(Map<String, dynamic>.from(json['srs_progress']))
-          : null,
+      id: json['_id'] as String? ?? '',
+      character: json['character'] as String? ?? '',
+      hanviet: json['hanviet'] as String?,
+      onyomi: _strings(json['onyomi']),
+      kunyomi: _strings(json['kunyomi']),
+      meaning: json['meaning'] as String?,
+      level: json['level'] as String?,
+      strokeOrderSvg: json['stroke_order_svg'] as String?,
+      examples: [
+        for (final example in json['examples'] as List? ?? const [])
+          if (example is Map) KanjiExample.fromJson(Map<String, dynamic>.from(example)),
+      ],
+      createdAt: _dateOf(json['createdAt']),
+      updatedAt: _dateOf(json['updatedAt']),
+      srsProgress: progress is Map ? SrsProgress.fromJson(Map<String, dynamic>.from(progress)) : null,
     );
   }
 
-  /// Bản sao với thẻ ôn mới — `null` nghĩa là vừa gỡ khỏi lịch ôn, điều
-  /// [copyWith] không diễn đạt được.
+  /// Bản sao với thẻ ôn mới — `null` nghĩa là vừa gỡ khỏi lịch ôn.
   Kanji withSrsProgress(SrsProgress? progress) => Kanji(
         id: id,
         character: character,
@@ -80,50 +71,9 @@ class Kanji {
         srsProgress: progress,
       );
 
-  Map<String, dynamic> toJson() {
-    return {
-      '_id': id,
-      'character': character,
-      'hanviet': hanviet,
-      'onyomi': onyomi,
-      'kunyomi': kunyomi,
-      'meaning': meaning,
-      'level': level,
-      'stroke_order_svg': strokeOrderSvg,
-      'examples': examples.map((e) => e.toJson()).toList(),
-      'createdAt': createdAt?.toIso8601String(),
-      'updatedAt': updatedAt?.toIso8601String(),
-    };
-  }
+  static List<String> _strings(Object? value) => [for (final item in value as List? ?? const []) '$item'];
 
-  Kanji copyWith({
-    String? id,
-    String? character,
-    String? hanviet,
-    List<String>? onyomi,
-    List<String>? kunyomi,
-    String? meaning,
-    String? level,
-    String? strokeOrderSvg,
-    List<KanjiExample>? examples,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) {
-    return Kanji(
-      id: id ?? this.id,
-      character: character ?? this.character,
-      hanviet: hanviet ?? this.hanviet,
-      onyomi: onyomi ?? this.onyomi,
-      kunyomi: kunyomi ?? this.kunyomi,
-      meaning: meaning ?? this.meaning,
-      level: level ?? this.level,
-      strokeOrderSvg: strokeOrderSvg ?? this.strokeOrderSvg,
-      examples: examples ?? this.examples,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      srsProgress: srsProgress,
-    );
-  }
+  static DateTime? _dateOf(Object? value) => value is String ? DateTime.tryParse(value) : null;
 }
 
 class KanjiExample {
@@ -131,25 +81,15 @@ class KanjiExample {
   final String hiragana; // がくせい
   final String meaning; // Học sinh
 
-  KanjiExample({
+  const KanjiExample({
     required this.word,
     required this.hiragana,
     required this.meaning,
   });
 
-  factory KanjiExample.fromJson(Map<String, dynamic> json) {
-    return KanjiExample(
-      word: json['word'] ?? '',
-      hiragana: json['hiragana'] ?? '',
-      meaning: json['meaning'] ?? '',
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'word': word,
-      'hiragana': hiragana,
-      'meaning': meaning,
-    };
-  }
+  factory KanjiExample.fromJson(JsonObject json) => KanjiExample(
+        word: json['word'] as String? ?? '',
+        hiragana: json['hiragana'] as String? ?? '',
+        meaning: json['meaning'] as String? ?? '',
+      );
 }

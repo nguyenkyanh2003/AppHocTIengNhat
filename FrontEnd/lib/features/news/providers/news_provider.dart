@@ -1,130 +1,79 @@
 import 'package:flutter/foundation.dart';
+
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/news.dart';
 import '../services/news_service.dart';
-import '../../../core/state/view_state.dart';
 
+/// Danh sách tin (dùng chung cho trang tin và băng tin ở trang chủ) và bài đang đọc.
 class NewsProvider extends ChangeNotifier {
-  final NewsService _service = NewsService();
+  NewsProvider({NewsService? service}) : _service = service ?? NewsService();
 
-  List<News> _newsList = [];
-  News? _selectedNews;
-  List<News> _relatedNews = [];
+  final NewsService _service;
+  late final _list = PagedList<News>(onChanged: _notify);
 
-  int _currentPage = 1;
-  int _totalPages = 1;
-  final int _limit = 10;
+  ViewState<News> _detail = const ViewState.idle();
+  List<News> _related = const [];
+  int _detailGeneration = 0;
 
-  bool _isLoading = false;
-  bool _isLoadingDetail = false;
-  String? _error;
+  /// Tin yêu thích chỉ giữ trong phiên — chưa có API lưu.
+  final Set<String> _bookmarks = {};
+  bool _disposed = false;
 
-  String? _selectedLevel;
-  String? _searchQuery;
+  ViewState<List<News>> get listState => _list.state;
 
-  final Set<String> _bookmarks = {}; // Local bookmarks (in-memory)
+  /// Danh sách đang có (rỗng khi chưa tải xong), cho băng tin ở trang chủ.
+  List<News> get newsList => _list.state.valueOrNull ?? const [];
+  bool get hasMore => _list.hasMore;
+  bool get isLoadingMore => _list.isLoadingMore;
+  String? get loadMoreError => _list.loadMoreError;
 
-  // Getters
-  List<News> get newsList => _newsList;
-  News? get selectedNews => _selectedNews;
-  List<News> get relatedNews => _relatedNews;
-  bool get isLoading => _isLoading;
-  bool get isLoadingDetail => _isLoadingDetail;
-  String? get error => _error;
-  int get currentPage => _currentPage;
-  int get totalPages => _totalPages;
-  String? get selectedLevel => _selectedLevel;
-  String? get searchQuery => _searchQuery;
+  ViewState<News> get detailState => _detail;
+  List<News> get related => _related;
 
   bool isBookmarked(String newsId) => _bookmarks.contains(newsId);
-  List<News> get bookmarkedNews =>
-      _newsList.where((n) => isBookmarked(n.id)).toList();
+  List<News> get bookmarkedNews => newsList.where((news) => isBookmarked(news.id)).toList();
 
-  // Load danh sách tin tức
-  Future<void> loadNews({
-    bool refresh = false,
-    String? level,
-    String? search,
-  }) async {
-    if (refresh) {
-      _currentPage = 1;
-      _newsList = [];
-    }
+  Future<void> load({String? level, String? search}) =>
+      _list.load((page) => _service.list(page: page, level: level, search: search));
 
-    if (_currentPage > _totalPages && !refresh) return;
+  Future<void> loadMore() => _list.loadMore();
 
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  /// Tải lại đúng bộ lọc đang hiện; chưa tải lần nào thì tải tin mới nhất.
+  Future<void> refresh() => _list.state is ViewIdle ? load() : _list.reload();
 
-    try {
-      final response = await _service.getNewsList(
-        page: _currentPage,
-        limit: _limit,
-        level: level,
-        search: search,
-      );
+  /// Bài hiện ngay khi tải xong; tin liên quan là phần phụ tải sau, hỏng thì khối
+  /// đó ẩn đi chứ bài vẫn đọc được.
+  Future<void> loadDetail(String id) async {
+    final generation = ++_detailGeneration;
+    _detail = const ViewState.loading();
+    _related = const [];
+    _notify();
 
-      _totalPages = response['pages'] as int;
-      final newNews = response['data'] as List<News>;
+    final detail = await ViewState.guard(() => _service.detail(id));
+    if (generation != _detailGeneration) return;
+    _detail = detail;
+    _notify();
+    if (!detail.hasData) return;
 
-      if (refresh) {
-        _newsList = newNews;
-      } else {
-        _newsList.addAll(newNews);
-      }
-
-      _selectedLevel = level;
-      _searchQuery = search;
-      _currentPage++;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+    final related = await ViewState.guard(() => _service.related(id));
+    if (generation != _detailGeneration) return;
+    _related = related.valueOrNull ?? const [];
+    _notify();
   }
 
-  // Load chi tiết tin tức
-  Future<void> loadNewsDetail(String newsId) async {
-    _isLoadingDetail = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final news = await _service.getNewsDetail(newsId);
-      _selectedNews = news;
-
-      // Load tin tức liên quan
-      _relatedNews = await _service.getRelatedNews(newsId);
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-    } finally {
-      _isLoadingDetail = false;
-      notifyListeners();
-    }
-  }
-
-  // Toggle bookmark
   void toggleBookmark(String newsId) {
-    if (_bookmarks.contains(newsId)) {
-      _bookmarks.remove(newsId);
-    } else {
-      _bookmarks.add(newsId);
-    }
-    notifyListeners();
+    if (!_bookmarks.remove(newsId)) _bookmarks.add(newsId);
+    _notify();
   }
 
-  // Clear
-  void clearSelection() {
-    _selectedNews = null;
-    _relatedNews = [];
-    notifyListeners();
+  void _notify() {
+    if (!_disposed) notifyListeners();
   }
 
-  void clearError() {
-    _error = null;
-    notifyListeners();
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

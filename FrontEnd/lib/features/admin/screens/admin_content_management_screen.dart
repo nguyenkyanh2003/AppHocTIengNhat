@@ -6,6 +6,7 @@ import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
+import '../widgets/admin_content_table.dart';
 import '../widgets/admin_content_format.dart';
 import '../widgets/admin_content_editor.dart';
 import '../widgets/admin_content_actions.dart';
@@ -89,6 +90,7 @@ class _AdminContentManagementScreenState
         child: Consumer<AdminProvider>(
           builder: (context, provider, child) {
             final content = _contentOf(provider);
+            final loadError = provider.loadErrorOf(AdminSection.content);
             final search = _searchController.text.trim().toLowerCase();
             final filtered = search.isEmpty
                 ? content
@@ -128,14 +130,14 @@ class _AdminContentManagementScreenState
                   ),
                 ),
                 AdminContentStats(content: filtered),
-                if (provider.error != null && content.isNotEmpty)
+                if (loadError != null && content.isNotEmpty)
                   MaterialBanner(
-                    content: Text(provider.error!),
+                    content: Text(loadError),
                     leading:
                         Icon(Icons.error_outline, color: context.colors.error),
                     actions: [
                       TextButton(
-                        onPressed: provider.clearError,
+                        onPressed: () => provider.clearLoadError(AdminSection.content),
                         child: const Text('Đóng'),
                       ),
                     ],
@@ -144,7 +146,7 @@ class _AdminContentManagementScreenState
                   child: AsyncView<List<Map<String, dynamic>>>(
                     state: ViewState.fromLegacy(
                       isLoading: provider.isLoadingContent,
-                      error: content.isEmpty ? provider.error : null,
+                      error: content.isEmpty ? loadError : null,
                       value: filtered,
                       isEmpty: filtered.isEmpty,
                     ),
@@ -158,12 +160,12 @@ class _AdminContentManagementScreenState
                       items: filtered,
                       onRefresh: _loadContent,
                       rowKey: (item) => ValueKey(item['_id'] ?? item['id']),
-                      columns: _contentColumns(),
+                      columns: adminContentColumns(_selectedContentType, onAction: _handleAction),
                       cardBuilder: (context, item) => AdminContentCard(
                           item: item,
                           selectedContentType: _selectedContentType,
                           handleAction: _handleAction,
-                          contentTitle: _contentTitle),
+                          contentTitle: (item) => adminContentTitle(_selectedContentType, item)),
                     ),
                   ),
                 ),
@@ -204,61 +206,10 @@ class _AdminContentManagementScreenState
       case 'delete':
         confirmDeleteAdminContent(context, item,
             selectedContentType: _selectedContentType,
-            contentTitle: _contentTitle);
+            contentTitle: (item) => adminContentTitle(_selectedContentType, item));
         break;
     }
   }
-
-  /// Cot bang noi dung tren vung rong; cung du lieu voi the o man hep.
-  List<AdaptiveColumn<Map<String, dynamic>>> _contentColumns() {
-    return [
-      AdaptiveColumn(
-        label: 'Nội dung',
-        minWidth: 220,
-        cell: (context, item) => Text(
-          (item['title'] ?? item['character'] ?? item['structure'] ?? '')
-              .toString(),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      AdaptiveColumn(
-        label: 'Nghĩa',
-        minWidth: 200,
-        cell: (context, item) => Text(
-          (item['meaning'] ?? '').toString(),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      AdaptiveColumn(
-        label: 'Cấp độ',
-        width: 96,
-        cell: (context, item) => Text((item['level'] ?? '').toString()),
-      ),
-      AdaptiveColumn(
-        label: 'Thao tác',
-        width: 72,
-        alignEnd: true,
-        cell: (context, item) => PopupMenuButton<String>(
-          onSelected: (action) => _handleAction(action, item),
-          itemBuilder: (context) => const [
-            PopupMenuItem(value: 'edit', child: Text('Sửa')),
-            PopupMenuItem(value: 'delete', child: Text('Xoá')),
-          ],
-        ),
-      ),
-    ];
-  }
-
-  String _contentTitle(Map<String, dynamic> item) =>
-      switch (_selectedContentType) {
-        'vocabulary' => '${item['word'] ?? ''} (${item['hiragana'] ?? ''})',
-        'kanji' => '${item['character'] ?? ''} — ${item['meaning'] ?? ''}',
-        'grammar' => '${item['title'] ?? ''} — ${item['meaning'] ?? ''}',
-        'lessons' => item['title']?.toString() ?? '',
-        _ => '',
-      };
 
   @override
   void dispose() {

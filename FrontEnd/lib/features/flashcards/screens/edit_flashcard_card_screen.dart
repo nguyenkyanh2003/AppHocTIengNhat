@@ -1,48 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/flashcard_provider.dart';
-import '../models/flashcard_deck.dart';
-import '../../../app/theme/app_theme.dart';
+
+import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_typography.dart';
-import '../../../app/theme/app_tokens.dart';
+import '../models/flashcard_deck.dart';
+import '../providers/flashcard_provider.dart';
+import '../widgets/flashcard_form_parts.dart';
 import '../widgets/flashcard_preview_card.dart';
 
 class EditFlashcardCardScreen extends StatefulWidget {
   final String deckId;
   final FlashcardCard? card; // null = tạo mới, có giá trị = chỉnh sửa
 
-  const EditFlashcardCardScreen({
-    Key? key,
-    required this.deckId,
-    this.card,
-  }) : super(key: key);
+  const EditFlashcardCardScreen({super.key, required this.deckId, this.card});
 
   @override
-  State<EditFlashcardCardScreen> createState() =>
-      _EditFlashcardCardScreenState();
+  State<EditFlashcardCardScreen> createState() => _EditFlashcardCardScreenState();
 }
 
 class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _frontController = TextEditingController();
-  final _backController = TextEditingController();
-  final _frontSubtextController = TextEditingController();
-  final _backSubtextController = TextEditingController();
+  late final _frontController = TextEditingController(text: widget.card?.front);
+  late final _backController = TextEditingController(text: widget.card?.back);
+  late final _frontSubtextController = TextEditingController(text: widget.card?.frontSubtext);
+  late final _backSubtextController = TextEditingController(text: widget.card?.backSubtext);
 
   bool _isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.card != null) {
-      _frontController.text = widget.card!.front;
-      _backController.text = widget.card!.back;
-      _frontSubtextController.text = widget.card!.frontSubtext ?? '';
-      _backSubtextController.text = widget.card!.backSubtext ?? '';
-    }
-  }
+  bool get _isEditing => widget.card != null;
 
   @override
   void dispose() {
@@ -53,231 +40,125 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
     super.dispose();
   }
 
+  static String? _optional(TextEditingController controller) {
+    final text = controller.text.trim();
+    return text.isEmpty ? null : text;
+  }
+
   Future<void> _saveCard() async {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-
     final provider = context.read<FlashcardProvider>();
-    bool success;
-
-    if (widget.card == null) {
-      // Tạo mới
-      success = await provider.addCard(
-        deckId: widget.deckId,
-        front: _frontController.text.trim(),
-        back: _backController.text.trim(),
-        frontSubtext: _frontSubtextController.text.trim().isEmpty
-            ? null
-            : _frontSubtextController.text.trim(),
-        backSubtext: _backSubtextController.text.trim().isEmpty
-            ? null
-            : _backSubtextController.text.trim(),
-      );
-    } else {
-      // Cập nhật
-      success = await provider.updateCard(
-        deckId: widget.deckId,
-        cardId: widget.card!.id!,
-        front: _frontController.text.trim(),
-        back: _backController.text.trim(),
-        frontSubtext: _frontSubtextController.text.trim().isEmpty
-            ? null
-            : _frontSubtextController.text.trim(),
-        backSubtext: _backSubtextController.text.trim().isEmpty
-            ? null
-            : _backSubtextController.text.trim(),
-      );
-    }
-
+    final front = _frontController.text.trim();
+    final back = _backController.text.trim();
+    final success = _isEditing
+        ? await provider.updateCard(
+            deckId: widget.deckId,
+            cardId: widget.card!.id!,
+            front: front,
+            back: back,
+            frontSubtext: _optional(_frontSubtextController),
+            backSubtext: _optional(_backSubtextController),
+          )
+        : await provider.addCard(
+            deckId: widget.deckId,
+            front: front,
+            back: back,
+            frontSubtext: _optional(_frontSubtextController),
+            backSubtext: _optional(_backSubtextController),
+          );
+    if (!mounted) return;
     setState(() => _isLoading = false);
 
-    if (success && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(widget.card == null
-              ? 'Thêm thẻ thành công!'
-              : 'Cập nhật thẻ thành công!'),
-          backgroundColor: AppColors.successStrong,
-        ),
-      );
-      Navigator.pop(context);
-    } else if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(provider.error ?? 'Có lỗi xảy ra'),
-          backgroundColor: AppColors.errorStrong,
-        ),
-      );
-    }
+    final saved = _isEditing ? 'Cập nhật thẻ thành công!' : 'Thêm thẻ thành công!';
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(success ? saved : provider.error ?? 'Có lỗi xảy ra'),
+        backgroundColor: success ? AppColors.successStrong : AppColors.errorStrong,
+      ),
+    );
+    if (success) Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final isEditing = widget.card != null;
+    const sideTitle = TextStyle(fontSize: AppTypography.body, fontWeight: FontWeight.bold);
+    const gap = SizedBox(height: AppSpacing.sm);
+    const section = SizedBox(height: AppSpacing.xl);
 
     return AppScaffold(
-      title: isEditing ? 'Sửa Thẻ' : 'Thêm Thẻ Mới',
+      title: _isEditing ? 'Sửa Thẻ' : 'Thêm Thẻ Mới',
       body: ContentWidthLimit(
         child: Form(
           key: _formKey,
           child: ListView(
-            padding: const EdgeInsets.all(16),
+            padding: AppSpacing.page,
             children: [
-              // Info card
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: context.colors.primarySoft,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: context.colors.primarySoft),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.info_outline,
-                        color: context.colors.primaryStrong),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'Tạo thẻ flashcard giống Quizlet: Mặt trước thường là từ/câu hỏi, mặt sau là nghĩa/đáp án.',
-                        style: TextStyle(
-                          fontSize: AppTypography.caption,
-                          color: context.colors.primaryStrong,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              const FlashcardInfoNote(
+                'Tạo thẻ flashcard giống Quizlet: Mặt trước thường là từ/câu hỏi, mặt sau là nghĩa/đáp án.',
               ),
-              const SizedBox(height: 24),
-
-              // Front (Mặt trước)
-              const Text(
-                'Mặt trước',
-                style: TextStyle(
-                  fontSize: AppTypography.body,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
+              section,
+              const Text('Mặt trước', style: sideTitle),
+              gap,
               TextFormField(
                 controller: _frontController,
-                decoration: InputDecoration(
-                  labelText: 'Nội dung chính *',
-                  hintText: 'Ví dụ: 学生 hoặc "Con mèo ăn cá"',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.credit_card),
+                decoration: flashcardInputDecoration(
+                  label: 'Nội dung chính *',
+                  hint: 'Ví dụ: 学生 hoặc "Con mèo ăn cá"',
+                  icon: Icons.credit_card,
                 ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Vui lòng nhập nội dung mặt trước';
-                  }
-                  return null;
-                },
+                validator: requiredText('Vui lòng nhập nội dung mặt trước'),
                 maxLength: 200,
               ),
-              const SizedBox(height: 8),
+              gap,
               TextFormField(
                 controller: _frontSubtextController,
-                decoration: InputDecoration(
-                  labelText: 'Phụ đề (tùy chọn)',
-                  hintText: 'Ví dụ: がくせい, phiên âm, v.v.',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.subtitles),
+                decoration: flashcardInputDecoration(
+                  label: 'Phụ đề (tùy chọn)',
+                  hint: 'Ví dụ: がくせい, phiên âm, v.v.',
+                  icon: Icons.subtitles,
                 ),
                 maxLength: 200,
               ),
-              const SizedBox(height: 24),
-
-              // Divider
+              section,
               const Divider(thickness: 2),
-              const SizedBox(height: 24),
-
-              // Back (Mặt sau)
-              const Text(
-                'Mặt sau',
-                style: TextStyle(
-                  fontSize: AppTypography.body,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
+              section,
+              const Text('Mặt sau', style: sideTitle),
+              gap,
               TextFormField(
                 controller: _backController,
-                decoration: InputDecoration(
-                  labelText: 'Nội dung chính *',
-                  hintText: 'Ví dụ: Học sinh',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.credit_card_outlined),
+                decoration: flashcardInputDecoration(
+                  label: 'Nội dung chính *',
+                  hint: 'Ví dụ: Học sinh',
+                  icon: Icons.credit_card_outlined,
                 ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Vui lòng nhập nội dung mặt sau';
-                  }
-                  return null;
-                },
+                validator: requiredText('Vui lòng nhập nội dung mặt sau'),
                 maxLength: 200,
               ),
-              const SizedBox(height: 8),
+              gap,
               TextFormField(
                 controller: _backSubtextController,
-                decoration: InputDecoration(
-                  labelText: 'Phụ đề (tùy chọn)',
-                  hintText: 'Ví dụ: Người đang học tập',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  prefixIcon: const Icon(Icons.subtitles_outlined),
+                decoration: flashcardInputDecoration(
+                  label: 'Phụ đề (tùy chọn)',
+                  hint: 'Ví dụ: Người đang học tập',
+                  icon: Icons.subtitles_outlined,
                 ),
                 maxLines: 2,
                 maxLength: 300,
               ),
-              const SizedBox(height: 24),
-
-              // Preview card
+              section,
               FlashcardPreviewCard(
-                  frontController: _frontController,
-                  backController: _backController,
-                  frontSubtextController: _frontSubtextController,
-                  backSubtextController: _backSubtextController),
-              const SizedBox(height: 24),
-
-              // Save button
-              SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _isLoading ? null : _saveCard,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: _isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.white),
-                          ),
-                        )
-                      : Text(
-                          isEditing ? 'Lưu Thay Đổi' : 'Thêm Thẻ',
-                          style: const TextStyle(
-                            fontSize: AppTypography.body,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                ),
+                frontController: _frontController,
+                backController: _backController,
+                frontSubtextController: _frontSubtextController,
+                backSubtextController: _backSubtextController,
+              ),
+              section,
+              FlashcardSubmitButton(
+                label: _isEditing ? 'Lưu Thay Đổi' : 'Thêm Thẻ',
+                loading: _isLoading,
+                onPressed: _saveCard,
               ),
             ],
           ),

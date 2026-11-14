@@ -1,8 +1,5 @@
 import { z } from 'zod';
-
-const objectId = z
-  .string()
-  .regex(/^[0-9a-fA-F]{24}$/, 'Định danh không hợp lệ.');
+import { jlptLevel, objectId } from '../../shared/http/schemas.js';
 
 /**
  * Độ dài tối thiểu của mật khẩu — **một** ngưỡng cho đăng ký, đặt lại và đổi
@@ -53,7 +50,7 @@ export const registerBody = z.object({
   hoTen: required('Vui lòng nhập họ tên.'),
   email: z.string().trim().toLowerCase().pipe(z.email('Email không hợp lệ.')),
   password: newPassword,
-  trinhDo: z.enum(['N5', 'N4', 'N3', 'N2', 'N1']).optional(),
+  trinhDo: jlptLevel.optional(),
 });
 
 /** Refresh token là chuỗi ngẫu nhiên base64url; mảng hay object toán tử bị chặn ở đây. */

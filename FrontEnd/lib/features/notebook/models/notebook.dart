@@ -1,81 +1,65 @@
-class Notebook {
-  final String id;
-  final String userId;
-  final String title;
-  final String content;
-  final String type; // 'general', 'vocabulary', 'grammar', 'kanji'
-  final String? relatedItemId;
-  final String? relatedItemType;
-  final List<String> tags;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+import '../../../core/network/api_envelope.dart';
 
-  Notebook({
+/// Loại ghi chú; [name] là giá trị server lưu (enum `type` của model `Notebook`).
+enum NoteType {
+  general('Chung'),
+  vocabulary('Từ vựng'),
+  grammar('Ngữ pháp'),
+  kanji('Kanji'),
+  lesson('Bài học');
+
+  const NoteType(this.label);
+
+  final String label;
+
+  /// Giá trị lạ (dữ liệu cũ) đọc thành ghi chú chung thay vì làm hỏng cả danh sách.
+  static NoteType fromName(Object? name) => values.firstWhere((type) => type.name == name, orElse: () => general);
+}
+
+/// Một ghi chú trong sổ tay của người đang đăng nhập.
+class Notebook {
+  const Notebook({
     required this.id,
-    required this.userId,
     required this.title,
     required this.content,
     required this.type,
-    this.relatedItemId,
-    this.relatedItemType,
     this.tags = const [],
     required this.createdAt,
     required this.updatedAt,
   });
 
-  factory Notebook.fromJson(Map<String, dynamic> json) {
+  final String id;
+  final String title;
+  final String content;
+  final NoteType type;
+  final List<String> tags;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  factory Notebook.fromJson(JsonObject json) {
+    final createdAt = _dateOf(json['createdAt']) ?? DateTime.now();
     return Notebook(
-      id: json['_id'] ?? '',
-      userId: json['user_id'] ?? '',
-      title: json['title'] ?? '',
-      content: json['content'] ?? '',
-      type: json['type'] ?? 'general',
-      relatedItemId: json['related_item_id'],
-      relatedItemType: json['related_item_type'],
-      tags: json['tags'] != null ? List<String>.from(json['tags']) : [],
-      createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
-          : DateTime.now(),
-      updatedAt: json['updatedAt'] != null
-          ? DateTime.parse(json['updatedAt'])
-          : DateTime.now(),
+      id: json['_id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      content: json['content'] as String? ?? '',
+      type: NoteType.fromName(json['type']),
+      tags: [for (final tag in json['tags'] as List? ?? const []) '$tag'],
+      createdAt: createdAt,
+      updatedAt: _dateOf(json['updatedAt']) ?? createdAt,
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'content': content,
-      'type': type,
-      'related_item_id': relatedItemId,
-      'related_item_type': relatedItemType,
-      'tags': tags,
-    };
-  }
+  static DateTime? _dateOf(Object? value) => value is String ? DateTime.tryParse(value) : null;
+}
 
-  Notebook copyWith({
-    String? id,
-    String? userId,
-    String? title,
-    String? content,
-    String? type,
-    String? relatedItemId,
-    String? relatedItemType,
-    List<String>? tags,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) {
-    return Notebook(
-      id: id ?? this.id,
-      userId: userId ?? this.userId,
-      title: title ?? this.title,
-      content: content ?? this.content,
-      type: type ?? this.type,
-      relatedItemId: relatedItemId ?? this.relatedItemId,
-      relatedItemType: relatedItemType ?? this.relatedItemType,
-      tags: tags ?? this.tags,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-    );
-  }
+/// Nội dung người dùng nhập ở form; tạo mới và sửa gửi cùng một hình dạng.
+class NotebookDraft {
+  const NotebookDraft({required this.title, required this.content, this.type = NoteType.general, this.tags = const []});
+
+  final String title;
+  final String content;
+  final NoteType type;
+  final List<String> tags;
+
+  JsonObject toJson() => {'title': title, 'content': content, 'type': type.name, 'tags': tags};
 }

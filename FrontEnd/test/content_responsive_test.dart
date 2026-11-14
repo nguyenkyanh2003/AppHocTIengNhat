@@ -28,13 +28,17 @@ import 'package:apphoctiengnnhat/features/auth/screens/change_password_screen.da
 import 'package:apphoctiengnnhat/features/auth/screens/forgot_password_screen.dart';
 import 'package:apphoctiengnnhat/features/auth/screens/login_screen.dart';
 import 'package:apphoctiengnnhat/features/auth/screens/register_screen.dart';
+import 'package:apphoctiengnnhat/features/auth/screens/reset_password_screen.dart';
 import 'package:apphoctiengnnhat/features/billing/screens/payment_screen.dart';
 import 'package:apphoctiengnnhat/features/exercise/screens/exercise_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/exercise/screens/exercise_history_screen.dart';
 import 'package:apphoctiengnnhat/features/exercise/screens/exercise_list_screen.dart';
+import 'package:apphoctiengnnhat/features/exercise/screens/exercise_result_screen.dart';
 import 'package:apphoctiengnnhat/features/flashcards/screens/create_flashcard_deck_screen.dart';
+import 'package:apphoctiengnnhat/features/flashcards/screens/edit_flashcard_card_screen.dart';
 import 'package:apphoctiengnnhat/features/flashcards/screens/flashcard_deck_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/flashcards/screens/flashcard_deck_list_screen.dart';
+import 'package:apphoctiengnnhat/features/flashcards/screens/flashcard_study_screen.dart';
 import 'package:apphoctiengnnhat/features/goals/screens/learning_goals_screen.dart';
 import 'package:apphoctiengnnhat/features/grammar/screens/grammar_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/grammar/screens/grammar_list_screen.dart';
@@ -46,6 +50,8 @@ import 'package:apphoctiengnnhat/features/kanji/screens/kanji_detail_screen.dart
 import 'package:apphoctiengnnhat/features/kanji/screens/kanji_list_screen.dart';
 import 'package:apphoctiengnnhat/features/lessons/screens/lesson_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/lessons/screens/lesson_list_screen.dart';
+import 'package:apphoctiengnnhat/features/lessons/screens/lesson_study_screen.dart';
+import 'package:apphoctiengnnhat/features/lessons/screens/lesson_transcript_editor_screen.dart';
 import 'package:apphoctiengnnhat/features/news/screens/news_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/news/screens/news_list_screen.dart';
 import 'package:apphoctiengnnhat/features/notebook/screens/notebook_detail_screen.dart';
@@ -75,6 +81,7 @@ import 'package:apphoctiengnnhat/features/study_groups/screens/study_group_list_
 import 'package:apphoctiengnnhat/features/study_groups/widgets/group_bottom_bar.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/screens/vocabulary_detail_screen.dart';
 import 'package:apphoctiengnnhat/features/vocabulary/screens/vocabulary_main_screen.dart';
+import 'package:apphoctiengnnhat/features/vocabulary/screens/vocabulary_set_screen.dart';
 import 'package:apphoctiengnnhat/shared/widgets/async_view.dart';
 
 /// Phản hồi API thật đã làm sạch: bớt phần tử, bỏ ảnh và dữ liệu cá nhân.
@@ -98,6 +105,7 @@ final Map<String, Widget Function()> _screens = {
   'đăng nhập': () => const LoginScreen(),
   'đăng ký': () => const RegisterScreen(),
   'quên mật khẩu': () => const ForgotPasswordScreen(),
+  'đặt lại mật khẩu': () => const ResetPasswordScreen(token: 'ma-dat-lai'),
   'đổi mật khẩu': () => const ChangePasswordScreen(),
   'gửi báo cáo': () => const ReportScreen(),
   'thanh toán': () => const PaymentScreen(),
@@ -109,9 +117,12 @@ final Map<String, Widget Function()> _screens = {
   'xuất dữ liệu': () => const ExportScreen(),
   'bài học': () => const LessonListScreen(),
   'chi tiết bài học': () => LessonDetailScreen(lessonId: _id('lesson')),
+  'học bài': () => LessonStudyScreen(lessonId: _id('lesson')),
+  'soạn lời thoại': () => LessonTranscriptEditorScreen(lessonId: _id('lesson')),
   'từ vựng': () => const VocabularyMainScreen(),
   'chi tiết từ vựng': () =>
       VocabularyDetailScreen(vocabularyId: _id('vocabulary')),
+  'bộ từ vựng': () => VocabularySetScreen(setId: _id('vocabularySet')),
   'kanji': () => const KanjiListScreen(),
   'chi tiết kanji': () => KanjiDetailScreen(kanjiId: _id('kanji')),
   'ngữ pháp': () => const GrammarListScreen(),
@@ -119,6 +130,7 @@ final Map<String, Widget Function()> _screens = {
   'bài tập': () => const ExerciseListScreen(),
   'làm bài tập': () => ExerciseDetailScreen(exerciseId: _id('exercise')),
   'lịch sử làm bài': () => const ExerciseHistoryScreen(),
+  'kết quả làm bài': () => ExerciseResultScreen(resultId: _id('exerciseResult')),
   'đề JLPT': () => const JLPTListScreen(),
   'luyện nhanh JLPT': () => const JLPTPracticeScreen(),
   'làm đề JLPT': () =>
@@ -127,6 +139,8 @@ final Map<String, Widget Function()> _screens = {
   'chi tiết tin tức': () => NewsDetailScreen(newsId: _id('news')),
   'bộ thẻ': () => const FlashcardDeckListScreen(),
   'chi tiết bộ thẻ': () => FlashcardDeckDetailScreen(deckId: _id('deck')),
+  'thêm thẻ': () => EditFlashcardCardScreen(deckId: _id('deck')),
+  'học thẻ': () => const FlashcardStudyScreen(level: 'N5'),
   'chuỗi ngày': () => const StreakScreen(),
   'lịch học': () => const StreakCalendarScreen(),
   'thành tích': () => const AchievementScreen(),

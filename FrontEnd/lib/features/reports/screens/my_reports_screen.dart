@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/report_provider.dart';
-import '../services/report_service.dart';
+import '../models/report.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/paged_list_view.dart';
 
 class MyReportsScreen extends StatefulWidget {
   const MyReportsScreen({Key? key}) : super(key: key);
@@ -28,20 +28,18 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
     return Consumer<ReportProvider>(
       builder: (context, provider, _) {
         return AsyncView<List<Report>>(
-          state: ViewState.fromLegacy(
-            isLoading: provider.isLoading,
-            error: provider.error,
-            value: provider.reports,
-            isEmpty: provider.reports.isEmpty,
-          ),
+          state: provider.myReports,
           onRetry: () => provider.loadMyReports(),
           isEmpty: (reports) => reports.isEmpty,
           emptyTitle: 'Bạn chưa gửi báo cáo nào',
-          builder: (context, reports) => ListView.builder(
+          builder: (context, reports) => PagedListView<Report>(
+            items: reports,
             padding: const EdgeInsets.all(16),
-            itemCount: reports.length,
-            itemBuilder: (context, index) =>
-                _buildReportCard(context, reports[index], provider),
+            hasMore: provider.hasMore,
+            isLoadingMore: provider.isLoadingMore,
+            loadMoreError: provider.loadMoreError,
+            onLoadMore: provider.loadMore,
+            itemBuilder: (context, report) => _buildReportCard(context, report, provider),
           ),
         );
       },

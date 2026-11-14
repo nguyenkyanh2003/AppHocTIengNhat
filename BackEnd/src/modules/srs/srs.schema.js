@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { ITEM_TYPES } from './srs-scheduling.js';
+import { objectId } from '../../shared/http/schemas.js';
 
 /**
  * Schema của sáu route SRS (spec SRS §3.3–3.4, §6; spec Kanji SRS §2).
@@ -13,8 +14,6 @@ import { ITEM_TYPES } from './srs-scheduling.js';
 
 /** Trần số thẻ loại trừ trong một phiên ôn — giới hạn chọn cho mốc 1 (spec §3.4). */
 export const MAX_EXCLUDED_CARDS = 200;
-
-const objectId = z.string().regex(/^[a-f0-9]{24}$/i, 'ID không hợp lệ.');
 
 /** Loại của **một** thẻ. */
 const itemType = z.enum(ITEM_TYPES).default('Vocabulary');

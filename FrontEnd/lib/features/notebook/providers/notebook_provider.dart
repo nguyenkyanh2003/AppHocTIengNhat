@@ -1,239 +1,125 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/notebook.dart';
 import '../services/notebook_service.dart';
-import '../../../core/state/view_state.dart';
 
+/// Danh sách sổ tay (lọc theo loại, tìm theo từ khoá, tải thêm khi cuộn), ghi
+/// chú đang mở và các thao tác tạo/sửa/xoá.
+///
+/// Sau mỗi lần ghi thành công, danh sách đã mở được tải lại để khớp thứ tự và
+/// tổng số do server tính.
 class NotebookProvider extends ChangeNotifier {
-  final NotebookService _notebookService = NotebookService();
+  NotebookProvider({NotebookService? service}) : _service = service ?? NotebookService();
 
-  List<Notebook> _notes = [];
-  Notebook? _selectedNote;
-  bool _isLoading = false;
-  String? _error;
+  final NotebookService _service;
+  late final _notes = PagedList<Notebook>(onChanged: _notify);
+  ViewState<Notebook> _detail = const ViewState.idle();
+  NoteType? _type;
+  String _search = '';
+  bool _saving = false;
+  int _detailGeneration = 0;
+  bool _disposed = false;
 
-  // Pagination
-  int _currentPage = 1;
-  int _totalPages = 1;
-  int _totalItems = 0;
-  final int _itemsPerPage = 20;
+  ViewState<List<Notebook>> get notes => _notes.state;
+  bool get hasMore => _notes.hasMore;
+  bool get isLoadingMore => _notes.isLoadingMore;
+  String? get loadMoreError => _notes.loadMoreError;
+  ViewState<Notebook> get detail => _detail;
 
-  // Filter
-  String? _selectedType;
-  String _searchQuery = '';
-
-  // Getters
-  List<Notebook> get notes => _notes;
-  Notebook? get selectedNote => _selectedNote;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
-  int get currentPage => _currentPage;
-  int get totalPages => _totalPages;
-  int get totalItems => _totalItems;
-  String? get selectedType => _selectedType;
-  String get searchQuery => _searchQuery;
-  bool get hasNextPage => _currentPage < _totalPages;
-  bool get hasPrevPage => _currentPage > 1;
-
-  /// Load danh sách ghi chú
-  Future<void> loadNotes({bool refresh = false}) async {
-    if (refresh) {
-      _currentPage = 1;
-      _notes = [];
-    }
-
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final result = await _notebookService.getNotes(
-        page: _currentPage,
-        limit: _itemsPerPage,
-        type: _selectedType,
-        search: _searchQuery,
-      );
-
-      _notes = result['data'];
-      _totalPages = result['totalPages'];
-      _totalItems = result['totalItems'];
-      _currentPage = result['currentPage'];
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  /// Tìm kiếm ghi chú
-  Future<void> searchNotes(String keyword) async {
-    _searchQuery = keyword;
-    await loadNotes(refresh: true);
-  }
-
-  /// Lọc theo type
-  Future<void> filterByType(String? type) async {
-    _selectedType = type;
-    await loadNotes(refresh: true);
-  }
-
-  /// Load chi tiết ghi chú
-  Future<void> loadNoteDetail(String id) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _selectedNote = await _notebookService.getNoteById(id);
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  /// Tạo ghi chú mới
-  Future<bool> createNote({
-    required String title,
-    required String content,
-    String type = 'general',
-    String? relatedItemId,
-    String? relatedItemType,
-    List<String>? tags,
-  }) async {
-    try {
-      final data = {
-        'title': title,
-        'content': content,
-        'type': type,
-        if (relatedItemId != null) 'related_item_id': relatedItemId,
-        if (relatedItemType != null) 'related_item_type': relatedItemType,
-        if (tags != null) 'tags': tags,
+  /// Chi tiết của đúng ghi chú [id]: dữ liệu còn sót của ghi chú mở trước đó
+  /// coi như đang tải, để màn không hiện nhầm một khung hình nội dung cũ.
+  ViewState<Notebook> detailOf(String id) => switch (_detail) {
+        ViewData(:final value) when value.id != id => const ViewState.loading(),
+        final state => state,
       };
 
-      final newNote = await _notebookService.createNote(data);
-      _notes.insert(0, newNote);
-      _totalItems++;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
+  NoteType? get selectedType => _type;
+  String get searchQuery => _search;
+  bool get isSaving => _saving;
+
+  Future<void> loadNotes() {
+    final type = _type;
+    final search = _search.isEmpty ? null : _search;
+    return _notes.load((page) => _service.list(page: page, type: type, search: search));
+  }
+
+  Future<void> loadMore() => _notes.loadMore();
+
+  Future<void> searchNotes(String keyword) {
+    _search = keyword.trim();
+    return loadNotes();
+  }
+
+  Future<void> filterByType(NoteType? type) {
+    _type = type;
+    return loadNotes();
+  }
+
+  Future<void> loadDetail(String id) async {
+    final generation = ++_detailGeneration;
+    _detail = const ViewState.loading();
+    _notify();
+
+    final result = await ViewState.guard(() => _service.detail(id));
+    if (generation != _detailGeneration) return;
+    _detail = result;
+    _notify();
+  }
+
+  /// Tạo mới khi không có [id], ngược lại sửa ghi chú [id]. Trả `null` khi đã
+  /// lưu, hoặc câu báo lỗi để form hiện.
+  Future<String?> save(NotebookDraft draft, {String? id}) async {
+    if (_saving) return 'Ghi chú đang được lưu.';
+    _saving = true;
+    _notify();
+
+    final result = await ViewState.guard(() => id == null ? _service.create(draft) : _service.update(id, draft));
+    _saving = false;
+    if (result case ViewData(:final value) when _detail.valueOrNull?.id == value.id) {
+      _detailGeneration++;
+      _detail = result;
     }
+    _notify();
+    if (result.hasData) _reloadOpenList();
+    return result.errorOrNull;
   }
 
-  /// Cập nhật ghi chú
-  Future<bool> updateNote(
-    String id, {
-    String? title,
-    String? content,
-    String? type,
-    List<String>? tags,
-  }) async {
-    try {
-      final data = <String, dynamic>{};
-      if (title != null) data['title'] = title;
-      if (content != null) data['content'] = content;
-      if (type != null) data['type'] = type;
-      if (tags != null) data['tags'] = tags;
-
-      final updatedNote = await _notebookService.updateNote(id, data);
-
-      final index = _notes.indexWhere((note) => note.id == id);
-      if (index != -1) {
-        _notes[index] = updatedNote;
-      }
-
-      if (_selectedNote?.id == id) {
-        _selectedNote = updatedNote;
-      }
-
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
+  /// Trả `null` khi đã xoá, hoặc câu báo lỗi để màn hiện.
+  Future<String?> delete(String id) async {
+    final result = await ViewState.guard(() => _service.delete(id));
+    if (!result.hasData) return result.errorOrNull;
+    if (_detail.valueOrNull?.id == id) {
+      _detailGeneration++;
+      _detail = const ViewState.idle();
+      _notify();
     }
+    _reloadOpenList();
+    return null;
   }
 
-  /// Xóa ghi chú
-  Future<bool> deleteNote(String id) async {
-    try {
-      await _notebookService.deleteNote(id);
-      _notes.removeWhere((note) => note.id == id);
-      _totalItems--;
-
-      if (_selectedNote?.id == id) {
-        _selectedNote = null;
-      }
-
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Xóa nhiều ghi chú
-  Future<int> deleteMultipleNotes(List<String> ids) async {
-    try {
-      final deletedCount = await _notebookService.deleteMultipleNotes(ids);
-      _notes.removeWhere((note) => ids.contains(note.id));
-      _totalItems = _totalItems - deletedCount;
-      notifyListeners();
-      return deletedCount;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return 0;
-    }
-  }
-
-  /// Chuyển trang tiếp theo
-  Future<void> nextPage() async {
-    if (hasNextPage) {
-      _currentPage++;
-      await loadNotes();
-    }
-  }
-
-  /// Chuyển trang trước
-  Future<void> previousPage() async {
-    if (hasPrevPage) {
-      _currentPage--;
-      await loadNotes();
-    }
-  }
-
-  /// Clear error
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
-
-  /// Reset filter
-  Future<void> resetFilter() async {
-    _selectedType = null;
-    _searchQuery = '';
-    await loadNotes(refresh: true);
-  }
-
-  /// Clear all state
+  /// Về trạng thái chưa tải (đăng xuất).
   void clear() {
-    _notes = [];
-    _selectedNote = null;
-    _isLoading = false;
-    _error = null;
-    _currentPage = 1;
-    _totalPages = 1;
-    _totalItems = 0;
-    _selectedType = null;
-    _searchQuery = '';
-    notifyListeners();
+    _notes.clear();
+    _detailGeneration++;
+    _detail = const ViewState.idle();
+    _type = null;
+    _search = '';
+    _notify();
+  }
+
+  void _reloadOpenList() {
+    if (_notes.state is! ViewIdle) _notes.reload();
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

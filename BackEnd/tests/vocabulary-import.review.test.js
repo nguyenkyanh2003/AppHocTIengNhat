@@ -5,6 +5,7 @@ import {
   mapHeaders,
   normalizeJapanese,
   normalizeVietnamese,
+  planWordUpdate,
   reviewRows,
 } from '../src/modules/vocabulary/vocabulary-import.review.js';
 
@@ -465,6 +466,73 @@ test('a full-width slash in both the word and the reading is one error, not sile
   assert.match(errors[0].message, /nhiều dạng/i);
 });
 
+// --- cụm chào hỏi viết bằng kana ------------------------------------------
+
+test('a set phrase written in kana keeps its comma as punctuation', () => {
+  // いいえ、けっこうです là **một** câu trong giáo trình, hai cột giống hệt nhau:
+  // dấu 、 là dấu câu, không phải dấu ngăn hai dạng viết.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: 'いいえ、けっこうです', Hiragana: 'いいえ、けっこうです', NghiaTV: 'Không, đủ rồi ạ.' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].word, 'いいえ、けっこうです');
+  assert.equal(accepted[0].hiragana, 'いいえ、けっこうです');
+});
+
+test('a kana phrase with an empty reading column is still one phrase', () => {
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: 'じゃ、また「あした」', Hiragana: '', NghiaTV: 'Hẹn gặp lại [ngày mai].' }],
+    {},
+  );
+  assert.deepEqual(errors, []);
+  assert.equal(accepted[0].hiragana, 'じゃ、また「あした」');
+});
+
+test('two kana spellings are still a multi-form cell when the columns differ', () => {
+  // Cột cách đọc chỉ có một dạng: hai dạng ở cột từ là hai từ, không phải một câu.
+  const { errors } = reviewRows(
+    [{ TuVung: 'すませる、すます', Hiragana: 'すませる', NghiaTV: 'kết thúc' }],
+    {},
+  );
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng/i);
+});
+
+test('only the Japanese comma reads as punctuation inside a kana phrase', () => {
+  const { errors } = reviewRows(
+    [{ TuVung: 'やる/あげる', Hiragana: 'やる/あげる', NghiaTV: 'cho' }],
+    {},
+  );
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng/i);
+});
+
+// --- dấu ・ ---------------------------------------------------------------
+
+test('kanji spellings joined by a middle dot over one reading are a multi-form cell', () => {
+  // 交じる・混じる chỉ có một cách đọc まじる: hai chữ Hán là hai từ, như 周り/回り.
+  const { accepted, errors } = reviewRows(
+    [{ TuVung: '交じる・混じる', Hiragana: 'まじる', NghiaTV: 'lẫn vào' }],
+    {},
+  );
+  assert.equal(accepted.length, 0);
+  assert.equal(errors[0].field, 'word');
+  assert.match(errors[0].message, /nhiều dạng/i);
+});
+
+test('a middle dot that the reading repeats is part of one expression', () => {
+  // 月・水・金 (げっ・すい・きん) là một cụm; スパイス・コーナー là một từ mượn.
+  const { errors } = reviewRows(
+    [
+      { TuVung: '月・水・金', Hiragana: 'げっ・すい・きん', NghiaTV: 'thứ hai, thứ tư, thứ sáu' },
+      { TuVung: 'スパイス・コーナー', Hiragana: 'スパイス・コーナー', NghiaTV: 'góc gia vị' },
+    ],
+    {},
+  );
+  assert.deepEqual(errors, []);
+});
+
 test('a fraction in parentheses is still not mistaken for multi-form after the slash widens', () => {
   const { errors } = reviewRows(
     [{ TuVung: '4分の1（1/4）', Hiragana: 'よんぶんのいち', NghiaTV: 'một phần tư' }],
@@ -515,4 +583,33 @@ test('plain romaji is still rejected even though a leading letter is now allowed
   // "gakusei" không có ký tự kana nào thì vẫn là lỗi gõ romaji thật.
   const { errors } = reviewRows([row({ Hiragana: 'gakusei' })], {});
   assert.equal(errors[0].field, 'hiragana');
+});
+
+// --- nhập lại một từ đã có -----------------------------------------------
+
+test('re-importing the same example is not a conflict even though the DB gave it an _id', () => {
+  const existing = {
+    meaning: 'Nỗ lực',
+    examples: [{ _id: 'e1', sentence: '毎日努力します。', meaning: 'Ngày nào cũng cố gắng.' }],
+  };
+  const incoming = { meaning: 'Nỗ lực', examples: [{ sentence: '毎日努力します。', meaning: 'Ngày nào cũng cố gắng.' }] };
+  assert.deepEqual(planWordUpdate(existing, incoming), { fields: {}, conflicts: [] });
+});
+
+test('an empty cell in the DB, including an empty example list, is filled rather than reported', () => {
+  const incoming = { hanviet: 'KIỆN', examples: [{ sentence: '鍵をかけます。', meaning: null }] };
+  assert.deepEqual(planWordUpdate({ hanviet: '', examples: [] }, incoming), { fields: incoming, conflicts: [] });
+});
+
+test('a different value is a readable conflict, written only with overwrite', () => {
+  const existing = { meaning: 'Hôm nay', examples: [{ sentence: '今日は晴れです。', meaning: null }] };
+  const incoming = { meaning: 'Ngày hôm nay', examples: [{ sentence: '今日は雨です。', meaning: null }] };
+
+  const { fields, conflicts } = planWordUpdate(existing, incoming);
+  assert.deepEqual(fields, {});
+  assert.deepEqual(conflicts, [
+    { field: 'meaning', current: 'Hôm nay', incoming: 'Ngày hôm nay' },
+    { field: 'examples', current: '今日は晴れです。', incoming: '今日は雨です。' },
+  ]);
+  assert.deepEqual(planWordUpdate(existing, incoming, { overwrite: true }).fields, incoming);
 });
