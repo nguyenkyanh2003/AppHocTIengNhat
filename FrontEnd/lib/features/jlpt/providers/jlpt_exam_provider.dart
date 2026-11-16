@@ -1,129 +1,108 @@
 import 'dart:async';
 
-import '../../../core/utils/attempt_id.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../../core/state/detail_state.dart';
+import '../../../core/state/view_state.dart';
+import '../../../core/utils/attempt_id.dart';
 import '../models/jlpt_models.dart';
 import '../services/jlpt_service.dart';
-import '../../../core/state/view_state.dart';
 
-class JLPTExamProvider with ChangeNotifier {
-  final JLPTService _service = JLPTService();
+/// Một lượt thi: đề, đồng hồ đếm ngược, bài làm, nộp bài và đáp án sau khi nộp.
+class JLPTExamProvider extends ChangeNotifier {
+  JLPTExamProvider({JLPTService? service}) : _service = service ?? JLPTService();
 
-  JLPTExamDetail? _exam;
-  bool _loading = false;
-  String? _error;
-  bool _submitting = false;
-  final Map<String, int> _answers =
-      {}; // key: section-index, value: choice index
+  final JLPTService _service;
+  late final _exam = DetailState<JLPTExamDetail>(idOf: (exam) => exam.id, onChanged: _notify);
+
+  /// Khoá câu (`moji-0`, `dokkai-1-2`...) → lựa chọn 0–3.
+  final Map<String, int> _answers = {};
   Timer? _timer;
   int _secondsLeft = 0;
+  bool _submitting = false;
+  JLPTSubmitResult? _result;
+  ViewState<List<JLPTQuestion>> _solutions = const ViewState.idle();
+  bool _disposed = false;
 
   /// Định danh lượt thi, sinh khi mở đề. Nộp lại sau lỗi mạng dùng lại đúng ID
-  /// này nên không bị chấm hai lần; thi lại thì `loadExam` sinh ID mới.
+  /// này nên không bị chấm hai lần; mở đề lần nữa là một lượt thi mới.
   String _attemptId = newAttemptId();
-  JLPTSubmitResult? _result;
-  List<JLPTQuestion> _solutions = [];
-  bool _loadingSolutions = false;
 
-  JLPTExamDetail? get exam => _exam;
-  bool get isLoading => _loading;
-  String? get error => _error;
+  ViewState<JLPTExamDetail> examOf(String id) => _exam.of(id);
+  Map<String, int> get answers => Map.unmodifiable(_answers);
+  int get secondsLeft => _secondsLeft;
   bool get isSubmitting => _submitting;
   bool get hasSubmitted => _result != null;
-  int get secondsLeft => _secondsLeft;
   JLPTSubmitResult? get result => _result;
-  Map<String, int> get answers => _answers;
-  List<JLPTQuestion> get solutions => _solutions;
-  bool get isLoadingSolutions => _loadingSolutions;
 
+  /// Đáp án theo thứ tự câu trong đề; rỗng khi chưa nộp hoặc chưa tải được.
+  List<JLPTQuestion> get solutions => _solutions.valueOrNull ?? const [];
+
+  /// Mở đề [id] như một lượt thi mới: bài làm, kết quả và đồng hồ về đầu.
   Future<void> loadExam(String id) async {
-    _loading = true;
-    _error = null;
-    _exam = null;
+    _timer?.cancel();
     _attemptId = newAttemptId();
     _answers.clear();
     _result = null;
-    _solutions = [];
-    _loadingSolutions = false;
-    _timer?.cancel();
-    notifyListeners();
-    try {
-      final data = await _service.fetchExamDetail(id);
-      _exam = data;
-      _secondsLeft = data.timeLimit * 60;
-      _startTimer();
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error load exam: $e');
-    } finally {
-      _loading = false;
-      notifyListeners();
-    }
+    _solutions = const ViewState.idle();
+
+    await _exam.load(id, () => _service.detail(id));
+    final exam = _exam.of(id).valueOrNull;
+    if (exam == null || _disposed) return;
+    _secondsLeft = exam.timeLimit * 60;
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
   }
 
-  void _startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (t) {
-      if (_secondsLeft <= 0) {
-        t.cancel();
-        notifyListeners();
-        return;
-      }
-      _secondsLeft -= 1;
-      notifyListeners();
-    });
-  }
-
-  void setAnswer(String key, int choiceIndex) {
-    if (_result != null) return; // prevent changes after submission
-    _answers[key] = choiceIndex;
-    notifyListeners();
-  }
-
-  Future<void> submit(String examId) async {
-    if (_exam == null || _result != null) return; // block re-submit
-    _submitting = true;
-    notifyListeners();
-    try {
-      final payload = {
-        'attempt_id': _attemptId,
-        'ThoiGianLamBai': (_exam!.timeLimit * 60) - _secondsLeft,
-        'answers': _answers.entries
-            .map((e) => {
-                  'question_key': e.key,
-                  'selected': e.value,
-                })
-            .toList()
-      };
-      final resp = await _service.submitExam(examId, payload);
-      _result = resp;
+  void _tick() {
+    if (_secondsLeft <= 0) {
       _timer?.cancel();
-      await loadSolutions(examId);
-    } catch (e) {
-      debugPrint('Error submit exam: $e');
-    } finally {
-      _submitting = false;
-      notifyListeners();
+      return;
     }
+    _secondsLeft -= 1;
+    _notify();
+  }
+
+  /// Nộp rồi thì bài làm khoá lại.
+  void setAnswer(String key, int choice) {
+    if (_result != null) return;
+    _answers[key] = choice;
+    _notify();
+  }
+
+  /// Nộp bài đang làm; trả `null` khi xong (kèm tải đáp án), hoặc câu báo lỗi
+  /// để màn hiện — bài làm giữ nguyên để nộp lại với cùng lượt thi.
+  Future<String?> submit() async {
+    final exam = _exam.state.valueOrNull;
+    if (exam == null || _result != null || _submitting) return null;
+    _submitting = true;
+    _notify();
+
+    final submitted = await ViewState.guard(() => _service.submit(
+          exam.id,
+          attemptId: _attemptId,
+          answers: Map.of(_answers),
+          timeSpent: exam.timeLimit * 60 - _secondsLeft,
+        ));
+    _submitting = false;
+    if (submitted case ViewData(:final value)) {
+      _result = value;
+      _timer?.cancel();
+      _solutions = const ViewState.loading();
+      _notify();
+      _solutions = await ViewState.guard(() => _service.solutions(exam.id));
+    }
+    _notify();
+    return submitted.errorOrNull;
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
   }
 
   @override
   void dispose() {
+    _disposed = true;
     _timer?.cancel();
     super.dispose();
-  }
-
-  Future<void> loadSolutions(String examId) async {
-    _loadingSolutions = true;
-    _solutions = [];
-    notifyListeners();
-    try {
-      _solutions = await _service.fetchSolutions(examId);
-    } catch (e) {
-      debugPrint('Error load solutions: $e');
-    } finally {
-      _loadingSolutions = false;
-      notifyListeners();
-    }
   }
 }

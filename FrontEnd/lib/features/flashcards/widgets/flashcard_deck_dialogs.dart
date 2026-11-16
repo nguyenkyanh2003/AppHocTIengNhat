@@ -1,63 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/flashcard_provider.dart';
-import '../models/flashcard_deck.dart';
+
 import '../../../app/theme/app_tokens.dart';
+import '../models/flashcard_deck.dart';
+import '../providers/flashcard_provider.dart';
 
-/// Xác nhận rồi xoá một thẻ.
-void showDeleteFlashcardDialog(BuildContext context, FlashcardCard card,
-    {required String deckId}) {
-  final hostContext = context;
-  showDialog(
+/// Báo kết quả một thao tác ghi: [error] `null` là xong.
+void _report(ScaffoldMessengerState messenger, String? error, String done) {
+  messenger.showSnackBar(SnackBar(
+    content: Text(error ?? done),
+    backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
+  ));
+}
+
+/// Hộp xác nhận chung: trả `true` khi người dùng bấm nút [confirmLabel].
+Future<bool> _confirm(BuildContext context, {required String title, required String message}) async {
+  final confirmed = await showDialog<bool>(
     context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('Xóa thẻ'),
-      content: const Text('Bạn có chắc chắn muốn xóa thẻ này?'),
+    builder: (dialogContext) => AlertDialog(
+      title: Text(title),
+      content: Text(message),
       actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Hủy'),
-        ),
+        TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('Hủy')),
         ElevatedButton(
-          onPressed: () async {
-            final provider = hostContext.read<FlashcardProvider>();
-            Navigator.pop(context);
-            final success = await provider.deleteCard(
-              deckId: deckId,
-              cardId: card.id!,
-            );
-
-            if (success && hostContext.mounted) {
-              ScaffoldMessenger.of(hostContext).showSnackBar(
-                const SnackBar(
-                  content: Text('Xóa thẻ thành công'),
-                  backgroundColor: AppColors.successStrong,
-                ),
-              );
-            }
-          },
-          style:
-              ElevatedButton.styleFrom(backgroundColor: AppColors.errorStrong),
+          onPressed: () => Navigator.pop(dialogContext, true),
+          style: ElevatedButton.styleFrom(backgroundColor: AppColors.errorStrong),
           child: const Text('Xóa'),
         ),
       ],
     ),
   );
+  return confirmed ?? false;
 }
 
-/// Hộp thoại sửa thông tin bộ thẻ.
-void showEditFlashcardDeckDialog(BuildContext context,
-    {required String deckId}) {
-  final hostContext = context;
-  final deck = context.read<FlashcardProvider>().selectedDeck;
-  if (deck == null) return;
+/// Xác nhận rồi xoá một thẻ.
+Future<void> showDeleteFlashcardDialog(BuildContext context, FlashcardCard card, {required String deckId}) async {
+  final provider = context.read<FlashcardProvider>();
+  final messenger = ScaffoldMessenger.of(context);
+  if (!await _confirm(context, title: 'Xóa thẻ', message: 'Bạn có chắc chắn muốn xóa thẻ này?')) return;
 
-  final titleController = TextEditingController(text: deck.title);
-  final descController = TextEditingController(text: deck.description ?? '');
+  _report(messenger, await provider.deleteCard(deckId, card.id), 'Xóa thẻ thành công');
+}
 
-  showDialog(
+/// Xác nhận rồi xoá cả bộ thẻ; xoá xong thì quay về danh sách.
+Future<void> showDeleteFlashcardDeckDialog(BuildContext context, {required String deckId}) async {
+  final provider = context.read<FlashcardProvider>();
+  final messenger = ScaffoldMessenger.of(context);
+  final navigator = Navigator.of(context);
+  final confirmed = await _confirm(
+    context,
+    title: 'Xóa bộ thẻ',
+    message: 'Bạn có chắc chắn muốn xóa bộ thẻ này? Hành động này không thể hoàn tác.',
+  );
+  if (!confirmed) return;
+
+  final error = await provider.deleteDeck(deckId);
+  _report(messenger, error, 'Xóa bộ thẻ thành công');
+  if (error == null) navigator.pop();
+}
+
+/// Hộp thoại sửa tên và mô tả của bộ thẻ.
+Future<void> showEditFlashcardDeckDialog(BuildContext context, FlashcardDeck deck) async {
+  final provider = context.read<FlashcardProvider>();
+  final messenger = ScaffoldMessenger.of(context);
+  final title = TextEditingController(text: deck.title);
+  final description = TextEditingController(text: deck.description ?? '');
+
+  final save = await showDialog<bool>(
     context: context,
-    builder: (context) => AlertDialog(
+    builder: (dialogContext) => AlertDialog(
       title: const Text('Sửa bộ thẻ'),
       content: SingleChildScrollView(
         child: Column(
@@ -65,95 +76,34 @@ void showEditFlashcardDeckDialog(BuildContext context,
           children: [
             TextField(
               autofocus: true,
-              controller: titleController,
-              decoration: const InputDecoration(
-                labelText: 'Tiêu đề',
-                border: OutlineInputBorder(),
-              ),
+              controller: title,
+              decoration: const InputDecoration(labelText: 'Tiêu đề', border: OutlineInputBorder()),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.lg),
             TextField(
-              controller: descController,
-              decoration: const InputDecoration(
-                labelText: 'Mô tả',
-                border: OutlineInputBorder(),
-              ),
+              controller: description,
+              decoration: const InputDecoration(labelText: 'Mô tả', border: OutlineInputBorder()),
               maxLines: 3,
             ),
           ],
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Hủy'),
-        ),
-        ElevatedButton(
-          onPressed: () async {
-            final provider = hostContext.read<FlashcardProvider>();
-            Navigator.pop(context);
-            final success = await provider.updateDeck(
-              deckId: deckId,
-              title: titleController.text.trim(),
-              description: descController.text.trim().isEmpty
-                  ? null
-                  : descController.text.trim(),
-            );
-
-            if (success && hostContext.mounted) {
-              ScaffoldMessenger.of(hostContext).showSnackBar(
-                const SnackBar(
-                  content: Text('Cập nhật thành công'),
-                  backgroundColor: AppColors.successStrong,
-                ),
-              );
-            }
-          },
-          child: const Text('Lưu'),
-        ),
+        TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('Hủy')),
+        ElevatedButton(onPressed: () => Navigator.pop(dialogContext, true), child: const Text('Lưu')),
       ],
     ),
   );
-}
+  final newTitle = title.text.trim();
+  final newDescription = description.text.trim();
+  title.dispose();
+  description.dispose();
+  if (save != true) return;
+  if (newTitle.isEmpty) {
+    _report(messenger, 'Tiêu đề bộ thẻ không được để trống.', '');
+    return;
+  }
 
-/// Xác nhận rồi xoá cả bộ thẻ.
-void showDeleteFlashcardDeckDialog(BuildContext context,
-    {required String deckId}) {
-  final hostContext = context;
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('Xóa bộ thẻ'),
-      content: const Text(
-          'Bạn có chắc chắn muốn xóa bộ thẻ này? Hành động này không thể hoàn tác.'),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Hủy'),
-        ),
-        ElevatedButton(
-          onPressed: () async {
-            final provider = hostContext.read<FlashcardProvider>();
-            final navigator = Navigator.of(hostContext);
-            final messenger = ScaffoldMessenger.of(hostContext);
-            Navigator.pop(context);
-            final success = await provider.deleteDeck(deckId);
-
-            if (success && hostContext.mounted) {
-              messenger.showSnackBar(
-                const SnackBar(
-                  content: Text('Xóa bộ thẻ thành công'),
-                  backgroundColor: AppColors.successStrong,
-                ),
-              );
-              navigator.pop(); // Pop back to list
-            }
-          },
-          style:
-              ElevatedButton.styleFrom(backgroundColor: AppColors.errorStrong),
-          child: const Text('Xóa'),
-        ),
-      ],
-    ),
-  );
+  final error = await provider.updateDeck(deck.id, title: newTitle, description: newDescription);
+  _report(messenger, error, 'Cập nhật thành công');
 }

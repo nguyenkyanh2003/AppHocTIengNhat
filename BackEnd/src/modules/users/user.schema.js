@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { jlptLevel, objectId } from '../../shared/http/schemas.js';
+import { paginationQuery } from '../../shared/http/pagination.js';
+import { jlptLevel, objectId, optionalQuery } from '../../shared/http/schemas.js';
 
 /**
  * Độ dài tối thiểu của mật khẩu — **một** ngưỡng cho đăng ký, đặt lại và đổi
@@ -77,3 +78,55 @@ export const changePasswordBody = z.object({
   oldPassword: z.string().min(1).optional(),
   newPassword,
 });
+
+/** Khớp enum trong `model/User.js`. */
+export const USER_ROLES = ['user', 'admin'];
+export const USER_STATUSES = ['active', 'inactive', 'locked', 'banned'];
+export const GENDERS = ['Nam', 'Nữ', 'Khác'];
+
+const nonEmpty = (schema) => schema.refine((changes) => Object.keys(changes).length > 0, 'Không có gì để cập nhật.');
+const optionalText = (max) => z.string().trim().max(max);
+
+export const idParams = z.object({ id: objectId });
+
+export const avatarParams = z.object({ userID: objectId });
+
+/**
+ * Tên trường giữ như Flutter đang gửi (`hoTen`, `trinhDo`...); service đổi sang
+ * tên field tiếng Việt của model. Vai trò, trạng thái, mật khẩu, ảnh không sửa
+ * được ở đây — trường lạ bị bỏ.
+ */
+export const updateProfileBody = nonEmpty(
+  z
+    .object({
+      hoTen: required('Vui lòng nhập họ tên.').max(100),
+      email: z.string().trim().toLowerCase().pipe(z.email('Email không hợp lệ.')),
+      trinhDo: jlptLevel,
+      soDienThoai: optionalText(20),
+      diaChi: optionalText(200),
+      gioiTinh: z.enum(GENDERS),
+      ngaySinh: z.coerce.date(),
+    })
+    .partial(),
+);
+
+export const adminListQuery = paginationQuery.extend({
+  search: optionalQuery(z.string().trim().min(1).max(100)),
+  role: optionalQuery(z.enum(USER_ROLES)),
+  status: optionalQuery(z.enum(USER_STATUSES)),
+  trinhDo: optionalQuery(jlptLevel),
+});
+
+export const adminUpdateBody = nonEmpty(
+  z
+    .object({
+      hoTen: required('Vui lòng nhập họ tên.').max(100),
+      email: z.string().trim().toLowerCase().pipe(z.email('Email không hợp lệ.')),
+      trinhDo: jlptLevel,
+      vaiTro: z.enum(USER_ROLES),
+      trangThai: z.enum(USER_STATUSES),
+      soDienThoai: optionalText(20),
+      diaChi: optionalText(200),
+    })
+    .partial(),
+);

@@ -29,75 +29,69 @@ const _lessonId = '507f1f77bcf86cd799439011';
 Object _ok(String path) {
   if (path.endsWith('/dashboard/stats')) {
     return {
-      'vocabulary_learned': 137,
-      'kanji_learned': 29,
-      'kanji_reviewing': 13,
-      'exercises_completed': 7,
-      'lessons_completed': 3,
-      'total_study_time': 5400,
-      'current_streak': 4,
-      'total_xp': 910,
-      'level': 2,
+      'data': {
+        'vocabulary_learned': 137,
+        'kanji_learned': 29,
+        'kanji_reviewing': 13,
+        'exercises_completed': 7,
+        'lessons_completed': 3,
+        'total_study_time': 5400,
+        'current_streak': 4,
+        'total_xp': 910,
+        'level': 2,
+      },
     };
   }
   if (path.endsWith('/dashboard/breakdown')) {
-    return {'lessons_by_level': [], 'exercises_by_type': []};
+    return {'data': {'lessons_by_level': [], 'exercises_by_type': []}};
   }
   if (path.endsWith('/dashboard/timeline') ||
       path.endsWith('/dashboard/heatmap')) {
-    return [];
+    return {'data': [], 'total': 0};
   }
   if (path.endsWith('/streak/my-streak')) {
     return {
-      'current_streak': 4,
-      'longest_streak': 11,
-      'total_xp': 910,
-      'level': 2,
+      'data': {'current_streak': 4, 'longest_streak': 11, 'total_xp': 910, 'level': 2},
     };
   }
   if (path.endsWith('/streak/xp-history')) {
-    return [
-      {
-        'amount': 15,
-        'reason': 'Làm bài tập',
-        'earned_at': '2026-11-02T00:00:00.000Z',
-      },
-    ];
+    return {
+      'data': [
+        {'amount': 15, 'reason': 'Làm bài tập', 'earned_at': '2026-11-02T00:00:00.000Z'},
+      ],
+      'total': 1,
+    };
   }
   if (path.endsWith('/achievement/my-achievements')) {
     return {
-      'earned': [
-        {
-          '_id': 'a1',
-          'user': 'u1',
-          'is_completed': true,
-          'progress': 1,
-          'earned_at': '2026-11-01T00:00:00.000Z',
-          'achievement': {
-            '_id': 'x',
-            'name_vi': 'Bước chân đầu tiên',
-            'description_vi': 'Học bài đầu',
-            'xp_reward': 40,
+      'data': {
+        'earned': [
+          {
+            '_id': 'a1',
+            'user': 'u1',
+            'is_completed': true,
+            'progress': 1,
+            'earned_at': '2026-11-01T00:00:00.000Z',
+            'achievement': {
+              '_id': 'x',
+              'name_vi': 'Bước chân đầu tiên',
+              'description_vi': 'Học bài đầu',
+              'xp_reward': 40,
+            },
           },
-        },
-      ],
-      'locked': [],
+        ],
+        'locked': [],
+      },
     };
   }
   if (path.endsWith('/lesson/$_lessonId')) {
     return {
-      '_id': _lessonId,
-      'title': 'Tự giới thiệu',
-      'level': 'N5',
-      'order': 1,
+      'data': {'_id': _lessonId, 'title': 'Tự giới thiệu', 'level': 'N5', 'order': 1},
     };
   }
   if (path.endsWith('/lesson-progress/lesson/$_lessonId')) {
     return {
-      '_id': 'p1',
-      'lesson': _lessonId,
-      'is_completed': true,
-      'overall_progress': 100,
+      'data': {'_id': 'p1', 'lesson': _lessonId, 'is_completed': true, 'overall_progress': 100},
     };
   }
   return {};
@@ -283,13 +277,13 @@ void main() {
 
   test('Bài tập: một cấp lỗi thì báo lỗi, không lặng lẽ thiếu bài', () async {
     await http.runWithClient(() async {
-      await expectLater(ExerciseService().getAllExercises(), throwsException);
+      await expectLater(ExerciseService().listAll(), throwsException);
     },
         () => MockClient((request) async {
               if (request.url.path.endsWith('/N3')) {
                 throw http.ClientException('Failed to fetch', request.url);
               }
-              return http.Response('[]', 200, headers: _headers);
+              return http.Response('{"data":[],"total":0}', 200, headers: _headers);
             }));
   });
 }

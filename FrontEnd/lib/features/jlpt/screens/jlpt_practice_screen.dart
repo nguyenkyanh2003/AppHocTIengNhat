@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -60,12 +59,7 @@ class _JLPTPracticeScreenState extends State<JLPTPracticeScreen> {
               child: Consumer<JLPTPracticeProvider>(
                 builder: (context, provider, _) {
                   return AsyncView<List<JlptPracticeQuestion>>(
-                    state: ViewState.fromLegacy(
-                      isLoading: provider.isLoading,
-                      error: provider.error,
-                      value: provider.items,
-                      isEmpty: provider.items.isEmpty,
-                    ),
+                    state: provider.questions,
                     onRetry: _load,
                     isEmpty: (items) => items.isEmpty,
                     emptyTitle: 'Chưa có câu hỏi',
@@ -73,7 +67,7 @@ class _JLPTPracticeScreenState extends State<JLPTPracticeScreen> {
                     emptyIcon: Icons.quiz_outlined,
                     builder: (context, items) => Column(
                       children: [
-                        _ScoreBar(provider: provider),
+                        _ScoreBar(provider: provider, total: items.length),
                         Expanded(
                           child: ListView.builder(
                             padding: const EdgeInsets.all(AppSpacing.lg),
@@ -148,9 +142,10 @@ class _JLPTPracticeScreenState extends State<JLPTPracticeScreen> {
 }
 
 class _ScoreBar extends StatelessWidget {
-  const _ScoreBar({required this.provider});
+  const _ScoreBar({required this.provider, required this.total});
 
   final JLPTPracticeProvider provider;
+  final int total;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +160,7 @@ class _ScoreBar extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'Đã làm ${provider.answeredCount}/${provider.items.length} câu',
+              'Đã làm ${provider.answeredCount}/$total câu',
               style: TextStyle(
                 fontSize: AppTypography.bodySmall,
                 color: context.colors.textSecondary,

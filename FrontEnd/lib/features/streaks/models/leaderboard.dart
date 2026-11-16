@@ -63,3 +63,19 @@ class LeaderboardEntry {
       ? (fullName ?? username)[0].toUpperCase()
       : 'U';
 }
+
+/// Một bảng xếp hạng kèm hạng của người đang xem (`null` khi chưa có XP).
+class Leaderboard {
+  const Leaderboard({required this.entries, this.userRank});
+
+  final List<LeaderboardEntry> entries;
+  final int? userRank;
+
+  factory Leaderboard.fromJson(Map<String, dynamic> json) => Leaderboard(
+        entries: [
+          for (final entry in json['leaderboard'] as List? ?? const [])
+            if (entry is Map) LeaderboardEntry.fromJson(Map<String, dynamic>.from(entry)),
+        ],
+        userRank: (json['user_rank'] as num?)?.toInt(),
+      );
+}

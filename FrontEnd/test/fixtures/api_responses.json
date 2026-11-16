@@ -118,576 +118,601 @@
      "createdAt": "2026-09-08 10:10:30",
      "updatedAt": "2026-09-23 15:07:05"
     }
-   ]
+   ],
+   "total": 6
   },
   "/achievement/my-achievements": {
-   "earned": [
-    {
-     "_id": "6aec5c551fcef613feac72f4",
-     "achievement": {
-      "_id": "6ab389263684b324dd318ce0",
-      "name": "First Lesson",
+   "data": {
+    "earned": [
+     {
+      "_id": "6aec5c551fcef613feac72f4",
+      "achievement": {
+       "_id": "6ab389263684b324dd318ce0",
+       "name": "First Lesson",
+       "__v": 0,
+       "category": "lesson",
+       "createdAt": "2026-09-23T08:07:05.835Z",
+       "description": "Complete your first lesson",
+       "description_vi": "Hoàn thành bài học đầu tiên",
+       "icon": "📖",
+       "is_active": true,
+       "name_vi": "Bài Học Đầu Tiên",
+       "rarity": "common",
+       "requirement_type": "count",
+       "requirement_value": 1,
+       "updatedAt": "2026-09-23T08:07:05.835Z",
+       "xp_reward": 30
+      },
+      "user": "6aec5c4a3b8b4c2bcee760c1",
       "__v": 0,
-      "category": "lesson",
-      "createdAt": "2026-09-23T08:07:05.835Z",
-      "description": "Complete your first lesson",
-      "description_vi": "Hoàn thành bài học đầu tiên",
-      "icon": "📖",
-      "is_active": true,
-      "name_vi": "Bài Học Đầu Tiên",
-      "rarity": "common",
-      "requirement_type": "count",
-      "requirement_value": 1,
-      "updatedAt": "2026-09-23T08:07:05.835Z",
-      "xp_reward": 30
+      "createdAt": "2026-11-05T10:37:00.878Z",
+      "earned_at": "2026-11-05T10:37:00.031Z",
+      "is_completed": true,
+      "progress": 1,
+      "updatedAt": "2026-11-05T10:37:00.878Z"
+     }
+    ],
+    "locked": [
+     {
+      "achievement": {
+       "_id": "6ab389263684b324dd318cdf",
+       "name": "Grammar First Steps",
+       "__v": 0,
+       "category": "grammar",
+       "createdAt": "2026-09-23T08:07:05.835Z",
+       "description": "Learn 5 grammar points",
+       "description_vi": "Học 5 mẫu ngữ pháp",
+       "icon": "📝",
+       "is_active": true,
+       "name_vi": "Làm Quen Ngữ Pháp",
+       "rarity": "common",
+       "requirement_type": "count",
+       "requirement_value": 5,
+       "updatedAt": "2026-09-23T08:07:05.835Z",
+       "xp_reward": 50
+      },
+      "progress": 0,
+      "is_completed": false,
+      "is_locked": true
      },
-     "user": "6aec5c4a3b8b4c2bcee760c1",
-     "__v": 0,
-     "createdAt": "2026-11-05T10:37:00.878Z",
-     "earned_at": "2026-11-05T10:37:00.031Z",
-     "is_completed": true,
-     "progress": 1,
-     "updatedAt": "2026-11-05T10:37:00.878Z"
-    }
-   ],
-   "locked": [
-    {
-     "achievement": {
-      "_id": "6ab389263684b324dd318cdf",
-      "name": "Grammar First Steps",
-      "__v": 0,
-      "category": "grammar",
-      "createdAt": "2026-09-23T08:07:05.835Z",
-      "description": "Learn 5 grammar points",
-      "description_vi": "Học 5 mẫu ngữ pháp",
-      "icon": "📝",
-      "is_active": true,
-      "name_vi": "Làm Quen Ngữ Pháp",
-      "rarity": "common",
-      "requirement_type": "count",
-      "requirement_value": 5,
-      "updatedAt": "2026-09-23T08:07:05.835Z",
-      "xp_reward": 50
+     {
+      "achievement": {
+       "_id": "6a9f7ca66d558c80286018b4",
+       "name": "Grammar Novice",
+       "name_vi": "Người Mới Học Ngữ Pháp",
+       "description": "Learn 20 grammar points",
+       "description_vi": "Học 20 mẫu ngữ pháp",
+       "icon": "📝",
+       "category": "grammar",
+       "requirement_type": "count",
+       "requirement_value": 20,
+       "xp_reward": 150,
+       "rarity": "rare",
+       "is_active": true,
+       "__v": 0,
+       "createdAt": "2026-09-08T03:10:30.902Z",
+       "updatedAt": "2026-09-23T08:07:05.835Z"
+      },
+      "progress": 0,
+      "is_completed": false,
+      "is_locked": true
      },
-     "progress": 0,
-     "is_completed": false,
-     "is_locked": true
-    },
-    {
-     "achievement": {
-      "_id": "6a9f7ca66d558c80286018b4",
-      "name": "Grammar Novice",
-      "name_vi": "Người Mới Học Ngữ Pháp",
-      "description": "Learn 20 grammar points",
-      "description_vi": "Học 20 mẫu ngữ pháp",
-      "icon": "📝",
-      "category": "grammar",
-      "requirement_type": "count",
-      "requirement_value": 20,
-      "xp_reward": 150,
-      "rarity": "rare",
-      "is_active": true,
-      "__v": 0,
-      "createdAt": "2026-09-08T03:10:30.902Z",
-      "updatedAt": "2026-09-23T08:07:05.835Z"
+     {
+      "achievement": {
+       "_id": "6a9f7ca66d558c80286018b5",
+       "name": "Grammar Expert",
+       "name_vi": "Chuyên Gia Ngữ Pháp",
+       "description": "Learn 50 grammar points",
+       "description_vi": "Học 50 mẫu ngữ pháp",
+       "icon": "📝",
+       "category": "grammar",
+       "requirement_type": "count",
+       "requirement_value": 50,
+       "xp_reward": 400,
+       "rarity": "epic",
+       "is_active": true,
+       "__v": 0,
+       "createdAt": "2026-09-08T03:10:30.902Z",
+       "updatedAt": "2026-09-23T08:07:05.835Z"
+      },
+      "progress": 0,
+      "is_completed": false,
+      "is_locked": true
      },
-     "progress": 0,
-     "is_completed": false,
-     "is_locked": true
-    },
-    {
-     "achievement": {
-      "_id": "6a9f7ca66d558c80286018b5",
-      "name": "Grammar Expert",
-      "name_vi": "Chuyên Gia Ngữ Pháp",
-      "description": "Learn 50 grammar points",
-      "description_vi": "Học 50 mẫu ngữ pháp",
-      "icon": "📝",
-      "category": "grammar",
-      "requirement_type": "count",
-      "requirement_value": 50,
-      "xp_reward": 400,
-      "rarity": "epic",
-      "is_active": true,
-      "__v": 0,
-      "createdAt": "2026-09-08T03:10:30.902Z",
-      "updatedAt": "2026-09-23T08:07:05.835Z"
+     {
+      "achievement": {
+       "_id": "6a9f7ca66d558c80286018b6",
+       "name": "Grammar Master",
+       "name_vi": "Bậc Thầy Ngữ Pháp",
+       "description": "Learn 100 grammar points",
+       "description_vi": "Học 100 mẫu ngữ pháp",
+       "icon": "📝",
+       "category": "grammar",
+       "requirement_type": "count",
+       "requirement_value": 100,
+       "xp_reward": 1200,
+       "rarity": "legendary",
+       "is_active": true,
+       "__v": 0,
+       "createdAt": "2026-09-08T03:10:30.902Z",
+       "updatedAt": "2026-09-23T08:07:05.835Z"
+      },
+      "progress": 0,
+      "is_completed": false,
+      "is_locked": true
      },
-     "progress": 0,
-     "is_completed": false,
-     "is_locked": true
-    },
-    {
-     "achievement": {
-      "_id": "6a9f7ca66d558c80286018b6",
-      "name": "Grammar Master",
-      "name_vi": "Bậc Thầy Ngữ Pháp",
-      "description": "Learn 100 grammar points",
-      "description_vi": "Học 100 mẫu ngữ pháp",
-      "icon": "📝",
-      "category": "grammar",
-      "requirement_type": "count",
-      "requirement_value": 100,
-      "xp_reward": 1200,
-      "rarity": "legendary",
-      "is_active": true,
-      "__v": 0,
-      "createdAt": "2026-09-08T03:10:30.902Z",
-      "updatedAt": "2026-09-23T08:07:05.835Z"
+     {
+      "achievement": {
+       "_id": "6ab389263684b324dd318cde",
+       "name": "First Kanji",
+       "__v": 0,
+       "category": "kanji",
+       "createdAt": "2026-09-23T08:07:05.835Z",
+       "description": "Learn 10 kanji characters",
+       "description_vi": "Học 10 chữ Kanji",
+       "icon": "🈯",
+       "is_active": true,
+       "name_vi": "Chữ Hán Đầu Tiên",
+       "rarity": "common",
+       "requirement_type": "count",
+       "requirement_value": 10,
+       "updatedAt": "2026-09-23T08:07:05.835Z",
+       "xp_reward": 50
+      },
+      "progress": 2,
+      "is_completed": false,
+      "is_locked": true
      },
-     "progress": 0,
-     "is_completed": false,
-     "is_locked": true
-    },
-    {
-     "achievement": {
-      "_id": "6ab389263684b324dd318cde",
-      "name": "First Kanji",
-      "__v": 0,
-      "category": "kanji",
-      "createdAt": "2026-09-23T08:07:05.835Z",
-      "description": "Learn 10 kanji characters",
-      "description_vi": "Học 10 chữ Kanji",
-      "icon": "🈯",
-      "is_active": true,
-      "name_vi": "Chữ Hán Đầu Tiên",
-      "rarity": "common",
-      "requirement_type": "count",
-      "requirement_value": 10,
-      "updatedAt": "2026-09-23T08:07:05.835Z",
-      "xp_reward": 50
-     },
-     "progress": 2,
-     "is_completed": false,
-     "is_locked": true
-    },
-    {
-     "achievement": {
-      "_id": "6a9f7ca66d558c80286018b7",
-      "name": "Kanji Starter",
-      "name_vi": "Người Bắt Đầu Kanji",
-      "description": "Learn 50 kanji characters",
-      "description_vi": "Học 50 chữ Kanji",
-      "icon": "🈯",
-      "category": "kanji",
-      "requirement_type": "count",
-      "requirement_value": 50,
-      "xp_reward": 200,
-      "rarity": "rare",
-      "is_active": true,
-      "__v": 0,
-      "createdAt": "2026-09-08T03:10:30.902Z",
-      "updatedAt": "2026-09-23T08:07:05.835Z"
-     },
-     "progress": 2,
-     "is_completed": false,
-     "is_locked": true
-    }
-   ],
-   "total": 34,
-   "completed": 1
+     {
+      "achievement": {
+       "_id": "6a9f7ca66d558c80286018b7",
+       "name": "Kanji Starter",
+       "name_vi": "Người Bắt Đầu Kanji",
+       "description": "Learn 50 kanji characters",
+       "description_vi": "Học 50 chữ Kanji",
+       "icon": "🈯",
+       "category": "kanji",
+       "requirement_type": "count",
+       "requirement_value": 50,
+       "xp_reward": 200,
+       "rarity": "rare",
+       "is_active": true,
+       "__v": 0,
+       "createdAt": "2026-09-08T03:10:30.902Z",
+       "updatedAt": "2026-09-23T08:07:05.835Z"
+      },
+      "progress": 2,
+      "is_completed": false,
+      "is_locked": true
+     }
+    ],
+    "total": 34,
+    "completed": 1
+   }
   },
   "/achievement/stats": {
-   "total_achievements": 34,
-   "earned_achievements": 1,
-   "completion_rate": "2.9",
-   "by_category": [
-    {
-     "_id": "lesson",
-     "count": 4
-    },
-    {
-     "_id": "practice",
-     "count": 4
-    },
-    {
-     "_id": "vocabulary",
-     "count": 6
-    },
-    {
-     "_id": "grammar",
-     "count": 4
-    },
-    {
-     "_id": "xp",
-     "count": 5
-    },
-    {
-     "_id": "streak",
-     "count": 7
-    }
-   ],
-   "earned_by_category": [
-    {
-     "_id": "lesson",
-     "count": 1
-    }
-   ]
+   "data": {
+    "total_achievements": 34,
+    "earned_achievements": 1,
+    "completion_rate": "2.9",
+    "by_category": [
+     {
+      "_id": "lesson",
+      "count": 4
+     },
+     {
+      "_id": "practice",
+      "count": 4
+     },
+     {
+      "_id": "vocabulary",
+      "count": 6
+     },
+     {
+      "_id": "grammar",
+      "count": 4
+     },
+     {
+      "_id": "xp",
+      "count": 5
+     },
+     {
+      "_id": "streak",
+      "count": 7
+     }
+    ],
+    "earned_by_category": [
+     {
+      "_id": "lesson",
+      "count": 1
+     }
+    ]
+   }
   },
   "/exercise/6ab388abf610c0926d31506d": {
-   "_id": "6ab388abf610c0926d31506d",
-   "lesson_id": {
-    "_id": "6aa8bb4dd74d9e1f048f4a62",
-    "title": "Tình huống: Tự giới thiệu",
-    "level": "N5"
-   },
-   "title": "Nghĩa của từ — Tự giới thiệu",
-   "type": "Từ vựng",
-   "level": "N5",
-   "description": "Chọn nghĩa đúng của các từ trong bài \"Tự giới thiệu\".",
-   "questions": [
-    {
-     "content": "「名前」（なまえ）nghĩa là gì?",
-     "answers": [
-      {
-       "_id": "6ab388abf610c0926d31506f",
-       "content": "tên"
-      },
-      {
-       "_id": "6ab388abf610c0926d315070",
-       "content": "đất nước"
-      },
-      {
-       "_id": "6ab388abf610c0926d315071",
-       "content": "công việc"
-      },
-      {
-       "_id": "6ab388abf610c0926d315072",
-       "content": "nhân viên công ty"
-      }
-     ],
-     "_id": "6ab388abf610c0926d31506e"
-    },
-    {
-     "content": "「国」（くに）nghĩa là gì?",
-     "answers": [
-      {
-       "_id": "6ab388abf610c0926d315074",
-       "content": "công việc"
-      },
-      {
-       "_id": "6ab388abf610c0926d315075",
-       "content": "đất nước"
-      },
-      {
-       "_id": "6ab388abf610c0926d315076",
-       "content": "nhân viên công ty"
-      },
-      {
-       "_id": "6ab388abf610c0926d315077",
-       "content": "học sinh, sinh viên"
-      }
-     ],
-     "_id": "6ab388abf610c0926d315073"
-    },
-    {
-     "content": "「仕事」（しごと）nghĩa là gì?",
-     "answers": [
-      {
-       "_id": "6ab388abf610c0926d315079",
-       "content": "nhân viên công ty"
-      },
-      {
-       "_id": "6ab388abf610c0926d31507a",
-       "content": "học sinh, sinh viên"
-      },
-      {
-       "_id": "6ab388abf610c0926d31507b",
-       "content": "công việc"
-      },
-      {
-       "_id": "6ab388abf610c0926d31507c",
-       "content": "giáo viên"
-      }
-     ],
-     "_id": "6ab388abf610c0926d315078"
-    },
-    {
-     "content": "「会社員」（かいしゃいん）nghĩa là gì?",
-     "answers": [
-      {
-       "_id": "6ab388abf610c0926d31507e",
-       "content": "học sinh, sinh viên"
-      },
-      {
-       "_id": "6ab388abf610c0926d31507f",
-       "content": "giáo viên"
-      },
-      {
-       "_id": "6ab388abf610c0926d315080",
-       "content": "bạn bè"
-      },
-      {
-       "_id": "6ab388abf610c0926d315081",
-       "content": "nhân viên công ty"
-      }
-     ],
-     "_id": "6ab388abf610c0926d31507d"
-    },
-    {
-     "content": "「学生」（がくせい）nghĩa là gì?",
-     "answers": [
-      {
-       "_id": "6ab388abf610c0926d315083",
-       "content": "học sinh, sinh viên"
-      },
-      {
-       "_id": "6ab388abf610c0926d315084",
-       "content": "giáo viên"
-      },
-      {
-       "_id": "6ab388abf610c0926d315085",
-       "content": "bạn bè"
-      },
-      {
-       "_id": "6ab388abf610c0926d315086",
-       "content": "việc học"
-      }
-     ],
-     "_id": "6ab388abf610c0926d315082"
-    },
-    {
-     "content": "「先生」（せんせい）nghĩa là gì?",
-     "answers": [
-      {
-       "_id": "6ab388abf610c0926d315088",
-       "content": "bạn bè"
-      },
-      {
-       "_id": "6ab388abf610c0926d315089",
-       "content": "giáo viên"
-      },
-      {
-       "_id": "6ab388abf610c0926d31508a",
-       "content": "việc học"
-      },
-      {
-       "_id": "6ab388abf610c0926d31508b",
-       "content": "tôi"
-      }
-     ],
-     "_id": "6ab388abf610c0926d315087"
-    }
-   ],
-   "time_limit": 0,
-   "pass_score": 60,
-   "is_active": true,
-   "total_attempts": 0,
-   "__v": 0,
-   "createdAt": "2026-09-23 15:07:08",
-   "updatedAt": "2026-11-05 12:13:46"
-  },
-  "/exercise/history": [],
-  "/exercise/level/N1": [],
-  "/exercise/level/N2": [],
-  "/exercise/level/N3": [
-   {
-    "_id": "6ab388acf610c0926d31576f",
-    "title": "Hội thoại — Làm thủ tục chuyển nơi ở",
-    "type": "Tổng hợp",
-    "level": "N3",
-    "description": "Hiểu các mẫu câu trong video của bài \"Làm thủ tục chuyển nơi ở\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 4
-   },
-   {
-    "_id": "6ab388acf610c0926d31578e",
-    "title": "Nghĩa của từ — Tìm thuê căn hộ",
-    "type": "Từ vựng",
-    "level": "N3",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Tìm thuê căn hộ\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 11
-   },
-   {
-    "_id": "6ab388acf610c0926d3157e0",
-    "title": "Hội thoại — Tìm thuê căn hộ",
-    "type": "Tổng hợp",
-    "level": "N3",
-    "description": "Hiểu các mẫu câu trong video của bài \"Tìm thuê căn hộ\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 4
-   },
-   {
-    "_id": "6ab388acf610c0926d31571d",
-    "title": "Nghĩa của từ — Làm thủ tục chuyển nơi ở",
-    "type": "Từ vựng",
-    "level": "N3",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Làm thủ tục chuyển nơi ở\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 10
-   },
-   {
-    "_id": "6ab388acf610c0926d315746",
-    "title": "Cách đọc — Làm thủ tục chuyển nơi ở",
-    "type": "Từ vựng",
-    "level": "N3",
-    "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Làm thủ tục chuyển nơi ở\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 10
-   },
-   {
-    "_id": "6ab388acf610c0926d3157b7",
-    "title": "Cách đọc — Tìm thuê căn hộ",
-    "type": "Từ vựng",
-    "level": "N3",
-    "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Tìm thuê căn hộ\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 11
-   }
-  ],
-  "/exercise/level/N4": [
-   {
-    "_id": "6ab388acf610c0926d31554a",
-    "title": "Nghĩa của từ — Đi khám bệnh",
-    "type": "Từ vựng",
-    "level": "N4",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Đi khám bệnh\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 12
-   },
-   {
-    "_id": "6ab388acf610c0926d31559c",
-    "title": "Hội thoại — Đi khám bệnh",
-    "type": "Tổng hợp",
-    "level": "N4",
-    "description": "Hiểu các mẫu câu trong video của bài \"Đi khám bệnh\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 10
-   },
-   {
-    "_id": "6ab388acf610c0926d315573",
-    "title": "Cách đọc — Đi khám bệnh",
-    "type": "Từ vựng",
-    "level": "N4",
-    "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Đi khám bệnh\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 12
-   },
-   {
-    "_id": "6ab8cbd739350d0a98d29301",
-    "title": "Nghĩa của từ — Chào hỏi đúng người, đúng lúc",
-    "type": "Từ vựng",
-    "level": "N4",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Chào hỏi đúng người, đúng lúc\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-27 14:55:03",
-    "question_count": 12
-   },
-   {
-    "_id": "6ab8cbd739350d0a98d29390",
-    "title": "Nghĩa của từ — Dùng dịch vụ ở cửa hàng tiện lợi",
-    "type": "Từ vựng",
-    "level": "N4",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Dùng dịch vụ ở cửa hàng tiện lợi\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-27 14:55:03",
-    "question_count": 12
-   },
-   {
-    "_id": "6ab8cbd739350d0a98d29400",
-    "title": "Hội thoại — Dùng dịch vụ ở cửa hàng tiện lợi",
-    "type": "Tổng hợp",
-    "level": "N4",
-    "description": "Hiểu các mẫu câu trong video của bài \"Dùng dịch vụ ở cửa hàng tiện lợi\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-27 14:55:03",
-    "question_count": 8
-   }
-  ],
-  "/exercise/level/N5": [
-   {
+   "data": {
     "_id": "6ab388abf610c0926d31506d",
+    "lesson_id": {
+     "_id": "6aa8bb4dd74d9e1f048f4a62",
+     "title": "Tình huống: Tự giới thiệu",
+     "level": "N5"
+    },
     "title": "Nghĩa của từ — Tự giới thiệu",
     "type": "Từ vựng",
     "level": "N5",
     "description": "Chọn nghĩa đúng của các từ trong bài \"Tự giới thiệu\".",
+    "questions": [
+     {
+      "content": "「名前」（なまえ）nghĩa là gì?",
+      "answers": [
+       {
+        "_id": "6ab388abf610c0926d31506f",
+        "content": "tên"
+       },
+       {
+        "_id": "6ab388abf610c0926d315070",
+        "content": "đất nước"
+       },
+       {
+        "_id": "6ab388abf610c0926d315071",
+        "content": "công việc"
+       },
+       {
+        "_id": "6ab388abf610c0926d315072",
+        "content": "nhân viên công ty"
+       }
+      ],
+      "_id": "6ab388abf610c0926d31506e"
+     },
+     {
+      "content": "「国」（くに）nghĩa là gì?",
+      "answers": [
+       {
+        "_id": "6ab388abf610c0926d315074",
+        "content": "công việc"
+       },
+       {
+        "_id": "6ab388abf610c0926d315075",
+        "content": "đất nước"
+       },
+       {
+        "_id": "6ab388abf610c0926d315076",
+        "content": "nhân viên công ty"
+       },
+       {
+        "_id": "6ab388abf610c0926d315077",
+        "content": "học sinh, sinh viên"
+       }
+      ],
+      "_id": "6ab388abf610c0926d315073"
+     },
+     {
+      "content": "「仕事」（しごと）nghĩa là gì?",
+      "answers": [
+       {
+        "_id": "6ab388abf610c0926d315079",
+        "content": "nhân viên công ty"
+       },
+       {
+        "_id": "6ab388abf610c0926d31507a",
+        "content": "học sinh, sinh viên"
+       },
+       {
+        "_id": "6ab388abf610c0926d31507b",
+        "content": "công việc"
+       },
+       {
+        "_id": "6ab388abf610c0926d31507c",
+        "content": "giáo viên"
+       }
+      ],
+      "_id": "6ab388abf610c0926d315078"
+     },
+     {
+      "content": "「会社員」（かいしゃいん）nghĩa là gì?",
+      "answers": [
+       {
+        "_id": "6ab388abf610c0926d31507e",
+        "content": "học sinh, sinh viên"
+       },
+       {
+        "_id": "6ab388abf610c0926d31507f",
+        "content": "giáo viên"
+       },
+       {
+        "_id": "6ab388abf610c0926d315080",
+        "content": "bạn bè"
+       },
+       {
+        "_id": "6ab388abf610c0926d315081",
+        "content": "nhân viên công ty"
+       }
+      ],
+      "_id": "6ab388abf610c0926d31507d"
+     },
+     {
+      "content": "「学生」（がくせい）nghĩa là gì?",
+      "answers": [
+       {
+        "_id": "6ab388abf610c0926d315083",
+        "content": "học sinh, sinh viên"
+       },
+       {
+        "_id": "6ab388abf610c0926d315084",
+        "content": "giáo viên"
+       },
+       {
+        "_id": "6ab388abf610c0926d315085",
+        "content": "bạn bè"
+       },
+       {
+        "_id": "6ab388abf610c0926d315086",
+        "content": "việc học"
+       }
+      ],
+      "_id": "6ab388abf610c0926d315082"
+     },
+     {
+      "content": "「先生」（せんせい）nghĩa là gì?",
+      "answers": [
+       {
+        "_id": "6ab388abf610c0926d315088",
+        "content": "bạn bè"
+       },
+       {
+        "_id": "6ab388abf610c0926d315089",
+        "content": "giáo viên"
+       },
+       {
+        "_id": "6ab388abf610c0926d31508a",
+        "content": "việc học"
+       },
+       {
+        "_id": "6ab388abf610c0926d31508b",
+        "content": "tôi"
+       }
+      ],
+      "_id": "6ab388abf610c0926d315087"
+     }
+    ],
     "time_limit": 0,
+    "pass_score": 60,
+    "is_active": true,
     "total_attempts": 0,
+    "__v": 0,
     "createdAt": "2026-09-23 15:07:08",
-    "question_count": 11
-   },
-   {
-    "_id": "6ab388abf610c0926d3150dd",
-    "title": "Hội thoại — Tự giới thiệu",
-    "type": "Tổng hợp",
-    "level": "N5",
-    "description": "Hiểu các mẫu câu trong video của bài \"Tự giới thiệu\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 10
-   },
-   {
-    "_id": "6ab388abf610c0926d3151f6",
-    "title": "Hội thoại — Đi siêu thị",
-    "type": "Tổng hợp",
-    "level": "N5",
-    "description": "Hiểu các mẫu câu trong video của bài \"Đi siêu thị\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 8
-   },
-   {
-    "_id": "6ab388abf610c0926d31519a",
-    "title": "Nghĩa của từ — Đi siêu thị",
-    "type": "Từ vựng",
-    "level": "N5",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Đi siêu thị\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 9
-   },
-   {
-    "_id": "6ab388abf610c0926d3151c8",
-    "title": "Cách đọc — Đi siêu thị",
-    "type": "Từ vựng",
-    "level": "N5",
-    "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Đi siêu thị\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 9
-   },
-   {
-    "_id": "6ab388abf610c0926d3152fc",
-    "title": "Nghĩa của từ — Ở nhà hàng",
-    "type": "Từ vựng",
-    "level": "N5",
-    "description": "Chọn nghĩa đúng của các từ trong bài \"Ở nhà hàng\".",
-    "time_limit": 0,
-    "total_attempts": 0,
-    "createdAt": "2026-09-23 15:07:08",
-    "question_count": 9
+    "updatedAt": "2026-11-05 12:13:46"
    }
-  ],
-  "/flashcard/decks?page=1&limit=20&myDecks=true": {
-   "totalItems": 1,
-   "totalPages": 1,
-   "currentPage": 1,
+  },
+  "/exercise/history?page=1&limit=20": {
+   "data": [],
+   "page": 1,
+   "limit": 20,
+   "total": 0,
+   "totalPages": 0
+  },
+  "/exercise/level/N1": {
+   "data": [],
+   "total": 0
+  },
+  "/exercise/level/N2": {
+   "data": [],
+   "total": 0
+  },
+  "/exercise/level/N3": {
+   "data": [
+    {
+     "_id": "6ab388acf610c0926d31576f",
+     "title": "Hội thoại — Làm thủ tục chuyển nơi ở",
+     "type": "Tổng hợp",
+     "level": "N3",
+     "description": "Hiểu các mẫu câu trong video của bài \"Làm thủ tục chuyển nơi ở\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 4
+    },
+    {
+     "_id": "6ab388acf610c0926d31578e",
+     "title": "Nghĩa của từ — Tìm thuê căn hộ",
+     "type": "Từ vựng",
+     "level": "N3",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Tìm thuê căn hộ\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 11
+    },
+    {
+     "_id": "6ab388acf610c0926d3157e0",
+     "title": "Hội thoại — Tìm thuê căn hộ",
+     "type": "Tổng hợp",
+     "level": "N3",
+     "description": "Hiểu các mẫu câu trong video của bài \"Tìm thuê căn hộ\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 4
+    },
+    {
+     "_id": "6ab388acf610c0926d31571d",
+     "title": "Nghĩa của từ — Làm thủ tục chuyển nơi ở",
+     "type": "Từ vựng",
+     "level": "N3",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Làm thủ tục chuyển nơi ở\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 10
+    },
+    {
+     "_id": "6ab388acf610c0926d315746",
+     "title": "Cách đọc — Làm thủ tục chuyển nơi ở",
+     "type": "Từ vựng",
+     "level": "N3",
+     "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Làm thủ tục chuyển nơi ở\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 10
+    },
+    {
+     "_id": "6ab388acf610c0926d3157b7",
+     "title": "Cách đọc — Tìm thuê căn hộ",
+     "type": "Từ vựng",
+     "level": "N3",
+     "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Tìm thuê căn hộ\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 11
+    }
+   ],
+   "total": 6
+  },
+  "/exercise/level/N4": {
+   "data": [
+    {
+     "_id": "6ab388acf610c0926d31554a",
+     "title": "Nghĩa của từ — Đi khám bệnh",
+     "type": "Từ vựng",
+     "level": "N4",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Đi khám bệnh\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 12
+    },
+    {
+     "_id": "6ab388acf610c0926d31559c",
+     "title": "Hội thoại — Đi khám bệnh",
+     "type": "Tổng hợp",
+     "level": "N4",
+     "description": "Hiểu các mẫu câu trong video của bài \"Đi khám bệnh\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 10
+    },
+    {
+     "_id": "6ab388acf610c0926d315573",
+     "title": "Cách đọc — Đi khám bệnh",
+     "type": "Từ vựng",
+     "level": "N4",
+     "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Đi khám bệnh\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 12
+    },
+    {
+     "_id": "6ab8cbd739350d0a98d29301",
+     "title": "Nghĩa của từ — Chào hỏi đúng người, đúng lúc",
+     "type": "Từ vựng",
+     "level": "N4",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Chào hỏi đúng người, đúng lúc\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-27 14:55:03",
+     "question_count": 12
+    },
+    {
+     "_id": "6ab8cbd739350d0a98d29390",
+     "title": "Nghĩa của từ — Dùng dịch vụ ở cửa hàng tiện lợi",
+     "type": "Từ vựng",
+     "level": "N4",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Dùng dịch vụ ở cửa hàng tiện lợi\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-27 14:55:03",
+     "question_count": 12
+    },
+    {
+     "_id": "6ab8cbd739350d0a98d29400",
+     "title": "Hội thoại — Dùng dịch vụ ở cửa hàng tiện lợi",
+     "type": "Tổng hợp",
+     "level": "N4",
+     "description": "Hiểu các mẫu câu trong video của bài \"Dùng dịch vụ ở cửa hàng tiện lợi\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-27 14:55:03",
+     "question_count": 8
+    }
+   ],
+   "total": 6
+  },
+  "/exercise/level/N5": {
+   "data": [
+    {
+     "_id": "6ab388abf610c0926d31506d",
+     "title": "Nghĩa của từ — Tự giới thiệu",
+     "type": "Từ vựng",
+     "level": "N5",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Tự giới thiệu\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 11
+    },
+    {
+     "_id": "6ab388abf610c0926d3150dd",
+     "title": "Hội thoại — Tự giới thiệu",
+     "type": "Tổng hợp",
+     "level": "N5",
+     "description": "Hiểu các mẫu câu trong video của bài \"Tự giới thiệu\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 10
+    },
+    {
+     "_id": "6ab388abf610c0926d3151f6",
+     "title": "Hội thoại — Đi siêu thị",
+     "type": "Tổng hợp",
+     "level": "N5",
+     "description": "Hiểu các mẫu câu trong video của bài \"Đi siêu thị\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 8
+    },
+    {
+     "_id": "6ab388abf610c0926d31519a",
+     "title": "Nghĩa của từ — Đi siêu thị",
+     "type": "Từ vựng",
+     "level": "N5",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Đi siêu thị\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 9
+    },
+    {
+     "_id": "6ab388abf610c0926d3151c8",
+     "title": "Cách đọc — Đi siêu thị",
+     "type": "Từ vựng",
+     "level": "N5",
+     "description": "Chọn cách đọc đúng của các từ có chữ Hán trong bài \"Đi siêu thị\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 9
+    },
+    {
+     "_id": "6ab388abf610c0926d3152fc",
+     "title": "Nghĩa của từ — Ở nhà hàng",
+     "type": "Từ vựng",
+     "level": "N5",
+     "description": "Chọn nghĩa đúng của các từ trong bài \"Ở nhà hàng\".",
+     "time_limit": 0,
+     "total_attempts": 0,
+     "createdAt": "2026-09-23 15:07:08",
+     "question_count": 9
+    }
+   ],
+   "total": 6
+  },
+  "/flashcard/decks?page=1&limit=20": {
    "data": [
     {
      "_id": "6aec5c4e3b8b4c2bcee760fe",
@@ -718,36 +743,42 @@
      "updated_at": "2026-11-05 17:37:02",
      "__v": 1
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 20,
+   "total": 1,
+   "totalPages": 1
   },
   "/flashcard/decks/6aec5c4e3b8b4c2bcee760fe": {
-   "_id": "6aec5c4e3b8b4c2bcee760fe",
-   "title": "Bộ thẻ thử",
-   "description": "Để xem màu",
-   "user": {
-    "_id": "6aec5c4a3b8b4c2bcee760c1",
-    "TenDangNhap": "Nguyễn Thị Người Học",
-    "HoTen": "Nguyễn Thị Người Học"
-   },
-   "cards": [
-    {
-     "front": "学生",
-     "back": "Học sinh",
-     "order": 0,
-     "_id": "6aec5c4e3b8b4c2bcee76105",
-     "created_at": "2026-11-05T10:37:02.352Z"
-    }
-   ],
-   "is_public": false,
-   "tags": [],
-   "category": "custom",
-   "level": "N5",
-   "total_cards": 1,
-   "study_count": 0,
-   "favorite_count": 0,
-   "created_at": "2026-11-05 17:37:02",
-   "updated_at": "2026-11-05 17:37:02",
-   "__v": 1
+   "data": {
+    "_id": "6aec5c4e3b8b4c2bcee760fe",
+    "title": "Bộ thẻ thử",
+    "description": "Để xem màu",
+    "user": {
+     "_id": "6aec5c4a3b8b4c2bcee760c1",
+     "TenDangNhap": "Nguyễn Thị Người Học",
+     "HoTen": "Nguyễn Thị Người Học"
+    },
+    "cards": [
+     {
+      "front": "学生",
+      "back": "Học sinh",
+      "order": 0,
+      "_id": "6aec5c4e3b8b4c2bcee76105",
+      "created_at": "2026-11-05T10:37:02.352Z"
+     }
+    ],
+    "is_public": false,
+    "tags": [],
+    "category": "custom",
+    "level": "N5",
+    "total_cards": 1,
+    "study_count": 0,
+    "favorite_count": 0,
+    "created_at": "2026-11-05 17:37:02",
+    "updated_at": "2026-11-05 17:37:02",
+    "__v": 1
+   }
   },
   "/goal": {
    "data": [
@@ -971,9 +1002,6 @@
    }
   },
   "/group?page=1&limit=20": {
-   "totalItems": 2,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6a9f8155f8815303b92a3dd1",
@@ -1015,7 +1043,11 @@
      "member_count": 1,
      "updatedAt": "2026-09-08 10:28:47"
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 20,
+   "total": 2,
+   "totalPages": 1
   },
   "/group/6a9f8155f8815303b92a3dd1": {
    "data": {
@@ -1055,8 +1087,6 @@
   },
   "/group/6a9f8155f8815303b92a3dd1/stats": {
    "data": {
-    "total_messages": 1,
-    "today_messages": 0,
     "active_members": 0,
     "member_count": 1,
     "admin_count": 1,
@@ -1066,16 +1096,13 @@
    }
   },
   "/group/me": {
-   "count": 0,
-   "data": []
+   "data": [],
+   "total": 0
   },
   "/jlpt?page=1&limit=10": {
-   "totalItems": 1,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
-     "id": "6a9f7ca4690dffebfc8011bf",
+     "_id": "6a9f7ca4690dffebfc8011bf",
      "title": "Đề mẫu JLPT N4 - Mini Test",
      "description": "Đề luyện tập rút gọn gồm từ vựng, ngữ pháp, đọc hiểu, nghe hiểu",
      "level": "N4",
@@ -1086,110 +1113,115 @@
      "total_score": 30,
      "total_questions": 6,
      "total_views": 20,
-     "created_at": "2026-09-08 10:10:28",
-     "TrangThaiLamBai": "Chưa làm",
-     "KetQuaGannhat": null
+     "createdAt": "2026-09-08 10:10:28",
+     "last_result": null
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 10,
+   "total": 1,
+   "totalPages": 1
   },
   "/jlpt/6a9f7ca4690dffebfc8011bf": {
-   "id": "6a9f7ca4690dffebfc8011bf",
-   "title": "Đề mẫu JLPT N4 - Mini Test",
-   "description": "Đề luyện tập rút gọn gồm từ vựng, ngữ pháp, đọc hiểu, nghe hiểu",
-   "level": "N4",
-   "year": 2024,
-   "month": 7,
-   "time_limit": 20,
-   "pass_score": 18,
-   "total_score": 30,
-   "created_at": "2026-09-08 10:10:28",
-   "sections": {
-    "moji_goi": [
-     {
-      "mondai": 1,
-      "question_text": "『食べる』の尊敬語はどれですか。",
-      "choices": [
-       "いただく",
-       "召し上がる",
-       "食べさせる",
-       "ご馳走する"
-      ],
-      "score": 2
-     },
-     {
-      "mondai": 2,
-      "question_text": "『簡単』の反対語はどれですか。",
-      "choices": [
-       "複雑",
-       "静か",
-       "下手",
-       "難解"
-      ],
-      "score": 2
-     }
-    ],
-    "bunpou": [
-     {
-      "mondai": 1,
-      "question_text": "明日までにレポートを（ ）。",
-      "choices": [
-       "出させます",
-       "出しておきます",
-       "出されます",
-       "出されておきます"
-      ],
-      "score": 2
-     },
-     {
-      "mondai": 2,
-      "question_text": "日本へ来て（ ）、寿司が好きになりました。",
-      "choices": [
-       "いらい",
-       "いこう",
-       "からには",
-       "ところで"
-      ],
-      "score": 2
-     }
-    ],
-    "dokkai": [
-     {
-      "mondai": 1,
-      "group_content": "駅の掲示：『明日から工事のため、北口を閉鎖します』",
-      "questions": [
-       {
-        "mondai": 1,
-        "question_text": "何が閉鎖されますか。",
-        "choices": [
-         "南口",
-         "北口",
-         "改札",
-         "ホーム"
-        ],
-        "score": 2
-       }
-      ]
-     }
-    ],
-    "choukai": [
-     {
-      "mondai": 1,
-      "group_content": "（会話）男：明日の会議は10時からですよね？ 女：いいえ、30分早くなりました。",
-      "questions": [
-       {
-        "mondai": 1,
-        "question_text": "会議は何時に始まりますか。",
-        "choices": [
-         "9時",
-         "9時半",
-         "10時",
-         "10時半"
-        ],
-        "score": 2
-       }
-      ]
-     }
-    ]
+   "data": {
+    "_id": "6a9f7ca4690dffebfc8011bf",
+    "title": "Đề mẫu JLPT N4 - Mini Test",
+    "description": "Đề luyện tập rút gọn gồm từ vựng, ngữ pháp, đọc hiểu, nghe hiểu",
+    "level": "N4",
+    "year": 2024,
+    "month": 7,
+    "time_limit": 20,
+    "pass_score": 18,
+    "total_score": 30,
+    "sections": {
+     "moji_goi": [
+      {
+       "mondai": 1,
+       "question_text": "『食べる』の尊敬語はどれですか。",
+       "choices": [
+        "いただく",
+        "召し上がる",
+        "食べさせる",
+        "ご馳走する"
+       ],
+       "score": 2
+      },
+      {
+       "mondai": 2,
+       "question_text": "『簡単』の反対語はどれですか。",
+       "choices": [
+        "複雑",
+        "静か",
+        "下手",
+        "難解"
+       ],
+       "score": 2
+      }
+     ],
+     "bunpou": [
+      {
+       "mondai": 1,
+       "question_text": "明日までにレポートを（ ）。",
+       "choices": [
+        "出させます",
+        "出しておきます",
+        "出されます",
+        "出されておきます"
+       ],
+       "score": 2
+      },
+      {
+       "mondai": 2,
+       "question_text": "日本へ来て（ ）、寿司が好きになりました。",
+       "choices": [
+        "いらい",
+        "いこう",
+        "からには",
+        "ところで"
+       ],
+       "score": 2
+      }
+     ],
+     "dokkai": [
+      {
+       "mondai": 1,
+       "group_content": "駅の掲示：『明日から工事のため、北口を閉鎖します』",
+       "questions": [
+        {
+         "mondai": 1,
+         "question_text": "何が閉鎖されますか。",
+         "choices": [
+          "南口",
+          "北口",
+          "改札",
+          "ホーム"
+         ],
+         "score": 2
+        }
+       ]
+      }
+     ],
+     "choukai": [
+      {
+       "mondai": 1,
+       "group_content": "（会話）男：明日の会議は10時からですよね？ 女：いいえ、30分早くなりました。",
+       "questions": [
+        {
+         "mondai": 1,
+         "question_text": "会議は何時に始まりますか。",
+         "choices": [
+          "9時",
+          "9時半",
+          "10時",
+          "10時半"
+         ],
+         "score": 2
+        }
+       ]
+      }
+     ]
+    },
+    "createdAt": "2026-09-08 10:10:28"
    }
   },
   "/jlpt/practice?type=moji_goi&limit=10": {
@@ -1485,46 +1517,10 @@
    }
   },
   "/lesson-progress/lesson/6aa8159bd74d9e1f048f3f88": {
-   "_id": "6aec5c4b3b8b4c2bcee760cd",
-   "user": "6aec5c4a3b8b4c2bcee760c1",
-   "lesson": "6aa8159bd74d9e1f048f3f88",
-   "completed_vocabularies": 9,
-   "total_vocabularies": 9,
-   "completed_grammars": 0,
-   "total_grammars": 0,
-   "completed_kanjis": 2,
-   "total_kanjis": 2,
-   "learned_vocabulary_ids": [
-    "6aa3b9cfd74d9e1f048ee09c",
-    "6aa8159cd74d9e1f048f3f89",
-    "6aa3b9fcd74d9e1f048ee161",
-    "6aa3d9e2d74d9e1f048ee691",
-    "6aa3d9d7d74d9e1f048ee663",
-    "6aa6cf47d74d9e1f048f2136"
-   ],
-   "learned_grammar_ids": [],
-   "learned_kanji_ids": [
-    "6aead584a0319ebcb331ca86",
-    "6aead584a0319ebcb331ca87"
-   ],
-   "is_completed": true,
-   "last_studied_at": "2026-11-05 17:36:59",
-   "createdAt": "2026-11-05 17:36:59",
-   "updatedAt": "2026-11-05 17:37:00",
-   "__v": 1,
-   "completed_at": "2026-11-05 17:36:59",
-   "completion_reward_state": "granted"
-  },
-  "/lesson-progress/lessons": [
-   {
+   "data": {
     "_id": "6aec5c4b3b8b4c2bcee760cd",
     "user": "6aec5c4a3b8b4c2bcee760c1",
-    "lesson": {
-     "_id": "6aa8159bd74d9e1f048f3f88",
-     "title": "Tình huống: Đi siêu thị",
-     "level": "N5",
-     "order": 2
-    },
+    "lesson": "6aa8159bd74d9e1f048f3f88",
     "completed_vocabularies": 9,
     "total_vocabularies": 9,
     "completed_grammars": 0,
@@ -1552,11 +1548,49 @@
     "completed_at": "2026-11-05 17:36:59",
     "completion_reward_state": "granted"
    }
-  ],
+  },
+  "/lesson-progress/lessons": {
+   "data": [
+    {
+     "_id": "6aec5c4b3b8b4c2bcee760cd",
+     "user": "6aec5c4a3b8b4c2bcee760c1",
+     "lesson": {
+      "_id": "6aa8159bd74d9e1f048f3f88",
+      "title": "Tình huống: Đi siêu thị",
+      "level": "N5",
+      "order": 2
+     },
+     "completed_vocabularies": 9,
+     "total_vocabularies": 9,
+     "completed_grammars": 0,
+     "total_grammars": 0,
+     "completed_kanjis": 2,
+     "total_kanjis": 2,
+     "learned_vocabulary_ids": [
+      "6aa3b9cfd74d9e1f048ee09c",
+      "6aa8159cd74d9e1f048f3f89",
+      "6aa3b9fcd74d9e1f048ee161",
+      "6aa3d9e2d74d9e1f048ee691",
+      "6aa3d9d7d74d9e1f048ee663",
+      "6aa6cf47d74d9e1f048f2136"
+     ],
+     "learned_grammar_ids": [],
+     "learned_kanji_ids": [
+      "6aead584a0319ebcb331ca86",
+      "6aead584a0319ebcb331ca87"
+     ],
+     "is_completed": true,
+     "last_studied_at": "2026-11-05 17:36:59",
+     "createdAt": "2026-11-05 17:36:59",
+     "updatedAt": "2026-11-05 17:37:00",
+     "__v": 1,
+     "completed_at": "2026-11-05 17:36:59",
+     "completion_reward_state": "granted"
+    }
+   ],
+   "total": 1
+  },
   "/lesson?page=1&limit=20&level=N5": {
-   "totalItems": 12,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6aa8bb4dd74d9e1f048f4a62",
@@ -1754,12 +1788,13 @@
      ],
      "videos": []
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 20,
+   "total": 12,
+   "totalPages": 1
   },
   "/lesson?page=1&limit=50&level=N5": {
-   "totalItems": 12,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "_id": "6aa8bb4dd74d9e1f048f4a62",
@@ -1957,262 +1992,268 @@
      ],
      "videos": []
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 50,
+   "total": 12,
+   "totalPages": 1
   },
   "/lesson/6aa8159bd74d9e1f048f3f88": {
-   "_id": "6aa8159bd74d9e1f048f3f88",
-   "title": "Tình huống: Đi siêu thị",
-   "__v": 0,
-   "can_do_goals": [
-    "Hỏi được giá của một món hàng",
-    "Hỏi được món hàng nằm ở đâu trong siêu thị",
-    "Trả lời được khi nhân viên hỏi có cần túi không"
-   ],
-   "createdAt": "2026-09-14 22:39:21",
-   "description": "Hỏi giá, hỏi vị trí hàng hoá và thanh toán ở siêu thị.",
-   "dialogue": [],
-   "grammars": [],
-   "kanjis": [
-    {
-     "_id": "6aead584a0319ebcb331ca86",
-     "character": "店",
-     "hanviet": "Điếm",
-     "onyomi": [
-      "テン"
-     ],
-     "kunyomi": [
-      "みせ"
-     ],
-     "meaning": "Cửa hàng, tiệm",
-     "level": "N5",
-     "examples": [
-      {
-       "word": "店員",
-       "hiragana": "てんいん",
-       "meaning": "Nhân viên cửa hàng"
-      },
-      {
-       "word": "店",
-       "hiragana": "みせ",
-       "meaning": "Cửa hàng"
-      },
-      {
-       "word": "喫茶店",
-       "hiragana": "きっさてん",
-       "meaning": "Quán cà phê"
-      }
-     ],
-     "__v": 0,
-     "createdAt": "2026-11-04T06:49:40.716Z",
-     "updatedAt": "2026-11-04T06:49:40.716Z"
-    },
-    {
-     "_id": "6aead584a0319ebcb331ca87",
-     "character": "肉",
-     "hanviet": "Nhục",
-     "onyomi": [
-      "ニク"
-     ],
-     "kunyomi": [],
-     "meaning": "Thịt",
-     "level": "N4",
-     "examples": [
-      {
-       "word": "肉",
-       "hiragana": "にく",
-       "meaning": "Thịt"
-      },
-      {
-       "word": "牛肉",
-       "hiragana": "ぎゅうにく",
-       "meaning": "Thịt bò"
-      },
-      {
-       "word": "豚肉",
-       "hiragana": "ぶたにく",
-       "meaning": "Thịt lợn"
-      }
-     ],
-     "__v": 0,
-     "createdAt": "2026-11-04T06:49:40.718Z",
-     "updatedAt": "2026-11-04T06:49:40.718Z"
-    }
-   ],
-   "level": "N5",
-   "order": 2,
-   "situation": "supermarket",
-   "type": "Tình huống",
-   "updatedAt": "2026-11-04 13:49:53",
-   "vocabularies": [
-    {
-     "_id": "6aa3b9cfd74d9e1f048ee09c",
-     "hiragana": "ぎゅうにゅう",
-     "word": "牛乳",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "NGƯU NHŨ",
-     "level": "N5",
-     "meaning": "Sữa bò",
-     "related_kanjis": [],
-     "usage_context": null,
-     "topic": "food",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa8159cd74d9e1f048f3f89",
-     "hiragana": "てんいん",
-     "word": "店員",
-     "__v": 0,
-     "examples": [],
-     "lesson": "6aa8159bd74d9e1f048f3f88",
-     "level": "N5",
-     "meaning": "nhân viên cửa hàng",
-     "related_kanjis": [],
-     "topic": "shop",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa3b9fcd74d9e1f048ee161",
-     "word": "棚",
-     "hiragana": "たな",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "BẰNG",
-     "level": "N5",
-     "meaning": "Giá sách",
-     "related_kanjis": [],
-     "usage_context": null,
-     "topic": "home",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa3d9e2d74d9e1f048ee691",
-     "hiragana": "ふくろ",
-     "word": "袋",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "ĐẠI",
-     "level": "N4",
-     "meaning": "Cái túi",
-     "related_kanjis": [],
-     "source_lesson": "Bài 29",
-     "topic": "shop",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa3d9d7d74d9e1f048ee663",
-     "word": "値段",
-     "hiragana": "ねだん",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "TRỊ ĐOẠN",
-     "level": "N4",
-     "meaning": "Giá",
-     "related_kanjis": [],
-     "source_lesson": "Bài 28",
-     "topic": "shop",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa6cf47d74d9e1f048f2136",
-     "hiragana": "かいけい",
-     "word": "会計",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "HỘI KẾ",
-     "level": "N1",
-     "meaning": "Kế toán, tính tiền",
-     "related_kanjis": [],
-     "difficulty": 1,
-     "word_type": "n"
-    }
-   ],
-   "videos": [],
-   "tuvungs": [
-    {
-     "_id": "6aa3b9cfd74d9e1f048ee09c",
-     "hiragana": "ぎゅうにゅう",
-     "word": "牛乳",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "NGƯU NHŨ",
-     "level": "N5",
-     "meaning": "Sữa bò",
-     "related_kanjis": [],
-     "usage_context": null,
-     "topic": "food",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa8159cd74d9e1f048f3f89",
-     "hiragana": "てんいん",
-     "word": "店員",
-     "__v": 0,
-     "examples": [],
-     "lesson": "6aa8159bd74d9e1f048f3f88",
-     "level": "N5",
-     "meaning": "nhân viên cửa hàng",
-     "related_kanjis": [],
-     "topic": "shop",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa3b9fcd74d9e1f048ee161",
-     "word": "棚",
-     "hiragana": "たな",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "BẰNG",
-     "level": "N5",
-     "meaning": "Giá sách",
-     "related_kanjis": [],
-     "usage_context": null,
-     "topic": "home",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa3d9e2d74d9e1f048ee691",
-     "hiragana": "ふくろ",
-     "word": "袋",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "ĐẠI",
-     "level": "N4",
-     "meaning": "Cái túi",
-     "related_kanjis": [],
-     "source_lesson": "Bài 29",
-     "topic": "shop",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa3d9d7d74d9e1f048ee663",
-     "word": "値段",
-     "hiragana": "ねだん",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "TRỊ ĐOẠN",
-     "level": "N4",
-     "meaning": "Giá",
-     "related_kanjis": [],
-     "source_lesson": "Bài 28",
-     "topic": "shop",
-     "word_type": "n"
-    },
-    {
-     "_id": "6aa6cf47d74d9e1f048f2136",
-     "hiragana": "かいけい",
-     "word": "会計",
-     "__v": 0,
-     "examples": [],
-     "hanviet": "HỘI KẾ",
-     "level": "N1",
-     "meaning": "Kế toán, tính tiền",
-     "related_kanjis": [],
-     "difficulty": 1,
-     "word_type": "n"
-    }
-   ],
-   "nguphaps": []
+   "data": {
+    "_id": "6aa8159bd74d9e1f048f3f88",
+    "title": "Tình huống: Đi siêu thị",
+    "__v": 0,
+    "can_do_goals": [
+     "Hỏi được giá của một món hàng",
+     "Hỏi được món hàng nằm ở đâu trong siêu thị",
+     "Trả lời được khi nhân viên hỏi có cần túi không"
+    ],
+    "createdAt": "2026-09-14 22:39:21",
+    "description": "Hỏi giá, hỏi vị trí hàng hoá và thanh toán ở siêu thị.",
+    "dialogue": [],
+    "grammars": [],
+    "kanjis": [
+     {
+      "_id": "6aead584a0319ebcb331ca86",
+      "character": "店",
+      "hanviet": "Điếm",
+      "onyomi": [
+       "テン"
+      ],
+      "kunyomi": [
+       "みせ"
+      ],
+      "meaning": "Cửa hàng, tiệm",
+      "level": "N5",
+      "examples": [
+       {
+        "word": "店員",
+        "hiragana": "てんいん",
+        "meaning": "Nhân viên cửa hàng"
+       },
+       {
+        "word": "店",
+        "hiragana": "みせ",
+        "meaning": "Cửa hàng"
+       },
+       {
+        "word": "喫茶店",
+        "hiragana": "きっさてん",
+        "meaning": "Quán cà phê"
+       }
+      ],
+      "__v": 0,
+      "createdAt": "2026-11-04T06:49:40.716Z",
+      "updatedAt": "2026-11-04T06:49:40.716Z"
+     },
+     {
+      "_id": "6aead584a0319ebcb331ca87",
+      "character": "肉",
+      "hanviet": "Nhục",
+      "onyomi": [
+       "ニク"
+      ],
+      "kunyomi": [],
+      "meaning": "Thịt",
+      "level": "N4",
+      "examples": [
+       {
+        "word": "肉",
+        "hiragana": "にく",
+        "meaning": "Thịt"
+       },
+       {
+        "word": "牛肉",
+        "hiragana": "ぎゅうにく",
+        "meaning": "Thịt bò"
+       },
+       {
+        "word": "豚肉",
+        "hiragana": "ぶたにく",
+        "meaning": "Thịt lợn"
+       }
+      ],
+      "__v": 0,
+      "createdAt": "2026-11-04T06:49:40.718Z",
+      "updatedAt": "2026-11-04T06:49:40.718Z"
+     }
+    ],
+    "level": "N5",
+    "order": 2,
+    "situation": "supermarket",
+    "type": "Tình huống",
+    "updatedAt": "2026-11-04 13:49:53",
+    "vocabularies": [
+     {
+      "_id": "6aa3b9cfd74d9e1f048ee09c",
+      "hiragana": "ぎゅうにゅう",
+      "word": "牛乳",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "NGƯU NHŨ",
+      "level": "N5",
+      "meaning": "Sữa bò",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "food",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa8159cd74d9e1f048f3f89",
+      "hiragana": "てんいん",
+      "word": "店員",
+      "__v": 0,
+      "examples": [],
+      "lesson": "6aa8159bd74d9e1f048f3f88",
+      "level": "N5",
+      "meaning": "nhân viên cửa hàng",
+      "related_kanjis": [],
+      "topic": "shop",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa3b9fcd74d9e1f048ee161",
+      "word": "棚",
+      "hiragana": "たな",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "BẰNG",
+      "level": "N5",
+      "meaning": "Giá sách",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "home",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa3d9e2d74d9e1f048ee691",
+      "hiragana": "ふくろ",
+      "word": "袋",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "ĐẠI",
+      "level": "N4",
+      "meaning": "Cái túi",
+      "related_kanjis": [],
+      "source_lesson": "Bài 29",
+      "topic": "shop",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa3d9d7d74d9e1f048ee663",
+      "word": "値段",
+      "hiragana": "ねだん",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "TRỊ ĐOẠN",
+      "level": "N4",
+      "meaning": "Giá",
+      "related_kanjis": [],
+      "source_lesson": "Bài 28",
+      "topic": "shop",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa6cf47d74d9e1f048f2136",
+      "hiragana": "かいけい",
+      "word": "会計",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "HỘI KẾ",
+      "level": "N1",
+      "meaning": "Kế toán, tính tiền",
+      "related_kanjis": [],
+      "difficulty": 1,
+      "word_type": "n"
+     }
+    ],
+    "videos": [],
+    "tuvungs": [
+     {
+      "_id": "6aa3b9cfd74d9e1f048ee09c",
+      "hiragana": "ぎゅうにゅう",
+      "word": "牛乳",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "NGƯU NHŨ",
+      "level": "N5",
+      "meaning": "Sữa bò",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "food",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa8159cd74d9e1f048f3f89",
+      "hiragana": "てんいん",
+      "word": "店員",
+      "__v": 0,
+      "examples": [],
+      "lesson": "6aa8159bd74d9e1f048f3f88",
+      "level": "N5",
+      "meaning": "nhân viên cửa hàng",
+      "related_kanjis": [],
+      "topic": "shop",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa3b9fcd74d9e1f048ee161",
+      "word": "棚",
+      "hiragana": "たな",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "BẰNG",
+      "level": "N5",
+      "meaning": "Giá sách",
+      "related_kanjis": [],
+      "usage_context": null,
+      "topic": "home",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa3d9e2d74d9e1f048ee691",
+      "hiragana": "ふくろ",
+      "word": "袋",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "ĐẠI",
+      "level": "N4",
+      "meaning": "Cái túi",
+      "related_kanjis": [],
+      "source_lesson": "Bài 29",
+      "topic": "shop",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa3d9d7d74d9e1f048ee663",
+      "word": "値段",
+      "hiragana": "ねだん",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "TRỊ ĐOẠN",
+      "level": "N4",
+      "meaning": "Giá",
+      "related_kanjis": [],
+      "source_lesson": "Bài 28",
+      "topic": "shop",
+      "word_type": "n"
+     },
+     {
+      "_id": "6aa6cf47d74d9e1f048f2136",
+      "hiragana": "かいけい",
+      "word": "会計",
+      "__v": 0,
+      "examples": [],
+      "hanviet": "HỘI KẾ",
+      "level": "N1",
+      "meaning": "Kế toán, tính tiền",
+      "related_kanjis": [],
+      "difficulty": 1,
+      "word_type": "n"
+     }
+    ],
+    "nguphaps": []
+   }
   },
   "/lesson/situations?level=N5": {
    "data": [
@@ -2226,27 +2267,29 @@
    "total": 10
   },
   "/lesson/stats/overview": {
-   "totalLessons": 40,
-   "byLevel": [
-    {
-     "_id": "N3",
-     "count": 9
-    },
-    {
-     "_id": "N4",
-     "count": 19
-    },
-    {
-     "_id": "N5",
-     "count": 12
-    }
-   ],
-   "byType": [
-    {
-     "_id": "Tình huống",
-     "count": 40
-    }
-   ]
+   "data": {
+    "totalLessons": 40,
+    "byLevel": [
+     {
+      "_id": "N3",
+      "count": 9
+     },
+     {
+      "_id": "N4",
+      "count": 19
+     },
+     {
+      "_id": "N5",
+      "count": 12
+     }
+    ],
+    "byType": [
+     {
+      "_id": "Tình huống",
+      "count": 40
+     }
+    ]
+   }
   },
   "/news?page=1&limit=10": {
    "data": [
@@ -2466,95 +2509,107 @@
    }
   },
   "/progress/admin/analytics?period=7d": {
-   "period": "7d",
-   "labels": [
-    "2026-10-30",
-    "2026-10-31",
-    "2026-11-01",
-    "2026-11-02",
-    "2026-11-03",
-    "2026-11-04"
-   ],
-   "metrics": {
-    "total_users": 8,
-    "active_today": 1,
-    "lessons_completed": 2,
-    "study_minutes": 0
-   },
-   "daily_active_users": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    1
-   ],
-   "new_registrations": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "lessons_completed": [
-    0,
-    0,
-    1,
-    0,
-    0,
-    0
-   ],
-   "total_study_time": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "level_distribution": {
-    "N4": 1,
-    "N5": 7
+   "data": {
+    "period": "7d",
+    "labels": [
+     "2026-10-30",
+     "2026-10-31",
+     "2026-11-01",
+     "2026-11-02",
+     "2026-11-03",
+     "2026-11-04"
+    ],
+    "metrics": {
+     "total_users": 8,
+     "active_today": 1,
+     "lessons_completed": 2,
+     "study_minutes": 0
+    },
+    "daily_active_users": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "new_registrations": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "lessons_completed": [
+     0,
+     0,
+     1,
+     0,
+     0,
+     0
+    ],
+    "total_study_time": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "level_distribution": {
+     "N4": 1,
+     "N5": 7
+    }
    }
   },
   "/progress/dashboard/breakdown": {
-   "lessons_by_level": [
+   "data": {
+    "lessons_by_level": [
+     {
+      "_id": "N5",
+      "completed": 1,
+      "in_progress": 0
+     }
+    ],
+    "exercises_by_type": []
+   }
+  },
+  "/progress/dashboard/heatmap?year=2026": {
+   "data": [
     {
-     "_id": "N5",
-     "completed": 1,
-     "in_progress": 0
+     "date": "2026-11-05",
+     "count": 1,
+     "time": 0
     }
    ],
-   "exercises_by_type": []
+   "total": 1
   },
-  "/progress/dashboard/heatmap?year=2026": [
-   {
-    "date": "2026-11-05",
-    "count": 1,
-    "time": 0
-   }
-  ],
   "/progress/dashboard/stats": {
-   "vocabulary_learned": 10,
-   "kanji_learned": 2,
-   "kanji_reviewing": 1,
-   "exercises_completed": 0,
-   "lessons_completed": 1,
-   "total_study_time": 0,
-   "current_streak": 1,
-   "total_xp": 50,
-   "level": 1
-  },
-  "/progress/dashboard/timeline?period=week": [
-   {
-    "date": "2026-11-05",
-    "exercises": 0,
-    "lessons": 1,
-    "time": 0,
-    "xp": 50
+   "data": {
+    "vocabulary_learned": 10,
+    "kanji_learned": 2,
+    "kanji_reviewing": 1,
+    "exercises_completed": 0,
+    "lessons_completed": 1,
+    "total_study_time": 0,
+    "current_streak": 1,
+    "total_xp": 50,
+    "level": 1
    }
-  ],
+  },
+  "/progress/dashboard/timeline?period=week": {
+   "data": [
+    {
+     "date": "2026-11-05",
+     "exercises": 0,
+     "lessons": 1,
+     "time": 0,
+     "xp": 50
+    }
+   ],
+   "total": 1
+  },
   "/report/admin/all?page=1&limit=20": {
    "data": [
     {
@@ -2724,113 +2779,117 @@
    "to": "2026-11-30"
   },
   "/streak/leaderboard?period=all&limit=50": {
-   "leaderboard": [
-    {
-     "rank": 1,
-     "user": {
-      "_id": "6ab389353684b324dd318ce3",
-      "TenDangNhap": "Nguyễn Thị Người Học",
-      "HoTen": "Nguyễn Thị Người Học"
+   "data": {
+    "leaderboard": [
+     {
+      "rank": 1,
+      "user": {
+       "_id": "6ab389353684b324dd318ce3",
+       "TenDangNhap": "Nguyễn Thị Người Học",
+       "HoTen": "Nguyễn Thị Người Học"
+      },
+      "total_xp": 1474,
+      "level": 15,
+      "current_streak": 0,
+      "longest_streak": 24
      },
-     "total_xp": 1474,
-     "level": 15,
-     "current_streak": 0,
-     "longest_streak": 24
-    },
-    {
-     "rank": 2,
-     "user": {
-      "_id": "6aa17bead74d9e1f048ebb97",
-      "TenDangNhap": "Nguyễn Thị Người Học",
-      "HoTen": "Nguyễn Thị Người Học"
+     {
+      "rank": 2,
+      "user": {
+       "_id": "6aa17bead74d9e1f048ebb97",
+       "TenDangNhap": "Nguyễn Thị Người Học",
+       "HoTen": "Nguyễn Thị Người Học"
+      },
+      "total_xp": 1277,
+      "level": 13,
+      "current_streak": 1,
+      "longest_streak": 24
      },
-     "total_xp": 1277,
-     "level": 13,
-     "current_streak": 1,
-     "longest_streak": 24
-    },
-    {
-     "rank": 3,
-     "user": {
-      "_id": "6ab389363684b324dd318ce4",
-      "TenDangNhap": "Nguyễn Thị Người Học",
-      "HoTen": "Nguyễn Thị Người Học"
+     {
+      "rank": 3,
+      "user": {
+       "_id": "6ab389363684b324dd318ce4",
+       "TenDangNhap": "Nguyễn Thị Người Học",
+       "HoTen": "Nguyễn Thị Người Học"
+      },
+      "total_xp": 974,
+      "level": 10,
+      "current_streak": 0,
+      "longest_streak": 24
      },
-     "total_xp": 974,
-     "level": 10,
-     "current_streak": 0,
-     "longest_streak": 24
-    },
-    {
-     "rank": 4,
-     "user": {
-      "_id": "6ab389363684b324dd318ce5",
-      "TenDangNhap": "Nguyễn Thị Người Học",
-      "HoTen": "Nguyễn Thị Người Học"
+     {
+      "rank": 4,
+      "user": {
+       "_id": "6ab389363684b324dd318ce5",
+       "TenDangNhap": "Nguyễn Thị Người Học",
+       "HoTen": "Nguyễn Thị Người Học"
+      },
+      "total_xp": 402,
+      "level": 5,
+      "current_streak": 0,
+      "longest_streak": 17
      },
-     "total_xp": 402,
-     "level": 5,
-     "current_streak": 0,
-     "longest_streak": 17
-    },
-    {
-     "rank": 5,
-     "user": {
-      "_id": "6ab389363684b324dd318ce6",
-      "TenDangNhap": "Nguyễn Thị Người Học",
-      "HoTen": "Nguyễn Thị Người Học"
+     {
+      "rank": 5,
+      "user": {
+       "_id": "6ab389363684b324dd318ce6",
+       "TenDangNhap": "Nguyễn Thị Người Học",
+       "HoTen": "Nguyễn Thị Người Học"
+      },
+      "total_xp": 294,
+      "level": 3,
+      "current_streak": 0,
+      "longest_streak": 9
      },
-     "total_xp": 294,
-     "level": 3,
-     "current_streak": 0,
-     "longest_streak": 9
-    },
-    {
-     "rank": 6,
-     "user": {
-      "_id": "6aec5c4a3b8b4c2bcee760c1",
-      "TenDangNhap": "Nguyễn Thị Người Học",
-      "HoTen": "Nguyễn Thị Người Học"
-     },
-     "total_xp": 50,
-     "level": 1,
-     "current_streak": 1,
-     "longest_streak": 1
-    }
-   ],
-   "user_rank": 6
+     {
+      "rank": 6,
+      "user": {
+       "_id": "6aec5c4a3b8b4c2bcee760c1",
+       "TenDangNhap": "Nguyễn Thị Người Học",
+       "HoTen": "Nguyễn Thị Người Học"
+      },
+      "total_xp": 50,
+      "level": 1,
+      "current_streak": 1,
+      "longest_streak": 1
+     }
+    ],
+    "user_rank": 6
+   }
   },
   "/streak/my-streak": {
-   "_id": "6aec5c551fcef613feac72f2",
-   "user": "6aec5c4a3b8b4c2bcee760c1",
-   "current_streak": 1,
-   "longest_streak": 1,
-   "total_xp": 50,
-   "level": 1,
-   "current_level": 1,
-   "xp_to_next_level": 50,
-   "last_activity_day": "2026-11-05",
-   "last_activity_date": "2026-11-05",
-   "total_active_days": 1,
-   "legacy_day_count": 0,
-   "studied_today": true,
-   "tracking_started_day": "2026-11-05",
-   "freezes_available": 0,
-   "max_freezes": 2,
-   "pending_freezes": 0,
-   "pending_frozen_days": [],
-   "freezes_after_pending": 0,
-   "daily_goal": {
-    "target_xp": 20,
-    "today_xp": 20,
-    "reached": true,
-    "next_target_xp": null,
-    "next_target_from": null
-   },
-   "first_day": "2026-11-05",
-   "activity_dates": [
-    "2026-11-05"
-   ]
+   "data": {
+    "_id": "6aec5c551fcef613feac72f2",
+    "user": "6aec5c4a3b8b4c2bcee760c1",
+    "current_streak": 1,
+    "longest_streak": 1,
+    "total_xp": 50,
+    "level": 1,
+    "current_level": 1,
+    "xp_to_next_level": 50,
+    "last_activity_day": "2026-11-05",
+    "last_activity_date": "2026-11-05",
+    "total_active_days": 1,
+    "legacy_day_count": 0,
+    "studied_today": true,
+    "tracking_started_day": "2026-11-05",
+    "freezes_available": 0,
+    "max_freezes": 2,
+    "pending_freezes": 0,
+    "pending_frozen_days": [],
+    "freezes_after_pending": 0,
+    "daily_goal": {
+     "target_xp": 20,
+     "today_xp": 20,
+     "reached": true,
+     "next_target_xp": null,
+     "next_target_from": null
+    },
+    "first_day": "2026-11-05",
+    "activity_dates": [
+     "2026-11-05"
+    ]
+   }
   },
   "/streak/settings": {
    "data": {
@@ -2852,18 +2911,21 @@
     "revision": 0
    }
   },
-  "/streak/xp-history": [
-   {
-    "amount": 30,
-    "reason": "Mở khoá thành tích",
-    "earned_at": "2026-11-05T10:37:00.031Z"
-   },
-   {
-    "amount": 20,
-    "reason": "Hoàn thành bài học",
-    "earned_at": "2026-11-05T10:37:00.031Z"
-   }
-  ],
+  "/streak/xp-history": {
+   "data": [
+    {
+     "amount": 30,
+     "reason": "Mở khoá thành tích",
+     "earned_at": "2026-11-05T10:37:00.031Z"
+    },
+    {
+     "amount": 20,
+     "reason": "Hoàn thành bài học",
+     "earned_at": "2026-11-05T10:37:00.031Z"
+    }
+   ],
+   "total": 2
+  },
   "/transactions/admin/all?page=1&limit=20": {
    "data": [],
    "page": 1,
@@ -2872,318 +2934,317 @@
    "totalPages": 0
   },
   "/users/admin/stats": {
-   "totalUsers": 8,
-   "byRole": [
-    {
-     "_id": "user",
-     "count": 5
-    },
-    {
-     "_id": "admin",
-     "count": 3
-    }
-   ],
-   "byLevel": [
-    {
-     "_id": "N4",
-     "count": 1
-    },
-    {
-     "_id": "N5",
-     "count": 7
-    }
-   ],
-   "recentUsers": [
-    {
-     "settings": {
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "vibrateEnabled": true,
-      "language": "vi",
-      "theme": "light"
+   "data": {
+    "totalUsers": 8,
+    "byRole": [
+     {
+      "_id": "user",
+      "count": 5
      },
-     "_id": "6aec5c4a3b8b4c2bcee760c1",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "HoTen": "Nguyễn Thị Người Học",
-     "Email": "nguoi.hoc@example.invalid",
-     "TrinhDo": "N5",
-     "VaiTro": "admin",
-     "DiemTichLuy": 0,
-     "TongThoiGianHoc": 0,
-     "StreakHienTai": 0,
-     "StreakDaiNhat": 0,
-     "TrangThai": "active",
-     "NgayTao": "2026-11-05T10:36:58.893Z",
-     "LanDangNhapCuoi": "2026-11-05T10:37:05.118Z",
-     "createdAt": "2026-11-05T10:36:58.902Z",
-     "updatedAt": "2026-11-05T10:37:05.119Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "_id": "admin",
+      "count": 3
+     }
+    ],
+    "byLevel": [
+     {
+      "_id": "N4",
+      "count": 1
      },
-     "_id": "6ab389363684b324dd318ce6",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-23T08:07:21.229Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "user",
-     "createdAt": "2026-09-23T08:07:21.229Z",
-     "updatedAt": "2026-09-26T18:29:35.780Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "_id": "N5",
+      "count": 7
+     }
+    ],
+    "recentUsers": [
+     {
+      "settings": {
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "vibrateEnabled": true,
+       "language": "vi",
+       "theme": "light"
+      },
+      "_id": "6aec5c4a3b8b4c2bcee760c1",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "HoTen": "Nguyễn Thị Người Học",
+      "Email": "nguoi.hoc@example.invalid",
+      "TrinhDo": "N5",
+      "VaiTro": "admin",
+      "DiemTichLuy": 0,
+      "TongThoiGianHoc": 0,
+      "StreakHienTai": 0,
+      "StreakDaiNhat": 0,
+      "TrangThai": "active",
+      "NgayTao": "2026-11-05T10:36:58.893Z",
+      "LanDangNhapCuoi": "2026-11-05T10:37:05.118Z",
+      "createdAt": "2026-11-05T10:36:58.902Z",
+      "updatedAt": "2026-11-05T10:37:05.119Z"
      },
-     "_id": "6ab389363684b324dd318ce5",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-23T08:07:21.080Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "user",
-     "createdAt": "2026-09-23T08:07:21.079Z",
-     "updatedAt": "2026-09-26T18:29:35.661Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6ab389363684b324dd318ce6",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-23T08:07:21.229Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "user",
+      "createdAt": "2026-09-23T08:07:21.229Z",
+      "updatedAt": "2026-09-26T18:29:35.780Z"
      },
-     "_id": "6ab389363684b324dd318ce4",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-23T08:07:20.940Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "user",
-     "createdAt": "2026-09-23T08:07:20.939Z",
-     "updatedAt": "2026-09-26T18:29:35.535Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6ab389363684b324dd318ce5",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-23T08:07:21.080Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "user",
+      "createdAt": "2026-09-23T08:07:21.079Z",
+      "updatedAt": "2026-09-26T18:29:35.661Z"
      },
-     "_id": "6ab389353684b324dd318ce3",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-23T08:07:20.807Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N4",
-     "VaiTro": "user",
-     "createdAt": "2026-09-23T08:07:20.807Z",
-     "updatedAt": "2026-09-26T18:29:35.413Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6ab389363684b324dd318ce4",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-23T08:07:20.940Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "user",
+      "createdAt": "2026-09-23T08:07:20.939Z",
+      "updatedAt": "2026-09-26T18:29:35.535Z"
      },
-     "_id": "6aa17bead74d9e1f048ebb98",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-09T15:30:06.712Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "admin",
-     "createdAt": "2026-09-09T15:30:06.711Z",
-     "updatedAt": "2026-09-26T18:29:35.115Z",
-     "LanDangNhapCuoi": "2026-09-14T15:30:17.294Z"
-    }
-   ],
-   "activeUsers": [
-    {
-     "settings": {
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "vibrateEnabled": true,
-      "language": "vi",
-      "theme": "light"
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6ab389353684b324dd318ce3",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-23T08:07:20.807Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N4",
+      "VaiTro": "user",
+      "createdAt": "2026-09-23T08:07:20.807Z",
+      "updatedAt": "2026-09-26T18:29:35.413Z"
      },
-     "_id": "6aec5c4a3b8b4c2bcee760c1",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "HoTen": "Nguyễn Thị Người Học",
-     "Email": "nguoi.hoc@example.invalid",
-     "TrinhDo": "N5",
-     "VaiTro": "admin",
-     "DiemTichLuy": 0,
-     "TongThoiGianHoc": 0,
-     "StreakHienTai": 0,
-     "StreakDaiNhat": 0,
-     "TrangThai": "active",
-     "NgayTao": "2026-11-05T10:36:58.893Z",
-     "LanDangNhapCuoi": "2026-11-05T10:37:05.118Z",
-     "createdAt": "2026-11-05T10:36:58.902Z",
-     "updatedAt": "2026-11-05T10:37:05.119Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6aa17bead74d9e1f048ebb98",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-09T15:30:06.712Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "admin",
+      "createdAt": "2026-09-09T15:30:06.711Z",
+      "updatedAt": "2026-09-26T18:29:35.115Z",
+      "LanDangNhapCuoi": "2026-09-14T15:30:17.294Z"
+     }
+    ],
+    "activeUsers": [
+     {
+      "settings": {
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "vibrateEnabled": true,
+       "language": "vi",
+       "theme": "light"
+      },
+      "_id": "6aec5c4a3b8b4c2bcee760c1",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "HoTen": "Nguyễn Thị Người Học",
+      "Email": "nguoi.hoc@example.invalid",
+      "TrinhDo": "N5",
+      "VaiTro": "admin",
+      "DiemTichLuy": 0,
+      "TongThoiGianHoc": 0,
+      "StreakHienTai": 0,
+      "StreakDaiNhat": 0,
+      "TrangThai": "active",
+      "NgayTao": "2026-11-05T10:36:58.893Z",
+      "LanDangNhapCuoi": "2026-11-05T10:37:05.118Z",
+      "createdAt": "2026-11-05T10:36:58.902Z",
+      "updatedAt": "2026-11-05T10:37:05.119Z"
      },
-     "_id": "6aa17bead74d9e1f048ebb97",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-09T15:30:05.976Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "user",
-     "createdAt": "2026-09-09T15:30:05.955Z",
-     "updatedAt": "2026-11-04T06:56:06.385Z",
-     "LanDangNhapCuoi": "2026-11-04T06:56:06.381Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6aa17bead74d9e1f048ebb97",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-09T15:30:05.976Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "user",
+      "createdAt": "2026-09-09T15:30:05.955Z",
+      "updatedAt": "2026-11-04T06:56:06.385Z",
+      "LanDangNhapCuoi": "2026-11-04T06:56:06.381Z"
      },
-     "_id": "6aa17bead74d9e1f048ebb98",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-09T15:30:06.712Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "admin",
-     "createdAt": "2026-09-09T15:30:06.711Z",
-     "updatedAt": "2026-09-26T18:29:35.115Z",
-     "LanDangNhapCuoi": "2026-09-14T15:30:17.294Z"
-    },
-    {
-     "settings": {
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "vibrateEnabled": true,
-      "language": "vi",
-      "theme": "light"
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6aa17bead74d9e1f048ebb98",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-09T15:30:06.712Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "admin",
+      "createdAt": "2026-09-09T15:30:06.711Z",
+      "updatedAt": "2026-09-26T18:29:35.115Z",
+      "LanDangNhapCuoi": "2026-09-14T15:30:17.294Z"
      },
-     "_id": "6a9f80c4ae1fdea5b4613220",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "HoTen": "Nguyễn Thị Người Học",
-     "Email": "nguoi.hoc@example.invalid",
-     "TrinhDo": "N5",
-     "VaiTro": "admin",
-     "DiemTichLuy": 0,
-     "TongThoiGianHoc": 0,
-     "StreakHienTai": 0,
-     "StreakDaiNhat": 0,
-     "TrangThai": "active",
-     "NgayTao": "2026-09-08T03:28:04.082Z",
-     "LanDangNhapCuoi": "2026-09-08T03:28:31.921Z",
-     "createdAt": "2026-09-08T03:28:04.092Z",
-     "updatedAt": "2026-09-08T03:28:31.922Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "vibrateEnabled": true,
+       "language": "vi",
+       "theme": "light"
+      },
+      "_id": "6a9f80c4ae1fdea5b4613220",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "HoTen": "Nguyễn Thị Người Học",
+      "Email": "nguoi.hoc@example.invalid",
+      "TrinhDo": "N5",
+      "VaiTro": "admin",
+      "DiemTichLuy": 0,
+      "TongThoiGianHoc": 0,
+      "StreakHienTai": 0,
+      "StreakDaiNhat": 0,
+      "TrangThai": "active",
+      "NgayTao": "2026-09-08T03:28:04.082Z",
+      "LanDangNhapCuoi": "2026-09-08T03:28:31.921Z",
+      "createdAt": "2026-09-08T03:28:04.092Z",
+      "updatedAt": "2026-09-08T03:28:31.922Z"
      },
-     "_id": "6ab389353684b324dd318ce3",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-23T08:07:20.807Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N4",
-     "VaiTro": "user",
-     "createdAt": "2026-09-23T08:07:20.807Z",
-     "updatedAt": "2026-09-26T18:29:35.413Z"
-    },
-    {
-     "settings": {
-      "language": "vi",
-      "notificationsEnabled": true,
-      "soundEnabled": true,
-      "theme": "light",
-      "vibrateEnabled": true
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6ab389353684b324dd318ce3",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-23T08:07:20.807Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N4",
+      "VaiTro": "user",
+      "createdAt": "2026-09-23T08:07:20.807Z",
+      "updatedAt": "2026-09-26T18:29:35.413Z"
      },
-     "_id": "6ab389363684b324dd318ce4",
-     "TenDangNhap": "Nguyễn Thị Người Học",
-     "DiemTichLuy": 0,
-     "Email": "nguoi.hoc@example.invalid",
-     "HoTen": "Nguyễn Thị Người Học",
-     "NgayTao": "2026-09-23T08:07:20.940Z",
-     "StreakDaiNhat": 0,
-     "StreakHienTai": 0,
-     "TongThoiGianHoc": 0,
-     "TrangThai": "active",
-     "TrinhDo": "N5",
-     "VaiTro": "user",
-     "createdAt": "2026-09-23T08:07:20.939Z",
-     "updatedAt": "2026-09-26T18:29:35.535Z"
-    }
-   ]
+     {
+      "settings": {
+       "language": "vi",
+       "notificationsEnabled": true,
+       "soundEnabled": true,
+       "theme": "light",
+       "vibrateEnabled": true
+      },
+      "_id": "6ab389363684b324dd318ce4",
+      "TenDangNhap": "Nguyễn Thị Người Học",
+      "DiemTichLuy": 0,
+      "Email": "nguoi.hoc@example.invalid",
+      "HoTen": "Nguyễn Thị Người Học",
+      "NgayTao": "2026-09-23T08:07:20.940Z",
+      "StreakDaiNhat": 0,
+      "StreakHienTai": 0,
+      "TongThoiGianHoc": 0,
+      "TrangThai": "active",
+      "TrinhDo": "N5",
+      "VaiTro": "user",
+      "createdAt": "2026-09-23T08:07:20.939Z",
+      "updatedAt": "2026-09-26T18:29:35.535Z"
+     }
+    ]
+   }
   },
   "/users/admin/users?page=1&limit=20": {
-   "totalItems": 8,
-   "totalPages": 1,
-   "currentPage": 1,
    "data": [
     {
      "settings": {
@@ -3325,11 +3386,14 @@
      "updatedAt": "2026-09-27 01:29:35",
      "LanDangNhapCuoi": "2026-09-14 22:30:17"
     }
-   ]
+   ],
+   "page": 1,
+   "limit": 20,
+   "total": 8,
+   "totalPages": 1
   },
   "/users/profile/6aec5c4a3b8b4c2bcee760c1": {
-   "message": "Lấy thông tin người dùng thành công",
-   "profile": {
+   "data": {
     "settings": {
      "notificationsEnabled": true,
      "soundEnabled": true,
@@ -3872,291 +3936,290 @@
    }
   },
   "/exercise/result/6ab80f159935deb4caa0de75": {
-   "_id": "6ab80f159935deb4caa0de75",
-   "user_id": "000000000000000000000001",
-   "exercise_id": {
-    "_id": "6ab388abf610c0926d31528b",
-    "title": "Nghĩa của từ — Đi tàu",
-    "type": "Từ vựng",
-    "level": "N5",
-    "questions": [
+   "data": {
+    "_id": "6ab80f159935deb4caa0de75",
+    "exercise_id": "6ab388abf610c0926d31528b",
+    "exercise": {
+     "_id": "6ab388abf610c0926d31528b",
+     "title": "Nghĩa của từ — Đi tàu",
+     "type": "Từ vựng",
+     "level": "N5",
+     "questions": [
+      {
+       "content": "「電車」（でんしゃ）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "tàu điện",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d31528d"
+        },
+        {
+         "content": "nhà ga",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d31528e"
+        },
+        {
+         "content": "vé",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d31528f"
+        },
+        {
+         "content": "cửa soát vé",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d315290"
+        }
+       ],
+       "explanation": "電車（でんしゃ）: tàu điện",
+       "_id": "6ab388abf610c0926d31528c"
+      },
+      {
+       "content": "「駅」（えき）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "vé",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d315292"
+        },
+        {
+         "content": "nhà ga",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d315293"
+        },
+        {
+         "content": "cửa soát vé",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d315294"
+        },
+        {
+         "content": "chuyển tàu",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d315295"
+        }
+       ],
+       "explanation": "駅（えき）: nhà ga",
+       "_id": "6ab388abf610c0926d315291"
+      },
+      {
+       "content": "「切符」（きっぷ）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "cửa soát vé",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d315297"
+        },
+        {
+         "content": "chuyển tàu",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d315298"
+        },
+        {
+         "content": "vé",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d315299"
+        },
+        {
+         "content": "một chiều",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d31529a"
+        }
+       ],
+       "explanation": "切符（きっぷ）: vé",
+       "_id": "6ab388abf610c0926d315296"
+      },
+      {
+       "content": "「改札」（かいさつ）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "chuyển tàu",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d31529c"
+        },
+        {
+         "content": "một chiều",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d31529d"
+        },
+        {
+         "content": "khứ hồi",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d31529e"
+        },
+        {
+         "content": "cửa soát vé",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d31529f"
+        }
+       ],
+       "explanation": "改札（かいさつ）: cửa soát vé",
+       "_id": "6ab388abf610c0926d31529b"
+      },
+      {
+       "content": "「乗り換え」（のりかえ）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "chuyển tàu",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d3152a1"
+        },
+        {
+         "content": "một chiều",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152a2"
+        },
+        {
+         "content": "khứ hồi",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152a3"
+        },
+        {
+         "content": "bảng giờ tàu",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152a4"
+        }
+       ],
+       "explanation": "乗り換え（のりかえ）: chuyển tàu",
+       "_id": "6ab388abf610c0926d3152a0"
+      },
+      {
+       "content": "「片道」（かたみち）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "khứ hồi",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152a6"
+        },
+        {
+         "content": "một chiều",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d3152a7"
+        },
+        {
+         "content": "bảng giờ tàu",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152a8"
+        },
+        {
+         "content": "tàu điện",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152a9"
+        }
+       ],
+       "explanation": "片道（かたみち）: một chiều",
+       "_id": "6ab388abf610c0926d3152a5"
+      },
+      {
+       "content": "「往復」（おうふく）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "bảng giờ tàu",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152ab"
+        },
+        {
+         "content": "tàu điện",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152ac"
+        },
+        {
+         "content": "khứ hồi",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d3152ad"
+        },
+        {
+         "content": "nhà ga",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152ae"
+        }
+       ],
+       "explanation": "往復（おうふく）: khứ hồi",
+       "_id": "6ab388abf610c0926d3152aa"
+      },
+      {
+       "content": "「時刻表」（じこくひょう）nghĩa là gì?",
+       "answers": [
+        {
+         "content": "tàu điện",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152b0"
+        },
+        {
+         "content": "nhà ga",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152b1"
+        },
+        {
+         "content": "vé",
+         "is_correct": false,
+         "_id": "6ab388abf610c0926d3152b2"
+        },
+        {
+         "content": "bảng giờ tàu",
+         "is_correct": true,
+         "_id": "6ab388abf610c0926d3152b3"
+        }
+       ],
+       "explanation": "時刻表（じこくひょう）: bảng giờ tàu",
+       "_id": "6ab388abf610c0926d3152af"
+      }
+     ]
+    },
+    "score": 75,
+    "correct_answers": 6,
+    "total_questions": 8,
+    "time_spent": 96,
+    "passed": true,
+    "answers": [
      {
-      "content": "「電車」（でんしゃ）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "tàu điện",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d31528d"
-       },
-       {
-        "content": "nhà ga",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d31528e"
-       },
-       {
-        "content": "vé",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d31528f"
-       },
-       {
-        "content": "cửa soát vé",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d315290"
-       }
-      ],
-      "explanation": "電車（でんしゃ）: tàu điện",
-      "_id": "6ab388abf610c0926d31528c"
+      "question_id": "6ab388abf610c0926d31528c",
+      "answer_id": "6ab388abf610c0926d31528d",
+      "is_correct": true,
+      "correct_answer_id": "6ab388abf610c0926d31528d"
      },
      {
-      "content": "「駅」（えき）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "vé",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d315292"
-       },
-       {
-        "content": "nhà ga",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d315293"
-       },
-       {
-        "content": "cửa soát vé",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d315294"
-       },
-       {
-        "content": "chuyển tàu",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d315295"
-       }
-      ],
-      "explanation": "駅（えき）: nhà ga",
-      "_id": "6ab388abf610c0926d315291"
+      "question_id": "6ab388abf610c0926d315291",
+      "answer_id": "6ab388abf610c0926d315293",
+      "is_correct": true,
+      "correct_answer_id": "6ab388abf610c0926d315293"
      },
      {
-      "content": "「切符」（きっぷ）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "cửa soát vé",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d315297"
-       },
-       {
-        "content": "chuyển tàu",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d315298"
-       },
-       {
-        "content": "vé",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d315299"
-       },
-       {
-        "content": "một chiều",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d31529a"
-       }
-      ],
-      "explanation": "切符（きっぷ）: vé",
-      "_id": "6ab388abf610c0926d315296"
+      "question_id": "6ab388abf610c0926d315296",
+      "answer_id": "6ab388abf610c0926d315299",
+      "is_correct": true,
+      "correct_answer_id": "6ab388abf610c0926d315299"
      },
      {
-      "content": "「改札」（かいさつ）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "chuyển tàu",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d31529c"
-       },
-       {
-        "content": "một chiều",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d31529d"
-       },
-       {
-        "content": "khứ hồi",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d31529e"
-       },
-       {
-        "content": "cửa soát vé",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d31529f"
-       }
-      ],
-      "explanation": "改札（かいさつ）: cửa soát vé",
-      "_id": "6ab388abf610c0926d31529b"
+      "question_id": "6ab388abf610c0926d31529b",
+      "answer_id": "6ab388abf610c0926d31529f",
+      "is_correct": true,
+      "correct_answer_id": "6ab388abf610c0926d31529f"
      },
      {
-      "content": "「乗り換え」（のりかえ）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "chuyển tàu",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d3152a1"
-       },
-       {
-        "content": "một chiều",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152a2"
-       },
-       {
-        "content": "khứ hồi",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152a3"
-       },
-       {
-        "content": "bảng giờ tàu",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152a4"
-       }
-      ],
-      "explanation": "乗り換え（のりかえ）: chuyển tàu",
-      "_id": "6ab388abf610c0926d3152a0"
+      "question_id": "6ab388abf610c0926d3152a0",
+      "answer_id": "6ab388abf610c0926d3152a1",
+      "is_correct": true,
+      "correct_answer_id": "6ab388abf610c0926d3152a1"
      },
      {
-      "content": "「片道」（かたみち）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "khứ hồi",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152a6"
-       },
-       {
-        "content": "một chiều",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d3152a7"
-       },
-       {
-        "content": "bảng giờ tàu",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152a8"
-       },
-       {
-        "content": "tàu điện",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152a9"
-       }
-      ],
-      "explanation": "片道（かたみち）: một chiều",
-      "_id": "6ab388abf610c0926d3152a5"
+      "question_id": "6ab388abf610c0926d3152a5",
+      "answer_id": "6ab388abf610c0926d3152a7",
+      "is_correct": true,
+      "correct_answer_id": "6ab388abf610c0926d3152a7"
      },
      {
-      "content": "「往復」（おうふく）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "bảng giờ tàu",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152ab"
-       },
-       {
-        "content": "tàu điện",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152ac"
-       },
-       {
-        "content": "khứ hồi",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d3152ad"
-       },
-       {
-        "content": "nhà ga",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152ae"
-       }
-      ],
-      "explanation": "往復（おうふく）: khứ hồi",
-      "_id": "6ab388abf610c0926d3152aa"
+      "question_id": "6ab388abf610c0926d3152aa",
+      "answer_id": "6ab388abf610c0926d3152ab",
+      "is_correct": false,
+      "correct_answer_id": "6ab388abf610c0926d3152ad"
      },
      {
-      "content": "「時刻表」（じこくひょう）nghĩa là gì?",
-      "answers": [
-       {
-        "content": "tàu điện",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152b0"
-       },
-       {
-        "content": "nhà ga",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152b1"
-       },
-       {
-        "content": "vé",
-        "is_correct": false,
-        "_id": "6ab388abf610c0926d3152b2"
-       },
-       {
-        "content": "bảng giờ tàu",
-        "is_correct": true,
-        "_id": "6ab388abf610c0926d3152b3"
-       }
-      ],
-      "explanation": "時刻表（じこくひょう）: bảng giờ tàu",
-      "_id": "6ab388abf610c0926d3152af"
+      "question_id": "6ab388abf610c0926d3152af",
+      "answer_id": "6ab388abf610c0926d3152b0",
+      "is_correct": false,
+      "correct_answer_id": "6ab388abf610c0926d3152b3"
      }
-    ]
-   },
-   "score": 75,
-   "correct_count": 6,
-   "total_questions": 8,
-   "time_spent": 96,
-   "user_answers": [
-    {
-     "question_id": "6ab388abf610c0926d31528c",
-     "answer_id": "6ab388abf610c0926d31528d",
-     "is_correct": true,
-     "correct_answer_id": "6ab388abf610c0926d31528d"
-    },
-    {
-     "question_id": "6ab388abf610c0926d315291",
-     "answer_id": "6ab388abf610c0926d315293",
-     "is_correct": true,
-     "correct_answer_id": "6ab388abf610c0926d315293"
-    },
-    {
-     "question_id": "6ab388abf610c0926d315296",
-     "answer_id": "6ab388abf610c0926d315299",
-     "is_correct": true,
-     "correct_answer_id": "6ab388abf610c0926d315299"
-    },
-    {
-     "question_id": "6ab388abf610c0926d31529b",
-     "answer_id": "6ab388abf610c0926d31529f",
-     "is_correct": true,
-     "correct_answer_id": "6ab388abf610c0926d31529f"
-    },
-    {
-     "question_id": "6ab388abf610c0926d3152a0",
-     "answer_id": "6ab388abf610c0926d3152a1",
-     "is_correct": true,
-     "correct_answer_id": "6ab388abf610c0926d3152a1"
-    },
-    {
-     "question_id": "6ab388abf610c0926d3152a5",
-     "answer_id": "6ab388abf610c0926d3152a7",
-     "is_correct": true,
-     "correct_answer_id": "6ab388abf610c0926d3152a7"
-    },
-    {
-     "question_id": "6ab388abf610c0926d3152aa",
-     "answer_id": "6ab388abf610c0926d3152ab",
-     "is_correct": false,
-     "correct_answer_id": "6ab388abf610c0926d3152ad"
-    },
-    {
-     "question_id": "6ab388abf610c0926d3152af",
-     "answer_id": "6ab388abf610c0926d3152b0",
-     "is_correct": false,
-     "correct_answer_id": "6ab388abf610c0926d3152b3"
-    }
-   ],
-   "is_passed": true,
-   "completed_at": "2026-09-26T14:01:00.000Z",
-   "__v": 0,
-   "createdAt": "2026-09-26T18:29:41.965Z",
-   "updatedAt": "2026-09-26T18:29:41.965Z"
+    ],
+    "createdAt": "2026-09-26T18:29:41.965Z"
+   }
   }
  }
 }

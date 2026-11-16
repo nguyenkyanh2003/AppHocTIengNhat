@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
-import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/adaptive_table.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
@@ -10,89 +9,72 @@ import '../../../shared/widgets/content_pane.dart';
 import '../../achievements/models/achievement_labels.dart';
 import '../../achievements/widgets/achievement_rarity.dart';
 import '../models/admin_achievement.dart';
-import '../providers/admin_provider.dart';
+import '../providers/admin_achievements_provider.dart';
+import '../services/admin_service.dart';
 import '../widgets/admin_achievement_card.dart';
 import '../widgets/admin_achievement_dialogs.dart';
 import '../widgets/admin_achievement_summary.dart';
 
-class AdminAchievementManagementScreen extends StatefulWidget {
-  const AdminAchievementManagementScreen({super.key});
+/// Quản lý huy hiệu. [service] chỉ để test truyền service giả.
+class AdminAchievementManagementScreen extends StatelessWidget {
+  const AdminAchievementManagementScreen({super.key, this.service});
+
+  final AdminService? service;
 
   @override
-  State<AdminAchievementManagementScreen> createState() =>
-      _AdminAchievementManagementScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => AdminAchievementsProvider(service: service)..load(),
+      child: const _AchievementsView(),
+    );
+  }
 }
 
-class _AdminAchievementManagementScreenState
-    extends State<AdminAchievementManagementScreen> {
+class _AchievementsView extends StatefulWidget {
+  const _AchievementsView();
+
+  @override
+  State<_AchievementsView> createState() => _AchievementsViewState();
+}
+
+class _AchievementsViewState extends State<_AchievementsView> {
   /// `null` là tất cả độ hiếm.
   String? _selectedRarity;
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AdminProvider>().loadAchievements();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final provider = context.watch<AdminAchievementsProvider>();
+    final all = provider.achievements.valueOrNull ?? const <AdminAchievement>[];
+
     return AppScaffold(
       title: 'Quản lý thành tích',
       actions: [
-        IconButton(
-          tooltip: 'Tải lại',
-          icon: const Icon(Icons.refresh),
-          onPressed: () => context.read<AdminProvider>().loadAchievements(),
-        ),
+        IconButton(tooltip: 'Tải lại', icon: const Icon(Icons.refresh), onPressed: provider.load),
       ],
       body: ContentWidthLimit(
-        child: Consumer<AdminProvider>(
-          builder: (context, adminProvider, child) {
-            final all = adminProvider.achievements;
-            final shown = _selectedRarity == null
-                ? all
-                : all
-                    .where((a) => a.definition.rarity == _selectedRarity)
-                    .toList();
-
-            return Column(
-              children: [
-                AdminAchievementSummary(achievements: all),
-                _rarityFilter(),
-                Expanded(
-                  child: AsyncView<List<AdminAchievement>>(
-                    state: ViewState.fromLegacy(
-                      isLoading: adminProvider.isLoadingAchievements,
-                      error: all.isEmpty ? adminProvider.loadErrorOf(AdminSection.achievements) : null,
-                      value: shown,
-                      isEmpty: shown.isEmpty,
-                    ),
-                    onRetry: () => adminProvider.loadAchievements(),
-                    isEmpty: (items) => items.isEmpty,
-                    emptyTitle: 'Không có thành tích nào',
-                    emptyIcon: Icons.emoji_events_outlined,
-                    builder: (context, items) =>
-                        AdaptiveTable<AdminAchievement>(
-                      // Chừa chỗ để nút thêm không che dòng cuối.
-                      padding: const EdgeInsets.fromLTRB(
-                        AppSpacing.lg,
-                        AppSpacing.lg,
-                        AppSpacing.lg,
-                        AppSpacing.xxl * 3,
-                      ),
-                      items: items,
-                      rowKey: (a) => ValueKey(a.definition.id),
-                      columns: _columns(),
-                      cardBuilder: (context, achievement) =>
-                          AdminAchievementCard(achievement: achievement),
-                    ),
-                  ),
+        child: Column(
+          children: [
+            AdminAchievementSummary(achievements: all),
+            _rarityFilter(),
+            Expanded(
+              child: AsyncView<List<AdminAchievement>>(
+                state: provider.achievements.map(_visible),
+                onRetry: provider.load,
+                isEmpty: (items) => items.isEmpty,
+                emptyTitle: 'Không có thành tích nào',
+                emptyIcon: Icons.emoji_events_outlined,
+                builder: (context, items) => AdaptiveTable<AdminAchievement>(
+                  // Chừa chỗ để nút thêm không che dòng cuối.
+                  padding: const EdgeInsets.fromLTRB(AppSpacing.lg, AppSpacing.lg, AppSpacing.lg, AppSpacing.xxl * 3),
+                  items: items,
+                  onRefresh: provider.load,
+                  rowKey: (a) => ValueKey(a.definition.id),
+                  columns: _columns(),
+                  cardBuilder: (context, achievement) => AdminAchievementCard(achievement: achievement),
                 ),
-              ],
-            );
-          },
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -102,6 +84,10 @@ class _AdminAchievementManagementScreenState
       ),
     );
   }
+
+  List<AdminAchievement> _visible(List<AdminAchievement> items) => _selectedRarity == null
+      ? items
+      : [for (final item in items) if (item.definition.rarity == _selectedRarity) item];
 
   Widget _rarityFilter() {
     Widget chip(String label, String? rarity) => Padding(

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../models/flashcard_deck.dart';
 import '../providers/flashcard_provider.dart';
 import '../widgets/flashcard_form_parts.dart';
 
@@ -33,7 +34,6 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
   String _selectedCategory = 'custom';
   String? _selectedLevel;
   bool _isPublic = false;
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -45,26 +45,22 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
   Future<void> _createDeck() async {
     if (!_formKey.currentState!.validate()) return;
 
-    setState(() => _isLoading = true);
-    final provider = context.read<FlashcardProvider>();
-    final description = _descriptionController.text.trim();
-    final result = await provider.createDeck(
-      title: _titleController.text.trim(),
-      description: description.isEmpty ? null : description,
-      isPublic: _isPublic,
-      category: _selectedCategory,
-      level: _selectedLevel,
-    );
+    final error = await context.read<FlashcardProvider>().createDeck(FlashcardDeckDraft(
+          title: _titleController.text.trim(),
+          description: _descriptionController.text.trim(),
+          isPublic: _isPublic,
+          category: _selectedCategory,
+          level: _selectedLevel,
+        ));
     if (!mounted) return;
-    setState(() => _isLoading = false);
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(result != null ? 'Tạo bộ thẻ thành công!' : provider.error ?? 'Có lỗi xảy ra'),
-        backgroundColor: result != null ? AppColors.successStrong : AppColors.errorStrong,
+        content: Text(error ?? 'Tạo bộ thẻ thành công!'),
+        backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
-    if (result != null) Navigator.pop(context, result);
+    if (error == null) Navigator.pop(context);
   }
 
   @override
@@ -144,7 +140,11 @@ class _CreateFlashcardDeckScreenState extends State<CreateFlashcardDeckScreen> {
               const SizedBox(height: AppSpacing.xl),
               const FlashcardInfoNote('Sau khi tạo bộ thẻ, bạn có thể thêm các thẻ flashcard vào bộ.'),
               const SizedBox(height: AppSpacing.xl),
-              FlashcardSubmitButton(label: 'Tạo Bộ Thẻ', loading: _isLoading, onPressed: _createDeck),
+              FlashcardSubmitButton(
+                label: 'Tạo Bộ Thẻ',
+                loading: context.watch<FlashcardProvider>().isSaving,
+                onPressed: _createDeck,
+              ),
             ],
           ),
         ),

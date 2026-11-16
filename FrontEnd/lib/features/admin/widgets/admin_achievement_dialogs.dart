@@ -5,26 +5,38 @@ import '../../../app/theme/app_tokens.dart';
 import '../../achievements/models/achievement.dart';
 import '../../achievements/models/achievement_labels.dart';
 import '../models/admin_achievement.dart';
-import '../providers/admin_provider.dart';
+import '../providers/admin_achievements_provider.dart';
 
 /// Form thêm huy hiệu ([initial] null), sửa ([initial]) hoặc nhân bản
 /// ([initial] kèm [asCopy]: tạo huy hiệu mới từ nội dung có sẵn).
+///
+/// [context] phải nằm dưới [AdminAchievementsProvider] của màn quản trị: hộp
+/// thoại là route riêng nên không tự đọc được provider của màn.
 Future<void> showAchievementFormDialog(
   BuildContext context, {
   Achievement? initial,
   bool asCopy = false,
 }) {
+  final provider = context.read<AdminAchievementsProvider>();
   return showDialog<void>(
     context: context,
-    builder: (_) => _AchievementFormDialog(initial: initial, asCopy: asCopy),
+    builder: (_) => _AchievementFormDialog(
+      initial: initial,
+      asCopy: asCopy,
+      onSubmit: (draft) =>
+          initial != null && !asCopy ? provider.update(initial.id, draft) : provider.create(draft),
+    ),
   );
 }
 
 class _AchievementFormDialog extends StatefulWidget {
-  const _AchievementFormDialog({required this.initial, required this.asCopy});
+  const _AchievementFormDialog({required this.initial, required this.asCopy, required this.onSubmit});
 
   final Achievement? initial;
   final bool asCopy;
+
+  /// Lưu bản nháp; trả `null` khi xong, ngược lại là câu báo lỗi.
+  final Future<String?> Function(AchievementDraft draft) onSubmit;
 
   @override
   State<_AchievementFormDialog> createState() => _AchievementFormDialogState();
@@ -100,7 +112,6 @@ class _AchievementFormDialogState extends State<_AchievementFormDialog> {
       _error = null;
     });
 
-    final provider = context.read<AdminProvider>();
     final draft = AchievementDraft(
       nameVi: _nameVi.text,
       name: _name.text,
@@ -113,9 +124,7 @@ class _AchievementFormDialogState extends State<_AchievementFormDialog> {
       rarity: _rarity,
       isActive: _isActive,
     );
-    final error = _isEditing
-        ? await provider.updateAchievement(widget.initial!.id, draft)
-        : await provider.createAchievement(draft);
+    final error = await widget.onSubmit(draft);
     if (!mounted) return;
 
     // Lỗi thì giữ hộp thoại: đóng lại sẽ mất những gì admin vừa nhập.
@@ -274,6 +283,7 @@ void confirmDeleteAchievement(
   BuildContext context,
   AdminAchievement achievement,
 ) {
+  final provider = context.read<AdminAchievementsProvider>();
   final definition = achievement.definition;
   showDialog<void>(
     context: context,
@@ -293,9 +303,7 @@ void confirmDeleteAchievement(
           onPressed: () async {
             final messenger = ScaffoldMessenger.of(dialogContext);
             final navigator = Navigator.of(dialogContext);
-            final error = await dialogContext
-                .read<AdminProvider>()
-                .deleteAchievement(definition.id);
+            final error = await provider.delete(definition.id);
             navigator.pop();
             messenger.showSnackBar(
               SnackBar(

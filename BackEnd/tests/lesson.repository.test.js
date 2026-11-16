@@ -96,15 +96,6 @@ test('findKanjisByLesson lọc theo lessonId (khác cách viết của Grammar)'
   assert.deepEqual(captured, { lessonId: 'l1' });
 });
 
-test('findByLevel sort theo order tăng dần, không phân trang', async () => {
-  const Lesson = { find: () => fakeChain([{ _id: 'l1' }]) };
-  const repository = createLessonRepository({ Lesson, Vocabulary: {}, Grammar: {}, Kanji: {} });
-
-  const items = await repository.findByLevel('N5');
-
-  assert.deepEqual(items, [{ _id: 'l1' }]);
-});
-
 test('distinctSituations bỏ bài chưa gắn tình huống, lọc theo cấp độ khi có', async () => {
   const calls = [];
   const Lesson = {
@@ -145,16 +136,3 @@ test('countRelated đếm đúng cả ba model với đúng tên field tham chi�
   assert.deepEqual(result, { vocabulary: 2, kanji: 0, grammar: 1 });
 });
 
-test('deleteManyByIds trả đúng deletedCount từ Mongoose', async () => {
-  const Lesson = {
-    deleteMany: async (filter) => {
-      assert.deepEqual(filter, { _id: { $in: ['l1', 'l2'] } });
-      return { acknowledged: true, deletedCount: 2 };
-    },
-  };
-  const repository = createLessonRepository({ Lesson, Vocabulary: {}, Grammar: {}, Kanji: {} });
-
-  const count = await repository.deleteManyByIds(['l1', 'l2']);
-
-  assert.equal(count, 2);
-});

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:provider/provider.dart';
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
-import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
+import 'package:apphoctiengnnhat/core/network/api_envelope.dart';
+import 'package:apphoctiengnnhat/features/admin/models/admin_user.dart';
 import 'package:apphoctiengnnhat/features/admin/screens/admin_user_management_screen.dart';
 import 'package:apphoctiengnnhat/features/admin/services/admin_service.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/send_notification_dialog.dart';
@@ -22,18 +22,24 @@ class _FakeAdminService extends AdminService {
   Object? error;
 
   @override
-  Future<List<dynamic>> getAllUsers({int page = 1, int limit = 20, String? search, String? status, String? role}) async => [
-        {
-          '_id': 'u1', 'id': 'u1', 'name': 'Nguyễn An', 'email': 'an@example.com', 'role': 'user', 'status': 'active',
-          'joinDate': '01/09/2026', 'lastActive': 'Hôm nay', 'streak': 3, 'totalXP': 120,
-        },
-      ];
+  Future<Paged<AdminUser>> users({int page = 1, String? search, AdminUserFilter filter = AdminUserFilter.all}) async =>
+      Paged(
+        items: [
+          AdminUser.fromJson(const {
+            '_id': 'u1', 'HoTen': 'Nguyễn An', 'Email': 'an@example.com', 'VaiTro': 'user', 'TrangThai': 'active',
+          }),
+        ],
+        page: 1,
+        limit: 20,
+        total: 1,
+        totalPages: 1,
+      );
 
   @override
-  Future<Map<String, dynamic>> getUserStats() async => {};
+  Future<AdminUserStats> userStats() async => const AdminUserStats(total: 1, admins: 0, active: 1, banned: 0);
 
   @override
-  Future<Map<String, dynamic>> sendNotification({
+  Future<void> sendNotification({
     required String recipientId,
     required String title,
     required String message,
@@ -41,7 +47,6 @@ class _FakeAdminService extends AdminService {
   }) async {
     if (error != null) throw error!;
     sends.add('$recipientId|$title|$message|${type.key}');
-    return {};
   }
 
   @override
@@ -64,10 +69,7 @@ Future<_FakeAdminService> _pumpUserScreen(WidgetTester tester) async {
   addTearDown(tester.view.reset);
 
   final service = _FakeAdminService();
-  await tester.pumpWidget(ChangeNotifierProvider(
-    create: (_) => AdminProvider(adminService: service),
-    child: MaterialApp(theme: AppTheme.lightTheme, home: const AdminUserManagementScreen()),
-  ));
+  await tester.pumpWidget(MaterialApp(theme: AppTheme.lightTheme, home: AdminUserManagementScreen(service: service)));
   await tester.pumpAndSettle();
   return service;
 }
@@ -146,7 +148,7 @@ void main() {
   testWidgets('gửi cho một người từ menu của người đó', (tester) async {
     final service = await _pumpUserScreen(tester);
 
-    await tester.tap(find.byType(PopupMenuButton<String>).first);
+    await tester.tap(find.byTooltip('Thao tác').first);
     await tester.pumpAndSettle();
     await tester.tap(find.text('Gửi thông báo'));
     await tester.pumpAndSettle();

@@ -320,7 +320,8 @@ class ApiClient {
   /// Cặp token trong phản hồi làm mới; `null` khi nội dung không đúng dạng.
   ({String access, String refresh})? _tokensIn(http.Response response) {
     try {
-      final data = json.decode(response.body);
+      final body = json.decode(response.body);
+      final data = body is Map ? body['data'] : null;
       if (data is! Map) return null;
       final access = data['token'];
       final refresh = data['refreshToken'];

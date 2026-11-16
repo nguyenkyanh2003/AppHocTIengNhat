@@ -5,10 +5,11 @@ import { uploadUserAvatar } from '../../middleware/upload.middleware.js';
 import { createRateLimiter } from '../../middleware/security.middleware.js';
 import { asyncHandler } from '../../shared/http/async-handler.js';
 import { validate } from '../../shared/http/validate.js';
-import * as controller from './user.controller.js';
 import { createUserAuthController } from './user-auth.controller.js';
-import * as schema from './user.schema.js';
 import { userAuthService } from './user-auth.service.js';
+import { createUserController } from './user.controller.js';
+import * as schema from './user.schema.js';
+import { userService as defaultUserService } from './user.service.js';
 
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 20;
@@ -35,11 +36,14 @@ const authRateLimiter = (name) =>
  */
 export const createUserRoutes = ({
   authService = userAuthService,
+  userService = defaultUserService,
   authenticate = authenticateUser,
   authorizeAdmin = authenticateAdmin,
   uploadAvatar = uploadUserAvatar,
 } = {}) => {
   const auth = createUserAuthController(authService);
+  const users = createUserController(userService);
+  const byId = validate({ params: schema.idParams });
   const router = express.Router();
 
   router.post(
@@ -52,7 +56,7 @@ export const createUserRoutes = ({
   // qua `authenticate` — chính access token hết hạn là lý do gọi route này.
   router.post("/refresh-token", validate({ body: schema.refreshBody }), asyncHandler(auth.refresh));
   router.post("/logout", validate({ body: schema.logoutBody }), asyncHandler(auth.logout));
-  router.post("/register", validate({ body: schema.registerBody }), controller.postRegister);
+  router.post("/register", validate({ body: schema.registerBody }), asyncHandler(users.register));
   router.post(
     "/forgot-password",
     authRateLimiter('forgot-password'),
@@ -65,8 +69,14 @@ export const createUserRoutes = ({
     validate({ body: schema.resetPasswordBody }),
     asyncHandler(auth.resetPassword),
   );
-  router.get("/profile/:id", authenticate, controller.getProfileById);
-  router.put("/profile/:id", authenticate, controller.putProfileById);
+  router.get("/profile/:id", authenticate, byId, asyncHandler(users.profile));
+  router.put(
+    "/profile/:id",
+    authenticate,
+    byId,
+    validate({ body: schema.updateProfileBody }),
+    asyncHandler(users.updateProfile),
+  );
   router.put(
     "/change-password/:id",
     authenticate,
@@ -76,12 +86,23 @@ export const createUserRoutes = ({
     }),
     asyncHandler(auth.changePassword),
   );
-  router.get("/admin/users", authorizeAdmin, controller.getAdminUsers);
-  router.put("/admin/users/:id", authorizeAdmin, controller.putAdminUsersById);
-  router.delete("/admin/users/:id", authorizeAdmin, controller.deleteAdminUsersById);
-  router.delete("/admin/users", authorizeAdmin, controller.deleteAdminUsers);
-  router.get("/admin/stats", authorizeAdmin, controller.getAdminStats);
-  router.put("/profile/:userID/avatar", authenticate, uploadAvatar, controller.putProfileByUserIDAvatar);
+  router.get("/admin/users", authorizeAdmin, validate({ query: schema.adminListQuery }), asyncHandler(users.adminList));
+  router.put(
+    "/admin/users/:id",
+    authorizeAdmin,
+    byId,
+    validate({ body: schema.adminUpdateBody }),
+    asyncHandler(users.adminUpdate),
+  );
+  router.delete("/admin/users/:id", authorizeAdmin, byId, asyncHandler(users.adminRemove));
+  router.get("/admin/stats", authorizeAdmin, asyncHandler(users.adminStats));
+  router.put(
+    "/profile/:userID/avatar",
+    authenticate,
+    validate({ params: schema.avatarParams }),
+    uploadAvatar,
+    asyncHandler(users.setAvatar),
+  );
 
   return router;
 };

@@ -1,172 +1,150 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/admin_provider.dart';
-import '../widgets/send_notification_dialog.dart';
-import '../../../shared/widgets/app_scaffold.dart';
-import '../../../shared/widgets/content_pane.dart';
+
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/adaptive_table.dart';
+import '../../../shared/widgets/app_scaffold.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/admin_user.dart';
+import '../providers/admin_users_provider.dart';
+import '../services/admin_service.dart';
 import '../widgets/admin_user_actions.dart';
 import '../widgets/admin_user_card.dart';
 import '../widgets/admin_user_table.dart';
-import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
+import '../widgets/send_notification_dialog.dart';
 
-class AdminUserManagementScreen extends StatefulWidget {
-  const AdminUserManagementScreen({Key? key}) : super(key: key);
+/// Quản lý tài khoản: tìm và lọc phía server, tải thêm khi cuộn.
+/// [service] chỉ để test truyền service giả.
+class AdminUserManagementScreen extends StatelessWidget {
+  const AdminUserManagementScreen({super.key, this.service});
+
+  final AdminService? service;
 
   @override
-  State<AdminUserManagementScreen> createState() =>
-      _AdminUserManagementScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => AdminUsersProvider(service: service)..load(),
+      child: const _UsersView(),
+    );
+  }
 }
 
-class _AdminUserManagementScreenState extends State<AdminUserManagementScreen> {
-  final TextEditingController _searchController = TextEditingController();
-  String _selectedFilter = 'all';
+class _UsersView extends StatefulWidget {
+  const _UsersView();
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AdminProvider>().loadUsers();
-    });
+  State<_UsersView> createState() => _UsersViewState();
+}
+
+class _UsersViewState extends State<_UsersView> {
+  final _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _clearSearch(AdminUsersProvider provider) {
+    _searchController.clear();
+    provider.searchUsers('');
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<AdminUsersProvider>();
+
     return AppScaffold(
-      title: 'Quản Lý Users',
+      title: 'Quản lý người dùng',
       actions: [
         IconButton(
           tooltip: 'Gửi thông báo cho tất cả',
           icon: const Icon(Icons.campaign_outlined),
           onPressed: () => openSendNotificationForm(context),
         ),
-        IconButton(
-          icon: const Icon(Icons.refresh),
-          onPressed: () => context.read<AdminProvider>().loadUsers(),
-        ),
+        IconButton(tooltip: 'Tải lại', icon: const Icon(Icons.refresh), onPressed: provider.load),
       ],
       body: ContentWidthLimit(
-        child: Consumer<AdminProvider>(
-          builder: (context, adminProvider, child) {
-            final allUsers = adminProvider.users;
-
-            // Filter users based on search and selected filter
-            final filteredUsers = allUsers.where((user) {
-              final matchesSearch = _searchController.text.isEmpty ||
-                  (user['name']
-                          ?.toString()
-                          .toLowerCase()
-                          .contains(_searchController.text.toLowerCase()) ??
-                      false) ||
-                  (user['email']
-                          ?.toString()
-                          .toLowerCase()
-                          .contains(_searchController.text.toLowerCase()) ??
-                      false);
-
-              final matchesFilter = _selectedFilter == 'all' ||
-                  user['status'] == _selectedFilter ||
-                  user['role'] == _selectedFilter;
-
-              return matchesSearch && matchesFilter;
-            }).toList();
-
-            return Column(
-              children: [
-                // Search & Filter
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  color: context.colors.surfaceVariant,
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: _searchController,
-                        decoration: InputDecoration(
-                          hintText: 'Tìm kiếm user...',
-                          prefixIcon: const Icon(Icons.search),
-                          filled: true,
-                          fillColor: context.colors.surface,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              color: context.colors.surfaceVariant,
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _searchController,
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      hintText: 'Tìm theo tên, tên đăng nhập hoặc email…',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: provider.search == null
+                          ? null
+                          : IconButton(
+                              tooltip: 'Xoá tìm kiếm',
+                              icon: const Icon(Icons.clear),
+                              onPressed: () => _clearSearch(provider),
+                            ),
+                      filled: true,
+                      fillColor: context.colors.surface,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                    ),
+                    onSubmitted: provider.searchUsers,
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (final filter in AdminUserFilter.values)
+                          Padding(
+                            padding: const EdgeInsets.only(right: AppSpacing.sm),
+                            child: FilterChip(
+                              label: Text(filter.label),
+                              selected: provider.filter == filter,
+                              onSelected: (_) => provider.selectFilter(filter),
+                            ),
                           ),
-                        ),
-                        onChanged: (value) => setState(() {}),
-                      ),
-                      const SizedBox(height: 12),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            _buildFilterChip('Tất cả', 'all'),
-                            _buildFilterChip('Active', 'active'),
-                            _buildFilterChip('Admin', 'admin'),
-                            _buildFilterChip('Banned', 'banned'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                AdminUserStatsBar(users: allUsers),
-
-                // Users List
-                Expanded(
-                  child: AsyncView<List<Map<String, dynamic>>>(
-                    state: ViewState.fromLegacy(
-                      isLoading: adminProvider.isLoadingUsers,
-                      error: allUsers.isEmpty ? adminProvider.loadErrorOf(AdminSection.users) : null,
-                      value: filteredUsers,
-                      isEmpty: filteredUsers.isEmpty,
-                    ),
-                    onRetry: () => adminProvider.loadUsers(),
-                    isEmpty: (users) => users.isEmpty,
-                    emptyTitle: 'Không có người dùng nào',
-                    emptyIcon: Icons.people_outline,
-                    builder: (context, filteredUsers) =>
-                        AdaptiveTable<Map<String, dynamic>>(
-                      padding: const EdgeInsets.all(AppSpacing.lg),
-                      items: filteredUsers,
-                      rowKey: (user) => ValueKey(user['_id'] ?? user['id']),
-                      columns: adminUserColumns(),
-                      cardBuilder: (context, user) => AdminUserCard(user: user),
-                      onRowTap: (user) => showAdminUserDetails(context, user),
+                      ],
                     ),
                   ),
+                ],
+              ),
+            ),
+            AsyncView<AdminUserStats>(
+              state: provider.stats,
+              compact: true,
+              builder: (context, stats) => AdminUserStatsBar(stats: stats),
+            ),
+            if (provider.isRefreshing) const LinearProgressIndicator(minHeight: 2),
+            Expanded(
+              child: AsyncView<List<AdminUser>>(
+                state: provider.users,
+                onRetry: provider.load,
+                isEmpty: (users) => users.isEmpty,
+                emptyTitle: 'Không có người dùng nào',
+                emptyIcon: Icons.people_outline,
+                builder: (context, users) => AdaptiveTable<AdminUser>(
+                  padding: const EdgeInsets.all(AppSpacing.lg),
+                  items: users,
+                  onRefresh: provider.load,
+                  rowKey: (user) => ValueKey(user.id),
+                  columns: adminUserColumns(),
+                  cardBuilder: (context, user) => AdminUserCard(user: user),
+                  onRowTap: (user) => showAdminUserDetails(context, user),
+                  paging: TablePaging(
+                    hasMore: provider.hasMore,
+                    isLoadingMore: provider.isLoadingMore,
+                    error: provider.loadMoreError,
+                    onLoadMore: provider.loadMore,
+                  ),
                 ),
-              ],
-            );
-          },
+              ),
+            ),
+          ],
         ),
       ),
     );
-  }
-
-  Widget _buildFilterChip(String label, String value) {
-    final isSelected = _selectedFilter == value;
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: FilterChip(
-        label: Text(label),
-        selected: isSelected,
-        onSelected: (selected) {
-          setState(() => _selectedFilter = value);
-        },
-        selectedColor: AppColors.primary,
-        labelStyle: TextStyle(
-          color: isSelected ? Colors.white : context.colors.textPrimary,
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
   }
 }

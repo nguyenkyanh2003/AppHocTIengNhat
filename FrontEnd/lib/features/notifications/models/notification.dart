@@ -92,15 +92,6 @@ class NotificationPage {
     required this.total,
   });
 
-  factory NotificationPage.fromJson(Map<String, dynamic> json) => NotificationPage(
-        items: (json['data'] as List? ?? const [])
-            .map((item) => AppNotification.fromJson(Map<String, dynamic>.from(item as Map)))
-            .toList(),
-        page: json['page'] as int? ?? 1,
-        totalPages: json['totalPages'] as int? ?? 0,
-        total: json['total'] as int? ?? 0,
-      );
-
   final List<AppNotification> items;
   final int page;
   final int totalPages;

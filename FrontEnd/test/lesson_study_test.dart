@@ -85,8 +85,8 @@ LessonProgress _progress({
       'learned_kanji_ids': learnedKanji,
     });
 
-/// Service giả: ghi lại lời gọi, trả `null` (như service thật khi lỗi mạng)
-/// theo cờ để kiểm đường lỗi.
+/// Service giả: ghi lại lời gọi, ném lỗi (như service thật khi mất mạng) theo
+/// cờ để kiểm đường lỗi.
 class _FakeProgressService extends LessonProgressService {
   _FakeProgressService({this.learned = const [], this.learnedKanji = const []});
 
@@ -100,11 +100,11 @@ class _FakeProgressService extends LessonProgressService {
   bool failComplete = false;
 
   @override
-  Future<LessonProgress?> startLesson(String lessonId) async =>
+  Future<LessonProgress> startLesson(String lessonId) async =>
       _progress(learned: learned, learnedKanji: learnedKanji);
 
   @override
-  Future<LessonProgress?> updateProgress({
+  Future<LessonProgress> updateProgress({
     required String lessonId,
     required String itemType,
     required String itemId,
@@ -112,13 +112,15 @@ class _FakeProgressService extends LessonProgressService {
   }) async {
     (completed ? updated : unmarked).add(itemId);
     itemTypes.add(itemType);
-    return failUpdates ? null : _progress(learned: [...learned, itemId]);
+    if (failUpdates) throw NetworkException('Mất mạng');
+    return _progress(learned: [...learned, itemId]);
   }
 
   @override
-  Future<LessonProgress?> completeLesson(String lessonId) async {
+  Future<LessonProgress> completeLesson(String lessonId) async {
     completions++;
-    return failComplete ? null : _progress(completed: true);
+    if (failComplete) throw NetworkException('Mất mạng');
+    return _progress(completed: true);
   }
 }
 

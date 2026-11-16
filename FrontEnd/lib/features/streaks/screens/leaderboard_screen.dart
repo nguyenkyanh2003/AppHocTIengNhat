@@ -7,7 +7,6 @@ import '../../../app/theme/app_typography.dart';
 import '../widgets/leaderboard_item.dart';
 import '../widgets/leaderboard_user_rank_card.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
 import '../models/leaderboard.dart';
 
 class LeaderboardScreen extends StatefulWidget {
@@ -85,29 +84,22 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       body: ContentWidthLimit(
         child: Consumer<StreakProvider>(
           builder: (context, provider, child) {
-            return AsyncView<List<LeaderboardEntry>>(
-              state: ViewState.fromLegacy(
-                isLoading: provider.isLoadingLeaderboard,
-                error: provider.leaderboardError,
-                value: provider.leaderboard,
-                isEmpty: provider.leaderboard.isEmpty,
-              ),
+            return AsyncView<Leaderboard>(
+              state: provider.leaderboard,
               onRetry: _loadLeaderboard,
-              isEmpty: (entries) => entries.isEmpty,
+              isEmpty: (board) => board.entries.isEmpty,
               emptyTitle: 'Chưa có dữ liệu bảng xếp hạng',
               emptyIcon: Icons.leaderboard_outlined,
-              builder: (context, entries) => RefreshIndicator(
+              builder: (context, board) => RefreshIndicator(
                 onRefresh: _loadLeaderboard,
                 child: Column(
                   children: [
-                    if (provider.userRank != null)
-                      LeaderboardUserRankCard(provider: provider),
+                    if (board.userRank case final rank?) LeaderboardUserRankCard(rank: rank),
                     Expanded(
                       child: ListView.builder(
                         padding: const EdgeInsets.all(16),
-                        itemCount: entries.length,
-                        itemBuilder: (context, index) =>
-                            LeaderboardItem(entry: entries[index]),
+                        itemCount: board.entries.length,
+                        itemBuilder: (context, index) => LeaderboardItem(entry: board.entries[index]),
                       ),
                     ),
                   ],

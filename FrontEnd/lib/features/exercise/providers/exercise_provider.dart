@@ -1,188 +1,92 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../../core/state/detail_state.dart';
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/exercise.dart';
 import '../services/exercise_service.dart';
-import '../../../core/state/view_state.dart';
 
+/// Luyện tập: danh sách bài tập, đề đang làm, nộp bài, lịch sử và kết quả.
 class ExerciseProvider extends ChangeNotifier {
-  final ExerciseService _exerciseService = ExerciseService();
+  ExerciseProvider({ExerciseService? service}) : _service = service ?? ExerciseService();
 
-  List<Exercise> _exercises = [];
-  Exercise? _currentExercise;
-  ExerciseResult? _currentResult;
-  List<ExerciseResult> _history = [];
+  final ExerciseService _service;
+  ViewState<List<Exercise>> _exercises = const ViewState.idle();
+  int _listGeneration = 0;
+  late final _detail = DetailState<Exercise>(idOf: (exercise) => exercise.id, onChanged: _notify);
+  late final _result = DetailState<ExerciseResult>(idOf: (result) => result.id, onChanged: _notify);
+  late final _history = PagedList<ExerciseResult>(onChanged: _notify);
+  bool _submitting = false;
+  bool _disposed = false;
 
-  bool _isLoading = false;
-  String? _error;
+  ViewState<List<Exercise>> get exercises => _exercises;
+  ViewState<List<ExerciseResult>> get history => _history.state;
+  bool get hasMoreHistory => _history.hasMore;
+  bool get isLoadingMoreHistory => _history.isLoadingMore;
+  String? get loadMoreHistoryError => _history.loadMoreError;
+  bool get isSubmitting => _submitting;
 
-  // Getters
-  List<Exercise> get exercises => _exercises;
-  Exercise? get currentExercise => _currentExercise;
-  ExerciseResult? get currentResult => _currentResult;
-  List<ExerciseResult> get history => _history;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
+  ViewState<Exercise> detailOf(String id) => _detail.of(id);
+  ViewState<ExerciseResult> resultOf(String id) => _result.of(id);
 
-  // Lấy tất cả bài tập
-  Future<void> loadAllExercises() async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  /// Bài tập của một bài học, hoặc mọi bài tập khi không có [lessonId].
+  Future<void> loadExercises({String? lessonId}) async {
+    final generation = ++_listGeneration;
+    _exercises = const ViewState.loading();
+    _notify();
 
-    try {
-      _exercises = await _exerciseService.getAllExercises();
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+    final result = await ViewState.guard(() => lessonId == null ? _service.listAll() : _service.listByLesson(lessonId));
+    if (generation != _listGeneration) return;
+    _exercises = result;
+    _notify();
   }
 
-  // Lấy danh sách bài tập theo bài học
-  Future<void> loadExercisesByLesson(String lessonId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  Future<void> loadDetail(String id) => _detail.load(id, () => _service.detail(id));
 
-    try {
-      _exercises = await _exerciseService.getExercisesByLesson(lessonId);
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
+  Future<void> loadResult(String id) => _result.load(id, () => _service.result(id));
 
-  // Lấy danh sách bài tập theo level
-  Future<void> loadExercisesByLevel(String level) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  Future<void> loadHistory() => _history.load((page) => _service.history(page: page));
 
-    try {
-      _exercises = await _exerciseService.getExercisesByLevel(level);
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
+  Future<void> loadMore() => _history.loadMore();
 
-  // Lấy danh sách bài tập theo type
-  Future<void> loadExercisesByType(String type) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _exercises = await _exerciseService.getExercisesByType(type);
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Lấy chi tiết bài tập
-  Future<void> loadExerciseDetail(String id) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _currentExercise = await _exerciseService.getExerciseById(id);
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Nộp bài
-  Future<bool> submitExercise(
-    String exerciseId,
-    List<UserAnswer> answers,
-    int timeSpent, {
+  /// Nộp bài; kết quả (hoặc câu báo lỗi) trả về cho màn chuyển trang. Lỗi thì
+  /// người học giữ nguyên bài làm và nộp lại với cùng [attemptId].
+  Future<ViewState<ExerciseResult>> submit(
+    String exerciseId, {
+    required Map<String, String> answers,
+    required int timeSpent,
     required String attemptId,
   }) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+    if (_submitting) return const ViewState.failure('Bài làm đang được nộp.');
+    _submitting = true;
+    _notify();
 
-    try {
-      _currentResult = await _exerciseService.submitExercise(
-        exerciseId,
-        answers,
-        timeSpent,
-        attemptId: attemptId,
-      );
-      return true;
-    } catch (e) {
-      _error = userMessageOf(e);
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+    final result = await ViewState.guard(
+      () => _service.submit(exerciseId, answers: answers, timeSpent: timeSpent, attemptId: attemptId),
+    );
+    _submitting = false;
+    _notify();
+    if (result.hasData && _history.state is! ViewIdle) _history.reload();
+    return result;
   }
 
-  // Lấy lịch sử làm bài
-  Future<void> loadHistory() async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _history = await _exerciseService.getUserExerciseHistory();
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Lấy kết quả chi tiết
-  Future<void> loadResultDetail(String resultId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _currentResult = await _exerciseService.getResultById(resultId);
-    } catch (e) {
-      _error = userMessageOf(e);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Clear current exercise
-  void clearCurrentExercise() {
-    _currentExercise = null;
-    _currentResult = null;
-    notifyListeners();
-  }
-
-  // Clear error
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
-
-  // Clear all state
+  /// Về trạng thái chưa tải (đăng xuất).
   void clear() {
-    _exercises = [];
-    _currentExercise = null;
-    _currentResult = null;
-    _history = [];
-    _isLoading = false;
-    _error = null;
-    notifyListeners();
+    _listGeneration++;
+    _exercises = const ViewState.idle();
+    _detail.clear();
+    _result.clear();
+    _history.clear();
+    _notify();
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

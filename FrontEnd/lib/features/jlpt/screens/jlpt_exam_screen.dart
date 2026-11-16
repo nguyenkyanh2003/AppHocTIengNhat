@@ -61,7 +61,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<JLPTExamProvider>().loadExam(widget.examId);
+      if (mounted) _loadExam();
     });
   }
 
@@ -69,6 +69,19 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
   void dispose() {
     _audioPlayer.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadExam() => context.read<JLPTExamProvider>().loadExam(widget.examId);
+
+  Future<void> _submit() async {
+    final provider = context.read<JLPTExamProvider>();
+    final error = await provider.submit();
+    if (!mounted) return;
+    if (error == null) {
+      showJlptResultSheet(context, provider);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error), backgroundColor: AppColors.errorStrong));
+    }
   }
 
   /// Phát hoặc tạm dừng file nghe [audioUrl] (model đã đổi sang URL tuyệt đối).
@@ -125,20 +138,10 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
       ],
       body: ContentWidthLimit(
         child: Consumer<JLPTExamProvider>(
-          builder: (context, provider, _) {
-            if (provider.isLoading || provider.exam == null) {
-              return AsyncView<JLPTExamDetail>(
-                state: ViewState.detail(
-                  isLoading: provider.isLoading,
-                  error: provider.error,
-                  value: provider.exam,
-                ),
-                onRetry: () => provider.loadExam(widget.examId),
-                builder: (context, _) => const SizedBox.shrink(),
-              );
-            }
-            final exam = provider.exam!;
-            return Column(
+          builder: (context, provider, _) => AsyncView<JLPTExamDetail>(
+            state: provider.examOf(widget.examId),
+            onRetry: _loadExam,
+            builder: (context, exam) => Column(
               children: [
                 Expanded(
                   child: ListView(
@@ -166,21 +169,7 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: ElevatedButton(
-                      onPressed: provider.isSubmitting || provider.hasSubmitted
-                          ? null
-                          : () async {
-                              await provider.submit(widget.examId);
-                              if (!context.mounted) return;
-                              if (provider.result != null) {
-                                showJlptResultSheet(context, provider);
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text(
-                                          'Nộp bài thất bại, vui lòng thử lại.')),
-                                );
-                              }
-                            },
+                      onPressed: provider.isSubmitting || provider.hasSubmitted ? null : _submit,
                       child: provider.isSubmitting
                           ? const SizedBox(
                               height: 20,
@@ -191,8 +180,8 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
                   ),
                 )
               ],
-            );
-          },
+            ),
+          ),
         ),
       ),
     );

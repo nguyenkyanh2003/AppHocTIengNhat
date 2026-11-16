@@ -1,4 +1,5 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/srs_card.dart';
 import '../models/srs_progress.dart';
 
@@ -53,25 +54,18 @@ class SrsService {
   }) async {
     final query = buildDueQuery(excludeCardIds: excludeCardIds, limit: limit, itemType: itemType);
     final response = await _client.get('/srs/due?${Uri(queryParameters: query).query}');
-    return SrsBatch(
-      cards: (response['data'] as List? ?? const [])
-          .map((card) => SrsCard.fromJson(Map<String, dynamic>.from(card)))
-          .toList(),
-      limit: response['limit'] as int? ?? limit,
-    );
+    return SrsBatch(cards: listOf(response, SrsCard.fromJson), limit: response['limit'] as int? ?? limit);
   }
 
   /// Tổng thẻ đến hạn của mọi loại — độc lập với đợt đang ôn và danh sách loại trừ.
   Future<int> fetchDueCount() async {
-    final response = await _client.get('/srs/due/count');
-    return (response['data'] as Map?)?['total'] as int? ?? 0;
+    return objectOf(await _client.get('/srs/due/count'), (json) => json['total'] as int? ?? 0);
   }
 
   /// Phân bố hộp; không có [itemType] thì gộp mọi loại thẻ.
   Future<SrsStats> fetchStats({String? itemType}) async {
     final query = itemType == null ? '' : '?${Uri(queryParameters: {'item_type': itemType}).query}';
-    final response = await _client.get('/srs/stats$query');
-    return SrsStats.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+    return objectOf(await _client.get('/srs/stats$query'), SrsStats.fromJson);
   }
 
   Future<SrsProgress> review({
@@ -89,7 +83,7 @@ class SrsService {
         expectedNextReview: expectedNextReview,
       ),
     );
-    return SrsProgress.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+    return objectOf(response, SrsProgress.fromJson);
   }
 
   /// Đưa thẻ về hộp 1, ôn lại sau 24 giờ — được cả khi chưa đến hạn.
@@ -102,13 +96,12 @@ class SrsService {
       'item_type': itemType,
       'expected_next_review': expectedNextReview.toUtc().toIso8601String(),
     });
-    return SrsProgress.fromJson(Map<String, dynamic>.from(response['data'] as Map));
+    return objectOf(response, SrsProgress.fromJson);
   }
 
   /// Xoá tiến độ (gỡ thẻ khỏi lịch ôn). `false` nghĩa là không còn gì để xoá.
   Future<bool> remove({required String itemId, required String itemType}) async {
     final query = Uri(queryParameters: {'item_type': itemType}).query;
-    final response = await _client.delete('/srs/items/$itemId?$query');
-    return (response['data'] as Map?)?['deleted'] as bool? ?? false;
+    return objectOf(await _client.delete('/srs/items/$itemId?$query'), (json) => json['deleted'] as bool? ?? false);
   }
 }

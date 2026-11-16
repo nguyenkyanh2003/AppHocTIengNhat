@@ -6,6 +6,7 @@ import 'package:http/testing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:apphoctiengnnhat/core/state/view_state.dart';
+import 'package:apphoctiengnnhat/features/lessons/models/lesson.dart';
 import 'package:apphoctiengnnhat/features/lessons/providers/lesson_provider.dart';
 
 /// Backend giả cho `GET /lesson/:id`: đếm request theo bài, cho phép trễ hoặc
@@ -21,7 +22,7 @@ class _Backend {
         await Future<void>.delayed(delays[id] ?? Duration.zero);
         if (failing.contains(id)) return http.Response('{"message":"lỗi"}', 500);
         return http.Response(
-          jsonEncode({'_id': id, 'title': 'Bài $id', 'level': 'N5'}),
+          jsonEncode({'data': {'_id': id, 'title': 'Bài $id', 'level': 'N5'}}),
           200,
           headers: {'content-type': 'application/json; charset=utf-8'},
         );
@@ -40,8 +41,7 @@ void main() {
 
       final reopening = provider.loadLessonDetail('a');
       // Chưa chờ mạng mà đã có nội dung: không vòng xoay.
-      expect(provider.currentLessonDetail?.lesson.id, 'a');
-      expect(provider.detailState, isA<ViewData>());
+      expect(provider.detailOf('a').valueOrNull?.lesson.id, 'a');
 
       await reopening;
       expect(backend.requests['a'], 2);
@@ -56,7 +56,8 @@ void main() {
       await provider.loadLessonDetail('b');
       await first;
 
-      expect(provider.currentLessonDetail?.lesson.id, 'b');
+      expect(provider.detailOf('b').valueOrNull?.lesson.id, 'b');
+      expect(provider.detailOf('a').valueOrNull?.lesson.id, 'a', reason: 'bài cũ về muộn chỉ được cất vào bộ nhớ');
     }, () => backend.client);
   });
 
@@ -68,11 +69,10 @@ void main() {
 
       backend.failing.addAll({'a', 'c'});
       await provider.loadLessonDetail('a');
-      expect(provider.currentLessonDetail?.lesson.id, 'a');
-      expect(provider.detailState, isA<ViewData>());
+      expect(provider.detailOf('a'), isA<ViewData<LessonDetail>>());
 
       await provider.loadLessonDetail('c');
-      expect(provider.detailState, isA<ViewFailure>());
+      expect(provider.detailOf('c'), isA<ViewFailure<LessonDetail>>());
     }, () => backend.client);
   });
 }

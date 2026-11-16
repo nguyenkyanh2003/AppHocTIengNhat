@@ -192,10 +192,7 @@ export const createVocabularyService = ({
     },
 
     async remove(id) {
-      const deleted = await repository.deleteById(id);
-      if (!deleted) throw ApiError.notFound('Không tìm thấy từ vựng để xóa.');
-
-      return deleted;
+      if (!(await repository.deleteById(id))) throw ApiError.notFound('Không tìm thấy từ vựng để xóa.');
     },
 
     removeMany(ids) {

@@ -1,5 +1,5 @@
 import '../../../core/network/api_client.dart';
-import '../../lessons/models/lesson.dart';
+import '../../../core/network/api_envelope.dart';
 import '../../lessons/services/lesson_service.dart';
 import '../../vocabulary/models/vocabulary.dart';
 import '../../vocabulary/services/vocabulary_service.dart';
@@ -22,7 +22,7 @@ class HomeService {
   /// Bài học tiếp theo. Trình độ lấy theo bài vừa học gần nhất; chưa học bài
   /// nào thì theo [fallbackLevel] (trình độ trong hồ sơ).
   Future<NextLesson?> loadNextLesson({required String fallbackLevel}) async {
-    final raw = await _api.get('/lesson-progress/lessons');
+    final raw = dataOf(await _api.get('/lesson-progress/lessons'));
     final entries = (raw is List ? raw : const [])
         .whereType<Map>()
         .map((e) => Map<String, dynamic>.from(e))
@@ -41,9 +41,8 @@ class HomeService {
             orElse: () => null);
     final level = recentLevel ?? fallbackLevel;
 
-    final page = await _lessons.getLessons(level: level, limit: 50);
-    final lessons = (page['lessons'] as List<Lesson>?) ?? const [];
-    return pickNextLesson(level: level, lessons: lessons, progress: progress);
+    final page = await _lessons.list(level: level, limit: 50);
+    return pickNextLesson(level: level, lessons: page.items, progress: progress);
   }
 
   /// "Từ mới hôm nay": một từ thật của trình độ [level], đổi theo ngày và giữ

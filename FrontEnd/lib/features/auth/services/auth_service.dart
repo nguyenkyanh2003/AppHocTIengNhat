@@ -1,7 +1,11 @@
-import '../../../core/network/api_client.dart';
-import '../../../shared/models/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
+import '../../../shared/models/user.dart';
+import '../models/profile_changes.dart';
 
 class AuthService {
   /// Nhận client qua constructor để test truyền transport giả.
@@ -9,214 +13,87 @@ class AuthService {
 
   final ApiClient _client;
 
-  /// Đăng nhập
-  Future<Map<String, dynamic>> login(String username, String password) async {
-    try {
-      final dynamic response = await _client.post('/users/login', {
-        'username': username,
-        'password': password,
-      });
-
-      if (response is Map<String, dynamic>) {
-        // Access token sống 15 phút; refresh token để tự đổi cặp mới khi hết hạn.
-        if (response['token'] != null) {
-          await _client.setSession(
-            response['token'] as String,
-            response['refreshToken'] as String?,
-          );
-        }
-        return response;
-      }
-
-      throw Exception('Phản hồi đăng nhập không hợp lệ');
-    } catch (e) {
-      rethrow;
-    }
+  /// Đăng nhập và lưu phiên: access token sống 15 phút, refresh token để tự
+  /// đổi cặp mới khi hết hạn.
+  Future<User> login(String username, String password) async {
+    final session = objectOf(
+      await _client.post('/users/login', {'username': username, 'password': password}),
+      (json) => (
+        user: User.fromJson(Map<String, dynamic>.from(json['user'] as Map)),
+        token: json['token'] as String,
+        refreshToken: json['refreshToken'] as String?,
+      ),
+    );
+    await _client.setSession(session.token, session.refreshToken);
+    return session.user;
   }
 
-  /// Đăng ký
-  Future<Map<String, dynamic>> register(
-    String username,
-    String fullName,
-    String email,
-    String password,
-    String? phoneNumber,
-    String? trinhDo,
-  ) async {
-    try {
-      final dynamic response = await _client.post('/users/register', {
-        'username': username,
-        'hoTen': fullName, // Backend yêu cầu field 'hoTen'
-        'email': email,
-        'password': password,
-        if (trinhDo != null) 'trinhDo': trinhDo,
-      });
-
-      if (response is Map<String, dynamic>) {
-        return response;
-      }
-
-      throw Exception('Phản hồi đăng ký không hợp lệ');
-    } catch (e) {
-      rethrow;
-    }
+  Future<User> register({
+    required String username,
+    required String fullName,
+    required String email,
+    required String password,
+    String? level,
+  }) async {
+    final response = await _client.post('/users/register', {
+      'username': username,
+      'hoTen': fullName,
+      'email': email,
+      'password': password,
+      if (level != null) 'trinhDo': level,
+    });
+    return objectOf(response, User.fromJson);
   }
 
-  /// Lấy thông tin user hiện tại
-  Future<User> getCurrentUser(String userId) async {
-    try {
-      final dynamic response = await _client.get('/users/profile/$userId');
-      if (response is Map<String, dynamic>) {
-        // API returns 'profile' not 'user'
-        final userData = response['profile'] ?? response['user'];
-        if (userData != null) {
-          return User.fromJson(userData);
-        }
-      }
-      throw Exception('Dữ liệu người dùng không hợp lệ');
-    } catch (e) {
-      rethrow;
-    }
-  }
+  Future<User> getCurrentUser(String userId) async =>
+      objectOf(await _client.get('/users/profile/$userId'), User.fromJson);
 
   /// Đăng xuất: gửi refresh token (và access token trong header) để server
   /// đóng đúng phiên của thiết bị này. Lỗi mạng không chặn việc dọn phiên cục bộ.
   Future<void> logout() async {
     try {
       final refreshToken = _client.getRefreshToken();
-      await _client.post('/users/logout', {
-        if (refreshToken != null) 'refreshToken': refreshToken,
-      });
-    } catch (e) {
-      // Ignore error khi logout
+      await _client.post('/users/logout', {if (refreshToken != null) 'refreshToken': refreshToken});
+    } catch (_) {
+      // Phiên trên máy vẫn được dọn bên dưới; server tự hết hạn phiên bỏ dở.
     } finally {
-      // Clear token
       await _client.removeToken();
-
-      // Clear ALL user data for complete logout
       await _client.clearAllData();
     }
   }
 
-  /// Cập nhật profile
-  Future<User> updateProfile(
-    String userId, {
-    String? fullName,
-    String? email,
-    String? avatar,
-    String? currentLevel,
-    String? phoneNumber,
-    String? address,
-    String? gender,
-    DateTime? dateOfBirth,
-  }) async {
-    try {
-      final data = <String, dynamic>{};
-      if (fullName != null) data['hoTen'] = fullName;
-      if (email != null) data['email'] = email;
-      if (avatar != null) data['anhDaiDien'] = avatar;
-      if (currentLevel != null) {
-        // Backend expects "N5", "N4", etc., not just "5"
-        data['trinhDo'] =
-            currentLevel.startsWith('N') ? currentLevel : 'N$currentLevel';
-      }
-      if (phoneNumber != null) data['soDienThoai'] = phoneNumber;
-      if (address != null) data['diaChi'] = address;
-      if (gender != null) data['gioiTinh'] = gender;
-      if (dateOfBirth != null) data['ngaySinh'] = dateOfBirth.toIso8601String();
+  Future<User> updateProfile(String userId, ProfileChanges changes) async =>
+      objectOf(await _client.put('/users/profile/$userId', changes.toJson()), User.fromJson);
 
-      final dynamic response =
-          await _client.put('/users/profile/$userId', data);
-      if (response is Map<String, dynamic> && response['profile'] != null) {
-        return User.fromJson(response['profile']);
-      }
-      throw Exception('Cập nhật profile không thành công');
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  /// Upload avatar
-  Future<User> uploadAvatar(
-      String userId, List<int> imageBytes, String fileName) async {
-    try {
-      final dynamic response = await _client.putMultipart(
-        '/users/profile/$userId/avatar',
-        {},
-        'avatar',
-        imageBytes,
-        fileName,
+  Future<User> uploadAvatar(String userId, List<int> imageBytes, String fileName) async => objectOf(
+        await _client.putMultipart('/users/profile/$userId/avatar', const {}, 'avatar', imageBytes, fileName),
+        User.fromJson,
       );
 
-      if (response is Map<String, dynamic> && response['profile'] != null) {
-        return User.fromJson(response['profile']);
-      }
-      throw Exception('Cập nhật avatar không thành công');
-    } catch (e) {
-      rethrow;
-    }
-  }
+  Future<void> changePassword(String userId, String oldPassword, String newPassword) =>
+      _client.put('/users/change-password/$userId', {'oldPassword': oldPassword, 'newPassword': newPassword});
 
-  /// Đổi mật khẩu
-  Future<void> changePassword(
-      String userId, String oldPassword, String newPassword) async {
-    try {
-      await _client.put('/users/change-password/$userId', {
-        'oldPassword': oldPassword,
-        'newPassword': newPassword,
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
+  Future<void> forgotPassword(String email) => _client.post('/users/forgot-password', {'email': email});
 
-  /// Quên mật khẩu
-  Future<void> forgotPassword(String email) async {
-    try {
-      await _client.post('/users/forgot-password', {
-        'email': email,
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
+  Future<void> resetPassword(String token, String newPassword) =>
+      _client.post('/users/reset-password', {'token': token, 'newPassword': newPassword});
 
-  /// Reset mật khẩu
-  Future<void> resetPassword(String token, String newPassword) async {
-    try {
-      await _client.post('/users/reset-password', {
-        'token': token,
-        'newPassword': newPassword,
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  /// Lưu user vào local storage
+  /// Lưu user theo id để nhiều tài khoản trên cùng máy không ghi đè nhau.
   Future<void> saveUserToLocal(User user) async {
     final prefs = await SharedPreferences.getInstance();
-    // Lưu user data theo userId để tránh ghi đè khi có nhiều tài khoản
     await prefs.setString('user_data_${user.id}', json.encode(user.toJson()));
-    // Lưu userId hiện tại để biết user nào đang đăng nhập
     await prefs.setString('current_user_id', user.id);
   }
 
-  /// Lấy user từ local storage
   Future<User?> getUserFromLocal() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      // Lấy userId của user hiện tại
       final currentUserId = prefs.getString('current_user_id');
       if (currentUserId == null) return null;
-
-      // Lấy dữ liệu user theo userId
       final userData = prefs.getString('user_data_$currentUserId');
-      if (userData != null) {
-        return User.fromJson(json.decode(userData));
-      }
-      return null;
-    } catch (e) {
+      return userData == null ? null : User.fromJson(json.decode(userData) as Map<String, dynamic>);
+    } catch (_) {
+      // Bản lưu hỏng thì coi như chưa đăng nhập: người dùng đăng nhập lại.
       return null;
     }
   }

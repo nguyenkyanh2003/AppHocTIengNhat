@@ -1,29 +1,25 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-import '../../../core/utils/attempt_id.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'dart:async';
-import '../providers/exercise_provider.dart';
-import '../models/exercise.dart';
-import '../../../shared/widgets/content_pane.dart';
+
 import '../../../app/theme/app_tokens.dart';
-import '../widgets/exercise_start_view.dart';
+import '../../../core/utils/attempt_id.dart';
+import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../models/exercise.dart';
+import '../providers/exercise_provider.dart';
+import '../widgets/exercise_bottom_bar.dart';
 import '../widgets/exercise_progress_bar.dart';
 import '../widgets/exercise_question_card.dart';
-import '../widgets/exercise_bottom_bar.dart';
+import '../widgets/exercise_start_view.dart';
 import '../widgets/exercise_submit_dialog.dart';
-import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
 
 class ExerciseDetailScreen extends StatefulWidget {
-  final String exerciseId;
+  const ExerciseDetailScreen({super.key, required this.exerciseId});
 
-  const ExerciseDetailScreen({
-    super.key,
-    required this.exerciseId,
-  });
+  final String exerciseId;
 
   @override
   State<ExerciseDetailScreen> createState() => _ExerciseDetailScreenState();
@@ -36,7 +32,6 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   int _secondsElapsed = 0;
   int _currentQuestionIndex = 0;
   bool _isStarted = false;
-  bool _isSubmitting = false;
 
   /// Định danh lượt làm hiện tại, sinh khi bấm bắt đầu.
   ///
@@ -47,9 +42,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   @override
   void initState() {
     super.initState();
-    // Load exercise after build phase completes
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      _loadExercise();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _loadExercise();
     });
   }
 
@@ -60,9 +54,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     super.dispose();
   }
 
-  void _loadExercise() {
-    context.read<ExerciseProvider>().loadExerciseDetail(widget.exerciseId);
-  }
+  Future<void> _loadExercise() => context.read<ExerciseProvider>().loadDetail(widget.exerciseId);
+
+  Exercise? get _exercise => context.read<ExerciseProvider>().detailOf(widget.exerciseId).valueOrNull;
 
   void _startExercise() {
     setState(() {
@@ -76,7 +70,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() => _secondsElapsed++);
-      final limit = context.read<ExerciseProvider>().currentExercise?.timeLimit ?? 0;
+      final limit = _exercise?.timeLimit ?? 0;
       if (limit > 0 && _secondsElapsed >= limit * 60) _submitExercise(timeUp: true);
     });
   }
@@ -85,10 +79,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   /// thì nộp luôn — không còn gì để hỏi, và đồng hồ vẫn chạy sẽ mở thêm một hộp
   /// thoại mỗi giây nếu cứ hỏi.
   Future<void> _submitExercise({bool timeUp = false}) async {
-    if (_isSubmitting) return;
-
-    final exercise = context.read<ExerciseProvider>().currentExercise;
-    if (exercise == null) return;
+    final provider = context.read<ExerciseProvider>();
+    final exercise = _exercise;
+    if (provider.isSubmitting || exercise == null) return;
 
     if (timeUp) {
       _timer?.cancel();
@@ -98,44 +91,27 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         answered: _userAnswers.length,
         total: exercise.questions.length,
       );
-      if (!submit || _isSubmitting) return;
+      if (!submit || provider.isSubmitting) return;
     }
-
     if (!mounted) return;
-    setState(() => _isSubmitting = true);
     _timer?.cancel();
 
-    // Đúng sai do server chấm.
-    final answers = _userAnswers.entries
-        .map((entry) => UserAnswer(questionId: entry.key, answerId: entry.value, isCorrect: false))
-        .toList();
-
-    final provider = context.read<ExerciseProvider>();
-    final success = await provider.submitExercise(
+    // Đúng sai do server chấm; lỗi thì giữ nguyên bài làm để nộp lại cùng lượt.
+    final submitted = await provider.submit(
       widget.exerciseId,
-      answers,
-      _secondsElapsed,
+      answers: Map.of(_userAnswers),
+      timeSpent: _secondsElapsed,
       attemptId: _attemptId,
     );
-
     if (!mounted) return;
 
-    setState(() {
-      _isSubmitting = false;
-    });
-
-    if (success && mounted) {
-      final resultId = provider.currentResult?.id;
-      if (resultId != null) {
-        context.pushReplacement('/exercise/result/$resultId');
-      }
-    } else if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Có lỗi xảy ra khi nộp bài'),
-          backgroundColor: AppColors.errorStrong,
-        ),
-      );
+    if (submitted.valueOrNull case final result?) {
+      context.pushReplacement('/exercise/result/${result.id}');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(submitted.errorOrNull ?? 'Có lỗi xảy ra khi nộp bài'),
+        backgroundColor: AppColors.errorStrong,
+      ));
     }
   }
 
@@ -143,31 +119,12 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ContentWidthLimit(
-        child: Consumer<ExerciseProvider>(
-          builder: (context, provider, child) {
-            final exercise = provider.currentExercise;
-            // Đang làm dở mà nộp lỗi thì giữ nguyên bài: lỗi nộp được báo riêng,
-            // không được xoá câu trả lời của người học.
-            final failed = !_isStarted && provider.error != null;
-            if (provider.isLoading || failed || exercise == null) {
-              return AsyncView<Exercise>(
-                state: ViewState.detail(
-                  isLoading: provider.isLoading,
-                  error: provider.error,
-                  value: exercise,
-                ),
-                onRetry: () => provider.loadExerciseDetail(widget.exerciseId),
-                builder: (context, _) => const SizedBox.shrink(),
-              );
-            }
-
-            if (!_isStarted) {
-              return ExerciseStartView(
-                  exercise: exercise, startExercise: _startExercise);
-            }
-
-            return _buildExerciseScreen(exercise);
-          },
+        child: AsyncView<Exercise>(
+          state: context.watch<ExerciseProvider>().detailOf(widget.exerciseId),
+          onRetry: _loadExercise,
+          builder: (context, exercise) => _isStarted
+              ? _buildExerciseScreen(exercise)
+              : ExerciseStartView(exercise: exercise, startExercise: _startExercise),
         ),
       ),
     );
@@ -219,7 +176,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                 timeString: timeString,
                 pageController: _pageController,
                 currentQuestionIndex: _currentQuestionIndex,
-                isSubmitting: _isSubmitting,
+                isSubmitting: context.watch<ExerciseProvider>().isSubmitting,
                 submitExercise: _submitExercise),
           ],
         ),

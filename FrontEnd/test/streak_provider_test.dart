@@ -54,7 +54,7 @@ void main() {
 
     expect(await provider.loadStreak(), isTrue);
     expect(provider.currentStreak?.currentStreak, 4);
-    expect(provider.error, isNull);
+    expect(provider.streakState.hasData, isTrue);
   });
 
   test('lỗi mạng giữ nguyên dữ liệu đang có và trả false', () async {
@@ -67,7 +67,6 @@ void main() {
 
     expect(provider.currentStreak?.currentStreak, 4,
         reason: 'mất mạng một lần không được xoá trắng màn hình');
-    expect(provider.error, isNotNull);
   });
 
   test('tải cài đặt đưa về ViewState có dữ liệu', () async {

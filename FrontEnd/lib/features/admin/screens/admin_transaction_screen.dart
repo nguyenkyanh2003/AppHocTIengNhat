@@ -1,245 +1,178 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/admin_provider.dart';
-import '../../../core/state/view_state.dart';
+import '../../../app/theme/app_tokens.dart';
+import '../../../app/theme/app_typography.dart';
+import '../../../shared/widgets/adaptive_table.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../../../app/theme/app_tokens.dart';
-import '../../../shared/widgets/adaptive_table.dart';
-import '../../../app/theme/app_typography.dart';
-import '../widgets/admin_transaction_format.dart';
+import '../models/admin_transaction.dart';
+import '../providers/admin_transactions_provider.dart';
+import '../services/admin_service.dart';
 import '../widgets/admin_transaction_card.dart';
+import '../widgets/admin_transaction_format.dart';
+import '../widgets/admin_transaction_table.dart';
 
-class AdminTransactionScreen extends StatefulWidget {
-  const AdminTransactionScreen({super.key});
+/// Duyệt giao dịch và xem lịch sử thanh toán. [service] chỉ để test truyền
+/// service giả.
+class AdminTransactionScreen extends StatelessWidget {
+  const AdminTransactionScreen({super.key, this.service});
+
+  final AdminService? service;
 
   @override
-  State<AdminTransactionScreen> createState() => _AdminTransactionScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => AdminTransactionsProvider(service: service)..load(),
+      child: const _TransactionsView(),
+    );
+  }
 }
 
-class _AdminTransactionScreenState extends State<AdminTransactionScreen> {
-  String _selectedStatus = 'all';
+class _TransactionsView extends StatelessWidget {
+  const _TransactionsView();
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<AdminProvider>().loadTransactions();
-    });
+  Future<void> _updateStatus(BuildContext context, AdminTransaction transaction, String status) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final error = await context.read<AdminTransactionsProvider>().updateStatus(transaction, status);
+    messenger.showSnackBar(SnackBar(
+      content: Text(error ?? 'Đã cập nhật giao dịch.'),
+      backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<AdminTransactionsProvider>();
+    void update(AdminTransaction transaction, String status) => _updateStatus(context, transaction, status);
+
+    // Phần tổng quan và bộ lọc không cuộn cùng danh sách: khi danh sách
+    // chuyển sang dạng bảng, header cột phải dính lại chứ không trôi theo.
     return AppScaffold(
       title: 'Quản lý giao dịch',
       actions: [
-        IconButton(
-          icon: const Icon(Icons.refresh),
-          tooltip: 'Tải lại',
-          onPressed: () => _loadForStatus(_selectedStatus),
-        ),
+        IconButton(icon: const Icon(Icons.refresh), tooltip: 'Tải lại', onPressed: provider.load),
       ],
       body: ContentWidthLimit(
-        child: Consumer<AdminProvider>(
-          builder: (context, provider, _) {
-            final transactions = provider.transactions;
-            // Phần tổng quan và bộ lọc không cuộn cùng danh sách nữa: khi
-            // danh sách chuyển sang dạng bảng, header cột phải dính lại chứ
-            // không trôi mất theo nội dung.
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppSpacing.lg),
-                  child: Column(
-                    children: [
-                      _buildSummary(transactions),
-                      const SizedBox(height: AppSpacing.lg),
-                      _buildFilters(),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: AsyncView<List<Map<String, dynamic>>>(
-                    state: ViewState.fromLegacy(
-                      isLoading: provider.isLoadingTransactions,
-                      error: provider.loadErrorOf(AdminSection.transactions),
-                      value: transactions,
-                      isEmpty: transactions.isEmpty,
-                    ),
-                    onRetry: () => _loadForStatus(_selectedStatus),
-                    isEmpty: (items) => items.isEmpty,
-                    emptyTitle: 'Chưa có giao dịch nào',
-                    emptyIcon: Icons.receipt_long_outlined,
-                    builder: (context, items) =>
-                        AdaptiveTable<Map<String, dynamic>>(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.lg,
-                      ),
-                      items: items,
-                      onRefresh: () => _loadForStatus(_selectedStatus),
-                      rowKey: (tx) => ValueKey(tx['_id'] ?? tx['id']),
-                      columns: _transactionColumns(),
-                      cardBuilder: (context, tx) => AdminTransactionCard(
-                          transaction: tx, updateStatus: _updateStatus),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  /// Cot bang giao dich tren vung rong; cung du lieu voi the o man hep.
-  List<AdaptiveColumn<Map<String, dynamic>>> _transactionColumns() {
-    return [
-      AdaptiveColumn(
-        label: 'Người dùng',
-        minWidth: 200,
-        cell: (context, tx) {
-          final user = tx['user'];
-          final name = user is Map ? (user['name'] ?? user['email']) : user;
-          return Text(
-            (name ?? '—').toString(),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          );
-        },
-      ),
-      AdaptiveColumn(
-        label: 'Gói',
-        minWidth: 160,
-        cell: (context, tx) => Text(
-          (tx['package_id'] ?? tx['type'] ?? '—').toString(),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      AdaptiveColumn(
-        label: 'Số tiền',
-        width: 130,
-        alignEnd: true,
-        cell: (context, tx) => Text((tx['amount'] ?? 0).toString()),
-      ),
-      AdaptiveColumn(
-        label: 'Trạng thái',
-        width: 130,
-        cell: (context, tx) => Text((tx['status'] ?? '').toString()),
-      ),
-      AdaptiveColumn(
-        label: 'Thao tác',
-        width: 96,
-        alignEnd: true,
-        cell: (context, tx) {
-          final id = (tx['_id'] ?? tx['id'])?.toString();
-          if (id == null) return const SizedBox.shrink();
-          return PopupMenuButton<String>(
-            onSelected: (status) => _updateStatus(id, status),
-            itemBuilder: (context) => const [
-              PopupMenuItem(value: 'completed', child: Text('Đánh dấu xong')),
-              PopupMenuItem(value: 'failed', child: Text('Đánh dấu thất bại')),
-            ],
-          );
-        },
-      ),
-    ];
-  }
-
-  Widget _buildSummary(List<Map<String, dynamic>> transactions) {
-    final completed =
-        transactions.where((item) => item['status'] == 'completed');
-    final revenue = completed.fold<num>(
-      0,
-      (sum, item) => sum + ((item['amount'] as num?) ?? 0),
-    );
-    final pending =
-        transactions.where((item) => item['status'] == 'pending').length;
-    return Card(
-      color: AppColors.success,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
+        child: Column(
           children: [
-            Expanded(child: _stat('Đang hiển thị', '${transactions.length}')),
-            Expanded(child: _stat('Chờ duyệt', '$pending')),
+            Padding(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: Column(
+                children: [
+                  _Summary(transactions: provider.transactions.valueOrNull ?? const []),
+                  const SizedBox(height: AppSpacing.lg),
+                  _StatusFilter(provider: provider),
+                ],
+              ),
+            ),
+            if (provider.isRefreshing) const LinearProgressIndicator(minHeight: 2),
             Expanded(
-                child: _stat('Đã thu', formatTransactionCurrency(revenue))),
+              child: AsyncView<List<AdminTransaction>>(
+                state: provider.transactions,
+                onRetry: provider.load,
+                isEmpty: (items) => items.isEmpty,
+                emptyTitle: 'Chưa có giao dịch nào',
+                emptyIcon: Icons.receipt_long_outlined,
+                builder: (context, items) => AdaptiveTable<AdminTransaction>(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                  items: items,
+                  onRefresh: provider.load,
+                  rowKey: (tx) => ValueKey(tx.id),
+                  columns: adminTransactionColumns(updateStatus: update),
+                  cardBuilder: (context, tx) => AdminTransactionCard(transaction: tx, updateStatus: update),
+                  paging: TablePaging(
+                    hasMore: provider.hasMore,
+                    isLoadingMore: provider.isLoadingMore,
+                    error: provider.loadMoreError,
+                    onLoadMore: provider.loadMore,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _stat(String label, String value) => Column(
-        children: [
-          Text(
-            value,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                fontSize: AppTypography.body,
-                fontWeight: FontWeight.bold,
-                color: AppColors.ink),
-          ),
-          const SizedBox(height: 4),
-          Text(label,
-              style: const TextStyle(
-                  fontSize: AppTypography.caption, color: AppColors.ink)),
-        ],
-      );
+/// Đếm trên các giao dịch đang hiện (theo bộ lọc và số trang đã tải).
+class _Summary extends StatelessWidget {
+  const _Summary({required this.transactions});
 
-  Widget _buildFilters() {
-    const filters = {
-      'all': 'Tất cả',
-      'pending': 'Chờ xử lý',
-      'processing': 'Đang xử lý',
-      'completed': 'Hoàn thành',
-      'failed': 'Thất bại',
-      'refunded': 'Hoàn tiền',
-      'cancelled': 'Đã hủy',
-    };
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: filters.entries.map((entry) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: FilterChip(
-              label: Text(entry.value),
-              selected: _selectedStatus == entry.key,
-              onSelected: (_) {
-                setState(() => _selectedStatus = entry.key);
-                _loadForStatus(entry.key);
-              },
-            ),
-          );
-        }).toList(),
+  final List<AdminTransaction> transactions;
+
+  @override
+  Widget build(BuildContext context) {
+    final pending = transactions.where((tx) => tx.isOpen).length;
+    final revenue = transactions
+        .where((tx) => tx.status == 'completed')
+        .fold<num>(0, (sum, tx) => sum + tx.amount);
+    return Card(
+      color: AppColors.success,
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        child: Row(
+          children: [
+            Expanded(child: _Stat('Đang hiển thị', '${transactions.length}')),
+            Expanded(child: _Stat('Chờ duyệt', '$pending')),
+            Expanded(child: _Stat('Đã thu', formatTransactionCurrency(revenue))),
+          ],
+        ),
       ),
     );
   }
+}
 
-  Future<void> _loadForStatus(String status) =>
-      context.read<AdminProvider>().loadTransactions(
-            status: status == 'all' ? null : status,
-          );
+class _Stat extends StatelessWidget {
+  const _Stat(this.label, this.value);
 
-  Future<void> _updateStatus(String id, String status) async {
-    final success =
-        await context.read<AdminProvider>().updateTransactionStatus(id, status);
-    if (!mounted) return;
-    if (success && _selectedStatus != 'all') {
-      await _loadForStatus(_selectedStatus);
-      if (!mounted) return;
-    }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content:
-            Text(success ? 'Đã cập nhật giao dịch.' : 'Cập nhật thất bại.'),
-        backgroundColor:
-            success ? AppColors.successStrong : AppColors.errorStrong,
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          value,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: AppTypography.body, fontWeight: FontWeight.bold, color: AppColors.ink),
+        ),
+        const SizedBox(height: AppSpacing.xs),
+        Text(label, style: const TextStyle(fontSize: AppTypography.caption, color: AppColors.ink)),
+      ],
+    );
+  }
+}
+
+class _StatusFilter extends StatelessWidget {
+  const _StatusFilter({required this.provider});
+
+  final AdminTransactionsProvider provider;
+
+  @override
+  Widget build(BuildContext context) {
+    final options = <(String?, String)>[
+      (null, 'Tất cả'),
+      for (final MapEntry(:key, :value) in AdminTransactionsProvider.statuses.entries) (key, value),
+    ];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (final (status, label) in options)
+            Padding(
+              padding: const EdgeInsets.only(right: AppSpacing.sm),
+              child: FilterChip(
+                label: Text(label),
+                selected: provider.status == status,
+                onSelected: (_) => provider.selectStatus(status),
+              ),
+            ),
+        ],
       ),
     );
   }

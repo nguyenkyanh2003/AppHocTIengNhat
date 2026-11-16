@@ -63,8 +63,8 @@ export const createVocabularyController = (service) => ({
   },
 
   async remove(req, res) {
-    const vocabulary = await service.remove(req.valid.params.id);
-    return ok(res, vocabulary, { message: 'Xóa từ vựng thành công' });
+    await service.remove(req.valid.params.id);
+    return ok(res, { deleted: true }, { message: 'Xóa từ vựng thành công.' });
   },
 
   async removeMany(req, res) {
@@ -103,7 +103,7 @@ export const createVocabularyController = (service) => ({
       userId: req.user._id,
     });
 
-    return res.json({ message: 'Đã xóa đánh dấu đã học.' });
+    return ok(res, { deleted: true }, { message: 'Đã xóa đánh dấu đã học.' });
   },
 });
 

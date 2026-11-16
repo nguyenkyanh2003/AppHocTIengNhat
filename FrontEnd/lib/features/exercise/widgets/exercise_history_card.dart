@@ -19,10 +19,10 @@ class ExerciseHistoryCard extends StatelessWidget {
     final isPassed = result.passed;
     final score = result.score;
 
-    // Get exercise info from the result
-    String exerciseTitle = result.exerciseTitle ?? 'Bài tập đã hoàn thành';
-    String exerciseLevel = result.exerciseLevel ?? '';
-    String exerciseType = result.exerciseType ?? '';
+    // Bài tập đã bị xoá thì lịch sử vẫn giữ kết quả, chỉ thiếu tên bài.
+    final exerciseTitle = result.exercise?.title ?? 'Bài tập đã hoàn thành';
+    final exerciseLevel = result.exercise?.level ?? '';
+    final exerciseType = result.exercise?.type ?? '';
 
     final completedAt = result.createdAt;
     final formattedDate = DateFormat('dd/MM/yyyy HH:mm').format(completedAt);

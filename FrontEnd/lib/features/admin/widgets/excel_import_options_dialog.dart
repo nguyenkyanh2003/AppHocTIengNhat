@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_tokens.dart';
+import '../../lessons/models/lesson.dart';
 
 /// Bài học và cấp độ áp cho toàn bộ tệp Excel khi import từ vựng.
 class ExcelImportOptions {
@@ -22,8 +23,7 @@ class ExcelImportOptionsDialog extends StatefulWidget {
 
   static const List<String> levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
-  /// Danh sách bài học dạng `{ _id, title, level }`.
-  final List<Map<String, dynamic>> lessons;
+  final List<Lesson> lessons;
 
   @override
   State<ExcelImportOptionsDialog> createState() =>
@@ -34,24 +34,16 @@ class _ExcelImportOptionsDialogState extends State<ExcelImportOptionsDialog> {
   String? _lessonId;
   String? _level;
 
-  List<Map<String, dynamic>> get _lessons => widget.lessons
-      .where((lesson) => (lesson['_id'] ?? '').toString().isNotEmpty)
-      .toList();
-
   void _selectLesson(String? lessonId) {
     setState(() {
       _lessonId = lessonId;
 
       // Cấp độ mặc định lấy theo bài học đã chọn để tránh gán nhầm từ N5 vào
       // một bài N4; admin vẫn đổi lại được.
-      final lesson = _lessons.firstWhere(
-        (item) => item['_id'].toString() == lessonId,
-        orElse: () => const <String, dynamic>{},
-      );
-      final lessonLevel = lesson['level']?.toString();
-      if (lessonLevel != null &&
-          ExcelImportOptionsDialog.levels.contains(lessonLevel)) {
-        _level = lessonLevel;
+      for (final lesson in widget.lessons) {
+        if (lesson.id == lessonId && ExcelImportOptionsDialog.levels.contains(lesson.level)) {
+          _level = lesson.level;
+        }
       }
     });
   }
@@ -73,7 +65,7 @@ class _ExcelImportOptionsDialogState extends State<ExcelImportOptionsDialog> {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: AppSpacing.lg),
-            if (_lessons.isEmpty)
+            if (widget.lessons.isEmpty)
               const Text('Chưa có bài học nào để gán. Hãy tạo bài học trước.')
             else
               DropdownButtonFormField<String>(
@@ -84,13 +76,10 @@ class _ExcelImportOptionsDialogState extends State<ExcelImportOptionsDialog> {
                   border: OutlineInputBorder(borderRadius: AppRadius.mdAll),
                 ),
                 items: [
-                  for (final lesson in _lessons)
+                  for (final lesson in widget.lessons)
                     DropdownMenuItem(
-                      value: lesson['_id'].toString(),
-                      child: Text(
-                        lesson['title']?.toString() ?? lesson['_id'].toString(),
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      value: lesson.id,
+                      child: Text(lesson.title.isEmpty ? lesson.id : lesson.title, overflow: TextOverflow.ellipsis),
                     ),
                 ],
                 onChanged: _selectLesson,

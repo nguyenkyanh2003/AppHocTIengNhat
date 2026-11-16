@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_card.dart';
 import '../../../shared/widgets/async_view.dart';
+import '../../../shared/widgets/paged_list_view.dart';
 import '../models/flashcard_deck.dart';
 import '../providers/flashcard_provider.dart';
 
@@ -15,49 +16,35 @@ import '../providers/flashcard_provider.dart';
 class FlashcardDecksTab extends StatelessWidget {
   const FlashcardDecksTab({super.key, required this.onCreateDeck});
 
-  final Future<void> Function() onCreateDeck;
+  final VoidCallback onCreateDeck;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FlashcardProvider>(
-      builder: (context, provider, _) {
-        if (provider.isLoading && provider.decks.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        if (provider.error != null && provider.decks.isEmpty) {
-          return ErrorStateView(
-            message: provider.error!,
-            onRetry: () => provider.loadDecks(refresh: true),
-          );
-        }
-
-        if (provider.decks.isEmpty) {
-          return EmptyStateView(
-            title: 'Chưa có bộ thẻ nào',
-            message: 'Tạo bộ thẻ để học từ vựng theo cách riêng của bạn.',
-            icon: Icons.style_outlined,
-            action: FilledButton.icon(
-              onPressed: onCreateDeck,
-              icon: const Icon(Icons.add),
-              label: const Text('Tạo bộ thẻ đầu tiên'),
-            ),
-          );
-        }
-
-        return RefreshIndicator(
-          onRefresh: () => provider.loadDecks(refresh: true),
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
-              vertical: AppSpacing.md,
-            ),
-            itemCount: provider.decks.length,
-            itemBuilder: (context, index) =>
-                _DeckCard(deck: provider.decks[index]),
-          ),
-        );
-      },
+    final provider = context.watch<FlashcardProvider>();
+    return AsyncView<List<FlashcardDeck>>(
+      state: provider.decks,
+      onRetry: provider.loadDecks,
+      isEmpty: (decks) => decks.isEmpty,
+      emptyTitle: 'Chưa có bộ thẻ nào',
+      emptyMessage: 'Tạo bộ thẻ để học từ vựng theo cách riêng của bạn.',
+      emptyIcon: Icons.style_outlined,
+      emptyAction: FilledButton.icon(
+        onPressed: onCreateDeck,
+        icon: const Icon(Icons.add),
+        label: const Text('Tạo bộ thẻ đầu tiên'),
+      ),
+      builder: (context, decks) => RefreshIndicator(
+        onRefresh: provider.loadDecks,
+        child: PagedListView<FlashcardDeck>(
+          items: decks,
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: AppSpacing.md),
+          hasMore: provider.hasMore,
+          isLoadingMore: provider.isLoadingMore,
+          loadMoreError: provider.loadMoreError,
+          onLoadMore: provider.loadMore,
+          itemBuilder: (context, deck) => _DeckCard(deck: deck),
+        ),
+      ),
     );
   }
 }
@@ -67,22 +54,13 @@ class _DeckCard extends StatelessWidget {
 
   final FlashcardDeck deck;
 
-  int get _cardCount =>
-      deck.cards.isNotEmpty ? deck.cards.length : deck.totalCards;
-
-  Future<void> _openDetail(BuildContext context) async {
-    final provider = context.read<FlashcardProvider>();
-    final changed = await context.push<bool>('/flashcards/${deck.id}');
-
-    if (changed == true) await provider.loadDecks(refresh: true);
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final description = deck.description;
 
     return AppCard(
-      onTap: () => _openDetail(context),
+      onTap: () => context.push('/flashcards/${deck.id}'),
       accent: AppColors.vocabulary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,48 +73,28 @@ class _DeckCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      deck.title,
-                      style: textTheme.titleMedium,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text('$_cardCount thẻ', style: textTheme.bodySmall),
+                    Text(deck.title, style: textTheme.titleMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+                    Text('${deck.cardCount} thẻ', style: textTheme.bodySmall),
                   ],
                 ),
               ),
-              if (_cardCount > 0)
+              if (deck.cardCount > 0)
                 FilledButton(
-                  onPressed: () => context.push(
-                    '/flashcards/${deck.id}/study',
-                    extra: deck,
-                  ),
+                  onPressed: () => context.push('/flashcards/${deck.id}/study', extra: deck),
                   child: const Text('Học'),
                 ),
             ],
           ),
-          if (deck.description?.isNotEmpty ?? false) ...[
+          if (description != null) ...[
             const SizedBox(height: AppSpacing.sm),
-            Text(
-              deck.description!,
-              style: textTheme.bodySmall,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
+            Text(description, style: textTheme.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis),
           ],
           const SizedBox(height: AppSpacing.sm),
           Row(
             children: [
-              Icon(
-                Icons.play_circle_outline,
-                size: 16,
-                color: context.colors.textSecondary,
-              ),
+              Icon(Icons.play_circle_outline, size: 16, color: context.colors.textSecondary),
               const SizedBox(width: AppSpacing.xs),
-              Expanded(
-                child: Text('Đã học ${deck.studyCount} lần',
-                    style: textTheme.labelMedium),
-              ),
+              Expanded(child: Text('Đã học ${deck.studyCount} lần', style: textTheme.labelMedium)),
             ],
           ),
         ],

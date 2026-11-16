@@ -1,116 +1,41 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/lesson_progress.dart';
 
+/// Tiến độ của người đang đăng nhập trên từng bài. Lỗi ném ra cho người gọi
+/// quyết định cách báo — không lặng lẽ thành `null`.
 class LessonProgressService {
-  final ApiClient _apiClient = ApiClient();
+  LessonProgressService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  /// Lấy tiến độ học của user cho một lesson
+  final ApiClient _client;
+
+  /// `null` khi chưa bắt đầu bài.
   Future<LessonProgress?> getProgress(String lessonId) async {
-    final data = await _apiClient.get('/lesson-progress/lesson/$lessonId');
-    if (data == null || data.isEmpty) return null;
-    return LessonProgress.fromJson(data);
+    final data = dataOf(await _client.get('/lesson-progress/lesson/$lessonId'));
+    return data is Map ? LessonProgress.fromJson(Map<String, dynamic>.from(data)) : null;
   }
 
-  /// Lấy tất cả tiến độ của user
-  Future<List<LessonProgress>> getAllProgress() async {
-    try {
-      final data = await _apiClient.get('/lesson-progress/lessons');
-      if (data is List) {
-        return data.map((json) => LessonProgress.fromJson(json)).toList();
-      }
-      return [];
-    } catch (e) {
-      debugPrint('Error getting all lesson progress: $e');
-      return [];
-    }
-  }
+  /// Mở bài: tạo bản ghi tiến độ nếu chưa có (0 XP).
+  Future<LessonProgress> startLesson(String lessonId) async =>
+      _progressOf(await _client.post('/lesson-progress/lesson/$lessonId/start', const {}));
 
-  /// Bắt đầu học một lesson (tạo progress record)
-  Future<LessonProgress?> startLesson(String lessonId) async {
-    try {
-      final data =
-          await _apiClient.post('/lesson-progress/lesson/$lessonId/start', {});
-      return LessonProgress.fromJson(data);
-    } catch (e) {
-      debugPrint('Error starting lesson: $e');
-      return null;
-    }
-  }
-
-  /// Cập nhật tiến độ khi hoàn thành một item (vocabulary/grammar/kanji)
-  Future<LessonProgress?> updateProgress({
+  /// Đánh dấu (hoặc bỏ đánh dấu) một từ, ngữ pháp, chữ Hán đã học.
+  Future<LessonProgress> updateProgress({
     required String lessonId,
-    required String itemType, // 'vocabulary', 'grammar', 'kanji'
+    required String itemType,
     required String itemId,
     required bool completed,
-  }) async {
-    try {
-      final data = await _apiClient.post(
-        '/lesson-progress/lesson/$lessonId/update',
-        {
-          'item_type': itemType,
-          'item_id': itemId,
-          'completed': completed,
-        },
-      );
-      return LessonProgress.fromJson(data);
-    } catch (e) {
-      debugPrint('Error updating lesson progress: $e');
-      return null;
-    }
-  }
+  }) async =>
+      _progressOf(await _client.post('/lesson-progress/lesson/$lessonId/update', {
+        'item_type': itemType,
+        'item_id': itemId,
+        'completed': completed,
+      }));
 
-  /// Đánh dấu lesson hoàn thành
-  Future<LessonProgress?> completeLesson(String lessonId) async {
-    try {
-      final data = await _apiClient
-          .post('/lesson-progress/lesson/$lessonId/complete', {});
-      return LessonProgress.fromJson(data);
-    } catch (e) {
-      debugPrint('Error completing lesson: $e');
-      return null;
-    }
-  }
+  Future<LessonProgress> completeLesson(String lessonId) async =>
+      _progressOf(await _client.post('/lesson-progress/lesson/$lessonId/complete', const {}));
 
-  /// Reset tiến độ của một lesson
-  Future<bool> resetProgress(String lessonId) async {
-    try {
-      await _apiClient.post('/lesson-progress/lesson/$lessonId/reset', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error resetting lesson progress: $e');
-      return false;
-    }
-  }
+  Future<void> resetProgress(String lessonId) => _client.post('/lesson-progress/lesson/$lessonId/reset', const {});
 
-  /// Lấy thống kê tổng quan tiến độ học
-  Future<Map<String, dynamic>> getOverallStats() async {
-    try {
-      final data = await _apiClient.get('/lesson-progress/stats');
-      return data as Map<String, dynamic>;
-    } catch (e) {
-      debugPrint('Error getting progress stats: $e');
-      return {
-        'total_lessons': 0,
-        'completed_lessons': 0,
-        'in_progress_lessons': 0,
-        'total_vocabularies_learned': 0,
-        'total_grammars_learned': 0,
-        'total_kanjis_learned': 0,
-      };
-    }
-  }
-
-  /// Lấy tiến độ theo level
-  Future<Map<String, dynamic>> getProgressByLevel(String level) async {
-    try {
-      final data = await _apiClient.get('/lesson-progress/level/$level');
-      return data as Map<String, dynamic>;
-    } catch (e) {
-      debugPrint('Error getting progress by level: $e');
-      return {};
-    }
-  }
+  static LessonProgress _progressOf(Object? response) => objectOf(response, LessonProgress.fromJson);
 }

@@ -102,6 +102,40 @@ void main() {
     expect(list.state.valueOrNull, ['b1']);
   });
 
+  test('đổi bộ lọc giữ danh sách cũ trong lúc chờ nếu được yêu cầu; lỗi thì báo lỗi, không giữ bản cũ', () async {
+    final first = list.load(fetcher('cu'));
+    requests.single.$3.complete(_page(['cu']));
+    await first;
+
+    final refreshing = list.load(fetcher('moi'), keepCurrent: true);
+    expect(list.state.valueOrNull, ['cu']);
+    expect(list.isRefreshing, isTrue);
+    requests.last.$3.complete(_page(['moi']));
+    await refreshing;
+    expect(list.state.valueOrNull, ['moi']);
+    expect(list.isRefreshing, isFalse);
+
+    final failing = list.load(fetcher('loi'), keepCurrent: true);
+    requests.last.$3.completeError(ApiException('Mất mạng'));
+    await failing;
+    expect((list.state.errorOrNull, list.isRefreshing), ('Mất mạng', false));
+  });
+
+  test('tải lại sau thao tác ghi dùng đúng truy vấn đang hiện và giữ danh sách trong lúc chờ', () async {
+    final first = list.load(fetcher('loc'));
+    requests.single.$3.complete(_page(['a', 'b']));
+    await first;
+
+    final reloading = list.reload(keepCurrent: true);
+    expect(list.state.valueOrNull, ['a', 'b']);
+    expect(list.isRefreshing, isTrue);
+    expect(requests.last.$1, 'loc');
+    requests.last.$3.complete(_page(['a']));
+    await reloading;
+
+    expect(list.state.valueOrNull, ['a']);
+  });
+
   test('clear về trạng thái chưa tải và bỏ phản hồi đang chạy', () async {
     final loading = list.load(fetcher('a'));
     list.clear();

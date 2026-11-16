@@ -4,34 +4,37 @@ import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
-import '../models/admin_dashboard_summary.dart';
-import '../providers/admin_provider.dart';
-import '../widgets/admin_dashboard_widgets.dart';
 import '../../../shared/widgets/responsive_grid.dart';
+import '../models/admin_dashboard_summary.dart';
+import '../providers/admin_dashboard_provider.dart';
+import '../services/admin_service.dart';
+import '../widgets/admin_dashboard_widgets.dart';
 
-class AdminDashboardScreen extends StatefulWidget {
-  const AdminDashboardScreen({super.key});
+/// Bảng điều khiển quản trị. Provider tạo cùng màn và huỷ khi rời màn;
+/// [service] chỉ để test truyền service giả.
+class AdminDashboardScreen extends StatelessWidget {
+  const AdminDashboardScreen({super.key, this.service});
 
-  @override
-  State<AdminDashboardScreen> createState() => _AdminDashboardScreenState();
-}
-
-class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) context.read<AdminProvider>().loadDashboardStats();
-    });
-  }
+  final AdminService? service;
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<AdminProvider>();
+    return ChangeNotifierProvider(
+      create: (_) => AdminDashboardProvider(service: service)..load(),
+      child: const _DashboardView(),
+    );
+  }
+}
+
+class _DashboardView extends StatelessWidget {
+  const _DashboardView();
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.watch<AdminDashboardProvider>();
 
     return AppScaffold(
       title: 'Bảng điều khiển',
@@ -39,46 +42,37 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         IconButton(
           tooltip: 'Tải lại',
           icon: const Icon(Icons.refresh),
-          onPressed: provider.loadDashboardStats,
+          onPressed: provider.load,
         ),
       ],
-      body: AsyncView<Map<String, dynamic>>(
-        state: ViewState.fromLegacy(
-          isLoading: provider.isLoadingStats,
-          error: provider.loadErrorOf(AdminSection.stats),
-          value:
-              provider.dashboardStats.isEmpty ? null : provider.dashboardStats,
-        ),
-        onRetry: provider.loadDashboardStats,
-        builder: (context, stats) {
-          final summary = AdminDashboardSummary.fromStats(stats);
-          return RefreshIndicator(
-            onRefresh: provider.loadDashboardStats,
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: ContentPane(
-                maxWidth: AppContentWidth.dashboard,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _Overview(summary: summary),
-                    const _Heading('Quản lý nhanh'),
-                    const _QuickActions(),
-                    const _Heading('Hoạt động gần đây'),
-                    if (summary.activities.isEmpty)
-                      Text(
-                        'Chưa có hoạt động nào.',
-                        style: TextStyle(color: context.colors.textSecondary),
-                      )
-                    else
-                      for (final activity in summary.activities)
-                        AdminActivityTile(activity: activity),
-                  ],
-                ),
+      body: AsyncView<AdminDashboardSummary>(
+        state: provider.summary,
+        onRetry: provider.load,
+        builder: (context, summary) => RefreshIndicator(
+          onRefresh: provider.load,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: ContentPane(
+              maxWidth: AppContentWidth.dashboard,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _Overview(summary: summary),
+                  const _Heading('Quản lý nhanh'),
+                  const _QuickActions(),
+                  const _Heading('Hoạt động gần đây'),
+                  if (summary.activities.isEmpty)
+                    Text(
+                      'Chưa có hoạt động nào.',
+                      style: TextStyle(color: context.colors.textSecondary),
+                    )
+                  else
+                    for (final activity in summary.activities) AdminActivityTile(activity: activity),
+                ],
               ),
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

@@ -23,7 +23,7 @@ const buildApp = (readService = {}, settingsService = {}) => {
   return app;
 };
 
-test('GET /my-streak trả thẳng tóm tắt, giữ vỏ response cũ', async () => {
+test('GET /my-streak bọc tóm tắt trong `data`', async () => {
   let askedFor = null;
   const app = buildApp({
     summary: async (userId) => {
@@ -35,9 +35,8 @@ test('GET /my-streak trả thẳng tóm tắt, giữ vỏ response cũ', async (
   const response = await request(app).get('/api/streak/my-streak');
 
   assert.equal(response.status, 200);
-  // Client cũ đọc thẳng các trường ở gốc, không bọc trong `data`.
-  assert.equal(response.body.current_streak, 2);
-  assert.equal(response.body.total_xp, 30);
+  assert.equal(response.body.data.current_streak, 2);
+  assert.equal(response.body.data.total_xp, 30);
   assert.equal(askedFor, 'user-1');
 });
 
@@ -49,8 +48,8 @@ test('GET /xp-history trả mảng đầy đủ cho export', async () => {
   const response = await request(app).get('/api/streak/xp-history');
 
   assert.equal(response.status, 200);
-  assert.ok(Array.isArray(response.body));
-  assert.equal(response.body[0].amount, 20);
+  assert.equal(response.body.total, 1);
+  assert.equal(response.body.data[0].amount, 20);
 });
 
 test('GET /xp-history?mode=page trả trang theo response contract chung', async () => {
@@ -121,7 +120,7 @@ test('GET /leaderboard nhận period và limit đã kiểm', async () => {
   const response = await request(app).get('/api/streak/leaderboard?period=week&limit=10');
 
   assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { leaderboard: [], user_rank: null });
+  assert.deepEqual(response.body, { data: { leaderboard: [], user_rank: null } });
   assert.deepEqual(received, { userId: 'user-1', period: 'week', limit: 10 });
 });
 

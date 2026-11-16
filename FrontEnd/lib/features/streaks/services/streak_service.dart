@@ -1,4 +1,6 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
+import '../models/leaderboard.dart';
 import '../models/streak_settings.dart';
 import '../models/user_streak.dart';
 
@@ -16,15 +18,12 @@ class StreakService {
   /// bộ hỏng" với "không có dữ liệu" — bộ nhắc học không được coi một lần mất
   /// mạng là "hôm nay chưa học".
   Future<UserStreak> getMyStreak() async {
-    final response = await _apiClient.get('/streak/my-streak');
-    return UserStreak.fromJson(Map<String, dynamic>.from(response as Map));
+    return objectOf(await _apiClient.get('/streak/my-streak'), UserStreak.fromJson);
   }
 
   /// Cài đặt mục tiêu ngày và nhắc học.
   Future<StreakSettings> getSettings() async {
-    final response = await _apiClient.get('/streak/settings');
-    return StreakSettings.fromJson(
-        Map<String, dynamic>.from(response['data'] as Map));
+    return objectOf(await _apiClient.get('/streak/settings'), StreakSettings.fromJson);
   }
 
   /// Lưu những trường đã đổi; trường `null` giữ nguyên trên server.
@@ -38,21 +37,12 @@ class StreakService {
       if (reminderEnabled != null) 'reminder_enabled': reminderEnabled,
       if (reminderTime != null) 'reminder_time': reminderTime,
     });
-    return StreakSettings.fromJson(
-        Map<String, dynamic>.from(response['data'] as Map));
+    return objectOf(response, StreakSettings.fromJson);
   }
 
-  // `POST /streak/add-xp` đã bị gỡ khỏi server: client không tự cộng XP
-  // được nữa. XP do server cấp khi chấm xong bài (spec streak §3.1).
-
-  // Lấy lịch sử XP
-  Future<List<XPHistory>> getXPHistory() async {
-    final response = await _apiClient.get('/streak/xp-history');
-    if (response != null && response is List) {
-      return response.map((item) => XPHistory.fromJson(item)).toList();
-    }
-    return [];
-  }
+  /// Toàn bộ lịch sử XP, mới nhất trước. XP chỉ do server cấp sau khi chấm bài.
+  Future<List<XPHistory>> getXPHistory() async =>
+      listOf(await _apiClient.get('/streak/xp-history'), XPHistory.fromJson);
 
   /// Một trang lịch sử XP, mới nhất trước. Lỗi được ném lên: người gọi (xuất
   /// dữ liệu) không được coi một trang lỗi là "hết lịch sử".
@@ -65,9 +55,7 @@ class StreakService {
     }).query;
     final response = await _apiClient.get('/streak/xp-history?$query');
     return XpHistoryPage(
-      items: (response['data'] as List? ?? const [])
-          .map((item) => XPHistory.fromJson(Map<String, dynamic>.from(item)))
-          .toList(),
+      items: listOf(response, XPHistory.fromJson),
       nextCursor: response['next_cursor'] as String?,
     );
   }
@@ -88,23 +76,16 @@ class StreakService {
     }).query;
     final response = await _apiClient.get('/streak/days?$query');
     return StreakDaysPage(
-      days: (response['data'] as List? ?? const [])
-          .map((day) => StreakDay.fromJson(Map<String, dynamic>.from(day)))
-          .toList(),
+      days: listOf(response, StreakDay.fromJson),
       nextCursor: response['next_cursor'] as String?,
       from: response['from'] as String,
       to: response['to'] as String,
     );
   }
 
-  // Lấy bảng xếp hạng
-  Future<Map<String, dynamic>?> getLeaderboard({
-    String period = 'all',
-    int limit = 50,
-  }) async {
-    final response = await _apiClient.get(
-      '/streak/leaderboard?period=$period&limit=$limit',
-    );
-    return response;
+  /// Bảng xếp hạng theo kỳ (`all`, `month`, `week`) kèm hạng của người đang xem.
+  Future<Leaderboard> getLeaderboard({String period = 'all', int limit = 50}) async {
+    final query = Uri(queryParameters: {'period': period, 'limit': '$limit'}).query;
+    return objectOf(await _apiClient.get('/streak/leaderboard?$query'), Leaderboard.fromJson);
   }
 }

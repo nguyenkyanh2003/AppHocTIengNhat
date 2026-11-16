@@ -21,33 +21,43 @@ class PagedList<T> {
   int _page = 1;
   int _totalPages = 1;
   bool _isLoadingMore = false;
+  bool _isRefreshing = false;
   String? _loadMoreError;
   int _generation = 0;
 
   ViewState<List<T>> get state => _state;
   bool get hasMore => _state.hasData && _page < _totalPages;
   bool get isLoadingMore => _isLoadingMore;
+
+  /// Đang tải lại với [load] `keepCurrent`: danh sách cũ vẫn hiện trong lúc chờ.
+  bool get isRefreshing => _isRefreshing;
   String? get loadMoreError => _loadMoreError;
 
   /// Tải lại từ trang đầu bằng [fetch]; [loadMore] về sau dùng cùng [fetch].
-  Future<void> load(Future<Paged<T>> Function(int page) fetch) async {
+  ///
+  /// [keepCurrent]: giữ danh sách đang hiện trong lúc chờ (đổi bộ lọc không làm
+  /// màn nháy trắng). Lỗi thì vẫn báo lỗi — danh sách cũ không còn khớp bộ lọc.
+  Future<void> load(Future<Paged<T>> Function(int page) fetch, {bool keepCurrent = false}) async {
     final generation = ++_generation;
     _fetch = fetch;
     _isLoadingMore = false;
     _loadMoreError = null;
-    _state = const ViewState.loading();
+    _isRefreshing = keepCurrent && _state.hasData;
+    if (!_isRefreshing) _state = const ViewState.loading();
     _onChanged();
 
     final result = await ViewState.guard(() => fetch(1));
     if (generation != _generation) return;
+    _isRefreshing = false;
     _state = result.map(_accept);
     _onChanged();
   }
 
-  /// Tải lại với đúng truy vấn đang hiện (kéo để làm mới, nút thử lại).
-  Future<void> reload() async {
+  /// Tải lại với đúng truy vấn đang hiện (kéo để làm mới, nút thử lại, sau
+  /// một thao tác ghi). [keepCurrent] như ở [load].
+  Future<void> reload({bool keepCurrent = false}) async {
     final fetch = _fetch;
-    if (fetch != null) await load(fetch);
+    if (fetch != null) await load(fetch, keepCurrent: keepCurrent);
   }
 
   Future<void> loadMore() async {
@@ -77,6 +87,7 @@ class PagedList<T> {
     _fetch = null;
     _state = const ViewState.idle();
     _isLoadingMore = false;
+    _isRefreshing = false;
     _loadMoreError = null;
     _onChanged();
   }

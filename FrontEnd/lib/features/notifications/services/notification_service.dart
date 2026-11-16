@@ -1,11 +1,14 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/notification.dart';
 
 /// Thông báo cá nhân của người đang đăng nhập. Không đặt `cache`: trạng thái
 /// đọc đổi liên tục, bản lưu ngoại tuyến sẽ hiện sai. Lỗi được ném ra để màn
 /// hình báo lỗi, không biến thành "không có thông báo".
 class NotificationService {
-  final ApiClient _apiClient = ApiClient();
+  NotificationService({ApiClient? client}) : _apiClient = client ?? ApiClient();
+
+  final ApiClient _apiClient;
 
   static const int pageSize = 20;
 
@@ -21,28 +24,20 @@ class NotificationService {
       'status': status.name,
       if (type != null) 'type': type.key,
     }).query;
-    final response = await _apiClient.get('/notifications?$query');
-    return NotificationPage.fromJson(Map<String, dynamic>.from(response as Map));
+    final result = Paged.fromJson(await _apiClient.get('/notifications?$query'), AppNotification.fromJson);
+    return NotificationPage(items: result.items, page: result.page, totalPages: result.totalPages, total: result.total);
   }
 
   /// Đánh dấu đã đọc; đọc lại một thông báo đã đọc vẫn thành công.
-  Future<AppNotification> markAsRead(String id) async {
-    final response = await _apiClient.put('/notifications/read/$id', {});
-    return AppNotification.fromJson(Map<String, dynamic>.from(response['data'] as Map));
-  }
+  Future<AppNotification> markAsRead(String id) async =>
+      objectOf(await _apiClient.put('/notifications/read/$id', {}), AppNotification.fromJson);
 
   /// Số thông báo vừa chuyển sang đã đọc.
-  Future<int> markAllAsRead() async {
-    final response = await _apiClient.put('/notifications/read-all', {});
-    return response['data']['updated'] as int? ?? 0;
-  }
+  Future<int> markAllAsRead() async =>
+      objectOf(await _apiClient.put('/notifications/read-all', {}), (json) => json['updated'] as int? ?? 0);
 
-  Future<void> deleteNotification(String id) async {
-    await _apiClient.delete('/notifications/$id');
-  }
+  Future<void> deleteNotification(String id) => _apiClient.delete('/notifications/$id');
 
-  Future<int> unreadCount() async {
-    final response = await _apiClient.get('/notifications/count/unread');
-    return response['data']['unread_count'] as int? ?? 0;
-  }
+  Future<int> unreadCount() async =>
+      objectOf(await _apiClient.get('/notifications/count/unread'), (json) => json['unread_count'] as int? ?? 0);
 }

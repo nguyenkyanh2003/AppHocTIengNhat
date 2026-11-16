@@ -1,117 +1,113 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 
+/// Một đề trong danh sách luyện thi.
 class JLPTExamBrief {
+  const JLPTExamBrief({
+    required this.id,
+    required this.title,
+    required this.level,
+    this.description,
+    this.year,
+    this.month,
+    this.timeLimit = 0,
+    this.passScore = 0,
+    this.totalScore = 0,
+    this.totalQuestions = 0,
+    this.lastResult,
+  });
+
   final String id;
   final String title;
-  final String? description;
   final String level;
+  final String? description;
   final int? year;
   final int? month;
+
+  /// Phút.
   final int timeLimit;
   final int passScore;
   final int totalScore;
   final int totalQuestions;
-  final int totalViews;
-  final DateTime createdAt;
-  final String? status; // TrangThaiLamBai
-  final JLPTResult? lastResult; // KetQuaGannhat
 
-  JLPTExamBrief({
-    required this.id,
-    required this.title,
-    this.description,
-    required this.level,
-    this.year,
-    this.month,
-    required this.timeLimit,
-    required this.passScore,
-    required this.totalScore,
-    required this.totalQuestions,
-    required this.totalViews,
-    required this.createdAt,
-    this.status,
-    this.lastResult,
-  });
+  /// Kết quả gần nhất của người đang xem; `null` khi chưa thi đề này.
+  final JLPTResult? lastResult;
 
-  factory JLPTExamBrief.fromJson(Map<String, dynamic> json) {
+  factory JLPTExamBrief.fromJson(JsonObject json) {
+    final last = json['last_result'];
     return JLPTExamBrief(
-      id: json['id'] ?? json['_id'] ?? '',
-      title: json['title'] ?? '',
-      description: json['description'],
-      level: json['level'] ?? '',
-      year: json['year'],
-      month: json['month'],
-      timeLimit: json['time_limit'] ?? 0,
-      passScore: json['pass_score'] ?? 0,
-      totalScore: json['total_score'] ?? 0,
-      totalQuestions: json['total_questions'] ?? 0,
-      totalViews: json['total_views'] ?? 0,
-      createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at'])
-          : DateTime.now(),
-      status: json['TrangThaiLamBai'],
-      lastResult: json['KetQuaGannhat'] != null
-          ? JLPTResult.fromJson(json['KetQuaGannhat'])
-          : null,
+      id: json['_id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      level: json['level'] as String? ?? '',
+      description: json['description'] as String?,
+      year: (json['year'] as num?)?.toInt(),
+      month: (json['month'] as num?)?.toInt(),
+      timeLimit: _int(json['time_limit']),
+      passScore: _int(json['pass_score']),
+      totalScore: _int(json['total_score']),
+      totalQuestions: _int(json['total_questions']),
+      lastResult: last is Map ? JLPTResult.fromJson(Map<String, dynamic>.from(last)) : null,
     );
   }
 }
 
 class JLPTResult {
+  const JLPTResult({required this.score, required this.isPassed, this.completedAt});
+
   final int score;
   final bool isPassed;
   final DateTime? completedAt;
 
-  JLPTResult({required this.score, required this.isPassed, this.completedAt});
-
-  factory JLPTResult.fromJson(Map<String, dynamic> json) {
-    return JLPTResult(
-      score: json['score'] ?? 0,
-      isPassed: json['is_passed'] ?? false,
-      completedAt: json['completed_at'] != null
-          ? DateTime.parse(json['completed_at'])
-          : null,
-    );
-  }
+  factory JLPTResult.fromJson(JsonObject json) => JLPTResult(
+        score: _int(json['score']),
+        isPassed: json['is_passed'] as bool? ?? false,
+        completedAt: DateTime.tryParse(json['completed_at'] as String? ?? ''),
+      );
 }
 
 class JLPTQuestion {
+  const JLPTQuestion({
+    required this.mondai,
+    required this.questionText,
+    required this.choices,
+    this.image,
+    this.audio,
+    this.correctAnswer,
+    this.explanation,
+  });
+
   final int mondai;
   final String questionText;
   final String? image;
   final String? audio;
   final List<String> choices;
+
+  /// Chỉ có ở đáp án sau khi nộp; đề đang thi không gửi.
   final int? correctAnswer;
   final String? explanation;
 
-  JLPTQuestion({
-    required this.mondai,
-    required this.questionText,
-    this.image,
-    this.audio,
-    required this.choices,
-    this.correctAnswer,
-    this.explanation,
-  });
-
-  factory JLPTQuestion.fromJson(Map<String, dynamic> json) {
-    String? normalize(String? raw) => raw == null || raw.isEmpty ? null : ApiClient.resolveAssetUrl(raw);
-
-    return JLPTQuestion(
-      mondai: json['mondai'] ?? 0,
-      questionText: json['question_text'] ?? '',
-      image: normalize(json['image'] as String?),
-      audio: normalize(json['audio'] as String?),
-      choices: (json['choices'] as List<dynamic>? ?? [])
-          .map((e) => e.toString())
-          .toList(),
-      correctAnswer: json['correct_answer'],
-      explanation: json['explanation'],
-    );
-  }
+  factory JLPTQuestion.fromJson(JsonObject json) => JLPTQuestion(
+        mondai: _int(json['mondai']),
+        questionText: json['question_text'] as String? ?? '',
+        image: _asset(json['image']),
+        audio: _asset(json['audio']),
+        choices: [for (final choice in json['choices'] as List? ?? const []) '$choice'],
+        correctAnswer: (json['correct_answer'] as num?)?.toInt(),
+        explanation: json['explanation'] as String?,
+      );
 }
 
+/// Nhóm câu dùng chung một đoạn đọc hoặc một bài nghe.
 class JLPTGroupQuestion {
+  const JLPTGroupQuestion({
+    required this.mondai,
+    required this.questions,
+    this.groupContent,
+    this.groupImage,
+    this.groupAudio,
+    this.transcript,
+  });
+
   final int mondai;
   final String? groupContent;
   final String? groupImage;
@@ -119,35 +115,37 @@ class JLPTGroupQuestion {
   final String? transcript;
   final List<JLPTQuestion> questions;
 
-  JLPTGroupQuestion({
-    required this.mondai,
-    this.groupContent,
-    this.groupImage,
-    this.groupAudio,
-    this.transcript,
-    required this.questions,
-  });
-
-  factory JLPTGroupQuestion.fromJson(Map<String, dynamic> json) {
-    String? normalize(String? raw) => raw == null || raw.isEmpty ? null : ApiClient.resolveAssetUrl(raw);
-
-    return JLPTGroupQuestion(
-      mondai: json['mondai'] ?? 0,
-      groupContent: json['group_content'],
-      groupImage: normalize(json['group_image'] as String?),
-      groupAudio: normalize(json['group_audio'] as String?),
-      transcript: json['transcript'],
-      questions: (json['questions'] as List<dynamic>? ?? [])
-          .map((e) => JLPTQuestion.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
+  factory JLPTGroupQuestion.fromJson(JsonObject json) => JLPTGroupQuestion(
+        mondai: _int(json['mondai']),
+        groupContent: json['group_content'] as String?,
+        groupImage: _asset(json['group_image']),
+        groupAudio: _asset(json['group_audio']),
+        transcript: json['transcript'] as String?,
+        questions: _listOf(json['questions'], JLPTQuestion.fromJson),
+      );
 }
 
+/// Một đề đầy đủ bốn phần. Khi thi thì câu không kèm đáp án; khi xem đáp án
+/// sau khi nộp thì có.
 class JLPTExamDetail {
+  const JLPTExamDetail({
+    required this.id,
+    required this.title,
+    required this.level,
+    this.timeLimit = 0,
+    this.passScore = 0,
+    this.totalScore = 0,
+    this.mojiGoi = const [],
+    this.bunpou = const [],
+    this.dokkai = const [],
+    this.choukai = const [],
+  });
+
   final String id;
   final String title;
   final String level;
+
+  /// Phút.
   final int timeLimit;
   final int passScore;
   final int totalScore;
@@ -156,55 +154,33 @@ class JLPTExamDetail {
   final List<JLPTGroupQuestion> dokkai;
   final List<JLPTGroupQuestion> choukai;
 
-  JLPTExamDetail({
-    required this.id,
-    required this.title,
-    required this.level,
-    required this.timeLimit,
-    required this.passScore,
-    required this.totalScore,
-    required this.mojiGoi,
-    required this.bunpou,
-    required this.dokkai,
-    required this.choukai,
-  });
+  /// Mọi câu theo đúng thứ tự trong đề: hai phần câu lẻ rồi câu trong từng nhóm.
+  List<JLPTQuestion> get allQuestions => [
+        ...mojiGoi,
+        ...bunpou,
+        for (final group in [...dokkai, ...choukai]) ...group.questions,
+      ];
 
-  factory JLPTExamDetail.fromJson(Map<String, dynamic> json) {
-    final data = json['data'] ?? json; // endpoint wraps in data
-    final sections = data['sections'] ?? {};
+  factory JLPTExamDetail.fromJson(JsonObject json) {
+    final sections = json['sections'] is Map ? Map<String, dynamic>.from(json['sections'] as Map) : const <String, dynamic>{};
     return JLPTExamDetail(
-      id: data['id'] ?? data['_id'] ?? '',
-      title: data['title'] ?? '',
-      level: data['level'] ?? '',
-      timeLimit: data['time_limit'] ?? 0,
-      passScore: data['pass_score'] ?? 0,
-      totalScore: data['total_score'] ?? 0,
-      mojiGoi: (sections['moji_goi'] as List<dynamic>? ?? [])
-          .map((e) => JLPTQuestion.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      bunpou: (sections['bunpou'] as List<dynamic>? ?? [])
-          .map((e) => JLPTQuestion.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      dokkai: (sections['dokkai'] as List<dynamic>? ?? [])
-          .map((e) => JLPTGroupQuestion.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      choukai: (sections['choukai'] as List<dynamic>? ?? [])
-          .map((e) => JLPTGroupQuestion.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      id: json['_id'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      level: json['level'] as String? ?? '',
+      timeLimit: _int(json['time_limit']),
+      passScore: _int(json['pass_score']),
+      totalScore: _int(json['total_score']),
+      mojiGoi: _listOf(sections['moji_goi'], JLPTQuestion.fromJson),
+      bunpou: _listOf(sections['bunpou'], JLPTQuestion.fromJson),
+      dokkai: _listOf(sections['dokkai'], JLPTGroupQuestion.fromJson),
+      choukai: _listOf(sections['choukai'], JLPTGroupQuestion.fromJson),
     );
   }
 }
 
+/// Điểm một lượt thi do server chấm.
 class JLPTSubmitResult {
-  final int totalScore;
-  final int vocabScore;
-  final int grammarScore;
-  final int readingScore;
-  final int listeningScore;
-  final bool passed;
-  final int duration;
-
-  JLPTSubmitResult({
+  const JLPTSubmitResult({
     required this.totalScore,
     required this.vocabScore,
     required this.grammarScore,
@@ -214,16 +190,35 @@ class JLPTSubmitResult {
     required this.duration,
   });
 
-  factory JLPTSubmitResult.fromJson(Map<String, dynamic> json) {
-    final data = json['ketQua'] ?? json;
+  final int totalScore;
+  final int vocabScore;
+  final int grammarScore;
+  final int readingScore;
+  final int listeningScore;
+  final bool passed;
+
+  /// Giây.
+  final int duration;
+
+  factory JLPTSubmitResult.fromJson(JsonObject json) {
+    final sections = json['section_scores'] as Map? ?? const {};
     return JLPTSubmitResult(
-      totalScore: data['TongDiemDatDuoc'] ?? 0,
-      vocabScore: data['DiemTuVung'] ?? 0,
-      grammarScore: data['DiemNguPhap'] ?? 0,
-      readingScore: data['DiemDocHieu'] ?? 0,
-      listeningScore: data['DiemNgheHieu'] ?? 0,
-      passed: (data['KetQuaCuoiCung'] ?? '').toString().contains('Đỗ'),
-      duration: data['TongThoiGian'] ?? 0,
+      totalScore: _int(json['total_score']),
+      vocabScore: _int(sections['moji_goi']),
+      grammarScore: _int(sections['bunpou']),
+      readingScore: _int(sections['dokkai']),
+      listeningScore: _int(sections['choukai']),
+      passed: json['passed'] as bool? ?? false,
+      duration: _int(json['duration']),
     );
   }
 }
+
+int _int(Object? value) => (value as num?)?.toInt() ?? 0;
+
+String? _asset(Object? value) => value is String && value.isNotEmpty ? ApiClient.resolveAssetUrl(value) : null;
+
+List<T> _listOf<T>(Object? value, T Function(JsonObject json) fromJson) => [
+      for (final item in value as List? ?? const [])
+        if (item is Map) fromJson(Map<String, dynamic>.from(item)),
+    ];

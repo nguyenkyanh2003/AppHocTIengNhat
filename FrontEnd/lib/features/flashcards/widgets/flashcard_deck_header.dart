@@ -56,7 +56,7 @@ class FlashcardDeckHeader extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _buildStatChip(context, Icons.style, '${deck.totalCards} thẻ',
+              _buildStatChip(context, Icons.style, '${deck.cardCount} thẻ',
                   AppColors.primary),
               _buildStatChip(context, Icons.play_circle_outline,
                   '${deck.studyCount} lượt', AppColors.warning),
@@ -65,7 +65,7 @@ class FlashcardDeckHeader extends StatelessWidget {
                     context, Icons.bar_chart, deck.level!, Colors.purple),
             ],
           ),
-          if (deck.totalCards > 0) ...[
+          if (deck.cardCount > 0) ...[
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
@@ -116,7 +116,6 @@ class FlashcardDeckHeader extends StatelessWidget {
   }
 
   void _startStudy(BuildContext context, FlashcardDeck deck) {
-    // Ghi nhận lượt học
     context.read<FlashcardProvider>().recordStudy(deck.id);
 
     // `extra` mang theo bộ thẻ; mở thẳng URL này thì route tự đưa về

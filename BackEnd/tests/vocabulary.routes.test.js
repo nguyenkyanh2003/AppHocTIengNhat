@@ -248,7 +248,16 @@ test('đánh dấu đã học trả về tiến độ và message', async () => 
   assert.equal(response.body.data.box, 1);
 });
 
-test('bỏ đánh dấu đã học trả về message', async () => {
+test('xoá một từ trả { deleted: true }, không trả lại document vừa xoá', async () => {
+  const app = buildApp({ remove: async () => undefined });
+
+  const response = await request(app).delete(`/api/vocabulary/${VALID_ID}`);
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, { data: { deleted: true }, message: 'Xóa từ vựng thành công.' });
+});
+
+test('bỏ đánh dấu đã học trả { deleted: true } kèm message', async () => {
   const app = buildApp({ unmarkLearned: async () => undefined });
 
   const response = await request(app).delete(
@@ -256,7 +265,7 @@ test('bỏ đánh dấu đã học trả về message', async () => {
   );
 
   assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { message: 'Đã xóa đánh dấu đã học.' });
+  assert.deepEqual(response.body, { data: { deleted: true }, message: 'Đã xóa đánh dấu đã học.' });
 });
 
 test('import Excel không kèm file trả về 400', async () => {

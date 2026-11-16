@@ -71,10 +71,11 @@ MockClient _backend({_Delay? lessonDelay, _Delay? situationDelay}) {
 
     return http.Response(
       jsonEncode({
-        'totalItems': matched.length,
-        'totalPages': (matched.length / limit).ceil(),
-        'currentPage': page,
         'data': items,
+        'page': page,
+        'limit': limit,
+        'total': matched.length,
+        'totalPages': (matched.length / limit).ceil(),
       }),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -153,7 +154,7 @@ LessonProvider _provider(WidgetTester tester) => Provider.of<LessonProvider>(
     );
 
 Set<String> _listedLevels(WidgetTester tester) =>
-    _provider(tester).lessons.map((lesson) => lesson.level).toSet();
+    _provider(tester).lessons.valueOrNull!.map((lesson) => lesson.level).toSet();
 
 Future<void> _scrollTo(WidgetTester tester, String title) => tester.scrollUntilVisible(
       find.text(title),
@@ -221,7 +222,6 @@ void main() {
 
         expect(_isSelected(tester, 'Mọi trình độ'), isTrue);
         expect(_requests.last, isNot(contains('level=')));
-        expect(find.text('Trang 1 / 2'), findsOneWidget);
         await _scrollTo(tester, 'Tình huống N4 số 1');
         expect(find.text('Tình huống N4 số 1'), findsOneWidget);
       }, _backend);

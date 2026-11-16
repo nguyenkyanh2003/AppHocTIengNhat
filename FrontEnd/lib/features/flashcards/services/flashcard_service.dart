@@ -1,190 +1,42 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/flashcard_deck.dart';
 
+/// Bộ thẻ tự tạo. Thao tác trên thẻ trả lại cả bộ sau khi đổi.
 class FlashcardService {
-  final ApiClient _apiClient = ApiClient();
+  FlashcardService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  /// Lấy danh sách bộ thẻ
-  Future<Map<String, dynamic>> getDecks({
-    int page = 1,
-    int limit = 20,
-    String? category,
-    String? level,
-    bool myDecksOnly = false,
-  }) async {
-    final params = <String>[];
-    params.add('page=$page');
-    params.add('limit=$limit');
+  final ApiClient _client;
 
-    if (category != null && category.isNotEmpty) {
-      params.add('category=$category');
-    }
+  static const pageSize = 20;
 
-    if (level != null && level.isNotEmpty) {
-      params.add('level=$level');
-    }
-
-    if (myDecksOnly) {
-      params.add('myDecks=true');
-    }
-
-    final queryString = params.join('&');
-    final response = await _apiClient.get('/flashcard/decks?$queryString');
-
-    return {
-      'totalItems': response['totalItems'] ?? 0,
-      'totalPages': response['totalPages'] ?? 1,
-      'currentPage': response['currentPage'] ?? 1,
-      'data': (response['data'] as List?)
-              ?.map((deck) => FlashcardDeck.fromJson(deck))
-              .toList() ??
-          [],
-    };
+  /// Bộ thẻ của người đang đăng nhập, bộ vừa dùng trước.
+  Future<Paged<FlashcardDeck>> listMine({int page = 1, int limit = pageSize}) async {
+    final query = Uri(queryParameters: {'page': '$page', 'limit': '$limit'}).query;
+    return Paged.fromJson(await _client.get('/flashcard/decks?$query'), FlashcardDeck.fromJson);
   }
 
-  /// Lấy chi tiết một bộ thẻ
-  Future<FlashcardDeck> getDeckById(String deckId) async {
-    final response = await _apiClient.get('/flashcard/decks/$deckId');
-    return FlashcardDeck.fromJson(response);
-  }
+  Future<FlashcardDeck> detail(String id) async => _deckOf(await _client.get('/flashcard/decks/$id'));
 
-  /// Tạo bộ thẻ mới
-  Future<FlashcardDeck> createDeck({
-    required String title,
-    String? description,
-    bool isPublic = false,
-    String category = 'custom',
-    String? level,
-    List<String>? tags,
-  }) async {
-    final body = {
-      'title': title,
-      'description': description,
-      'is_public': isPublic,
-      'category': category,
-      'level': level,
-      'tags': tags ?? [],
-    };
+  Future<FlashcardDeck> createDeck(FlashcardDeckDraft draft) async =>
+      _deckOf(await _client.post('/flashcard/decks', draft.toJson()));
 
-    final response = await _apiClient.post('/flashcard/decks', body);
-    return FlashcardDeck.fromJson(response['data']);
-  }
+  Future<FlashcardDeck> updateDeck(String id, {required String title, required String description}) async =>
+      _deckOf(await _client.put('/flashcard/decks/$id', {'title': title, 'description': description}));
 
-  /// Cập nhật thông tin bộ thẻ
-  Future<FlashcardDeck> updateDeck({
-    required String deckId,
-    String? title,
-    String? description,
-    bool? isPublic,
-    String? category,
-    String? level,
-    List<String>? tags,
-  }) async {
-    final body = <String, dynamic>{};
+  Future<void> deleteDeck(String id) => _client.delete('/flashcard/decks/$id');
 
-    if (title != null) body['title'] = title;
-    if (description != null) body['description'] = description;
-    if (isPublic != null) body['is_public'] = isPublic;
-    if (category != null) body['category'] = category;
-    if (level != null) body['level'] = level;
-    if (tags != null) body['tags'] = tags;
+  Future<FlashcardDeck> addCard(String deckId, FlashcardCardDraft card) async =>
+      _deckOf(await _client.post('/flashcard/decks/$deckId/cards', card.toJson()));
 
-    final response = await _apiClient.put('/flashcard/decks/$deckId', body);
-    return FlashcardDeck.fromJson(response['data']);
-  }
+  Future<FlashcardDeck> updateCard(String deckId, String cardId, FlashcardCardDraft card) async =>
+      _deckOf(await _client.put('/flashcard/decks/$deckId/cards/$cardId', card.toJson()));
 
-  /// Xóa bộ thẻ
-  Future<void> deleteDeck(String deckId) async {
-    await _apiClient.delete('/flashcard/decks/$deckId');
-  }
+  Future<FlashcardDeck> deleteCard(String deckId, String cardId) async =>
+      _deckOf(await _client.delete('/flashcard/decks/$deckId/cards/$cardId'));
 
-  /// Thêm thẻ mới vào bộ
-  Future<FlashcardDeck> addCard({
-    required String deckId,
-    required String front,
-    required String back,
-    String? frontSubtext,
-    String? backSubtext,
-    String? imageUrl,
-    String? audioUrl,
-  }) async {
-    final body = {
-      'front': front,
-      'back': back,
-      'front_subtext': frontSubtext,
-      'back_subtext': backSubtext,
-      'image_url': imageUrl,
-      'audio_url': audioUrl,
-    };
+  /// Đếm một lượt học bộ thẻ.
+  Future<void> recordStudy(String id) => _client.post('/flashcard/decks/$id/study', const {});
 
-    final response =
-        await _apiClient.post('/flashcard/decks/$deckId/cards', body);
-    return FlashcardDeck.fromJson(response['data']);
-  }
-
-  /// Cập nhật thẻ trong bộ
-  Future<FlashcardDeck> updateCard({
-    required String deckId,
-    required String cardId,
-    String? front,
-    String? back,
-    String? frontSubtext,
-    String? backSubtext,
-    String? imageUrl,
-    String? audioUrl,
-  }) async {
-    final body = <String, dynamic>{};
-
-    if (front != null) body['front'] = front;
-    if (back != null) body['back'] = back;
-    if (frontSubtext != null) body['front_subtext'] = frontSubtext;
-    if (backSubtext != null) body['back_subtext'] = backSubtext;
-    if (imageUrl != null) body['image_url'] = imageUrl;
-    if (audioUrl != null) body['audio_url'] = audioUrl;
-
-    final response =
-        await _apiClient.put('/flashcard/decks/$deckId/cards/$cardId', body);
-    return FlashcardDeck.fromJson(response['data']);
-  }
-
-  /// Xóa thẻ khỏi bộ
-  Future<FlashcardDeck> deleteCard({
-    required String deckId,
-    required String cardId,
-  }) async {
-    final response =
-        await _apiClient.delete('/flashcard/decks/$deckId/cards/$cardId');
-    return FlashcardDeck.fromJson(response['data']);
-  }
-
-  /// Ghi nhận lượt học
-  Future<void> recordStudy(String deckId) async {
-    await _apiClient.post('/flashcard/decks/$deckId/study', {});
-  }
-
-  /// Tìm kiếm bộ thẻ
-  Future<Map<String, dynamic>> searchDecks({
-    required String keyword,
-    int page = 1,
-    int limit = 20,
-  }) async {
-    final params = <String>[];
-    params.add('keyword=$keyword');
-    params.add('page=$page');
-    params.add('limit=$limit');
-
-    final queryString = params.join('&');
-    final response =
-        await _apiClient.get('/flashcard/decks/search?$queryString');
-
-    return {
-      'totalItems': response['totalItems'] ?? 0,
-      'totalPages': response['totalPages'] ?? 1,
-      'currentPage': response['currentPage'] ?? 1,
-      'data': (response['data'] as List?)
-              ?.map((deck) => FlashcardDeck.fromJson(deck))
-              .toList() ??
-          [],
-    };
-  }
+  static FlashcardDeck _deckOf(Object? response) => objectOf(response, FlashcardDeck.fromJson);
 }

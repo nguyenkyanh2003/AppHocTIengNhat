@@ -11,10 +11,10 @@ class ExportCancelled implements Exception {
 
 /// Gom dữ liệu học tập để xuất ra tệp.
 ///
-/// Lịch sử XP và lịch học được đọc **hết mọi trang** tới khi server báo hết
-/// (`next_cursor = null`), lịch học đọc lùi từng khoảng 366 ngày tới ngày sớm
-/// nhất. Một trang lỗi làm hỏng cả lần xuất — không bao giờ ra một tệp thiếu
-/// dữ liệu mà vẫn báo thành công (spec streak §4.2).
+/// Sổ tay, lịch sử XP và lịch học được đọc **hết mọi trang** tới khi server báo
+/// hết, lịch học đọc lùi từng khoảng 366 ngày tới ngày sớm nhất. Một trang lỗi
+/// làm hỏng cả lần xuất — không bao giờ ra một tệp thiếu dữ liệu mà vẫn báo
+/// thành công (spec streak §4.2).
 class ExportService {
   ExportService({ApiClient? client, StreakService? streakService})
       : _client = client ?? ApiClient(),
@@ -26,14 +26,16 @@ class ExportService {
   /// Độ dài một khoảng đọc lịch — đúng trần server chấp nhận.
   static const dayWindow = 366;
 
-  /// Xuất nguyên JSON server trả, theo từng nhóm — đó chính là nội dung tệp.
+  /// Xuất nguyên phần `data` server trả, theo từng nhóm — đó chính là nội dung tệp.
   Future<JsonObject> load(String type, {bool Function()? isCancelled}) async {
     void checkpoint() {
       if (isCancelled?.call() ?? false) throw const ExportCancelled();
     }
 
+    Future<Object?> read(String path) async => dataOf(await _client.get(path));
+
     Future<JsonObject> streakSection() async {
-      final summary = Map<String, dynamic>.from(await _client.get('/streak/my-streak') as Map);
+      final summary = Map<String, dynamic>.from(await read('/streak/my-streak') as Map);
       checkpoint();
       final history = await _allXpHistory(checkpoint);
       final days = await _allDays(summary['first_day'] as String?, checkpoint);
@@ -46,25 +48,38 @@ class ExportService {
 
     final data = switch (type) {
       ExportType.fullStats => {
-          'statistics': await _client.get('/progress/dashboard/stats'),
-          'breakdown': await _client.get('/progress/dashboard/breakdown'),
-          'streak': await _client.get('/streak/my-streak'),
+          'statistics': await read('/progress/dashboard/stats'),
+          'breakdown': await read('/progress/dashboard/breakdown'),
+          'streak': await read('/streak/my-streak'),
         },
-      ExportType.lessonProgress => {'lesson_progress': await _client.get('/progress')},
-      ExportType.notebook => {'notebook': await _client.get('/notebook?limit=100')},
-      ExportType.achievements => {'achievements': await _client.get('/achievement/my-achievements')},
+      ExportType.lessonProgress => {'lesson_progress': await read('/progress')},
+      ExportType.notebook => {'notebook': await _allNotes(checkpoint)},
+      ExportType.achievements => {'achievements': await read('/achievement/my-achievements')},
       ExportType.streaks => await streakSection(),
       ExportType.allData => {
-          'lesson_progress': await _client.get('/progress'),
-          'statistics': await _client.get('/progress/dashboard/stats'),
-          'notebook': await _client.get('/notebook?limit=100'),
-          'achievements': await _client.get('/achievement/my-achievements'),
+          'lesson_progress': await read('/progress'),
+          'statistics': await read('/progress/dashboard/stats'),
+          'notebook': await _allNotes(checkpoint),
+          'achievements': await read('/achievement/my-achievements'),
           ...await streakSection(),
         },
       _ => throw ArgumentError('Loại dữ liệu không hợp lệ: $type'),
     };
     checkpoint();
     return data;
+  }
+
+  /// Mọi ghi chú, đọc từng trang 100 (trần server cho phép) tới trang cuối.
+  Future<List<JsonObject>> _allNotes(void Function() checkpoint) async {
+    final notes = <JsonObject>[];
+    Paged<JsonObject> page;
+    var number = 1;
+    do {
+      page = Paged.fromJson(await _client.get('/notebook?page=${number++}&limit=100'), (json) => json);
+      checkpoint();
+      notes.addAll(page.items);
+    } while (page.hasMore);
+    return notes;
   }
 
   Future<List<XPHistory>> _allXpHistory(void Function() checkpoint) async {

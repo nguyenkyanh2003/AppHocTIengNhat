@@ -44,8 +44,6 @@ const recordingService = (overrides = {}) => {
     updateItem: record('updateItem', { _id: 'p1' }),
     completeLesson: record('completeLesson', { _id: 'p1', is_completed: true }),
     resetLesson: record('resetLesson', { message: 'Đã reset tiến độ' }),
-    getStats: record('getStats', { total_lessons: 0 }),
-    getLevelStats: record('getLevelStats', { level: 'N5' }),
     ...overrides,
   };
 };
@@ -68,7 +66,7 @@ test('chưa có tiến độ trả về null chứ không phải 404', async () 
   const response = await request(app).get(`/api/lesson-progress/lesson/${LESSON_ID}`);
 
   assert.equal(response.status, 200);
-  assert.equal(response.body, null);
+  assert.deepEqual(response.body, { data: null });
 });
 
 test('update yêu cầu completed là boolean và item_type hợp lệ', async () => {
@@ -133,9 +131,9 @@ test('hoàn thành bài trả về tiến độ đã cập nhật', async () => 
   );
 
   assert.equal(response.status, 200);
-  assert.equal(response.body.is_completed, true);
-  assert.equal(response.body.completed_vocabularies, 3);
-  assert.equal(response.body.total_vocabularies, 3);
+  assert.equal(response.body.data.is_completed, true);
+  assert.equal(response.body.data.completed_vocabularies, 3);
+  assert.equal(response.body.data.total_vocabularies, 3);
 });
 
 test('lỗi nghiệp vụ được dịch sang status tương ứng', async () => {
@@ -155,10 +153,9 @@ test('lỗi nghiệp vụ được dịch sang status tương ứng', async () =
   assert.equal(response.body.message, 'Không tìm thấy tiến độ');
 });
 
-test('level chỉ nhận giá trị trong bộ N5..N1', async () => {
-  const service = recordingService();
-  const app = buildApp(service);
+test('thống kê tổng và theo cấp đã bị gỡ (không màn hình nào gọi); path lạ là 404, không phải 401', async () => {
+  const app = buildApp(recordingService());
 
-  assert.equal((await request(app).get('/api/lesson-progress/level/N9')).status, 400);
-  assert.equal((await request(app).get('/api/lesson-progress/level/N5')).status, 200);
+  assert.equal((await request(app).get('/api/lesson-progress/stats')).status, 404);
+  assert.equal((await request(app).get('/api/lesson-progress/level/N5')).status, 404);
 });

@@ -1,429 +1,149 @@
 import 'package:flutter/foundation.dart';
+
+import '../../../core/state/detail_state.dart';
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/study_group.dart';
 import '../services/study_group_service.dart';
-import '../../../core/state/view_state.dart';
 
+/// Nhóm học: nhóm của tôi, khám phá (tìm, lọc, tải thêm), nhóm đang mở kèm
+/// thống kê, và các thao tác trên nhóm/thành viên.
+///
+/// Mọi thao tác ghi trả `null` khi xong hoặc câu báo lỗi để màn hiện. Xong thì
+/// nhóm đang mở cập nhật theo bản server trả, các danh sách đã mở tải lại.
 class StudyGroupProvider extends ChangeNotifier {
-  final StudyGroupService _service = StudyGroupService();
+  StudyGroupProvider({StudyGroupService? service}) : _service = service ?? StudyGroupService();
 
-  final List<StudyGroup> _allGroups = [];
-  List<StudyGroup> _myGroups = [];
-  StudyGroup? _currentGroup;
-  GroupStats? _currentGroupStats;
-
-  bool _isLoading = false;
-  String? _error;
-
-  // Filters
+  final StudyGroupService _service;
+  ViewState<List<StudyGroup>> _myGroups = const ViewState.idle();
+  int _myGeneration = 0;
+  late final _allGroups = PagedList<StudyGroup>(onChanged: _notify);
+  late final _detail = DetailState<StudyGroup>(idOf: (group) => group.id, onChanged: _notify);
+  late final _stats = DetailState<GroupStats>(idOf: (stats) => stats.groupId, onChanged: _notify);
   String? _searchQuery;
   String? _levelFilter;
-  bool? _privateFilter;
+  bool _disposed = false;
 
-  // Pagination
-  int _currentPage = 1;
-  bool _hasMore = true;
-
-  // Getters
-  List<StudyGroup> get allGroups => _allGroups;
-  List<StudyGroup> get myGroups => _myGroups;
-  StudyGroup? get currentGroup => _currentGroup;
-  GroupStats? get currentGroupStats => _currentGroupStats;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
+  ViewState<List<StudyGroup>> get myGroups => _myGroups;
+  ViewState<List<StudyGroup>> get allGroups => _allGroups.state;
+  bool get hasMore => _allGroups.hasMore;
+  bool get isLoadingMore => _allGroups.isLoadingMore;
+  String? get loadMoreError => _allGroups.loadMoreError;
   String? get searchQuery => _searchQuery;
   String? get levelFilter => _levelFilter;
-  bool? get privateFilter => _privateFilter;
-  bool get hasMore => _hasMore;
 
-  // Load tất cả nhóm (public groups)
-  Future<void> loadAllGroups({bool refresh = false}) async {
-    if (refresh) {
-      _currentPage = 1;
-      _hasMore = true;
-      _allGroups.clear();
-    }
+  ViewState<StudyGroup> detailOf(String groupId) => _detail.of(groupId);
+  ViewState<GroupStats> statsOf(String groupId) => _stats.of(groupId);
 
-    if (!_hasMore) return;
-
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final groups = await _service.getGroups(
-        page: _currentPage,
-        limit: 20,
-        search: _searchQuery,
-        level: _levelFilter,
-        isPrivate: _privateFilter,
-      );
-
-      if (groups.isEmpty) {
-        _hasMore = false;
-      } else {
-        _allGroups.addAll(groups);
-        _currentPage++;
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Load nhóm của tôi
   Future<void> loadMyGroups() async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _myGroups = await _service.getMyGroups();
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
+    final generation = ++_myGeneration;
+    if (!_myGroups.hasData) {
+      _myGroups = const ViewState.loading();
+      _notify();
     }
+    final result = await ViewState.guard(_service.mine);
+    if (generation != _myGeneration) return;
+    _myGroups = result;
+    _notify();
   }
 
-  // Load chi tiết nhóm
-  Future<void> loadGroupDetail(String groupId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      _currentGroup = await _service.getGroupDetail(groupId);
-      if (_currentGroup != null) {
-        await loadGroupStats(groupId);
-      } else {
-        _error = 'Không tìm thấy nhóm';
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  /// Khám phá từ trang đầu với bộ lọc đang chọn.
+  Future<void> loadAllGroups() {
+    final search = _searchQuery;
+    final level = _levelFilter;
+    return _allGroups.load((page) => _service.list(page: page, search: search, level: level));
   }
 
-  // Load thống kê nhóm
-  Future<void> loadGroupStats(String groupId) async {
-    try {
-      _currentGroupStats = await _service.getGroupStats(groupId);
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Error loading group stats: $e');
-    }
+  Future<void> loadMore() => _allGroups.loadMore();
+
+  Future<void> setSearchQuery(String? query) {
+    final trimmed = query?.trim();
+    _searchQuery = trimmed == null || trimmed.isEmpty ? null : trimmed;
+    return loadAllGroups();
   }
 
-  // Tạo nhóm mới
-  Future<StudyGroup?> createGroup({
-    required String name,
-    String? description,
-    String? level,
-    String? avatar,
-    bool? isPrivate,
-    int? maxMembers,
-  }) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final newGroup = await _service.createGroup(
-        name: name,
-        description: description,
-        level: level,
-        avatar: avatar,
-        isPrivate: isPrivate,
-        maxMembers: maxMembers,
-      );
-
-      if (newGroup != null) {
-        _myGroups.insert(0, newGroup);
-        _currentGroup = newGroup;
-      }
-
-      return newGroup;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return null;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Cập nhật thông tin nhóm
-  Future<bool> updateGroup({
-    required String groupId,
-    String? name,
-    String? description,
-    String? avatar,
-    String? level,
-    bool? isPrivate,
-    int? maxMembers,
-  }) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final updatedGroup = await _service.updateGroup(
-        groupId: groupId,
-        name: name,
-        description: description,
-        avatar: avatar,
-        level: level,
-        isPrivate: isPrivate,
-        maxMembers: maxMembers,
-      );
-
-      if (updatedGroup != null) {
-        _currentGroup = updatedGroup;
-
-        // Update in lists
-        final myIndex = _myGroups.indexWhere((g) => g.id == groupId);
-        if (myIndex != -1) _myGroups[myIndex] = updatedGroup;
-
-        final allIndex = _allGroups.indexWhere((g) => g.id == groupId);
-        if (allIndex != -1) _allGroups[allIndex] = updatedGroup;
-
-        return true;
-      }
-      return false;
-    } catch (e) {
-      _error = userMessageOf(e);
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Upload group avatar
-  Future<bool> uploadGroupAvatar(
-      String groupId, List<int> imageBytes, String fileName) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final updatedGroup =
-          await _service.uploadGroupAvatar(groupId, imageBytes, fileName);
-
-      if (updatedGroup != null) {
-        _currentGroup = updatedGroup;
-
-        // Update in lists
-        final myIndex = _myGroups.indexWhere((g) => g.id == groupId);
-        if (myIndex != -1) _myGroups[myIndex] = updatedGroup;
-
-        final allIndex = _allGroups.indexWhere((g) => g.id == groupId);
-        if (allIndex != -1) _allGroups[allIndex] = updatedGroup;
-
-        return true;
-      }
-      return false;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Tham gia nhóm
-  Future<bool> joinGroup(String groupId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final success = await _service.joinGroup(groupId);
-      if (success) {
-        await loadGroupDetail(groupId);
-        await loadMyGroups();
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Rời nhóm
-  Future<bool> leaveGroup(String groupId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final success = await _service.leaveGroup(groupId);
-      if (success) {
-        _myGroups.removeWhere((g) => g.id == groupId);
-        if (_currentGroup?.id == groupId) {
-          _currentGroup = null;
-        }
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Kick thành viên
-  Future<bool> kickMember(String groupId, String userId) async {
-    try {
-      final success = await _service.kickMember(groupId, userId);
-      if (success) {
-        await loadGroupDetail(groupId);
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    }
-  }
-
-  // Promote thành admin
-  Future<bool> promoteMember(String groupId, String userId) async {
-    try {
-      final success = await _service.promoteMember(groupId, userId);
-      if (success) {
-        await loadGroupDetail(groupId);
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    }
-  }
-
-  // Demote về member
-  Future<bool> demoteMember(String groupId, String userId) async {
-    try {
-      final success = await _service.demoteMember(groupId, userId);
-      if (success) {
-        await loadGroupDetail(groupId);
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    }
-  }
-
-  // Xóa nhóm
-  Future<bool> deleteGroup(String groupId) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      final success = await _service.deleteGroup(groupId);
-      if (success) {
-        _myGroups.removeWhere((g) => g.id == groupId);
-        _allGroups.removeWhere((g) => g.id == groupId);
-        if (_currentGroup?.id == groupId) {
-          _currentGroup = null;
-        }
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint(_error);
-      return false;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  // Set filters
-  void setSearchQuery(String? query) {
-    _searchQuery = query;
-    _currentPage = 1;
-    _hasMore = true;
-    _allGroups.clear();
-    notifyListeners();
-    loadAllGroups();
-  }
-
-  void setLevelFilter(String? level) {
+  Future<void> setLevelFilter(String? level) {
     _levelFilter = level;
-    _currentPage = 1;
-    _hasMore = true;
-    _allGroups.clear();
-    notifyListeners();
-    loadAllGroups();
+    return loadAllGroups();
   }
 
-  void setPrivateFilter(bool? isPrivate) {
-    _privateFilter = isPrivate;
-    _currentPage = 1;
-    _hasMore = true;
-    _allGroups.clear();
-    notifyListeners();
-    loadAllGroups();
-  }
-
-  void clearFilters() {
+  Future<void> clearFilters() {
     _searchQuery = null;
     _levelFilter = null;
-    _privateFilter = null;
-    _currentPage = 1;
-    _hasMore = true;
-    _allGroups.clear();
-    notifyListeners();
-    loadAllGroups();
+    return loadAllGroups();
   }
 
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
+  /// Chi tiết và thống kê tải song song; thống kê lỗi không chặn chi tiết.
+  Future<void> loadGroupDetail(String groupId) => Future.wait([
+        _detail.load(groupId, () => _service.detail(groupId)),
+        _loadStats(groupId),
+      ]);
 
-  void clearCurrentGroup() {
-    _currentGroup = null;
-    _currentGroupStats = null;
-    notifyListeners();
-  }
+  Future<void> _loadStats(String groupId) => _stats.load(groupId, () => _service.stats(groupId));
 
-  // Clear all state
+  Future<String?> createGroup(StudyGroupDraft draft) => _write(() => _service.create(draft));
+
+  Future<String?> updateGroup(String groupId, StudyGroupDraft draft) => _write(() => _service.update(groupId, draft));
+
+  Future<String?> uploadGroupAvatar(String groupId, List<int> bytes, String fileName) =>
+      _write(() => _service.uploadAvatar(groupId, bytes, fileName));
+
+  Future<String?> joinGroup(String groupId) => _write(() => _service.join(groupId));
+
+  Future<String?> kickMember(String groupId, String userId) => _write(() => _service.kick(groupId, userId));
+
+  Future<String?> promoteMember(String groupId, String userId) => _write(() => _service.promote(groupId, userId));
+
+  Future<String?> demoteMember(String groupId, String userId) => _write(() => _service.demote(groupId, userId));
+
+  Future<String?> leaveGroup(String groupId) => _close(groupId, () => _service.leave(groupId));
+
+  Future<String?> deleteGroup(String groupId) => _close(groupId, () => _service.delete(groupId));
+
+  /// Về trạng thái chưa tải (đăng xuất).
   void clear() {
+    _myGeneration++;
+    _myGroups = const ViewState.idle();
     _allGroups.clear();
-    _myGroups = [];
-    _currentGroup = null;
-    _currentGroupStats = null;
-    _isLoading = false;
-    _error = null;
+    _detail.clear();
+    _stats.clear();
     _searchQuery = null;
     _levelFilter = null;
-    _privateFilter = null;
-    _currentPage = 1;
-    _hasMore = true;
-    notifyListeners();
+    _notify();
+  }
+
+  Future<String?> _write(Future<StudyGroup> Function() action) async {
+    final result = await ViewState.guard(action);
+    final group = result.valueOrNull;
+    if (group == null) return result.errorOrNull;
+    _detail.replace(group);
+    if (_stats.state is! ViewIdle) await _loadStats(group.id);
+    _reloadLists();
+    return null;
+  }
+
+  /// Rời hoặc xoá: nhóm đó không còn mở được nữa.
+  Future<String?> _close(String groupId, Future<void> Function() action) async {
+    final result = await ViewState.guard(action);
+    if (!result.hasData) return result.errorOrNull;
+    _detail.remove(groupId);
+    _stats.remove(groupId);
+    _reloadLists();
+    return null;
+  }
+
+  void _reloadLists() {
+    if (_myGroups is! ViewIdle) loadMyGroups();
+    if (_allGroups.state is! ViewIdle) _allGroups.reload();
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

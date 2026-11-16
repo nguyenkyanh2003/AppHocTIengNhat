@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import '../providers/streak_provider.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
 
 /// Thứ hạng của chính người dùng.
 class LeaderboardUserRankCard extends StatelessWidget {
-  const LeaderboardUserRankCard({
-    super.key,
-    required this.provider,
-  });
+  const LeaderboardUserRankCard({super.key, required this.rank});
 
-  final StreakProvider provider;
+  final int rank;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +51,7 @@ class LeaderboardUserRankCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              '#${provider.userRank}',
+              '#$rank',
               style: TextStyle(
                 color: context.colors.primary,
                 fontSize: AppTypography.title,

@@ -15,16 +15,20 @@ const passthrough = (user) => (req, _res, next) => {
 };
 
 /** App tối thiểu: router thật + service giả + auth giả, không cần MongoDB. */
-const buildApp = (authService) => {
+const buildApp = (authService, { userService = {}, file } = {}) => {
   const app = express();
   app.use(express.json());
   app.use(
     '/api/users',
     createUserRoutes({
       authService,
+      userService,
       authenticate: passthrough({ _id: USER_ID, VaiTro: 'user' }),
       authorizeAdmin: passthrough({ _id: USER_ID, VaiTro: 'admin' }),
-      uploadAvatar: (_req, _res, next) => next(),
+      uploadAvatar: (req, _res, next) => {
+        if (file) req.file = file;
+        next();
+      },
     }),
   );
   app.use(errorHandler);
@@ -109,7 +113,7 @@ test('tên đăng nhập dạng mảng bị chặn trước khi truy vấn', asy
   assert.equal(service.calls.length, 0);
 });
 
-test('đăng nhập thành công giữ nguyên vỏ response cũ', async () => {
+test('đăng nhập thành công bọc phiên trong `data`', async () => {
   const service = recordingService({
     login: async () => ({
       user: { _id: USER_ID, TenDangNhap: 'victim' },
@@ -126,13 +130,15 @@ test('đăng nhập thành công giữ nguyên vỏ response cũ', async () => {
 
   assert.equal(response.status, 200);
   assert.equal(response.body.message, 'Đăng nhập thành công');
-  assert.equal(response.body.token, 'jwt-token');
-  assert.equal(response.body.refreshToken, 'refresh-token');
-  assert.equal(response.body.user.TenDangNhap, 'victim');
-  assert.deepEqual(response.body.streak, { current: 1 });
+  assert.deepEqual(response.body.data, {
+    user: { _id: USER_ID, TenDangNhap: 'victim' },
+    token: 'jwt-token',
+    refreshToken: 'refresh-token',
+    streak: { current: 1 },
+  });
 });
 
-test('làm mới phiên trả cặp token mới ở mức trên cùng như đăng nhập', async () => {
+test('làm mới phiên trả cặp token mới trong `data`', async () => {
   const service = recordingService({
     refresh: async (args) => {
       service.calls.push(['refresh', args]);
@@ -144,7 +150,7 @@ test('làm mới phiên trả cặp token mới ở mức trên cùng như đăn
   const response = await request(app).post('/api/users/refresh-token').send({ refreshToken: 'refresh-cu' });
 
   assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { token: 'access-moi', refreshToken: 'refresh-moi' });
+  assert.deepEqual(response.body, { data: { token: 'access-moi', refreshToken: 'refresh-moi' } });
   assert.deepEqual(service.calls, [['refresh', { refreshToken: 'refresh-cu' }]]);
 
   for (const body of [{}, { refreshToken: '' }, { refreshToken: ['a', 'b'] }, { refreshToken: { $ne: null } }]) {
@@ -235,4 +241,69 @@ test('lỗi nghiệp vụ được error middleware dịch sang status tương �
 
   assert.equal(response.status, 401);
   assert.equal(response.body.message, 'Mật khẩu không đúng.');
+});
+
+const recording = (methods) => {
+  const calls = [];
+  const service = Object.fromEntries(Object.entries(methods).map(([name, result]) => [name, async (args) => {
+    calls.push([name, args]);
+    return result;
+  }]));
+  return { calls, service };
+};
+
+const PROFILE = { _id: USER_ID, HoTen: 'Nguyễn An' };
+
+test('đăng ký 201 bọc người dùng trong `data`', async () => {
+  const { calls, service } = recording({ register: PROFILE });
+  const body = { username: 'an', hoTen: 'Nguyễn An', email: 'an@example.com', password: '12345678' };
+
+  const response = await request(buildApp({}, { userService: service })).post('/api/users/register').send(body);
+
+  assert.equal(response.status, 201);
+  assert.deepEqual(response.body.data, PROFILE);
+  assert.deepEqual(calls, [['register', body]]);
+});
+
+test('hồ sơ: xem, sửa, đổi ảnh đều theo id trong path và người đang đăng nhập', async () => {
+  const { calls, service } = recording({ profile: PROFILE, updateProfile: PROFILE, setAvatar: PROFILE });
+  const app = buildApp({}, { userService: service, file: { filename: 'user-1.png' } });
+  const actor = { _id: USER_ID, VaiTro: 'user' };
+
+  assert.deepEqual((await request(app).get(`/api/users/profile/${USER_ID}`)).body, { data: PROFILE });
+  await request(app).put(`/api/users/profile/${USER_ID}`).send({ hoTen: 'An', VaiTro: 'admin' });
+  await request(app).put(`/api/users/profile/${USER_ID}/avatar`);
+  assert.equal((await request(app).put(`/api/users/profile/${USER_ID}`).send({ gioiTinh: 'Không rõ' })).status, 400);
+
+  assert.deepEqual(calls, [
+    ['profile', { actor, userId: USER_ID }],
+    ['updateProfile', { actor, userId: USER_ID, changes: { hoTen: 'An' } }],
+    ['setAvatar', { actor, userId: USER_ID, avatar: '/uploads/avatars/user-1.png' }],
+  ]);
+});
+
+test('quản trị: danh sách phân trang, sửa, xoá một người, thống kê; xoá hàng loạt đã bị gỡ', async () => {
+  const { calls, service } = recording({
+    adminList: { items: [PROFILE], total: 1, page: 1, limit: 20 },
+    adminUpdate: PROFILE,
+    adminRemove: undefined,
+    adminStats: { totalUsers: 1 },
+  });
+  const app = buildApp({}, { userService: service });
+
+  assert.deepEqual((await request(app).get('/api/users/admin/users?role=admin')).body, {
+    data: [PROFILE], page: 1, limit: 20, total: 1, totalPages: 1,
+  });
+  await request(app).put(`/api/users/admin/users/${USER_ID}`).send({ trangThai: 'banned' });
+  assert.deepEqual((await request(app).delete(`/api/users/admin/users/${USER_ID}`)).body.data, { deleted: true });
+  assert.deepEqual((await request(app).get('/api/users/admin/stats')).body, { data: { totalUsers: 1 } });
+  assert.equal((await request(app).put(`/api/users/admin/users/${USER_ID}`).send({ vaiTro: 'root' })).status, 400);
+  assert.equal((await request(app).delete('/api/users/admin/users')).status, 404);
+
+  assert.deepEqual(calls, [
+    ['adminList', { page: 1, limit: 20, role: 'admin' }],
+    ['adminUpdate', { userId: USER_ID, changes: { trangThai: 'banned' } }],
+    ['adminRemove', { actor: { _id: USER_ID, VaiTro: 'admin' }, userId: USER_ID }],
+    ['adminStats', undefined],
+  ]);
 });

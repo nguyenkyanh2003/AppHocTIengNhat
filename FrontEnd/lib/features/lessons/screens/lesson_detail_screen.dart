@@ -49,12 +49,6 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
     ]);
   }
 
-  /// Tiến độ đang nằm trong provider có thể là của bài mở trước đó.
-  LessonProgress? _progressOf(LessonProgressProvider provider) {
-    final progress = provider.currentProgress;
-    return progress?.lessonId == widget.lessonId ? progress : null;
-  }
-
   Future<void> _study([int step = 0]) async {
     final query = step == 0 ? '' : '?step=$step';
     await context.push('/lessons/${widget.lessonId}/study$query');
@@ -79,21 +73,20 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
     );
     if (confirmed != true || !mounted) return;
     final messenger = ScaffoldMessenger.of(context);
-    final ok = await progress.resetProgress(widget.lessonId);
-    messenger.showSnackBar(SnackBar(
-        content: Text(ok
-            ? 'Đã đặt lại tiến độ bài học.'
-            : 'Chưa đặt lại được. Vui lòng thử lại.')));
+    final error = await progress.resetProgress(widget.lessonId);
+    messenger.showSnackBar(SnackBar(content: Text(error ?? 'Đã đặt lại tiến độ bài học.')));
   }
 
   @override
   Widget build(BuildContext context) {
     final lessons = context.watch<LessonProvider>();
     final progressProvider = context.watch<LessonProgressProvider>();
-    final progress = _progressOf(progressProvider);
+    final progressState = progressProvider.progressOf(widget.lessonId);
+    final progress = progressState.valueOrNull;
+    final detailState = lessons.detailOf(widget.lessonId);
     // Soạn lời thoại là việc của người làm nội dung, không hiện cho học viên.
     final canEditTranscript = context.watch<AuthProvider>().isAdmin &&
-        (lessons.currentLessonDetail?.lesson.videos.isNotEmpty ?? false);
+        (detailState.valueOrNull?.lesson.videos.isNotEmpty ?? false);
 
     return AppScaffold(
       title: 'Bài học',
@@ -116,18 +109,15 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
           ),
       ],
       body: AsyncView<LessonDetail>(
-        state: lessons.detailState,
+        state: detailState,
         onRetry: _load,
         builder: (context, detail) {
-          if (detail.lesson.id != widget.lessonId) {
-            return const Center(child: CircularProgressIndicator());
-          }
           return Column(
             children: [
               Expanded(
                 child: SingleChildScrollView(
                   child: ContentPane(
-                    child: _content(detail, progress, progressProvider.error),
+                    child: _content(detail, progress, progressState.errorOrNull),
                   ),
                 ),
               ),

@@ -9,13 +9,7 @@ import test from 'node:test';
  * Module chưa chuyển khuôn nằm trong `LEGACY_MODULES`. Chuyển xong module nào
  * thì gỡ tên nó khỏi danh sách; danh sách phải rỗng khi đợt chuyển khuôn kết thúc.
  */
-const LEGACY_MODULES = [
-  'exercise',
-  'flashcards',
-  'jlpt',
-  'study-groups',
-  'users',
-];
+const LEGACY_MODULES = [];
 
 const MODULES_DIR = new URL('../src/modules/', import.meta.url);
 const LAYERS = ['routes', 'schema', 'controller', 'service', 'repository'];
@@ -49,6 +43,8 @@ const violationsOf = (moduleName) => {
   for (const { name, source } of filesOf(moduleName, 'controller')) {
     if (/\btry\s*\{/.test(source)) found.push(`${name}: controller tự try/catch`);
     if (IMPORTS_DATABASE.test(source)) found.push(`${name}: controller import model hoặc mongoose`);
+    // Response đi qua ok/created/list/paginated để luôn đúng contract `{ data }`.
+    if (/\bres\.(?:json|send|status)\(/.test(source)) found.push(`${name}: controller tự dựng response`);
   }
   for (const { name, source } of filesOf(moduleName, 'service')) {
     if (IMPORTS_DATABASE.test(source)) found.push(`${name}: service import model hoặc mongoose`);

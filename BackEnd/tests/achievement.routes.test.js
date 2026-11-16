@@ -37,17 +37,30 @@ const validDefinition = {
   requirement_value: 50,
 };
 
-test('learner routes keep the response shapes the app already reads', async () => {
+test('learner routes answer in the shared envelopes', async () => {
   const app = buildApp({
     listActive: async () => [{ name: 'a' }],
     myAchievements: async (userId) => ({ earned: [], locked: [], total: 0, completed: 0, userId }),
     byCategory: async (userId, category) => ({ achievements: [], user_progress: [], category }),
+    stats: async () => ({ total_achievements: 2, earned_achievements: 1 }),
   });
 
-  assert.deepEqual((await request(app).get('/api/achievement/all')).body, [{ name: 'a' }]);
-  assert.equal((await request(app).get('/api/achievement/my-achievements')).body.userId, 'user-1');
-  assert.equal((await request(app).get('/api/achievement/category/kanji')).body.category, 'kanji');
+  assert.deepEqual((await request(app).get('/api/achievement/all')).body, { data: [{ name: 'a' }], total: 1 });
+  assert.equal((await request(app).get('/api/achievement/my-achievements')).body.data.userId, 'user-1');
+  assert.equal((await request(app).get('/api/achievement/category/kanji')).body.data.category, 'kanji');
+  assert.deepEqual((await request(app).get('/api/achievement/stats')).body, {
+    data: { total_achievements: 2, earned_achievements: 1 },
+  });
   assert.equal((await request(app).get('/api/achievement/category/social')).status, 400);
+});
+
+test('admin list is a `{ data, total }` list, empty included', async () => {
+  const app = buildApp({ listAll: async () => [] });
+
+  const response = await request(app).get('/api/achievement/admin/all');
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, { data: [], total: 0 });
 });
 
 test('progress can no longer be self-reported', async () => {
@@ -113,7 +126,7 @@ test('a badge cannot mix a category with a criterion from another one', async ()
   assert.equal((await request(app).put(`/api/achievement/admin/${ID}`).send({ xp_reward: 5 })).status, 200);
 });
 
-test('admin update and delete take a valid id and return the old envelopes', async () => {
+test('admin update and delete take a valid id', async () => {
   const app = buildApp({
     update: async (id, updates) => ({ _id: id, ...updates }),
     remove: async () => undefined,
@@ -123,7 +136,7 @@ test('admin update and delete take a valid id and return the old envelopes', asy
   assert.deepEqual(updated.body, { data: { _id: ID, xp_reward: 150 }, message: 'Cập nhật thành công' });
 
   const deleted = await request(app).delete(`/api/achievement/admin/${ID}`);
-  assert.deepEqual(deleted.body, { message: 'Xóa achievement thành công' });
+  assert.deepEqual(deleted.body, { data: { deleted: true }, message: 'Xóa thành tích thành công' });
 
   assert.equal((await request(app).delete('/api/achievement/admin/abc')).status, 400);
 });

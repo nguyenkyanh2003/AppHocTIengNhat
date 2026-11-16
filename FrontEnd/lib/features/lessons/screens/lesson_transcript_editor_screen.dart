@@ -32,10 +32,9 @@ class _LessonTranscriptEditorScreenState extends State<LessonTranscriptEditorScr
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Bài vừa mở ở màn trước đã có sẵn: không tải lại.
       final lessons = context.read<LessonProvider>();
-      if (lessons.currentLessonDetail?.lesson.id != widget.lessonId) {
-        lessons.loadLessonDetail(widget.lessonId);
-      }
+      if (!lessons.detailOf(widget.lessonId).hasData) lessons.loadLessonDetail(widget.lessonId);
     });
   }
 
@@ -45,12 +44,9 @@ class _LessonTranscriptEditorScreenState extends State<LessonTranscriptEditorScr
     return AppScaffold(
       title: 'Soạn lời thoại video',
       body: AsyncView<LessonDetail>(
-        state: lessons.detailState,
+        state: lessons.detailOf(widget.lessonId),
         onRetry: () => lessons.loadLessonDetail(widget.lessonId),
         builder: (context, detail) {
-          if (detail.lesson.id != widget.lessonId) {
-            return const Center(child: CircularProgressIndicator());
-          }
           final videos = detail.lesson.videos;
           if (videos.isEmpty) {
             return const Center(child: Text('Bài học này chưa có video.'));

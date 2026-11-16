@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../auth/models/profile_changes.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/models/user.dart';
@@ -138,40 +139,22 @@ void showEditProfileDialog(BuildContext context, User user) {
           ),
           ElevatedButton(
             onPressed: () async {
-              final authProvider = context.read<AuthProvider>();
-
-              final success = await authProvider.updateProfile(
-                fullName: fullNameController.text.trim().isEmpty
-                    ? null
-                    : fullNameController.text.trim(),
-                phoneNumber: phoneController.text.trim().isEmpty
-                    ? null
-                    : phoneController.text.trim(),
-                gender: selectedGender,
-                currentLevel: int.tryParse(
-                    selectedLevel.substring(1)), // Keep as int for provider
-                dateOfBirth: selectedDate,
-              );
+              final fullName = fullNameController.text.trim();
+              final phone = phoneController.text.trim();
+              final error = await context.read<AuthProvider>().updateProfile(ProfileChanges(
+                    fullName: fullName.isEmpty ? null : fullName,
+                    phoneNumber: phone.isEmpty ? null : phone,
+                    gender: selectedGender,
+                    currentLevel: selectedLevel,
+                    dateOfBirth: selectedDate,
+                  ));
 
               if (!hostContext.mounted || !dialogContext.mounted) return;
               Navigator.pop(dialogContext);
-
-              if (success) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Đã cập nhật thông tin thành công!'),
-                    backgroundColor: AppColors.successStrong,
-                  ),
-                );
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                        'Lỗi: ${authProvider.error ?? "Không thể cập nhật"}'),
-                    backgroundColor: AppColors.errorStrong,
-                  ),
-                );
-              }
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(error ?? 'Đã cập nhật thông tin thành công!'),
+                backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
+              ));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,

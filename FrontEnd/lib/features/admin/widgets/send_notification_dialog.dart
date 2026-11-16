@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_dialog.dart';
 import '../../notifications/models/notification.dart';
-import '../providers/admin_provider.dart';
+import '../models/admin_user.dart';
+import '../providers/admin_users_provider.dart';
 
 /// Gửi một thông báo; trả thông báo lỗi để form hiện, `null` khi đã gửi.
 typedef SendNotification = Future<String?> Function(
@@ -15,17 +16,15 @@ const _titleMax = 120;
 const _messageMax = 2000;
 
 /// Mở form gửi thông báo từ màn Quản lý người dùng rồi báo kết quả bằng
-/// snackbar. [user] là một dòng của danh sách quản trị; `null` là gửi cho mọi
-/// người học.
-Future<void> openSendNotificationForm(BuildContext context, {Map<String, dynamic>? user}) async {
-  final admin = context.read<AdminProvider>();
+/// snackbar. [user] `null` là gửi cho mọi người học. [context] phải nằm dưới
+/// [AdminUsersProvider] của màn.
+Future<void> openSendNotificationForm(BuildContext context, {AdminUser? user}) async {
+  final users = context.read<AdminUsersProvider>();
   final messenger = ScaffoldMessenger.of(context);
-  final userId = user == null ? null : (user['_id'] ?? user['id'])?.toString();
-  final name = user == null
-      ? null
-      : [user['name'], user['email']]
-          .map((value) => value?.toString().trim() ?? '')
-          .firstWhere((value) => value.isNotEmpty, orElse: () => 'người dùng này');
+  final name = user == null ? null : [user.displayName, user.email].firstWhere(
+        (value) => value.isNotEmpty,
+        orElse: () => 'người dùng này',
+      );
 
   var sent = 0;
   final done = await showAppDialog<bool>(
@@ -33,15 +32,15 @@ Future<void> openSendNotificationForm(BuildContext context, {Map<String, dynamic
     builder: (_) => SendNotificationDialog(
       recipientName: name,
       onSend: (title, message, type) async {
-        final result = await admin.sendNotification(userId: userId, title: title, message: message, type: type);
-        sent = result.sent;
-        return result.error;
+        final result = await users.sendNotification(user: user, title: title, message: message, type: type);
+        sent = result.valueOrNull ?? 0;
+        return result.errorOrNull;
       },
     ),
   );
   if (done != true) return;
   messenger.showSnackBar(SnackBar(
-    content: Text(userId == null ? 'Đã gửi thông báo cho $sent người học.' : 'Đã gửi thông báo cho $name.'),
+    content: Text(user == null ? 'Đã gửi thông báo cho $sent người học.' : 'Đã gửi thông báo cho $name.'),
   ));
 }
 

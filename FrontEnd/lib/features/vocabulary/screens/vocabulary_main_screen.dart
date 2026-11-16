@@ -47,7 +47,7 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
         ..useDefaultLevel(context.read<AuthProvider>().user?.currentLevel);
       sets.loadSets();
       context.read<VocabularyProvider>().loadVocabularies(refresh: true);
-      context.read<FlashcardProvider>().loadDecks(refresh: true);
+      context.read<FlashcardProvider>().loadDecks();
     });
   }
 
@@ -62,15 +62,11 @@ class _VocabularyMainScreenState extends State<VocabularyMainScreen>
         _setsTab => context.read<VocabularySetProvider>().loadSets(),
         _lookupTab =>
           context.read<VocabularyProvider>().loadVocabularies(refresh: true),
-        _ => context.read<FlashcardProvider>().loadDecks(refresh: true),
+        _ => context.read<FlashcardProvider>().loadDecks(),
       };
 
-  Future<void> _createDeck() async {
-    final provider = context.read<FlashcardProvider>();
-    final created = await context.push<bool>('/flashcards/new');
-
-    if (created == true) await provider.loadDecks(refresh: true);
-  }
+  /// Tạo xong provider tự tải lại danh sách bộ thẻ.
+  void _createDeck() => context.push('/flashcards/new');
 
   void _openDetail(Vocabulary vocabulary) {
     context.push('/vocabulary/${vocabulary.id}');

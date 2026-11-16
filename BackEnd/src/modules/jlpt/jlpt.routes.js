@@ -1,21 +1,30 @@
+import express from 'express';
+
+import { authenticateUser } from '../../middleware/auth.middleware.js';
 import { asyncHandler } from '../../shared/http/async-handler.js';
 import { validate } from '../../shared/http/validate.js';
+import { jlptSubmissionService } from './jlpt-submission.service.js';
+import { createJlptController } from './jlpt.controller.js';
 import * as schema from './jlpt.schema.js';
-import express from 'express';
-import { authenticateUser } from '../../middleware/auth.middleware.js';
-import * as controller from './jlpt.controller.js';
+import { jlptService } from './jlpt.service.js';
 
-const router = express.Router();
+/** Nhận dependency qua tham số để test dựng router với service và auth giả. */
+export const createJlptRoutes = ({
+  service = jlptService,
+  submission = jlptSubmissionService,
+  authenticate = authenticateUser,
+} = {}) => {
+  const controller = createJlptController({ service, submission });
+  const byId = validate({ params: schema.idParams });
+  const router = express.Router();
 
-router.get('/', authenticateUser, controller.listExams);
-router.get('/practice', authenticateUser, controller.getPracticeQuestions);
-router.get('/:id/solutions', authenticateUser, controller.getSolutions);
-router.get('/:id', authenticateUser, controller.getExam);
-router.post(
-    '/:id/submit',
-    authenticateUser,
-    validate({ params: schema.submitParams, body: schema.submitBody }),
-    asyncHandler(controller.submitExamHandler),
-);
+  router.get('/', authenticate, validate({ query: schema.listQuery }), asyncHandler(controller.list));
+  router.get('/practice', authenticate, validate({ query: schema.practiceQuery }), asyncHandler(controller.practice));
+  router.get('/:id/solutions', authenticate, byId, asyncHandler(controller.solutions));
+  router.get('/:id', authenticate, byId, asyncHandler(controller.detail));
+  router.post('/:id/submit', authenticate, byId, validate({ body: schema.submitBody }), asyncHandler(controller.submit));
 
-export default router;
+  return router;
+};
+
+export default createJlptRoutes();

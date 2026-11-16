@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
 
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
 import 'package:apphoctiengnnhat/features/admin/models/admin_achievement.dart';
-import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
 import 'package:apphoctiengnnhat/features/admin/screens/admin_achievement_management_screen.dart';
 import 'package:apphoctiengnnhat/features/admin/services/admin_service.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_achievement_card.dart';
@@ -43,7 +41,7 @@ class _FakeAdminService extends AdminService {
   Exception? failure;
 
   @override
-  Future<List<AdminAchievement>> getAchievements() async => list;
+  Future<List<AdminAchievement>> achievements() async => list;
 
   @override
   Future<void> createAchievement(AchievementDraft draft) async {
@@ -74,12 +72,9 @@ Future<_FakeAdminService> _pumpScreen(
 
   final service = _FakeAdminService(list ?? [_badge()]);
   await tester.pumpWidget(
-    ChangeNotifierProvider(
-      create: (_) => AdminProvider(adminService: service),
-      child: MaterialApp(
-        theme: AppTheme.lightTheme,
-        home: const AdminAchievementManagementScreen(),
-      ),
+    MaterialApp(
+      theme: AppTheme.lightTheme,
+      home: AdminAchievementManagementScreen(service: service),
     ),
   );
   await tester.pumpAndSettle();

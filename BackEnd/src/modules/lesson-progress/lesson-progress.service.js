@@ -216,40 +216,6 @@ export const createLessonProgressService = ({
       await repository.deleteProgress({ userId, lessonId });
       return { message: 'Đã reset tiến độ' };
     },
-
-    async getStats(userId) {
-      const allProgress = await repository.findAllProgress(userId);
-
-      return {
-        total_lessons: allProgress.length,
-        completed_lessons: allProgress.filter((p) => p.is_completed).length,
-        in_progress_lessons: allProgress.filter((p) => !p.is_completed).length,
-        total_vocabularies_learned: allProgress.reduce((sum, p) => sum + p.completed_vocabularies, 0),
-        total_grammars_learned: allProgress.reduce((sum, p) => sum + p.completed_grammars, 0),
-        total_kanjis_learned: allProgress.reduce((sum, p) => sum + p.completed_kanjis, 0),
-      };
-    },
-
-    async getLevelStats({ userId, level }) {
-      const lessons = await repository.findLessonsByLevel(level);
-      const lessonIds = lessons.map((lesson) => lesson._id);
-
-      const progressList = await repository.findProgressForLessons({
-        userId,
-        lessonIds,
-      });
-
-      const completed = progressList.filter((p) => p.is_completed).length;
-
-      return {
-        level,
-        total_lessons: lessons.length,
-        started_lessons: progressList.length,
-        completed_lessons: completed,
-        progress_percentage:
-          lessons.length > 0 ? Math.round((completed / lessons.length) * 100) : 0,
-      };
-    },
   };
 };
 

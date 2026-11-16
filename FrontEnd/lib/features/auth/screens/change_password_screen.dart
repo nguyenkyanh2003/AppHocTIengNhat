@@ -68,18 +68,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       _errorMessage = null;
     });
 
-    final authProvider = context.read<AuthProvider>();
-    final success = await authProvider.changePassword(
+    final error = await context.read<AuthProvider>().changePassword(
       _oldPasswordController.text,
       _newPasswordController.text,
     );
 
     if (!mounted) return;
 
-    if (!success) {
+    if (error != null) {
       setState(() {
         _isLoading = false;
-        _errorMessage = authProvider.error ?? 'Không thể đổi mật khẩu.';
+        _errorMessage = error;
       });
       return;
     }

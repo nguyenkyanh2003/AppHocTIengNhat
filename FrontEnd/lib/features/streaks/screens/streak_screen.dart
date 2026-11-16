@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
+import '../../../core/state/view_state.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../providers/streak_provider.dart';
@@ -74,9 +75,9 @@ class _StreakScreenState extends State<StreakScreen> {
             builder: (context, provider, _) {
               final streak = provider.currentStreak;
               if (streak == null) {
-                return provider.isLoading || provider.error == null
-                    ? const Center(child: CircularProgressIndicator())
-                    : _LoadError(onRetry: _loadData);
+                return provider.streakState is ViewFailure
+                    ? _LoadError(onRetry: _loadData)
+                    : const Center(child: CircularProgressIndicator());
               }
 
               return ListView(

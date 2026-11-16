@@ -7,18 +7,17 @@ import '../providers/study_group_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
 import '../../../app/theme/app_tokens.dart';
-import '../widgets/group_settings_sheet.dart';
 import '../widgets/group_detail_header.dart';
+import '../widgets/group_edit_dialog.dart';
 import '../widgets/group_info_tab.dart';
 import '../widgets/group_members_tab.dart';
 import '../widgets/group_bottom_bar.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
 
 class GroupDetailScreen extends StatefulWidget {
-  final String groupId;
+  const GroupDetailScreen({super.key, required this.groupId});
 
-  const GroupDetailScreen({Key? key, required this.groupId}) : super(key: key);
+  final String groupId;
 
   @override
   State<GroupDetailScreen> createState() => _GroupDetailScreenState();
@@ -34,11 +33,11 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
     _tabController = TabController(length: 2, vsync: this);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final groupProvider =
-          Provider.of<StudyGroupProvider>(context, listen: false);
-      groupProvider.loadGroupDetail(widget.groupId);
+      if (mounted) _load();
     });
   }
+
+  Future<void> _load() => context.read<StudyGroupProvider>().loadGroupDetail(widget.groupId);
 
   @override
   void dispose() {
@@ -50,22 +49,15 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
   Widget build(BuildContext context) {
     return Consumer2<StudyGroupProvider, AuthProvider>(
       builder: (context, groupProvider, authProvider, child) {
-        final group = groupProvider.currentGroup;
+        final state = groupProvider.detailOf(widget.groupId);
+        final group = state.valueOrNull;
         final currentUserId = authProvider.user?.id;
 
         if (group == null) {
           return AppScaffold(
             title: 'Chi tiết nhóm',
             body: ContentWidthLimit(
-              child: AsyncView<StudyGroup>(
-                state: ViewState.detail(
-                  isLoading: groupProvider.isLoading,
-                  error: groupProvider.error,
-                  value: group,
-                ),
-                onRetry: () => groupProvider.loadGroupDetail(widget.groupId),
-                builder: (context, _) => const SizedBox.shrink(),
-              ),
+              child: AsyncView<StudyGroup>(state: state, onRetry: _load, builder: (context, _) => const SizedBox()),
             ),
           );
         }
@@ -81,9 +73,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
             actions: [
               if (isAdmin)
                 IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () => showGroupSettingsSheet(context, group),
-                  tooltip: 'Cài đặt nhóm',
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => showGroupEditDialog(context, group),
+                  tooltip: 'Sửa thông tin nhóm',
                 ),
             ],
           ),
@@ -172,7 +164,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen>
                   child: TabBarView(
                     controller: _tabController,
                     children: [
-                      GroupInfoTab(group: group, provider: groupProvider),
+                      GroupInfoTab(group: group),
                       GroupMembersTab(
                           group: group,
                           currentUserId: currentUserId,

@@ -31,7 +31,7 @@ const buildApp = (service) => {
   return app;
 };
 
-test('GET / giữ đúng vỏ response cũ totalItems/totalPages/currentPage/data', async () => {
+test('GET / trả danh sách theo contract phân trang', async () => {
   const app = buildApp({
     list: async () => ({ items: [{ _id: 'l1' }], page: 2, limit: 5, total: 11, totalPages: 3 }),
   });
@@ -39,12 +39,7 @@ test('GET / giữ đúng vỏ response cũ totalItems/totalPages/currentPage/dat
   const response = await request(app).get('/api/lesson?page=2&limit=5');
 
   assert.equal(response.status, 200);
-  assert.deepEqual(response.body, {
-    totalItems: 11,
-    totalPages: 3,
-    currentPage: 2,
-    data: [{ _id: 'l1' }],
-  });
+  assert.deepEqual(response.body, { data: [{ _id: 'l1' }], page: 2, limit: 5, total: 11, totalPages: 3 });
 });
 
 test('GET /?situation=supermarket chưa có bài nào vẫn là 200 và mảng rỗng', async () => {
@@ -75,7 +70,7 @@ test('limit vượt trần bị từ chối bằng 400', async () => {
   assert.equal(response.status, 400);
 });
 
-test('GET /:id trả object phẳng kèm tuvungs/nguphaps như hành vi cũ', async () => {
+test('GET /:id bọc chi tiết bài trong `data`', async () => {
   const app = buildApp({
     getDetail: async () => ({
       _id: 'l1',
@@ -91,9 +86,8 @@ test('GET /:id trả object phẳng kèm tuvungs/nguphaps như hành vi cũ', as
   const response = await request(app).get(`/api/lesson/${VALID_ID}`);
 
   assert.equal(response.status, 200);
-  assert.equal(response.body._id, 'l1');
-  assert.deepEqual(response.body.tuvungs, [{ _id: 'v1' }]);
-  assert.equal(response.body.data, undefined, 'không được bọc thêm data ở route này');
+  assert.equal(response.body.data._id, 'l1');
+  assert.deepEqual(response.body.data.tuvungs, [{ _id: 'v1' }]);
 });
 
 test('GET /:id với id không phải ObjectId bị chặn 400', async () => {
@@ -156,24 +150,7 @@ test('GET /situations không bị nuốt thành /:id', async () => {
   assert.equal(response.status, 200);
 });
 
-test('GET /level/:capDo với cấp độ lạ bị chặn 400', async () => {
-  const app = buildApp({ getByLevel: async () => assert.fail('không được gọi service') });
-
-  const response = await request(app).get('/api/lesson/level/N9');
-
-  assert.equal(response.status, 400);
-});
-
-test('GET /level/:capDo rỗng vẫn là 200 và mảng rỗng', async () => {
-  const app = buildApp({ getByLevel: async () => [] });
-
-  const response = await request(app).get('/api/lesson/level/N5');
-
-  assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { data: [], total: 0 });
-});
-
-test('GET /stats/overview trả đúng vỏ phẳng cũ, không bọc trong data', async () => {
+test('GET /stats/overview bọc thống kê trong `data`', async () => {
   const app = buildApp({
     getStatsOverview: async () => ({ totalLessons: 3, byLevel: [], byType: [] }),
   });
@@ -181,7 +158,7 @@ test('GET /stats/overview trả đúng vỏ phẳng cũ, không bọc trong data
   const response = await request(app).get('/api/lesson/stats/overview');
 
   assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { totalLessons: 3, byLevel: [], byType: [] });
+  assert.deepEqual(response.body, { data: { totalLessons: 3, byLevel: [], byType: [] } });
 });
 
 test('POST / tạo bài học kèm situation hợp lệ, trả 201', async () => {
@@ -265,24 +242,10 @@ test('DELETE /:id còn tham chiếu trả 409 kèm details', async () => {
   assert.deepEqual(response.body.details, { vocabulary: 2, kanji: 0, grammar: 0 });
 });
 
-test('DELETE / xóa nhiều — vỏ response không có key data, giữ đúng hành vi cũ', async () => {
-  const app = buildApp({ removeMany: async () => 3 });
+test('route không còn ai gọi đã bị gỡ: lọc theo /level, xoá hàng loạt, sao chép', async () => {
+  const app = buildApp({});
 
-  const response = await request(app)
-    .delete('/api/lesson')
-    .send({ ids: [VALID_ID] });
-
-  assert.equal(response.status, 200);
-  assert.deepEqual(response.body, { message: 'Xóa thành công 3 bài học.', deletedCount: 3 });
-});
-
-test('POST /:id/duplicate trả 201 kèm data', async () => {
-  const app = buildApp({
-    duplicate: async (id) => ({ _id: 'l2', title: `Bài (Bản sao) từ ${id}` }),
-  });
-
-  const response = await request(app).post(`/api/lesson/${VALID_ID}/duplicate`);
-
-  assert.equal(response.status, 201);
-  assert.equal(response.body.data._id, 'l2');
+  assert.equal((await request(app).get('/api/lesson/level/N5')).status, 404);
+  assert.equal((await request(app).delete('/api/lesson').send({ ids: [VALID_ID] })).status, 404);
+  assert.equal((await request(app).post(`/api/lesson/${VALID_ID}/duplicate`)).status, 404);
 });

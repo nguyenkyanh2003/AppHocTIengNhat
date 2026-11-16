@@ -11,7 +11,7 @@ import '../widgets/lesson_card.dart';
 import '../widgets/lesson_level_bar.dart';
 import '../widgets/lesson_situation_bar.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/paged_list_view.dart';
 import '../models/lesson.dart';
 
 /// Danh sách bài học, lọc theo trình độ JLPT rồi theo chủ đề.
@@ -52,7 +52,6 @@ class _LessonListScreenState extends State<LessonListScreen> {
     final provider = context.watch<LessonProvider>();
     final userLevel =
         normalizeJlptLevel(context.watch<AuthProvider>().user?.currentLevel);
-    final reloading = provider.isListLoading && provider.lessons.isNotEmpty;
 
     return AppScaffold(
       title: 'Bài học',
@@ -74,7 +73,7 @@ class _LessonListScreenState extends State<LessonListScreen> {
             // Giữ sẵn chỗ của thanh tải để danh sách không giật khi nó hiện ra.
             SizedBox(
               height: AppSpacing.xs,
-              child: reloading ? const LinearProgressIndicator() : null,
+              child: provider.isRefreshing ? const LinearProgressIndicator() : null,
             ),
             Expanded(child: _buildList(provider)),
           ],
@@ -111,15 +110,8 @@ class _LessonListScreenState extends State<LessonListScreen> {
 
   Widget _buildList(LessonProvider provider) {
     return AsyncView<List<Lesson>>(
-      state: ViewState.fromLegacy(
-        isLoading: provider.isListLoading,
-        error: provider.listError,
-        value: provider.lessons,
-        // Lỗi tải (đổi bộ lọc, chuyển trang) thì báo lỗi thay vì giữ danh sách cũ:
-        // danh sách cũ không còn khớp bộ lọc đang chọn.
-        isEmpty: provider.lessons.isEmpty || provider.listError != null,
-      ),
-      onRetry: () => provider.loadLessons(refresh: true),
+      state: provider.lessons,
+      onRetry: provider.loadLessons,
       isEmpty: (lessons) => lessons.isEmpty,
       emptyTitle: _emptyMessage(provider),
       emptyIcon: Icons.book_outlined,
@@ -130,19 +122,15 @@ class _LessonListScreenState extends State<LessonListScreen> {
               child: const Text('Xem mọi trình độ'),
             ),
       builder: (context, lessons) => RefreshIndicator(
-        onRefresh: () => provider.loadLessons(refresh: true),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                padding: AppSpacing.page,
-                itemCount: lessons.length,
-                itemBuilder: (context, index) =>
-                    LessonCard(lesson: lessons[index]),
-              ),
-            ),
-            _buildPagination(provider),
-          ],
+        onRefresh: provider.loadLessons,
+        child: PagedListView<Lesson>(
+          items: lessons,
+          padding: AppSpacing.page,
+          hasMore: provider.hasMore,
+          isLoadingMore: provider.isLoadingMore,
+          loadMoreError: provider.loadMoreError,
+          onLoadMore: provider.loadMore,
+          itemBuilder: (context, lesson) => LessonCard(lesson: lesson),
         ),
       ),
     );
@@ -156,38 +144,5 @@ class _LessonListScreenState extends State<LessonListScreen> {
       return 'Chưa có bài học ở trình độ ${provider.selectedLevel}';
     }
     return 'Chưa có bài học nào';
-  }
-
-  Widget _buildPagination(LessonProvider provider) {
-    if (provider.totalPages <= 1) return const SizedBox.shrink();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-      decoration: BoxDecoration(
-        color: context.colors.surface,
-        border: Border(top: BorderSide(color: context.colors.border)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IconButton(
-            onPressed: provider.currentPage > 1 ? provider.previousPage : null,
-            icon: const Icon(Icons.chevron_left),
-          ),
-          AppGap.sm,
-          Text(
-            'Trang ${provider.currentPage} / ${provider.totalPages}',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          AppGap.sm,
-          IconButton(
-            onPressed: provider.currentPage < provider.totalPages
-                ? provider.nextPage
-                : null,
-            icon: const Icon(Icons.chevron_right),
-          ),
-        ],
-      ),
-    );
   }
 }

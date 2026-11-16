@@ -117,28 +117,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         });
 
         // Upload to server
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        final success = await authProvider.uploadAvatar(bytes, image.name);
+        final error = await context.read<AuthProvider>().uploadAvatar(bytes, image.name);
 
         if (mounted) {
           setState(() => _isUploading = false);
-
-          if (success) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Đã cập nhật ảnh đại diện thành công!'),
-                backgroundColor: AppColors.successStrong,
-              ),
-            );
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                    'Lỗi: ${authProvider.error ?? "Không thể cập nhật ảnh"}'),
-                backgroundColor: AppColors.errorStrong,
-              ),
-            );
-          }
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(error ?? 'Đã cập nhật ảnh đại diện thành công!'),
+            backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
+          ));
         }
       }
     } catch (e) {

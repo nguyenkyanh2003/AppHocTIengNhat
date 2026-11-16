@@ -111,30 +111,28 @@ final Map<String, Widget Function()> _details = {
 
 const _json = {'content-type': 'application/json; charset=utf-8'};
 
-/// Danh sách rỗng theo mọi kiểu phản hồi mà các service đang đọc.
-final _emptyBody = jsonEncode({
-  'data': [],
-  'total': 0,
-  'totalItems': 0,
-  'page': 1,
-  'limit': 20,
-  'pages': 0,
-  'current': 1,
-  'currentPage': 1,
-  'totalPages': 0,
-  'earned': [],
-  'locked': [],
-  'leaderboard': [],
-  'unreadCount': 0,
-  'count': 0,
-  'users': [],
-  'reports': [],
-  'achievements': [],
-  'transactions': [],
-  'exercises': [],
-  'results': [],
-  'kanjis': [],
-});
+/// Danh sách rỗng theo response contract: `{ data, total }` và phân trang.
+final _emptyBody = jsonEncode({'data': [], 'total': 0, 'page': 1, 'limit': 20, 'totalPages': 0});
+
+/// Tài nguyên rỗng có hình dạng riêng (một object trong `data`).
+final _emptyBodies = {
+  '/api/streak/leaderboard': jsonEncode({
+    'data': {'leaderboard': [], 'user_rank': null},
+  }),
+  '/api/achievement/my-achievements': jsonEncode({
+    'data': {'earned': [], 'locked': [], 'total': 0, 'completed': 0},
+  }),
+  '/api/users/admin/stats': jsonEncode({
+    'data': {'totalUsers': 0, 'byRole': [], 'byStatus': [], 'byLevel': [], 'recentUsers': [], 'activeUsers': []},
+  }),
+  '/api/report/admin/stats': jsonEncode({
+    'data': {'total': 0, 'byStatus': [], 'byType': [], 'byPriority': [], 'recentReports': [], 'avgResolutionTimeHours': 0},
+  }),
+};
+
+/// Phản hồi rỗng của đúng endpoint được gọi.
+http.Response _empty(http.Request request) =>
+    http.Response(_emptyBodies[request.url.path] ?? _emptyBody, 200, headers: _json);
 
 /// Mất kết nối theo đúng cách trình duyệt báo: thông báo có cả tên exception
 /// và địa chỉ máy chủ, không cái nào được phép lọt lên giao diện.
@@ -229,8 +227,7 @@ void main() {
           expect(find.byType(EmptyStateView), findsWidgets);
           _expectNoRawError(tester);
         },
-            () => MockClient(
-                (_) async => http.Response(_emptyBody, 200, headers: _json)));
+            () => MockClient((request) async => _empty(request)));
       });
     }
   });
@@ -248,7 +245,7 @@ void main() {
           if (!online) {
             throw http.ClientException('Failed to fetch', request.url);
           }
-          return http.Response(_emptyBody, 200, headers: _json);
+          return _empty(request);
         });
 
         await http.runWithClient(() async {

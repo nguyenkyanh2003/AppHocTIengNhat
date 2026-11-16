@@ -63,10 +63,6 @@ export const createLessonService = ({ lessonRepository: repository }) => ({
     };
   },
 
-  getByLevel(level) {
-    return repository.findByLevel(level);
-  },
-
   /**
    * Danh sách tình huống có bài học, để client dựng bộ lọc.
    *
@@ -100,32 +96,7 @@ export const createLessonService = ({ lessonRepository: repository }) => ({
       });
     }
 
-    const deleted = await repository.deleteById(id);
-    if (!deleted) throw ApiError.notFound('Bài học không tồn tại.');
-    return deleted;
-  },
-
-  async removeMany(ids) {
-    const related = await repository.countRelated(ids);
-    if (Object.values(related).some((count) => count > 0)) {
-      throw ApiError.conflict('Không thể xóa các bài học đang có nội dung liên quan.', {
-        details: related,
-      });
-    }
-
-    return repository.deleteManyByIds(ids);
-  },
-
-  async duplicate(id) {
-    const original = await repository.findByIdLean(id);
-    if (!original) throw ApiError.notFound('Bài học không tồn tại.');
-
-    delete original._id;
-    delete original.createdAt;
-    delete original.updatedAt;
-    original.title = `${original.title} (Bản sao ${Date.now()})`;
-
-    return repository.create(original);
+    if (!(await repository.deleteById(id))) throw ApiError.notFound('Bài học không tồn tại.');
   },
 });
 

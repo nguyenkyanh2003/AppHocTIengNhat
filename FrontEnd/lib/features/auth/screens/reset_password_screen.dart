@@ -38,21 +38,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       _errorMessage = null;
     });
 
-    final authProvider = context.read<AuthProvider>();
-    final success = await authProvider.resetPassword(
-      widget.token!.trim(),
-      newPassword,
-    );
+    final error = await context.read<AuthProvider>().resetPassword(widget.token!.trim(), newPassword);
 
     if (!mounted) return;
 
     setState(() {
       _isSubmitting = false;
-      _succeeded = success;
-      _errorMessage = success
-          ? null
-          : authProvider.error ??
-              'Không đặt lại được mật khẩu. Vui lòng thử lại.';
+      _succeeded = error == null;
+      _errorMessage = error;
     });
   }
 

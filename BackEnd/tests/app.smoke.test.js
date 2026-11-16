@@ -52,6 +52,7 @@ const REMOVED_ROUTES = [
   ['get', '/api/exercise/check-answers/507f1f77bcf86cd799439011'],
   ['post', '/api/exercise/upload/507f1f77bcf86cd799439011'],
   ['post', '/api/exercise/questions/507f1f77bcf86cd799439011'],
+  ['get', '/api/exercise/type/multiple_choice'], // one-style
   // progress
   ['get', '/api/progress/study-time'],
   ['delete', '/api/progress/admin/bulk/delete'],
@@ -80,6 +81,7 @@ const REMOVED_ROUTES = [
   // users
   ['get', '/api/users/me'],
   ['post', '/api/users/admin/users'],
+  ['delete', '/api/users/admin/users'], // one-style
   // grammar
   ['get', '/api/grammar/popular/N5'],
   // kanji (one-style)
@@ -91,6 +93,11 @@ const REMOVED_ROUTES = [
   // lessons
   ['get', '/api/lesson/type/ngu-phap'],
   ['patch', '/api/lesson/507f1f77bcf86cd799439011'],
+  ['get', '/api/lesson/level/N5'], // one-style
+  ['post', '/api/lesson/507f1f77bcf86cd799439011/duplicate'], // one-style
+  // lesson-progress (one-style)
+  ['get', '/api/lesson-progress/stats'],
+  ['get', '/api/lesson-progress/level/N5'],
 ];
 
 test('route không còn consumer đã bị gỡ khỏi app thật', async () => {

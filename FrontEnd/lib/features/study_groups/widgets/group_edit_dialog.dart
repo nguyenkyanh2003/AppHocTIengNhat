@@ -191,48 +191,27 @@ void showGroupEditDialog(BuildContext context, StudyGroup group) {
               }
 
               final provider = hostContext.read<StudyGroupProvider>();
+              final messenger = ScaffoldMessenger.of(hostContext);
+              final navigator = Navigator.of(context);
 
-              // Upload avatar if selected
-              if (selectedImageBytes != null) {
-                final avatarSuccess = await provider.uploadGroupAvatar(
-                  group.id,
-                  selectedImageBytes!,
-                  selectedImageName!,
-                );
-
-                if (!hostContext.mounted || !context.mounted) return;
-                if (!avatarSuccess) {
-                  ScaffoldMessenger.of(hostContext).showSnackBar(
-                    SnackBar(
-                        content:
-                            Text(provider.error ?? 'Lỗi khi upload avatar')),
+              // Ảnh lưu trước: lỗi ảnh thì dừng, không lưu nửa chừng.
+              final image = selectedImageBytes;
+              final imageError =
+                  image == null ? null : await provider.uploadGroupAvatar(group.id, image, selectedImageName!);
+              final error = imageError ??
+                  await provider.updateGroup(
+                    group.id,
+                    StudyGroupDraft(
+                      name: nameController.text.trim(),
+                      description: descController.text.trim(),
+                      level: selectedLevel,
+                      isPrivate: isPrivate,
+                      maxMembers: maxMembers,
+                    ),
                   );
-                  return;
-                }
-              }
 
-              final success = await provider.updateGroup(
-                groupId: group.id,
-                name: nameController.text.trim(),
-                description: descController.text.trim(),
-                level: selectedLevel,
-                isPrivate: isPrivate,
-                maxMembers: maxMembers,
-              );
-
-              if (!hostContext.mounted || !context.mounted) return;
-              if (success) {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(hostContext).showSnackBar(
-                  const SnackBar(content: Text('Đã cập nhật thông tin nhóm')),
-                );
-                provider.loadGroupDetail(group.id);
-              } else {
-                ScaffoldMessenger.of(hostContext).showSnackBar(
-                  SnackBar(
-                      content: Text(provider.error ?? 'Lỗi khi cập nhật nhóm')),
-                );
-              }
+              messenger.showSnackBar(SnackBar(content: Text(error ?? 'Đã cập nhật thông tin nhóm')));
+              if (error == null) navigator.pop();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue[700],

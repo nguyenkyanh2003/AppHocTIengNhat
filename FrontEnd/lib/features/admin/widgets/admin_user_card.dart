@@ -1,120 +1,69 @@
 import 'package:flutter/material.dart';
+
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
-import 'admin_user_style.dart';
+import '../models/admin_user.dart';
 import 'admin_user_actions_menu.dart';
 import 'admin_user_status_badge.dart';
+import 'admin_user_style.dart';
 
 /// Một người dùng ở khổ hẹp.
 class AdminUserCard extends StatelessWidget {
-  const AdminUserCard({
-    super.key,
-    required this.user,
-  });
+  const AdminUserCard({super.key, required this.user});
 
-  final Map<String, dynamic> user;
-
-  /// Ngày từ API là chuỗi ISO; giá trị khác ("Chưa có") giữ nguyên.
-  String _date(Object? value) {
-    final text = (value ?? '').toString();
-    final date = DateTime.tryParse(text)?.toLocal();
-    if (date == null) return text;
-    return '${date.day}/${date.month}/${date.year}';
-  }
+  final AdminUser user;
 
   @override
   Widget build(BuildContext context) {
-    final displayName = user['name']?.toString().trim() ?? '';
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
       child: ExpansionTile(
         leading: CircleAvatar(
-          backgroundColor: adminUserRoleColor(user['role']),
+          backgroundColor: adminUserRoleColor(user),
           child: Text(
-            displayName.isEmpty
-                ? '?'
-                : displayName.characters.first.toUpperCase(),
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
+            adminUserInitial(user),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
         title: Wrap(
-          spacing: 8,
-          runSpacing: 4,
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.xs,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             Text(
-              displayName.isEmpty ? 'Chưa đặt tên' : displayName,
+              user.displayName.isEmpty ? 'Chưa đặt tên' : user.displayName,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            AdminUserStatusBadge(status: user['status']),
-            if (user['role'] == 'admin') ...[
+            AdminUserStatusBadge(status: user.status),
+            if (user.isAdmin)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: 2),
+                decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(12)),
                 child: const Text(
                   'ADMIN',
-                  style: TextStyle(
-                    fontSize: AppTypography.caption,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.ink,
-                  ),
+                  style: TextStyle(fontSize: AppTypography.caption, fontWeight: FontWeight.bold, color: AppColors.ink),
                 ),
               ),
-            ],
           ],
         ),
-        subtitle: Text(
-          user['email'],
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
+        subtitle: Text(user.email, maxLines: 1, overflow: TextOverflow.ellipsis),
         trailing: AdminUserActionsMenu(user: user),
         children: [
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AppSpacing.lg),
             child: Column(
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      child: _buildInfoItem(
-                        context,
-                        '📅 Tham gia',
-                        _date(user['joinDate']),
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildInfoItem(
-                        context,
-                        '🕐 Hoạt động',
-                        _date(user['lastActive']),
-                      ),
-                    ),
+                    Expanded(child: _Info('📅 Tham gia', adminDate(user.joinedAt))),
+                    Expanded(child: _Info('🕐 Đăng nhập', adminDate(user.lastActiveAt))),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: AppSpacing.md),
                 Row(
                   children: [
-                    Expanded(
-                      child: _buildInfoItem(
-                        context,
-                        '✨ Tổng XP',
-                        user['totalXP'].toString(),
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildInfoItem(
-                        context,
-                        '🔥 Chuỗi ngày',
-                        '${user['streak']} ngày',
-                      ),
-                    ),
+                    Expanded(child: _Info('✨ Tổng XP', '${user.totalXp}')),
+                    Expanded(child: _Info('🔥 Chuỗi ngày', '${user.streak} ngày')),
                   ],
                 ),
               ],
@@ -124,26 +73,22 @@ class AdminUserCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildInfoItem(BuildContext context, String label, String value) {
+class _Info extends StatelessWidget {
+  const _Info(this.label, this.value);
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: AppTypography.caption,
-            color: context.colors.textSecondary,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: AppTypography.bodySmall,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text(label, style: TextStyle(fontSize: AppTypography.caption, color: context.colors.textSecondary)),
+        const SizedBox(height: AppSpacing.xs),
+        Text(value, style: const TextStyle(fontSize: AppTypography.bodySmall, fontWeight: FontWeight.bold)),
       ],
     );
   }

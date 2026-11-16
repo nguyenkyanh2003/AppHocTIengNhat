@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/exercise_provider.dart';
-import '../../../shared/widgets/content_pane.dart';
+
+import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
-import '../widgets/exercise_history_card.dart';
 import '../../../shared/widgets/async_view.dart';
-import '../../../core/state/view_state.dart';
+import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/paged_list_view.dart';
 import '../models/exercise.dart';
+import '../providers/exercise_provider.dart';
+import '../widgets/exercise_history_card.dart';
 
 class ExerciseHistoryScreen extends StatefulWidget {
   const ExerciseHistoryScreen({super.key});
@@ -20,48 +22,36 @@ class _ExerciseHistoryScreenState extends State<ExerciseHistoryScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _loadHistory();
+      if (mounted) context.read<ExerciseProvider>().loadHistory();
     });
-  }
-
-  Future<void> _loadHistory() async {
-    await context.read<ExerciseProvider>().loadHistory();
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<ExerciseProvider>();
     return AppScaffold(
       title: 'Lịch sử làm bài',
-      onRefresh: _loadHistory,
+      onRefresh: provider.loadHistory,
       body: ContentWidthLimit(
-        child: RefreshIndicator(
-          onRefresh: _loadHistory,
-          child: _buildHistoryList(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHistoryList() {
-    return Consumer<ExerciseProvider>(
-      builder: (context, provider, child) => AsyncView<List<ExerciseResult>>(
-        state: ViewState.fromLegacy(
-          isLoading: provider.isLoading,
-          error: provider.error,
-          value: provider.history,
-          isEmpty: provider.history.isEmpty,
-        ),
-        onRetry: _loadHistory,
-        isEmpty: (history) => history.isEmpty,
-        emptyTitle: 'Chưa có lịch sử làm bài',
-        emptyMessage: 'Hãy thử làm một bài tập nhé!',
-        emptyIcon: Icons.history,
-        builder: (context, history) => ListView.builder(
-          padding: const EdgeInsets.all(16),
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: history.length,
-          itemBuilder: (context, index) =>
-              ExerciseHistoryCard(result: history[index]),
+        child: AsyncView<List<ExerciseResult>>(
+          state: provider.history,
+          onRetry: provider.loadHistory,
+          isEmpty: (history) => history.isEmpty,
+          emptyTitle: 'Chưa có lịch sử làm bài',
+          emptyMessage: 'Hãy thử làm một bài tập nhé!',
+          emptyIcon: Icons.history,
+          builder: (context, history) => RefreshIndicator(
+            onRefresh: provider.loadHistory,
+            child: PagedListView<ExerciseResult>(
+              items: history,
+              padding: AppSpacing.page,
+              hasMore: provider.hasMoreHistory,
+              isLoadingMore: provider.isLoadingMoreHistory,
+              loadMoreError: provider.loadMoreHistoryError,
+              onLoadMore: provider.loadMore,
+              itemBuilder: (context, result) => ExerciseHistoryCard(result: result),
+            ),
+          ),
         ),
       ),
     );

@@ -50,16 +50,6 @@ export const createLessonProgressRepository = ({
       .lean();
   },
 
-  findProgressForLessons({ userId, lessonIds }) {
-    return progressModel
-      .find({ user: userId, lesson: { $in: lessonIds } })
-      .lean();
-  },
-
-  findLessonsByLevel(level) {
-    return lessonModel.find({ level }).select('_id').lean();
-  },
-
   /** ID nội dung thật của bài học; `null` khi bài không tồn tại. */
   async findLessonContent(lessonId) {
     const lesson = await lessonModel.findById(lessonId).lean();

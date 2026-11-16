@@ -35,7 +35,7 @@ class _Backend {
         if (request.url.path.endsWith('/users/refresh-token')) {
           refreshes++;
           return await refreshResponse?.call() ??
-              _json({'token': 'access-moi', 'refreshToken': 'refresh-moi'});
+              _json({'data': {'token': 'access-moi', 'refreshToken': 'refresh-moi'}});
         }
         if (request.url.path.endsWith('/users/login')) {
           return _json({'message': 'Tên đăng nhập hoặc mật khẩu không đúng.', 'code': 'INVALID_CREDENTIALS'}, 401);
@@ -132,7 +132,7 @@ void main() {
     }, () => MockClient((request) async {
       requests.add(request);
       if (request.url.path.endsWith('/users/login')) {
-        return _json({'message': 'ok', 'token': 'access-dang-nhap', 'refreshToken': 'refresh-dang-nhap', 'user': {}});
+        return _json({'message': 'ok', 'data': {'token': 'access-dang-nhap', 'refreshToken': 'refresh-dang-nhap', 'user': {}}});
       }
       return _json({'message': 'Đăng xuất thành công'});
     }));
@@ -223,7 +223,7 @@ void main() {
         final pending = api.get('/x').then<Object?>((value) => value, onError: (Object e) => e);
         await Future<void>.delayed(const Duration(milliseconds: 10));
         await switchSession();
-        gate.complete(_json({'token': 'access-A-moi', 'refreshToken': 'refresh-A-moi'}));
+        gate.complete(_json({'data': {'token': 'access-A-moi', 'refreshToken': 'refresh-A-moi'}}));
         expect(await pending, isA<SessionChangedException>());
       }, () => MockClient((request) async {
         if (request.url.path.endsWith('/refresh-token')) return gate.future;
@@ -267,7 +267,7 @@ void main() {
           final token = jsonDecode(request.body)['refreshToken'] as String;
           refreshTokens.add(token);
           if (token == 'refresh-cu') return gateOfA.future;
-          return _json({'token': 'access-B-moi', 'refreshToken': 'refresh-B-moi'});
+          return _json({'data': {'token': 'access-B-moi', 'refreshToken': 'refresh-B-moi'}});
         }
         return request.headers['Authorization'] == 'Bearer access-B-moi' ? _json({'data': 'ok'}) : _expired;
       }));
@@ -283,7 +283,7 @@ void main() {
       test('làm mới trả $status: báo lỗi tạm thời, giữ phiên, lần sau thử lại được', () async {
         var failing = true;
         final backend = _Backend(
-          refreshResponse: () => failing ? _json({'message': 'Máy chủ bận'}, status) : _json({'token': 'access-moi', 'refreshToken': 'refresh-moi'}),
+          refreshResponse: () => failing ? _json({'message': 'Máy chủ bận'}, status) : _json({'data': {'token': 'access-moi', 'refreshToken': 'refresh-moi'}}),
         );
 
         await http.runWithClient(() async {
@@ -313,7 +313,7 @@ void main() {
       for (final body in [
         http.Response('khong-phai-json', 200),
         _json({'khong': 'co token'}),
-        _json({'token': 'access-moi'}),
+        _json({'data': {'token': 'access-moi'}}),
       ]) {
         final backend = _Backend(refreshResponse: () => body);
         await http.runWithClient(() async {
@@ -423,7 +423,7 @@ void main() {
         final pending = api.get('/x').then<Object?>((value) => value, onError: (Object e) => e);
         await Future<void>.delayed(const Duration(milliseconds: 10));
         await otherTab();
-        gate.complete(_json({'token': renewedAccess, 'refreshToken': 'refresh-A-moi'}));
+        gate.complete(_json({'data': {'token': renewedAccess, 'refreshToken': 'refresh-A-moi'}}));
         outcome = await pending;
       }, () => MockClient((request) async {
         if (request.url.path.endsWith('/refresh-token')) return gate.future;
@@ -479,7 +479,7 @@ void main() {
       await http.runWithClient(() => api.get('/y'), () => MockClient((request) async {
         if (request.url.path.endsWith('/refresh-token')) {
           sent.add(jsonDecode(request.body)['refreshToken']);
-          return _json({'token': after, 'refreshToken': 'refresh-R4'});
+          return _json({'data': {'token': after, 'refreshToken': 'refresh-R4'}});
         }
         return request.headers['Authorization'] == 'Bearer $after' ? _json({'data': 'ok'}) : _expired;
       }));
@@ -496,7 +496,7 @@ void main() {
       final result = await http.runWithClient(() => api.get('/y'), () => MockClient((request) async {
         if (request.url.path.endsWith('/refresh-token')) {
           sent.add(jsonDecode(request.body)['refreshToken']);
-          return _json({'token': after, 'refreshToken': 'refresh-R4'});
+          return _json({'data': {'token': after, 'refreshToken': 'refresh-R4'}});
         }
         return request.headers['Authorization'] == 'Bearer $after' ? _json({'data': 'ok'}) : _expired;
       }));
@@ -551,7 +551,7 @@ void main() {
         addTearDown(provider.dispose);
 
         await http.runWithClient(() async {
-          expect(await provider.login('a', 'mat-khau-a'), isTrue);
+          expect(await provider.login('a', 'mat-khau-a'), isNull);
           expect(provider.isAuthenticated, isTrue);
 
           SharedPreferences.setMockInitialValues({'current_user_id': 'user-B', 'user_data_user-B': '{}'});
@@ -561,10 +561,10 @@ void main() {
           await pumpEventQueue();
         }, () => MockClient((request) async {
           if (request.url.path.endsWith('/users/login')) {
-            return _json({'message': 'ok', 'token': accessA, 'refreshToken': 'refresh-A', 'user': {'_id': 'user-A', 'TenDangNhap': 'a'}});
+            return _json({'message': 'ok', 'data': {'token': accessA, 'refreshToken': 'refresh-A', 'user': {'_id': 'user-A', 'TenDangNhap': 'a'}}});
           }
           if (request.url.path.endsWith('/users/profile/user-A')) {
-            return _json({'profile': {'_id': 'user-A', 'TenDangNhap': 'a'}});
+            return _json({'data': {'_id': 'user-A', 'TenDangNhap': 'a'}});
           }
           return _expired;
         }));

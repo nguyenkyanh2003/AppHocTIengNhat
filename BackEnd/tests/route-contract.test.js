@@ -29,7 +29,7 @@ const routeMounts = new Map([
 ]);
 
 const routePattern = /router\.(get|post|put|patch|delete)\(\s*["']([^"']+)/g;
-const expectedCount = 152;
+const expectedCount = 144;
 // Update this digest only after intentionally reviewing a public route change.
 // 2026-09-14: +1 route `GET /api/lesson/situations` (danh sách tình huống có bài học).
 // 2026-09-20: -4 route ở đợt cutover đường ghi hoạt động (spec streak §3.1, §3.6).
@@ -69,7 +69,16 @@ const expectedCount = 152;
 //   `GET /api/notebook/stats/me`: chỉ có method service Flutter mà không màn hình nào gọi.
 // 2026-11-14: one-style (kanji) — gỡ `GET /api/kanji/level/:level` và `GET /api/kanji/lesson/:lessonId`:
 //   màn Kanji lọc cấp độ qua `GET /api/kanji?level=`, bài học tự mang danh sách chữ của nó.
-const expectedSignatureHash = '3ab64e18d9819bb5bd9fba34648adf3b3a43e71e1d3737421105f83de565bdad';
+// 2026-11-14: one-style (flashcards) — gỡ `GET /api/flashcard/decks/search`: không màn hình nào
+//   tìm bộ thẻ; `GET /decks` giờ chỉ liệt kê bộ của chính người dùng (Flutter luôn gửi `myDecks=true`).
+// 2026-11-14: one-style (exercise) — gỡ `GET /api/exercise/type/:type`: màn Luyện tập lọc theo loại
+//   ngay trên danh sách đã tải theo cấp độ, không gọi route này.
+// 2026-11-14: one-style (users) — gỡ `DELETE /api/users/admin/users` (xoá hàng loạt): màn quản trị
+//   chỉ xoá từng người qua `DELETE /api/users/admin/users/:id`.
+// 2026-11-14: one-style (lessons, lesson-progress) — gỡ `GET /api/lesson/level/:capDo`, `DELETE /api/lesson`
+//   (xoá hàng loạt), `POST /api/lesson/:id/duplicate`, `GET /api/lesson-progress/stats` và
+//   `GET /api/lesson-progress/level/:level`: chỉ còn method service/provider Flutter không ai gọi.
+const expectedSignatureHash = '0ac28bcc67f4cc42ec7438f4255878624f2ca5f2718a11c9d4e0d92c8e7e80f6';
 
 const collectSignatures = async () => {
   const signatures = [];

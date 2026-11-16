@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../core/state/detail_state.dart';
 import '../../../core/state/paged_list.dart';
 import '../../../core/state/view_state.dart';
 import '../models/notebook.dart';
@@ -15,25 +16,20 @@ class NotebookProvider extends ChangeNotifier {
 
   final NotebookService _service;
   late final _notes = PagedList<Notebook>(onChanged: _notify);
-  ViewState<Notebook> _detail = const ViewState.idle();
+  late final _detail = DetailState<Notebook>(idOf: (note) => note.id, onChanged: _notify);
   NoteType? _type;
   String _search = '';
   bool _saving = false;
-  int _detailGeneration = 0;
   bool _disposed = false;
 
   ViewState<List<Notebook>> get notes => _notes.state;
   bool get hasMore => _notes.hasMore;
   bool get isLoadingMore => _notes.isLoadingMore;
   String? get loadMoreError => _notes.loadMoreError;
-  ViewState<Notebook> get detail => _detail;
+  ViewState<Notebook> get detail => _detail.state;
 
-  /// Chi tiết của đúng ghi chú [id]: dữ liệu còn sót của ghi chú mở trước đó
-  /// coi như đang tải, để màn không hiện nhầm một khung hình nội dung cũ.
-  ViewState<Notebook> detailOf(String id) => switch (_detail) {
-        ViewData(:final value) when value.id != id => const ViewState.loading(),
-        final state => state,
-      };
+  /// Chi tiết của đúng ghi chú [id] (xem [DetailState.of]).
+  ViewState<Notebook> detailOf(String id) => _detail.of(id);
 
   NoteType? get selectedType => _type;
   String get searchQuery => _search;
@@ -57,16 +53,7 @@ class NotebookProvider extends ChangeNotifier {
     return loadNotes();
   }
 
-  Future<void> loadDetail(String id) async {
-    final generation = ++_detailGeneration;
-    _detail = const ViewState.loading();
-    _notify();
-
-    final result = await ViewState.guard(() => _service.detail(id));
-    if (generation != _detailGeneration) return;
-    _detail = result;
-    _notify();
-  }
+  Future<void> loadDetail(String id) => _detail.load(id, () => _service.detail(id));
 
   /// Tạo mới khi không có [id], ngược lại sửa ghi chú [id]. Trả `null` khi đã
   /// lưu, hoặc câu báo lỗi để form hiện.
@@ -77,10 +64,7 @@ class NotebookProvider extends ChangeNotifier {
 
     final result = await ViewState.guard(() => id == null ? _service.create(draft) : _service.update(id, draft));
     _saving = false;
-    if (result case ViewData(:final value) when _detail.valueOrNull?.id == value.id) {
-      _detailGeneration++;
-      _detail = result;
-    }
+    if (result case ViewData(:final value)) _detail.replace(value);
     _notify();
     if (result.hasData) _reloadOpenList();
     return result.errorOrNull;
@@ -90,11 +74,7 @@ class NotebookProvider extends ChangeNotifier {
   Future<String?> delete(String id) async {
     final result = await ViewState.guard(() => _service.delete(id));
     if (!result.hasData) return result.errorOrNull;
-    if (_detail.valueOrNull?.id == id) {
-      _detailGeneration++;
-      _detail = const ViewState.idle();
-      _notify();
-    }
+    _detail.remove(id);
     _reloadOpenList();
     return null;
   }
@@ -102,8 +82,7 @@ class NotebookProvider extends ChangeNotifier {
   /// Về trạng thái chưa tải (đăng xuất).
   void clear() {
     _notes.clear();
-    _detailGeneration++;
-    _detail = const ViewState.idle();
+    _detail.clear();
     _type = null;
     _search = '';
     _notify();

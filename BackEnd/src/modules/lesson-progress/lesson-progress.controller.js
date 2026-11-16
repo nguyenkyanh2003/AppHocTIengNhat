@@ -1,78 +1,37 @@
-import { convertDatesToVietnam } from '../../shared/utils/timezone.js';
+import { list, ok } from '../../shared/http/respond.js';
 
-/**
- * Controller tiến độ bài học: chỉ map HTTP <-> service.
- *
- * Vỏ response giữ nguyên như bản cũ (trả thẳng document tiến độ, không bọc
- * `{ data }`) vì Flutter đang đọc trực tiếp `completed_*` / `total_*` để tự
- * tính phần trăm.
- */
-export const createLessonProgressController = (service) => ({
-  async getByLessonId(req, res) {
-    const progress = await service.getProgress({
-      userId: req.user._id,
-      lessonId: req.valid.params.lessonId,
-    });
+/** Controller tiến độ bài học: chỉ map HTTP <-> service. Người học lấy từ `req.user`. */
+export const createLessonProgressController = (service) => {
+  const key = (req) => ({ userId: req.user._id, lessonId: req.valid.params.lessonId });
 
-    return res.json(progress ? convertDatesToVietnam(progress) : null);
-  },
+  return {
+    /** Chưa bắt đầu bài thì `data` là `null`, không phải 404. */
+    async getByLessonId(req, res) {
+      return ok(res, await service.getProgress(key(req)));
+    },
 
-  async list(req, res) {
-    const progressList = await service.listProgress(req.user._id);
-    return res.json(convertDatesToVietnam(progressList));
-  },
+    async list(req, res) {
+      return list(res, await service.listProgress(req.user._id));
+    },
 
-  async start(req, res) {
-    const progress = await service.startLesson({
-      userId: req.user._id,
-      lessonId: req.valid.params.lessonId,
-    });
+    async start(req, res) {
+      return ok(res, await service.startLesson(key(req)));
+    },
 
-    return res.json(convertDatesToVietnam(progress));
-  },
+    async update(req, res) {
+      const { item_type: itemType, item_id: itemId, completed } = req.valid.body;
+      return ok(res, await service.updateItem({ ...key(req), itemType, itemId, completed }));
+    },
 
-  async update(req, res) {
-    const progress = await service.updateItem({
-      userId: req.user._id,
-      lessonId: req.valid.params.lessonId,
-      itemType: req.valid.body.item_type,
-      itemId: req.valid.body.item_id,
-      completed: req.valid.body.completed,
-    });
+    async complete(req, res) {
+      return ok(res, await service.completeLesson(key(req)));
+    },
 
-    return res.json(convertDatesToVietnam(progress));
-  },
-
-  async complete(req, res) {
-    const progress = await service.completeLesson({
-      userId: req.user._id,
-      lessonId: req.valid.params.lessonId,
-    });
-
-    return res.json(convertDatesToVietnam(progress));
-  },
-
-  async reset(req, res) {
-    const result = await service.resetLesson({
-      userId: req.user._id,
-      lessonId: req.valid.params.lessonId,
-    });
-
-    return res.json(result);
-  },
-
-  async stats(req, res) {
-    return res.json(await service.getStats(req.user._id));
-  },
-
-  async levelStats(req, res) {
-    const stats = await service.getLevelStats({
-      userId: req.user._id,
-      level: req.valid.params.level,
-    });
-
-    return res.json(stats);
-  },
-});
+    async reset(req, res) {
+      const { message } = await service.resetLesson(key(req));
+      return ok(res, { reset: true }, { message });
+    },
+  };
+};
 
 export default createLessonProgressController;

@@ -127,29 +127,16 @@ class GroupMembersTab extends StatelessWidget {
     );
   }
 
-  void _handleMemberAction(BuildContext context, String action, String userId,
-      String userName) async {
-    final hostContext = context;
-    final provider = Provider.of<StudyGroupProvider>(context, listen: false);
-    bool success = false;
+  Future<void> _handleMemberAction(BuildContext context, String action, String userId, String userName) async {
+    final provider = context.read<StudyGroupProvider>();
+    final messenger = ScaffoldMessenger.of(context);
+    void report(String? error, String done) => messenger.showSnackBar(SnackBar(content: Text(error ?? done)));
 
     switch (action) {
       case 'promote':
-        success = await provider.promoteMember(groupId, userId);
-        if (success && hostContext.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Đã promote $userName lên Admin')),
-          );
-        }
-        break;
+        report(await provider.promoteMember(groupId, userId), 'Đã thăng $userName lên quản trị viên');
       case 'demote':
-        success = await provider.demoteMember(groupId, userId);
-        if (success && hostContext.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Đã demote $userName về Member')),
-          );
-        }
-        break;
+        report(await provider.demoteMember(groupId, userId), 'Đã hạ $userName về thành viên');
       case 'kick':
         final confirm = await showDialog<bool>(
           context: context,
@@ -169,15 +156,7 @@ class GroupMembersTab extends StatelessWidget {
             ],
           ),
         );
-        if (confirm == true) {
-          success = await provider.kickMember(groupId, userId);
-          if (success && hostContext.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Đã kick $userName khỏi nhóm')),
-            );
-          }
-        }
-        break;
+        if (confirm == true) report(await provider.kickMember(groupId, userId), 'Đã mời $userName ra khỏi nhóm');
     }
   }
 }

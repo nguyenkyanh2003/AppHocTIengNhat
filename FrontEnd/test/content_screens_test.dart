@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
 
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/core/network/api_client.dart';
+import 'package:apphoctiengnnhat/core/network/api_envelope.dart';
 import 'package:apphoctiengnnhat/features/admin/models/admin_dashboard_summary.dart';
-import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
+import 'package:apphoctiengnnhat/features/admin/models/admin_report.dart';
 import 'package:apphoctiengnnhat/features/admin/screens/admin_dashboard_screen.dart';
 import 'package:apphoctiengnnhat/features/admin/screens/admin_report_management_screen.dart';
 import 'package:apphoctiengnnhat/features/admin/services/admin_service.dart';
@@ -14,39 +14,40 @@ import 'package:apphoctiengnnhat/features/jlpt/providers/jlpt_practice_provider.
 import 'package:apphoctiengnnhat/features/jlpt/services/jlpt_service.dart';
 
 class _FakeAdminService extends AdminService {
-  final calls = <List<String>>[];
+  final calls = <List<String?>>[];
   Object? respondError;
   Map<String, dynamic> stats = {};
-  List<dynamic> reports = const [];
+  List<Map<String, dynamic>> reportRows = const [];
 
   @override
-  Future<Map<String, dynamic>> getDashboardStats() async => stats;
+  Future<AdminDashboardSummary> dashboard() async => AdminDashboardSummary.fromStats(stats);
+
+  /// Lọc theo loại như server: màn không tự lọc trên trang đã tải.
+  @override
+  Future<Paged<AdminReport>> reports({int page = 1, String? status, String? type}) async {
+    final rows = [for (final row in reportRows) if (type == null || row['type'] == type) AdminReport.fromJson(row)];
+    return Paged(items: rows, page: 1, limit: 20, total: rows.length, totalPages: 1);
+  }
 
   @override
-  Future<List<dynamic>> getReports({int page = 1, int limit = 20, String? status, String? type}) async =>
-      reports;
+  Future<AdminReportStats> reportStats() async =>
+      const AdminReportStats(total: 0, pending: 0, inProgress: 0, resolved: 0);
 
   @override
-  Future<Map<String, dynamic>> getReportStats() async => const {};
-
-  @override
-  Future<Map<String, dynamic>> respondToReport(
-      String reportId, String response, String status) async {
+  Future<void> updateReport(String id, {required String status, String? response}) async {
     if (respondError != null) throw respondError!;
-    calls.add([reportId, response, status]);
-    return const {};
+    calls.add([id, response, status]);
   }
 }
 
 class _FakeJlptService extends JLPTService {
   Object? error;
-  List<dynamic> items = const [];
+  List<Map<String, dynamic>> items = const [];
 
   @override
-  Future<List<dynamic>> fetchPractice(
-      {required String type, String? level, int limit = 10}) async {
+  Future<List<JlptPracticeQuestion>> practice({required String type, String? level, int limit = 10}) async {
     if (error != null) throw error!;
-    return items;
+    return items.map(JlptPracticeQuestion.fromJson).toList();
   }
 }
 
@@ -59,13 +60,10 @@ Map<String, dynamic> _report(String id,
       'type': type,
       'status': status,
       'priority': 'low',
+      'createdAt': '2026-11-05T07:00:00.000Z',
     };
 
-Widget _adminApp(AdminProvider provider, Widget screen) =>
-    ChangeNotifierProvider.value(
-      value: provider,
-      child: MaterialApp(theme: AppTheme.lightTheme, home: screen),
-    );
+Widget _adminApp(Widget screen) => MaterialApp(theme: AppTheme.lightTheme, home: screen);
 
 void main() {
   group('tổng quan quản trị', () {
@@ -117,8 +115,7 @@ void main() {
           'lessons': {'totalLessons': 40},
         };
 
-      await tester.pumpWidget(_adminApp(
-          AdminProvider(adminService: service), const AdminDashboardScreen()));
+      await tester.pumpWidget(_adminApp(AdminDashboardScreen(service: service)));
       await tester.pumpAndSettle();
 
       expect(find.text('77'), findsOneWidget);
@@ -139,13 +136,12 @@ void main() {
 
   group('quản trị báo cáo', () {
     Future<_FakeAdminService> pumpReports(
-        WidgetTester tester, List<dynamic> reports) async {
+        WidgetTester tester, List<Map<String, dynamic>> reports) async {
       tester.view.physicalSize = const Size(500, 1400);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.reset);
-      final service = _FakeAdminService()..reports = reports;
-      await tester.pumpWidget(_adminApp(AdminProvider(adminService: service),
-          const AdminReportManagementScreen()));
+      final service = _FakeAdminService()..reportRows = reports;
+      await tester.pumpWidget(_adminApp(AdminReportManagementScreen(service: service)));
       await tester.pumpAndSettle();
       return service;
     }
@@ -212,16 +208,12 @@ void main() {
       expect(provider.answerOf(1), 0);
     });
 
-    test('server trả 404 "chưa có câu hỏi" là danh sách rỗng, không phải lỗi',
-        () async {
-      final provider = JLPTPracticeProvider(
-          service: _FakeJlptService()
-            ..error = NotFoundException('Chưa có câu hỏi phù hợp.'));
+    test('chưa có câu nào phù hợp là danh sách rỗng, không phải lỗi', () async {
+      final provider = JLPTPracticeProvider(service: _FakeJlptService());
 
       await provider.loadPractice(type: 'choukai');
 
-      expect(provider.items, isEmpty);
-      expect(provider.error, isNull);
+      expect(provider.questions.valueOrNull, isEmpty);
     });
 
     test('lỗi mạng thì báo lỗi', () async {
@@ -230,7 +222,7 @@ void main() {
 
       await provider.loadPractice(type: 'choukai');
 
-      expect(provider.error, 'Mất mạng');
+      expect(provider.questions.errorOrNull, 'Mất mạng');
     });
 
     test('tải bộ mới thì xoá câu trả lời cũ', () async {

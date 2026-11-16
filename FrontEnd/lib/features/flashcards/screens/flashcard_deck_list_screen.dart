@@ -12,8 +12,7 @@ class FlashcardDeckListScreen extends StatefulWidget {
   const FlashcardDeckListScreen({super.key});
 
   @override
-  State<FlashcardDeckListScreen> createState() =>
-      _FlashcardDeckListScreenState();
+  State<FlashcardDeckListScreen> createState() => _FlashcardDeckListScreenState();
 }
 
 class _FlashcardDeckListScreenState extends State<FlashcardDeckListScreen> {
@@ -21,23 +20,18 @@ class _FlashcardDeckListScreenState extends State<FlashcardDeckListScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) context.read<FlashcardProvider>().loadDecks(refresh: true);
+      if (mounted) context.read<FlashcardProvider>().loadDecks();
     });
   }
 
-  Future<void> _createDeck() async {
-    final provider = context.read<FlashcardProvider>();
-    final created = await context.push<bool>('/flashcards/new');
-    if (created == true) await provider.loadDecks(refresh: true);
-  }
+  /// Tạo xong provider tự tải lại danh sách, nên không cần chờ form đóng.
+  void _createDeck() => context.push('/flashcards/new');
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
       title: 'Bộ thẻ của tôi',
-      body: ContentWidthLimit(
-        child: FlashcardDecksTab(onCreateDeck: _createDeck),
-      ),
+      body: ContentWidthLimit(child: FlashcardDecksTab(onCreateDeck: _createDeck)),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _createDeck,
         icon: const Icon(Icons.add),

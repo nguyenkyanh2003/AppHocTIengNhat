@@ -7,38 +7,7 @@ import 'package:apphoctiengnnhat/shared/widgets/async_view.dart';
 
 Widget _host(Widget child) => MaterialApp(home: Scaffold(body: child));
 
-void _bridgeTests() {
-  group('ViewState.fromLegacy', () {
-    ViewState<List<int>> bridge({bool loading = false, String? error, List<int>? value}) =>
-        ViewState<List<int>>.fromLegacy(
-          isLoading: loading,
-          error: error,
-          value: value,
-          isEmpty: value?.isEmpty ?? true,
-        );
-
-    test('đang tải mà chưa có gì thì là loading', () {
-      expect(bridge(loading: true, value: const []), isA<ViewLoading<List<int>>>());
-    });
-
-    test('lỗi mà chưa có gì thì là failure', () {
-      expect(bridge(error: 'Mất mạng', value: const []).errorOrNull, 'Mất mạng');
-    });
-
-    test('tải xong rỗng thì là data rỗng, để AsyncView hiện trạng thái rỗng', () {
-      expect(bridge(value: const []).valueOrNull, isEmpty);
-    });
-
-    test('đã có nội dung thì giữ nội dung khi tải lại hoặc tải lại lỗi', () {
-      expect(bridge(loading: true, value: const [1]).valueOrNull, [1]);
-      expect(bridge(error: 'Mất mạng', value: const [1]).valueOrNull, [1]);
-    });
-
-    test('chi tiết chưa tải xong (value null) không coi là rỗng', () {
-      expect(bridge(), isA<ViewIdle<List<int>>>());
-    });
-  });
-
+void _viewStateTests() {
   test('map đổi dữ liệu bên trong, giữ nguyên trạng thái tải và lỗi', () {
     expect(const ViewState<int>.data(2).map((value) => '$value').valueOrNull, '2');
     expect(const ViewState<int>.failure('Hỏng').map((value) => '$value').errorOrNull, 'Hỏng');
@@ -69,7 +38,7 @@ AsyncView<List<String>> _view(
     );
 
 void main() {
-  _bridgeTests();
+  _viewStateTests();
 
   testWidgets('trạng thái idle hiển thị vòng quay chờ', (tester) async {
     await tester.pumpWidget(_host(_view(const ViewState.idle())));

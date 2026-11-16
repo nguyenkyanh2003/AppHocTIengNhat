@@ -20,7 +20,7 @@ MockClient _server({required String? firstDay, bool failSecondHistoryPage = fals
       final query = request.url.queryParameters;
       switch (request.url.path) {
         case '/api/streak/my-streak':
-          return _json({'current_streak': 2, 'first_day': firstDay});
+          return _json({'data': {'current_streak': 2, 'first_day': firstDay}});
         case '/api/streak/xp-history':
           return switch (query['cursor']) {
             null => _json({'data': [_xp(1), _xp(2)], 'next_cursor': 'c2', 'as_of': 'x'}),
@@ -115,6 +115,44 @@ void main() {
       throwsA(isA<ExportCancelled>()),
     );
     expect(log, hasLength(2), reason: 'không đọc thêm trang nào sau khi huỷ');
+  });
+
+  test('each section exports what is inside `data`, and the notebook is read to its last page', () async {
+    final notebookPages = <String?>[];
+    final data = await http.runWithClient(
+      () => ExportService().load(ExportType.allData),
+      () => MockClient((request) async {
+        switch (request.url.path) {
+          case '/api/progress':
+            return _json({'data': [{'lesson_id': 'l1'}], 'total': 1});
+          case '/api/progress/dashboard/stats':
+            return _json({'data': {'vocabulary_learned': 12}});
+          case '/api/achievement/my-achievements':
+            return _json({'data': {'earned': [], 'locked': []}});
+          case '/api/notebook':
+            notebookPages.add(request.url.queryParameters['page']);
+            final page = int.parse(request.url.queryParameters['page'] ?? '1');
+            return _json({
+              'data': [{'_id': 'n$page'}],
+              'page': page,
+              'limit': 100,
+              'total': 2,
+              'totalPages': 2,
+            });
+          case '/api/streak/my-streak':
+            return _json({'data': {'current_streak': 0, 'first_day': null}});
+          case '/api/streak/xp-history':
+            return _json({'data': [], 'next_cursor': null, 'as_of': 'x'});
+        }
+        return _json({'message': 'không có'}, 404);
+      }),
+    );
+
+    expect(data['lesson_progress'], [{'lesson_id': 'l1'}]);
+    expect(data['statistics'], {'vocabulary_learned': 12});
+    expect(data['achievements'], {'earned': [], 'locked': []});
+    expect(data['notebook'], [{'_id': 'n1'}, {'_id': 'n2'}]);
+    expect(notebookPages, ['1', '2']);
   });
 
   test('day keys shift across month and year boundaries in UTC', () {

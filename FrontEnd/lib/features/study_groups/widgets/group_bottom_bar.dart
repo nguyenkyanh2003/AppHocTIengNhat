@@ -106,20 +106,9 @@ class GroupBottomBar extends StatelessWidget {
     }
   }
 
-  void _joinGroup(BuildContext context, String groupId) async {
-    final hostContext = context;
-    final provider = Provider.of<StudyGroupProvider>(context, listen: false);
-    final success = await provider.joinGroup(groupId);
-
-    if (success && hostContext.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã tham gia nhóm thành công!')),
-      );
-    } else if (hostContext.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(provider.error ?? 'Lỗi khi tham gia nhóm')),
-      );
-    }
+  Future<void> _joinGroup(BuildContext context, String groupId) async {
+    final messenger = ScaffoldMessenger.of(context);
+    _report(messenger, await context.read<StudyGroupProvider>().joinGroup(groupId), 'Đã tham gia nhóm thành công!');
   }
 
   void _confirmLeaveGroup(BuildContext context, String groupId) async {
@@ -143,20 +132,12 @@ class GroupBottomBar extends StatelessWidget {
       ),
     );
 
-    if (!hostContext.mounted) return;
-    if (confirm == true) {
-      final provider = context.read<StudyGroupProvider>();
-      final navigator = Navigator.of(context);
-      final messenger = ScaffoldMessenger.of(context);
-      final success = await provider.leaveGroup(groupId);
-
-      if (success && hostContext.mounted) {
-        messenger.showSnackBar(
-          const SnackBar(content: Text('Đã rời nhóm')),
-        );
-        navigator.pop();
-      }
-    }
+    if (!hostContext.mounted || confirm != true) return;
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final error = await context.read<StudyGroupProvider>().leaveGroup(groupId);
+    _report(messenger, error, 'Đã rời nhóm');
+    if (error == null) navigator.pop();
   }
 
   void _confirmDeleteGroup(BuildContext context, String groupId) async {
@@ -182,19 +163,16 @@ class GroupBottomBar extends StatelessWidget {
       ),
     );
 
-    if (!hostContext.mounted) return;
-    if (confirm == true) {
-      final provider = context.read<StudyGroupProvider>();
-      final navigator = Navigator.of(context);
-      final messenger = ScaffoldMessenger.of(context);
-      final success = await provider.deleteGroup(groupId);
-
-      if (success && hostContext.mounted) {
-        messenger.showSnackBar(
-          const SnackBar(content: Text('Đã xóa nhóm')),
-        );
-        navigator.pop();
-      }
-    }
+    if (!hostContext.mounted || confirm != true) return;
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final error = await context.read<StudyGroupProvider>().deleteGroup(groupId);
+    _report(messenger, error, 'Đã xóa nhóm');
+    if (error == null) navigator.pop();
   }
 }
+
+/// Báo kết quả một thao tác: [error] `null` là xong.
+void _report(ScaffoldMessengerState messenger, String? error, String done) =>
+    messenger.showSnackBar(SnackBar(content: Text(error ?? done)));
+

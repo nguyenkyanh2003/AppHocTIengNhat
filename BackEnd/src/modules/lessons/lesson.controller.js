@@ -1,40 +1,22 @@
-import { created, list, ok } from '../../shared/http/respond.js';
+import { created, list, ok, paginated } from '../../shared/http/respond.js';
 import { lessonService } from './lesson.service.js';
 
-/**
- * Chỉ map HTTP <-> service. Vỏ response của `listRoot`/`getById`/
- * `getStatsOverview`/`deleteRoot` KHÔNG dùng helper chuẩn `ok`/`list`/`paginated`
- * vì phải giữ đúng hình dạng cũ cho Flutter.
- */
+/** Chỉ map HTTP <-> service. */
 export const createLessonController = (service) => ({
   async listRoot(req, res) {
-    const { total, items, totalPages } = await service.list(req.valid.query);
-    return res.json({
-      totalItems: total,
-      totalPages,
-      currentPage: req.valid.query.page,
-      data: items,
-    });
+    return paginated(res, await service.list(req.valid.query));
   },
 
   async getById(req, res) {
-    const lesson = await service.getDetail(req.valid.params.id);
-    return res.json(lesson);
+    return ok(res, await service.getDetail(req.valid.params.id));
   },
 
   async getSituations(req, res) {
-    const situations = await service.listSituations(req.valid.query);
-    return list(res, situations);
+    return list(res, await service.listSituations(req.valid.query));
   },
 
-  async getLevelByCapDo(req, res) {
-    const lessons = await service.getByLevel(req.valid.params.capDo);
-    return list(res, lessons);
-  },
-
-  async getStatsOverview(req, res) {
-    const stats = await service.getStatsOverview();
-    return res.json(stats);
+  async getStatsOverview(_req, res) {
+    return ok(res, await service.getStatsOverview());
   },
 
   async postRoot(req, res) {
@@ -48,21 +30,8 @@ export const createLessonController = (service) => ({
   },
 
   async deleteById(req, res) {
-    const lesson = await service.remove(req.valid.params.id);
-    return ok(res, lesson, { message: 'Xóa bài học thành công.' });
-  },
-
-  async deleteRoot(req, res) {
-    const deletedCount = await service.removeMany(req.valid.body.ids);
-    return res.json({
-      message: `Xóa thành công ${deletedCount} bài học.`,
-      deletedCount,
-    });
-  },
-
-  async postByIdDuplicate(req, res) {
-    const lesson = await service.duplicate(req.valid.params.id);
-    return created(res, lesson, { message: 'Sao chép bài học thành công.' });
+    await service.remove(req.valid.params.id);
+    return ok(res, { deleted: true }, { message: 'Xóa bài học thành công.' });
   },
 });
 

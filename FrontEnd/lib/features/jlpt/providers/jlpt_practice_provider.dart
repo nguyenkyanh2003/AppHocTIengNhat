@@ -1,66 +1,56 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../core/network/api_client.dart';
 import '../../../core/state/view_state.dart';
 import '../models/jlpt_practice_question.dart';
 import '../services/jlpt_service.dart';
 
 /// Một bộ câu luyện nhanh. Chấm ngay trên máy và không lưu lên server: đây là ôn
 /// nhanh, không phải một lượt thi.
-class JLPTPracticeProvider with ChangeNotifier {
-  JLPTPracticeProvider({JLPTService? service})
-      : _service = service ?? JLPTService();
+class JLPTPracticeProvider extends ChangeNotifier {
+  JLPTPracticeProvider({JLPTService? service}) : _service = service ?? JLPTService();
 
   final JLPTService _service;
-
-  bool _loading = false;
-  String? _error;
-  List<JlptPracticeQuestion> _items = const [];
+  ViewState<List<JlptPracticeQuestion>> _questions = const ViewState.idle();
   final Map<int, int> _answers = {};
+  int _generation = 0;
+  bool _disposed = false;
 
-  bool get isLoading => _loading;
-  String? get error => _error;
-  List<JlptPracticeQuestion> get items => _items;
+  ViewState<List<JlptPracticeQuestion>> get questions => _questions;
 
   int? answerOf(int index) => _answers[index];
   int get answeredCount => _answers.length;
-  int get correctCount => _answers.entries
-      .where((entry) => _items[entry.key].correctAnswer == entry.value)
-      .length;
+  int get correctCount {
+    final items = _questions.valueOrNull ?? const [];
+    return _answers.entries.where((entry) => items[entry.key].correctAnswer == entry.value).length;
+  }
 
-  Future<void> loadPractice({
-    required String type,
-    String? level,
-    int limit = 10,
-  }) async {
-    _loading = true;
-    _error = null;
-    _items = const [];
+  /// Bộ câu mới thì câu trả lời cũ bị bỏ.
+  Future<void> loadPractice({required String type, String? level, int limit = 10}) async {
+    final generation = ++_generation;
     _answers.clear();
-    notifyListeners();
-    try {
-      final data =
-          await _service.fetchPractice(type: type, level: level, limit: limit);
-      _items = data
-          .map((item) => JlptPracticeQuestion.fromJson(
-              Map<String, dynamic>.from(item as Map)))
-          .toList();
-    } on NotFoundException {
-      // Server trả 404 khi không có câu nào phù hợp: đó là danh sách rỗng, không phải lỗi.
-      _items = const [];
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error load practice: $e');
-    } finally {
-      _loading = false;
-      notifyListeners();
-    }
+    _questions = const ViewState.loading();
+    _notify();
+
+    final result = await ViewState.guard(() => _service.practice(type: type, level: level, limit: limit));
+    if (generation != _generation) return;
+    _questions = result;
+    _notify();
   }
 
   /// Ghi câu trả lời. Đã trả lời thì không đổi được, vì đáp án đã hiện ra.
   void answer(int index, int choice) {
     if (_answers.containsKey(index)) return;
     _answers[index] = choice;
-    notifyListeners();
+    _notify();
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

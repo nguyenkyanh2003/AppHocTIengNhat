@@ -27,8 +27,6 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
   late final _frontSubtextController = TextEditingController(text: widget.card?.frontSubtext);
   late final _backSubtextController = TextEditingController(text: widget.card?.backSubtext);
 
-  bool _isLoading = false;
-
   bool get _isEditing => widget.card != null;
 
   @override
@@ -48,37 +46,27 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
   Future<void> _saveCard() async {
     if (!_formKey.currentState!.validate()) return;
 
-    setState(() => _isLoading = true);
     final provider = context.read<FlashcardProvider>();
-    final front = _frontController.text.trim();
-    final back = _backController.text.trim();
-    final success = _isEditing
-        ? await provider.updateCard(
-            deckId: widget.deckId,
-            cardId: widget.card!.id!,
-            front: front,
-            back: back,
-            frontSubtext: _optional(_frontSubtextController),
-            backSubtext: _optional(_backSubtextController),
-          )
-        : await provider.addCard(
-            deckId: widget.deckId,
-            front: front,
-            back: back,
-            frontSubtext: _optional(_frontSubtextController),
-            backSubtext: _optional(_backSubtextController),
-          );
+    final draft = FlashcardCardDraft(
+      front: _frontController.text.trim(),
+      back: _backController.text.trim(),
+      frontSubtext: _optional(_frontSubtextController),
+      backSubtext: _optional(_backSubtextController),
+    );
+    final card = widget.card;
+    final error = card == null
+        ? await provider.addCard(widget.deckId, draft)
+        : await provider.updateCard(widget.deckId, card.id, draft);
     if (!mounted) return;
-    setState(() => _isLoading = false);
 
     final saved = _isEditing ? 'Cập nhật thẻ thành công!' : 'Thêm thẻ thành công!';
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(success ? saved : provider.error ?? 'Có lỗi xảy ra'),
-        backgroundColor: success ? AppColors.successStrong : AppColors.errorStrong,
+        content: Text(error ?? saved),
+        backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
-    if (success) Navigator.pop(context);
+    if (error == null) Navigator.pop(context);
   }
 
   @override
@@ -157,7 +145,7 @@ class _EditFlashcardCardScreenState extends State<EditFlashcardCardScreen> {
               section,
               FlashcardSubmitButton(
                 label: _isEditing ? 'Lưu Thay Đổi' : 'Thêm Thẻ',
-                loading: _isLoading,
+                loading: context.watch<FlashcardProvider>().isSaving,
                 onPressed: _saveCard,
               ),
             ],

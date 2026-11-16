@@ -1,62 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/admin_provider.dart';
+
+import '../../../core/network/api_envelope.dart';
 import '../../../shared/widgets/app_dialog.dart';
+import '../models/admin_content_type.dart';
+import '../providers/admin_content_provider.dart';
 import 'admin_content_format.dart';
 
-/// Hộp thoại thêm, sửa hoặc nhân bản một mục nội dung.
-Future<void> showAdminContentEditor(BuildContext context,
-    {Map<String, dynamic>? item,
-    bool duplicate = false,
-    required String selectedContentType}) async {
-  final hostContext = context;
-  final type = selectedContentType;
+/// Hộp thoại thêm ([item] `null`), sửa, hoặc nhân bản ([duplicate]) một mục
+/// nội dung của loại đang chọn. [context] phải nằm dưới [AdminContentProvider].
+Future<void> showAdminContentEditor(BuildContext context, {JsonObject? item, bool duplicate = false}) async {
+  final provider = context.read<AdminContentProvider>();
+  final type = provider.type;
   final editing = item != null && !duplicate;
   final formKey = GlobalKey<FormState>();
   final controllers = _editorControllers(type, item, duplicate);
-  var level =
-      _levels.contains(item?['level']) ? item!['level'] as String : 'N5';
+  var level = _levels.contains(item?['level']) ? item!['level'] as String : 'N5';
 
   // Biểu mẫu này chặn bấm ra ngoài để khỏi mất dữ liệu đang nhập, nhưng Esc
   // vẫn phải đóng được — `showDialog` gộp hai thứ đó vào một cờ.
-  final payload = await showAppDialog<Map<String, dynamic>>(
+  final payload = await showAppDialog<JsonObject>(
     context: context,
     dismissOnBarrierTap: false,
     builder: (dialogContext) => StatefulBuilder(
       builder: (context, setDialogState) => AlertDialog(
         title: Text(
           editing
-              ? 'Chỉnh sửa ${adminContentTypeLabel(type)}'
+              ? 'Chỉnh sửa ${type.label}'
               : duplicate
-                  ? 'Nhân bản ${adminContentTypeLabel(type)}'
-                  : 'Thêm ${adminContentTypeLabel(type)}',
+                  ? 'Nhân bản ${type.label}'
+                  : 'Thêm ${type.label}',
         ),
         content: SizedBox(
           width: 520,
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: _editorFields(
-                type,
-                controllers,
-                level,
-                (value) => setDialogState(() => level = value),
-              ),
+              child: _editorFields(type, controllers, level, (value) => setDialogState(() => level = value)),
             ),
           ),
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('Hủy'),
-          ),
+          TextButton(onPressed: () => Navigator.pop(dialogContext), child: const Text('Hủy')),
           FilledButton(
             onPressed: () {
               if (formKey.currentState?.validate() != true) return;
-              Navigator.pop(
-                dialogContext,
-                _editorPayload(type, controllers, level),
-              );
+              Navigator.pop(dialogContext, _editorPayload(type, controllers, level));
             },
             child: Text(editing ? 'Lưu' : 'Tạo'),
           ),
@@ -68,39 +57,20 @@ Future<void> showAdminContentEditor(BuildContext context,
   for (final controller in controllers.values) {
     controller.dispose();
   }
-  if (payload == null || !hostContext.mounted) return;
+  if (payload == null || !context.mounted) return;
 
-  final provider = context.read<AdminProvider>();
-  final id = adminContentItemId(item);
-  final success = switch (type) {
-    'vocabulary' => editing
-        ? await provider.updateVocabulary(id!, payload)
-        : await provider.createVocabulary(payload),
-    'kanji' => editing
-        ? await provider.updateKanji(id!, payload)
-        : await provider.createKanji(payload),
-    'grammar' => editing
-        ? await provider.updateGrammar(id!, payload)
-        : await provider.createGrammar(payload),
-    'lessons' => editing
-        ? await provider.updateLesson(id!, payload)
-        : await provider.createLesson(payload),
-    _ => false,
-  };
-  if (!hostContext.mounted) return;
+  final error = await provider.save(payload, id: editing ? adminContentItemId(item) : null);
+  if (!context.mounted) return;
   showAdminContentMessage(
-      context,
-      success
-          ? editing
-              ? 'Đã cập nhật nội dung.'
-              : 'Đã tạo nội dung mới.'
-          : provider.error ?? 'Không thể lưu nội dung.',
-      success: success);
+    context,
+    error ?? (editing ? 'Đã cập nhật nội dung.' : 'Đã tạo nội dung mới.'),
+    success: error == null,
+  );
 }
 
 Map<String, TextEditingController> _editorControllers(
-  String type,
-  Map<String, dynamic>? item,
+  AdminContentType type,
+  JsonObject? item,
   bool duplicate,
 ) {
   String text(String key) => item?[key]?.toString() ?? '';
@@ -109,18 +79,18 @@ Map<String, TextEditingController> _editorControllers(
     return value is List ? value.join(', ') : value?.toString() ?? '';
   }
 
-  final firstExample = item?['examples'] is List &&
-          (item!['examples'] as List).isNotEmpty &&
-          (item['examples'] as List).first is Map
-      ? Map<String, dynamic>.from((item['examples'] as List).first as Map)
-      : const <String, dynamic>{};
-  var title = text(type == 'vocabulary'
-      ? 'word'
-      : type == 'kanji'
-          ? 'character'
-          : 'title');
-  if (duplicate && type == 'kanji') title = '';
-  if (duplicate && (type == 'grammar' || type == 'lessons')) {
+  final firstExample = switch (item?['examples']) {
+    [final Map first, ...] => first,
+    _ => const {},
+  };
+  var title = text(switch (type) {
+    AdminContentType.vocabulary => 'word',
+    AdminContentType.kanji => 'character',
+    AdminContentType.grammar || AdminContentType.lessons => 'title',
+  });
+  // Mặt chữ Kanji là duy nhất nên bản sao để trống; bài và ngữ pháp thêm hậu tố.
+  if (duplicate && type == AdminContentType.kanji) title = '';
+  if (duplicate && (type == AdminContentType.grammar || type == AdminContentType.lessons)) {
     title = '$title (bản sao)';
   }
 
@@ -130,7 +100,7 @@ Map<String, TextEditingController> _editorControllers(
     'meaning': TextEditingController(text: text('meaning')),
     'lesson': TextEditingController(
       text: adminContentReferenceId(
-              item?[type == 'grammar' ? 'lesson_id' : 'lesson']) ??
+              item?[type == AdminContentType.grammar ? 'lesson_id' : 'lesson']) ??
           adminContentReferenceId(item?['lessonId']) ??
           '',
     ),
@@ -156,7 +126,7 @@ Map<String, TextEditingController> _editorControllers(
 }
 
 Widget _editorFields(
-  String type,
+  AdminContentType type,
   Map<String, TextEditingController> controllers,
   String level,
   ValueChanged<String> onLevelChanged,
@@ -168,22 +138,20 @@ Widget _editorFields(
   }
 
   switch (type) {
-    case 'vocabulary':
+    case AdminContentType.vocabulary:
       add(_field(controllers['title']!, 'Từ vựng', required: true));
       add(_field(controllers['reading']!, 'Hiragana', required: true));
       add(_field(controllers['meaning']!, 'Nghĩa', required: true));
       add(_field(controllers['lesson']!, 'ID bài học', required: true));
       add(_field(controllers['context']!, 'Tình huống sử dụng'));
-      break;
-    case 'kanji':
+    case AdminContentType.kanji:
       add(_field(controllers['title']!, 'Ký tự Kanji', required: true));
       add(_field(controllers['meaning']!, 'Nghĩa', required: true));
       add(_field(controllers['hanviet']!, 'Âm Hán Việt'));
       add(_field(controllers['onyomi']!, 'Âm On, cách nhau bằng dấu phẩy'));
       add(_field(controllers['kunyomi']!, 'Âm Kun, cách nhau bằng dấu phẩy'));
       add(_field(controllers['lesson']!, 'ID bài học', required: true));
-      break;
-    case 'grammar':
+    case AdminContentType.grammar:
       add(_field(controllers['title']!, 'Tên ngữ pháp', required: true));
       add(_field(controllers['structure']!, 'Cấu trúc', required: true));
       add(_field(controllers['meaning']!, 'Ý nghĩa', required: true));
@@ -191,15 +159,13 @@ Widget _editorFields(
       add(_field(controllers['lesson']!, 'ID bài học (không bắt buộc)'));
       add(_field(controllers['example']!, 'Câu ví dụ'));
       add(_field(controllers['exampleMeaning']!, 'Nghĩa câu ví dụ'));
-      break;
-    case 'lessons':
+    case AdminContentType.lessons:
       add(_field(controllers['title']!, 'Tiêu đề bài học', required: true));
       add(_field(controllers['order']!, 'Thứ tự',
           required: true, number: true));
       add(_field(controllers['lessonType']!, 'Loại bài học'));
       add(_field(controllers['description']!, 'Mô tả', lines: 3));
       add(_field(controllers['content']!, 'Nội dung HTML', lines: 5));
-      break;
   }
   add(
     DropdownButtonFormField<String>(
@@ -244,8 +210,8 @@ Widget _field(
   );
 }
 
-Map<String, dynamic> _editorPayload(
-  String type,
+JsonObject _editorPayload(
+  AdminContentType type,
   Map<String, TextEditingController> controllers,
   String level,
 ) {
@@ -257,7 +223,7 @@ Map<String, dynamic> _editorPayload(
       .toList();
 
   return switch (type) {
-    'vocabulary' => {
+    AdminContentType.vocabulary => {
         'word': value('title'),
         'hiragana': value('reading'),
         'meaning': value('meaning'),
@@ -265,7 +231,7 @@ Map<String, dynamic> _editorPayload(
         'lesson': value('lesson'),
         if (value('context').isNotEmpty) 'usage_context': value('context'),
       },
-    'kanji' => {
+    AdminContentType.kanji => {
         'character': value('title'),
         'meaning': value('meaning'),
         'level': level,
@@ -274,7 +240,7 @@ Map<String, dynamic> _editorPayload(
         'kunyomi': readings('kunyomi'),
         if (value('hanviet').isNotEmpty) 'hanviet': value('hanviet'),
       },
-    'grammar' => {
+    AdminContentType.grammar => {
         'title': value('title'),
         'structure': value('structure'),
         'meaning': value('meaning'),
@@ -289,7 +255,7 @@ Map<String, dynamic> _editorPayload(
             },
           ],
       },
-    'lessons' => {
+    AdminContentType.lessons => {
         'title': value('title'),
         'level': level,
         'order': int.parse(value('order')),
@@ -298,7 +264,6 @@ Map<String, dynamic> _editorPayload(
           'description': value('description'),
         if (value('content').isNotEmpty) 'content_html': value('content'),
       },
-    _ => const {},
   };
 }
 

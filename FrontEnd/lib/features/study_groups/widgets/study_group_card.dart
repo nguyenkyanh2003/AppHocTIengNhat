@@ -212,20 +212,10 @@ class StudyGroupCard extends StatelessWidget {
     );
   }
 
-  void _joinGroup(BuildContext context, String groupId) async {
-    final hostContext = context;
-    final provider = Provider.of<StudyGroupProvider>(context, listen: false);
-    final success = await provider.joinGroup(groupId);
-
-    if (success && hostContext.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã tham gia nhóm thành công!')),
-      );
-      provider.loadAllGroups(refresh: true);
-    } else if (hostContext.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(provider.error ?? 'Lỗi khi tham gia nhóm')),
-      );
-    }
+  /// Tham gia xong provider tự tải lại hai danh sách nhóm.
+  Future<void> _joinGroup(BuildContext context, String groupId) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final error = await context.read<StudyGroupProvider>().joinGroup(groupId);
+    messenger.showSnackBar(SnackBar(content: Text(error ?? 'Đã tham gia nhóm thành công!')));
   }
 }

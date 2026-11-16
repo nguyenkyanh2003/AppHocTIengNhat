@@ -1,13 +1,9 @@
 import { z } from 'zod';
-import { jlptLevel, objectId } from '../../shared/http/schemas.js';
+import { objectId } from '../../shared/http/schemas.js';
 
 export const ITEM_TYPES = ['vocabulary', 'grammar', 'kanji'];
 
 export const lessonIdParams = z.object({ lessonId: objectId });
-
-export const levelParams = z.object({
-  level: jlptLevel,
-});
 
 /**
  * `completed` phải là boolean thật.

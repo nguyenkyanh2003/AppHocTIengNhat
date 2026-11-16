@@ -73,14 +73,14 @@ class LoginButton extends StatelessWidget {
           height: 56,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            gradient: authProvider.isLoading
+            gradient: authProvider.isBusy
                 ? null
                 : const LinearGradient(
                     colors: [AppTheme.primaryColor, AppColors.authButtonEnd],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
-            boxShadow: authProvider.isLoading
+            boxShadow: authProvider.isBusy
                 ? []
                 : [
                     BoxShadow(
@@ -91,7 +91,7 @@ class LoginButton extends StatelessWidget {
                   ],
           ),
           child: ElevatedButton(
-            onPressed: authProvider.isLoading ? null : handleLogin,
+            onPressed: authProvider.isBusy ? null : handleLogin,
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.transparent,
               shadowColor: Colors.transparent,
@@ -99,7 +99,7 @@ class LoginButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-            child: authProvider.isLoading
+            child: authProvider.isBusy
                 ? const SizedBox(
                     height: 24,
                     width: 24,

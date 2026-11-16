@@ -8,6 +8,14 @@ import { dayKey, projectStreak } from '../streaks/streak-rules.js';
  */
 const WITH_TOKEN_VERSION = '+tokenVersion';
 
+/** Hồ sơ trả ra ngoài: không bao giờ kèm mật khẩu. */
+const PUBLIC_FIELDS = '-MatKhau';
+const NEWEST_FIRST = { NgayTao: -1, _id: -1 };
+
+/** Số người theo từng giá trị của `field`: `[{ _id: giá trị, count }]`. */
+const countBy = (model, field) =>
+  model.aggregate([{ $group: { _id: `$${field}`, count: { $sum: 1 } } }, { $sort: { _id: 1 } }]);
+
 /**
  * Điều kiện khớp version cho lệnh ghi có điều kiện.
  *
@@ -88,6 +96,51 @@ export const createUserRepository = ({
       )
       .select(WITH_TOKEN_VERSION)
       .lean();
+  },
+
+  async usernameTaken(username) {
+    return Boolean(await userModel.exists({ TenDangNhap: username }));
+  },
+
+  async emailTaken({ email, excludeId }) {
+    return Boolean(await userModel.exists({ Email: email, ...(excludeId && { _id: { $ne: excludeId } }) }));
+  },
+
+  async create(doc) {
+    return (await userModel.create(doc)).toObject();
+  },
+
+  findPublicById(id) {
+    return userModel.findById(id).select(PUBLIC_FIELDS).lean();
+  },
+
+  updateById({ id, set }) {
+    return userModel.findByIdAndUpdate(id, { $set: set }, { new: true, runValidators: true }).select(PUBLIC_FIELDS).lean();
+  },
+
+  deleteById(id) {
+    return userModel.findByIdAndDelete(id).select(PUBLIC_FIELDS).lean();
+  },
+
+  findPage({ filter, skip, limit }) {
+    return userModel.find(filter).select(PUBLIC_FIELDS).sort(NEWEST_FIRST).skip(skip).limit(limit).lean();
+  },
+
+  count(filter = {}) {
+    return userModel.countDocuments(filter);
+  },
+
+  /** Đếm theo vai trò và trình độ, 10 tài khoản mới nhất và 10 người đăng nhập gần nhất. */
+  async stats() {
+    const [totalUsers, byRole, byStatus, byLevel, recentUsers, activeUsers] = await Promise.all([
+      userModel.countDocuments(),
+      countBy(userModel, 'VaiTro'),
+      countBy(userModel, 'TrangThai'),
+      countBy(userModel, 'TrinhDo'),
+      userModel.find().select(PUBLIC_FIELDS).sort(NEWEST_FIRST).limit(10).lean(),
+      userModel.find().select(PUBLIC_FIELDS).sort({ LanDangNhapCuoi: -1, _id: -1 }).limit(10).lean(),
+    ]);
+    return { totalUsers, byRole, byStatus, byLevel, recentUsers, activeUsers };
   },
 
   /**

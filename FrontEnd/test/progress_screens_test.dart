@@ -26,53 +26,56 @@ String _today() => DateTime.now().toIso8601String().substring(0, 10);
 Map<String, Object?> _backend(String path) {
   if (path.endsWith('/dashboard/stats')) {
     return {
-      'vocabulary_learned': 137,
-      'kanji_learned': 29,
-      'kanji_reviewing': 13,
-      'exercises_completed': 7,
-      'lessons_completed': 3,
-      'total_study_time': 5400,
-      'current_streak': 4,
-      'total_xp': 910,
-      'level': 2,
+      'data': {
+        'vocabulary_learned': 137,
+        'kanji_learned': 29,
+        'kanji_reviewing': 13,
+        'exercises_completed': 7,
+        'lessons_completed': 3,
+        'total_study_time': 5400,
+        'current_streak': 4,
+        'total_xp': 910,
+        'level': 2,
+      },
     };
   }
   if (path.endsWith('/dashboard/breakdown')) {
     return {
-      'lessons_by_level': [
-        {'_id': 'N4', 'completed': 2, 'in_progress': 2},
-      ],
-      'exercises_by_type': [
-        {'_id': 'grammar', 'count': 6, 'average_score': 81.5, 'passed': 5},
-      ],
+      'data': {
+        'lessons_by_level': [
+          {'_id': 'N4', 'completed': 2, 'in_progress': 2},
+        ],
+        'exercises_by_type': [
+          {'_id': 'grammar', 'count': 6, 'average_score': 81.5, 'passed': 5},
+        ],
+      },
     };
   }
   if (path.endsWith('/streak/my-streak')) {
     return {
-      'current_streak': 4,
-      'longest_streak': 11,
-      'total_xp': 910,
-      'level': 2
+      'data': {'current_streak': 4, 'longest_streak': 11, 'total_xp': 910, 'level': 2},
     };
   }
   if (path.endsWith('/achievement/my-achievements')) {
     return {
-      'earned': [
-        {
-          '_id': 'a1',
-          'user': 'u1',
-          'is_completed': true,
-          'progress': 1,
-          'earned_at': '2026-11-01T00:00:00.000Z',
-          'achievement': {
-            '_id': 'x',
-            'name_vi': 'Bước chân đầu tiên',
-            'description_vi': 'Học bài đầu',
-            'xp_reward': 40
+      'data': {
+        'earned': [
+          {
+            '_id': 'a1',
+            'user': 'u1',
+            'is_completed': true,
+            'progress': 1,
+            'earned_at': '2026-11-01T00:00:00.000Z',
+            'achievement': {
+              '_id': 'x',
+              'name_vi': 'Bước chân đầu tiên',
+              'description_vi': 'Học bài đầu',
+              'xp_reward': 40
+            },
           },
-        },
-      ],
-      'locked': [],
+        ],
+        'locked': [],
+      },
     };
   }
   return {};
@@ -103,11 +106,9 @@ List<Object?> _backendList(String path) {
 
 http.Client _client() => MockClient((request) async {
       final path = request.url.path;
-      final isList = path.endsWith('/timeline') ||
-          path.endsWith('/heatmap') ||
-          path.endsWith('/xp-history');
-      final body =
-          isList ? jsonEncode(_backendList(path)) : jsonEncode(_backend(path));
+      final isList = path.endsWith('/timeline') || path.endsWith('/heatmap') || path.endsWith('/xp-history');
+      final list = _backendList(path);
+      final body = jsonEncode(isList ? {'data': list, 'total': list.length} : _backend(path));
       return http.Response.bytes(utf8.encode(body), 200, headers: _headers);
     });
 

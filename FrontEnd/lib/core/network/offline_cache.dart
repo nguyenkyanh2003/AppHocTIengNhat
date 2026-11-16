@@ -9,7 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// một màn hình phải sửa vào lớp hạ tầng. Giờ nơi gọi tự khai `cache: true`.
 class OfflineCache {
   static const _enabledKey = 'offline_mode_enabled';
-  static const storageKey = 'offline_content_cache_v1';
+
+  /// `v2`: phản hồi theo response contract `{ data }`. Bản `v1` lưu dạng cũ
+  /// (khoá `lessons`, `vocabularies`…) mà service không còn đọc được, nên bị
+  /// bỏ chứ không đọc lại — mở mạng là có bản mới.
+  static const storageKey = 'offline_content_cache_v2';
+  static const _legacyKeys = ['offline_content_cache_v1'];
   static const _maxEntries = 50;
 
   static final OfflineCache _instance = OfflineCache._internal();
@@ -73,6 +78,9 @@ class OfflineCache {
 
   Future<Map<String, dynamic>> _readAll() async {
     final prefs = await SharedPreferences.getInstance();
+    for (final key in _legacyKeys) {
+      if (prefs.containsKey(key)) await prefs.remove(key);
+    }
     final encoded = prefs.getString(storageKey);
     if (encoded == null || encoded.isEmpty) return {};
 

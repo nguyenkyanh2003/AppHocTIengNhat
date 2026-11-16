@@ -1,330 +1,80 @@
 import '../../../core/network/api_client.dart';
 import '../../../core/network/api_envelope.dart';
+import '../../lessons/models/lesson.dart';
 import '../../notifications/models/notification.dart';
 import '../models/admin_achievement.dart';
+import '../models/admin_analytics.dart';
+import '../models/admin_content_type.dart';
+import '../models/admin_dashboard_summary.dart';
+import '../models/admin_report.dart';
+import '../models/admin_transaction.dart';
+import '../models/admin_user.dart';
 
+/// Mọi lời gọi API của trang quản trị. Lỗi ném lên cho provider báo.
+///
+/// Nội dung học (từ vựng, Kanji, ngữ pháp, bài học) đi dạng [JsonObject]: màn
+/// quản trị sửa đúng các trường của document và xuất nguyên document ra CSV,
+/// nên chính JSON là thứ được quản lý.
 class AdminService {
   /// Nhận client qua constructor để test truyền transport giả.
   AdminService({ApiClient? client}) : _client = client ?? ApiClient();
 
   final ApiClient _client;
 
-  String _query(Map<String, Object?> values) {
-    final parameters = <String, String>{};
-    for (final entry in values.entries) {
-      final value = entry.value;
-      if (value != null && value.toString().isNotEmpty) {
-        parameters[entry.key] = value.toString();
-      }
-    }
-    return parameters.isEmpty
-        ? ''
-        : '?${Uri(queryParameters: parameters).query}';
-  }
+  /// Số mục mỗi trang của các danh sách quản trị; nội dung đọc tới trần server cho phép.
+  static const pageSize = 20;
+  static const contentPageSize = 50;
 
-  List<dynamic> _list(dynamic response, List<String> keys) {
-    if (response is List) return response;
-    if (response is Map) {
-      for (final key in keys) {
-        final value = response[key];
-        if (value is List) return value;
-      }
-    }
-    return const [];
-  }
+  // ---------------------------------------------------------------- Tổng quan
 
-  Map<String, dynamic> _map(dynamic response) {
-    if (response is Map<String, dynamic>) return response;
-    if (response is Map) return Map<String, dynamic>.from(response);
-    return const {};
-  }
-
-  Future<Map<String, dynamic>> getDashboardStats() async {
-    final results = await Future.wait([
+  Future<AdminDashboardSummary> dashboard() async {
+    final [users, lessons, reports, analytics] = await Future.wait([
       _client.get('/users/admin/stats'),
       _client.get('/lesson/stats/overview'),
       _client.get('/report/admin/stats'),
       _client.get('/progress/admin/analytics?period=7d'),
     ]);
-    return {
-      'users': _map(results[0]),
-      'lessons': _map(results[1]),
-      'reports': _map(dataOf(results[2])),
-      'analytics': _map(results[3]),
-    };
+    return AdminDashboardSummary.fromStats({
+      'users': dataOf(users),
+      'lessons': dataOf(lessons),
+      'reports': dataOf(reports),
+      'analytics': dataOf(analytics),
+    });
   }
 
-  Future<List<dynamic>> getAllUsers({
-    int page = 1,
-    int limit = 20,
-    String? search,
-    String? status,
-    String? role,
-  }) async {
+  /// [period] là `7d`, `30d` hoặc `90d`.
+  Future<AdminAnalytics> analytics({String period = '7d'}) async =>
+      objectOf(await _client.get('/progress/admin/analytics${_query({'period': period})}'), AdminAnalytics.fromJson);
+
+  // --------------------------------------------------------------- Người dùng
+
+  Future<Paged<AdminUser>> users({int page = 1, String? search, AdminUserFilter filter = AdminUserFilter.all}) async {
     final query = _query({
       'page': page,
-      'limit': limit,
+      'limit': pageSize,
       'search': search,
-      'status': status,
-      'role': role,
+      'status': filter.status,
+      'role': filter.role,
     });
-    final response = await _client.get('/users/admin/users$query');
-    return _list(response, const ['data', 'users']).map((item) {
-      final user = Map<String, dynamic>.from(item as Map);
-      return {
-        ...user,
-        'id': (user['_id'] ?? user['id'])?.toString(),
-        'name': user['HoTen'] ?? user['name'] ?? user['TenDangNhap'] ?? '',
-        'email': user['Email'] ?? user['email'] ?? '',
-        'role': user['VaiTro'] ?? user['role'] ?? 'user',
-        'status': user['TrangThai'] ?? user['status'] ?? 'active',
-        'level': user['TrinhDo'] ?? user['level'] ?? 'N5',
-        'joinDate': user['NgayTao'] ?? user['createdAt'] ?? '',
-        'lastActive': user['LanDangNhapCuoi'] ?? 'Chưa có',
-        'totalXP': user['DiemTichLuy'] ?? 0,
-        'streak': user['StreakHienTai'] ?? 0,
-      };
-    }).toList();
+    return Paged.fromJson(await _client.get('/users/admin/users$query'), AdminUser.fromJson);
   }
 
-  Future<Map<String, dynamic>> getUserStats() async =>
-      _map(await _client.get('/users/admin/stats'));
+  Future<AdminUserStats> userStats() async =>
+      objectOf(await _client.get('/users/admin/stats'), AdminUserStats.fromJson);
 
-  Future<Map<String, dynamic>> updateUser(
-    String userId,
-    Map<String, dynamic> data,
-  ) =>
-      _client.put('/users/admin/users/$userId', data);
-
-  Future<void> deleteUser(String userId) async {
-    await _client.delete('/users/admin/users/$userId');
-  }
-
-  Future<Map<String, dynamic>> banUser(String userId) =>
-      updateUser(userId, {'trangThai': 'banned'});
-
-  Future<Map<String, dynamic>> unbanUser(String userId) =>
-      updateUser(userId, {'trangThai': 'active'});
-
-  Future<Map<String, dynamic>> promoteToAdmin(String userId) =>
-      updateUser(userId, {'vaiTro': 'admin'});
-
-  Future<Map<String, dynamic>> demoteToUser(String userId) =>
-      updateUser(userId, {'vaiTro': 'user'});
-
-  Future<List<dynamic>> getVocabulary({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async {
-    final response = await _client.get(
-      '/vocabulary${_query({'page': page, 'limit': limit, 'level': level})}',
-    );
-    return _list(response, const ['data', 'vocabularies']);
-  }
-
-  Future<Map<String, dynamic>> createVocabulary(Map<String, dynamic> data) =>
-      _client.post('/vocabulary', data);
-
-  Future<Map<String, dynamic>> updateVocabulary(
-    String id,
-    Map<String, dynamic> data,
-  ) =>
-      _client.put('/vocabulary/$id', data);
-
-  Future<void> deleteVocabulary(String id) async {
-    await _client.delete('/vocabulary/$id');
-  }
-
-  /// Import từ vựng từ Excel.
-  ///
-  /// Backend bắt buộc `lesson` và `level` trong multipart và áp cho **mọi** dòng
-  /// của tệp; thiếu một trong hai thì toàn bộ request bị từ chối với lỗi 400.
-  Future<Map<String, dynamic>> importVocabularyExcel(
-    List<int> bytes,
-    String fileName, {
-    required String lesson,
-    required String level,
-  }) =>
-      _client.postMultipart(
-        '/vocabulary/upload',
-        {'lesson': lesson, 'level': level},
-        'fileExcel',
-        bytes,
-        fileName,
+  /// Đổi vai trò (`user`/`admin`) hoặc trạng thái (`active`/`banned`).
+  Future<AdminUser> updateUser(String id, {String? role, String? status}) async => objectOf(
+        await _client.put('/users/admin/users/$id', {
+          if (role != null) 'vaiTro': role,
+          if (status != null) 'trangThai': status,
+        }),
+        AdminUser.fromJson,
       );
 
-  Future<List<dynamic>> getKanji({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async {
-    final response = await _client.get(
-      '/kanji${_query({'page': page, 'limit': limit, 'level': level})}',
-    );
-    return _list(response, const ['data', 'kanjis']);
-  }
-
-  Future<Map<String, dynamic>> createKanji(Map<String, dynamic> data) =>
-      _client.post('/kanji', data);
-
-  Future<Map<String, dynamic>> updateKanji(
-    String id,
-    Map<String, dynamic> data,
-  ) =>
-      _client.put('/kanji/$id', data);
-
-  Future<void> deleteKanji(String id) async {
-    await _client.delete('/kanji/$id');
-  }
-
-  /// Import Kanji từ Excel.
-  ///
-  /// Khác với từ vựng: importer của Kanji đọc `BaiHocID` và `CapDo` từ **từng
-  /// dòng** Excel, nên không gửi kèm metadata dùng chung cho cả tệp.
-  Future<Map<String, dynamic>> importKanjiExcel(
-    List<int> bytes,
-    String fileName,
-  ) =>
-      _client.postMultipart(
-        '/kanji/upload',
-        const {},
-        'fileExcel',
-        bytes,
-        fileName,
-      );
-
-  Future<List<dynamic>> getGrammar({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async {
-    final response = await _client.get(
-      '/grammar${_query({'page': page, 'limit': limit, 'level': level})}',
-    );
-    return _list(response, const ['data', 'grammars']);
-  }
-
-  Future<Map<String, dynamic>> createGrammar(Map<String, dynamic> data) =>
-      _client.post('/grammar', data);
-
-  Future<Map<String, dynamic>> updateGrammar(
-    String id,
-    Map<String, dynamic> data,
-  ) =>
-      _client.put('/grammar/$id', data);
-
-  Future<void> deleteGrammar(String id) async {
-    await _client.delete('/grammar/$id');
-  }
-
-  Future<List<dynamic>> getLessons({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async {
-    final response = await _client.get(
-      '/lesson${_query({'page': page, 'limit': limit, 'level': level})}',
-    );
-    return _list(response, const ['data', 'lessons']);
-  }
-
-  Future<Map<String, dynamic>> createLesson(Map<String, dynamic> data) =>
-      _client.post('/lesson', data);
-
-  Future<Map<String, dynamic>> updateLesson(
-    String id,
-    Map<String, dynamic> data,
-  ) =>
-      _client.put('/lesson/$id', data);
-
-  Future<void> deleteLesson(String id) async {
-    await _client.delete('/lesson/$id');
-  }
-
-  Future<List<dynamic>> getReports({
-    int page = 1,
-    int limit = 20,
-    String? status,
-    String? type,
-  }) async {
-    final query = _query({
-      'page': page,
-      'limit': limit,
-      'status': status,
-      'type': type,
-    });
-    final response = await _client.get('/report/admin/all$query');
-    final reports = _list(response, const ['data', 'reports']);
-    return reports.map((item) {
-      final report = Map<String, dynamic>.from(item as Map);
-      final user = report['user_id'];
-      if (user is Map) {
-        report['user'] = user['HoTen'] ?? user['TenDangNhap'] ?? user['Email'];
-      }
-      return report;
-    }).toList();
-  }
-
-  Future<Map<String, dynamic>> getReportStats() async =>
-      _map(dataOf(await _client.get('/report/admin/stats')));
-
-  Future<Map<String, dynamic>> respondToReport(
-    String reportId,
-    String response,
-    String status,
-  ) =>
-      _client.put('/report/admin/$reportId/status', {
-        'admin_response': response,
-        'status': status,
-      });
-
-  Future<void> deleteReport(String reportId) async {
-    await _client.delete('/report/admin/$reportId');
-  }
-
-  Future<List<AdminAchievement>> getAchievements() async {
-    final response = await _client.get('/achievement/admin/all');
-    return _list(response, const ['data', 'achievements'])
-        .map((item) =>
-            AdminAchievement.fromJson(Map<String, dynamic>.from(item as Map)))
-        .toList();
-  }
-
-  Future<void> createAchievement(AchievementDraft draft) async {
-    await _client.post('/achievement/admin', draft.toJson());
-  }
-
-  Future<void> updateAchievement(String id, AchievementDraft draft) async {
-    await _client.put('/achievement/admin/$id', draft.toJson());
-  }
-
-  Future<void> deleteAchievement(String id) async {
-    await _client.delete('/achievement/admin/$id');
-  }
-
-  Future<List<dynamic>> getTransactions({
-    int page = 1,
-    int limit = 20,
-    String? status,
-  }) async {
-    final query = _query({
-      'page': page,
-      'limit': limit,
-      'status': status,
-    });
-    final response = await _client.get('/transactions/admin/all$query');
-    return _list(response, const ['data', 'transactions']);
-  }
-
-  Future<Map<String, dynamic>> updateTransactionStatus(
-    String id,
-    String status,
-  ) =>
-      _client.put('/transactions/admin/$id/status', {'status': status});
+  Future<void> deleteUser(String id) => _client.delete('/users/admin/users/$id');
 
   /// Gửi thông báo cá nhân cho một người dùng.
-  Future<Map<String, dynamic>> sendNotification({
+  Future<void> sendNotification({
     required String recipientId,
     required String title,
     required String message,
@@ -343,18 +93,106 @@ class AdminService {
     required String message,
     required NotificationType type,
   }) async {
-    final response = await _client.post('/notifications/broadcast/all', {
+    final data = dataOf(await _client.post('/notifications/broadcast/all', {
       'title': title,
       'message': message,
       'type': type.key,
-    });
-    return response['data']?['sent'] as int? ?? 0;
+    }));
+    return data is Map ? (data['sent'] as num?)?.toInt() ?? 0 : 0;
   }
 
-  Future<Map<String, dynamic>> getAnalytics({String period = '7d'}) async =>
-      _map(
-        await _client.get(
-          '/progress/admin/analytics${_query({'period': period})}',
-        ),
+  // ----------------------------------------------------------------- Nội dung
+
+  Future<Paged<JsonObject>> content(AdminContentType type, {int page = 1}) async => Paged.fromJson(
+        await _client.get('${type.path}${_query({'page': page, 'limit': contentPageSize})}'),
+        (json) => json,
       );
+
+  Future<void> createContent(AdminContentType type, JsonObject document) => _client.post(type.path, document);
+
+  Future<void> updateContent(AdminContentType type, String id, JsonObject document) =>
+      _client.put('${type.path}/$id', document);
+
+  Future<void> deleteContent(AdminContentType type, String id) => _client.delete('${type.path}/$id');
+
+  /// Import từ vựng từ Excel.
+  ///
+  /// Backend bắt buộc `lesson` và `level` trong multipart và áp cho **mọi** dòng
+  /// của tệp; thiếu một trong hai thì toàn bộ request bị từ chối với lỗi 400.
+  Future<void> importVocabularyExcel(
+    List<int> bytes,
+    String fileName, {
+    required String lesson,
+    required String level,
+  }) =>
+      _client.postMultipart('/vocabulary/upload', {'lesson': lesson, 'level': level}, 'fileExcel', bytes, fileName);
+
+  /// Import Kanji từ Excel.
+  ///
+  /// Khác với từ vựng: importer của Kanji đọc `BaiHocID` và `CapDo` từ **từng
+  /// dòng** Excel, nên không gửi kèm metadata dùng chung cho cả tệp.
+  Future<void> importKanjiExcel(List<int> bytes, String fileName) =>
+      _client.postMultipart('/kanji/upload', const {}, 'fileExcel', bytes, fileName);
+
+  /// Mọi bài học, để chọn bài gán cho tệp Excel từ vựng. Đọc hết các trang.
+  Future<List<Lesson>> lessonOptions() async {
+    final lessons = <Lesson>[];
+    Paged<Lesson> page;
+    var number = 1;
+    do {
+      page = Paged.fromJson(await _client.get('/lesson?page=${number++}&limit=100'), Lesson.fromJson);
+      lessons.addAll(page.items);
+    } while (page.hasMore);
+    return lessons;
+  }
+
+  // ------------------------------------------------------------------ Báo cáo
+
+  Future<Paged<AdminReport>> reports({int page = 1, String? status, String? type}) async {
+    final query = _query({'page': page, 'limit': pageSize, 'status': status, 'type': type});
+    return Paged.fromJson(await _client.get('/report/admin/all$query'), AdminReport.fromJson);
+  }
+
+  Future<AdminReportStats> reportStats() async =>
+      objectOf(await _client.get('/report/admin/stats'), AdminReportStats.fromJson);
+
+  /// Đổi trạng thái; [response] bỏ trống thì giữ phản hồi cũ.
+  Future<void> updateReport(String id, {required String status, String? response}) =>
+      _client.put('/report/admin/$id/status', {
+        'status': status,
+        if (response != null) 'admin_response': response,
+      });
+
+  Future<void> deleteReport(String id) => _client.delete('/report/admin/$id');
+
+  // --------------------------------------------------------------- Thành tích
+
+  Future<List<AdminAchievement>> achievements() async =>
+      listOf(await _client.get('/achievement/admin/all'), AdminAchievement.fromJson);
+
+  Future<void> createAchievement(AchievementDraft draft) => _client.post('/achievement/admin', draft.toJson());
+
+  Future<void> updateAchievement(String id, AchievementDraft draft) =>
+      _client.put('/achievement/admin/$id', draft.toJson());
+
+  Future<void> deleteAchievement(String id) => _client.delete('/achievement/admin/$id');
+
+  // ----------------------------------------------------------------- Giao dịch
+
+  Future<Paged<AdminTransaction>> transactions({int page = 1, String? status}) async {
+    final query = _query({'page': page, 'limit': pageSize, 'status': status});
+    return Paged.fromJson(await _client.get('/transactions/admin/all$query'), AdminTransaction.fromJson);
+  }
+
+  Future<void> updateTransactionStatus(String id, String status) =>
+      _client.put('/transactions/admin/$id/status', {'status': status});
+
+  /// Query string bỏ qua giá trị `null` và chuỗi rỗng.
+  static String _query(Map<String, Object?> values) {
+    final parameters = {
+      for (final MapEntry(:key, :value) in values.entries)
+        if (value != null && '$value'.isNotEmpty) key: '$value',
+    };
+    return parameters.isEmpty ? '' : '?${Uri(queryParameters: parameters).query}';
+  }
 }

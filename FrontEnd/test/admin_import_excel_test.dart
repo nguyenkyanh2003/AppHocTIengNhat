@@ -1,79 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
+import 'package:apphoctiengnnhat/core/network/api_client.dart';
+import 'package:apphoctiengnnhat/core/network/api_envelope.dart';
+import 'package:apphoctiengnnhat/features/admin/models/admin_content_type.dart';
+import 'package:apphoctiengnnhat/features/admin/providers/admin_content_provider.dart';
 import 'package:apphoctiengnnhat/features/admin/services/admin_service.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/excel_import_options_dialog.dart';
-import 'package:apphoctiengnnhat/core/network/api_client.dart';
+import 'package:apphoctiengnnhat/features/lessons/models/lesson.dart';
 
 const _lessonId = '507f1f77bcf86cd799439011';
 final _bytes = <int>[1, 2, 3];
+final _lesson = Lesson.fromJson(const {'_id': _lessonId, 'title': 'Bài 1', 'level': 'N4'});
 
 /// Service giả: không chạm mạng, ghi lại tham số của mỗi lần import.
 class _FakeAdminService extends AdminService {
   final List<Map<String, String?>> vocabularyImports = [];
   final List<String> kanjiImports = [];
-  int vocabularyReloads = 0;
+  final List<AdminContentType> reloads = [];
+  final List<JsonObject> created = [];
 
   Object? importError;
 
+  /// Dòng CSV có `word` trùng giá trị này bị server từ chối.
+  String? rejectWord;
+
   @override
-  Future<Map<String, dynamic>> importVocabularyExcel(
-    List<int> bytes,
-    String fileName, {
-    required String lesson,
-    required String level,
-  }) async {
-    vocabularyImports.add({
-      'fileName': fileName,
-      'lesson': lesson,
-      'level': level,
-    });
+  Future<void> importVocabularyExcel(List<int> bytes, String fileName, {required String lesson, required String level}) async {
+    vocabularyImports.add({'fileName': fileName, 'lesson': lesson, 'level': level});
     if (importError != null) throw importError!;
-    return {'message': 'ok'};
   }
 
   @override
-  Future<Map<String, dynamic>> importKanjiExcel(
-    List<int> bytes,
-    String fileName,
-  ) async {
+  Future<void> importKanjiExcel(List<int> bytes, String fileName) async {
     kanjiImports.add(fileName);
     if (importError != null) throw importError!;
-    return {'message': 'ok'};
   }
 
   @override
-  Future<List<dynamic>> getVocabulary({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async {
-    vocabularyReloads += 1;
-    return const [];
+  Future<void> createContent(AdminContentType type, JsonObject document) async {
+    if (document['word'] == rejectWord) throw BadRequestException('Từ đã tồn tại.');
+    created.add(document);
   }
 
   @override
-  Future<List<dynamic>> getKanji({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async =>
-      const [];
+  Future<Paged<JsonObject>> content(AdminContentType type, {int page = 1}) async {
+    reloads.add(type);
+    return const Paged(items: [], page: 1, limit: 50, total: 0, totalPages: 0);
+  }
+}
 
-  @override
-  Future<List<dynamic>> getLessons({
-    int page = 1,
-    int limit = 50,
-    String? level,
-  }) async =>
-      const [
-        {'_id': _lessonId, 'title': 'Bài 1', 'level': 'N4'},
-      ];
+Future<(AdminContentProvider, _FakeAdminService)> _provider(AdminContentType type) async {
+  final service = _FakeAdminService();
+  final provider = AdminContentProvider(service: service);
+  await provider.selectType(type);
+  service.reloads.clear();
+  return (provider, service);
 }
 
 Widget _dialogHost(
-  List<Map<String, dynamic>> lessons,
+  List<Lesson> lessons,
   void Function(ExcelImportOptions?) onResult,
 ) {
   return MaterialApp(
@@ -99,83 +85,70 @@ void main() {
 
   group('provider gửi metadata import', () {
     test('từ vựng gửi kèm lesson và level rồi tải lại danh sách', () async {
-      final service = _FakeAdminService();
-      final provider = AdminProvider(adminService: service);
+      final (provider, service) = await _provider(AdminContentType.vocabulary);
 
-      final ok = await provider.importExcel(
-        'vocabulary',
-        _bytes,
-        'tu-vung.xlsx',
-        lesson: _lessonId,
-        level: 'N4',
-      );
+      final error = await provider.importExcel(_bytes, 'tu-vung.xlsx', lesson: _lessonId, level: 'N4');
 
-      expect(ok, isTrue);
+      expect(error, isNull);
       expect(service.vocabularyImports, [
         {'fileName': 'tu-vung.xlsx', 'lesson': _lessonId, 'level': 'N4'},
       ]);
-      expect(service.vocabularyReloads, 1);
+      expect(service.reloads, [AdminContentType.vocabulary]);
+      expect(provider.isImporting, isFalse);
     });
 
-    test('thiếu lesson hoặc level thì không gửi request', () async {
-      final service = _FakeAdminService();
-      final provider = AdminProvider(adminService: service);
+    test('thiếu lesson hoặc level thì không gửi request và nói rõ cần chọn gì', () async {
+      final (provider, service) = await _provider(AdminContentType.vocabulary);
 
-      expect(
-        await provider.importExcel('vocabulary', _bytes, 'a.xlsx', level: 'N4'),
-        isFalse,
-      );
-      expect(
-        await provider.importExcel(
-          'vocabulary',
-          _bytes,
-          'a.xlsx',
-          lesson: _lessonId,
-        ),
-        isFalse,
-      );
-      expect(
-        await provider.importExcel(
-          'vocabulary',
-          _bytes,
-          'a.xlsx',
-          lesson: '',
-          level: '',
-        ),
-        isFalse,
-      );
-
+      for (final (lesson, level) in [(null, 'N4'), (_lessonId, null), ('', '')]) {
+        expect(
+          await provider.importExcel(_bytes, 'a.xlsx', lesson: lesson, level: level),
+          'Cần chọn bài học và cấp độ trước khi import.',
+        );
+      }
       expect(service.vocabularyImports, isEmpty);
-      expect(provider.error, isNotNull);
     });
 
-    test('lỗi API được giữ lại để màn hình hiển thị', () async {
-      final service = _FakeAdminService()
-        ..importError = BadRequestException('Dữ liệu gửi lên không hợp lệ.');
-      final provider = AdminProvider(adminService: service);
+    test('lỗi API trả về để màn hình hiển thị, danh sách không tải lại', () async {
+      final (provider, service) = await _provider(AdminContentType.vocabulary);
+      service.importError = BadRequestException('Dữ liệu gửi lên không hợp lệ.');
 
-      final ok = await provider.importExcel(
-        'vocabulary',
-        _bytes,
-        'tu-vung.xlsx',
-        lesson: _lessonId,
-        level: 'N4',
-      );
+      final error = await provider.importExcel(_bytes, 'tu-vung.xlsx', lesson: _lessonId, level: 'N4');
 
-      expect(ok, isFalse);
-      expect(provider.error, contains('không hợp lệ'));
+      expect(error, contains('không hợp lệ'));
+      expect(service.reloads, isEmpty);
     });
 
-    test('Kanji giữ contract theo dòng, không nhận lesson/level dùng chung',
-        () async {
-      final service = _FakeAdminService();
-      final provider = AdminProvider(adminService: service);
+    test('Kanji giữ contract theo dòng, không nhận lesson/level dùng chung', () async {
+      final (provider, service) = await _provider(AdminContentType.kanji);
 
-      final ok = await provider.importExcel('kanji', _bytes, 'kanji.xlsx');
-
-      expect(ok, isTrue);
+      expect(await provider.importExcel(_bytes, 'kanji.xlsx'), isNull);
       expect(service.kanjiImports, ['kanji.xlsx']);
       expect(service.vocabularyImports, isEmpty);
+    });
+
+    test('ngữ pháp không có importer Excel', () async {
+      final (provider, _) = await _provider(AdminContentType.grammar);
+
+      expect(await provider.importExcel(_bytes, 'a.xlsx'), 'Excel chỉ hỗ trợ từ vựng và Kanji.');
+    });
+
+    test('CSV dừng ở dòng hỏng đầu tiên và chỉ đúng dòng đó trong tệp', () async {
+      final (provider, service) = await _provider(AdminContentType.vocabulary);
+      service.rejectWord = '先生';
+
+      final result = await provider.importRows([
+        {'word': '学生'},
+        {'word': '先生'},
+        {'word': '学校'},
+      ]);
+
+      expect(result.imported, 1);
+      expect(result.error, 'Dòng 3: Từ đã tồn tại.');
+      expect(service.created, [
+        {'word': '学生'},
+      ]);
+      expect(service.reloads, [AdminContentType.vocabulary], reason: 'đã tạo được dòng nào thì tải lại');
     });
   });
 
@@ -185,9 +158,7 @@ void main() {
       var called = false;
 
       await tester.pumpWidget(_dialogHost(
-        const [
-          {'_id': _lessonId, 'title': 'Bài 1', 'level': 'N4'},
-        ],
+        [_lesson],
         (value) {
           called = true;
           result = value;
@@ -207,9 +178,7 @@ void main() {
       ExcelImportOptions? result;
 
       await tester.pumpWidget(_dialogHost(
-        const [
-          {'_id': _lessonId, 'title': 'Bài 1', 'level': 'N4'},
-        ],
+        [_lesson],
         (value) => result = value,
       ));
 

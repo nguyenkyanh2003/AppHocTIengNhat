@@ -40,7 +40,6 @@ export const situationsQuery = z.object({
 
 export const idParams = z.object({ id: objectId });
 
-export const capDoParams = z.object({ capDo: level });
 
 export const createBody = z.preprocess(
   normalizeLessonBody,
@@ -67,10 +66,3 @@ export const updateBody = z.preprocess(
     situation: situation.optional(),
   }),
 );
-
-export const idsBody = z.object({
-  ids: z
-    .array(objectId)
-    .min(1, 'Danh sách ID phải có từ 1 đến 100 phần tử.')
-    .max(100, 'Danh sách ID phải có từ 1 đến 100 phần tử.'),
-});

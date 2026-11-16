@@ -1,218 +1,56 @@
-import 'package:flutter/foundation.dart';
-
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/study_group.dart';
 
+/// Nhóm học. Thao tác trên nhóm và thành viên trả lại nhóm sau khi đổi.
 class StudyGroupService {
-  final ApiClient _apiClient = ApiClient();
+  StudyGroupService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  // Tạo nhóm mới
-  Future<StudyGroup?> createGroup({
-    required String name,
-    String? description,
-    String? level,
-    String? avatar,
-    bool? isPrivate,
-    int? maxMembers,
-  }) async {
-    try {
-      final response = await _apiClient.post(
-        '/group',
-        {
-          'name': name,
-          if (description != null) 'description': description,
-          if (level != null) 'level': level,
-          if (avatar != null) 'avatar': avatar,
-          if (isPrivate != null) 'is_private': isPrivate,
-          if (maxMembers != null) 'max_members': maxMembers,
-        },
-      );
+  final ApiClient _client;
 
-      if (response['data'] != null) {
-        return StudyGroup.fromJson(response['data']);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Error creating group: $e');
-      return null;
-    }
+  static const pageSize = 20;
+
+  /// Nhóm đang hoạt động, mới tạo trước; [search] khớp nguyên văn tên hoặc mô tả.
+  Future<Paged<StudyGroup>> list({int page = 1, int limit = pageSize, String? search, String? level}) async {
+    final query = Uri(queryParameters: {
+      'page': '$page',
+      'limit': '$limit',
+      if (search != null) 'search': search,
+      if (level != null) 'level': level,
+    }).query;
+    return Paged.fromJson(await _client.get('/group?$query'), StudyGroup.fromJson);
   }
 
-  // Lấy danh sách nhóm (có filter, search, pagination)
-  Future<List<StudyGroup>> getGroups({
-    int page = 1,
-    int limit = 10,
-    String? search,
-    String? level,
-    bool? isPrivate,
-  }) async {
-    String queryString = '?page=$page&limit=$limit';
-    if (search != null && search.isNotEmpty) queryString += '&search=$search';
-    if (level != null) queryString += '&level=$level';
-    if (isPrivate != null) queryString += '&is_private=$isPrivate';
+  /// Nhóm người đang đăng nhập là thành viên.
+  Future<List<StudyGroup>> mine() async => listOf(await _client.get('/group/me'), StudyGroup.fromJson);
 
-    final response = await _apiClient.get('/group$queryString');
+  Future<StudyGroup> detail(String id) async => _groupOf(await _client.get('/group/$id'));
 
-    if (response != null && response['data'] != null) {
-      return (response['data'] as List)
-          .map((json) => StudyGroup.fromJson(json))
-          .toList();
-    }
-    return [];
-  }
+  Future<GroupStats> stats(String id) async =>
+      objectOf(await _client.get('/group/$id/stats'), (json) => GroupStats.fromJson(id, json));
 
-  // Lấy nhóm của tôi
-  Future<List<StudyGroup>> getMyGroups() async {
-    final response = await _apiClient.get('/group/me');
+  Future<StudyGroup> create(StudyGroupDraft draft) async => _groupOf(await _client.post('/group', draft.toJson()));
 
-    if (response != null && response['data'] != null) {
-      return (response['data'] as List)
-          .map((json) => StudyGroup.fromJson(json))
-          .toList();
-    }
-    return [];
-  }
+  Future<StudyGroup> update(String id, StudyGroupDraft draft) async =>
+      _groupOf(await _client.put('/group/$id', draft.toJson()));
 
-  // Lấy chi tiết nhóm
-  Future<StudyGroup?> getGroupDetail(String groupId) async {
-    final response = await _apiClient.get('/group/$groupId');
+  Future<StudyGroup> uploadAvatar(String id, List<int> bytes, String fileName) async =>
+      _groupOf(await _client.putMultipart('/group/$id/avatar', const {}, 'avatar', bytes, fileName));
 
-    if (response != null && response['data'] != null) {
-      debugPrint('Group response: ${response['data']}');
-      debugPrint('Members: ${response['data']['members']}');
-      return StudyGroup.fromJson(response['data']);
-    }
-    return null;
-  }
+  Future<StudyGroup> join(String id) async => _groupOf(await _client.post('/group/join/$id', const {}));
 
-  // Cập nhật thông tin nhóm
-  Future<StudyGroup?> updateGroup({
-    required String groupId,
-    String? name,
-    String? description,
-    String? avatar,
-    String? level,
-    bool? isPrivate,
-    int? maxMembers,
-  }) async {
-    try {
-      final response = await _apiClient.put(
-        '/group/$groupId',
-        {
-          if (name != null) 'name': name,
-          if (description != null) 'description': description,
-          if (avatar != null) 'avatar': avatar,
-          if (level != null) 'level': level,
-          if (isPrivate != null) 'is_private': isPrivate,
-          if (maxMembers != null) 'max_members': maxMembers,
-        },
-      );
+  Future<void> leave(String id) => _client.post('/group/leave/$id', const {});
 
-      if (response['data'] != null) {
-        return StudyGroup.fromJson(response['data']);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Error updating group: $e');
-      return null;
-    }
-  }
+  Future<StudyGroup> kick(String id, String userId) async => _groupOf(await _client.delete('/group/kick/$id/$userId'));
 
-  // Upload group avatar
-  Future<StudyGroup?> uploadGroupAvatar(
-      String groupId, List<int> imageBytes, String fileName) async {
-    try {
-      final response = await _apiClient.putMultipart(
-        '/group/$groupId/avatar',
-        {},
-        'avatar',
-        imageBytes,
-        fileName,
-      );
+  Future<StudyGroup> promote(String id, String userId) async =>
+      _groupOf(await _client.put('/group/promote/$id/$userId', const {}));
 
-      if (response['data'] != null) {
-        return StudyGroup.fromJson(response['data']);
-      }
-      return null;
-    } catch (e) {
-      debugPrint('Error uploading group avatar: $e');
-      return null;
-    }
-  }
+  Future<StudyGroup> demote(String id, String userId) async =>
+      _groupOf(await _client.put('/group/demote/$id/$userId', const {}));
 
-  // Tham gia nhóm
-  Future<bool> joinGroup(String groupId) async {
-    try {
-      await _apiClient.post('/group/join/$groupId', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error joining group: $e');
-      return false;
-    }
-  }
+  /// Chỉ người tạo nhóm mới xoá được.
+  Future<void> delete(String id) => _client.delete('/group/$id');
 
-  // Rời nhóm
-  Future<bool> leaveGroup(String groupId) async {
-    try {
-      await _apiClient.post('/group/leave/$groupId', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error leaving group: $e');
-      return false;
-    }
-  }
-
-  // Kick thành viên (admin only)
-  Future<bool> kickMember(String groupId, String userId) async {
-    try {
-      await _apiClient.delete('/group/kick/$groupId/$userId');
-      return true;
-    } catch (e) {
-      debugPrint('Error kicking member: $e');
-      return false;
-    }
-  }
-
-  // Promote thành admin (admin only)
-  Future<bool> promoteMember(String groupId, String userId) async {
-    try {
-      await _apiClient.put('/group/promote/$groupId/$userId', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error promoting member: $e');
-      return false;
-    }
-  }
-
-  // Demote về member (creator only)
-  Future<bool> demoteMember(String groupId, String userId) async {
-    try {
-      await _apiClient.put('/group/demote/$groupId/$userId', {});
-      return true;
-    } catch (e) {
-      debugPrint('Error demoting member: $e');
-      return false;
-    }
-  }
-
-  // Lấy thống kê nhóm
-  Future<GroupStats?> getGroupStats(String groupId) async {
-    final response = await _apiClient.get('/group/$groupId/stats');
-
-    if (response != null && response['data'] != null) {
-      return GroupStats.fromJson(response['data']);
-    }
-    return null;
-  }
-
-  // Xóa nhóm (creator only)
-  Future<bool> deleteGroup(String groupId) async {
-    try {
-      await _apiClient.delete('/group/$groupId');
-      return true;
-    } catch (e) {
-      debugPrint('Error deleting group: $e');
-      return false;
-    }
-  }
+  static StudyGroup _groupOf(Object? response) => objectOf(response, StudyGroup.fromJson);
 }

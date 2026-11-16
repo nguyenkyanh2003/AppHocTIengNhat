@@ -1,66 +1,42 @@
 import 'package:flutter/foundation.dart';
+
+import '../../../core/state/paged_list.dart';
+import '../../../core/state/view_state.dart';
 import '../models/jlpt_models.dart';
 import '../services/jlpt_service.dart';
-import '../../../core/state/view_state.dart';
 
-class JLPTProvider with ChangeNotifier {
-  final JLPTService _service = JLPTService();
+/// Danh sách đề luyện thi, lọc theo cấp độ, tải thêm khi cuộn.
+class JLPTProvider extends ChangeNotifier {
+  JLPTProvider({JLPTService? service}) : _service = service ?? JLPTService();
 
-  List<JLPTExamBrief> _exams = [];
-  bool _isLoading = false;
-  String? _error;
-  int _currentPage = 1;
-  int _totalPages = 1;
+  final JLPTService _service;
+  late final _exams = PagedList<JLPTExamBrief>(onChanged: _notify);
   String? _level;
-  int? _year;
-  int? _month;
+  bool _disposed = false;
 
-  List<JLPTExamBrief> get exams => _exams;
-  bool get isLoading => _isLoading;
-  String? get error => _error;
-  int get currentPage => _currentPage;
-  int get totalPages => _totalPages;
+  ViewState<List<JLPTExamBrief>> get exams => _exams.state;
+  bool get hasMore => _exams.hasMore;
+  bool get isLoadingMore => _exams.isLoadingMore;
+  String? get loadMoreError => _exams.loadMoreError;
   String? get level => _level;
-  int? get year => _year;
-  int? get month => _month;
 
-  Future<void> loadExams({
-    bool refresh = false,
-    String? level,
-    int? year,
-    int? month,
-    int page = 1,
-  }) async {
-    _isLoading = true;
-    _error = null;
-    if (refresh) _exams = [];
-    notifyListeners();
-
+  /// Tải lại từ trang đầu; [level] `null` là mọi cấp độ.
+  Future<void> loadExams({String? level}) {
     _level = level;
-    _year = year;
-    _month = month;
+    return _exams.load((page) => _service.list(level: level, page: page));
+  }
 
-    try {
-      final resp = await _service.fetchExams(
-        level: level,
-        year: year,
-        month: month,
-        page: page,
-      );
-      _currentPage = resp['current'] as int? ?? 1;
-      _totalPages = resp['pages'] as int? ?? 1;
-      final data = resp['data'] as List<JLPTExamBrief>;
-      if (refresh || page == 1) {
-        _exams = data;
-      } else {
-        _exams = [..._exams, ...data];
-      }
-    } catch (e) {
-      _error = userMessageOf(e);
-      debugPrint('Error load exams: $e');
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  Future<void> reload() => _exams.reload();
+
+  Future<void> loadMore() => _exams.loadMore();
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

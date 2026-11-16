@@ -65,7 +65,7 @@ test('GET /progress đổi mốc thời gian sang giờ Việt Nam như các mà
   assert.equal(response.body.data[0].last_studied_at, '2026-11-04 01:30:00');
 });
 
-test('dashboard giữ nguyên hình dạng client đang đọc, không bọc { data }', async () => {
+test('dashboard: số liệu là { data }, chuỗi ngày là { data, total }', async () => {
   const stats = { vocabulary_learned: 12, kanji_learned: 5 };
   const timeline = [{ date: '2026-11-04', exercises: 1, lessons: 0, time: 60, xp: 10 }];
   const heatmap = [{ date: '2026-11-04', count: 2, time: 60 }];
@@ -79,10 +79,10 @@ test('dashboard giữ nguyên hình dạng client đang đọc, không bọc { d
     }),
   );
 
-  assert.deepEqual((await request(app).get('/api/progress/dashboard/stats')).body, stats);
-  assert.deepEqual((await request(app).get('/api/progress/dashboard/timeline')).body, timeline);
-  assert.deepEqual((await request(app).get('/api/progress/dashboard/heatmap')).body, heatmap);
-  assert.deepEqual((await request(app).get('/api/progress/dashboard/breakdown')).body, breakdown);
+  assert.deepEqual((await request(app).get('/api/progress/dashboard/stats')).body, { data: stats });
+  assert.deepEqual((await request(app).get('/api/progress/dashboard/timeline')).body, { data: timeline, total: 1 });
+  assert.deepEqual((await request(app).get('/api/progress/dashboard/heatmap')).body, { data: heatmap, total: 1 });
+  assert.deepEqual((await request(app).get('/api/progress/dashboard/breakdown')).body, { data: breakdown });
 });
 
 test('timeline mặc định một tuần và chặn kỳ lạ trước khi tới service', async () => {
@@ -120,7 +120,7 @@ test('analytics admin mặc định 7 ngày, chặn kỳ lạ, và đi qua auth 
   const service = recordingService();
   const app = buildApp(service);
 
-  assert.equal((await request(app).get('/api/progress/admin/analytics')).status, 200);
+  assert.deepEqual((await request(app).get('/api/progress/admin/analytics')).body, { data: { period: '7d' } });
   await request(app).get('/api/progress/admin/analytics?period=90d');
   assert.equal((await request(app).get('/api/progress/admin/analytics?period=1y')).status, 400);
   assert.deepEqual(service.calls, [

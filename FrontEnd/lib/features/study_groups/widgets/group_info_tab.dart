@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import '../providers/study_group_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/async_view.dart';
 import '../models/study_group.dart';
+import '../providers/study_group_provider.dart';
 
 /// Tab thông tin chung và số liệu hoạt động.
 class GroupInfoTab extends StatelessWidget {
-  const GroupInfoTab({
-    super.key,
-    required this.group,
-    required this.provider,
-  });
+  const GroupInfoTab({super.key, required this.group});
 
   final StudyGroup group;
-  final StudyGroupProvider provider;
 
   @override
   Widget build(BuildContext context) {
-    final stats = provider.currentGroupStats;
+    final provider = context.watch<StudyGroupProvider>();
+    final createdAt = group.createdAt;
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -38,21 +37,23 @@ class GroupInfoTab extends StatelessWidget {
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
-        _buildInfoRow(context, Icons.calendar_today, 'Ngày tạo',
-            _formatDate(group.createdAt)),
-        _buildInfoRow(context, Icons.person, 'Người tạo',
-            group.creatorName ?? group.creatorUsername ?? 'Unknown'),
+        if (createdAt != null) _buildInfoRow(context, Icons.calendar_today, 'Ngày tạo', _formatDate(createdAt)),
+        _buildInfoRow(context, Icons.person, 'Người tạo', group.creatorName ?? group.creatorUsername ?? 'Không rõ'),
         _buildInfoRow(context, Icons.people, 'Số thành viên',
             '${group.memberCount}/${group.maxMembers}'),
-        if (stats != null) ...[
-          const SizedBox(height: 24),
-          const Text(
-            'Thống kê hoạt động',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 12),
-          _buildStatsCard(context, stats),
-        ],
+        const SizedBox(height: 24),
+        const Text(
+          'Thống kê hoạt động',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 12),
+        // Khối riêng: thống kê lỗi thì chỉ khối này báo lỗi, thông tin nhóm vẫn hiện.
+        AsyncView<GroupStats>(
+          state: provider.statsOf(group.id),
+          compact: true,
+          onRetry: () => provider.loadGroupDetail(group.id),
+          builder: (context, stats) => _buildStatsCard(context, stats),
+        ),
       ],
     );
   }
@@ -95,12 +96,9 @@ class GroupInfoTab extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildStatItem(context, 'Tin nhắn',
-                    stats.totalMessages.toString(), Icons.message),
-                _buildStatItem(context, 'Hôm nay',
-                    stats.todayMessages.toString(), Icons.today),
-                _buildStatItem(context, 'Hoạt động',
-                    stats.activeMembers.toString(), Icons.people_alt),
+                _buildStatItem(context, 'Thành viên', '${stats.memberCount}', Icons.people),
+                _buildStatItem(context, 'Quản trị', '${stats.adminCount}', Icons.admin_panel_settings),
+                _buildStatItem(context, 'Hoạt động 24h', '${stats.activeMembers}', Icons.people_alt),
               ],
             ),
           ],

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import '../providers/flashcard_provider.dart';
 import '../models/flashcard_deck.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../app/theme/app_typography.dart';
@@ -145,12 +143,8 @@ class FlashcardCardItem extends StatelessWidget {
     );
   }
 
+  /// Lưu thẻ xong provider tự cập nhật bộ đang mở, nên không cần tải lại khi quay về.
   void _showEditCardDialog(BuildContext context, FlashcardCard card) {
-    context
-        .push('/flashcards/$deckId/cards/${card.id}/edit', extra: card)
-        .then((_) {
-      if (!context.mounted) return;
-      context.read<FlashcardProvider>().loadDeckById(deckId);
-    });
+    context.push('/flashcards/$deckId/cards/${card.id}/edit', extra: card);
   }
 }

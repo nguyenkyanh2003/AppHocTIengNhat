@@ -35,15 +35,19 @@ class _Backend {
         Object body = const {};
         if (request.method == 'POST' && path.endsWith('/exercise/submit/$_id')) {
           submissions.add(jsonDecode(request.body) as Map<String, dynamic>);
-          body = {'_id': 'r1', 'exercise_id': _id, 'score': 0, 'total_questions': 2};
+          body = {
+            'data': {'_id': 'r1', 'exercise_id': _id, 'score': 0, 'total_questions': 2},
+          };
         } else if (path.endsWith('/exercise/$_id')) {
           body = {
-            '_id': _id,
-            'title': 'Bài có giới hạn giờ',
-            'type': 'Từ vựng',
-            'level': 'N5',
-            'time_limit': 1,
-            'questions': [_question(1), _question(2)],
+            'data': {
+              '_id': _id,
+              'title': 'Bài có giới hạn giờ',
+              'type': 'Từ vựng',
+              'level': 'N5',
+              'time_limit': 1,
+              'questions': [_question(1), _question(2)],
+            },
           };
         }
         return http.Response.bytes(utf8.encode(jsonEncode(body)), 200,

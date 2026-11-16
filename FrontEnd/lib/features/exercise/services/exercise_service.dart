@@ -1,102 +1,58 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/exercise.dart';
 
 class ExerciseService {
-  final ApiClient _apiClient = ApiClient();
+  ExerciseService({ApiClient? client}) : _client = client ?? ApiClient();
 
-  // Lấy tất cả bài tập
-  Future<List<Exercise>> getAllExercises() async {
-    // Một cấp lỗi thì báo lỗi cả danh sách: hiện thiếu một cấp sẽ khiến lọc cấp đó
-    // ra "không có bài tập", là kết luận sai. Server trả mảng rỗng cho cấp không có bài.
+  final ApiClient _client;
+
+  static const pageSize = 20;
+  static const _levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+
+  /// Mọi bài tập, gộp năm cấp độ.
+  ///
+  /// Một cấp lỗi thì báo lỗi cả danh sách: hiện thiếu một cấp sẽ khiến lọc cấp
+  /// đó ra "không có bài tập", là kết luận sai.
+  Future<List<Exercise>> listAll() async {
     final responses = await Future.wait([
-      for (final level in const ['N5', 'N4', 'N3', 'N2', 'N1'])
-        _apiClient.get('/exercise/level/$level', cache: true),
+      for (final level in _levels) _client.get('/exercise/level/$level', cache: true),
     ]);
-    return [
-      for (final response in responses)
-        if (response is List)
-          ...response.map((json) => Exercise.fromJson(json)),
-    ];
+    return [for (final response in responses) ...listOf(response, Exercise.fromJson)];
   }
 
-  // Lấy danh sách bài tập theo bài học
-  Future<List<Exercise>> getExercisesByLesson(String lessonId) async {
-    final dynamic response =
-        await _apiClient.get('/exercise/lesson/$lessonId', cache: true);
-    if (response is List) {
-      return response.map((json) => Exercise.fromJson(json)).toList();
-    }
-    return [];
-  }
+  Future<List<Exercise>> listByLesson(String lessonId) async =>
+      listOf(await _client.get('/exercise/lesson/$lessonId', cache: true), Exercise.fromJson);
 
-  // Lấy chi tiết bài tập
-  Future<Exercise> getExerciseById(String id) async {
-    final dynamic response = await _apiClient.get('/exercise/$id', cache: true);
-    if (response is Map<String, dynamic>) {
-      return Exercise.fromJson(response);
-    }
-    throw Exception('Dữ liệu không hợp lệ');
-  }
+  /// Đề để làm bài: câu trả lời không kèm cờ đúng/sai, không có lời giải.
+  Future<Exercise> detail(String id) async =>
+      objectOf(await _client.get('/exercise/$id', cache: true), Exercise.fromJson);
 
-  // Lấy danh sách bài tập theo level
-  Future<List<Exercise>> getExercisesByLevel(String level) async {
-    final dynamic response =
-        await _apiClient.get('/exercise/level/$level', cache: true);
-    if (response is List) {
-      return response.map((json) => Exercise.fromJson(json)).toList();
-    }
-    return [];
-  }
-
-  // Lấy danh sách bài tập theo type
-  Future<List<Exercise>> getExercisesByType(String type) async {
-    final dynamic response =
-        await _apiClient.get('/exercise/type/$type', cache: true);
-    if (response is List) {
-      return response.map((json) => Exercise.fromJson(json)).toList();
-    }
-    return [];
-  }
-
-  // Nộp bài và nhận kết quả
-  /// [attemptId] định danh lượt làm; gửi lại đúng ID cũ thì server trả lại
-  /// kết quả đã chấm thay vì chấm và cộng XP lần hai.
-  Future<ExerciseResult> submitExercise(
-    String exerciseId,
-    List<UserAnswer> answers,
-    int timeSpent, {
+  /// Nộp bài; [answers] là mã câu hỏi → mã đáp án đã chọn. Gửi lại đúng
+  /// [attemptId] cũ thì server trả kết quả đã chấm thay vì chấm và cộng XP lần hai.
+  Future<ExerciseResult> submit(
+    String exerciseId, {
+    required Map<String, String> answers,
+    required int timeSpent,
     required String attemptId,
   }) async {
-    final dynamic response = await _apiClient.post(
-      '/exercise/submit/$exerciseId',
-      {
-        'attempt_id': attemptId,
-        'answers': answers.map((a) => a.toJson()).toList(),
-        'timeSpent': timeSpent,
-      },
-    );
-
-    if (response is Map<String, dynamic>) {
-      return ExerciseResult.fromJson(response);
-    }
-    throw Exception('Dữ liệu không hợp lệ');
+    final response = await _client.post('/exercise/submit/$exerciseId', {
+      'attempt_id': attemptId,
+      'answers': [
+        for (final MapEntry(key: question, value: answer) in answers.entries) {'question_id': question, 'answer_id': answer},
+      ],
+      'timeSpent': timeSpent,
+    });
+    return objectOf(response, ExerciseResult.fromJson);
   }
 
-  // Lấy lịch sử làm bài của user
-  Future<List<ExerciseResult>> getUserExerciseHistory() async {
-    final dynamic response = await _apiClient.get('/exercise/history');
-    if (response is List) {
-      return response.map((json) => ExerciseResult.fromJson(json)).toList();
-    }
-    return [];
+  /// Kết quả các lần làm bài của người đang đăng nhập, mới nhất trước.
+  Future<Paged<ExerciseResult>> history({int page = 1, int limit = pageSize}) async {
+    final query = Uri(queryParameters: {'page': '$page', 'limit': '$limit'}).query;
+    return Paged.fromJson(await _client.get('/exercise/history?$query'), ExerciseResult.fromJson);
   }
 
-  // Lấy kết quả chi tiết của 1 lần làm bài
-  Future<ExerciseResult> getResultById(String resultId) async {
-    final dynamic response = await _apiClient.get('/exercise/result/$resultId');
-    if (response is Map<String, dynamic>) {
-      return ExerciseResult.fromJson(response);
-    }
-    throw Exception('Dữ liệu không hợp lệ');
-  }
+  /// Một kết quả kèm đề đầy đủ (đáp án đúng, lời giải) để xem lại.
+  Future<ExerciseResult> result(String id) async =>
+      objectOf(await _client.get('/exercise/result/$id'), ExerciseResult.fromJson);
 }

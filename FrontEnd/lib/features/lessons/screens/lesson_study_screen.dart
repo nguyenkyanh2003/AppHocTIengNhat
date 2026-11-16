@@ -37,10 +37,9 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Bài vừa mở ở màn trước đã có sẵn: không tải lại.
       final lessons = context.read<LessonProvider>();
-      if (lessons.currentLessonDetail?.lesson.id != widget.lessonId) {
-        lessons.loadLessonDetail(widget.lessonId);
-      }
+      if (!lessons.detailOf(widget.lessonId).hasData) lessons.loadLessonDetail(widget.lessonId);
     });
   }
 
@@ -50,13 +49,9 @@ class _LessonStudyScreenState extends State<LessonStudyScreen> {
     return Scaffold(
       body: SafeArea(
         child: AsyncView<LessonDetail>(
-          state: lessons.detailState,
+          state: lessons.detailOf(widget.lessonId),
           onRetry: () => lessons.loadLessonDetail(widget.lessonId),
           builder: (context, detail) {
-            // Chi tiết của bài khác còn sót trong provider: chờ bản đúng.
-            if (detail.lesson.id != widget.lessonId) {
-              return const Center(child: CircularProgressIndicator());
-            }
             return ChangeNotifierProvider(
               create: (_) => LessonStudySession(detail: detail, initialStep: widget.initialStep)..start(),
               child: const _StudyBody(),

@@ -1,9 +1,15 @@
-import 'package:flutter/material.dart';
-import '../../../core/network/api_client.dart';
-import '../services/auth_service.dart';
-import '../../../shared/models/user.dart';
+import 'package:flutter/foundation.dart';
 
-/// Provider quản lý trạng thái đăng nhập và user
+import '../../../core/network/api_client.dart';
+import '../../../core/state/view_state.dart';
+import '../../../shared/models/user.dart';
+import '../models/profile_changes.dart';
+import '../services/auth_service.dart';
+
+/// Phiên đăng nhập và người dùng hiện tại.
+///
+/// Mọi thao tác trả `null` khi xong hoặc câu báo lỗi (đã viết cho người dùng
+/// đọc) để màn hiện tại chỗ.
 class AuthProvider extends ChangeNotifier {
   /// Nhận service và client qua constructor để test truyền bản giả.
   AuthProvider({AuthService? authService, ApiClient? apiClient})
@@ -12,293 +18,128 @@ class AuthProvider extends ChangeNotifier {
     _apiClient.onSessionExpired = _handleSessionExpired;
   }
 
-  // Lưu ý: Đảm bảo tên class bên file service khớp với chỗ này (AuthService)
   final AuthService _authService;
   final ApiClient _apiClient;
 
   User? _user;
-  bool _isLoading = false;
-  String? _error;
+  bool _busy = false;
   bool _sessionRestored = false;
 
   User? get user => _user;
 
-  /// `true` cho **mọi** thao tác đang chạy: đăng nhập, đổi mật khẩu, cập nhật
-  /// hồ sơ... Đừng dùng cờ này để quyết định điều hướng — xem
+  /// `true` khi một thao tác do người dùng bấm (đăng nhập, đổi mật khẩu, sửa
+  /// hồ sơ...) đang chạy. Đừng dùng cờ này để quyết định điều hướng — xem
   /// [sessionRestored].
-  bool get isLoading => _isLoading;
+  bool get isBusy => _busy;
 
-  /// `true` sau khi [init] chạy xong, bất kể có phiên hay không.
-  ///
-  /// Router phải chờ đúng cờ này rồi mới quyết định chuyển trang. Dùng
-  /// [isLoading] thay cho nó sẽ khiến mỗi lần cập nhật hồ sơ hay đổi mật khẩu
-  /// bị hiểu nhầm là "ứng dụng đang khởi động" và nảy điều hướng.
+  /// `true` sau khi [init] chạy xong, bất kể có phiên hay không. Router chờ
+  /// đúng cờ này rồi mới quyết định chuyển trang.
   bool get sessionRestored => _sessionRestored;
-  String? get error => _error;
   bool get isAuthenticated => _user != null && _apiClient.getToken() != null;
   bool get isAdmin => _user?.role == 'admin';
-  bool get isTeacher => _user?.role == 'teacher' || _user?.role == 'admin';
 
-  /// Khởi tạo - Load user từ storage và API
+  /// Khôi phục phiên đã lưu, rồi làm mới hồ sơ từ server nếu được.
   Future<void> init() async {
-    _isLoading = true;
-    notifyListeners();
-
     try {
-      final token = _apiClient.getToken();
-      if (token != null) {
-        // Load user từ local storage
+      if (_apiClient.getToken() != null) {
         _user = await _authService.getUserFromLocal();
-
-        // Nếu không có user trong local hoặc token không khớp, clear và logout
         if (_user == null) {
-          debugPrint('No user found in local storage, clearing token');
-          await _apiClient.removeToken();
-          await _apiClient.clearAllData();
+          // Có token mà không có hồ sơ: phiên hỏng, dọn sạch để đăng nhập lại.
+          await _clearLocalSession();
         } else {
           notifyListeners();
-
-          // Refresh user từ API để đảm bảo dữ liệu mới nhất
-          try {
-            final freshUser = await _authService.getCurrentUser(_user!.id);
-            _user = freshUser;
-            await _authService.saveUserToLocal(_user!);
-            debugPrint('✅ User loaded: ${_user!.username} (${_user!.id})');
-          } catch (e) {
-            debugPrint('⚠️ Failed to refresh user from API: $e');
-            // Giữ user từ local nếu API fail
-          }
+          await refreshUser();
         }
       }
-    } catch (e) {
-      _error = e.toString();
-      debugPrint('Init error: $e');
-      // Clear nếu có lỗi nghiêm trọng
-      await _apiClient.removeToken();
-      await _apiClient.clearAllData();
     } finally {
-      _isLoading = false;
       _sessionRestored = true;
       notifyListeners();
     }
   }
 
-  /// Đăng nhập
-  Future<bool> login(String username, String password) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  Future<String?> login(String username, String password) => _run(() async {
+        await _setUser(await _authService.login(username, password));
+        // Làm mới hồ sơ để có vai trò mới nhất; lỗi thì vẫn dùng hồ sơ trong phiên.
+        await refreshUser();
+      });
 
-    try {
-      final response = await _authService.login(username, password);
+  Future<String?> register(String username, String fullName, String email, String password, {String? level}) =>
+      _run(() => _authService.register(
+            username: username,
+            fullName: fullName,
+            email: email,
+            password: password,
+            level: level,
+          ));
 
-      // Debug: In ra response để xem
-      debugPrint('🔍 LOGIN RESPONSE: ${response['user']}');
-      debugPrint('🔍 VaiTro from response: ${response['user']?['VaiTro']}');
-      debugPrint('🔍 role from response: ${response['user']?['role']}');
-
-      if (response['user'] != null) {
-        _user = User.fromJson(response['user']);
-        debugPrint('🔍 User parsed - role: ${_user!.role}');
-        await _authService.saveUserToLocal(_user!);
-
-        // Refresh user data từ API để lấy role mới nhất
-        try {
-          final freshUser = await _authService.getCurrentUser(_user!.id);
-          _user = freshUser;
-          await _authService.saveUserToLocal(_user!);
-          debugPrint(
-              '✅ User refreshed: ${_user!.username} - Role: ${_user!.role}');
-        } catch (e) {
-          debugPrint('⚠️ Failed to refresh user: $e');
-          // Vẫn dùng user data từ login response
-        }
-      }
-
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Đăng ký
-  Future<bool> register(
-      String username, String fullName, String email, String password,
-      {String? phoneNumber, String? trinhDo}) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      await _authService.register(
-        username,
-        fullName,
-        email,
-        password,
-        phoneNumber,
-        trinhDo,
-      );
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Đăng xuất
   Future<void> logout() async {
-    _isLoading = true;
+    await _authService.logout();
+    _user = null;
     notifyListeners();
-
-    try {
-      await _authService.logout();
-    } catch (e) {
-      debugPrint('Logout error: $e');
-    } finally {
-      _user = null;
-      _error = null;
-      _isLoading = false;
-      notifyListeners();
-    }
   }
 
-  /// Reset toàn bộ state (dùng khi cần reset app)
+  /// Xoá state trên máy (đổi tài khoản). `sessionRestored` giữ nguyên: phiên
+  /// đã khôi phục xong, xoá state không đưa ứng dụng về trạng thái khởi động.
   void resetState() {
     _user = null;
-    _error = null;
-    _isLoading = false;
-    // `_sessionRestored` giữ nguyên: phiên đã được khôi phục xong rồi, việc
-    // xoá state không đưa ứng dụng về lại trạng thái đang khởi động.
     notifyListeners();
   }
 
-  /// Cập nhật profile
-  Future<bool> updateProfile({
-    String? fullName,
-    String? email,
-    String? avatar,
-    int? currentLevel,
-    String? phoneNumber,
-    String? address,
-    String? gender,
-    DateTime? dateOfBirth,
-  }) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  Future<String?> updateProfile(ProfileChanges changes) =>
+      _run(() async => _setUser(await _authService.updateProfile(_requireUser().id, changes)));
 
-    try {
-      if (_user == null) {
-        throw Exception('Chưa đăng nhập');
-      }
-
-      // Giả định AuthService nhận tham số ID đầu tiên và các tham số named arguments
-      _user = await _authService.updateProfile(
-        _user!.id,
-        fullName: fullName,
-        email: email,
-        avatar: avatar,
-        currentLevel: currentLevel?.toString(),
-        phoneNumber: phoneNumber,
-        address: address,
-        gender: gender,
-        dateOfBirth: dateOfBirth,
-      );
-
-      await _authService.saveUserToLocal(_user!);
-
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Upload avatar
-  Future<bool> uploadAvatar(List<int> imageBytes, String fileName) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      if (_user == null) {
-        throw Exception('Chưa đăng nhập');
-      }
-
-      _user = await _authService.uploadAvatar(_user!.id, imageBytes, fileName);
-      await _authService.saveUserToLocal(_user!);
-
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
-  }
+  Future<String?> uploadAvatar(List<int> imageBytes, String fileName) =>
+      _run(() async => _setUser(await _authService.uploadAvatar(_requireUser().id, imageBytes, fileName)));
 
   /// Đổi mật khẩu của chính người dùng đang đăng nhập.
   ///
-  /// Backend tăng `tokenVersion` của tài khoản đích khi đổi mật khẩu, nên access
-  /// token đang giữ bị thu hồi ngay lúc đó. Nếu không dọn phiên cục bộ, app sẽ
-  /// tiếp tục gửi một token đã chết và mọi màn hình lần lượt báo lỗi 401.
-  ///
-  /// Trả về `true` khi đổi thành công; khi đó phiên đã bị xoá và màn hình gọi
-  /// phải đưa người dùng về đăng nhập.
-  Future<bool> changePassword(String oldPassword, String newPassword) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
+  /// Backend thu hồi mọi access token của tài khoản ngay khi đổi, nên xong là
+  /// dọn phiên cục bộ — màn gọi phải đưa người dùng về đăng nhập. Không gọi API
+  /// logout: token hiện tại đã chết, lỗi của request đó không được chặn việc dọn.
+  Future<String?> changePassword(String oldPassword, String newPassword) => _run(() async {
+        await _authService.changePassword(_requireUser().id, oldPassword, newPassword);
+        await _clearLocalSession();
+      });
 
-    try {
-      if (_user == null) {
-        throw Exception('Chưa đăng nhập');
-      }
+  Future<String?> forgotPassword(String email) => _run(() => _authService.forgotPassword(email));
 
-      await _authService.changePassword(_user!.id, oldPassword, newPassword);
+  Future<String?> resetPassword(String token, String newPassword) =>
+      _run(() => _authService.resetPassword(token, newPassword));
 
-      // Chỉ dọn phiên khi đổi mật khẩu đã thành công.
-      await _clearLocalSession();
-
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
+  /// Làm mới hồ sơ từ server; lỗi thì giữ hồ sơ đang có.
+  Future<void> refreshUser() async {
+    final current = _user;
+    if (current == null) return;
+    final fresh = await ViewState.guard(() => _authService.getCurrentUser(current.id));
+    if (fresh.valueOrNull case final user?) await _setUser(user);
   }
 
-  /// Xoá token và dữ liệu phiên trên máy.
-  ///
-  /// Không gọi API logout: token hiện tại đã bị thu hồi nên request đó chắc
-  /// chắn thất bại, và lỗi của nó không được phép ngăn việc dọn phiên.
+  Future<String?> _run(Future<void> Function() action) async {
+    if (_busy) return 'Thao tác trước vẫn đang chạy.';
+    _busy = true;
+    notifyListeners();
+    final result = await ViewState.guard(action);
+    _busy = false;
+    notifyListeners();
+    return result.errorOrNull;
+  }
+
+  User _requireUser() => _user ?? (throw ApiException('Bạn chưa đăng nhập.'));
+
+  Future<void> _setUser(User user) async {
+    _user = user;
+    await _authService.saveUserToLocal(user);
+    notifyListeners();
+  }
+
+  /// Phiên ở server đã kết thúc (đổi mật khẩu, hết hạn): lỗi khi dọn kho trên
+  /// máy không được biến việc đã xong thành "thất bại".
   Future<void> _clearLocalSession() async {
-    try {
+    _user = null;
+    await ViewState.guard(() async {
       await _apiClient.removeToken();
       await _apiClient.clearAllData();
-    } catch (e) {
-      debugPrint('Clear session error: $e');
-    }
-
-    _user = null;
+    });
   }
 
   /// Token hết hạn hoặc bị thu hồi: dọn phiên cục bộ rồi báo cho router, router
@@ -315,86 +156,5 @@ class AuthProvider extends ChangeNotifier {
       _apiClient.onSessionExpired = null;
     }
     super.dispose();
-  }
-
-  /// Quên mật khẩu - Gửi email reset
-  Future<bool> forgotPassword(String email) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      await _authService.forgotPassword(email);
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Reset mật khẩu với token
-  Future<bool> resetPassword(String token, String newPassword) async {
-    _isLoading = true;
-    _error = null;
-    notifyListeners();
-
-    try {
-      await _authService.resetPassword(token, newPassword);
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      _error = _getErrorMessage(e);
-      _isLoading = false;
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Refresh user data từ API
-  Future<void> refreshUser() async {
-    if (!isAuthenticated) return;
-
-    try {
-      _user = await _authService.getCurrentUser(_user!.id);
-      await _authService.saveUserToLocal(_user!);
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Refresh user error: $e');
-    }
-  }
-
-  /// Clear lỗi
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
-
-  /// Xử lý error message
-  String _getErrorMessage(dynamic error) {
-    // Thông điệp của backend đã viết cho người dùng đọc — kể cả thông báo chung
-    // "Tên đăng nhập hoặc mật khẩu không đúng.": hiện nguyên văn. Đoán lại ở đây
-    // từng biến mọi lỗi 401 thành "sai mật khẩu", lộ luôn là tên đăng nhập đúng.
-    if (error is ApiException) return error.message;
-
-    final errorString = error.toString();
-    if (errorString.contains('400')) {
-      return 'Thông tin không hợp lệ';
-    } else if (errorString.contains('409')) {
-      return 'Tên đăng nhập hoặc email đã tồn tại';
-    } else if (errorString.contains('404')) {
-      return 'Không tìm thấy thông tin';
-    } else if (errorString.contains('500')) {
-      return 'Lỗi server, vui lòng thử lại sau';
-    } else {
-      // Loại bỏ "Exception: " và "Lỗi kết nối: " để message ngắn gọn
-      return errorString
-          .replaceFirst('Exception: ', '')
-          .replaceFirst('Lỗi kết nối: ', '');
-    }
   }
 }

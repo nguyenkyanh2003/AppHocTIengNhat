@@ -44,8 +44,6 @@ const fakeRepository = ({ content = CONTENT, seed = null } = {}) => {
     findLessonContent: async () => content,
     findProgress: async () => (state.doc ? state.doc.toObject() : null),
     findAllProgress: async () => (state.doc ? [state.doc.toObject()] : []),
-    findProgressForLessons: async () => (state.doc ? [state.doc.toObject()] : []),
-    findLessonsByLevel: async () => [{ _id: LESSON_ID }],
 
     startProgress: async ({ totals, at }) => {
       const created = state.doc === null;
@@ -471,23 +469,17 @@ test('gỡ đánh dấu một mục không phải hoạt động học', async (
   assert.equal(service.streak.calls.length, 0);
 });
 
-test('reset xóa tiến độ và thống kê phản ánh dữ liệu còn lại', async () => {
+test('reset xóa tiến độ của bài', async () => {
   const repository = fakeRepository();
   const service = buildService(repository);
 
   await service.startLesson({ userId: USER_ID, lessonId: LESSON_ID });
   await service.completeLesson({ userId: USER_ID, lessonId: LESSON_ID });
 
-  const stats = await service.getStats(USER_ID);
-  assert.equal(stats.total_lessons, 1);
-  assert.equal(stats.completed_lessons, 1);
-  assert.equal(stats.total_vocabularies_learned, 2);
-
-  const levelStats = await service.getLevelStats({ userId: USER_ID, level: 'N5' });
-  assert.equal(levelStats.progress_percentage, 100);
+  assert.equal((await service.getProgress({ userId: USER_ID, lessonId: LESSON_ID })).is_completed, true);
 
   await service.resetLesson({ userId: USER_ID, lessonId: LESSON_ID });
-  assert.equal((await service.getStats(USER_ID)).total_lessons, 0);
+  assert.equal(await service.getProgress({ userId: USER_ID, lessonId: LESSON_ID }), null);
 });
 
 test('nội dung bài lấy từ khóa ngoại khi mảng tham chiếu rỗng', async () => {

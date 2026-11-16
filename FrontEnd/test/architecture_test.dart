@@ -8,17 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 ///
 /// Feature chưa chuyển khuôn nằm trong [_legacyFeatures]. Chuyển xong feature
 /// nào thì gỡ tên nó; danh sách phải rỗng khi đợt chuyển khuôn kết thúc.
-const _legacyFeatures = <String>{
-  'admin',
-  'auth',
-  'exercise',
-  'flashcards',
-  'jlpt',
-  'lessons',
-  'profile',
-  'streaks',
-  'study_groups',
-};
+const _legacyFeatures = <String>{};
 
 /// Provider tự quản bộ ba cờ thay vì `ViewState`. Cờ có tên riêng
 /// (`_isLoadingMore`, `_isSaving`) vẫn được phép: so khớp nguyên từ.
@@ -27,6 +17,13 @@ final _manualState = RegExp(r'\b(?:bool|String\??)\s+(_isLoading|_error)\b');
 /// Lời gọi API trả `Map` thô, buộc provider phải đoán tên khoá. Hàm đồng bộ dựng
 /// body/query của request (trả `Map` ngay) không tính.
 final _rawMapReturn = RegExp(r'Future<Map<String,\s*dynamic>\??>\s+\w+\(');
+
+/// Tự bóc `response['data']` thay vì `dataOf`/`objectOf`/`listOf`/`Paged`:
+/// response sai hình dạng lặng lẽ thành rỗng thay vì báo lỗi tại chỗ đọc.
+final _rawEnvelope = RegExp(r"\[\s*'data'\s*\]");
+
+/// Tự tạo `ApiClient` trong field: test không truyền được transport giả.
+final _hardWiredClient = RegExp(r'ApiClient\s+_\w+\s*=\s*ApiClient\(\)');
 
 Iterable<String> _features() => Directory('lib/features')
     .listSync()
@@ -56,6 +53,12 @@ List<String> _violationsOf(String feature) {
       final line = lines[index];
       if (_rawMapReturn.hasMatch(line) && !RegExp(r'\s_\w+\(').hasMatch(line)) {
         found.add('${_path(file)}:${index + 1}: service trả Map thô');
+      }
+      if (_rawEnvelope.hasMatch(line)) {
+        found.add('${_path(file)}:${index + 1}: service tự bóc data thay vì dùng api_envelope');
+      }
+      if (_hardWiredClient.hasMatch(line)) {
+        found.add('${_path(file)}:${index + 1}: service tự tạo ApiClient thay vì nhận qua constructor');
       }
     }
   }

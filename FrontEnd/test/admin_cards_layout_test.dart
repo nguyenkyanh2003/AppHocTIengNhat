@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
 
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
-import 'package:apphoctiengnnhat/features/admin/providers/admin_provider.dart';
 import 'package:apphoctiengnnhat/features/admin/models/admin_achievement.dart';
+import 'package:apphoctiengnnhat/features/admin/models/admin_report.dart';
+import 'package:apphoctiengnnhat/features/admin/models/admin_user.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_achievement_card.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_report_card.dart';
 import 'package:apphoctiengnnhat/features/admin/widgets/admin_user_card.dart';
@@ -16,12 +16,9 @@ Future<void> _pumpExpanded(
   tester.view.physicalSize = const Size(320, 900);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
-  await tester.pumpWidget(ChangeNotifierProvider(
-    create: (_) => AdminProvider(),
-    child: MaterialApp(
-      theme: AppTheme.lightTheme,
-      home: Scaffold(body: SingleChildScrollView(child: card)),
-    ),
+  await tester.pumpWidget(MaterialApp(
+    theme: AppTheme.lightTheme,
+    home: Scaffold(body: SingleChildScrollView(child: card)),
   ));
   await tester.tap(find.textContaining(tapText).first);
   await tester.pumpAndSettle();
@@ -32,23 +29,25 @@ void main() {
       (tester) async {
     await _pumpExpanded(
       tester,
-      const AdminUserCard(user: {
-        '_id': 'u1',
-        'name': 'Nguyễn Thị Thuỳ Dương Hoàng Lan Anh',
-        'email': 'mot.dia.chi.email.rat.dai.de.thu@example.invalid',
-        'status': 'active',
-        'role': 'admin',
-        'joinDate': '2026-11-05T07:17:27.828Z',
-        'lastActive': 'Chưa có',
-        'totalXP': 10,
-        'streak': 2,
-      }),
+      AdminUserCard(
+        user: AdminUser.fromJson(const {
+          '_id': 'u1',
+          'HoTen': 'Nguyễn Thị Thuỳ Dương Hoàng Lan Anh',
+          'Email': 'mot.dia.chi.email.rat.dai.de.thu@example.invalid',
+          'TrangThai': 'active',
+          'VaiTro': 'admin',
+          'NgayTao': '2026-11-05T07:17:27.828Z',
+          'DiemTichLuy': 10,
+          'StreakHienTai': 2,
+        }),
+      ),
       'Nguyễn',
     );
 
     expect(find.text('ADMIN'), findsOneWidget);
     expect(find.textContaining('T07:17'), findsNothing,
         reason: 'Ngày phải đọc được');
+    expect(find.text('Chưa có'), findsOneWidget, reason: 'chưa đăng nhập lần nào');
     expect(tester.takeException(), isNull);
   });
 
@@ -80,8 +79,7 @@ void main() {
     await _pumpExpanded(
       tester,
       AdminReportCard(
-        updateStatus: (_, __) {},
-        report: const {
+        item: AdminReport.fromJson(const {
           '_id': 'r1',
           'title': 'Báo cáo có tiêu đề khá dài để thử bố cục trên màn hẹp',
           'description': 'Mô tả',
@@ -91,7 +89,7 @@ void main() {
           'createdAt': '2026-11-05T07:00:00.000Z',
           'admin_response': 'Đã ghi nhận',
           'user_id': {'HoTen': 'Lê Lan', 'Email': 'lan@example.invalid'},
-        },
+        }),
       ),
       'Báo cáo có tiêu đề',
     );

@@ -1,5 +1,3 @@
-import mongoose from 'mongoose';
-
 import { ApiError } from '../../shared/http/api-error.js';
 import { attemptSubmitter } from '../streaks/attempt-submission.js';
 import { scoreExamAnswers } from './jlpt-scoring.service.js';
@@ -12,18 +10,6 @@ import { jlptSubmissionRepository } from './jlpt-submission.repository.js';
  * Bản cũ không cộng XP cho việc thi (chỉ `upsert` một document streak rỗng với
  * trường `xp` không có trong schema), nên thi xong không được ghi nhận gì.
  */
-
-/**
- * ID câu hỏi trong bài làm có thể thiếu hoặc không phải ObjectId (câu nằm
- * trong nhóm đọc/nghe không có ID riêng). Sinh ID mới cho những câu đó để bản
- * ghi lịch sử vẫn hợp lệ, đúng như hành vi cũ.
- */
-const toQuestionId = (questionId) => {
-  if (questionId && mongoose.Types.ObjectId.isValid(questionId)) {
-    return new mongoose.Types.ObjectId(String(questionId));
-  }
-  return new mongoose.Types.ObjectId();
-};
 
 export const createJlptSubmissionService = ({
   repository = jlptSubmissionRepository,
@@ -63,7 +49,7 @@ export const createJlptSubmissionService = ({
                 choukai: scored.sectionScores.choukai,
               },
               user_answers: scored.answerDetails.map((detail) => ({
-                question_id: toQuestionId(detail.questionId),
+                question_id: detail.questionId,
                 user_choice: detail.userChoice,
                 is_correct: detail.isCorrect,
                 section: detail.section,
@@ -77,15 +63,11 @@ export const createJlptSubmissionService = ({
         );
 
         return {
-          // Giữ nguyên vỏ response tiếng Việt mà client đang đọc.
           result: {
-            KetQuaCuoiCung: isPassed ? 'Đỗ' : 'Trượt',
-            DiemTuVung: scored.sectionScores.moji_goi,
-            DiemNguPhap: scored.sectionScores.bunpou,
-            DiemDocHieu: scored.sectionScores.dokkai,
-            DiemNgheHieu: scored.sectionScores.choukai,
-            TongDiemDatDuoc: scored.totalScore,
-            TongThoiGian: duration,
+            passed: isPassed,
+            total_score: scored.totalScore,
+            section_scores: { ...scored.sectionScores },
+            duration,
           },
           outcome: { passed: isPassed },
         };

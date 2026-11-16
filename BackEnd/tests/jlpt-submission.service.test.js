@@ -87,9 +87,9 @@ test('nộp đề lần đầu trả kết quả đã chấm và ghi 20 XP', asy
   const { result, replayed, xpAwarded } = await submit(service);
 
   assert.equal(replayed, false);
-  assert.equal(result.TongDiemDatDuoc, 120);
-  assert.equal(result.KetQuaCuoiCung, 'Đỗ');
-  assert.equal(result.TongThoiGian, 3600);
+  assert.equal(result.total_score, 120);
+  assert.equal(result.passed, true);
+  assert.equal(result.duration, 3600);
   assert.equal(xpAwarded, 20);
   assert.equal(repository.state.saved.length, 1);
 });
@@ -98,7 +98,7 @@ test('điểm dưới mức đạt trả Trượt, XP vẫn là 20 vì đã nộ
   const service = buildService(fakeRepository(), { totalScore: 50 });
   const { result, xpAwarded } = await submit(service);
 
-  assert.equal(result.KetQuaCuoiCung, 'Trượt');
+  assert.equal(result.passed, false);
   assert.equal(xpAwarded, 20);
 });
 
@@ -128,10 +128,10 @@ test('lần thi thứ hai điểm khác không làm hỏng kết quả retry c�
     totalScore: 60,
     journal: service.journal,
   }).submit({ userId: USER, examId: EXAM, attemptId: OTHER_ATTEMPT, answers: [{ question_key: 'q1', selected: 2 }], timeSpent: 100 });
-  assert.equal(second.result.TongDiemDatDuoc, 60);
+  assert.equal(second.result.total_score, 60);
 
   const replayFirst = await submit(service);
-  assert.equal(replayFirst.result.TongDiemDatDuoc, first.result.TongDiemDatDuoc);
+  assert.equal(replayFirst.result.total_score, first.result.total_score);
 });
 
 test('cùng attempt_id mà bài làm khác bị từ chối 409', async () => {
@@ -171,5 +171,5 @@ test('thiếu thời gian làm bài thì lấy trọn thời lượng đề', as
     answers: [{ question_key: 'q1', selected: 1 }],
   });
 
-  assert.equal(result.TongThoiGian, 105 * 60);
+  assert.equal(result.duration, 105 * 60);
 });

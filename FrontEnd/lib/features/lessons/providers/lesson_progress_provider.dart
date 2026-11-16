@@ -1,195 +1,59 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import '../../../core/state/view_state.dart';
 import '../models/lesson_progress.dart';
 import '../services/lesson_progress_service.dart';
-import '../../../core/state/view_state.dart';
 
+/// Tiến độ của người học trên từng bài, cho màn chi tiết bài. Phiên học
+/// (`LessonStudySession`) tự gọi service để đánh dấu và hoàn thành.
 class LessonProgressProvider extends ChangeNotifier {
-  final LessonProgressService _progressService = LessonProgressService();
+  LessonProgressProvider({LessonProgressService? service}) : _service = service ?? LessonProgressService();
 
-  // Progress cho lesson hiện tại
-  LessonProgress? _currentProgress;
-  LessonProgress? get currentProgress => _currentProgress;
+  final LessonProgressService _service;
+  final Map<String, ViewState<LessonProgress?>> _progress = {};
+  final Map<String, int> _generations = {};
+  bool _disposed = false;
 
-  // Danh sách tất cả progress
-  List<LessonProgress> _allProgress = [];
-  List<LessonProgress> get allProgress => _allProgress;
+  /// Tiến độ bài [lessonId]; `data(null)` là chưa bắt đầu bài.
+  ViewState<LessonProgress?> progressOf(String lessonId) => _progress[lessonId] ?? const ViewState.loading();
 
-  // Stats tổng quan
-  Map<String, dynamic> _stats = {};
-  Map<String, dynamic> get stats => _stats;
-
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  String? _error;
-  String? get error => _error;
-
-  /// Lấy tiến độ cho một lesson
+  /// Tải lại tiến độ (sau khi học xong một bước). Đang có thì giữ trong lúc chờ.
   Future<void> loadProgress(String lessonId) async {
-    try {
-      _isLoading = true;
-      _error = null;
-      notifyListeners();
-
-      _currentProgress = await _progressService.getProgress(lessonId);
-
-      _isLoading = false;
-      notifyListeners();
-    } catch (e) {
-      _error = userMessageOf(e);
-      _isLoading = false;
-      notifyListeners();
+    final generation = _generations[lessonId] = (_generations[lessonId] ?? 0) + 1;
+    if (!(_progress[lessonId]?.hasData ?? false)) {
+      _progress[lessonId] = const ViewState.loading();
+      _notify();
     }
+    final result = await ViewState.guard(() => _service.getProgress(lessonId));
+    if (generation != _generations[lessonId]) return;
+    _progress[lessonId] = result;
+    _notify();
   }
 
-  /// Lấy tất cả tiến độ
-  Future<void> loadAllProgress() async {
-    try {
-      _isLoading = true;
-      _error = null;
-      notifyListeners();
-
-      _allProgress = await _progressService.getAllProgress();
-
-      _isLoading = false;
-      notifyListeners();
-    } catch (e) {
-      _error = userMessageOf(e);
-      _isLoading = false;
-      notifyListeners();
-    }
+  /// Học lại từ đầu; trả `null` khi xong hoặc câu báo lỗi.
+  Future<String?> resetProgress(String lessonId) async {
+    final result = await ViewState.guard(() => _service.resetProgress(lessonId));
+    if (!result.hasData) return result.errorOrNull;
+    _generations[lessonId] = (_generations[lessonId] ?? 0) + 1;
+    _progress[lessonId] = const ViewState.data(null);
+    _notify();
+    return null;
   }
 
-  /// Bắt đầu học một lesson
-  Future<bool> startLesson(String lessonId) async {
-    try {
-      _error = null;
-
-      final progress = await _progressService.startLesson(lessonId);
-      if (progress != null) {
-        _currentProgress = progress;
-        notifyListeners();
-        return true;
-      }
-      return false;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Cập nhật tiến độ
-  Future<bool> updateProgress({
-    required String lessonId,
-    required String itemType,
-    required String itemId,
-    required bool completed,
-  }) async {
-    try {
-      _error = null;
-
-      final progress = await _progressService.updateProgress(
-        lessonId: lessonId,
-        itemType: itemType,
-        itemId: itemId,
-        completed: completed,
-      );
-
-      if (progress != null) {
-        _currentProgress = progress;
-        notifyListeners();
-        return true;
-      }
-      return false;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Hoàn thành lesson
-  Future<bool> completeLesson(String lessonId) async {
-    try {
-      _error = null;
-
-      final progress = await _progressService.completeLesson(lessonId);
-      if (progress != null) {
-        _currentProgress = progress;
-        notifyListeners();
-        return true;
-      }
-      return false;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Reset tiến độ
-  Future<bool> resetProgress(String lessonId) async {
-    try {
-      _error = null;
-
-      final success = await _progressService.resetProgress(lessonId);
-      if (success) {
-        _currentProgress = null;
-        notifyListeners();
-      }
-      return success;
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-      return false;
-    }
-  }
-
-  /// Lấy thống kê
-  Future<void> loadStats() async {
-    try {
-      _error = null;
-      _stats = await _progressService.getOverallStats();
-      notifyListeners();
-    } catch (e) {
-      _error = userMessageOf(e);
-      notifyListeners();
-    }
-  }
-
-  /// Kiểm tra xem lesson đã được bắt đầu chưa
-  bool isLessonStarted(String lessonId) {
-    if (_currentProgress == null) return false;
-    return _currentProgress!.lessonId == lessonId;
-  }
-
-  /// Kiểm tra xem lesson đã hoàn thành chưa
-  bool isLessonCompleted(String lessonId) {
-    if (_currentProgress == null) return false;
-    return _currentProgress!.lessonId == lessonId &&
-        _currentProgress!.isCompleted;
-  }
-
-  /// Clear error
-  void clearError() {
-    _error = null;
-    notifyListeners();
-  }
-
-  /// Clear current progress
-  void clearCurrentProgress() {
-    _currentProgress = null;
-    notifyListeners();
-  }
-
-  /// Clear all data (for logout)
+  /// Xoá state (đăng xuất); phản hồi đang chạy của phiên trước bị bỏ.
   void clear() {
-    _currentProgress = null;
-    _allProgress = [];
-    _stats = {};
-    _error = null;
-    _isLoading = false;
-    notifyListeners();
+    _generations.updateAll((_, generation) => generation + 1);
+    _progress.clear();
+    _notify();
+  }
+
+  void _notify() {
+    if (!_disposed) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

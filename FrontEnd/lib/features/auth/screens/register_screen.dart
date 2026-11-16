@@ -45,9 +45,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-    final auth = context.read<AuthProvider>();
-    // `register` không ném: thất bại (trùng tên, mất mạng…) trả `false` kèm `auth.error`.
-    final registered = await auth.register(
+    // `register` không ném: thất bại (trùng tên, mất mạng…) trả câu báo lỗi.
+    final error = await context.read<AuthProvider>().register(
       _usernameController.text,
       _fullNameController.text,
       _emailController.text,
@@ -58,11 +57,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(registered ? 'Đăng ký thành công!' : 'Đăng ký thất bại: ${auth.error ?? 'vui lòng thử lại.'}'),
-        backgroundColor: registered ? AppColors.successStrong : AppColors.errorStrong,
+        content: Text(error == null ? 'Đăng ký thành công!' : 'Đăng ký thất bại: $error'),
+        backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
-    if (registered) context.go('/login');
+    if (error == null) context.go('/login');
   }
 
   @override

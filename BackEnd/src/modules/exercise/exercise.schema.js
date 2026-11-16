@@ -1,7 +1,17 @@
 import { z } from 'zod';
-import { objectId } from '../../shared/http/schemas.js';
 
-export const submitParams = z.object({ id: objectId });
+import { paginationQuery } from '../../shared/http/pagination.js';
+import { jlptLevel, objectId } from '../../shared/http/schemas.js';
+
+export const idParams = z.object({ id: objectId });
+
+export const levelParams = z.object({ level: jlptLevel });
+
+export const lessonParams = z.object({ lessonID: objectId });
+
+export const resultParams = z.object({ resultId: objectId });
+
+export const historyQuery = paginationQuery;
 
 /**
  * Bài nộp của một lượt làm.

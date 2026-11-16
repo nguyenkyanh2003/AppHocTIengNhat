@@ -13,28 +13,32 @@ import 'package:apphoctiengnnhat/features/streaks/screens/leaderboard_screen.dar
 
 const _responses = <String, Object>{
   '/api/achievement/my-achievements': {
-    'earned': [],
-    'locked': [
-      {
-        'progress': 0,
-        'is_completed': false,
-        'is_locked': true,
-        'achievement': {'_id': 'a1', 'name_vi': 'Bước đầu', 'category': 'lesson'},
-      },
-    ],
+    'data': {
+      'earned': [],
+      'locked': [
+        {
+          'progress': 0,
+          'is_completed': false,
+          'is_locked': true,
+          'achievement': {'_id': 'a1', 'name_vi': 'Bước đầu', 'category': 'lesson'},
+        },
+      ],
+    },
   },
-  '/api/achievement/stats': {'total_achievements': 0, 'earned_achievements': 0, 'completion_rate': '0'},
+  '/api/achievement/stats': {'data': {'total_achievements': 0, 'earned_achievements': 0, 'completion_rate': '0'}},
   '/api/streak/leaderboard': {
-    'leaderboard': [
-      {
-        'rank': 1,
-        'user': {'_id': 'u1', 'TenDangNhap': 'lan', 'HoTen': 'Lê Thu Lan'},
-        'total_xp': 974,
-        'level': 10,
-        'current_streak': 2,
-        'longest_streak': 9,
-      },
-    ],
+    'data': {
+      'leaderboard': [
+        {
+          'rank': 1,
+          'user': {'_id': 'u1', 'TenDangNhap': 'lan', 'HoTen': 'Lê Thu Lan'},
+          'total_xp': 974,
+          'level': 10,
+          'current_streak': 2,
+          'longest_streak': 9,
+        },
+      ],
+    },
   },
 };
 

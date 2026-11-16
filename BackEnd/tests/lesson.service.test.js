@@ -10,14 +10,11 @@ const fakeRepository = (overrides = {}) => ({
   findVocabulariesByLesson: async () => [],
   findActiveGrammarsByLesson: async () => [],
   findKanjisByLesson: async () => [],
-  findByLevel: async () => [],
   distinctSituations: async () => [],
   aggregateStats: async () => ({ totalLessons: 0, byLevel: [], byType: [] }),
   create: async (input) => ({ _id: 'new', ...input }),
   updateById: async () => null,
-  findByIdLean: async () => null,
   deleteById: async () => null,
-  deleteManyByIds: async () => 0,
   countRelated: async () => ({ vocabulary: 0, kanji: 0, grammar: 0 }),
   ...overrides,
 });
@@ -159,49 +156,9 @@ test('remove xóa được khi không còn tham chiếu, báo 404 khi bài học
   await assert.rejects(service.remove('missing'), (error) => error.status === 404);
 });
 
-test('removeMany chặn 409 kèm details, xóa được khi không còn tham chiếu', async () => {
-  const blocked = createLessonService({
-    lessonRepository: fakeRepository({
-      countRelated: async () => ({ vocabulary: 0, kanji: 1, grammar: 0 }),
-    }),
-  });
-  await assert.rejects(blocked.removeMany(['l1']), (error) => error.status === 409);
-
-  const allowed = createLessonService({
-    lessonRepository: fakeRepository({ deleteManyByIds: async () => 3 }),
-  });
-  const deletedCount = await allowed.removeMany(['l1', 'l2', 'l3']);
-  assert.equal(deletedCount, 3);
-});
-
 test('update báo 404 khi bài học không tồn tại', async () => {
   const service = createLessonService({ lessonRepository: fakeRepository() });
 
   await assert.rejects(service.update('missing', { title: 'x' }), (error) => error.status === 404);
 });
 
-test('duplicate xóa _id/createdAt/updatedAt và thêm hậu tố Bản sao vào title', async () => {
-  const repository = fakeRepository({
-    findByIdLean: async () => ({
-      _id: 'l1',
-      title: 'Bài 1',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      level: 'N5',
-    }),
-    create: async (input) => ({ _id: 'l2', ...input }),
-  });
-  const service = createLessonService({ lessonRepository: repository });
-
-  const copy = await service.duplicate('l1');
-
-  assert.ok(copy.title.startsWith('Bài 1 (Bản sao '));
-  assert.equal(copy._id, 'l2');
-  assert.equal(copy.level, 'N5');
-});
-
-test('duplicate báo 404 khi bài học gốc không tồn tại', async () => {
-  const service = createLessonService({ lessonRepository: fakeRepository() });
-
-  await assert.rejects(service.duplicate('missing'), (error) => error.status === 404);
-});

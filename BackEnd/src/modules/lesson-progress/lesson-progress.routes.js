@@ -9,48 +9,27 @@ import { lessonProgressService } from './lesson-progress.service.js';
 
 /**
  * Nhận dependency qua tham số để test dựng router với service giả và auth giả.
+ * Xác thực gắn theo từng route (không `router.use`) để path không tồn tại vẫn là 404.
  */
 export const createLessonProgressRoutes = ({
   service = lessonProgressService,
   authenticate = authenticateUser,
 } = {}) => {
   const controller = createLessonProgressController(service);
+  const lesson = validate({ params: schema.lessonIdParams });
   const router = express.Router();
 
-  router.use(authenticate);
-
-  router.get(
-    '/lesson/:lessonId',
-    validate({ params: schema.lessonIdParams }),
-    asyncHandler(controller.getByLessonId),
-  );
-  router.get('/lessons', asyncHandler(controller.list));
-  router.post(
-    '/lesson/:lessonId/start',
-    validate({ params: schema.lessonIdParams }),
-    asyncHandler(controller.start),
-  );
+  router.get('/lesson/:lessonId', authenticate, lesson, asyncHandler(controller.getByLessonId));
+  router.get('/lessons', authenticate, asyncHandler(controller.list));
+  router.post('/lesson/:lessonId/start', authenticate, lesson, asyncHandler(controller.start));
   router.post(
     '/lesson/:lessonId/update',
+    authenticate,
     validate({ params: schema.lessonIdParams, body: schema.updateBody }),
     asyncHandler(controller.update),
   );
-  router.post(
-    '/lesson/:lessonId/complete',
-    validate({ params: schema.lessonIdParams }),
-    asyncHandler(controller.complete),
-  );
-  router.post(
-    '/lesson/:lessonId/reset',
-    validate({ params: schema.lessonIdParams }),
-    asyncHandler(controller.reset),
-  );
-  router.get('/stats', asyncHandler(controller.stats));
-  router.get(
-    '/level/:level',
-    validate({ params: schema.levelParams }),
-    asyncHandler(controller.levelStats),
-  );
+  router.post('/lesson/:lessonId/complete', authenticate, lesson, asyncHandler(controller.complete));
+  router.post('/lesson/:lessonId/reset', authenticate, lesson, asyncHandler(controller.reset));
 
   return router;
 };

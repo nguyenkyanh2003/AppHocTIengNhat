@@ -31,20 +31,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-    final provider = context.read<AuthProvider>();
-    final sent = await provider.forgotPassword(_emailController.text.trim());
+    final error = await context.read<AuthProvider>().forgotPassword(_emailController.text.trim());
     if (!mounted) return;
 
     setState(() {
       _isLoading = false;
-      _emailSent = sent;
+      _emailSent = error == null;
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(sent
-            ? 'Email đặt lại mật khẩu đã được gửi!'
-            : provider.error ?? 'Không thể gửi yêu cầu đặt lại mật khẩu.'),
-        backgroundColor: sent ? AppColors.successStrong : AppColors.errorStrong,
+        content: Text(error ?? 'Email đặt lại mật khẩu đã được gửi!'),
+        backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
       ),
     );
   }

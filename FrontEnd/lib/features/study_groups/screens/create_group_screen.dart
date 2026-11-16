@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/study_group.dart';
 import '../providers/study_group_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -156,28 +157,18 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
     setState(() => _isCreating = true);
 
-    final provider = Provider.of<StudyGroupProvider>(context, listen: false);
-    final group = await provider.createGroup(
-      name: _nameController.text,
-      description: _descriptionController.text.isEmpty
-          ? null
-          : _descriptionController.text,
-      level: _selectedLevel,
-      isPrivate: _isPrivate,
-      maxMembers: _maxMembers,
-    );
-
+    final error = await context.read<StudyGroupProvider>().createGroup(StudyGroupDraft(
+          name: _nameController.text.trim(),
+          description: _descriptionController.text.trim(),
+          level: _selectedLevel,
+          isPrivate: _isPrivate,
+          maxMembers: _maxMembers,
+        ));
+    if (!mounted) return;
     setState(() => _isCreating = false);
 
-    if (group != null && mounted) {
-      Navigator.pop(context, true);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Tạo nhóm thành công!')),
-      );
-    } else if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(provider.error ?? 'Lỗi khi tạo nhóm')),
-      );
-    }
+    // Tạo xong provider tự tải lại "Nhóm của tôi".
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error ?? 'Tạo nhóm thành công!')));
+    if (error == null) Navigator.pop(context);
   }
 }

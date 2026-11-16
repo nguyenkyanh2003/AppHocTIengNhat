@@ -45,17 +45,7 @@ class _FakeAuthService extends AuthService {
   }
 
   @override
-  Future<Map<String, dynamic>> login(String username, String password) async {
-    return {
-      'user': {
-        '_id': 'user-1',
-        'TenDangNhap': 'victim',
-        'Email': 'victim@example.com',
-        'VaiTro': 'user',
-      },
-      'token': 'jwt-token',
-    };
-  }
+  Future<User> login(String username, String password) async => _user();
 
   @override
   Future<User> getCurrentUser(String userId) async => _user();
@@ -94,9 +84,9 @@ void main() {
       final service = _FakeAuthService();
       final provider = await _signedInProvider(service);
 
-      final ok = await provider.changePassword('cu', 'mat-khau-moi');
+      final error = await provider.changePassword('cu', 'mat-khau-moi');
 
-      expect(ok, isTrue);
+      expect(error, isNull);
       expect(service.changePasswordCalls, [
         ['user-1', 'cu', 'mat-khau-moi'],
       ]);
@@ -120,20 +110,19 @@ void main() {
             UnauthorizedException('Mật khẩu cũ không chính xác.');
       final provider = await _signedInProvider(service);
 
-      final ok = await provider.changePassword('sai', 'mat-khau-moi');
+      final error = await provider.changePassword('sai', 'mat-khau-moi');
 
-      expect(ok, isFalse);
+      expect(error, 'Mật khẩu cũ không chính xác.');
       expect(provider.user, isNotNull);
-      expect(provider.error, isNotNull);
     });
 
     test('chưa đăng nhập thì không gửi request nào', () async {
       final service = _FakeAuthService();
       final provider = AuthProvider(authService: service);
 
-      final ok = await provider.changePassword('cu', 'moi');
+      final error = await provider.changePassword('cu', 'moi');
 
-      expect(ok, isFalse);
+      expect(error, isNotNull);
       expect(service.changePasswordCalls, isEmpty);
     });
   });
@@ -143,9 +132,9 @@ void main() {
       final service = _FakeAuthService();
       final provider = AuthProvider(authService: service);
 
-      final ok = await provider.resetPassword('token-abc', 'mat-khau-moi');
+      final error = await provider.resetPassword('token-abc', 'mat-khau-moi');
 
-      expect(ok, isTrue);
+      expect(error, isNull);
       expect(service.resetPasswordCalls, [
         ['token-abc', 'mat-khau-moi'],
       ]);
@@ -166,11 +155,10 @@ void main() {
             'Token đã được sử dụng hoặc không còn hợp lệ.');
       final provider = AuthProvider(authService: service);
 
-      final ok = await provider.resetPassword('token-cu', 'mat-khau-moi');
+      final error = await provider.resetPassword('token-cu', 'mat-khau-moi');
 
-      expect(ok, isFalse);
-      expect(provider.error, isNotNull);
-      expect(provider.error, isNot(contains('Exception:')));
+      expect(error, 'Token đã được sử dụng hoặc không còn hợp lệ.');
+      expect(error, isNot(contains('Exception:')));
     });
   });
 

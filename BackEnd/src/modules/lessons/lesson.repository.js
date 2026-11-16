@@ -62,10 +62,6 @@ export const createLessonRepository = ({
     return kanjiModel.find({ lessonId }).lean();
   },
 
-  findByLevel(level) {
-    return lessonModel.find({ level }).sort({ order: 1 }).lean();
-  },
-
   /**
    * Tình huống đang thực sự có bài học — bỏ bài chưa gắn tình huống. Có `level`
    * thì chỉ lấy chủ đề có bài ở đúng cấp đó.
@@ -104,17 +100,8 @@ export const createLessonRepository = ({
     });
   },
 
-  findByIdLean(id) {
-    return lessonModel.findById(id).lean();
-  },
-
   deleteById(id) {
     return lessonModel.findByIdAndDelete(id);
-  },
-
-  async deleteManyByIds(ids) {
-    const result = await lessonModel.deleteMany({ _id: { $in: ids } });
-    return result.deletedCount;
   },
 
   async countRelated(lessonIds) {

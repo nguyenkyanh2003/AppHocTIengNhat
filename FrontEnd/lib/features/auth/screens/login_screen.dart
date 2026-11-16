@@ -26,6 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
   bool _rememberMe = false;
 
+  /// Lỗi của lần đăng nhập gần nhất, hiện ngay trong form.
+  String? _error;
+
   @override
   void dispose() {
     _usernameController.dispose();
@@ -35,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   /// Xử lý đăng nhập
   Future<void> _handleLogin() async {
-    context.read<AuthProvider>().clearError();
+    setState(() => _error = null);
 
     if (!_formKey.currentState!.validate()) {
       return;
@@ -45,15 +48,14 @@ class _LoginScreenState extends State<LoginScreen> {
     ProviderResetService.resetAllProviders(context);
 
     // Gọi API login
-    final authProvider = context.read<AuthProvider>();
-    final success = await authProvider.login(
+    final error = await context.read<AuthProvider>().login(
       _usernameController.text.trim(),
       _passwordController.text,
     );
 
     if (!mounted) return;
 
-    if (success) {
+    if (error == null) {
       // Đăng nhập thành công
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -79,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Lỗi hiện ở khối ngay trong form, không bắn thêm SnackBar: hai chỗ báo
       // cùng một lỗi làm người dùng tưởng có hai vấn đề khác nhau.
       _passwordController.clear();
+      setState(() => _error = error);
     }
   }
 
@@ -107,9 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Lỗi đăng nhập: nền đỏ nhạt để chữ đọc được. Trước đây
                       // nền, viền, icon và chữ cùng dùng `AppColors.error` nên
                       // khối trông như một mảng đỏ rỗng.
-                      Consumer<AuthProvider>(
-                        builder: (context, authProvider, _) {
-                          final error = authProvider.error;
+                      Builder(
+                        builder: (context) {
+                          final error = _error;
                           if (error == null || error.isEmpty) {
                             return const SizedBox.shrink();
                           }

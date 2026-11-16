@@ -1,3 +1,5 @@
+import '../models/admin_transaction.dart';
+
 String formatTransactionCurrency(num amount) {
   final value = amount.round().toString().replaceAllMapped(
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -6,17 +8,23 @@ String formatTransactionCurrency(num amount) {
   return '$value đ';
 }
 
-String formatTransactionDate(dynamic value) {
-  final date = DateTime.tryParse(value?.toString() ?? '')?.toLocal();
+String formatTransactionDate(DateTime? date) {
   if (date == null) return '—';
-  return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year} '
-      '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
+  String two(int value) => value.toString().padLeft(2, '0');
+  return '${two(date.day)}/${two(date.month)}/${date.year} ${two(date.hour)}:${two(date.minute)}';
 }
 
-String transactionPaymentIcon(dynamic method) => switch (method?.toString()) {
+String transactionPaymentIcon(String method) => switch (method) {
       'MOMO' => 'M',
       'VNPAY' => 'V',
       'BANK' => 'B',
       'CARD' => 'C',
       _ => '₫',
+    };
+
+/// Bước tiếp theo quản trị viên làm được với một giao dịch: `(trạng thái mới, nhãn)`.
+List<(String, String)> transactionNextSteps(AdminTransaction transaction) => switch (transaction.status) {
+      'pending' || 'processing' => const [('completed', 'Xác nhận'), ('failed', 'Từ chối')],
+      'completed' => const [('refunded', 'Đánh dấu hoàn tiền')],
+      _ => const [],
     };

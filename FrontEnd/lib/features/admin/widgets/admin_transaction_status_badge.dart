@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../../../app/theme/app_tokens.dart';
-import '../../../app/theme/app_typography.dart';
+import '../providers/admin_transactions_provider.dart';
+import 'admin_report_style.dart';
 
 /// Nhãn trạng thái của một giao dịch.
 class AdminTransactionStatusBadge extends StatelessWidget {
-  const AdminTransactionStatusBadge({
-    super.key,
-    required this.status,
-  });
+  const AdminTransactionStatusBadge({super.key, required this.status});
 
   final String status;
 
@@ -21,27 +20,6 @@ class AdminTransactionStatusBadge extends StatelessWidget {
       'refunded' => Colors.purple,
       _ => AppColors.neutral,
     };
-    const labels = {
-      'completed': 'Hoàn thành',
-      'pending': 'Chờ xử lý',
-      'processing': 'Đang xử lý',
-      'failed': 'Thất bại',
-      'refunded': 'Hoàn tiền',
-      'cancelled': 'Đã hủy',
-    };
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        labels[status] ?? status,
-        style: TextStyle(
-            color: context.colors.readable(color),
-            fontSize: AppTypography.caption,
-            fontWeight: FontWeight.bold),
-      ),
-    );
+    return AdminBadge(label: AdminTransactionsProvider.statuses[status] ?? status, color: color);
   }
 }

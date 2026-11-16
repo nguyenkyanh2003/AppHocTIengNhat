@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../core/network/api_client.dart';
 import '../../../core/state/view_state.dart';
 import '../../kanji/models/kanji.dart';
 import '../../kanji/services/kanji_service.dart';
@@ -96,8 +95,9 @@ class LessonStudySession extends ChangeNotifier {
   /// Mở bài (0 XP, tạo bản ghi tiến độ nếu chưa có) và nạp những từ, chữ Hán
   /// đã học.
   Future<void> start() async {
-    final progress = await _service.startLesson(lessonId);
-    if (progress != null) {
+    // Mở bài lỗi thì vẫn học được; đánh dấu sau đó sẽ báo lỗi riêng nếu mạng còn hỏng.
+    final started = await ViewState.guard(() => _service.startLesson(lessonId));
+    if (started.valueOrNull case final progress?) {
       _learned.addAll(progress.learnedVocabularyIds);
       _learnedKanji.addAll(progress.learnedKanjiIds);
     }
@@ -140,14 +140,14 @@ class LessonStudySession extends ChangeNotifier {
     _saving.add(id);
     _notify();
 
-    final progress = await _service.updateProgress(
-      lessonId: lessonId,
-      itemType: itemType,
-      itemId: id,
-      completed: learned,
-    );
+    final saved = await ViewState.guard(() => _service.updateProgress(
+          lessonId: lessonId,
+          itemType: itemType,
+          itemId: id,
+          completed: learned,
+        ));
     _saving.remove(id);
-    if (progress == null) {
+    if (!saved.hasData) {
       _message = learned
           ? 'Chưa lưu được "$label". Kiểm tra kết nối rồi bấm lại.'
           : 'Chưa bỏ đánh dấu được "$label". Kiểm tra kết nối rồi bấm lại.';
@@ -199,13 +199,7 @@ class LessonStudySession extends ChangeNotifier {
     if (_completion.isLoading) return;
     _completion = const ViewState.loading();
     _notify();
-    _completion = await ViewState.guard(() async {
-      final progress = await _service.completeLesson(lessonId);
-      if (progress == null) {
-        throw ApiException('Chưa lưu được kết quả bài học. Kiểm tra kết nối rồi thử lại.');
-      }
-      return progress;
-    });
+    _completion = await ViewState.guard(() => _service.completeLesson(lessonId));
     _notify();
   }
 }

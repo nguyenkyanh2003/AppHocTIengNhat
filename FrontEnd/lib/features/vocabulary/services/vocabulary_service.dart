@@ -1,46 +1,15 @@
 import '../../../core/network/api_client.dart';
+import '../../../core/network/api_envelope.dart';
 import '../models/vocabulary.dart';
 import '../models/vocabulary_set.dart';
 
 /// Một trang từ vựng trả về từ API.
-///
-/// Trước đây service trả `Map<String, dynamic>` nên provider phải tự đoán tên
-/// khoá và ép kiểu ở từng chỗ dùng.
-class VocabularyPage {
-  const VocabularyPage({
-    required this.items,
-    required this.page,
-    required this.limit,
-    required this.total,
-    required this.totalPages,
-  });
-
-  factory VocabularyPage.fromJson(
-    Map<String, dynamic> json, {
-    int fallbackPage = 1,
-  }) {
-    return VocabularyPage(
-      items: _parseList(json['data']),
-      page: json['page'] as int? ?? fallbackPage,
-      limit: json['limit'] as int? ?? 0,
-      total: json['total'] as int? ?? 0,
-      totalPages: json['totalPages'] as int? ?? 0,
-    );
-  }
-
-  final List<Vocabulary> items;
-  final int page;
-  final int limit;
-  final int total;
-  final int totalPages;
-}
-
-List<Vocabulary> _parseList(dynamic data) =>
-    (data as List?)?.map((item) => Vocabulary.fromJson(item)).toList() ??
-    const [];
+typedef VocabularyPage = Paged<Vocabulary>;
 
 class VocabularyService {
-  final ApiClient _apiClient = ApiClient();
+  VocabularyService({ApiClient? client}) : _apiClient = client ?? ApiClient();
+
+  final ApiClient _apiClient;
 
   /// Danh sách từ vựng có phân trang và bộ lọc.
   Future<VocabularyPage> getVocabularies({
@@ -59,11 +28,7 @@ class VocabularyService {
       if (sortBy != null && sortBy.isNotEmpty) 'sortBy': sortBy,
     });
 
-    final response = await _apiClient.get(endpoint, cache: true);
-    return VocabularyPage.fromJson(
-      Map<String, dynamic>.from(response as Map),
-      fallbackPage: page,
-    );
+    return Paged.fromJson(await _apiClient.get(endpoint, cache: true), Vocabulary.fromJson);
   }
 
   /// Tìm từ vựng theo từ khoá. Không có kết quả là danh sách rỗng, không phải lỗi.
@@ -76,21 +41,17 @@ class VocabularyService {
       if (level != null && level.isNotEmpty) 'level': level,
     });
 
-    final response = await _apiClient.get(endpoint, cache: true);
-    return _parseList(response['data']);
+    return listOf(await _apiClient.get(endpoint, cache: true), Vocabulary.fromJson);
   }
 
   Future<List<Vocabulary>> getVocabulariesByLesson(String lessonId) async {
-    final response =
-        await _apiClient.get('/vocabulary/lesson/$lessonId', cache: true);
-    return _parseList(response['data']);
+    return listOf(await _apiClient.get('/vocabulary/lesson/$lessonId', cache: true), Vocabulary.fromJson);
   }
 
   /// Không đặt `cache`: chi tiết mang lịch ôn cá nhân, và đặt lại lịch bằng
   /// một bản lưu cũ sẽ gửi sai mốc hạn ôn kỳ vọng (spec SRS §4).
   Future<Vocabulary> getVocabularyById(String id) async {
-    final response = await _apiClient.get('/vocabulary/$id');
-    return Vocabulary.fromJson(response['data']);
+    return objectOf(await _apiClient.get('/vocabulary/$id'), Vocabulary.fromJson);
   }
 
   /// Các bộ học của một cấp, kèm số từ đã học của người dùng.
@@ -98,29 +59,20 @@ class VocabularyService {
   /// Không đặt `cache`: số từ đã học đổi sau mỗi lần học, bản lưu ngoại tuyến
   /// sẽ hiện tiến độ cũ.
   Future<List<VocabularySet>> getSets(String level) async {
-    final response =
-        await _apiClient.get(_endpoint('/vocabulary/sets', {'level': level}));
-    return (response['data'] as List? ?? const [])
-        .map((item) => VocabularySet.fromJson(Map<String, dynamic>.from(item)))
-        .toList();
+    return listOf(await _apiClient.get(_endpoint('/vocabulary/sets', {'level': level})), VocabularySet.fromJson);
   }
 
   Future<VocabularySetDetail> getSet(String setId) async {
-    final response =
-        await _apiClient.get('/vocabulary/sets/${Uri.encodeComponent(setId)}');
-    return VocabularySetDetail.fromJson(
-      Map<String, dynamic>.from(response['data'] as Map),
+    return objectOf(
+      await _apiClient.get('/vocabulary/sets/${Uri.encodeComponent(setId)}'),
+      VocabularySetDetail.fromJson,
     );
   }
 
   /// Đánh dấu đã học: backend tạo tiến độ ôn tập ở box 1.
-  Future<void> markAsLearned(String vocabularyId) async {
-    await _apiClient.post('/vocabulary/$vocabularyId/mark-learned', {});
-  }
+  Future<void> markAsLearned(String vocabularyId) => _apiClient.post('/vocabulary/$vocabularyId/mark-learned', {});
 
-  Future<void> unmarkAsLearned(String vocabularyId) async {
-    await _apiClient.delete('/vocabulary/$vocabularyId/mark-learned');
-  }
+  Future<void> unmarkAsLearned(String vocabularyId) => _apiClient.delete('/vocabulary/$vocabularyId/mark-learned');
 
   String _endpoint(String path, Map<String, String> params) =>
       '$path?${Uri(queryParameters: params).query}';

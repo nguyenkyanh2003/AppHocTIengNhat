@@ -4,7 +4,6 @@ import 'package:provider/single_child_widget.dart';
 
 import '../features/home/providers/home_provider.dart';
 import '../features/achievements/providers/achievement_provider.dart';
-import '../features/admin/providers/admin_provider.dart';
 import '../features/auth/providers/auth_provider.dart';
 import '../features/exercise/providers/exercise_provider.dart';
 import '../features/flashcards/providers/flashcard_provider.dart';
@@ -26,13 +25,11 @@ import '../features/reports/providers/report_provider.dart';
 import '../features/srs/providers/srs_provider.dart';
 import '../features/streaks/providers/streak_provider.dart';
 import '../features/study_groups/providers/study_group_provider.dart';
-import '../features/profile/providers/user_provider.dart';
 import '../features/vocabulary/providers/vocabulary_provider.dart';
 import '../features/vocabulary/providers/vocabulary_set_provider.dart';
 
 List<SingleChildWidget> createAppProviders({ThemeMode initialThemeMode = ThemeMode.system}) => [
       ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
-      ChangeNotifierProvider(create: (_) => UserProvider()),
       ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ChangeNotifierProvider(create: (_) => ThemeProvider(initialThemeMode)),
       ChangeNotifierProvider(create: (_) => HomeProvider()),
@@ -58,5 +55,4 @@ List<SingleChildWidget> createAppProviders({ThemeMode initialThemeMode = ThemeMo
       // Không lười: phải nghe lệnh ghi ngay từ đầu, kể cả khi chưa màn nào đọc tới.
       ChangeNotifierProvider(create: (_) => AchievementAnnouncer(), lazy: false),
       ChangeNotifierProvider(create: (_) => FlashcardProvider()),
-      ChangeNotifierProvider(create: (_) => AdminProvider()),
     ];

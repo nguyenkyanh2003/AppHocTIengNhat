@@ -36,12 +36,6 @@ export const createLessonRoutes = ({
     asyncHandler(controller.getSituations),
   );
   router.get(
-    '/level/:capDo',
-    authenticate,
-    validate({ params: schema.capDoParams }),
-    asyncHandler(controller.getLevelByCapDo),
-  );
-  router.get(
     '/stats/overview',
     authorizeAdmin,
     asyncHandler(controller.getStatsOverview),
@@ -69,18 +63,6 @@ export const createLessonRoutes = ({
     authorizeAdmin,
     validate({ params: schema.idParams }),
     asyncHandler(controller.deleteById),
-  );
-  router.delete(
-    '/',
-    authorizeAdmin,
-    validate({ body: schema.idsBody }),
-    asyncHandler(controller.deleteRoot),
-  );
-  router.post(
-    '/:id/duplicate',
-    authorizeAdmin,
-    validate({ params: schema.idParams }),
-    asyncHandler(controller.postByIdDuplicate),
   );
 
   return router;

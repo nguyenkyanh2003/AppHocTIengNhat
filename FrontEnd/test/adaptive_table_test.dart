@@ -153,6 +153,33 @@ void main() {
       }
     });
 
+    testWidgets('danh sách phân trang: cuộn tới cuối thì tải trang sau, lỗi có nút thử lại ở cả hai chế độ', (tester) async {
+      for (final width in [360.0, 1440.0]) {
+        var loads = 0;
+        Widget table({String? error}) => _host(
+              width: width,
+              child: AdaptiveTable<int>(
+                items: List.generate(40, (i) => i),
+                columns: [AdaptiveColumn(label: 'Số', cell: (context, item) => Text('dòng $item'))],
+                cardBuilder: (context, item) => ListTile(title: Text('thẻ $item')),
+                paging: TablePaging(hasMore: true, isLoadingMore: false, error: error, onLoadMore: () => loads++),
+              ),
+            );
+
+        await tester.pumpWidget(table());
+        expect(loads, 0, reason: 'chưa cuộn thì chưa tải ở bề rộng $width');
+        // Ô cuối có vòng xoay chạy mãi, nên không chờ "settle".
+        await tester.fling(find.byType(ListView).last, const Offset(0, -6000), 3000);
+        await tester.pump(const Duration(seconds: 2));
+        expect(loads, greaterThan(0), reason: 'ở bề rộng $width');
+
+        await tester.pumpWidget(table(error: 'Mất mạng'));
+        await tester.pumpAndSettle();
+        expect(find.text('Mất mạng'), findsOneWidget, reason: 'ở bề rộng $width');
+        expect(find.text('Thử lại'), findsOneWidget);
+      }
+    });
+
     testWidgets('không tràn bố cục ở các bề rộng đã chốt', (tester) async {
       for (final width in [360.0, 599.0, 600.0, 601.0, 840.0, 1440.0, 1920.0]) {
         await tester.pumpWidget(
