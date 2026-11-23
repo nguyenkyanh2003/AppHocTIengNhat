@@ -105,7 +105,9 @@ class _EntryTile extends StatelessWidget {
       subtitle: entry.subtitle,
       icon: entry.icon,
       color: entry.color,
-      onTap: () => context.go(entry.path),
+      // `push`, không `go`: `go` thay cả ngăn xếp nên nút Back của Android ở
+      // trang con không còn gì để quay về và đóng luôn app.
+      onTap: () => context.push(entry.path),
       trailing: entry.trailing?.call(context),
     );
   }

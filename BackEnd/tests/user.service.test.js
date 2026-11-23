@@ -21,14 +21,31 @@ const fakeRepository = (results = {}) => {
   return { calls, repository };
 };
 
+/** Kho ảnh giả: ghi lại thao tác, `replace` gọi `apply` với một đường dẫn mới như kho thật. */
+const fakeImages = () => {
+  const calls = [];
+  return {
+    calls,
+    async replace({ folder, prefix, previous, apply }) {
+      calls.push(['replace', { folder, prefix, previous }]);
+      return apply(`/uploads/${folder}/${prefix}-moi.jpg`);
+    },
+    async remove(publicPath) {
+      calls.push(['remove', publicPath]);
+    },
+  };
+};
+
 const build = (results) => {
   const fake = fakeRepository(results);
+  const images = fakeImages();
   const service = createUserService({
     repository: fake.repository,
     passwordHasher: { hash: async (plain) => `hashed:${plain}` },
     now: () => NOW,
+    images,
   });
-  return { ...fake, service };
+  return { ...fake, images, service };
 };
 
 const asUser = { _id: ME, VaiTro: 'user' };
@@ -100,16 +117,43 @@ test('sửa hồ sơ: đổi tên trường sang model; email người khác đa
   );
 });
 
-test('ảnh đại diện chỉ đổi được của chính mình', async () => {
-  const { calls, service } = build({ updateById: ({ set }) => ({ ...USER, ...set }) });
+const IMAGE = Buffer.from([0xff, 0xd8, 0xff]);
 
-  assert.equal((await service.setAvatar({ actor: asUser, userId: ME, avatar: '/uploads/avatars/a.png' })).AnhDaiDien, '/uploads/avatars/a.png');
-  assert.deepEqual(calls, [['updateById', { id: ME, set: { AnhDaiDien: '/uploads/avatars/a.png' } }]]);
-  await assert.rejects(service.setAvatar({ actor: asAdmin, userId: ME, avatar: 'x' }), rejectsWith(403));
+test('ảnh đại diện: lưu ảnh mới, ghi vào hồ sơ, thay ảnh cũ', async () => {
+  const { calls, images, service } = build({
+    findPublicById: { ...USER, AnhDaiDien: '/uploads/avatars/cu.png' },
+    updateById: ({ set }) => ({ ...USER, ...set }),
+  });
+
+  const user = await service.setAvatar({ actor: asUser, userId: ME, image: IMAGE });
+
+  assert.equal(user.AnhDaiDien, '/uploads/avatars/user-moi.jpg');
+  assert.deepEqual(calls.at(-1), ['updateById', { id: ME, set: { AnhDaiDien: '/uploads/avatars/user-moi.jpg' } }]);
+  assert.deepEqual(images.calls, [['replace', { folder: 'avatars', prefix: 'user', previous: '/uploads/avatars/cu.png' }]]);
+});
+
+test('ảnh đại diện của người khác: từ chối trước khi đụng tới tệp', async () => {
+  const { calls, images, service } = build();
+
+  await assert.rejects(service.setAvatar({ actor: asAdmin, userId: ME, image: IMAGE }), rejectsWith(403));
+  assert.deepEqual(calls, []);
+  assert.deepEqual(images.calls, []);
+});
+
+test('ảnh đại diện: người dùng không còn thì 404 và kho ảnh dọn được tệp vừa lưu', async () => {
+  await assert.rejects(
+    build({ findPublicById: null }).service.setAvatar({ actor: asUser, userId: ME, image: IMAGE }),
+    rejectsWith(404),
+  );
+  // Bị xoá giữa lúc tải lên: apply ném 404 để kho ảnh xoá tệp vừa ghi.
+  await assert.rejects(
+    build({ findPublicById: USER, updateById: null }).service.setAvatar({ actor: asUser, userId: ME, image: IMAGE }),
+    rejectsWith(404),
+  );
 });
 
 test('quản trị: lọc người dùng theo từ khoá nguyên văn, vai trò, trạng thái, trình độ', async () => {
-  const { calls, service } = build({ findPage: [USER], count: 1 });
+  const { calls, service } = build({ findPage: [USER], count: 1, streakSummaries: new Map() });
 
   await service.adminList({ page: 1, limit: 20, search: 'an (N5)', role: 'user', status: 'active', trinhDo: 'N5' });
 
@@ -122,6 +166,34 @@ test('quản trị: lọc người dùng theo từ khoá nguyên văn, vai trò,
   });
 });
 
+test('quản trị: XP và chuỗi ngày lấy từ streak thật, không từ trường cũ của User', async () => {
+  const legacy = { ...USER, DiemTichLuy: 0, StreakHienTai: 0, StreakDaiNhat: 0, TongThoiGianHoc: 0 };
+  const { calls, service } = build({
+    findPage: [legacy, { ...legacy, _id: OTHER }],
+    count: 2,
+    streakSummaries: new Map([[ME, { total_xp: 120, current_streak: 3 }]]),
+  });
+
+  const { items } = await service.adminList({ page: 1, limit: 20 });
+
+  assert.deepEqual(calls.find(([name]) => name === 'streakSummaries'), ['streakSummaries', { userIds: [ME, OTHER], now: NOW }]);
+  assert.deepEqual(
+    items.map(({ _id, total_xp: xp, current_streak: streak }) => [_id, xp, streak]),
+    [[ME, 120, 3], [OTHER, 0, 0]],
+  );
+  for (const field of ['DiemTichLuy', 'StreakHienTai', 'StreakDaiNhat', 'TongThoiGianHoc']) {
+    assert.ok(!(field in items[0]), `${field} là trường cũ không ai ghi, không được trả ra`);
+  }
+});
+
+test('hồ sơ không trả các trường XP/chuỗi ngày cũ (luôn 0, gây hiểu nhầm)', async () => {
+  const { service } = build({ findPublicById: { ...USER, DiemTichLuy: 0, StreakHienTai: 0, TongThoiGianHoc: 0 } });
+
+  const profile = await service.profile({ actor: asUser, userId: ME });
+
+  assert.ok(!('DiemTichLuy' in profile) && !('StreakHienTai' in profile) && !('TongThoiGianHoc' in profile));
+});
+
 test('quản trị: sửa người dùng đổi tên trường sang model; không có 404', async () => {
   const { calls, service } = build({ emailTaken: false, updateById: (args) => ({ ...USER, ...args.set }) });
 
@@ -132,10 +204,11 @@ test('quản trị: sửa người dùng đổi tên trường sang model; khôn
 });
 
 test('quản trị: không tự xoá tài khoản của mình; người không có là 404', async () => {
-  const { calls, service } = build({ deleteById: USER });
+  const { calls, images, service } = build({ deleteById: { ...USER, AnhDaiDien: '/uploads/avatars/cu.png' } });
 
   await service.adminRemove({ actor: asAdmin, userId: ME });
   assert.deepEqual(calls, [['deleteById', ME]]);
+  assert.deepEqual(images.calls, [['remove', '/uploads/avatars/cu.png']], 'xoá tài khoản thì xoá luôn ảnh đại diện');
 
   await assert.rejects(service.adminRemove({ actor: asAdmin, userId: OTHER }), rejectsWith(400));
   await assert.rejects(build({ deleteById: null }).service.adminRemove({ actor: asAdmin, userId: ME }), rejectsWith(404));

@@ -39,8 +39,11 @@ void main() {
           'Email': 'lan@example.invalid',
           'VaiTro': 'admin',
           'TrangThai': 'banned',
-          'DiemTichLuy': 120,
-          'StreakHienTai': 3,
+          // XP và chuỗi ngày thật do server ghép từ streak; hai trường cũ luôn 0.
+          'DiemTichLuy': 0,
+          'StreakHienTai': 0,
+          'total_xp': 120,
+          'current_streak': 3,
           'NgayTao': '2026-11-05 14:00:00',
         },
       ], page: 2, totalPages: 3),
@@ -49,7 +52,7 @@ void main() {
     expect(requests.single.url.path, '/api/users/admin/users');
     expect(requests.single.url.queryParameters, {'page': '2', 'limit': '20', 'search': 'lan', 'status': 'banned'});
     final user = page.items.single;
-    expect((user.displayName, user.isAdmin, user.isBanned, user.totalXp), ('Lê Lan', true, true, 120));
+    expect((user.displayName, user.isAdmin, user.isBanned, user.totalXp, user.streak), ('Lê Lan', true, true, 120, 3));
     expect(user.joinedAt, DateTime(2026, 11, 5, 14));
     expect(user.lastActiveAt, isNull);
     expect(page.hasMore, isTrue);

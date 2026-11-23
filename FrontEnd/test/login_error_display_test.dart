@@ -63,6 +63,15 @@ Finder _errorBanner() => find
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
+  testWidgets('không có ô "Ghi nhớ đăng nhập": phiên luôn được giữ tới khi đăng xuất, ô đó không làm gì', (tester) async {
+    await tester.pumpWidget(_loginApp());
+    await tester.pumpAndSettle();
+
+    expect(find.byType(Checkbox), findsNothing);
+    expect(find.text('Ghi nhớ đăng nhập'), findsNothing);
+    expect(find.text('Quên mật khẩu?'), findsOneWidget);
+  });
+
   testWidgets('chưa bấm đăng nhập thì không có khối lỗi chiếm chỗ',
       (tester) async {
     await http.runWithClient(() async {

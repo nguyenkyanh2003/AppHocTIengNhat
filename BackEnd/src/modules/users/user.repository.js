@@ -12,6 +12,17 @@ const WITH_TOKEN_VERSION = '+tokenVersion';
 const PUBLIC_FIELDS = '-MatKhau';
 const NEWEST_FIRST = { NgayTao: -1, _id: -1 };
 
+/** Chuỗi ngày đang hiển thị: phép chiếu tại ngày [today], chuỗi đã đứt là 0. */
+const projectedStreak = (streak, today) =>
+  projectStreak(
+    {
+      currentStreak: streak.current_streak ?? 0,
+      lastActivityDay: streak.last_activity_day ?? null,
+      freezesAvailable: streak.freezes_available ?? 0,
+    },
+    today,
+  );
+
 /** Số người theo từng giá trị của `field`: `[{ _id: giá trị, count }]`. */
 const countBy = (model, field) =>
   model.aggregate([{ $group: { _id: `$${field}`, count: { $sum: 1 } } }, { $sort: { _id: 1 } }]);
@@ -157,14 +168,7 @@ export const createUserRepository = ({
       return { current: 0, longest: 0, total_xp: 0, is_new_day: false, streak_broken: false };
     }
 
-    const view = projectStreak(
-      {
-        currentStreak: streak.current_streak ?? 0,
-        lastActivityDay: streak.last_activity_day ?? null,
-        freezesAvailable: streak.freezes_available ?? 0,
-      },
-      dayKey(now),
-    );
+    const view = projectedStreak(streak, dayKey(now));
 
     return {
       current: view.currentStreak,
@@ -173,6 +177,21 @@ export const createUserRepository = ({
       is_new_day: false,
       streak_broken: view.broken,
     };
+  },
+
+  /**
+   * XP và chuỗi ngày hiện tại của nhiều người, theo `String(userId)`. Người chưa
+   * học gì không có mặt trong kết quả.
+   */
+  async streakSummaries({ userIds, now = new Date() }) {
+    const today = dayKey(now);
+    const streaks = await streakModel.find({ user: { $in: userIds } }).lean();
+    return new Map(
+      streaks.map((streak) => [
+        String(streak.user),
+        { total_xp: streak.total_xp ?? 0, current_streak: projectedStreak(streak, today).currentStreak },
+      ]),
+    );
   },
 });
 

@@ -6,52 +6,21 @@ import '../../../app/theme/app_theme.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 
-/// Ghi nhớ đăng nhập và liên kết quên mật khẩu.
-class LoginRememberRow extends StatelessWidget {
-  const LoginRememberRow({
-    super.key,
-    required this.rememberMe,
-    required this.setRememberMe,
-  });
-
-  final bool rememberMe;
-  final void Function(bool value) setRememberMe;
+/// Liên kết quên mật khẩu, canh phải dưới ô mật khẩu.
+///
+/// Không có ô "Ghi nhớ đăng nhập": phiên luôn được giữ tới khi người dùng đăng
+/// xuất, nên một ô như vậy sẽ không làm gì.
+class LoginForgotPasswordLink extends StatelessWidget {
+  const LoginForgotPasswordLink({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Wrap thay Row: màn hẹp (điện thoại 320–360px, cỡ chữ lớn) không đủ chỗ
-    // cho cả hai trên một dòng, Row sẽ tràn; Wrap đẩy "Quên mật khẩu?" xuống.
-    return Wrap(
-      alignment: WrapAlignment.spaceBetween,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        // Checkbox ghi nhớ
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Checkbox(
-              value: rememberMe,
-              onChanged: (value) {
-                setRememberMe(value ?? false);
-              },
-            ),
-            Flexible(
-              child: Text(
-                'Ghi nhớ đăng nhập',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ],
-        ),
-
-        // Quên mật khẩu
-        TextButton(
-          onPressed: () {
-            context.push('/forgot-password');
-          },
-          child: const Text('Quên mật khẩu?'),
-        ),
-      ],
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () => context.push('/forgot-password'),
+        child: const Text('Quên mật khẩu?'),
+      ),
     );
   }
 }

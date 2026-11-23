@@ -57,34 +57,40 @@ class ProfileAvatarSection extends StatelessWidget {
           Positioned(
             bottom: 0,
             right: 0,
-            child: GestureDetector(
-              onTap: isUploading ? null : pickAndUploadAvatar,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: context.colors.surface, width: 3),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.3),
-                      blurRadius: 8,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
+            // Viền nền tách nút khỏi ảnh; IconButton lo nhãn, tooltip và focus.
+            child: Container(
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: context.colors.surface,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: IconButton.filled(
+                tooltip: 'Đổi ảnh đại diện',
+                onPressed: isUploading ? null : pickAndUploadAvatar,
+                style: IconButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  disabledBackgroundColor: AppColors.primary,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.all(AppSpacing.md),
                 ),
-                child: isUploading
+                icon: isUploading
                     ? const SizedBox(
-                        width: 20,
-                        height: 20,
+                        width: 24,
+                        height: 24,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
                           valueColor:
                               AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       )
-                    : const Icon(Icons.camera_alt,
-                        color: Colors.white, size: 24),
+                    : const Icon(Icons.camera_alt, size: 24),
               ),
             ),
           ),

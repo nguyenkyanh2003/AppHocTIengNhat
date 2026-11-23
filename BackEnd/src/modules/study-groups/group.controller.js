@@ -61,7 +61,7 @@ export const createGroupController = (service) => {
 
     async setAvatar(req, res) {
       if (!req.file) throw ApiError.badRequest('Vui lòng chọn file ảnh.');
-      const group = await service.setAvatar({ ...groupKey(req), avatar: `/uploads/group-avatars/${req.file.filename}` });
+      const group = await service.setAvatar({ ...groupKey(req), image: req.file.buffer });
       return ok(res, group, { message: 'Cập nhật ảnh nhóm thành công.' });
     },
   };

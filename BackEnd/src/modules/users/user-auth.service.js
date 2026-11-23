@@ -7,6 +7,7 @@ import env from '../../config/env.js';
 import { ApiError } from '../../shared/http/api-error.js';
 import { getVietnamTime } from '../../shared/utils/timezone.js';
 import { authSessionRepository } from './auth-session.repository.js';
+import { publicUser } from './public-user.js';
 import { passwordResetMailer } from './user-auth.mailer.js';
 import { PASSWORD_MIN_LENGTH } from './user.schema.js';
 import { userRepository } from './user.repository.js';
@@ -57,8 +58,8 @@ const isRetryInGrace = (session, hash, at) =>
 const FORGOT_PASSWORD_MESSAGE =
   'Nếu email tồn tại, hướng dẫn đặt lại mật khẩu sẽ được gửi.';
 
-const INVALID_RESET_TOKEN = 'Token không hợp lệ hoặc đã hết hạn.';
-const CONSUMED_RESET_TOKEN = 'Token đã được sử dụng hoặc không còn hợp lệ.';
+const INVALID_RESET_TOKEN = 'Link đặt lại mật khẩu không hợp lệ hoặc đã hết hạn.';
+const CONSUMED_RESET_TOKEN = 'Link đặt lại mật khẩu đã được dùng hoặc không còn hiệu lực.';
 
 /**
  * Dựng URL đặt lại mật khẩu cho Flutter Web.
@@ -78,20 +79,17 @@ export const buildResetLink = (frontendUrl, token) => {
   return `${base}/#/reset-password?${query}`;
 };
 
-/** Bỏ mật khẩu và version khỏi user trước khi trả ra ngoài. */
-const publicUser = (user) => {
-  if (!user) return null;
-
-  const { MatKhau, tokenVersion, __v, ...rest } = user;
-  return rest;
-};
-
 /** Document tạo trước khi có `tokenVersion` được coi như version 0. */
 const versionOf = (user) => user?.tokenVersion ?? 0;
 
 const defaultHasher = {
   hash: (plain) => bcrypt.hash(plain, BCRYPT_ROUNDS),
   compare: (plain, hashed) => bcrypt.compare(plain, hashed),
+};
+
+/** Người dùng không biết thư hỏng, nên người vận hành phải thấy nó trong log. */
+const logMailFailure = (error) => {
+  console.error(`Không gửi được thư đặt lại mật khẩu: ${error.message}`);
 };
 
 /**
@@ -111,6 +109,7 @@ export const createUserAuthService = ({
   frontendUrl = env.frontendUrl,
   now = getVietnamTime,
   tokens = defaultTokens,
+  reportMailFailure = logMailFailure,
 } = {}) => {
   /**
    * Access token mang version tại thời điểm phát (đổi mật khẩu tăng version, mọi
@@ -245,6 +244,10 @@ export const createUserAuthService = ({
      *
      * Nếu kiểm tra sau, email chưa cấu hình sẽ trả 503 cho địa chỉ có thật và 200
      * cho địa chỉ không có, biến chính thông báo chung thành công cụ dò tài khoản.
+     *
+     * Cùng lý do, không chờ thư gửi xong: chờ thì địa chỉ có thật trả lời chậm
+     * hơn vài giây (bắt tay SMTP), còn SMTP hỏng thì nó nhận 500 trong khi địa
+     * chỉ không có vẫn nhận 200. Lỗi gửi chỉ ghi ở máy chủ.
      */
     async forgotPassword({ email }) {
       if (!mailer.isConfigured()) {
@@ -267,11 +270,13 @@ export const createUserAuthService = ({
         );
 
         // Địa chỉ nhận luôn đọc từ database, không bao giờ từ request.
-        await mailer.sendPasswordReset({
-          to: user.Email,
-          fullName: user.HoTen,
-          resetLink: buildResetLink(frontendUrl, token),
-        });
+        mailer
+          .sendPasswordReset({
+            to: user.Email,
+            fullName: user.HoTen,
+            resetLink: buildResetLink(frontendUrl, token),
+          })
+          .catch(reportMailFailure);
       }
 
       return { message: FORGOT_PASSWORD_MESSAGE };

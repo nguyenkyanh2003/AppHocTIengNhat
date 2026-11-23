@@ -94,7 +94,7 @@ Future<void> importAdminContentExcel(BuildContext context) async {
 
   final picked = await FilePicker.platform.pickFiles(
     type: FileType.custom,
-    allowedExtensions: const ['xls', 'xlsx'],
+    allowedExtensions: const ['xlsx'],
     withData: true,
   );
   final file = picked?.files.single;
@@ -129,7 +129,7 @@ void showAdminContentImportDialog(BuildContext context) {
             ListTile(
               leading: const Icon(Icons.grid_on),
               title: const Text('Import từ Excel'),
-              subtitle: const Text('Hỗ trợ định dạng .xls và .xlsx.'),
+              subtitle: const Text('Tệp .xlsx (Excel 2007 trở lên).'),
               onTap: () {
                 Navigator.pop(dialogContext);
                 importAdminContentExcel(context);
@@ -152,10 +152,9 @@ void showAdminContentImportDialog(BuildContext context) {
   );
 }
 
-/// Xuất các mục đang hiện ra file CSV.
-Future<void> exportAdminContent(BuildContext context) async {
+/// Xuất ra file CSV đúng các dòng [rows] đang hiện trên bảng (đã qua ô lọc).
+Future<void> exportAdminContent(BuildContext context, List<JsonObject> rows) async {
   final provider = context.read<AdminContentProvider>();
-  final rows = provider.items.valueOrNull ?? const <JsonObject>[];
   if (rows.isEmpty) {
     showAdminContentMessage(context, 'Không có dữ liệu để xuất.', success: false);
     return;

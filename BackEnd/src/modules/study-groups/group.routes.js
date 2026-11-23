@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { authenticateUser } from '../../middleware/auth.middleware.js';
-import { uploadGroupAvatar } from '../../middleware/upload.middleware.js';
+import { uploadImage } from '../../middleware/upload.middleware.js';
 import { asyncHandler } from '../../shared/http/async-handler.js';
 import { validate } from '../../shared/http/validate.js';
 import { createGroupController } from './group.controller.js';
@@ -12,7 +12,7 @@ import { groupService } from './group.service.js';
 export const createGroupRoutes = ({
   service = groupService,
   authenticate = authenticateUser,
-  uploadAvatar = uploadGroupAvatar,
+  uploadAvatar = uploadImage,
 } = {}) => {
   const controller = createGroupController(service);
   const group = validate({ params: schema.groupParams });

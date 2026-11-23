@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../app/theme/app_theme.dart';
+import '../models/email_format.dart';
 import '../providers/auth_provider.dart';
 import '../widgets/forgot_password_sent.dart';
 import '../../../shared/widgets/app_scaffold.dart';
@@ -132,16 +133,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               hintText: 'Nhập địa chỉ email',
               prefixIcon: Icon(Icons.email_outlined),
             ),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Vui lòng nhập email';
-              }
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                  .hasMatch(value)) {
-                return 'Email không hợp lệ';
-              }
-              return null;
-            },
+            validator: EmailFormat.validate,
           ),
 
           const SizedBox(height: 24),

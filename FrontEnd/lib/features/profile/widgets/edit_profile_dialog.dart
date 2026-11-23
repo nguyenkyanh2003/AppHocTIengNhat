@@ -10,7 +10,8 @@ void showEditProfileDialog(BuildContext context, User user) {
   final hostContext = context;
   final fullNameController = TextEditingController(text: user.fullName ?? '');
   final phoneController = TextEditingController(text: user.phone ?? '');
-  String selectedGender = user.gender ?? 'Nam';
+  // Chưa chọn thì để trống: gán sẵn 'Nam' sẽ lưu một giới tính người dùng không chọn.
+  String? selectedGender = user.gender;
   String selectedLevel = user.currentLevel ?? 'N5';
   DateTime? selectedDate = user.dateOfBirth;
 
@@ -89,6 +90,7 @@ void showEditProfileDialog(BuildContext context, User user) {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: selectedGender,
+                hint: const Text('Chưa chọn'),
                 decoration: InputDecoration(
                   labelText: 'Giới tính',
                   border: OutlineInputBorder(

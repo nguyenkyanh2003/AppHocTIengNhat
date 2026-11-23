@@ -34,9 +34,10 @@ void showGroupEditDialog(BuildContext context, StudyGroup group) {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Avatar picker
               Center(
-                child: GestureDetector(
+                child: _GroupAvatarPicker(
+                  avatarUrl: group.avatar,
+                  selectedBytes: selectedImageBytes,
                   onTap: () async {
                     final XFile? image = await picker.pickImage(
                       source: ImageSource.gallery,
@@ -52,41 +53,6 @@ void showGroupEditDialog(BuildContext context, StudyGroup group) {
                       });
                     }
                   },
-                  child: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: selectedImageBytes != null
-                            ? MemoryImage(selectedImageBytes!)
-                            : (group.avatar != null
-                                ? NetworkImage(group.avatar!)
-                                : null) as ImageProvider?,
-                        backgroundColor: context.colors.surfaceVariant,
-                        child:
-                            selectedImageBytes == null && group.avatar == null
-                                ? Icon(Icons.group,
-                                    size: 40,
-                                    color: context.colors.textSecondary)
-                                : null,
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.blue[700],
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.camera_alt,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -223,4 +189,64 @@ void showGroupEditDialog(BuildContext context, StudyGroup group) {
       ),
     ),
   );
+}
+
+/// Ảnh nhóm bấm để chọn ảnh khác. Là một nút có nhãn cho trình đọc màn hình và
+/// tooltip cho chuột, không chỉ là hình bấm được.
+class _GroupAvatarPicker extends StatelessWidget {
+  const _GroupAvatarPicker({
+    required this.avatarUrl,
+    required this.selectedBytes,
+    required this.onTap,
+  });
+
+  final String? avatarUrl;
+  final Uint8List? selectedBytes;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final image = selectedBytes != null
+        ? MemoryImage(selectedBytes!)
+        : avatarUrl != null
+            ? NetworkImage(avatarUrl!) as ImageProvider
+            : null;
+    return Semantics(
+      container: true,
+      button: true,
+      child: Tooltip(
+        message: 'Đổi ảnh nhóm',
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onTap,
+          child: Stack(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: image,
+                backgroundColor: context.colors.surfaceVariant,
+                child: image == null
+                    ? Icon(Icons.group,
+                        size: 40, color: context.colors.textSecondary)
+                    : null,
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(AppSpacing.xs),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[700],
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.camera_alt,
+                      size: 20, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

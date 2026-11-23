@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../app/theme/app_tokens.dart';
 
@@ -55,29 +54,15 @@ class LoginHeader extends StatelessWidget {
     );
   }
 
-  /// Xây dựng nội dung logo (ảnh hoặc icon)
+  /// Logo của app; ảnh hỏng thì về icon. Không tải thử ảnh trước để kiểm có
+  /// tồn tại: trên web như vậy là tải ảnh hai lần.
   Widget _buildLogoContent(BuildContext context) {
-    // Thử load ảnh từ assets, nếu không có thì dùng icon
-    return FutureBuilder<bool>(
-      future: _checkImageExists('assets/images/logo.png'),
-      builder: (context, snapshot) {
-        if (snapshot.hasData && snapshot.data == true) {
-          // Có ảnh logo -> hiển thị ảnh
-          return ClipOval(
-            child: Image.asset(
-              'assets/images/logo.png',
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                // Nếu load ảnh lỗi, fallback về icon
-                return _buildDefaultIcon(context);
-              },
-            ),
-          );
-        } else {
-          // Không có ảnh hoặc đang load -> dùng icon mặc định
-          return _buildDefaultIcon(context);
-        }
-      },
+    return ClipOval(
+      child: Image.asset(
+        'assets/images/logo.png',
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stackTrace) => _buildDefaultIcon(context),
+      ),
     );
   }
 
@@ -88,15 +73,5 @@ class LoginHeader extends StatelessWidget {
       size: 80,
       color: context.colors.primary,
     );
-  }
-
-  /// Kiểm tra xem file ảnh có tồn tại không
-  Future<bool> _checkImageExists(String path) async {
-    try {
-      await rootBundle.load(path);
-      return true;
-    } catch (_) {
-      return false;
-    }
   }
 }

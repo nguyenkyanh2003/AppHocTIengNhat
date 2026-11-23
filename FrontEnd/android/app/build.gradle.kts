@@ -51,9 +51,10 @@ android {
 
     buildTypes {
         release {
-            if (keystorePropertiesFile.exists()) {
-                signingConfig = signingConfigs.getByName("release")
-            }
+            // Chưa có keystore thì ký bằng khoá debug để bản release vẫn cài thử được;
+            // không ký gì thì Flutter vẫn báo build xong nhưng máy từ chối cài
+            // (INSTALL_PARSE_FAILED_NO_CERTIFICATES). Bản đưa lên cửa hàng cần key.properties.
+            signingConfig = signingConfigs.getByName(if (keystorePropertiesFile.exists()) "release" else "debug")
         }
     }
 }

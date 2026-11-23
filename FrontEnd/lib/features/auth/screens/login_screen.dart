@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../../../app/state/provider_reset_service.dart';
@@ -24,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
 
   bool _obscurePassword = true;
-  bool _rememberMe = false;
 
   /// Lỗi của lần đăng nhập gần nhất, hiện ngay trong form.
   String? _error;
@@ -71,11 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
       // Clear controllers for security
       _usernameController.clear();
       _passwordController.clear();
-
-      // Về đúng trang người dùng định mở trước khi bị chặn đăng nhập;
-      // `go` thay stack nên nút Back không quay lại được màn đăng nhập.
-      final target = GoRouterState.of(context).uri.queryParameters['from'];
-      context.go(target == null || target.isEmpty ? '/home' : target);
+      // Không tự chuyển trang: router nghe AuthProvider và đưa về trang định
+      // mở (`AppRouter.resolveRedirect`), thay cả stack nên Back không quay
+      // lại màn đăng nhập.
     } else {
       // Chỉ clear password khi login thất bại (giữ nguyên username).
       // Lỗi hiện ở khối ngay trong form, không bắn thêm SnackBar: hai chỗ báo
@@ -160,10 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       const SizedBox(height: 16),
 
-                      // Ghi nhớ & Quên mật khẩu
-                      LoginRememberRow(
-                          rememberMe: _rememberMe,
-                          setRememberMe: _setRememberMe),
+                      const LoginForgotPasswordLink(),
 
                       const SizedBox(height: 24),
 
@@ -192,6 +185,4 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _togglePassword() =>
       setState(() => _obscurePassword = !_obscurePassword);
-
-  void _setRememberMe(bool value) => setState(() => _rememberMe = value);
 }

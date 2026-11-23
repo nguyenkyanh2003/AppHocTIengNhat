@@ -110,8 +110,9 @@ test('đổi ảnh nhóm: thiếu file 400; có file thì lưu đường dẫn �
   assert.equal((await request(buildApp(recording({ setAvatar: GROUP }).service)).put(`/api/group/${GROUP_ID}/avatar`)).status, 400);
 
   const { calls, service } = recording({ setAvatar: GROUP });
-  await request(buildApp(service, { file: { filename: 'group-1.png' } })).put(`/api/group/${GROUP_ID}/avatar`);
-  assert.deepEqual(calls, [['setAvatar', { userId: 'me', groupId: GROUP_ID, avatar: '/uploads/group-avatars/group-1.png' }]]);
+  const image = Buffer.from([0xff, 0xd8, 0xff]);
+  await request(buildApp(service, { file: { buffer: image } })).put(`/api/group/${GROUP_ID}/avatar`);
+  assert.deepEqual(calls, [['setAvatar', { userId: 'me', groupId: GROUP_ID, image }]]);
 });
 
 test('không có quyền là 403, không phải 500', async () => {

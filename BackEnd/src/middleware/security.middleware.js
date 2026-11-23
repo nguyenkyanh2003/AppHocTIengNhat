@@ -32,31 +32,43 @@ export const productionResponseSanitizer = (nodeEnv) => (req, res, next) => {
  *
  * Mỗi nghiệp vụ khai báo `name` riêng để quota của chúng độc lập với nhau:
  * thử sai đăng nhập không được khóa luôn đường khôi phục mật khẩu.
+ *
+ * [skipSuccessfulRequests]: request trả mã < 400 được trả lại lượt. Lượt vẫn
+ * bị trừ **trước** khi xử lý, nên gửi song song nhiều lần đoán mật khẩu không
+ * lọt qua hạn mức; chỉ sau khi biết là đúng mới hoàn lại.
  */
-export const createRateLimiter = ({ windowMs, max, message, name }) => {
+export const createRateLimiter = ({ windowMs, max, message, name, skipSuccessfulRequests = false }) => {
   if (typeof name !== 'string' || name.trim() === '') {
     throw new Error('createRateLimiter yêu cầu `name` cố định cho từng nghiệp vụ.');
   }
 
+  /** Hoàn lượt khi request thành công, nếu bucket vẫn còn là bucket đã trừ (chưa sang cửa sổ mới). */
+  const refundOnSuccess = (res, bucket) => {
+    res.on('finish', () => {
+      if (res.statusCode < 400 && bucket.count > 0) bucket.count -= 1;
+    });
+  };
+
   return (req, res, next) => {
     const now = Date.now();
     const key = `${req.ip}:${name}`;
-    const current = rateLimitBuckets.get(key);
+    let bucket = rateLimitBuckets.get(key);
 
-    if (!current || current.resetAt <= now) {
-      rateLimitBuckets.set(key, { count: 1, resetAt: now + windowMs });
-      return next();
+    if (!bucket || bucket.resetAt <= now) {
+      bucket = { count: 0, resetAt: now + windowMs };
+      rateLimitBuckets.set(key, bucket);
     }
 
-    current.count += 1;
-    if (current.count > max) {
-      res.setHeader('Retry-After', Math.ceil((current.resetAt - now) / 1000));
+    bucket.count += 1;
+    if (bucket.count > max) {
+      res.setHeader('Retry-After', Math.ceil((bucket.resetAt - now) / 1000));
       return res.status(429).json({ message });
     }
+    if (skipSuccessfulRequests) refundOnSuccess(res, bucket);
 
     if (rateLimitBuckets.size > 10_000) {
-      for (const [bucketKey, bucket] of rateLimitBuckets) {
-        if (bucket.resetAt <= now) rateLimitBuckets.delete(bucketKey);
+      for (const [bucketKey, stale] of rateLimitBuckets) {
+        if (stale.resetAt <= now) rateLimitBuckets.delete(bucketKey);
       }
     }
 

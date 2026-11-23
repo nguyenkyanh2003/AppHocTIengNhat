@@ -15,6 +15,8 @@ enum AdminUserFilter {
 }
 
 /// Một tài khoản trong danh sách quản trị, đọc từ các trường tiếng Việt của `User`.
+///
+/// XP và chuỗi ngày là `total_xp`/`current_streak` server ghép từ streak thật.
 class AdminUser {
   const AdminUser({
     required this.id,
@@ -38,8 +40,8 @@ class AdminUser {
         role: json['VaiTro'] as String? ?? 'user',
         status: json['TrangThai'] as String? ?? 'active',
         level: json['TrinhDo'] as String? ?? 'N5',
-        totalXp: (json['DiemTichLuy'] as num?)?.toInt() ?? 0,
-        streak: (json['StreakHienTai'] as num?)?.toInt() ?? 0,
+        totalXp: (json['total_xp'] as num?)?.toInt() ?? 0,
+        streak: (json['current_streak'] as num?)?.toInt() ?? 0,
         joinedAt: adminDateOf(json['NgayTao']),
         lastActiveAt: adminDateOf(json['LanDangNhapCuoi']),
       );

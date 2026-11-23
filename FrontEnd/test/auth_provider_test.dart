@@ -152,12 +152,12 @@ void main() {
     test('token hết hạn hoặc đã dùng trả về lỗi đọc được', () async {
       final service = _FakeAuthService()
         ..resetPasswordError = UnauthorizedException(
-            'Token đã được sử dụng hoặc không còn hợp lệ.');
+            'Link đặt lại mật khẩu đã được dùng hoặc không còn hiệu lực.');
       final provider = AuthProvider(authService: service);
 
       final error = await provider.resetPassword('token-cu', 'mat-khau-moi');
 
-      expect(error, 'Token đã được sử dụng hoặc không còn hợp lệ.');
+      expect(error, 'Link đặt lại mật khẩu đã được dùng hoặc không còn hiệu lực.');
       expect(error, isNot(contains('Exception:')));
     });
   });

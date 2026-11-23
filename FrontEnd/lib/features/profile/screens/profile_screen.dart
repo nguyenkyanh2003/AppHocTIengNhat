@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 import '../../auth/providers/auth_provider.dart';
+import '../../streaks/providers/streak_provider.dart';
 import '../../../app/theme/app_tokens.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -24,9 +25,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isUploading = false;
 
   @override
+  void initState() {
+    super.initState();
+    // XP và chuỗi ngày nằm ở streak, không ở hồ sơ: mở thẳng màn này thì tự tải.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final streak = context.read<StreakProvider>();
+      if (!streak.streakState.hasData) streak.loadStreak();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final user = authProvider.user;
+    final streak = context.watch<StreakProvider>().currentStreak;
 
     return AppScaffold(
       title: 'Thông tin cá nhân',
@@ -77,9 +90,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: AppSpacing.lg),
                       ProfileInfoCard(title: 'Học tập', rows: [
                         ProfileInfoRow(Icons.school, 'Trình độ', user.currentLevel ?? 'N5'),
-                        ProfileInfoRow(Icons.stars, 'Điểm tích lũy', '${user.points ?? 0} XP'),
-                        ProfileInfoRow(Icons.timer, 'Tổng thời gian học', '${user.totalStudyTime ?? 0} phút'),
-                        ProfileInfoRow(Icons.local_fire_department, 'Streak hiện tại', '${user.currentStreak ?? 0} ngày'),
+                        // Chưa có số thì gạch, không hiện 0: 0 là một kết luận.
+                        ProfileInfoRow(Icons.stars, 'Tổng XP', streak == null ? '—' : '${streak.totalXP} XP'),
+                        ProfileInfoRow(
+                          Icons.local_fire_department,
+                          'Chuỗi ngày học',
+                          streak == null ? '—' : '${streak.currentStreak} ngày',
+                        ),
                       ]),
                       const SizedBox(height: AppSpacing.lg),
                       ProfileInfoCard(title: 'Tài khoản', rows: [

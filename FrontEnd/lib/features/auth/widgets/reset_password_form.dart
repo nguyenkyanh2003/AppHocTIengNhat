@@ -65,6 +65,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   .passwordMinHint(PasswordPolicy.minLength),
               prefixIcon: const Icon(Icons.lock_outline),
               suffixIcon: IconButton(
+                tooltip: _obscurePassword ? 'Hiện mật khẩu' : 'Ẩn mật khẩu',
                 icon: Icon(
                   _obscurePassword ? Icons.visibility_off : Icons.visibility,
                 ),
@@ -92,6 +93,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
               labelText: 'Nhập lại mật khẩu mới',
               prefixIcon: const Icon(Icons.lock_reset),
               suffixIcon: IconButton(
+                tooltip: _obscureConfirm ? 'Hiện mật khẩu' : 'Ẩn mật khẩu',
                 icon: Icon(
                   _obscureConfirm ? Icons.visibility_off : Icons.visibility,
                 ),

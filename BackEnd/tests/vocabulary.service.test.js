@@ -36,6 +36,7 @@ const fakeVocabularyRepository = (overrides = {}) => {
     deleteById: async () => VOCABULARY,
     deleteManyByIds: async (ids) => ids.length,
     insertMany: async (rows) => rows,
+    findExistingWords: async () => [],
     lessonExists: async () => true,
     findKanjiByCharacters: async () => [],
     findRelated: async () => [],
@@ -351,6 +352,66 @@ test('import Excel gắn lesson/level cho mọi dòng hợp lệ', async () => {
   });
 
   assert.deepEqual(inserted, [{ word: '本', lesson: 'l1', level: 'N5' }]);
+});
+
+const importerOf = (rows) => ({
+  readWorkbookRows: async () => rows,
+  toVocabularyRows: (sheet, context) => sheet.map((row) => ({ ...row, ...context })),
+});
+
+test('import Excel có từ đã có trong kho: từ chối cả tệp, nói rõ từ nào, không nhập dòng nào', async () => {
+  // Trước đây insertMany ghi xong các dòng đứng trước dòng trùng rồi mới báo
+  // "Dữ liệu đã tồn tại." — kho bị nhập một nửa mà không biết dòng nào.
+  const inserted = [];
+  const repository = fakeVocabularyRepository({
+    findExistingWords: async (pairs) => pairs.filter((pair) => pair.word === '学校'),
+    insertMany: async (rows) => inserted.push(...rows),
+  });
+  const importer = importerOf([
+    { word: '先生', hiragana: 'せんせい' },
+    { word: '学校', hiragana: 'がっこう' },
+    { word: '学生', hiragana: 'がくせい' },
+  ]);
+
+  await assert.rejects(
+    () => buildService({ repository, importer }).importFromExcel({ buffer: Buffer.from(''), lesson: 'l1', level: 'N5' }),
+    (error) => error.status === 409 && /学校 \(がっこう\)/.test(error.message),
+  );
+  assert.deepEqual(inserted, []);
+});
+
+test('import Excel có một từ lặp hai lần trong tệp: báo trước khi ghi', async () => {
+  const inserted = [];
+  const repository = fakeVocabularyRepository({
+    findExistingWords: async () => [],
+    insertMany: async (rows) => inserted.push(...rows),
+  });
+  const importer = importerOf([
+    { word: '先生', hiragana: 'せんせい' },
+    { word: '先生', hiragana: 'せんせい' },
+  ]);
+
+  await assert.rejects(
+    () => buildService({ repository, importer }).importFromExcel({ buffer: Buffer.from(''), lesson: 'l1', level: 'N5' }),
+    (error) => error.status === 400 && /先生 \(せんせい\)/.test(error.message),
+  );
+  assert.deepEqual(inserted, []);
+});
+
+test('import Excel ghi mọi dòng trong một transaction', async () => {
+  const sessions = [];
+  const repository = fakeVocabularyRepository({
+    findExistingWords: async () => [],
+    insertMany: async (rows, { session } = {}) => {
+      sessions.push(session);
+      return rows;
+    },
+  });
+
+  await buildService({ repository, importer: importerOf([{ word: '本', hiragana: 'ほん' }]) })
+    .importFromExcel({ buffer: Buffer.from(''), lesson: 'l1', level: 'N5' });
+
+  assert.deepEqual(sessions, ['session']);
 });
 
 test('chi tiết từ vựng kèm phân tích chữ Hán và từ liên quan', async () => {

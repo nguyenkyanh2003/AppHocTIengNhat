@@ -114,6 +114,14 @@ void main() {
       );
     });
 
+    test('trang mở bằng push vẫn hiện đúng địa chỉ trên thanh URL của web', () {
+      // Trang hub mở mục con bằng `push` để nút Back của Android quay về được.
+      // Mặc định go_router không đổi URL khi `push`: tải lại trang thì về hub.
+      final router = AppRouter.create(AuthProvider());
+      addTearDown(router.dispose);
+      expect(GoRouter.optionURLReflectsImperativeAPIs, isTrue);
+    });
+
     test('bốn lối vào từng chết nay đã có route', () {
       // `/news`, `/streak`, `/study-groups` và giao dịch được gọi từ menu
       // trang chủ nhưng trước đây không khai báo, nên rơi vào trang
@@ -188,6 +196,19 @@ void main() {
 
     test('đã đăng nhập thì không ở lại trang login', () {
       expect(redirect(location: '/login'), '/home');
+    });
+
+    test('đăng nhập xong thì router đưa về đúng trang định mở trước khi bị chặn', () {
+      // Router tự chuyển trang ngay khi AuthProvider báo đã đăng nhập. Để màn
+      // đăng nhập tự `go` theo sau thì hai bên chạy đua: màn đã bị gỡ khỏi cây
+      // route và `GoRouterState.of` ném lỗi (gặp trên Android).
+      expect(redirect(location: '/login', from: '/kanji/abc'), '/kanji/abc');
+    });
+
+    test('đích sau đăng nhập không được là trang công khai hay địa chỉ ngoài app', () {
+      for (final from in ['/login', '/register', '//evil.example.com', 'https://evil.example.com', '']) {
+        expect(redirect(location: '/login', from: from), '/home', reason: from);
+      }
     });
 
     test('đã đăng nhập vẫn vào được link đặt lại mật khẩu trong email', () {

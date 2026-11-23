@@ -165,6 +165,7 @@ class _AchievementsViewState extends State<_AchievementsView> {
         width: 96,
         alignEnd: true,
         cell: (context, a) => PopupMenuButton<String>(
+          tooltip: 'Thao tác',
           onSelected: (action) {
             if (action == 'edit') {
               showAchievementFormDialog(context, initial: a.definition);

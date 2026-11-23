@@ -104,20 +104,20 @@ class _SpeakButton extends StatelessWidget {
 
   final VoidCallback onPressed;
 
+  /// `IconButton` gắn tooltip vào chính nút. Bọc `Tooltip` bên ngoài một nút
+  /// thì nhãn dồn lên khối chữ bao ngoài và trình đọc màn hình gặp nút không tên.
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: 'Nghe phát âm',
-      child: FilledButton.tonal(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: const CircleBorder(),
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          backgroundColor: context.colors.primarySoft,
-          foregroundColor: context.colors.primary,
-        ),
-        child: const Icon(Icons.volume_up_rounded, size: AppSpacing.xxl),
+    return IconButton.filledTonal(
+      tooltip: 'Nghe phát âm',
+      onPressed: onPressed,
+      iconSize: AppSpacing.xxl,
+      style: IconButton.styleFrom(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        backgroundColor: context.colors.primarySoft,
+        foregroundColor: context.colors.primary,
       ),
+      icon: const Icon(Icons.volume_up_rounded),
     );
   }
 }

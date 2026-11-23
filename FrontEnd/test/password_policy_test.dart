@@ -171,4 +171,28 @@ void main() {
     expect(find.text(_tooShort), findsOneWidget);
     expect(submitted, isNull);
   });
+
+  testWidgets('nút ẩn/hiện mật khẩu có tên ở màn đăng nhập và đặt lại mật khẩu', (tester) async {
+    await _pump(tester, '/login', const LoginScreen());
+    _expectLabelledToggles(tester, 1);
+
+    await _pump(tester, '/reset', Scaffold(
+      body: ResetPasswordForm(isSubmitting: false, onSubmit: (password) async {}),
+    ));
+    _expectLabelledToggles(tester, 2);
+  });
 }
+
+void _expectLabelledToggles(WidgetTester tester, int count) {
+  // Nút con mắt chỉ có hình: thiếu tooltip thì trình đọc màn hình gặp một nút không tên
+  // (máy ảo Android: uiautomator đánh dấu NAF, không có content-desc).
+  final toggles = find.byWidgetPredicate((widget) =>
+      widget is IconButton &&
+      widget.icon is Icon &&
+      const [Icons.visibility, Icons.visibility_off].contains((widget.icon as Icon).icon));
+  expect(toggles, findsNWidgets(count));
+  for (final toggle in tester.widgetList<IconButton>(toggles)) {
+    expect(toggle.tooltip, anyOf('Hiện mật khẩu', 'Ẩn mật khẩu'));
+  }
+}
+

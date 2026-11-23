@@ -76,6 +76,7 @@ class _ContentViewState extends State<_ContentView> {
     final provider = context.watch<AdminContentProvider>();
     final type = provider.type;
     final hasSearch = _searchController.text.trim().isNotEmpty;
+    final visible = _matching(provider.items.valueOrNull ?? const []);
 
     return AppScaffold(
       title: 'Quản lý nội dung',
@@ -88,7 +89,7 @@ class _ContentViewState extends State<_ContentView> {
         ),
         IconButton(
           icon: const Icon(Icons.download),
-          onPressed: () => exportAdminContent(context),
+          onPressed: () => exportAdminContent(context, visible),
           tooltip: 'Xuất CSV',
         ),
       ],
@@ -115,7 +116,7 @@ class _ContentViewState extends State<_ContentView> {
                 onChanged: (_) => setState(() {}),
               ),
             ),
-            AdminContentStats(content: _matching(provider.items.valueOrNull ?? const [])),
+            AdminContentStats(content: visible),
             if (provider.isImporting || provider.isRefreshing) const LinearProgressIndicator(minHeight: 2),
             Expanded(
               child: AsyncView<List<JsonObject>>(

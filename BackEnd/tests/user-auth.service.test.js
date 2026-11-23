@@ -146,7 +146,7 @@ const fakeHasher = {
 
 const NOW = new Date('2026-01-01T00:00:00.000Z');
 
-const buildService = ({ repository, mailer, hasher = fakeHasher, now = () => NOW } = {}) => {
+const buildService = ({ repository, mailer, hasher = fakeHasher, now = () => NOW, reportMailFailure } = {}) => {
   const users = repository ?? fakeUserRepository();
   return createUserAuthService({
     userRepository: users,
@@ -156,6 +156,7 @@ const buildService = ({ repository, mailer, hasher = fakeHasher, now = () => NOW
     jwtSecret: JWT_SECRET,
     frontendUrl: 'http://localhost:8080',
     now,
+    reportMailFailure,
   });
 };
 
@@ -283,6 +284,42 @@ test('email không tồn tại vẫn trả thông báo chung và không gửi th
   assert.match(result.message, /Nếu email tồn tại/);
 });
 
+test('SMTP từ chối gửi: vẫn trả thông báo chung, lỗi chỉ ghi ở máy chủ', async () => {
+  const failures = [];
+  const mailer = fakeMailer();
+  mailer.sendPasswordReset = async () => {
+    throw new Error('535 Invalid login');
+  };
+  const service = buildService({ mailer, reportMailFailure: (error) => failures.push(error.message) });
+
+  const result = await service.forgotPassword({ email: 'victim@example.com' });
+  await new Promise(setImmediate);
+
+  assert.match(result.message, /Nếu email tồn tại/);
+  assert.deepEqual(failures, ['535 Invalid login']);
+});
+
+test('không chờ SMTP: email có thật được trả lời ngay như email không có', async () => {
+  let deliver;
+  const mailer = fakeMailer();
+  mailer.sendPasswordReset = (payload) => {
+    mailer.sent.push(payload);
+    return new Promise((resolve) => {
+      deliver = resolve;
+    });
+  };
+  const service = buildService({ mailer });
+
+  const outcome = await Promise.race([
+    service.forgotPassword({ email: 'victim@example.com' }).then(() => 'đã trả lời'),
+    new Promise((resolve) => setTimeout(resolve, 50, 'còn chờ thư')),
+  ]);
+  deliver();
+
+  assert.equal(outcome, 'đã trả lời');
+  assert.equal(mailer.sent.length, 1);
+});
+
 test('email chưa cấu hình trả 503 trước khi tra cứu người dùng', async () => {
   const repository = fakeUserRepository();
   let lookups = 0;
@@ -384,6 +421,40 @@ test('chuỗi đăng nhập → đổi mật khẩu → token cũ bị từ ch�
     password: 'mat-khau-moi',
   });
   assert.equal((await runMiddleware(authenticate, renewed.token)).passed, true);
+});
+
+test('xác thực tra phiên và người dùng cùng lúc, không đợi nhau', async () => {
+  // Mỗi request đã đăng nhập đều qua đây: tra tuần tự là thêm một vòng tới
+  // MongoDB (~70 ms với Atlas) cho mọi API.
+  const repository = fakeUserRepository();
+  const service = buildService({ repository });
+  const { token } = await service.login({ username: 'victim', password: 'correct-horse' });
+  const started = [];
+  let release;
+  const gate = new Promise((resolve) => {
+    release = resolve;
+  });
+  const authenticate = createAuthenticateUser({
+    findSession: async (id) => {
+      started.push('session');
+      await gate;
+      return repository.sessions.findById(id);
+    },
+    findUserById: async (id) => {
+      started.push('user');
+      await gate;
+      return repository.findById(id);
+    },
+    jwtSecret: JWT_SECRET,
+    bypassAuth: false,
+    now: () => NOW,
+  });
+
+  const outcome = runMiddleware(authenticate, token);
+  await new Promise(setImmediate);
+  assert.deepEqual(started.sort(), ['session', 'user']);
+  release();
+  assert.equal((await outcome).passed, true);
 });
 
 test('token hết hạn, sai chữ ký hay sai loại đều trả 401 kèm mã SESSION_EXPIRED', async () => {

@@ -7,6 +7,7 @@ import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../models/email_format.dart';
 import '../models/password_policy.dart';
 import '../providers/auth_provider.dart';
 import '../widgets/password_form_field.dart';
@@ -28,8 +29,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
-
-  static final _email = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   @override
   void dispose() {
@@ -122,11 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) return 'Vui lòng nhập email';
-                      if (!_email.hasMatch(value)) return 'Email không hợp lệ';
-                      return null;
-                    },
+                    validator: EmailFormat.validate,
                   ),
                   gap,
                   PasswordFormField(

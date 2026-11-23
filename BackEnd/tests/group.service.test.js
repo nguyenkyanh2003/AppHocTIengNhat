@@ -40,9 +40,22 @@ const fakeRepository = (results = {}) => {
   return { calls, repository };
 };
 
+/** Kho ảnh giả: `replace` gọi `apply` với một đường dẫn mới như kho thật. */
+const fakeImages = () => {
+  const calls = [];
+  return {
+    calls,
+    async replace({ folder, prefix, previous, apply }) {
+      calls.push(['replace', { folder, prefix, previous }]);
+      return apply(`/uploads/${folder}/${prefix}-moi.jpg`);
+    },
+  };
+};
+
 const build = (results) => {
   const fake = fakeRepository({ findActive: GROUP(), findActiveDetail: GROUP(), ...results });
-  return { ...fake, service: createGroupService({ repository: fake.repository, now: () => NOW }) };
+  const images = fakeImages();
+  return { ...fake, images, service: createGroupService({ repository: fake.repository, now: () => NOW, images }) };
 };
 
 const rejectsWith = (status) => (error) => {
@@ -172,10 +185,26 @@ test('thống kê đếm thành viên, quản trị viên và người hoạt đ
   assert.deepEqual(stats, { member_count: 3, admin_count: 2, active_members: 2, level: 'N5', is_private: false, created_at: NOW });
 });
 
-test('đổi ảnh nhóm chỉ dành cho quản trị viên', async () => {
-  const { calls, service } = build({ update: true });
+const IMAGE = Buffer.from([0xff, 0xd8, 0xff]);
 
-  await service.setAvatar({ userId: ADMIN, groupId: 'g1', avatar: '/uploads/group-avatars/a.png' });
-  assert.deepEqual(writes(calls), [['update', { id: 'g1', set: { avatar: '/uploads/group-avatars/a.png' } }]]);
-  await assert.rejects(build().service.setAvatar({ userId: MEMBER, groupId: 'g1', avatar: 'x' }), rejectsWith(403));
+test('đổi ảnh nhóm: quản trị viên lưu ảnh mới, ảnh cũ được thay', async () => {
+  const { calls, images, service } = build({ findActive: GROUP({ avatar: '/uploads/group-avatars/cu.png' }), update: { matchedCount: 1 } });
+
+  await service.setAvatar({ userId: ADMIN, groupId: 'g1', image: IMAGE });
+
+  assert.deepEqual(writes(calls), [['update', { id: 'g1', set: { avatar: '/uploads/group-avatars/group-moi.jpg' } }]]);
+  assert.deepEqual(images.calls, [['replace', { folder: 'group-avatars', prefix: 'group', previous: '/uploads/group-avatars/cu.png' }]]);
+});
+
+test('đổi ảnh nhóm: thành viên thường bị từ chối trước khi đụng tới tệp', async () => {
+  const { images, service } = build();
+
+  await assert.rejects(service.setAvatar({ userId: MEMBER, groupId: 'g1', image: IMAGE }), rejectsWith(403));
+  assert.deepEqual(images.calls, []);
+});
+
+test('đổi ảnh nhóm: nhóm vừa bị xoá thì 404 để kho ảnh dọn tệp vừa lưu', async () => {
+  const { service } = build({ update: { matchedCount: 0 } });
+
+  await assert.rejects(service.setAvatar({ userId: ADMIN, groupId: 'g1', image: IMAGE }), rejectsWith(404));
 });

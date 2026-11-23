@@ -21,11 +21,7 @@ export const createUserController = (service) => ({
 
   async setAvatar(req, res) {
     if (!req.file) throw ApiError.badRequest('Vui lòng chọn file ảnh.');
-    const user = await service.setAvatar({
-      actor: req.user,
-      userId: req.valid.params.userID,
-      avatar: `/uploads/avatars/${req.file.filename}`,
-    });
+    const user = await service.setAvatar({ actor: req.user, userId: req.valid.params.userID, image: req.file.buffer });
     return ok(res, user, { message: 'Cập nhật ảnh đại diện thành công' });
   },
 

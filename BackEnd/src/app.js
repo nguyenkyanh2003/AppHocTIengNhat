@@ -1,8 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 import UserRoutes from './modules/users/user.routes.js';
 import VocabularyRoutes from './modules/vocabulary/vocabulary.routes.js';
@@ -30,13 +27,13 @@ import timezoneMiddleware from './middleware/timezone.middleware.js';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware.js';
 import { productionResponseSanitizer, securityHeaders } from './middleware/security.middleware.js';
 import env from './config/env.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { UPLOADS_ROOT } from './shared/files/image-store.js';
 
 const app = express();
 
 app.disable('x-powered-by');
+// Sau reverse proxy, `req.ip` (giới hạn đăng nhập theo IP) chỉ đúng khi khai số proxy.
+app.set('trust proxy', env.trustProxy);
 app.use(securityHeaders);
 app.use(productionResponseSanitizer(env.nodeEnv));
 app.use(cors({
@@ -49,7 +46,7 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '1mb' }));
 app.use(timezoneMiddleware);
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static(UPLOADS_ROOT));
 
 app.use('/api/users', UserRoutes);
 app.use('/api/vocabulary', VocabularyRoutes);

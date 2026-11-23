@@ -1,3 +1,4 @@
+import { imageStore } from '../../shared/files/image-store.js';
 import { ApiError } from '../../shared/http/api-error.js';
 import { toSkip } from '../../shared/http/pagination.js';
 import { withoutUndefined } from '../../shared/utils/object.js';
@@ -26,7 +27,7 @@ const withViewer = (group, userId) => {
  * Nhóm học. Người tạo luôn là quản trị viên; quản trị viên sửa nhóm, mời ra và
  * thăng chức; chỉ người tạo mới xoá nhóm và hạ chức quản trị viên.
  */
-export const createGroupService = ({ repository = groupRepository, now = () => new Date() } = {}) => {
+export const createGroupService = ({ repository = groupRepository, now = () => new Date(), images = imageStore } = {}) => {
   const load = async (groupId) => (await repository.findActive(groupId)) ?? Promise.reject(groupNotFound());
 
   const requireManager = (group, userId) => {
@@ -165,9 +166,20 @@ export const createGroupService = ({ repository = groupRepository, now = () => n
       };
     },
 
-    async setAvatar({ userId, groupId, avatar }) {
-      requireManager(await load(groupId), userId);
-      await repository.update({ id: groupId, set: { avatar } });
+    /** Kiểm quyền trước khi lưu tệp; lưu xong ảnh mới thì ảnh cũ bị xoá. */
+    async setAvatar({ userId, groupId, image }) {
+      const group = await load(groupId);
+      requireManager(group, userId);
+      await images.replace({
+        folder: 'group-avatars',
+        prefix: 'group',
+        buffer: image,
+        previous: group.avatar,
+        apply: async (avatar) => {
+          const { matchedCount } = await repository.update({ id: groupId, set: { avatar } });
+          if (!matchedCount) throw groupNotFound();
+        },
+      });
       return detailed(groupId, userId);
     },
   };

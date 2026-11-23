@@ -107,11 +107,15 @@ export const createAuthenticateUser = ({
         // lúc hết hạn. Token kiểu cũ (24 giờ, không có `sid`) không thu hồi riêng
         // được nên cũng bị từ chối: người dùng đăng nhập lại một lần.
         const userId = decoded.id || decoded.userId;
-        if (!decoded.sid || !isLiveSession(await findSession(decoded.sid), userId, now())) {
+        if (!decoded.sid) {
             return rejectSession(res, 'Phiên đăng nhập đã kết thúc. Vui lòng đăng nhập lại.');
         }
 
-        const user = await findUserById(userId);
+        // Hai lượt tra độc lập: chạy song song để mỗi request chỉ chờ một vòng tới DB.
+        const [session, user] = await Promise.all([findSession(decoded.sid), findUserById(userId)]);
+        if (!isLiveSession(session, userId, now())) {
+            return rejectSession(res, 'Phiên đăng nhập đã kết thúc. Vui lòng đăng nhập lại.');
+        }
 
         if (!user) {
             return rejectSession(res, 'Người dùng không tồn tại hoặc đã bị xóa.');

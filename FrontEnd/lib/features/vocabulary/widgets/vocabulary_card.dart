@@ -68,7 +68,8 @@ class VocabularyCard extends StatelessWidget {
               ],
             ),
           ),
-          if (vocabulary.audioUrl != null && onPlayAudio != null)
+          // Không đợi có file âm thanh: thiếu file thì `pronounce` đọc bằng giọng máy.
+          if (onPlayAudio != null)
             IconButton(
               icon: const Icon(Icons.volume_up_outlined),
               color: context.colors.primary,

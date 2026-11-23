@@ -25,6 +25,25 @@ Map<String, GoRoute> _routes(List<RouteBase> routes, [String parent = '']) {
 }
 
 void main() {
+  testWidgets('mở một mục từ trang hub rồi bấm Back của Android thì về lại hub, không thoát app',
+      (tester) async {
+    final router = _hubRouter();
+    addTearDown(router.dispose);
+    await tester.pumpWidget(_hubApp(router));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Hồ sơ'));
+    await tester.pumpAndSettle();
+    expect(find.text('Trang hồ sơ'), findsOneWidget);
+
+    // Nút Back hệ thống: hệ điều hành gửi popRoute; còn trang để quay lại thì app xử lý (true).
+    final handled = await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(handled, isTrue, reason: 'không còn trang nào phía sau: Android đóng luôn app');
+    expect(find.text('Trang hồ sơ'), findsNothing);
+    expect(find.text('Hồ sơ'), findsOneWidget);
+  });
+
   testWidgets('không ô nào trên trang hub dẫn về một trang hub khác',
       (tester) async {
     late BuildContext context;
@@ -114,3 +133,21 @@ void main() {
         reason: 'Mở các màn này thì thanh dưới tô sáng nhầm Trang chủ');
   });
 }
+
+/// Router tối thiểu: trang hub Tài khoản và một trang con.
+GoRouter _hubRouter() => GoRouter(initialLocation: '/account', routes: [
+      GoRoute(path: '/account', builder: (context, state) => const HubScreen(destinationPath: '/account')),
+      GoRoute(path: '/profile', builder: (context, state) => const Scaffold(body: Text('Trang hồ sơ'))),
+    ]);
+
+Widget _hubApp(GoRouter router) => MaterialApp.router(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('vi', 'VN')],
+      locale: const Locale('vi', 'VN'),
+      routerConfig: router,
+    );

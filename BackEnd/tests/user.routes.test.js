@@ -267,7 +267,8 @@ test('đăng ký 201 bọc người dùng trong `data`', async () => {
 
 test('hồ sơ: xem, sửa, đổi ảnh đều theo id trong path và người đang đăng nhập', async () => {
   const { calls, service } = recording({ profile: PROFILE, updateProfile: PROFILE, setAvatar: PROFILE });
-  const app = buildApp({}, { userService: service, file: { filename: 'user-1.png' } });
+  const image = Buffer.from([0xff, 0xd8, 0xff]);
+  const app = buildApp({}, { userService: service, file: { buffer: image } });
   const actor = { _id: USER_ID, VaiTro: 'user' };
 
   assert.deepEqual((await request(app).get(`/api/users/profile/${USER_ID}`)).body, { data: PROFILE });
@@ -278,7 +279,7 @@ test('hồ sơ: xem, sửa, đổi ảnh đều theo id trong path và người 
   assert.deepEqual(calls, [
     ['profile', { actor, userId: USER_ID }],
     ['updateProfile', { actor, userId: USER_ID, changes: { hoTen: 'An' } }],
-    ['setAvatar', { actor, userId: USER_ID, avatar: '/uploads/avatars/user-1.png' }],
+    ['setAvatar', { actor, userId: USER_ID, image }],
   ]);
 });
 
@@ -306,4 +307,25 @@ test('quản trị: danh sách phân trang, sửa, xoá một người, thống 
     ['adminRemove', { actor: { _id: USER_ID, VaiTro: 'admin' }, userId: USER_ID }],
     ['adminStats', undefined],
   ]);
+});
+
+test('giới hạn đăng nhập chỉ đếm lần sai: cả lớp đăng nhập đúng qua một mạng không bị chặn', async () => {
+  const { ApiError } = await import('../src/shared/http/api-error.js');
+  let correct = true;
+  const app = buildApp(recordingService({
+    login: async () => {
+      if (!correct) throw ApiError.unauthorized('Tên đăng nhập hoặc mật khẩu không đúng.');
+      return { token: 't' };
+    },
+  }));
+  const login = async () => (await request(app).post('/api/users/login').send({ username: 'lop', password: 'mat-khau' })).status;
+
+  const successes = [];
+  for (let i = 0; i < 25; i += 1) successes.push(await login());
+  assert.ok(successes.every((status) => status === 200), `đăng nhập đúng bị chặn: ${successes}`);
+
+  correct = false;
+  const failures = [];
+  for (let i = 0; i < 21; i += 1) failures.push(await login());
+  assert.ok(failures.includes(429), 'đoán sai mật khẩu mãi mà không bị chặn');
 });

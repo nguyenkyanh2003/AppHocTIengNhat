@@ -283,6 +283,9 @@ phần ngày cũ thay vì đoán. Chạy lại an toàn, không bao giờ sửa 
 riêng `<DB_NAME>_smoke` cùng cluster: transaction, hai lượt ôn đồng thời, rollback. Database đó
 tự xoá sau khi chạy.
 
+`node scripts/clean-uploads.js` liệt kê ảnh đại diện và ảnh nhóm trong `uploads/` không còn bản
+ghi nào dùng (ảnh cũ từ trước khi app biết xoá ảnh lúc thay); thêm `--apply` để xoá.
+
 ### 4. Chạy backend
 
 ```powershell
@@ -343,12 +346,13 @@ Nguồn đầy đủ: `BackEnd/.env.example`.
 | `JWT_SECRET` | Tối thiểu 32 ký tự |
 | `PORT` | Số nguyên 1–65535 |
 | `BYPASS_AUTH` | Không được `true` khi `NODE_ENV=production` |
+| `TRUST_PROXY` | Không được `true` (tin mọi proxy thì ai cũng giả được IP); dùng số proxy, vd `1` |
 
 ### Tuỳ chọn
 
 | Nhóm | Biến |
 | --- | --- |
-| App | `DB_NAME` · `NODE_ENV` · `CORS_ORIGINS` |
+| App | `DB_NAME` · `NODE_ENV` · `CORS_ORIGINS` · `TRUST_PROXY` (số reverse proxy đứng trước server, bỏ trống khi chạy thẳng) |
 | Email khôi phục mật khẩu | `EMAIL_USER` · `EMAIL_PASSWORD` (Gmail app password) |
 | Frontend | `FRONTEND_URL` — gốc của link trong email đặt lại mật khẩu |
 
@@ -368,9 +372,20 @@ cd FrontEnd; flutter test
 ```
 
 Test backend dùng repository và service giả truyền qua tham số, nên không test nào đụng
-MongoDB hay gọi API bên ngoài. Bộ test bao gồm smoke test Express, contract 255 route khoá
+MongoDB hay gọi API bên ngoài. Bộ test bao gồm smoke test Express, contract 144 route khoá
 bằng sha256, contract model, chấm điểm JLPT và bài tập, lịch ôn SRS, luật streak và import
 từ vựng.
+
+Kiểm trên server thật và database thật (trước buổi demo, hoặc sau khi đổi hình dạng response):
+
+```powershell
+cd BackEnd; npm run dev                      # cửa sổ 1
+cd BackEnd; node scripts/smoke-api.js        # cửa sổ 2: ~185 bước qua HTTP, tự dọn dữ liệu thử
+cd BackEnd; node scripts/check-email.js      # Gmail có nhận EMAIL_USER / EMAIL_PASSWORD không (không gửi thư)
+```
+
+Quên mật khẩu luôn trả cùng một thông báo, kể cả khi gửi thư hỏng (báo lỗi thì lộ email nào có
+tài khoản), nên thư không tới thì xem log backend hoặc chạy `check-email.js`.
 
 CI chạy đúng bộ lệnh trên, cộng thêm `flutter build web --release` và integration test điều
 hướng chạy trong Chrome headless ([ci.yml](.github/workflows/ci.yml)).
@@ -382,8 +397,9 @@ cd FrontEnd; flutter build web --release
 cd FrontEnd; flutter build apk --release
 ```
 
-Build Android cần Android SDK và release keystore; mẫu cấu hình ký ở
-`FrontEnd/android/key.properties.example`.
+Build Android cần Android SDK. Chưa có `FrontEnd/android/key.properties` thì bản release được ký
+tạm bằng khoá debug: cài thử trên máy được, nhưng không đưa lên cửa hàng được. Mẫu cấu hình ký
+bằng khoá phát hành ở `FrontEnd/android/key.properties.example`.
 
 ## Cấu trúc thư mục
 
@@ -394,7 +410,7 @@ BackEnd/
 │   ├── server.js           validate env · kết nối DB · listen · shutdown
 │   ├── config/             env.js · database.js
 │   ├── middleware/         auth · upload · security (rate limit) · error
-│   ├── modules/            21 domain: vocabulary · srs · lessons · kanji
+│   ├── modules/            22 domain: vocabulary · srs · lessons · kanji
 │   │                       grammar · exercise · jlpt · users · streaks…
 │   └── shared/http/        api-error · async-handler · respond · validate
 ├── model/                  25 Mongoose model

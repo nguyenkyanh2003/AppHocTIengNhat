@@ -28,6 +28,21 @@ const SORT_OPTIONS = Object.freeze({
 
 const sortFor = (sortBy) => SORT_OPTIONS[sortBy] ?? SORT_OPTIONS.newest;
 
+/** Một từ được nhận diện bằng cặp (mặt chữ, cách đọc), đúng như index unique của model. */
+const wordKey = ({ word, hiragana }) => `${word}\u0000${hiragana}`;
+const wordLabel = ({ word, hiragana }) => `${word} (${hiragana})`;
+
+const repeatedWords = (rows) => {
+  const seen = new Set();
+  const repeated = new Map();
+  for (const row of rows) {
+    const key = wordKey(row);
+    if (seen.has(key)) repeated.set(key, row);
+    seen.add(key);
+  }
+  return [...repeated.values()];
+};
+
 const buildKeywordFilter = (keyword) => {
   const pattern = new RegExp(escapeRegExp(keyword.trim()), 'i');
   return {
@@ -212,7 +227,24 @@ export const createVocabularyService = ({
         );
       }
 
-      return repository.insertMany(rows);
+      // Trùng thì từ chối cả tệp và nói rõ từ nào: ghi tới dòng trùng rồi mới
+      // báo lỗi thì kho bị nhập một nửa, sửa còn khó hơn nhập lại.
+      const repeated = repeatedWords(rows);
+      if (repeated.length > 0) {
+        throw ApiError.badRequest(`Tệp có từ lặp lại: ${repeated.map(wordLabel).join(', ')}.`, {
+          code: 'REPEATED_VOCABULARY',
+        });
+      }
+      const taken = await repository.findExistingWords(rows.map(({ word, hiragana }) => ({ word, hiragana })));
+      if (taken.length > 0) {
+        throw ApiError.conflict(`Kho đã có các từ: ${taken.map(wordLabel).join(', ')}.`, {
+          code: 'DUPLICATE_VOCABULARY',
+        });
+      }
+
+      // Index unique (word, hiragana) là chỗ chặn cuối nếu hai lần nhập chạy cùng lúc;
+      // transaction đảm bảo khi đó không dòng nào được ghi.
+      return unitOfWork.run(({ session }) => repository.insertMany(rows, { session }));
     },
 
     /**

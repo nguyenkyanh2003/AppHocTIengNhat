@@ -226,14 +226,29 @@ abstract final class AppRouter {
       ).toString();
     }
 
-    if (isPublic && location != '/reset-password') return '/home';
+    // Đăng nhập xong: chính router đưa về trang định mở trước khi bị chặn.
+    // Màn đăng nhập không tự `go` theo sau, vì nó đã bị gỡ khỏi cây route lúc
+    // router chuyển trang (hai bên chạy đua, `GoRouterState.of` ném lỗi).
+    if (isPublic && location != '/reset-password') return _returnTarget(from);
 
     if (location.startsWith('/admin') && !isAdmin) return '/forbidden';
 
     return null;
   }
 
+  /// Trang quay về sau đăng nhập: chỉ đường dẫn trong app (`/…`, không phải
+  /// `//host`) và không phải trang công khai; còn lại về trang chủ.
+  static String _returnTarget(String? from) {
+    final internal = from != null && from.startsWith('/') && !from.startsWith('//');
+    if (!internal || publicPaths.contains(Uri.parse(from).path) || from == '/splash') return '/home';
+    return from;
+  }
+
   static GoRouter create(AuthProvider auth) {
+    // Trang con mở bằng `push` (để nút Back của Android quay về được) vẫn hiện
+    // đúng địa chỉ trên thanh URL của web. Mọi route đều mở thẳng được bằng URL
+    // (xem [contract]), nên địa chỉ đó tải lại hay gửi cho người khác đều dùng được.
+    GoRouter.optionURLReflectsImperativeAPIs = true;
     return GoRouter(
       initialLocation: '/home',
       // Router tồn tại ổn định và chỉ **tính lại redirect** khi trạng thái

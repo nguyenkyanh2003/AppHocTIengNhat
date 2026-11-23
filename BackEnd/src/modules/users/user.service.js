@@ -1,10 +1,12 @@
 import bcrypt from 'bcrypt';
 
+import { imageStore } from '../../shared/files/image-store.js';
 import { ApiError } from '../../shared/http/api-error.js';
 import { toSkip } from '../../shared/http/pagination.js';
 import { withoutUndefined } from '../../shared/utils/object.js';
 import { escapeRegExp } from '../../shared/utils/regexp.js';
 import { getVietnamTime } from '../../shared/utils/timezone.js';
+import { publicUser } from './public-user.js';
 import { userRepository } from './user.repository.js';
 
 const BCRYPT_ROUNDS = 10;
@@ -25,8 +27,8 @@ const PROFILE_FIELDS = Object.freeze({
 const toModelFields = (changes) =>
   Object.fromEntries(Object.entries(changes).map(([field, value]) => [PROFILE_FIELDS[field], value]));
 
-/** Bỏ mật khẩu, version phiên và khoá nội bộ của Mongoose. */
-const publicUser = ({ MatKhau: _password, tokenVersion: _version, __v: _v, ...user }) => user;
+/** Người chưa học gì: chưa có `UserStreak`. */
+const NO_STREAK = Object.freeze({ total_xp: 0, current_streak: 0 });
 
 const userNotFound = () => ApiError.notFound('Người dùng không tồn tại.');
 const emailTaken = () => ApiError.conflict('Email đã được sử dụng.', { code: 'DUPLICATE_EMAIL' });
@@ -42,6 +44,7 @@ export const createUserService = ({
   repository = userRepository,
   passwordHasher = { hash: (plain) => bcrypt.hash(plain, BCRYPT_ROUNDS) },
   now = getVietnamTime,
+  images = imageStore,
 } = {}) => {
   const found = (user) => {
     if (!user) throw userNotFound();
@@ -93,10 +96,20 @@ export const createUserService = ({
       return update(userId, changes);
     },
 
-    /** Ảnh đại diện chỉ đổi được của chính mình. */
-    async setAvatar({ actor, userId, avatar }) {
+    /**
+     * Ảnh đại diện chỉ đổi được của chính mình. Kiểm quyền trước khi lưu tệp;
+     * lưu xong ảnh mới thì ảnh cũ bị xoá.
+     */
+    async setAvatar({ actor, userId, image }) {
       if (!isSelf(actor, userId)) throw ApiError.forbidden('Không có quyền cập nhật ảnh đại diện của người dùng khác.');
-      return found(await repository.updateById({ id: userId, set: { AnhDaiDien: avatar } }));
+      const current = found(await repository.findPublicById(userId));
+      return images.replace({
+        folder: 'avatars',
+        prefix: 'user',
+        buffer: image,
+        previous: current.AnhDaiDien,
+        apply: async (avatar) => found(await repository.updateById({ id: userId, set: { AnhDaiDien: avatar } })),
+      });
     },
 
     /** Từ khoá khớp nguyên văn trong họ tên, email hoặc tên đăng nhập. */
@@ -112,7 +125,9 @@ export const createUserService = ({
         repository.findPage({ filter, skip: toSkip({ page, limit }), limit }),
         repository.count(filter),
       ]);
-      return { items: items.map(publicUser), total, page, limit };
+      const streaks = await repository.streakSummaries({ userIds: items.map((item) => item._id), now: now() });
+      const withStreak = (item) => ({ ...publicUser(item), ...(streaks.get(String(item._id)) ?? NO_STREAK) });
+      return { items: items.map(withStreak), total, page, limit };
     },
 
     adminUpdate({ userId, changes }) {
@@ -122,7 +137,8 @@ export const createUserService = ({
     /** Quản trị viên không tự xoá tài khoản đang dùng: tránh tự khoá mình khỏi hệ thống. */
     async adminRemove({ actor, userId }) {
       if (isSelf(actor, userId)) throw ApiError.badRequest('Bạn không thể tự xóa tài khoản của mình.');
-      found(await repository.deleteById(userId));
+      const removed = found(await repository.deleteById(userId));
+      await images.remove(removed.AnhDaiDien);
     },
 
     async adminStats() {

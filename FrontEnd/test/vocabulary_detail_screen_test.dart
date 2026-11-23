@@ -96,6 +96,19 @@ void main() {
     expect(find.byType(FloatingActionButton), findsNothing);
   });
 
+  testWidgets('nút loa tự mang nhãn, không để nhãn dồn lên khối chữ bao ngoài', (tester) async {
+    final semantics = tester.ensureSemantics();
+    await _pump(tester, const Size(1400, 1200));
+
+    // Tooltip bọc ngoài một nút thì nhãn gắn vào nút cha: trình đọc màn hình
+    // đọc "Nghe phát âm, N5, 名前…" cho cả khối và một nút không tên.
+    expect(
+      tester.getSemantics(find.byTooltip('Nghe phát âm')),
+      containsSemantics(tooltip: 'Nghe phát âm', isButton: true, hasTapAction: true),
+    );
+    semantics.dispose();
+  });
+
   testWidgets('màn rộng chia hai cột, màn hẹp xếp một cột', (tester) async {
     await _pump(tester, const Size(1400, 1200));
     final heroWide = tester.getTopLeft(find.text('名前'));

@@ -58,6 +58,7 @@ class LoginFormFields extends StatelessWidget {
             hintText: 'Nhập mật khẩu',
             prefixIcon: const Icon(Icons.lock_outline),
             suffixIcon: IconButton(
+              tooltip: obscurePassword ? 'Hiện mật khẩu' : 'Ẩn mật khẩu',
               icon: Icon(
                 obscurePassword ? Icons.visibility_off : Icons.visibility,
               ),

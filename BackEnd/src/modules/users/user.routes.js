@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { authenticateUser, authenticateAdmin } from '../../middleware/auth.middleware.js';
-import { uploadUserAvatar } from '../../middleware/upload.middleware.js';
+import { uploadImage } from '../../middleware/upload.middleware.js';
 import { createRateLimiter } from '../../middleware/security.middleware.js';
 import { asyncHandler } from '../../shared/http/async-handler.js';
 import { validate } from '../../shared/http/validate.js';
@@ -22,12 +22,13 @@ const RATE_LIMIT_MESSAGE = 'Bạn đã thử quá nhiều lần. Vui lòng thử
  * mở thêm ngân sách thử. Ba tên tách rời để thử sai đăng nhập không khóa luôn
  * đường khôi phục mật khẩu của chính người dùng đó.
  */
-const authRateLimiter = (name) =>
+const authRateLimiter = (name, options = {}) =>
   createRateLimiter({
     name,
     windowMs: RATE_LIMIT_WINDOW_MS,
     max: RATE_LIMIT_MAX,
     message: RATE_LIMIT_MESSAGE,
+    ...options,
   });
 
 /**
@@ -39,16 +40,18 @@ export const createUserRoutes = ({
   userService = defaultUserService,
   authenticate = authenticateUser,
   authorizeAdmin = authenticateAdmin,
-  uploadAvatar = uploadUserAvatar,
+  uploadAvatar = uploadImage,
 } = {}) => {
   const auth = createUserAuthController(authService);
   const users = createUserController(userService);
   const byId = validate({ params: schema.idParams });
   const router = express.Router();
 
+  // Chỉ lần sai mới tốn lượt: cả lớp đăng nhập qua một wifi (chung IP) không
+  // chặn nhau, còn đoán mật khẩu thì vẫn bị chặn sau 20 lần sai.
   router.post(
     "/login",
-    authRateLimiter('login'),
+    authRateLimiter('login', { skipSuccessfulRequests: true }),
     validate({ body: schema.loginBody }),
     asyncHandler(auth.login),
   );

@@ -84,7 +84,10 @@ Future<bool> _confirmDelete(BuildContext context, AdminUser user) async {
     context: context,
     builder: (context) => AlertDialog(
       title: const Text('Xoá tài khoản?'),
-      content: Text('Tài khoản "${user.displayName}" và dữ liệu học của họ sẽ bị xoá vĩnh viễn.'),
+      content: Text(
+        'Tài khoản "${user.displayName}" bị xoá vĩnh viễn và không đăng nhập lại được. '
+        'Muốn tạm chặn thì dùng "Khoá tài khoản" — mở khoá được.',
+      ),
       actions: [
         TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Huỷ')),
         FilledButton(

@@ -76,3 +76,41 @@ test('phản hồi 429 kèm Retry-After', async () => {
   assert.ok(Number(blocked.headers['retry-after']) > 0);
   assert.match(blocked.body.message, /quá nhiều lần/);
 });
+
+test('đăng nhập chỉ đếm lần sai: người đăng nhập đúng không làm hết lượt của người khác cùng mạng', async () => {
+  const limiter = createRateLimiter({
+    name: 'only-failures',
+    max: 2,
+    windowMs: 60_000,
+    message: 'Bạn đã thử quá nhiều lần. Vui lòng thử lại sau.',
+    skipSuccessfulRequests: true,
+  });
+  const app = express();
+  app.post('/login', express.json(), limiter, (req, res) => res.status(req.body.ok ? 200 : 401).json({}));
+
+  const send = async (ok) => (await request(app).post('/login').send({ ok })).status;
+  const statuses = [];
+  for (let i = 0; i < 5; i += 1) statuses.push(await send(true));
+  statuses.push(await send(false), await send(false), await send(false), await send(true));
+
+  // 5 lần đúng không tốn lượt; 2 lần sai là hết hạn mức, từ đó cả lần đúng cũng bị chặn.
+  assert.deepEqual(statuses, [200, 200, 200, 200, 200, 401, 401, 429, 429]);
+});
+
+test('không cấu hình trust proxy: X-Forwarded-For giả không mở được ngân sách thử mới', async () => {
+  const app = buildApp({ '/login': limiterFor('spoofed-forwarded-for', 1) });
+  const login = (ip) => request(app).post('/api/users/login').set('X-Forwarded-For', ip);
+
+  assert.equal((await login('203.0.113.1')).status, 200);
+  assert.equal((await login('203.0.113.2')).status, 429);
+});
+
+test('sau một proxy (TRUST_PROXY=1): mỗi người dùng thật có ngân sách riêng', async () => {
+  const app = buildApp({ '/login': limiterFor('behind-proxy', 1) });
+  app.set('trust proxy', 1);
+  const login = (ip) => request(app).post('/api/users/login').set('X-Forwarded-For', ip);
+
+  assert.equal((await login('203.0.113.1')).status, 200);
+  assert.equal((await login('203.0.113.2')).status, 200);
+  assert.equal((await login('203.0.113.1')).status, 429);
+});

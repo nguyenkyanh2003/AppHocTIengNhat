@@ -39,6 +39,9 @@ export const createPasswordResetMailer = ({
 } = {}) => ({
   isConfigured: () => Boolean(emailUser && emailPassword),
 
+  /** Đăng nhập SMTP rồi thoát, không gửi thư — để kiểm thông tin trong `.env`. */
+  verify: () => (transport ?? defaultTransport()).verify(),
+
   async sendPasswordReset({ to, fullName, resetLink }) {
     await (transport ?? defaultTransport()).sendMail({
       from: emailUser,

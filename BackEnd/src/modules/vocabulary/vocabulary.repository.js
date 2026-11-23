@@ -124,8 +124,14 @@ export const createVocabularyRepository = ({
     return result.deletedCount ?? 0;
   },
 
-  insertMany(rows) {
-    return vocabularyModel.insertMany(rows);
+  insertMany(rows, { session } = {}) {
+    return vocabularyModel.insertMany(rows, { session });
+  },
+
+  /** Các cặp (word, hiragana) trong [pairs] đã có trong kho. */
+  findExistingWords(pairs) {
+    if (pairs.length === 0) return Promise.resolve([]);
+    return vocabularyModel.find({ $or: pairs }).select('word hiragana -_id').lean();
   },
 
   lessonExists(lessonId) {

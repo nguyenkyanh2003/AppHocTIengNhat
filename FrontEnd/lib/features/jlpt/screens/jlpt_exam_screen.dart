@@ -200,10 +200,10 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
   Widget _audioBar(String audioPath, String audioName) => JlptAudioBar(
       audioPath: audioPath,
       audioName: audioName,
-      audioPlayer: _audioPlayer,
       isPlaying: _isPlaying,
       isLoading: _isLoading,
       duration: _duration,
       position: _position,
-      playAudio: _playAudio);
+      playAudio: _playAudio,
+      onSeek: _audioPlayer.seek);
 }

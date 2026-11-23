@@ -64,3 +64,28 @@ test('chuỗi đã đứt hiển thị 0 nhưng không bị ghi đè lúc đăng
   assert.equal(summary.current, 0);
   assert.equal(summary.streak_broken, true);
 });
+
+test('XP và chuỗi ngày của nhiều người đọc một lần, chuỗi đã đứt là 0', async () => {
+  let filter;
+  const repository = createUserRepository({
+    UserStreak: {
+      find: (query) => {
+        filter = query;
+        return {
+          lean: async () => [
+            { user: 'u1', current_streak: 4, total_xp: 120, last_activity_day: '2026-09-18' },
+            { user: 'u2', current_streak: 7, total_xp: 300, last_activity_day: '2026-09-01' },
+          ],
+        };
+      },
+    },
+  });
+
+  const summaries = await repository.streakSummaries({ userIds: ['u1', 'u2', 'u3'], now: NOW });
+
+  assert.deepEqual(filter, { user: { $in: ['u1', 'u2', 'u3'] } });
+  assert.deepEqual(Object.fromEntries(summaries), {
+    u1: { total_xp: 120, current_streak: 4 },
+    u2: { total_xp: 300, current_streak: 0 },
+  });
+});
