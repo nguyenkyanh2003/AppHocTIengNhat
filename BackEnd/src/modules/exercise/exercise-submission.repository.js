@@ -25,8 +25,12 @@ export const createExerciseSubmissionRepository = ({
     return created.toObject();
   },
 
-  incrementAttempts(id, { session } = {}) {
-    return exerciseModel.updateOne({ _id: id }, { $inc: { total_attempts: 1 } }, { session });
+  /**
+   * Gọi **ngoài** transaction, sau khi lượt nộp đã commit: document bài tập là
+   * chỗ mọi người học cùng ghi, xem `exercise-submission.service.js`.
+   */
+  incrementAttempts(id) {
+    return exerciseModel.updateOne({ _id: id }, { $inc: { total_attempts: 1 } });
   },
 });
 

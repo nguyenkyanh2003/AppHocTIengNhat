@@ -1,13 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { createAttemptSubmitter } from '../src/modules/streaks/attempt-submission.js';
+import { createAttemptSubmitter, fingerprintOf } from '../src/modules/streaks/attempt-submission.js';
 
 const USER = 'u1';
 const ATTEMPT = '11111111-2222-4333-8444-555555555555';
 const SESSION = 'session-1';
 
-/** Nhật ký giả: unique `(user, event_key)` y như index thật. */
+/**
+ * Nhật ký giả: unique `(user, event_key)` y như index thật, và như cổng ghi
+ * thật, đóng dấu XP của lượt làm vào receipt.
+ */
 const fakeJournal = () => {
   const events = new Map();
   return {
@@ -17,15 +20,15 @@ const fakeJournal = () => {
     },
     async recordActivity(activity, options) {
       const key = `${activity.userId}|${activity.occurrenceKey}`;
-      if (events.has(key)) return { xpAwarded: 0, duplicate: true };
+      if (events.has(key)) return { xpAwarded: 0, xpRemaining: null, duplicate: true };
       events.set(key, {
         user: activity.userId,
         event_key: activity.occurrenceKey,
         type: activity.type,
-        receipt: activity.context?.receipt,
+        receipt: { ...activity.context?.receipt, xp: { awarded: 10, remaining: 0 } },
         session: options?.session,
       });
-      return { xpAwarded: 10, duplicate: false };
+      return { xpAwarded: 10, xpRemaining: 0, duplicate: false };
     },
   };
 };
@@ -58,7 +61,8 @@ test('lần nộp đầu tiên ghi kết quả và hoạt động trong cùng m�
 
   const outcome = await submitOnce(submitter, { payload: { answers: [1, 2] }, persisted });
 
-  assert.deepEqual(outcome.result, { score: 8 });
+  // Kết quả trả client kèm XP lượt này nhận và phần bài đó còn cho.
+  assert.deepEqual(outcome.result, { score: 8, xp: { awarded: 10, remaining: 0 } });
   assert.equal(outcome.replayed, false);
   assert.equal(outcome.xpAwarded, 10);
   assert.deepEqual(persisted, [SESSION]);
@@ -74,7 +78,11 @@ test('gửi lại cùng attempt_id và cùng bài làm trả đúng kết quả 
   await submitOnce(submitter, { payload, persisted });
   const again = await submitOnce(submitter, { payload, persisted, result: { score: 999 } });
 
-  assert.deepEqual(again.result, { score: 8 }, 'phải trả kết quả đã ghi, không phải lần chấm mới');
+  assert.deepEqual(
+    again.result,
+    { score: 8, xp: { awarded: 10, remaining: 0 } },
+    'phải trả kết quả đã ghi kèm đúng XP lần đầu, không phải lần chấm mới',
+  );
   assert.equal(again.replayed, true);
   assert.equal(again.xpAwarded, 0);
   assert.deepEqual(persisted, [SESSION], 'lần gửi lại không được ghi thêm kết quả');
@@ -136,7 +144,7 @@ test('hai request song song cùng attempt_id: một ghi, một nhận lại kế
   });
 
   assert.equal(loser.replayed, true);
-  assert.deepEqual(loser.result, { score: 8 });
+  assert.deepEqual(loser.result, { score: 8, xp: { awarded: 10, remaining: 0 } });
 });
 
 test('kết quả đã ghi mà thiếu receipt vẫn không bị chấm lại', async () => {
@@ -157,4 +165,20 @@ test('kết quả đã ghi mà thiếu receipt vẫn không bị chấm lại', 
       return true;
     },
   );
+});
+
+test('lượt nộp từ trước khi receipt có XP vẫn gửi lại được, chỉ là không kèm XP', async () => {
+  const journal = fakeJournal();
+  const payload = { answers: [1] };
+  journal.events.set(`${USER}|exercise.submit:${ATTEMPT}`, {
+    user: USER,
+    event_key: `exercise.submit:${ATTEMPT}`,
+    type: 'exercise.submit',
+    receipt: { fingerprint: fingerprintOf(payload), result: { score: 7 } },
+  });
+
+  const again = await submitOnce(buildSubmitter(journal), { payload });
+
+  assert.equal(again.replayed, true);
+  assert.deepEqual(again.result, { score: 7, xp: null });
 });

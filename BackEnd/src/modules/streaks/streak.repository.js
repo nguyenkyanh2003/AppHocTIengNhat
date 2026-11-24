@@ -310,6 +310,24 @@ export const createStreakRepository = ({
   },
 
   /**
+   * Tổng XP một nguồn (một bài tập, một đề) đã cho user này — đầu vào của
+   * trần XP theo nguồn (`rewardFor` trong `streak-policy.js`).
+   *
+   * `find` chứ không `aggregate` như `sumXpBetween`: Mongoose chỉ ép `user`
+   * sang ObjectId ở `find`, và một id dạng chuỗi lọt vào `$match` sẽ khớp 0
+   * bản ghi — trần lặng lẽ mất tác dụng. Mỗi nguồn chỉ có vài event có XP nên
+   * cộng ở đây không tốn gì.
+   */
+  async sourceXp({ userId, type, sourceId, session }) {
+    const events = await eventModel
+      .find({ user: userId, type, source_id: sourceId, xp_delta: { $ne: 0 } })
+      .select('xp_delta')
+      .session(session)
+      .lean();
+    return events.reduce((total, event) => total + (event.xp_delta ?? 0), 0);
+  },
+
+  /**
    * Event đã ghi theo đúng khoá lần xảy ra. Là nguồn của receipt khi client
    * nộp lại cùng một bài: đọc ở đây để trả lại đúng kết quả đã chấm thay vì
    * chấm lần hai (spec §3.3).

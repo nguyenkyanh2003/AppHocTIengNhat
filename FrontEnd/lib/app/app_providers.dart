@@ -19,9 +19,12 @@ import './theme/theme_provider.dart';
 import '../features/news/providers/news_provider.dart';
 import '../features/notebook/providers/notebook_provider.dart';
 import '../features/notifications/providers/achievement_announcer.dart';
+import '../features/notifications/providers/notification_alerts.dart';
 import '../features/notifications/providers/notification_provider.dart';
 import '../features/progress/providers/progress_provider.dart';
 import '../features/reports/providers/report_provider.dart';
+import '../features/settings/providers/settings_provider.dart';
+import '../features/settings/services/alert_feedback.dart';
 import '../features/srs/providers/srs_provider.dart';
 import '../features/streaks/providers/streak_provider.dart';
 import '../features/study_groups/providers/study_group_provider.dart';
@@ -30,6 +33,15 @@ import '../features/vocabulary/providers/vocabulary_set_provider.dart';
 
 List<SingleChildWidget> createAppProviders({ThemeMode initialThemeMode = ThemeMode.system}) => [
       ChangeNotifierProvider(create: (_) => AuthProvider()..init()),
+      // Một bản cài đặt cho cả app, theo người đang đăng nhập: màn Cài đặt và các
+      // chỗ báo tin cùng đọc, đổi ở đâu có tác dụng ngay ở đó.
+      // Không lười: tải ngay khi đăng nhập, để tin báo đầu tiên đã theo đúng cài đặt.
+      ChangeNotifierProxyProvider<AuthProvider, SettingsProvider>(
+        create: (_) => SettingsProvider(),
+        update: (_, auth, settings) => settings!..syncUser(auth.user?.id),
+        lazy: false,
+      ),
+      Provider(create: (_) => AlertFeedback()),
       ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ChangeNotifierProvider(create: (_) => ThemeProvider(initialThemeMode)),
       ChangeNotifierProvider(create: (_) => HomeProvider()),
@@ -54,5 +66,6 @@ List<SingleChildWidget> createAppProviders({ThemeMode initialThemeMode = ThemeMo
       ChangeNotifierProvider(create: (_) => NotificationProvider()),
       // Không lười: phải nghe lệnh ghi ngay từ đầu, kể cả khi chưa màn nào đọc tới.
       ChangeNotifierProvider(create: (_) => AchievementAnnouncer(), lazy: false),
+      ChangeNotifierProvider(create: (_) => NotificationAlerts()),
       ChangeNotifierProvider(create: (_) => FlashcardProvider()),
     ];

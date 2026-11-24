@@ -85,4 +85,9 @@ ActivityEventSchema.index({ user: 1, event_key: 1 }, { unique: true });
 // sau sẽ lặp hoặc bỏ sót bản ghi.
 ActivityEventSchema.index({ user: 1, occurred_at: -1, _id: -1 });
 
+// Trần XP theo nguồn: mỗi lần nộp bài tập / đề JLPT hỏi "bài này đã cho user
+// bao nhiêu XP" (`streak.repository.sourceXp`). Không unique — một bài có
+// nhiều lượt làm.
+ActivityEventSchema.index({ user: 1, type: 1, source_id: 1 });
+
 export default mongoose.model('ActivityEvent', ActivityEventSchema);

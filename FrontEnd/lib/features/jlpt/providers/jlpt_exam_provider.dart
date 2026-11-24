@@ -74,6 +74,9 @@ class JLPTExamProvider extends ChangeNotifier {
   Future<String?> submit() async {
     final exam = _exam.state.valueOrNull;
     if (exam == null || _result != null || _submitting) return null;
+    // Server không nhận bài nộp rỗng (chưa làm gì thì không có XP): báo ngay,
+    // không gửi đi rồi mới nhận lỗi.
+    if (_answers.isEmpty) return 'Bạn chưa chọn đáp án nào nên bài chưa được nộp.';
     _submitting = true;
     _notify();
 

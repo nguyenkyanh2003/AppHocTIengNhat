@@ -8,6 +8,7 @@ import '../../../app/theme/app_tokens.dart';
 import '../../../core/utils/attempt_id.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../streaks/providers/streak_provider.dart';
 import '../models/exercise.dart';
 import '../providers/exercise_provider.dart';
 import '../widgets/exercise_bottom_bar.dart';
@@ -85,7 +86,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
 
     if (timeUp) {
       _timer?.cancel();
-    } else if (_userAnswers.length < exercise.questions.length) {
+    } else if (_userAnswers.isNotEmpty && _userAnswers.length < exercise.questions.length) {
+      // Chưa trả lời câu nào thì không có gì để hỏi: provider báo ngay vì sao chưa nộp.
       final submit = await confirmPartialSubmit(
         context,
         answered: _userAnswers.length,
@@ -94,7 +96,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
       if (!submit || provider.isSubmitting) return;
     }
     if (!mounted) return;
-    _timer?.cancel();
+    // Bài rỗng thì provider từ chối ngay: đồng hồ chạy tiếp để người học làm bài.
+    if (_userAnswers.isNotEmpty) _timer?.cancel();
 
     // Đúng sai do server chấm; lỗi thì giữ nguyên bài làm để nộp lại cùng lượt.
     final submitted = await provider.submit(
@@ -106,6 +109,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     if (!mounted) return;
 
     if (submitted.valueOrNull case final result?) {
+      // XP và chuỗi ngày trên trang chủ, hồ sơ cập nhật ngay, không chờ mở lại app.
+      context.read<StreakProvider>().loadStreak();
       context.pushReplacement('/exercise/result/${result.id}');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

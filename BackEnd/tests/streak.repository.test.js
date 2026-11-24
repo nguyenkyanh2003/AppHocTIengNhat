@@ -424,6 +424,33 @@ test('a period with no events sums to zero, not undefined', async () => {
   assert.equal(total, 0);
 });
 
+test('sourceXp adds up what one exercise or exam already paid this user, inside the session', async () => {
+  const ActivityEvent = fakeModel({ result: [{ xp_delta: 5 }, { xp_delta: 5 }] });
+  const total = await build({ ActivityEvent }).sourceXp({
+    userId: 'u1',
+    type: 'exercise.submit',
+    sourceId: 'ex1',
+    session: 'sess',
+  });
+
+  assert.equal(total, 10);
+  // `find` chứ không `aggregate`: Mongoose chỉ ép kiểu `user` sang ObjectId ở
+  // `find`, và một id dạng chuỗi lọt vào `$match` sẽ khớp 0 bản ghi — tức là
+  // trần XP lặng lẽ không còn tác dụng.
+  assert.deepEqual(lastCall(ActivityEvent, 'find')[1], {
+    user: 'u1',
+    type: 'exercise.submit',
+    source_id: 'ex1',
+    xp_delta: { $ne: 0 },
+  });
+  assert.deepEqual(lastCall(ActivityEvent, 'session'), ['session', 'sess']);
+});
+
+test('a source that never paid anything sums to zero', async () => {
+  const ActivityEvent = fakeModel({ result: [] });
+  assert.equal(await build({ ActivityEvent }).sourceXp({ userId: 'u1', type: 'jlpt.submit', sourceId: 'exam1' }), 0);
+});
+
 // --- ràng buộc chung -------------------------------------------------------
 
 test('every write carries the session it was given', async () => {

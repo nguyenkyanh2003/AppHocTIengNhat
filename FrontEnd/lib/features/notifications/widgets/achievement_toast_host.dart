@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
+import '../../settings/providers/settings_provider.dart';
+import '../../settings/services/alert_feedback.dart';
 import '../models/notification.dart';
 import '../providers/achievement_announcer.dart';
 import '../providers/notification_provider.dart';
@@ -12,6 +14,9 @@ import '../providers/notification_provider.dart';
 /// Hiện lời báo "Huy hiệu mới" ở bất kỳ màn nào khi [AchievementAnnouncer] có
 /// huy hiệu vừa nhận. Gắn một lần ở `MaterialApp.builder`, dưới
 /// `ScaffoldMessenger` của app, nên báo được cả khi đang ở màn học toàn màn hình.
+///
+/// Theo Cài đặt thông báo: tắt "Nhận thông báo" thì không bật lời báo (huy hiệu
+/// vẫn nằm chưa đọc trong màn Thông báo); âm báo và rung theo hai công tắc kia.
 class AchievementToastHost extends StatefulWidget {
   const AchievementToastHost({
     super.key,
@@ -50,6 +55,8 @@ class _AchievementToastHostState extends State<AchievementToastHost> {
   void _show() {
     final announcer = _announcer;
     if (announcer == null || !mounted) return;
+    final settings = context.read<SettingsProvider>().settings;
+    if (!settings.notificationsEnabled) return;
     final badges = announcer.takePending();
     if (badges.isEmpty) return;
 
@@ -64,6 +71,8 @@ class _AchievementToastHostState extends State<AchievementToastHost> {
         content: _AchievementToastContent(badges: badges),
         action: SnackBarAction(label: 'Xem', onPressed: widget.onOpenAchievements),
       ));
+
+    unawaited(context.read<AlertFeedback>().alert(settings));
 
     final notifications = context.read<NotificationProvider>();
     unawaited(announcer.markShown(badges).then((_) => notifications.refreshUnreadCount()));

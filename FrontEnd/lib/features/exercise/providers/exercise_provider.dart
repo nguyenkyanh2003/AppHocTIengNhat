@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../../../core/state/detail_state.dart';
 import '../../../core/state/paged_list.dart';
 import '../../../core/state/view_state.dart';
+import '../../../shared/models/xp_reward.dart';
 import '../models/exercise.dart';
 import '../services/exercise_service.dart';
 
@@ -16,6 +17,7 @@ class ExerciseProvider extends ChangeNotifier {
   late final _detail = DetailState<Exercise>(idOf: (exercise) => exercise.id, onChanged: _notify);
   late final _result = DetailState<ExerciseResult>(idOf: (result) => result.id, onChanged: _notify);
   late final _history = PagedList<ExerciseResult>(onChanged: _notify);
+  ({String resultId, XpReward reward})? _lastReward;
   bool _submitting = false;
   bool _disposed = false;
 
@@ -28,6 +30,10 @@ class ExerciseProvider extends ChangeNotifier {
 
   ViewState<Exercise> detailOf(String id) => _detail.of(id);
   ViewState<ExerciseResult> resultOf(String id) => _result.of(id);
+
+  /// XP lượt vừa nộp nhận được, cho màn kết quả mở ngay sau đó. Server chỉ trả
+  /// XP trong phản hồi nộp bài, nên mở lại một kết quả cũ thì không có.
+  XpReward? rewardOf(String resultId) => _lastReward?.resultId == resultId ? _lastReward?.reward : null;
 
   /// Bài tập của một bài học, hoặc mọi bài tập khi không có [lessonId].
   Future<void> loadExercises({String? lessonId}) async {
@@ -58,12 +64,18 @@ class ExerciseProvider extends ChangeNotifier {
     required String attemptId,
   }) async {
     if (_submitting) return const ViewState.failure('Bài làm đang được nộp.');
+    // Server không nhận bài nộp rỗng (chưa làm gì thì không có XP): báo ngay,
+    // không gửi đi rồi mới nhận lỗi.
+    if (answers.isEmpty) return const ViewState.failure('Bạn chưa trả lời câu nào nên bài chưa được nộp.');
     _submitting = true;
     _notify();
 
     final result = await ViewState.guard(
       () => _service.submit(exerciseId, answers: answers, timeSpent: timeSpent, attemptId: attemptId),
     );
+    if (result.valueOrNull case ExerciseResult(:final id, xp: final reward?)) {
+      _lastReward = (resultId: id, reward: reward);
+    }
     _submitting = false;
     _notify();
     if (result.hasData && _history.state is! ViewIdle) _history.reload();
@@ -74,6 +86,7 @@ class ExerciseProvider extends ChangeNotifier {
   void clear() {
     _listGeneration++;
     _exercises = const ViewState.idle();
+    _lastReward = null;
     _detail.clear();
     _result.clear();
     _history.clear();

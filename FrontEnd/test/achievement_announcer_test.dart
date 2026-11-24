@@ -14,6 +14,10 @@ import 'package:apphoctiengnnhat/features/notifications/providers/achievement_an
 import 'package:apphoctiengnnhat/features/notifications/providers/notification_provider.dart';
 import 'package:apphoctiengnnhat/features/notifications/services/notification_service.dart';
 import 'package:apphoctiengnnhat/features/notifications/widgets/achievement_toast_host.dart';
+import 'package:apphoctiengnnhat/features/settings/models/user_settings.dart';
+import 'package:apphoctiengnnhat/features/settings/providers/settings_provider.dart';
+import 'package:apphoctiengnnhat/features/settings/services/alert_feedback.dart';
+import 'package:apphoctiengnnhat/features/settings/services/settings_service.dart';
 
 const _settle = Duration(milliseconds: 500);
 
@@ -214,14 +218,27 @@ void main() {
   });
 
   group('AchievementToastHost', () {
-    Future<(_FakeService, AchievementAnnouncer, List<String>)> pumpHost(WidgetTester tester) async {
+    late List<String> feedback;
+
+    Future<(_FakeService, AchievementAnnouncer, List<String>)> pumpHost(
+      WidgetTester tester, {
+      UserSettings settings = const UserSettings(),
+    }) async {
       final service = _FakeService();
       final announcer = _announcer(service);
       final opened = <String>[];
+      feedback = [];
+      final preferences = SettingsProvider(service: _StoredSettings(settings));
+      await preferences.load();
       await tester.pumpWidget(MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: announcer),
           ChangeNotifierProvider(create: (_) => NotificationProvider(service: service)),
+          ChangeNotifierProvider.value(value: preferences),
+          Provider.value(value: AlertFeedback(
+            playSound: () async => feedback.add('âm báo'),
+            vibrate: () async => feedback.add('rung'),
+          )),
         ],
         child: MaterialApp(
           builder: (context, child) => AchievementToastHost(
@@ -245,12 +262,38 @@ void main() {
       expect(find.text('Huy hiệu mới: Bước Đầu Tiên'), findsOneWidget);
       expect(find.text('Bạn đã hoàn thành "Học 7 ngày liên tiếp" và được cộng 100 XP.'), findsOneWidget);
       expect(find.text('🔥'), findsOneWidget);
+      expect(feedback, ['âm báo', 'rung']);
       expect(service.marked, ['b1']);
       expect(service.unreadCountCalls, 1, reason: 'chấm trên chuông cập nhật theo');
 
       await tester.tap(find.text('Xem'));
       await tester.pump();
       expect(opened, ['/achievements']);
+    });
+
+    testWidgets('tắt "Nhận thông báo": không bật lời báo, huy hiệu vẫn chưa đọc trong màn Thông báo', (tester) async {
+      final (service, announcer, _) = await pumpHost(tester, settings: const UserSettings(notificationsEnabled: false));
+      service.unread.add(_badge('b1'));
+
+      await announcer.check();
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 750));
+
+      expect(find.byType(SnackBar), findsNothing);
+      expect(feedback, isEmpty);
+      expect(service.marked, isEmpty);
+    });
+
+    testWidgets('tắt âm thanh: vẫn báo và rung, không kêu', (tester) async {
+      final (service, announcer, _) = await pumpHost(tester, settings: const UserSettings(soundEnabled: false));
+      service.unread.add(_badge('b1'));
+
+      await announcer.check();
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 750));
+
+      expect(find.text('Huy hiệu mới: Bước Đầu Tiên'), findsOneWidget);
+      expect(feedback, ['rung']);
     });
 
     testWidgets('nhiều huy hiệu cùng lúc gộp thành một lời báo', (tester) async {
@@ -284,4 +327,17 @@ void main() {
       expect(find.text('Đã đánh dấu là đã học.'), findsNothing);
     });
   });
+}
+
+/// Cài đặt đọc từ "server" giả, không gọi mạng.
+class _StoredSettings implements SettingsService {
+  _StoredSettings(this.stored);
+
+  final UserSettings stored;
+
+  @override
+  Future<UserSettings> getSettings() async => stored;
+
+  @override
+  Future<void> saveSettings(UserSettings settings) async {}
 }

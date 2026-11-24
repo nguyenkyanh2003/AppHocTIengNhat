@@ -6,6 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:apphoctiengnnhat/features/auth/providers/auth_provider.dart';
+import 'package:apphoctiengnnhat/features/settings/models/user_settings.dart';
+import 'package:apphoctiengnnhat/features/settings/providers/settings_provider.dart';
+import 'package:apphoctiengnnhat/features/settings/services/alert_feedback.dart';
+import 'package:apphoctiengnnhat/features/settings/services/settings_service.dart';
 import 'package:apphoctiengnnhat/features/streaks/models/streak_settings.dart';
 import 'package:apphoctiengnnhat/features/streaks/models/user_streak.dart';
 import 'package:apphoctiengnnhat/features/streaks/providers/streak_provider.dart';
@@ -194,18 +198,29 @@ void main() {
   });
 
   group('host', () {
+    late List<String> feedback;
+
     Future<void> pumpHost(
       WidgetTester tester, {
       required bool studiedToday,
       Key? key,
       _FakeStreakService? service,
+      UserSettings settings = const UserSettings(),
     }) async {
       service ??= _FakeStreakService(studiedToday: studiedToday);
+      feedback = [];
+      final preferences = SettingsProvider(service: _StoredSettings(settings));
+      await preferences.load();
       await tester.pumpWidget(
         MultiProvider(
           providers: [
             ChangeNotifierProvider<AuthProvider>(create: (_) => _SignedInAuth()),
             ChangeNotifierProvider(create: (_) => StreakProvider(service: service)),
+            ChangeNotifierProvider.value(value: preferences),
+            Provider.value(value: AlertFeedback(
+              playSound: () async => feedback.add('âm báo'),
+              vibrate: () async => feedback.add('rung'),
+            )),
           ],
           child: MaterialApp(
             home: StreakReminderHost(
@@ -226,10 +241,18 @@ void main() {
       expect(banner, findsOneWidget);
       expect(find.text('Hôm nay bạn chưa học bài nào. Dành vài phút ôn tập nhé?'), findsOneWidget);
       expect(find.textContaining('đứt'), findsNothing);
+      expect(feedback, ['âm báo', 'rung']);
 
       await tester.tap(find.text('Để sau'));
       await tester.pumpAndSettle();
       expect(banner, findsNothing);
+    });
+
+    testWidgets('tắt "Nhận thông báo" thì không nhắc, không kêu', (tester) async {
+      await pumpHost(tester, studiedToday: false, settings: const UserSettings(notificationsEnabled: false));
+
+      expect(find.byKey(const Key('streak-reminder-banner')), findsNothing);
+      expect(feedback, isEmpty);
     });
 
     testWidgets('đã học thì không nhắc', (tester) async {
@@ -292,4 +315,17 @@ class _FakeStreakService extends StreakService {
     }
     return const StreakSettings(reminderEnabled: true, reminderTime: '20:00');
   }
+}
+
+/// Cài đặt đọc từ "server" giả, không gọi mạng.
+class _StoredSettings implements SettingsService {
+  _StoredSettings(this.stored);
+
+  final UserSettings stored;
+
+  @override
+  Future<UserSettings> getSettings() async => stored;
+
+  @override
+  Future<void> saveSettings(UserSettings settings) async {}
 }

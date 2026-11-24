@@ -6,7 +6,9 @@ import '../../../app/theme/app_tokens.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/async_view.dart';
+import '../../../shared/models/xp_reward.dart';
 import '../../../shared/widgets/content_pane.dart';
+import '../../../shared/widgets/xp_reward_note.dart';
 import '../models/exercise.dart';
 import '../providers/exercise_provider.dart';
 import '../widgets/exercise_answer_review.dart';
@@ -39,8 +41,11 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<ExerciseProvider>().resultOf(widget.resultId);
-    if (state.valueOrNull case final result?) return _ResultView(result: result);
+    final provider = context.watch<ExerciseProvider>();
+    final state = provider.resultOf(widget.resultId);
+    if (state.valueOrNull case final result?) {
+      return _ResultView(result: result, reward: provider.rewardOf(widget.resultId));
+    }
     return AppScaffold(
       title: 'Kết quả',
       body: ContentWidthLimit(
@@ -51,9 +56,12 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
 }
 
 class _ResultView extends StatelessWidget {
-  const _ResultView({required this.result});
+  const _ResultView({required this.result, this.reward});
 
   final ExerciseResult result;
+
+  /// XP lượt vừa nộp; `null` khi mở lại kết quả cũ.
+  final XpReward? reward;
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +113,10 @@ class _ResultView extends StatelessWidget {
                           totalQuestions: result.totalQuestions,
                           timeSpent: result.timeSpent,
                         ),
+                        if (reward case final reward?) ...[
+                          AppGap.lg,
+                          XpRewardNote(reward: reward, subject: 'bài này'),
+                        ],
                         // Bài tập đã bị xoá thì không còn đề để xem lại.
                         if (exercise != null) ...[
                           const SizedBox(height: AppSpacing.xl),

@@ -19,6 +19,7 @@ import mongoose from 'mongoose';
 
 import env from '../src/config/env.js';
 import Achievement from '../model/Achievement.js';
+import ActivityEvent from '../model/ActivityEvent.js';
 import Exercise from '../model/Exercise.js';
 import Grammar from '../model/Grammar.js';
 import JLPT from '../model/JLPT.js';
@@ -301,6 +302,39 @@ async function learningLoop({ a }, { lesson, word, kanji }) {
   countView(Exercise, exercise?._id, 'total_attempts');
   const replay = await expect('gửi lại cùng lượt → 200, cùng kết quả', a.api.post(`/exercise/submit/${exercise?._id}`, submission));
   check('gửi lại không tạo kết quả mới', replay?._id === result?._id);
+
+  // Luật XP: mỗi bài tối đa 10 (chưa đạt 5, làm đạt nhận nốt), làm lại khi đủ được 0.
+  const reward = result?.xp;
+  const tier = result?.passed ? 10 : 5;
+  check('kết quả kèm XP lượt làm', reward?.awarded === tier && reward?.remaining === 10 - tier, JSON.stringify(reward));
+  check('gửi lại trả đúng XP lần đầu', JSON.stringify(replay?.xp) === JSON.stringify(reward));
+  const redo = await expect(
+    'làm lại bằng lượt mới → 201',
+    a.api.post(`/exercise/submit/${exercise?._id}`, { ...submission, attempt_id: randomUUID() }),
+    { status: 201 },
+  );
+  countView(Exercise, exercise?._id, 'total_attempts');
+  check('làm lại cùng kết quả không cộng thêm XP', redo?.xp?.awarded === 0 && redo?.xp?.remaining === 10 - tier, JSON.stringify(redo?.xp));
+
+  // Hai lượt mới nộp cùng lúc vào một bài chưa làm: transaction phải xếp chúng
+  // nối tiếp, chỉ một lượt nhận XP.
+  const other = exercises?.[1] ? await expect('đề bài tập thứ hai', a.api.get(`/exercise/${exercises[1]._id}`)) : null;
+  if (other) {
+    const answers = other.questions.map((question) => ({ question_id: question._id, answer_id: question.answers?.[0]?._id }));
+    const race = await Promise.all(
+      [1, 2].map(() => a.api.post(`/exercise/submit/${other._id}`, { attempt_id: randomUUID(), answers, timeSpent: 20 })),
+    );
+    race.forEach(() => countView(Exercise, other._id, 'total_attempts'));
+    check('hai lượt nộp song song đều được chấm', race.every((response) => response.status === 201), race.map((r) => r.status).join(', '));
+    const [left, right] = race.map((response) => response.body?.data);
+    const awarded = [left?.xp?.awarded, right?.xp?.awarded];
+    check('hai lượt song song chỉ nhận XP một lần', awarded[0] + awarded[1] === (left?.passed ? 10 : 5), awarded.join(' + '));
+  }
+  const paid = new Map();
+  for (const event of await ActivityEvent.find({ user: a.id, type: 'exercise.submit' }).lean()) {
+    paid.set(event.source_id, (paid.get(event.source_id) ?? 0) + event.xp_delta);
+  }
+  check('nhật ký: không bài nào cho quá 10 XP', paid.size > 0 && [...paid.values()].every((xp) => xp <= 10), JSON.stringify([...paid.values()]));
   await expect('lịch sử bài tập', a.api.get('/exercise/history?page=1&limit=10'), { shape: 'paged' });
   await expect('xem lại kết quả', a.api.get(`/exercise/result/${result?._id}`));
 
@@ -314,6 +348,9 @@ async function learningLoop({ a }, { lesson, word, kanji }) {
   // Mỗi đề giữ một kết quả gần nhất (upsert), không tạo tài nguyên mới nên là 200.
   const jlptResult = await expect('nộp đề JLPT', a.api.post(`/jlpt/${exam?._id}/submit`, jlptAttempt));
   check('kết quả có điểm từng phần', isObject(jlptResult?.section_scores), JSON.stringify(jlptResult)?.slice(0, 120));
+  check('nộp đề lần đầu: 20 XP', jlptResult?.xp?.awarded === 20 && jlptResult?.xp?.remaining === 0, JSON.stringify(jlptResult?.xp));
+  const retake = await expect('thi lại đề bằng lượt mới', a.api.post(`/jlpt/${exam?._id}/submit`, { ...jlptAttempt, attempt_id: randomUUID() }));
+  check('thi lại không cộng thêm XP', retake?.xp?.awarded === 0, JSON.stringify(retake?.xp));
   await expect('đáp án sau khi nộp', a.api.get(`/jlpt/${exam?._id}/solutions`));
   const listed = await expect('danh sách đề có kết quả gần nhất', a.api.get('/jlpt?page=1&limit=5'), { shape: 'paged' });
   check('đề vừa thi có last_result', listed?.find((row) => row._id === exam?._id)?.last_result != null);

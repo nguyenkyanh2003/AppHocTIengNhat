@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -5,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../app/theme/app_tokens.dart';
 import '../../auth/providers/auth_provider.dart';
+import '../../settings/providers/settings_provider.dart';
+import '../../settings/services/alert_feedback.dart';
 import '../providers/streak_provider.dart';
 import '../services/streak_reminder.dart';
 
@@ -106,9 +110,13 @@ class _StreakReminderHostState extends State<StreakReminderHost> with WidgetsBin
     _scheduler?.reschedule();
   }
 
+  /// Tắt "Nhận thông báo" trong Cài đặt thông báo thì không nhắc.
   void _showBanner() {
     final messenger = _messenger;
     if (!mounted || messenger == null) return;
+    final settings = context.read<SettingsProvider>().settings;
+    if (!settings.notificationsEnabled) return;
+    unawaited(context.read<AlertFeedback>().alert(settings));
     messenger
       ..clearMaterialBanners()
       ..showMaterialBanner(

@@ -56,6 +56,13 @@ test('the history index carries _id so the cursor can break ties', () => {
   assert.notEqual(index[1].unique, true);
 });
 
+test('the per-source XP cap reads through an index, not a scan of the whole journal', () => {
+  // Mỗi lần nộp bài tập / đề JLPT đều hỏi "nguồn này đã cho bao nhiêu XP".
+  const index = indexOn({ user: 1, type: 1, source_id: 1 });
+  assert.ok(index, 'thiếu index (user, type, source_id)');
+  assert.notEqual(index[1].unique, true, 'một nguồn có nhiều lượt làm');
+});
+
 test('no index expires event keys', () => {
   // Khoá sự kiện là thứ đang chặn việc phát thưởng lại. TTL ở đây nghĩa là
   // sau N ngày, gửi lại đúng lần nộp cũ sẽ được cộng XP lần nữa (spec §3.2).

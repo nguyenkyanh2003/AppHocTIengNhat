@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/localization/app_localizations.dart';
 import '../../../app/localization/locale_provider.dart';
 import '../../../app/theme/app_tokens.dart';
-import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/theme_provider.dart';
 import '../../../shared/widgets/app_scaffold.dart';
 import '../../../shared/widgets/content_pane.dart';
@@ -15,75 +15,41 @@ import '../providers/settings_provider.dart';
 import '../widgets/settings_info_dialogs.dart';
 import '../widgets/settings_tiles.dart';
 
+/// Cài đặt chung. Mọi lựa chọn có tác dụng ngay và tự lưu, không có nút Lưu;
+/// ba công tắc thông báo nằm ở màn Cài đặt thông báo (một chỗ, không hai).
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SettingsProvider(),
-      child: const _SettingsView(),
-    );
-  }
-}
-
-class _SettingsView extends StatefulWidget {
-  const _SettingsView();
-
-  @override
-  State<_SettingsView> createState() => _SettingsViewState();
-}
-
-class _SettingsViewState extends State<_SettingsView> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
-  }
-
-  Future<void> _load() async {
-    final error = await context.read<SettingsProvider>().load();
-    if (error == null || !mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Không tải được cài đặt: $error'),
-        action: SnackBarAction(label: 'Thử lại', onPressed: _load),
-      ),
-    );
-  }
-
-  Future<void> _save() async {
+  /// Lưu lên tài khoản; chưa tải được cài đặt thì lựa chọn chỉ có tác dụng trên
+  /// máy này (ngôn ngữ, giao diện vẫn đổi ngay), không lưu đè bằng mặc định.
+  Future<void> _saveRemotely(BuildContext context, UserSettings Function(UserSettings current) edit) async {
     final provider = context.read<SettingsProvider>();
+    if (!provider.isLoaded) return;
     final messenger = ScaffoldMessenger.of(context);
-    final savedText = AppLocalizations.of(context).settingsSaved;
-    final error = await provider.save(theme: ThemeProvider.valueOf(context.read<ThemeProvider>().mode));
-    messenger.showSnackBar(
-      SnackBar(
-        content: Text(error ?? savedText),
-        backgroundColor: error == null ? AppColors.successStrong : AppColors.errorStrong,
-      ),
-    );
+    final error = await provider.change(edit);
+    if (error == null) return;
+    messenger.showSnackBar(SnackBar(
+      content: Text('Đã đổi trên máy này, chưa lưu được lên tài khoản: $error'),
+      backgroundColor: AppColors.errorStrong,
+    ));
   }
 
-  Future<void> _changeLanguage(String language) async {
-    final provider = context.read<SettingsProvider>();
-    provider.update((current) => current.copyWith(language: language));
-    // Áp dụng ngôn ngữ ngay, rồi tự lưu nếu đã có cài đặt thật để lưu.
+  Future<void> _changeLanguage(BuildContext context, String language) async {
     await context.read<LocaleProvider>().setLanguage(language);
-    if (mounted && provider.canSave) await _save();
+    if (context.mounted) await _saveRemotely(context, (current) => current.copyWith(language: language));
+  }
+
+  Future<void> _changeTheme(BuildContext context, ThemeMode mode) async {
+    await context.read<ThemeProvider>().setMode(mode);
+    if (context.mounted) await _saveRemotely(context, (current) => current.copyWith(theme: ThemeProvider.valueOf(mode)));
   }
 
   @override
   Widget build(BuildContext context) {
     final user = context.watch<AuthProvider>().user;
-    final themeProvider = context.watch<ThemeProvider>();
-    final provider = context.watch<SettingsProvider>();
-    final settings = provider.settings;
+    final themeMode = context.select<ThemeProvider, ThemeMode>((theme) => theme.mode);
+    final settings = context.watch<SettingsProvider>().settings;
     final l10n = AppLocalizations.of(context);
-
-    // Chưa tải được cài đặt thật thì công tắc mờ đi.
-    ValueChanged<bool>? toggle(UserSettings Function(UserSettings current, bool value) change) =>
-        provider.isLoaded ? (value) => provider.update((current) => change(current, value)) : null;
 
     return AppScaffold(
       title: l10n.settings,
@@ -100,23 +66,11 @@ class _SettingsViewState extends State<_SettingsView> {
               title: l10n.dailyGoalAndReminder,
               onTap: () => showStreakSettingsSheet(context),
             ),
-            SettingsSwitchTile(
-              title: l10n.enableNotifications,
-              subtitle: l10n.receiveNotifications,
-              value: settings.notificationsEnabled,
-              onChanged: toggle((current, value) => current.copyWith(notificationsEnabled: value)),
-            ),
-            SettingsSwitchTile(
-              title: l10n.sound,
-              subtitle: l10n.playSoundNotification,
-              value: settings.soundEnabled,
-              onChanged: toggle((current, value) => current.copyWith(soundEnabled: value)),
-            ),
-            SettingsSwitchTile(
-              title: l10n.vibrate,
-              subtitle: l10n.vibrateNotification,
-              value: settings.vibrateEnabled,
-              onChanged: toggle((current, value) => current.copyWith(vibrateEnabled: value)),
+            SettingsMenuTile(
+              icon: Icons.notifications_outlined,
+              title: 'Thông báo, âm thanh, rung',
+              subtitle: _notificationSummary(settings),
+              onTap: () => context.push('/notification-settings'),
             ),
             SettingsSectionHeader(title: l10n.languageInterface),
             _DropdownTile<String>(
@@ -128,21 +82,20 @@ class _SettingsViewState extends State<_SettingsView> {
                 DropdownMenuItem(value: 'ja', child: Text(l10n.japanese)),
               ],
               onChanged: (value) {
-                if (value != null) _changeLanguage(value);
+                if (value != null) _changeLanguage(context, value);
               },
             ),
-            // Đổi ngay và lưu trên máy, không chờ nút Lưu: mất mạng không được
-            // làm hỏng việc đổi giao diện.
+            // Giao diện do máy quyết định và đổi ngay, kể cả khi mất mạng.
             _DropdownTile<ThemeMode>(
               title: l10n.interface,
-              value: themeProvider.mode,
+              value: themeMode,
               items: [
                 DropdownMenuItem(value: ThemeMode.light, child: Text(l10n.light)),
                 DropdownMenuItem(value: ThemeMode.dark, child: Text(l10n.dark)),
                 DropdownMenuItem(value: ThemeMode.system, child: Text(l10n.auto)),
               ],
               onChanged: (value) {
-                if (value != null) themeProvider.setMode(value);
+                if (value != null) _changeTheme(context, value);
               },
             ),
             SettingsSectionHeader(title: l10n.other),
@@ -161,34 +114,16 @@ class _SettingsViewState extends State<_SettingsView> {
               title: l10n.aboutApp,
               onTap: () => showSettingsAboutDialog(context),
             ),
-            Padding(
-              padding: const EdgeInsets.all(AppSpacing.lg),
-              child: ElevatedButton(
-                onPressed: provider.canSave ? _save : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                  shape: const RoundedRectangleBorder(borderRadius: AppRadius.smAll),
-                ),
-                child: provider.isSaving
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      )
-                    : Text(
-                        l10n.saveSettings,
-                        style: const TextStyle(fontSize: AppTypography.body, color: Colors.white),
-                      ),
-              ),
-            ),
           ],
         ),
       ),
     );
+  }
+
+  static String _notificationSummary(UserSettings settings) {
+    if (!settings.notificationsEnabled) return 'Đang tắt';
+    final extras = [if (settings.soundEnabled) 'âm thanh', if (settings.vibrateEnabled) 'rung'];
+    return extras.isEmpty ? 'Đang bật, không kêu, không rung' : 'Đang bật, có ${extras.join(' và ')}';
   }
 }
 

@@ -90,6 +90,14 @@ void main() {
     expect(service.calls.where((call) => call == 'submit e1 attempt-1 1'), hasLength(2));
   });
 
+  test('chưa trả lời câu nào: không gửi lên server, báo ngay vì sao chưa nộp', () async {
+    final submitted = await provider.submit('e1', answers: const {}, timeSpent: 42, attemptId: 'attempt-1');
+
+    expect(submitted.errorOrNull, 'Bạn chưa trả lời câu nào nên bài chưa được nộp.');
+    expect(service.calls, isEmpty, reason: 'server không nhận bài nộp rỗng');
+    expect(provider.isSubmitting, isFalse);
+  });
+
   test('lịch sử phân trang, tải thêm nối vào; lỗi hiện thành ViewFailure', () async {
     await provider.loadHistory();
     await provider.loadMore();

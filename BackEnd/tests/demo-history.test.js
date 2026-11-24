@@ -10,6 +10,7 @@ import { DEMO_LEARNER_HISTORY, DEMO_PEERS } from '../scripts/demo-dataset.js';
 import { buildDemoJournal, studyDays, summarizeJournal } from '../scripts/demo-history.js';
 import { SAMPLE_EXERCISES } from '../scripts/sample-exercises.js';
 import { scoreExerciseAnswers } from '../src/modules/exercise/exercise-scoring.service.js';
+import { rewardFor, sourceCapFor } from '../src/modules/streaks/streak-policy.js';
 
 const TODAY = '2026-09-23';
 const USER = new mongoose.Types.ObjectId();
@@ -93,6 +94,7 @@ test('each exercise event has a stored result that re-scores to the same grade',
 
   assert.equal(submissions.length, results.length);
   assert.ok(results.length >= 6);
+  const paid = new Map();
   for (const [index, result] of results.entries()) {
     const exercise = exercises.find((candidate) => candidate._id === result.exercise_id);
     const rescored = scoreExerciseAnswers({
@@ -102,7 +104,27 @@ test('each exercise event has a stored result that re-scores to the same grade',
     });
     assert.equal(rescored.correctCount, result.correct_count);
     assert.equal(rescored.isPassed, result.is_passed);
-    assert.equal(submissions[index].xp_delta, result.is_passed ? 10 : 5);
+    // XP theo đúng luật app: mỗi bài chỉ cho tới trần, làm lại nhận phần còn thiếu.
+    const source = String(result.exercise_id);
+    const awardedBefore = paid.get(source) ?? 0;
+    const { xp } = rewardFor('exercise.submit', { passed: result.is_passed }, { awardedBefore });
+    assert.equal(submissions[index].xp_delta, xp);
+    paid.set(source, awardedBefore + xp);
+  }
+});
+
+test('a demo learner redoing the same exercise never earns more than its cap', () => {
+  // Một bài duy nhất: mọi ngày luyện đều làm lại đúng bài đó.
+  const { events, days } = journalFor({ exercises: exercises.slice(0, 1) });
+  const submissions = events.filter((event) => event.type === 'exercise.submit');
+
+  assert.ok(submissions.length >= 6);
+  const total = submissions.reduce((sum, event) => sum + event.xp_delta, 0);
+  assert.ok(total <= sourceCapFor('exercise.submit'), `một bài cho ${total} XP`);
+  assert.ok(submissions.every((event) => event.counts_as_study), 'làm lại vẫn là ngày học');
+  for (const day of days) {
+    const own = events.filter((event) => event.day_key === day.day_key);
+    assert.equal(day.direct_xp, own.reduce((sum, event) => sum + event.xp_delta, 0), day.day_key);
   }
 });
 

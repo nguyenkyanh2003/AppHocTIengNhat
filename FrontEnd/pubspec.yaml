@@ -64,4 +64,6 @@ flutter:
   
   # Assets
   assets:
-    - assets/images/  
+    - assets/images/
+    # Âm báo khi có tin mới (huy hiệu, nhắc học, thông báo); tắt được trong Cài đặt thông báo.
+    - assets/sounds/

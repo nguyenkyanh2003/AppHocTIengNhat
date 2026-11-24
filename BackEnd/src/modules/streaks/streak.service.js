@@ -229,7 +229,15 @@ export const createStreakService = ({
     // Ném trước khi ghi bất cứ thứ gì: loại lạ là lỗi lập trình ở caller,
     // và một event mang loại không có trong bảng chính sách sẽ không bao giờ
     // đọc lại được cho đúng.
-    const xp = policy.xpFor(type, context?.outcome);
+    const capped = policy.sourceCapFor(type) !== null;
+    if (capped && !sourceId) {
+      // Thiếu nguồn thì không biết bài nào đã cho bao nhiêu: ghi tiếp là cho
+      // lượt này hưởng XP không trần.
+      throw ApiError.badRequest('Hoạt động này phải có bài tập hoặc đề thi đi kèm.', {
+        code: 'MISSING_SOURCE_ID',
+        details: { type },
+      });
+    }
     const countsAsStudy = policy.countsAsStudy(type);
     const todayKey = rules.dayKey(now);
 
@@ -249,12 +257,25 @@ export const createStreakService = ({
         currentStreak: latest?.current_streak ?? 0,
         isNewDay: false,
         xpAwarded: 0,
+        xpRemaining: null,
         duplicate: true,
         milestonesReached: [],
         achievementsAwarded: [],
         freezesGifted: [],
       };
     }
+
+    // Trần theo nguồn (mục 18): lượt này chỉ nhận phần bài/đề đó còn cho.
+    //
+    // Đọc rồi mới ghi nhưng không có khe hở: số đã nhận đọc trong cùng
+    // transaction, và hoạt động học nào cũng CAS tóm tắt của user ở dưới. Hai
+    // lượt nộp song song cùng đọc "chưa nhận gì" thì bên ghi tóm tắt sau đụng
+    // write conflict, cả transaction của nó chạy lại và lần đó đọc thấy XP
+    // bên kia vừa nhận.
+    const awardedBefore = capped
+      ? await repository.sourceXp({ userId, type, sourceId, session })
+      : 0;
+    const { xp, remaining } = policy.rewardFor(type, context?.outcome, { awardedBefore });
 
     const event = await repository.insertEvent({
       userId,
@@ -267,7 +288,11 @@ export const createStreakService = ({
       reason: type,
       countsAsStudy,
       policyVersion: policy.POLICY_VERSION,
-      receipt: context?.receipt,
+      // XP của lượt làm đi cùng receipt: gửi lại cùng lượt trả đúng con số đã
+      // báo lần đầu, kể cả khi sau đó đã có lượt khác nhận nốt phần còn lại.
+      receipt: context?.receipt === undefined
+        ? undefined
+        : { ...context.receipt, xp: { awarded: xp, remaining } },
       session,
     });
 
@@ -281,6 +306,7 @@ export const createStreakService = ({
         currentStreak: summary?.current_streak ?? 0,
         isNewDay: false,
         xpAwarded: 0,
+        xpRemaining: remaining,
         duplicate: false,
         milestonesReached: [],
         achievementsAwarded: [],
@@ -300,6 +326,7 @@ export const createStreakService = ({
         currentStreak: summary.current_streak ?? 0,
         isNewDay: false,
         xpAwarded: xp,
+        xpRemaining: remaining,
         duplicate: false,
         milestonesReached: [],
         achievementsAwarded: [],
@@ -395,6 +422,7 @@ export const createStreakService = ({
       currentStreak: summary.current_streak ?? next.currentStreak,
       isNewDay: next.isNewDay,
       xpAwarded: xp,
+      xpRemaining: remaining,
       duplicate: false,
       milestonesReached,
       achievementsAwarded,

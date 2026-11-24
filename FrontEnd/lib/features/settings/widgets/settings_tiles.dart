@@ -52,37 +52,6 @@ class SettingsUserInfoTile extends StatelessWidget {
   }
 }
 
-/// Một cài đặt bật tắt.
-class SettingsSwitchTile extends StatelessWidget {
-  const SettingsSwitchTile({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.value,
-    required this.onChanged,
-  });
-
-  final String title;
-  final String subtitle;
-  final bool value;
-
-  /// `null` thì công tắc mờ đi (chưa tải được cài đặt thật).
-  final ValueChanged<bool>? onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(title),
-      subtitle: Text(subtitle),
-      trailing: Switch(
-        value: value,
-        onChanged: onChanged,
-        activeColor: context.colors.primary,
-      ),
-    );
-  }
-}
-
 /// Một dòng dẫn sang màn khác.
 class SettingsMenuTile extends StatelessWidget {
   const SettingsMenuTile({
@@ -90,17 +59,22 @@ class SettingsMenuTile extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onTap,
+    this.subtitle,
   });
 
   final IconData icon;
   final String title;
   final VoidCallback onTap;
 
+  /// Tóm tắt lựa chọn hiện tại của trang con, nếu có.
+  final String? subtitle;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(icon, color: context.colors.primary),
       title: Text(title),
+      subtitle: subtitle == null ? null : Text(subtitle!),
       trailing: const Icon(Icons.chevron_right),
       onTap: onTap,
     );

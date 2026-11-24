@@ -1,5 +1,6 @@
 import '../../../core/network/api_client.dart';
 import '../../../core/network/api_envelope.dart';
+import '../../../shared/models/xp_reward.dart';
 
 /// Một đề trong danh sách luyện thi.
 class JLPTExamBrief {
@@ -188,6 +189,7 @@ class JLPTSubmitResult {
     required this.listeningScore,
     required this.passed,
     required this.duration,
+    this.xp,
   });
 
   final int totalScore;
@@ -200,6 +202,9 @@ class JLPTSubmitResult {
   /// Giây.
   final int duration;
 
+  /// XP lượt thi này nhận; `null` khi phản hồi không kèm.
+  final XpReward? xp;
+
   factory JLPTSubmitResult.fromJson(JsonObject json) {
     final sections = json['section_scores'] as Map? ?? const {};
     return JLPTSubmitResult(
@@ -210,6 +215,7 @@ class JLPTSubmitResult {
       listeningScore: _int(sections['choukai']),
       passed: json['passed'] as bool? ?? false,
       duration: _int(json['duration']),
+      xp: XpReward.fromJson(json['xp']),
     );
   }
 }

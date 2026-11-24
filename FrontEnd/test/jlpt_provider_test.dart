@@ -89,8 +89,17 @@ void main() {
       expect(provider.answers['moji-0'], 1, reason: 'nộp rồi thì không đổi được bài làm');
     });
 
+    test('chưa chọn đáp án nào: không gửi lên server, báo ngay vì sao chưa nộp', () async {
+      await provider.loadExam('e1');
+
+      expect(await provider.submit(), 'Bạn chưa chọn đáp án nào nên bài chưa được nộp.');
+      expect(service.calls.where((call) => call.startsWith('submit')), isEmpty);
+      expect(provider.hasSubmitted, isFalse);
+    });
+
     test('nộp lỗi trả câu báo lỗi và cho nộp lại', () async {
       await provider.loadExam('e1');
+      provider.setAnswer('moji-0', 1);
       service.failure = ApiException('Máy chủ đang bận');
 
       expect(await provider.submit(), 'Máy chủ đang bận');

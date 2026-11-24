@@ -1,4 +1,5 @@
 import '../../../core/network/api_envelope.dart';
+import '../../../shared/models/xp_reward.dart';
 
 /// Một bài tập trắc nghiệm. Ở danh sách thì [questions] rỗng và chỉ có
 /// [questionCount]; ở đề làm bài thì câu trả lời chưa có cờ đúng/sai.
@@ -98,6 +99,7 @@ class ExerciseResult {
     required this.createdAt,
     this.answers = const [],
     this.exercise,
+    this.xp,
   });
 
   final String id;
@@ -116,6 +118,10 @@ class ExerciseResult {
   /// lại; `null` khi bài đã bị xoá.
   final Exercise? exercise;
 
+  /// XP lượt làm này nhận — chỉ có trong phản hồi nộp bài, không có khi đọc
+  /// lại kết quả từ lịch sử.
+  final XpReward? xp;
+
   factory ExerciseResult.fromJson(JsonObject json) {
     final exercise = json['exercise'];
     return ExerciseResult(
@@ -129,6 +135,7 @@ class ExerciseResult {
       createdAt: DateTime.tryParse(json['createdAt'] as String? ?? '') ?? DateTime.now(),
       answers: _listOf(json['answers'], UserAnswer.fromJson),
       exercise: exercise is Map ? Exercise.fromJson(Map<String, dynamic>.from(exercise)) : null,
+      xp: XpReward.fromJson(json['xp']),
     );
   }
 }

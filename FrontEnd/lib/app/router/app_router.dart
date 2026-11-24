@@ -45,6 +45,7 @@ import '../../features/notebook/screens/notebook_detail_screen.dart';
 import '../../features/notebook/screens/notebook_form_screen.dart';
 import '../../features/notebook/screens/notebook_list_screen.dart';
 import '../../features/notifications/screens/notifications_screen.dart';
+import '../../features/notifications/widgets/notification_alert_host.dart';
 import '../../features/profile/screens/profile_screen.dart';
 import '../../features/progress/screens/learning_history_screen.dart';
 import '../../features/progress/screens/progress_dashboard_screen.dart';
@@ -340,9 +341,14 @@ abstract final class AppRouter {
 
         // --- Mọi trang còn lại nằm trong shell điều hướng ---
         ShellRoute(
-          // Nhắc học chỉ chạy trong vùng đã đăng nhập, cùng vòng đời với shell.
-          builder: (context, state, child) =>
-              StreakReminderHost(child: AppShell(child: child)),
+          // Nhắc học và báo thông báo mới chỉ chạy trong vùng đã đăng nhập,
+          // cùng vòng đời với shell.
+          builder: (context, state, child) => StreakReminderHost(
+            child: NotificationAlertHost(
+              onOpenNotifications: () => context.push('/notifications'),
+              child: AppShell(child: child),
+            ),
+          ),
           routes: [
             GoRoute(
               path: '/home',

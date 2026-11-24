@@ -106,12 +106,6 @@ class AppLocalizations {
       'account_info': 'Thông tin tài khoản',
       'user': 'Người dùng',
       'notifications': 'Thông báo',
-      'enable_notifications': 'Bật thông báo',
-      'receive_notifications': 'Nhận thông báo từ ứng dụng',
-      'sound': 'Âm thanh',
-      'play_sound_notification': 'Phát âm thanh khi có thông báo',
-      'vibrate': 'Rung',
-      'vibrate_notification': 'Rung khi có thông báo',
       'language_interface': 'Ngôn ngữ & Giao diện',
       'language': 'Ngôn ngữ',
       'interface': 'Giao diện',
@@ -124,8 +118,6 @@ class AppLocalizations {
       'privacy_policy': 'Chính sách riêng tư',
       'about_app': 'Về ứng dụng',
       'logout': 'Đăng xuất',
-      'save_settings': 'Lưu cài đặt',
-      'settings_saved': 'Cài đặt đã được lưu',
 
       // Change Password Screen
       'change_password': 'Đổi mật khẩu',
@@ -337,12 +329,6 @@ class AppLocalizations {
       'account_info': 'Account Information',
       'user': 'User',
       'notifications': 'Notifications',
-      'enable_notifications': 'Enable notifications',
-      'receive_notifications': 'Receive notifications from app',
-      'sound': 'Sound',
-      'play_sound_notification': 'Play sound when notification arrives',
-      'vibrate': 'Vibrate',
-      'vibrate_notification': 'Vibrate when notification arrives',
       'language_interface': 'Language & Interface',
       'language': 'Language',
       'interface': 'Interface',
@@ -355,8 +341,6 @@ class AppLocalizations {
       'privacy_policy': 'Privacy Policy',
       'about_app': 'About App',
       'logout': 'Logout',
-      'save_settings': 'Save Settings',
-      'settings_saved': 'Settings saved',
 
       // Change Password Screen
       'change_password': 'Change Password',
@@ -568,12 +552,6 @@ class AppLocalizations {
       'account_info': 'アカウント情報',
       'user': 'ユーザー',
       'notifications': '通知',
-      'enable_notifications': '通知を有効にする',
-      'receive_notifications': 'アプリから通知を受け取る',
-      'sound': '音',
-      'play_sound_notification': '通知音を鳴らす',
-      'vibrate': 'バイブレーション',
-      'vibrate_notification': '通知時に振動する',
       'language_interface': '言語とインターフェース',
       'language': '言語',
       'interface': 'インターフェース',
@@ -586,8 +564,6 @@ class AppLocalizations {
       'privacy_policy': 'プライバシーポリシー',
       'about_app': 'アプリについて',
       'logout': 'ログアウト',
-      'save_settings': '設定を保存',
-      'settings_saved': '設定が保存されました',
 
       // Change Password Screen
       'change_password': 'パスワード変更',
@@ -804,12 +780,6 @@ class AppLocalizations {
   String get accountInfo => translate('account_info');
   String get user => translate('user');
   String get notifications => translate('notifications');
-  String get enableNotifications => translate('enable_notifications');
-  String get receiveNotifications => translate('receive_notifications');
-  String get sound => translate('sound');
-  String get playSoundNotification => translate('play_sound_notification');
-  String get vibrate => translate('vibrate');
-  String get vibrateNotification => translate('vibrate_notification');
   String get languageInterface => translate('language_interface');
   String get language => translate('language');
   String get interface => translate('interface');
@@ -822,8 +792,6 @@ class AppLocalizations {
   String get privacyPolicy => translate('privacy_policy');
   String get aboutApp => translate('about_app');
   String get logout => translate('logout');
-  String get saveSettings => translate('save_settings');
-  String get settingsSaved => translate('settings_saved');
 
   // Profile
   String get myProfile => translate('my_profile');

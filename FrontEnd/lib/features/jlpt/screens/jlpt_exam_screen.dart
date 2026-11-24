@@ -11,6 +11,7 @@ import '../../../app/theme/app_tokens.dart';
 import '../widgets/jlpt_audio_bar.dart';
 import '../widgets/jlpt_exam_sections.dart';
 import '../widgets/jlpt_result_sheet.dart';
+import '../../streaks/providers/streak_provider.dart';
 import '../../../shared/widgets/async_view.dart';
 import '../../../core/state/view_state.dart';
 
@@ -78,6 +79,8 @@ class _JLPTExamScreenState extends State<JLPTExamScreen> {
     final error = await provider.submit();
     if (!mounted) return;
     if (error == null) {
+      // XP và chuỗi ngày trên trang chủ, hồ sơ cập nhật ngay, không chờ mở lại app.
+      context.read<StreakProvider>().loadStreak();
       showJlptResultSheet(context, provider);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error), backgroundColor: AppColors.errorStrong));

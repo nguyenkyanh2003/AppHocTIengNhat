@@ -18,7 +18,7 @@ export const createExerciseSubmissionService = ({
   now = () => new Date(),
 } = {}) => ({
   async submit({ userId, exerciseId, attemptId, answers, timeSpent }) {
-    return submitter.submit({
+    const submitted = await submitter.submit({
       userId,
       type: 'exercise.submit',
       sourceId: exerciseId,
@@ -53,7 +53,6 @@ export const createExerciseSubmissionService = ({
           },
           { session },
         );
-        await repository.incrementAttempts(exerciseId, { session });
 
         return {
           result: {
@@ -72,6 +71,14 @@ export const createExerciseSubmissionService = ({
         };
       },
     });
+
+    // Số "N lượt" ở danh sách bài tập tăng **sau** khi lượt nộp đã commit. Mọi
+    // lượt nộp một bài, của mọi người học, đều ghi vào cùng document bài tập:
+    // đặt lệnh này trong transaction thì cả lớp nộp cùng lúc sẽ xung đột ghi,
+    // hết lượt thử lại và nhận 500. Một `$inc` đơn lẻ ngoài transaction thì
+    // MongoDB tự xếp hàng. Gửi lại cùng lượt không phải lượt làm mới.
+    if (!submitted.replayed) await repository.incrementAttempts(exerciseId);
+    return submitted;
   },
 });
 

@@ -238,4 +238,19 @@ void main() {
       });
     }
   });
+
+  group('nút viền bị khoá', () {
+    for (final (name, theme, colors) in [
+      ('sáng', () => AppTheme.lightTheme, AppThemeColors.light),
+      ('tối', () => AppTheme.darkTheme, AppThemeColors.dark),
+    ]) {
+      test('chế độ $name: viền mờ theo chữ, không còn màu thương hiệu', () {
+        final side = theme().outlinedButtonTheme.style!.side!;
+
+        expect(side.resolve(const {})!.color, colors.primary);
+        expect(side.resolve(const {WidgetState.disabled})!.color, colors.border);
+        expect(side.resolve(const {WidgetState.disabled})!.width, 1.5);
+      });
+    }
+  });
 }

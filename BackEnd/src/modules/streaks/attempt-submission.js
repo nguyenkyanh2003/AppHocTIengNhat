@@ -44,6 +44,17 @@ const stableStringify = (value) => {
 export const fingerprintOf = (payload) =>
   createHash('sha256').update(stableStringify(payload)).digest('hex');
 
+/**
+ * Kết quả trả client kèm XP của lượt làm: `{ awarded, remaining }` — lượt này
+ * nhận bao nhiêu và bài/đề đó còn cho được bao nhiêu (trần theo nguồn, xem
+ * `rewardFor` trong `streak-policy.js`). Nhờ vậy màn kết quả nói được "+5 XP,
+ * làm đạt để nhận thêm 5" hay "bài này đã nhận đủ XP" mà không tự đoán luật.
+ *
+ * `null` với lượt nộp từ trước khi receipt mang XP: không có gì chắc chắn để
+ * báo thì không báo.
+ */
+const withXp = (result, xp) => ({ ...result, xp: xp ?? null });
+
 export const createAttemptSubmitter = ({
   streak = streakService,
   repository = streakRepository,
@@ -59,7 +70,7 @@ export const createAttemptSubmitter = ({
         { code: 'ATTEMPT_PAYLOAD_MISMATCH' },
       );
     }
-    return { result: receipt.result, replayed: true, xpAwarded: 0 };
+    return { result: withXp(receipt.result, receipt.xp), replayed: true, xpAwarded: 0 };
   };
 
   return {
@@ -67,6 +78,9 @@ export const createAttemptSubmitter = ({
      * @param persist Ghi kết quả nghiệp vụ trong session và trả về
      *   `{ result, outcome }` — `result` là thứ trả cho client và lưu vào
      *   receipt, `outcome` là kết quả đã chấm để chính sách tính XP.
+     * @returns `{ result, replayed, xpAwarded }`: `result.xp` là XP của lượt
+     *   làm (giữ nguyên khi gửi lại), còn `xpAwarded` là XP **chính lần gọi
+     *   này** cộng thêm — 0 khi gửi lại.
      */
     async submit({ userId, type, sourceId, attemptId, payload, persist }) {
       const eventKey = `${type}:${attemptId}`;
@@ -95,7 +109,11 @@ export const createAttemptSubmitter = ({
           // quả cho một lượt.
           if (recorded.duplicate) throw new DuplicateAttemptError();
 
-          return { result, replayed: false, xpAwarded: recorded.xpAwarded };
+          return {
+            result: withXp(result, { awarded: recorded.xpAwarded, remaining: recorded.xpRemaining }),
+            replayed: false,
+            xpAwarded: recorded.xpAwarded,
+          };
         });
       } catch (error) {
         if (!(error instanceof DuplicateAttemptError)) throw error;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../providers/jlpt_exam_provider.dart';
 import '../../../app/theme/app_typography.dart';
 import '../../../app/theme/app_tokens.dart';
+import '../../../shared/widgets/xp_reward_note.dart';
 
 /// Bảng kết quả sau khi nộp đề.
 void showJlptResultSheet(BuildContext context, JLPTExamProvider provider) {
@@ -39,6 +40,10 @@ void showJlptResultSheet(BuildContext context, JLPTExamProvider provider) {
                   ],
                 ),
               ),
+              if (result.xp case final xp?) ...[
+                AppGap.lg,
+                XpRewardNote(reward: xp, subject: 'đề này'),
+              ],
               const SizedBox(height: 24),
               _buildScoreItem('Từ vựng', result.vocabScore),
               _buildScoreItem('Ngữ pháp', result.grammarScore),

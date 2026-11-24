@@ -26,13 +26,15 @@ Map<String, dynamic> _question(int n) => {
       ],
     };
 
-/// Bài một phút, hai câu; ghi lại mọi lần nộp.
+/// Bài một phút, hai câu; ghi lại mọi lần nộp và mọi lần đọc XP.
 class _Backend {
   final submissions = <Map<String, dynamic>>[];
+  var streakReads = 0;
 
   http.Client get client => MockClient((request) async {
         final path = request.url.path;
         Object body = const {};
+        if (path.endsWith('/streak/my-streak')) streakReads++;
         if (request.method == 'POST' && path.endsWith('/exercise/submit/$_id')) {
           submissions.add(jsonDecode(request.body) as Map<String, dynamic>);
           body = {
@@ -93,6 +95,9 @@ void main() {
       }
       await tester.tap(find.text('Bắt đầu làm bài'));
       await tester.pump();
+      // Server không nhận bài rỗng, nên trả lời câu 1 rồi để hết giờ.
+      await tester.tap(find.text('Đáp án A'));
+      await tester.pump();
 
       // Một câu chưa trả lời; thời gian trôi quá giới hạn 1 phút vài giây.
       for (var second = 0; second < 64; second++) {
@@ -104,5 +109,37 @@ void main() {
     expect(find.text('Chưa hoàn thành'), findsNothing, reason: 'hết giờ không còn gì để hỏi');
     expect(backend.submissions, hasLength(1));
     expect(find.text('Trang kết quả'), findsOneWidget);
+    expect(backend.streakReads, 1, reason: 'nộp xong thì XP trên trang chủ, hồ sơ được làm mới');
+  });
+
+  testWidgets('chưa trả lời câu nào mà bấm nộp: không hỏi "nộp không?", báo ngay vì sao chưa nộp', (tester) async {
+    tester.view.physicalSize = const Size(1000, 1400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    final backend = _Backend();
+
+    await http.runWithClient(() async {
+      await tester.pumpWidget(_app());
+      for (var i = 0; i < 10; i++) {
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+      await tester.tap(find.text('Bắt đầu làm bài'));
+      await tester.pump();
+      await tester.tap(find.text('Câu tiếp'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.tap(find.text('Nộp bài'));
+      for (var i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+      expect(find.text('Bạn chưa trả lời câu nào nên bài chưa được nộp.'), findsOneWidget);
+      for (var second = 0; second < 3; second++) {
+        await tester.pump(const Duration(seconds: 1));
+      }
+    }, () => backend.client);
+
+    expect(find.text('Chưa hoàn thành'), findsNothing);
+    expect(backend.submissions, isEmpty);
+    expect(find.text('00:03'), findsOneWidget, reason: 'bài chưa nộp thì đồng hồ vẫn chạy để làm tiếp');
   });
 }

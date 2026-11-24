@@ -15,6 +15,8 @@ import {
   countsAsStudy,
   milestonesCrossed,
   isActivityType,
+  rewardFor,
+  sourceCapFor,
 } from '../src/modules/streaks/streak-policy.js';
 
 test('every row of the XP table is exactly what the spec says', () => {
@@ -82,6 +84,45 @@ test('a malformed achievement config is rejected instead of being written', () =
       `configuredXp=${String(bad)} phải bị chặn`,
     );
   }
+});
+
+// --- Trần XP theo từng bài tập / đề thi (mục 18) ------------------------------
+
+test('an exercise and a JLPT exam each have a lifetime XP cap; other activities do not', () => {
+  assert.equal(sourceCapFor('exercise.submit'), 10, 'mức cao nhất của bài tập');
+  assert.equal(sourceCapFor('jlpt.submit'), 20);
+  // Bài học đã chống trùng bằng khoá theo bài, thẻ SRS bằng khoá theo lịch:
+  // không cần trần theo nguồn.
+  for (const type of ['srs.review', 'lesson.progress', 'lesson.complete', 'login']) {
+    assert.equal(sourceCapFor(type), null, type);
+  }
+  assert.throws(() => sourceCapFor('exercise.retry'), (error) => error.status === 400);
+});
+
+test('exercise retries pay only what is still missing, so repeating never farms XP', () => {
+  const attempt = (passed, awardedBefore) => rewardFor('exercise.submit', { passed }, { awardedBefore });
+
+  assert.deepEqual(attempt(false, 0), { xp: 5, remaining: 5 }, 'lần đầu chưa đạt');
+  assert.deepEqual(attempt(false, 5), { xp: 0, remaining: 5 }, 'chưa đạt lần nữa');
+  assert.deepEqual(attempt(true, 5), { xp: 5, remaining: 0 }, 'làm đạt sau đó: bù phần còn thiếu');
+  assert.deepEqual(attempt(true, 10), { xp: 0, remaining: 0 }, 'đã đủ rồi làm lại');
+  assert.deepEqual(attempt(true, 0), { xp: 10, remaining: 0 }, 'đạt ngay lần đầu');
+  assert.deepEqual(attempt(false, 10), { xp: 0, remaining: 0 }, 'đã đạt rồi làm kém đi');
+});
+
+test('a JLPT exam pays its 20 XP once, pass or fail', () => {
+  assert.deepEqual(rewardFor('jlpt.submit', { passed: false }), { xp: 20, remaining: 0 });
+  assert.deepEqual(rewardFor('jlpt.submit', { passed: true }, { awardedBefore: 20 }), { xp: 0, remaining: 0 });
+});
+
+test('XP farmed before the cap existed is never taken back nor topped up', () => {
+  // Người đã cày 60 XP từ một bài trước khi có luật: không trừ, không cộng thêm.
+  assert.deepEqual(rewardFor('exercise.submit', { passed: true }, { awardedBefore: 60 }), { xp: 0, remaining: 0 });
+});
+
+test('activities without a cap keep their table XP and report no remainder', () => {
+  assert.deepEqual(rewardFor('srs.review'), { xp: 2, remaining: null });
+  assert.deepEqual(rewardFor('lesson.complete', undefined, { awardedBefore: 999 }), { xp: 20, remaining: null });
 });
 
 test('the milestone ladder is the single one from the spec', () => {

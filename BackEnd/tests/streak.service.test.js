@@ -56,6 +56,12 @@ const fakeRepository = ({ summary = {}, failCasTimes = 0 } = {}) => {
       calls.push(['findEventByKey', { userId, eventKey, session }]);
       return this.events.find((event) => event.eventKey === eventKey) ?? null;
     },
+    async sourceXp({ userId, type, sourceId, session }) {
+      calls.push(['sourceXp', { userId, type, sourceId, session }]);
+      return this.events
+        .filter((event) => event.type === type && event.sourceId === sourceId)
+        .reduce((total, event) => total + (event.xpDelta ?? 0), 0);
+    },
     async insertEvent(args) {
       calls.push(['insertEvent', args]);
       if (eventKeys.has(args.eventKey)) {
@@ -282,7 +288,89 @@ test('a receipt from the caller is stored on the event for retry reads', async (
     }),
     { now: NOW },
   );
-  assert.deepEqual(repository.events[0].receipt, { score: 88 });
+  // XP của lượt làm nằm trong receipt: gửi lại trả đúng con số lần đầu.
+  assert.deepEqual(repository.events[0].receipt, { score: 88, xp: { awarded: 20, remaining: 0 } });
+});
+
+// --- trần XP theo bài tập / đề thi (mục 18) ----------------------------------
+
+const attemptOf = (type, sourceId, attempt, passed) =>
+  activity({ type, sourceId, occurrenceKey: `${type}:${attempt}`, context: { outcome: { passed } } });
+
+test('nộp đi nộp lại một bài tập không cày được XP: chỉ được tới 10, làm đạt thì bù phần thiếu', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ goals: NO_GOALS, achievements: NO_ACHIEVEMENTS, repository });
+  const submit = (attempt, passed) =>
+    service.recordActivity(attemptOf('exercise.submit', 'ex1', attempt, passed), { session: 'sess', now: NOW });
+
+  const results = [];
+  for (const [attempt, passed] of [['a1', false], ['a2', false], ['a3', true], ['a4', true]]) {
+    const { xpAwarded, xpRemaining } = await submit(attempt, passed);
+    results.push([xpAwarded, xpRemaining]);
+  }
+
+  assert.deepEqual(results, [[5, 5], [0, 5], [5, 0], [0, 0]]);
+  assert.equal(repository.state.total_xp, 10);
+  // Số đã nhận đọc trong cùng transaction với lần ghi.
+  assert.ok(callsTo(repository, 'sourceXp').every((args) => args.session === 'sess'));
+});
+
+test('mỗi đề JLPT cho 20 XP một lần, thi lại không cộng thêm', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ goals: NO_GOALS, achievements: NO_ACHIEVEMENTS, repository });
+
+  const first = await service.recordActivity(attemptOf('jlpt.submit', 'exam1', 'a1', false), { now: NOW });
+  const again = await service.recordActivity(attemptOf('jlpt.submit', 'exam1', 'a2', true), { now: NOW });
+
+  assert.deepEqual([first.xpAwarded, again.xpAwarded], [20, 0]);
+  assert.equal(repository.state.total_xp, 20);
+});
+
+test('trần tính riêng cho từng bài: bài mới vẫn được đủ XP', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ goals: NO_GOALS, achievements: NO_ACHIEVEMENTS, repository });
+
+  await service.recordActivity(attemptOf('exercise.submit', 'ex1', 'a1', true), { now: NOW });
+  const other = await service.recordActivity(attemptOf('exercise.submit', 'ex2', 'a2', true), { now: NOW });
+
+  assert.equal(other.xpAwarded, 10);
+  assert.equal(repository.state.total_xp, 20);
+});
+
+test('lượt làm lại không còn XP vẫn là một ngày học: chuỗi vẫn nối', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ goals: NO_GOALS, achievements: NO_ACHIEVEMENTS, repository });
+  const tomorrow = new Date(NOW.getTime() + 24 * 60 * 60 * 1000);
+
+  await service.recordActivity(attemptOf('exercise.submit', 'ex1', 'a1', true), { now: NOW });
+  const repeat = await service.recordActivity(attemptOf('exercise.submit', 'ex1', 'a2', true), { now: tomorrow });
+
+  assert.equal(repeat.xpAwarded, 0);
+  assert.equal(repeat.isNewDay, true);
+  assert.equal(repeat.currentStreak, 2);
+  assert.equal(repository.events.at(-1).countsAsStudy, true);
+  assert.equal(repository.days.at(-1).incDirectXp, 0, 'không tính vào mục tiêu XP ngày');
+});
+
+test('bài tập hay đề thi thiếu nguồn bị từ chối trước khi ghi, không được hưởng XP không trần', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ goals: NO_GOALS, achievements: NO_ACHIEVEMENTS, repository });
+
+  await assert.rejects(
+    service.recordActivity(attemptOf('exercise.submit', undefined, 'a1', true), { now: NOW }),
+    (error) => error.status === 400 && error.code === 'MISSING_SOURCE_ID',
+  );
+  assert.equal(namesOf(repository).includes('insertEvent'), false);
+});
+
+test('hoạt động không có trần không phải đọc XP theo nguồn', async () => {
+  const repository = fakeRepository();
+  const service = createStreakService({ goals: NO_GOALS, achievements: NO_ACHIEVEMENTS, repository });
+
+  const result = await service.recordActivity(activity(), { now: NOW });
+
+  assert.equal(result.xpRemaining, null);
+  assert.equal(namesOf(repository).includes('sourceXp'), false);
 });
 
 test('every repository call carries the session it was handed', async () => {

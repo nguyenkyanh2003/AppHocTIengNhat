@@ -1,4 +1,4 @@
-import { POLICY_VERSION, xpFor } from '../src/modules/streaks/streak-policy.js';
+import { POLICY_VERSION, rewardFor, xpFor } from '../src/modules/streaks/streak-policy.js';
 import { addDays, daysBetween } from '../src/modules/streaks/streak-rules.js';
 
 /** Hạt giống 32-bit từ một chuỗi (FNV-1a). */
@@ -69,6 +69,8 @@ export const buildDemoJournal = ({ userId, username, profile, todayKey, cardIds,
   const events = [];
   const days = [];
   const results = [];
+  // XP mỗi bài đã cho, để bài làm lại chỉ nhận phần còn thiếu như trên app.
+  const paidByExercise = new Map();
 
   const daysToBuild = studyDays({ todayKey, days: profile.days, missedOffsets: profile.missedOffsets }).reverse();
   daysToBuild.forEach((day, dayIndex) => {
@@ -103,6 +105,10 @@ export const buildDemoJournal = ({ userId, username, profile, todayKey, cardIds,
       const score = Math.round((correctCount / total) * 100);
       const passed = score >= (exercise.pass_score ?? 60);
       const completedAt = atVietnamTime(day, eveningStart);
+      const source = String(exercise._id);
+      const awardedBefore = paidByExercise.get(source) ?? 0;
+      const { xp } = rewardFor('exercise.submit', { passed }, { awardedBefore });
+      paidByExercise.set(source, awardedBefore + xp);
       results.push({
         user_id: userId,
         exercise_id: exercise._id,
@@ -118,10 +124,10 @@ export const buildDemoJournal = ({ userId, username, profile, todayKey, cardIds,
         user: userId,
         event_key: `demo:${day}:exercise`,
         type: 'exercise.submit',
-        source_id: String(exercise._id),
+        source_id: source,
         occurred_at: completedAt,
         day_key: day,
-        xp_delta: xpFor('exercise.submit', { passed }),
+        xp_delta: xp,
         reason: 'exercise.submit',
         counts_as_study: true,
         policy_version: POLICY_VERSION,

@@ -192,13 +192,18 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: colors.primary,
-          side: BorderSide(color: colors.primary, width: 1.5),
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.xl,
             vertical: AppSpacing.md,
           ),
           shape: const RoundedRectangleBorder(borderRadius: AppRadius.mdAll),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ).copyWith(
+          // Nút bị khoá thì viền mờ cùng chữ, không giữ màu thương hiệu như còn bấm được.
+          side: WidgetStateProperty.resolveWith((states) => BorderSide(
+                color: states.contains(WidgetState.disabled) ? colors.border : colors.primary,
+                width: 1.5,
+              )),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(

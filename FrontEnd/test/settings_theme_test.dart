@@ -12,6 +12,7 @@ import 'package:apphoctiengnnhat/app/localization/app_localizations.dart';
 import 'package:apphoctiengnnhat/app/localization/locale_provider.dart';
 import 'package:apphoctiengnnhat/app/theme/app_theme.dart';
 import 'package:apphoctiengnnhat/app/theme/theme_provider.dart';
+import 'package:apphoctiengnnhat/features/settings/providers/settings_provider.dart';
 import 'package:apphoctiengnnhat/features/settings/screens/settings_screen.dart';
 import 'package:apphoctiengnnhat/features/auth/providers/auth_provider.dart';
 
@@ -46,6 +47,7 @@ class _App extends StatelessWidget {
           ChangeNotifierProvider.value(value: theme),
           ChangeNotifierProvider(create: (_) => AuthProvider()),
           ChangeNotifierProvider(create: (_) => LocaleProvider()),
+          ChangeNotifierProvider(create: (_) => SettingsProvider()..load(), lazy: false),
         ],
         child: Consumer<ThemeProvider>(
           builder: (context, theme, _) => MaterialApp(
@@ -118,16 +120,28 @@ void main() {
     expect(backend.posted, isEmpty, reason: 'mất mạng không được làm hỏng việc đổi giao diện');
   });
 
-  testWidgets('bấm Lưu gửi đúng lựa chọn đang dùng lên server', (tester) async {
+  testWidgets('đổi giao diện thì tự lưu lên tài khoản, không có nút Lưu để quên bấm', (tester) async {
     await pumpSettings(tester, ThemeProvider(ThemeMode.system));
+    expect(find.text('Lưu cài đặt'), findsNothing);
 
     await http.runWithClient(() async {
-      await tester.ensureVisible(find.text('Lưu cài đặt'));
+      await tester.ensureVisible(themeDropdown());
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Lưu cài đặt'));
+      await tester.tap(themeDropdown());
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Tối').last);
       await tester.pumpAndSettle();
     }, () => backend.client);
 
-    expect(backend.posted.single['theme'], 'auto');
+    expect(backend.posted.single['theme'], 'dark');
+    expect(backend.posted.single['soundEnabled'], isTrue, reason: 'các cài đặt khác giữ nguyên giá trị của server');
+  });
+
+  testWidgets('ba công tắc thông báo nằm ở một chỗ: dòng tóm tắt dẫn sang Cài đặt thông báo', (tester) async {
+    await pumpSettings(tester, ThemeProvider(ThemeMode.system));
+
+    expect(find.byType(Switch), findsNothing);
+    expect(find.text('Thông báo, âm thanh, rung'), findsOneWidget);
+    expect(find.text('Đang bật, có âm thanh và rung'), findsOneWidget);
   });
 }

@@ -24,7 +24,7 @@ import { ApiError } from '../../shared/http/api-error.js';
  * và một event 5 XP ghi sau lần đổi bảng giá không có ý nghĩa như nhau, và
  * không có cách nào phân biệt nếu không lưu phiên bản tại thời điểm ghi.
  */
-export const POLICY_VERSION = 'streak-policy@2026-09-25';
+export const POLICY_VERSION = 'streak-policy@2026-11-24';
 
 /** Thang mốc streak duy nhất, dùng cho cả huy hiệu lẫn thông báo. */
 export const STREAK_MILESTONES = Object.freeze([7, 14, 30, 50, 100, 365]);
@@ -75,13 +75,19 @@ const MAX_CONFIGURED_REWARD_XP = 100_000;
  * có mặt trong bảng thay vì bị bỏ trống, để `xpFor('login')` trả 0 một cách
  * có chủ đích thay vì ném "loại không hợp lệ" và buộc caller phải nhớ danh
  * sách loại trừ ở chỗ khác.
+ *
+ * `perSource: true`: mỗi nguồn (một bài tập, một đề) chỉ cho tới mức cao nhất
+ * của loại trong đời tài khoản — xem `rewardFor`. Hai loại này nộp được vô số
+ * lượt với `attempt_id` mới, nên thiếu trần là cày được XP vô hạn bằng cách
+ * nộp đi nộp lại một bài. Bài học và thẻ SRS không cần: khoá lần xảy ra của
+ * chúng (theo bài, theo lịch ôn) đã chặn việc lặp.
  */
 const TABLE = Object.freeze({
   'srs.review': { xp: 2, study: true },
   'lesson.progress': { xp: 2, study: true },
   'lesson.complete': { xp: 20, study: true },
-  'jlpt.submit': { xp: 20, study: true },
-  'exercise.submit': { grade: { passed: 10, failed: 5 }, study: true },
+  'jlpt.submit': { xp: 20, study: true, perSource: true },
+  'exercise.submit': { grade: { passed: 10, failed: 5 }, study: true, perSource: true },
 
   // Spec §3.4 dòng cuối: 0 XP và không tạo event học. Bỏ thưởng mở bài 3 XP
   // và login 10 XP từ cutover — hai khoản này là lý do chính khiến chuỗi cũ
@@ -168,6 +174,40 @@ export const xpFor = (type, outcome) => {
  * không phải ngày học (event thưởng mốc).
  */
 export const countsAsStudy = (type) => ruleFor(type).study;
+
+/**
+ * XP tối đa một nguồn (một bài tập, một đề JLPT) cho trong đời tài khoản —
+ * mức cao nhất của loại: bài tập 10, đề JLPT 20. `null` khi loại không giới
+ * hạn theo nguồn.
+ */
+export const sourceCapFor = (type) => {
+  const rule = ruleFor(type);
+  if (!rule.perSource) return null;
+  return rule.grade ? Math.max(...Object.values(rule.grade)) : rule.xp;
+};
+
+/**
+ * XP của một lần làm, khi nguồn đó đã cho `awardedBefore` XP, và phần XP
+ * nguồn đó còn cho được sau lần này.
+ *
+ * Lần làm nhận **phần chênh** giữa mức vừa đạt và số đã nhận, không bao giờ
+ * âm: bài tập chưa đạt lần đầu được 5, làm lại vẫn chưa đạt được 0, làm đạt
+ * được thêm 5; đã đủ 10 rồi thì làm lại được 0. Người học vẫn có lý do làm
+ * lại bài chưa đạt, còn nộp đi nộp lại bài đã đạt thì không thêm gì.
+ *
+ * XP cày được trước khi có trần (`awardedBefore` vượt trần) không bị trừ —
+ * spec §3.4: không trừ XP đã có — nhưng nguồn đó cũng không cho thêm nữa.
+ *
+ * @returns `{ xp, remaining }`; `remaining` là `null` với loại không có trần.
+ */
+export const rewardFor = (type, outcome, { awardedBefore = 0 } = {}) => {
+  const earned = xpFor(type, outcome);
+  const cap = sourceCapFor(type);
+  if (cap === null) return { xp: earned, remaining: null };
+
+  const xp = Math.max(0, earned - awardedBefore);
+  return { xp, remaining: Math.max(0, cap - awardedBefore - xp) };
+};
 
 /**
  * Những mốc mà **chính lần ghi này** vừa vượt qua: `previous < m <= next`.

@@ -3,7 +3,7 @@ import test from 'node:test';
 
 import { createAttemptSubmitter } from '../src/modules/streaks/attempt-submission.js';
 import { createJlptSubmissionService } from '../src/modules/jlpt/jlpt-submission.service.js';
-import { xpFor } from '../src/modules/streaks/streak-policy.js';
+import { rewardFor } from '../src/modules/streaks/streak-policy.js';
 
 const USER = 'u1';
 const EXAM = '507f1f77bcf86cd799439011';
@@ -29,8 +29,13 @@ const scorerFor = (totalScore) => () => ({
   ],
 });
 
+/**
+ * Nhật ký giả: unique `(user, event_key)`, XP theo chính sách thật kể cả trần
+ * theo đề, và XP lượt làm đóng dấu vào receipt — y như cổng ghi thật.
+ */
 const fakeJournal = () => {
   const events = new Map();
+  const paid = new Map();
   return {
     events,
     async findEventByKey({ userId, eventKey }) {
@@ -38,9 +43,16 @@ const fakeJournal = () => {
     },
     async recordActivity(activity, options) {
       const key = `${activity.userId}|${activity.occurrenceKey}`;
-      if (events.has(key)) return { xpAwarded: 0, duplicate: true };
-      events.set(key, { ...activity, session: options.session, receipt: activity.context?.receipt });
-      return { xpAwarded: xpFor(activity.type, activity.context?.outcome), duplicate: false };
+      if (events.has(key)) return { xpAwarded: 0, xpRemaining: null, duplicate: true };
+      const awardedBefore = paid.get(activity.sourceId) ?? 0;
+      const { xp, remaining } = rewardFor(activity.type, activity.context?.outcome, { awardedBefore });
+      paid.set(activity.sourceId, awardedBefore + xp);
+      events.set(key, {
+        ...activity,
+        session: options.session,
+        receipt: { ...activity.context?.receipt, xp: { awarded: xp, remaining } },
+      });
+      return { xpAwarded: xp, xpRemaining: remaining, duplicate: false };
     },
   };
 };
@@ -172,4 +184,15 @@ test('thiếu thời gian làm bài thì lấy trọn thời lượng đề', as
   });
 
   assert.equal(result.duration, 105 * 60);
+});
+
+test('thi lại cùng đề bằng lượt mới: có điểm mới nhưng không cộng thêm XP', async () => {
+  const service = buildService(fakeRepository());
+
+  const first = await submit(service);
+  const again = await submit(service, { attemptId: OTHER_ATTEMPT });
+
+  assert.deepEqual(first.result.xp, { awarded: 20, remaining: 0 });
+  assert.equal(again.replayed, false);
+  assert.deepEqual(again.result.xp, { awarded: 0, remaining: 0 });
 });
